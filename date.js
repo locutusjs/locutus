@@ -5,12 +5,13 @@ function date ( format, timestamp ) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: MeEtc (http://yass.meetcweb.com)
     // +   improved by: Brad Touesnard
+    // +   improved by: Tim Wiel
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);
     // *     returns 2: 'September 2, 2003, 2:26 am'
 
-    var a, jsdate = new Date(timestamp ? timestamp * 1000 : null);
+    var a, jsdate=((timestamp) ? new Date(timestamp*1000) : new Date());
     var pad = function(n, c){
         if( (n = n + "").length < c ) {
             return new Array(++c - n.length).join("0") + n;
