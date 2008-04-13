@@ -11,5 +11,5 @@ function echo ( ) {
             document.write( echo.arguments[i] );
         }
     }
-    //return null;
+    return null;
 }
