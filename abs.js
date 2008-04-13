@@ -3,6 +3,7 @@ function abs( mixed_number )  {
     // +   original by: _argos
     // +   improved by: Karol Kowalski
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // *     example 1: abs(4.2);
     // *     returns 1: 4.2
     // *     example 2: abs(-4.2);
@@ -12,5 +13,5 @@ function abs( mixed_number )  {
     // *     example 4: abs('_argos');
     // *     returns 4: 0
 
-    return ( ( isNaN ( mixed_number ) ) ? 0 : Math.abs ( mixed_number ) );
+    return Math.abs (n) || 0;
 }

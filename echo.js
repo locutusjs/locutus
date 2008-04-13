@@ -1,6 +1,6 @@
 function echo ( ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Philip
+    // +   original by: Philip Peterson
     // *     example 1: echo('Hello', 'World');
     // *     returns 1: null
     

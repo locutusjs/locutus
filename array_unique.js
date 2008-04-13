@@ -1,6 +1,6 @@
 function array_unique( array ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Carlos R. L. Rodrigues
+    // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // *     example 1: array_unique(['Kevin','Kevin','van','Zonneveld']);
     // *     returns 1: true
 

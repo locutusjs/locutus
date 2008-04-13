@@ -1,6 +1,6 @@
 function levenshtein( str1, str2 ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Carlos R. L. Rodrigues
+    // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // *     example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
     // *     returns 1: 3
 

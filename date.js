@@ -1,6 +1,6 @@
 function date ( format, timestamp ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Carlos R. L. Rodrigues
+    // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: MeEtc (http://yass.meetcweb.com)
