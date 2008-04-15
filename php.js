@@ -1,18 +1,18 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 0.89
+ * This is version: 0.90
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
  * Raoni Soares Silva (http://www.jsfromhell.com), Legaev Andrey, Ates Goral
- * (http://magnetiq.com), Martijn Wieringa, Webtoolkit.info
+ * (http://magnetiq.com), Philip Peterson, Martijn Wieringa, Webtoolkit.info
  * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
  * (http://www.jsfromhell.com), Ash Searle (http://hexmen.com/blog/),
  * Erkekjetter, marrtins, Alfonso Jimenez (http://www.alfonsojimenez.com),
- * Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Philip Peterson, Tyler
- * Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), Alexander
- * Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
+ * Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Tyler Akins
+ * (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), Alexander Ermolaev
+ * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Bayron Guevara, Benjamin Lupton, Brad
  * Touesnard, Cagri Ekin, Cord, David, David James, DxGx, FGFEmperor, Felix
@@ -2222,12 +2222,13 @@ function nl2br( str ) {
     // Inserts HTML line breaks before all newlines in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_nl2br/
-    // +       version: 804.1015
+    // +       version: 804.1508
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Philip Peterson
     // *     example 1: nl2br('Kevin\nvan\nZonneveld');
     // *     returns 1: 'Kevin<br/>van<br/>Zonneveld'
 
-    return str.replace(/([^>])\n/g, '$1<br/>');
+    return str.replace(/([^>])\n/g, '$1<br />\n');
 }// }}}
 
 // {{{ number_format
@@ -2546,6 +2547,22 @@ function reset ( array ) {
     return first_elm;
 }// }}}
 
+// {{{ round
+function round ( val, precision ) {
+    // #!#!#!#!# round::$descr1 does not contain valid 'round' at line 258
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_round/
+    // +       version: 804.1508
+    // +   original by: Philip Peterson
+    // *     example 1: round(1241757, -3);
+    // *     returns 1: 1242000
+    // *     example 2: round(3.6);
+    // *     returns 2: 4
+ 
+    var precision = (round.arguments.length > 1) ? round.arguments[1] : 0;
+    return Math.round(val * Math.pow(10, precision))/Math.pow(10, precision);
+}// }}}
+
 // {{{ rtrim
 function rtrim ( str, charlist ) {
     // Strip whitespace (or other characters) from the end of a string
@@ -2830,6 +2847,22 @@ function shuffle( array ) {
 
     for(var j, x, i = array.length; i; j = parseInt(Math.random() * i), x = array[--i], array[i] = array[j], array[j] = x);
     return true;
+}// }}}
+
+// {{{ sizeof
+function sizeof ( mixed_var, mode ) {
+    // #!#!#!#!# sizeof::$descr1 does not contain valid 'sizeof' at line 258
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sizeof/
+    // +       version: 804.1508
+    // +   original by: Philip Peterson
+    // -    depends on: count
+    // *     example 1: sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE');
+    // *     returns 1: 6
+    // *     example 2: sizeof({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
+    // *     returns 2: 6
+ 
+    return count( mixed_var, mode );
 }// }}}
 
 // {{{ soundex
@@ -3931,6 +3964,46 @@ function unserialize ( inp ) {
     return (arguments.length == 1 ? val : [val, rest]);
 }// }}}
 
+// {{{ urldecode
+function urldecode( str ) {
+    // #!#!#!#!# urldecode::$descr1 does not contain valid 'urldecode' at line 258
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urldecode/
+    // +       version: 804.1508
+    // +   original by: Philip Peterson
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: urlencode('Kevin+van+Zonneveld%21');
+    // *     returns 1: 'Kevin van Zonneveld!'
+    
+    var ret = str;
+                        
+    ret = ret.toString();
+    ret = encodeURIComponent(ret);
+    ret = ret.replace(/%20/g, '+');
+
+    return ret;
+}// }}}
+
+// {{{ urlencode
+function urlencode( str ) {
+    // #!#!#!#!# urlencode::$descr1 does not contain valid 'urlencode' at line 258
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urlencode/
+    // +       version: 804.1508
+    // +   original by: Philip Peterson
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: urlencode('Kevin van Zonneveld!');
+    // *     returns 1: 'Kevin+van+Zonneveld%21'
+                                     
+    var ret = str;
+    
+    ret = ret.replace(/\+/g, '%20');
+    ret = decodeURIComponent(ret);
+    ret = ret.toString();
+
+    return ret;
+}// }}}
+
 // {{{ utf8_decode
 function utf8_decode ( str_data ) {
     // Converts a string with ISO-8859-1 characters encoded with UTF-8   to single-byte
@@ -3999,19 +4072,24 @@ function wordwrap( str, int_width, str_break, cut ) {
     // Wraps a string to a given number of characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_wordwrap/
-    // +       version: 804.1015
+    // +       version: 804.1508
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +   improved by: Nick Callen
+    // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // *     example 1: wordwrap('Kevin van Zonneveld', 6, '|', true);
     // *     returns 1: 'Kevin |van Zo|nnevel|d'
-
-    var i, j, s, r = str.split("\n");
-    if(int_width > 0) for(i in r){
-        for(s = r[i], r[i] = ""; s.length > int_width;
-            j = cut ? int_width : (j = s.substr(0, int_width).match(/\S*$/)).input.length - j[0].length || int_width,
-            r[i] += s.substr(0, j) + ((s = s.substr(j)).length ? str_break : "")
-        );
-        r[i] += s;
+    
+    var m = int_width, b = str_break, c = cut
+    var i, j, l, s, r;
+    
+    if(m < 1) {
+        return str;
     }
+    for(i = -1, l = (r = str.split("\n")).length; ++i < l; r[i] += s) {
+        for(s = r[i], r[i] = ""; s.length > m; r[i] += s.slice(0, j) + ((s = s.slice(j)).length ? b : "")){
+            j = c == 2 || (j = s.slice(0, m + 1).match(/\S*(\s)?$/))[1] ? m : j.input.length - j[0].length || c == 1 && m || j.input.length + (j = s.slice(m).match(/^\S*/)).input.length;
+        }
+    }
+    
     return r.join("\n");
 }// }}}
