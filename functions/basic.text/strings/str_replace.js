@@ -52,10 +52,10 @@ function str_replace(search, replace, subject) {
         return subject;
     }
     	
-    // Each entry is replaced all at once, rather than one after another. 
-    // This creates a problem: str_replace(["{name}","l"], ["hello","m"], "{name}, lars")
-    // Theoretically, the code should return "hello, mars", but instead it returns "hemmo, mars"
-    // as pointed out and fixed by Philip Peterson
+    // Each entry was originally replaced one after another, rather than all at once. 
+    // This created a problem: str_replace(["{name}","l"], ["hello","m"], "{name}, lars")
+    // Theoretically, the code should return "hello, mars", but instead it returned "hemmo, mars"
+    // as pointed out and fixed by Philip Peterson:
     numreplx = search.length;
     numon = 0;
     fincods = new Array();
