@@ -120,6 +120,8 @@
             if(!mkdir($store_dir)){
                 echo "Could not create: ".$store_dir."\n";
                 return false;
+            } else{
+                echo system("/usr/bin/svn add ".$store_dir )."\n";
             }
         }
         
