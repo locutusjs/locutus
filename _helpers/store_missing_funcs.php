@@ -38,6 +38,7 @@
         }
         return $missing;
     }    
+    
     function cutTo($str, $cutto){
         $p = explode($cutto, $str);
         array_shift( $p );
@@ -113,7 +114,15 @@
     }
     
     function jsFunctionStore($function, $subcat, $function_homedir){
-        $store_file = $function_homedir."/".$subcat."/".$function.".js";
+        $store_dir  = $function_homedir."/".$subcat;
+        $store_file = $store_dir."/".$function.".js";
+        if(!is_dir($store_dir)){
+            if(!mkdir($store_dir)){
+                echo "Could not create: ".$store_dir."\n";
+                return false;
+            }
+        }
+        
         if(!file_exists($store_file)){
             file_put_contents($store_file, '// not yet ported. feel like it?' );
             echo system("/usr/bin/svn add ".$store_file )."\n";
