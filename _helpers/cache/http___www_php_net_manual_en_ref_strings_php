@@ -1,0 +1,1865 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://purl.org/NET/erdf/profile">
+ <title>PHP: String Functions - Manual</title>
+ <style type="text/css" media="all">
+  @import url("http://static.php.net/www.php.net/styles/site.css");
+  @import url("http://static.php.net/www.php.net/styles/phpnet.css");
+ </style>
+ <!--[if IE]><![if gte IE 6]><![endif]-->
+  <style type="text/css" media="print">
+   @import url("http://static.php.net/www.php.net/styles/print.css");
+  </style>
+ <!--[if IE]><![endif]><![endif]-->
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <link rel="shortcut icon" href="http://static.php.net/www.php.net/favicon.ico" />
+ <link rel="contents" href="index.php" />
+ <link rel="index" href="book.strings.php" />
+ <link rel="prev" href="book.strings.php" />
+ <link rel="next" href="function.addcslashes.php" />
+ <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
+ <link rel="schema.rdfs" href="http://www.w3.org/2000/01/rdf-schema#" />
+ <script type="text/javascript" src="http://static.php.net/www.php.net/userprefs.js"></script>
+ <base href="http://www.php.net/manual/en/ref.strings.php" />
+</head>
+<body>
+
+<div id="headnav">
+ <a href="/" rel="home"><img src="http://static.php.net/www.php.net/images/php.gif"
+ alt="PHP" width="120" height="67" /></a>
+ <div id="headmenu">
+  <a href="/downloads.php">downloads</a> |
+  <a href="/docs.php">documentation</a> |
+  <a href="/FAQ.php">faq</a> |
+  <a href="/support.php">getting help</a> |
+  <a href="/mailing-lists.php">mailing lists</a> |
+  <a href="http://bugs.php.net/">reporting bugs</a> |
+  <a href="/sites.php">php.net sites</a> |
+  <a href="/links.php">links</a> |
+  <a href="/conferences/">conferences</a> |
+  <a href="/my.php">my php.net</a>
+ </div>
+</div>
+
+<div id="headsearch">
+ <form method="post" action="/search.php" id="topsearch">
+  <p>
+   <span title="Keyboard shortcut: Alt+S (Win), Ctrl+S (Apple)">
+    <span class="shortkey">s</span>earch for
+   </span>
+   <input type="text" name="pattern" value="" size="30" accesskey="s" />
+   <span>in the</span>
+   <select name="show">
+    <option value="quickref" selected="selected">function list</option>
+    <option value="all"      >all php.net sites</option>
+    <option value="local"    >this mirror only</option>
+    <option value="manual"   >online documentation</option>
+    <option value="bugdb"    >bug database</option>
+    <option value="news_archive">Site News Archive</option>
+    <option value="changelogs">All Changelogs</option>
+    <option value="pear"     >just pear.php.net</option>
+    <option value="pecl"     >just pecl.php.net</option>
+    <option value="talks"    >just talks.php.net</option>
+    <option value="maillist" >general mailing list</option>
+    <option value="devlist"  >developer mailing list</option>
+    <option value="phpdoc"   >documentation mailing list</option>
+   </select>
+   <input type="image"
+          src="http://static.php.net/www.php.net/images/small_submit_white.gif"
+          class="submit" alt="search" />
+   <input type="hidden" name="lang" value="en" />
+  </p>
+ </form>
+</div>
+
+<div id="layout_2">
+ <div id="leftbar">
+<!--UdmComment-->
+<ul class="toc">
+ <li class="header home"><a href="index.php">PHP Manual</a></li>
+ <li class="header up"><a href="funcref.php">Function Reference</a></li>
+ <li class="header up"><a href="refs.basic.text.php">Text Processing</a></li>
+ <li class="header up"><a href="book.strings.php">String Functions</a></li>
+ <li><a href="intro.strings.php">Introduction</a></li>
+ <li><a href="strings.setup.php">Installing/Configuring</a></li>
+ <li><a href="string.constants.php">Predefined Constants</a></li>
+ <li class="active"><a href="ref.strings.php">String Functions</a></li>
+</ul><!--/UdmComment-->
+
+ </div>
+ <div id="content" class="manual/en">
+<!--UdmComment-->
+<div class="manualnavbar manualnavbar_top">
+ <span class="next">
+  <a href="function.addcslashes.php">addcslashes<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.strings.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Strings</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  <form action="/manual/change.php" method="get">
+   <p>view this page in </p><fieldset><select name="page">
+    <option value="bg/ref.strings.php">Bulgarian</option>
+    <option value="pt_BR/ref.strings.php">Brazilian Portuguese</option>
+    <option value="fr/ref.strings.php">French</option>
+    <option value="de/ref.strings.php">German</option>
+    <option value="it/ref.strings.php">Italian</option>
+    <option value="ja/ref.strings.php">Japanese</option>
+    <option value="pl/ref.strings.php">Polish</option>
+    <option value="ro/ref.strings.php">Romanian</option>
+    <option value="ru/ref.strings.php">Russian</option>
+    <option value="es/ref.strings.php">Spanish</option>
+    <option value="help-translate.php">Other</option>
+   </select>
+   <input type="image" src="http://static.php.net/www.php.net/images/small_submit.gif" id="changeLangImage" alt="" />
+  </fieldset></form>
+ </div>
+</div>
+<!--/UdmComment-->
+
+<div>
+ <h1 class="title">String Functions</h1>
+
+ <div class="partintro" id="strings.seealso" name="strings.seealso">
+  <h1 class="title">See Also</h1>
+  <p class="para">
+   For even more powerful string handling and manipulating functions
+   take a look at the <a href="ref.regex.php" class="link">POSIX regular
+   expression functions</a> and the <a href="ref.pcre.php" class="link">Perl
+   compatible regular expression functions</a>.
+  </p>
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Table of Contents</h2><ul class="chunklist chunklist_reference"><li><a href="function.addcslashes.php">addcslashes</a> — Quote string with slashes in a C style</li><li><a href="function.addslashes.php">addslashes</a> — Quote string with slashes</li><li><a href="function.bin2hex.php">bin2hex</a> — Convert binary data into hexadecimal representation</li><li><a href="function.chop.php">chop</a> — Alias of rtrim</li><li><a href="function.chr.php">chr</a> — Return a specific character</li><li><a href="function.chunk-split.php">chunk_split</a> — Split a string into smaller chunks</li><li><a href="function.convert-cyr-string.php">convert_cyr_string</a> — Convert from one Cyrillic character set to another</li><li><a href="function.convert-uudecode.php">convert_uudecode</a> — Decode a uuencoded string</li><li><a href="function.convert-uuencode.php">convert_uuencode</a> — Uuencode a string</li><li><a href="function.count-chars.php">count_chars</a> — Return information about characters used in a string</li><li><a href="function.crc32.php">crc32</a> — Calculates the crc32 polynomial of a string</li><li><a href="function.crypt.php">crypt</a> — One-way string encryption (hashing)</li><li><a href="function.echo.php">echo</a> — Output one or more strings</li><li><a href="function.explode.php">explode</a> — Split a string by string</li><li><a href="function.fprintf.php">fprintf</a> — Write a formatted string to a stream</li><li><a href="function.get-html-translation-table.php">get_html_translation_table</a> — Returns the translation table used by htmlspecialchars and htmlentities</li><li><a href="function.hebrev.php">hebrev</a> — Convert logical Hebrew text to visual text</li><li><a href="function.hebrevc.php">hebrevc</a> — Convert logical Hebrew text to visual text with newline conversion</li><li><a href="function.html-entity-decode.php">html_entity_decode</a> — Convert all HTML entities to their applicable characters</li><li><a href="function.htmlentities.php">htmlentities</a> — Convert all applicable characters to HTML entities</li><li><a href="function.htmlspecialchars-decode.php">htmlspecialchars_decode</a> — Convert special HTML entities back to characters</li><li><a href="function.htmlspecialchars.php">htmlspecialchars</a> — Convert special characters to HTML entities</li><li><a href="function.implode.php">implode</a> — Join array elements with a string</li><li><a href="function.join.php">join</a> — Alias of implode</li><li><a href="function.lcfirst.php">lcfirst</a> — Make a string's first character lowercase</li><li><a href="function.levenshtein.php">levenshtein</a> — Calculate Levenshtein distance between two strings</li><li><a href="function.localeconv.php">localeconv</a> — Get numeric formatting information</li><li><a href="function.ltrim.php">ltrim</a> — Strip whitespace (or other characters) from the beginning of a string</li><li><a href="function.md5-file.php">md5_file</a> — Calculates the md5 hash of a given file</li><li><a href="function.md5.php">md5</a> — Calculate the md5 hash of a string</li><li><a href="function.metaphone.php">metaphone</a> — Calculate the metaphone key of a string</li><li><a href="function.money-format.php">money_format</a> — Formats a number as a currency string</li><li><a href="function.nl-langinfo.php">nl_langinfo</a> — Query language and locale information</li><li><a href="function.nl2br.php">nl2br</a> — Inserts HTML line breaks before all newlines in a string</li><li><a href="function.number-format.php">number_format</a> — Format a number with grouped thousands</li><li><a href="function.ord.php">ord</a> — Return ASCII value of character</li><li><a href="function.parse-str.php">parse_str</a> — Parses the string into variables</li><li><a href="function.print.php">print</a> — Output a string</li><li><a href="function.printf.php">printf</a> — Output a formatted string</li><li><a href="function.quoted-printable-decode.php">quoted_printable_decode</a> — Convert a quoted-printable string to an 8 bit string</li><li><a href="function.quotemeta.php">quotemeta</a> — Quote meta characters</li><li><a href="function.rtrim.php">rtrim</a> — Strip whitespace (or other characters) from the end of a string</li><li><a href="function.setlocale.php">setlocale</a> — Set locale information</li><li><a href="function.sha1-file.php">sha1_file</a> — Calculate the sha1 hash of a file</li><li><a href="function.sha1.php">sha1</a> — Calculate the sha1 hash of a string</li><li><a href="function.similar-text.php">similar_text</a> — Calculate the similarity between two strings</li><li><a href="function.soundex.php">soundex</a> — Calculate the soundex key of a string</li><li><a href="function.sprintf.php">sprintf</a> — Return a formatted string</li><li><a href="function.sscanf.php">sscanf</a> — Parses input from a string according to a format</li><li><a href="function.str-getcsv.php">str_getcsv</a> — Parse a CSV string into an array</li><li><a href="function.str-ireplace.php">str_ireplace</a> — Case-insensitive version of str_replace.</li><li><a href="function.str-pad.php">str_pad</a> — Pad a string to a certain length with another string</li><li><a href="function.str-repeat.php">str_repeat</a> — Repeat a string</li><li><a href="function.str-replace.php">str_replace</a> — Replace all occurrences of the search string with the replacement string</li><li><a href="function.str-rot13.php">str_rot13</a> — Perform the rot13 transform on a string</li><li><a href="function.str-shuffle.php">str_shuffle</a> — Randomly shuffles a string</li><li><a href="function.str-split.php">str_split</a> — Convert a string to an array</li><li><a href="function.str-word-count.php">str_word_count</a> — Return information about words used in a string</li><li><a href="function.strcasecmp.php">strcasecmp</a> — Binary safe case-insensitive string comparison</li><li><a href="function.strchr.php">strchr</a> — Alias of strstr</li><li><a href="function.strcmp.php">strcmp</a> — Binary safe string comparison</li><li><a href="function.strcoll.php">strcoll</a> — Locale based string comparison</li><li><a href="function.strcspn.php">strcspn</a> — Find length of initial segment not matching mask</li><li><a href="function.strip-tags.php">strip_tags</a> — Strip HTML and PHP tags from a string</li><li><a href="function.stripcslashes.php">stripcslashes</a> — Un-quote string quoted with addcslashes</li><li><a href="function.stripos.php">stripos</a> — Find position of first occurrence of a case-insensitive string</li><li><a href="function.stripslashes.php">stripslashes</a> — Un-quote string quoted with addslashes</li><li><a href="function.stristr.php">stristr</a> — Case-insensitive strstr</li><li><a href="function.strlen.php">strlen</a> — Get string length</li><li><a href="function.strnatcasecmp.php">strnatcasecmp</a> — Case insensitive string comparisons using a "natural order" algorithm</li><li><a href="function.strnatcmp.php">strnatcmp</a> — String comparisons using a "natural order" algorithm</li><li><a href="function.strncasecmp.php">strncasecmp</a> — Binary safe case-insensitive string comparison of the first n characters</li><li><a href="function.strncmp.php">strncmp</a> — Binary safe string comparison of the first n characters</li><li><a href="function.strpbrk.php">strpbrk</a> — Search a string for any of a set of characters</li><li><a href="function.strpos.php">strpos</a> — Find position of first occurrence of a string</li><li><a href="function.strrchr.php">strrchr</a> — Find the last occurrence of a character in a string</li><li><a href="function.strrev.php">strrev</a> — Reverse a string</li><li><a href="function.strripos.php">strripos</a> — Find position of last occurrence of a case-insensitive string in a string</li><li><a href="function.strrpos.php">strrpos</a> — Find position of last occurrence of a char in a string</li><li><a href="function.strspn.php">strspn</a> — Find length of initial segment matching mask</li><li><a href="function.strstr.php">strstr</a> — Find first occurrence of a string</li><li><a href="function.strtok.php">strtok</a> — Tokenize string</li><li><a href="function.strtolower.php">strtolower</a> — Make a string lowercase</li><li><a href="function.strtoupper.php">strtoupper</a> — Make a string uppercase</li><li><a href="function.strtr.php">strtr</a> — Translate certain characters</li><li><a href="function.substr-compare.php">substr_compare</a> — Binary safe comparison of 2 strings from an offset, up to length characters</li><li><a href="function.substr-count.php">substr_count</a> — Count the number of substring occurrences</li><li><a href="function.substr-replace.php">substr_replace</a> — Replace text within a portion of a string</li><li><a href="function.substr.php">substr</a> — Return part of a string</li><li><a href="function.trim.php">trim</a> — Strip whitespace (or other characters) from the beginning and end of a string</li><li><a href="function.ucfirst.php">ucfirst</a> — Make a string's first character uppercase</li><li><a href="function.ucwords.php">ucwords</a> — Uppercase the first character of each word in a string</li><li><a href="function.vfprintf.php">vfprintf</a> — Write a formatted string to a stream</li><li><a href="function.vprintf.php">vprintf</a> — Output a formatted string</li><li><a href="function.vsprintf.php">vsprintf</a> — Return a formatted string</li><li><a href="function.wordwrap.php">wordwrap</a> — Wraps a string to a given number of characters</li></ul>
+</div>
+<br /><br /><!--UdmComment-->
+<div class="manualnavbar manualnavbar_bottom">
+ <span class="next">
+  <a href="function.addcslashes.php">addcslashes<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.strings.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Strings</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  &nbsp;
+ </div>
+</div>
+<!--/UdmComment-->
+
+
+<div id="usernotes">
+ <div class="head">
+  <span class="action"><a href="/manual/add-note.php?sect=ref.strings&amp;redirect=http://www.php.net/manual/en/ref.strings.php"><img src="http://static.php.net/www.php.net/images/notes-add.gif" alt="add a note" width="13" height="13" align="middle" /></a> <small><a href="/manual/add-note.php?sect=ref.strings&amp;redirect=http://www.php.net/manual/en/ref.strings.php">add a note</a></small></span>
+  <small>User Contributed Notes</small><br />
+  <strong>String Functions</strong>
+ </div>
+ <a name="82131"></a>
+ <div class="note">
+  <strong>Salomon</strong><br />
+  <a href="#82131">28-Mar-2008 03:43</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+If you want to indent a block of text with $level tabs, you can use<br />
+<br />
+function str_indent($level, $text) {<br />
+&nbsp;&nbsp;&nbsp; return str_repeat("\t", $level).str_replace("\n", "\n".str_repeat("\t", $level), $text);<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <a name="81937"></a>
+ <div class="note">
+  <strong>Verdauga</strong><br />
+  <a href="#81937">19-Mar-2008 07:06</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Just a note in regards to bloopletech a few posts down:<br />
+<br />
+The word "and" should not be used when converting numbers to text.&nbsp; "And" (at least in US English) should only be used to indicate the decimal place.<br />
+<br />
+Example:<br />
+1,796,706 =&gt; one million, seven hundred ninety-six thousand, seven hundred six.<br />
+594,359.34 =&gt; five hundred ninety four thousand, three hundred fifty nine and thirty four hundredths</span>
+</code></div>
+  </div>
+ </div>
+ <a name="80263"></a>
+ <div class="note">
+  <strong>geek dot de at gmail dot com</strong><br />
+  <a href="#80263">07-Jan-2008 03:18</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+This took me quite some time to figure out and it is so obvious. So, I hope it helps someone out there like it would have helped me if I would have found it on this page:<br />
+<br />
+I wanted to read a binary file and write it out with some modified bytes with their hex values. The easiest way I could come up with was the following:<br />
+<br />
+read the file line by line, e.g. 400 bytes and then chuck it into an array with e.g.<br />
+<br />
+<span class="default">&lt;?php<br />
+$handle </span><span class="keyword">= @</span><span class="default">fopen</span><span class="keyword">(</span><span class="string">"/path/to/file.bin"</span><span class="keyword">, </span><span class="string">"r"</span><span class="keyword">);<br />
+if (</span><span class="default">$handle</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; while (!</span><span class="default">feof</span><span class="keyword">(</span><span class="default">$handle</span><span class="keyword">)) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$buffer</span><span class="keyword">[] = </span><span class="default">fgets</span><span class="keyword">(</span><span class="default">$handle</span><span class="keyword">, </span><span class="default">400</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">fclose</span><span class="keyword">(</span><span class="default">$handle</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$buffer</span><span class="keyword">[</span><span class="default">0</span><span class="keyword">][</span><span class="default">0</span><span class="keyword">] = </span><span class="default">chr</span><span class="keyword">(</span><span class="default">hexdec</span><span class="keyword">(</span><span class="string">"FF"</span><span class="keyword">)); </span><span class="comment">// set the first byte to 0xFF<br />
+</span><span class="keyword">}<br />
+</span><span class="comment">// write out the file from the array ...<br />
+</span><span class="default">?&gt;<br />
+</span><br />
+One could write a function for that, so that One can write a string of bytes. Don't have time for this now but you should get the idea.</span>
+</code></div>
+  </div>
+ </div>
+ <a name="76705"></a>
+ <div class="note">
+  <strong>m</strong><br />
+  <a href="#76705">26-Jul-2007 05:10</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Regarding the code for the function beginsWith($str, $sub), I found that it has problems when only one character is present after the string searched for. I found that this works better instead:<br />
+<br />
+<span class="default">&lt;?php<br />
+</span><span class="keyword">function </span><span class="default">beginsWith</span><span class="keyword">(</span><span class="default">$str</span><span class="keyword">, </span><span class="default">$sub</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; return (</span><span class="default">strncmp</span><span class="keyword">(</span><span class="default">$str</span><span class="keyword">, </span><span class="default">$sub</span><span class="keyword">, </span><span class="default">strlen</span><span class="keyword">(</span><span class="default">$sub</span><span class="keyword">)) == </span><span class="default">0</span><span class="keyword">);<br />
+}<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="76321"></a>
+ <div class="note">
+  <strong>Moe</strong><br />
+  <a href="#76321">10-Jul-2007 06:44</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+In responce to mike here is a better random string function<br />
+<br />
+<span class="default">&lt;?php<br />
+&nbsp;&nbsp;&nbsp; </span><span class="keyword">function </span><span class="default">random_string</span><span class="keyword">(</span><span class="default">$max </span><span class="keyword">= </span><span class="default">20</span><span class="keyword">){<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$chars </span><span class="keyword">= </span><span class="string">"abcdefghijklmnopqrstuvwxwz0123456789_"</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; for(</span><span class="default">$i </span><span class="keyword">= </span><span class="default">0</span><span class="keyword">; </span><span class="default">$i </span><span class="keyword">&lt; </span><span class="default">$max</span><span class="keyword">; </span><span class="default">$i</span><span class="keyword">++){<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$rand_key </span><span class="keyword">= </span><span class="default">mt_rand</span><span class="keyword">(</span><span class="default">0</span><span class="keyword">, </span><span class="default">strlen</span><span class="keyword">(</span><span class="default">$chars</span><span class="keyword">));<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$string&nbsp; </span><span class="keyword">.= </span><span class="default">substr</span><span class="keyword">(</span><span class="default">$chars</span><span class="keyword">, </span><span class="default">$rand_key</span><span class="keyword">, </span><span class="default">1</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">str_shuffle</span><span class="keyword">(</span><span class="default">$string</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="75830"></a>
+ <div class="note">
+  <strong>mike &amp;#34;eyes&amp;#34; moe</strong><br />
+  <a href="#75830">17-Jun-2007 05:59</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Here is a truly random string generator it uses the most common string functions it will work on anywhere.<br />
+<br />
+<span class="default">&lt;?php<br />
+&nbsp;&nbsp;&nbsp; </span><span class="keyword">function </span><span class="default">random_string</span><span class="keyword">(</span><span class="default">$max </span><span class="keyword">= </span><span class="default">20</span><span class="keyword">){<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$chars </span><span class="keyword">= </span><span class="default">explode</span><span class="keyword">(</span><span class="string">" "</span><span class="keyword">, </span><span class="string">"a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9"</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; for(</span><span class="default">$i </span><span class="keyword">= </span><span class="default">0</span><span class="keyword">; </span><span class="default">$i </span><span class="keyword">&lt; </span><span class="default">$max</span><span class="keyword">; </span><span class="default">$i</span><span class="keyword">++){<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$rnd </span><span class="keyword">= </span><span class="default">array_rand</span><span class="keyword">(</span><span class="default">$chars</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$rtn </span><span class="keyword">.= </span><span class="default">base64_encode</span><span class="keyword">(</span><span class="default">md5</span><span class="keyword">(</span><span class="default">$chars</span><span class="keyword">[</span><span class="default">$rnd</span><span class="keyword">]));<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">substr</span><span class="keyword">(</span><span class="default">str_shuffle</span><span class="keyword">(</span><span class="default">strtolower</span><span class="keyword">(</span><span class="default">$rtn</span><span class="keyword">)), </span><span class="default">0</span><span class="keyword">, </span><span class="default">$max</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="75301"></a>
+ <div class="note">
+  <strong>bloopletech at gmail dot com</strong><br />
+  <a href="#75301">22-May-2007 06:05</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+[Editor's Note: Remember that number names are locale-specific. Thus in the US 1,000,000,000 is called a billion, while in other countries this might be different (ie. miljard in Dutch). This function provides support only for the US locale]<br />
+<br />
+If you want to convert a number, (int or float) to full spoken text, then you can use my num2text converter, at <a href="http://bloople.net/num2text" target="_blank">http://bloople.net/num2text</a><br />
+<br />
+Examples:<br />
+40000 =&gt; forty thousand<br />
+1,796,706 =&gt; one million, seven hundred and ninety-six thousand, seven hundred and six.<br />
+<br />
+If works for positive an negative integers/floats/doubles. The code is only a page long, and you don't have to install any modules or anything.<br />
+<br />
+I hope this comes in handy for somebody!</span>
+</code></div>
+  </div>
+ </div>
+ <a name="74115"></a>
+ <div class="note">
+  <strong>benjamin at webbutvecklarna dot se</strong><br />
+  <a href="#74115">25-Mar-2007 05:23</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+An update to admin at fivestarbuy dot com's StrParse. Since php5.2.x the occurance of an object in the vardata will cause a "Catchable fatal error". Previously it has failed silently, so I added nullification of present objects. <br />
+I also updated comments to be more specific, I hope that's ok with you, admin at fivestarbuy dot com:<br />
+<br />
+<span class="default">&lt;?php<br />
+</span><span class="keyword">function </span><span class="default">StrParse</span><span class="keyword">(</span><span class="default">$str</span><span class="keyword">,</span><span class="default">$vardata</span><span class="keyword">) {<br />
+<br />
+</span><span class="comment"># Variables present in $str is replaced by values of variables in $vardata<br />
+# typical use: <br />
+# $vardata = get_defined_vars();<br />
+# $str = some template code with variables present.<br />
+# uncomment the echo line to debug.<br />
+<br />
+</span><span class="default">$getvarkeys</span><span class="keyword">=</span><span class="default">array_keys</span><span class="keyword">(</span><span class="default">$vardata</span><span class="keyword">);<br />
+</span><span class="default">$ret</span><span class="keyword">=</span><span class="default">$str</span><span class="keyword">;<br />
+for (</span><span class="default">$x</span><span class="keyword">=</span><span class="default">0</span><span class="keyword">; </span><span class="default">$x </span><span class="keyword">&lt; </span><span class="default">count</span><span class="keyword">(</span><span class="default">$getvarkeys</span><span class="keyword">); </span><span class="default">$x</span><span class="keyword">++) {<br />
+&nbsp;&nbsp; </span><span class="default">$myvar</span><span class="keyword">=</span><span class="default">$getvarkeys</span><span class="keyword">[</span><span class="default">$x</span><span class="keyword">];<br />
+&nbsp;&nbsp; if(</span><span class="default">is_object</span><span class="keyword">(</span><span class="default">$vardata</span><span class="keyword">[</span><span class="default">$myvar</span><span class="keyword">])) </span><span class="default">$vardata</span><span class="keyword">[</span><span class="default">$myvar</span><span class="keyword">] = </span><span class="default">null</span><span class="keyword">;<br />
+&nbsp;&nbsp; </span><span class="comment">#echo "Variable: " . $myvar . " [" . $vardata[$myvar] . "]&lt;br&gt;";<br />
+&nbsp;&nbsp; </span><span class="default">$ret</span><span class="keyword">=</span><span class="default">str_replace</span><span class="keyword">(</span><span class="string">'$' </span><span class="keyword">. </span><span class="default">$myvar</span><span class="keyword">, </span><span class="default">$vardata</span><span class="keyword">[</span><span class="default">$myvar</span><span class="keyword">], </span><span class="default">$ret</span><span class="keyword">);<br />
+}<br />
+return </span><span class="default">$ret</span><span class="keyword">;<br />
+}<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="68587"></a>
+ <div class="note">
+  <strong>beggining pro</strong><br />
+  <a href="#68587">02-Aug-2006 11:00</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Well for you egold users out ther I wrote this to just return the balance ONLY<br />
+If anyone knows a better way to write this lemme know as im a novice<br />
+<br />
+&nbsp;&nbsp;&nbsp; function _GetBalance($from, $frompass) {<br />
+&nbsp;&nbsp; $defined_vars = get_defined_vars();<br />
+<br />
+&nbsp;&nbsp; $_url = 'https://www.e-gold.com/acct/balance.asp';<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $_url_p = "AccountID=" . $from . "&amp;PassPhrase=" . $frompass ."";<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $ch = curl_init();<br />
+<br />
+&nbsp;&nbsp; curl_setopt($ch, CURLOPT_POST,1);<br />
+&nbsp;&nbsp; curl_setopt($ch, CURLOPT_POSTFIELDS,$_url_p);<br />
+&nbsp;&nbsp; curl_setopt($ch, CURLOPT_URL,$_url);<br />
+&nbsp;&nbsp; curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,&nbsp; 2);<br />
+&nbsp;&nbsp; curl_setopt($ch, CURLOPT_USERAGENT, $defined_vars['HTTP_USER_AGENT']);<br />
+&nbsp;&nbsp; curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);<br />
+&nbsp;&nbsp; $content = curl_exec ($ch);<br />
+<br />
+&nbsp;&nbsp; curl_close ($ch);<br />
+$content=strtolower($content);<br />
+$content=strstr($content,"&lt;/select&gt;&lt;/font&gt;&lt;/th&gt;&lt;/form&gt;&lt;/tr&gt;");<br />
+$content=strip_tags($content);<br />
+$content=strrev($content);<br />
+$content=strstr($content,"eseht :eton");<br />
+$content=str_replace("eseht :eton","",$content);<br />
+$content=ltrim($content);<br />
+$content=rtrim($content);<br />
+$content=substr($content,0,11);<br />
+$content=strrev($content);<br />
+$content=ltrim($content);<br />
+<br />
+&nbsp;&nbsp; return $content;<br />
+<br />
+&nbsp;&nbsp;&nbsp; }</span>
+</code></div>
+  </div>
+ </div>
+ <a name="68504"></a>
+ <div class="note">
+  <strong>admin at rotarymulundeast dot org</strong><br />
+  <a href="#68504">30-Jul-2006 03:16</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Here's an easier way to find nth...<br />
+<br />
+function nth($numbex){<br />
+&nbsp; if ($numbex%10 == 1 &amp;&amp; $numbex%100 != 11) $sth='st';<br />
+&nbsp; elseif ($numbex%10 == 2 &amp;&amp; $numbex%100 != 12) $sth='nd';<br />
+&nbsp; elseif ($numbex%10 == 3 &amp;&amp; $numbex%100 != 13) $sth='rd';<br />
+&nbsp; else $sth = 'th';<br />
+&nbsp; return $sth;<br />
+}<br />
+<br />
+there is is no need to check if the user has entered a non-integer as we may be using this function for expressing variables as well eg. ith value of x , nth root of z ,etc...</span>
+</code></div>
+  </div>
+ </div>
+ <a name="68456"></a>
+ <div class="note">
+  <strong>heavyraptor</strong><br />
+  <a href="#68456">27-Jul-2006 08:17</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I think that<br />
+administrador(ensaimada)sphoera(punt)com's function is<br />
+too complicated. It's easier with regular expressions.<br />
+So I made this function, it isn't really the same,<br />
+it's even better because it returns an array with all the <br />
+matches found<br />
+If there are no matches, false is returned.<br />
+<br />
+<span class="default">&lt;?php<br />
+</span><span class="comment">// bool/array str_between( string str, string<br />
+</span><span class="default">start_str</span><span class="keyword">, </span><span class="default">string end_str </span><span class="keyword">)<br />
+function </span><span class="default">str_between</span><span class="keyword">(</span><span class="default">$str</span><span class="keyword">,</span><span class="default">$start</span><span class="keyword">,</span><span class="default">$end</span><span class="keyword">) {<br />
+&nbsp; if (</span><span class="default">preg_match_all</span><span class="keyword">(</span><span class="string">'/' </span><span class="keyword">. </span><span class="default">preg_quote</span><span class="keyword">(</span><span class="default">$start</span><span class="keyword">) . </span><span class="string">'(.*?)' </span><span class="keyword">. </span><span class="default">preg_quote</span><span class="keyword">(</span><span class="default">$end</span><span class="keyword">) . </span><span class="string">'/'</span><span class="keyword">,</span><span class="default">$str</span><span class="keyword">,</span><span class="default">$matches</span><span class="keyword">)) {<br />
+&nbsp;&nbsp; return </span><span class="default">$matches</span><span class="keyword">[</span><span class="default">1</span><span class="keyword">];<br />
+&nbsp; }<br />
+&nbsp; </span><span class="comment">// no matches<br />
+&nbsp; </span><span class="keyword">return </span><span class="default">false</span><span class="keyword">;<br />
+}<br />
+</span><span class="default">?&gt;<br />
+</span><br />
+Enjoy</span>
+</code></div>
+  </div>
+ </div>
+ <a name="68249"></a>
+ <div class="note">
+  <strong>da (dot) blayde (a t) gmail (dot) com</strong><br />
+  <a href="#68249">19-Jul-2006 10:52</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Sometimes when converting integers to strings, it looks better to have the number spelled out. I wrote this function that converts integers from -999 to 999 into spelled out strings:<br />
+<br />
+function int2str($int=0){<br />
+&nbsp;$doOnes=true;<br />
+&nbsp;$neg=$int&lt;0?true:false;<br />
+&nbsp;$int=abs(round($int));<br />
+&nbsp;$str='';<br />
+&nbsp;switch(strlen($int)){<br />
+&nbsp; case 1:$int='0'.$int;<br />
+&nbsp; case 2:$int='0'.$int;<br />
+&nbsp; case 3:$int.='';break;<br />
+&nbsp; default:return $int;<br />
+&nbsp;}<br />
+&nbsp;switch($int{0}){<br />
+&nbsp; case 1:$str.='one-hundred-';break;<br />
+&nbsp; case 2:$str.='two-hundred-';break;<br />
+&nbsp; case 3:$str.='three-hundred-';break;<br />
+&nbsp; case 4:$str.='four-hundred-';break;<br />
+&nbsp; case 5:$str.='five-hundred-';break;<br />
+&nbsp; case 6:$str.='six-hundred-';break;<br />
+&nbsp; case 7:$str.='seven-hundred-';break;<br />
+&nbsp; case 8:$str.='eight-hundred-';break;<br />
+&nbsp; case 9:$str.='nine-hundred-';break;<br />
+&nbsp;}<br />
+&nbsp;switch($int{1}){<br />
+&nbsp; case 1:<br />
+&nbsp;&nbsp; switch($int{2}){<br />
+&nbsp;&nbsp;&nbsp; case 0:$str.='ten-';break;<br />
+&nbsp;&nbsp;&nbsp; case 1:$str.='eleven-';break;<br />
+&nbsp;&nbsp;&nbsp; case 2:$str.='twelve-';break;<br />
+&nbsp;&nbsp;&nbsp; case 3:$str.='thirteen-';break;<br />
+&nbsp;&nbsp;&nbsp; case 4:$str.='fourteen-';break;<br />
+&nbsp;&nbsp;&nbsp; case 5:$str.='fifteen-';break;<br />
+&nbsp;&nbsp;&nbsp; case 6:$str.='sixteen-';break;<br />
+&nbsp;&nbsp;&nbsp; case 7:$str.='seventeen-';break;<br />
+&nbsp;&nbsp;&nbsp; case 8:$str.='eighteen-';break;<br />
+&nbsp;&nbsp;&nbsp; case 9:$str.='nineteen-';break;<br />
+&nbsp;&nbsp; }<br />
+&nbsp;&nbsp; $doOnes=false;<br />
+&nbsp; break;<br />
+&nbsp; case 2:$str.='twenty-';break;<br />
+&nbsp; case 3:$str.='thirty-';break;<br />
+&nbsp; case 4:$str.='forty-';break;<br />
+&nbsp; case 5:$str.='fifty-';break;<br />
+&nbsp; case 6:$str.='sixty-';break;<br />
+&nbsp; case 7:$str.='seventy-';break;<br />
+&nbsp; case 8:$str.='eighty-';break;<br />
+&nbsp; case 9:$str.='ninety-';break;<br />
+&nbsp;}<br />
+&nbsp;if($doOnes){<br />
+&nbsp; switch($int{2}){<br />
+&nbsp;&nbsp; case 1:$str.='one-';break;<br />
+&nbsp;&nbsp; case 2:$str.='two-';break;<br />
+&nbsp;&nbsp; case 3:$str.='three-';break;<br />
+&nbsp;&nbsp; case 4:$str.='four-';break;<br />
+&nbsp;&nbsp; case 5:$str.='five-';break;<br />
+&nbsp;&nbsp; case 6:$str.='six-';break;<br />
+&nbsp;&nbsp; case 7:$str.='seven-';break;<br />
+&nbsp;&nbsp; case 8:$str.='eight-';break;<br />
+&nbsp;&nbsp; case 9:$str.='nine-';break;<br />
+&nbsp;}}<br />
+&nbsp;$str=substr($str,0,-1);<br />
+&nbsp;if($neg){<br />
+&nbsp; $str='negative '.$str;<br />
+&nbsp;}<br />
+&nbsp;if($int=='000'){<br />
+&nbsp; $str='zero';<br />
+&nbsp;}<br />
+&nbsp;return $str;<br />
+}<br />
+<br />
+Hope this helps someone,<br />
+-Blayde</span>
+</code></div>
+  </div>
+ </div>
+ <a name="68234"></a>
+ <div class="note">
+  <strong>mickycole at hotmail dot com</strong><br />
+  <a href="#68234">19-Jul-2006 12:01</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+In responce to James Baker's sencence case function.<br />
+Great function however i would make one slight variation being that it doesn't take into account the fact that a capital is required after a new paragraph so i modified it to check for /r and /n as follows:<br />
+<span class="default">&lt;?PHP<br />
+</span><span class="comment">/*/ Author : James Baker /*/<br />
+</span><span class="keyword">function </span><span class="default">sentenceCase</span><span class="keyword">(</span><span class="default">$s</span><span class="keyword">){<br />
+&nbsp;&nbsp; </span><span class="default">$str </span><span class="keyword">= </span><span class="default">strtolower</span><span class="keyword">(</span><span class="default">$s</span><span class="keyword">);<br />
+&nbsp;&nbsp; </span><span class="default">$cap </span><span class="keyword">= </span><span class="default">true</span><span class="keyword">;<br />
+&nbsp; <br />
+&nbsp;&nbsp; for(</span><span class="default">$x </span><span class="keyword">= </span><span class="default">0</span><span class="keyword">; </span><span class="default">$x </span><span class="keyword">&lt; </span><span class="default">strlen</span><span class="keyword">(</span><span class="default">$str</span><span class="keyword">); </span><span class="default">$x</span><span class="keyword">++){<br />
+&nbsp;&nbsp; &nbsp; &nbsp; </span><span class="default">$letter </span><span class="keyword">= </span><span class="default">substr</span><span class="keyword">(</span><span class="default">$str</span><span class="keyword">, </span><span class="default">$x</span><span class="keyword">, </span><span class="default">1</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; if(</span><span class="default">$letter </span><span class="keyword">== </span><span class="string">"." </span><span class="keyword">|| </span><span class="default">$letter </span><span class="keyword">== </span><span class="string">"!" </span><span class="keyword">|| </span><span class="default">$letter </span><span class="keyword">== </span><span class="string">"?" </span><span class="keyword">|| </span><span class="default">$letter </span><span class="keyword">== </span><span class="string">"\n" </span><span class="keyword">|| </span><span class="default">$letter </span><span class="keyword">== </span><span class="string">"\r"</span><span class="keyword">){<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$cap </span><span class="keyword">= </span><span class="default">true</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; }elseif(</span><span class="default">$letter </span><span class="keyword">!= </span><span class="string">" " </span><span class="keyword">&amp;&amp; </span><span class="default">$cap </span><span class="keyword">== </span><span class="default">true</span><span class="keyword">){<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$letter </span><span class="keyword">= </span><span class="default">strtoupper</span><span class="keyword">(</span><span class="default">$letter</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$cap </span><span class="keyword">= </span><span class="default">false</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; }<br />
+&nbsp;&nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp; </span><span class="default">$ret </span><span class="keyword">.= </span><span class="default">$letter</span><span class="keyword">;<br />
+&nbsp;&nbsp; }<br />
+&nbsp; <br />
+&nbsp;&nbsp; return </span><span class="default">$ret</span><span class="keyword">;<br />
+}<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="62523"></a>
+ <div class="note">
+  <strong>administrador(ensaimada)sphoera(punt)com</strong><br />
+  <a href="#62523">02-Mar-2006 06:10</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I've prepared this simple function to obtain a string delimited between tags (not only XML tags!). Anybody needs something like this?.<br />
+<br />
+<span class="default">&lt;?php<br />
+<br />
+</span><span class="keyword">function </span><span class="default">get_string_between</span><span class="keyword">(</span><span class="default">$string</span><span class="keyword">, </span><span class="default">$start</span><span class="keyword">, </span><span class="default">$end</span><span class="keyword">){<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$string </span><span class="keyword">= </span><span class="string">" "</span><span class="keyword">.</span><span class="default">$string</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; </span><span class="default">$ini </span><span class="keyword">= </span><span class="default">strpos</span><span class="keyword">(</span><span class="default">$string</span><span class="keyword">,</span><span class="default">$start</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; if (</span><span class="default">$ini </span><span class="keyword">== </span><span class="default">0</span><span class="keyword">) return </span><span class="string">""</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; </span><span class="default">$ini </span><span class="keyword">+= </span><span class="default">strlen</span><span class="keyword">(</span><span class="default">$start</span><span class="keyword">);&nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp; </span><span class="default">$len </span><span class="keyword">= </span><span class="default">strpos</span><span class="keyword">(</span><span class="default">$string</span><span class="keyword">,</span><span class="default">$end</span><span class="keyword">,</span><span class="default">$ini</span><span class="keyword">) - </span><span class="default">$ini</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; return </span><span class="default">substr</span><span class="keyword">(</span><span class="default">$string</span><span class="keyword">,</span><span class="default">$ini</span><span class="keyword">,</span><span class="default">$len</span><span class="keyword">);<br />
+}<br />
+<br />
+</span><span class="default">$string </span><span class="keyword">= </span><span class="string">"this [custom] function is useless!!"</span><span class="keyword">;<br />
+echo </span><span class="default">get_string_between</span><span class="keyword">(</span><span class="default">$string</span><span class="keyword">,</span><span class="string">"["</span><span class="keyword">,</span><span class="string">"]"</span><span class="keyword">);<br />
+</span><span class="comment">// must return "custom";<br />
+</span><span class="default">?&gt;<br />
+</span>more functions at <a href="http://www.sphoera.com" target="_blank">http://www.sphoera.com</a></span>
+</code></div>
+  </div>
+ </div>
+ <a name="62307"></a>
+ <div class="note">
+  <strong>SteveRusin</strong><br />
+  <a href="#62307">24-Feb-2006 11:00</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+The functions below:<br />
+<br />
+function beginsWith( $str, $sub ) <br />
+function endsWith( $str, $sub ) <br />
+<br />
+Are correct, but flawed.&nbsp; You'd need to use the === operator instead:<br />
+<br />
+function beginsWith( $str, $sub ) {<br />
+&nbsp;&nbsp; return ( substr( $str, 0, strlen( $sub ) ) === $sub );<br />
+}<br />
+function endsWith( $str, $sub ) {<br />
+&nbsp;&nbsp; return ( substr( $str, strlen( $str ) - strlen( $sub ) ) === $sub );<br />
+}<br />
+<br />
+Otherwise, endsWith would return "foobar.0" ends with ".0" as well as "0" or "00" or any amount of zeros because numerically .0 does equal 0.</span>
+</code></div>
+  </div>
+ </div>
+ <a name="59950"></a>
+ <div class="note">
+  <strong>navarr at gmail dot com</strong><br />
+  <a href="#59950">20-Dec-2005 06:24</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+stripos for PHP4.x<br />
+<br />
+<span class="default">&lt;?php<br />
+&nbsp; </span><span class="keyword">function </span><span class="default">stripos</span><span class="keyword">(</span><span class="default">$haystack</span><span class="keyword">,</span><span class="default">$needle</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; return </span><span class="default">strpos</span><span class="keyword">(</span><span class="default">strtoupper</span><span class="keyword">(</span><span class="default">$haystack</span><span class="keyword">),</span><span class="default">strtoupper</span><span class="keyword">(</span><span class="default">$needle</span><span class="keyword">));<br />
+&nbsp; }<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="59622"></a>
+ <div class="note">
+  <strong>dkflbk at nm dot ru</strong><br />
+  <a href="#59622">11-Dec-2005 08:58</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I needed str2bin() function for one of my project, so if some one else is want to use it, have fun :)<br />
+<br />
+<span class="default">&lt;?php<br />
+</span><span class="comment">/**<br />
+&nbsp;*&nbsp; &nbsp; Returns an ASCII string containing <br />
+&nbsp;*&nbsp; &nbsp; the binary representation of the input data .<br />
+**/<br />
+</span><span class="keyword">function </span><span class="default">str2bin</span><span class="keyword">(</span><span class="default">$str</span><span class="keyword">, </span><span class="default">$mode</span><span class="keyword">=</span><span class="default">0</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$out </span><span class="keyword">= </span><span class="default">false</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; for(</span><span class="default">$a</span><span class="keyword">=</span><span class="default">0</span><span class="keyword">; </span><span class="default">$a </span><span class="keyword">&lt; </span><span class="default">strlen</span><span class="keyword">(</span><span class="default">$str</span><span class="keyword">); </span><span class="default">$a</span><span class="keyword">++) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$dec </span><span class="keyword">= </span><span class="default">ord</span><span class="keyword">(</span><span class="default">substr</span><span class="keyword">(</span><span class="default">$str</span><span class="keyword">,</span><span class="default">$a</span><span class="keyword">,</span><span class="default">1</span><span class="keyword">));<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$bin </span><span class="keyword">= </span><span class="string">''</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; for(</span><span class="default">$i</span><span class="keyword">=</span><span class="default">7</span><span class="keyword">; </span><span class="default">$i</span><span class="keyword">&gt;=</span><span class="default">0</span><span class="keyword">; </span><span class="default">$i</span><span class="keyword">--) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; if ( </span><span class="default">$dec </span><span class="keyword">&gt;= </span><span class="default">pow</span><span class="keyword">(</span><span class="default">2</span><span class="keyword">, </span><span class="default">$i</span><span class="keyword">) ) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$bin </span><span class="keyword">.= </span><span class="string">"1"</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$dec </span><span class="keyword">-= </span><span class="default">pow</span><span class="keyword">(</span><span class="default">2</span><span class="keyword">, </span><span class="default">$i</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; } else {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$bin </span><span class="keyword">.= </span><span class="string">"0"</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="comment">/* Default-mode */<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="keyword">if ( </span><span class="default">$mode </span><span class="keyword">== </span><span class="default">0 </span><span class="keyword">) </span><span class="default">$out </span><span class="keyword">.= </span><span class="default">$bin</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="comment">/* Human-mode (easy to read) */<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="keyword">if ( </span><span class="default">$mode </span><span class="keyword">== </span><span class="default">1 </span><span class="keyword">) </span><span class="default">$out </span><span class="keyword">.= </span><span class="default">$bin </span><span class="keyword">. </span><span class="string">" "</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="comment">/* Array-mode (easy to use) */<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="keyword">if ( </span><span class="default">$mode </span><span class="keyword">== </span><span class="default">2 </span><span class="keyword">) </span><span class="default">$out</span><span class="keyword">[</span><span class="default">$a</span><span class="keyword">] = </span><span class="default">$bin</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; return </span><span class="default">$out</span><span class="keyword">;<br />
+}<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="58019"></a>
+ <div class="note">
+  <strong>admin at fivestarbuy dot com</strong><br />
+  <a href="#58019">21-Oct-2005 09:18</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+This example lets you parse an unparsed strings variables. Warning: This could cause security leaks if you allow users to pass $variables through this engine. I recommend only using this for your Content Management System.<br />
+<br />
+&lt;?<br />
+$mytime=time();<br />
+$mydog="My Dog Ate My PHP!";<br />
+<br />
+# Your Parsing String:<br />
+$s1 = 'Hyphen Variable Preserving: $mytime, and $mydog';<br />
+echo "Before: &lt;br&gt;&lt;br&gt;$s1&lt;br&gt;&lt;br&gt;";<br />
+<br />
+# Remember, wherever you define this, it will not be defined GLOBAL into the function<br />
+# which is why we define it here. Defining it global could lead to security issues.<br />
+$vardata=get_defined_vars();<br />
+<br />
+# Parse the string<br />
+$s1 = StrParse($s1,$vardata);<br />
+<br />
+echo "After: &lt;br&gt;&lt;br&gt;$s1";<br />
+<br />
+function StrParse($str,$vardata) {<br />
+# Takes a string, or piece of data, that contains PHP Variables<br />
+&nbsp;<br />
+&nbsp;# For example, unparsed variables like:&nbsp; Test using time: $mytime<br />
+&nbsp;# This example shows $mytime, and not the actual variable value.<br />
+&nbsp;# The end result shows the actual variable value of $mytime.<br />
+<br />
+&nbsp;# This is useful for building a content management system,<br />
+&nbsp;# and directing your variables into your content data,<br />
+&nbsp;# where content is stored in a file or database, unparsed.<br />
+&nbsp;# Of course this could slow down page loads, but it's a good way<br />
+&nbsp;# to parse data from current variables into your loaded new data<br />
+&nbsp;# making it compatible.<br />
+&nbsp;<br />
+# Then the variables are replaced with the actual variable..<br />
+$getvarkeys=array_keys($vardata);<br />
+$ret=$str;<br />
+for ($x=0; $x &lt; count($getvarkeys); $x++) {<br />
+&nbsp;&nbsp;&nbsp; $myvar=$getvarkeys[$x];<br />
+&nbsp;&nbsp;&nbsp; #echo "Variable: " . $myvar . " [" . $vardata[$myvar] . "]&lt;br&gt;";<br />
+&nbsp;&nbsp;&nbsp; $ret=str_replace('$' . $myvar, $vardata[$myvar], $ret);<br />
+}<br />
+return $ret;<br />
+<br />
+}<br />
+<br />
+?&gt;</span>
+</code></div>
+  </div>
+ </div>
+ <a name="57877"></a>
+ <div class="note">
+  <a href="#57877">17-Oct-2005 03:27</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+to: james dot d dot baker at gmail dot com<br />
+<br />
+PHP has a builtin function&nbsp; for doing what your function does,<br />
+<br />
+<a href="http://php.net/ucfirst" target="_blank">http://php.net/ucfirst</a><br />
+<a href="http://php.net/ucwords" target="_blank">http://php.net/ucwords</a></span>
+</code></div>
+  </div>
+ </div>
+ <a name="57804"></a>
+ <div class="note">
+  <a href="#57804">14-Oct-2005 08:24</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Updated; used to test for input as an array, should have been a string, added some validation of the input while I was at it.&nbsp; Enjoy.<br />
+<br />
+<span class="default">&lt;?php<br />
+</span><span class="comment">/*----------&nbsp; &nbsp; &nbsp; &nbsp; Directory Tree to Array&nbsp; &nbsp; &nbsp; &nbsp; ----------//<br />
+&nbsp; Takes base directory, returns an associative array<br />
+&nbsp;&nbsp; &nbsp; &nbsp; containing each directory name as an associative key<br />
+&nbsp;&nbsp; &nbsp; &nbsp; and each file as an indexed entry in the appropriate<br />
+&nbsp;&nbsp; &nbsp; &nbsp; directory.<br />
+&nbsp; If no path is provided, it uses the current directory<br />
+&nbsp; If $style == 1, it will return a sorted, non-associative<br />
+&nbsp;&nbsp; &nbsp; &nbsp; array<br />
+<br />
+&nbsp; By Peter Dolan<br />
+&nbsp; www.peterd.net<br />
+&nbsp; Updated 2005-10-12<br />
+<br />
+&nbsp; Use it as much as you like for whatever<br />
+&nbsp; For my own entertainment, please let me know if you do<br />
+//-----------------------------------------------------------*/<br />
+</span><span class="keyword">function </span><span class="default">dirTreeToArray</span><span class="keyword">( </span><span class="default">$path </span><span class="keyword">= </span><span class="string">"./"</span><span class="keyword">, </span><span class="default">$style</span><span class="keyword">=</span><span class="string">"0" </span><span class="keyword">) {<br />
+&nbsp;&nbsp; &nbsp; if ( !</span><span class="default">is_string</span><span class="keyword">(</span><span class="default">$path</span><span class="keyword">) or !(</span><span class="default">$style</span><span class="keyword">==</span><span class="default">0 </span><span class="keyword">or </span><span class="default">$style</span><span class="keyword">==</span><span class="default">1</span><span class="keyword">) ) die(</span><span class="string">"Improper arguments in function dirTreeToArray(string \$path, \$style = {0, 1})"</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; else {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$path </span><span class="keyword">= </span><span class="default">trim</span><span class="keyword">(</span><span class="default">$path</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$path </span><span class="keyword">= </span><span class="default">str_replace</span><span class="keyword">(</span><span class="string">"\\"</span><span class="keyword">, </span><span class="string">"/"</span><span class="keyword">, </span><span class="default">$path</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; if( </span><span class="string">'/' </span><span class="keyword">== </span><span class="default">$path</span><span class="keyword">{</span><span class="default">strlen</span><span class="keyword">(</span><span class="default">$path</span><span class="keyword">)-</span><span class="default">1</span><span class="keyword">} || </span><span class="string">'\'' </span><span class="keyword">== </span><span class="default">$path</span><span class="keyword">{</span><span class="default">strlen</span><span class="keyword">(</span><span class="default">$path</span><span class="keyword">)-</span><span class="default">1</span><span class="keyword">} ) </span><span class="default">$path </span><span class="keyword">= </span><span class="default">substr</span><span class="keyword">(</span><span class="default">$path</span><span class="keyword">, </span><span class="default">0</span><span class="keyword">, </span><span class="default">strlen</span><span class="keyword">(</span><span class="default">$path</span><span class="keyword">)-</span><span class="default">1</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; }<br />
+&nbsp;&nbsp; &nbsp; </span><span class="default">$tree </span><span class="keyword">= array();<br />
+&nbsp;&nbsp; &nbsp; </span><span class="default">$arrayPointer </span><span class="keyword">= &amp; </span><span class="default">$tree</span><span class="keyword">;<br />
+&nbsp;&nbsp; if ( </span><span class="default">$handle </span><span class="keyword">= </span><span class="default">opendir</span><span class="keyword">(</span><span class="default">$path</span><span class="keyword">) ) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; while ( </span><span class="default">$fileName </span><span class="keyword">= </span><span class="default">readdir</span><span class="keyword">(</span><span class="default">$handle</span><span class="keyword">) ) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if ( </span><span class="default">$fileName </span><span class="keyword">!= </span><span class="string">"." </span><span class="keyword">and </span><span class="default">$fileName </span><span class="keyword">!= </span><span class="string">".." </span><span class="keyword">) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$newPath </span><span class="keyword">= </span><span class="string">"$path/$fileName"</span><span class="keyword">;&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="comment">// Used for testing directory or file property<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="keyword">if ( </span><span class="default">is_dir</span><span class="keyword">(</span><span class="default">$newPath</span><span class="keyword">) ) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$dummyPointer </span><span class="keyword">= &amp; </span><span class="default">$arrayPointer</span><span class="keyword">;&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="comment">// Save the current pointer<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="keyword">if ( </span><span class="default">$style </span><span class="keyword">== </span><span class="default">0 </span><span class="keyword">) </span><span class="default">$arrayPointer </span><span class="keyword">= &amp; </span><span class="default">$arrayPointer</span><span class="keyword">[</span><span class="default">$fileName</span><span class="keyword">];&nbsp; &nbsp; </span><span class="comment">// Drop the pointer into a subdirectory<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="keyword">elseif ( </span><span class="default">$style </span><span class="keyword">== </span><span class="default">1 </span><span class="keyword">) </span><span class="default">$arrayPointer </span><span class="keyword">= &amp; </span><span class="default">$arrayPointer</span><span class="keyword">[];&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="comment">// Drop the pointer into a subdirectory<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$arrayPointer </span><span class="keyword">= </span><span class="default">dirTreeToArray</span><span class="keyword">(</span><span class="default">$newPath</span><span class="keyword">, </span><span class="default">$style</span><span class="keyword">);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="comment">// Process the new subdirectory<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="keyword">if ( </span><span class="default">$style </span><span class="keyword">== </span><span class="default">1 </span><span class="keyword">) </span><span class="default">sort</span><span class="keyword">(</span><span class="default">$arrayPointer</span><span class="keyword">);&nbsp; &nbsp; </span><span class="comment">// Sort it if we're in a non-associative mode<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$arrayPointer </span><span class="keyword">= &amp; </span><span class="default">$dummyPointer</span><span class="keyword">;&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="comment">// Bring the pointer back up a level<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="keyword">}<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; elseif ( </span><span class="default">is_file</span><span class="keyword">(</span><span class="default">$newPath</span><span class="keyword">) ) </span><span class="default">$arrayPointer</span><span class="keyword">[] = </span><span class="default">$fileName</span><span class="keyword">;&nbsp; &nbsp; </span><span class="comment">// Enter the files<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="keyword">}<br />
+&nbsp;&nbsp; &nbsp; &nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return </span><span class="default">$tree</span><span class="keyword">;<br />
+&nbsp;&nbsp; }<br />
+&nbsp;&nbsp; else die(</span><span class="string">"Failed to open directory $path in function dirTreeToArray(string \$path, \$style = {0, 1})"</span><span class="keyword">);<br />
+}<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="57774"></a>
+ <div class="note">
+  <strong>tim_meredith at s4s dot org</strong><br />
+  <a href="#57774">13-Oct-2005 01:32</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+--Convert MSWord Quotes--<br />
+Use this before any conversion to HTML entities or characters to clean up a form entry cut and pasted from MSWord. <br />
+<br />
+function fixword($scratch)<br />
+{<br />
+&nbsp;&nbsp;&nbsp; $start=chr(226).chr(128);<br />
+&nbsp;&nbsp;&nbsp; $word=array();$fixword=array();<br />
+&nbsp;&nbsp;&nbsp; $word[]=$start.chr(152);$fixword[]="'";<br />
+&nbsp;&nbsp;&nbsp; $word[]=$start.chr(153);$fixword[]="'";<br />
+&nbsp;&nbsp;&nbsp; $word[]=$start.chr(156);$fixword[]="\"";<br />
+&nbsp;&nbsp;&nbsp; $word[]=$start.chr(157);$fixword[]="\"";<br />
+&nbsp;&nbsp;&nbsp; return str_replace($word, $fixword, $scratch);<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <a name="55805"></a>
+ <div class="note">
+  <strong>webmaster at cafe-clope dot net</strong><br />
+  <a href="#55805">13-Aug-2005 04:40</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+A comprehensive concatenation function, that works with array and strings<br />
+<br />
+<span class="default">&lt;?php<br />
+</span><span class="keyword">function </span><span class="default">str_cat</span><span class="keyword">() {<br />
+&nbsp; </span><span class="default">$args </span><span class="keyword">= </span><span class="default">func_get_args</span><span class="keyword">() ;<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp; </span><span class="comment">// Asserts that every array given as argument is $dim-size.<br />
+&nbsp; // Keys in arrays are stripped off.<br />
+&nbsp; // If no array is found, $dim stays unset.<br />
+&nbsp; </span><span class="keyword">foreach(</span><span class="default">$args </span><span class="keyword">as </span><span class="default">$key </span><span class="keyword">=&gt; </span><span class="default">$arg</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; if(</span><span class="default">is_array</span><span class="keyword">(</span><span class="default">$arg</span><span class="keyword">)) {<br />
+&nbsp;&nbsp; &nbsp;&nbsp; if(!isset(</span><span class="default">$dim</span><span class="keyword">))<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$dim </span><span class="keyword">= </span><span class="default">count</span><span class="keyword">(</span><span class="default">$arg</span><span class="keyword">) ;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; elseif(</span><span class="default">$dim </span><span class="keyword">!= </span><span class="default">count</span><span class="keyword">(</span><span class="default">$arg</span><span class="keyword">))<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">FALSE </span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$args</span><span class="keyword">[</span><span class="default">$key</span><span class="keyword">] = </span><span class="default">array_values</span><span class="keyword">(</span><span class="default">$arg</span><span class="keyword">) ;<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp; </span><span class="comment">// Concatenation<br />
+&nbsp; </span><span class="keyword">if(isset(</span><span class="default">$dim</span><span class="keyword">)) {<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$result </span><span class="keyword">= array() ;<br />
+&nbsp;&nbsp;&nbsp; for(</span><span class="default">$i</span><span class="keyword">=</span><span class="default">0</span><span class="keyword">;</span><span class="default">$i</span><span class="keyword">&lt;</span><span class="default">$dim</span><span class="keyword">;</span><span class="default">$i</span><span class="keyword">++) {<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$result</span><span class="keyword">[</span><span class="default">$i</span><span class="keyword">] = </span><span class="string">'' </span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; foreach(</span><span class="default">$args </span><span class="keyword">as </span><span class="default">$arg</span><span class="keyword">)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$result</span><span class="keyword">[</span><span class="default">$i</span><span class="keyword">] .= ( </span><span class="default">is_array</span><span class="keyword">(</span><span class="default">$arg</span><span class="keyword">) ? </span><span class="default">$arg</span><span class="keyword">[</span><span class="default">$i</span><span class="keyword">] : </span><span class="default">$arg </span><span class="keyword">) ;<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; return </span><span class="default">$result </span><span class="keyword">;<br />
+&nbsp; } else {<br />
+&nbsp;&nbsp;&nbsp; return </span><span class="default">implode</span><span class="keyword">(</span><span class="default">$args</span><span class="keyword">) ;<br />
+&nbsp; }<br />
+}<br />
+</span><span class="default">?&gt;<br />
+</span><br />
+A simple example :<br />
+<br />
+<span class="default">&lt;?php<br />
+str_cat</span><span class="keyword">(array(</span><span class="default">1</span><span class="keyword">,</span><span class="default">2</span><span class="keyword">,</span><span class="default">3</span><span class="keyword">), </span><span class="string">'-'</span><span class="keyword">, array(</span><span class="string">'foo' </span><span class="keyword">=&gt; </span><span class="string">'foo'</span><span class="keyword">, </span><span class="string">'bar' </span><span class="keyword">=&gt; </span><span class="string">'bar'</span><span class="keyword">, </span><span class="string">'noop' </span><span class="keyword">=&gt; </span><span class="string">'noop'</span><span class="keyword">)) ;<br />
+</span><span class="default">?&gt;<br />
+</span><br />
+will return :<br />
+Array (<br />
+&nbsp; [0] =&gt; 1-foo<br />
+&nbsp; [1] =&gt; 2-bar<br />
+&nbsp; [2] =&gt; 3-noop<br />
+)<br />
+<br />
+More usefull :<br />
+<br />
+<span class="default">&lt;?php<br />
+$myget </span><span class="keyword">= </span><span class="default">$_GET </span><span class="keyword">; </span><span class="comment">// retrieving previous $_GET values<br />
+</span><span class="default">$myget</span><span class="keyword">[</span><span class="string">'foo'</span><span class="keyword">] = </span><span class="string">'b a r' </span><span class="keyword">; </span><span class="comment">// changing one value<br />
+</span><span class="default">$myget </span><span class="keyword">= </span><span class="default">str_cat</span><span class="keyword">(</span><span class="default">array_keys</span><span class="keyword">(</span><span class="default">$myget</span><span class="keyword">), </span><span class="string">'='</span><span class="keyword">, </span><span class="default">array_map</span><span class="keyword">(</span><span class="string">'rawurlencode'</span><span class="keyword">, </span><span class="default">array_values</span><span class="keyword">(</span><span class="default">$myget</span><span class="keyword">))) ;<br />
+</span><span class="default">$querystring </span><span class="keyword">= </span><span class="default">implode</span><span class="keyword">(</span><span class="default">ini_get</span><span class="keyword">(</span><span class="string">'arg_separator.output'</span><span class="keyword">), </span><span class="default">$myget</span><span class="keyword">)) ;<br />
+</span><span class="default">?&gt;<br />
+</span><br />
+will return a valid querystring with some values changed.<br />
+<br />
+Note that <span class="default">&lt;?php str_cat</span><span class="keyword">(</span><span class="string">'foo'</span><span class="keyword">, </span><span class="string">'&amp;'</span><span class="keyword">, </span><span class="string">'bar'</span><span class="keyword">) ; </span><span class="default">?&gt;</span> will return 'foo&amp;bar', while <span class="default">&lt;?php str_cat</span><span class="keyword">(array(</span><span class="string">'foo'</span><span class="keyword">), </span><span class="string">'&amp;'</span><span class="keyword">, </span><span class="string">'bar'</span><span class="keyword">) ; </span><span class="default">?&gt;</span> will return array(0 =&gt; foo&amp;bar)</span>
+</code></div>
+  </div>
+ </div>
+ <a name="53834"></a>
+ <div class="note">
+  <strong>t0russ at gmail dot com</strong><br />
+  <a href="#53834">14-Jun-2005 10:38</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+to kristin at greenaple dot on dot ca:<br />
+thanx for sharing.<br />
+your function in recursive form proved to be slightly faster and it returns false (as it should) when the character is not found instead of number 0:<br />
+<span class="default">&lt;?php<br />
+</span><span class="keyword">function </span><span class="default">strnposr</span><span class="keyword">(</span><span class="default">$haystack</span><span class="keyword">, </span><span class="default">$needle</span><span class="keyword">, </span><span class="default">$occurance</span><span class="keyword">, </span><span class="default">$pos </span><span class="keyword">= </span><span class="default">0</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; return (</span><span class="default">$occurance</span><span class="keyword">&lt;</span><span class="default">2</span><span class="keyword">)?</span><span class="default">strpos</span><span class="keyword">(</span><span class="default">$haystack</span><span class="keyword">, </span><span class="default">$needle</span><span class="keyword">, </span><span class="default">$pos</span><span class="keyword">):</span><span class="default">strnposr</span><span class="keyword">(</span><span class="default">$haystack</span><span class="keyword">,</span><span class="default">$needle</span><span class="keyword">,</span><span class="default">$occurance</span><span class="keyword">-</span><span class="default">1</span><span class="keyword">,</span><span class="default">strpos</span><span class="keyword">(</span><span class="default">$haystack</span><span class="keyword">, </span><span class="default">$needle</span><span class="keyword">, </span><span class="default">$pos</span><span class="keyword">) + </span><span class="default">1</span><span class="keyword">);<br />
+}<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="53546"></a>
+ <div class="note">
+  <strong>rh at richardhoward dot net</strong><br />
+  <a href="#53546">05-Jun-2005 11:41</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+<span class="default">&lt;?php<br />
+</span><span class="comment">/**<br />
+Utility class: static methods for cleaning &amp; escaping untrusted (i.e.<br />
+user-supplied) strings.<br />
+<br />
+Any string can (usually) be thought of as being in one of these 'modes':<br />
+<br />
+pure = what the user actually typed / what you want to see on the page /<br />
+&nbsp;&nbsp; &nbsp; &nbsp; what is actually stored in the DB<br />
+gpc&nbsp; = incoming GET, POST or COOKIE data<br />
+sql&nbsp; = escaped for passing safely to RDBMS via SQL (also, data from DB<br />
+&nbsp;&nbsp; &nbsp; &nbsp; queries and file reads if you have magic_quotes_runtime on--which<br />
+&nbsp;&nbsp; &nbsp; &nbsp; is rare)<br />
+html = safe for html display (htmlentities applied)<br />
+<br />
+Always knowing what mode your string is in--using these methods to<br />
+convert between modes--will prevent SQL injection and cross-site scripting.<br />
+<br />
+This class refers to its own namespace (so it can work in PHP 4--there is no<br />
+self keyword until PHP 5). Do not change the name of the class w/o changing<br />
+all the internal references.<br />
+<br />
+Example usage: a POST value that you want to query with:<br />
+$username = Str::gpc2sql($_POST['username']);<br />
+*/<br />
+<br />
+//This sets SQL escaping to use slashes; for Sybase(/MSSQL)-style escaping<br />
+// ( ' --&gt; '' ), set to true.<br />
+</span><span class="default">define</span><span class="keyword">(</span><span class="string">'STR_SYBASE'</span><span class="keyword">, </span><span class="default">false</span><span class="keyword">);<br />
+<br />
+class </span><span class="default">Str </span><span class="keyword">{<br />
+&nbsp;&nbsp;&nbsp; function </span><span class="default">gpc2sql</span><span class="keyword">(</span><span class="default">$gpc</span><span class="keyword">, </span><span class="default">$maxLength </span><span class="keyword">= </span><span class="default">false</span><span class="keyword">)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">Str</span><span class="keyword">::</span><span class="default">pure2sql</span><span class="keyword">(</span><span class="default">Str</span><span class="keyword">::</span><span class="default">gpc2pure</span><span class="keyword">(</span><span class="default">$gpc</span><span class="keyword">), </span><span class="default">$maxLength</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; function </span><span class="default">gpc2html</span><span class="keyword">(</span><span class="default">$gpc</span><span class="keyword">, </span><span class="default">$maxLength </span><span class="keyword">= </span><span class="default">false</span><span class="keyword">)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">Str</span><span class="keyword">::</span><span class="default">pure2html</span><span class="keyword">(</span><span class="default">Str</span><span class="keyword">::</span><span class="default">gpc2pure</span><span class="keyword">(</span><span class="default">$gpc</span><span class="keyword">), </span><span class="default">$maxLength</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; function </span><span class="default">gpc2pure</span><span class="keyword">(</span><span class="default">$gpc</span><span class="keyword">)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; if (</span><span class="default">ini_get</span><span class="keyword">(</span><span class="string">'magic_quotes_sybase'</span><span class="keyword">))<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$pure </span><span class="keyword">= </span><span class="default">str_replace</span><span class="keyword">(</span><span class="string">"''"</span><span class="keyword">, </span><span class="string">"'"</span><span class="keyword">, </span><span class="default">$gpc</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; else </span><span class="default">$pure </span><span class="keyword">= </span><span class="default">get_magic_quotes_gpc</span><span class="keyword">() ? </span><span class="default">stripslashes</span><span class="keyword">(</span><span class="default">$gpc</span><span class="keyword">) : </span><span class="default">$gpc</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">$pure</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; function </span><span class="default">html2pure</span><span class="keyword">(</span><span class="default">$html</span><span class="keyword">)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">html_entity_decode</span><span class="keyword">(</span><span class="default">$html</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; function </span><span class="default">html2sql</span><span class="keyword">(</span><span class="default">$html</span><span class="keyword">, </span><span class="default">$maxLength </span><span class="keyword">= </span><span class="default">false</span><span class="keyword">)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">Str</span><span class="keyword">::</span><span class="default">pure2sql</span><span class="keyword">(</span><span class="default">Str</span><span class="keyword">::</span><span class="default">html2pure</span><span class="keyword">(</span><span class="default">$html</span><span class="keyword">), </span><span class="default">$maxLength</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; function </span><span class="default">pure2html</span><span class="keyword">(</span><span class="default">$pure</span><span class="keyword">, </span><span class="default">$maxLength </span><span class="keyword">= </span><span class="default">false</span><span class="keyword">)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">$maxLength </span><span class="keyword">? </span><span class="default">htmlentities</span><span class="keyword">(</span><span class="default">substr</span><span class="keyword">(</span><span class="default">$pure</span><span class="keyword">, </span><span class="default">0</span><span class="keyword">, </span><span class="default">$maxLength</span><span class="keyword">))<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; : </span><span class="default">htmlentities</span><span class="keyword">(</span><span class="default">$pure</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; function </span><span class="default">pure2sql</span><span class="keyword">(</span><span class="default">$pure</span><span class="keyword">, </span><span class="default">$maxLength </span><span class="keyword">= </span><span class="default">false</span><span class="keyword">)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; if (</span><span class="default">$maxLength</span><span class="keyword">) </span><span class="default">$pure </span><span class="keyword">= </span><span class="default">substr</span><span class="keyword">(</span><span class="default">$pure</span><span class="keyword">, </span><span class="default">0</span><span class="keyword">, </span><span class="default">$maxLength</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return (</span><span class="default">STR_SYBASE</span><span class="keyword">)<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ? </span><span class="default">str_replace</span><span class="keyword">(</span><span class="string">"'"</span><span class="keyword">, </span><span class="string">"''"</span><span class="keyword">, </span><span class="default">$pure</span><span class="keyword">)<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : </span><span class="default">addslashes</span><span class="keyword">(</span><span class="default">$pure</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; function </span><span class="default">sql2html</span><span class="keyword">(</span><span class="default">$sql</span><span class="keyword">, </span><span class="default">$maxLength </span><span class="keyword">= </span><span class="default">false</span><span class="keyword">)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$pure </span><span class="keyword">= </span><span class="default">Str</span><span class="keyword">::</span><span class="default">sql2pure</span><span class="keyword">(</span><span class="default">$sql</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; if (</span><span class="default">$maxLength</span><span class="keyword">) </span><span class="default">$pure </span><span class="keyword">= </span><span class="default">substr</span><span class="keyword">(</span><span class="default">$pure</span><span class="keyword">, </span><span class="default">0</span><span class="keyword">, </span><span class="default">$maxLength</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">Str</span><span class="keyword">::</span><span class="default">pure2html</span><span class="keyword">(</span><span class="default">$pure</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; function </span><span class="default">sql2pure</span><span class="keyword">(</span><span class="default">$sql</span><span class="keyword">)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return (</span><span class="default">STR_SYBASE</span><span class="keyword">)<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ? </span><span class="default">str_replace</span><span class="keyword">(</span><span class="string">"''"</span><span class="keyword">, </span><span class="string">"'"</span><span class="keyword">, </span><span class="default">$sql</span><span class="keyword">)<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : </span><span class="default">stripslashes</span><span class="keyword">(</span><span class="default">$sql</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+}<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="53284"></a>
+ <div class="note">
+  <strong>james dot d dot baker at gmail dot com</strong><br />
+  <a href="#53284">27-May-2005 10:45</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+<span class="default">&lt;?php<br />
+</span><span class="comment">/*<br />
+Written By James Baker, May 27th 2005<br />
+<br />
+sentenceCase($string);<br />
+&nbsp;&nbsp;&nbsp; $string: The string to convert to sentence case.<br />
+<br />
+Converts a string into proper sentence case (First letter of each sentance capital, all the others smaller)<br />
+<br />
+Example Usage:<br />
+echo sentenceCase("HELLO WORLD!!! THIS IS A CAPITALISED SENTENCE. this isn't.");<br />
+<br />
+Returns:<br />
+Hello world!!! This is a capitalised sentence. This isn't.<br />
+*/<br />
+<br />
+</span><span class="keyword">function </span><span class="default">sentenceCase</span><span class="keyword">(</span><span class="default">$s</span><span class="keyword">){<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$str </span><span class="keyword">= </span><span class="default">strtolower</span><span class="keyword">(</span><span class="default">$s</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$cap </span><span class="keyword">= </span><span class="default">true</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; for(</span><span class="default">$x </span><span class="keyword">= </span><span class="default">0</span><span class="keyword">; </span><span class="default">$x </span><span class="keyword">&lt; </span><span class="default">strlen</span><span class="keyword">(</span><span class="default">$str</span><span class="keyword">); </span><span class="default">$x</span><span class="keyword">++){<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$letter </span><span class="keyword">= </span><span class="default">substr</span><span class="keyword">(</span><span class="default">$str</span><span class="keyword">, </span><span class="default">$x</span><span class="keyword">, </span><span class="default">1</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; if(</span><span class="default">$letter </span><span class="keyword">== </span><span class="string">"." </span><span class="keyword">|| </span><span class="default">$letter </span><span class="keyword">== </span><span class="string">"!" </span><span class="keyword">|| </span><span class="default">$letter </span><span class="keyword">== </span><span class="string">"?"</span><span class="keyword">){<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$cap </span><span class="keyword">= </span><span class="default">true</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }elseif(</span><span class="default">$letter </span><span class="keyword">!= </span><span class="string">" " </span><span class="keyword">&amp;&amp; </span><span class="default">$cap </span><span class="keyword">== </span><span class="default">true</span><span class="keyword">){<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$letter </span><span class="keyword">= </span><span class="default">strtoupper</span><span class="keyword">(</span><span class="default">$letter</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$cap </span><span class="keyword">= </span><span class="default">false</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$ret </span><span class="keyword">.= </span><span class="default">$letter</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; return </span><span class="default">$ret</span><span class="keyword">;<br />
+}<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="52259"></a>
+ <div class="note">
+  <strong>php at moechofe dot com</strong><br />
+  <a href="#52259">26-Apr-2005 06:34</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+<span class="default">&lt;?php<br />
+&nbsp; </span><span class="comment">/*<br />
+&nbsp; * str_match<br />
+&nbsp; *<br />
+&nbsp; * return a string with only cacacteres defined in a expression return false if the expression is not valid<br />
+&nbsp; *<br />
+&nbsp; * @param $str string the string<br />
+&nbsp; * @param $match the expression based on the class definition off a PCRE regular expression.<br />
+&nbsp; *&nbsp;&nbsp; the '[', ']', '\' and '^' at class start need to be escaped.<br />
+&nbsp; *&nbsp;&nbsp; like : -a-z0-9_@.<br />
+&nbsp; */<br />
+&nbsp; </span><span class="keyword">function </span><span class="default">str_match</span><span class="keyword">( </span><span class="default">$str</span><span class="keyword">, </span><span class="default">$match </span><span class="keyword">)<br />
+&nbsp; {<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$return </span><span class="keyword">= </span><span class="string">''</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; if( </span><span class="default">eregi</span><span class="keyword">( </span><span class="string">'(.*)'</span><span class="keyword">, </span><span class="default">$match</span><span class="keyword">, </span><span class="default">$class </span><span class="keyword">) )<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$match </span><span class="keyword">= </span><span class="string">'['</span><span class="keyword">.</span><span class="default">$regs</span><span class="keyword">[</span><span class="default">1</span><span class="keyword">].</span><span class="string">']'</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; for( </span><span class="default">$i</span><span class="keyword">=</span><span class="default">0</span><span class="keyword">; </span><span class="default">$i</span><span class="keyword">&lt;</span><span class="default">strlen</span><span class="keyword">(</span><span class="default">$str</span><span class="keyword">); </span><span class="default">$i</span><span class="keyword">++ )<br />
+&nbsp;&nbsp; &nbsp;&nbsp; if( </span><span class="default">ereg</span><span class="keyword">( </span><span class="string">'['</span><span class="keyword">.</span><span class="default">$class</span><span class="keyword">[</span><span class="default">1</span><span class="keyword">].</span><span class="string">']'</span><span class="keyword">, </span><span class="default">$str</span><span class="keyword">[</span><span class="default">$i</span><span class="keyword">] ) )<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$return </span><span class="keyword">.= </span><span class="default">$str</span><span class="keyword">{</span><span class="default">$i</span><span class="keyword">};<br />
+&nbsp;&nbsp; &nbsp;&nbsp; return </span><span class="default">$return</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; else return </span><span class="default">false</span><span class="keyword">;<br />
+&nbsp; }<br />
+<br />
+&nbsp; </span><span class="comment">/*<br />
+&nbsp; * example<br />
+&nbsp; * accept only alphanum caracteres from the GET/POST parameters 'a'<br />
+&nbsp; */<br />
+<br />
+&nbsp; </span><span class="keyword">if( ! empty(</span><span class="default">$_REQUEST</span><span class="keyword">[</span><span class="string">'a'</span><span class="keyword">]) )<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$_REQUEST</span><span class="keyword">[</span><span class="string">'a'</span><span class="keyword">] = </span><span class="default">str_match</span><span class="keyword">( </span><span class="default">$_REQUEST</span><span class="keyword">[</span><span class="string">'a'</span><span class="keyword">], </span><span class="string">'a-zA-Z0-9' </span><span class="keyword">);<br />
+&nbsp; else<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$_REQUEST</span><span class="keyword">[</span><span class="string">'a'</span><span class="keyword">] = </span><span class="string">'default'</span><span class="keyword">;<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="51100"></a>
+ <div class="note">
+  <strong>Pommef</strong><br />
+  <a href="#51100">19-Mar-2005 01:15</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Example: Give me everything up to the fourth occurance of '/'.<br />
+<br />
+<span class="default">&lt;?php<br />
+<br />
+&nbsp;&nbsp; $haystack </span><span class="keyword">= </span><span class="string">"/home/username/www/index.php"</span><span class="keyword">;<br />
+&nbsp;&nbsp; </span><span class="default">$needle </span><span class="keyword">= </span><span class="string">"/"</span><span class="keyword">;<br />
+&nbsp; <br />
+&nbsp;&nbsp; function </span><span class="default">strnpos</span><span class="keyword">(</span><span class="default">$haystack</span><span class="keyword">, </span><span class="default">$needle</span><span class="keyword">, </span><span class="default">$occurance</span><span class="keyword">, </span><span class="default">$pos </span><span class="keyword">= </span><span class="default">0</span><span class="keyword">) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$res </span><span class="keyword">= </span><span class="default">implode</span><span class="keyword">(</span><span class="default">$needle</span><span class="keyword">,</span><span class="default">$haystack</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$res </span><span class="keyword">= </span><span class="default">array_slice</span><span class="keyword">(</span><span class="default">$res</span><span class="keyword">, </span><span class="default">$pos</span><span class="keyword">,&nbsp; </span><span class="default">$occurance</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">explode </span><span class="keyword">(</span><span class="default">$needle</span><span class="keyword">,</span><span class="default">$res</span><span class="keyword">); <br />
+&nbsp;&nbsp;&nbsp; } <br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="48626"></a>
+ <div class="note">
+  <strong>kristin at greenapple dot on dot ca</strong><br />
+  <a href="#48626">02-Jan-2005 08:32</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I really searched for a function that would do this as I've seen it in other languages but I couldn't find it here. This is particularily useful when combined with substr() to take the first part of a string up to a certain point.<br />
+<br />
+strnpos() - Find the nth position of needle in haystack.<br />
+<br />
+<span class="default">&lt;?php<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="keyword">function </span><span class="default">strnpos</span><span class="keyword">(</span><span class="default">$haystack</span><span class="keyword">, </span><span class="default">$needle</span><span class="keyword">, </span><span class="default">$occurance</span><span class="keyword">, </span><span class="default">$pos </span><span class="keyword">= </span><span class="default">0</span><span class="keyword">) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; for (</span><span class="default">$i </span><span class="keyword">= </span><span class="default">1</span><span class="keyword">; </span><span class="default">$i </span><span class="keyword">&lt;= </span><span class="default">$occurance</span><span class="keyword">; </span><span class="default">$i</span><span class="keyword">++) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$pos </span><span class="keyword">= </span><span class="default">strpos</span><span class="keyword">(</span><span class="default">$haystack</span><span class="keyword">, </span><span class="default">$needle</span><span class="keyword">, </span><span class="default">$pos</span><span class="keyword">) + </span><span class="default">1</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">$pos </span><span class="keyword">- </span><span class="default">1</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; }<br />
+<br />
+</span><span class="default">?&gt;<br />
+</span><br />
+Example: Give me everything up to the fourth occurance of '/'.<br />
+<br />
+<span class="default">&lt;?php<br />
+<br />
+&nbsp;&nbsp;&nbsp; $haystack </span><span class="keyword">= </span><span class="string">"/home/username/www/index.php"</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$needle </span><span class="keyword">= </span><span class="string">"/"</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$root_dir </span><span class="keyword">= </span><span class="default">substr</span><span class="keyword">(</span><span class="default">$haystack</span><span class="keyword">, </span><span class="default">0</span><span class="keyword">, </span><span class="default">strnpos</span><span class="keyword">(</span><span class="default">$haystack</span><span class="keyword">, </span><span class="default">$needle</span><span class="keyword">, </span><span class="default">4</span><span class="keyword">));<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; echo </span><span class="default">$root_dir</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; <br />
+</span><span class="default">?&gt;<br />
+</span><br />
+Returns: /home/username/www<br />
+<br />
+Use this example with the server variable $_SERVER['SCRIPT_NAME'] as the haystack and you can self-discover a document's root directory for the purposes of locating global files automatically!</span>
+</code></div>
+  </div>
+ </div>
+ <a name="48368"></a>
+ <div class="note">
+  <a href="#48368">20-Dec-2004 08:31</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+In response to hackajar &lt;matt&gt; yahoo &lt;trot&gt; com,<br />
+<br />
+No string-to-array function exists because it is not needed. If you reference a string with an offset like you do with an array, the character at that offset will be return. This is documented in section III.11's "Strings" article under the "String access and modification by character" heading.</span>
+</code></div>
+  </div>
+ </div>
+ <a name="47276"></a>
+ <div class="note">
+  <strong>andy a t onesandzeros d o t biz</strong><br />
+  <a href="#47276">09-Nov-2004 02:54</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I use these little doo-dads quite a bit. I just thought I'd share them and maybe save someone a little time. No biggy. :)<br />
+<br />
+// returns true if $str begins with $sub<br />
+function beginsWith( $str, $sub ) {<br />
+&nbsp;&nbsp;&nbsp; return ( substr( $str, 0, strlen( $sub ) ) == $sub );<br />
+}<br />
+<br />
+// return tru if $str ends with $sub<br />
+function endsWith( $str, $sub ) {<br />
+&nbsp;&nbsp;&nbsp; return ( substr( $str, strlen( $str ) - strlen( $sub ) ) == $sub );<br />
+}<br />
+<br />
+// trims off x chars from the front of a string<br />
+// or the matching string in $off is trimmed off<br />
+function trimOffFront( $off, $str ) {<br />
+&nbsp;&nbsp;&nbsp; if( is_numeric( $off ) )<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return substr( $str, $off );<br />
+&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return substr( $str, strlen( $off ) );<br />
+}<br />
+<br />
+// trims off x chars from the end of a string<br />
+// or the matching string in $off is trimmed off<br />
+function trimOffEnd( $off, $str ) {<br />
+&nbsp;&nbsp;&nbsp; if( is_numeric( $off ) )<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return substr( $str, 0, strlen( $str ) - $off );<br />
+&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return substr( $str, 0, strlen( $str ) - strlen( $off ) );<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <a name="46918"></a>
+ <div class="note">
+  <strong>[tab!]</strong><br />
+  <a href="#46918">27-Oct-2004 12:29</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+//<br />
+// string strtrmvistl(&nbsp; string str, [int maxlen = 64], <br />
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [bool right_justify = false],<br />
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [string delimter = "&lt;br&gt;\n"])<br />
+// <br />
+// splits a long string into two chunks (a start and an end chunk) <br />
+// of a given maximum length and seperates them by a given delimeter. <br />
+// a second chunk can be right-justified within maxlen.<br />
+// may be used to 'spread' a string over two lines.<br />
+//<br />
+<br />
+function strtrmvistl($str, $maxlen = 64, $right_justify = false, $delimter = "&lt;br&gt;\n") {<br />
+&nbsp;&nbsp;&nbsp; if(($len = strlen($str = chop($str))) &gt; ($maxlen = max($maxlen, 12))) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $newstr = substr($str, 0, $maxlen - 3);<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; if($len &gt; ($maxlen - 3)) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $endlen = min(($len - strlen($newstr)), $maxlen - 3);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $newstr .= "..." . $delimter;<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; if($right_justify)<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $newstr .= str_pad('', $maxlen - $endlen - 3, ' ');<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $newstr .= "..." . substr($str, $len - $endlen);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return($newstr);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp; return($str);<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <a name="44652"></a>
+ <div class="note">
+  <strong>terry dot greenlaw at logicalshift dot com</strong><br />
+  <a href="#44652">11-Aug-2004 10:52</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Here's a simpler "simplest" way to toggle through a set of 1..n colors for web backgrounds:<br />
+<br />
+<span class="default">&lt;?php<br />
+$colours </span><span class="keyword">= array(</span><span class="string">'#000000'</span><span class="keyword">, </span><span class="string">'#808080'</span><span class="keyword">, </span><span class="string">'#A0A0A0'</span><span class="keyword">, </span><span class="string">'#FFFFFF'</span><span class="keyword">);<br />
+<br />
+</span><span class="comment">// Get a colour<br />
+</span><span class="default">$color </span><span class="keyword">= </span><span class="default">next</span><span class="keyword">(</span><span class="default">$colors</span><span class="keyword">) or </span><span class="default">$color </span><span class="keyword">= </span><span class="default">reset</span><span class="keyword">(</span><span class="default">$colors</span><span class="keyword">);<br />
+</span><span class="default">?&gt;<br />
+</span><br />
+The code doesn't need to know anything about the number of elements being cycled through. That way you won't have to tracking down all the code when changing the number of colors or the color values.</span>
+</code></div>
+  </div>
+ </div>
+ <div class="foot"><a href="/manual/add-note.php?sect=ref.strings&amp;redirect=http://www.php.net/manual/en/ref.strings.php"><img src="http://static.php.net/www.php.net/images/notes-add.gif" alt="add a note" width="13" height="13" align="middle" /></a> <small><a href="/manual/add-note.php?sect=ref.strings&amp;redirect=http://www.php.net/manual/en/ref.strings.php">add a note</a></small></div>
+</div><br /><!--UdmComment-->
+<div class="manualnavbar manualnavbar_bottom">
+ <span class="next">
+  <a href="function.addcslashes.php">addcslashes<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.strings.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Strings</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  &nbsp;
+ </div>
+</div>
+<!--/UdmComment-->
+
+
+ </div>
+ <div class="cleaner">&nbsp;</div>
+</div>
+
+<div id="footnav">
+   <a href="/source.php?url=/manual/en/ref.strings.php">show source</a> |
+ <a href="/credits.php">credits</a> |
+ <a href="/stats/">stats</a> |
+ <a href="/sitemap.php">sitemap</a> |
+ <a href="/contact.php">contact</a> |
+ <a href="/contact.php#ads">advertising</a> |
+ <a href="/mirrors.php">mirror sites</a>
+</div>
+
+<div id="pagefooter">
+ <div id="copyright">
+  <a href="/copyright.php">Copyright &copy; 2001-2008 The PHP Group</a><br />
+  All rights reserved.
+ </div>
+
+ <div id="thismirror">
+  <a href="/mirror.php">This mirror</a> generously provided by:
+  <a href="http://developer.yahoo.com/">Yahoo! Inc.</a><br />
+  Last updated: Wed Apr 16 05:27:53 2008 PDT
+ </div>
+</div>
+
+</body>
+</html>

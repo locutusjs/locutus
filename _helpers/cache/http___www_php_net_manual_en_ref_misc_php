@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://purl.org/NET/erdf/profile">
+ <title>PHP: Misc. Functions - Manual</title>
+ <style type="text/css" media="all">
+  @import url("http://static.php.net/www.php.net/styles/site.css");
+  @import url("http://static.php.net/www.php.net/styles/phpnet.css");
+ </style>
+ <!--[if IE]><![if gte IE 6]><![endif]-->
+  <style type="text/css" media="print">
+   @import url("http://static.php.net/www.php.net/styles/print.css");
+  </style>
+ <!--[if IE]><![endif]><![endif]-->
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <link rel="shortcut icon" href="http://static.php.net/www.php.net/favicon.ico" />
+ <link rel="contents" href="index.php" />
+ <link rel="index" href="book.misc.php" />
+ <link rel="prev" href="book.misc.php" />
+ <link rel="next" href="function.connection-aborted.php" />
+ <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
+ <link rel="schema.rdfs" href="http://www.w3.org/2000/01/rdf-schema#" />
+ <script type="text/javascript" src="http://static.php.net/www.php.net/userprefs.js"></script>
+ <base href="http://www.php.net/manual/en/ref.misc.php" />
+</head>
+<body>
+
+<div id="headnav">
+ <a href="/" rel="home"><img src="http://static.php.net/www.php.net/images/php.gif"
+ alt="PHP" width="120" height="67" /></a>
+ <div id="headmenu">
+  <a href="/downloads.php">downloads</a> |
+  <a href="/docs.php">documentation</a> |
+  <a href="/FAQ.php">faq</a> |
+  <a href="/support.php">getting help</a> |
+  <a href="/mailing-lists.php">mailing lists</a> |
+  <a href="http://bugs.php.net/">reporting bugs</a> |
+  <a href="/sites.php">php.net sites</a> |
+  <a href="/links.php">links</a> |
+  <a href="/conferences/">conferences</a> |
+  <a href="/my.php">my php.net</a>
+ </div>
+</div>
+
+<div id="headsearch">
+ <form method="post" action="/search.php" id="topsearch">
+  <p>
+   <span title="Keyboard shortcut: Alt+S (Win), Ctrl+S (Apple)">
+    <span class="shortkey">s</span>earch for
+   </span>
+   <input type="text" name="pattern" value="" size="30" accesskey="s" />
+   <span>in the</span>
+   <select name="show">
+    <option value="quickref" selected="selected">function list</option>
+    <option value="all"      >all php.net sites</option>
+    <option value="local"    >this mirror only</option>
+    <option value="manual"   >online documentation</option>
+    <option value="bugdb"    >bug database</option>
+    <option value="news_archive">Site News Archive</option>
+    <option value="changelogs">All Changelogs</option>
+    <option value="pear"     >just pear.php.net</option>
+    <option value="pecl"     >just pecl.php.net</option>
+    <option value="talks"    >just talks.php.net</option>
+    <option value="maillist" >general mailing list</option>
+    <option value="devlist"  >developer mailing list</option>
+    <option value="phpdoc"   >documentation mailing list</option>
+   </select>
+   <input type="image"
+          src="http://static.php.net/www.php.net/images/small_submit_white.gif"
+          class="submit" alt="search" />
+   <input type="hidden" name="lang" value="en" />
+  </p>
+ </form>
+</div>
+
+<div id="layout_2">
+ <div id="leftbar">
+<!--UdmComment-->
+<ul class="toc">
+ <li class="header home"><a href="index.php">PHP Manual</a></li>
+ <li class="header up"><a href="funcref.php">Function Reference</a></li>
+ <li class="header up"><a href="refs.basic.other.php">Other Basic Extensions</a></li>
+ <li class="header up"><a href="book.misc.php">Miscellaneous Functions</a></li>
+ <li><a href="intro.misc.php">Introduction</a></li>
+ <li><a href="misc.setup.php">Installing/Configuring</a></li>
+ <li><a href="misc.constants.php">Predefined Constants</a></li>
+ <li class="active"><a href="ref.misc.php">Misc. Functions</a></li>
+</ul><!--/UdmComment-->
+
+ </div>
+ <div id="content" class="manual/en">
+<!--UdmComment-->
+<div class="manualnavbar manualnavbar_top">
+ <span class="next">
+  <a href="function.connection-aborted.php">connection_aborted<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.misc.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Misc.</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  <form action="/manual/change.php" method="get">
+   <p>view this page in </p><fieldset><select name="page">
+    <option value="bg/ref.misc.php">Bulgarian</option>
+    <option value="pt_BR/ref.misc.php">Brazilian Portuguese</option>
+    <option value="fr/ref.misc.php">French</option>
+    <option value="de/ref.misc.php">German</option>
+    <option value="it/ref.misc.php">Italian</option>
+    <option value="ja/ref.misc.php">Japanese</option>
+    <option value="pl/ref.misc.php">Polish</option>
+    <option value="ro/ref.misc.php">Romanian</option>
+    <option value="ru/ref.misc.php">Russian</option>
+    <option value="es/ref.misc.php">Spanish</option>
+    <option value="help-translate.php">Other</option>
+   </select>
+   <input type="image" src="http://static.php.net/www.php.net/images/small_submit.gif" id="changeLangImage" alt="" />
+  </fieldset></form>
+ </div>
+</div>
+<!--/UdmComment-->
+
+<div>
+ <h1 class="title">Misc. Functions</h1>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Table of Contents</h2><ul class="chunklist chunklist_reference"><li><a href="function.connection-aborted.php">connection_aborted</a> — Check whether client disconnected</li><li><a href="function.connection-status.php">connection_status</a> — Returns connection status bitfield</li><li><a href="function.connection-timeout.php">connection_timeout</a> — Check if the script timed out</li><li><a href="function.constant.php">constant</a> — Returns the value of a constant</li><li><a href="function.define.php">define</a> — Defines a named constant</li><li><a href="function.defined.php">defined</a> — Checks whether a given named constant exists</li><li><a href="function.die.php">die</a> — Equivalent to exit</li><li><a href="function.eval.php">eval</a> — Evaluate a string as PHP code</li><li><a href="function.exit.php">exit</a> — Output a message and terminate the current script</li><li><a href="function.get-browser.php">get_browser</a> — Tells what the user's browser is capable of</li><li><a href="function.halt-compiler.php">__halt_compiler</a> — Halts the compiler execution</li><li><a href="function.highlight-file.php">highlight_file</a> — Syntax highlighting of a file</li><li><a href="function.highlight-string.php">highlight_string</a> — Syntax highlighting of a string</li><li><a href="function.ignore-user-abort.php">ignore_user_abort</a> — Set whether a client disconnect should abort script execution</li><li><a href="function.pack.php">pack</a> — Pack data into binary string</li><li><a href="function.php-check-syntax.php">php_check_syntax</a> — Check the PHP syntax of (and execute) the specified file</li><li><a href="function.php-strip-whitespace.php">php_strip_whitespace</a> — Return source with stripped comments and whitespace</li><li><a href="function.show-source.php">show_source</a> — Alias of highlight_file</li><li><a href="function.sleep.php">sleep</a> — Delay execution</li><li><a href="function.sys-getloadavg.php">sys_getloadavg</a> — Gets system load average</li><li><a href="function.time-nanosleep.php">time_nanosleep</a> — Delay for a number of seconds and nanoseconds</li><li><a href="function.time-sleep-until.php">time_sleep_until</a> — Make the script sleep until the specified time</li><li><a href="function.uniqid.php">uniqid</a> — Generate a unique ID</li><li><a href="function.unpack.php">unpack</a> — Unpack data from binary string</li><li><a href="function.usleep.php">usleep</a> — Delay execution in microseconds</li></ul>
+</div>
+<br /><br />
+<div id="usernotes">
+ <div class="head">
+  <span class="action"><a href="/manual/add-note.php?sect=ref.misc&amp;redirect=http://www.php.net/manual/en/ref.misc.php"><img src="http://static.php.net/www.php.net/images/notes-add.gif" alt="add a note" width="13" height="13" align="middle" /></a> <small><a href="/manual/add-note.php?sect=ref.misc&amp;redirect=http://www.php.net/manual/en/ref.misc.php">add a note</a></small></span>
+  <small>User Contributed Notes</small><br />
+  <strong>Misc. Functions</strong>
+ </div>
+ <div class="note">There are no user contributed notes for this page.</div></div><br /><!--UdmComment-->
+<div class="manualnavbar manualnavbar_bottom">
+ <span class="next">
+  <a href="function.connection-aborted.php">connection_aborted<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.misc.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Misc.</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  &nbsp;
+ </div>
+</div>
+<!--/UdmComment-->
+
+
+ </div>
+ <div class="cleaner">&nbsp;</div>
+</div>
+
+<div id="footnav">
+   <a href="/source.php?url=/manual/en/ref.misc.php">show source</a> |
+ <a href="/credits.php">credits</a> |
+ <a href="/stats/">stats</a> |
+ <a href="/sitemap.php">sitemap</a> |
+ <a href="/contact.php">contact</a> |
+ <a href="/contact.php#ads">advertising</a> |
+ <a href="/mirrors.php">mirror sites</a>
+</div>
+
+<div id="pagefooter">
+ <div id="copyright">
+  <a href="/copyright.php">Copyright &copy; 2001-2008 The PHP Group</a><br />
+  All rights reserved.
+ </div>
+
+ <div id="thismirror">
+  <a href="/mirror.php">This mirror</a> generously provided by:
+  <a href="http://developer.yahoo.com/">Yahoo! Inc.</a><br />
+  Last updated: Wed Apr 16 05:27:53 2008 PDT
+ </div>
+</div>
+
+</body>
+</html>

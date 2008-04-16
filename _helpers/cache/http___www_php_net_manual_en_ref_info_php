@@ -1,0 +1,532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://purl.org/NET/erdf/profile">
+ <title>PHP: PHP Options/Info Functions - Manual</title>
+ <style type="text/css" media="all">
+  @import url("http://static.php.net/www.php.net/styles/site.css");
+  @import url("http://static.php.net/www.php.net/styles/phpnet.css");
+ </style>
+ <!--[if IE]><![if gte IE 6]><![endif]-->
+  <style type="text/css" media="print">
+   @import url("http://static.php.net/www.php.net/styles/print.css");
+  </style>
+ <!--[if IE]><![endif]><![endif]-->
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <link rel="shortcut icon" href="http://static.php.net/www.php.net/favicon.ico" />
+ <link rel="contents" href="index.php" />
+ <link rel="index" href="book.info.php" />
+ <link rel="prev" href="book.info.php" />
+ <link rel="next" href="function.assert-options.php" />
+ <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
+ <link rel="schema.rdfs" href="http://www.w3.org/2000/01/rdf-schema#" />
+ <script type="text/javascript" src="http://static.php.net/www.php.net/userprefs.js"></script>
+ <base href="http://www.php.net/manual/en/ref.info.php" />
+</head>
+<body>
+
+<div id="headnav">
+ <a href="/" rel="home"><img src="http://static.php.net/www.php.net/images/php.gif"
+ alt="PHP" width="120" height="67" /></a>
+ <div id="headmenu">
+  <a href="/downloads.php">downloads</a> |
+  <a href="/docs.php">documentation</a> |
+  <a href="/FAQ.php">faq</a> |
+  <a href="/support.php">getting help</a> |
+  <a href="/mailing-lists.php">mailing lists</a> |
+  <a href="http://bugs.php.net/">reporting bugs</a> |
+  <a href="/sites.php">php.net sites</a> |
+  <a href="/links.php">links</a> |
+  <a href="/conferences/">conferences</a> |
+  <a href="/my.php">my php.net</a>
+ </div>
+</div>
+
+<div id="headsearch">
+ <form method="post" action="/search.php" id="topsearch">
+  <p>
+   <span title="Keyboard shortcut: Alt+S (Win), Ctrl+S (Apple)">
+    <span class="shortkey">s</span>earch for
+   </span>
+   <input type="text" name="pattern" value="" size="30" accesskey="s" />
+   <span>in the</span>
+   <select name="show">
+    <option value="quickref" selected="selected">function list</option>
+    <option value="all"      >all php.net sites</option>
+    <option value="local"    >this mirror only</option>
+    <option value="manual"   >online documentation</option>
+    <option value="bugdb"    >bug database</option>
+    <option value="news_archive">Site News Archive</option>
+    <option value="changelogs">All Changelogs</option>
+    <option value="pear"     >just pear.php.net</option>
+    <option value="pecl"     >just pecl.php.net</option>
+    <option value="talks"    >just talks.php.net</option>
+    <option value="maillist" >general mailing list</option>
+    <option value="devlist"  >developer mailing list</option>
+    <option value="phpdoc"   >documentation mailing list</option>
+   </select>
+   <input type="image"
+          src="http://static.php.net/www.php.net/images/small_submit_white.gif"
+          class="submit" alt="search" />
+   <input type="hidden" name="lang" value="en" />
+  </p>
+ </form>
+</div>
+
+<div id="layout_2">
+ <div id="leftbar">
+<!--UdmComment-->
+<ul class="toc">
+ <li class="header home"><a href="index.php">PHP Manual</a></li>
+ <li class="header up"><a href="funcref.php">Function Reference</a></li>
+ <li class="header up"><a href="refs.basic.php.php">Affecting PHP's Behaviour</a></li>
+ <li class="header up"><a href="book.info.php">PHP Options&Information</a></li>
+ <li><a href="intro.info.php">Introduction</a></li>
+ <li><a href="info.setup.php">Installing/Configuring</a></li>
+ <li><a href="info.constants.php">Predefined Constants</a></li>
+ <li class="active"><a href="ref.info.php">PHP Options/Info Functions</a></li>
+</ul><!--/UdmComment-->
+
+ </div>
+ <div id="content" class="manual/en">
+<!--UdmComment-->
+<div class="manualnavbar manualnavbar_top">
+ <span class="next">
+  <a href="function.assert-options.php">assert_options<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.info.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />PHP Options/Info</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  <form action="/manual/change.php" method="get">
+   <p>view this page in </p><fieldset><select name="page">
+    <option value="bg/ref.info.php">Bulgarian</option>
+    <option value="pt_BR/ref.info.php">Brazilian Portuguese</option>
+    <option value="fr/ref.info.php">French</option>
+    <option value="de/ref.info.php">German</option>
+    <option value="it/ref.info.php">Italian</option>
+    <option value="ja/ref.info.php">Japanese</option>
+    <option value="pl/ref.info.php">Polish</option>
+    <option value="ro/ref.info.php">Romanian</option>
+    <option value="ru/ref.info.php">Russian</option>
+    <option value="es/ref.info.php">Spanish</option>
+    <option value="help-translate.php">Other</option>
+   </select>
+   <input type="image" src="http://static.php.net/www.php.net/images/small_submit.gif" id="changeLangImage" alt="" />
+  </fieldset></form>
+ </div>
+</div>
+<!--/UdmComment-->
+
+<div>
+ <h1 class="title">PHP Options/Info Functions</h1>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Table of Contents</h2><ul class="chunklist chunklist_reference"><li><a href="function.assert-options.php">assert_options</a> — Set/get the various assert flags</li><li><a href="function.assert.php">assert</a> — Checks if assertion is FALSE</li><li><a href="function.dl.php">dl</a> — Loads a PHP extension at runtime</li><li><a href="function.extension-loaded.php">extension_loaded</a> — Find out whether an extension is loaded</li><li><a href="function.get-cfg-var.php">get_cfg_var</a> — Gets the value of a PHP configuration option</li><li><a href="function.get-current-user.php">get_current_user</a> — Gets the name of the owner of the current PHP script</li><li><a href="function.get-defined-constants.php">get_defined_constants</a> — Returns an associative array with the names of all the constants and their values</li><li><a href="function.get-extension-funcs.php">get_extension_funcs</a> — Returns an array with the names of the functions of a module</li><li><a href="function.get-include-path.php">get_include_path</a> — Gets the current include_path configuration option</li><li><a href="function.get-included-files.php">get_included_files</a> — Returns an array with the names of included or required files</li><li><a href="function.get-loaded-extensions.php">get_loaded_extensions</a> — Returns an array with the names of all modules compiled and loaded</li><li><a href="function.get-magic-quotes-gpc.php">get_magic_quotes_gpc</a> — Gets the current configuration setting of magic quotes gpc</li><li><a href="function.get-magic-quotes-runtime.php">get_magic_quotes_runtime</a> — Gets the current active configuration setting of magic_quotes_runtime</li><li><a href="function.get-required-files.php">get_required_files</a> — Alias of get_included_files</li><li><a href="function.getenv.php">getenv</a> — Gets the value of an environment variable</li><li><a href="function.getlastmod.php">getlastmod</a> — Gets time of last page modification</li><li><a href="function.getmygid.php">getmygid</a> — Get PHP script owner's GID</li><li><a href="function.getmyinode.php">getmyinode</a> — Gets the inode of the current script</li><li><a href="function.getmypid.php">getmypid</a> — Gets PHP's process ID</li><li><a href="function.getmyuid.php">getmyuid</a> — Gets PHP script owner's UID</li><li><a href="function.getopt.php">getopt</a> — Gets options from the command line argument list</li><li><a href="function.getrusage.php">getrusage</a> — Gets the current resource usages</li><li><a href="function.ini-alter.php">ini_alter</a> — Alias of ini_set</li><li><a href="function.ini-get-all.php">ini_get_all</a> — Gets all configuration options</li><li><a href="function.ini-get.php">ini_get</a> — Gets the value of a configuration option</li><li><a href="function.ini-restore.php">ini_restore</a> — Restores the value of a configuration option</li><li><a href="function.ini-set.php">ini_set</a> — Sets the value of a configuration option</li><li><a href="function.main.php">main</a> — Dummy for main</li><li><a href="function.memory-get-peak-usage.php">memory_get_peak_usage</a> — Returns the peak of memory allocated by PHP</li><li><a href="function.memory-get-usage.php">memory_get_usage</a> — Returns the amount of memory allocated to PHP</li><li><a href="function.php-ini-loaded-file.php">php_ini_loaded_file</a> — Retrieve a path to the loaded php.ini file</li><li><a href="function.php-ini-scanned-files.php">php_ini_scanned_files</a> — Return a list of .ini files parsed from the additional ini dir</li><li><a href="function.php-logo-guid.php">php_logo_guid</a> — Gets the logo guid</li><li><a href="function.php-sapi-name.php">php_sapi_name</a> — Returns the type of interface between web server and PHP</li><li><a href="function.php-uname.php">php_uname</a> — Returns information about the operating system PHP is running on</li><li><a href="function.phpcredits.php">phpcredits</a> — Prints out the credits for PHP</li><li><a href="function.phpinfo.php">phpinfo</a> — Outputs lots of PHP information</li><li><a href="function.phpversion.php">phpversion</a> — Gets the current PHP version</li><li><a href="function.putenv.php">putenv</a> — Sets the value of an environment variable</li><li><a href="function.restore-include-path.php">restore_include_path</a> — Restores the value of the include_path configuration option</li><li><a href="function.set-include-path.php">set_include_path</a> — Sets the include_path configuration option</li><li><a href="function.set-magic-quotes-runtime.php">set_magic_quotes_runtime</a> — Sets the current active configuration setting of magic_quotes_runtime</li><li><a href="function.set-time-limit.php">set_time_limit</a> — Limits the maximum execution time</li><li><a href="function.sys-get-temp-dir.php">sys_get_temp_dir</a> — Returns directory path used for temporary files</li><li><a href="function.version-compare.php">version_compare</a> — Compares two "PHP-standardized" version number strings</li><li><a href="function.zend-logo-guid.php">zend_logo_guid</a> — Gets the Zend guid</li><li><a href="function.zend-thread-id.php">zend_thread_id</a> — Returns a unique identifier for the current thread</li><li><a href="function.zend-version.php">zend_version</a> — Gets the version of the current Zend engine</li></ul>
+</div>
+<br /><br /><!--UdmComment-->
+<div class="manualnavbar manualnavbar_bottom">
+ <span class="next">
+  <a href="function.assert-options.php">assert_options<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.info.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />PHP Options/Info</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  &nbsp;
+ </div>
+</div>
+<!--/UdmComment-->
+
+
+<div id="usernotes">
+ <div class="head">
+  <span class="action"><a href="/manual/add-note.php?sect=ref.info&amp;redirect=http://www.php.net/manual/en/ref.info.php"><img src="http://static.php.net/www.php.net/images/notes-add.gif" alt="add a note" width="13" height="13" align="middle" /></a> <small><a href="/manual/add-note.php?sect=ref.info&amp;redirect=http://www.php.net/manual/en/ref.info.php">add a note</a></small></span>
+  <small>User Contributed Notes</small><br />
+  <strong>PHP Options/Info Functions</strong>
+ </div>
+ <a name="76549"></a>
+ <div class="note">
+  <strong>Stephen</strong><br />
+  <a href="#76549">19-Jul-2007 07:22</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+The manual states above:<br />
+<br />
+&lt;&lt;&lt;<br />
+The default is to allow dynamic loading, except when using safe mode. In safe mode, it's always impossible to use dl().<br />
+&gt;&gt;&gt;<br />
+<br />
+...however, on the manual page for dl(), it states:<br />
+<br />
+&lt;&lt;&lt;<br />
+Note:&nbsp; dl() is not supported in multithreaded Web servers. Use the extensions&nbsp; statement in your php.ini when operating under such an environment. However, the CGI and CLI build are not&nbsp; affected ! <br />
+<br />
+Note: As of PHP 5, the dl() function is deprecated in every SAPI except CLI. Use Extension Loading Directives method instead. <br />
+<br />
+Note: Since PHP 6 this function is disabled in all SAPIs, except CLI, CGI and embed.<br />
+&gt;&gt;&gt;</span>
+</code></div>
+  </div>
+ </div>
+ <a name="50988"></a>
+ <div class="note">
+  <strong>gilthansNOSPAAM at gmailSPAAMBLOCK dot com</strong><br />
+  <a href="#50988">15-Mar-2005 05:04</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Note: when magic_quotes_gpc is ON, it will also slash values inside both $_SERVER['QUERY_STRING'] and $_SERVER['SCRIPT_NAME'] (and equivalents) will also be slashed.</span>
+</code></div>
+  </div>
+ </div>
+ <a name="43229"></a>
+ <div class="note">
+  <strong>Mark</strong><br />
+  <a href="#43229">14-Jun-2004 05:37</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+You probably don't want to set "magic_quotes_runtime" because it affects even binary file read/write operations. This is especially problematic if you include someone else's library that depends on binary read/write. If you enable "magic_quotes_runtime", be sure to use set_magic_quotes_runtime() function call to disable it before calling someone else's library that does binary read/write.</span>
+</code></div>
+  </div>
+ </div>
+ <div class="foot"><a href="/manual/add-note.php?sect=ref.info&amp;redirect=http://www.php.net/manual/en/ref.info.php"><img src="http://static.php.net/www.php.net/images/notes-add.gif" alt="add a note" width="13" height="13" align="middle" /></a> <small><a href="/manual/add-note.php?sect=ref.info&amp;redirect=http://www.php.net/manual/en/ref.info.php">add a note</a></small></div>
+</div><br /><!--UdmComment-->
+<div class="manualnavbar manualnavbar_bottom">
+ <span class="next">
+  <a href="function.assert-options.php">assert_options<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.info.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />PHP Options/Info</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  &nbsp;
+ </div>
+</div>
+<!--/UdmComment-->
+
+
+ </div>
+ <div class="cleaner">&nbsp;</div>
+</div>
+
+<div id="footnav">
+   <a href="/source.php?url=/manual/en/ref.info.php">show source</a> |
+ <a href="/credits.php">credits</a> |
+ <a href="/stats/">stats</a> |
+ <a href="/sitemap.php">sitemap</a> |
+ <a href="/contact.php">contact</a> |
+ <a href="/contact.php#ads">advertising</a> |
+ <a href="/mirrors.php">mirror sites</a>
+</div>
+
+<div id="pagefooter">
+ <div id="copyright">
+  <a href="/copyright.php">Copyright &copy; 2001-2008 The PHP Group</a><br />
+  All rights reserved.
+ </div>
+
+ <div id="thismirror">
+  <a href="/mirror.php">This mirror</a> generously provided by:
+  <a href="http://developer.yahoo.com/">Yahoo! Inc.</a><br />
+  Last updated: Wed Apr 16 05:27:53 2008 PDT
+ </div>
+</div>
+
+</body>
+</html>

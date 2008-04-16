@@ -1,0 +1,804 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://purl.org/NET/erdf/profile">
+ <title>PHP: Network Functions - Manual</title>
+ <style type="text/css" media="all">
+  @import url("http://static.php.net/www.php.net/styles/site.css");
+  @import url("http://static.php.net/www.php.net/styles/phpnet.css");
+ </style>
+ <!--[if IE]><![if gte IE 6]><![endif]-->
+  <style type="text/css" media="print">
+   @import url("http://static.php.net/www.php.net/styles/print.css");
+  </style>
+ <!--[if IE]><![endif]><![endif]-->
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <link rel="shortcut icon" href="http://static.php.net/www.php.net/favicon.ico" />
+ <link rel="contents" href="index.php" />
+ <link rel="index" href="book.network.php" />
+ <link rel="prev" href="book.network.php" />
+ <link rel="next" href="function.checkdnsrr.php" />
+ <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
+ <link rel="schema.rdfs" href="http://www.w3.org/2000/01/rdf-schema#" />
+ <script type="text/javascript" src="http://static.php.net/www.php.net/userprefs.js"></script>
+ <base href="http://www.php.net/manual/en/ref.network.php" />
+</head>
+<body>
+
+<div id="headnav">
+ <a href="/" rel="home"><img src="http://static.php.net/www.php.net/images/php.gif"
+ alt="PHP" width="120" height="67" /></a>
+ <div id="headmenu">
+  <a href="/downloads.php">downloads</a> |
+  <a href="/docs.php">documentation</a> |
+  <a href="/FAQ.php">faq</a> |
+  <a href="/support.php">getting help</a> |
+  <a href="/mailing-lists.php">mailing lists</a> |
+  <a href="http://bugs.php.net/">reporting bugs</a> |
+  <a href="/sites.php">php.net sites</a> |
+  <a href="/links.php">links</a> |
+  <a href="/conferences/">conferences</a> |
+  <a href="/my.php">my php.net</a>
+ </div>
+</div>
+
+<div id="headsearch">
+ <form method="post" action="/search.php" id="topsearch">
+  <p>
+   <span title="Keyboard shortcut: Alt+S (Win), Ctrl+S (Apple)">
+    <span class="shortkey">s</span>earch for
+   </span>
+   <input type="text" name="pattern" value="" size="30" accesskey="s" />
+   <span>in the</span>
+   <select name="show">
+    <option value="quickref" selected="selected">function list</option>
+    <option value="all"      >all php.net sites</option>
+    <option value="local"    >this mirror only</option>
+    <option value="manual"   >online documentation</option>
+    <option value="bugdb"    >bug database</option>
+    <option value="news_archive">Site News Archive</option>
+    <option value="changelogs">All Changelogs</option>
+    <option value="pear"     >just pear.php.net</option>
+    <option value="pecl"     >just pecl.php.net</option>
+    <option value="talks"    >just talks.php.net</option>
+    <option value="maillist" >general mailing list</option>
+    <option value="devlist"  >developer mailing list</option>
+    <option value="phpdoc"   >documentation mailing list</option>
+   </select>
+   <input type="image"
+          src="http://static.php.net/www.php.net/images/small_submit_white.gif"
+          class="submit" alt="search" />
+   <input type="hidden" name="lang" value="en" />
+  </p>
+ </form>
+</div>
+
+<div id="layout_2">
+ <div id="leftbar">
+<!--UdmComment-->
+<ul class="toc">
+ <li class="header home"><a href="index.php">PHP Manual</a></li>
+ <li class="header up"><a href="funcref.php">Function Reference</a></li>
+ <li class="header up"><a href="refs.remote.other.php">Other Services</a></li>
+ <li class="header up"><a href="book.network.php">Network</a></li>
+ <li><a href="intro.network.php">Introduction</a></li>
+ <li><a href="network.setup.php">Installing/Configuring</a></li>
+ <li><a href="network.constants.php">Predefined Constants</a></li>
+ <li class="active"><a href="ref.network.php">Network Functions</a></li>
+</ul><!--/UdmComment-->
+
+ </div>
+ <div id="content" class="manual/en">
+<!--UdmComment-->
+<div class="manualnavbar manualnavbar_top">
+ <span class="next">
+  <a href="function.checkdnsrr.php">checkdnsrr<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.network.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Network</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  <form action="/manual/change.php" method="get">
+   <p>view this page in </p><fieldset><select name="page">
+    <option value="bg/ref.network.php">Bulgarian</option>
+    <option value="pt_BR/ref.network.php">Brazilian Portuguese</option>
+    <option value="fr/ref.network.php">French</option>
+    <option value="de/ref.network.php">German</option>
+    <option value="it/ref.network.php">Italian</option>
+    <option value="ja/ref.network.php">Japanese</option>
+    <option value="pl/ref.network.php">Polish</option>
+    <option value="ro/ref.network.php">Romanian</option>
+    <option value="ru/ref.network.php">Russian</option>
+    <option value="es/ref.network.php">Spanish</option>
+    <option value="help-translate.php">Other</option>
+   </select>
+   <input type="image" src="http://static.php.net/www.php.net/images/small_submit.gif" id="changeLangImage" alt="" />
+  </fieldset></form>
+ </div>
+</div>
+<!--/UdmComment-->
+
+<div>
+ <h1 class="title">Network Functions</h1>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Table of Contents</h2><ul class="chunklist chunklist_reference"><li><a href="function.checkdnsrr.php">checkdnsrr</a> — Check DNS records corresponding to a given Internet host name or IP address</li><li><a href="function.closelog.php">closelog</a> — Close connection to system logger</li><li><a href="function.define-syslog-variables.php">define_syslog_variables</a> — Initializes all syslog related constants</li><li><a href="function.dns-check-record.php">dns_check_record</a> — Alias of checkdnsrr</li><li><a href="function.dns-get-mx.php">dns_get_mx</a> — Alias of getmxrr</li><li><a href="function.dns-get-record.php">dns_get_record</a> — Fetch DNS Resource Records associated with a hostname</li><li><a href="function.fsockopen.php">fsockopen</a> — Open Internet or Unix domain socket connection</li><li><a href="function.gethostbyaddr.php">gethostbyaddr</a> — Get the Internet host name corresponding to a given IP address</li><li><a href="function.gethostbyname.php">gethostbyname</a> — Get the IP address corresponding to a given Internet host name</li><li><a href="function.gethostbynamel.php">gethostbynamel</a> — Get a list of IP addresses corresponding to a given Internet host
+   name</li><li><a href="function.getmxrr.php">getmxrr</a> — Get MX records corresponding to a given Internet host name</li><li><a href="function.getprotobyname.php">getprotobyname</a> — Get protocol number associated with protocol name</li><li><a href="function.getprotobynumber.php">getprotobynumber</a> — Get protocol name associated with protocol number</li><li><a href="function.getservbyname.php">getservbyname</a> — Get port number associated with an Internet service and protocol</li><li><a href="function.getservbyport.php">getservbyport</a> — Get Internet service which corresponds to port and protocol</li><li><a href="function.header.php">header</a> — Send a raw HTTP header</li><li><a href="function.headers-list.php">headers_list</a> — Returns a list of response headers sent (or ready to send)</li><li><a href="function.headers-sent.php">headers_sent</a> — Checks if or where headers have been sent</li><li><a href="function.inet-ntop.php">inet_ntop</a> — Converts a packed internet address to a human readable representation</li><li><a href="function.inet-pton.php">inet_pton</a> — Converts a human readable IP address to its packed in_addr representation</li><li><a href="function.ip2long.php">ip2long</a> — Converts a string containing an (IPv4) Internet Protocol dotted address into a proper address</li><li><a href="function.long2ip.php">long2ip</a> — Converts an (IPv4) Internet network address into a string in Internet standard dotted format</li><li><a href="function.openlog.php">openlog</a> — Open connection to system logger</li><li><a href="function.pfsockopen.php">pfsockopen</a> — Open persistent Internet or Unix domain socket connection</li><li><a href="function.setcookie.php">setcookie</a> — Send a cookie</li><li><a href="function.setrawcookie.php">setrawcookie</a> — Send a cookie without urlencoding the cookie value</li><li><a href="function.socket-get-status.php">socket_get_status</a> — Alias of stream_get_meta_data</li><li><a href="function.socket-set-blocking.php">socket_set_blocking</a> — Alias of stream_set_blocking</li><li><a href="function.socket-set-timeout.php">socket_set_timeout</a> — Alias of stream_set_timeout</li><li><a href="function.syslog.php">syslog</a> — Generate a system log message</li></ul>
+</div>
+<br /><br /><!--UdmComment-->
+<div class="manualnavbar manualnavbar_bottom">
+ <span class="next">
+  <a href="function.checkdnsrr.php">checkdnsrr<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.network.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Network</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  &nbsp;
+ </div>
+</div>
+<!--/UdmComment-->
+
+
+<div id="usernotes">
+ <div class="head">
+  <span class="action"><a href="/manual/add-note.php?sect=ref.network&amp;redirect=http://www.php.net/manual/en/ref.network.php"><img src="http://static.php.net/www.php.net/images/notes-add.gif" alt="add a note" width="13" height="13" align="middle" /></a> <small><a href="/manual/add-note.php?sect=ref.network&amp;redirect=http://www.php.net/manual/en/ref.network.php">add a note</a></small></span>
+  <small>User Contributed Notes</small><br />
+  <strong>Network Functions</strong>
+ </div>
+ <a name="75922"></a>
+ <div class="note">
+  <strong>David GASTALDIN</strong><br />
+  <a href="#75922">21-Jun-2007 08:12</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Here a IP-Range to CIDRs function that I wrote for the purpose of filling my Postfix client.cidr with ripe-ncc data to block spamming from useless countries. Strcmp functions are meant to work around the silly PHP string comparison which inevitably tries compare strings as numbers when possible. I'll make no comment about that fact ... bit I have to bite my tong hard :<br />
+<br />
+function PlageVersCIDRs($ip_min, $ip_max) {<br />
+&nbsp;&nbsp;&nbsp; $cidrs = array();<br />
+&nbsp;&nbsp;&nbsp; $ip_min_bin = sprintf('%032b', $ip_min);<br />
+&nbsp;&nbsp;&nbsp; $ip_max_bin = sprintf('%032b', $ip_max);<br />
+&nbsp;&nbsp;&nbsp; $ip_cour_bin = $ip_min_bin;<br />
+&nbsp;&nbsp;&nbsp; while (strcmp($ip_cour_bin, $ip_max_bin) &lt;= 0) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $lng_reseau = 32;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $ip_reseau_bin = $ip_cour_bin;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; while (($ip_cour_bin[$lng_reseau - 1] == '0') &amp;&amp; (strcmp(substr_replace($ip_reseau_bin, '1', $lng_reseau - 1, 1), $ip_max_bin) &lt;= 0)) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $ip_reseau_bin[$lng_reseau - 1] = '1';<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $lng_reseau--;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $cidrs[] = long2ip(bindec($ip_cour_bin)).'/'.$lng_reseau;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $ip_cour_bin = sprintf('%032b', bindec($ip_reseau_bin) + 1);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; return $cidrs;<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <a name="74656"></a>
+ <div class="note">
+  <strong>claudiu at cnixs dot com</strong><br />
+  <a href="#74656">22-Apr-2007 02:52</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+A simple and very fast function to check against CIDR.<br />
+<br />
+Your previous examples are too complicated and involves a lot of functions call.<br />
+<br />
+Here it is (only with arithmetic operators and call only to ip2long () and split() ):<br />
+<span class="default">&lt;?php<br />
+&nbsp; </span><span class="keyword">function </span><span class="default">ipCIDRCheck </span><span class="keyword">(</span><span class="default">$IP</span><span class="keyword">, </span><span class="default">$CIDR</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; list (</span><span class="default">$net</span><span class="keyword">, </span><span class="default">$mask</span><span class="keyword">) = </span><span class="default">split </span><span class="keyword">(</span><span class="string">"/"</span><span class="keyword">, </span><span class="default">$CIDR</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$ip_net </span><span class="keyword">= </span><span class="default">ip2long </span><span class="keyword">(</span><span class="default">$net</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$ip_mask </span><span class="keyword">= ~((</span><span class="default">1 </span><span class="keyword">&lt;&lt; (</span><span class="default">32 </span><span class="keyword">- </span><span class="default">$mask</span><span class="keyword">)) - </span><span class="default">1</span><span class="keyword">);<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$ip_ip </span><span class="keyword">= </span><span class="default">ip2long </span><span class="keyword">(</span><span class="default">$IP</span><span class="keyword">);<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$ip_ip_net </span><span class="keyword">= </span><span class="default">$ip_ip </span><span class="keyword">&amp; </span><span class="default">$ip_mask</span><span class="keyword">;<br />
+<br />
+&nbsp;&nbsp;&nbsp; return (</span><span class="default">$ip_ip_net </span><span class="keyword">== </span><span class="default">$ip_net</span><span class="keyword">);<br />
+&nbsp; }<br />
+</span><span class="default">?&gt;<br />
+</span>call example: <span class="default">&lt;?php </span><span class="keyword">echo </span><span class="default">ipCheck </span><span class="keyword">(</span><span class="string">"192.168.1.23"</span><span class="keyword">, </span><span class="string">"192.168.1.0/24"</span><span class="keyword">); </span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="64152"></a>
+ <div class="note">
+  <strong>dand at ddchosting.com</strong><br />
+  <a href="#64152">08-Apr-2006 02:28</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+When I was working on a project I ran into this problem with redirecting. My solution is as follows:<br />
+header("Refresh: 5; url=../main/main.php?".session_id()."");<br />
+<br />
+This allowed me to pass the session_id() which is used throughout site to make sure user has loged in. <br />
+I hope this helps!</span>
+</code></div>
+  </div>
+ </div>
+ <a name="55254"></a>
+ <div class="note">
+  <strong>metator at netcabo dot pt</strong><br />
+  <a href="#55254">28-Jul-2005 07:34</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Ups. The function has a bug, though the example still works with it. Just replace the $_POST variables by the function parameters.<br />
+<br />
+&lt;?<br />
+function isIPIn($ip, $net, $mask) {<br />
+&nbsp;&nbsp; //doesn't check for the return value of ip2long<br />
+&nbsp;&nbsp; $ip = ip2long($ip);<br />
+&nbsp;&nbsp; $rede = ip2long($net);<br />
+&nbsp;&nbsp; $mask = ip2long($mask);<br />
+&nbsp; <br />
+&nbsp;&nbsp; //AND<br />
+&nbsp;&nbsp; $res = $ip &amp; $mask;<br />
+&nbsp; <br />
+&nbsp;&nbsp; return ($res == $rede);<br />
+}<br />
+?&gt;</span>
+</code></div>
+  </div>
+ </div>
+ <a name="55230"></a>
+ <div class="note">
+  <strong>metator at netcabo dot pt</strong><br />
+  <a href="#55230">27-Jul-2005 08:22</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Regarding samuele's note:<br />
+<br />
+You can get faster code if you apply directly what happens in&nbsp; network devices, such as routers. If you AND (logic operation) the remote ip against the local netmask the result will be the network ip if the remote ip is from the local network. Example:<br />
+<br />
+&nbsp;&nbsp;&nbsp; 192.168.0.16 = 11000000.10101000.00000000.00010000<br />
+&amp; 255.255.255.0 = 11111111.11111111.11111111.00000000<br />
+--------------------------------------------------------------<br />
+&nbsp;&nbsp; 192.168.0.0 = 11000000.10101000.00000000.00000000<br />
+<br />
+And now the code. My example uses a html form where you place the values you want to test:<br />
+<br />
+&lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;Check IP&lt;/TITLE&gt;<br />
+&lt;/HEAD&gt;&lt;BODY&gt;<br />
+&nbsp;&nbsp;&nbsp; &lt;form action="<span class="default">&lt;?php </span><span class="keyword">echo </span><span class="default">$_SERVER</span><span class="keyword">[</span><span class="string">'PHP_SELF'</span><span class="keyword">]; </span><span class="default">?&gt;</span>" method="POST"&gt;<br />
+<br />
+Hope you find this useful.<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; IP to check: &lt;input type="text" name="ip"&gt; &lt;br&gt;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; Local network ip: &lt;input type="text" name="net"&gt; &lt;br&gt;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; Local netmask: &lt;input type="text" name="mask"&gt; &lt;br&gt;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &lt;input type="submit" name="check" value="Check it!"&gt;<br />
+&nbsp;&nbsp;&nbsp; &lt;/form&gt;<br />
+&nbsp;&nbsp;&nbsp; <span class="default">&lt;?php<br />
+<br />
+</span><span class="comment">/**<br />
+&nbsp;* @param string $ip IP to check in dotted decimal format<br />
+&nbsp;* @param string $net Network IP in dotted decimal format<br />
+&nbsp;* @param string $mask Netmask in dotted decimal format<br />
+&nbsp;* @returns true if the ip belongs to the network, false otherwise<br />
+&nbsp;**/<br />
+</span><span class="keyword">function </span><span class="default">isIPIn</span><span class="keyword">(</span><span class="default">$ip</span><span class="keyword">, </span><span class="default">$net</span><span class="keyword">, </span><span class="default">$mask</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; </span><span class="comment">//doesn't check for the return value of ip2long<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$ip </span><span class="keyword">= </span><span class="default">ip2long</span><span class="keyword">(</span><span class="default">$_POST</span><span class="keyword">[</span><span class="string">'ip'</span><span class="keyword">]);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$rede </span><span class="keyword">= </span><span class="default">ip2long</span><span class="keyword">(</span><span class="default">$_POST</span><span class="keyword">[</span><span class="string">'net'</span><span class="keyword">]);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$mask </span><span class="keyword">= </span><span class="default">ip2long</span><span class="keyword">(</span><span class="default">$_POST</span><span class="keyword">[</span><span class="string">'mask'</span><span class="keyword">]);<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; </span><span class="comment">//AND <br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$res </span><span class="keyword">= </span><span class="default">$ip </span><span class="keyword">&amp; </span><span class="default">$mask</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; return (</span><span class="default">$res </span><span class="keyword">== </span><span class="default">$rede</span><span class="keyword">);<br />
+}<br />
+<br />
+if (isset(</span><span class="default">$_POST</span><span class="keyword">[</span><span class="string">'check'</span><span class="keyword">])) {<br />
+&nbsp;&nbsp; &nbsp; echo </span><span class="default">isIPIn</span><span class="keyword">(</span><span class="default">$_POST</span><span class="keyword">[</span><span class="string">'ip'</span><span class="keyword">], </span><span class="default">$_POST</span><span class="keyword">[</span><span class="string">'net'</span><span class="keyword">], </span><span class="default">$_POST</span><span class="keyword">[</span><span class="string">'mask'</span><span class="keyword">]) ? </span><span class="string">"IP IN."</span><span class="keyword">: </span><span class="string">"IP OUT."</span><span class="keyword">;<br />
+}<br />
+&nbsp;</span><span class="default">?&gt;<br />
+</span>&lt;/BODY&gt;&lt;HTML&gt;</span>
+</code></div>
+  </div>
+ </div>
+ <a name="50337"></a>
+ <div class="note">
+  <strong>nexxer at rogers dot com</strong><br />
+  <a href="#50337">24-Feb-2005 05:16</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+In Trevor Hemsley's translation of the perl range2cidr function, the <br />
+<br />
+while ($end &gt; $start) <br />
+<br />
+condition should be<br />
+<br />
+while ($end &gt;= $start)<br />
+<br />
+otherwise it won't work for /32s, ie if you feed range2cidr("1.2.3.4", "1.2.3.4").<br />
+<br />
+-- nex</span>
+</code></div>
+  </div>
+ </div>
+ <a name="37753"></a>
+ <div class="note">
+  <strong>samuele at norsam dot org</strong><br />
+  <a href="#37753">25-Nov-2003 09:01</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+To find if an IP is in a net/mask (very fast):<br />
+<span class="default">&lt;?php<br />
+</span><span class="keyword">function </span><span class="default">isIPIn</span><span class="keyword">(</span><span class="default">$ip</span><span class="keyword">,</span><span class="default">$net</span><span class="keyword">,</span><span class="default">$mask</span><span class="keyword">) {<br />
+&nbsp;&nbsp; </span><span class="default">$lnet</span><span class="keyword">=</span><span class="default">ip2long</span><span class="keyword">(</span><span class="default">$net</span><span class="keyword">);<br />
+&nbsp;&nbsp; </span><span class="default">$lip</span><span class="keyword">=</span><span class="default">ip2long</span><span class="keyword">(</span><span class="default">$ip</span><span class="keyword">);<br />
+&nbsp;&nbsp; </span><span class="default">$binnet</span><span class="keyword">=</span><span class="default">str_pad</span><span class="keyword">( </span><span class="default">decbin</span><span class="keyword">(</span><span class="default">$lnet</span><span class="keyword">),</span><span class="default">32</span><span class="keyword">,</span><span class="string">"0"</span><span class="keyword">,</span><span class="string">"STR_PAD_LEFT" </span><span class="keyword">);<br />
+&nbsp;&nbsp; </span><span class="default">$firstpart</span><span class="keyword">=</span><span class="default">substr</span><span class="keyword">(</span><span class="default">$binnet</span><span class="keyword">,</span><span class="default">0</span><span class="keyword">,</span><span class="default">$mask</span><span class="keyword">);<br />
+&nbsp;&nbsp; </span><span class="default">$binip</span><span class="keyword">=</span><span class="default">str_pad</span><span class="keyword">( </span><span class="default">decbin</span><span class="keyword">(</span><span class="default">$lip</span><span class="keyword">),</span><span class="default">32</span><span class="keyword">,</span><span class="string">"0"</span><span class="keyword">,</span><span class="string">"STR_PAD_LEFT" </span><span class="keyword">);<br />
+&nbsp;&nbsp; </span><span class="default">$firstip</span><span class="keyword">=</span><span class="default">substr</span><span class="keyword">(</span><span class="default">$binip</span><span class="keyword">,</span><span class="default">0</span><span class="keyword">,</span><span class="default">$mask</span><span class="keyword">);<br />
+&nbsp;&nbsp; return(</span><span class="default">strcmp</span><span class="keyword">(</span><span class="default">$firstpart</span><span class="keyword">,</span><span class="default">$firstip</span><span class="keyword">)==</span><span class="default">0</span><span class="keyword">);<br />
+&nbsp;&nbsp; }<br />
+</span><span class="default">?&gt;<br />
+</span><br />
+This function can be compacted, avoiding some variable settings, but the function will not be too clear to read...<br />
+Example code, used to made a kind of location service network-based:<br />
+<br />
+<span class="default">&lt;?php<br />
+$n </span><span class="keyword">= array ( </span><span class="string">"192.168.0.0/16"&nbsp;&nbsp; </span><span class="keyword">=&gt; </span><span class="string">"TUSCANY"</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="string">"192.168.1.0/24"&nbsp;&nbsp; </span><span class="keyword">=&gt; </span><span class="string">"- Florence"</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="string">"192.168.2.0/24"&nbsp;&nbsp; </span><span class="keyword">=&gt; </span><span class="string">"- Pisa"</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="string">"192.168.3.0/24"&nbsp;&nbsp; </span><span class="keyword">=&gt; </span><span class="string">"- Siena"</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="string">"192.168.64.0/21" </span><span class="keyword">=&gt; </span><span class="string">"- Tuscan Archipelago"</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="string">"192.168.64.0/23" </span><span class="keyword">=&gt; </span><span class="string">"--- Elba Island"</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="string">"192.168.66.0/24" </span><span class="keyword">=&gt; </span><span class="string">"--- Capraia Island"</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="string">"192.168.67.0/24" </span><span class="keyword">=&gt; </span><span class="string">"--- Giannutri Island"</span><span class="keyword">);<br />
+<br />
+</span><span class="comment">// Normally you should use the following line<br />
+</span><span class="default">$myip </span><span class="keyword">= </span><span class="default">$HTTP_SERVER_VARS</span><span class="keyword">[</span><span class="string">'REMOTE_ADDR'</span><span class="keyword">];<br />
+</span><span class="comment">// This is first example: returns Tuscany/Pisa<br />
+</span><span class="default">$myip </span><span class="keyword">= </span><span class="string">"192.168.2.33"</span><span class="keyword">;<br />
+</span><span class="comment">// This is second example: returns Tuscany/T.Arch./Elba<br />
+</span><span class="default">$myip </span><span class="keyword">= </span><span class="string">"192.168.65.34"</span><span class="keyword">;<br />
+<br />
+echo </span><span class="string">"Your position:&lt;br /&gt;\n"</span><span class="keyword">;<br />
+foreach ( </span><span class="default">$n </span><span class="keyword">as </span><span class="default">$k</span><span class="keyword">=&gt;</span><span class="default">$v </span><span class="keyword">) {<br />
+&nbsp;&nbsp; list(</span><span class="default">$net</span><span class="keyword">,</span><span class="default">$mask</span><span class="keyword">)=</span><span class="default">split</span><span class="keyword">(</span><span class="string">"/"</span><span class="keyword">,</span><span class="default">$k</span><span class="keyword">);<br />
+&nbsp;&nbsp; if (</span><span class="default">isIPIn</span><span class="keyword">(</span><span class="default">$myip</span><span class="keyword">,</span><span class="default">$net</span><span class="keyword">,</span><span class="default">$mask</span><span class="keyword">)) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; echo </span><span class="default">$n</span><span class="keyword">[</span><span class="default">$k</span><span class="keyword">].</span><span class="string">"&lt;br /&gt;\n"</span><span class="keyword">; }<br />
+&nbsp;&nbsp; }<br />
+</span><span class="default">?&gt;<br />
+</span><br />
+and so on...</span>
+</code></div>
+  </div>
+ </div>
+ <a name="36512"></a>
+ <div class="note">
+  <strong>null at tty dot net dot ru</strong><br />
+  <a href="#36512">13-Oct-2003 04:51</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Ported Net::Netmask perl module:<br />
+<a href="http://null.pp.ru/src/php/Netmask.phps" target="_blank">http://null.pp.ru/src/php/Netmask.phps</a></span>
+</code></div>
+  </div>
+ </div>
+ <a name="34797"></a>
+ <div class="note">
+  <strong>anderson at piq dot com dot br</strong><br />
+  <a href="#34797">06-Aug-2003 10:10</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+If you want to get the interface of an IP, based on the local route table, use this.<br />
+<br />
+function GetIfaceforIP($user_ip)<br />
+{<br />
+&nbsp;&nbsp;&nbsp; $route = "/bin/netstat -rn";<br />
+<br />
+&nbsp;&nbsp;&nbsp; exec($route, $aoutput);<br />
+&nbsp;&nbsp;&nbsp; foreach($aoutput as $key =&gt; $line)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; if($key &gt; 1)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $line = ereg_replace("[[:space:]]+",",",$line);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; list($network, $gateway, $mask, $flags, $mss, $window, $irtt, $iface) = explode(",", $line)<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; if((ip2long($user_ip) &amp; ip2long($mask)) == ip2long($network))<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; return $iface;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; }<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <a name="30910"></a>
+ <div class="note">
+  <a href="#30910">02-Apr-2003 08:11</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Alternative cidr_conv function - a little easier to follow<br />
+<br />
+function cidr_conv($cidr_address) {<br />
+&nbsp; $first = substr($cidr_address, 0, strpos($cidr_address, "/"));<br />
+&nbsp; $netmask = substr(strstr($cidr_address, "/"), 1);<br />
+<br />
+&nbsp; $first_bin = str_pad(decbin(ip2long($first)), 32, "0", STR_PAD_LEFT);<br />
+&nbsp; $netmask_bin = str_pad(str_repeat("1", (integer)$netmask), 32, "0", STR_PAD_RIGHT);<br />
+&nbsp; <br />
+&nbsp; for ($i = 0; $i &lt; 32; $i++) {<br />
+&nbsp;&nbsp;&nbsp; if ($netmask_bin[$i] == "1") <br />
+&nbsp;&nbsp; &nbsp;&nbsp; $last_bin .= $first_bin[$i];<br />
+&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp; &nbsp;&nbsp; $last_bin .= "1";<br />
+&nbsp; }<br />
+<br />
+&nbsp; $last = long2ip(bindec($last_bin));<br />
+<br />
+&nbsp; return "$first - $last";<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <a name="26063"></a>
+ <div class="note">
+  <strong>trevor-hemsley at nospam dot dial dot pipex dot com</strong><br />
+  <a href="#26063">16-Oct-2002 11:53</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Previous example of IP range to CIDR list does not cope with ranges as well as the perl Net::Netmask range2cidrlist() function. In PHP this looks like<br />
+<br />
+&lt;?<br />
+function imask($this)<br />
+{<br />
+// use base_convert not dechex because dechex is broken and returns 0x80000000 instead of 0xffffffff<br />
+return base_convert((pow(2,32) - pow(2, (32-$this)))), 10, 16);<br />
+}<br />
+<br />
+function imaxblock($ibase, $tbit)<br />
+{<br />
+while ($tbit &gt; 0)<br />
+{<br />
+$im = hexdec(imask($tbit-1));<br />
+$imand = $ibase &amp; $im;<br />
+if ($imand != $ibase)<br />
+{<br />
+break;<br />
+}<br />
+$tbit--;<br />
+}<br />
+return $tbit;<br />
+}<br />
+<br />
+function range2cidrlist($istart, $iend)<br />
+{<br />
+// this function returns an array of cidr lists that map the range given<br />
+$s = explode(".", $istart);<br />
+// PHP ip2long does not handle leading zeros on IP addresses! 172.016 comes back as 172.14, seems to be treated as octal!<br />
+$start = "";<br />
+$dot = "";<br />
+while (list($key,$val) = each($s))<br />
+{<br />
+$start = sprintf("%s%s%d",$start,$dot,$val);<br />
+$dot = ".";<br />
+}<br />
+$end = "";<br />
+$dot = "";<br />
+$e = explode(".",$iend);<br />
+while (list($key,$val) = each($e))<br />
+{<br />
+$end = sprintf("%s%s%d",$end,$dot,$val);<br />
+$dot = ".";<br />
+}<br />
+$start = ip2long($start);<br />
+$end = ip2long($end);<br />
+$result = array();<br />
+while ($end &gt; $start)<br />
+{<br />
+$maxsize = imaxblock($start,32);<br />
+$x = log($end - $start + 1)/log(2);<br />
+$maxdiff = floor(32 - floor($x));<br />
+$ip = long2ip($start);<br />
+if ($maxsize &lt; $maxdiff)<br />
+{<br />
+$maxsize = $maxdiff;<br />
+}<br />
+array_push($result,"$ip/$maxsize");<br />
+$start += pow(2, (32-$maxsize));<br />
+}<br />
+return $result;<br />
+}<br />
+?&gt;</span>
+</code></div>
+  </div>
+ </div>
+ <a name="25958"></a>
+ <div class="note">
+  <strong>philippe-at-cyberabuse.org</strong><br />
+  <a href="#25958">12-Oct-2002 03:49</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+... and this one will do the opposite (o return NULL for invalid netblocks) :<br />
+<br />
+1.0.0.0 1.0.255.255 -&gt; 1.0.0.0/16<br />
+1.0.0.0 1.3.255.255 -&gt; 1.0.0.0/14<br />
+192.168.0.0 192.168.0.255 -&gt; 192.168.0.0/24<br />
+<br />
+function ip2cidr($ip_start,$ip_end) {<br />
+if(long2ip(ip2long($ip_start))!=$ip_start or long2ip(ip2long($ip_end))!=$ip_end) return NULL; <br />
+$ipl_start=(int)ip2long($ip_start);<br />
+$ipl_end=(int)ip2long($ip_end);<br />
+if($ipl_start&gt;0 &amp;&amp; $ipl_end&lt;0) $delta=($ipl_end+4294967296)-$ipl_start;<br />
+else $delta=$ipl_end-$ipl_start;<br />
+$netmask=str_pad(decbin($delta),32,"0","STR_PAD_LEFT");<br />
+if(ip2long($ip_start)==0 &amp;&amp; substr_count($netmask,"1")==32) return "0.0.0.0/0";<br />
+if($delta&lt;0 or ($delta&gt;0 &amp;&amp; $delta%2==0)) return NULL;<br />
+for($mask=0;$mask&lt;32;$mask++) if($netmask[$mask]==1) break;<br />
+if(substr_count($netmask,"0")!=$mask) return NULL;<br />
+return "$ip_start/$mask";<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <a name="17580"></a>
+ <div class="note">
+  <strong>philippe-at-cyberabuse.org</strong><br />
+  <a href="#17580">14-Dec-2001 07:46</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+PHP miss CIDR functions.<br />
+<br />
+This one will convert a CIDR like this:<br />
+0.0.0.0/16 -&gt; 0.0.0.0 - 0.0.255.255<br />
+127.0/16 -&gt; 127.0.0.0 - 127.0.255.255<br />
+etc...<br />
+<br />
+function cidrconv($net) {<br />
+$start=strtok($net,"/");<br />
+$n=3-substr_count($net, ".");<br />
+if ($n&gt;0) { for ($i=$n;$i&gt;0;$i--) $start.=".0"; }<br />
+$bits1=str_pad(decbin(ip2long($start)),32,"0","STR_PAD_LEFT");<br />
+$net=pow(2,(32-substr(strstr($net,"/"),1)))-1;<br />
+$bits2=str_pad(decbin($net),32,"0","STR_PAD_LEFT");<br />
+for ($i=0;$i&lt;32;$i++) {<br />
+if ($bits1[$i]==$bits2[$i]) $final.=$bits1[$i];<br />
+if ($bits1[$i]==1 and $bits2[$i]==0) $final.=$bits1[$i];<br />
+if ($bits1[$i]==0 and $bits2[$i]==1) $final.=$bits2[$i];<br />
+}<br />
+return $start." - ".long2ip(bindec($final));<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <div class="foot"><a href="/manual/add-note.php?sect=ref.network&amp;redirect=http://www.php.net/manual/en/ref.network.php"><img src="http://static.php.net/www.php.net/images/notes-add.gif" alt="add a note" width="13" height="13" align="middle" /></a> <small><a href="/manual/add-note.php?sect=ref.network&amp;redirect=http://www.php.net/manual/en/ref.network.php">add a note</a></small></div>
+</div><br /><!--UdmComment-->
+<div class="manualnavbar manualnavbar_bottom">
+ <span class="next">
+  <a href="function.checkdnsrr.php">checkdnsrr<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.network.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Network</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  &nbsp;
+ </div>
+</div>
+<!--/UdmComment-->
+
+
+ </div>
+ <div class="cleaner">&nbsp;</div>
+</div>
+
+<div id="footnav">
+   <a href="/source.php?url=/manual/en/ref.network.php">show source</a> |
+ <a href="/credits.php">credits</a> |
+ <a href="/stats/">stats</a> |
+ <a href="/sitemap.php">sitemap</a> |
+ <a href="/contact.php">contact</a> |
+ <a href="/contact.php#ads">advertising</a> |
+ <a href="/mirrors.php">mirror sites</a>
+</div>
+
+<div id="pagefooter">
+ <div id="copyright">
+  <a href="/copyright.php">Copyright &copy; 2001-2008 The PHP Group</a><br />
+  All rights reserved.
+ </div>
+
+ <div id="thismirror">
+  <a href="/mirror.php">This mirror</a> generously provided by:
+  <a href="http://developer.yahoo.com/">Yahoo! Inc.</a><br />
+  Last updated: Wed Apr 16 05:27:53 2008 PDT
+ </div>
+</div>
+
+</body>
+</html>

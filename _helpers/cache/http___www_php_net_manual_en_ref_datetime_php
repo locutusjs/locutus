@@ -1,0 +1,1731 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://purl.org/NET/erdf/profile">
+ <title>PHP: Date/Time - Manual</title>
+ <style type="text/css" media="all">
+  @import url("http://static.php.net/www.php.net/styles/site.css");
+  @import url("http://static.php.net/www.php.net/styles/phpnet.css");
+ </style>
+ <!--[if IE]><![if gte IE 6]><![endif]-->
+  <style type="text/css" media="print">
+   @import url("http://static.php.net/www.php.net/styles/print.css");
+  </style>
+ <!--[if IE]><![endif]><![endif]-->
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <link rel="shortcut icon" href="http://static.php.net/www.php.net/favicon.ico" />
+ <link rel="contents" href="index.php" />
+ <link rel="index" href="book.datetime.php" />
+ <link rel="prev" href="book.datetime.php" />
+ <link rel="next" href="function.checkdate.php" />
+ <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
+ <link rel="schema.rdfs" href="http://www.w3.org/2000/01/rdf-schema#" />
+ <script type="text/javascript" src="http://static.php.net/www.php.net/userprefs.js"></script>
+ <base href="http://www.php.net/manual/en/ref.datetime.php" />
+</head>
+<body>
+
+<div id="headnav">
+ <a href="/" rel="home"><img src="http://static.php.net/www.php.net/images/php.gif"
+ alt="PHP" width="120" height="67" /></a>
+ <div id="headmenu">
+  <a href="/downloads.php">downloads</a> |
+  <a href="/docs.php">documentation</a> |
+  <a href="/FAQ.php">faq</a> |
+  <a href="/support.php">getting help</a> |
+  <a href="/mailing-lists.php">mailing lists</a> |
+  <a href="http://bugs.php.net/">reporting bugs</a> |
+  <a href="/sites.php">php.net sites</a> |
+  <a href="/links.php">links</a> |
+  <a href="/conferences/">conferences</a> |
+  <a href="/my.php">my php.net</a>
+ </div>
+</div>
+
+<div id="headsearch">
+ <form method="post" action="/search.php" id="topsearch">
+  <p>
+   <span title="Keyboard shortcut: Alt+S (Win), Ctrl+S (Apple)">
+    <span class="shortkey">s</span>earch for
+   </span>
+   <input type="text" name="pattern" value="" size="30" accesskey="s" />
+   <span>in the</span>
+   <select name="show">
+    <option value="quickref" selected="selected">function list</option>
+    <option value="all"      >all php.net sites</option>
+    <option value="local"    >this mirror only</option>
+    <option value="manual"   >online documentation</option>
+    <option value="bugdb"    >bug database</option>
+    <option value="news_archive">Site News Archive</option>
+    <option value="changelogs">All Changelogs</option>
+    <option value="pear"     >just pear.php.net</option>
+    <option value="pecl"     >just pecl.php.net</option>
+    <option value="talks"    >just talks.php.net</option>
+    <option value="maillist" >general mailing list</option>
+    <option value="devlist"  >developer mailing list</option>
+    <option value="phpdoc"   >documentation mailing list</option>
+   </select>
+   <input type="image"
+          src="http://static.php.net/www.php.net/images/small_submit_white.gif"
+          class="submit" alt="search" />
+   <input type="hidden" name="lang" value="en" />
+  </p>
+ </form>
+</div>
+
+<div id="layout_2">
+ <div id="leftbar">
+<!--UdmComment-->
+<ul class="toc">
+ <li class="header home"><a href="index.php">PHP Manual</a></li>
+ <li class="header up"><a href="funcref.php">Function Reference</a></li>
+ <li class="header up"><a href="refs.calendar.php">Calendar and Event Related Extensions</a></li>
+ <li class="header up"><a href="book.datetime.php">Date and Time</a></li>
+ <li><a href="intro.datetime.php">Introduction</a></li>
+ <li><a href="datetime.setup.php">Installing/Configuring</a></li>
+ <li><a href="datetime.constants.php">Predefined Constants</a></li>
+ <li class="active"><a href="ref.datetime.php">Date/Time</a></li>
+</ul><!--/UdmComment-->
+
+ </div>
+ <div id="content" class="manual/en">
+<!--UdmComment-->
+<div class="manualnavbar manualnavbar_top">
+ <span class="next">
+  <a href="function.checkdate.php">checkdate<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.datetime.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Date and Time</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  <form action="/manual/change.php" method="get">
+   <p>view this page in </p><fieldset><select name="page">
+    <option value="bg/ref.datetime.php">Bulgarian</option>
+    <option value="pt_BR/ref.datetime.php">Brazilian Portuguese</option>
+    <option value="fr/ref.datetime.php">French</option>
+    <option value="de/ref.datetime.php">German</option>
+    <option value="it/ref.datetime.php">Italian</option>
+    <option value="ja/ref.datetime.php">Japanese</option>
+    <option value="pl/ref.datetime.php">Polish</option>
+    <option value="ro/ref.datetime.php">Romanian</option>
+    <option value="ru/ref.datetime.php">Russian</option>
+    <option value="es/ref.datetime.php">Spanish</option>
+    <option value="help-translate.php">Other</option>
+   </select>
+   <input type="image" src="http://static.php.net/www.php.net/images/small_submit.gif" id="changeLangImage" alt="" />
+  </fieldset></form>
+ </div>
+</div>
+<!--/UdmComment-->
+
+<div>
+ <h1 class="title">Date and Time Functions</h1>
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Table of Contents</h2><ul class="chunklist chunklist_reference"><li><a href="function.checkdate.php">checkdate</a> — Validate a Gregorian date</li><li><a href="function.date-create.php">date_create</a> — Returns new DateTime object</li><li><a href="function.date-date-set.php">date_date_set</a> — Sets the date</li><li><a href="function.date-default-timezone-get.php">date_default_timezone_get</a> — Gets the default timezone used by all date/time functions in a script</li><li><a href="function.date-default-timezone-set.php">date_default_timezone_set</a> — Sets the default timezone used by all date/time functions in a script</li><li><a href="function.date-format.php">date_format</a> — Returns date formatted according to given format</li><li><a href="function.date-isodate-set.php">date_isodate_set</a> — Sets the ISO date</li><li><a href="function.date-modify.php">date_modify</a> — Alters the timestamp</li><li><a href="function.date-offset-get.php">date_offset_get</a> — Returns the daylight saving time offset</li><li><a href="function.date-parse.php">date_parse</a> — Returns associative array with detailed info about given date</li><li><a href="function.date-sun-info.php">date_sun_info</a> — Returns an array with information about sunset/sunrise and twilight begin/end</li><li><a href="function.date-sunrise.php">date_sunrise</a> — Returns time of sunrise for a given day and location</li><li><a href="function.date-sunset.php">date_sunset</a> — Returns time of sunset for a given day and location</li><li><a href="function.date-time-set.php">date_time_set</a> — Sets the time</li><li><a href="function.date-timezone-get.php">date_timezone_get</a> — Return time zone relative to given DateTime</li><li><a href="function.date-timezone-set.php">date_timezone_set</a> — Sets the time zone for the DateTime object</li><li><a href="function.date.php">date</a> — Format a local time/date</li><li><a href="function.getdate.php">getdate</a> — Get date/time information</li><li><a href="function.gettimeofday.php">gettimeofday</a> — Get current time</li><li><a href="function.gmdate.php">gmdate</a> — Format a GMT/UTC date/time</li><li><a href="function.gmmktime.php">gmmktime</a> — Get Unix timestamp for a GMT date</li><li><a href="function.gmstrftime.php">gmstrftime</a> — Format a GMT/UTC time/date according to locale settings</li><li><a href="function.idate.php">idate</a> — Format a local time/date as integer</li><li><a href="function.localtime.php">localtime</a> — Get the local time</li><li><a href="function.microtime.php">microtime</a> — Return current Unix timestamp with microseconds</li><li><a href="function.mktime.php">mktime</a> — Get Unix timestamp for a date</li><li><a href="function.strftime.php">strftime</a> — Format a local time/date according to locale settings</li><li><a href="function.strptime.php">strptime</a> — Parse a time/date generated with strftime</li><li><a href="function.strtotime.php">strtotime</a> — Parse about any English textual datetime description into a Unix timestamp</li><li><a href="function.time.php">time</a> — Return current Unix timestamp</li><li><a href="function.timezone-abbreviations-list.php">timezone_abbreviations_list</a> — Returns associative array containing dst, offset and the timezone name</li><li><a href="function.timezone-identifiers-list.php">timezone_identifiers_list</a> — Returns numerically index array with all timezone identifiers</li><li><a href="function.timezone-name-from-abbr.php">timezone_name_from_abbr</a> — Returns the timezone name from abbrevation</li><li><a href="function.timezone-name-get.php">timezone_name_get</a> — Returns the name of the timezone</li><li><a href="function.timezone-offset-get.php">timezone_offset_get</a> — Returns the timezone offset from GMT</li><li><a href="function.timezone-open.php">timezone_open</a> — Returns new DateTimeZone object</li><li><a href="function.timezone-transitions-get.php">timezone_transitions_get</a> — Returns all transitions for the timezone</li></ul>
+</div>
+<br /><br /><!--UdmComment-->
+<div class="manualnavbar manualnavbar_bottom">
+ <span class="next">
+  <a href="function.checkdate.php">checkdate<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.datetime.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Date and Time</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  &nbsp;
+ </div>
+</div>
+<!--/UdmComment-->
+
+
+<div id="usernotes">
+ <div class="head">
+  <span class="action"><a href="/manual/add-note.php?sect=ref.datetime&amp;redirect=http://www.php.net/manual/en/ref.datetime.php"><img src="http://static.php.net/www.php.net/images/notes-add.gif" alt="add a note" width="13" height="13" align="middle" /></a> <small><a href="/manual/add-note.php?sect=ref.datetime&amp;redirect=http://www.php.net/manual/en/ref.datetime.php">add a note</a></small></span>
+  <small>User Contributed Notes</small><br />
+  <strong>Date/Time</strong>
+ </div>
+ <a name="81908"></a>
+ <div class="note">
+  <strong>Robb_Bean at gmx dot nospam dot net</strong><br />
+  <a href="#81908">18-Mar-2008 04:47</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+With PHP 5.1 and 5.2 the languages datetime support has changed. Although these functions should guess your local timezone settings, they may fail if using a default configuration in a "pre-5.1 way", which means setting no timezone for PHP. In the case PHP could not get a timezone it emits a E_STRICT warning. Note that this affects _all_ datetime functions and keep it in mind when porting software from previous versions to 5.1 or later! It may also confuse your error handling (this is the way I noticed that things have changed, since these changes are not documentated _here_).<br />
+<br />
+References:<br />
+<br />
+<a href="http://www.php.net/manual/de/migration51.datetime.php" target="_blank">http://www.php.net/manual/de/migration51.datetime.php</a><br />
+<a href="http://www.php.net/manual/de/migration52.datetime.php" target="_blank">http://www.php.net/manual/de/migration52.datetime.php</a></span>
+</code></div>
+  </div>
+ </div>
+ <a name="81452"></a>
+ <div class="note">
+  <strong>sagar</strong><br />
+  <a href="#81452">28-Feb-2008 08:53</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+####################################<br />
+Provide week number and get start_timestamp and end_timestamp<br />
+#####################################<br />
+<br />
+// this week number will come from the timeshare form<br />
+&nbsp;$week = 51;<br />
+<br />
+$times = get_start_and_end_date_from_week($week);<br />
+$start_time = $times['start_timestamp'];<br />
+$end_time = $times['end_timestamp'];<br />
+<br />
+function get_start_and_end_date_from_week ($w) <br />
+{<br />
+&nbsp;&nbsp;&nbsp; $y = date("Y", time());<br />
+&nbsp;&nbsp;&nbsp; $o = 6; // week starts from sunday by default<br />
+<br />
+&nbsp;&nbsp;&nbsp; $days = ($w - 1) * 7 + $o;<br />
+<br />
+&nbsp;&nbsp;&nbsp; $firstdayofyear = getdate(mktime(0,0,0,1,1,$y));<br />
+&nbsp;&nbsp;&nbsp; if ($firstdayofyear["wday"] == 0) $firstdayofyear["wday"] += 7;<br />
+&nbsp;&nbsp;&nbsp; # in getdate, Sunday is 0 instead of 7<br />
+&nbsp;&nbsp;&nbsp; $firstmonday = getdate(mktime(0,0,0,1,1-$firstdayofyear["wday"]+1,$y));<br />
+&nbsp;&nbsp;&nbsp; $calcdate = getdate(mktime(0,0,0,$firstmonday["mon"], $firstmonday["mday"]+$days,$firstmonday["year"]));<br />
+<br />
+&nbsp;&nbsp;&nbsp; $sday = $calcdate["mday"];<br />
+&nbsp;&nbsp;&nbsp; $smonth = $calcdate["mon"];<br />
+&nbsp;&nbsp;&nbsp; $syear = $calcdate["year"];<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; $timestamp['start_timestamp'] =&nbsp; mktime(0, 0, 0, $smonth, $sday, $syear);<br />
+&nbsp;&nbsp;&nbsp; $timestamp['end_timestamp'] =&nbsp; $timestamp['start_timestamp'] + (60*60*24*7);<br />
+<br />
+&nbsp;&nbsp;&nbsp; return $timestamp;<br />
+<br />
+}&nbsp; &nbsp; # function datefromweek</span>
+</code></div>
+  </div>
+ </div>
+ <a name="80866"></a>
+ <div class="note">
+  <strong>nate at example dot com</strong><br />
+  <a href="#80866">04-Feb-2008 04:56</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Here's my version of date diff that handles leap years, DST, and deals with the diff in terms of "human calculations". For example, this code does not assume that a year = 365.25 days, or that a month = 30/31 days. The results are exactly what a human being would determine as a good result.<br />
+<br />
+&lt;?<br />
+<br />
+/**<br />
+&nbsp;* this code assumes php &gt;= 5.1.0. if using &lt; 5.1, read<br />
+&nbsp;* php.net/strtotime and change the condition for checking<br />
+&nbsp;* for failure from strtotime()<br />
+&nbsp;*/<br />
+<br />
+// $t1, $t2: unix times, or strtotime parseable<br />
+// $precision: max number of units to output<br />
+// $abbr: if true, use "hr" instead of "hour", etc.<br />
+function date_diff ($t1, $t2, $precision = 6, $abbr = false) {<br />
+&nbsp;&nbsp;&nbsp; if (preg_match('/\D/', $t1) &amp;&amp; ($t1 = strtotime($t1)) === false)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return false;<br />
+<br />
+&nbsp;&nbsp;&nbsp; if (preg_match('/\D/', $t2) &amp;&amp; ($t2 = strtotime($t2)) === false)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return false;<br />
+<br />
+&nbsp;&nbsp;&nbsp; if ($t1 &gt; $t2)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; list($t1, $t2) = array($t2, $t1);<br />
+<br />
+&nbsp;&nbsp;&nbsp; $diffs = array(<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 'year' =&gt; 0, 'month' =&gt; 0, 'day' =&gt; 0,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 'hour' =&gt; 0, 'minute' =&gt; 0, 'second' =&gt; 0,<br />
+&nbsp;&nbsp;&nbsp; );<br />
+<br />
+&nbsp;&nbsp;&nbsp; $abbrs = array(<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 'year' =&gt; 'yr', 'month' =&gt; 'mth', 'day' =&gt; 'day',<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 'hour' =&gt; 'hr', 'minute' =&gt; 'min', 'second' =&gt; 'sec'<br />
+&nbsp;&nbsp;&nbsp; );<br />
+<br />
+&nbsp;&nbsp;&nbsp; foreach (array_keys($diffs) as $interval) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; while ($t2 &gt;= ($t3 = strtotime("+1 ${interval}", $t1))) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $t1 = $t3;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; ++$diffs[$interval];<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp; $stack = array();<br />
+&nbsp;&nbsp;&nbsp; foreach ($diffs as $interval =&gt; $num)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $stack[] = array($num, ($abbr ? $abbrs[$interval] : $interval) . ($num != 1 ? 's' : ''));<br />
+<br />
+&nbsp;&nbsp;&nbsp; $ret = array();<br />
+&nbsp;&nbsp;&nbsp; while (count($ret) &lt; $precision &amp;&amp; ($item = array_shift($stack)) !== null) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; if ($item[0] &gt; 0)<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $ret[] = "{$item[0]} {$item[1]}";<br />
+&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp; return implode(', ', $ret);<br />
+}<br />
+<br />
+$t1 = 'Feb 4, 2008 12:16:00';<br />
+$t2 = 'Jul 3, 2006 16:15:30';<br />
+<br />
+echo date_diff($t1, $t2), "\n",<br />
+&nbsp;&nbsp;&nbsp; date_diff($t1, $t2, 3), "\n",<br />
+&nbsp;&nbsp;&nbsp; date_diff($t1, $t2, 2, true), "\n";<br />
+<br />
+?&gt;</span>
+</code></div>
+  </div>
+ </div>
+ <a name="80361"></a>
+ <div class="note">
+  <strong>Dave Laurier</strong><br />
+  <a href="#80361">11-Jan-2008 12:20</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Hi baroto,<br />
+<br />
+You are right, I see what you mean. I do not know how to explain what I was expecting but I figure the results do make sense. I am sorry for any confusion that I may have caused.<br />
+<br />
+Actually, I can give it a try. What I expected is that all of the ..._total variables would return the total amounts so (months = 12 * years + number of single months) and the variables like years, months and days would return the amounts of full years, full months and full days (within this month not taking into account any days between last months date and this date). But looking at the code that expectation does not make sense and indeed the code and the results are fine.<br />
+<br />
+Thanks and once more stoicnluv thanks for your code!<br />
+<br />
+Dave</span>
+</code></div>
+  </div>
+ </div>
+ <a name="80292"></a>
+ <div class="note">
+  <strong>baroto at gmail dot com</strong><br />
+  <a href="#80292">08-Jan-2008 09:32</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+to Dave Laurier:<br />
+<br />
+Isn't the difference between 2006-10-28 and 2007-12-01 is 1 year 1 month and 3 days rather than 1 year 2 months and 1 day?</span>
+</code></div>
+  </div>
+ </div>
+ <a name="80253"></a>
+ <div class="note">
+  <strong>Dave Laurier</strong><br />
+  <a href="#80253">06-Jan-2008 06:42</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I really like the date_diff function from stoicnluv because of its capabilities to handle leap years and daylight saving time but I found out is is not working correctly when there is more than 1 year and 2 months between the two dates. For example:<br />
+<br />
+d1 = 2006-10-28<br />
+d2 = 2007-11-30<br />
+<br />
+The result for months and days is correct (one year, one month and two days):<br />
+<br />
+Array<br />
+(<br />
+&nbsp;&nbsp;&nbsp; [years] =&gt; 1<br />
+&nbsp;&nbsp;&nbsp; [months] =&gt; 1<br />
+&nbsp;&nbsp;&nbsp; [days] =&gt; 2<br />
+&nbsp;&nbsp;&nbsp; [hours] =&gt; 1<br />
+&nbsp;&nbsp;&nbsp; [minutes] =&gt; 0<br />
+&nbsp;&nbsp;&nbsp; [seconds] =&gt; 0<br />
+&nbsp;&nbsp;&nbsp; [months_total] =&gt; 12<br />
+&nbsp;&nbsp;&nbsp; [days_total] =&gt; 398<br />
+&nbsp;&nbsp;&nbsp; [hours_total] =&gt; 9553<br />
+&nbsp;&nbsp;&nbsp; [minutes_total] =&gt; 573180<br />
+&nbsp;&nbsp;&nbsp; [seconds_total] =&gt; 34390800<br />
+)<br />
+<br />
+However when using a date which is +1 year +2 months:<br />
+<br />
+d1 = 2006-10-28<br />
+d2 = 2007-12-01<br />
+<br />
+The result is incorrect (expected: one year, two months and 1 day, returns one year, one month and 3 days):<br />
+<br />
+Array<br />
+(<br />
+&nbsp;&nbsp;&nbsp; [years] =&gt; 1<br />
+&nbsp;&nbsp;&nbsp; [months] =&gt; 1<br />
+&nbsp;&nbsp;&nbsp; [days] =&gt; 3<br />
+&nbsp;&nbsp;&nbsp; [hours] =&gt; 1<br />
+&nbsp;&nbsp;&nbsp; [minutes] =&gt; 0<br />
+&nbsp;&nbsp;&nbsp; [seconds] =&gt; 0<br />
+&nbsp;&nbsp;&nbsp; [months_total] =&gt; 12<br />
+&nbsp;&nbsp;&nbsp; [days_total] =&gt; 399<br />
+&nbsp;&nbsp;&nbsp; [hours_total] =&gt; 9577<br />
+&nbsp;&nbsp;&nbsp; [minutes_total] =&gt; 574620<br />
+&nbsp;&nbsp;&nbsp; [seconds_total] =&gt; 34477200<br />
+)</span>
+</code></div>
+  </div>
+ </div>
+ <a name="78981"></a>
+ <div class="note">
+  <strong>stoicnluv at gmail dot com</strong><br />
+  <a href="#78981">05-Nov-2007 03:14</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+A better and accurate function to calculate the difference between 2 dates. Takes leap years and DST into consideration. Accepts string date or timestamp as arguments.<br />
+<br />
+<span class="default">&lt;?php<br />
+</span><span class="keyword">function </span><span class="default">date_diff</span><span class="keyword">(</span><span class="default">$d1</span><span class="keyword">, </span><span class="default">$d2</span><span class="keyword">){<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$d1 </span><span class="keyword">= (</span><span class="default">is_string</span><span class="keyword">(</span><span class="default">$d1</span><span class="keyword">) ? </span><span class="default">strtotime</span><span class="keyword">(</span><span class="default">$d1</span><span class="keyword">) : </span><span class="default">$d1</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$d2 </span><span class="keyword">= (</span><span class="default">is_string</span><span class="keyword">(</span><span class="default">$d2</span><span class="keyword">) ? </span><span class="default">strtotime</span><span class="keyword">(</span><span class="default">$d2</span><span class="keyword">) : </span><span class="default">$d2</span><span class="keyword">);<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$diff_secs </span><span class="keyword">= </span><span class="default">abs</span><span class="keyword">(</span><span class="default">$d1 </span><span class="keyword">- </span><span class="default">$d2</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$base_year </span><span class="keyword">= </span><span class="default">min</span><span class="keyword">(</span><span class="default">date</span><span class="keyword">(</span><span class="string">"Y"</span><span class="keyword">, </span><span class="default">$d1</span><span class="keyword">), </span><span class="default">date</span><span class="keyword">(</span><span class="string">"Y"</span><span class="keyword">, </span><span class="default">$d2</span><span class="keyword">));<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$diff </span><span class="keyword">= </span><span class="default">mktime</span><span class="keyword">(</span><span class="default">0</span><span class="keyword">, </span><span class="default">0</span><span class="keyword">, </span><span class="default">$diff_secs</span><span class="keyword">, </span><span class="default">1</span><span class="keyword">, </span><span class="default">1</span><span class="keyword">, </span><span class="default">$base_year</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; return array(<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">"years" </span><span class="keyword">=&gt; </span><span class="default">date</span><span class="keyword">(</span><span class="string">"Y"</span><span class="keyword">, </span><span class="default">$diff</span><span class="keyword">) - </span><span class="default">$base_year</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">"months_total" </span><span class="keyword">=&gt; (</span><span class="default">date</span><span class="keyword">(</span><span class="string">"Y"</span><span class="keyword">, </span><span class="default">$diff</span><span class="keyword">) - </span><span class="default">$base_year</span><span class="keyword">) * </span><span class="default">12 </span><span class="keyword">+ </span><span class="default">date</span><span class="keyword">(</span><span class="string">"n"</span><span class="keyword">, </span><span class="default">$diff</span><span class="keyword">) - </span><span class="default">1</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">"months" </span><span class="keyword">=&gt; </span><span class="default">date</span><span class="keyword">(</span><span class="string">"n"</span><span class="keyword">, </span><span class="default">$diff</span><span class="keyword">) - </span><span class="default">1</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">"days_total" </span><span class="keyword">=&gt; </span><span class="default">floor</span><span class="keyword">(</span><span class="default">$diff_secs </span><span class="keyword">/ (</span><span class="default">3600 </span><span class="keyword">* </span><span class="default">24</span><span class="keyword">)),<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">"days" </span><span class="keyword">=&gt; </span><span class="default">date</span><span class="keyword">(</span><span class="string">"j"</span><span class="keyword">, </span><span class="default">$diff</span><span class="keyword">) - </span><span class="default">1</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">"hours_total" </span><span class="keyword">=&gt; </span><span class="default">floor</span><span class="keyword">(</span><span class="default">$diff_secs </span><span class="keyword">/ </span><span class="default">3600</span><span class="keyword">),<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">"hours" </span><span class="keyword">=&gt; </span><span class="default">date</span><span class="keyword">(</span><span class="string">"G"</span><span class="keyword">, </span><span class="default">$diff</span><span class="keyword">),<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">"minutes_total" </span><span class="keyword">=&gt; </span><span class="default">floor</span><span class="keyword">(</span><span class="default">$diff_secs </span><span class="keyword">/ </span><span class="default">60</span><span class="keyword">),<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">"minutes" </span><span class="keyword">=&gt; (int) </span><span class="default">date</span><span class="keyword">(</span><span class="string">"i"</span><span class="keyword">, </span><span class="default">$diff</span><span class="keyword">),<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">"seconds_total" </span><span class="keyword">=&gt; </span><span class="default">$diff_secs</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">"seconds" </span><span class="keyword">=&gt; (int) </span><span class="default">date</span><span class="keyword">(</span><span class="string">"s"</span><span class="keyword">, </span><span class="default">$diff</span><span class="keyword">)<br />
+&nbsp;&nbsp;&nbsp; );<br />
+}<br />
+<br />
+</span><span class="default">$a </span><span class="keyword">= </span><span class="default">date_diff</span><span class="keyword">(</span><span class="string">"2006-11-01"</span><span class="keyword">, </span><span class="string">"2007-11-01"</span><span class="keyword">);<br />
+<br />
+echo </span><span class="string">"&lt;pre&gt;"</span><span class="keyword">;<br />
+</span><span class="default">print_r</span><span class="keyword">(</span><span class="default">$a</span><span class="keyword">);<br />
+echo </span><span class="string">"&lt;/pre&gt;"</span><span class="keyword">;<br />
+</span><span class="default">?&gt;<br />
+</span><br />
+This example will output (if your timezone uses US DST):<br />
+<br />
+Array<br />
+(<br />
+&nbsp;&nbsp;&nbsp; [years] =&gt; 0<br />
+&nbsp;&nbsp;&nbsp; [months_total] =&gt; 11<br />
+&nbsp;&nbsp;&nbsp; [months] =&gt; 11<br />
+&nbsp;&nbsp;&nbsp; [days_total] =&gt; 364<br />
+&nbsp;&nbsp;&nbsp; [days] =&gt; 30<br />
+&nbsp;&nbsp;&nbsp; [hours_total] =&gt; 8759<br />
+&nbsp;&nbsp;&nbsp; [hours] =&gt; 23<br />
+&nbsp;&nbsp;&nbsp; [minutes_total] =&gt; 525540<br />
+&nbsp;&nbsp;&nbsp; [minutes] =&gt; 0<br />
+&nbsp;&nbsp;&nbsp; [seconds_total] =&gt; 31532400<br />
+&nbsp;&nbsp;&nbsp; [seconds] =&gt; 0<br />
+)<br />
+<br />
+As you can see, the result is not exactly 1 year (less 1 hour) since Nov 1, 2006 is not DST while Nov 1, 2007 is DST.</span>
+</code></div>
+  </div>
+ </div>
+ <a name="78761"></a>
+ <div class="note">
+  <strong>venoel at rin dot ru</strong><br />
+  <a href="#78761">26-Oct-2007 03:33</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+May be useful for somebody. This function takes on daylight saving time<br />
+<br />
+Function DateDiff($date1,$date2) {<br />
+&nbsp; $timedifference=$date2-$date1;<br />
+&nbsp; $corr=date("I",$date2)-date("I",$date1);<br />
+&nbsp; $timedifference+=$corr;<br />
+&nbsp; return $timedifference;<br />
+}<br />
+<br />
+Example:<br />
+<br />
+$d1=mktime(2,0,0,10,28,2007);<br />
+$d2=mktime(4,0,0,10,28,2007);<br />
+$period=DateDiff($d1,$d2);<br />
+printf("&lt;br&gt;%s",date("I d.m.Y H:i",$d1));<br />
+printf("&lt;br&gt;%u hour",$period/3600);<br />
+printf("&lt;br&gt;%s",date("I d.m.Y H:i",$d2));<br />
+<br />
+Getting 2 hour instead 3.</span>
+</code></div>
+  </div>
+ </div>
+ <a name="78570"></a>
+ <div class="note">
+  <strong>koch.ro</strong><br />
+  <a href="#78570">17-Oct-2007 12:42</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Not really elegant, but tells you, if your installed timezonedb is the most recent:<br />
+<br />
+class TestDateTimeTimezonedbVersion extends PHPUnit_Framework_TestCase<br />
+{<br />
+&nbsp;&nbsp;&nbsp; public function testTimezonedbIsMostRecent()<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; ini_set( 'date.timezone', 'Europe/Berlin' );<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; ob_start();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; phpinfo(INFO_MODULES);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $info = ob_get_contents();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; ob_end_clean(); <br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $start = strpos( $info, 'Timezone Database Version' ) + 29;<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $this-&gt;assertTrue( FALSE !== $start, 'Seems there is no timezone DB installed' );<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $end&nbsp;&nbsp; = strpos( $info, "\n", $start );<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $installedVersion = substr( $info, $start, $end - $start );<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; exec( 'pecl remote-info timezonedb', &amp;$output );<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $availableVersion = substr( $output[2], 12 );<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $this-&gt;assertEquals( $availableVersion, $installedVersion, <br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 'The installed timezonedb is not actual. Installed: '.$installedVersion<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; .' available: '.$availableVersion<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; );<br />
+&nbsp;&nbsp;&nbsp; }<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <a name="78434"></a>
+ <div class="note">
+  <strong>herbert DOT fischer ATT gEE mail DOT com</strong><br />
+  <a href="#78434">11-Oct-2007 01:44</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Updating internal's PHP timezone database (5.1.x and 5.2.x)<br />
+<br />
+<a href="http://fischer.tecnologia.ws/en/node/1" target="_blank">http://fischer.tecnologia.ws/en/node/1</a><br />
+<br />
+[editor: Although this does work, it's often easier just to install the pecl timezonedb extension - they should be up-to-date with the latest possible information]</span>
+</code></div>
+  </div>
+ </div>
+ <a name="78025"></a>
+ <div class="note">
+  <strong>aquatakat at telus dot net</strong><br />
+  <a href="#78025">24-Sep-2007 01:25</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I wrote a simple script to format a duration in seconds. Give the function some value in seconds and it will return an array.<br />
+<br />
+<span class="default">&lt;?php<br />
+<br />
+</span><span class="keyword">function </span><span class="default">format_duration</span><span class="keyword">(</span><span class="default">$seconds</span><span class="keyword">) {<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$periods </span><span class="keyword">= array(<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">'centuries' </span><span class="keyword">=&gt; </span><span class="default">3155692600</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">'decades' </span><span class="keyword">=&gt; </span><span class="default">315569260</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">'years' </span><span class="keyword">=&gt; </span><span class="default">31556926</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">'months' </span><span class="keyword">=&gt; </span><span class="default">2629743</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">'weeks' </span><span class="keyword">=&gt; </span><span class="default">604800</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">'days' </span><span class="keyword">=&gt; </span><span class="default">86400</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">'hours' </span><span class="keyword">=&gt; </span><span class="default">3600</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">'minutes' </span><span class="keyword">=&gt; </span><span class="default">60</span><span class="keyword">,<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="string">'seconds' </span><span class="keyword">=&gt; </span><span class="default">1<br />
+&nbsp;&nbsp;&nbsp; </span><span class="keyword">);<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$durations </span><span class="keyword">= array();<br />
+<br />
+&nbsp;&nbsp;&nbsp; foreach (</span><span class="default">$periods </span><span class="keyword">as </span><span class="default">$period </span><span class="keyword">=&gt; </span><span class="default">$seconds_in_period</span><span class="keyword">) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; if (</span><span class="default">$seconds </span><span class="keyword">&gt;= </span><span class="default">$seconds_in_period</span><span class="keyword">) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$durations</span><span class="keyword">[</span><span class="default">$period</span><span class="keyword">] = </span><span class="default">floor</span><span class="keyword">(</span><span class="default">$seconds </span><span class="keyword">/ </span><span class="default">$seconds_in_period</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$seconds </span><span class="keyword">-= </span><span class="default">$durations</span><span class="keyword">[</span><span class="default">$period</span><span class="keyword">] * </span><span class="default">$seconds_in_period</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; return </span><span class="default">$durations</span><span class="keyword">;<br />
+<br />
+}<br />
+<br />
+echo </span><span class="default">format_duration</span><span class="keyword">(</span><span class="default">864</span><span class="keyword">);<br />
+<br />
+</span><span class="comment">/*<br />
+[minutes] =&gt; 14<br />
+[seconds] =&gt; 24<br />
+*/<br />
+<br />
+</span><span class="keyword">echo </span><span class="default">format_duration</span><span class="keyword">(</span><span class="default">3600</span><span class="keyword">);<br />
+<br />
+</span><span class="comment">/*<br />
+[hours] =&gt; 1<br />
+*/<br />
+<br />
+</span><span class="keyword">echo </span><span class="default">format_duration</span><span class="keyword">(</span><span class="default">11111111</span><span class="keyword">);<br />
+<br />
+</span><span class="comment">/*<br />
+[months] =&gt; 4<br />
+[days] =&gt; 6<br />
+[hours] =&gt; 20<br />
+[minutes] =&gt; 28<br />
+[seconds] =&gt; 59<br />
+*/<br />
+<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="77638"></a>
+ <div class="note">
+  <strong>Darren Edwards</strong><br />
+  <a href="#77638">06-Sep-2007 08:54</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I was looking for a solution where I could return the number of days, hours, Minutes and seconds between two entries in a table.<br />
+DATE_DIFF is not running on my mysql server as my provider uses mysql version 4.0.25<br />
+Solution was to use to days and std time functions to calculate the difference in one call.<br />
+The fields stored in the table(report_table) are <br />
+time(00:00:00),<br />
+date(0000-00-00) and record(enum) which tells the app the type of log stored. EG start or end of a report.<br />
+<br />
+SELECT <br />
+(TO_DAYS( `end`.`date` ) - TO_DAYS( `start`.`date` )) <br />
+- <br />
+( second( `end`.`time` ) + (minute( `end`.`time` )*60) + (hour( `end`.`time` )*3600) <br />
+&lt;<br />
+&nbsp;second( `start`.`time` ) + (minute( `start`.`time` )*60) + (hour( `start`.`time` )*3600)) <br />
+AS `days` , <br />
+SEC_TO_TIME( <br />
+(second( `end`.`time` ) + (minute( `end`.`time` )*60) + (hour( `end`.`time` )*3600) )<br />
+-<br />
+(second( `start`.`time` ) + (minute( `start`.`time` )*60) + (hour( `start`.`time` )*3600) )<br />
+&nbsp;) AS `hms`,<br />
+`start`.`time` as `start`,<br />
+`end`.`time`&nbsp; as `end`<br />
+<br />
+FROM `report_table` AS `start` , `report_table` AS `end` <br />
+AND `start`.`record` = 'Report Begin'<br />
+AND `end`.`record` = 'Report End'<br />
+LIMIT 1 <br />
+<br />
+If there is no end of report then it will not return a result, as you would expect.</span>
+</code></div>
+  </div>
+ </div>
+ <a name="73285"></a>
+ <div class="note">
+  <strong>Leopoldo A dot  Oducado (poducado at comfsm dot fm)</strong><br />
+  <a href="#73285">15-Feb-2007 07:50</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Here is my function to count the number days, weeks, months, and year. I tried it below 1970 and it works.<br />
+<br />
+<span class="default">&lt;?php<br />
+</span><span class="keyword">function </span><span class="default">datecal</span><span class="keyword">(</span><span class="default">$date</span><span class="keyword">,</span><span class="default">$return_value</span><span class="keyword">)<br />
+{<br />
+</span><span class="default">$date </span><span class="keyword">= </span><span class="default">explode</span><span class="keyword">(</span><span class="string">"/"</span><span class="keyword">, </span><span class="default">$date</span><span class="keyword">);<br />
+</span><span class="default">$month_begin </span><span class="keyword">= </span><span class="default">$date</span><span class="keyword">[</span><span class="default">0</span><span class="keyword">];<br />
+</span><span class="default">$month_begin_date </span><span class="keyword">= </span><span class="default">$date</span><span class="keyword">[</span><span class="default">1</span><span class="keyword">];<br />
+</span><span class="default">$year1 </span><span class="keyword">= </span><span class="default">$date</span><span class="keyword">[</span><span class="default">2</span><span class="keyword">];<br />
+</span><span class="default">$month_end </span><span class="keyword">= </span><span class="default">date</span><span class="keyword">(</span><span class="string">"n"</span><span class="keyword">);<br />
+</span><span class="default">$month_end_date </span><span class="keyword">= </span><span class="default">date</span><span class="keyword">(</span><span class="string">"j"</span><span class="keyword">);<br />
+</span><span class="default">$year2 </span><span class="keyword">= </span><span class="default">date</span><span class="keyword">(</span><span class="string">"Y"</span><span class="keyword">);<br />
+</span><span class="default">$days_old </span><span class="keyword">= </span><span class="default">0</span><span class="keyword">;<br />
+</span><span class="default">$years_old </span><span class="keyword">= </span><span class="default">0</span><span class="keyword">;<br />
+</span><span class="default">$months_old </span><span class="keyword">= </span><span class="default">0</span><span class="keyword">;<br />
+if(</span><span class="default">$month_begin</span><span class="keyword">==</span><span class="default">12</span><span class="keyword">)<br />
+{<br />
+&nbsp; </span><span class="default">$month </span><span class="keyword">= </span><span class="default">1</span><span class="keyword">;<br />
+&nbsp; </span><span class="default">$year </span><span class="keyword">= </span><span class="default">$year1</span><span class="keyword">+</span><span class="default">1</span><span class="keyword">;<br />
+}<br />
+else<br />
+{<br />
+&nbsp; </span><span class="default">$month </span><span class="keyword">= </span><span class="default">$month_begin</span><span class="keyword">+</span><span class="default">1</span><span class="keyword">;<br />
+&nbsp; </span><span class="default">$year </span><span class="keyword">= </span><span class="default">$year1</span><span class="keyword">;<br />
+}<br />
+</span><span class="default">$begin_plus_days </span><span class="keyword">= </span><span class="default">cal_days_in_month</span><span class="keyword">(</span><span class="default">CAL_GREGORIAN</span><span class="keyword">, </span><span class="default">$month_begin</span><span class="keyword">, </span><span class="default">$year1</span><span class="keyword">) - </span><span class="default">$month_begin_date</span><span class="keyword">;<br />
+</span><span class="default">$end_minus_days </span><span class="keyword">= </span><span class="default">cal_days_in_month</span><span class="keyword">(</span><span class="default">CAL_GREGORIAN</span><span class="keyword">, </span><span class="default">$month_end</span><span class="keyword">, </span><span class="default">$year2</span><span class="keyword">) - </span><span class="default">$month_end_date</span><span class="keyword">;<br />
+while (</span><span class="default">$year </span><span class="keyword">&lt;= </span><span class="default">$year2</span><span class="keyword">) <br />
+{&nbsp; &nbsp; <br />
+&nbsp;&nbsp; &nbsp; if(</span><span class="default">$year </span><span class="keyword">== </span><span class="default">$year2</span><span class="keyword">)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$days_old </span><span class="keyword">= </span><span class="default">$days_old </span><span class="keyword">+ </span><span class="default">cal_days_in_month</span><span class="keyword">(</span><span class="default">CAL_GREGORIAN</span><span class="keyword">, </span><span class="default">$month</span><span class="keyword">, </span><span class="default">$year</span><span class="keyword">);&nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp;&nbsp; if(</span><span class="default">$month </span><span class="keyword">&lt; </span><span class="default">$month_end</span><span class="keyword">)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; { <br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$months_old </span><span class="keyword">= </span><span class="default">$months_old </span><span class="keyword">+ </span><span class="default">1</span><span class="keyword">;&nbsp; &nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$month </span><span class="keyword">= </span><span class="default">$month </span><span class="keyword">+ </span><span class="default">1</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; elseif (</span><span class="default">$month</span><span class="keyword">==</span><span class="default">$month_end </span><span class="keyword">and </span><span class="default">$month_end_date </span><span class="keyword">&gt;= </span><span class="default">$month_begin_date</span><span class="keyword">)<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; { <br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$year </span><span class="keyword">= </span><span class="default">$year2</span><span class="keyword">+</span><span class="default">1</span><span class="keyword">;&nbsp; &nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp;&nbsp; else<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; {&nbsp; &nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$year </span><span class="keyword">= </span><span class="default">$year2</span><span class="keyword">+</span><span class="default">1</span><span class="keyword">;&nbsp; &nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; </span><span class="default">$days_old </span><span class="keyword">= </span><span class="default">$days_old </span><span class="keyword">+ </span><span class="default">cal_days_in_month</span><span class="keyword">(</span><span class="default">CAL_GREGORIAN</span><span class="keyword">, </span><span class="default">$month</span><span class="keyword">, </span><span class="default">$year</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; if (</span><span class="default">$month </span><span class="keyword">&lt;= </span><span class="default">11</span><span class="keyword">) <br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$month </span><span class="keyword">= </span><span class="default">$month </span><span class="keyword">+ </span><span class="default">1</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$months_old </span><span class="keyword">= </span><span class="default">$months_old </span><span class="keyword">+ </span><span class="default">1</span><span class="keyword">;&nbsp; &nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; else<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$month </span><span class="keyword">= </span><span class="default">1</span><span class="keyword">; <br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$year </span><span class="keyword">= </span><span class="default">$year </span><span class="keyword">+ </span><span class="default">1</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="default">$months_old </span><span class="keyword">= </span><span class="default">$months_old </span><span class="keyword">+ </span><span class="default">1</span><span class="keyword">;&nbsp; &nbsp; &nbsp; &nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }&nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; }<br />
+}<br />
+</span><span class="default">$days_old </span><span class="keyword">= (</span><span class="default">$days_old </span><span class="keyword">+ </span><span class="default">$begin_plus_days</span><span class="keyword">) - </span><span class="default">$end_minus_days</span><span class="keyword">;<br />
+if(</span><span class="default">$return_value </span><span class="keyword">== </span><span class="string">"d"</span><span class="keyword">)<br />
+&nbsp; { return </span><span class="default">$days_old</span><span class="keyword">; }<br />
+elseif (</span><span class="default">$return_value </span><span class="keyword">== </span><span class="string">"w"</span><span class="keyword">)<br />
+&nbsp; { return </span><span class="default">intval</span><span class="keyword">(</span><span class="default">$days_old</span><span class="keyword">/</span><span class="default">7</span><span class="keyword">); }<br />
+elseif (</span><span class="default">$return_value </span><span class="keyword">== </span><span class="string">"m"</span><span class="keyword">)<br />
+&nbsp; { return </span><span class="default">$months_old</span><span class="keyword">; }<br />
+elseif (</span><span class="default">$return_value </span><span class="keyword">== </span><span class="string">"y"</span><span class="keyword">)<br />
+&nbsp; { return </span><span class="default">intval</span><span class="keyword">(</span><span class="default">$months_old</span><span class="keyword">/</span><span class="default">12</span><span class="keyword">); }<br />
+}<br />
+<br />
+echo </span><span class="default">datecal</span><span class="keyword">(</span><span class="string">"08/13/1975"</span><span class="keyword">,</span><span class="string">"m"</span><span class="keyword">);<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="72384"></a>
+ <div class="note">
+  <strong>bgold at matrix-consultants dot com</strong><br />
+  <a href="#72384">16-Jan-2007 05:08</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+When debugging code that stores date/time values in a database, you may find yourself wanting to know the date/time that corresponds to a given unix timestamp, or the timestamp for a given date &amp; time.<br />
+<br />
+The following script will do the conversion either way.&nbsp; If you give it a numeric timestamp, it will display the corresponding date and time.&nbsp; If you give it a date and time (in almost any standard format), it will display the timestamp.<br />
+<br />
+All conversions are done for your locale/time zone.<br />
+<br />
+&lt;?<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; while (true)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; // Read a line from standard in.<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; echo "enter time to convert: ";<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $inline = fgets(STDIN);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $inline = trim($inline);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; if ($inline == "" || $inline == ".")<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; break;<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; // See if the line is a date.<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $pos = strpos($inline, "/");<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; if ($pos === false) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; // not a date, should be an integer.<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $date = date("m/d/Y G:i:s", $inline);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; echo "int2date: $inline -&gt; $date\n";<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; } else {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $itime = strtotime($inline);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; echo "date2int: $inline -&gt; $itime\n";<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+?&gt;</span>
+</code></div>
+  </div>
+ </div>
+ <a name="71925"></a>
+ <div class="note">
+  <strong>slash at mauricien dot org</strong><br />
+  <a href="#71925">22-Dec-2006 01:06</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+The post below has been edited saying there is a bug line 12 and 13 and proposition a solution. I think there was no<br />
+bug in the original post.<br />
+<br />
+&nbsp;menaurus at gmx dot de<br />
+16-Jul-2003 01:37<br />
+The argument has to be in the standard mysql format (y-m-d)...<br />
+<br />
+function age($date) {<br />
+<br />
+if (!$date) return false;<br />
+$year=0+substr($date,0,4);<br />
+$month=0+substr($date,5,2);<br />
+$day=0+substr($date,8,2);<br />
+$t=0;<br />
+$d=date("d");<br />
+$m=date("m");<br />
+$y=date("Y");<br />
+$age=$y-$year;<br />
+<br />
+if ($m&lt;$month) $t=-1;<br />
+else if ($m==$month) if ($d&lt;$day) $t=-1;<br />
+<br />
+return ($age+$t);<br />
+}<br />
+<br />
+this funktion has got a little bug:<br />
+On Line 12 and 13...<br />
+Bugfix:<br />
+12 if ($month&lt;$m) $t=-1;<br />
+13 else if ($m==$month AND $day&lt;$d) $t=-1;</span>
+</code></div>
+  </div>
+ </div>
+ <a name="70965"></a>
+ <div class="note">
+  <strong>mikeb at tracersinfo dot com</strong><br />
+  <a href="#70965">06-Nov-2006 11:27</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Another month late on this, but I would amend alex's post to recommend using gmdate() any time you're trying to represent a "delta time", or your local timezone is likely to interfere.<br />
+<br />
+For example, a five minute difference (300 seconds) would appear as follows in New York:<br />
+<br />
+echo date('z:H:i:s', 300);<br />
+// 364:19:05:00 <br />
+<br />
+echo gmdate('z:H:i:s', 300);<br />
+// 0:00:05:00<br />
+<br />
+Thanks for the 'z', though, Alex.&nbsp; Up until now, I've always been dividing that out -- hadn't found it in the format list.&nbsp; :-)</span>
+</code></div>
+  </div>
+ </div>
+ <a name="69608"></a>
+ <div class="note">
+  <strong>alex dot stevenson at t8design dot com</strong><br />
+  <a href="#69608">12-Sep-2006 09:50</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+A few months late on this, but I just saw cepercival at thatMailThatsHot dot com 's post, and think that it may be a bit easier to just use this as opposed to writing it by hand:<br />
+<br />
+date("z:H:i:s", $endTimestamp - $startTimestamp);<br />
+<br />
+Since the timestamps store seconds from the unix epoch, and the unix epoch occured at the very beginning of a year, you can get away with this.<br />
+<br />
+It gets a little trickier to place the years, but it should work fine if you subtract out the number of years date("Y", 0) returns.&nbsp; This would naturally require two seperate calls to the date function- one to find the year, and one to find the rest of the information.</span>
+</code></div>
+  </div>
+ </div>
+ <a name="68037"></a>
+ <div class="note">
+  <strong>cepercival at thatMailThatsHot dot com</strong><br />
+  <a href="#68037">11-Jul-2006 05:31</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Hopefully this may be useful to someone out there! <br />
+I wanted a simple function to give me a duration for phone calls using a start timestamp and end timestamp. After finding an understandable example here <a href="http://www.brenlei.com/articles/php/dates/dates4.php" target="_blank">http://www.brenlei.com/articles/php/dates/dates4.php</a> i cobbled this together:<br />
+<br />
+function callDuration($dateTimeBegin,$dateTimeEnd) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; <br />
+&nbsp;&nbsp; &nbsp;&nbsp; $dif=$dateTimeEnd - $dateTimeBegin;<br />
+<br />
+&nbsp;&nbsp; &nbsp;&nbsp; $hours = floor($dif / 3600);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; $temp_remainder = $dif - ($hours * 3600);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp;&nbsp; $minutes = floor($temp_remainder / 60);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; $temp_remainder = $temp_remainder - ($minutes * 60);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp;&nbsp; $seconds = $temp_remainder;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp;&nbsp; // leading zero's - not bothered about hours<br />
+&nbsp;&nbsp; &nbsp;&nbsp; $min_lead=':';<br />
+&nbsp;&nbsp; &nbsp; if($minutes &lt;=9)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $min_lead .= '0';<br />
+&nbsp;&nbsp; &nbsp;&nbsp; $sec_lead=':';<br />
+&nbsp;&nbsp; &nbsp; if($seconds &lt;=9)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $sec_lead .= '0';<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp; // difference/duration returned as Hours:Mins:Secs e.g. 01:29:32<br />
+<br />
+&nbsp; return $hours.$min_lead.$minutes.$sec_lead.$seconds;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <br />
+&nbsp;&nbsp; &nbsp; &nbsp; } <br />
+<br />
+obviously it can be easily extended to include days, weeks etc. <br />
+Stupidly simple I know but that's how i like it.</span>
+</code></div>
+  </div>
+ </div>
+ <a name="57251"></a>
+ <div class="note">
+  <strong>andreencinas at yahoo dot com dot br</strong><br />
+  <a href="#57251">28-Sep-2005 05:08</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+//function like dateDiff Microsoft<br />
+&nbsp;&nbsp; &nbsp; &nbsp; //not error in year Bissesto<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; function dateDiff($interval,$dateTimeBegin,$dateTimeEnd) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; //Parse about any English textual datetime<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; //$dateTimeBegin, $dateTimeEnd<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; $dateTimeBegin=strtotime($dateTimeBegin);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; if($dateTimeBegin === -1) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return("..begin date Invalid");<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; $dateTimeEnd=strtotime($dateTimeEnd);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; if($dateTimeEnd === -1) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return("..end date Invalid");<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; $dif=$dateTimeEnd - $dateTimeBegin;<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; switch($interval) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case "s"://seconds<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return($dif);<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case "n"://minutes<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return(floor($dif/60)); //60s=1m<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case "h"://hours<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return(floor($dif/3600)); //3600s=1h<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case "d"://days<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return(floor($dif/86400)); //86400s=1d<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case "ww"://Week<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return(floor($dif/604800)); //604800s=1week=1semana<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case "m": //similar result "m" dateDiff Microsoft<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $monthBegin=(date("Y",$dateTimeBegin)*12)+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; date("n",$dateTimeBegin);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $monthEnd=(date("Y",$dateTimeEnd)*12)+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; date("n",$dateTimeEnd);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $monthDiff=$monthEnd-$monthBegin;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return($monthDiff);<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case "yyyy": //similar result "yyyy" dateDiff Microsoft<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return(date("Y",$dateTimeEnd) - date("Y",$dateTimeBegin));<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; default:<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return(floor($dif/86400)); //86400s=1d<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; }</span>
+</code></div>
+  </div>
+ </div>
+ <a name="57207"></a>
+ <div class="note">
+  <strong>glashio at xs4all dot nl</strong><br />
+  <a href="#57207">27-Sep-2005 12:46</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Calculate Sum BusinessDays (Mon till Fri) between two date's :<br />
+<br />
+<span class="default">&lt;?php<br />
+</span><span class="keyword">function </span><span class="default">businessdays</span><span class="keyword">(</span><span class="default">$begin</span><span class="keyword">, </span><span class="default">$end</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$rbegin </span><span class="keyword">= </span><span class="default">is_string</span><span class="keyword">(</span><span class="default">$begin</span><span class="keyword">) ? </span><span class="default">strtotime</span><span class="keyword">(</span><span class="default">strval</span><span class="keyword">(</span><span class="default">$begin</span><span class="keyword">)) : </span><span class="default">$begin</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$rend </span><span class="keyword">= </span><span class="default">is_string</span><span class="keyword">(</span><span class="default">$end</span><span class="keyword">) ? </span><span class="default">strtotime</span><span class="keyword">(</span><span class="default">strval</span><span class="keyword">(</span><span class="default">$end</span><span class="keyword">)) : </span><span class="default">$end</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; if (</span><span class="default">$rbegin </span><span class="keyword">&lt; </span><span class="default">0 </span><span class="keyword">|| </span><span class="default">$rend </span><span class="keyword">&lt; </span><span class="default">0</span><span class="keyword">)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">0</span><span class="keyword">;<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$begin </span><span class="keyword">= </span><span class="default">workday</span><span class="keyword">(</span><span class="default">$rbegin</span><span class="keyword">, </span><span class="default">TRUE</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$end </span><span class="keyword">= </span><span class="default">workday</span><span class="keyword">(</span><span class="default">$rend</span><span class="keyword">, </span><span class="default">FALSE</span><span class="keyword">);<br />
+<br />
+&nbsp;&nbsp;&nbsp; if (</span><span class="default">$end </span><span class="keyword">&lt; </span><span class="default">$begin</span><span class="keyword">) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$end </span><span class="keyword">= </span><span class="default">$begin</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$begin </span><span class="keyword">= </span><span class="default">$end</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$difftime </span><span class="keyword">= </span><span class="default">$end </span><span class="keyword">- </span><span class="default">$begin</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$diffdays </span><span class="keyword">= </span><span class="default">floor</span><span class="keyword">(</span><span class="default">$difftime </span><span class="keyword">/ (</span><span class="default">24 </span><span class="keyword">* </span><span class="default">60 </span><span class="keyword">* </span><span class="default">60</span><span class="keyword">)) + </span><span class="default">1</span><span class="keyword">;<br />
+<br />
+&nbsp;&nbsp;&nbsp; if (</span><span class="default">$diffdays </span><span class="keyword">&lt; </span><span class="default">7</span><span class="keyword">) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$abegin </span><span class="keyword">= </span><span class="default">getdate</span><span class="keyword">(</span><span class="default">$rbegin</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$aend </span><span class="keyword">= </span><span class="default">getdate</span><span class="keyword">(</span><span class="default">$rend</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; if (</span><span class="default">$diffdays </span><span class="keyword">== </span><span class="default">1 </span><span class="keyword">&amp;&amp; (</span><span class="default">$astart</span><span class="keyword">[</span><span class="string">'wday'</span><span class="keyword">] == </span><span class="default">0 </span><span class="keyword">|| </span><span class="default">$astart</span><span class="keyword">[</span><span class="string">'wday'</span><span class="keyword">] == </span><span class="default">6</span><span class="keyword">) &amp;&amp; (</span><span class="default">$aend</span><span class="keyword">[</span><span class="string">'wday'</span><span class="keyword">] == </span><span class="default">0 </span><span class="keyword">|| </span><span class="default">$aend</span><span class="keyword">[</span><span class="string">'wday'</span><span class="keyword">] == </span><span class="default">6</span><span class="keyword">))<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">0</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$abegin </span><span class="keyword">= </span><span class="default">getdate</span><span class="keyword">(</span><span class="default">$begin</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$aend </span><span class="keyword">= </span><span class="default">getdate</span><span class="keyword">(</span><span class="default">$end</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$weekends </span><span class="keyword">= (</span><span class="default">$aend</span><span class="keyword">[</span><span class="string">'wday'</span><span class="keyword">] &lt; </span><span class="default">$abegin</span><span class="keyword">[</span><span class="string">'wday'</span><span class="keyword">]) ? </span><span class="default">1 </span><span class="keyword">: </span><span class="default">0</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; } else<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$weekends </span><span class="keyword">= </span><span class="default">floor</span><span class="keyword">(</span><span class="default">$diffdays </span><span class="keyword">/ </span><span class="default">7</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; return </span><span class="default">$diffdays </span><span class="keyword">- (</span><span class="default">$weekends </span><span class="keyword">* </span><span class="default">2</span><span class="keyword">);<br />
+}<br />
+<br />
+function </span><span class="default">workday</span><span class="keyword">(</span><span class="default">$date</span><span class="keyword">, </span><span class="default">$begindate </span><span class="keyword">= </span><span class="default">TRUE</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$adate </span><span class="keyword">= </span><span class="default">getdate</span><span class="keyword">(</span><span class="default">$date</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$day </span><span class="keyword">= </span><span class="default">24 </span><span class="keyword">* </span><span class="default">60 </span><span class="keyword">* </span><span class="default">60</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; if (</span><span class="default">$adate</span><span class="keyword">[</span><span class="string">'wday'</span><span class="keyword">] == </span><span class="default">0</span><span class="keyword">) </span><span class="comment">// Sunday<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$date </span><span class="keyword">+= </span><span class="default">$begindate </span><span class="keyword">? </span><span class="default">$day </span><span class="keyword">: -(</span><span class="default">$day </span><span class="keyword">* </span><span class="default">2</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; elseif (</span><span class="default">$adate</span><span class="keyword">[</span><span class="string">'wday'</span><span class="keyword">] == </span><span class="default">6</span><span class="keyword">) </span><span class="comment">// Saterday<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$date </span><span class="keyword">+= </span><span class="default">$begindate </span><span class="keyword">? </span><span class="default">$day </span><span class="keyword">* </span><span class="default">2 </span><span class="keyword">: -</span><span class="default">$day</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; return </span><span class="default">$date</span><span class="keyword">;<br />
+}<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="53670"></a>
+ <div class="note">
+  <strong>daniel at globalnetstudios dot com</strong><br />
+  <a href="#53670">08-Jun-2005 11:49</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+This dateDiff() function can take in just about any timestamp, including UNIX timestamps and anything that is accepted by strtotime(). It returns an array with the ability to split the result a couple different ways. I built this function to suffice any datediff needs I had. Hope it helps others too.<br />
+<br />
+<span class="default">&lt;?php<br />
+&nbsp; </span><span class="comment">/********* dateDiff() function **********<br />
+&nbsp;&nbsp; * returns Array of Int values for difference between two dates<br />
+&nbsp;&nbsp; * $date1 &gt; $date2 --&gt; positive integers are returned<br />
+&nbsp;&nbsp; * $date1 &lt; $date2 --&gt; negative integers are returned<br />
+&nbsp;&nbsp; *<br />
+&nbsp;&nbsp; * $split recognizes the following:<br />
+&nbsp;&nbsp; *&nbsp;&nbsp; 'yw' = splits up years, weeks and days (default)<br />
+&nbsp;&nbsp; *&nbsp;&nbsp; 'y'&nbsp; = splits up years and days<br />
+&nbsp;&nbsp; *&nbsp;&nbsp; 'w'&nbsp; = splits up weeks and days<br />
+&nbsp;&nbsp; *&nbsp;&nbsp; 'd'&nbsp; = total days<br />
+&nbsp;&nbsp; *<br />
+&nbsp;&nbsp; * examples:<br />
+&nbsp;&nbsp; *&nbsp;&nbsp; $dif1 = dateDiff() or dateDiff('yw')<br />
+&nbsp;&nbsp; *&nbsp;&nbsp; $dif2 = dateDiff('y')<br />
+&nbsp;&nbsp; *&nbsp;&nbsp; $dif3 = dateDiff('w')<br />
+&nbsp;&nbsp; *&nbsp;&nbsp; $dif4 = dateDiff('d')<br />
+&nbsp;&nbsp; *<br />
+&nbsp;&nbsp; * assuming dateDiff returned 853 days, the above<br />
+&nbsp;&nbsp; * examples would have a print_r output of:<br />
+&nbsp;&nbsp; *&nbsp;&nbsp; $dif1 == Array( [y] =&gt; 2 [w] =&gt; 17 [d] =&gt; 4 )<br />
+&nbsp;&nbsp; *&nbsp;&nbsp; $dif2 == Array( [y] =&gt; 2 [d] =&gt; 123 )<br />
+&nbsp;&nbsp; *&nbsp;&nbsp; $dif3 == Array( [w] =&gt; 121 [d] =&gt; 6 )<br />
+&nbsp;&nbsp; *&nbsp;&nbsp; $dif4 == Array( [d] =&gt; 847 )<br />
+&nbsp;&nbsp; *<br />
+&nbsp;&nbsp; * note: [h] (hours), [m] (minutes), [s] (seconds) are always returned as elements of the Array<br />
+&nbsp;&nbsp; */<br />
+&nbsp; </span><span class="keyword">function </span><span class="default">dateDiff</span><span class="keyword">(</span><span class="default">$dt1</span><span class="keyword">, </span><span class="default">$dt2</span><span class="keyword">, </span><span class="default">$split</span><span class="keyword">=</span><span class="string">'yw'</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$date1 </span><span class="keyword">= (</span><span class="default">strtotime</span><span class="keyword">(</span><span class="default">$dt1</span><span class="keyword">) != -</span><span class="default">1</span><span class="keyword">) ? </span><span class="default">strtotime</span><span class="keyword">(</span><span class="default">$dt1</span><span class="keyword">) : </span><span class="default">$dt1</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$date2 </span><span class="keyword">= (</span><span class="default">strtotime</span><span class="keyword">(</span><span class="default">$dt2</span><span class="keyword">) != -</span><span class="default">1</span><span class="keyword">) ? </span><span class="default">strtotime</span><span class="keyword">(</span><span class="default">$dt2</span><span class="keyword">) : </span><span class="default">$dt2</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$dtDiff </span><span class="keyword">= </span><span class="default">$date1 </span><span class="keyword">- </span><span class="default">$date2</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$totalDays </span><span class="keyword">= </span><span class="default">intval</span><span class="keyword">(</span><span class="default">$dtDiff</span><span class="keyword">/(</span><span class="default">24</span><span class="keyword">*</span><span class="default">60</span><span class="keyword">*</span><span class="default">60</span><span class="keyword">));<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$totalSecs </span><span class="keyword">= </span><span class="default">$dtDiff</span><span class="keyword">-(</span><span class="default">$totalDays</span><span class="keyword">*</span><span class="default">24</span><span class="keyword">*</span><span class="default">60</span><span class="keyword">*</span><span class="default">60</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$dif</span><span class="keyword">[</span><span class="string">'h'</span><span class="keyword">] = </span><span class="default">$h </span><span class="keyword">= </span><span class="default">intval</span><span class="keyword">(</span><span class="default">$totalSecs</span><span class="keyword">/(</span><span class="default">60</span><span class="keyword">*</span><span class="default">60</span><span class="keyword">));<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$dif</span><span class="keyword">[</span><span class="string">'m'</span><span class="keyword">] = </span><span class="default">$m </span><span class="keyword">= </span><span class="default">intval</span><span class="keyword">((</span><span class="default">$totalSecs</span><span class="keyword">-(</span><span class="default">$h</span><span class="keyword">*</span><span class="default">60</span><span class="keyword">*</span><span class="default">60</span><span class="keyword">))/</span><span class="default">60</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$dif</span><span class="keyword">[</span><span class="string">'s'</span><span class="keyword">] = </span><span class="default">$totalSecs</span><span class="keyword">-(</span><span class="default">$h</span><span class="keyword">*</span><span class="default">60</span><span class="keyword">*</span><span class="default">60</span><span class="keyword">)-(</span><span class="default">$m</span><span class="keyword">*</span><span class="default">60</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="comment">// set up array as necessary<br />
+&nbsp;&nbsp;&nbsp; </span><span class="keyword">switch(</span><span class="default">$split</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; case </span><span class="string">'yw'</span><span class="keyword">: </span><span class="comment"># split years-weeks-days<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$dif</span><span class="keyword">[</span><span class="string">'y'</span><span class="keyword">] = </span><span class="default">$y </span><span class="keyword">= </span><span class="default">intval</span><span class="keyword">(</span><span class="default">$totalDays</span><span class="keyword">/</span><span class="default">365</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$dif</span><span class="keyword">[</span><span class="string">'w'</span><span class="keyword">] = </span><span class="default">$w </span><span class="keyword">= </span><span class="default">intval</span><span class="keyword">((</span><span class="default">$totalDays</span><span class="keyword">-(</span><span class="default">$y</span><span class="keyword">*</span><span class="default">365</span><span class="keyword">))/</span><span class="default">7</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$dif</span><span class="keyword">[</span><span class="string">'d'</span><span class="keyword">] = </span><span class="default">$totalDays</span><span class="keyword">-(</span><span class="default">$y</span><span class="keyword">*</span><span class="default">365</span><span class="keyword">)-(</span><span class="default">$w</span><span class="keyword">*</span><span class="default">7</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp; case </span><span class="string">'y'</span><span class="keyword">: </span><span class="comment"># split years-days<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$dif</span><span class="keyword">[</span><span class="string">'y'</span><span class="keyword">] = </span><span class="default">$y </span><span class="keyword">= </span><span class="default">intval</span><span class="keyword">(</span><span class="default">$totalDays</span><span class="keyword">/</span><span class="default">365</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$dif</span><span class="keyword">[</span><span class="string">'d'</span><span class="keyword">] = </span><span class="default">$totalDays</span><span class="keyword">-(</span><span class="default">$y</span><span class="keyword">*</span><span class="default">365</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp; case </span><span class="string">'w'</span><span class="keyword">: </span><span class="comment"># split weeks-days<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$dif</span><span class="keyword">[</span><span class="string">'w'</span><span class="keyword">] = </span><span class="default">$w </span><span class="keyword">= </span><span class="default">intval</span><span class="keyword">(</span><span class="default">$totalDays</span><span class="keyword">/</span><span class="default">7</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$dif</span><span class="keyword">[</span><span class="string">'d'</span><span class="keyword">] = </span><span class="default">$totalDays</span><span class="keyword">-(</span><span class="default">$w</span><span class="keyword">*</span><span class="default">7</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp; case </span><span class="string">'d'</span><span class="keyword">: </span><span class="comment"># don't split -- total days<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$dif</span><span class="keyword">[</span><span class="string">'d'</span><span class="keyword">] = </span><span class="default">$totalDays</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp; default:<br />
+&nbsp;&nbsp; &nbsp;&nbsp; die(</span><span class="string">"Error in dateDiff(). Unrecognized \$split parameter. Valid values are 'yw', 'y', 'w', 'd'. Default is 'yw'."</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; return </span><span class="default">$dif</span><span class="keyword">;<br />
+&nbsp; }<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="53587"></a>
+ <div class="note">
+  <strong>mail at completeideas dot com</strong><br />
+  <a href="#53587">06-Jun-2005 01:55</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+For those who are using pre MYSQL 4.1.1, you can use:<br />
+<br />
+TO_DAYS([Date Value 1])-TO_DAYS([Date Value 2])<br />
+<br />
+For the same result as:<br />
+<br />
+DATEDIFF([Date Value 1],[Date Value 2])</span>
+</code></div>
+  </div>
+ </div>
+ <a name="46427"></a>
+ <div class="note">
+  <strong>mincklerstraat at softhome dot net</strong><br />
+  <a href="#46427">11-Oct-2004 01:43</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Before you get too advanced using date functions, be sure also to see the calendar functions at <a href="http://www.php.net/manual/en/ref.calendar.php" target="_blank">http://www.php.net/manual/en/ref.calendar.php</a> .</span>
+</code></div>
+  </div>
+ </div>
+ <a name="41495"></a>
+ <div class="note">
+  <strong>nickaubert at america's biggest isp dot com</strong><br />
+  <a href="#41495">12-Apr-2004 01:13</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I ran into an issue using a function that loops through an array of dates where the keys to the array are the Unix timestamp for midnight for each date.&nbsp; The loop starts at the first timestamp, then incremented by adding 86400 seconds (ie. 60 x 60 x 24).&nbsp; However, Daylight Saving Time threw off the accuracy of this loop, since certain days have a duration other than 86400 seconds.&nbsp; I worked around it by adding a couple of lines to force the timestamp to midnight at each interval.<br />
+<br />
+<span class="default">&lt;?php<br />
+&nbsp; $ONE_DAY </span><span class="keyword">= </span><span class="default">90000</span><span class="keyword">;&nbsp;&nbsp; </span><span class="comment">// can't use 86400 because some days have one hour more or less<br />
+&nbsp; </span><span class="keyword">for ( </span><span class="default">$each_timestamp </span><span class="keyword">= </span><span class="default">$start_time </span><span class="keyword">; </span><span class="default">$each_timestamp </span><span class="keyword">&lt;= </span><span class="default">$end_time </span><span class="keyword">; </span><span class="default">$each_timestamp </span><span class="keyword">+=&nbsp; </span><span class="default">$ONE_DAY</span><span class="keyword">) {<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="comment">/*&nbsp; force midnight to compensate for daylight saving time&nbsp; */<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$this_timestamp_array </span><span class="keyword">= </span><span class="default">getdate</span><span class="keyword">( </span><span class="default">$each_timestamp </span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$each_timestamp </span><span class="keyword">= </span><span class="default">mktime </span><span class="keyword">( </span><span class="default">0 </span><span class="keyword">, </span><span class="default">0 </span><span class="keyword">, </span><span class="default">0 </span><span class="keyword">, </span><span class="default">$this_timestamp_array</span><span class="keyword">[</span><span class="default">mon</span><span class="keyword">] , </span><span class="default">$this_timestamp_array</span><span class="keyword">[</span><span class="default">mday</span><span class="keyword">] , </span><span class="default">$this_timestamp_array</span><span class="keyword">[</span><span class="default">year</span><span class="keyword">] );<br />
+<br />
+&nbsp;&nbsp; &nbsp; </span><span class="comment">// do some stuff...<br />
+&nbsp; </span><span class="keyword">}<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="40063"></a>
+ <div class="note">
+  <strong>scott_webster_2000 at yahoo dot com</strong><br />
+  <a href="#40063">20-Feb-2004 10:02</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Here is a slight improvement over wwb_99@yahoo's entry.&nbsp; (It works now.)<br />
+<br />
+function date_diff($earlierDate, $laterDate) {<br />
+&nbsp; //returns an array of numeric values representing days, hours, minutes &amp; seconds respectively<br />
+&nbsp; $ret=array('days'=&gt;0,'hours'=&gt;0,'minutes'=&gt;0,'seconds'=&gt;0);<br />
+<br />
+&nbsp; $totalsec = $laterDate - $earlierDate;<br />
+&nbsp; if ($totalsec &gt;= 86400) {<br />
+&nbsp;&nbsp;&nbsp; $ret['days'] = floor($totalsec/86400);<br />
+&nbsp;&nbsp;&nbsp; $totalsec = $totalsec % 86400;<br />
+&nbsp; }<br />
+&nbsp; if ($totalsec &gt;= 3600) {<br />
+&nbsp;&nbsp;&nbsp; $ret['hours'] = floor($totalsec/3600);<br />
+&nbsp;&nbsp;&nbsp; $totalsec = $totalsec % 3600;<br />
+&nbsp; }<br />
+&nbsp; if ($totalsec &gt;= 60) {<br />
+&nbsp;&nbsp;&nbsp; $ret['minutes'] = floor($totalsec/60);<br />
+&nbsp; }<br />
+&nbsp; $ret['seconds'] = $totalsec % 60;<br />
+&nbsp; return $ret;<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <a name="39424"></a>
+ <div class="note">
+  <strong>php at sarge dot ch</strong><br />
+  <a href="#39424">28-Jan-2004 04:58</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Additional thisone here (didn't test it yet but should work :D):<br />
+<br />
+<span class="default">&lt;?php<br />
+</span><span class="comment">/**<br />
+&nbsp;* Calculates the Difference between two timestamps<br />
+&nbsp;*<br />
+&nbsp;* @param integer $start_timestamp<br />
+&nbsp;* @param integer $end_timestamp<br />
+&nbsp;* @param integer $unit (default 0)<br />
+&nbsp;* @return string<br />
+&nbsp;* @access public<br />
+&nbsp;*/<br />
+</span><span class="keyword">function </span><span class="default">dateDifference</span><span class="keyword">(</span><span class="default">$start_timestamp</span><span class="keyword">,</span><span class="default">$end_timestamp</span><span class="keyword">,</span><span class="default">$unit</span><span class="keyword">= </span><span class="default">0</span><span class="keyword">){<br />
+&nbsp; </span><span class="default">$days_seconds_star</span><span class="keyword">= (</span><span class="default">23 </span><span class="keyword">* </span><span class="default">56 </span><span class="keyword">* </span><span class="default">60</span><span class="keyword">) + </span><span class="default">4.091</span><span class="keyword">; </span><span class="comment">// Star Day<br />
+&nbsp; </span><span class="default">$days_seconds_sun</span><span class="keyword">= </span><span class="default">24 </span><span class="keyword">* </span><span class="default">60 </span><span class="keyword">* </span><span class="default">60</span><span class="keyword">; </span><span class="comment">// Sun Day<br />
+&nbsp; </span><span class="default">$difference_seconds</span><span class="keyword">= </span><span class="default">$end_timestamp </span><span class="keyword">- </span><span class="default">$start_timestamp</span><span class="keyword">;<br />
+&nbsp; switch(</span><span class="default">$unit</span><span class="keyword">){<br />
+&nbsp;&nbsp;&nbsp; case </span><span class="default">3</span><span class="keyword">: </span><span class="comment">// Days<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$difference_days</span><span class="keyword">= </span><span class="default">round</span><span class="keyword">((</span><span class="default">$difference_seconds </span><span class="keyword">/ </span><span class="default">$days_seconds_sun</span><span class="keyword">),</span><span class="default">2</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; return </span><span class="string">'approx. '</span><span class="keyword">.</span><span class="default">$difference_hours</span><span class="keyword">.</span><span class="string">' Days'</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; case </span><span class="default">2</span><span class="keyword">: </span><span class="comment">// Hours<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$difference_hours</span><span class="keyword">= </span><span class="default">round</span><span class="keyword">((</span><span class="default">$difference_seconds </span><span class="keyword">/ </span><span class="default">3600</span><span class="keyword">),</span><span class="default">2</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; return </span><span class="string">'approx. '</span><span class="keyword">.</span><span class="default">$difference_hours</span><span class="keyword">.</span><span class="string">' Hours'</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp; case </span><span class="default">1</span><span class="keyword">: </span><span class="comment">// Minutes<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="default">$difference_minutes</span><span class="keyword">= </span><span class="default">round</span><span class="keyword">((</span><span class="default">$difference_seconds </span><span class="keyword">/ </span><span class="default">60</span><span class="keyword">),</span><span class="default">2</span><span class="keyword">);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; return </span><span class="string">'approx. '</span><span class="keyword">.</span><span class="default">$difference_minutes</span><span class="keyword">.</span><span class="string">' Minutes'</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp; default: </span><span class="comment">// Seconds<br />
+&nbsp;&nbsp; &nbsp;&nbsp; </span><span class="keyword">if(</span><span class="default">$difference_seconds </span><span class="keyword">&gt; </span><span class="default">1</span><span class="keyword">){<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">$difference_seconds</span><span class="keyword">.</span><span class="string">' Seconds'</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp;&nbsp; else{<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return </span><span class="default">$difference_seconds</span><span class="keyword">.</span><span class="string">' Second'</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; }<br />
+&nbsp; }<br />
+}<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="38427"></a>
+ <div class="note">
+  <strong>php at elmegil dot net</strong><br />
+  <a href="#38427">20-Dec-2003 10:40</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+A much easier way to do days diff is to use Julian Days from the Calendar functions:<br />
+<br />
+$start = gregoriantojd($smon, $sday, $syear);<br />
+$end = gregoriantojd($emon, $eday, $eyear);<br />
+$daysdiff = $end - $start;<br />
+<br />
+You can see the obvious ways to wrap a function around that.</span>
+</code></div>
+  </div>
+ </div>
+ <a name="30468"></a>
+ <div class="note">
+  <strong>garyc at earthling dot net</strong><br />
+  <a href="#30468">18-Mar-2003 08:08</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I needed to calculate the week number from a given date and vice versa, where the week starts with a Monday and the first week of a year may begin the year before, if the year begins in the middle of the week (Tue-Sun). This is the way weekly magazines calculate their issue numbers.<br />
+<br />
+Here are two functions that do exactly that:<br />
+<br />
+Hope somebody finds this useful.<br />
+<br />
+Gary<br />
+<br />
+/*&nbsp; w e e k n u m b e r&nbsp; -------------------------------------- //<br />
+weeknumber returns a week number from a given date (&gt;1970, &lt;2030)<br />
+Wed, 2003-01-01 is in week 1<br />
+Mon, 2003-01-06 is in week 2<br />
+Wed, 2003-12-31 is in week 53, next years first week<br />
+Be careful, there are years with 53 weeks.<br />
+// ------------------------------------------------------------ */ <br />
+<br />
+function weeknumber ($y, $m, $d) {<br />
+&nbsp;&nbsp;&nbsp; $wn = strftime("%W",mktime(0,0,0,$m,$d,$y));<br />
+&nbsp;&nbsp;&nbsp; $wn += 0; # wn might be a string value<br />
+&nbsp;&nbsp;&nbsp; $firstdayofyear = getdate(mktime(0,0,0,1,1,$y));<br />
+&nbsp;&nbsp;&nbsp; if ($firstdayofyear["wday"] != 1)&nbsp; &nbsp; # if 1/1 is not a Monday, add 1<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $wn += 1;<br />
+&nbsp;&nbsp;&nbsp; return ($wn);<br />
+}&nbsp; &nbsp; # function weeknumber<br />
+<br />
+/*&nbsp; d a t e f r o m w e e k&nbsp; ---------------------------------- //<br />
+From a weeknumber, calculates the corresponding date<br />
+Input: Year, weeknumber and day offset<br />
+Output: Exact date in an associative (named) array<br />
+2003, 12, 0: 2003-03-17 (a Monday)<br />
+1995,&nbsp; 53, 2: 1995-12-xx<br />
+...<br />
+// ------------------------------------------------------------ */ <br />
+<br />
+function datefromweek ($y, $w, $o) {<br />
+<br />
+&nbsp;&nbsp;&nbsp; $days = ($w - 1) * 7 + $o;<br />
+<br />
+&nbsp;&nbsp;&nbsp; $firstdayofyear = getdate(mktime(0,0,0,1,1,$y));<br />
+&nbsp;&nbsp;&nbsp; if ($firstdayofyear["wday"] == 0) $firstdayofyear["wday"] += 7; <br />
+# in getdate, Sunday is 0 instead of 7<br />
+&nbsp;&nbsp;&nbsp; $firstmonday = getdate(mktime(0,0,0,1,1-$firstdayofyear["wday"]+1,$y));<br />
+&nbsp;&nbsp;&nbsp; $calcdate = getdate(mktime(0,0,0,$firstmonday["mon"], $firstmonday["mday"]+$days,$firstmonday["year"]));<br />
+<br />
+&nbsp;&nbsp;&nbsp; $date["year"] = $calcdate["year"];<br />
+&nbsp;&nbsp;&nbsp; $date["month"] = $calcdate["mon"];<br />
+&nbsp;&nbsp;&nbsp; $date["day"] = $calcdate["mday"];<br />
+<br />
+&nbsp;&nbsp;&nbsp; return ($date);<br />
+<br />
+}&nbsp; &nbsp; # function datefromweek</span>
+</code></div>
+  </div>
+ </div>
+ <a name="28856"></a>
+ <div class="note">
+  <strong>jlim at natsoft dot com dot my</strong><br />
+  <a href="#28856">26-Jan-2003 01:28</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+For a date() function that supports dates outside the range 1901 and 2038 (by using floats when needed) see adodb_date( ) in<br />
+<br />
+<a href="http://php.weblogs.com/adodb_date_time_library" target="_blank">http://php.weblogs.com/adodb_date_time_library</a></span>
+</code></div>
+  </div>
+ </div>
+ <a name="28121"></a>
+ <div class="note">
+  <strong>brighn (a) yahoo (.) com</strong><br />
+  <a href="#28121">02-Jan-2003 09:46</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I needed a function that determined the last Sunday of the month. Since it's made for the website's "next meeting" announcement, it goes based on the system clock; also, if today is between Sunday and the end of the month, it figures out the last Sunday of *next* month. lastsunday() takes no arguments and returns the date as a string in the form "January 26, 2003". I could probably have streamlined this quite a bit, but at least it's transparent code. =)<br />
+<br />
+&nbsp; /* The two functions calculate when the next meeting will<br />
+&nbsp;&nbsp; &nbsp; be, based on the assumption that the meeting will be on<br />
+&nbsp;&nbsp; &nbsp; the last Sunday of the month. */&nbsp; <br />
+<br />
+&nbsp; function getlast($mon, $year) {<br />
+&nbsp;&nbsp;&nbsp; $daysinmonth = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);<br />
+&nbsp;&nbsp;&nbsp; $days = $daysinmonth[$mon-1];<br />
+&nbsp;&nbsp;&nbsp; if ($mon == 2 &amp;&amp; ($year % 4) == 0 &amp;&amp; (($year % 100) != 0 ||<br />
+&nbsp;&nbsp;&nbsp; ($year % 400) == 0)) $days++;<br />
+&nbsp;&nbsp;&nbsp; if ($mon == 2 &amp;&amp; ($year % 4) == 0 &amp;&amp; ($year % 1000) != 0) $days++;<br />
+&nbsp;&nbsp;&nbsp; $lastday = getdate(mktime(0,0,0,$mon,$days,$year));<br />
+&nbsp;&nbsp;&nbsp; $wday = $lastday['wday'];<br />
+&nbsp;&nbsp;&nbsp; return getdate(mktime(0,0,0,$mon,$days-$wday,$year));<br />
+&nbsp; }<br />
+<br />
+&nbsp; function lastsunday() {<br />
+&nbsp;&nbsp;&nbsp; $today = getdate();<br />
+&nbsp;&nbsp;&nbsp; $mon = $today['mon'];<br />
+&nbsp;&nbsp;&nbsp; $year = $today['year'];<br />
+&nbsp;&nbsp;&nbsp; $mday = $today['mday'];<br />
+&nbsp;&nbsp;&nbsp; $lastsun = getlast($mon, $year);<br />
+&nbsp;&nbsp;&nbsp; $sunday = $lastsun['mday'];<br />
+&nbsp;&nbsp;&nbsp; if ($sunday &lt; $mday) {<br />
+&nbsp;&nbsp; &nbsp;&nbsp; $mon++;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; if ($mon = 13) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $mon = 1;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; $year++;<br />
+&nbsp;&nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp;&nbsp; $lastsun = getlast($mon, $year);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; $sunday = $lastsun['mday'];<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; $nextmeeting = getdate(mktime(0,0,0,$mon,$sunday,$year));<br />
+&nbsp;&nbsp;&nbsp; $month = $nextmeeting['month'];<br />
+&nbsp;&nbsp;&nbsp; $mday = $nextmeeting['mday'];<br />
+&nbsp;&nbsp;&nbsp; $year = $nextmeeting['year'];<br />
+&nbsp;&nbsp;&nbsp; return "$month $mday, $year";<br />
+&nbsp; }</span>
+</code></div>
+  </div>
+ </div>
+ <a name="23866"></a>
+ <div class="note">
+  <strong>nightowl at NOS-PA-M dot uk2 dot net</strong><br />
+  <a href="#23866">30-Jul-2002 10:59</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I wanted to find all records in my database which match the current week (for a call-back function). I made up this function to find the start and end of the current week : <br />
+<br />
+function week($curtime) {<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; $date_array = getdate (time());<br />
+&nbsp;&nbsp;&nbsp; $numdays = $date_array["wday"];<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; $startdate = date("Y-m-d", time() - ($numdays * 24*60*60));<br />
+&nbsp;&nbsp;&nbsp; $enddate = date("Y-m-d", time() + ((7 - $numdays) * 24*60*60));<br />
+<br />
+&nbsp;&nbsp;&nbsp; $week['start'] = $startdate;<br />
+&nbsp;&nbsp;&nbsp; $week['end'] = $enddate;<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; return $week;<br />
+&nbsp;&nbsp;&nbsp; <br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <a name="20348"></a>
+ <div class="note">
+  <strong>mwedgwood at ILUVSPAMhotmail dot com</strong><br />
+  <a href="#20348">31-Mar-2002 01:24</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+In vincentv's examples, you should use gmmktime instead of mktime for portability across time zones. For example:<br />
+<br />
+function DateSub($timestamp, $unit, $amount) {<br />
+// Possible $units are: "hr", "min", "sec",<br />
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "mon", "day", or "yr"<br />
+// $amount should be an integer<br />
+&nbsp;&nbsp;&nbsp; $delta_vars = array("hr"=&gt;0, "min"=&gt;0,<br />
+&nbsp;&nbsp;&nbsp; "sec"=&gt;0, "mon"=&gt;1,<br />
+&nbsp;&nbsp;&nbsp; "day"=&gt;1,"yr"=&gt;1970);<br />
+&nbsp;&nbsp;&nbsp; $delta_vars[$unit] += $amount;<br />
+&nbsp;&nbsp;&nbsp; $delta = gmmktime($delta_vars["hr"],<br />
+&nbsp;&nbsp;&nbsp; $delta_vars["min"],<br />
+&nbsp;&nbsp;&nbsp; $delta_vars["sec"],<br />
+&nbsp;&nbsp;&nbsp; $delta_vars["mon"],<br />
+&nbsp;&nbsp;&nbsp; $delta_vars["day"],<br />
+&nbsp;&nbsp;&nbsp; $delta_vars["yr"]);<br />
+&nbsp;&nbsp;&nbsp; return $timestamp - $delta;<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <a name="18643"></a>
+ <div class="note">
+  <strong>php-contrib at i-ps dot nospam dot net</strong><br />
+  <a href="#18643">30-Jan-2002 06:07</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Someone may find this info of some use:<br />
+<br />
+Rules for calculating a leap year:<br />
+<br />
+1) If the year divides by 4, it is a leap year (1988, 1992, 1996 are leap years)<br />
+2) Unless it divides by 100, in which case it isn't (1900 divides by 4, but was not a leap year)<br />
+3) Unless it divides by 400, in which case it is actually a leap year afterall (So 2000 was a leap year).<br />
+<br />
+In practical terms, to work out the number of days in X years, multiply X by 365.2425, rounding DOWN to the last whole number, should give you the number of days.<br />
+<br />
+The result will never be more than one whole day inaccurate, as opposed to multiplying by 365, which, over more years, will create a larger and larger deficit.</span>
+</code></div>
+  </div>
+ </div>
+ <a name="10582"></a>
+ <div class="note">
+  <strong>th at definitynet dot com</strong><br />
+  <a href="#10582">11-Jan-2001 11:00</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I had some problems with dates between mySQL and PHP.&nbsp; PHP had all these great date functions but I wanted to store a usable value in my database tables. In this case I was using TIMESTAMP(14)&nbsp; &lt;or 'YYYYMMDDHHMMSS'&gt;. <br />
+This is perhaps the easiest way I have found to pull the PHP usable UNIX Datestamp from my mySQL datestamp stored in the tables:<br />
+<br />
+Use the mySQL UNIX_TIMESTAMP() function in your SQL definition string. i.e.<br />
+<br />
+$sql= "SELECT field1, field2, UNIX_TIMESTAMP(field3) as your_date<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; FROM your_table<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; WHERE field1 = '$value'";<br />
+<br />
+The query will return a temp table with coulms "field1" "Field2" "your_date"<br />
+<br />
+The "your_date" will be formatted in a UNIX TIMESTAMP!&nbsp; Now you can use the PHP date() function to spew out nice date formats.<br />
+<br />
+Sample using above $sql:<br />
+20010111002747&nbsp; = Date Stored on mySQL table (TIMESTAMP(14))<br />
+979172867&nbsp; = value returned as your_date in sql stmt (UNIX_TIMESTAMP)<br />
+<br />
+if we use $newdate = date("F jS, Y -- g:ia", $row["your_date"]);<br />
+&nbsp;&nbsp; --(after fetching our array from the sql results of course)--<br />
+<br />
+echo "$newdate";&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --Will produce:<br />
+January 11th, 2001 -- 12:27am<br />
+<br />
+Hope this helps someone out there!</span>
+</code></div>
+  </div>
+ </div>
+ <a name="9582"></a>
+ <div class="note">
+  <strong>joey dot garcia at usa dot net</strong><br />
+  <a href="#9582">13-Nov-2000 12:13</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I was trying to make a Month-At-A-Glance and I finally got it to work so I thought I'd share it too.&nbsp; What you need to get this to work is the "Day Of The Week Number", i.e., Sunday=1 and the "Number Of Days in the Month".&nbsp; I also used Allan Kent's Date/Time Column at PHPBuilder to get the required information.&nbsp; I also added the process I used to the requried information.<br />
+<br />
+Enjoy!<br />
+<br />
+&lt;html&gt;<br />
+&lt;head&gt;<br />
+&nbsp;&nbsp;&nbsp; &lt;title&gt;Month-At-A-Glance&lt;/title&gt;<br />
+&lt;/head&gt;<br />
+&lt;body&gt;<br />
+<span class="default">&lt;?php<br />
+</span><span class="comment">// *** These are here if you need to calculate the required values ***<br />
+// *** Reference Allan Kent's Column on Dates at PHPBuilder.com<br />
+//$thismonth =&nbsp; mktime($hours, $minutes,$seconds ,$month, $day,$year);<br />
+//$firstday =&nbsp; mktime($hours, $minutes,$seconds ,$month, 1,$year);<br />
+//$dayofweek=date("D",$thismonth);<br />
+//$firstdayofmonth=date("D",$firstday);<br />
+//$weekdaynum=array("Sun"=&gt;1, "Mon"=&gt;2, "Tue"=&gt;3, "Wed"=&gt;4, "Thu"=&gt;5, "Fri"=&gt;6, "Sat"=&gt;7);<br />
+//$dayNumber=$weekdaynum[$dayofweek];<br />
+<br />
+</span><span class="keyword">print </span><span class="string">"&lt;table width=80% align=center border=1&gt;\n"</span><span class="keyword">;<br />
+print</span><span class="string">"&lt;tr&gt;&lt;th&gt;Sun(1)&lt;/th&gt; &lt;th&gt;Mon(2)&lt;/th&gt; &lt;th&gt;Tue(3)&lt;/th&gt; &lt;th&gt;Wed(4)&lt;/th&gt; &lt;th&gt;Thu(5)&lt;/th&gt; &lt;th&gt;Fri(6)&lt;/th&gt; &lt;th&gt;Sat(7)&lt;/th&gt; &lt;/tr&gt;"</span><span class="keyword">;<br />
+</span><span class="default">$daysinmonth</span><span class="keyword">=</span><span class="default">31</span><span class="keyword">;</span><span class="comment">//For July 2000 this is 31 days<br />
+</span><span class="default">$daycount</span><span class="keyword">=</span><span class="default">1</span><span class="keyword">;<br />
+</span><span class="default">$firstdayofmonth</span><span class="keyword">=</span><span class="default">7</span><span class="keyword">;</span><span class="comment">//For July 2000 this is Sat, or day 7<br />
+</span><span class="keyword">for (</span><span class="default">$week</span><span class="keyword">=</span><span class="default">1</span><span class="keyword">; </span><span class="default">$week </span><span class="keyword">&lt;= </span><span class="default">6</span><span class="keyword">; </span><span class="default">$week</span><span class="keyword">++){<br />
+print</span><span class="string">"&lt;tr&gt;\n"</span><span class="keyword">; <br />
+&nbsp;&nbsp; for(</span><span class="default">$day</span><span class="keyword">=</span><span class="default">1</span><span class="keyword">; </span><span class="default">$day </span><span class="keyword">&lt;=</span><span class="default">7</span><span class="keyword">; </span><span class="default">$day</span><span class="keyword">++){<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; if( (</span><span class="default">$day </span><span class="keyword">&gt;= </span><span class="default">$firstdayofmonth</span><span class="keyword">) || (</span><span class="default">$week </span><span class="keyword">&gt;</span><span class="default">1</span><span class="keyword">) ){<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; print</span><span class="string">"&lt;td height=40px&gt;"</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; if (</span><span class="default">$daycount </span><span class="keyword">&lt;= </span><span class="default">$daysinmonth</span><span class="keyword">){<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; print </span><span class="default">$daycount</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$daycount</span><span class="keyword">++;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; print</span><span class="string">"&amp;nbsp;&lt;/td&gt;\n"</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; else{<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; print</span><span class="string">"&lt;td height=40px&gt; &amp;nbsp; &lt;/td&gt;\n"</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; }<br />
+print</span><span class="string">"\n&lt;/tr&gt;\n"</span><span class="keyword">;<br />
+}<br />
+print</span><span class="string">"&lt;/table&gt;"</span><span class="keyword">;<br />
+</span><span class="default">?&gt;<br />
+</span>&lt;/body&gt;<br />
+&lt;/html&gt;</span>
+</code></div>
+  </div>
+ </div>
+ <a name="8366"></a>
+ <div class="note">
+  <strong>teddk at box100 dot com</strong><br />
+  <a href="#8366">08-Sep-2000 03:02</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+There is an an excellent article by Allan Kent on PHP date/time. The full article can be found at:<br />
+<a href="http://www.phpbuilder.net/columns/akent20000610.php3" target="_blank">http://www.phpbuilder.net/columns/akent20000610.php3</a></span>
+</code></div>
+  </div>
+ </div>
+ <div class="foot"><a href="/manual/add-note.php?sect=ref.datetime&amp;redirect=http://www.php.net/manual/en/ref.datetime.php"><img src="http://static.php.net/www.php.net/images/notes-add.gif" alt="add a note" width="13" height="13" align="middle" /></a> <small><a href="/manual/add-note.php?sect=ref.datetime&amp;redirect=http://www.php.net/manual/en/ref.datetime.php">add a note</a></small></div>
+</div><br /><!--UdmComment-->
+<div class="manualnavbar manualnavbar_bottom">
+ <span class="next">
+  <a href="function.checkdate.php">checkdate<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.datetime.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Date and Time</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  &nbsp;
+ </div>
+</div>
+<!--/UdmComment-->
+
+
+ </div>
+ <div class="cleaner">&nbsp;</div>
+</div>
+
+<div id="footnav">
+   <a href="/source.php?url=/manual/en/ref.datetime.php">show source</a> |
+ <a href="/credits.php">credits</a> |
+ <a href="/stats/">stats</a> |
+ <a href="/sitemap.php">sitemap</a> |
+ <a href="/contact.php">contact</a> |
+ <a href="/contact.php#ads">advertising</a> |
+ <a href="/mirrors.php">mirror sites</a>
+</div>
+
+<div id="pagefooter">
+ <div id="copyright">
+  <a href="/copyright.php">Copyright &copy; 2001-2008 The PHP Group</a><br />
+  All rights reserved.
+ </div>
+
+ <div id="thismirror">
+  <a href="/mirror.php">This mirror</a> generously provided by:
+  <a href="http://developer.yahoo.com/">Yahoo! Inc.</a><br />
+  Last updated: Wed Apr 16 05:27:53 2008 PDT
+ </div>
+</div>
+
+</body>
+</html>

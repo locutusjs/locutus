@@ -1,0 +1,1041 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://purl.org/NET/erdf/profile">
+ <title>PHP: Filesystem - Manual</title>
+ <style type="text/css" media="all">
+  @import url("http://static.php.net/www.php.net/styles/site.css");
+  @import url("http://static.php.net/www.php.net/styles/phpnet.css");
+ </style>
+ <!--[if IE]><![if gte IE 6]><![endif]-->
+  <style type="text/css" media="print">
+   @import url("http://static.php.net/www.php.net/styles/print.css");
+  </style>
+ <!--[if IE]><![endif]><![endif]-->
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <link rel="shortcut icon" href="http://static.php.net/www.php.net/favicon.ico" />
+ <link rel="contents" href="index.php" />
+ <link rel="index" href="book.filesystem.php" />
+ <link rel="prev" href="book.filesystem.php" />
+ <link rel="next" href="function.basename.php" />
+ <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
+ <link rel="schema.rdfs" href="http://www.w3.org/2000/01/rdf-schema#" />
+ <script type="text/javascript" src="http://static.php.net/www.php.net/userprefs.js"></script>
+ <base href="http://www.php.net/manual/en/ref.filesystem.php" />
+</head>
+<body>
+
+<div id="headnav">
+ <a href="/" rel="home"><img src="http://static.php.net/www.php.net/images/php.gif"
+ alt="PHP" width="120" height="67" /></a>
+ <div id="headmenu">
+  <a href="/downloads.php">downloads</a> |
+  <a href="/docs.php">documentation</a> |
+  <a href="/FAQ.php">faq</a> |
+  <a href="/support.php">getting help</a> |
+  <a href="/mailing-lists.php">mailing lists</a> |
+  <a href="http://bugs.php.net/">reporting bugs</a> |
+  <a href="/sites.php">php.net sites</a> |
+  <a href="/links.php">links</a> |
+  <a href="/conferences/">conferences</a> |
+  <a href="/my.php">my php.net</a>
+ </div>
+</div>
+
+<div id="headsearch">
+ <form method="post" action="/search.php" id="topsearch">
+  <p>
+   <span title="Keyboard shortcut: Alt+S (Win), Ctrl+S (Apple)">
+    <span class="shortkey">s</span>earch for
+   </span>
+   <input type="text" name="pattern" value="" size="30" accesskey="s" />
+   <span>in the</span>
+   <select name="show">
+    <option value="quickref" selected="selected">function list</option>
+    <option value="all"      >all php.net sites</option>
+    <option value="local"    >this mirror only</option>
+    <option value="manual"   >online documentation</option>
+    <option value="bugdb"    >bug database</option>
+    <option value="news_archive">Site News Archive</option>
+    <option value="changelogs">All Changelogs</option>
+    <option value="pear"     >just pear.php.net</option>
+    <option value="pecl"     >just pecl.php.net</option>
+    <option value="talks"    >just talks.php.net</option>
+    <option value="maillist" >general mailing list</option>
+    <option value="devlist"  >developer mailing list</option>
+    <option value="phpdoc"   >documentation mailing list</option>
+   </select>
+   <input type="image"
+          src="http://static.php.net/www.php.net/images/small_submit_white.gif"
+          class="submit" alt="search" />
+   <input type="hidden" name="lang" value="en" />
+  </p>
+ </form>
+</div>
+
+<div id="layout_2">
+ <div id="leftbar">
+<!--UdmComment-->
+<ul class="toc">
+ <li class="header home"><a href="index.php">PHP Manual</a></li>
+ <li class="header up"><a href="funcref.php">Function Reference</a></li>
+ <li class="header up"><a href="refs.fileprocess.file.php">File System Related Extensions</a></li>
+ <li class="header up"><a href="book.filesystem.php">Filesystem</a></li>
+ <li><a href="intro.filesystem.php">Introduction</a></li>
+ <li><a href="filesystem.setup.php">Installing/Configuring</a></li>
+ <li><a href="filesystem.constants.php">Predefined Constants</a></li>
+ <li class="active"><a href="ref.filesystem.php">Filesystem</a></li>
+</ul><!--/UdmComment-->
+
+ </div>
+ <div id="content" class="manual/en">
+<!--UdmComment-->
+<div class="manualnavbar manualnavbar_top">
+ <span class="next">
+  <a href="function.basename.php">basename<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.filesystem.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Filesystem</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  <form action="/manual/change.php" method="get">
+   <p>view this page in </p><fieldset><select name="page">
+    <option value="bg/ref.filesystem.php">Bulgarian</option>
+    <option value="pt_BR/ref.filesystem.php">Brazilian Portuguese</option>
+    <option value="fr/ref.filesystem.php">French</option>
+    <option value="de/ref.filesystem.php">German</option>
+    <option value="it/ref.filesystem.php">Italian</option>
+    <option value="ja/ref.filesystem.php">Japanese</option>
+    <option value="pl/ref.filesystem.php">Polish</option>
+    <option value="ro/ref.filesystem.php">Romanian</option>
+    <option value="ru/ref.filesystem.php">Russian</option>
+    <option value="es/ref.filesystem.php">Spanish</option>
+    <option value="help-translate.php">Other</option>
+   </select>
+   <input type="image" src="http://static.php.net/www.php.net/images/small_submit.gif" id="changeLangImage" alt="" />
+  </fieldset></form>
+ </div>
+</div>
+<!--/UdmComment-->
+
+<div>
+ <h1 class="title">Filesystem Functions</h1>
+ 
+
+ <div class="partintro">
+  <h1 class="title">See Also</h1>
+  <p class="simpara">
+   For related functions, see also the <a href="ref.dir.php" class="link">Directory</a>
+   and <a href="ref.exec.php" class="link">Program Execution</a> sections.
+  </p>
+  <p class="simpara">
+   For a list and explanation of the various URL wrappers that can be used
+   as remote files, see also <a href="wrappers.php" class="xref">List of Supported Protocols/Wrappers</a>.
+  </p>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Table of Contents</h2><ul class="chunklist chunklist_reference"><li><a href="function.basename.php">basename</a> — Returns filename component of path</li><li><a href="function.chgrp.php">chgrp</a> — Changes file group</li><li><a href="function.chmod.php">chmod</a> — Changes file mode</li><li><a href="function.chown.php">chown</a> — Changes file owner</li><li><a href="function.clearstatcache.php">clearstatcache</a> — Clears file status cache</li><li><a href="function.copy.php">copy</a> — Copies file</li><li><a href="function.delete.php">delete</a> — See unlink or unset</li><li><a href="function.dirname.php">dirname</a> — Returns directory name component of path</li><li><a href="function.disk-free-space.php">disk_free_space</a> — Returns available space in directory</li><li><a href="function.disk-total-space.php">disk_total_space</a> — Returns the total size of a directory</li><li><a href="function.diskfreespace.php">diskfreespace</a> — Alias of disk_free_space</li><li><a href="function.fclose.php">fclose</a> — Closes an open file pointer</li><li><a href="function.feof.php">feof</a> — Tests for end-of-file on a file pointer</li><li><a href="function.fflush.php">fflush</a> — Flushes the output to a file</li><li><a href="function.fgetc.php">fgetc</a> — Gets character from file pointer</li><li><a href="function.fgetcsv.php">fgetcsv</a> — Gets line from file pointer and parse for CSV fields</li><li><a href="function.fgets.php">fgets</a> — Gets line from file pointer</li><li><a href="function.fgetss.php">fgetss</a> — Gets line from file pointer and strip HTML tags</li><li><a href="function.file-exists.php">file_exists</a> — Checks whether a file or directory exists</li><li><a href="function.file-get-contents.php">file_get_contents</a> — Reads entire file into a string</li><li><a href="function.file-put-contents.php">file_put_contents</a> — Write a string to a file</li><li><a href="function.file.php">file</a> — Reads entire file into an array</li><li><a href="function.fileatime.php">fileatime</a> — Gets last access time of file</li><li><a href="function.filectime.php">filectime</a> — Gets inode change time of file</li><li><a href="function.filegroup.php">filegroup</a> — Gets file group</li><li><a href="function.fileinode.php">fileinode</a> — Gets file inode</li><li><a href="function.filemtime.php">filemtime</a> — Gets file modification time</li><li><a href="function.fileowner.php">fileowner</a> — Gets file owner</li><li><a href="function.fileperms.php">fileperms</a> — Gets file permissions</li><li><a href="function.filesize.php">filesize</a> — Gets file size</li><li><a href="function.filetype.php">filetype</a> — Gets file type</li><li><a href="function.flock.php">flock</a> — Portable advisory file locking</li><li><a href="function.fnmatch.php">fnmatch</a> — Match filename against a pattern</li><li><a href="function.fopen.php">fopen</a> — Opens file or URL</li><li><a href="function.fpassthru.php">fpassthru</a> — Output all remaining data on a file pointer</li><li><a href="function.fputcsv.php">fputcsv</a> — Format line as CSV and write to file pointer</li><li><a href="function.fputs.php">fputs</a> — Alias of fwrite</li><li><a href="function.fread.php">fread</a> — Binary-safe file read</li><li><a href="function.fscanf.php">fscanf</a> — Parses input from a file according to a format</li><li><a href="function.fseek.php">fseek</a> — Seeks on a file pointer</li><li><a href="function.fstat.php">fstat</a> — Gets information about a file using an open file pointer</li><li><a href="function.ftell.php">ftell</a> — Tells file pointer read/write position</li><li><a href="function.ftruncate.php">ftruncate</a> — Truncates a file to a given length</li><li><a href="function.fwrite.php">fwrite</a> — Binary-safe file write</li><li><a href="function.glob.php">glob</a> — Find pathnames matching a pattern</li><li><a href="function.is-dir.php">is_dir</a> — Tells whether the filename is a directory</li><li><a href="function.is-executable.php">is_executable</a> — Tells whether the filename is executable</li><li><a href="function.is-file.php">is_file</a> — Tells whether the filename is a regular file</li><li><a href="function.is-link.php">is_link</a> — Tells whether the filename is a symbolic link</li><li><a href="function.is-readable.php">is_readable</a> — Tells whether the filename is readable</li><li><a href="function.is-uploaded-file.php">is_uploaded_file</a> — Tells whether the file was uploaded via HTTP POST</li><li><a href="function.is-writable.php">is_writable</a> — Tells whether the filename is writable</li><li><a href="function.is-writeable.php">is_writeable</a> — Alias of is_writable</li><li><a href="function.lchgrp.php">lchgrp</a> — Changes group ownership of symlink</li><li><a href="function.lchown.php">lchown</a> — Changes user ownership of symlink</li><li><a href="function.link.php">link</a> — Create a hard link</li><li><a href="function.linkinfo.php">linkinfo</a> — Gets information about a link</li><li><a href="function.lstat.php">lstat</a> — Gives information about a file or symbolic link</li><li><a href="function.mkdir.php">mkdir</a> — Makes directory</li><li><a href="function.move-uploaded-file.php">move_uploaded_file</a> — Moves an uploaded file to a new location</li><li><a href="function.parse-ini-file.php">parse_ini_file</a> — Parse a configuration file</li><li><a href="function.pathinfo.php">pathinfo</a> — Returns information about a file path</li><li><a href="function.pclose.php">pclose</a> — Closes process file pointer</li><li><a href="function.popen.php">popen</a> — Opens process file pointer</li><li><a href="function.readfile.php">readfile</a> — Outputs a file</li><li><a href="function.readlink.php">readlink</a> — Returns the target of a symbolic link</li><li><a href="function.realpath.php">realpath</a> — Returns canonicalized absolute pathname</li><li><a href="function.rename.php">rename</a> — Renames a file or directory</li><li><a href="function.rewind.php">rewind</a> — Rewind the position of a file pointer</li><li><a href="function.rmdir.php">rmdir</a> — Removes directory</li><li><a href="function.set-file-buffer.php">set_file_buffer</a> — Alias of stream_set_write_buffer</li><li><a href="function.stat.php">stat</a> — Gives information about a file</li><li><a href="function.symlink.php">symlink</a> — Creates a symbolic link</li><li><a href="function.tempnam.php">tempnam</a> — Create file with unique file name</li><li><a href="function.tmpfile.php">tmpfile</a> — Creates a temporary file</li><li><a href="function.touch.php">touch</a> — Sets access and modification time of file</li><li><a href="function.umask.php">umask</a> — Changes the current umask</li><li><a href="function.unlink.php">unlink</a> — Deletes a file</li></ul>
+</div>
+<br /><br /><!--UdmComment-->
+<div class="manualnavbar manualnavbar_bottom">
+ <span class="next">
+  <a href="function.basename.php">basename<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.filesystem.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Filesystem</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  &nbsp;
+ </div>
+</div>
+<!--/UdmComment-->
+
+
+<div id="usernotes">
+ <div class="head">
+  <span class="action"><a href="/manual/add-note.php?sect=ref.filesystem&amp;redirect=http://www.php.net/manual/en/ref.filesystem.php"><img src="http://static.php.net/www.php.net/images/notes-add.gif" alt="add a note" width="13" height="13" align="middle" /></a> <small><a href="/manual/add-note.php?sect=ref.filesystem&amp;redirect=http://www.php.net/manual/en/ref.filesystem.php">add a note</a></small></span>
+  <small>User Contributed Notes</small><br />
+  <strong>Filesystem</strong>
+ </div>
+ <a name="73954"></a>
+ <div class="note">
+  <strong>Christian</strong><br />
+  <a href="#73954">17-Mar-2007 10:24</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I just learned that, to specify file names in a portable manner, you DON'T need 'DIRECTORY_SEPARATOR' - just use '/'. This really surprised and shocked me, as until now I typed about a zillion times 'DIRECTORY_SEPARATOR' to stay platform independent - unnecessary. Don't make the same mistake.</span>
+</code></div>
+  </div>
+ </div>
+ <a name="50360"></a>
+ <div class="note">
+  <strong>tunnelareaten at gmail dot com</strong><br />
+  <a href="#50360">25-Feb-2005 08:27</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I made this function to search and/or display files by extension or for a string occurance in the filename. Any comments or enhancements are welcome offcourse. I'll update this function soon.<br />
+<br />
+usage: list_files([string], [string], [int 1 | 0], [int 1 | 0]);<br />
+<br />
+search for extension: list_files([string], [string], [0], [int 1 | 0]);<br />
+returns array: $myArray = list_files([string], [string], [0], [0]);<br />
+echo result: list_files([string], [string], [0], [1]);<br />
+<br />
+search for string occurance: list_files([string], [string], [1], [int 1 | 0]);<br />
+returns array: $myArray = list_files([string], [string], [1], [0]);<br />
+echo result: list_files([string], [string], [1], [1]);<br />
+<br />
+<span class="default">&lt;?php<br />
+<br />
+</span><span class="keyword">function </span><span class="default">list_files</span><span class="keyword">(</span><span class="default">$directory</span><span class="keyword">, </span><span class="default">$stringSearch</span><span class="keyword">, </span><span class="default">$searchHandler</span><span class="keyword">, </span><span class="default">$outputHandler</span><span class="keyword">) {<br />
+&nbsp;</span><span class="default">$errorHandler </span><span class="keyword">= </span><span class="default">false</span><span class="keyword">;<br />
+&nbsp;</span><span class="default">$result </span><span class="keyword">= array();<br />
+&nbsp;if (! </span><span class="default">$directoryHandler </span><span class="keyword">= @</span><span class="default">opendir </span><span class="keyword">(</span><span class="default">$directory</span><span class="keyword">)) {<br />
+&nbsp; echo (</span><span class="string">"&lt;pre&gt;\nerror: directory \"$directory\" doesn't exist!\n&lt;/pre&gt;\n"</span><span class="keyword">);<br />
+&nbsp;return </span><span class="default">$errorHandler </span><span class="keyword">= </span><span class="default">true</span><span class="keyword">;<br />
+&nbsp;}<br />
+&nbsp;if (</span><span class="default">$searchHandler </span><span class="keyword">=== </span><span class="default">0</span><span class="keyword">) {<br />
+&nbsp; while (</span><span class="default">false </span><span class="keyword">!== (</span><span class="default">$fileName </span><span class="keyword">= @</span><span class="default">readdir </span><span class="keyword">(</span><span class="default">$directoryHandler</span><span class="keyword">))) {<br />
+&nbsp;&nbsp; if(@</span><span class="default">substr </span><span class="keyword">(</span><span class="default">$fileName</span><span class="keyword">, - @</span><span class="default">strlen </span><span class="keyword">(</span><span class="default">$stringSearch</span><span class="keyword">)) === </span><span class="default">$stringSearch</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; @</span><span class="default">array_push </span><span class="keyword">(</span><span class="default">$result</span><span class="keyword">, </span><span class="default">$fileName</span><span class="keyword">);<br />
+&nbsp;&nbsp; }<br />
+&nbsp; }<br />
+&nbsp;}<br />
+&nbsp;if (</span><span class="default">$searchHandler </span><span class="keyword">=== </span><span class="default">1</span><span class="keyword">) {<br />
+&nbsp; while(</span><span class="default">false </span><span class="keyword">!== (</span><span class="default">$fileName </span><span class="keyword">= @</span><span class="default">readdir </span><span class="keyword">(</span><span class="default">$directoryHandler</span><span class="keyword">))) {<br />
+&nbsp;&nbsp; if(@</span><span class="default">substr_count </span><span class="keyword">(</span><span class="default">$fileName</span><span class="keyword">, </span><span class="default">$stringSearch</span><span class="keyword">) &gt; </span><span class="default">0</span><span class="keyword">) {<br />
+&nbsp;&nbsp;&nbsp; @</span><span class="default">array_push </span><span class="keyword">(</span><span class="default">$result</span><span class="keyword">, </span><span class="default">$fileName</span><span class="keyword">);<br />
+&nbsp;&nbsp; }<br />
+&nbsp; }<br />
+&nbsp;}<br />
+&nbsp;if ((</span><span class="default">$errorHandler </span><span class="keyword">=== </span><span class="default">true</span><span class="keyword">) &amp;&amp;&nbsp; (@</span><span class="default">count </span><span class="keyword">(</span><span class="default">$result</span><span class="keyword">) === </span><span class="default">0</span><span class="keyword">)) {<br />
+&nbsp; echo (</span><span class="string">"&lt;pre&gt;\nerror: no filetype \"$fileExtension\" found!\n&lt;/pre&gt;\n"</span><span class="keyword">);<br />
+&nbsp;}<br />
+&nbsp;else {<br />
+&nbsp; </span><span class="default">sort </span><span class="keyword">(</span><span class="default">$result</span><span class="keyword">);<br />
+&nbsp; if (</span><span class="default">$outputHandler </span><span class="keyword">=== </span><span class="default">0</span><span class="keyword">) {<br />
+&nbsp;&nbsp; return </span><span class="default">$result</span><span class="keyword">;<br />
+&nbsp; }<br />
+&nbsp; if (</span><span class="default">$outputHandler </span><span class="keyword">=== </span><span class="default">1</span><span class="keyword">) {<br />
+&nbsp;&nbsp; echo (</span><span class="string">"&lt;pre&gt;\n"</span><span class="keyword">);<br />
+&nbsp;&nbsp; </span><span class="default">print_r </span><span class="keyword">(</span><span class="default">$result</span><span class="keyword">);<br />
+&nbsp;&nbsp; echo (</span><span class="string">"&lt;/pre&gt;\n"</span><span class="keyword">); <br />
+&nbsp; }<br />
+&nbsp;}<br />
+}<br />
+<br />
+</span><span class="default">?&gt;</span>
+</span>
+</code></div>
+  </div>
+ </div>
+ <a name="38611"></a>
+ <div class="note">
+  <strong>http://iubito.free.fr</strong><br />
+  <a href="#38611">30-Dec-2003 04:39</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Here is a function I wrote to get the relative path between 2 files or directory.<br />
+<br />
+We suppose that paths are wrotten in Unix format (/ instead of windows \\)<br />
+<br />
+<span class="default">&lt;?php<br />
+</span><span class="comment">/**<br />
+&nbsp;* Return the relative path between two paths / Retourne le chemin relatif entre 2 chemins<br />
+&nbsp;*<br />
+&nbsp;* If $path2 is empty, get the current directory (getcwd).<br />
+&nbsp;* @return string<br />
+&nbsp;*/<br />
+</span><span class="keyword">function </span><span class="default">relativePath</span><span class="keyword">(</span><span class="default">$path1</span><span class="keyword">, </span><span class="default">$path2</span><span class="keyword">=</span><span class="string">''</span><span class="keyword">)<br />
+{<br />
+&nbsp;&nbsp;&nbsp; if (</span><span class="default">$path2 </span><span class="keyword">== </span><span class="string">''</span><span class="keyword">) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$path2 </span><span class="keyword">= </span><span class="default">$path1</span><span class="keyword">;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$path1 </span><span class="keyword">= </span><span class="default">getcwd</span><span class="keyword">();<br />
+&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="comment">//Remove starting, ending, and double / in paths<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$path1 </span><span class="keyword">= </span><span class="default">trim</span><span class="keyword">(</span><span class="default">$path1</span><span class="keyword">,</span><span class="string">'/'</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$path2 </span><span class="keyword">= </span><span class="default">trim</span><span class="keyword">(</span><span class="default">$path2</span><span class="keyword">,</span><span class="string">'/'</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; while (</span><span class="default">substr_count</span><span class="keyword">(</span><span class="default">$path1</span><span class="keyword">, </span><span class="string">'//'</span><span class="keyword">)) </span><span class="default">$path1 </span><span class="keyword">= </span><span class="default">str_replace</span><span class="keyword">(</span><span class="string">'//'</span><span class="keyword">, </span><span class="string">'/'</span><span class="keyword">, </span><span class="default">$path1</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; while (</span><span class="default">substr_count</span><span class="keyword">(</span><span class="default">$path2</span><span class="keyword">, </span><span class="string">'//'</span><span class="keyword">)) </span><span class="default">$path2 </span><span class="keyword">= </span><span class="default">str_replace</span><span class="keyword">(</span><span class="string">'//'</span><span class="keyword">, </span><span class="string">'/'</span><span class="keyword">, </span><span class="default">$path2</span><span class="keyword">);<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="comment">//create arrays<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$arr1 </span><span class="keyword">= </span><span class="default">explode</span><span class="keyword">(</span><span class="string">'/'</span><span class="keyword">, </span><span class="default">$path1</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; if (</span><span class="default">$arr1 </span><span class="keyword">== array(</span><span class="string">''</span><span class="keyword">)) </span><span class="default">$arr1 </span><span class="keyword">= array();<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$arr2 </span><span class="keyword">= </span><span class="default">explode</span><span class="keyword">(</span><span class="string">'/'</span><span class="keyword">, </span><span class="default">$path2</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; if (</span><span class="default">$arr2 </span><span class="keyword">== array(</span><span class="string">''</span><span class="keyword">)) </span><span class="default">$arr2 </span><span class="keyword">= array();<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$size1 </span><span class="keyword">= </span><span class="default">count</span><span class="keyword">(</span><span class="default">$arr1</span><span class="keyword">);<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$size2 </span><span class="keyword">= </span><span class="default">count</span><span class="keyword">(</span><span class="default">$arr2</span><span class="keyword">);<br />
+<br />
+&nbsp;&nbsp;&nbsp; </span><span class="comment">//now the hard part :-p<br />
+&nbsp;&nbsp;&nbsp; </span><span class="default">$path</span><span class="keyword">=</span><span class="string">''</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; for(</span><span class="default">$i</span><span class="keyword">=</span><span class="default">0</span><span class="keyword">; </span><span class="default">$i</span><span class="keyword">&lt;</span><span class="default">min</span><span class="keyword">(</span><span class="default">$size1</span><span class="keyword">,</span><span class="default">$size2</span><span class="keyword">); </span><span class="default">$i</span><span class="keyword">++)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; if (</span><span class="default">$arr1</span><span class="keyword">[</span><span class="default">$i</span><span class="keyword">] == </span><span class="default">$arr2</span><span class="keyword">[</span><span class="default">$i</span><span class="keyword">]) continue;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; else </span><span class="default">$path </span><span class="keyword">= </span><span class="string">'../'</span><span class="keyword">.</span><span class="default">$path</span><span class="keyword">.</span><span class="default">$arr2</span><span class="keyword">[</span><span class="default">$i</span><span class="keyword">].</span><span class="string">'/'</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; if (</span><span class="default">$size1 </span><span class="keyword">&gt; </span><span class="default">$size2</span><span class="keyword">)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; for (</span><span class="default">$i </span><span class="keyword">= </span><span class="default">$size2</span><span class="keyword">; </span><span class="default">$i </span><span class="keyword">&lt; </span><span class="default">$size1</span><span class="keyword">; </span><span class="default">$i</span><span class="keyword">++)<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$path </span><span class="keyword">= </span><span class="string">'../'</span><span class="keyword">.</span><span class="default">$path</span><span class="keyword">;<br />
+&nbsp;&nbsp;&nbsp; else if (</span><span class="default">$size2 </span><span class="keyword">&gt; </span><span class="default">$size1</span><span class="keyword">)<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; for (</span><span class="default">$i </span><span class="keyword">= </span><span class="default">$size1</span><span class="keyword">; </span><span class="default">$i </span><span class="keyword">&lt; </span><span class="default">$size2</span><span class="keyword">; </span><span class="default">$i</span><span class="keyword">++)<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span><span class="default">$path </span><span class="keyword">.= </span><span class="default">$arr2</span><span class="keyword">[</span><span class="default">$i</span><span class="keyword">].</span><span class="string">'/'</span><span class="keyword">;<br />
+<br />
+&nbsp;&nbsp;&nbsp; return </span><span class="default">$path</span><span class="keyword">;<br />
+}<br />
+</span><span class="default">?&gt;<br />
+</span><br />
+Enjoy ! :-)</span>
+</code></div>
+  </div>
+ </div>
+ <a name="35196"></a>
+ <div class="note">
+  <strong>Gregor Mosheh</strong><br />
+  <a href="#35196">22-Aug-2003 05:23</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+This function searches a directory and returns an array of all files whose filename matches the specified regular expression. It's similar in concept to the Unix find program.<br />
+<br />
+&nbsp;function findfile($location='',$fileregex='') {<br />
+&nbsp;&nbsp;&nbsp; if (!$location or !is_dir($location) or !$fileregex) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; return false;<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp; $matchedfiles = array();<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp; $all = opendir($location);<br />
+&nbsp;&nbsp;&nbsp; while ($file = readdir($all)) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; if (is_dir($location.'/'.$file) and $file &lt;&gt; ".." and $file &lt;&gt; ".") {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $subdir_matches = findfile($location.'/'.$file,$fileregex);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $matchedfiles = array_merge($matchedfiles,$subdir_matches);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; unset($file);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp; elseif (!is_dir($location.'/'.$file)) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; if (preg_match($fileregex,$file)) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; array_push($matchedfiles,$location.'/'.$file);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp; }<br />
+&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; closedir($all);<br />
+&nbsp;&nbsp;&nbsp; unset($all);<br />
+&nbsp;&nbsp;&nbsp; return $matchedfiles;<br />
+&nbsp;}<br />
+<br />
+$htmlfiles = findfile('/some/dir','/\.(htm|html)$/');</span>
+</code></div>
+  </div>
+ </div>
+ <a name="34144"></a>
+ <div class="note">
+  <strong>Gregor Mosheh</strong><br />
+  <a href="#34144">16-Jul-2003 10:25</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+I needed a function to find disk usage for a directory and its subs, so here it is. It's kinda like the Unix du program, except it returns the usage in bytes, not blocks.<br />
+<br />
+function du($location) {<br />
+&nbsp;&nbsp; if (!$location or !is_dir($location)) {<br />
+&nbsp;&nbsp; &nbsp;&nbsp; return 0;<br />
+&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp; $total = 0;<br />
+<br />
+&nbsp;&nbsp; $all = opendir($location);<br />
+&nbsp;&nbsp; while ($file = readdir($all)) {<br />
+&nbsp;&nbsp; &nbsp;&nbsp; if (is_dir($location.'/'.$file) and $file &lt;&gt; ".." and $file &lt;&gt; ".") {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; $total += du($location.'/'.$file);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; unset($file);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; &nbsp;&nbsp; elseif (!is_dir($location.'/'.$file)) {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; $stats = stat($location.'/'.$file);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; $total += $stats['size'];<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; unset($file);<br />
+&nbsp;&nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp; }<br />
+&nbsp;&nbsp; closedir($all);<br />
+&nbsp;&nbsp; unset($all);<br />
+&nbsp;&nbsp; return $total;<br />
+}<br />
+<br />
+print du('/some/directory');</span>
+</code></div>
+  </div>
+ </div>
+ <a name="33674"></a>
+ <div class="note">
+  <strong>l_domenech at yahoo dot ca</strong><br />
+  <a href="#33674">03-Jul-2003 10:25</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+In the code samples of the user-contributed notes, you'll find functions that sometimes need a slash at the end of a folder path and sometimes don't.<br />
+<br />
+Here's a little function to append a slash at the end of a path if there isn't one already.<br />
+<br />
+function append_slash_if_none($string)<br />
+&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp; if (ereg ("/$", $string))<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return $string;<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; return ereg_replace("$", "/", $string);<br />
+&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp; }<br />
+<br />
+(Replace with a backslash if you're on Windows...)</span>
+</code></div>
+  </div>
+ </div>
+ <a name="32089"></a>
+ <div class="note">
+  <strong>mitra at mitra dot biz</strong><br />
+  <a href="#32089">15-May-2003 10:10</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Pollard@php.net contributed this in response to a question on setting these variables ...<br />
+This option *IS* settable within your PHP scripts.<br />
+Example:<br />
+<br />
+<span class="default">&lt;?php<br />
+&nbsp; ini_set</span><span class="keyword">(</span><span class="string">'auto_detect_line_endings'</span><span class="keyword">, </span><span class="default">true</span><span class="keyword">);<br />
+&nbsp; </span><span class="default">$contents </span><span class="keyword">= </span><span class="default">file</span><span class="keyword">(</span><span class="string">'unknowntype.txt'</span><span class="keyword">);<br />
+<br />
+&nbsp; </span><span class="default">ini_set</span><span class="keyword">(</span><span class="string">'auto_detect_line_endings'</span><span class="keyword">, </span><span class="default">false</span><span class="keyword">);<br />
+&nbsp; </span><span class="default">$content2 </span><span class="keyword">= </span><span class="default">file</span><span class="keyword">(</span><span class="string">'unixfile.txt'</span><span class="keyword">);<br />
+</span><span class="default">?&gt;<br />
+</span><br />
+Note, with PHP 4.3 anytime Mac files are read using fgets or file you'll need to auto_detect_line_endings since \n is otherwise assumed.&nbsp; However, with PHP 5.0, stream_get_line() will allow you to specify what line ending character to read up to.<br />
+<br />
+\\ Read a line from a MAC file<br />
+stream_get_line($fp, 4096, "\r"); <br />
+<br />
+\\ Read a line from a UNIX file<br />
+stream_get_line($fp, 4096, "\n"); <br />
+<br />
+\\ Read a line from a DOS file<br />
+stream_get_line($fp, 4096, "\r\n"); <br />
+<br />
+\\ Read a line up to any filesystem line ending<br />
+ini_set('auto_detect_line_endings', true); fgets($fp); <br />
+<br />
+\\ You can also make up your own line ending characters:<br />
+\\ Read up to the first instance of ":"<br />
+stream_get_line($fp, 4096, ":");</span>
+</code></div>
+  </div>
+ </div>
+ <a name="30924"></a>
+ <div class="note">
+  <strong>regis at webstuff dot com dot br</strong><br />
+  <a href="#30924">03-Apr-2003 07:49</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+Here is a useful function if you're having trouble writing raw bytes into a file. <br />
+<br />
+It receives an integer and returns an array containing the ASCII values of the bytes on each index of the array.<br />
+<br />
+function int2bytes($number){<br />
+&nbsp; $byte = $number;<br />
+&nbsp; $i=0;<br />
+&nbsp; do{<br />
+&nbsp;&nbsp;&nbsp; $dec_tmp = $byte;<br />
+&nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; $byte = bcdiv($byte,256,0);<br />
+&nbsp;&nbsp;&nbsp; $resto = $dec_tmp - (256 * $byte);<br />
+&nbsp;&nbsp;&nbsp; $return[] = $resto;<br />
+&nbsp; } while($byte &gt;= 256);<br />
+&nbsp; if($byte) $return[] = $byte;<br />
+&nbsp; return array_reverse($return);<br />
+}<br />
+<br />
+Example:<br />
+<br />
+$arr = int2bytes(75832);<br />
+<br />
+$arr will contain the following values:<br />
+Array<br />
+(<br />
+&nbsp;&nbsp;&nbsp; [0] =&gt; 1<br />
+&nbsp;&nbsp;&nbsp; [1] =&gt; 40<br />
+&nbsp;&nbsp;&nbsp; [2] =&gt; 56<br />
+)<br />
+<br />
+Now, to write this data to the file, just use a fputs() with chr(), just like this:<br />
+<br />
+fputs($fp,chr($arr[0]).chr($arr[1]).chr($arr[2]))<br />
+<br />
+-- Regis</span>
+</code></div>
+  </div>
+ </div>
+ <a name="30152"></a>
+ <div class="note">
+  <strong>jdhurn at uberidx dot com</strong><br />
+  <a href="#30152">08-Mar-2003 07:18</a>
+  <div class="text">
+<div class="phpcode"><code><span class="html">
+This is a function I use to determine if a file contains Binary information. I use this for my search engine so that it doesn't try to index files like .zip or .mp3 or any other file that doesn't contain readable information. It makes use of the Character Type Extension if it's loaded, if it's not then it uses Regular Expressions.<br />
+<br />
+function is_binary($link)<br />
+{<br />
+&nbsp;&nbsp; &nbsp; $tmpStr&nbsp; = '';<br />
+&nbsp;&nbsp; &nbsp; @$fp&nbsp; &nbsp;&nbsp; = fopen($link, 'rb');<br />
+&nbsp;&nbsp; &nbsp; @$tmpStr = fread($fp, 256);<br />
+&nbsp;&nbsp; &nbsp; @fclose($fp);<br />
+<br />
+&nbsp;&nbsp; &nbsp; if($tmpStr != '')<br />
+&nbsp;&nbsp; &nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $tmpStr = str_replace(chr(10), '', $tmpStr);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $tmpStr = str_replace(chr(13), '', $tmpStr);<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; $tmpInt = 0;<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for($i =0; $i &lt; strlen($tmpStr); $i++)<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; if( extension_loaded('ctype') )<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; if( !ctype_print($tmpStr[$i]) )<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $tmpInt++;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if( !eregi("[[:print:]]+", $tmpStr[$i]) )<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $tmpInt++;<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if($tmpInt &gt; 5)<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; return(0);<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; else<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; return(1);<br />
+&nbsp;&nbsp; &nbsp; }<br />
+&nbsp;&nbsp; &nbsp; else<br />
+&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return(0);<br />
+}</span>
+</code></div>
+  </div>
+ </div>
+ <div class="foot"><a href="/manual/add-note.php?sect=ref.filesystem&amp;redirect=http://www.php.net/manual/en/ref.filesystem.php"><img src="http://static.php.net/www.php.net/images/notes-add.gif" alt="add a note" width="13" height="13" align="middle" /></a> <small><a href="/manual/add-note.php?sect=ref.filesystem&amp;redirect=http://www.php.net/manual/en/ref.filesystem.php">add a note</a></small></div>
+</div><br /><!--UdmComment-->
+<div class="manualnavbar manualnavbar_bottom">
+ <span class="next">
+  <a href="function.basename.php">basename<img src="http://static.php.net/www.php.net/images/caret-r.gif" alt="&gt;" width="11" height="7" /></a>
+ </span>
+ <span class="prev">
+  <a href="book.filesystem.php"><img src="http://static.php.net/www.php.net/images/caret-l.gif" alt="&lt;" width="11" height="7" />Filesystem</a>
+ </span>
+ <hr />
+ <span class="lastupdated">Last updated: Fri, 11 Apr 2008</span>
+ <div class="langchooser">
+  &nbsp;
+ </div>
+</div>
+<!--/UdmComment-->
+
+
+ </div>
+ <div class="cleaner">&nbsp;</div>
+</div>
+
+<div id="footnav">
+   <a href="/source.php?url=/manual/en/ref.filesystem.php">show source</a> |
+ <a href="/credits.php">credits</a> |
+ <a href="/stats/">stats</a> |
+ <a href="/sitemap.php">sitemap</a> |
+ <a href="/contact.php">contact</a> |
+ <a href="/contact.php#ads">advertising</a> |
+ <a href="/mirrors.php">mirror sites</a>
+</div>
+
+<div id="pagefooter">
+ <div id="copyright">
+  <a href="/copyright.php">Copyright &copy; 2001-2008 The PHP Group</a><br />
+  All rights reserved.
+ </div>
+
+ <div id="thismirror">
+  <a href="/mirror.php">This mirror</a> generously provided by:
+  <a href="http://developer.yahoo.com/">Yahoo! Inc.</a><br />
+  Last updated: Wed Apr 16 05:27:53 2008 PDT
+ </div>
+</div>
+
+</body>
+</html>
