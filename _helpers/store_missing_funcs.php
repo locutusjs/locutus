@@ -135,13 +135,11 @@
     $unported_homedir = "/home/kevin/workspace/plutonia-phpjs/_unported";
     
     $js_subcats  = jsSubCats($function_homedir);
-    // js subcats are leading
+    // js subcats are leading, otherwise we would get an enormous amount of unportable functions (snmp, gd, etc)
     //$php_subcats = phpSubCats();
     
     $js_functions  = jsFunctions($js_subcats, $function_homedir);
     $php_functions = phpFunctions($js_subcats);
-    
-
     
     $missing = missing2d($php_functions, $js_functions);
     foreach($missing as $subcat=>$func_arr){
