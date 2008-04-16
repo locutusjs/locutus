@@ -114,9 +114,10 @@
     
     function jsFunctionStore($function, $subcat, $function_homedir){
         $store_file = $function_homedir."/".$subcat."/".$function.".js";
-        
-        file_put_contents($store_file, '// not yet ported. feel like it?' );
-        echo system("/usr/bin/svn add ".$store_file )."\n";
+        if(!file_exists($store_file)){
+            file_put_contents($store_file, '// not yet ported. feel like it?' );
+            echo system("/usr/bin/svn add ".$store_file )."\n";
+        }
     }
     
     $function_homedir = "/home/kevin/workspace/plutonia-phpjs/functions";
@@ -134,8 +135,7 @@
     $missing = missing2d($php_functions, $js_functions);
     foreach($missing as $subcat=>$func_arr){
         foreach($func_arr as $k=>$function){
-            jsFunctionStore($function, $subcat, $function_homedir);
-            die;
+            jsFunctionStore($function, $subcat, $unported_homedir);
         }
     }
 ?>
