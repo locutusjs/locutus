@@ -112,7 +112,15 @@
         return $js_functions; 
     }
     
+    function jsFunctionStore($function, $subcat, $function_homedir){
+        $store_file = $function_homedir."/".$subcat."/".$function.".js";
+        
+        file_put_contents($store_file, '// not yet ported. feel like it?' );
+        echo system("/usr/bin/svn add ".$store_file )."\n";
+    }
+    
     $function_homedir = "/home/kevin/workspace/plutonia-phpjs/functions";
+    $unported_homedir = "/home/kevin/workspace/plutonia-phpjs/_unported";
     
     $js_subcats  = jsSubCats($function_homedir);
     // js subcats are leading
@@ -125,12 +133,9 @@
     
     $missing = missing2d($php_functions, $js_functions);
     foreach($missing as $subcat=>$func_arr){
-        
+        foreach($func_arr as $k=>$function){
+            jsFunctionStore($function, $subcat, $function_homedir);
+            die;
+        }
     }
-    
-    
-    
-    print_r($missing);
-    //print_r($js_functions);
-    //print_r($php_functions);
 ?>
