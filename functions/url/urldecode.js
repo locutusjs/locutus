@@ -6,10 +6,10 @@ function urldecode( str ) {
     // *     returns 1: 'Kevin van Zonneveld!'
     
     var ret = str;
-                        
+       
+    ret = ret.replace(/\+/g, '%20');
+    ret = decodeURIComponent(ret);
     ret = ret.toString();
-    ret = encodeURIComponent(ret);
-    ret = ret.replace(/%20/g, '+');
 
     return ret;
 }

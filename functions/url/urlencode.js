@@ -7,9 +7,9 @@ function urlencode( str ) {
                                      
     var ret = str;
     
-    ret = ret.replace(/\+/g, '%20');
-    ret = decodeURIComponent(ret);
     ret = ret.toString();
+    ret = encodeURIComponent(ret);
+    ret = ret.replace(/%20/g, '+');
 
     return ret;
 }
