@@ -8,6 +8,8 @@ function str_replace( search, replace, subject ) {
     // -    depends on: is_array
     // *     example 1: str_replace(' ', '.', 'Kevin van Zonneveld');
     // *     returns 1: 'Kevin.van.Zonneveld'
+    // *     example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
+    // *     returns 2: 'hello, mars'
 
     var f = search, r = replace, s = subject;
     var ra = is_array(r), sa = is_array(s), f = [].concat(f), r = [].concat(r), i = (s = [].concat(s)).length;
