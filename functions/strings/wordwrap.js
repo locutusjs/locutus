@@ -6,7 +6,7 @@ function wordwrap( str, int_width, str_break, cut ) {
     // *     example 1: wordwrap('Kevin van Zonneveld', 6, '|', true);
     // *     returns 1: 'Kevin |van |Zonnev|eld'
     
-    var m = int_width, b = str_break, c = cut
+    var m = int_width, b = str_break, c = cut;
     var i, j, l, s, r;
     
     if(m < 1) {
