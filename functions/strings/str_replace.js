@@ -7,6 +7,8 @@ function str_replace(search, replace, subject) {
     // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // *     example 1: str_replace(' ', '.', 'Kevin van Zonneveld');
     // *     returns 1: 'Kevin.van.Zonneveld'
+    // *     example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
+    // *     returns 2: 'hello, mars'    
 
     var __regexp_escape = function(text) {
         if (!arguments.callee.sRE) {
