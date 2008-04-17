@@ -4,7 +4,7 @@ function wordwrap( str, int_width, str_break, cut ) {
     // +   improved by: Nick Callen
     // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // *     example 1: wordwrap('Kevin van Zonneveld', 6, '|', true);
-    // *     returns 1: 'Kevin |van Zo|nnevel|d'
+    // *     returns 1: 'Kevin |van |Zonnev|eld'
     
     var m = int_width, b = str_break, c = cut
     var i, j, l, s, r;
