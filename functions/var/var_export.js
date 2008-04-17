@@ -7,7 +7,8 @@ function var_export ( mixed_expression, bool_return ) {
 
     var __pad_lines = function ( x ) {
         return x.split("\n").join("\n  ");
-    }
+    };
+    
     var retstr = "";
     
     if(mixed_expression instanceof Array) {
