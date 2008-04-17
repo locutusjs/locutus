@@ -6,7 +6,7 @@ function include( filename ) {
     // +   improved by: Michael White (http://crestidg.com)
     // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
     // *     example 1: include('/pj_test_supportfile_2.js');
-    // *     returns 1: 3
+    // *     returns 1: 1
 
     var js = document.createElement('script');
     js.setAttribute('type', 'text/javascript');
