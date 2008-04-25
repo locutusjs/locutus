@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 0.90
+ * This is version: 0.98
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -16,14 +16,14 @@
  * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Bayron Guevara, Benjamin Lupton, Brad
  * Touesnard, Cagri Ekin, Cord, David, David James, DxGx, FGFEmperor, Felix
- * Geisendoerfer (http://www.debuggable.com/felix), Gabriel Paderni, Leslie
- * Hoare, Lincoln Ramsay, MeEtc (http://yass.meetcweb.com), Mick@el, Nick
- * Callen, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
- * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Sanjoy Roy,
- * Simon Willison (http://simonwillison.net), Steve Clay, Steven Levithan
+ * Geisendoerfer (http://www.debuggable.com/felix), FremyCompany, Gabriel
+ * Paderni, Leslie Hoare, Lincoln Ramsay, MeEtc (http://yass.meetcweb.com),
+ * Mick@el, Nick Callen, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul
+ * Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Sanjoy
+ * Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steven Levithan
  * (http://blog.stevenlevithan.com), T0bsn, Thiago Mata
- * (http://thiagomata.blog.com), Tim Wiel, baris ozdil, booeyOH, djmix,
- * gabriel paderni, ger, john (http://www.jd-tech.net), kenneth,
+ * (http://thiagomata.blog.com), Tim Wiel, baris ozdil, booeyOH, djmix, echo
+ * is bad, gabriel paderni, ger, john (http://www.jd-tech.net), kenneth,
  * penutbutterjelly
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
@@ -50,49 +50,12 @@
  */ 
 
 
-// {{{ abs
-function abs( mixed_number )  {
-    // Absolute value
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_abs/
-    // +       version: 804.1313
-    // +   original by: _argos
-    // +   improved by: Karol Kowalski
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-    // *     example 1: abs(4.2);
-    // *     returns 1: 4.2
-    // *     example 2: abs(-4.2);
-    // *     returns 2: 4.2
-    // *     example 3: abs(-5);
-    // *     returns 3: 5
-    // *     example 4: abs('_argos');
-    // *     returns 4: 0
-
-    return Math.abs(mixed_number) || 0;
-}// }}}
-
-// {{{ addslashes
-function addslashes( str ) {
-    // Quote string with slashes
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_addslashes/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Ates Goral (http://magnetiq.com)
-    // +   improved by: marrtins
-    // *     example 1: addslashes("kevin's birthday");
-    // *     returns 1: "kevin\'s birthday"
-
-    return str.replace('/(["\'\])/g', "\\$1").replace('/\0/g', "\\0");
-}// }}}
-
 // {{{ array_change_key_case
 function array_change_key_case( array ) {
     // Changes all keys in an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_change_key_case/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Ates Goral (http://magnetiq.com)
     // +   improved by: marrtins
     // *     example 1: array_change_key_case(42);
@@ -134,7 +97,7 @@ function array_chunk( input, size ) {
     // Split an array into chunks
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_chunk/
-    // +       version: 804.1313
+    // +       version: 804.1712
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // *     example 1: array_chunk(['Kevin', 'van', 'Zonneveld'], 2);
     // *     returns 1: {0 : {0: 'Kevin', 1: 'van'} , 1 : {0: 'Zonneveld'}}
@@ -151,7 +114,7 @@ function array_combine( keys, values ) {
     // Creates an array by using one array for keys and another for its values
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_combine/
-    // +       version: 804.1111
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_combine([0,1,2], ['kevin','van','zonneveld']);
     // *     returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
@@ -180,7 +143,7 @@ function array_count_values( array ) {
     // Counts all the values of an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_count_values/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Ates Goral (http://magnetiq.com)
     // + namespaced by: Michael White (http://crestidg.com)
     // *     example 1: array_count_values([ 3, 5, 3, "foo", "bar", "foo" ]);
@@ -223,7 +186,7 @@ function array_diff (array) {
     // Computes the difference of arrays
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_diff/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Sanjoy Roy
     // *     example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld']);
@@ -260,7 +223,7 @@ function array_diff_assoc ( array ) {
     // Computes the difference of arrays with additional index check
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_diff_assoc/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'});
     // *     returns 1: {1: 'van', 2: 'Zonneveld'}
@@ -297,7 +260,7 @@ function array_diff_key( object ) {
     // Computes the difference of arrays using keys for comparison
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_diff_key/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Ates Goral (http://magnetiq.com)
     // *     example 1: array_diff_key({red: 1, green: 2, blue: 3, white: 4});
     // *     returns 1: {"red":1, "green":2, "blue":3, "white":4}
@@ -331,7 +294,7 @@ function array_fill( start_index, num, mixed_val ) {
     // Fill an array with values
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_fill/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: _argos
     // *     example 1: array_fill(5, 6, 'banana');
@@ -353,7 +316,7 @@ function array_flip( trans ) {
     // Exchanges all keys with their associated values in an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_flip/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_flip( {a: 1, b: 1, c: 2} );
     // *     returns 1: {1: 'b', 2: 'c'}
@@ -372,7 +335,7 @@ function array_key_exists ( key, search ) {
     // Checks if the given key or index exists in the array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_key_exists/
-    // +       version: 804.1017
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Felix Geisendoerfer (http://www.debuggable.com/felix)
     // *     example 1: array_key_exists('kevin', {'kevin': 'van Zonneveld'});
@@ -391,7 +354,7 @@ function array_keys( input, search_value, strict ) {
     // Return all the keys of an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_keys/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
     // *     returns 1: {0: 'firstname', 1: 'surname'}
@@ -422,7 +385,7 @@ function array_map( callback ) {
     // Applies the callback to the elements of the given arrays
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_map/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Andrea Giammarchi (http://webreflection.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_map( function(a){return (a * a * a);}, [1, 2, 3, 4, 5] );
@@ -458,7 +421,7 @@ function array_pad ( input, pad_size, pad_value ) {
     // Pad array to the specified length with a value
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_pad/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: _argos
     // *     example 1: array_pad([ 7, 8, 9 ], 2, 'a');
     // *     returns 1: [ 7, 8, 9]
@@ -489,7 +452,7 @@ function array_pop( array ) {
     // Pop the element off the end of array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_pop/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_pop([0,1,2]);
     // *     returns 1: 2
@@ -507,7 +470,7 @@ function array_product ( input ) {
     // Calculate the product of values in an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_product/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: _argos
     // *     example 1: array_product([ 2, 4, 6, 8 ]);
     // *     returns 1: 384
@@ -530,7 +493,7 @@ function array_push ( array ) {
     // Push one or more elements onto the end of array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_push/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_push(['kevin','van'], 'zonneveld');
     // *     returns 1: 3
@@ -549,7 +512,7 @@ function array_rand ( input, num_req ) {
     // Pick one or more random entries out of an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_rand/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: _argos
     // *     example 1: array_rand( ['Kevin'], 1 );
     // *     returns 1: 0
@@ -586,7 +549,7 @@ function array_reduce( a_input, callback ) {
     // Iteratively reduce the array to a single value using a callback function
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_reduce/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
     // *     example 1: array_reduce([1, 2, 3, 4, 5], function(v, w){v += w; return v;});
     // *     returns 1: 15
@@ -617,7 +580,7 @@ function array_reverse( array, preserve_keys ) {
     // Return an array with elements in reverse order
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_reverse/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Karol Kowalski
     // *     example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true );
@@ -639,7 +602,7 @@ function array_search( needle, haystack, strict ) {
     // successful
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_search/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'});
     // *     returns 1: 'surname'
@@ -660,7 +623,7 @@ function array_shift( array ) {
     // Shift an element off the beginning of array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_shift/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_shift(['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: 'Kevin'
@@ -698,7 +661,7 @@ function array_sum( array ) {
     // Calculate the sum of values in an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_sum/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_sum([4, 9, 182.6]);
     // *     returns 1: 195.6
@@ -722,7 +685,7 @@ function array_unique( array ) {
     // Removes duplicate values from an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_unique/
-    // +       version: 804.1313
+    // +       version: 804.1712
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // *     example 1: array_unique(['Kevin','Kevin','van','Zonneveld']);
     // *     returns 1: true
@@ -745,7 +708,7 @@ function array_unshift( array ) {
     // Prepend one or more elements to the beginning of an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_unshift/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_unshift(['van', 'Zonneveld'], 'Kevin');
     // *     returns 1: 3
@@ -784,7 +747,7 @@ function array_values( input ) {
     // Return all the values of an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_values/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );
     // *     returns 1: {0: 'Kevin', 1: 'van Zonneveld'}
@@ -799,185 +762,12 @@ function array_values( input ) {
     return tmp_arr;
 }// }}}
 
-// {{{ base64_decode
-function base64_decode( data ) {
-    // Decodes data encoded with MIME base64
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_decode/
-    // +       version: 804.1015
-    // +   original by: Tyler Akins (http://rumkin.com)
-    // *     example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
-    // *     returns 1: 'Kevin van Zonneveld'
-
-
-    var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
-
-    do {  // unpack four hexets into three octets using index points in b64
-        h1 = b64.indexOf(data.charAt(i++));
-        h2 = b64.indexOf(data.charAt(i++));
-        h3 = b64.indexOf(data.charAt(i++));
-        h4 = b64.indexOf(data.charAt(i++));
-
-        bits = h1<<18 | h2<<12 | h3<<6 | h4;
-
-        o1 = bits>>16 & 0xff;
-        o2 = bits>>8 & 0xff;
-        o3 = bits & 0xff;
-
-        if (h3 == 64)      enc += String.fromCharCode(o1);
-        else if (h4 == 64) enc += String.fromCharCode(o1, o2);
-        else               enc += String.fromCharCode(o1, o2, o3);
-    } while (i < data.length);
-
-    return enc;
-}// }}}
-
-// {{{ base64_encode
-function base64_encode( data ) {
-    // Encodes data with MIME base64
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_encode/
-    // +       version: 804.1015
-    // +   original by: Tyler Akins (http://rumkin.com)
-    // +   improved by: Bayron Guevara
-    // *     example 1: base64_encode('Kevin van Zonneveld');
-    // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
-
-    var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
-
-    do { // pack three octets into four hexets
-        o1 = data.charCodeAt(i++);
-        o2 = data.charCodeAt(i++);
-        o3 = data.charCodeAt(i++);
-
-        bits = o1<<16 | o2<<8 | o3;
-
-        h1 = bits>>18 & 0x3f;
-        h2 = bits>>12 & 0x3f;
-        h3 = bits>>6 & 0x3f;
-        h4 = bits & 0x3f;
-
-        // use hexets to index into b64, and append result to encoded string
-        enc += b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
-    } while (i < data.length);
-
-    switch( data.length % 3 ){
-        case 1:
-            enc = enc.slice(0, -2) + '==';
-        break;
-        case 2:
-            enc = enc.slice(0, -1) + '=';
-        break;
-    }
-
-    return enc;
-}// }}}
-
-// {{{ basename
-function basename(path, suffix) {
-    // Returns filename component of path
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_basename/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Ash Searle (http://hexmen.com/blog/)
-    // +   improved by: Lincoln Ramsay
-    // +   improved by: djmix
-    // *     example 1: basename('/www/site/home.htm', '.htm');
-    // *     returns 1: 'home'
-
-    var b = path.replace(/^.*[\/\\]/g, '');
-    if (typeof(suffix) == 'string' && b.substr(b.length-suffix.length) == suffix) {
-        b = b.substr(0, b.length-suffix.length);
-    }
-    return b;
-}// }}}
-
-// {{{ bin2hex
-function bin2hex(s){
-    // Convert binary data into hexadecimal representation
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_bin2hex/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: bin2hex('Kev');
-    // *     returns 1: '4b6576'
-
-    var i, f = s.length, a = [];
-    for(i = 0; i<f; i++){
-        a[i] = s.charCodeAt(i).toString(16);
-    }
-    return a.join('');
-}// }}}
-
-// {{{ call_user_func_array
-function call_user_func_array( strFunctionName , arrParam ){
-    // Call a user function given with an array of parameters
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_call_user_func_array/
-    // +       version: 804.1015
-    // +   original by: Thiago Mata (http://thiagomata.blog.com)
-    // *     example 1: call_user_func_array('isNaN', ['a']);
-    // *     returns 1: true
-    // *     example 2: call_user_func_array('isNaN', [1]);
-    // *     returns 2: false
-
-    var strCommand = "";
-    var i;
-
-    strCommand += "return " + strFunctionName + "(";
-    for( i = 0; i < arrParam.length; ++i ) {
-        strCommand += "arrParam[" + i + "]" ;
-        if( ( i + 1 ) != arrParam.length ) {
-            strCommand += ",";
-        }
-    }
-    strCommand += ")";
-    var oFunction = new Function( "arrParam" , strCommand );
-    return oFunction( arrParam );
-}// }}}
-
-// {{{ checkdate
-function checkdate( month, day, year ) {
-    // Validate a Gregorian date
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_checkdate/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: checkdate(12, 31, 2000);
-    // *     returns 1: true
-    // *     example 2: checkdate(2, 29, 2001);
-    // *     returns 2: false
-    // *     example 3: checkdate(03, 31, 2008);
-    // *     returns 3: true
-
-    var myDate = new Date();
-    myDate.setFullYear( year, (month - 1), day );
-
-    return ( (myDate.getMonth()+1) == month );
-}// }}}
-
-// {{{ chr
-function chr( ascii ) {
-    // Return a specific character
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_chr/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: chr(75);
-    // *     returns 1: 'K'
-
-    return String.fromCharCode(ascii);
-}// }}}
-
 // {{{ compact
 function compact ( var_names ) {
     // Create array containing variables and their values
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_compact/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: _argos
     // *     example 1: compact('var1', 'var2');
     // *     returns 1: {}
@@ -1006,7 +796,7 @@ function count( mixed_var, mode ) {
     // Count elements in an array, or properties in an object
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_count/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: _argos
     // *     example 1: count([[0,0],[0,-4]], 'COUNT_RECURSIVE');
@@ -1029,83 +819,207 @@ function count( mixed_var, mode ) {
     return cnt;
 }// }}}
 
-// {{{ count_chars
-function count_chars( str, mode ) {
-    // Return information about characters used in a string
+// {{{ end
+function end ( array ) {
+    // Set the internal pointer of an array to its last element
     // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_count_chars/
-    // +       version: 804.1015
-    // +   original by: Ates Goral (http://magnetiq.com)
-    // *     example 1: count_chars("Hello World!", 3);
-    // *     returns 1: "Helo Wrd!"
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_end/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Legaev Andrey
+    // *     example 1: end({firstname: 'Kevin', middle: 'van', surname: 'Zonneveld'});
+    // *     returns 1: 'Zonneveld'
 
-    var histogram = new Object(), tmp_ar = new Array(), argc = arguments.length, key, i, code, mode;
+    var last_elm, key;
 
-    if (argc == 1) {
-        mode = 0;
-    }
-
-    mode_even = (mode & 1) == 0;
-    if (mode_even) {
-        for (i = 1; i < 256; ++i) {
-            histogram[i] = 0;
-        }
-    }
-
-    for (i = 0; i < str.length; ++i) {
-        code = str.charCodeAt(i);
-        if (code in histogram) {
-            ++histogram[code];
-        } else {
-            histogram[code] = 1;
-        }
-    }
-
-    if (mode > 0) {
-        for (key in histogram) {
-            if (histogram[key] == 0 != mode_even) {
-                delete histogram[key];
-            }
-        }
-    }
-
-    if (mode < 3) {
-        return histogram;
+    if (array.constructor === Array){
+        last_elm = array[(array.length-1)];
     } else {
-        for (key in histogram) {
-            tmp_ar.push(String.fromCharCode(key));
+        for (key in array){
+            last_elm = array[key];
         }
-        return tmp_ar.join("");
     }
+
+    return last_elm;
 }// }}}
 
-// {{{ crc32
-function crc32 ( str ) {
-    // Calculates the crc32 polynomial of a string
+// {{{ in_array
+function in_array(needle, haystack, strict) {
+    // Checks if a value exists in an array
     // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_crc32/
-    // +       version: 804.1015
-    // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
-    // +   improved by: T0bsn
-    // -    depends on: utf8_encode
-    // *     example 1: crc32('Kevin van Zonneveld');
-    // *     returns 1: 1249991249
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_in_array/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: in_array('van', ['Kevin', 'van', 'Zonneveld']);
+    // *     returns 1: true
 
-    str = utf8_encode(str);
-    var table = "00000000 77073096 EE0E612C 990951BA 076DC419 706AF48F E963A535 9E6495A3 0EDB8832 79DCB8A4 E0D5E91E 97D2D988 09B64C2B 7EB17CBD E7B82D07 90BF1D91 1DB71064 6AB020F2 F3B97148 84BE41DE 1ADAD47D 6DDDE4EB F4D4B551 83D385C7 136C9856 646BA8C0 FD62F97A 8A65C9EC 14015C4F 63066CD9 FA0F3D63 8D080DF5 3B6E20C8 4C69105E D56041E4 A2677172 3C03E4D1 4B04D447 D20D85FD A50AB56B 35B5A8FA 42B2986C DBBBC9D6 ACBCF940 32D86CE3 45DF5C75 DCD60DCF ABD13D59 26D930AC 51DE003A C8D75180 BFD06116 21B4F4B5 56B3C423 CFBA9599 B8BDA50F 2802B89E 5F058808 C60CD9B2 B10BE924 2F6F7C87 58684C11 C1611DAB B6662D3D 76DC4190 01DB7106 98D220BC EFD5102A 71B18589 06B6B51F 9FBFE4A5 E8B8D433 7807C9A2 0F00F934 9609A88E E10E9818 7F6A0DBB 086D3D2D 91646C97 E6635C01 6B6B51F4 1C6C6162 856530D8 F262004E 6C0695ED 1B01A57B 8208F4C1 F50FC457 65B0D9C6 12B7E950 8BBEB8EA FCB9887C 62DD1DDF 15DA2D49 8CD37CF3 FBD44C65 4DB26158 3AB551CE A3BC0074 D4BB30E2 4ADFA541 3DD895D7 A4D1C46D D3D6F4FB 4369E96A 346ED9FC AD678846 DA60B8D0 44042D73 33031DE5 AA0A4C5F DD0D7CC9 5005713C 270241AA BE0B1010 C90C2086 5768B525 206F85B3 B966D409 CE61E49F 5EDEF90E 29D9C998 B0D09822 C7D7A8B4 59B33D17 2EB40D81 B7BD5C3B C0BA6CAD EDB88320 9ABFB3B6 03B6E20C 74B1D29A EAD54739 9DD277AF 04DB2615 73DC1683 E3630B12 94643B84 0D6D6A3E 7A6A5AA8 E40ECF0B 9309FF9D 0A00AE27 7D079EB1 F00F9344 8708A3D2 1E01F268 6906C2FE F762575D 806567CB 196C3671 6E6B06E7 FED41B76 89D32BE0 10DA7A5A 67DD4ACC F9B9DF6F 8EBEEFF9 17B7BE43 60B08ED5 D6D6A3E8 A1D1937E 38D8C2C4 4FDFF252 D1BB67F1 A6BC5767 3FB506DD 48B2364B D80D2BDA AF0A1B4C 36034AF6 41047A60 DF60EFC3 A867DF55 316E8EEF 4669BE79 CB61B38C BC66831A 256FD2A0 5268E236 CC0C7795 BB0B4703 220216B9 5505262F C5BA3BBE B2BD0B28 2BB45A92 5CB36A04 C2D7FFA7 B5D0CF31 2CD99E8B 5BDEAE1D 9B64C2B0 EC63F226 756AA39C 026D930A 9C0906A9 EB0E363F 72076785 05005713 95BF4A82 E2B87A14 7BB12BAE 0CB61B38 92D28E9B E5D5BE0D 7CDCEFB7 0BDBDF21 86D3D2D4 F1D4E242 68DDB3F8 1FDA836E 81BE16CD F6B9265B 6FB077E1 18B74777 88085AE6 FF0F6A70 66063BCA 11010B5C 8F659EFF F862AE69 616BFFD3 166CCF45 A00AE278 D70DD2EE 4E048354 3903B3C2 A7672661 D06016F7 4969474D 3E6E77DB AED16A4A D9D65ADC 40DF0B66 37D83BF0 A9BCAE53 DEBB9EC5 47B2CF7F 30B5FFE9 BDBDF21C CABAC28A 53B39330 24B4A3A6 BAD03605 CDD70693 54DE5729 23D967BF B3667A2E C4614AB8 5D681B02 2A6F2B94 B40BBE37 C30C8EA1 5A05DF1B 2D02EF8D";
+    var found = false, key, strict = !!strict;
 
-    var crc = 0;
-    var x = 0;
-    var y = 0;
-
-    crc = crc ^ (-1);
-    for( var i = 0, iTop = str.length; i < iTop; i++ ) {
-        y = ( crc ^ str.charCodeAt( i ) ) & 0xFF;
-        x = "0x" + table.substr( y * 9, 8 );
-        crc = ( crc >>> 8 ) ^ x;
+    for (key in haystack) {
+        if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
+            found = true;
+            break;
+        }
     }
 
-    return crc ^ (-1);
+    return found;
+}// }}}
+
+// {{{ range
+function range ( low, high, step ) {
+    // Create an array containing a range of elements
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_range/
+    // +       version: 804.1712
+    // +   original by: _argos
+    // *     example 1: range ( 0, 12 );
+    // *     returns 1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    // *     example 2: range( 0, 100, 10 );
+    // *     returns 2: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    // *     example 3: range( 'a', 'i' );
+    // *     returns 3: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+    // *     example 4: range( 'c', 'a' );
+    // *     returns 4: ['c', 'b', 'a']
+
+    var matrix = [];
+    var inival, endval, plus;
+    var walker = step || 1;
+    var chars  = false;
+
+    if ( !isNaN ( low ) && !isNaN ( high ) ) {
+        inival = low;
+        endval = high;
+    } else if ( isNaN ( low ) && isNaN ( high ) ) {
+        chars = true;
+        inival = low.charCodeAt ( 0 );
+        endval = high.charCodeAt ( 0 );
+    } else {
+        inival = ( isNaN ( low ) ? 0 : low );
+        endval = ( isNaN ( high ) ? 0 : high );
+    }
+
+    plus = ( ( inival > endval ) ? false : true );
+    if ( plus ) {
+        while ( inival <= endval ) {
+            matrix.push ( ( ( chars ) ? String.fromCharCode ( inival ) : inival ) );
+            inival += walker;
+        }
+    } else {
+        while ( inival >= endval ) {
+            matrix.push ( ( ( chars ) ? String.fromCharCode ( inival ) : inival ) );
+            inival -= walker;
+        }
+    }
+
+    return matrix;
+}// }}}
+
+// {{{ reset
+function reset ( array ) {
+    // Set the internal pointer of an array to its first element
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_reset/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Legaev Andrey
+    // *     example 1: reset({firstname: 'Kevin', middle: 'van', surname: 'Zonneveld'});
+    // *     returns 1: 'Kevin'
+
+    var first_elm, key;
+
+    if (array.constructor === Array){
+        first_elm = array[0];
+    } else {
+        for (key in array){
+            first_elm = array[key];
+            break;
+        }
+    }
+
+    return first_elm;
+}// }}}
+
+// {{{ shuffle
+function shuffle( array ) {
+    // Shuffle an array
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_shuffle/
+    // +       version: 804.1712
+    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // *     example 1: shuffle(['Kevin', 'van', 'Zonneveld']);
+    // *     returns 1: true
+
+    for(var j, x, i = array.length; i; j = parseInt(Math.random() * i), x = array[--i], array[i] = array[j], array[j] = x);
+    return true;
+}// }}}
+
+// {{{ sizeof
+function sizeof ( mixed_var, mode ) {
+    // Alias of count()
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sizeof/
+    // +       version: 804.1712
+    // +   original by: Philip Peterson
+    // -    depends on: count
+    // *     example 1: sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE');
+    // *     returns 1: 6
+    // *     example 2: sizeof({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
+    // *     returns 2: 6
+ 
+    return count( mixed_var, mode );
+}// }}}
+
+// {{{ get_class
+function get_class(obj) {
+    // Returns the name of the class of an object
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_class/
+    // +       version: 804.1712
+    // +   original by: Ates Goral (http://magnetiq.com)
+    // +   improved by: David James
+    // *     example 1: get_class(new (function MyClass() {}));
+    // *     returns 1: "MyClass"
+    // *     example 2: get_class({});
+    // *     returns 2: "Object"
+    // *     example 3: get_class([]);
+    // *     returns 3: false
+    // *     example 4: get_class(42);
+    // *     returns 4: false
+    // *     example 5: get_class(window);
+    // *     returns 5: false
+    // *     example 6: get_class(function MyFunction() {});
+    // *     returns 6: false
+
+    if (obj instanceof Object && !(obj instanceof Array) &&
+        !(obj instanceof Function) && obj.constructor) {
+        var arr = obj.constructor.toString().match(/function\s*(\w+)/);
+
+        if (arr && arr.length == 2) {
+            return arr[1];
+        }
+    }
+
+    return false;
+}// }}}
+
+// {{{ checkdate
+function checkdate( month, day, year ) {
+    // Validate a Gregorian date
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_checkdate/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: checkdate(12, 31, 2000);
+    // *     returns 1: true
+    // *     example 2: checkdate(2, 29, 2001);
+    // *     returns 2: false
+    // *     example 3: checkdate(03, 31, 2008);
+    // *     returns 3: true
+
+    var myDate = new Date();
+    myDate.setFullYear( year, (month - 1), day );
+
+    return ( (myDate.getMonth()+1) == month );
 }// }}}
 
 // {{{ date
@@ -1113,7 +1027,7 @@ function date ( format, timestamp ) {
     // Format a local time/date
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_date/
-    // +       version: 804.1313
+    // +       version: 804.1712
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -1305,118 +1219,66 @@ function date ( format, timestamp ) {
     });
 }// }}}
 
-// {{{ defined
-function defined( constant_name )  {
-    // Checks whether a given named constant exists
+// {{{ mktime
+function mktime() {
+    // Get Unix timestamp for a date
     // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_defined/
-    // +       version: 804.1015
-    // +   original by: _argos
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_mktime/
+    // +       version: 804.1914
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: baris ozdil
+    // +      input by: gabriel paderni 
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: defined('IMAGINARY_CONSTANT1');
-    // *     returns 1: false
-
-    return (typeof window[constant_name] !== 'undefined');
-}// }}}
-
-// {{{ echo
-function echo ( ) {
-    // Output one or more strings
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_echo/
-    // +       version: 804.1313
-    // +   original by: Philip Peterson
-    // *     example 1: echo('Hello', 'World');
-    // *     returns 1: null
+    // +   improved by: FGFEmperor
+    // *     example 1: mktime( 14, 10, 2, 2, 1, 2008 );
+    // *     returns 1: 1201871402
     
-    for( i = 0; i < echo.arguments.length; i++ ) {
-        if( document.body && document.body.innerHTML ) {
-            document.body.innerHTML = document.body.innerHTML + echo.arguments[i];
-        } else {
-            document.write( echo.arguments[i] );
-        }
-    }
-    return null;
-}// }}}
-
-// {{{ empty
-function empty( mixed_var ) {
-    // Determine whether a variable is empty
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_empty/
-    // +       version: 804.1015
-    // +   original by: Philippe Baumann
-    // *     example 1: empty(null);
-    // *     returns 1: true
-
-    return ( mixed_var === "" || mixed_var === 0   || mixed_var === "0" || mixed_var === null  || mixed_var === false  ||  ( is_array(mixed_var) && mixed_var.length === 0 ) );
-}// }}}
-
-// {{{ end
-function end ( array ) {
-    // Set the internal pointer of an array to its last element
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_end/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   bugfixed by: Legaev Andrey
-    // *     example 1: end({firstname: 'Kevin', middle: 'van', surname: 'Zonneveld'});
-    // *     returns 1: 'Zonneveld'
-
-    var last_elm, key;
-
-    if (array.constructor === Array){
-        last_elm = array[(array.length-1)];
-    } else {
-        for (key in array){
-            last_elm = array[key];
+    var no, ma = 0, mb = 0, i = 0, d = new Date(), argv = arguments, argc = argv.length;
+    d.setHours(0,0,0); d.setDate(1); d.setMonth(1); d.setYear(1972);
+ 
+    var dateManip = {
+        0: function(tt){ return d.setHours(tt); },
+        1: function(tt){ return d.setMinutes(tt); },
+        2: function(tt){ set = d.setSeconds(tt); mb = d.getDate() - 1; return set; },
+        3: function(tt){ set = d.setMonth(parseInt(tt)-1); ma = d.getFullYear() - 1972; return set; },
+        4: function(tt){ return d.setDate(tt+mb); },
+        5: function(tt){ return d.setYear(tt+ma); }
+    };
+    
+    for( i = 0; i < argc; i++ ){
+        no = parseInt(argv[i]);
+        if(no && isNaN(no)){
+            return false;
+        } else if(no){
+            // arg is number, let's manipulate date object
+            if(!dateManip[i](no)){
+                // failed
+                return false;
+            }
         }
     }
 
-    return last_elm;
+    return Math.floor(d.getTime()/1000);
 }// }}}
 
-// {{{ explode
-function explode( delimiter, string ) {
-    // Split a string by string
+// {{{ basename
+function basename(path, suffix) {
+    // Returns filename component of path
     // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_explode/
-    // +       version: 804.1015
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_basename/
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: kenneth
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: explode(' ', 'Kevin van Zonneveld');
-    // *     returns 1: {0: 'Kevin', 1: 'van', 2: 'Zonneveld'}
+    // +   improved by: Ash Searle (http://hexmen.com/blog/)
+    // +   improved by: Lincoln Ramsay
+    // +   improved by: djmix
+    // *     example 1: basename('/www/site/home.htm', '.htm');
+    // *     returns 1: 'home'
 
-    var emptyArray = { 0: '' };
-
-    if ( arguments.length != 2
-        || typeof arguments[0] == 'undefined'
-        || typeof arguments[1] == 'undefined' )
-    {
-        return null;
+    var b = path.replace(/^.*[\/\\]/g, '');
+    if (typeof(suffix) == 'string' && b.substr(b.length-suffix.length) == suffix) {
+        b = b.substr(0, b.length-suffix.length);
     }
-
-    if ( delimiter === ''
-        || delimiter === false
-        || delimiter === null )
-    {
-        return false;
-    }
-
-    if ( typeof delimiter == 'function'
-        || typeof delimiter == 'object'
-        || typeof string == 'function'
-        || typeof string == 'object' )
-    {
-        return emptyArray;
-    }
-
-    if ( delimiter === true ) {
-        delimiter = '1';
-    }
-
-    return string.toString().split ( delimiter.toString() );
+    return b;
 }// }}}
 
 // {{{ file
@@ -1424,7 +1286,7 @@ function file( url ) {
     // Reads entire file into an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Legaev Andrey
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // *     example 1: file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
@@ -1449,7 +1311,7 @@ function file_get_contents( url ) {
     // Reads entire file into a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file_get_contents/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Legaev Andrey
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // *     example 1: file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
@@ -1469,18 +1331,31 @@ function file_get_contents( url ) {
     return req.responseText;
 }// }}}
 
-// {{{ floatval
-function floatval(mixed_var) {
-    // +   original by: Michael White (http://crestidg.com)
-    // %        note 1: The native parseFloat() method of JavaScript returns NaN when it encounters a string before an int or float value.
-    // *     example 1: floatval('150.03_page-section');
-    // *     returns 1: 150.03
-    // *     example 2: floatval('page: 3');
-    // *     returns 2: 0
-    // *     example 2: floatval('-50 + 8');
-    // *     returns 2: -50
+// {{{ call_user_func_array
+function call_user_func_array( strFunctionName , arrParam ){
+    // Call a user function given with an array of parameters
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_call_user_func_array/
+    // +       version: 804.1712
+    // +   original by: Thiago Mata (http://thiagomata.blog.com)
+    // *     example 1: call_user_func_array('isNaN', ['a']);
+    // *     returns 1: true
+    // *     example 2: call_user_func_array('isNaN', [1]);
+    // *     returns 2: false
 
-    return (parseFloat(mixed_var) || 0);
+    var strCommand = "";
+    var i;
+
+    strCommand += "return " + strFunctionName + "(";
+    for( i = 0; i < arrParam.length; ++i ) {
+        strCommand += "arrParam[" + i + "]" ;
+        if( ( i + 1 ) != arrParam.length ) {
+            strCommand += ",";
+        }
+    }
+    strCommand += ")";
+    var oFunction = new Function( "arrParam" , strCommand );
+    return oFunction( arrParam );
 }// }}}
 
 // {{{ function_exists
@@ -1488,7 +1363,7 @@ function function_exists( function_name ) {
     // Return TRUE if the given function has been defined
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_function_exists/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Steve Clay
     // +   improved by: Legaev Andrey
@@ -1503,45 +1378,12 @@ function function_exists( function_name ) {
     }
 }// }}}
 
-// {{{ get_class
-function get_class(obj) {
-    // Returns the name of the class of an object
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_class/
-    // +       version: 804.1015
-    // +   original by: Ates Goral (http://magnetiq.com)
-    // +   improved by: David James
-    // *     example 1: get_class(new (function MyClass() {}));
-    // *     returns 1: "MyClass"
-    // *     example 2: get_class({});
-    // *     returns 2: "Object"
-    // *     example 3: get_class([]);
-    // *     returns 3: false
-    // *     example 4: get_class(42);
-    // *     returns 4: false
-    // *     example 5: get_class(window);
-    // *     returns 5: false
-    // *     example 6: get_class(function MyFunction() {});
-    // *     returns 6: false
-
-    if (obj instanceof Object && !(obj instanceof Array) &&
-        !(obj instanceof Function) && obj.constructor) {
-        var arr = obj.constructor.toString().match(/function\s*(\w+)/);
-
-        if (arr && arr.length == 2) {
-            return arr[1];
-        }
-    }
-
-    return false;
-}// }}}
-
 // {{{ get_included_files
 function get_included_files() {
     // Returns an array with the names of included or required files
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_included_files/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Michael White (http://crestidg.com)
     // *     example 1: get_included_files();
     // *     returns 1: ['http://kevin.vanzonneveld.net/pj_tester.php']
@@ -1561,117 +1403,12 @@ function get_included_files() {
     return includes;
 }// }}}
 
-// {{{ html_entity_decode
-function html_entity_decode( string ) {
-    // Convert all HTML entities to their applicable characters
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_html_entity_decode/
-    // +       version: 804.1015
-    // +   original by: john (http://www.jd-tech.net)
-    // +      input by: ger
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: html_entity_decode('Kevin &amp; van Zonneveld');
-    // *     returns 1: 'Kevin & van Zonneveld'
-
-    var ret, tarea = document.createElement('textarea');
-    tarea.innerHTML = string;
-    ret = tarea.value;
-    return ret;
-}// }}}
-
-// {{{ htmlentities
-function htmlentities( s ){
-    // Convert all applicable characters to HTML entities
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlentities/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: htmlentities('Kevin & van Zonneveld');
-    // *     returns 1: 'Kevin &amp; van Zonneveld'
-
-    var div = document.createElement('div');
-    var text = document.createTextNode(s);
-    div.appendChild(text);
-    return div.innerHTML;
-}// }}}
-
-// {{{ http_build_query
-function http_build_query( formdata, numeric_prefix, arg_separator ) {
-    // Generate URL-encoded query string
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_http_build_query/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Legaev Andrey
-    // +   improved by: Michael White (http://crestidg.com)
-    // *     example 1: http_build_query({ foo: 'bar', baz: 'boom', cow: 'milk', php: 'hypertext processor' }, '', '&amp;');
-    // *     returns 1: 'foo=bar&amp;baz=boom&amp;cow=milk&amp;php=hypertext+processor'
-    // *     example 2: http_build_query({0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', cow: 'milk', php :'hypertext processor'}, 'myvar_');
-    // *     returns 2: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&cow=milk&php=hypertext+processor'
-
-    var key, use_val, use_key, i = 0, tmp_arr = [];
-
-    if(!arg_separator){
-        arg_separator = '&';
-    }
-
-    for(key in formdata){
-        use_key = encodeURIComponent(key);
-        use_val = encodeURIComponent((formdata[key].toString()));
-        use_val = use_val.replace(/%20/g, '+');
-
-        if(numeric_prefix && !isNaN(key)){
-            use_key = numeric_prefix + i;
-        }
-        tmp_arr[i] = use_key + '=' + use_val;
-        i++;
-    }
-
-    return tmp_arr.join(arg_separator);
-}// }}}
-
-// {{{ implode
-function implode( glue, pieces ) {
-    // Join array elements with a string
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_implode/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: _argos
-    // *     example 1: implode(' ', ['Kevin', 'van', 'Zonneveld']);
-    // *     returns 1: 'Kevin van Zonneveld'
-
-    return ( ( pieces instanceof Array ) ? pieces.join ( glue ) : pieces );
-}// }}}
-
-// {{{ in_array
-function in_array(needle, haystack, strict) {
-    // Checks if a value exists in an array
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_in_array/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: in_array('van', ['Kevin', 'van', 'Zonneveld']);
-    // *     returns 1: true
-
-    var found = false, key, strict = !!strict;
-
-    for (key in haystack) {
-        if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
-            found = true;
-            break;
-        }
-    }
-
-    return found;
-}// }}}
-
 // {{{ include
 function include( filename ) {
     // The include() statement includes and evaluates the specified file.
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_include/
-    // +       version: 804.1015
+    // +       version: 804.1808
     // +   original by: mdsjack (http://www.mdsjack.bo.it)
     // +   improved by: Legaev Andrey
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -1710,7 +1447,7 @@ function include_once( filename ) {
     // will be included just once.
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_include_once/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Legaev Andrey
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Michael White (http://crestidg.com)
@@ -1732,34 +1469,145 @@ function include_once( filename ) {
     }
 }// }}}
 
-// {{{ intval
-function intval( mixed_var, base ) {
-    // Get the integer value of a variable
+// {{{ require
+function require( filename ) {
+    // The require() statement includes and evaluates the specific file.
     // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_intval/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: intval('Kevin van Zonneveld');
-    // *     returns 1: 0
-    // *     example 2: intval(4.2);
-    // *     returns 2: 4
-    // *     example 3: intval(42, 8);
-    // *     returns 3: 42
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_require/
+    // +       version: 804.1808
+    // +   original by: Michael White (http://crestidg.com)
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
+    // -    depends on: file_get_contents
+    // *     example 1: require('/pj_test_supportfile_2.js');
+    // *     returns 1: 2
 
-    var tmp;
-
-    if( typeof( mixed_var ) == 'string' ){
-        tmp = parseInt(mixed_var);
-        if(isNaN(tmp)){
-            return 0;
-        } else{
-            return tmp.toString(base || 10);
-        }
-    } else if( typeof( mixed_var ) == 'number' ){
-        return Math.floor(mixed_var);
-    } else{
-        return 0;
+    var js_code = file_get_contents(filename);
+    var script_block = document.createElement('script');
+    script_block.type = 'text/javascript';
+    var client_pc = navigator.userAgent.toLowerCase();
+    if((client_pc.indexOf("msie") != -1) && (client_pc.indexOf("opera") == -1)) {
+        script_block.text = js_code;
+    } else {
+        script_block.appendChild(document.createTextNode(js_code));
     }
+
+    if(typeof(script_block) != "undefined") {
+        document.getElementsByTagName("head")[0].appendChild(script_block);
+
+        // save include state for reference by include_once and require_once()
+        var cur_file = {};
+        cur_file[window.location.href] = 1;
+
+        if (!window.php_js) window.php_js = {};
+        if (!window.php_js.includes) window.php_js.includes = cur_file;
+
+        if (!window.php_js.includes[filename]) {
+            window.php_js.includes[filename] = 1;
+        } else {
+            // Use += 1 because ++ waits until AFTER the original value is returned to increment the value.
+            return window.php_js.includes[filename] += 1;
+        }
+    }
+}// }}}
+
+// {{{ require_once
+function require_once(filename) {
+    // The require_once() statement includes and evaluates the specified file during
+    // the execution of the script. This is a behavior similar to the require()
+    // statement, with the only difference being that if the code from a file has
+    // already been included, it will not be included again.  See the documentation for
+    // require() for more information on how this statement works.
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_require_once/
+    // +       version: 804.1712
+    // +   original by: Michael White (http://crestidg.com)
+    // -    depends on: require
+    // *     example 1: require_once('/pj_test_supportfile_2.js');
+    // *     returns 1: true
+
+    var cur_file = {};
+    cur_file[window.location.href] = 1;
+
+    // save include state for reference by include_once and require_once()
+    if (!window.php_js) window.php_js = {};
+    if (!window.php_js.includes) window.php_js.includes = cur_file;
+    if (!window.php_js.includes[filename]) {
+        if(require(filename)){
+            return true;
+        }
+    } else {
+        return true;
+    }
+}// }}}
+
+// {{{ abs
+function abs( mixed_number )  {
+    // Absolute value
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_abs/
+    // +       version: 804.1712
+    // +   original by: _argos
+    // +   improved by: Karol Kowalski
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // *     example 1: abs(4.2);
+    // *     returns 1: 4.2
+    // *     example 2: abs(-4.2);
+    // *     returns 2: 4.2
+    // *     example 3: abs(-5);
+    // *     returns 3: 5
+    // *     example 4: abs('_argos');
+    // *     returns 4: 0
+
+    return Math.abs(mixed_number) || 0;
+}// }}}
+
+// {{{ rand
+function rand( min, max ) {
+    // Generate a random integer
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rand/
+    // +       version: 804.1712
+    // +   original by: Leslie Hoare
+    // *     example 1: rand(1, 1);
+    // *     returns 1: 1
+
+    if( max ) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    } else {
+        return Math.floor(Math.random() * (min + 1));
+    }
+}// }}}
+
+// {{{ round
+function round ( val, precision ) {
+    // Rounds a float
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_round/
+    // +       version: 804.1712
+    // +   original by: Philip Peterson
+    // *     example 1: round(1241757, -3);
+    // *     returns 1: 1242000
+    // *     example 2: round(3.6);
+    // *     returns 2: 4
+ 
+    var precision = (round.arguments.length > 1) ? round.arguments[1] : 0;
+    return Math.round(val * Math.pow(10, precision))/Math.pow(10, precision);
+}// }}}
+
+// {{{ defined
+function defined( constant_name )  {
+    // Checks whether a given named constant exists
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_defined/
+    // +       version: 804.1712
+    // +   original by: _argos
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: defined('IMAGINARY_CONSTANT1');
+    // *     returns 1: false
+
+    return (typeof window[constant_name] !== 'undefined');
 }// }}}
 
 // {{{ ip2long
@@ -1768,7 +1616,7 @@ function ip2long ( ip_address ) {
     // proper address
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ip2long/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: _argos
     // *     example 1: ip2long( '192.0.34.166' );
     // *     returns 1: 3221234342
@@ -1788,161 +1636,13 @@ function ip2long ( ip_address ) {
     return output;
 }// }}}
 
-// {{{ is_array
-function is_array( mixed_var ) {
-    // Finds whether a variable is an array
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Legaev Andrey
-    // +   bugfixed by: Cord
-    // *     example 1: is_array(['Kevin', 'van', 'Zonneveld']);
-    // *     returns 1: true
-    // *     example 2: is_array('Kevin van Zonneveld');
-    // *     returns 2: false
-
-    return ( mixed_var instanceof Array );
-}// }}}
-
-// {{{ is_null
-function is_null( mixed_var ){
-    // Finds whether a variable is NULL
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_null/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: is_null('23');
-    // *     returns 1: false
-    // *     example 2: is_null(null);
-    // *     returns 2: true
-
-    return ( mixed_var === null );
-}// }}}
-
-// {{{ is_numeric
-function is_numeric( mixed_var ) {
-    // Finds whether a variable is a number or a numeric string
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_numeric/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: David
-    // *     example 1: is_numeric(186.31);
-    // *     returns 1: true
-    // *     example 2: is_numeric('Kevin van Zonneveld');
-    // *     returns 2: false
-    // *     example 3: is_numeric('+186.31e2');
-    // *     returns 3: true
-
-    return !isNaN( mixed_var );
-}// }}}
-
-// {{{ is_object
-function is_object( mixed_var ){
-    // Finds whether a variable is an object
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_object/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Legaev Andrey
-    // +   improved by: Michael White (http://crestidg.com)
-    // *     example 1: is_object('23');
-    // *     returns 1: false
-    // *     example 2: is_object({foo: 'bar'});
-    // *     returns 2: true
-    // *     example 3: is_object(null);
-    // *     returns 3: false
-
-    if(mixed_var instanceof Array) {
-        return false;
-    } else {
-        return (mixed_var !== null) && (typeof( mixed_var ) == 'object');
-    }
-}// }}}
-
-// {{{ is_string
-function is_string( mixed_var ){
-    // Find whether the type of a variable is string
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_string/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: is_string('23');
-    // *     returns 1: true
-    // *     example 2: is_string(23.5);
-    // *     returns 2: false
-
-    return (typeof( mixed_var ) == 'string');
-}// }}}
-
-// {{{ isset
-function isset( mixed_var ) {
-    // Determine whether a variable is set
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_isset/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: isset( undefined, true);
-    // *     returns 1: false
-    // *     example 2: isset( 'Kevin van Zonneveld' );
-    // *     returns 2: true
-
-    var i = 0, argc = arguments.length, argv = arguments, set=true;
-
-    for (i = 0; i< argc; i++){
-        if( argv[i] == undefined ){
-            set = false;
-            break;
-        }
-    }
-
-    return set;
-}// }}}
-
-// {{{ join
-function join( glue, pieces ) {
-    // Alias of implode()
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_join/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // -    depends on: implode
-    // *     example 1: join(' ', ['Kevin', 'van', 'Zonneveld']);
-    // *     returns 1: 'Kevin van Zonneveld'
-
-    return implode( glue, pieces );
-}// }}}
-
-// {{{ levenshtein
-function levenshtein( str1, str2 ) {
-    // Calculate Levenshtein distance between two strings
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_levenshtein/
-    // +       version: 804.1313
-    // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
-    // *     example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
-    // *     returns 1: 3
-
-    var s, l = (s = str1.split("")).length, t = (str2 = str2.split("")).length, i, j, m, n;
-    if(!(l || t)) return Math.max(l, t);
-    for(var a = [], i = l + 1; i; a[--i] = [i]);
-    for(i = t + 1; a[0][--i] = i;);
-    for(i = -1, m = s.length; ++i < m;){
-        for(j = -1, n = str2.length; ++j < n;){
-            a[(i *= 1) + 1][(j *= 1) + 1] = Math.min(a[i][j + 1] + 1, a[i + 1][j] + 1, a[i][j] + (s[i] != str2[j]));
-        }
-    }
-    return a[l][t];
-}// }}}
-
 // {{{ long2ip
 function long2ip ( proper_address ) {
     // Converts an (IPv4) Internet network address into a string in Internet standard
     // dotted format
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_long2ip/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: _argos
     // *     example 1: long2ip( 3221234342 );
     // *     returns 1: '192.0.34.166'
@@ -1959,12 +1659,323 @@ function long2ip ( proper_address ) {
     return output;
 }// }}}
 
+// {{{ setcookie
+function setcookie(name, value, expires, path, domain, secure) {
+    // Send a cookie
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_setcookie/
+    // +       version: 804.1712
+    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // *     example 1: setcookie('author_name', 'Kevin van Zonneveld');
+    // *     returns 1: true
+
+    expires instanceof Date ? expires = expires.toGMTString() : typeof(expires) == 'number' && (expires = (new Date(+(new Date) + expires * 1e3)).toGMTString());
+    var r = [name + "=" + escape(value)], s, i;
+    for(i in s = {expires: expires, path: path, domain: domain}){
+        s[i] && r.push(i + "=" + s[i]);
+    }
+    return secure && r.push("secure"), document.cookie = r.join(";"), true;
+}// }}}
+
+// {{{ preg_quote
+function preg_quote( str ) {
+    // Quote regular expression characters
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_preg_quote/
+    // +       version: 804.1712
+    // +   original by: booeyOH
+    // +   improved by: Ates Goral (http://magnetiq.com)
+    // *     example 1: preg_quote("$40");
+    // *     returns 1: "\\\$40"
+    // *     example 2: preg_quote("*RRRING* Hello?");
+    // *     returns 2: "\\*RRRING\\* Hello\\?"
+    // *     example 3: preg_quote("\\.+*?[^]$(){}=!<>|:");
+    // *     returns 3: "\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:"
+
+    return str.replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
+}// }}}
+
+// {{{ addslashes
+function addslashes( str ) {
+    // Quote string with slashes
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_addslashes/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Ates Goral (http://magnetiq.com)
+    // +   improved by: marrtins
+    // *     example 1: addslashes("kevin's birthday");
+    // *     returns 1: "kevin\'s birthday"
+
+    return str.replace('/(["\'\])/g', "\\$1").replace('/\0/g', "\\0");
+}// }}}
+
+// {{{ bin2hex
+function bin2hex(s){
+    // Convert binary data into hexadecimal representation
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_bin2hex/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: bin2hex('Kev');
+    // *     returns 1: '4b6576'
+
+    var i, f = s.length, a = [];
+    for(i = 0; i<f; i++){
+        a[i] = s.charCodeAt(i).toString(16);
+    }
+    return a.join('');
+}// }}}
+
+// {{{ chr
+function chr( ascii ) {
+    // Return a specific character
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_chr/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: chr(75);
+    // *     returns 1: 'K'
+
+    return String.fromCharCode(ascii);
+}// }}}
+
+// {{{ count_chars
+function count_chars( str, mode ) {
+    // Return information about characters used in a string
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_count_chars/
+    // +       version: 804.1712
+    // +   original by: Ates Goral (http://magnetiq.com)
+    // *     example 1: count_chars("Hello World!", 3);
+    // *     returns 1: "Helo Wrd!"
+
+    var histogram = new Object(), tmp_ar = new Array(), argc = arguments.length, key, i, code, mode;
+
+    if (argc == 1) {
+        mode = 0;
+    }
+
+    mode_even = (mode & 1) == 0;
+    if (mode_even) {
+        for (i = 1; i < 256; ++i) {
+            histogram[i] = 0;
+        }
+    }
+
+    for (i = 0; i < str.length; ++i) {
+        code = str.charCodeAt(i);
+        if (code in histogram) {
+            ++histogram[code];
+        } else {
+            histogram[code] = 1;
+        }
+    }
+
+    if (mode > 0) {
+        for (key in histogram) {
+            if (histogram[key] == 0 != mode_even) {
+                delete histogram[key];
+            }
+        }
+    }
+
+    if (mode < 3) {
+        return histogram;
+    } else {
+        for (key in histogram) {
+            tmp_ar.push(String.fromCharCode(key));
+        }
+        return tmp_ar.join("");
+    }
+}// }}}
+
+// {{{ crc32
+function crc32 ( str ) {
+    // Calculates the crc32 polynomial of a string
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_crc32/
+    // +       version: 804.1712
+    // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
+    // +   improved by: T0bsn
+    // -    depends on: utf8_encode
+    // *     example 1: crc32('Kevin van Zonneveld');
+    // *     returns 1: 1249991249
+
+    str = utf8_encode(str);
+    var table = "00000000 77073096 EE0E612C 990951BA 076DC419 706AF48F E963A535 9E6495A3 0EDB8832 79DCB8A4 E0D5E91E 97D2D988 09B64C2B 7EB17CBD E7B82D07 90BF1D91 1DB71064 6AB020F2 F3B97148 84BE41DE 1ADAD47D 6DDDE4EB F4D4B551 83D385C7 136C9856 646BA8C0 FD62F97A 8A65C9EC 14015C4F 63066CD9 FA0F3D63 8D080DF5 3B6E20C8 4C69105E D56041E4 A2677172 3C03E4D1 4B04D447 D20D85FD A50AB56B 35B5A8FA 42B2986C DBBBC9D6 ACBCF940 32D86CE3 45DF5C75 DCD60DCF ABD13D59 26D930AC 51DE003A C8D75180 BFD06116 21B4F4B5 56B3C423 CFBA9599 B8BDA50F 2802B89E 5F058808 C60CD9B2 B10BE924 2F6F7C87 58684C11 C1611DAB B6662D3D 76DC4190 01DB7106 98D220BC EFD5102A 71B18589 06B6B51F 9FBFE4A5 E8B8D433 7807C9A2 0F00F934 9609A88E E10E9818 7F6A0DBB 086D3D2D 91646C97 E6635C01 6B6B51F4 1C6C6162 856530D8 F262004E 6C0695ED 1B01A57B 8208F4C1 F50FC457 65B0D9C6 12B7E950 8BBEB8EA FCB9887C 62DD1DDF 15DA2D49 8CD37CF3 FBD44C65 4DB26158 3AB551CE A3BC0074 D4BB30E2 4ADFA541 3DD895D7 A4D1C46D D3D6F4FB 4369E96A 346ED9FC AD678846 DA60B8D0 44042D73 33031DE5 AA0A4C5F DD0D7CC9 5005713C 270241AA BE0B1010 C90C2086 5768B525 206F85B3 B966D409 CE61E49F 5EDEF90E 29D9C998 B0D09822 C7D7A8B4 59B33D17 2EB40D81 B7BD5C3B C0BA6CAD EDB88320 9ABFB3B6 03B6E20C 74B1D29A EAD54739 9DD277AF 04DB2615 73DC1683 E3630B12 94643B84 0D6D6A3E 7A6A5AA8 E40ECF0B 9309FF9D 0A00AE27 7D079EB1 F00F9344 8708A3D2 1E01F268 6906C2FE F762575D 806567CB 196C3671 6E6B06E7 FED41B76 89D32BE0 10DA7A5A 67DD4ACC F9B9DF6F 8EBEEFF9 17B7BE43 60B08ED5 D6D6A3E8 A1D1937E 38D8C2C4 4FDFF252 D1BB67F1 A6BC5767 3FB506DD 48B2364B D80D2BDA AF0A1B4C 36034AF6 41047A60 DF60EFC3 A867DF55 316E8EEF 4669BE79 CB61B38C BC66831A 256FD2A0 5268E236 CC0C7795 BB0B4703 220216B9 5505262F C5BA3BBE B2BD0B28 2BB45A92 5CB36A04 C2D7FFA7 B5D0CF31 2CD99E8B 5BDEAE1D 9B64C2B0 EC63F226 756AA39C 026D930A 9C0906A9 EB0E363F 72076785 05005713 95BF4A82 E2B87A14 7BB12BAE 0CB61B38 92D28E9B E5D5BE0D 7CDCEFB7 0BDBDF21 86D3D2D4 F1D4E242 68DDB3F8 1FDA836E 81BE16CD F6B9265B 6FB077E1 18B74777 88085AE6 FF0F6A70 66063BCA 11010B5C 8F659EFF F862AE69 616BFFD3 166CCF45 A00AE278 D70DD2EE 4E048354 3903B3C2 A7672661 D06016F7 4969474D 3E6E77DB AED16A4A D9D65ADC 40DF0B66 37D83BF0 A9BCAE53 DEBB9EC5 47B2CF7F 30B5FFE9 BDBDF21C CABAC28A 53B39330 24B4A3A6 BAD03605 CDD70693 54DE5729 23D967BF B3667A2E C4614AB8 5D681B02 2A6F2B94 B40BBE37 C30C8EA1 5A05DF1B 2D02EF8D";
+
+    var crc = 0;
+    var x = 0;
+    var y = 0;
+
+    crc = crc ^ (-1);
+    for( var i = 0, iTop = str.length; i < iTop; i++ ) {
+        y = ( crc ^ str.charCodeAt( i ) ) & 0xFF;
+        x = "0x" + table.substr( y * 9, 8 );
+        crc = ( crc >>> 8 ) ^ x;
+    }
+
+    return crc ^ (-1);
+}// }}}
+
+// {{{ echo
+function echo ( ) {
+    // Output one or more strings
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_echo/
+    // +       version: 804.1712
+    // +   original by: Philip Peterson
+    // +   improved by: echo is bad
+    // *     example 1: echo('Hello', 'World');
+    // *     returns 1: null
+    
+    var doc_elem = document.createDocumentFragment();
+    
+    for( i = 0; i < echo.arguments.length; i++ ) {
+        if( doc_elem.body && doc_elem.body.innerHTML ) {
+            doc_elem.body.innerHTML = doc_elem.body.innerHTML + echo.arguments[i];
+        } else {
+            doc_elem.write( echo.arguments[i] );
+        }
+    }
+    
+    return null;
+}// }}}
+
+// {{{ explode
+function explode( delimiter, string ) {
+    // Split a string by string
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_explode/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: kenneth
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: explode(' ', 'Kevin van Zonneveld');
+    // *     returns 1: {0: 'Kevin', 1: 'van', 2: 'Zonneveld'}
+
+    var emptyArray = { 0: '' };
+
+    if ( arguments.length != 2
+        || typeof arguments[0] == 'undefined'
+        || typeof arguments[1] == 'undefined' )
+    {
+        return null;
+    }
+
+    if ( delimiter === ''
+        || delimiter === false
+        || delimiter === null )
+    {
+        return false;
+    }
+
+    if ( typeof delimiter == 'function'
+        || typeof delimiter == 'object'
+        || typeof string == 'function'
+        || typeof string == 'object' )
+    {
+        return emptyArray;
+    }
+
+    if ( delimiter === true ) {
+        delimiter = '1';
+    }
+
+    return string.toString().split ( delimiter.toString() );
+}// }}}
+
+// {{{ html_entity_decode
+function html_entity_decode( string ) {
+    // Convert all HTML entities to their applicable characters
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_html_entity_decode/
+    // +       version: 804.1712
+    // +   original by: john (http://www.jd-tech.net)
+    // +      input by: ger
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: html_entity_decode('Kevin &amp; van Zonneveld');
+    // *     returns 1: 'Kevin & van Zonneveld'
+
+    var ret, tarea = document.createElement('textarea');
+    tarea.innerHTML = string;
+    ret = tarea.value;
+    return ret;
+}// }}}
+
+// {{{ htmlentities
+function htmlentities( s ){
+    // Convert all applicable characters to HTML entities
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlentities/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: htmlentities('Kevin & van Zonneveld');
+    // *     returns 1: 'Kevin &amp; van Zonneveld'
+
+    var div = document.createElement('div');
+    var text = document.createTextNode(s);
+    div.appendChild(text);
+    return div.innerHTML;
+}// }}}
+
+// {{{ implode
+function implode( glue, pieces ) {
+    // Join array elements with a string
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_implode/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: _argos
+    // *     example 1: implode(' ', ['Kevin', 'van', 'Zonneveld']);
+    // *     returns 1: 'Kevin van Zonneveld'
+
+    return ( ( pieces instanceof Array ) ? pieces.join ( glue ) : pieces );
+}// }}}
+
+// {{{ join
+function join( glue, pieces ) {
+    // Alias of implode()
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_join/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // -    depends on: implode
+    // *     example 1: join(' ', ['Kevin', 'van', 'Zonneveld']);
+    // *     returns 1: 'Kevin van Zonneveld'
+
+    return implode( glue, pieces );
+}// }}}
+
+// {{{ levenshtein
+function levenshtein( str1, str2 ) {
+    // Calculate Levenshtein distance between two strings
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_levenshtein/
+    // +       version: 804.1712
+    // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+    // *     example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
+    // *     returns 1: 3
+
+    var s, l = (s = str1.split("")).length, t = (str2 = str2.split("")).length, i, j, m, n;
+    if(!(l || t)) return Math.max(l, t);
+    for(var a = [], i = l + 1; i; a[--i] = [i]);
+    for(i = t + 1; a[0][--i] = i;);
+    for(i = -1, m = s.length; ++i < m;){
+        for(j = -1, n = str2.length; ++j < n;){
+            a[(i *= 1) + 1][(j *= 1) + 1] = Math.min(a[i][j + 1] + 1, a[i + 1][j] + 1, a[i][j] + (s[i] != str2[j]));
+        }
+    }
+    return a[l][t];
+}// }}}
+
 // {{{ ltrim
 function ltrim ( str, charlist ) {
     // Strip whitespace (or other characters) from the beginning of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ltrim/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Erkekjetter
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -1981,7 +1992,7 @@ function md5 ( str ) {
     // Calculate the md5 hash of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_md5/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // + namespaced by: Michael White (http://crestidg.com)
     // -    depends on: utf8_encode
@@ -2164,7 +2175,7 @@ function md5_file ( str_filename ) {
     // Calculates the md5 hash of a given file
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_md5_file/
-    // +       version: 804.1017
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: file_get_contents
     // -    depends on: md5
@@ -2175,58 +2186,16 @@ function md5_file ( str_filename ) {
     return md5(file_get_contents(str_filename));
 }// }}}
 
-// {{{ mktime
-function mktime() {
-    // Get Unix timestamp for a date
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_mktime/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: baris ozdil
-    // +      input by: gabriel paderni 
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: FGFEmperor
-    // *     example 1: mktime( 14, 10, 2, 2, 1, 2008 );
-    // *     returns 1: 1201871402
-    
-    var no, i = 0, d = new Date(), argv = arguments, argc = argv.length;
-    d.setHours(0,0,0); d.setDate(1); d.setMonth(1); d.setYear(1972);
-
-    var dateManip = {
-        0: function(tt){ return d.setHours(tt); },
-        1: function(tt){ return d.setMinutes(tt); },
-        2: function(tt){ return d.setSeconds(tt); },
-        3: function(tt){ return d.setMonth(parseInt(tt)-1); },
-        4: function(tt){ return d.setDate(tt); },
-        5: function(tt){ return d.setYear(tt); }
-    };
-
-    for( i = 0; i < argc; i++ ){
-        no = parseInt(argv[i]);
-        if(no && isNaN(no)){
-            return false;
-        } else if(no){
-            // arg is number, let's manipulate date object
-            if(!dateManip[i](no)){
-                // failed
-                return false;
-            }
-        }
-    }
-
-    return Math.floor(d.getTime()/1000);
-}// }}}
-
 // {{{ nl2br
 function nl2br( str ) {
     // Inserts HTML line breaks before all newlines in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_nl2br/
-    // +       version: 804.1508
+    // +       version: 804.1714
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Philip Peterson
     // *     example 1: nl2br('Kevin\nvan\nZonneveld');
-    // *     returns 1: 'Kevin<br/>van<br/>Zonneveld'
+    // *     returns 1: 'Kevin<br/>\nvan<br/>\nZonneveld'
 
     return str.replace(/([^>])\n/g, '$1<br />\n');
 }// }}}
@@ -2236,7 +2205,7 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     // Format a number with grouped thousands
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_number_format/
-    // +       version: 804.1313
+    // +       version: 804.1712
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +     bugfix by: Michael White (http://crestidg.com)
@@ -2259,7 +2228,7 @@ function ord( string ) {
     // Return ASCII value of character
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ord/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: ord('K');
     // *     returns 1: 75
@@ -2272,7 +2241,7 @@ function parse_str(str, array){
     // Parses the string into variables
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_parse_str/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Cagri Ekin
     // +   improved by: Michael White (http://crestidg.com)
     // *     example 1: parse_str('first=foo&second=bar');
@@ -2297,82 +2266,12 @@ function parse_str(str, array){
     }
 }// }}}
 
-// {{{ preg_quote
-function preg_quote( str ) {
-    // Quote regular expression characters
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_preg_quote/
-    // +       version: 804.1015
-    // +   original by: booeyOH
-    // +   improved by: Ates Goral (http://magnetiq.com)
-    // *     example 1: preg_quote("$40");
-    // *     returns 1: "\\\$40"
-    // *     example 2: preg_quote("*RRRING* Hello?");
-    // *     returns 2: "\\*RRRING\\* Hello\\?"
-    // *     example 3: preg_quote("\\.+*?[^]$(){}=!<>|:");
-    // *     returns 3: "\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:"
-
-    return str.replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
-}// }}}
-
-// {{{ print_r
-function print_r( array, return_val ) {
-    // Prints human-readable information about a variable
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_print_r/
-    // +       version: 804.1015
-    // +   original by: Michael White (http://crestidg.com)
-    // *     example 1: print_r(1, true);
-    // *     returns 1: 1
-
-    var output = "", pad_char = " ", pad_val = 4;
-
-    var formatArray = function (obj, cur_depth, pad_val, pad_char) {
-        if(cur_depth > 0)
-            cur_depth++;
-
-        var base_pad = repeat_char(pad_val*cur_depth, pad_char);
-        var thick_pad = repeat_char(pad_val*(cur_depth+1), pad_char);
-        var str = "";
-
-        if(obj instanceof Array) {
-            str += "Array\n" + base_pad + "(\n";
-            for(var key in obj) {
-                if(obj[key] instanceof Array) {
-                    str += thick_pad + "["+key+"] => "+formatArray(obj[key], cur_depth+1, pad_val, pad_char);
-                } else {
-                    str += thick_pad + "["+key+"] => " + obj[key] + "\n";
-                }
-            }
-            str += base_pad + ")\n";
-        } else {
-            str = obj.toString();
-        };
-
-        return str;
-    };
-
-    var repeat_char = function (len, pad_char) {
-        var str = "";
-        for(var i=0; i < len; i++) { str += pad_char; };
-        return str;
-    };
-    output = formatArray(array, 0, pad_val, pad_char);
-
-    if(return_val !== true) {
-        document.write("<pre>" + output + "</pre>");
-        return true;
-    } else {
-        return output;
-    }
-}// }}}
-
 // {{{ printf
 function printf( ) {
     // Output a formatted string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_printf/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Ash Searle (http://hexmen.com/blog/)
     // +   improved by: Michael White (http://crestidg.com)
     // -    depends on: sprintf
@@ -2384,191 +2283,12 @@ function printf( ) {
     return ret.length;
 }// }}}
 
-// {{{ rand
-function rand( min, max ) {
-    // Generate a random integer
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rand/
-    // +       version: 804.1015
-    // +   original by: Leslie Hoare
-    // *     example 1: rand(1, 1);
-    // *     returns 1: 1
-
-    if( max ) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    } else {
-        return Math.floor(Math.random() * (min + 1));
-    }
-}// }}}
-
-// {{{ range
-function range ( low, high, step ) {
-    // Create an array containing a range of elements
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_range/
-    // +       version: 804.1015
-    // +   original by: _argos
-    // *     example 1: range ( 0, 12 );
-    // *     returns 1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    // *     example 2: range( 0, 100, 10 );
-    // *     returns 2: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-    // *     example 3: range( 'a', 'i' );
-    // *     returns 3: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
-    // *     example 4: range( 'c', 'a' );
-    // *     returns 4: ['c', 'b', 'a']
-
-    var matrix = [];
-    var inival, endval, plus;
-    var walker = step || 1;
-    var chars  = false;
-
-    if ( !isNaN ( low ) && !isNaN ( high ) ) {
-        inival = low;
-        endval = high;
-    } else if ( isNaN ( low ) && isNaN ( high ) ) {
-        chars = true;
-        inival = low.charCodeAt ( 0 );
-        endval = high.charCodeAt ( 0 );
-    } else {
-        inival = ( isNaN ( low ) ? 0 : low );
-        endval = ( isNaN ( high ) ? 0 : high );
-    }
-
-    plus = ( ( inival > endval ) ? false : true );
-    if ( plus ) {
-        while ( inival <= endval ) {
-            matrix.push ( ( ( chars ) ? String.fromCharCode ( inival ) : inival ) );
-            inival += walker;
-        }
-    } else {
-        while ( inival >= endval ) {
-            matrix.push ( ( ( chars ) ? String.fromCharCode ( inival ) : inival ) );
-            inival -= walker;
-        }
-    }
-
-    return matrix;
-}// }}}
-
-// {{{ require
-function require( filename ) {
-    // The require() statement includes and evaluates the specific file.
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_require/
-    // +       version: 804.1015
-    // +   original by: Michael White (http://crestidg.com)
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
-    // -    depends on: file_get_contents
-    // *     example 1: require('/pj_test_supportfile_2.js');
-    // *     returns 1: 2
-
-    var js_code = file_get_contents(filename);
-    var script_block = document.createElement('script');
-    script_block.type = 'text/javascript';
-    var client_pc = navigator.userAgent.toLowerCase();
-    if((client_pc.indexOf("msie") != -1) && (client_pc.indexOf("opera") == -1)) {
-        script_block.text = js_code;
-    } else {
-        script_block.appendChild(document.createTextNode(js_code));
-    }
-
-    if(typeof(script_block) != "undefined") {
-        document.getElementsByTagName("head")[0].appendChild(script_block);
-
-        // save include state for reference by include_once and require_once()
-        var cur_file = {};
-        cur_file[window.location.href] = 1;
-
-        if (!window.php_js) window.php_js = {};
-        if (!window.php_js.includes) window.php_js.includes = cur_file;
-
-        if (!window.php_js.includes[filename]) {
-            window.php_js.includes[filename] = 1;
-        } else {
-            // Use += 1 because ++ waits until AFTER the original value is returned to increment the value.
-            return window.php_js.includes[filename] += 1;
-        }
-    }
-}// }}}
-
-// {{{ require_once
-function require_once(filename) {
-    // The require_once() statement includes and evaluates the specified file during
-    // the execution of the script. This is a behavior similar to the require()
-    // statement, with the only difference being that if the code from a file has
-    // already been included, it will not be included again.  See the documentation for
-    // require() for more information on how this statement works.
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_require_once/
-    // +       version: 804.1015
-    // +   original by: Michael White (http://crestidg.com)
-    // -    depends on: require
-    // *     example 1: require_once('/pj_test_supportfile_2.js');
-    // *     returns 1: true
-
-    var cur_file = {};
-    cur_file[window.location.href] = 1;
-
-    // save include state for reference by include_once and require_once()
-    if (!window.php_js) window.php_js = {};
-    if (!window.php_js.includes) window.php_js.includes = cur_file;
-    if (!window.php_js.includes[filename]) {
-        if(require(filename)){
-            return true;
-        }
-    } else {
-        return true;
-    }
-}// }}}
-
-// {{{ reset
-function reset ( array ) {
-    // Set the internal pointer of an array to its first element
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_reset/
-    // +       version: 804.1015
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   bugfixed by: Legaev Andrey
-    // *     example 1: reset({firstname: 'Kevin', middle: 'van', surname: 'Zonneveld'});
-    // *     returns 1: 'Kevin'
-
-    var first_elm, key;
-
-    if (array.constructor === Array){
-        first_elm = array[0];
-    } else {
-        for (key in array){
-            first_elm = array[key];
-            break;
-        }
-    }
-
-    return first_elm;
-}// }}}
-
-// {{{ round
-function round ( val, precision ) {
-    // #!#!#!#!# round::$descr1 does not contain valid 'round' at line 258
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_round/
-    // +       version: 804.1508
-    // +   original by: Philip Peterson
-    // *     example 1: round(1241757, -3);
-    // *     returns 1: 1242000
-    // *     example 2: round(3.6);
-    // *     returns 2: 4
- 
-    var precision = (round.arguments.length > 1) ? round.arguments[1] : 0;
-    return Math.round(val * Math.pow(10, precision))/Math.pow(10, precision);
-}// }}}
-
 // {{{ rtrim
 function rtrim ( str, charlist ) {
     // Strip whitespace (or other characters) from the end of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rtrim/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Erkekjetter
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -2580,108 +2300,12 @@ function rtrim ( str, charlist ) {
     return str.replace(re, '');
 }// }}}
 
-// {{{ serialize
-function serialize( inp ) {
-    // Generates a storable representation of a value
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_serialize/
-    // +       version: 804.1015
-    // +   original by: Arpad Ray (mailto:arpad@php.net)
-    // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
-    // *     returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
-
-    var getType = function( inp ) {
-        var type = typeof inp, match;
-        if(type == 'object' && !inp)
-        {
-            return 'null';
-        }
-        if (type == "object") {
-            if(!inp.constructor)
-            {
-                return 'object';
-            }
-            var cons = inp.constructor.toString();
-            if (match = cons.match(/(\w+)\(/)) {
-                cons = match[1].toLowerCase();
-            }
-            var types = ["boolean", "number", "string", "array"];
-            for (key in types) {
-                if (cons == types[key]) {
-                    type = types[key];
-                    break;
-                }
-            }
-        }
-        return type;
-    };
-
-    var type = getType(inp);
-    var val;
-    switch (type) {
-        case "undefined":
-            val = "N";
-            break;
-        case "boolean":
-            val = "b:" + (inp ? "1" : "0");
-            break;
-        case "number":
-            val = (Math.round(inp) == inp ? "i" : "d") + ":" + inp;
-            break;
-        case "string":
-            val = "s:" + inp.length + ":\"" + inp + "\"";
-            break;
-        case "array":
-            val = "a";
-        case "object":
-            if (type == "object") {
-                var objname = inp.constructor.toString().match(/(\w+)\(\)/);
-                if (objname == undefined) {
-                    return;
-                }
-                objname[1] = serialize(objname[1]);
-                val = "O" + objname[1].substring(1, objname[1].length - 1);
-            }
-            var count = 0;
-            var vals = "";
-            var okey;
-            for (key in inp) {
-                okey = (key.match(/^[0-9]+$/) ? parseInt(key) : key);
-                vals += serialize(okey) +
-                        serialize(inp[key]);
-                count++;
-            }
-            val += ":" + count + ":{" + vals + "}";
-            break;
-    }
-    if (type != "object" && type != "array") val += ";";
-    return val;
-}// }}}
-
-// {{{ setcookie
-function setcookie(name, value, expires, path, domain, secure) {
-    // Send a cookie
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_setcookie/
-    // +       version: 804.1015
-    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-    // *     example 1: setcookie('author_name', 'Kevin van Zonneveld');
-    // *     returns 1: true
-
-    expires instanceof Date ? expires = expires.toGMTString() : typeof(expires) == 'number' && (expires = (new Date(+(new Date) + expires * 1e3)).toGMTString());
-    var r = [name + "=" + escape(value)], s, i;
-    for(i in s = {expires: expires, path: path, domain: domain}){
-        s[i] && r.push(i + "=" + s[i]);
-    }
-    return secure && r.push("secure"), document.cookie = r.join(";"), true;
-}// }}}
-
 // {{{ sha1
 function sha1 ( str ) {
     // Calculate the sha1 hash of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sha1/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // + namespaced by: Michael White (http://crestidg.com)
     // -    depends on: utf8_encode
@@ -2824,7 +2448,7 @@ function sha1_file ( str_filename ) {
     // Calculate the sha1 hash of a file
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sha1_file/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: file_get_contents
     // -    depends on: sha1
@@ -2835,42 +2459,12 @@ function sha1_file ( str_filename ) {
     return sha1(buf);
 }// }}}
 
-// {{{ shuffle
-function shuffle( array ) {
-    // Shuffle an array
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_shuffle/
-    // +       version: 804.1015
-    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-    // *     example 1: shuffle(['Kevin', 'van', 'Zonneveld']);
-    // *     returns 1: true
-
-    for(var j, x, i = array.length; i; j = parseInt(Math.random() * i), x = array[--i], array[i] = array[j], array[j] = x);
-    return true;
-}// }}}
-
-// {{{ sizeof
-function sizeof ( mixed_var, mode ) {
-    // #!#!#!#!# sizeof::$descr1 does not contain valid 'sizeof' at line 258
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sizeof/
-    // +       version: 804.1508
-    // +   original by: Philip Peterson
-    // -    depends on: count
-    // *     example 1: sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE');
-    // *     returns 1: 6
-    // *     example 2: sizeof({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
-    // *     returns 2: 6
- 
-    return count( mixed_var, mode );
-}// }}}
-
 // {{{ soundex
 function soundex( str ) {
     // Calculate the soundex key of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_soundex/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // *     example 1: soundex('Kevin');
     // *     returns 1: 'K150'
@@ -2893,7 +2487,7 @@ function split( delimiter, string ) {
     // Split string into array by regular expression
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_split/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: explode
     // *     example 1: split(' ', 'Kevin van Zonneveld');
@@ -2907,7 +2501,7 @@ function sprintf( ) {
     // Return a formatted string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sprintf/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Ash Searle (http://hexmen.com/blog/)
     // + namespaced by: Michael White (http://crestidg.com)
     // *     example 1: sprintf("%01.2f", 123.1);
@@ -3042,7 +2636,7 @@ function str_ireplace ( search, replace, subject ) {
     // Case-insensitive version of str_replace().
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_ireplace/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Martijn Wieringa
     // +      input by: penutbutterjelly
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -3087,7 +2681,7 @@ function str_pad( input, pad_length, pad_string, pad_type ) {
     // Pad a string to a certain length with another string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_pad/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // + namespaced by: Michael White (http://crestidg.com)
     // *     example 1: str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT');
@@ -3125,7 +2719,7 @@ function str_repeat ( input, multiplier ) {
     // Repeat a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_repeat/
-    // +       version: 804.1313
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // *     example 1: str_repeat('-=', 10);
@@ -3140,86 +2734,26 @@ function str_replace(search, replace, subject) {
     // Replace all occurrences of the search string with the replacement string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_replace/
-    // +       version: 804.1015
+    // +       version: 804.1914
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Gabriel Paderni
     // +   improved by: Philip Peterson
-    // +   improved by: Simon Willison (http://simonwillison.net)    
+    // +   improved by: Simon Willison (http://simonwillison.net)
+    // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // -    depends on: is_array
     // *     example 1: str_replace(' ', '.', 'Kevin van Zonneveld');
     // *     returns 1: 'Kevin.van.Zonneveld'
+    // *     example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
+    // *     returns 2: 'hemmo, mars'    
+    
+    var f = search, r = replace, s = subject;
+    var ra = is_array(r), sa = is_array(s), f = [].concat(f), r = [].concat(r), i = (s = [].concat(s)).length;
 
-    var __regexp_escape = function(text) {
-        if (!arguments.callee.sRE) {
-            var specials = [
-                '/', '.', '*', '+', '?', '|',
-                '(', ')', '[', ']', '{', '}', '\\'
-            ];
-            arguments.callee.sRE = new RegExp(
-                '(\\' + specials.join('|\\') + ')', 'g'
-            );
-        }
-    	return text.replace(arguments.callee.sRE, '\\$1');
-    };
-
-    var numreplx, numon, fincods, k;
-	 
-    if(!(replace instanceof Array)){
-        replace = new Array(replace);
-        if(search instanceof Array){
-            // If search is an array and replace is a string, 
-            // then this replacement string is used for every value of search
-            while(search.length>replace.length){
-                replace[replace.length]=replace[0];
-            }
-        }
+    while(j = 0, i--){
+        while(s[i] = s[i].split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f);
     }
- 
-    if(!(search instanceof Array)){
-        // put search string in an array anyway
-        search = new Array( search );
-    }
-    while( search.length > replace.length ){ 
-        // If replace has fewer values than search, 
-        // then an empty string is used for the rest of replacement values
-        replace[replace.length] = '';
-    }
- 
-    if(subject instanceof Array){
-        // If subject is an array, then the search and replace is performed 
-        // with every entry of subject , and the return value is an array as well.
-        for(k in subject){
-            subject[k] = str_replace(search, replace, subject[k]);
-        }
-        return subject;
-    }
-    	
-    // Each entry is replaced all at once, rather than one after another. 
-    // This creates a problem: str_replace(["{name}","l"], ["hello","m"], "{name}, lars")
-    // Theoretically, the code should return "hello, mars", but instead it returns "hemmo, mars"
-    // as pointed out and fixed by Philip Peterson
-    numreplx = search.length;
-    numon = 0;
-    fincods = new Array();
-    while( fincods.length < numreplx ){
-        nsub = subject;
-        for( x = 0; x < fincods.length; x++ ){
-            nsub = nsub.replace(new RegExp(__regexp_escape(search[x]), "g"), "[cod"+fincods[x]+"]");
-        }
-        for( x = 0; x < fincods.length; x++ ){
-            nsub = nsub.replace(new RegExp(__regexp_escape("[cod"+fincods[x]+"]"), "g"), replace[x]);
-        }
-        if( nsub.indexOf("[cod"+numon+"]") == -1 ){
-            fincods[fincods.length]=numon;
-        }
-        numon++;
-    }
-    for( x = 0; x < fincods.length; x++ ){
-        subject=subject.replace(new RegExp(__regexp_escape(search[x]), "g"), "[cod"+fincods[x]+"]");
-    }
-    for( x = 0; x < fincods.length; x++ ){
-        subject=subject.replace(new RegExp(__regexp_escape("[cod"+fincods[x]+"]"), "g"), replace[x]);
-    }
-    return subject;
+     
+    return sa ? s : s[0];
 }// }}}
 
 // {{{ str_rot13
@@ -3227,7 +2761,7 @@ function str_rot13( str ) {
     // Perform the rot13 transform on a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_rot13/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +   improved by: Ates Goral (http://magnetiq.com)
     // *     example 1: str_rot13('Kevin van Zonneveld');
@@ -3245,7 +2779,7 @@ function str_split ( f_string, f_split_length, f_backwards ){
     // Convert a string to an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_split/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +     original by: Martijn Wieringa
     // *         example 1: str_split('Hello Friend', 3);
     // *         returns 1: ['Hel', 'lo ', 'Fri', 'end']
@@ -3283,7 +2817,7 @@ function strcasecmp (f_string1, f_string2){
     // Binary safe case-insensitive string comparison
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strcasecmp/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +     original by: Martijn Wieringa
     // *         example 1: strcasecmp('Hello', 'hello');
     // *         returns 1: 0
@@ -3301,12 +2835,28 @@ function strcasecmp (f_string1, f_string2){
     return -1;
 }// }}}
 
+// {{{ strchr
+function strchr ( haystack, needle, bool ) {
+    // Alias of strstr()
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strchr/
+    // +       version: 804.1712
+    // +   original by: Philip Peterson
+    // -    depends on: strstr
+    // *     example 1: strchr('Kevin van Zonneveld', 'van');
+    // *     returns 1: 'van Zonneveld'
+    // *     example 2: strchr('Kevin van Zonneveld', 'van', true);
+    // *     returns 2: 'Kevin '
+ 
+    return strstr( haystack, needle, bool );
+}// }}}
+
 // {{{ strcmp
 function strcmp ( str1, str2 ) {
     // Binary safe string comparison
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strcmp/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: _argos
     // *     example 1: strcmp( 'waldo', 'Waldo' );
     // *     returns 1: 1
@@ -3326,7 +2876,7 @@ function strip_tags( str ){
     // Strip HTML and PHP tags from a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strip_tags('Kevin <br />van <i>Zonneveld</i>');
     // *     returns 1: 'Kevin van Zonneveld'
@@ -3339,7 +2889,7 @@ function stripos ( f_haystack, f_needle, f_offset ){
     // Find position of first occurrence of a case-insensitive string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_stripos/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +     original by: Martijn Wieringa
     // *         example 1: stripos('ABC', 'a');
     // *         returns 1: 0
@@ -3364,7 +2914,7 @@ function stripslashes( str ) {
     // Un-quote string quoted with addslashes()
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_stripslashes/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Ates Goral (http://magnetiq.com)
     // +      fixed by: Mick@el
@@ -3380,7 +2930,7 @@ function stristr( haystack, needle, bool ) {
     // Case-insensitive strstr()
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_stristr/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: stristr('Kevin van Zonneveld', 'Van');
     // *     returns 1: 'van Zonneveld'
@@ -3406,7 +2956,7 @@ function strlen( string ){
     // Get string length
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strlen/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strlen('Kevin van Zonneveld');
     // *     returns 1: 19
@@ -3419,7 +2969,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
     // String comparisons using a &quot;natural order&quot; algorithm
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strnatcmp/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Martijn Wieringa
     // + namespaced by: Michael White (http://crestidg.com)
     // -    depends on: strcmp
@@ -3537,7 +3087,7 @@ function strpbrk( haystack, char_list ) {
     // Search a string for any of a set of characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strpbrk/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
     // *     example 1: strpbrk('This is a Simple text.', 'is');
     // *     returns 1: 'is is a Simple text.'
@@ -3580,7 +3130,7 @@ function strpos( haystack, needle, offset){
     // Find position of first occurrence of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strpos/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strpos('Kevin van Zonneveld', 'e', 5);
     // *     returns 1: 14
@@ -3594,7 +3144,7 @@ function strrev( string ){
     // Reverse a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strrev/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strrev('Kevin van Zonneveld');
     // *     returns 1: 'dlevennoZ nav niveK'
@@ -3613,7 +3163,7 @@ function strripos( haystack, needle, offset){
     // Find position of last occurrence of a case-insensitive string in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strripos/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strripos('Kevin van Zonneveld', 'E');
     // *     returns 1: 16
@@ -3627,7 +3177,7 @@ function strrpos( haystack, needle, offset){
     // Find position of last occurrence of a char in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strrpos/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strrpos('Kevin van Zonneveld', 'e');
     // *     returns 1: 16
@@ -3641,7 +3191,7 @@ function strstr( haystack, needle, bool ) {
     // Find first occurrence of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strstr/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strstr('Kevin van Zonneveld', 'van');
     // *     returns 1: 'van Zonneveld'
@@ -3667,7 +3217,7 @@ function strtolower( str ) {
     // Make a string lowercase
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strtolower/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strtolower('Kevin van Zonneveld');
     // *     returns 1: 'kevin van zonneveld'
@@ -3680,7 +3230,7 @@ function strtoupper( str ) {
     // Make a string uppercase
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strtoupper/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strtoupper('Kevin van Zonneveld');
     // *     returns 1: 'KEVIN VAN ZONNEVELD'
@@ -3693,7 +3243,7 @@ function substr( f_string, f_start, f_length ) {
     // Return part of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +     original by: Martijn Wieringa
     // *         example 1: substr('abcdef', 0, -1);
     // *         returns 1: 'abcde'
@@ -3722,7 +3272,7 @@ function substr_count( haystack, needle, offset, length ) {
     // Count the number of substring occurrences
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr_count/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: substr_count('Kevin van Zonneveld', 'e');
     // *     returns 1: 3
@@ -3753,7 +3303,7 @@ function trim( str, charlist ) {
     // Strip whitespace (or other characters) from the beginning and end of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_trim/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: mdsjack (http://www.mdsjack.bo.it)
     // +   improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
@@ -3794,7 +3344,7 @@ function ucfirst( str ) {
     // Make a string&#039;s first character uppercase
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ucfirst/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: ucfirst('kevin van zonneveld');
     // *     returns 1: 'Kevin van zonneveld'
@@ -3808,7 +3358,7 @@ function ucwords( str ) {
     // Uppercase the first character of each word in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ucwords/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +   improved by: _argos
     // *     example 1: ucwords('kevin van zonneveld');
@@ -3817,12 +3367,491 @@ function ucwords( str ) {
     return str.replace(/^(.)|\s(.)/g, function ( $1 ) { return $1.toUpperCase ( ); } );
 }// }}}
 
+// {{{ wordwrap
+function wordwrap( str, int_width, str_break, cut ) {
+    // Wraps a string to a given number of characters
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_wordwrap/
+    // +       version: 804.1715
+    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // +   improved by: Nick Callen
+    // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // *     example 1: wordwrap('Kevin van Zonneveld', 6, '|', true);
+    // *     returns 1: 'Kevin |van |Zonnev|eld'
+    
+    var m = int_width, b = str_break, c = cut;
+    var i, j, l, s, r;
+    
+    if(m < 1) {
+        return str;
+    }
+    for(i = -1, l = (r = str.split("\n")).length; ++i < l; r[i] += s) {
+        for(s = r[i], r[i] = ""; s.length > m; r[i] += s.slice(0, j) + ((s = s.slice(j)).length ? b : "")){
+            j = c == 2 || (j = s.slice(0, m + 1).match(/\S*(\s)?$/))[1] ? m : j.input.length - j[0].length || c == 1 && m || j.input.length + (j = s.slice(m).match(/^\S*/)).input.length;
+        }
+    }
+    
+    return r.join("\n");
+}// }}}
+
+// {{{ base64_decode
+function base64_decode( data ) {
+    // Decodes data encoded with MIME base64
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_decode/
+    // +       version: 804.1712
+    // +   original by: Tyler Akins (http://rumkin.com)
+    // *     example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
+    // *     returns 1: 'Kevin van Zonneveld'
+
+
+    var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
+
+    do {  // unpack four hexets into three octets using index points in b64
+        h1 = b64.indexOf(data.charAt(i++));
+        h2 = b64.indexOf(data.charAt(i++));
+        h3 = b64.indexOf(data.charAt(i++));
+        h4 = b64.indexOf(data.charAt(i++));
+
+        bits = h1<<18 | h2<<12 | h3<<6 | h4;
+
+        o1 = bits>>16 & 0xff;
+        o2 = bits>>8 & 0xff;
+        o3 = bits & 0xff;
+
+        if (h3 == 64)      enc += String.fromCharCode(o1);
+        else if (h4 == 64) enc += String.fromCharCode(o1, o2);
+        else               enc += String.fromCharCode(o1, o2, o3);
+    } while (i < data.length);
+
+    return enc;
+}// }}}
+
+// {{{ base64_encode
+function base64_encode( data ) {
+    // Encodes data with MIME base64
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_encode/
+    // +       version: 804.1712
+    // +   original by: Tyler Akins (http://rumkin.com)
+    // +   improved by: Bayron Guevara
+    // *     example 1: base64_encode('Kevin van Zonneveld');
+    // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
+
+    var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
+
+    do { // pack three octets into four hexets
+        o1 = data.charCodeAt(i++);
+        o2 = data.charCodeAt(i++);
+        o3 = data.charCodeAt(i++);
+
+        bits = o1<<16 | o2<<8 | o3;
+
+        h1 = bits>>18 & 0x3f;
+        h2 = bits>>12 & 0x3f;
+        h3 = bits>>6 & 0x3f;
+        h4 = bits & 0x3f;
+
+        // use hexets to index into b64, and append result to encoded string
+        enc += b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
+    } while (i < data.length);
+
+    switch( data.length % 3 ){
+        case 1:
+            enc = enc.slice(0, -2) + '==';
+        break;
+        case 2:
+            enc = enc.slice(0, -1) + '=';
+        break;
+    }
+
+    return enc;
+}// }}}
+
+// {{{ http_build_query
+function http_build_query( formdata, numeric_prefix, arg_separator ) {
+    // Generate URL-encoded query string
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_http_build_query/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Legaev Andrey
+    // +   improved by: Michael White (http://crestidg.com)
+    // *     example 1: http_build_query({ foo: 'bar', baz: 'boom', cow: 'milk', php: 'hypertext processor' }, '', '&amp;');
+    // *     returns 1: 'foo=bar&amp;baz=boom&amp;cow=milk&amp;php=hypertext+processor'
+    // *     example 2: http_build_query({0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', cow: 'milk', php :'hypertext processor'}, 'myvar_');
+    // *     returns 2: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&cow=milk&php=hypertext+processor'
+
+    var key, use_val, use_key, i = 0, tmp_arr = [];
+
+    if(!arg_separator){
+        arg_separator = '&';
+    }
+
+    for(key in formdata){
+        use_key = encodeURIComponent(key);
+        use_val = encodeURIComponent((formdata[key].toString()));
+        use_val = use_val.replace(/%20/g, '+');
+
+        if(numeric_prefix && !isNaN(key)){
+            use_key = numeric_prefix + i;
+        }
+        tmp_arr[i] = use_key + '=' + use_val;
+        i++;
+    }
+
+    return tmp_arr.join(arg_separator);
+}// }}}
+
+// {{{ urldecode
+function urldecode( str ) {
+    // Decodes URL-encoded string
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urldecode/
+    // +       version: 804.1715
+    // +   original by: Philip Peterson
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: urldecode('Kevin+van+Zonneveld%21');
+    // *     returns 1: 'Kevin van Zonneveld!'
+    
+    var ret = str;
+       
+    ret = ret.replace(/\+/g, '%20');
+    ret = decodeURIComponent(ret);
+    ret = ret.toString();
+
+    return ret;
+}// }}}
+
+// {{{ urlencode
+function urlencode( str ) {
+    // URL-encodes string
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urlencode/
+    // +       version: 804.1715
+    // +   original by: Philip Peterson
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: urlencode('Kevin van Zonneveld!');
+    // *     returns 1: 'Kevin+van+Zonneveld%21'
+                                     
+    var ret = str;
+    
+    ret = ret.toString();
+    ret = encodeURIComponent(ret);
+    ret = ret.replace(/%20/g, '+');
+
+    return ret;
+}// }}}
+
+// {{{ empty
+function empty( mixed_var ) {
+    // Determine whether a variable is empty
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_empty/
+    // +       version: 804.1712
+    // +   original by: Philippe Baumann
+    // *     example 1: empty(null);
+    // *     returns 1: true
+
+    return ( mixed_var === "" || mixed_var === 0   || mixed_var === "0" || mixed_var === null  || mixed_var === false  ||  ( is_array(mixed_var) && mixed_var.length === 0 ) );
+}// }}}
+
+// {{{ floatval
+function floatval(mixed_var) {
+    // +   original by: Michael White (http://crestidg.com)
+    // %        note 1: The native parseFloat() method of JavaScript returns NaN when it encounters a string before an int or float value.
+    // *     example 1: floatval('150.03_page-section');
+    // *     returns 1: 150.03
+    // *     example 2: floatval('page: 3');
+    // *     returns 2: 0
+    // *     example 2: floatval('-50 + 8');
+    // *     returns 2: -50
+
+    return (parseFloat(mixed_var) || 0);
+}// }}}
+
+// {{{ intval
+function intval( mixed_var, base ) {
+    // Get the integer value of a variable
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_intval/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: intval('Kevin van Zonneveld');
+    // *     returns 1: 0
+    // *     example 2: intval(4.2);
+    // *     returns 2: 4
+    // *     example 3: intval(42, 8);
+    // *     returns 3: 42
+
+    var tmp;
+
+    if( typeof( mixed_var ) == 'string' ){
+        tmp = parseInt(mixed_var);
+        if(isNaN(tmp)){
+            return 0;
+        } else{
+            return tmp.toString(base || 10);
+        }
+    } else if( typeof( mixed_var ) == 'number' ){
+        return Math.floor(mixed_var);
+    } else{
+        return 0;
+    }
+}// }}}
+
+// {{{ is_array
+function is_array( mixed_var ) {
+    // Finds whether a variable is an array
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Legaev Andrey
+    // +   bugfixed by: Cord
+    // *     example 1: is_array(['Kevin', 'van', 'Zonneveld']);
+    // *     returns 1: true
+    // *     example 2: is_array('Kevin van Zonneveld');
+    // *     returns 2: false
+
+    return ( mixed_var instanceof Array );
+}// }}}
+
+// {{{ is_null
+function is_null( mixed_var ){
+    // Finds whether a variable is NULL
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_null/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: is_null('23');
+    // *     returns 1: false
+    // *     example 2: is_null(null);
+    // *     returns 2: true
+
+    return ( mixed_var === null );
+}// }}}
+
+// {{{ is_numeric
+function is_numeric( mixed_var ) {
+    // Finds whether a variable is a number or a numeric string
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_numeric/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: David
+    // *     example 1: is_numeric(186.31);
+    // *     returns 1: true
+    // *     example 2: is_numeric('Kevin van Zonneveld');
+    // *     returns 2: false
+    // *     example 3: is_numeric('+186.31e2');
+    // *     returns 3: true
+
+    return !isNaN( mixed_var );
+}// }}}
+
+// {{{ is_object
+function is_object( mixed_var ){
+    // Finds whether a variable is an object
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_object/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Legaev Andrey
+    // +   improved by: Michael White (http://crestidg.com)
+    // *     example 1: is_object('23');
+    // *     returns 1: false
+    // *     example 2: is_object({foo: 'bar'});
+    // *     returns 2: true
+    // *     example 3: is_object(null);
+    // *     returns 3: false
+
+    if(mixed_var instanceof Array) {
+        return false;
+    } else {
+        return (mixed_var !== null) && (typeof( mixed_var ) == 'object');
+    }
+}// }}}
+
+// {{{ is_string
+function is_string( mixed_var ){
+    // Find whether the type of a variable is string
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_string/
+    // +       version: 804.1712
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: is_string('23');
+    // *     returns 1: true
+    // *     example 2: is_string(23.5);
+    // *     returns 2: false
+
+    return (typeof( mixed_var ) == 'string');
+}// }}}
+
+// {{{ isset
+function isset(  ) {
+    // Determine whether a variable is set
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_isset/
+    // +       version: 804.1713
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: FremyCompany
+    // *     example 1: isset( undefined, true);
+    // *     returns 1: false
+    // *     example 2: isset( 'Kevin van Zonneveld' );
+    // *     returns 2: true
+
+    var a=arguments; var l=a.length; var i=0;
+    
+    while ( i!=l ) {
+        if (typeof(a[i])=='undefined') { 
+            return false; 
+        } else { 
+            i++; 
+        }
+    }
+    
+    return true;
+}// }}}
+
+// {{{ print_r
+function print_r( array, return_val ) {
+    // Prints human-readable information about a variable
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_print_r/
+    // +       version: 804.1712
+    // +   original by: Michael White (http://crestidg.com)
+    // *     example 1: print_r(1, true);
+    // *     returns 1: 1
+
+    var output = "", pad_char = " ", pad_val = 4;
+
+    var formatArray = function (obj, cur_depth, pad_val, pad_char) {
+        if(cur_depth > 0)
+            cur_depth++;
+
+        var base_pad = repeat_char(pad_val*cur_depth, pad_char);
+        var thick_pad = repeat_char(pad_val*(cur_depth+1), pad_char);
+        var str = "";
+
+        if(obj instanceof Array) {
+            str += "Array\n" + base_pad + "(\n";
+            for(var key in obj) {
+                if(obj[key] instanceof Array) {
+                    str += thick_pad + "["+key+"] => "+formatArray(obj[key], cur_depth+1, pad_val, pad_char);
+                } else {
+                    str += thick_pad + "["+key+"] => " + obj[key] + "\n";
+                }
+            }
+            str += base_pad + ")\n";
+        } else {
+            str = obj.toString();
+        };
+
+        return str;
+    };
+
+    var repeat_char = function (len, pad_char) {
+        var str = "";
+        for(var i=0; i < len; i++) { str += pad_char; };
+        return str;
+    };
+    output = formatArray(array, 0, pad_val, pad_char);
+
+    if(return_val !== true) {
+        document.write("<pre>" + output + "</pre>");
+        return true;
+    } else {
+        return output;
+    }
+}// }}}
+
+// {{{ serialize
+function serialize( inp ) {
+    // Generates a storable representation of a value
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_serialize/
+    // +       version: 804.1712
+    // +   original by: Arpad Ray (mailto:arpad@php.net)
+    // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
+    // *     returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
+
+    var getType = function( inp ) {
+        var type = typeof inp, match;
+        if(type == 'object' && !inp)
+        {
+            return 'null';
+        }
+        if (type == "object") {
+            if(!inp.constructor)
+            {
+                return 'object';
+            }
+            var cons = inp.constructor.toString();
+            if (match = cons.match(/(\w+)\(/)) {
+                cons = match[1].toLowerCase();
+            }
+            var types = ["boolean", "number", "string", "array"];
+            for (key in types) {
+                if (cons == types[key]) {
+                    type = types[key];
+                    break;
+                }
+            }
+        }
+        return type;
+    };
+
+    var type = getType(inp);
+    var val;
+    switch (type) {
+        case "undefined":
+            val = "N";
+            break;
+        case "boolean":
+            val = "b:" + (inp ? "1" : "0");
+            break;
+        case "number":
+            val = (Math.round(inp) == inp ? "i" : "d") + ":" + inp;
+            break;
+        case "string":
+            val = "s:" + inp.length + ":\"" + inp + "\"";
+            break;
+        case "array":
+            val = "a";
+        case "object":
+            if (type == "object") {
+                var objname = inp.constructor.toString().match(/(\w+)\(\)/);
+                if (objname == undefined) {
+                    return;
+                }
+                objname[1] = serialize(objname[1]);
+                val = "O" + objname[1].substring(1, objname[1].length - 1);
+            }
+            var count = 0;
+            var vals = "";
+            var okey;
+            for (key in inp) {
+                okey = (key.match(/^[0-9]+$/) ? parseInt(key) : key);
+                vals += serialize(okey) +
+                        serialize(inp[key]);
+                count++;
+            }
+            val += ":" + count + ":{" + vals + "}";
+            break;
+    }
+    if (type != "object" && type != "array") val += ";";
+    return val;
+}// }}}
+
 // {{{ unserialize
 function unserialize ( inp ) {
     // Creates a PHP value from a stored representation
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_unserialize/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Arpad Ray (mailto:arpad@php.net)
     // +   improved by: Pedro Tainha (http://www.pedrotainha.com)
     // *     example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
@@ -3964,44 +3993,42 @@ function unserialize ( inp ) {
     return (arguments.length == 1 ? val : [val, rest]);
 }// }}}
 
-// {{{ urldecode
-function urldecode( str ) {
-    // #!#!#!#!# urldecode::$descr1 does not contain valid 'urldecode' at line 258
+// {{{ var_export
+function var_export ( mixed_expression, bool_return ) {
+    // Outputs or returns a parsable string representation of a variable
     // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urldecode/
-    // +       version: 804.1508
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_var_export/
+    // +       version: 804.1715
     // +   original by: Philip Peterson
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: urlencode('Kevin+van+Zonneveld%21');
-    // *     returns 1: 'Kevin van Zonneveld!'
+    // -    depends on: echo
+    // *     example 1: var_export(null);
+    // *     returns 1: 'NULL'
+
+    var __pad_lines = function ( x ) {
+        return x.split("\n").join("\n  ");
+    };
     
-    var ret = str;
-                        
-    ret = ret.toString();
-    ret = encodeURIComponent(ret);
-    ret = ret.replace(/%20/g, '+');
-
-    return ret;
-}// }}}
-
-// {{{ urlencode
-function urlencode( str ) {
-    // #!#!#!#!# urlencode::$descr1 does not contain valid 'urlencode' at line 258
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urlencode/
-    // +       version: 804.1508
-    // +   original by: Philip Peterson
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: urlencode('Kevin van Zonneveld!');
-    // *     returns 1: 'Kevin+van+Zonneveld%21'
-                                     
-    var ret = str;
+    var retstr = "";
     
-    ret = ret.replace(/\+/g, '%20');
-    ret = decodeURIComponent(ret);
-    ret = ret.toString();
-
-    return ret;
+    if(mixed_expression instanceof Array) {
+        var iret = "";
+        for(i in mixed_expression) {
+            iret=iret+"\n"+var_export(i,true)+" => "+var_export(mixed_expression[i], true)+",";
+        }
+        retstr = "array ("+__pad_lines(iret)+"\n)";
+    } else if( mixed_expression === null) {
+        retstr = "NULL";
+    } else {
+        retstr = (!isNaN( mixed_expression )) ? mixed_expression : "'" + mixed_expression.replace('/(["\'\])/g', "\\$1").replace('/\0/g', "\\0") + "'";
+    }
+    
+    if(bool_return != true) {
+        echo(retstr);
+        return null;
+    }
+    else {
+        return retstr;
+    }
 }// }}}
 
 // {{{ utf8_decode
@@ -4010,7 +4037,7 @@ function utf8_decode ( str_data ) {
     // ISO-8859-1
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_decode/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // *     example 1: utf8_decode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
@@ -4042,7 +4069,7 @@ function utf8_encode ( str_data ) {
     // Encodes an ISO-8859-1 string to UTF-8
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_encode/
-    // +       version: 804.1015
+    // +       version: 804.1712
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // *     example 1: utf8_encode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
@@ -4065,31 +4092,4 @@ function utf8_encode ( str_data ) {
     }
 
     return utftext;
-}// }}}
-
-// {{{ wordwrap
-function wordwrap( str, int_width, str_break, cut ) {
-    // Wraps a string to a given number of characters
-    // 
-    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_wordwrap/
-    // +       version: 804.1508
-    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-    // +   improved by: Nick Callen
-    // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-    // *     example 1: wordwrap('Kevin van Zonneveld', 6, '|', true);
-    // *     returns 1: 'Kevin |van Zo|nnevel|d'
-    
-    var m = int_width, b = str_break, c = cut
-    var i, j, l, s, r;
-    
-    if(m < 1) {
-        return str;
-    }
-    for(i = -1, l = (r = str.split("\n")).length; ++i < l; r[i] += s) {
-        for(s = r[i], r[i] = ""; s.length > m; r[i] += s.slice(0, j) + ((s = s.slice(j)).length ? b : "")){
-            j = c == 2 || (j = s.slice(0, m + 1).match(/\S*(\s)?$/))[1] ? m : j.input.length - j[0].length || c == 1 && m || j.input.length + (j = s.slice(m).match(/^\S*/)).input.length;
-        }
-    }
-    
-    return r.join("\n");
 }// }}}
