@@ -6,6 +6,11 @@ function base64_decode( data ) {
     // *     example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
     // *     returns 1: 'Kevin van Zonneveld'
     
+    // mozilla has this native
+    if (typeof window['btoa'] == 'function') {
+        return btoa(data);
+    }
+    
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
 

@@ -6,7 +6,12 @@ function base64_encode( data ) {
     // -    depends on: utf8_encode
     // *     example 1: base64_encode('Kevin van Zonneveld');
     // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
-    
+
+    // mozilla has this native
+    if (typeof window['atob'] == 'function') {
+        return atob(data);
+    }
+        
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
     data = utf8_encode(data);
