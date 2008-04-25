@@ -1,10 +1,11 @@
 function base64_decode( data ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Tyler Akins (http://rumkin.com)
+    // +   improved by: Thunder.m
+    // -    depends on: utf8_decode
     // *     example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
     // *     returns 1: 'Kevin van Zonneveld'
-
-
+    
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
 
@@ -24,6 +25,8 @@ function base64_decode( data ) {
         else if (h4 == 64) enc += String.fromCharCode(o1, o2);
         else               enc += String.fromCharCode(o1, o2, o3);
     } while (i < data.length);
-
+    
+    enc = utf8_decode(enc);
+    
     return enc;
 }
