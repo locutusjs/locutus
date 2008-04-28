@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 0.98
+ * This is version: 0.99
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -10,7 +10,7 @@
  * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
  * (http://www.jsfromhell.com), Ash Searle (http://hexmen.com/blog/),
  * Erkekjetter, marrtins, Alfonso Jimenez (http://www.alfonsojimenez.com),
- * Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Tyler Akins
+ * Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Thunder.m, Tyler Akins
  * (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
@@ -18,10 +18,10 @@
  * Touesnard, Cagri Ekin, Cord, David, David James, DxGx, FGFEmperor, Felix
  * Geisendoerfer (http://www.debuggable.com/felix), FremyCompany, Gabriel
  * Paderni, Leslie Hoare, Lincoln Ramsay, MeEtc (http://yass.meetcweb.com),
- * Mick@el, Nick Callen, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul
- * Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Sanjoy
- * Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steven Levithan
- * (http://blog.stevenlevithan.com), T0bsn, Thiago Mata
+ * Mick@el, Nick Callen, Ozh, Pedro Tainha (http://www.pedrotainha.com),
+ * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann,
+ * Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steven
+ * Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago Mata
  * (http://thiagomata.blog.com), Tim Wiel, baris ozdil, booeyOH, djmix, echo
  * is bad, gabriel paderni, ger, john (http://www.jd-tech.net), kenneth,
  * penutbutterjelly
@@ -1298,6 +1298,21 @@
                 b = b.substr(0, b.length-suffix.length);
             }
             return b;
+        },// }}}
+        
+        // {{{ dirname
+        basename: function(path) {
+            // Returns directory name component of path
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_dirname/
+            // +       version: 804.2808
+            // +   original by: Ozh
+            // *     example 1: $P.basename('/etc/passwd');
+            // *     returns 1: '/etc'
+            // *     example 2: $P.basename('c:/Temp/x');
+            // *     returns 2: 'c:/Temp'
+        
+            return path.replace(/\\/g,'/').replace(/\/[^\/]*$/, '');
         },// }}}
         
         // {{{ file
@@ -3418,12 +3433,18 @@
             // Decodes data encoded with MIME base64
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_decode/
-            // +       version: 804.1712
+            // +       version: 804.2511
             // +   original by: Tyler Akins (http://rumkin.com)
+            // +   improved by: Thunder.m
+            // -    depends on: utf8_decode
             // *     example 1: $P.base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
             // *     returns 1: 'Kevin van Zonneveld'
-        
-        
+            
+            // mozilla has this native
+            if (typeof window['btoa'] == 'function') {
+                return btoa(data);
+            }
+            
             var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
             var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
         
@@ -3443,7 +3464,9 @@
                 else if (h4 == 64) enc += String.fromCharCode(o1, o2);
                 else               enc += String.fromCharCode(o1, o2, o3);
             } while (i < data.length);
-        
+            
+            enc = this.utf8_decode(enc);
+            
             return enc;
         },// }}}
         
@@ -3452,15 +3475,23 @@
             // Encodes data with MIME base64
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_encode/
-            // +       version: 804.1712
+            // +       version: 804.2511
             // +   original by: Tyler Akins (http://rumkin.com)
             // +   improved by: Bayron Guevara
+            // +   improved by: Thunder.m
+            // -    depends on: utf8_encode
             // *     example 1: $P.base64_encode('Kevin van Zonneveld');
             // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
         
+            // mozilla has this native
+            if (typeof window['atob'] == 'function') {
+                return atob(data);
+            }
+                
             var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
             var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
-        
+            data = this.utf8_encode(data);
+            
             do { // pack three octets into four hexets
                 o1 = data.charCodeAt(i++);
                 o2 = data.charCodeAt(i++);
