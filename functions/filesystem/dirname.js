@@ -1,10 +1,12 @@
-function basename(path) {
+function dirname(path) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ozh
-    // *     example 1: basename('/etc/passwd');
+    // *     example 1: dirname('/etc/passwd');
     // *     returns 1: '/etc'
-    // *     example 2: basename('c:/Temp/x');
+    // *     example 2: dirname('c:/Temp/x');
     // *     returns 2: 'c:/Temp'
-
-    return path.replace(/\\/g,'/').replace(/\/[^\/]*$/, '');
+    // *     example 3: dirname('/dir/test/');
+    // *     returns 3: '/dir/test'
+    
+    return path.replace(/\\/g,'/').replace(/\/[^\/]*\/?$/, '');
 }
