@@ -6,5 +6,5 @@ function basename(path) {
     // *     example 2: basename('c:/Temp/x');
     // *     returns 2: 'c:/Temp'
 
-    return path.replace(/\\/g,'/').replace(/\/[^\/]*$/, '');;
+    return path.replace(/\\/g,'/').replace(/\/[^\/]*$/, '');
 }
