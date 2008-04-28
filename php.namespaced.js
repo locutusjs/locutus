@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 0.99
+ * This is version: 1.00
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -1301,18 +1301,20 @@
         },// }}}
         
         // {{{ dirname
-        basename: function(path) {
+        dirname: function(path) {
             // Returns directory name component of path
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_dirname/
-            // +       version: 804.2808
+            // +       version: 804.2817
             // +   original by: Ozh
-            // *     example 1: $P.basename('/etc/passwd');
+            // *     example 1: $P.dirname('/etc/passwd');
             // *     returns 1: '/etc'
-            // *     example 2: $P.basename('c:/Temp/x');
+            // *     example 2: $P.dirname('c:/Temp/x');
             // *     returns 2: 'c:/Temp'
-        
-            return path.replace(/\\/g,'/').replace(/\/[^\/]*$/, '');
+            // *     example 3: $P.dirname('/dir/test/');
+            // *     returns 3: '/dir/test'
+            
+            return path.replace(/\\/g,'/').replace(/\/[^\/]*\/?$/, '');
         },// }}}
         
         // {{{ file
