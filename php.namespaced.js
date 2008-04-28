@@ -1312,7 +1312,7 @@
             // *     example 2: $P.dirname('c:/Temp/x');
             // *     returns 2: 'c:/Temp'
             // *     example 3: $P.dirname('/dir/test/');
-            // *     returns 3: '/dir/test'
+            // *     returns 3: '/dir'
             
             return path.replace(/\\/g,'/').replace(/\/[^\/]*\/?$/, '');
         },// }}}
