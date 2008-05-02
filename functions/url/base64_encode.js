@@ -8,9 +8,10 @@ function base64_encode( data ) {
     // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
 
     // mozilla has this native
-    if (typeof window['atob'] == 'function') {
-        return atob(data);
-    }
+    // - but breaks in 2.0.0.12!
+    //if (typeof window['atob'] == 'function') {
+    //    return atob(data);
+    //}
         
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
