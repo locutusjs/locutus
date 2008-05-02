@@ -22,9 +22,9 @@
  * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann,
  * Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steven
  * Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago Mata
- * (http://thiagomata.blog.com), Tim Wiel, baris ozdil, booeyOH, djmix, echo
- * is bad, gabriel paderni, ger, john (http://www.jd-tech.net), kenneth,
- * penutbutterjelly
+ * (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
+ * baris ozdil, booeyOH, djmix, echo is bad, gabriel paderni, ger, john
+ * (http://www.jd-tech.net), kenneth, penutbutterjelly
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
