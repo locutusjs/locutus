@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.00
+ * This is version: 1.01
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -15,16 +15,17 @@
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Bayron Guevara, Benjamin Lupton, Brad
- * Touesnard, Cagri Ekin, Cord, David, David James, DxGx, FGFEmperor, Felix
- * Geisendoerfer (http://www.debuggable.com/felix), FremyCompany, Gabriel
- * Paderni, Leslie Hoare, Lincoln Ramsay, MeEtc (http://yass.meetcweb.com),
- * Mick@el, Nick Callen, Ozh, Pedro Tainha (http://www.pedrotainha.com),
- * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann,
- * Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steven
- * Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago Mata
+ * Touesnard, Brett Zamir, Cagri Ekin, Cord, David, David James, DxGx,
+ * FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
+ * FremyCompany, Gabriel Paderni, Leslie Hoare, Lincoln Ramsay, MeEtc
+ * (http://yass.meetcweb.com), Mick@el, Nick Callen, Ozh, Pedro Tainha
+ * (http://www.pedrotainha.com), Peter-Paul Koch
+ * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Sanjoy Roy,
+ * Simon Willison (http://simonwillison.net), Steve Clay, Steven Levithan
+ * (http://blog.stevenlevithan.com), T0bsn, Thiago Mata
  * (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
- * baris ozdil, booeyOH, djmix, echo is bad, gabriel paderni, ger, john
- * (http://www.jd-tech.net), kenneth, penutbutterjelly
+ * baris ozdil, booeyOH, djmix, duncan, echo is bad, gabriel paderni, ger,
+ * john (http://www.jd-tech.net), kenneth, penutbutterjelly
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -704,22 +705,24 @@
             // Removes duplicate values from an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_unique/
-            // +       version: 804.1712
+            // +       version: 805.211
             // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+            // +      input by: duncan
+            // +    bufixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_unique(['Kevin','Kevin','van','Zonneveld']);
-            // *     returns 1: true
+            // *     returns 1: ['Kevin','van','Zonneveld']
         
-            var p, i, j;
-            for(i = array.length; i;){
+            var p, i, j, tmp_arr = array;
+            for(i = tmp_arr.length; i;){
                 for(p = --i; p > 0;){
-                    if(array[i] === array[--p]){
-                        for(j = p; --p && array[i] === array[p];);
-                        i -= array.splice(p + 1, j - p).length;
+                    if(tmp_arr[i] === tmp_arr[--p]){
+                        for(j = p; --p && tmp_arr[i] === tmp_arr[p];);
+                        i -= tmp_arr.splice(p + 1, j - p).length;
                     }
                 }
             }
         
-            return true;
+            return tmp_arr;
         },// }}}
         
         // {{{ array_unshift
@@ -2812,40 +2815,28 @@
         },// }}}
         
         // {{{ str_split
-        str_split: function ( f_string, f_split_length, f_backwards ){
+        str_split: function ( f_string, f_split_length){
             // Convert a string to an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_split/
-            // +       version: 804.1712
+            // +       version: 805.211
             // +     original by: Martijn Wieringa
+            // +     improved by: Brett Zamir
             // *         example 1: $P.str_split('Hello Friend', 3);
             // *         returns 1: ['Hel', 'lo ', 'Fri', 'end']
-        
-            if(f_backwards == undefined) {
-                f_backwards = false;
+         
+            if (f_split_length == undefined) {
+                f_split_length = 1;
             }
-        
             if(f_split_length > 0){
-                var result = new Array();
-        
-                if(f_backwards) {
-                    var r = (f_string.length % f_split_length);
-        
-                    if(r > 0){
-                        result[result.length] = f_string.substring(0, r);
-                        f_string = f_string.substring(r);
-                    }
-                }
-        
+                var result = [];
                 while(f_string.length > f_split_length) {
                     result[result.length] = f_string.substring(0, f_split_length);
                     f_string = f_string.substring(f_split_length);
                 }
-        
                 result[result.length] = f_string;
                 return result;
             }
-        
             return false;
         },// }}}
         
@@ -3436,17 +3427,18 @@
             // Decodes data encoded with MIME base64
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_decode/
-            // +       version: 804.2511
+            // +       version: 805.211
             // +   original by: Tyler Akins (http://rumkin.com)
             // +   improved by: Thunder.m
             // -    depends on: utf8_decode
             // *     example 1: $P.base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
             // *     returns 1: 'Kevin van Zonneveld'
             
-            // mozilla has this native
-            if (typeof window['btoa'] == 'function') {
-                return btoa(data);
-            }
+            // mozilla has this native 
+            // - but breaks in 2.0.0.12!
+            //if (typeof window['btoa'] == 'function') {
+            //    return btoa(data);
+            //}
             
             var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
             var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
@@ -3478,7 +3470,7 @@
             // Encodes data with MIME base64
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_encode/
-            // +       version: 804.2511
+            // +       version: 805.211
             // +   original by: Tyler Akins (http://rumkin.com)
             // +   improved by: Bayron Guevara
             // +   improved by: Thunder.m
@@ -3487,9 +3479,10 @@
             // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
         
             // mozilla has this native
-            if (typeof window['atob'] == 'function') {
-                return atob(data);
-            }
+            // - but breaks in 2.0.0.12!
+            //if (typeof window['atob'] == 'function') {
+            //    return atob(data);
+            //}
                 
             var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
             var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
