@@ -15,7 +15,7 @@ function base64_decode( data ) {
     //}
     
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, dec = "", tmp_arr = [];
+    var o1, o2, o3, h1, h2, h3, h4, bits, i = ac = 0, dec = "", tmp_arr = [];
 
     do {  // unpack four hexets into three octets using index points in b64
         h1 = b64.indexOf(data.charAt(i++));
@@ -30,11 +30,11 @@ function base64_decode( data ) {
         o3 = bits & 0xff;
 
         if (h3 == 64) {
-            tmp_arr[] = String.fromCharCode(o1);
+            tmp_arr[ac++] = String.fromCharCode(o1);
         } else if (h4 == 64) {
-            tmp_arr[] = String.fromCharCode(o1, o2);
+            tmp_arr[ac++] = String.fromCharCode(o1, o2);
         } else {
-           tmp_arr[] = String.fromCharCode(o1, o2, o3);
+            tmp_arr[ac++] = String.fromCharCode(o1, o2, o3);
         }
     } while (i < data.length);
     
