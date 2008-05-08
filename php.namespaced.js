@@ -3457,9 +3457,13 @@
                 o2 = bits>>8 & 0xff;
                 o3 = bits & 0xff;
         
-                if (h3 == 64)      tmp_arr[] = String.fromCharCode(o1);
-                else if (h4 == 64) tmp_arr[] = String.fromCharCode(o1, o2);
-                else               tmp_arr[] = String.fromCharCode(o1, o2, o3);
+                if (h3 == 64) {
+                    tmp_arr[] = String.fromCharCode(o1);
+                } else if (h4 == 64) {
+                    tmp_arr[] = String.fromCharCode(o1, o2);
+                } else {
+                   tmp_arr[] = String.fromCharCode(o1, o2, o3);
+                }
             } while (i < data.length);
             
             dec = tmp_arr.join('');
