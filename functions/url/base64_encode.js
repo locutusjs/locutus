@@ -3,6 +3,7 @@ function base64_encode( data ) {
     // +   original by: Tyler Akins (http://rumkin.com)
     // +   improved by: Bayron Guevara
     // +   improved by: Thunder.m
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)        
     // -    depends on: utf8_encode
     // *     example 1: base64_encode('Kevin van Zonneveld');
     // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
@@ -14,7 +15,7 @@ function base64_encode( data ) {
     //}
         
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
+    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc="", tmp_arr = [];
     data = utf8_encode(data);
     
     do { // pack three octets into four hexets
@@ -30,9 +31,11 @@ function base64_encode( data ) {
         h4 = bits & 0x3f;
 
         // use hexets to index into b64, and append result to encoded string
-        enc += b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
+        tmp_arr[] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
     } while (i < data.length);
-
+    
+    enc = tmp_arr.join('');
+    
     switch( data.length % 3 ){
         case 1:
             enc = enc.slice(0, -2) + '==';
