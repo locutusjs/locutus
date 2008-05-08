@@ -3443,7 +3443,7 @@
             //}
             
             var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-            var o1, o2, o3, h1, h2, h3, h4, bits, i=0, dec = "", tmp_arr = [];
+            var o1, o2, o3, h1, h2, h3, h4, bits, i = ac = 0, dec = "", tmp_arr = [];
         
             do {  // unpack four hexets into three octets using index points in b64
                 h1 = b64.indexOf(data.charAt(i++));
@@ -3458,11 +3458,11 @@
                 o3 = bits & 0xff;
         
                 if (h3 == 64) {
-                    tmp_arr[] = String.fromCharCode(o1);
+                    tmp_arr[ac++] = String.fromCharCode(o1);
                 } else if (h4 == 64) {
-                    tmp_arr[] = String.fromCharCode(o1, o2);
+                    tmp_arr[ac++] = String.fromCharCode(o1, o2);
                 } else {
-                   tmp_arr[] = String.fromCharCode(o1, o2, o3);
+                    tmp_arr[ac++] = String.fromCharCode(o1, o2, o3);
                 }
             } while (i < data.length);
             
@@ -3493,7 +3493,7 @@
             //}
                 
             var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-            var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc="", tmp_arr = [];
+            var o1, o2, o3, h1, h2, h3, h4, bits, i = ac = 0, enc="", tmp_arr = [];
             data = this.utf8_encode(data);
             
             do { // pack three octets into four hexets
@@ -3509,7 +3509,7 @@
                 h4 = bits & 0x3f;
         
                 // use hexets to index into b64, and append result to encoded string
-                tmp_arr[] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
+                tmp_arr[ac++] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
             } while (i < data.length);
             
             enc = tmp_arr.join('');
@@ -4100,21 +4100,21 @@
             // *     example 1: $P.utf8_decode('Kevin van Zonneveld');
             // *     returns 1: 'Kevin van Zonneveld'
         
-            var tmp_arr = [], i = 0, c = c1 = c2 = 0;
+            var tmp_arr = [], i = ac = c = c1 = c2 = 0;
         
             while ( i < str_data.length ) {
                 c = str_data.charCodeAt(i);
                 if (c < 128) {
-                    tmp_arr[] = String.fromCharCode(c); 
+                    tmp_arr[ac++] = String.fromCharCode(c); 
                     i++;
                 } else if ((c > 191) && (c < 224)) {
                     c2 = str_data.charCodeAt(i+1);
-                    tmp_arr[] = String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                    tmp_arr[ac++] = String.fromCharCode(((c & 31) << 6) | (c2 & 63));
                     i += 2;
                 } else {
                     c2 = str_data.charCodeAt(i+1);
                     c3 = str_data.charCodeAt(i+2);
-                    tmp_arr[] = String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                    tmp_arr[ac++] = String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
                     i += 3;
                 }
             }
@@ -4134,19 +4134,19 @@
             // *     returns 1: 'Kevin van Zonneveld'
         
             str_data = str_data.replace(/\r\n/g,"\n");
-            var tmp_arr = [];
+            var tmp_arr = [], ac = 0;
         
             for (var n = 0; n < str_data.length; n++) {
                 var c = str_data.charCodeAt(n);
                 if (c < 128) {
-                    tmp_arr[] = String.fromCharCode(c);
+                    tmp_arr[ac++] = String.fromCharCode(c);
                 } else if((c > 127) && (c < 2048)) {
-                    tmp_arr[] = String.fromCharCode((c >> 6) | 192);
-                    tmp_arr[] = String.fromCharCode((c & 63) | 128);
+                    tmp_arr[ac++] = String.fromCharCode((c >> 6) | 192);
+                    tmp_arr[ac++] = String.fromCharCode((c & 63) | 128);
                 } else {
-                    tmp_arr[] = String.fromCharCode((c >> 12) | 224);
-                    tmp_arr[] = String.fromCharCode(((c >> 6) & 63) | 128);
-                    tmp_arr[] = String.fromCharCode((c & 63) | 128);
+                    tmp_arr[ac++] = String.fromCharCode((c >> 12) | 224);
+                    tmp_arr[ac++] = String.fromCharCode(((c >> 6) & 63) | 128);
+                    tmp_arr[ac++] = String.fromCharCode((c & 63) | 128);
                 }
             }
             
