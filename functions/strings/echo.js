@@ -10,7 +10,7 @@ function echo ( ) {
     for( i = 0; i < echo.arguments.length; i++ ) {
         if( doc_elem.body && doc_elem.body.innerHTML ) {
             doc_elem.body.innerHTML = doc_elem.body.innerHTML + echo.arguments[i];
-        } else {
+        } else if (doc_elem.write) {
             doc_elem.write( echo.arguments[i] );
         }
     }
