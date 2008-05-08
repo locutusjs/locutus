@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.02
+ * This is version: 1.03
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -1845,7 +1845,7 @@ function echo ( ) {
     // Output one or more strings
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_echo/
-    // +       version: 804.1712
+    // +       version: 805.821
     // +   original by: Philip Peterson
     // +   improved by: echo is bad
     // *     example 1: echo('Hello', 'World');
@@ -1856,7 +1856,7 @@ function echo ( ) {
     for( i = 0; i < echo.arguments.length; i++ ) {
         if( doc_elem.body && doc_elem.body.innerHTML ) {
             doc_elem.body.innerHTML = doc_elem.body.innerHTML + echo.arguments[i];
-        } else {
+        } else if (doc_elem.write) {
             doc_elem.write( echo.arguments[i] );
         }
     }
