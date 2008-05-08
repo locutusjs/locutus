@@ -14,10 +14,10 @@ function print_r( array, return_val ) {
         var thick_pad = repeat_char(pad_val*(cur_depth+1), pad_char);
         var str = "";
 
-        if(obj instanceof Array) {
+        if (obj instanceof Array) {
             str += "Array\n" + base_pad + "(\n";
-            for(var key in obj) {
-                if(obj[key] instanceof Array) {
+            for (var key in obj) {
+                if (obj[key] instanceof Array) {
                     str += thick_pad + "["+key+"] => "+formatArray(obj[key], cur_depth+1, pad_val, pad_char);
                 } else {
                     str += thick_pad + "["+key+"] => " + obj[key] + "\n";
@@ -38,7 +38,7 @@ function print_r( array, return_val ) {
     };
     output = formatArray(array, 0, pad_val, pad_char);
 
-    if(return_val !== true) {
+    if (return_val !== true) {
         document.write("<pre>" + output + "</pre>");
         return true;
     } else {
