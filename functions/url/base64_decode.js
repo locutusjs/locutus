@@ -2,6 +2,8 @@ function base64_decode( data ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Tyler Akins (http://rumkin.com)
     // +   improved by: Thunder.m
+    // +      input by: Aman Gupta
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)    
     // -    depends on: utf8_decode
     // *     example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
     // *     returns 1: 'Kevin van Zonneveld'
@@ -13,7 +15,7 @@ function base64_decode( data ) {
     //}
     
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
+    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, dec = "", tmp_arr = [];
 
     do {  // unpack four hexets into three octets using index points in b64
         h1 = b64.indexOf(data.charAt(i++));
@@ -27,12 +29,13 @@ function base64_decode( data ) {
         o2 = bits>>8 & 0xff;
         o3 = bits & 0xff;
 
-        if (h3 == 64)      enc += String.fromCharCode(o1);
-        else if (h4 == 64) enc += String.fromCharCode(o1, o2);
-        else               enc += String.fromCharCode(o1, o2, o3);
+        if (h3 == 64)      tmp_arr[] = String.fromCharCode(o1);
+        else if (h4 == 64) tmp_arr[] = String.fromCharCode(o1, o2);
+        else               tmp_arr[] = String.fromCharCode(o1, o2, o3);
     } while (i < data.length);
     
-    enc = utf8_decode(enc);
+    dec = tmp_arr.join('');
+    dec = utf8_decode(dec);
     
-    return enc;
+    return dec;
 }
