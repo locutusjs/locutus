@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.01
+ * This is version: 1.02
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -10,10 +10,10 @@
  * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
  * (http://www.jsfromhell.com), Ash Searle (http://hexmen.com/blog/),
  * Erkekjetter, marrtins, Alfonso Jimenez (http://www.alfonsojimenez.com),
- * Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Thunder.m, Tyler Akins
- * (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), Alexander Ermolaev
- * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
- * (http://www.winternet.no), Andrea Giammarchi
+ * Aman Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Thunder.m,
+ * Tyler Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it),
+ * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
+ * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Bayron Guevara, Benjamin Lupton, Brad
  * Touesnard, Brett Zamir, Cagri Ekin, Cord, David, David James, DxGx,
  * FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
@@ -3408,9 +3408,11 @@ function base64_decode( data ) {
     // Decodes data encoded with MIME base64
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_decode/
-    // +       version: 805.211
+    // +       version: 805.821
     // +   original by: Tyler Akins (http://rumkin.com)
     // +   improved by: Thunder.m
+    // +      input by: Aman Gupta
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)    
     // -    depends on: utf8_decode
     // *     example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
     // *     returns 1: 'Kevin van Zonneveld'
@@ -3422,7 +3424,7 @@ function base64_decode( data ) {
     //}
     
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
+    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, dec = "", tmp_arr = [];
 
     do {  // unpack four hexets into three octets using index points in b64
         h1 = b64.indexOf(data.charAt(i++));
@@ -3436,14 +3438,15 @@ function base64_decode( data ) {
         o2 = bits>>8 & 0xff;
         o3 = bits & 0xff;
 
-        if (h3 == 64)      enc += String.fromCharCode(o1);
-        else if (h4 == 64) enc += String.fromCharCode(o1, o2);
-        else               enc += String.fromCharCode(o1, o2, o3);
+        if (h3 == 64)      tmp_arr[] = String.fromCharCode(o1);
+        else if (h4 == 64) tmp_arr[] = String.fromCharCode(o1, o2);
+        else               tmp_arr[] = String.fromCharCode(o1, o2, o3);
     } while (i < data.length);
     
-    enc = utf8_decode(enc);
+    dec = tmp_arr.join('');
+    dec = utf8_decode(dec);
     
-    return enc;
+    return dec;
 }// }}}
 
 // {{{ base64_encode
@@ -3451,10 +3454,11 @@ function base64_encode( data ) {
     // Encodes data with MIME base64
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_encode/
-    // +       version: 805.211
+    // +       version: 805.821
     // +   original by: Tyler Akins (http://rumkin.com)
     // +   improved by: Bayron Guevara
     // +   improved by: Thunder.m
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)        
     // -    depends on: utf8_encode
     // *     example 1: base64_encode('Kevin van Zonneveld');
     // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
@@ -3466,7 +3470,7 @@ function base64_encode( data ) {
     //}
         
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
+    var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc="", tmp_arr = [];
     data = utf8_encode(data);
     
     do { // pack three octets into four hexets
@@ -3482,9 +3486,11 @@ function base64_encode( data ) {
         h4 = bits & 0x3f;
 
         // use hexets to index into b64, and append result to encoded string
-        enc += b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
+        tmp_arr[] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
     } while (i < data.length);
-
+    
+    enc = tmp_arr.join('');
+    
     switch( data.length % 3 ){
         case 1:
             enc = enc.slice(0, -2) + '==';
@@ -4064,31 +4070,33 @@ function utf8_decode ( str_data ) {
     // ISO-8859-1
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_decode/
-    // +       version: 804.1712
+    // +       version: 805.821
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
+    // +      input by: Aman Gupta
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: utf8_decode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
-    var string = "", i = 0, c = c1 = c2 = 0;
+    var tmp_arr = [], i = 0, c = c1 = c2 = 0;
 
     while ( i < str_data.length ) {
         c = str_data.charCodeAt(i);
         if (c < 128) {
-            string += String.fromCharCode(c);
+            tmp_arr[] = String.fromCharCode(c); 
             i++;
-        } else if((c > 191) && (c < 224)) {
+        } else if ((c > 191) && (c < 224)) {
             c2 = str_data.charCodeAt(i+1);
-            string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+            tmp_arr[] = String.fromCharCode(((c & 31) << 6) | (c2 & 63));
             i += 2;
         } else {
             c2 = str_data.charCodeAt(i+1);
             c3 = str_data.charCodeAt(i+2);
-            string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+            tmp_arr[] = String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
             i += 3;
         }
     }
-
-    return string;
+    
+    return tmp_arr.join('');
 }// }}}
 
 // {{{ utf8_encode
@@ -4096,27 +4104,28 @@ function utf8_encode ( str_data ) {
     // Encodes an ISO-8859-1 string to UTF-8
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_encode/
-    // +       version: 804.1712
+    // +       version: 805.821
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)        
     // *     example 1: utf8_encode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
     str_data = str_data.replace(/\r\n/g,"\n");
-    var utftext = "";
+    var tmp_arr = [];
 
     for (var n = 0; n < str_data.length; n++) {
         var c = str_data.charCodeAt(n);
         if (c < 128) {
-            utftext += String.fromCharCode(c);
+            tmp_arr[] = String.fromCharCode(c);
         } else if((c > 127) && (c < 2048)) {
-            utftext += String.fromCharCode((c >> 6) | 192);
-            utftext += String.fromCharCode((c & 63) | 128);
+            tmp_arr[] = String.fromCharCode((c >> 6) | 192);
+            tmp_arr[] = String.fromCharCode((c & 63) | 128);
         } else {
-            utftext += String.fromCharCode((c >> 12) | 224);
-            utftext += String.fromCharCode(((c >> 6) & 63) | 128);
-            utftext += String.fromCharCode((c & 63) | 128);
+            tmp_arr[] = String.fromCharCode((c >> 12) | 224);
+            tmp_arr[] = String.fromCharCode(((c >> 6) & 63) | 128);
+            tmp_arr[] = String.fromCharCode((c & 63) | 128);
         }
     }
-
-    return utftext;
+    
+    return tmp_arr.join('');
 }// }}}
