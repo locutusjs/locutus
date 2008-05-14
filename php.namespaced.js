@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.03
+ * This is version: 1.04
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -21,8 +21,8 @@
  * (http://yass.meetcweb.com), Mick@el, Nick Callen, Ozh, Pedro Tainha
  * (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Sanjoy Roy,
- * Simon Willison (http://simonwillison.net), Steve Clay, Steven Levithan
- * (http://blog.stevenlevithan.com), T0bsn, Thiago Mata
+ * Simon Willison (http://simonwillison.net), Steve Clay, Steve Hilder, Steven
+ * Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago Mata
  * (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
  * baris ozdil, booeyOH, djmix, duncan, echo is bad, gabriel paderni, ger,
  * john (http://www.jd-tech.net), kenneth, penutbutterjelly
@@ -2884,18 +2884,29 @@
             // Binary safe string comparison
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strcmp/
-            // +       version: 804.1712
+            // +       version: 805.822
             // +   original by: _argos
+            // +      input by: Steve Hilder
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.strcmp( 'waldo', 'Waldo' );
             // *     returns 1: 1
             // *     example 2: $P.strcmp( 'Waldo', 'waldo' );
             // *     returns 2: -1
             // *     example 3: $P.strcmp( 'waldo', 'waldo' );
             // *     returns 3: 0
+            // *     example 4: $P.strcmp( 'test', 'tomato' );
+            // *     returns 4: -1
         
-            var size1 = str1.charCodeAt ( 0 );
-            var size2 = str2.charCodeAt ( 0 );
+            var i = size1 = size2 = 0;
+            
+            for (i = 0; i < str1.length; ++i) {
+                size1 += str1.charCodeAt(i);
+            }
         
+            for (i = 0; i < str2.length; ++i) {
+                size2 += str2.charCodeAt(i);
+            }
+            
             return ( ( size1 == size2 ) ? 0 : ( ( size1 > size2 ) ? 1 : -1 ) );
         },// }}}
         
@@ -3777,7 +3788,7 @@
             // Prints human-readable information about a variable
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_print_r/
-            // +       version: 804.1712
+            // +       version: 805.822
             // +   original by: Michael White (http://crestidg.com)
             // *     example 1: $P.print_r(1, true);
             // *     returns 1: 1
@@ -3792,10 +3803,10 @@
                 var thick_pad = repeat_char(pad_val*(cur_depth+1), pad_char);
                 var str = "";
         
-                if(obj instanceof Array) {
+                if (obj instanceof Array) {
                     str += "Array\n" + base_pad + "(\n";
-                    for(var key in obj) {
-                        if(obj[key] instanceof Array) {
+                    for (var key in obj) {
+                        if (obj[key] instanceof Array) {
                             str += thick_pad + "["+key+"] => "+formatArray(obj[key], cur_depth+1, pad_val, pad_char);
                         } else {
                             str += thick_pad + "["+key+"] => " + obj[key] + "\n";
@@ -3816,7 +3827,7 @@
             };
             output = formatArray(array, 0, pad_val, pad_char);
         
-            if(return_val !== true) {
+            if (return_val !== true) {
                 document.write("<pre>" + output + "</pre>");
                 return true;
             } else {
