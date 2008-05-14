@@ -1,6 +1,7 @@
 function intval( mixed_var, base ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: stensi
     // *     example 1: intval('Kevin van Zonneveld');
     // *     returns 1: 0
     // *     example 2: intval(4.2);
@@ -12,12 +13,12 @@ function intval( mixed_var, base ) {
 
     if( typeof( mixed_var ) == 'string' ){
         tmp = parseInt(mixed_var);
-        if(isNaN(tmp)){
+        if(isNaN(tmp) || !isFinite(tmp)){
             return 0;
         } else{
             return tmp.toString(base || 10);
         }
-    } else if( typeof( mixed_var ) == 'number' ){
+    } else if( typeof( mixed_var ) == 'number' && isFinite(mixed_var) ){
         return Math.floor(mixed_var);
     } else{
         return 0;
