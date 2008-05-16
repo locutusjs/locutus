@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.04
+ * This is version: 1.05
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -25,7 +25,7 @@
  * Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago Mata
  * (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
  * baris ozdil, booeyOH, djmix, duncan, echo is bad, gabriel paderni, ger,
- * john (http://www.jd-tech.net), kenneth, penutbutterjelly
+ * john (http://www.jd-tech.net), kenneth, penutbutterjelly, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -3625,8 +3625,9 @@ function intval( mixed_var, base ) {
     // Get the integer value of a variable
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_intval/
-    // +       version: 804.1712
+    // +       version: 805.1421
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: stensi
     // *     example 1: intval('Kevin van Zonneveld');
     // *     returns 1: 0
     // *     example 2: intval(4.2);
@@ -3638,12 +3639,12 @@ function intval( mixed_var, base ) {
 
     if( typeof( mixed_var ) == 'string' ){
         tmp = parseInt(mixed_var);
-        if(isNaN(tmp)){
+        if(isNaN(tmp) || !isFinite(tmp)){
             return 0;
         } else{
             return tmp.toString(base || 10);
         }
-    } else if( typeof( mixed_var ) == 'number' ){
+    } else if( typeof( mixed_var ) == 'number' && isFinite(mixed_var) ){
         return Math.floor(mixed_var);
     } else{
         return 0;
