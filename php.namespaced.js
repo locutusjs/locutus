@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.06
+ * This is version: 1.07
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -24,8 +24,8 @@
  * Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steve
  * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago
  * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
- * baris ozdil, booeyOH, djmix, duncan, echo is bad, gabriel paderni, ger,
- * john (http://www.jd-tech.net), kenneth, penutbutterjelly, stensi
+ * baris ozdil, booeyOH, d3x, djmix, duncan, echo is bad, gabriel paderni,
+ * ger, john (http://www.jd-tech.net), kenneth, penutbutterjelly, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -1884,33 +1884,37 @@
         },// }}}
         
         // {{{ explode
-        explode: function( delimiter, string ) {
+        explode: function( delimiter, string, limit ) {
             // Split a string by string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_explode/
-            // +       version: 804.1712
-            // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-            // +   improved by: kenneth
-            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +       version: 805.1715
+            // +     original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +     improved by: kenneth
+            // +     improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +     improved by: d3x
             // *     example 1: $P.explode(' ', 'Kevin van Zonneveld');
             // *     returns 1: {0: 'Kevin', 1: 'van', 2: 'Zonneveld'}
-        
+            // *     example 2: $P.explode('=', 'a=bc=d', 2);
+            // *     returns 2: ['a', 'bc=d']
+         
             var emptyArray = { 0: '' };
-        
-            if ( arguments.length != 2
+         
+            if ( arguments.length != 3
                 || typeof arguments[0] == 'undefined'
-                || typeof arguments[1] == 'undefined' )
+                || typeof arguments[1] == 'undefined'
+                || typeof arguments[2] == 'undefined' )
             {
                 return null;
             }
-        
+         
             if ( delimiter === ''
                 || delimiter === false
                 || delimiter === null )
             {
                 return false;
             }
-        
+         
             if ( typeof delimiter == 'function'
                 || typeof delimiter == 'object'
                 || typeof string == 'function'
@@ -1918,12 +1922,20 @@
             {
                 return emptyArray;
             }
-        
+         
             if ( delimiter === true ) {
                 delimiter = '1';
             }
-        
-            return string.toString().split ( delimiter.toString() );
+            
+            if(!limit){
+                return string.toString().split ( delimiter.toString() );
+            } else {
+                var splitted = string.toString().split(delimiter.toString());
+                var partA = splitted.splice(0, limit - 1);
+                var partB = splitted.join(delimiter.toString());
+                partA.push(partB);
+                return partA;
+            }
         },// }}}
         
         // {{{ html_entity_decode
