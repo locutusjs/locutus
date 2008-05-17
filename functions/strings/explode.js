@@ -6,9 +6,8 @@ function explode( delimiter, string, limit ) {
     // +     improved by: d3x
     // *     example 1: explode(' ', 'Kevin van Zonneveld');
     // *     returns 1: {0: 'Kevin', 1: 'van', 2: 'Zonneveld'}
-    // +     further improved by: d3x
-    // *         example 1: explode('=', 'a=bc=d', 2);
-    // *         returns : ['a', 'bc=d']
+    // *     example 2: explode('=', 'a=bc=d', 2);
+    // *     returns 2: ['a', 'bc=d']
  
     var emptyArray = { 0: '' };
  
