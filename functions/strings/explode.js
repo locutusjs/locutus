@@ -42,6 +42,7 @@ function explode( delimiter, string, limit ) {
     if (!limit) {
         return string.toString().split(delimiter.toString());
     } else {
+        // supoort for limit argument
         var splitted = string.toString().split(delimiter.toString());
         var partA = splitted.splice(0, limit - 1);
         var partB = splitted.join(delimiter.toString());
