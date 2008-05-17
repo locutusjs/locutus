@@ -1902,7 +1902,7 @@
             var emptyArray = { 0: '' };
             
             // third argument is not required
-            if ( arguments.length != 2
+            if ( arguments.length < 2
                 || typeof arguments[0] == 'undefined'
                 || typeof arguments[1] == 'undefined' )
             {
