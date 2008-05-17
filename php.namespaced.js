@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.07
+ * This is version: 1.08
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -1893,17 +1893,18 @@
             // +     improved by: kenneth
             // +     improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +     improved by: d3x
+            // +     bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.explode(' ', 'Kevin van Zonneveld');
             // *     returns 1: {0: 'Kevin', 1: 'van', 2: 'Zonneveld'}
             // *     example 2: $P.explode('=', 'a=bc=d', 2);
             // *     returns 2: ['a', 'bc=d']
          
             var emptyArray = { 0: '' };
-         
-            if ( arguments.length != 3
+            
+            // third argument is not required
+            if ( arguments.length != 2
                 || typeof arguments[0] == 'undefined'
-                || typeof arguments[1] == 'undefined'
-                || typeof arguments[2] == 'undefined' )
+                || typeof arguments[1] == 'undefined' )
             {
                 return null;
             }
@@ -1927,8 +1928,8 @@
                 delimiter = '1';
             }
             
-            if(!limit){
-                return string.toString().split ( delimiter.toString() );
+            if (!limit) {
+                return string.toString().split(delimiter.toString());
             } else {
                 var splitted = string.toString().split(delimiter.toString());
                 var partA = splitted.splice(0, limit - 1);
@@ -3021,16 +3022,16 @@
             // String comparisons using a &quot;natural order&quot; algorithm
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strnatcmp/
-            // +       version: 804.1712
+            // +       version: 805.1715
             // +   original by: Martijn Wieringa
             // + namespaced by: Michael White (http://crestidg.com)
             // -    depends on: strcmp
             // *     example 1: $P.strnatcmp('Price 12.9', 'Price 12.15');
-            // *     returns 1: 1
+            // *     returns 1: -1
             // *     example 2: $P.strnatcmp('Version 12.9', 'Version 12.15', true);
             // *     returns 2: -6
             // *     example 3: $P.strnatcmp('Version 12.9', 'Version 12.15', false);
-            // *     returns 3: 1
+            // *     returns 3: -1
         
             if(f_version == undefined) {
                 f_version = false;
@@ -4079,11 +4080,11 @@
             // Outputs or returns a parsable string representation of a variable
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_var_export/
-            // +       version: 804.1715
+            // +       version: 805.1715
             // +   original by: Philip Peterson
             // -    depends on: echo
             // *     example 1: $P.var_export(null);
-            // *     returns 1: 'NULL'
+            // *     returns 1: null
         
             var __pad_lines = function ( x ) {
                 return x.split("\n").join("\n  ");
