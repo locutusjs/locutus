@@ -3,7 +3,7 @@ function var_export ( mixed_expression, bool_return ) {
     // +   original by: Philip Peterson
     // -    depends on: echo
     // *     example 1: var_export(null);
-    // *     returns 1: 'NULL'
+    // *     returns 1: null
 
     var __pad_lines = function ( x ) {
         return x.split("\n").join("\n  ");

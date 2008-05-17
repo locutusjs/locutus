@@ -4,11 +4,11 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
     // + namespaced by: Michael White (http://crestidg.com)
     // -    depends on: strcmp
     // *     example 1: strnatcmp('Price 12.9', 'Price 12.15');
-    // *     returns 1: 1
+    // *     returns 1: -1
     // *     example 2: strnatcmp('Version 12.9', 'Version 12.15', true);
     // *     returns 2: -6
     // *     example 3: strnatcmp('Version 12.9', 'Version 12.15', false);
-    // *     returns 3: 1
+    // *     returns 3: -1
 
     if(f_version == undefined) {
         f_version = false;
