@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.08
+ * This is version: 1.09
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -11,7 +11,7 @@
  * (http://www.jsfromhell.com), Ash Searle (http://hexmen.com/blog/),
  * Erkekjetter, marrtins, Alfonso Jimenez (http://www.alfonsojimenez.com),
  * Aman Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Thunder.m,
- * Tyler Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it),
+ * Tyler Akins (http://rumkin.com), d3x, mdsjack (http://www.mdsjack.bo.it),
  * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
  * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Bayron Guevara, Benjamin Lupton, Brad
@@ -24,8 +24,8 @@
  * Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steve
  * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago
  * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
- * baris ozdil, booeyOH, d3x, djmix, duncan, echo is bad, gabriel paderni,
- * ger, john (http://www.jd-tech.net), kenneth, penutbutterjelly, stensi
+ * baris ozdil, booeyOH, djmix, duncan, echo is bad, gabriel paderni, ger,
+ * john (http://www.jd-tech.net), kenneth, penutbutterjelly, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -68,6 +68,19 @@
             // 
             // %        note 1: Not a real PHP.JS function, necessary for namespaced version, though.
         
+        },// }}}
+        
+        // {{{ array
+        array: function( ) {
+            // #!#!#!#!# array::$descr1 does not contain valid 'array' at line 258
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array/
+            // +       version: 805.1716
+            // +   original by: d3x
+            // *     example 1: $P.array('Kevin', 'van', 'Zonneveld');
+            // *     returns 1: ['Kevin', 'van', 'Zonneveld'];
+        
+            return Array.prototype.slice.call(arguments);
         },// }}}
         
         // {{{ array_change_key_case
@@ -1931,6 +1944,7 @@
             if (!limit) {
                 return string.toString().split(delimiter.toString());
             } else {
+                // support for limit argument
                 var splitted = string.toString().split(delimiter.toString());
                 var partA = splitted.splice(0, limit - 1);
                 var partB = splitted.join(delimiter.toString());
