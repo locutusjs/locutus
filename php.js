@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.09
+ * This is version: 1.10
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -14,9 +14,9 @@
  * Tyler Akins (http://rumkin.com), d3x, mdsjack (http://www.mdsjack.bo.it),
  * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
  * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
- * (http://webreflection.blogspot.com), Bayron Guevara, Benjamin Lupton, Brad
- * Touesnard, Brett Zamir, Cagri Ekin, Cord, David, David James, DxGx,
- * FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
+ * (http://webreflection.blogspot.com), Bayron Guevara, Ben Bryan, Benjamin
+ * Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David, David James,
+ * DxGx, FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
  * FremyCompany, Gabriel Paderni, Leslie Hoare, Lincoln Ramsay, MeEtc
  * (http://yass.meetcweb.com), Mick@el, Nick Callen, Ozh, Pedro Tainha
  * (http://www.pedrotainha.com), Peter-Paul Koch
@@ -3798,22 +3798,24 @@ function print_r( array, return_val ) {
     // Prints human-readable information about a variable
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_print_r/
-    // +       version: 805.822
+    // +       version: 805.2023
     // +   original by: Michael White (http://crestidg.com)
+    // +   improved by: Ben Bryan
     // *     example 1: print_r(1, true);
     // *     returns 1: 1
 
     var output = "", pad_char = " ", pad_val = 4;
 
     var formatArray = function (obj, cur_depth, pad_val, pad_char) {
-        if(cur_depth > 0)
+        if (cur_depth > 0) {
             cur_depth++;
+        }
 
         var base_pad = repeat_char(pad_val*cur_depth, pad_char);
         var thick_pad = repeat_char(pad_val*(cur_depth+1), pad_char);
         var str = "";
 
-        if (obj instanceof Array) {
+        if (obj instanceof Array || obj instanceof Object) {
             str += "Array\n" + base_pad + "(\n";
             for (var key in obj) {
                 if (obj[key] instanceof Array) {
@@ -3825,14 +3827,16 @@ function print_r( array, return_val ) {
             str += base_pad + ")\n";
         } else {
             str = obj.toString();
-        };
+        }
 
         return str;
     };
 
     var repeat_char = function (len, pad_char) {
         var str = "";
-        for(var i=0; i < len; i++) { str += pad_char; };
+        for(var i=0; i < len; i++) { 
+            str += pad_char; 
+        };
         return str;
     };
     output = formatArray(array, 0, pad_val, pad_char);
