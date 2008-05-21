@@ -5,6 +5,8 @@ function mktime() {
     // +      input by: gabriel paderni 
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: FGFEmperor
+    // +      input by: Yannoo
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: mktime( 14, 10, 2, 2, 1, 2008 );
     // *     returns 1: 1201871402
     
@@ -21,7 +23,7 @@ function mktime() {
     };
     
     for( i = 0; i < argc; i++ ){
-        no = parseInt(argv[i]);
+        no = parseInt(argv[i]*1);
         if(no && isNaN(no)){
             return false;
         } else if(no){

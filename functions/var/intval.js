@@ -2,6 +2,7 @@ function intval( mixed_var, base ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: stensi
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: intval('Kevin van Zonneveld');
     // *     returns 1: 0
     // *     example 2: intval(4.2);
@@ -14,7 +15,7 @@ function intval( mixed_var, base ) {
     var tmp;
 
     if( typeof( mixed_var ) == 'string' ){
-        tmp = parseInt(mixed_var);
+        tmp = parseInt(mixed_var*1);
         if(isNaN(tmp) || !isFinite(tmp)){
             return 0;
         } else{
