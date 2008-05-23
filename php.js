@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.11
+ * This is version: 1.12
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -10,10 +10,11 @@
  * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
  * (http://www.jsfromhell.com), Ash Searle (http://hexmen.com/blog/),
  * Erkekjetter, marrtins, Alfonso Jimenez (http://www.alfonsojimenez.com),
- * Aman Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Thunder.m,
- * Tyler Akins (http://rumkin.com), d3x, mdsjack (http://www.mdsjack.bo.it),
- * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
- * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
+ * Aman Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen,
+ * Thunder.m, Tyler Akins (http://rumkin.com), d3x, mdsjack
+ * (http://www.mdsjack.bo.it), Alexander Ermolaev
+ * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
+ * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Bayron Guevara, Ben Bryan, Benjamin
  * Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David, David James,
  * DxGx, FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
@@ -1968,6 +1969,66 @@ function htmlentities( s ){
     var text = document.createTextNode(s);
     div.appendChild(text);
     return div.innerHTML;
+}// }}}
+
+// {{{ htmlspecialchars
+function htmlspecialchars(string, quote_style) {
+    // Convert special characters to HTML entities
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars/
+    // +       version: 805.2316
+    // +   original by: Mirek Slugen
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
+    // *     returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt'
+    
+    string = string.toString();
+    
+    // Always encode
+    string.replace('/&/g', '&amp;');
+    string.replace('/</g', '&lt;');
+    string.replace('/>/g', '&gt;');
+    
+    // Encode depending on quote_style
+    if (quote_style == 'ENT_QUOTES') {
+        string.replace('/"/g', '&quot;');
+        string.replace('/\'/g', '&#039;');
+    } else if (quote_style != 'ENT_NOQUOTES') {
+        // All other cases (ENT_COMPAT, default, but not ENT_NOQUOTES)
+        string.replace('/"/g', '&quot;');
+    }
+    
+    return string;
+}// }}}
+
+// {{{ htmlspecialchars_decode
+function htmlspecialchars_decode(string, quote_style) {
+    // Convert special HTML entities back to characters
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars_decode/
+    // +       version: 805.2316
+    // +   original by: Mirek Slugen
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
+    // *     returns 1: '<p>this -> &quot;</p>'
+    
+    string = string.toString();
+    
+    // Always encode
+    string.replace('/&amp;/g', '&');
+    string.replace('/&lt;/g', '<');
+    string.replace('/&gt;/g', '>');
+    
+    // Encode depending on quote_style
+    if (quote_style == 'ENT_QUOTES') {
+        string.replace('/&quot;/g', '"');
+        string.replace('/&#039;/g', '\'');
+    } else if (quote_style != 'ENT_NOQUOTES') {
+        // All other cases (ENT_COMPAT, default, but not ENT_NOQUOTES)
+        string.replace('/&quot;/g', '"');
+    }
+    
+    return string;
 }// }}}
 
 // {{{ implode
