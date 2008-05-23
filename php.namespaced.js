@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.10
+ * This is version: 1.11
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -24,8 +24,8 @@
  * Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steve
  * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago
  * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
- * baris ozdil, booeyOH, djmix, duncan, echo is bad, gabriel paderni, ger,
- * john (http://www.jd-tech.net), kenneth, penutbutterjelly, stensi
+ * Yannoo, baris ozdil, booeyOH, djmix, duncan, echo is bad, gabriel paderni,
+ * ger, john (http://www.jd-tech.net), kenneth, penutbutterjelly, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -1259,12 +1259,14 @@
             // Get Unix timestamp for a date
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_mktime/
-            // +       version: 804.1914
+            // +       version: 805.2118
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: baris ozdil
             // +      input by: gabriel paderni 
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: FGFEmperor
+            // +      input by: Yannoo
+            // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.mktime( 14, 10, 2, 2, 1, 2008 );
             // *     returns 1: 1201871402
             
@@ -1281,7 +1283,7 @@
             };
             
             for( i = 0; i < argc; i++ ){
-                no = parseInt(argv[i]);
+                no = parseInt(argv[i]*1);
                 if(no && isNaN(no)){
                     return false;
                 } else if(no){
@@ -3672,20 +3674,23 @@
             // Get the integer value of a variable
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_intval/
-            // +       version: 805.1421
+            // +       version: 805.2118
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: stensi
+            // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.intval('Kevin van Zonneveld');
             // *     returns 1: 0
             // *     example 2: $P.intval(4.2);
             // *     returns 2: 4
             // *     example 3: $P.intval(42, 8);
             // *     returns 3: 42
+            // *     example 4: $P.intval('09');
+            // *     returns 4: 9
         
             var tmp;
         
             if( typeof( mixed_var ) == 'string' ){
-                tmp = parseInt(mixed_var);
+                tmp = parseInt(mixed_var*1);
                 if(isNaN(tmp) || !isFinite(tmp)){
                     return 0;
                 } else{
