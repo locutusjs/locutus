@@ -10,7 +10,7 @@ function htmlspecialchars_decode(string, quote_style) {
     // Always encode
     string.replace('/&amp;/g', '&');
     string.replace('/&lt;/g', '<');
-    string.replace('/&gt;/g', '>');
+    string.replace(/&gt;/g, '>');
     
     // Encode depending on quote_style
     if (quote_style == 'ENT_QUOTES') {
