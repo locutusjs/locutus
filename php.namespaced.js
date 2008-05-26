@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.14
+ * This is version: 1.15
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -3005,12 +3005,14 @@
             // Strip HTML and PHP tags from a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-            // +       version: 805.2608
+            // +       version: 805.2609
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
             // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
             
-            notmatch = '>';
+            var match = '', notmatch = '';
+        
+            //notmatch = '>';
             if (allowed_tags) {
                 allowed_tags = allowed_tags.replace(/[><]/g, '');
                 allowed_tags = allowed_tags.replace(/ /g, '');
@@ -3018,11 +3020,10 @@
                 
                 notmatch += '|'+allowed_tags; 
             }
+        
+            match = '</?(?!(' + notmatch + '))\b[^>]*>';
             
-            match = '</?[^('+notmatch+')]+>';
-            alert(match);
-            
-            return str.replace(new RegExp(match), 'gi');
+            return str.replace(new RegExp(match, 'gi'), '');
         },// }}}
         
         // {{{ stripos
