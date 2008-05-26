@@ -3019,10 +3019,10 @@
                 notmatch += '|'+allowed_tags; 
             }
             
-            match = '/<\/?[^('+notmatch+')]+>/gi';
+            match = '</?[^('+notmatch+')]+>';
             alert(match);
             
-            return str.replace(match, '');
+            return str.replace(new RegExp(match), 'gi');
         },// }}}
         
         // {{{ stripos
