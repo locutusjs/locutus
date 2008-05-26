@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.12
+ * This is version: 1.13
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -2006,7 +2006,7 @@ function htmlspecialchars_decode(string, quote_style) {
     // Convert special HTML entities back to characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars_decode/
-    // +       version: 805.2316
+    // +       version: 805.2317
     // +   original by: Mirek Slugen
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
@@ -2017,7 +2017,7 @@ function htmlspecialchars_decode(string, quote_style) {
     // Always encode
     string.replace('/&amp;/g', '&');
     string.replace('/&lt;/g', '<');
-    string.replace('/&gt;/g', '>');
+    string.replace(/&gt;/g, '>');
     
     // Encode depending on quote_style
     if (quote_style == 'ENT_QUOTES') {
