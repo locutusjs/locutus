@@ -12,8 +12,7 @@ function strip_tags(str, allowed_tags) {
         allowed_tags = allowed_tags.replace(/,/g, '|'); 
     }
     
-    match = '/</?[^('+allowed_tags+')][^>]*>/gi';
-    alert(match);
+    match = '/<\/?(?!(?:'+allowed_tags+')\b)[^>]+>/gi';
     
     return str.replace(match, '');
 }
