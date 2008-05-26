@@ -4,5 +4,5 @@ function strip_tags( str ){
     // *     example 1: strip_tags('Kevin <br />van <i>Zonneveld</i>');
     // *     returns 1: 'Kevin van Zonneveld'
 
-    return str.replace(/<\/?[^>]+>/gi, '');
+    return str.replace(/<\/?[^(>|i)]+>/gi, '');
 }
