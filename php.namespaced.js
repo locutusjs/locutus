@@ -3019,6 +3019,7 @@
             }
             
             match = '/<\/?(?!(?:'+allowed_tags+')\b)[^>]+>/gi';
+            alert(match);
             
             return str.replace(match, '');
         },// }}}
