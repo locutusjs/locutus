@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.13
+ * This is version: 1.14
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -2986,12 +2986,12 @@ function strip_tags( str ){
     // Strip HTML and PHP tags from a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-    // +       version: 804.1712
+    // +       version: 805.2608
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strip_tags('Kevin <br />van <i>Zonneveld</i>');
     // *     returns 1: 'Kevin van Zonneveld'
 
-    return str.replace(/<\/?[^>]+>/gi, '');
+    return str.replace(/<\/?[^(>|i)]+>/gi, '');
 }// }}}
 
 // {{{ stripos
