@@ -11,7 +11,7 @@
                 // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
                 // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
                 
-                var match = key = '';
+                var match = key = reg = '';
                 var allowed_array = [];
                 
                 if (allowed_tags) {
@@ -26,10 +26,12 @@
                     allowed_tags = allowed_array.join('|');
                 }
                 
-                //allowed_tags
-                alert(allowed_tags);
+                reg = "/<\/?(?!(?:p|\/p)\b)[^>]+>/gi";
                 
-                match = /<\/?(?!(?:p|\/p)\b)[^>]+>/gi;
+                //allowed_tags
+                //alert(allowed_tags);
+                
+                match = new RegExp(reg);
                 
                 
                 return str.replace(match, 'xx');
