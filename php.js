@@ -2991,16 +2991,19 @@ function strip_tags(str, allowed_tags) {
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
     
-    match = '>';
+    notmatch = '>';
     if (allowed_tags) {
         allowed_tags.replace(/[><]/g, '');
         allowed_tags.replace(/ /g, '');
         allowed_tags.replace(/,/g, '|');
         
-        match += '|'+allowed_tags; 
+        notmatch += '|'+allowed_tags; 
     }
     
-    return str.replace('/<\/?[^('+match+')]+>/gi', '');
+    match = '/<\/?[^('+notmatch+')]+>/gi';
+    alert(match);
+    
+    return str.replace(match, '');
 }// }}}
 
 // {{{ stripos
