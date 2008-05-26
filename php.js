@@ -2999,10 +2999,10 @@ function strip_tags(str, allowed_tags) {
         allowed_tags = allowed_tags.replace(/ /g, '');
         allowed_tags = allowed_tags.replace(/,/g, '|');
         
-        notmatch += '|'+allowed_tags; 
+        //notmatch += '|'+allowed_tags; 
     }
 
-    match = '</?(?!(' + notmatch + '))\b[^>]*>';
+    match = '</?(?!(' + allowed_tags + '))\b[^>]*>';
     
     return str.replace(new RegExp(match, 'gi'), '');
 }// }}}
