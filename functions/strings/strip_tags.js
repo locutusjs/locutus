@@ -4,18 +4,16 @@ function strip_tags(str, allowed_tags) {
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
     
-    var match = '', notmatch = '';
-
-    //notmatch = '>';
+    var match = '';
+    
     if (allowed_tags) {
         allowed_tags = allowed_tags.replace(/[><]/g, '');
         allowed_tags = allowed_tags.replace(/ /g, '');
-        allowed_tags = allowed_tags.replace(/,/g, '|');
-        
-        //notmatch += '|'+allowed_tags; 
+        allowed_tags = allowed_tags.replace(/,/g, '|'); 
     }
-
-    match = '</?(?!(' + allowed_tags + '))\b[^>]*>';
     
-    return str.replace(new RegExp(match, 'gi'), '');
+    match = '/</?!('+allowed_tags+')[^>]*>/gi';
+    alert(match);
+    
+    return str.replace(match, '');
 }
