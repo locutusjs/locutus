@@ -2982,16 +2982,25 @@ function strcmp ( str1, str2 ) {
 }// }}}
 
 // {{{ strip_tags
-function strip_tags( str ){
+function strip_tags(str, allowed_tags) {
     // Strip HTML and PHP tags from a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
     // +       version: 805.2608
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: strip_tags('Kevin <br />van <i>Zonneveld</i>');
-    // *     returns 1: 'Kevin van Zonneveld'
-
-    return str.replace(/<\/?[^(>|i)]+>/gi, '');
+    // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
+    // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
+    
+    match = '>';
+    if (allowed_tags) {
+        allowed_tags.replace(/[><]/g, '');
+        allowed_tags.replace(/ /g, '');
+        allowed_tags.replace(/,/g, '|');
+        
+        match += '|'+allowed_tags; 
+    }
+    
+    return str.replace('/<\/?[^('+match+')]+>/gi', '');
 }// }}}
 
 // {{{ stripos
