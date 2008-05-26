@@ -4,7 +4,9 @@ function strip_tags(str, allowed_tags) {
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
     
-    notmatch = '>';
+    var match = '', notmatch = '';
+
+    //notmatch = '>';
     if (allowed_tags) {
         allowed_tags = allowed_tags.replace(/[><]/g, '');
         allowed_tags = allowed_tags.replace(/ /g, '');
@@ -12,9 +14,8 @@ function strip_tags(str, allowed_tags) {
         
         notmatch += '|'+allowed_tags; 
     }
+
+    match = '</?(?!(' + notmatch + '))\b[^>]*>';
     
-    match = '</?[^('+notmatch+')]+>';
-    alert(match);
-    
-    return str.replace(new RegExp(match), 'gi');
+    return str.replace(new RegExp(match, 'gi'), '');
 }
