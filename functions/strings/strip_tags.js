@@ -7,9 +7,8 @@ function strip_tags(str, allowed_tags) {
     var match = '';
     
     if (allowed_tags) {
-        allowed_tags = allowed_tags.replace(/[><]/g, '');
-        allowed_tags = allowed_tags.replace(/ /g, '');
-        allowed_tags = allowed_tags.replace(/,/g, '|'); 
+        allowed_tags = allowed_tags.replace(/[\<\> ]+/g, '');;
+        allowed_tags = allowed_tags.replace(/\,/g, '|'); 
     }
     
     match = '/<\/?(?!(?:'+allowed_tags+')\b)[^>]+>/gi';
