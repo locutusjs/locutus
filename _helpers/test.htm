@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>PHP.JS workspace tester</title>
+        <!-- <script type="text/javascript" src="../functions/strings/strip_tags.js"></script> -->
+        <script type="text/javascript">
+            function strip_tags(str, allowed_tags) {
+                // http://kevin.vanzonneveld.net
+                // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+                // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
+                // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
+                
+                var match = key = '';
+                var allowed_array = [];
+                
+                if (allowed_tags) {
+                    allowed_tags  = allowed_tags.replace(/[\<\> ]+/g, '');;
+                    allowed_array = allowed_tags.split(',');
+                    
+                    for (key in allowed_array) {
+                        tag = allowed_array[key];
+                        allowed_array[key] = tag + '|\/' + tag;
+                    }
+                    
+                    allowed_tags = allowed_array.join('|');
+                }
+                
+                //allowed_tags
+                alert(allowed_tags);
+                
+                match = /<\/?(?!(?:p|\/p)\b)[^>]+>/gi;
+                
+                
+                return str.replace(match, 'xx');
+            }
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            input  = '<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>';
+            allow  = '<i>,<b>'; 
+            result = strip_tags(input, allow);
+            document.write('<xmp>'+result+'</xmp>');
+        </script>
+    </body>
+</html>
