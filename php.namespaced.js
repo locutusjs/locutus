@@ -3012,9 +3012,9 @@
             
             notmatch = '>';
             if (allowed_tags) {
-                allowed_tags.replace(/[><]/g, '');
-                allowed_tags.replace(/ /g, '');
-                allowed_tags.replace(/,/g, '|');
+                allowed_tags = allowed_tags.replace(/[><]/g, '');
+                allowed_tags = allowed_tags.replace(/ /g, '');
+                allowed_tags = allowed_tags.replace(/,/g, '|');
                 
                 notmatch += '|'+allowed_tags; 
             }
