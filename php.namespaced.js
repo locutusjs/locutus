@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.16
+ * This is version: 1.17
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -12,7 +12,7 @@
  * Erkekjetter, marrtins, Alfonso Jimenez (http://www.alfonsojimenez.com),
  * Aman Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen,
  * Thunder.m, Tyler Akins (http://rumkin.com), d3x, mdsjack
- * (http://www.mdsjack.bo.it), Alexander Ermolaev
+ * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Bayron Guevara, Ben Bryan, Benjamin
@@ -1995,7 +1995,7 @@
             // Convert special characters to HTML entities
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars/
-            // +       version: 805.2316
+            // +       version: 805.3114
             // +   original by: Mirek Slugen
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
@@ -2004,17 +2004,17 @@
             string = string.toString();
             
             // Always encode
-            string.replace('/&/g', '&amp;');
-            string.replace('/</g', '&lt;');
-            string.replace('/>/g', '&gt;');
+            string = string.replace('/&/g', '&amp;');
+            string = string.replace('/</g', '&lt;');
+            string = string.replace('/>/g', '&gt;');
             
             // Encode depending on quote_style
             if (quote_style == 'ENT_QUOTES') {
-                string.replace('/"/g', '&quot;');
-                string.replace('/\'/g', '&#039;');
+                string = string.replace('/"/g', '&quot;');
+                string = string.replace('/\'/g', '&#039;');
             } else if (quote_style != 'ENT_NOQUOTES') {
                 // All other cases (ENT_COMPAT, default, but not ENT_NOQUOTES)
-                string.replace('/"/g', '&quot;');
+                string = string.replace('/"/g', '&quot;');
             }
             
             return string;
@@ -3005,22 +3005,45 @@
             // Strip HTML and PHP tags from a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-            // +       version: 805.2611
+            // +       version: 805.3112
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
             // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
             
-            var match = '';
+            var key = '', tag = '';
+            var matches = allowed_array = [];
+            var allowed_keys = {};
             
+            // Build allowes tags associative array
             if (allowed_tags) {
-                allowed_tags = allowed_tags.replace(/[\<\> ]+/g, '');;
-                allowed_tags = allowed_tags.replace(/\,/g, '|'); 
+                allowed_tags  = allowed_tags.replace(/[\<\> ]+/g, '');;
+                allowed_array = allowed_tags.split(',');
+                
+                for (key in allowed_array) {
+                    tag = allowed_array[key];
+                    allowed_keys['<' + tag + '>']   = true;
+                    allowed_keys['<' + tag + ' />'] = true;
+                    allowed_keys['</' + tag + '>']  = true;
+                }
             }
             
-            match = '/<\/?(?!(?:'+allowed_tags+')\\b)[^>]+>/gi';
-            alert(match);
+            // Match tags
+            matches = str.match(/(<\/?[^>]+>)/gi);
             
-            return str.replace(match, '');
+            // Is tag not in allowed list? Remove from str! 
+            for (key in matches) {
+                tag = matches[key];
+                document.write('<xmp>'+tag+'</xmp>');
+                
+                if (!allowed_keys[tag]) {
+                    document.write('not allowed');
+                    str = str.replace(tag, "");
+                } else {
+                    document.write('allowed');
+                }
+            }
+            
+            return str;
         },// }}}
         
         // {{{ stripos
@@ -3789,6 +3812,28 @@
             // *     returns 2: false
         
             return ( mixed_var instanceof Array );
+        },// }}}
+        
+        // {{{ is_int
+        is_numeric: function( mixed_var ) {
+            // Find whether the type of a variable is integer
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_int/
+            // +       version: 805.3114
+            // +   original by: Alex
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // *     example 1: $P.is_numeric(186.31);
+            // *     returns 1: false
+            // *     example 2: $P.is_numeric(12);
+            // *     returns 2: true
+        
+            var y = parseInt(mixed_var * 1);
+            
+            if (isNaN(y)) {
+                return false;
+            }
+            
+            return mixed_var == y && mixed_var.toString() == y.toString(); 
         },// }}}
         
         // {{{ is_null
