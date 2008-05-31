@@ -27,13 +27,8 @@ function strip_tags(str, allowed_tags) {
     // Is tag not in allowed list? Remove from str! 
     for (key in matches) {
         tag = matches[key];
-        document.write('<xmp>'+tag+'</xmp>');
-        
         if (!allowed_keys[tag]) {
-            document.write('not allowed');
             str = str.replace(tag, "");
-        } else {
-            document.write('allowed');
         }
     }
     
