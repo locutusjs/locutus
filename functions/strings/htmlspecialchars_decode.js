@@ -2,6 +2,7 @@ function htmlspecialchars_decode(string, quote_style) {
     // http://kevin.vanzonneveld.net
     // +   original by: Mirek Slugen
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: loonquawl
     // *     example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
     // *     returns 1: '<p>this -> &quot;</p>'
     
