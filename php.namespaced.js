@@ -3017,7 +3017,7 @@
                 allowed_tags = allowed_tags.replace(/\,/g, '|'); 
             }
             
-            match = '/<\/?(?!(?:'+allowed_tags+')\b)[^>]+>/gi';
+            match = '/<\/?(?!(?:'+allowed_tags+')\\b)[^>]+>/gi';
             alert(match);
             
             return str.replace(match, '');
