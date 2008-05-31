@@ -3,9 +3,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>PHP.JS workspace tester</title>
-        <!-- <script type="text/javascript" src="../functions/strings/strip_tags.js"></script> -->
+        <script type="text/javascript" src="../php.namespaced.js"></script>
         <script type="text/javascript">
-            function strip_tags(str, allowed_tags) {
+            function strip_tags2(str, allowed_tags) {
                 // http://kevin.vanzonneveld.net
                 // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
                 // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
@@ -15,14 +15,7 @@
                 var allowed_array = [];
                 
                 if (allowed_tags) {
-                    allowed_tags  = allowed_tags.replace(/[\<\> ]+/g, '');;
-                    allowed_array = allowed_tags.split(',');
-                    
-                    for (key in allowed_array) {
-                        tag = allowed_array[key];
-                        allowed_array[key] = tag + '|\/' + tag;
-                    }
-                    
+                                        
                     allowed_tags = allowed_array.join('|');
                 }
                 
@@ -36,11 +29,53 @@
                 
                 return str.replace(match, 'xx');
             }
+            
+            function strip_tags(str, allowed_tags) {
+                // http://kevin.vanzonneveld.net
+                // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+                // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
+                // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
+                
+                var key = '', tag = '';
+                var matches = allowed_array = [];
+                var allowed_keys = {};
+                
+                // Build allowes tags associative array
+                if (allowed_tags) {
+                    allowed_tags  = allowed_tags.replace(/[\<\> ]+/g, '');;
+                    allowed_array = allowed_tags.split(',');
+                    
+                    for (key in allowed_array) {
+                        tag = allowed_array[key];
+                        allowed_keys['<' + tag + '>']   = true;
+                        allowed_keys['<' + tag + ' />'] = true;
+                        allowed_keys['</' + tag + '>']  = true;
+                    }
+                }
+                
+                // Match tags
+                matches = str.match(/(<\/?[^>]+>)/gi);
+                
+                // Is tag not in allowed list? Remove from str! 
+                for (key in matches) {
+                    tag = matches[key];
+                    document.write('<xmp>'+tag+'</xmp>');
+                    
+                    if (!allowed_keys[tag]) {
+                        document.write('not allowed');
+                        str = str.replace(tag, "");
+                    } else {
+                        document.write('allowed');
+                    }
+                }
+                
+                return str;
+            }            
         </script>
     </head>
     <body>
         <script type="text/javascript">
-            input  = '<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>';
+            input  = '<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i><p>test</p>';
             allow  = '<i>,<b>'; 
             result = strip_tags(input, allow);
             document.write('<xmp>'+result+'</xmp>');
