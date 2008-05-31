@@ -8,17 +8,17 @@ function htmlspecialchars_decode(string, quote_style) {
     string = string.toString();
     
     // Always encode
-    string.replace('/&amp;/g', '&');
-    string.replace('/&lt;/g', '<');
-    string.replace(/&gt;/g, '>');
+    string = string.replace('/&amp;/g', '&');
+    string = string.replace('/&lt;/g', '<');
+    string = string.replace(/&gt;/g, '>');
     
     // Encode depending on quote_style
     if (quote_style == 'ENT_QUOTES') {
-        string.replace('/&quot;/g', '"');
-        string.replace('/&#039;/g', '\'');
+        string = string.replace('/&quot;/g', '"');
+        string = string.replace('/&#039;/g', '\'');
     } else if (quote_style != 'ENT_NOQUOTES') {
         // All other cases (ENT_COMPAT, default, but not ENT_NOQUOTES)
-        string.replace('/&quot;/g', '"');
+        string = string.replace('/&quot;/g', '"');
     }
     
     return string;
