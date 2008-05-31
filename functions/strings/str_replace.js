@@ -14,9 +14,9 @@ function str_replace(search, replace, subject) {
     var f = search, r = replace, s = subject;
     var ra = is_array(r), sa = is_array(s), f = [].concat(f), r = [].concat(r), i = (s = [].concat(s)).length;
 
-    while(j = 0, i--){
-        while(s[i] = s[i].split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f);
-    }
+    while (j = 0, i--) {
+        while (s[i] = s[i].split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f){};
+    };
      
     return sa ? s : s[0];
 }
