@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.17
+ * This is version: 1.18
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -3005,7 +3005,7 @@
             // Strip HTML and PHP tags from a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-            // +       version: 805.3112
+            // +       version: 805.3114
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
             // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
@@ -3033,13 +3033,8 @@
             // Is tag not in allowed list? Remove from str! 
             for (key in matches) {
                 tag = matches[key];
-                document.write('<xmp>'+tag+'</xmp>');
-                
                 if (!allowed_keys[tag]) {
-                    document.write('not allowed');
                     str = str.replace(tag, "");
-                } else {
-                    document.write('allowed');
                 }
             }
             
