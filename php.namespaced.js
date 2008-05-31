@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.18
+ * This is version: 1.19
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -26,7 +26,8 @@
  * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago
  * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
  * Yannoo, baris ozdil, booeyOH, djmix, duncan, echo is bad, gabriel paderni,
- * ger, john (http://www.jd-tech.net), kenneth, penutbutterjelly, stensi
+ * ger, john (http://www.jd-tech.net), kenneth, loonquawl, penutbutterjelly,
+ * stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -2025,26 +2026,27 @@
             // Convert special HTML entities back to characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars_decode/
-            // +       version: 805.2317
+            // +       version: 805.3114
             // +   original by: Mirek Slugen
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: loonquawl
             // *     example 1: $P.htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
             // *     returns 1: '<p>this -> &quot;</p>'
             
             string = string.toString();
             
             // Always encode
-            string.replace('/&amp;/g', '&');
-            string.replace('/&lt;/g', '<');
-            string.replace(/&gt;/g, '>');
+            string = string.replace('/&amp;/g', '&');
+            string = string.replace('/&lt;/g', '<');
+            string = string.replace(/&gt;/g, '>');
             
             // Encode depending on quote_style
             if (quote_style == 'ENT_QUOTES') {
-                string.replace('/&quot;/g', '"');
-                string.replace('/&#039;/g', '\'');
+                string = string.replace('/&quot;/g', '"');
+                string = string.replace('/&#039;/g', '\'');
             } else if (quote_style != 'ENT_NOQUOTES') {
                 // All other cases (ENT_COMPAT, default, but not ENT_NOQUOTES)
-                string.replace('/&quot;/g', '"');
+                string = string.replace('/&quot;/g', '"');
             }
             
             return string;
@@ -2864,7 +2866,7 @@
             // Replace all occurrences of the search string with the replacement string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_replace/
-            // +       version: 804.1914
+            // +       version: 805.3114
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Gabriel Paderni
             // +   improved by: Philip Peterson
@@ -2879,9 +2881,9 @@
             var f = search, r = replace, s = subject;
             var ra = this.is_array(r), sa = this.is_array(s), f = [].concat(f), r = [].concat(r), i = (s = [].concat(s)).length;
         
-            while(j = 0, i--){
-                while(s[i] = s[i].split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f);
-            }
+            while (j = 0, i--) {
+                while (s[i] = s[i].split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f){};
+            };
              
             return sa ? s : s[0];
         },// }}}
@@ -3810,16 +3812,16 @@
         },// }}}
         
         // {{{ is_int
-        is_numeric: function( mixed_var ) {
+        is_int: function( mixed_var ) {
             // Find whether the type of a variable is integer
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_int/
             // +       version: 805.3114
             // +   original by: Alex
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-            // *     example 1: $P.is_numeric(186.31);
+            // *     example 1: $P.is_int(186.31);
             // *     returns 1: false
-            // *     example 2: $P.is_numeric(12);
+            // *     example 2: $P.is_int(12);
             // *     returns 2: true
         
             var y = parseInt(mixed_var * 1);
