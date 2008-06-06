@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.19
+ * This is version: 1.20
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -658,37 +658,17 @@
             // Shift an element off the beginning of array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_shift/
-            // +       version: 804.1712
+            // +       version: 805.3114
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   improved by: Martijn Wieringa
             // *     example 1: $P.array_shift(['Kevin', 'van', 'Zonneveld']);
             // *     returns 1: 'Kevin'
         
-            var i=0, first_elm=null, cnt=0, tmp_arr = {};
-        
-            // input sanitation
-            if( !array || (array.constructor !== Array && array.constructor !== Object) || !array.length ){
-                return null;
+            if (array.length > 0) {
+                return array.shift();
             }
-        
-            if( array.constructor === Array ){
-                first_elm = array[0];
-                for( i = 0; i < array.length; i++ ){
-                    array[i] = array[i+1];
-                }
-                array.length--;
-            } else if( array.constructor === Object ){
-                for(var key in array){
-                    if( cnt == 0 ){
-                        first_elm = array[key];
-                    } else{
-                        tmp_arr[key] = array[key];
-                    }
-                    cnt ++;
-                }
-                array = tmp_arr;
-            }
-        
-            return first_elm;
+            
+            return null;
         },// }}}
         
         // {{{ array_sum
@@ -745,38 +725,19 @@
             // Prepend one or more elements to the beginning of an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_unshift/
-            // +       version: 804.1712
+            // +       version: 805.3114
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   improved by: Martijn Wieringa
             // *     example 1: $P.array_unshift(['van', 'Zonneveld'], 'Kevin');
             // *     returns 1: 3
         
-            var cnt=0, tot_cnt=0, tmp_arr = {}, argc = arguments.length, argv = arguments;
-        
-            // input sanitation
-            if( !array || (array.constructor !== Array && array.constructor !== Array && typeof array != 'object' && typeof array != 'array') ){
-                return null;
+            var argc = arguments.length, argv = arguments, i;
+            
+            for (i = 1; i < argc; i++) {
+                array.unshift(argv[i]);
             }
-        
-            // prepend
-            for (i = 1; i< argc; i++){
-                tmp_arr[cnt] = argv[i];
-                cnt++; tot_cnt++;
-            }
-        
-            // append original
-            for(var key in array){
-                if( typeof key == 'number' && isFinite( key ) ){
-                    // modify numeric key
-                    tmp_arr[cnt] = array[key];
-                    cnt++; tot_cnt++;
-                } else{
-                    // save original alphanumeric key
-                    tmp_arr[key] = array[key];
-                    tot_cnt++;
-                }
-            }
-        
-            return tot_cnt;
+            
+            return (array.length);
         },// }}}
         
         // {{{ array_values
