@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.20
+ * This is version: 1.21
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -2949,7 +2949,7 @@ function strip_tags(str, allowed_tags) {
     // Strip HTML and PHP tags from a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-    // +       version: 805.3114
+    // +       version: 806.816
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
@@ -2976,9 +2976,10 @@ function strip_tags(str, allowed_tags) {
     
     // Is tag not in allowed list? Remove from str! 
     for (key in matches) {
-        tag = matches[key];
+        tag = matches[key].toString();
         if (!allowed_keys[tag]) {
-            str = str.replace(tag, "");
+            reg = RegExp(tag, 'g');
+            str = str.replace(reg, '');
         }
     }
     
@@ -3189,7 +3190,7 @@ function strpbrk( haystack, char_list ) {
     // Search a string for any of a set of characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strpbrk/
-    // +       version: 804.1712
+    // +       version: 806.816
     // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
     // *     example 1: strpbrk('This is a Simple text.', 'is');
     // *     returns 1: 'is is a Simple text.'
@@ -3199,27 +3200,29 @@ function strpbrk( haystack, char_list ) {
     var ret = false;
     var stack = '';
 
-    if(lon >= lon_search) {
-        if(lon == lon_search) {
-            if(haystack == char_list){
+    if (lon >= lon_search) {
+        if (lon == lon_search) {
+            if (haystack == char_list){
                 ret = haystack;
             }
         } else {
             j = 0;
             i = 0;
-            while(i < lon_search && j < lon && !ret) {
-                if(char_list[i] == haystack[j]) {
+            while (i < lon_search && j < lon && !ret) {
+                if (char_list[i] == haystack[j]) {
                     i++;
-                    if(i == lon_search) ret = true;
+                    if (i == lon_search) {
+                        ret = true;
+                    }
                 }
                 j++;
             }
-            if(ret){
+            if (ret) {
                 for(i = (j-lon_search); i < lon; i++){
                     stack += haystack[i];
                 }
             }
-            if(stack != ''){
+            if (stack != '') {
                 ret = stack;
             }
         }
