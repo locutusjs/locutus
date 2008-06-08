@@ -26,9 +26,10 @@ function strip_tags(str, allowed_tags) {
     
     // Is tag not in allowed list? Remove from str! 
     for (key in matches) {
-        tag = matches[key];
+        tag = matches[key].toString();
         if (!allowed_keys[tag]) {
-            str = str.replace(tag, "");
+            reg = RegExp(tag, 'g');
+            str = str.replace(reg, '');
         }
     }
     
