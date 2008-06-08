@@ -5,7 +5,8 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     // +     bugfix by: Michael White (http://crestidg.com)
     // +     bugfix by: Benjamin Lupton
     // +     bugfix by: Allan Jensen (http://www.winternet.no)
-    // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)    
+    // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // +     bugfix by: Howard Yeend    
     // *     example 1: number_format(1234.5678, 2, '.', '');
     // *     returns 1: 1234.57     
 
