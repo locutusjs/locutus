@@ -18,8 +18,8 @@
  * (http://webreflection.blogspot.com), Bayron Guevara, Ben Bryan, Benjamin
  * Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David, David James,
  * DxGx, FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
- * FremyCompany, Gabriel Paderni, Leslie Hoare, Lincoln Ramsay, MeEtc
- * (http://yass.meetcweb.com), Mick@el, Nick Callen, Ozh, Pedro Tainha
+ * FremyCompany, Gabriel Paderni, Howard Yeend, Leslie Hoare, Lincoln Ramsay,
+ * MeEtc (http://yass.meetcweb.com), Mick@el, Nick Callen, Ozh, Pedro Tainha
  * (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Sakimori,
  * Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steve

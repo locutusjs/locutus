@@ -18,8 +18,8 @@
  * (http://webreflection.blogspot.com), Bayron Guevara, Ben Bryan, Benjamin
  * Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David, David James,
  * DxGx, FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
- * FremyCompany, Gabriel Paderni, Leslie Hoare, Lincoln Ramsay, MeEtc
- * (http://yass.meetcweb.com), Mick@el, Nick Callen, Ozh, Pedro Tainha
+ * FremyCompany, Gabriel Paderni, Howard Yeend, Leslie Hoare, Lincoln Ramsay,
+ * MeEtc (http://yass.meetcweb.com), Mick@el, Nick Callen, Ozh, Pedro Tainha
  * (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Sakimori,
  * Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steve
@@ -2285,7 +2285,8 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     // +     bugfix by: Michael White (http://crestidg.com)
     // +     bugfix by: Benjamin Lupton
     // +     bugfix by: Allan Jensen (http://www.winternet.no)
-    // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)    
+    // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // +     bugfix by: Howard Yeend
     // *     example 1: number_format(1234.5678, 2, '.', '');
     // *     returns 1: 1234.57     
 
