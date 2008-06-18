@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.22
+ * This is version: 1.23
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -18,9 +18,9 @@
  * (http://webreflection.blogspot.com), Bayron Guevara, Ben Bryan, Benjamin
  * Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David, David James,
  * DxGx, FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
- * FremyCompany, Gabriel Paderni, Howard Yeend, Leslie Hoare, Lincoln Ramsay,
- * MeEtc (http://yass.meetcweb.com), Mick@el, Nick Callen, Ozh, Pedro Tainha
- * (http://www.pedrotainha.com), Peter-Paul Koch
+ * FremyCompany, Gabriel Paderni, Howard Yeend, J A R, Leslie Hoare, Lincoln
+ * Ramsay, MeEtc (http://yass.meetcweb.com), Mick@el, Nick Callen, Ozh, Pedro
+ * Tainha (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Sakimori,
  * Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steve
  * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago
@@ -803,23 +803,20 @@ function end ( array ) {
     // Set the internal pointer of an array to its last element
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_end/
-    // +       version: 804.1712
+    // +       version: 806.1600
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Legaev Andrey
+    // +    revised by: J A R
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: end({firstname: 'Kevin', middle: 'van', surname: 'Zonneveld'});
     // *     returns 1: 'Zonneveld'
-
-    var last_elm, key;
-
-    if (array.constructor === Array){
-        last_elm = array[(array.length-1)];
-    } else {
-        for (key in array){
-            last_elm = array[key];
-        }
-    }
-
-    return last_elm;
+    
+    var tmp_arr = {};
+    
+    // We don't want to 'pop' the original array and reduce it's size
+    tmp_arr = array;
+    
+    return tmp_arr.pop();
 }// }}}
 
 // {{{ in_array
