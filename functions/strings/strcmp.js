@@ -3,6 +3,7 @@ function strcmp ( str1, str2 ) {
     // +   original by: _argos
     // +      input by: Steve Hilder
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    revised by: gorthaur
     // *     example 1: strcmp( 'waldo', 'owald' );
     // *     returns 1: 1
     // *     example 2: strcmp( 'owald', 'waldo' );
