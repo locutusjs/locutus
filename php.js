@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.23
+ * This is version: 1.24
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -26,8 +26,8 @@
  * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago
  * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
  * Yannoo, baris ozdil, booeyOH, djmix, duncan, echo is bad, gabriel paderni,
- * ger, john (http://www.jd-tech.net), kenneth, loonquawl, penutbutterjelly,
- * stensi
+ * ger, gorthaur, john (http://www.jd-tech.net), kenneth, loonquawl,
+ * penutbutterjelly, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -2916,30 +2916,17 @@ function strcmp ( str1, str2 ) {
     // Binary safe string comparison
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strcmp/
-    // +       version: 805.822
+    // +       version: 806.1822
     // +   original by: _argos
     // +      input by: Steve Hilder
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: strcmp( 'waldo', 'Waldo' );
+    // +    revised by: gorthaur
+    // *     example 1: strcmp( 'waldo', 'owald' );
     // *     returns 1: 1
-    // *     example 2: strcmp( 'Waldo', 'waldo' );
+    // *     example 2: strcmp( 'owald', 'waldo' );
     // *     returns 2: -1
-    // *     example 3: strcmp( 'waldo', 'waldo' );
-    // *     returns 3: 0
-    // *     example 4: strcmp( 'test', 'tomato' );
-    // *     returns 4: -1
 
-    var i = size1 = size2 = 0;
-    
-    for (i = 0; i < str1.length; ++i) {
-        size1 += str1.charCodeAt(i);
-    }
-
-    for (i = 0; i < str2.length; ++i) {
-        size2 += str2.charCodeAt(i);
-    }
-    
-    return ( ( size1 == size2 ) ? 0 : ( ( size1 > size2 ) ? 1 : -1 ) );
+    return ( ( str1 == str2 ) ? 0 : ( ( str1 > str2 ) ? 1 : -1 ) );
 }// }}}
 
 // {{{ strip_tags
