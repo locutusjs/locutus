@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.24
+ * This is version: 1.25
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -934,17 +934,33 @@
             return first_elm;
         },// }}}
         
+        // {{{ rsort
+        rsort: function( array ) {
+            // Sort an array in reverse order
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rsort/
+            // +       version: 806.2210
+            // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // *     example 1: $P.rsort(['Kevin', 'van', 'Zonneveld']);
+            // *     returns 1: true
+            
+            array.sort();
+            array.reverse();
+            return true;
+        },// }}}
+        
         // {{{ shuffle
         shuffle: function( array ) {
             // Shuffle an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_shuffle/
-            // +       version: 804.1712
+            // +       version: 806.2210
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+            // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.shuffle(['Kevin', 'van', 'Zonneveld']);
             // *     returns 1: true
-        
-            for(var j, x, i = array.length; i; j = parseInt(Math.random() * i), x = array[--i], array[i] = array[j], array[j] = x);
+            
+            array.sort(function() {return 0.5 - Math.random();});
             return true;
         },// }}}
         
@@ -962,6 +978,20 @@
             // *     returns 2: 6
          
             return this.count( mixed_var, mode );
+        },// }}}
+        
+        // {{{ sort
+        sort: function( array ) {
+            // Sort an array
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sort/
+            // +       version: 806.2210
+            // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // *     example 1: $P.sort(['Kevin', 'van', 'Zonneveld']);
+            // *     returns 1: true
+            
+            array.sort();
+            return true;
         },// }}}
         
         // {{{ get_class
