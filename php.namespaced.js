@@ -2030,7 +2030,7 @@
             // +   bugfixed by: Nathan
             // +   bugfixed by: Arno
             // *     example 1: $P.htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
-            // *     returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt'
+            // *     returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
             
             string = string.toString();
             
