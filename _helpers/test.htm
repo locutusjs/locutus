@@ -5,11 +5,12 @@
         <title>PHP.JS workspace tester</title>
         <script type="text/javascript" src="../functions/language/include.js"></script>
         <script type="text/javascript" src="../functions/funchand/function_exists.js"></script>
+        <script type="text/javascript" src="../functions/var/print_r.js"></script>
         <script type="text/javascript">
-            var catg = 'strings';
-            var func = 'htmlspecialchars';
-            var path = '../functions/'+catg+'/'+func+'.js';
+            var catg = 'datetime';
+            var func = 'time';
             
+            var path = '../functions/'+catg+'/'+func+'.js';
             var result = 'failed';
             
             include(path);
@@ -27,8 +28,14 @@
                 input  = '<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i><p>test</p>';
                 allow  = '<i>,<b>'; 
                 result = strip_tags(input, allow);
+            } else if (func == 'ksort') {
+                x = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'};
+                ksort(x, 'SORT_NUMERIC');
+                result = print_r(x, true);
             } else if (func == 'mktime') {
                 result = mktime(0,0,0,0,1,2008) + " - " + date('d M Y', mktime(0,0,0,0,1,2008));
+            } else {
+                eval('result = ' + func + '();');
             }
             
             document.write('<xmp>'+result+'</xmp>');
