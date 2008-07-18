@@ -3,19 +3,34 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>PHP.JS workspace tester</title>
-        <script type="text/javascript" src="../php.namespaced.js"></script>
-        <script type="text/javascript" src="../functions/strings/strip_tags.js"></script>
-        <script type="text/javascript" src="../functions/datetime/mktime.js"></script>
-        <script type="text/javascript" src="../functions/datetime/date.js"></script>
+        <script type="text/javascript" src="../functions/language/include.js"></script>
+        <script type="text/javascript" src="../functions/funchand/function_exists.js"></script>
         <script type="text/javascript">
+            var catg = 'strings';
+            var func = 'htmlspecialchars';
+            var path = '../functions/'+catg+'/'+func+'.js';
+            
+            var result = 'failed';
+            
+            include(path);
         </script>
     </head>
     <body>
         <script type="text/javascript">
-            input  = '<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i><p>test</p>';
-            allow  = '<i>,<b>'; 
-            result = strip_tags(input, allow);
-            result = mktime(0,0,0,0,1,2008) + " - " + date('d M Y', mktime(0,0,0,0,1,2008));
+            if (!function_exists(func)) {
+                alert('unable to include function:'+func+' at '+path);
+            }
+            
+            if (func == 'htmlspecialchars') {
+                result = htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
+            } else if (func == 'strip_tags') {
+                input  = '<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i><p>test</p>';
+                allow  = '<i>,<b>'; 
+                result = strip_tags(input, allow);
+            } else if (func == 'mktime') {
+                result = mktime(0,0,0,0,1,2008) + " - " + date('d M Y', mktime(0,0,0,0,1,2008));
+            }
+            
             document.write('<xmp>'+result+'</xmp>');
         </script>
     </body>
