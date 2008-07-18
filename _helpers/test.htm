@@ -7,8 +7,8 @@
         <script type="text/javascript" src="../functions/funchand/function_exists.js"></script>
         <script type="text/javascript" src="../functions/var/print_r.js"></script>
         <script type="text/javascript">
-            var catg = 'datetime';
-            var func = 'time';
+            var catg = 'strings';
+            var func = 'strip_tags';
             
             var path = '../functions/'+catg+'/'+func+'.js';
             var result = 'failed';
@@ -25,8 +25,13 @@
             if (func == 'htmlspecialchars') {
                 result = htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
             } else if (func == 'strip_tags') {
+
                 input  = '<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i><p>test</p>';
-                allow  = '<i>,<b>'; 
+                allow  = '<i>,<b>';
+                
+                input  = '<p>Kevin<img src=\'someimage.png\' onmouseover=\'someFunction()\'></p>';
+                allow  = '<p>';
+                 
                 result = strip_tags(input, allow);
             } else if (func == 'ksort') {
                 x = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'};

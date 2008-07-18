@@ -1,9 +1,11 @@
 function strip_tags(str, allowed_tags) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   bugfixed by: Luke Godfrey
+    // +   improved by: Luke Godfrey
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
+    // *     example 2: strip_tags('<p>Kevin<img src='someimage.png' onmouseover='someFunction()'></p>');
+    // *     returns 2: '<p>Kevin</p>'
     
     var key = '', tag = '';
     var matches = allowed_array = [];
