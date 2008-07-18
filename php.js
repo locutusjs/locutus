@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.30
+ * This is version: 1.31
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -804,20 +804,29 @@ function end ( array ) {
     // Set the internal pointer of an array to its last element
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_end/
-    // +       version: 806.1600
+    // +       version: 807.1809
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Legaev Andrey
     // +    revised by: J A R
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   restored by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: end({firstname: 'Kevin', middle: 'van', surname: 'Zonneveld'});
     // *     returns 1: 'Zonneveld'
+
+    var last_elm, key;
     
-    var tmp_arr = {};
-    
-    // We don't want to 'pop' the original array and reduce it's size
-    tmp_arr = array;
-    
-    return tmp_arr.pop();
+    // The native .pop() method didn't not work with objects (associative arrays)
+    // We need that for PHP compatibility
+
+    if (array.constructor === Array){
+        last_elm = array[(array.length-1)];
+    } else {
+        for (key in array){
+            last_elm = array[key];
+        }
+    }
+
+    return last_elm;
 }// }}}
 
 // {{{ in_array
