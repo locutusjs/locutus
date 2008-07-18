@@ -7,9 +7,10 @@ function mktime() {
     // +   improved by: FGFEmperor
     // +      input by: Yannoo
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: mktime( 14, 10, 2, 2, 1, 2008 );
+    // *     example 1: mktime(14, 10, 2, 2, 1, 2008);
     // *     returns 1: 1201871402
-    
+    // *     example 2: mktime(0, 0, 0, 0, 1, 2008);
+    // *     returns 2: 1196463600
     var no, ma = 0, mb = 0, i = 0, d = new Date(), argv = arguments, argc = argv.length;
     d.setHours(0,0,0); d.setDate(1); d.setMonth(1); d.setYear(1972);
  
@@ -26,7 +27,7 @@ function mktime() {
         no = parseInt(argv[i]*1);
         if(no && isNaN(no)){
             return false;
-        } else if(no){
+        } else if(isNan(no)){
             // arg is number, let's manipulate date object
             if(!dateManip[i](no)){
                 // failed

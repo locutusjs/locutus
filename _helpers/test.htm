@@ -5,6 +5,8 @@
         <title>PHP.JS workspace tester</title>
         <script type="text/javascript" src="../php.namespaced.js"></script>
         <script type="text/javascript" src="../functions/strings/strip_tags.js"></script>
+        <script type="text/javascript" src="../functions/datetime/mktime.js"></script>
+        <script type="text/javascript" src="../functions/datetime/date.js"></script>
         <script type="text/javascript">
         </script>
     </head>
@@ -13,6 +15,7 @@
             input  = '<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i><p>test</p>';
             allow  = '<i>,<b>'; 
             result = strip_tags(input, allow);
+            result = mktime(0,0,0,0,1,2008) + " - " + date('d M Y', mktime(0,0,0,0,1,2008));
             document.write('<xmp>'+result+'</xmp>');
         </script>
     </body>
