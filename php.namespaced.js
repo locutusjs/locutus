@@ -3140,7 +3140,7 @@
             // +   improved by: Luke Godfrey
             // *     example 1: $P.strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
             // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
-            // *     example 2: $P.strip_tags('<p>Kevin<img src='someimage.png' onmouseover='someFunction()'></p>');
+            // *     example 2: $P.strip_tags('<p>Kevin<img src="someimage.png" onmouseover="someFunction()"></p>');
             // *     returns 2: '<p>Kevin</p>'
             
             var key = '', tag = '';
