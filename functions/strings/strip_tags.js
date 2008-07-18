@@ -29,12 +29,15 @@ function strip_tags(str, allowed_tags) {
     
     // Is tag not in allowed list? Remove from str! 
     for (key in matches) {
-        tag = matches[key].toString();
-        if (!allowed_keys[tag]) {
-            // Looks like this is
-            // reg = RegExp(tag, 'g');
-            // str = str.replace(reg, '');
-            str = str.replace(tag, "");
+        // IE7 Hack
+        if (isNaN(key)) {
+            tag = matches[key].toString();
+            if (!allowed_keys[tag]) {
+                // Looks like this is
+                // reg = RegExp(tag, 'g');
+                // str = str.replace(reg, '');
+                str = str.replace(tag, "");
+            }
         }
     }
     
