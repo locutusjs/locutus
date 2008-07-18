@@ -1,6 +1,7 @@
 function strip_tags(str, allowed_tags) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Luke Godfrey
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
     
@@ -28,8 +29,10 @@ function strip_tags(str, allowed_tags) {
     for (key in matches) {
         tag = matches[key].toString();
         if (!allowed_keys[tag]) {
-            reg = RegExp(tag, 'g');
-            str = str.replace(reg, '');
+            // Looks like this is
+            // reg = RegExp(tag, 'g');
+            // str = str.replace(reg, '');
+            str = str.replace(tag, "");
         }
     }
     
