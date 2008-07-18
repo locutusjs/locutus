@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.27
+ * This is version: 1.28
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -15,12 +15,13 @@
  * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
- * (http://webreflection.blogspot.com), Bayron Guevara, Ben Bryan, Benjamin
- * Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David, David James,
- * DxGx, FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
- * FremyCompany, Gabriel Paderni, Howard Yeend, J A R, Leslie Hoare, Lincoln
- * Ramsay, MeEtc (http://yass.meetcweb.com), Mick@el, Nick Callen, Ozh, Pedro
- * Tainha (http://www.pedrotainha.com), Peter-Paul Koch
+ * (http://webreflection.blogspot.com), Arno, Bayron Guevara, Ben Bryan,
+ * Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David,
+ * David James, DxGx, FGFEmperor, Felix Geisendoerfer
+ * (http://www.debuggable.com/felix), FremyCompany, Gabriel Paderni, Howard
+ * Yeend, J A R, Leslie Hoare, Lincoln Ramsay, MeEtc
+ * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Ozh, Pedro Tainha
+ * (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Sakimori,
  * Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steve
  * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago
@@ -1491,12 +1492,13 @@
             // The include() statement includes and evaluates the specified file.
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_include/
-            // +       version: 804.1808
+            // +       version: 807.1808
             // +   original by: mdsjack (http://www.mdsjack.bo.it)
             // +   improved by: Legaev Andrey
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Michael White (http://crestidg.com)
             // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
+            // %        note 2: The included file does not come available until a second script block, so typically use this in the header.
             // *     example 1: $P.include('/pj_test_supportfile_2.js');
             // *     returns 1: 1
         
@@ -2022,26 +2024,28 @@
             // Convert special characters to HTML entities
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars/
-            // +       version: 805.3114
+            // +       version: 807.1808
             // +   original by: Mirek Slugen
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: Nathan
+            // +   bugfixed by: Arno
             // *     example 1: $P.htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
             // *     returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt'
             
             string = string.toString();
             
             // Always encode
-            string = string.replace('/&/g', '&amp;');
-            string = string.replace('/</g', '&lt;');
-            string = string.replace('/>/g', '&gt;');
+            string = string.replace(/&/g, '&amp;');
+            string = string.replace(/</g, '&lt;');
+            string = string.replace(/>/g, '&gt;');
             
             // Encode depending on quote_style
             if (quote_style == 'ENT_QUOTES') {
-                string = string.replace('/"/g', '&quot;');
-                string = string.replace('/\'/g', '&#039;');
+                string = string.replace(/"/g, '&quot;');
+                string = string.replace(/'/g, '&#039;');
             } else if (quote_style != 'ENT_NOQUOTES') {
                 // All other cases (ENT_COMPAT, default, but not ENT_NOQUOTES)
-                string = string.replace('/"/g', '&quot;');
+                string = string.replace(/"/g, '&quot;');
             }
             
             return string;
