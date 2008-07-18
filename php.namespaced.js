@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.26
+ * This is version: 1.27
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -26,7 +26,7 @@
  * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago
  * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
  * Yannoo, baris ozdil, booeyOH, djmix, duncan, echo is bad, gabriel paderni,
- * ger, gorthaur, john (http://www.jd-tech.net), kenneth, loonquawl,
+ * ger, gorthaur, jakes, john (http://www.jd-tech.net), kenneth, loonquawl,
  * penutbutterjelly, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
@@ -1283,7 +1283,7 @@
             // Get Unix timestamp for a date
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_mktime/
-            // +       version: 805.2118
+            // +       version: 807.1807
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: baris ozdil
             // +      input by: gabriel paderni 
@@ -1291,9 +1291,12 @@
             // +   improved by: FGFEmperor
             // +      input by: Yannoo
             // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-            // *     example 1: $P.mktime( 14, 10, 2, 2, 1, 2008 );
+            // +      input by: jakes
+            // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // *     example 1: $P.mktime(14, 10, 2, 2, 1, 2008);
             // *     returns 1: 1201871402
-            
+            // *     example 2: $P.mktime(0, 0, 0, 0, 1, 2008);
+            // *     returns 2: 1196463600
             var no, ma = 0, mb = 0, i = 0, d = new Date(), argv = arguments, argc = argv.length;
             d.setHours(0,0,0); d.setDate(1); d.setMonth(1); d.setYear(1972);
          
@@ -1310,7 +1313,7 @@
                 no = parseInt(argv[i]*1);
                 if(no && isNaN(no)){
                     return false;
-                } else if(no){
+                } else if(isNan(no)){
                     // arg is number, let's manipulate date object
                     if(!dateManip[i](no)){
                         // failed
