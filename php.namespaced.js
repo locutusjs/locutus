@@ -1313,7 +1313,7 @@
                 no = parseInt(argv[i]*1);
                 if(no && isNaN(no)){
                     return false;
-                } else if(isNan(no)){
+                } else if(isNaN(no)){
                     // arg is number, let's manipulate date object
                     if(!dateManip[i](no)){
                         // failed
