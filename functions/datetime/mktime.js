@@ -13,6 +13,7 @@ function mktime() {
     // *     returns 1: 1201871402
     // *     example 2: mktime(0, 0, 0, 0, 1, 2008);
     // *     returns 2: 1196463600
+    
     var no, ma = 0, mb = 0, i = 0, d = new Date(), argv = arguments, argc = argv.length;
     d.setHours(0,0,0); d.setDate(1); d.setMonth(1); d.setYear(1972);
  
@@ -27,9 +28,9 @@ function mktime() {
     
     for( i = 0; i < argc; i++ ){
         no = parseInt(argv[i]*1);
-        if(no && isNaN(no)){
+        if (isNaN(no)) {
             return false;
-        } else if(isNaN(no)){
+        } else {
             // arg is number, let's manipulate date object
             if(!dateManip[i](no)){
                 // failed
