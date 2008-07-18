@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.29
+ * This is version: 1.30
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -19,7 +19,7 @@
  * Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David,
  * David James, DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), FremyCompany, Gabriel Paderni, Howard
- * Yeend, J A R, Leslie Hoare, Lincoln Ramsay, MeEtc
+ * Yeend, J A R, Leslie Hoare, Lincoln Ramsay, Luke Godfrey, MeEtc
  * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Ozh, Pedro Tainha
  * (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Sakimori,
@@ -3116,10 +3116,13 @@ function strip_tags(str, allowed_tags) {
     // Strip HTML and PHP tags from a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-    // +       version: 806.816
+    // +       version: 807.1809
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Luke Godfrey
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
+    // *     example 2: strip_tags('<p>Kevin<img src='someimage.png' onmouseover='someFunction()'></p>');
+    // *     returns 2: '<p>Kevin</p>'
     
     var key = '', tag = '';
     var matches = allowed_array = [];
@@ -3143,10 +3146,15 @@ function strip_tags(str, allowed_tags) {
     
     // Is tag not in allowed list? Remove from str! 
     for (key in matches) {
-        tag = matches[key].toString();
-        if (!allowed_keys[tag]) {
-            reg = RegExp(tag, 'g');
-            str = str.replace(reg, '');
+        // IE7 Hack
+        if (isNaN(key)) {
+            tag = matches[key].toString();
+            if (!allowed_keys[tag]) {
+                // Looks like this is
+                // reg = RegExp(tag, 'g');
+                // str = str.replace(reg, '');
+                str = str.replace(tag, "");
+            }
         }
     }
     
