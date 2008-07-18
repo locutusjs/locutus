@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.28
+ * This is version: 1.29
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -9,12 +9,12 @@
  * (http://magnetiq.com), Philip Peterson, Martijn Wieringa, Webtoolkit.info
  * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
  * (http://www.jsfromhell.com), Ash Searle (http://hexmen.com/blog/),
- * Erkekjetter, marrtins, Alfonso Jimenez (http://www.alfonsojimenez.com),
- * Aman Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen,
- * Thunder.m, Tyler Akins (http://rumkin.com), d3x, mdsjack
- * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
- * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
- * (http://www.winternet.no), Andrea Giammarchi
+ * Erkekjetter, GeekFG (http://geekfg.blogspot.com), marrtins, Alfonso Jimenez
+ * (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
+ * (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Thunder.m, Tyler
+ * Akins (http://rumkin.com), d3x, mdsjack (http://www.mdsjack.bo.it), Alex,
+ * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
+ * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Arno, Bayron Guevara, Ben Bryan,
  * Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David,
  * David James, DxGx, FGFEmperor, Felix Geisendoerfer
@@ -842,6 +842,101 @@ function in_array(needle, haystack, strict) {
     return found;
 }// }}}
 
+// {{{ krsort
+function krsort(array, sort_flags) {
+    // Sort an array by key in reverse order
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_krsort/
+    // +       version: 807.1808
+    // +   original by: GeekFG (http://geekfg.blogspot.com)
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: krsort({2: 'van', 3: 'Zonneveld', 1: 'Kevin'});
+    // *     returns 1: true
+    
+    var tmp_arr = {}, values = array, keys = [], key_num = 0, key = '', i = 0; 
+    var sorter = false, array = false;
+    
+    // For now only SORT_NUMERIC has a custom sorter
+    // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
+    // are all handled with the default sorter 
+    if (sort_flags == 'SORT_NUMERIC') {
+        sorter = function (a, b) {
+            return(a - b);
+        };
+    }
+    
+    // Make a list of key names
+    for (key in values) { 
+        keys[key_num++] = key; 
+    }
+     
+    // Sort key names
+    if (sorter !== false) {
+        keys = keys.sort(sorter);
+    } else {
+        keys = keys.sort();
+    }
+    
+    // What makes it krsort:
+    keys.reverse();    
+    
+    // Rebuild array with sorted keynames
+    for (i = 0; i < key_num; i++) {
+        key = keys[i];
+        tmp_arr[key] = values[key]; 
+    } 
+    
+    // Overwrite the original array, don't return it, to be complient with the php manual
+    array = tmp_arr;
+    return true; 
+}// }}}
+
+// {{{ ksort
+function ksort(array, sort_flags) {
+    // Sort an array by key
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ksort/
+    // +       version: 807.1808
+    // +   original by: GeekFG (http://geekfg.blogspot.com)
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: ksort({2: 'van', 3: 'Zonneveld', 1: 'Kevin'});
+    // *     returns 1: true
+    
+    var tmp_arr = {}, values = array, keys = [], key_num = 0, key = '', i = 0; 
+    var sorter = false, array = false;
+    
+    // For now only SORT_NUMERIC has a custom sorter
+    // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
+    // are all handled with the default sorter 
+    if (sort_flags == 'SORT_NUMERIC') {
+        sorter = function (a, b) {
+            return(a - b);
+        };
+    }
+    
+    // Make a list of key names
+    for (key in values) { 
+        keys[key_num++] = key; 
+    }
+     
+    // Sort key names
+    if (sorter !== false) {
+        keys = keys.sort(sorter);
+    } else {
+        keys = keys.sort();
+    }
+    
+    // Rebuild array with sorted keynames
+    for (i = 0; i < key_num; i++) {
+        key = keys[i];
+        tmp_arr[key] = values[key]; 
+    } 
+    
+    // Overwrite the original array, don't return it, to be complient with the php manual
+    array = tmp_arr;
+    return true; 
+}// }}}
+
 // {{{ range
 function range ( low, high, step ) {
     // Create an array containing a range of elements
@@ -1306,6 +1401,21 @@ function mktime() {
     }
 
     return Math.floor(d.getTime()/1000);
+}// }}}
+
+// {{{ time
+function time() {
+    // Return current Unix timestamp
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_time/
+    // +       version: 807.1808
+    // +   original by: GeekFG (http://geekfg.blogspot.com)
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: time();
+    // *     returns 1: 1216363871
+    
+    var d = new Date();
+    return Math.round(d.getTime()/1000);
 }// }}}
 
 // {{{ basename
