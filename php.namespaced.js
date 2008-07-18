@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.25
+ * This is version: 1.26
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -935,17 +935,35 @@
         },// }}}
         
         // {{{ rsort
-        rsort: function( array ) {
+        rsort: function( array, sort_flags ) {
             // Sort an array in reverse order
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rsort/
-            // +       version: 806.2210
+            // +       version: 806.2211
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.rsort(['Kevin', 'van', 'Zonneveld']);
             // *     returns 1: true
             
-            array.sort();
+            var sorter = false;
+            
+            // For now only SORT_NUMERIC has a custom sorter
+            // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
+            // are all handled with the default sorter 
+            if (sort_flags == 'SORT_NUMERIC') {
+                sorter = function (a, b) {
+                    return(a - b);
+                };
+            }
+            
+            if (sorter !== false) {
+                array.sort(sorter);
+            } else {
+                array.sort();
+            }
+            
+            // What makes it this.rsort:
             array.reverse();
+            
             return true;
         },// }}}
         
@@ -981,16 +999,32 @@
         },// }}}
         
         // {{{ sort
-        sort: function( array ) {
+        sort: function( array, sort_flags ) {
             // Sort an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sort/
-            // +       version: 806.2210
+            // +       version: 806.2211
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.sort(['Kevin', 'van', 'Zonneveld']);
             // *     returns 1: true
             
-            array.sort();
+            var sorter = false;
+            
+            // For now only SORT_NUMERIC has a custom sorter
+            // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
+            // are all handled with the default sorter 
+            if (sort_flags == 'SORT_NUMERIC') {
+                sorter = function (a, b) {
+                    return(a - b);
+                };
+            }
+            
+            if (sorter !== false) {
+                array.sort(sorter);
+            } else {
+                array.sort();
+            }
+            
             return true;
         },// }}}
         
