@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.31
+ * This is version: 1.32
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -9,7 +9,8 @@
  * (http://magnetiq.com), Philip Peterson, Martijn Wieringa, Webtoolkit.info
  * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
  * (http://www.jsfromhell.com), Ash Searle (http://hexmen.com/blog/),
- * Erkekjetter, GeekFG (http://geekfg.blogspot.com), marrtins, Alfonso Jimenez
+ * Erkekjetter, GeekFG (http://geekfg.blogspot.com), Johnny Mast
+ * (http://www.phpvrouwen.nl), marrtins, Alfonso Jimenez
  * (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
  * (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Thunder.m, Tyler
  * Akins (http://rumkin.com), d3x, mdsjack (http://www.mdsjack.bo.it), Alex,
@@ -759,6 +760,68 @@
             }
         
             return tmp_arr;
+        },// }}}
+        
+        // {{{ array_walk
+        array_walk: function (array, funcname, userdata) {
+            // Apply a user to: function every member of an array
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_walk/
+            // +       version: 807.2115
+            // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
+            // *     example 1: $P.array_walk ({'a':'b'} ,'callback', 'userdata');
+            // *     returns 1: true
+            // *     example 2: $P.array_walk ('a' ,'callback', 'userdata');
+            // *     returns 2: false
+            
+            var key; 
+            
+            if (typeof array != 'object'){
+                return false;
+            }
+            
+            for (key in array){
+                if (typeof (userdata) != 'undefined'){
+                    eval (funcname + '( array [key] , key , userdata  )' );
+                } else {
+                    eval (funcname + '(  userdata ) ');
+                }
+            }
+            
+            return true;
+        },// }}}
+        
+        // {{{ array_walk_recursive
+        array_walk_recursive: function (array, funcname, userdata) {
+            // Apply a user recursively: function to every member of an array
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_walk_recursive/
+            // +       version: 807.2115
+            // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
+            // *     example 1: $P.array_walk_recursive ({'a':'b', 'c': {'d' : 'e'}} ,'callback', 'userdata');
+            // *     returns 1: true
+            // *     example 2: $P.array_walk_recursive ('a' ,'callback', 'userdata');
+            // *     returns 2: false
+            
+            var key;
+            
+            if (typeof array != 'object'){
+                return false;
+            }
+         
+            for (key in array) {            
+                if (typeof array[key] == 'object') { 
+                    return this.array_walk_recursive (array [key], funcname, userdata);
+                }
+                
+                if (typeof (userdata) != 'undefined') {
+                    eval (funcname + '( array [key] , key , userdata  )');
+                } else {
+                    eval (funcname + '(  userdata ) ');
+                }
+            }
+            
+            return true;
         },// }}}
         
         // {{{ compact
@@ -1560,6 +1623,16 @@
             var oFunction = new Function( "arrParam" , strCommand );
             return oFunction( arrParam );
         },// }}}
+        
+        // {{{ create_function: function create_function (args, code) {
+            // Create an anonymous (lambda-style) function
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_create_function/
+            // +       version: 807.2115
+            // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
+            // *     example 1: $P.var myfunction = create_function('a, b', "return (a + b);"); myfunction (1, 2);
+            // *     returns 1: 3
+            
         
         // {{{ function_exists
         function_exists: function( function_name ) {
