@@ -2,8 +2,9 @@ function ksort(array, sort_flags) {
     // http://kevin.vanzonneveld.net
     // +   original by: GeekFG (http://geekfg.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: ksort({2: 'van', 3: 'Zonneveld', 1: 'Kevin'});
+    // *     example 1: var in = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}; ksort(in);
     // *     returns 1: true
+    // *     results 1: in == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
     
     var tmp_arr = {}, values = array, keys = [], key_num = 0, key = '', i = 0; 
     var sorter = false, array = false;
