@@ -1630,9 +1630,8 @@
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_create_function/
             // +       version: 807.2115
             // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
-            // *     example 1: $P.var myfunction = create_function('a, b', "return (a + b);"); myfunction (1, 2);
-            // *     returns 1: 3
-            
+            // *     example 1: $P.create_function('a, b', "return (a + b);");
+            // *     returns 1: eval: function ('var _oFunctionObject = function (' + args + ') { ' +  code + '}');
         
         // {{{ function_exists
         function_exists: function( function_name ) {

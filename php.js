@@ -1612,8 +1612,8 @@ function create_function (args, code) {
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_create_function/
     // +       version: 807.2115
     // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
-    // *     example 1: var myfunction = create_function('a, b', "return (a + b);"); myfunction (1, 2);
-    // *     returns 1: 3
+    // *     example 1: create_function('a, b', "return (a + b);");
+    // *     returns 1: function
     
     eval ('var _oFunctionObject = function (' + args + ') { ' +  code + '}');
     return _oFunctionObject;
