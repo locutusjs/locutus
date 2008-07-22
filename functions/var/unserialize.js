@@ -2,6 +2,7 @@ function unserialize ( inp ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Arpad Ray (mailto:arpad@php.net)
     // +   improved by: Pedro Tainha (http://www.pedrotainha.com)
+    // +   bugfixed by: dptr1988
     // *     example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
     // *     returns 1: ['Kevin', 'van', 'Zonneveld']
 
