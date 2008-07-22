@@ -1631,7 +1631,8 @@
             // +       version: 807.2115
             // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
             // *     example 1: $P.create_function('a, b', "return (a + b);");
-            // *     returns 1: eval: function ('var _oFunctionObject = function (' + args + ') { ' +  code + '}');
+            // *     returns 1: 'function'
+            
         
         // {{{ function_exists
         function_exists: function( function_name ) {
