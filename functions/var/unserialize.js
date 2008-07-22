@@ -130,7 +130,7 @@ function unserialize ( inp ) {
         rest = objprops[1];
         var objout = "function " + objname + "(){";
         for (key in objprops[0]) {
-            objout += "" + key + "=objprops[0]['" + key + "'];";
+            objout += "this['" + key + "']=objprops[0]['" + key + "'];";
         }
         objout += "}val=new " + objname + "();";
         eval(objout);
