@@ -6,7 +6,7 @@ function include( filename ) {
     // +   improved by: Michael White (http://crestidg.com)
     // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
     // %        note 2: The included file does not come available until a second script block, so typically use this in the header.
-    // *     example 1: include('/pj_test_supportfile_2.js');
+    // *     example 1: include('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: 1
 
     var js = document.createElement('script');

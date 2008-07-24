@@ -2,7 +2,7 @@ function require_once(filename) {
     // http://kevin.vanzonneveld.net
     // +   original by: Michael White (http://crestidg.com)
     // -    depends on: require
-    // *     example 1: require_once('/pj_test_supportfile_2.js');
+    // *     example 1: require_once('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: true
 
     var cur_file = {};

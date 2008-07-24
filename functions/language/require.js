@@ -4,7 +4,7 @@ function require( filename ) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
     // -    depends on: file_get_contents
-    // *     example 1: require('/pj_test_supportfile_2.js');
+    // *     example 1: require('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: 2
 
     var js_code = file_get_contents(filename);

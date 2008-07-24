@@ -4,7 +4,7 @@ function include_once( filename ) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Michael White (http://crestidg.com)
     // -    depends on: include
-    // *     example 1: include_once('/pj_test_supportfile_2.js');
+    // *     example 1: include_once('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: true
 
     var cur_file = {};
