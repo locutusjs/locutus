@@ -1,8 +1,8 @@
 #!/usr/bin/php -q
 <?php
-
     error_reporting(E_ALL);
-
+    require_once realpath(dirname(__FILE__)."/../ext")."/kvzlib/code/php/all_functions.inc.php";    
+    
     /**
      * Config
      */
@@ -87,24 +87,41 @@
         }
         $tester .= ""."\n";
         
-        // Compare return value
-        $tester .= "// Compare return value"."\n";
+        // Compare call return value
+        $tester .= "// Compare call return value"."\n";
         $tester .= "success = comparer(returns, ".$example_set["returns"].");"."\n";
-        $tester .= "print(success, returns);"."\n";
+        $tester .= "print(success, trim(print_r(returns, true)));"."\n";
         $tester .= ""."\n";
         
-        // Compare results
-        $prt = explode(" == ", $example_set["results"]);
-        $key = array_shift($prt);
-        $val = implode(" == ", $prt);
-        
-        $tester .= "// Compare results"."\n";
-        $tester .= "success = comparer($key, $val);"."\n";
-        $tester .= "print(success, trim(print_r(data, true)));"."\n";
+        // Compare variable results
+        if (isset($example_set["results"])) {
+            $val = $example_set["results"];
+            $key = takeOne(" == ", $val);
+            
+            if (trim($val) && trim($key)) {
+                $tester .= "// Compare variable results"."\n";
+                $tester .= "success = comparer($key, $val);"."\n";
+                $tester .= "print(success, trim(print_r(data, true)));"."\n";
+            }
+        }
         
         //$example_set["returns"];
         
         return $tester;
+    }
+    
+    function run_tester($tester_path) {
+        global $config;
+        
+        // Run Tester
+        $cmd = $config["cmd_rhino"]." ".$tester_path;
+        $o = array(); 
+        exec($cmd, $o, $r);
+        if ($r) {
+            die("Command: $cmd failed\n");    
+        }
+        
+        print_r($o);
     }
     
     /**
@@ -127,13 +144,10 @@
         echo "Testing $func\n\n";
         
         foreach ($info["examples"] as $i=>$example_set) {
-            print_r($example_set);
             $tester = compile_tester_source($file, $example_set, $includes);
             
-            echo $tester;
-            
             // Store Tester
-            $tester_path = $config["dir_temp"]."/".$func;
+            $tester_path = $config["dir_temp"]."/".$func.".tester";
             file_put_contents($tester_path, $tester);
             
             // Run Tester
@@ -143,8 +157,8 @@
             if ($r) {
                 die("Command: $cmd failed\n");    
             }
-            print_r($o);
             
+            print_r(run_tester($tester_path));
         }
         
         echo "\n";
