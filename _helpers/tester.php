@@ -21,18 +21,17 @@
      */
     
     function find_files($dir, $file=false) {
-        
         if (!is_dir($dir)) {
             die("Dir: $dir does not exist");
         }
         
-        
         if ($file) {
-            $cmd = "find $dir -type f -name *.js |grep $file.js";
+            $cmd = "find ".$dir." -type f -name '*.js' |grep '".$file.".js'";
         } else {
-            $cmd = "find $dir -type f -name *.js |sort";
+            $cmd = "find ".$dir." -type f -name '*.js' |sort";
         }
         
+        echo $cmd."\n";
         exec($cmd, $o, $r);
         if ($r) {
             die("Command: $cmd failed");    
@@ -65,6 +64,7 @@
         $tester  = "";
         
         // Load Includes
+        $tester .= "// Load Includes"."\n";
         if (is_array($includes)) {
             foreach ($includes as $include) {
                 $tester .= "load('$include');\n";
@@ -73,21 +73,34 @@
         
         // Load actual function source
         $tester .= "load('$file');\n";
+        $tester .= ""."\n";
         
         // Execute Example Code
+        $tester .= "// Execute Example Code"."\n";
         foreach($example_lines as $i=>$example_line) {
             if (($i+1) == $example_lines_count) {
-                $tester .= "result = $example_line;";
+                $tester .= "returns = ".trim($example_line).";";
             } else {
                 $tester .= "$example_line;";
             }
             $tester .= "\n";
         }
+        $tester .= ""."\n";
         
         // Compare return value
-        
+        $tester .= "// Compare return value"."\n";
+        $tester .= "success = comparer(returns, ".$example_set["returns"].");"."\n";
+        $tester .= "print(success, returns);"."\n";
+        $tester .= ""."\n";
         
         // Compare results
+        $prt = explode(" == ", $example_set["results"]);
+        $key = array_shift($prt);
+        $val = implode(" == ", $prt);
+        
+        $tester .= "// Compare results"."\n";
+        $tester .= "success = comparer($key, $val);"."\n";
+        $tester .= "print(success, trim(print_r(data, true)));"."\n";
         
         //$example_set["returns"];
         
@@ -114,9 +127,7 @@
         echo "Testing $func\n\n";
         
         foreach ($info["examples"] as $i=>$example_set) {
-            
-            
-            
+            print_r($example_set);
             $tester = compile_tester_source($file, $example_set, $includes);
             
             echo $tester;
@@ -132,8 +143,8 @@
             if ($r) {
                 die("Command: $cmd failed\n");    
             }
-            
             print_r($o);
+            
         }
         
         echo "\n";
@@ -204,8 +215,6 @@
     /**
      * Run
      */
-    
-    
     $file = (!isset($argv[1]) ? false : $argv[1]);
     $files = find_files($config["dir_functions"], $file);
     test_files($files);

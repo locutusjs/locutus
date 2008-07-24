@@ -2,7 +2,7 @@ function array_map( callback ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Andrea Giammarchi (http://webreflection.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: array_map( function(a){return (a * a * a);}, [1, 2, 3, 4, 5] );
+    // *     example 1: array_map( function(a){return (a * a * a)}, [1, 2, 3, 4, 5] );
     // *     returns 1: [ 1, 8, 27, 64, 125 ]
 
 

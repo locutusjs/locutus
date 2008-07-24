@@ -3,7 +3,7 @@ function array_unique( array ) {
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      input by: duncan
     // +    bufixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: array_unique(['Kevin','Kevin','van','Zonneveld']);
+    // *     example 1: array_unique(['Kevin','Kevin','van','Zonneveld','Kevin']);
     // *     returns 1: ['Kevin','van','Zonneveld']
 
     var p, i, j, tmp_arr = array;
