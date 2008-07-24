@@ -55,9 +55,7 @@
     function compile_tester_source($file, $example_set, $includes = false) {
         global $config;
         
-        
-        
-        $example_lines = preg_split("/;/", $example_set["example"], -1,  PREG_SPLIT_NO_EMPTY);
+        $example_lines = preg_split("/;\s|;$/", $example_set["example"], -1,  PREG_SPLIT_NO_EMPTY);
         $example_lines_count = count($example_lines);
         
         $tester  = "";
@@ -119,15 +117,14 @@
         $cmd = $config["cmd_rhino"]." ".$tester_path;
         $o = array(); 
         exec($cmd, $o, $r);
+        $buf = implode("\n", $o);
         if ($r) {
-            die("Command: $cmd failed\n");    
+            // Probably a syntax error
+            return array(false=>$buf);
         }
         
+        // Compile nice array of results
         $test_results = array();
-        
-        
-        $buf  = implode("\n", $o);
-        
         $sets = explode("## SETS ##", $buf);
         $i    = 0;
         foreach ($sets as $set) {
@@ -178,17 +175,31 @@
             
             // Run Tester
             $test_results = run_tester($tester_path, $example_set);
-            foreach ($test_results as $type=>$test_result) {
-                 foreach($test_result as $success=>$value) {
-                     if ($success) {
-                         echo "[okay]";
-                     } else {
-                         echo "[fail]";
-                         echo "\nrunning        : ".$example_set["example"];
-                         echo "\nshould return  : ".$value;
-                         echo "\ninstead returns: ".$example_set[$type];
+            if ($test_results === false) {
+                // Syntax Error
+                if (reset(array_keys($test_results)) === false) {
+                    echo "[fail]";
+                    echo reset($test_results);
+                }
+            } else {
+                // Show test results
+                foreach ($test_results as $type=>$test_result) {
+                     foreach($test_result as $success=>$value) {
+                         if ($success) {
+                             echo "[okay]";
+                         } else {
+                             echo "[fail]";
+                         }
+                         
+                         if (!$success || $config["show_results"]) {
+                             echo "\nrunning       : ".$example_set["example"];
+                             echo "\nshould return : ".$example_set[$type];
+                             echo "\n       returns: ".$value;
+                             echo "\n";
+                             echo "\n";
+                         }
                      }
-                 }
+                }
             }
         }
         
@@ -261,6 +272,12 @@
      * Run
      */
     $file = (!isset($argv[1]) ? false : $argv[1]);
+    $config["show_results"] = false;
+    foreach ($argv as $arg) {
+        if ($arg == "--show") {
+            $config["show_results"] = true;
+        }
+    }
     $files = find_files($config["dir_functions"], $file);
     test_files($files);
 ?>

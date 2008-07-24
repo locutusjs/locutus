@@ -1,7 +1,7 @@
 function array_reduce( a_input, callback ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
-    // *     example 1: array_reduce([1, 2, 3, 4, 5], function(v, w){v += w; return v;});
+    // *     example 1: array_reduce([1, 2, 3, 4, 5], function(v, w){v += w;return v;});
     // *     returns 1: 15
     
     var lon = a_input.length;
