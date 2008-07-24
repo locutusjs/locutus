@@ -20,7 +20,7 @@
      * Functions
      */
     
-    function find_files($dir, $file=false) {
+    function find_files($dir, $file=false, $from_file=false) {
         if (!is_dir($dir)) {
             die("Dir: $dir does not exist");
         }
@@ -36,7 +36,27 @@
             die("Command: $cmd failed");    
         }
         
-        return $o;
+        $n = array();
+        foreach ($o as $file) {
+            $n[basename($file, ".js")] = $file; 
+        }
+        ksort($n);
+        
+        $files  = array();
+        $record = false;
+        foreach ($n as $file) {
+            if ($from_file && !$record) {
+                if (basename($file, ".js") == $from_file) {
+                    $record = true;
+                }
+            }
+            if (!$from_file || $record) {
+                $files[basename($file, ".js")] = $file;
+            }
+        }
+        
+        
+        return $files;
     }
     
     function test_files($files) {
@@ -70,6 +90,8 @@
         
         // Load actual function source
         $tester .= "load('$file');\n";
+        $tester .= "window.location = './tester.htm';"."\n";
+        $tester .= "window.onload = function(){"."\n"; 
         $tester .= ""."\n";
         
         $tester .= "print('## SETS ##');"."\n";
@@ -105,6 +127,7 @@
             }
         }
         
+        $tester .= "}"."\n";
         //$example_set["returns"];
         
         return $tester;
@@ -147,13 +170,27 @@
         return $test_results;
     }
     
+    function find_function($function, $files) {
+        $file = "";
+        if (isset($files[$function])) {
+            $file = $files[$function];
+        }
+        
+        if (!$file) {
+            print_r($files);
+            die("function $function not found in files");
+        }
+        
+        return $file;
+    }
+    
     /**
      * Test a PHP.JS function
      *
      * @param unknown_type $file
      */
     function test_file($file) {      
-        global $config;
+        global $config, $all_files;
         $func = basename($file, ".js");
         
         $source = file_get_contents($file);
@@ -164,10 +201,16 @@
         $includes[] = "./env.js";
         $includes[] = "./tester.js";
         
+        if (isset ($info["dependencies"])) {
+            foreach ($info["dependencies"] as $dependency) {
+                $includes[] = find_function($dependency, $all_files);
+            }
+        }
+        
         echo "Testing $func ";
         
         foreach ($info["examples"] as $i=>$example_set) {
-            $tester = compile_tester_source($file, $example_set, $includes);
+            $tester = compile_tester_source($file, $example_set, $includes, $info);
             
             // Store Tester
             $tester_path = $config["dir_temp"]."/".$func.".tester";
@@ -250,6 +293,8 @@
                 preg_match('/[\s]*(\w+)([^:]*):[\s]*([^(]+)(.*)/', trim($matches[2][$k]), $r);
                 $url = trim(str_replace(array('(', ')'), '', $r[4]));
                 $info[$map][$r[1]][trim($r[3])] = $url;
+            } elseif ($map == "dependencies" ) {
+                $info[$map][] = str_replace("depends on: ", "", $matches[2][$k]);
             } else {
                 // Store meaningful comment line
                 $info[$map][] = $matches[2][$k];
@@ -259,6 +304,9 @@
         return $info;
     }
         
+    
+    #print_r(parse_comments(file_get_contents("/home/kevin/workspace/plutonia-phpjs/functions/array/sizeof.js"), $config["mapping"]));
+    #die ();
     
     /**
      * Checks
@@ -273,11 +321,17 @@
      */
     $file = (!isset($argv[1]) ? false : $argv[1]);
     $config["show_results"] = false;
-    foreach ($argv as $arg) {
+    $config["from"] = false;
+    foreach ($argv as $i=>$arg) {
         if ($arg == "--show") {
             $config["show_results"] = true;
+        } elseif ($arg == "--from") {
+            $config["from"] = $argv[$i+1];
+            $file=false;
         }
     }
-    $files = find_files($config["dir_functions"], $file);
+    
+    $all_files = find_files($config["dir_functions"]); 
+    $files = find_files($config["dir_functions"], $file, $config["from"]);
     test_files($files);
 ?>

@@ -7,6 +7,6 @@ function printf( ) {
     // *     returns 1: 6
 
     var ret = sprintf.apply(this, arguments);
-    document.write(ret);
+    document.createTextNode(ret);
     return ret.length;
 }

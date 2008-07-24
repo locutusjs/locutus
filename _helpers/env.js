@@ -8,7 +8,7 @@
 var window = this;
 
 (function(){
-
+    
 	// Browser Navigator
 
 	window.navigator = {
