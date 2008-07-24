@@ -75,6 +75,8 @@
         $tester .= "load('$file');\n";
         $tester .= ""."\n";
         
+        $tester .= "print('## SETS ##');"."\n";
+        
         // Execute Example Code
         $tester .= "// Execute Example Code"."\n";
         foreach($example_lines as $i=>$example_line) {
@@ -90,8 +92,9 @@
         // Compare call return value
         $tester .= "// Compare call return value"."\n";
         $tester .= "success = comparer(returns, ".$example_set["returns"].");"."\n";
-        $tester .= "print(success, trim(print_r(returns, true)));"."\n";
+        $tester .= "print('> returns', success, trim(print_r(returns, true)));"."\n";
         $tester .= ""."\n";
+        $tester .= "print('## RESULTS ##');"."\n";
         
         // Compare variable results
         if (isset($example_set["results"])) {
@@ -101,7 +104,7 @@
             if (trim($val) && trim($key)) {
                 $tester .= "// Compare variable results"."\n";
                 $tester .= "success = comparer($key, $val);"."\n";
-                $tester .= "print(success, trim(print_r(data, true)));"."\n";
+                $tester .= "print('> results', success, trim(print_r(data, true)));"."\n";
             }
         }
         
@@ -110,7 +113,7 @@
         return $tester;
     }
     
-    function run_tester($tester_path) {
+    function run_tester($tester_path, $example_set) {
         global $config;
         
         // Run Tester
@@ -121,7 +124,31 @@
             die("Command: $cmd failed\n");    
         }
         
-        print_r($o);
+        $test_results = array();
+        
+        
+        $buf  = implode("\n", $o);
+        
+        $sets = explode("## SETS ##", $buf);
+        $i    = 0;
+        foreach ($sets as $set) {
+            $set = trim($set);
+            if (!$set) continue;
+            
+            $results = explode("## RESULTS ##", $set);
+            foreach($results as $result) {
+                $result = trim($result);
+                if (!$result) continue;
+                
+                $x       = takeOne(" ", $result);
+                $type    = takeOne(" ", $result);
+                $success = takeOne(" ", $result);
+                $test_results[$type][$success] = $result;
+            }
+            $i++;
+        }
+        
+        return $test_results;
     }
     
     /**
@@ -141,7 +168,7 @@
         $includes[] = "./env.js";
         $includes[] = "./tester.js";
         
-        echo "Testing $func\n\n";
+        echo "Testing $func ";
         
         foreach ($info["examples"] as $i=>$example_set) {
             $tester = compile_tester_source($file, $example_set, $includes);
@@ -151,14 +178,19 @@
             file_put_contents($tester_path, $tester);
             
             // Run Tester
-            $cmd = $config["cmd_rhino"]." ".$tester_path;
-            $o = array(); 
-            exec($cmd, $o, $r);
-            if ($r) {
-                die("Command: $cmd failed\n");    
+            $test_results = run_tester($tester_path, $example_set);
+            foreach ($test_results as $type=>$test_result) {
+                 foreach($test_result as $success=>$value) {
+                     if ($success) {
+                         echo "[okay]";
+                     } else {
+                         echo "[fail]";
+                         echo "\nrunning        : ".$example_set["example"];
+                         echo "\nshould return  : ".$value;
+                         echo "\ninstead returns: ".$example_set[$type];
+                     }
+                 }
             }
-            
-            print_r(run_tester($tester_path));
         }
         
         echo "\n";
