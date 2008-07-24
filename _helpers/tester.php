@@ -31,7 +31,6 @@
             $cmd = "find ".$dir." -type f -name '*.js' |sort";
         }
         
-        echo $cmd."\n";
         exec($cmd, $o, $r);
         if ($r) {
             die("Command: $cmd failed");    
