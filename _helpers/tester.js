@@ -1,4 +1,4 @@
-function comparer(result, should) {
+function tester_comparer(result, should) {
     var valid = true;
 
     if( result === null || result === false || result === undefined ) {
@@ -22,7 +22,7 @@ function comparer(result, should) {
     return valid;
 }
 
-function trim( str, charlist ) {
+function tester_trim( str, charlist ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: mdsjack (http://www.mdsjack.bo.it)
@@ -59,7 +59,7 @@ function trim( str, charlist ) {
     return whitespace.indexOf(str.charAt(0)) === -1 ? str : '';
 }
 
-function print_r( array, return_val ) {
+function tester_print_r( array, return_val ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Michael White (http://crestidg.com)
     // +   improved by: Ben Bryan
