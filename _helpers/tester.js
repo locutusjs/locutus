@@ -8,7 +8,7 @@ function tester_comparer(result, should) {
     } else if( result.constructor === Array || result.constructor === Object ) {
         for (key in result){
             // Recurse
-            subres = comparer(result[key], should[key]);
+            subres = tester_comparer(result[key], should[key]);
             if(subres[0] < 1){
                 return subres;
             }
@@ -38,7 +38,7 @@ function tester_trim( str, charlist ) {
 
     var whitespace;
     
-    if(!charlist){
+    if (!charlist) {
         whitespace = ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000';
     } else{
         whitespace = charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\$1');
@@ -46,8 +46,8 @@ function tester_trim( str, charlist ) {
   
     for (var i = 0; i < str.length; i++) {
         if (whitespace.indexOf(str.charAt(i)) === -1) {
-        str = str.substring(i);
-        break;
+            str = str.substring(i);
+            break;
         }
     }
     for (i = str.length - 1; i >= 0; i--) {
@@ -63,7 +63,7 @@ function tester_print_r( array, return_val ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Michael White (http://crestidg.com)
     // +   improved by: Ben Bryan
-    // *     example 1: print_r(1, true);
+    // *     example 1: tester_print_r(1, true);
     // *     returns 1: 1
 
     var output = "", pad_char = " ", pad_val = 4;

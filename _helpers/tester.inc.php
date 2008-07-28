@@ -116,7 +116,7 @@ function compile_tester_source($file, $example_set, $includes = false) {
         
         if (trim($val) && trim($key)) {
             $tester .= t."// Compare variable results".n;
-            $tester .= t."success = comparer($key, $val);".n;
+            $tester .= t."success = tester_comparer($key, $val);".n;
             $tester .= t."print('> results', success, tester_trim(tester_print_r(data, true)));".n;
         }
     }
