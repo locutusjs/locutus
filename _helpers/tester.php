@@ -118,7 +118,7 @@
         // Compare variable results
         if (isset($example_set["results"])) {
             $val = $example_set["results"];
-            $key = takeOne(" == ", $val);
+            $key = strShift(" == ", $val);
             
             if (trim($val) && trim($key)) {
                 $tester .= "// Compare variable results"."\n";
@@ -159,9 +159,9 @@
                 $result = trim($result);
                 if (!$result) continue;
                 
-                $x       = takeOne(" ", $result);
-                $type    = takeOne(" ", $result);
-                $success = takeOne(" ", $result);
+                $x       = strShift(" ", $result);
+                $type    = strShift(" ", $result);
+                $success = strShift(" ", $result);
                 $test_results[$type][$success] = $result;
             }
             $i++;
