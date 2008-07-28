@@ -12,7 +12,7 @@ function require_once(filename) {
     if (!window.php_js) window.php_js = {};
     if (!window.php_js.includes) window.php_js.includes = cur_file;
     if (!window.php_js.includes[filename]) {
-        if(require(filename)){
+        if (require(filename)) {
             return true;
         }
     } else {
