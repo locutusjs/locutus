@@ -5,13 +5,23 @@ function echo ( ) {
     // *     example 1: echo('Hello', 'World');
     // *     returns 1: null
     
-    var doc_elem = document.createDocumentFragment();
+    var arg = '', argc = arguments.length, argv = arguments, i = 0;
+    var bodies = [], body, elmt;
     
-    for( i = 0; i < echo.arguments.length; i++ ) {
-        if( doc_elem.body && doc_elem.body.innerHTML ) {
-            doc_elem.body.innerHTML = doc_elem.body.innerHTML + echo.arguments[i];
-        } else if (doc_elem.write) {
-            doc_elem.write( echo.arguments[i] );
+    // .shift() does not work to get first item in bodies
+    bodies = document.getElementsByTagName("body");
+    if (!bodies || ! bodies[0]) {
+        return false;
+    }
+    body   = bodies[0];
+    
+    for (i = 0; i < argc; i++ ) {
+        arg = argv[i];
+        if (document.createTextNode && document.appendChild) {
+            elmt = document.createTextNode(arg);
+            document.appendChild(elmt);
+        } else if (document.write) {
+            document.write(arg);
         }
     }
     

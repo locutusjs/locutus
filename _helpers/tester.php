@@ -315,7 +315,6 @@
         die("Rhino is not found at: ".$config["cmd_rhino"]."\n");
     }
     
-    
     /**
      * Run
      */

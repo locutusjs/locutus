@@ -87,6 +87,8 @@ function print_r( array, return_val ) {
                 }
             }
             str += base_pad + ")\n";
+        } else if(obj == null || obj == undefined) {
+            str = '';
         } else {
             str = obj.toString();
         }
