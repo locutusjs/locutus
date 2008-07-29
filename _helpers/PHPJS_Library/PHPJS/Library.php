@@ -1,26 +1,33 @@
 <?php
 
 // Autoloader borrowed from PHP_CodeSniffer, see function for credits
-spl_autoload_register(array("PHPJS", "autoload"));
+spl_autoload_register(array("PHPJS_Library", "autoload"));
 
-Class PHPJS {
+Class PHPJS_Library {
     public $Functions = false;
     public $Function  = false;
     
     private $_dir = false;
     
     /**
-     * Enter description here...
+     * Adds a function from filesystem to the PHPJS library
      *
-     * @param unknown_type $path
+     * @param string $path
      */
     public function addFunction($path) {
         $obj = new PHPJS_Function($path, $this);
         //$obj->reload();
-        $function = &$obj->getFunction();
-        $this->Functions[$function] = &$obj;
+        $function_name = &$obj->getFunctionName();
+        $this->Functions[$function_name] = &$obj;
     }
     
+    /**
+     * Sets & returns a function for active use
+     *
+     * @param string $function
+     * 
+     * @return Object
+     */
     public function getFunction($function) {
         if (!isset($this->Functions[$function])) {
             throw new PHPJS_Exception("Function: $function not found");
@@ -31,12 +38,17 @@ Class PHPJS {
         return $this->Function; 
     }
     
+    /**
+     * Constructor
+     *
+     * @param unknown_type $dir
+     * @return PHPJS
+     */
     public function PHPJS($dir) {
         $this->_dir = $dir;
-        $this->index();
+        $this->reload();
     }
     
- 
     
     /**
      * Autoload static method for loading classes and interfaces.
@@ -49,7 +61,7 @@ Class PHPJS {
      */
     static public function autoload($className)
     {
-        //$parent     = 'System_';
+        $parent     = 'PHPJS_Library';
         $parent     = '';
         $parent_len = strlen($parent);
         if (substr($className, 0, $parent_len) == $parent) {
@@ -71,6 +83,32 @@ Class PHPJS {
     }//end autoload()
         
     
+    /**
+     * (Re-)Initialize
+     *
+     * @return boolean
+     */
+    public function reload() {
+        
+        
+        if (!$this->index($this->_dir)) {
+            throw new PHPJS_Exception("Could not index at ".$this->_dir);
+        }
+        
+        print_r($this->Functions);
+        
+        ksort($this->Functions);
+        return true;
+    }
+    
+    /**
+     * Scans filesystem recursively and adds functions to the
+     * library 
+     *
+     * @param string $dir Defaults to $this->dir as specified by Class constructor
+     * 
+     * @return boolean
+     */
     public function index($dir=false) {
         if ($dir === false) $dir = $this->_dir;            
         if (!is_dir($dir)) return false;
@@ -88,7 +126,8 @@ Class PHPJS {
                 }
             }
         }
-        ksort($this->Functions);
+        
+        return true;
     }
 }
 ?>

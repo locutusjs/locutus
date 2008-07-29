@@ -1,5 +1,5 @@
 <?php
-Class PHPJS_Tester extends PHPJS {
+Class PHPJS_Library_Tester extends PHPJS_Library {
     
     
     

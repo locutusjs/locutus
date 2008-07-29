@@ -4,8 +4,8 @@ Class PHPJS_Function extends SplFileInfo {
     public $DocBlock = false;
     public $functionLookup = array();
     
-    private $_category = "";
-    private $_function = "";
+    private $_categoryName = "";
+    private $_functionName = "";
     
     private $_source = "";
     private $_docBlock = "";
@@ -17,19 +17,28 @@ Class PHPJS_Function extends SplFileInfo {
     private $_tokRealCode = array();
     
     
+    
     private function _setSource($source) {
         $this->_source = trim($source);
     }
     
-    private function _setCategory($category) {
-        $this->_category = $category;
+    private function _setCategoryName($categoryName) {
+        $this->_categoryName = $categoryName;
     }
     
-    private function _setFunction($function) {
-        $this->_function = $function;
+    private function _setFunctionName($functionName) {
+        $this->_functionName = $functionName;
     }
 
 
+    
+    /**
+     * Trims an array
+     *
+     * @param array $array
+     * 
+     * @return array
+     */
     private function _array_trim($array) {
         while (strlen(reset($array)) === 0) {
             array_shift($array);
@@ -40,22 +49,48 @@ Class PHPJS_Function extends SplFileInfo {
         return $array;
     }     
     
+    /**
+     * Converts filepath to PHPJS function name
+     *
+     * @param string $file
+     * 
+     * @return string
+     */
     private function _file2function($file) {
         return basename($file, ".js");    
     }
     
+    /**
+     * Converts filepath to PHPJS category name
+     *
+     * @param string $file
+     * 
+     * @return string
+     */
     private function _file2category($file) {
         $parts = explode("/", $file);
         array_pop($parts);
         return array_pop($parts);
     }
 
+    /**
+     * Determines wether a line is a comment or not
+     *
+     * @param string $line
+     * 
+     * @return boolean
+     */
     private function _isLineComment($line) {
         return preg_match('/^[\s]*(\/\/|\#|\*)/', $line);
     }
     
+    /**
+     * Splits function source into: docblock, wrappers, realcode
+     * and saves these in private variables
+     *
+     * @return boolean
+     */
     private function _tokenizeSource() {
-        
         $recDocBlock = -1;
         
         $this->_tokDocBlock = array();
@@ -96,26 +131,38 @@ Class PHPJS_Function extends SplFileInfo {
     
     
     
-    public function PHPJS_Function($file, &$PHPJS){
+    /**
+     * Constructor
+     *
+     * @param string $file
+     * @param object &$PHPJS
+     */
+    public function PHPJS_Function($file, &$PHPJS_Library){
         // Call Parent SplFileInfo constructor
         parent::__construct($file);
         
         // Reference to mother object
-        $this->PHPJS = &$PHPJS;
+        $this->PHPJS_Library = &$PHPJS_Library;
         
         // Initialize object
         $this->reload();
     }
     
     
+    /**
+     * (Re-)Initialize
+     *
+     * @return boolean
+     */
     public function reload() {
         $this->_setSource(file_get_contents($this->getRealPath()));
-        $this->_setCategory($this->_file2category($this->getRealPath()));
-        $this->_setFunction($this->_file2function($this->getRealPath()));
+        $this->_setCategoryName($this->_file2category($this->getRealPath()));
+        $this->_setFunctionName($this->_file2function($this->getRealPath()));
         
         $this->_tokenizeSource();
         
         $this->DocBlock = new PHPJS_DocBlock($this->_tokDocBlock);
+        return true;
     }
     
     /**
@@ -162,13 +209,12 @@ Class PHPJS_Function extends SplFileInfo {
         return $this->_source;
     }
 
-    public function getCategory() {
-        return $this->_category;
+    public function getCategoryName() {
+        return $this->_categoryName;
     }
     
-    public function getFunction() {
-        return $this->_function;
+    public function getFunctionName() {
+        return $this->_functionName;
     }
 }
-
 ?>
