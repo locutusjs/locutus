@@ -2,12 +2,12 @@
 Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
 
     public function PHPJS_Function_Tester_Shell($file, &$PHPJS_Library){
+        // Parent first please
+        parent::PHPJS_Function_Tester($file, $PHPJS_Library);
+        
         // Add shell specific Includes
         $this->addInclude($PHPJS_Library->getDirRealRoot()."/_helpers/env.js",    "Shell Requirement");
         $this->addInclude($PHPJS_Library->getDirRealRoot()."/_helpers/tester.js", "Shell Requirement");
-        
-        // Proceed with parent
-        parent::PHPJS_Function($file, &$PHPJS_Library);
     }
     
     public function getPath() {

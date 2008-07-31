@@ -43,17 +43,13 @@ Class PHPJS_Library_Tester extends PHPJS_Library {
         }
     }
     
-    public function testFunction($funcName, $Function, $outputRaw=false) {
-        // Add dependencies to Includes
-        $depsRec = $Function->getDependencies(true);
-        $depsSng = $Function->getDependencies(false);
-        
-        foreach ($depsRec as $funcName) {
-            $path = $this->Functions[$funcName]->getPath();
-            $depType = (!in_array($funcName, $depsSng) ? "direct" : "recursive");
-            $Function->addInclude($path, "Dependency (".$depType."): ".$funcName);
+    public function testFunction($funcName, $outputRaw=false) {
+        if (!$this->functionExists($funcName)) {
+            throw new PHPJS_Exception("Function $funcName does not exst");
+            return false;
         }
-            
+        
+        $Function = $this->getFunction($funcName);
         $testCode = $Function->testCode();
         $results  = $Function->runTestCode($testCode, $outputRaw);
         

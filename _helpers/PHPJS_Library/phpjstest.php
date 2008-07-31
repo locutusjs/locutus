@@ -3,27 +3,21 @@
     error_reporting(E_ALL);
     require_once "PHPJS/Library.php";
     
-    
     $dir = realpath(dirname(__FILE__)."/../..")."/functions";
-    
-    $testWhat = $argv[1];
-    if (!$testWhat) {
-        $testWhat = "md5_file"; 
-    }
     
     $PHPJS_Tester_Shell = new PHPJS_Library_Tester_Shell($dir);
     $options = $PHPJS_Tester_Shell->parseCmdArgs($argv);
     
     if (isset($options["testcode"])) {
         if (!$PHPJS_Tester_Shell->functionExists($options["testcode"])) {
-            echo "Function does not exist";
+            echo "Function does not exist\n";
         } else {
             $Function = $PHPJS_Tester_Shell->getFunction($options["testcode"]);
             echo $Function->testCode();
         }
     } elseif (isset($options["output"])) {
         if (!$PHPJS_Tester_Shell->functionExists($options["output"])) {
-            echo "Function does not exist";
+            echo "Function does not exist\n";
         } else {
             $Function = $PHPJS_Tester_Shell->getFunction($options["output"]);
             echo $PHPJS_Tester_Shell->testFunction($options["output"], $Function, true);

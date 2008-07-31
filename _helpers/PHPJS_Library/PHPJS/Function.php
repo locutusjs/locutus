@@ -171,15 +171,21 @@ Class PHPJS_Function extends SplFileInfo {
      */
     public function getDependencies($recurse=true) {
         // Own deps
-        
         $list = $this->DocBlock->getDependencies();
         
         // Recurse
         if ($recurse) {
             if (count($list)) {
-                foreach($list as $function) {
-                    $func = &$this->PHPJS_Library->getFunction($function);
-                    $list = array_merge($func->getDependencies(), $list);
+                foreach($list as $functionName) {
+                    $Function = &$this->PHPJS_Library->getFunction($functionName);
+                    
+                    if (!is_object($functionName)) {
+                        throw new PHPJS_Exception("No Function object for '".$functionName."' in relation to: '".$this->getFunctionName()."'.");
+                        //$dbg = debug_backtrace();
+                        //print_r($dbg);
+                    } else {
+                        $list = array_merge($Function->getDependencies(true), $list);
+                    }
                 }
             }
         }

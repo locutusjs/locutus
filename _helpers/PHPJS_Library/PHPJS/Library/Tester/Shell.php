@@ -1,10 +1,9 @@
 <?php
 Class PHPJS_Library_Tester_Shell extends PHPJS_Library_Tester {
     
-    public function testFunction($funcName, $Function) {
-        
-        // Proceed with normal test
-        parent::testFunction($funcName, $Function);
+    public function testFunction($funcName, $Function, $outputRaw=false) {
+        // Proceed with parent
+        parent::testFunction($funcName, $Function, $outputRaw);
     }
     
     public function getAllowedCmdArgs() {

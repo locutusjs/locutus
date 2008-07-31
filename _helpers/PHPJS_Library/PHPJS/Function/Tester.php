@@ -7,8 +7,7 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
     protected $_testCode = "";
     
     public function PHPJS_Function_Tester($file, &$PHPJS_Library){
-        $this->_testCode = $this->testCode();
-        parent::PHPJS_Function($file, &$PHPJS_Library);
+        parent::PHPJS_Function($file, $PHPJS_Library);
     }
     
     protected function _parseTestOutput($testOutput) {
@@ -65,7 +64,6 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
             }
             $testCode .= "".$n;
         }
-        
         return $testCode;
     }
 
@@ -73,6 +71,19 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
         $t        = $this->_t;
         $n        = $this->_n;
         $testCode = "";
+        
+
+        // Add dependencies to Includes
+        // DONT RECURSE DEPENDENCIES WITH THE CONSTRUCTOR.
+        // ALSO DON'T SAVE TESTCODE WITH THE CONSTRUCTOR,
+        // BECAUSE NOT ALL FUNCTIONS ARE LOADED YET
+        $depsRec = $this->getDependencies(true);
+        $depsSng = $this->getDependencies(false);
+        foreach ($depsRec as $funcName) {
+            $path = $this->PHPJS_Library->Functions[$funcName]->getPath();
+            $depType = (!in_array($funcName, $depsSng) ? "direct" : "recursive");
+            $this->addInclude($path, "Dependency (".$depType."): ".$funcName);
+        }
         
         $example_sets = $this->DocBlock->getExamples();
         
@@ -108,7 +119,7 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
             // Compare variable results
             if (isset($example_set["results"])) {
                 $val = $example_set["results"];
-                $key = strShift(" == ", $val);
+                $key = $this->PHPJS_Library->strShift(" == ", $val);
                 
                 if (trim($val) && trim($key)) {
                     $testCode .= $t."// Compare variable results".$n;
