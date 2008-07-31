@@ -3,21 +3,36 @@
     error_reporting(E_ALL);
     require_once "PHPJS/Library.php";
     
+    
     $dir = realpath(dirname(__FILE__)."/../..")."/functions";
     
-    $phpjs = new PHPJS_Library($dir);
+    $testWhat = $argv[1];
+    if (!$testWhat) {
+        $testWhat = "md5_file"; 
+    }
     
+    $PHPJS_Tester_Shell = new PHPJS_Library_Tester_Shell($dir);
+    $options = $PHPJS_Tester_Shell->parseCmdArgs($argv);
     
-    $phpjs = new PHPJS_Library_Tester($dir);
-    $func = $phpjs->getFunction("md5_file");
-    
-    
-/*    
-    echo $func->getDocBlock()."\n";
-    echo $func->getWrapHead()."\n";
-    echo $func->getWrapTail()."\n";
-    echo $func->getRealCode()."\n";
-*/    
-    print_r($func->getDependencies());
-    
+    if (isset($options["testcode"])) {
+        if (!$PHPJS_Tester_Shell->functionExists($options["testcode"])) {
+            echo "Function does not exist";
+        } else {
+            $Function = $PHPJS_Tester_Shell->getFunction($options["testcode"]);
+            echo $Function->testCode();
+        }
+    } elseif (isset($options["output"])) {
+        if (!$PHPJS_Tester_Shell->functionExists($options["output"])) {
+            echo "Function does not exist";
+        } else {
+            $Function = $PHPJS_Tester_Shell->getFunction($options["output"]);
+            echo $PHPJS_Tester_Shell->testFunction($options["output"], $Function, true);
+        }
+    } elseif (isset($options["from"])) {
+        $PHPJS_Tester_Shell->testFrom($options["from"]);
+    } elseif (isset($options["func"])) {
+        $PHPJS_Tester_Shell->testOne($options["func"]); 
+    } else {
+        $PHPJS_Tester_Shell->testAll();
+    }
 ?>

@@ -1,0 +1,126 @@
+<?php
+Class PHPJS_Function_Tester extends PHPJS_Function {
+    
+    protected $_t = "    ";
+    protected $_n = "\n";
+    protected $_includes = array();
+    protected $_testCode = "";
+    
+    public function PHPJS_Function_Tester($file, &$PHPJS_Library){
+        $this->_testCode = $this->testCode();
+        parent::PHPJS_Function($file, &$PHPJS_Library);
+    }
+    
+    protected function _parseTestOutput($testOutput) {
+        $testResults = array();
+        
+        $sets = explode("## SETS ##", $testOutput);
+        $i    = 0;
+        foreach ($sets as $set) {
+            $set = trim($set);
+            if (!$set) continue;
+            
+            $results = explode("## RESULTS ##", $set);
+            foreach($results as $result) {
+                $result = trim($result);
+                if (!$result) continue;
+                
+                $x       = $this->PHPJS_Library->strShift(" ", $result);
+                $type    = $this->PHPJS_Library->strShift(" ", $result);
+                $success = $this->PHPJS_Library->strShift(" ", $result);
+                $testResults[$type][$success] = $result;
+            }
+            $i++;
+        }
+        return $testResults;   
+    }
+    
+    public function addInclude($path, $name="") {
+        $this->_includes[$path] = $name;
+    }
+    public function getIncludes() {
+        return $this->_includes;
+    }
+        
+    protected function _testCodePrepend() {
+        return "";
+    }
+    
+    protected function _testCodeAppend() {
+        return "";
+    }
+    
+    protected function _testCodeAddIncludes() {
+        $t        = $this->_t;
+        $n        = $this->_n;
+        $testCode = "";
+        
+        // Includes
+        $includes = $this->getIncludes();
+        if (is_array($includes) && count($includes)) {
+            $testCode .= "// Load Includes".$n;
+            foreach ($includes as $path=>$function) {
+                $testCode .= "// Include: $function".$n;
+                $testCode .= "load('$path');".$n;
+            }
+            $testCode .= "".$n;
+        }
+        
+        return $testCode;
+    }
+
+    public function testCode() {
+        $t        = $this->_t;
+        $n        = $this->_n;
+        $testCode = "";
+        
+        $example_sets = $this->DocBlock->getExamples();
+        
+        $testCode .= $this->_testCodeAddIncludes();
+        $testCode .= $this->_testCodePrepend();
+        
+        foreach ($example_sets as $i=>$example_set) {
+            
+            $testCode .= $t."print('## SETS ##');".$n;
+            
+            $example_lines = $example_set["example"];
+            $example_lines_count = count($example_lines);
+            
+            // Execute Example Code
+            $testCode .= $t."// Execute Example Code".$n;
+            foreach($example_lines as $i=>$example_line) {
+                if (($i+1) == $example_lines_count) {
+                    $testCode .= $t."returns = ".trim($example_line).";";
+                } else {
+                    $testCode .= $t."$example_line;";
+                }
+                $testCode .= $t.$n;
+            }
+            $testCode .= $t."".$n;
+            
+            // Compare call return value
+            $testCode .= $t."// Compare call return value".$n;
+            $testCode .= $t."success = tester_comparer(returns, ".$example_set["returns"].");".$n;
+            $testCode .= $t."print('> returns', success, tester_trim(tester_print_r(returns, true)));".$n;
+            $testCode .= $t."".$n;
+            $testCode .= $t."print('## RESULTS ##');".$n;
+            
+            // Compare variable results
+            if (isset($example_set["results"])) {
+                $val = $example_set["results"];
+                $key = strShift(" == ", $val);
+                
+                if (trim($val) && trim($key)) {
+                    $testCode .= $t."// Compare variable results".$n;
+                    $testCode .= $t."success = tester_comparer($key, $val);".$n;
+                    $testCode .= $t."print('> results', success, tester_trim(tester_print_r(data, true)));".$n;
+                }
+            }
+        }
+        
+        $testCode .= $this->_testCodeAppend();
+        
+        return $testCode;
+    }
+}
+?>

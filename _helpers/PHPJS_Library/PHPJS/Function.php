@@ -1,36 +1,34 @@
 <?php
 Class PHPJS_Function extends SplFileInfo {
-    public $PHPJS;
+    public $PHPJS_Library;
     public $DocBlock = false;
     public $functionLookup = array();
     
-    private $_categoryName = "";
-    private $_functionName = "";
+    protected $_categoryName = "";
+    protected $_functionName = "";
     
-    private $_source = "";
-    private $_docBlock = "";
-    private $_code = "";
+    protected $_source = "";
+    protected $_docBlock = "";
+    protected $_code = "";
 
-    private $_tokWrapHead = array();
-    private $_tokWrapTail = array();
-    private $_tokDocBlock = array();
-    private $_tokRealCode = array();
+    protected $_tokWrapHead = array();
+    protected $_tokWrapTail = array();
+    protected $_tokDocBlock = array();
+    protected $_tokRealCode = array();
     
     
     
-    private function _setSource($source) {
+    protected function _setSource($source) {
         $this->_source = trim($source);
     }
     
-    private function _setCategoryName($categoryName) {
+    protected function _setCategoryName($categoryName) {
         $this->_categoryName = $categoryName;
     }
     
-    private function _setFunctionName($functionName) {
+    protected function _setFunctionName($functionName) {
         $this->_functionName = $functionName;
     }
-
-
     
     /**
      * Trims an array
@@ -39,7 +37,7 @@ Class PHPJS_Function extends SplFileInfo {
      * 
      * @return array
      */
-    private function _array_trim($array) {
+    protected function _array_trim($array) {
         while (strlen(reset($array)) === 0) {
             array_shift($array);
         }
@@ -56,7 +54,7 @@ Class PHPJS_Function extends SplFileInfo {
      * 
      * @return string
      */
-    private function _file2function($file) {
+    protected function _file2function($file) {
         return basename($file, ".js");    
     }
     
@@ -67,7 +65,7 @@ Class PHPJS_Function extends SplFileInfo {
      * 
      * @return string
      */
-    private function _file2category($file) {
+    protected function _file2category($file) {
         $parts = explode("/", $file);
         array_pop($parts);
         return array_pop($parts);
@@ -80,17 +78,17 @@ Class PHPJS_Function extends SplFileInfo {
      * 
      * @return boolean
      */
-    private function _isLineComment($line) {
+    protected function _isLineComment($line) {
         return preg_match('/^[\s]*(\/\/|\#|\*)/', $line);
     }
     
     /**
      * Splits function source into: docblock, wrappers, realcode
-     * and saves these in private variables
+     * and saves these in protected variables
      *
      * @return boolean
      */
-    private function _tokenizeSource() {
+    protected function _tokenizeSource() {
         $recDocBlock = -1;
         
         $this->_tokDocBlock = array();
@@ -147,8 +145,7 @@ Class PHPJS_Function extends SplFileInfo {
         // Initialize object
         $this->reload();
     }
-    
-    
+        
     /**
      * (Re-)Initialize
      *
@@ -174,14 +171,15 @@ Class PHPJS_Function extends SplFileInfo {
      */
     public function getDependencies($recurse=true) {
         // Own deps
-        $list = $this->DocBlock->dependencies;
+        
+        $list = $this->DocBlock->getDependencies();
         
         // Recurse
         if ($recurse) {
-            if (count($this->DocBlock->dependencies)) {
-                foreach($this->DocBlock->dependencies as $function) {
-                    $func = &$this->PHPJS->getFunction($function);
-                    $list = array_merge($list, $func->getDependencies());
+            if (count($list)) {
+                foreach($list as $function) {
+                    $func = &$this->PHPJS_Library->getFunction($function);
+                    $list = array_merge($func->getDependencies(), $list);
                 }
             }
         }

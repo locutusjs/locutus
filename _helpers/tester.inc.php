@@ -67,66 +67,13 @@ function test_files($files) {
 function compile_tester_source($file, $example_set, $includes = false) {
     global $config;
     
-    //$example_lines = preg_split("/;\s|;$/", $example_set["example"], -1,  PREG_SPLIT_NO_EMPTY);
-    $example_lines = $example_set["example"];
-    $example_lines_count = count($example_lines);
-    
-    $tester  = "";
-    
-    // Load Includes
-    $tester .= "// Load Includes".n;
-    if (is_array($includes)) {
-        foreach ($includes as $path=>$function) {
-            $tester .= "// Include: $function".n;
-            $tester .= "load('$path');".n;
-        }
-    }
-    
-    // Load actual function source
-    $tester .= "// Main source we want to test".n;
-    $tester .= "load('$file');".n;
-    $tester .= "window.location = './tester.htm';".n;
-    $tester .= "".n;
-    $tester .= "window.onload = function(){".n; 
-    $tester .= t."print('## SETS ##');".n;
-    
-    // Execute Example Code
-    $tester .= t."// Execute Example Code".n;
-    foreach($example_lines as $i=>$example_line) {
-        if (($i+1) == $example_lines_count) {
-            $tester .= t."returns = ".trim($example_line).";";
-        } else {
-            $tester .= t."$example_line;";
-        }
-        $tester .= t.n;
-    }
-    $tester .= t."".n;
-    
-    // Compare call return value
-    $tester .= t."// Compare call return value".n;
-    $tester .= t."success = tester_comparer(returns, ".$example_set["returns"].");".n;
-    $tester .= t."print('> returns', success, tester_trim(tester_print_r(returns, true)));".n;
-    $tester .= t."".n;
-    $tester .= t."print('## RESULTS ##');".n;
-    
-    // Compare variable results
-    if (isset($example_set["results"])) {
-        $val = $example_set["results"];
-        $key = strShift(" == ", $val);
-        
-        if (trim($val) && trim($key)) {
-            $tester .= t."// Compare variable results".n;
-            $tester .= t."success = tester_comparer($key, $val);".n;
-            $tester .= t."print('> results', success, tester_trim(tester_print_r(data, true)));".n;
-        }
-    }
-    
-    $tester .= "}".n;
+
     //$example_set["returns"];
     
     return $tester;
 }
 
+file_put_contents($tester_path, $tester);
 function run_tester($tester_path, $example_set) {
     global $config;
     

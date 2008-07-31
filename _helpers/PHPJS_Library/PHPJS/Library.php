@@ -4,10 +4,68 @@
 spl_autoload_register(array("PHPJS_Library", "autoload"));
 
 Class PHPJS_Library {
+
+
+    /**
+     * System is unusable
+     */
+    const LOG_EMERG = 0;
+    
+    /**
+     * Immediate action required
+     */ 
+    const LOG_ALERT = 1;
+    
+    /**
+     * Critical conditions
+     */
+    const LOG_CRIT = 2;
+    
+    /**
+     * Error conditions
+     */
+    const LOG_ERR = 3;
+    
+    /**
+     * Warning conditions
+     */
+    const LOG_WARNING = 4;
+    
+    /**
+     * Normal but significant
+     */
+    const LOG_NOTICE = 5;
+    
+    /**
+     * Informational
+     */
+    const LOG_INFO = 6;
+    
+    /**
+     * Debug-level fixMessages
+     */
+    const LOG_DEBUG = 7;
+        
+    
     public $Functions = false;
     public $Function  = false;
     
-    private $_dir = false;
+    //protected $_functionClass = "PHPJS_Function";
+    
+    protected $_dirRealFunc = false;
+    protected $_dirRealRoot = false;
+    protected $_dirRealTemp = false;
+    
+    protected $_dir = false;
+    
+    
+    public function getDirRealTemp() {
+        return $this->_dirRealTemp;
+    }
+    
+    public function getDirRealRoot() {
+        return $this->_dirRealRoot;
+    }
     
     /**
      * Adds a function from filesystem to the PHPJS library
@@ -15,10 +73,17 @@ Class PHPJS_Library {
      * @param string $path
      */
     public function addFunction($path) {
-        $obj = new PHPJS_Function($path, $this);
+        
+        $className = str_replace("Library", "Function", get_class($this));
+        $obj = new $className($path, &$this);
+        
         //$obj->reload();
-        $function_name = &$obj->getFunctionName();
-        $this->Functions[$function_name] = &$obj;
+        $funcName = &$obj->getFunctionName();
+        $this->Functions[$funcName] = &$obj;
+    }
+    
+    public function functionExists($funcName) {
+        return isset($this->Functions[$funcName]);
     }
     
     /**
@@ -30,7 +95,6 @@ Class PHPJS_Library {
      */
     public function getFunction($function) {
         if (!isset($this->Functions[$function])) {
-            throw new PHPJS_Exception("Function: $function not found");
             return false;
         }
         
@@ -44,8 +108,30 @@ Class PHPJS_Library {
      * @param unknown_type $dir
      * @return PHPJS
      */
-    public function PHPJS($dir) {
-        $this->_dir = $dir;
+    public function PHPJS_Library($dirRealFunctions="") {
+
+        if (!$this->_dirRealFunc) {
+            if (!$dirRealFunctions) {
+                $this->_dirRealFunc = realpath(dirname(__FILE__)."/../..")."/functions";
+            } else {
+                $this->_dirRealFunc = $dirRealFunctions;
+            }
+        }
+        
+        if (!$this->_dirRealRoot) {
+            $this->_dirRealRoot = realpath($this->_dirRealFunc."/..");
+        }
+        if (!$this->_dirRealTemp) {
+            $this->_dirRealTemp = $this->_dirRealRoot."/_helpers/_temp";
+        }
+        
+        foreach (array($this->_dirRealFunc, $this->_dirRealRoot, $this->_dirRealTemp) as $dir) {
+            if (!is_dir($dir)) {
+                $this->_log("Directory not accessible: ".$this->_dirRealTemp, PHPJS_Library::LOG_EMERG);
+                return false;
+            }
+        }
+        
         $this->reload();
     }
     
@@ -90,16 +176,29 @@ Class PHPJS_Library {
      */
     public function reload() {
         
-        
-        if (!$this->index($this->_dir)) {
+        if (!$this->index($this->_dirRealFunc)) {
             throw new PHPJS_Exception("Could not index at ".$this->_dir);
         }
-        
-        print_r($this->Functions);
         
         ksort($this->Functions);
         return true;
     }
+
+    
+    /**
+     * Logs messages. Anything from and above LOG_CRIT will kill the app. 
+     *
+     * @param string  $str
+     * @param integer $level
+     */
+    private function _log($str, $level=PHPJS_Library::LOG_INFO) {
+        echo $str."\n";
+        if ($level <= self::LOG_CRIT) {
+            die();
+        }
+    }
+
+    
     
     /**
      * Scans filesystem recursively and adds functions to the
@@ -110,7 +209,7 @@ Class PHPJS_Library {
      * @return boolean
      */
     public function index($dir=false) {
-        if ($dir === false) $dir = $this->_dir;            
+        if ($dir === false) $dir = $this->_dirRealFunc;            
         if (!is_dir($dir)) return false;
 
         $it = new RecursiveDirectoryIterator($dir);
@@ -129,5 +228,31 @@ Class PHPJS_Library {
         
         return true;
     }
+    
+        
+    /**
+     * Takes first part of a string based on the delimiter.
+     * Returns that part, and mutates the original string to contain
+     * the reconcatenated remains 
+     *
+     * @param string $delimiter
+     * @param string &$string
+     * 
+     * @return string
+     */
+    public function strShift($delimiter, &$string)
+    {
+        // Explode into parts
+        $parts  = explode($delimiter, $string);
+        
+        // Shift first
+        $first  = array_shift($parts);
+        
+        // Glue back together, overwrite string by reference
+        $string = implode($delimiter, $parts);
+        
+        // Return first part
+        return $first;
+    }    
 }
 ?>
