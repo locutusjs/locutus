@@ -8,24 +8,25 @@
     $PHPJS_Tester_Shell = new PHPJS_Library_Tester_Shell($dir);
     $options = $PHPJS_Tester_Shell->parseCmdArgs($argv);
     
+    foreach ($options as $key=>$funcName) {
+        if (!is_bool($funcName) && strlen($funcName) > 1) {
+            if (!$PHPJS_Tester_Shell->functionExists($funcName)) {
+                die("Function does not exist\n");
+            }
+        }
+    }
+    
     if (isset($options["testcode"])) {
-        if (!$PHPJS_Tester_Shell->functionExists($options["testcode"])) {
-            echo "Function does not exist\n";
-        } else {
-            $Function = $PHPJS_Tester_Shell->getFunction($options["testcode"]);
-            echo $Function->testCode();
-        }
+        $Function = $PHPJS_Tester_Shell->getFunction($funcName);
+        echo $Function->testCode();
     } elseif (isset($options["output"])) {
-        if (!$PHPJS_Tester_Shell->functionExists($options["output"])) {
-            echo "Function does not exist\n";
-        } else {
-            $Function = $PHPJS_Tester_Shell->getFunction($options["output"]);
-            echo $PHPJS_Tester_Shell->testFunction($options["output"], $Function, true);
-        }
+        $Function = $PHPJS_Tester_Shell->getFunction($funcName);
+        echo $PHPJS_Tester_Shell->testFunction($funcName, true);
     } elseif (isset($options["from"])) {
-        $PHPJS_Tester_Shell->testFrom($options["from"]);
+        $PHPJS_Tester_Shell->testFrom($funcName);
     } elseif (isset($options["func"])) {
-        $PHPJS_Tester_Shell->testOne($options["func"]); 
+        $x = $PHPJS_Tester_Shell->testOne($funcName);
+        var_dump($x); 
     } else {
         $PHPJS_Tester_Shell->testAll();
     }

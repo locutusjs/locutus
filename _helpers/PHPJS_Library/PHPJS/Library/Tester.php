@@ -38,9 +38,11 @@ Class PHPJS_Library_Tester extends PHPJS_Library {
     }
     
     protected function _testSelection($selectedFunctions) {
+        $testResults = array();
         foreach ($selectedFunctions as $funcName=>$Function) {
-            $this->testFunction($funcName, $Function);
+            $testResults[$funcName] = $this->testFunction($funcName, false);
         }
+        return $testResults;
     }
     
     public function testFunction($funcName, $outputRaw=false) {

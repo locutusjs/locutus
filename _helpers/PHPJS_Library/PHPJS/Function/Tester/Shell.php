@@ -62,7 +62,8 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
             return false;
         }
         
-        list($success, $output) = $this->_execute($rhinoPath." ".$testPath);
+        $cmd = $rhinoPath." ".$testPath;
+        list($success, $output) = $this->_execute($cmd);
         if (!$success) {
             return false;
         } 

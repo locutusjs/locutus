@@ -1,3 +1,9 @@
+// Load Includes
+// Include: Shell Requirement
+load('/home/kevin/workspace/plutonia-phpjs/_helpers/env.js');
+// Include: Shell Requirement
+load('/home/kevin/workspace/plutonia-phpjs/_helpers/tester.js');
+
 // Main source we want to test
 load('/home/kevin/workspace/plutonia-phpjs/functions/array/array_fill.js');
 

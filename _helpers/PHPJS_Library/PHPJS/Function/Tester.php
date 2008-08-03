@@ -31,12 +31,15 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
             }
             $i++;
         }
+        
+        $testResults = array(1,2,3,4,5);
         return $testResults;   
     }
     
     public function addInclude($path, $name="") {
         $this->_includes[$path] = $name;
     }
+    
     public function getIncludes() {
         return $this->_includes;
     }
@@ -90,9 +93,8 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
         $testCode .= $this->_testCodeAddIncludes();
         $testCode .= $this->_testCodePrepend();
         
+        $testCode .= $t."print('## SETS ##');".$n;
         foreach ($example_sets as $i=>$example_set) {
-            
-            $testCode .= $t."print('## SETS ##');".$n;
             
             $example_lines = $example_set["example"];
             $example_lines_count = count($example_lines);
@@ -113,8 +115,11 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
             $testCode .= $t."// Compare call return value".$n;
             $testCode .= $t."success = tester_comparer(returns, ".$example_set["returns"].");".$n;
             $testCode .= $t."print('> returns', success, tester_trim(tester_print_r(returns, true)));".$n;
-            $testCode .= $t."".$n;
             $testCode .= $t."print('## RESULTS ##');".$n;
+            $testCode .= $t."".$n;
+            $testCode .= $t."".$n;
+            $testCode .= $t."".$n;
+            
             
             // Compare variable results
             if (isset($example_set["results"])) {

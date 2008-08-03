@@ -1,9 +1,9 @@
 <?php
 Class PHPJS_Library_Tester_Shell extends PHPJS_Library_Tester {
     
-    public function testFunction($funcName, $Function, $outputRaw=false) {
+    public function testFunction($funcName, $outputRaw=false) {
         // Proceed with parent
-        parent::testFunction($funcName, $Function, $outputRaw);
+        parent::testFunction($funcName, $outputRaw);
     }
     
     public function getAllowedCmdArgs() {
@@ -30,7 +30,7 @@ Class PHPJS_Library_Tester_Shell extends PHPJS_Library_Tester {
             }
         }
         
-        if (isset($this->Functions[$argv[1]])) {
+        if (isset($argv[1]) && isset($this->Functions[$argv[1]])) {
             $options["func"] = $argv[1];
         }
         
