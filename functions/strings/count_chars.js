@@ -4,7 +4,7 @@ function count_chars( str, mode ) {
     // *     example 1: count_chars("Hello World!", 3);
     // *     returns 1: "Helo Wrd!"
 
-    var histogram = new Object(), tmp_ar = new Array(), argc = arguments.length, key, i, code, mode;
+    var histogram = new Object(), tmp_arr = new Array(), argc = arguments.length, key, i, code, mode;
 
     if (argc == 1) {
         mode = 0;
@@ -38,8 +38,8 @@ function count_chars( str, mode ) {
         return histogram;
     } else {
         for (key in histogram) {
-            tmp_ar.push(String.fromCharCode(key));
+            tmp_arr.push(String.fromCharCode(key));
         }
-        return tmp_ar.join("");
+        return tmp_arr.join("");
     }
 }
