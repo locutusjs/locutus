@@ -47,29 +47,33 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
         // @todo: Outputting needs cleanup
         $examples = $this->DocBlock->getExamples();
         
-        print_r($results);
-        
         foreach ($results as $type=>$typeSet) {
             foreach ($typeSet as $typeSetNr=>$typeSetNrRes) {
                 foreach ($typeSetNrRes as $succeeded=>$returnValue) {
                     
-                    if ($succeeded) {
-                        echo "OKAY ";
-                    } else {
-                        echo "FAIL ";
+                    if ($succeeded == 'false') {
+                        $succeeded = false;
                     }
                     $exampleNr = $typeSetNr+1;
+                    $example   = $examples[$exampleNr]["example"];
                     
+                    echo str_pad($this->getCategoryName()."/".$this->_functionName.".js", 40, " ", STR_PAD_RIGHT). " ";
+                    echo str_pad("$type#$exampleNr", 12, " ", STR_PAD_RIGHT). " ";
                     
-                    $example = $examples[$exampleNr]["example"];
+                    if ($succeeded == false) {
+                        echo "FAIL";
+                    } else {
+                        echo "OKAY";
+                    }
                     
-                    echo str_pad($this->_functionName.":".$exampleNr, 20, " ", STR_PAD_RIGHT). " ";
-                    
-                    
-                    
-                    echo str_pad($example[0], 20, " ", STR_PAD_RIGHT). " "; 
-                    
-                    echo str_pad($returnValue, 20, " ", STR_PAD_RIGHT). " ";
+                    if ($succeeded == false) {
+                        echo ", returned: ";
+                        echo str_pad(substr($returnValue,0,20), 20, " ", STR_PAD_RIGHT);
+                        if (strlen($returnValue)> 20) {
+                            echo "...";
+                        }
+                    }
+                    echo " ";
                     
                     echo "\n";
                     
@@ -84,8 +88,8 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
     }
     
     protected function _saveTestCode($file, $testCode) {
-        $this->log("Saved testcode in ".$file, PHPJS_Library::LOG_DEBUG);
-        return @file_put_contents($file, $testCode);
+        //$this->log("Saved testcode in ".$file, PHPJS_Library::LOG_DEBUG);
+        return file_put_contents($file, $testCode);
     }
     
     public function runTestCode($testCode, $outputRaw=false) {

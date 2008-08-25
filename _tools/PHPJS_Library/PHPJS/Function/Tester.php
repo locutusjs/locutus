@@ -6,7 +6,7 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
     protected $_includes = array();
     protected $_testCode = "";
     
-    public function PHPJS_Function_Tester($file, &$PHPJS_Library){
+    public function PHPJS_Function_Tester($file, &$PHPJS_Library) {
         parent::PHPJS_Function($file, $PHPJS_Library);
     }
     
@@ -30,6 +30,7 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
                 
                 $x       = $this->PHPJS_Library->strShift(" ", $result);
                 $type    = $this->PHPJS_Library->strShift(" ", $result);
+                $nr      = $this->PHPJS_Library->strShift(" ", $result);
                 $success = $this->PHPJS_Library->strShift(" ", $result);
                 $testResults[$type][][$success] = $result;
             }
@@ -106,7 +107,7 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
         $testCode .= $this->_testCodePrepend();
         
         $testCode .= $t."print('## SETS ##');".$n;
-        foreach ($example_sets as $i=>$example_set) {
+        foreach ($example_sets as $nr=>$example_set) {
             
             $example_lines = $example_set["example"];
             $example_lines_count = count($example_lines);
@@ -125,8 +126,12 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
             
             // Compare call return value
             $testCode .= $t."// Compare call return value".$n;
-            $testCode .= $t."success = tester_comparer(returns, ".$example_set["returns"].");".$n;
-            $testCode .= $t."print('> returns', success, tester_trim(tester_print_r(returns, true)));".$n;
+            if (!isset($example_set["returns"])) {
+                $testCode .= $t."print('> returns', $nr, false, 'No example return-value defined');".$n;
+            } else {
+                $testCode .= $t."success = tester_comparer(returns, ".$example_set["returns"].");".$n;
+                $testCode .= $t."print('> returns', $nr, success, tester_trim(tester_print_r(returns, true)));".$n;
+            }
             $testCode .= $t."print('## RESULTS ##');".$n;
             $testCode .= $t."".$n;
             $testCode .= $t."".$n;
@@ -141,7 +146,7 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
                 if (trim($val) && trim($key)) {
                     $testCode .= $t."// Compare variable results".$n;
                     $testCode .= $t."success = tester_comparer($key, $val);".$n;
-                    $testCode .= $t."print('> results', success, tester_trim(tester_print_r(data, true)));".$n;
+                    $testCode .= $t."print('> results', $nr, success, tester_trim(tester_print_r(data, true)));".$n;
                 }
             }
         }
