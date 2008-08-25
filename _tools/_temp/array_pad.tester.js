@@ -15,7 +15,7 @@ window.onload = function(){
     
     // Compare call return value
     success = tester_comparer(returns, [ 7, 8, 9]);
-    print('> returns', success, tester_trim(tester_print_r(returns, true)));
+    print('> returns', 1, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
     
@@ -25,7 +25,7 @@ window.onload = function(){
     
     // Compare call return value
     success = tester_comparer(returns, [ 7, 8, 9, 'a', 'a']);
-    print('> returns', success, tester_trim(tester_print_r(returns, true)));
+    print('> returns', 2, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
     
@@ -35,7 +35,7 @@ window.onload = function(){
     
     // Compare call return value
     success = tester_comparer(returns, [ 7, 8, 9, 2, 2]);
-    print('> returns', success, tester_trim(tester_print_r(returns, true)));
+    print('> returns', 3, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
     
@@ -45,7 +45,7 @@ window.onload = function(){
     
     // Compare call return value
     success = tester_comparer(returns, [ 'a', 'a', 7, 8, 9 ]);
-    print('> returns', success, tester_trim(tester_print_r(returns, true)));
+    print('> returns', 4, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
     

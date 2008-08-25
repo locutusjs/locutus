@@ -15,7 +15,7 @@ window.onload = function(){
     
     // Compare call return value
     success = tester_comparer(returns, false);
-    print('> returns', success, tester_trim(tester_print_r(returns, true)));
+    print('> returns', 1, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
     
@@ -25,7 +25,7 @@ window.onload = function(){
     
     // Compare call return value
     success = tester_comparer(returns, {0: 3, 1: 5});
-    print('> returns', success, tester_trim(tester_print_r(returns, true)));
+    print('> returns', 2, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
     
@@ -35,7 +35,7 @@ window.onload = function(){
     
     // Compare call return value
     success = tester_comparer(returns, {"fubar": 42});
-    print('> returns', success, tester_trim(tester_print_r(returns, true)));
+    print('> returns', 3, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
     
@@ -45,7 +45,7 @@ window.onload = function(){
     
     // Compare call return value
     success = tester_comparer(returns, {"fubar": 42});
-    print('> returns', success, tester_trim(tester_print_r(returns, true)));
+    print('> returns', 4, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
     
@@ -55,7 +55,7 @@ window.onload = function(){
     
     // Compare call return value
     success = tester_comparer(returns, {"FUBAR": 42});
-    print('> returns', success, tester_trim(tester_print_r(returns, true)));
+    print('> returns', 5, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
     
@@ -65,7 +65,7 @@ window.onload = function(){
     
     // Compare call return value
     success = tester_comparer(returns, {"FUBAR": 42});
-    print('> returns', success, tester_trim(tester_print_r(returns, true)));
+    print('> returns', 6, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
     

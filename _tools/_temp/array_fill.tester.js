@@ -15,7 +15,7 @@ window.onload = function(){
     
     // Compare call return value
     success = tester_comparer(returns, { 5: 'banana', 6: 'banana', 7: 'banana', 8: 'banana', 9: 'banana', 10: 'banana' });
-    print('> returns', success, tester_trim(tester_print_r(returns, true)));
+    print('> returns', 1, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
     

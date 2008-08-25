@@ -47,9 +47,19 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
         // @todo: Outputting needs cleanup
         $examples = $this->DocBlock->getExamples();
         
+        
+        $maxOutputLen = 30;
+        $rowCnt = 1;
+        
         foreach ($results as $type=>$typeSet) {
             foreach ($typeSet as $typeSetNr=>$typeSetNrRes) {
                 foreach ($typeSetNrRes as $succeeded=>$returnValue) {
+                    
+                    if ($rowCnt == 1) {
+                        echo str_pad($this->getCategoryName()."/".$this->_functionName.".js", 40, " ", STR_PAD_RIGHT). " ";
+                    } else {
+                        echo str_pad(" ", 40, " ", STR_PAD_RIGHT). " ";
+                    }
                     
                     if ($succeeded == 'false') {
                         $succeeded = false;
@@ -57,7 +67,7 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
                     $exampleNr = $typeSetNr+1;
                     $example   = $examples[$exampleNr]["example"];
                     
-                    echo str_pad($this->getCategoryName()."/".$this->_functionName.".js", 40, " ", STR_PAD_RIGHT). " ";
+                    
                     echo str_pad("$type#$exampleNr", 12, " ", STR_PAD_RIGHT). " ";
                     
                     if ($succeeded == false) {
@@ -68,14 +78,15 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
                     
                     if ($succeeded == false) {
                         echo ", returned: ";
-                        echo str_pad(substr($returnValue,0,20), 20, " ", STR_PAD_RIGHT);
-                        if (strlen($returnValue)> 20) {
+                        echo str_pad(substr($returnValue,$maxOutputLen), $maxOutputLen, " ", STR_PAD_RIGHT);
+                        if (strlen($returnValue)> $maxOutputLen) {
                             echo "...";
                         }
                     }
                     echo " ";
                     
                     echo "\n";
+                    $rowCnt++;
                     
                     if ($succeeded == false && $breakOnError==true) {
                         return false;
