@@ -178,10 +178,10 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
             
             if (!isset($example_set["returns"]) && !isset($example_set["results"])) {
                 $testCode .= $t."print('> returns', $nr, false, 'No example return or results value defined');".$n;
+                $testCode .= $t."print('## RESULTS ##');".$n;
+                $testCode .= $t."".$n;
             }
             
-            $testCode .= $t."print('## RESULTS ##');".$n;
-            $testCode .= $t."".$n;
         }
         
         $testCode .= $this->_testCodeAppend();

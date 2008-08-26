@@ -48,7 +48,6 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
     }
 
     public function phpDeviation() {
-        
         if ((php_sapi_name() != 'cli')) {
             die("CLI ONLY");
         }
@@ -92,8 +91,6 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
         $maxOutputLen = 80;
         $rowCnt = 1;
         $failed = false;
-        
-        print_r($results);
         
         if ($phpResults !== false) {
             $results = array_merge_recursive($results, $phpResults);
