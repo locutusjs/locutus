@@ -11,7 +11,7 @@ function abs( mixed_number )  {
     // *     example 3: abs(-5);
     // *     returns 3: 5
     // *     example 4: abs('_argos');
-    // *     returns 4: 0.1
+    // *     returns 4: 0
 
     return Math.abs(mixed_number) || 0;
 }

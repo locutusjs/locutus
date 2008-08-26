@@ -44,7 +44,7 @@ window.onload = function(){
     returns = abs('_argos');;    
     
     // Compare call return value
-    success = tester_comparer(returns, 0.1);
+    success = tester_comparer(returns, 0);
     print('> returns', 4, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     

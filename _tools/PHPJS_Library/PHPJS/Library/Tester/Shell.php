@@ -13,6 +13,10 @@ Class PHPJS_Library_Tester_Shell extends PHPJS_Library_Tester {
     public function parseCmdArgs($argv) {
         $posArgs = $this->getAllowedCmdArgs();
         
+        if (isset($argv[1]) && isset($this->Functions[$argv[1]])) {
+            $options["func"] = $argv[1];
+        }
+        
         $options = array();
         foreach($argv as $i=>$arg) {
             if (($option = array_search($arg, $posArgs)) !== false) {
@@ -24,9 +28,6 @@ Class PHPJS_Library_Tester_Shell extends PHPJS_Library_Tester {
             }
         }
         
-        if (isset($argv[1]) && isset($this->Functions[$argv[1]])) {
-            $options["func"] = $argv[1];
-        }
         
         return $options;
     }

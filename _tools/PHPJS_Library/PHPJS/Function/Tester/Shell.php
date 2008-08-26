@@ -42,7 +42,12 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
         return $testCode;
     }
     
-    public function showResults($results, $breakOnError=true) {
+    public function showOutput($results) {
+        print_r($results);
+        return true;
+    }
+    
+    public function showResults($results) {
         // @todo: Parser can be better. Does it work with result-values?
         // @todo: Outputting needs cleanup
         $examples = $this->DocBlock->getExamples();
@@ -50,6 +55,7 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
         
         $maxOutputLen = 30;
         $rowCnt = 1;
+        $failed = false;
         
         foreach ($results as $type=>$typeSet) {
             foreach ($typeSet as $typeSetNr=>$typeSetNrRes) {
@@ -78,7 +84,7 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
                     
                     if ($succeeded == false) {
                         echo ", returned: ";
-                        echo str_pad(substr($returnValue,$maxOutputLen), $maxOutputLen, " ", STR_PAD_RIGHT);
+                        echo str_pad(substr($returnValue, 0, $maxOutputLen), $maxOutputLen, " ", STR_PAD_RIGHT);
                         if (strlen($returnValue)> $maxOutputLen) {
                             echo "...";
                         }
@@ -88,14 +94,14 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
                     echo "\n";
                     $rowCnt++;
                     
-                    if ($succeeded == false && $breakOnError==true) {
-                        return false;
+                    if ($succeeded == false) {
+                        $failed = true;
                     }
                 }
             }
         }
         
-        return true;
+        return $failed;
     }
     
     protected function _saveTestCode($file, $testCode) {

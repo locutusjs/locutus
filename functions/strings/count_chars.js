@@ -1,10 +1,12 @@
 function count_chars( str, mode ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com)
-    // *     example 1: count_chars("Hello World!", 3);
-    // *     returns 1: "Helo Wrd!"
+    // *     example 1: count_chars("Hello World!", 1);
+    // *     returns 1: "Hd e!lWor"
 
-    var histogram = new Object(), tmp_arr = new Array(), argc = arguments.length, key, i, code, mode;
+    var histogram = new Object(), tmp_arr = new Array();
+    var key, i, code, mode; 
+    var argc = arguments.length;
 
     if (argc == 1) {
         mode = 0;

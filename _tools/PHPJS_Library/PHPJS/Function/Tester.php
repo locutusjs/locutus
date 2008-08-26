@@ -43,7 +43,12 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
     public function testFunction($outputRaw=false) {
         $testCode = $this->testCode();
         $results  = $this->runTestCode($testCode, $outputRaw);
-        return $this->showResults($results);
+        
+        if ($outputRaw) {
+            return $this->showOutput($results);
+        } else {
+            return $this->showResults($results);
+        }
     }
     
     public function addInclude($path, $name="") {

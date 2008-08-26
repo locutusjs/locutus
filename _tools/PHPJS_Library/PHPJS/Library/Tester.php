@@ -7,13 +7,13 @@ Class PHPJS_Library_Tester extends PHPJS_Library {
         return $this->_fleRealRhino;
     }
     
-    public function testAll() {
+    public function testAll($breakOnError=false) {
         $selectedFunctions = array();
         $selectedFunctions = &$this->Functions;
-        return $this->_testSelection($selectedFunctions);
+        return $this->_testSelection($selectedFunctions, $breakOnError);
     }
     
-    public function testFrom($fromFunctionName) {
+    public function testFrom($fromFunctionName, $breakOnError=false) {
         $selectedFunctions = array();
         $record = false;
         foreach ($this->Functions as $funcName=>$Function) {
@@ -24,13 +24,18 @@ Class PHPJS_Library_Tester extends PHPJS_Library {
                 $selectedFunctions[$funcName] = &$Function;
             }
         }
-        return $this->_testSelection($selectedFunctions);
+        return $this->_testSelection($selectedFunctions, $breakOnError);
     }
 
-    protected function _testSelection($selectedFunctions) {
+    protected function _testSelection($selectedFunctions, $breakOnError=false) {
         $testResults = array();
         foreach ($selectedFunctions as $funcName=>$Function) {
-            $testResults[$funcName] = $this->testFunction($funcName, false);
+            if (($x = $this->testFunction($funcName, false)) === false) {
+                $testResults[$funcName] = $x;
+                if ($breakOnError) {
+                    break;
+                }
+            }
         }
         return $testResults;
     }

@@ -2,10 +2,10 @@ function ksort(array, sort_flags) {
     // http://kevin.vanzonneveld.net
     // +   original by: GeekFG (http://geekfg.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'};
+    // *     example 1: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}; 
+    // *     example 1: ksort(data);
+    // *     results 1: data == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
     // *     returns 1: true
-    // *     example 2: ksort(data);
-    // *     results 2: data == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
     
     var tmp_arr = {}, values = array, keys = [], key_num = 0, key = '', i = 0; 
     var sorter = false, array = false;

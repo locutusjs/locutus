@@ -12,9 +12,15 @@ function file_get_contents( url ) {
         }
     }
     if (req == null) throw new Error('XMLHttpRequest not supported');
-
+    
+    tester_print_r(req);
+    
+    req.onreadystatechange = function() {
+        print('c');
+    };
+    
     req.open("GET", url, false);
     req.send(null);
-
+    
     return req.responseText;
 }

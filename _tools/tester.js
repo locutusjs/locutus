@@ -106,7 +106,7 @@ function tester_print_r( array, return_val ) {
     output = formatArray(array, 0, pad_val, pad_char);
 
     if (return_val !== true) {
-        document.write("<pre>" + output + "</pre>");
+        print(output);
         return true;
     } else {
         return output;
