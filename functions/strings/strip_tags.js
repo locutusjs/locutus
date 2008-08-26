@@ -4,8 +4,8 @@ function strip_tags(str, allowed_tags) {
     // +   improved by: Luke Godfrey
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
-    // *     example 2: strip_tags('<p>Kevin<img src="someimage.png" onmouseover="someFunction()"></p>');
-    // *     returns 2: '<p>Kevin</p>'
+    // *     example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>');
+    // *     returns 2: 'Kevin van Zonneveld'
     
     var key = '', tag = '';
     var matches = allowed_array = [];
@@ -30,7 +30,7 @@ function strip_tags(str, allowed_tags) {
     // Is tag not in allowed list? Remove from str! 
     for (key in matches) {
         // IE7 Hack
-        if (isNaN(key)) {
+        if (!isNaN(key)) {
             tag = matches[key].toString();
             if (!allowed_keys[tag]) {
                 // Looks like this is

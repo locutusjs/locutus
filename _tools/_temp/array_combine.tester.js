@@ -18,6 +18,4 @@ window.onload = function(){
     print('> returns', 1, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
-    
-    
 }

@@ -40,14 +40,23 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
         return $testResults;   
     }
     
-    public function testFunction($outputRaw=false) {
+    public function phpDeviation() {
+        return array();        
+    }
+    
+    public function testFunction($outputRaw=false, $phpDeviation=false) {
         $testCode = $this->testCode();
         $results  = $this->runTestCode($testCode, $outputRaw);
+        
+        $phpResult = false;
+        if ($phpDeviation) {
+            $phpResult = $this->phpDeviation();
+        }
         
         if ($outputRaw) {
             return $this->showOutput($results);
         } else {
-            return $this->showResults($results);
+            return $this->showResults($results, $phpResult);
         }
     }
     
@@ -130,30 +139,46 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
             $testCode .= $t."".$n;
             
             // Compare call return value
-            $testCode .= $t."// Compare call return value".$n;
-            if (!isset($example_set["returns"])) {
-                $testCode .= $t."print('> returns', $nr, false, 'No example return-value defined');".$n;
-            } else {
+            if (isset($example_set["returns"])) {
+                $testCode .= $t."// Compare call return value".$n;
                 $testCode .= $t."success = tester_comparer(returns, ".$example_set["returns"].");".$n;
                 $testCode .= $t."print('> returns', $nr, success, tester_trim(tester_print_r(returns, true)));".$n;
             }
-            $testCode .= $t."print('## RESULTS ##');".$n;
-            $testCode .= $t."".$n;
-            $testCode .= $t."".$n;
-            $testCode .= $t."".$n;
             
             
             // Compare variable results
             if (isset($example_set["results"])) {
-                $val = $example_set["results"];
-                $key = $this->PHPJS_Library->strShift(" == ", $val);
                 
-                if (trim($val) && trim($key)) {
-                    $testCode .= $t."// Compare variable results".$n;
-                    $testCode .= $t."success = tester_comparer($key, $val);".$n;
-                    $testCode .= $t."print('> results', $nr, success, tester_trim(tester_print_r(data, true)));".$n;
+                // Select first variable
+                $baseVar = "UNKNOWN_BASEVAR";
+                if (preg_match('/(\w+)/', $example_set["results"], $m)) {
+                    $baseVar = $m[1];
+                }
+                
+                if (strpos($example_set["results"], "==") !== false) {
+                    // == Operator will do more advanced matching with tester_comparer()
+                    $val = $example_set["results"];
+                    $key = $this->PHPJS_Library->strShift(" == ", $val);
+                    if (trim($val) && trim($key)) {
+                        $testCode .= $t."// Compare variable results".$n;
+                        $testCode .= $t."success = tester_comparer($key, $val);".$n;
+                        $testCode .= $t."print('> results', $nr, success, tester_trim(tester_print_r($baseVar, true)));".$n;
+                    }
+                } else {
+                    // Other operators will just execute the expression literally
+                    $testCode .= $t."// Validate expression".$n;
+                    $testCode .= $t."success = (".$example_set["results"].");".$n;
+                    $testCode .= $t."print('> results', $nr, success, $baseVar);".$n;
                 }
             }
+            
+            if (!isset($example_set["returns"]) && !isset($example_set["results"])) {
+                $testCode .= $t."print('> returns', $nr, false, 'No example return or results value defined');".$n;
+            }
+            
+            $testCode .= $t."print('## RESULTS ##');".$n;
+            $testCode .= $t."".$n;
+        
         }
         
         $testCode .= $this->_testCodeAppend();

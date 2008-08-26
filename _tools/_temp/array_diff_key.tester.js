@@ -18,8 +18,6 @@ window.onload = function(){
     print('> returns', 1, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
-    
-    
     // Execute Example Code
     returns = array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5});;    
     
@@ -27,8 +25,6 @@ window.onload = function(){
     success = tester_comparer(returns, {"green":2, "blue":3, "white":4});
     print('> returns', 2, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
-    
-    
     
     // Execute Example Code
     returns = array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {green: 6, blue: 7});;    
@@ -38,8 +34,6 @@ window.onload = function(){
     print('> returns', 3, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
-    
-    
     // Execute Example Code
     returns = array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5});;    
     
@@ -47,7 +41,5 @@ window.onload = function(){
     success = tester_comparer(returns, {"green":2, "blue":3, "white":4});
     print('> returns', 4, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
-    
-    
     
 }

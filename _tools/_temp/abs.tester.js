@@ -18,8 +18,6 @@ window.onload = function(){
     print('> returns', 1, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
-    
-    
     // Execute Example Code
     returns = abs(-4.2);;    
     
@@ -27,8 +25,6 @@ window.onload = function(){
     success = tester_comparer(returns, 4.2);
     print('> returns', 2, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
-    
-    
     
     // Execute Example Code
     returns = abs(-5);;    
@@ -38,8 +34,6 @@ window.onload = function(){
     print('> returns', 3, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
-    
-    
     // Execute Example Code
     returns = abs('_argos');;    
     
@@ -47,7 +41,5 @@ window.onload = function(){
     success = tester_comparer(returns, 0);
     print('> returns', 4, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
-    
-    
     
 }

@@ -18,8 +18,6 @@ window.onload = function(){
     print('> returns', 1, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
-    
-    
     // Execute Example Code
     returns = array_pad([ 7, 8, 9 ], 5, 'a');;    
     
@@ -27,8 +25,6 @@ window.onload = function(){
     success = tester_comparer(returns, [ 7, 8, 9, 'a', 'a']);
     print('> returns', 2, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
-    
-    
     
     // Execute Example Code
     returns = array_pad([ 7, 8, 9 ], 5, 2);;    
@@ -38,8 +34,6 @@ window.onload = function(){
     print('> returns', 3, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
-    
-    
     // Execute Example Code
     returns = array_pad([ 7, 8, 9 ], -5, 'a');;    
     
@@ -47,7 +41,5 @@ window.onload = function(){
     success = tester_comparer(returns, [ 'a', 'a', 7, 8, 9 ]);
     print('> returns', 4, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
-    
-    
     
 }

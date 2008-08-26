@@ -18,8 +18,6 @@ window.onload = function(){
     print('> returns', 1, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
-    
-    
     // Execute Example Code
     returns = array_change_key_case([ 3, 5 ]);;    
     
@@ -27,8 +25,6 @@ window.onload = function(){
     success = tester_comparer(returns, {0: 3, 1: 5});
     print('> returns', 2, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
-    
-    
     
     // Execute Example Code
     returns = array_change_key_case({ FuBaR: 42 });;    
@@ -38,8 +34,6 @@ window.onload = function(){
     print('> returns', 3, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
-    
-    
     // Execute Example Code
     returns = array_change_key_case({ FuBaR: 42 }, 'CASE_LOWER');;    
     
@@ -47,8 +41,6 @@ window.onload = function(){
     success = tester_comparer(returns, {"fubar": 42});
     print('> returns', 4, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
-    
-    
     
     // Execute Example Code
     returns = array_change_key_case({ FuBaR: 42 }, 'CASE_UPPER');;    
@@ -58,8 +50,6 @@ window.onload = function(){
     print('> returns', 5, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
-    
-    
     // Execute Example Code
     returns = array_change_key_case({ FuBaR: 42 }, 2);;    
     
@@ -67,7 +57,5 @@ window.onload = function(){
     success = tester_comparer(returns, {"FUBAR": 42});
     print('> returns', 6, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
-    
-    
     
 }

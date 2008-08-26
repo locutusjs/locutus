@@ -18,8 +18,6 @@ window.onload = function(){
     print('> returns', 1, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
-    
-    
     // Execute Example Code
     returns = array_count_values({ p1: 3, p2: 5, p3: 3, p4: "foo", p5: "bar", p6: "foo" });;    
     
@@ -28,8 +26,6 @@ window.onload = function(){
     print('> returns', 2, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
-    
-    
     // Execute Example Code
     returns = array_count_values([ true, 4.2, 42, "fubar" ]);;    
     
@@ -37,7 +33,5 @@ window.onload = function(){
     success = tester_comparer(returns, {42:1, "fubar":1});
     print('> returns', 3, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
-    
-    
     
 }

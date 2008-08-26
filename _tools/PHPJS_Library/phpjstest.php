@@ -2,9 +2,14 @@
 <?php
     error_reporting(E_ALL);
     require_once "PHPJS/Library.php";
+
+    // Check for CLI
+    if ((php_sapi_name() != 'cli')) {
+        die("CLI Only");
+    }
+    
     
     $dir = realpath(dirname(__FILE__)."/../..")."/functions";
-    
     $PHPJS_Tester_Shell = new PHPJS_Library_Tester_Shell($dir);
     
     // Parse commands
@@ -70,6 +75,9 @@
             break;
         case "output":
             $Function->testFunction(true);
+            break;
+        case "php":
+            $Function->testFunction(false, true);
             break;
         case "from":
             $PHPJS_Tester_Shell->testFrom($funcName);

@@ -8,7 +8,7 @@ function urlencode( str ) {
     var ret = str;
     
     ret = ret.toString();
-    ret = encodeURIComponent(ret);
+    ret = escape(ret);
     ret = ret.replace(/%20/g, '+');
 
     return ret;

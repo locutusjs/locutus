@@ -46,16 +46,56 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
         print_r($results);
         return true;
     }
+
+    public function phpDeviation() {
+        
+        if ((php_sapi_name() != 'cli')) {
+            die("CLI ONLY");
+        }
+        
+        // Deviation from PHP
+        $phpResult = array();
+        $exampleSets = $this->DocBlock->getExamples();
+        foreach($exampleSets as $nr=>$exampleSet) {
+            $example = implode("\n", $exampleSet["example"]);
+            if (!isset($exampleSet["returns"])) {
+                continue;
+            }
+            
+            $match = null;
+            
+            // Execute Example in PHP! Expirimental!!
+            $phpV = eval("return ". $example);
+            $jsV  = $exampleSet["returns"];
+            
+            // Strip Quotes
+            if (substr($jsV, 0, 1) == "'" || substr($jsV, 0, 1) == '"') {
+                $jsV = substr($jsV, 1);
+            }
+            if (substr($jsV, strlen($jsV)-1, 1) == "'" || substr($jsV, strlen($jsV)-1, 1) == '"') {
+                $jsV = substr($jsV, 0, strlen($jsV)-1);
+            }
+            
+            if ($phpV == $jsV) {
+                $phpResult["php"][$nr-1]['true'] = "";
+            } else {
+                $phpResult["php"][$nr-1]['false'] = $phpV." != ".$jsV;
+            }
+        }        
+        
+        return $phpResult;
+    }    
     
-    public function showResults($results) {
-        // @todo: Parser can be better. Does it work with result-values?
-        // @todo: Outputting needs cleanup
+    public function showResults($results, $phpResults=false) {
         $examples = $this->DocBlock->getExamples();
         
-        
-        $maxOutputLen = 30;
+        $maxOutputLen = 80;
         $rowCnt = 1;
         $failed = false;
+        
+        if ($phpResults !== false) {
+            $results = array_merge_recursive($results, $phpResults);
+        }
         
         foreach ($results as $type=>$typeSet) {
             foreach ($typeSet as $typeSetNr=>$typeSetNrRes) {
@@ -72,7 +112,6 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
                     }
                     $exampleNr = $typeSetNr+1;
                     $example   = $examples[$exampleNr]["example"];
-                    
                     
                     echo str_pad("$type#$exampleNr", 12, " ", STR_PAD_RIGHT). " ";
                     

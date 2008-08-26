@@ -634,7 +634,7 @@ var window = this;
 					
 					while ((line = buffer.readLine()) != null)
 						self.responseText += line;
-						
+					
 					self.responseXML = null;
 					
 					if ( self.responseText.match(/^\s*</) ) {
