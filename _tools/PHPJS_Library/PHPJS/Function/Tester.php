@@ -143,6 +143,8 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
                 $testCode .= $t."// Compare call return value".$n;
                 $testCode .= $t."success = tester_comparer(returns, ".$example_set["returns"].");".$n;
                 $testCode .= $t."print('> returns', $nr, success, tester_trim(tester_print_r(returns, true)));".$n;
+                $testCode .= $t."print('## RESULTS ##');".$n;
+                $testCode .= $t."".$n;
             }
             
             
@@ -170,6 +172,8 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
                     $testCode .= $t."success = (".$example_set["results"].");".$n;
                     $testCode .= $t."print('> results', $nr, success, $baseVar);".$n;
                 }
+                $testCode .= $t."print('## RESULTS ##');".$n;
+                $testCode .= $t."".$n;
             }
             
             if (!isset($example_set["returns"]) && !isset($example_set["results"])) {
@@ -178,7 +182,6 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
             
             $testCode .= $t."print('## RESULTS ##');".$n;
             $testCode .= $t."".$n;
-        
         }
         
         $testCode .= $this->_testCodeAppend();

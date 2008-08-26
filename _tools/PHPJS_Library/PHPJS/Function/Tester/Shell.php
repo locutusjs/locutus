@@ -93,6 +93,8 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
         $rowCnt = 1;
         $failed = false;
         
+        print_r($results);
+        
         if ($phpResults !== false) {
             $results = array_merge_recursive($results, $phpResults);
         }
