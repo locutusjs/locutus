@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.33
+ * This is version: 1.34
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -60,10 +60,10 @@ function array( ) {
     // #!#!#!#!# array::$descr1 does not contain valid 'array' at line 258
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array/
-    // +       version: 805.1716
+    // +       version: 808.523
     // +   original by: d3x
     // *     example 1: array('Kevin', 'van', 'Zonneveld');
-    // *     returns 1: ['Kevin', 'van', 'Zonneveld'];
+    // *     returns 1: ['Kevin', 'van', 'Zonneveld']
 
     return Array.prototype.slice.call(arguments);
 }// }}}
@@ -403,10 +403,10 @@ function array_map( callback ) {
     // Applies the callback to the elements of the given arrays
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_map/
-    // +       version: 804.1712
+    // +       version: 808.523
     // +   original by: Andrea Giammarchi (http://webreflection.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: array_map( function(a){return (a * a * a);}, [1, 2, 3, 4, 5] );
+    // *     example 1: array_map( function(a){return (a * a * a)}, [1, 2, 3, 4, 5] );
     // *     returns 1: [ 1, 8, 27, 64, 125 ]
 
 
@@ -567,9 +567,9 @@ function array_reduce( a_input, callback ) {
     // Iteratively reduce the array to a single value using a callback function
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_reduce/
-    // +       version: 804.1712
+    // +       version: 808.523
     // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
-    // *     example 1: array_reduce([1, 2, 3, 4, 5], function(v, w){v += w; return v;});
+    // *     example 1: array_reduce([1, 2, 3, 4, 5], function(v, w){v += w;return v;});
     // *     returns 1: 15
     
     var lon = a_input.length;
@@ -683,11 +683,11 @@ function array_unique( array ) {
     // Removes duplicate values from an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_unique/
-    // +       version: 805.211
+    // +       version: 808.523
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      input by: duncan
     // +    bufixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: array_unique(['Kevin','Kevin','van','Zonneveld']);
+    // *     example 1: array_unique(['Kevin','Kevin','van','Zonneveld','Kevin']);
     // *     returns 1: ['Kevin','van','Zonneveld']
 
     var p, i, j, tmp_arr = array;
@@ -748,11 +748,11 @@ function array_walk (array, funcname, userdata) {
     // Apply a user function to every member of an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_walk/
-    // +       version: 807.2115
+    // +       version: 808.523
     // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
-    // *     example 1: array_walk ({'a':'b'} ,'callback', 'userdata');
+    // *     example 1: array_walk ({'a':'b'} ,'void', 'userdata');
     // *     returns 1: true
-    // *     example 2: array_walk ('a' ,'callback', 'userdata');
+    // *     example 2: array_walk ('a' ,'void', 'userdata');
     // *     returns 2: false
     
     var key; 
@@ -777,11 +777,11 @@ function array_walk_recursive (array, funcname, userdata) {
     // Apply a user function recursively to every member of an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_walk_recursive/
-    // +       version: 807.2115
+    // +       version: 808.523
     // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
-    // *     example 1: array_walk_recursive ({'a':'b', 'c': {'d' : 'e'}} ,'callback', 'userdata');
+    // *     example 1: array_walk_recursive ({'a':'b', 'c': {'d' : 'e'}} ,'void', 'userdata');
     // *     returns 1: true
-    // *     example 2: array_walk_recursive ('a' ,'callback', 'userdata');
+    // *     example 2: array_walk_recursive ('a' ,'void', 'userdata');
     // *     returns 2: false
     
     var key;
@@ -867,28 +867,31 @@ function end ( array ) {
     // Set the internal pointer of an array to its last element
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_end/
-    // +       version: 807.1809
+    // +       version: 808.2715
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Legaev Andrey
     // +    revised by: J A R
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   restored by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: end({firstname: 'Kevin', middle: 'van', surname: 'Zonneveld'});
+    // *     example 1: end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
     // *     returns 1: 'Zonneveld'
-
+    // *     example 2: end(['Kevin', 'van', 'Zonneveld']);
+    // *     returns 2: 'Zonneveld'
+    
     var last_elm, key;
     
     // The native .pop() method didn't not work with objects (associative arrays)
     // We need that for PHP compatibility
-
-    if (array.constructor === Array){
+    
+    if (array.constructor == Array){
         last_elm = array[(array.length-1)];
     } else {
         for (key in array){
+            print(key);
             last_elm = array[key];
         }
     }
-
+    
     return last_elm;
 }// }}}
 
@@ -968,12 +971,13 @@ function ksort(array, sort_flags) {
     // Sort an array by key
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ksort/
-    // +       version: 807.2220
+    // +       version: 808.2715
     // +   original by: GeekFG (http://geekfg.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: var in = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}; ksort(in);
+    // *     example 1: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}; 
+    // *     example 1: ksort(data);
+    // *     results 1: data == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
     // *     returns 1: true
-    // *     results 1: in == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
     
     var tmp_arr = {}, values = array, keys = [], key_num = 0, key = '', i = 0; 
     var sorter = false, array = false;
@@ -1064,15 +1068,15 @@ function reset ( array ) {
     // Set the internal pointer of an array to its first element
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_reset/
-    // +       version: 804.1712
+    // +       version: 808.2715
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Legaev Andrey
-    // *     example 1: reset({firstname: 'Kevin', middle: 'van', surname: 'Zonneveld'});
+    // *     example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
     // *     returns 1: 'Kevin'
 
     var first_elm, key;
 
-    if (array.constructor === Array){
+    if (array.constructor == Array){
         first_elm = array[0];
     } else {
         for (key in array){
@@ -1183,7 +1187,7 @@ function get_class(obj) {
     // Returns the name of the class of an object
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_class/
-    // +       version: 804.1712
+    // +       version: 808.2715
     // +   original by: Ates Goral (http://magnetiq.com)
     // +   improved by: David James
     // *     example 1: get_class(new (function MyClass() {}));
@@ -1199,8 +1203,9 @@ function get_class(obj) {
     // *     example 6: get_class(function MyFunction() {});
     // *     returns 6: false
 
-    if (obj instanceof Object && !(obj instanceof Array) &&
-        !(obj instanceof Function) && obj.constructor) {
+    if (obj instanceof Object && !(obj instanceof Array) 
+        && !(obj instanceof Function) && obj.constructor
+        && obj != window) {
         var arr = obj.constructor.toString().match(/function\s*(\w+)/);
 
         if (arr && arr.length == 2) {
@@ -1481,11 +1486,11 @@ function time() {
     // Return current Unix timestamp
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_time/
-    // +       version: 807.1808
+    // +       version: 808.2715
     // +   original by: GeekFG (http://geekfg.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: time();
-    // *     returns 1: 1216363871
+    // *     example 1: timeStamp = time();
+    // *     results 1: timeStamp > 1000000000 && timeStamp < 2000000000
     
     var d = new Date();
     return Math.round(d.getTime()/1000);
@@ -1559,7 +1564,7 @@ function file_get_contents( url ) {
     // Reads entire file into a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file_get_contents/
-    // +       version: 804.1712
+    // +       version: 808.2715
     // +   original by: Legaev Andrey
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // *     example 1: file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
@@ -1572,10 +1577,10 @@ function file_get_contents( url ) {
         }
     }
     if (req == null) throw new Error('XMLHttpRequest not supported');
-
+    
     req.open("GET", url, false);
     req.send(null);
-
+    
     return req.responseText;
 }// }}}
 
@@ -1611,12 +1616,13 @@ function create_function (args, code) {
     // Create an anonymous (lambda-style) function
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_create_function/
-    // +       version: 807.2115
+    // +       version: 808.2715
     // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
-    // *     example 1: create_function('a, b', "return (a + b);");
-    // *     returns 1: 'function'
+    // *     example 1: f = create_function('a, b', "return (a + b);");
+    // *     example 1: f(1, 2);
+    // *     returns 1: 3
     
-    eval ('var _oFunctionObject = function (' + args + ') { ' +  code + '}');
+    eval('var _oFunctionObject = function (' + args + ') { ' +  code + '}');
     return _oFunctionObject;
 }// }}}
 
@@ -1670,14 +1676,14 @@ function include( filename ) {
     // The include() statement includes and evaluates the specified file.
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_include/
-    // +       version: 807.1808
+    // +       version: 808.523
     // +   original by: mdsjack (http://www.mdsjack.bo.it)
     // +   improved by: Legaev Andrey
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Michael White (http://crestidg.com)
     // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
     // %        note 2: The included file does not come available until a second script block, so typically use this in the header.
-    // *     example 1: include('/pj_test_supportfile_2.js');
+    // *     example 1: include('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: 1
 
     var js = document.createElement('script');
@@ -1710,12 +1716,12 @@ function include_once( filename ) {
     // will be included just once.
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_include_once/
-    // +       version: 804.1712
+    // +       version: 808.523
     // +   original by: Legaev Andrey
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Michael White (http://crestidg.com)
     // -    depends on: include
-    // *     example 1: include_once('/pj_test_supportfile_2.js');
+    // *     example 1: include_once('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: true
 
     var cur_file = {};
@@ -1737,12 +1743,12 @@ function require( filename ) {
     // The require() statement includes and evaluates the specific file.
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_require/
-    // +       version: 804.1808
+    // +       version: 808.523
     // +   original by: Michael White (http://crestidg.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
     // -    depends on: file_get_contents
-    // *     example 1: require('/pj_test_supportfile_2.js');
+    // *     example 1: require('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: 2
 
     var js_code = file_get_contents(filename);
@@ -1783,10 +1789,10 @@ function require_once(filename) {
     // require() for more information on how this statement works.
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_require_once/
-    // +       version: 804.1712
+    // +       version: 808.523
     // +   original by: Michael White (http://crestidg.com)
     // -    depends on: require
-    // *     example 1: require_once('/pj_test_supportfile_2.js');
+    // *     example 1: require_once('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: true
 
     var cur_file = {};
@@ -1796,7 +1802,7 @@ function require_once(filename) {
     if (!window.php_js) window.php_js = {};
     if (!window.php_js.includes) window.php_js.includes = cur_file;
     if (!window.php_js.includes[filename]) {
-        if(require(filename)){
+        if (require(filename)) {
             return true;
         }
     } else {
@@ -1809,7 +1815,7 @@ function abs( mixed_number )  {
     // Absolute value
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_abs/
-    // +       version: 804.1712
+    // +       version: 808.2715
     // +   original by: _argos
     // +   improved by: Karol Kowalski
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -2008,12 +2014,14 @@ function count_chars( str, mode ) {
     // Return information about characters used in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_count_chars/
-    // +       version: 804.1712
+    // +       version: 808.2715
     // +   original by: Ates Goral (http://magnetiq.com)
-    // *     example 1: count_chars("Hello World!", 3);
-    // *     returns 1: "Helo Wrd!"
+    // *     example 1: count_chars("Hello World!", 1);
+    // *     returns 1: "Hd e!lWor"
 
-    var histogram = new Object(), tmp_ar = new Array(), argc = arguments.length, key, i, code, mode;
+    var histogram = new Object(), tmp_arr = new Array();
+    var key, i, code, mode; 
+    var argc = arguments.length;
 
     if (argc == 1) {
         mode = 0;
@@ -2047,9 +2055,9 @@ function count_chars( str, mode ) {
         return histogram;
     } else {
         for (key in histogram) {
-            tmp_ar.push(String.fromCharCode(key));
+            tmp_arr.push(String.fromCharCode(key));
         }
-        return tmp_ar.join("");
+        return tmp_arr.join("");
     }
 }// }}}
 
@@ -2087,19 +2095,29 @@ function echo ( ) {
     // Output one or more strings
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_echo/
-    // +       version: 805.821
+    // +       version: 808.523
     // +   original by: Philip Peterson
     // +   improved by: echo is bad
     // *     example 1: echo('Hello', 'World');
     // *     returns 1: null
     
-    var doc_elem = document.createDocumentFragment();
+    var arg = '', argc = arguments.length, argv = arguments, i = 0;
+    var bodies = [], body, elmt;
     
-    for( i = 0; i < echo.arguments.length; i++ ) {
-        if( doc_elem.body && doc_elem.body.innerHTML ) {
-            doc_elem.body.innerHTML = doc_elem.body.innerHTML + echo.arguments[i];
-        } else if (doc_elem.write) {
-            doc_elem.write( echo.arguments[i] );
+    // .shift() does not work to get first item in bodies
+    bodies = document.getElementsByTagName("body");
+    if (!bodies || ! bodies[0]) {
+        return false;
+    }
+    body   = bodies[0];
+    
+    for (i = 0; i < argc; i++ ) {
+        arg = argv[i];
+        if (document.createTextNode && document.appendChild) {
+            elmt = document.createTextNode(arg);
+            document.appendChild(elmt);
+        } else if (document.write) {
+            document.write(arg);
         }
     }
     
@@ -2168,33 +2186,260 @@ function html_entity_decode( string ) {
     // Convert all HTML entities to their applicable characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_html_entity_decode/
-    // +       version: 804.1712
+    // +       version: 808.2715
     // +   original by: john (http://www.jd-tech.net)
     // +      input by: ger
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %          note: table from http://www.the-art-of-web.com/html/character-codes/
     // *     example 1: html_entity_decode('Kevin &amp; van Zonneveld');
     // *     returns 1: 'Kevin & van Zonneveld'
-
-    var ret, tarea = document.createElement('textarea');
-    tarea.innerHTML = string;
-    ret = tarea.value;
-    return ret;
+    
+    var histogram = {}, histogram_r = {}, code = 0, str_tmp = [];
+    var entity = chr = '';
+    
+    histogram['34'] = 'quot';
+    histogram['38'] = 'amp';
+    histogram['60'] = 'lt';
+    histogram['62'] = 'gt';
+    histogram['160'] = 'nbsp';
+    histogram['161'] = 'iexcl';
+    histogram['162'] = 'cent';
+    histogram['163'] = 'pound';
+    histogram['164'] = 'curren';
+    histogram['165'] = 'yen';
+    histogram['166'] = 'brvbar';
+    histogram['167'] = 'sect';
+    histogram['168'] = 'uml';
+    histogram['169'] = 'copy';
+    histogram['170'] = 'ordf';
+    histogram['171'] = 'laquo';
+    histogram['172'] = 'not';
+    histogram['173'] = 'shy';
+    histogram['174'] = 'reg';
+    histogram['175'] = 'macr';
+    histogram['176'] = 'deg';
+    histogram['177'] = 'plusmn';
+    histogram['178'] = 'sup2';
+    histogram['179'] = 'sup3';
+    histogram['180'] = 'acute';
+    histogram['181'] = 'micro';
+    histogram['182'] = 'para';
+    histogram['183'] = 'middot';
+    histogram['184'] = 'cedil';
+    histogram['185'] = 'sup1';
+    histogram['186'] = 'ordm';
+    histogram['187'] = 'raquo';
+    histogram['188'] = 'frac14';
+    histogram['189'] = 'frac12';
+    histogram['190'] = 'frac34';
+    histogram['191'] = 'iquest';
+    histogram['192'] = 'Agrave';
+    histogram['193'] = 'Aacute';
+    histogram['194'] = 'Acirc';
+    histogram['195'] = 'Atilde';
+    histogram['196'] = 'Auml';
+    histogram['197'] = 'Aring';
+    histogram['198'] = 'AElig';
+    histogram['199'] = 'Ccedil';
+    histogram['200'] = 'Egrave';
+    histogram['201'] = 'Eacute';
+    histogram['202'] = 'Ecirc';
+    histogram['203'] = 'Euml';
+    histogram['204'] = 'Igrave';
+    histogram['205'] = 'Iacute';
+    histogram['206'] = 'Icirc';
+    histogram['207'] = 'Iuml';
+    histogram['208'] = 'ETH';
+    histogram['209'] = 'Ntilde';
+    histogram['210'] = 'Ograve';
+    histogram['211'] = 'Oacute';
+    histogram['212'] = 'Ocirc';
+    histogram['213'] = 'Otilde';
+    histogram['214'] = 'Ouml';
+    histogram['215'] = 'times';
+    histogram['216'] = 'Oslash';
+    histogram['217'] = 'Ugrave';
+    histogram['218'] = 'Uacute';
+    histogram['219'] = 'Ucirc';
+    histogram['220'] = 'Uuml';
+    histogram['221'] = 'Yacute';
+    histogram['222'] = 'THORN';
+    histogram['223'] = 'szlig';
+    histogram['224'] = 'agrave';
+    histogram['225'] = 'aacute';
+    histogram['226'] = 'acirc';
+    histogram['227'] = 'atilde';
+    histogram['228'] = 'auml';
+    histogram['229'] = 'aring';
+    histogram['230'] = 'aelig';
+    histogram['231'] = 'ccedil';
+    histogram['232'] = 'egrave';
+    histogram['233'] = 'eacute';
+    histogram['234'] = 'ecirc';
+    histogram['235'] = 'euml';
+    histogram['236'] = 'igrave';
+    histogram['237'] = 'iacute';
+    histogram['238'] = 'icirc';
+    histogram['239'] = 'iuml';
+    histogram['240'] = 'eth';
+    histogram['241'] = 'ntilde';
+    histogram['242'] = 'ograve';
+    histogram['243'] = 'oacute';
+    histogram['244'] = 'ocirc';
+    histogram['245'] = 'otilde';
+    histogram['246'] = 'ouml';
+    histogram['247'] = 'divide';
+    histogram['248'] = 'oslash';
+    histogram['249'] = 'ugrave';
+    histogram['250'] = 'uacute';
+    histogram['251'] = 'ucirc';
+    histogram['252'] = 'uuml';
+    histogram['253'] = 'yacute';
+    histogram['254'] = 'thorn';
+    histogram['255'] = 'yuml';
+    
+    // Reverse table. Cause for maintainability purposes, the histogram is 
+    // identical to the on ein htmlentities.
+    for (code in histogram) {
+        entity = histogram[code];
+        histogram_r[entity] = code; 
+    }
+    
+    return string.replace(/(\&([a-zA-Z]+)\;)/g, function(full, m1, m2){
+        if (m2 in histogram_r) {
+            return String.fromCharCode(histogram_r[m2]);
+        } else {
+            return m2;
+        }
+    });    
 }// }}}
 
 // {{{ htmlentities
-function htmlentities( s ){
+function htmlentities( string ){
     // Convert all applicable characters to HTML entities
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlentities/
-    // +       version: 804.1712
+    // +       version: 808.2715
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %          note: table from http://www.the-art-of-web.com/html/character-codes/
     // *     example 1: htmlentities('Kevin & van Zonneveld');
     // *     returns 1: 'Kevin &amp; van Zonneveld'
-
-    var div = document.createElement('div');
-    var text = document.createTextNode(s);
-    div.appendChild(text);
-    return div.innerHTML;
+    
+    var histogram = {}, code = 0, tmp_arr = [];
+    
+    histogram['34'] = 'quot';
+    histogram['38'] = 'amp';
+    histogram['60'] = 'lt';
+    histogram['62'] = 'gt';
+    histogram['160'] = 'nbsp';
+    histogram['161'] = 'iexcl';
+    histogram['162'] = 'cent';
+    histogram['163'] = 'pound';
+    histogram['164'] = 'curren';
+    histogram['165'] = 'yen';
+    histogram['166'] = 'brvbar';
+    histogram['167'] = 'sect';
+    histogram['168'] = 'uml';
+    histogram['169'] = 'copy';
+    histogram['170'] = 'ordf';
+    histogram['171'] = 'laquo';
+    histogram['172'] = 'not';
+    histogram['173'] = 'shy';
+    histogram['174'] = 'reg';
+    histogram['175'] = 'macr';
+    histogram['176'] = 'deg';
+    histogram['177'] = 'plusmn';
+    histogram['178'] = 'sup2';
+    histogram['179'] = 'sup3';
+    histogram['180'] = 'acute';
+    histogram['181'] = 'micro';
+    histogram['182'] = 'para';
+    histogram['183'] = 'middot';
+    histogram['184'] = 'cedil';
+    histogram['185'] = 'sup1';
+    histogram['186'] = 'ordm';
+    histogram['187'] = 'raquo';
+    histogram['188'] = 'frac14';
+    histogram['189'] = 'frac12';
+    histogram['190'] = 'frac34';
+    histogram['191'] = 'iquest';
+    histogram['192'] = 'Agrave';
+    histogram['193'] = 'Aacute';
+    histogram['194'] = 'Acirc';
+    histogram['195'] = 'Atilde';
+    histogram['196'] = 'Auml';
+    histogram['197'] = 'Aring';
+    histogram['198'] = 'AElig';
+    histogram['199'] = 'Ccedil';
+    histogram['200'] = 'Egrave';
+    histogram['201'] = 'Eacute';
+    histogram['202'] = 'Ecirc';
+    histogram['203'] = 'Euml';
+    histogram['204'] = 'Igrave';
+    histogram['205'] = 'Iacute';
+    histogram['206'] = 'Icirc';
+    histogram['207'] = 'Iuml';
+    histogram['208'] = 'ETH';
+    histogram['209'] = 'Ntilde';
+    histogram['210'] = 'Ograve';
+    histogram['211'] = 'Oacute';
+    histogram['212'] = 'Ocirc';
+    histogram['213'] = 'Otilde';
+    histogram['214'] = 'Ouml';
+    histogram['215'] = 'times';
+    histogram['216'] = 'Oslash';
+    histogram['217'] = 'Ugrave';
+    histogram['218'] = 'Uacute';
+    histogram['219'] = 'Ucirc';
+    histogram['220'] = 'Uuml';
+    histogram['221'] = 'Yacute';
+    histogram['222'] = 'THORN';
+    histogram['223'] = 'szlig';
+    histogram['224'] = 'agrave';
+    histogram['225'] = 'aacute';
+    histogram['226'] = 'acirc';
+    histogram['227'] = 'atilde';
+    histogram['228'] = 'auml';
+    histogram['229'] = 'aring';
+    histogram['230'] = 'aelig';
+    histogram['231'] = 'ccedil';
+    histogram['232'] = 'egrave';
+    histogram['233'] = 'eacute';
+    histogram['234'] = 'ecirc';
+    histogram['235'] = 'euml';
+    histogram['236'] = 'igrave';
+    histogram['237'] = 'iacute';
+    histogram['238'] = 'icirc';
+    histogram['239'] = 'iuml';
+    histogram['240'] = 'eth';
+    histogram['241'] = 'ntilde';
+    histogram['242'] = 'ograve';
+    histogram['243'] = 'oacute';
+    histogram['244'] = 'ocirc';
+    histogram['245'] = 'otilde';
+    histogram['246'] = 'ouml';
+    histogram['247'] = 'divide';
+    histogram['248'] = 'oslash';
+    histogram['249'] = 'ugrave';
+    histogram['250'] = 'uacute';
+    histogram['251'] = 'ucirc';
+    histogram['252'] = 'uuml';
+    histogram['253'] = 'yacute';
+    histogram['254'] = 'thorn';
+    histogram['255'] = 'yuml';
+    
+    for (i = 0; i < string.length; ++i) {
+        code = string.charCodeAt(i);
+        if (code in histogram) {
+            tmp_arr[i] = '&'+histogram[code]+';';
+        } else {
+            tmp_arr[i] = string.charAt(i);
+        }
+    }
+    
+    return tmp_arr.join('');
 }// }}}
 
 // {{{ htmlspecialchars
@@ -2515,15 +2760,20 @@ function md5_file ( str_filename ) {
     // Calculates the md5 hash of a given file
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_md5_file/
-    // +       version: 804.1712
+    // +       version: 808.2715
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: file_get_contents
     // -    depends on: md5
-    // -    depends on: utf8_encode
     // *     example 1: md5_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '202cb962ac59075b964b07152d234b70'
 
-    return md5(file_get_contents(str_filename));
+    buf = file_get_contents(str_filename);
+    
+    if (!buf) {
+        return false;
+    }
+    
+    return md5(buf);
 }// }}}
 
 // {{{ nl2br
@@ -2531,11 +2781,11 @@ function nl2br( str ) {
     // Inserts HTML line breaks before all newlines in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_nl2br/
-    // +       version: 804.1714
+    // +       version: 808.2715
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Philip Peterson
     // *     example 1: nl2br('Kevin\nvan\nZonneveld');
-    // *     returns 1: 'Kevin<br/>\nvan<br/>\nZonneveld'
+    // *     returns 1: 'Kevin<br />\nvan<br />\nZonneveld'
 
     return str.replace(/([^>])\n/g, '$1<br />\n');
 }// }}}
@@ -2612,15 +2862,29 @@ function printf( ) {
     // Output a formatted string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_printf/
-    // +       version: 804.1712
+    // +       version: 808.523
     // +   original by: Ash Searle (http://hexmen.com/blog/)
     // +   improved by: Michael White (http://crestidg.com)
     // -    depends on: sprintf
     // *     example 1: printf("%01.2f", 123.1);
     // *     returns 1: 6
 
-    var ret = sprintf.apply(this, arguments);
-    document.write(ret);
+    var bodies = [], body, elmt;
+    var ret = '';
+    
+    // .shift() does not work to get first item in bodies
+    bodies = document.getElementsByTagName("body");
+    if (!bodies || ! bodies[0]) {
+        return false;
+    }
+    body   = bodies[0];
+    
+    
+    ret = sprintf.apply(this, arguments);
+
+    elmt = document.createTextNode(ret);
+    body.appendChild(elmt);
+    
     return ret.length;
 }// }}}
 
@@ -3203,13 +3467,13 @@ function strip_tags(str, allowed_tags) {
     // Strip HTML and PHP tags from a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-    // +       version: 807.1809
+    // +       version: 808.2715
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Luke Godfrey
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
-    // *     example 2: strip_tags('<p>Kevin<img src="someimage.png" onmouseover="someFunction()"></p>');
-    // *     returns 2: '<p>Kevin</p>'
+    // *     example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>');
+    // *     returns 2: 'Kevin van Zonneveld'
     
     var key = '', tag = '';
     var matches = allowed_array = [];
@@ -3234,7 +3498,7 @@ function strip_tags(str, allowed_tags) {
     // Is tag not in allowed list? Remove from str! 
     for (key in matches) {
         // IE7 Hack
-        if (isNaN(key)) {
+        if (!isNaN(key)) {
             tag = matches[key].toString();
             if (!allowed_keys[tag]) {
                 // Looks like this is
@@ -3334,16 +3598,21 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
     // String comparisons using a &quot;natural order&quot; algorithm
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strnatcmp/
-    // +       version: 805.1715
+    // +       version: 808.2715
     // +   original by: Martijn Wieringa
     // + namespaced by: Michael White (http://crestidg.com)
     // -    depends on: strcmp
+    // %          note: Added f_version argument against code guidelines, because it's so neat
     // *     example 1: strnatcmp('Price 12.9', 'Price 12.15');
-    // *     returns 1: -1
-    // *     example 2: strnatcmp('Version 12.9', 'Version 12.15', true);
-    // *     returns 2: -6
-    // *     example 3: strnatcmp('Version 12.9', 'Version 12.15', false);
-    // *     returns 3: -1
+    // *     returns 1: 1
+    // *     example 2: strnatcmp('Price 12.09', 'Price 12.15');
+    // *     returns 2: -1
+    // *     example 3: strnatcmp('Price 12.90', 'Price 12.15');
+    // *     returns 3: 1
+    // *     example 4: strnatcmp('Version 12.9', 'Version 12.15', true);
+    // *     returns 4: -6
+    // *     example 5: strnatcmp('Version 12.15', 'Version 12.9', true);
+    // *     returns 5: 6
 
     if(f_version == undefined) {
         f_version = false;
@@ -3670,7 +3939,7 @@ function trim( str, charlist ) {
     // Strip whitespace (or other characters) from the beginning and end of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_trim/
-    // +       version: 804.1712
+    // +       version: 808.523
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: mdsjack (http://www.mdsjack.bo.it)
     // +   improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
@@ -3685,25 +3954,25 @@ function trim( str, charlist ) {
 
     var whitespace;
     
-    if(!charlist){
+    if (!charlist) {
         whitespace = ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000';
-    } else{
+    } else {
         whitespace = charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\$1');
     }
   
-	for (var i = 0; i < str.length; i++) {
-		if (whitespace.indexOf(str.charAt(i)) === -1) {
-		str = str.substring(i);
-		break;
-		}
-	}
-	for (i = str.length - 1; i >= 0; i--) {
-		if (whitespace.indexOf(str.charAt(i)) === -1) {
-			str = str.substring(0, i + 1);
-			break;
-    	}
-	}
-	return whitespace.indexOf(str.charAt(0)) === -1 ? str : '';
+    for (var i = 0; i < str.length; i++) {
+        if (whitespace.indexOf(str.charAt(i)) === -1) {
+            str = str.substring(i);
+            break;
+        }
+    }
+    for (i = str.length - 1; i >= 0; i--) {
+        if (whitespace.indexOf(str.charAt(i)) === -1) {
+            str = str.substring(0, i + 1);
+            break;
+        }
+    }
+    return whitespace.indexOf(str.charAt(0)) === -1 ? str : '';
 }// }}}
 
 // {{{ ucfirst
@@ -3870,31 +4139,32 @@ function http_build_query( formdata, numeric_prefix, arg_separator ) {
     // Generate URL-encoded query string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_http_build_query/
-    // +       version: 804.1712
+    // +       version: 808.2715
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Legaev Andrey
     // +   improved by: Michael White (http://crestidg.com)
-    // *     example 1: http_build_query({ foo: 'bar', baz: 'boom', cow: 'milk', php: 'hypertext processor' }, '', '&amp;');
-    // *     returns 1: 'foo=bar&amp;baz=boom&amp;cow=milk&amp;php=hypertext+processor'
-    // *     example 2: http_build_query({0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', cow: 'milk', php :'hypertext processor'}, 'myvar_');
-    // *     returns 2: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&cow=milk&php=hypertext+processor'
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;');
+    // *     returns 1: 'foo=bar&amp;php=hypertext+processor&amp;baz=boom&amp;cow=milk'
+    // *     example 2: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_');
+    // *     returns 2: 'php=hypertext+processor&myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&cow=milk'
 
-    var key, use_val, use_key, i = 0, tmp_arr = [];
+    var key, use_val, use_key, i = 0, j=0, tmp_arr = [];
 
-    if(!arg_separator){
+    if (!arg_separator) {
         arg_separator = '&';
     }
 
-    for(key in formdata){
+    for (key in formdata) {
         use_key = encodeURIComponent(key);
         use_val = encodeURIComponent((formdata[key].toString()));
         use_val = use_val.replace(/%20/g, '+');
 
-        if(numeric_prefix && !isNaN(key)){
-            use_key = numeric_prefix + i;
+        if (numeric_prefix && !isNaN(key)) {
+            use_key = numeric_prefix + j;
+            j++;
         }
-        tmp_arr[i] = use_key + '=' + use_val;
-        i++;
+        tmp_arr[i++] = use_key + '=' + use_val;
     }
 
     return tmp_arr.join(arg_separator);
@@ -3905,16 +4175,17 @@ function urldecode( str ) {
     // Decodes URL-encoded string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urldecode/
-    // +       version: 804.1715
+    // +       version: 808.2715
     // +   original by: Philip Peterson
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %          note: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
     // *     example 1: urldecode('Kevin+van+Zonneveld%21');
     // *     returns 1: 'Kevin van Zonneveld!'
     
     var ret = str;
        
     ret = ret.replace(/\+/g, '%20');
-    ret = decodeURIComponent(ret);
+    ret = unescape(ret);
     ret = ret.toString();
 
     return ret;
@@ -3925,16 +4196,17 @@ function urlencode( str ) {
     // URL-encodes string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urlencode/
-    // +       version: 804.1715
+    // +       version: 808.2715
     // +   original by: Philip Peterson
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %          note: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
     // *     example 1: urlencode('Kevin van Zonneveld!');
     // *     returns 1: 'Kevin+van+Zonneveld%21'
                                      
     var ret = str;
     
     ret = ret.toString();
-    ret = encodeURIComponent(ret);
+    ret = escape(ret);
     ret = ret.replace(/%20/g, '+');
 
     return ret;
@@ -4142,7 +4414,7 @@ function print_r( array, return_val ) {
     // Prints human-readable information about a variable
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_print_r/
-    // +       version: 805.2023
+    // +       version: 808.523
     // +   original by: Michael White (http://crestidg.com)
     // +   improved by: Ben Bryan
     // *     example 1: print_r(1, true);
@@ -4169,6 +4441,8 @@ function print_r( array, return_val ) {
                 }
             }
             str += base_pad + ")\n";
+        } else if(obj == null || obj == undefined) {
+            str = '';
         } else {
             str = obj.toString();
         }
