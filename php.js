@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.34
+ * This is version: 1.35
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -10,10 +10,10 @@
  * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
  * (http://www.jsfromhell.com), Ash Searle (http://hexmen.com/blog/),
  * Erkekjetter, GeekFG (http://geekfg.blogspot.com), Johnny Mast
- * (http://www.phpvrouwen.nl), marrtins, Alfonso Jimenez
+ * (http://www.phpvrouwen.nl), d3x, marrtins, Alfonso Jimenez
  * (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
  * (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Thunder.m, Tyler
- * Akins (http://rumkin.com), d3x, mdsjack (http://www.mdsjack.bo.it), Alex,
+ * Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), Alex,
  * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
  * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Arno, Bayron Guevara, Ben Bryan,
@@ -29,7 +29,7 @@
  * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
  * Yannoo, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel
  * paderni, ger, gorthaur, jakes, john (http://www.jd-tech.net), kenneth,
- * loonquawl, penutbutterjelly, stensi
+ * loonquawl, metjay, penutbutterjelly, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -1486,14 +1486,14 @@ function time() {
     // Return current Unix timestamp
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_time/
-    // +       version: 808.2715
+    // +       version: 808.2716
     // +   original by: GeekFG (http://geekfg.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: metjay
     // *     example 1: timeStamp = time();
     // *     results 1: timeStamp > 1000000000 && timeStamp < 2000000000
     
-    var d = new Date();
-    return Math.round(d.getTime()/1000);
+    return Math.round(new Date().getTime()/1000);
 }// }}}
 
 // {{{ basename
@@ -4472,20 +4472,21 @@ function serialize( inp ) {
     // Generates a storable representation of a value
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_serialize/
-    // +       version: 804.1712
+    // +       version: 808.2716
     // +   original by: Arpad Ray (mailto:arpad@php.net)
+    // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
     // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
+    // *     example 2: serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'});
+    // *     returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
 
     var getType = function( inp ) {
         var type = typeof inp, match;
-        if(type == 'object' && !inp)
-        {
+        if (type == 'object' && !inp) {
             return 'null';
         }
         if (type == "object") {
-            if(!inp.constructor)
-            {
+            if (!inp.constructor) {
                 return 'object';
             }
             var cons = inp.constructor.toString();
@@ -4519,8 +4520,9 @@ function serialize( inp ) {
             val = "s:" + inp.length + ":\"" + inp + "\"";
             break;
         case "array":
-            val = "a";
         case "object":
+            val = "a";
+            /*
             if (type == "object") {
                 var objname = inp.constructor.toString().match(/(\w+)\(\)/);
                 if (objname == undefined) {
@@ -4529,6 +4531,7 @@ function serialize( inp ) {
                 objname[1] = serialize(objname[1]);
                 val = "O" + objname[1].substring(1, objname[1].length - 1);
             }
+            */
             var count = 0;
             var vals = "";
             var okey;
@@ -4546,151 +4549,127 @@ function serialize( inp ) {
 }// }}}
 
 // {{{ unserialize
-function unserialize ( inp ) {
+function unserialize(data){
     // Creates a PHP value from a stored representation
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_unserialize/
-    // +       version: 807.2220
-    // +   original by: Arpad Ray (mailto:arpad@php.net)
-    // +   improved by: Pedro Tainha (http://www.pedrotainha.com)
-    // +   bugfixed by: dptr1988
-    // *     example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
-    // *     returns 1: ['Kevin', 'van', 'Zonneveld']
+    // +       version: 808.2716
+    // +     original by: Arpad Ray (mailto:arpad@php.net)
+    // +     improved by: Pedro Tainha (http://www.pedrotainha.com)
+    // +     bugfixed by: dptr1988
+    // +      revised by: d3x
+    // +     improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %            note: Aiming for PHP-compatibility, we have to translate objects to arrays 
+    // *       example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
+    // *       returns 1: ['Kevin', 'van', 'Zonneveld']
+    // *       example 2: unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}');
+    // *       returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
+    
+    
 
-    error = 0;
-    if (inp == "" || inp.length < 2) {
-        errormsg = "input is too short";
-        return;
-    }
-    var val, kret, vret, cval;
-    var type = inp.charAt(0);
-    var cont = inp.substring(2);
-    var size = 0, divpos = 0, endcont = 0, rest = "", next = "";
-
-    switch (type) {
-    case "N": // null
-        if (inp.charAt(1) != ";") {
-            errormsg = "missing ; for null";
+    var error = function (type, msg, filename, line){throw new window[type](msg, filename, line);};
+    var read_until = function (data, offset, stopchr){
+        var buf = [];
+        var chr = data.slice(offset, offset + 1);
+        var i = 2;
+        while(chr != stopchr){
+            if((i+offset) > data.length){
+                error('Error', 'Invalid');
+            }
+            buf.push(chr);
+            chr = data.slice(offset + (i - 1),offset + i);
+            i += 1;
         }
-        // leave val undefined
-        rest = cont;
-        break;
-    case "b": // boolean
-        if (!/[01];/.test(cont.substring(0,2))) {
-            errormsg = "value not 0 or 1, or missing ; for boolean";
+        return [buf.length, buf.join('')];
+    };
+    var read_chrs = function (data, offset, length){
+        buf = [];
+        for(var i = 0;i < length;i++){
+            var chr = data.slice(offset + (i - 1),offset + i);
+            buf.push(chr);
         }
-        val = (cont.charAt(0) == "1");
-        rest = cont.substring(2);  //changed...
-        break;
-    case "s": // string
-        val = "";
-        divpos = cont.indexOf(":");
-        if (divpos == -1) {
-            errormsg = "missing : for string";
+        return [buf.length, buf.join('')];
+    };
+    var _unserialize = function (data, offset){
+        if(!offset) offset = 0;
+        var buf = [];
+        var dtype = (data.slice(offset, offset + 1)).toLowerCase();
+        
+        var dataoffset = offset + 2;
+        var typeconvert = new Function('x', 'return x');
+        var chrs = 0;
+        var datalength = 0;
+        
+        switch(dtype){
+            case "i":
+                typeconvert = new Function('x', 'return parseInt(x)');
+                var readData = read_until(data, dataoffset, ';');
+                var chrs = readData[0];
+                var readdata = readData[1];
+                dataoffset += chrs + 1;
+            break;
+            case "b":
+                typeconvert = new Function('x', 'return (parseInt(x) == 1)');
+                var readData = read_until(data, dataoffset, ';');
+                var chrs = readData[0];
+                var readdata = readData[1];
+                dataoffset += chrs + 1;
+            break;
+            case "d":
+                typeconvert = new Function('x', 'return parseFloat(x)');
+                var readData = read_until(data, dataoffset, ';');
+                var chrs = readData[0];
+                var readdata = readData[1];
+                dataoffset += chrs + 1;
+            break;
+            case "n":
+                readdata = null;
+            break;
+            case "s":
+                var ccount = read_until(data, dataoffset, ':');
+                var chrs = ccount[0];
+                var stringlength = ccount[1];
+                dataoffset += chrs + 2;
+                
+                var readData = read_chrs(data, dataoffset+1, parseInt(stringlength));
+                var chrs = readData[0];
+                var readdata = readData[1];
+                dataoffset += chrs + 2;
+                if(chrs != parseInt(stringlength) && chrs != readdata.length){
+                    error('SyntaxError', 'String length mismatch');
+                }
+            break;
+            case "a":
+                var readdata = {};
+                
+                var keyandchrs = read_until(data, dataoffset, ':');
+                var chrs = keyandchrs[0];
+                var keys = keyandchrs[1];
+                dataoffset += chrs + 2;
+                
+                for(var i = 0;i < parseInt(keys);i++){
+                    var kprops = _unserialize(data, dataoffset);
+                    var kchrs = kprops[1];
+                    var key = kprops[2];
+                    dataoffset += kchrs;
+                    
+                    var vprops = _unserialize(data, dataoffset);
+                    var vchrs = vprops[1];
+                    var value = vprops[2];
+                    dataoffset += vchrs;
+                    
+                    readdata[key] = value;
+                }
+                
+                dataoffset += 1;
+            break;
+            default:
+                error('SyntaxError', 'Unknown / Unhandled data type(s): ' + dtype);
             break;
         }
-        size = parseInt(cont.substring(0, divpos));
-        if (size == 0) {
-            if (cont.length - divpos < 4) {
-                errormsg = "string is too short";
-                break;
-            }
-            rest = cont.substring(divpos + 4);
-            break;
-        }
-        if ((cont.length - divpos - size) < 4) {
-            errormsg = "string is too short";
-            break;
-        }
-        if (cont.substring(divpos + 2 + size, divpos + 4 + size) != "\";") {
-            errormsg = "string is too long, or missing \";";
-        }
-        val = cont.substring(divpos + 2, divpos + 2 + size);
-        rest = cont.substring(divpos + 4 + size);
-        break;
-    case "i": // integer
-    case "d": // float
-        var dotfound = 0;
-        for (var i = 0; i < cont.length; i++) {
-            cval = cont.charAt(i);
-            if (isNaN(parseInt(cval)) && !(type == "d" && cval == "." && !dotfound++)) {
-                endcont = i;
-                break;
-            }
-        }
-        if (!endcont || cont.charAt(endcont) != ";") {
-            errormsg = "missing or invalid value, or missing ; for int/float";
-        }
-        val = cont.substring(0, endcont);
-        val = (type == "i" ? parseInt(val) : parseFloat(val));
-        rest = cont.substring(endcont + 1);
-        break;
-    case "a": // array
-        if (cont.length < 4) {
-            errormsg = "array is too short";
-            return;
-        }
-        divpos = cont.indexOf(":", 1);
-        if (divpos == -1) {
-            errormsg = "missing : for array";
-            return;
-        }
-        size = parseInt(cont.substring(1*divpos, 0));  //changed...
-        cont = cont.substring(divpos + 2);
-        val = new Array();
-        if (cont.length < 1) {
-            errormsg = "array is too short";
-            return;
-        }
-        for (var i = 0; i + 1 < size * 2; i += 2) {
-            kret = unserialize(cont, 1);
-            if (error || kret[0] == undefined || kret[1] == "") {
-                errormsg = "missing or invalid key, or missing value for array";
-                return;
-            }
-            vret = unserialize(kret[1], 1);
-            if (error) {
-                errormsg = "invalid value for array";
-                return;
-            }
-            val[kret[0]] = vret[0];
-            cont = vret[1];
-        }
-        if (cont.charAt(0) != "}") {
-            errormsg = "missing ending }, or too many values for array";
-            return;
-        }
-        rest = cont.substring(1);
-        break;
-    case "O": // object
-        divpos = cont.indexOf(":");
-        if (divpos == -1) {
-            errormsg = "missing : for object";
-            return;
-        }
-        size = parseInt(cont.substring(0, divpos));
-        var objname = cont.substring(divpos + 2, divpos + 2 + size);
-        if (cont.substring(divpos + 2 + size, divpos + 4 + size) != "\":") {
-            errormsg = "object name is too long, or missing \":";
-            return;
-        }
-        var objprops = unserialize("a:" + cont.substring(divpos + 4 + size), 1);
-        if (error) {
-            errormsg = "invalid object properties";
-            return;
-        }
-        rest = objprops[1];
-        var objout = "function " + objname + "(){";
-        for (key in objprops[0]) {
-            objout += "this['" + key + "']=objprops[0]['" + key + "'];";
-        }
-        objout += "}val=new " + objname + "();";
-        eval(objout);
-        break;
-    default:
-        errormsg = "invalid input type";
-    }
-    return (arguments.length == 1 ? val : [val, rest]);
+        return [dtype, dataoffset - offset, typeconvert(readdata)];
+    };
+    return _unserialize(data, 0)[2];
 }// }}}
 
 // {{{ var_export
