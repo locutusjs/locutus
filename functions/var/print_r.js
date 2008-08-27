@@ -4,7 +4,7 @@ function print_r( array, return_val ) {
     // +   improved by: Ben Bryan
     // *     example 1: print_r(1, true);
     // *     returns 1: 1
-
+    
     var output = "", pad_char = " ", pad_val = 4;
 
     var formatArray = function (obj, cur_depth, pad_val, pad_char) {

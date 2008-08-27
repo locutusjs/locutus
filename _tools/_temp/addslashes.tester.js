@@ -14,7 +14,7 @@ window.onload = function(){
     returns = addslashes("kevin's birthday");;    
     
     // Compare call return value
-    success = tester_comparer(returns, "kevin\'s birthday");
+    success = tester_comparer(returns, 'kevin\\\'s birthday');
     print('> returns', 1, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     

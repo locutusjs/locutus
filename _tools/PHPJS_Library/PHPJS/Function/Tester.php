@@ -137,11 +137,18 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
                 $testCode .= $t.$n;
             }
             $testCode .= $t."".$n;
+
             
             // Compare call return value
             if (isset($example_set["returns"])) {
+                $jsV = $example_set["returns"];
+                if (($q = $this->disCloseQuotes($jsV)) !== false) {
+                    $jsV = addslashes($jsV);
+                    $jsV = $q.$jsV.$q;
+                }
+                
                 $testCode .= $t."// Compare call return value".$n;
-                $testCode .= $t."success = tester_comparer(returns, ".$example_set["returns"].");".$n;
+                $testCode .= $t."success = tester_comparer(returns, ".$jsV.");".$n;
                 $testCode .= $t."print('> returns', $nr, success, tester_trim(tester_print_r(returns, true)));".$n;
                 $testCode .= $t."print('## RESULTS ##');".$n;
                 $testCode .= $t."".$n;
@@ -187,6 +194,25 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
         $testCode .= $this->_testCodeAppend();
         
         return $testCode;
+    }
+    
+    public function disCloseQuotes(&$str) {
+        
+        $str2 = $str;
+        $q = false;
+        
+        // Strip Quotes
+        if (substr($str2, 0, 1) == "'" || substr($str2, 0, 1) == '"') {
+            $q = substr($str2, 0, 1);
+            $str2 = substr($str2, 1);
+        }
+        if (substr($str2, strlen($str2)-1, 1) == "'" || substr($str2, strlen($str2)-1, 1) == '"') {
+            $str2 = substr($str2, 0, strlen($str2)-1);
+        }
+        
+        $str = $str2;
+        
+        return $q; 
     }
 }
 ?>

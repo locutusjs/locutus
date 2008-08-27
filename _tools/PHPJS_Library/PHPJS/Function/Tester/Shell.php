@@ -71,13 +71,8 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
             $phpV = eval("return ". $example);
             $jsV  = $exampleSet["returns"];
             
-            // Strip Quotes
-            if (substr($jsV, 0, 1) == "'" || substr($jsV, 0, 1) == '"') {
-                $jsV = substr($jsV, 1);
-            }
-            if (substr($jsV, strlen($jsV)-1, 1) == "'" || substr($jsV, strlen($jsV)-1, 1) == '"') {
-                $jsV = substr($jsV, 0, strlen($jsV)-1);
-            }
+            
+            $jsV = $this->disCloseQuotes($jsV);
             
             if ($phpV == $jsV) {
                 $phpResult["php"][$nr-1]['true'] = "";
