@@ -22,6 +22,8 @@ function echo ( ) {
             document.appendChild(elmt);
         } else if (document.write) {
             document.write(arg);
+        } else {
+            print(arg);
         }
     }
     

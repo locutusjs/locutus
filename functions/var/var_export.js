@@ -1,24 +1,54 @@
-function var_export ( mixed_expression, bool_return ) {
+function var_export(mixed_expression, bool_return) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
+    // +   improved by: johnrembo
     // -    depends on: echo
     // *     example 1: var_export(null);
     // *     returns 1: null
+    // *     example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);
+    // *     returns 2: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld'\n)"
+    // *     example 3: data = 'Kevin';
+    // *     example 3: var_export(data, true);
+    // *     returns 3: "'Kevin'"
 
-    var __pad_lines = function ( x ) {
-        return x.split("\n").join("\n  ");
-    };
-    
     var retstr = "";
+    var iret = "";
+    var cnt = 0;
+    var x = [];
     
-    if(mixed_expression instanceof Array) {
-        var iret = "";
-        for(i in mixed_expression) {
-            iret=iret+"\n"+var_export(i,true)+" => "+var_export(mixed_expression[i], true)+",";
+    var __getType = function( inp ) {
+        var type = typeof inp, match;
+        if (type == 'object' && !inp) {
+            return 'null';
         }
-        retstr = "array ("+__pad_lines(iret)+"\n)";
-    } else if( mixed_expression === null) {
+        if (type == "object") {
+            if (!inp.constructor) {
+                return 'object';
+            }
+            var cons = inp.constructor.toString();
+            if (match = cons.match(/(\w+)\(/)) {
+                cons = match[1].toLowerCase();
+            }
+            var types = ["boolean", "number", "string", "array"];
+            for (key in types) {
+                if (cons == types[key]) {
+                    type = types[key];
+                    break;
+                }
+            }
+        }
+        return type;
+    };
+    var type = __getType(mixed_expression);
+    
+    if( type === null) {
         retstr = "NULL";
+    } else if(type == 'array' || type == 'object') {
+        for(i in mixed_expression) {
+            x[cnt++] = var_export(i,true)+" => "+var_export(mixed_expression[i], true);
+        }
+        iret = x.join(',\n  ');
+        retstr = "array (\n  "+iret+"\n)";
     } else {
         retstr = (!isNaN( mixed_expression )) ? mixed_expression : "'" + mixed_expression.replace('/(["\'\])/g', "\\$1").replace('/\0/g', "\\0") + "'";
     }
@@ -26,9 +56,7 @@ function var_export ( mixed_expression, bool_return ) {
     if(bool_return != true) {
         echo(retstr);
         return null;
-    }
-    else {
+    } else {
         return retstr;
     }
 }
-

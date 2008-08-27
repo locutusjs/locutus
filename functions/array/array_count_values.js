@@ -2,6 +2,8 @@ function array_count_values( array ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com)
     // + namespaced by: Michael White (http://crestidg.com)
+    // +      input by: sankai
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_count_values([ 3, 5, 3, "foo", "bar", "foo" ]);
     // *     returns 1: {3:2, 5:1, "foo":2, "bar":1}
     // *     example 2: array_count_values({ p1: 3, p2: 5, p3: 3, p4: "foo", p5: "bar", p6: "foo" });
@@ -9,9 +11,9 @@ function array_count_values( array ) {
     // *     example 3: array_count_values([ true, 4.2, 42, "fubar" ]);
     // *     returns 3: {42:1, "fubar":1}
 
-    var tmp_ar = new Object(), key;
+    var tmp_arr = {}, key = '';
 
-    var countValue = function (value) {
+    var __countValue = function (value) {
         switch (typeof(value)) {
             case "number":
                 if (Math.floor(value) != value) {
@@ -27,12 +29,14 @@ function array_count_values( array ) {
     };
 
     if (array instanceof Array) {
-        array.forEach(countValue, tmp_ar);
+        for (key in array) {
+            tmp_arr[key] = __countValue(array[key]); 
+        }
     } else if (array instanceof Object) {
         for ( key in array ) {
-            countValue.call(tmp_ar, array[key]);
+            __countValue.call(tmp_arr, array[key]);
         }
     }
 
-    return tmp_ar;
+    return tmp_arr;
 }

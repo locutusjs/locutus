@@ -143,7 +143,16 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
             if (isset($example_set["returns"])) {
                 $jsV = $example_set["returns"];
                 if (($q = $this->disCloseQuotes($jsV)) !== false) {
+                    // Save newlines!
+                    $jsV = str_replace('\n', '%n%', $jsV) ;
+                    
+                    // Add slashes
                     $jsV = addslashes($jsV);
+                    
+                    // Restore newlines
+                    $jsV = str_replace('%n%', '\n', $jsV) ;
+                    
+                    // Re-enclose with Quotes
                     $jsV = $q.$jsV.$q;
                 }
                 

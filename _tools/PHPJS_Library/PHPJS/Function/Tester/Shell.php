@@ -45,6 +45,14 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
     public function showOutput($results) {
         print_r($results);
         return true;
+        
+        if (is_array($results)) {
+            echo implode("\n", $results);
+        } else {
+            echo $results;
+        }
+            
+        return true;
     }
 
     public function phpDeviation() {

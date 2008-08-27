@@ -1,4 +1,4 @@
-function serialize( inp ) {
+function serialize( mixed_value ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Arpad Ray (mailto:arpad@php.net)
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
@@ -7,7 +7,7 @@ function serialize( inp ) {
     // *     example 2: serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'});
     // *     returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
 
-    var getType = function( inp ) {
+    var _getType = function( inp ) {
         var type = typeof inp, match;
         if (type == 'object' && !inp) {
             return 'null';
@@ -30,28 +30,28 @@ function serialize( inp ) {
         }
         return type;
     };
-
-    var type = getType(inp);
+    var type = _getType(mixed_value);
+    
     var val;
     switch (type) {
         case "undefined":
             val = "N";
             break;
         case "boolean":
-            val = "b:" + (inp ? "1" : "0");
+            val = "b:" + (mixed_value ? "1" : "0");
             break;
         case "number":
-            val = (Math.round(inp) == inp ? "i" : "d") + ":" + inp;
+            val = (Math.round(mixed_value) == mixed_value ? "i" : "d") + ":" + mixed_value;
             break;
         case "string":
-            val = "s:" + inp.length + ":\"" + inp + "\"";
+            val = "s:" + mixed_value.length + ":\"" + mixed_value + "\"";
             break;
         case "array":
         case "object":
             val = "a";
             /*
             if (type == "object") {
-                var objname = inp.constructor.toString().match(/(\w+)\(\)/);
+                var objname = mixed_value.constructor.toString().match(/(\w+)\(\)/);
                 if (objname == undefined) {
                     return;
                 }
@@ -62,10 +62,10 @@ function serialize( inp ) {
             var count = 0;
             var vals = "";
             var okey;
-            for (key in inp) {
+            for (key in mixed_value) {
                 okey = (key.match(/^[0-9]+$/) ? parseInt(key) : key);
                 vals += serialize(okey) +
-                        serialize(inp[key]);
+                        serialize(mixed_value[key]);
                 count++;
             }
             val += ":" + count + ":{" + vals + "}";
