@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.32
+ * This is version: 1.33
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -27,9 +27,9 @@
  * Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steve
  * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago
  * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
- * Yannoo, baris ozdil, booeyOH, djmix, duncan, echo is bad, gabriel paderni,
- * ger, gorthaur, jakes, john (http://www.jd-tech.net), kenneth, loonquawl,
- * penutbutterjelly, stensi
+ * Yannoo, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel
+ * paderni, ger, gorthaur, jakes, john (http://www.jd-tech.net), kenneth,
+ * loonquawl, penutbutterjelly, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -968,11 +968,12 @@ function ksort(array, sort_flags) {
     // Sort an array by key
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ksort/
-    // +       version: 807.1808
+    // +       version: 807.2220
     // +   original by: GeekFG (http://geekfg.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: ksort({2: 'van', 3: 'Zonneveld', 1: 'Kevin'});
+    // *     example 1: var in = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}; ksort(in);
     // *     returns 1: true
+    // *     results 1: in == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
     
     var tmp_arr = {}, values = array, keys = [], key_num = 0, key = '', i = 0; 
     var sorter = false, array = false;
@@ -4275,9 +4276,10 @@ function unserialize ( inp ) {
     // Creates a PHP value from a stored representation
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_unserialize/
-    // +       version: 804.1712
+    // +       version: 807.2220
     // +   original by: Arpad Ray (mailto:arpad@php.net)
     // +   improved by: Pedro Tainha (http://www.pedrotainha.com)
+    // +   bugfixed by: dptr1988
     // *     example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
     // *     returns 1: ['Kevin', 'van', 'Zonneveld']
 
@@ -4406,7 +4408,7 @@ function unserialize ( inp ) {
         rest = objprops[1];
         var objout = "function " + objname + "(){";
         for (key in objprops[0]) {
-            objout += "" + key + "=objprops[0]['" + key + "'];";
+            objout += "this['" + key + "']=objprops[0]['" + key + "'];";
         }
         objout += "}val=new " + objname + "();";
         eval(objout);
