@@ -18,4 +18,12 @@ window.onload = function(){
     print('> returns', 1, success, tester_trim(tester_print_r(returns, true)));
     print('## RESULTS ##');
     
+    // Execute Example Code
+    returns = serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'});;    
+    
+    // Compare call return value
+    success = tester_comparer(returns, 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}');
+    print('> returns', 2, success, tester_trim(tester_print_r(returns, true)));
+    print('## RESULTS ##');
+    
 }

@@ -63,6 +63,10 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
             
             $match = null;
             
+            $example = preg_replace('#\[([^\]]+)\]#m', 'array($1)', $example);
+            $example = preg_replace('#\{([^\}]+)\}#m', 'array($1)', $example);
+            $example = preg_replace('#:#m', '=>', $example); 
+            
             // Execute Example in PHP! Expirimental!!
             $phpV = eval("return ". $example);
             $jsV  = $exampleSet["returns"];
@@ -78,7 +82,7 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
             if ($phpV == $jsV) {
                 $phpResult["php"][$nr-1]['true'] = "";
             } else {
-                $phpResult["php"][$nr-1]['false'] = $phpV." != ".$jsV;
+                $phpResult["php"][$nr-1]['false'] = "php: ".$phpV." != js: ".$jsV;
             }
         }        
         
@@ -122,10 +126,24 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
                     
                     if ($succeeded == false) {
                         echo ", returned: ";
-                        echo str_pad(substr($returnValue, 0, $maxOutputLen), $maxOutputLen, " ", STR_PAD_RIGHT);
-                        if (strlen($returnValue)> $maxOutputLen) {
-                            echo "...";
+                        
+                        $lines = explode("\n", $returnValue);
+                        foreach ($lines as $i=>$line) {
+                            if (!trim($line)) {
+                                unset($lines[$i]);
+                            }
                         }
+                        $line  = reset($lines);
+                        
+                        if (count($lines) == 1) {
+                            echo $line; 
+                        } else {
+                            echo str_pad(substr($line, 0, $maxOutputLen), $maxOutputLen, " ", STR_PAD_RIGHT);
+                            if (strlen($line)> $maxOutputLen) {
+                                echo "...";
+                            }
+                        }
+                        
                     }
                     echo " ";
                     
