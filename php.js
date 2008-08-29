@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.35
+ * This is version: 1.36
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -12,24 +12,26 @@
  * Erkekjetter, GeekFG (http://geekfg.blogspot.com), Johnny Mast
  * (http://www.phpvrouwen.nl), d3x, marrtins, Alfonso Jimenez
  * (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
- * (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Thunder.m, Tyler
- * Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), Alex,
- * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
- * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
+ * (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Onno Marsman,
+ * Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
+ * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
+ * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
+ * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Arno, Bayron Guevara, Ben Bryan,
  * Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David,
  * David James, DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), FremyCompany, Gabriel Paderni, Howard
- * Yeend, J A R, Leslie Hoare, Lincoln Ramsay, Luke Godfrey, MeEtc
- * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Ozh, Pedro Tainha
- * (http://www.pedrotainha.com), Peter-Paul Koch
- * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Sakimori,
- * Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve Clay, Steve
- * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T0bsn, Thiago
- * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
- * Yannoo, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel
- * paderni, ger, gorthaur, jakes, john (http://www.jd-tech.net), kenneth,
- * loonquawl, metjay, penutbutterjelly, stensi
+ * Yeend, J A R, Jack, Leslie Hoare, Lincoln Ramsay, Luke Godfrey, MeEtc
+ * (http://yass.meetcweb.com), Mick@el, Nate, Nathan, Nick Callen, Ozh, Pedro
+ * Tainha (http://www.pedrotainha.com), Peter-Paul Koch
+ * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pyerre,
+ * Sakimori, Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve
+ * Clay, Steve Hilder, Steven Levithan (http://blog.stevenlevithan.com),
+ * T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
+ * (http://www.xorax.info), Yannoo, baris ozdil, booeyOH, djmix, dptr1988,
+ * duncan, echo is bad, gabriel paderni, ger, gorthaur, jakes, john
+ * (http://www.jd-tech.net), johnrembo, kenneth, loonquawl, metjay,
+ * penutbutterjelly, sankai, sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -161,9 +163,11 @@ function array_count_values( array ) {
     // Counts all the values of an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_count_values/
-    // +       version: 804.1712
+    // +       version: 808.2719
     // +   original by: Ates Goral (http://magnetiq.com)
     // + namespaced by: Michael White (http://crestidg.com)
+    // +      input by: sankai
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_count_values([ 3, 5, 3, "foo", "bar", "foo" ]);
     // *     returns 1: {3:2, 5:1, "foo":2, "bar":1}
     // *     example 2: array_count_values({ p1: 3, p2: 5, p3: 3, p4: "foo", p5: "bar", p6: "foo" });
@@ -171,9 +175,9 @@ function array_count_values( array ) {
     // *     example 3: array_count_values([ true, 4.2, 42, "fubar" ]);
     // *     returns 3: {42:1, "fubar":1}
 
-    var tmp_ar = new Object(), key;
+    var tmp_arr = {}, key = '';
 
-    var countValue = function (value) {
+    var __countValue = function (value) {
         switch (typeof(value)) {
             case "number":
                 if (Math.floor(value) != value) {
@@ -189,14 +193,16 @@ function array_count_values( array ) {
     };
 
     if (array instanceof Array) {
-        array.forEach(countValue, tmp_ar);
+        for (key in array) {
+            tmp_arr[key] = __countValue(array[key]); 
+        }
     } else if (array instanceof Object) {
         for ( key in array ) {
-            countValue.call(tmp_ar, array[key]);
+            __countValue.call(tmp_arr, array[key]);
         }
     }
 
-    return tmp_ar;
+    return tmp_arr;
 }// }}}
 
 // {{{ array_diff
@@ -683,12 +689,14 @@ function array_unique( array ) {
     // Removes duplicate values from an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_unique/
-    // +       version: 808.523
+    // +       version: 808.2719
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      input by: duncan
-    // +    bufixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_unique(['Kevin','Kevin','van','Zonneveld','Kevin']);
     // *     returns 1: ['Kevin','van','Zonneveld']
+    // *     example 2: array_unique({'a': 'green', 0: 'red', 'b': 'green', 1: 'blue', 2: 'red'});
+    // *     returns 2: {'a': 'Kevin', 0: 'van', 1: 'Zonneveld'}
 
     var p, i, j, tmp_arr = array;
     for(i = tmp_arr.length; i;){
@@ -1221,19 +1229,22 @@ function checkdate( month, day, year ) {
     // Validate a Gregorian date
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_checkdate/
-    // +       version: 804.1712
+    // +       version: 808.2719
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Pyerre
     // *     example 1: checkdate(12, 31, 2000);
     // *     returns 1: true
     // *     example 2: checkdate(2, 29, 2001);
     // *     returns 2: false
     // *     example 3: checkdate(03, 31, 2008);
     // *     returns 3: true
+    // *     example 4: checkdate(1, 390, 2000);
+    // *     returns 4: false
 
     var myDate = new Date();
     myDate.setFullYear( year, (month - 1), day );
 
-    return ( (myDate.getMonth()+1) == month );
+    return ((myDate.getMonth()+1) == month && day<32); 
 }// }}}
 
 // {{{ date
@@ -1585,30 +1596,28 @@ function file_get_contents( url ) {
 }// }}}
 
 // {{{ call_user_func_array
-function call_user_func_array( strFunctionName , arrParam ){
+function call_user_func_array(func, parameters) {
     // Call a user function given with an array of parameters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_call_user_func_array/
-    // +       version: 804.1712
+    // +       version: 808.2719
     // +   original by: Thiago Mata (http://thiagomata.blog.com)
+    // +   revised  by: Jon Hohle
     // *     example 1: call_user_func_array('isNaN', ['a']);
     // *     returns 1: true
     // *     example 2: call_user_func_array('isNaN', [1]);
     // *     returns 2: false
 
-    var strCommand = "";
-    var i;
-
-    strCommand += "return " + strFunctionName + "(";
-    for( i = 0; i < arrParam.length; ++i ) {
-        strCommand += "arrParam[" + i + "]" ;
-        if( ( i + 1 ) != arrParam.length ) {
-            strCommand += ",";
+    if (typeof func == 'string') {
+        if (typeof this[func] == 'function') { func = this[func]; } else {
+            func = (new Function(null, 'return ' + func))();
+        }
+        if (typeof func != 'function') {
+            throw new Exception(func + ' is not a valid function');
         }
     }
-    strCommand += ")";
-    var oFunction = new Function( "arrParam" , strCommand );
-    return oFunction( arrParam );
+    
+    return func.apply(null, parameters);
 }// }}}
 
 // {{{ create_function
@@ -1951,15 +1960,16 @@ function preg_quote( str ) {
     // Quote regular expression characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_preg_quote/
-    // +       version: 804.1712
+    // +       version: 808.2719
     // +   original by: booeyOH
     // +   improved by: Ates Goral (http://magnetiq.com)
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: preg_quote("$40");
-    // *     returns 1: "\\\$40"
+    // *     returns 1: '\$40'
     // *     example 2: preg_quote("*RRRING* Hello?");
-    // *     returns 2: "\\*RRRING\\* Hello\\?"
+    // *     returns 2: '\*RRRING\* Hello\?'
     // *     example 3: preg_quote("\\.+*?[^]$(){}=!<>|:");
-    // *     returns 3: "\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:"
+    // *     returns 3: '\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:'
 
     return str.replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
 }// }}}
@@ -1969,14 +1979,16 @@ function addslashes( str ) {
     // Quote string with slashes
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_addslashes/
-    // +       version: 804.1712
+    // +       version: 808.2719
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Ates Goral (http://magnetiq.com)
     // +   improved by: marrtins
+    // +   improved by: Nate
+    // +   improved by: Onno Marsman
     // *     example 1: addslashes("kevin's birthday");
-    // *     returns 1: "kevin\'s birthday"
-
-    return str.replace('/(["\'\])/g', "\\$1").replace('/\0/g', "\\0");
+    // *     returns 1: 'kevin\'s birthday'
+ 
+    return (str+'').replace(/([\\"'])/g, "\\$1").replace(/\0/g, "\\0");   
 }// }}}
 
 // {{{ bin2hex
@@ -2095,7 +2107,7 @@ function echo ( ) {
     // Output one or more strings
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_echo/
-    // +       version: 808.523
+    // +       version: 808.2719
     // +   original by: Philip Peterson
     // +   improved by: echo is bad
     // *     example 1: echo('Hello', 'World');
@@ -2118,6 +2130,8 @@ function echo ( ) {
             document.appendChild(elmt);
         } else if (document.write) {
             document.write(arg);
+        } else {
+            print(arg);
         }
     }
     
@@ -3939,7 +3953,7 @@ function trim( str, charlist ) {
     // Strip whitespace (or other characters) from the beginning and end of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_trim/
-    // +       version: 808.523
+    // +       version: 808.2719
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: mdsjack (http://www.mdsjack.bo.it)
     // +   improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
@@ -3947,31 +3961,36 @@ function trim( str, charlist ) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: DxGx
     // +   improved by: Steven Levithan (http://blog.stevenlevithan.com)
+    // +   improved by: Jack
     // *     example 1: trim('    Kevin van Zonneveld    ');
     // *     returns 1: 'Kevin van Zonneveld'
     // *     example 2: trim('Hello World', 'Hdle');
     // *     returns 2: 'o Wor'
 
-    var whitespace;
+    var whitespace, l = 0;
     
     if (!charlist) {
         whitespace = ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000';
     } else {
         whitespace = charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\$1');
     }
-  
-    for (var i = 0; i < str.length; i++) {
+    
+    l = str.length;
+    for (var i = 0; i < l; i++) {
         if (whitespace.indexOf(str.charAt(i)) === -1) {
             str = str.substring(i);
             break;
         }
     }
-    for (i = str.length - 1; i >= 0; i--) {
+    
+    l = str.length;
+    for (i = l - 1; i >= 0; i--) {
         if (whitespace.indexOf(str.charAt(i)) === -1) {
             str = str.substring(0, i + 1);
             break;
         }
     }
+    
     return whitespace.indexOf(str.charAt(0)) === -1 ? str : '';
 }// }}}
 
@@ -3994,11 +4013,13 @@ function ucwords( str ) {
     // Uppercase the first character of each word in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ucwords/
-    // +       version: 804.1712
+    // +       version: 808.2719
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +   improved by: _argos
     // *     example 1: ucwords('kevin van zonneveld');
     // *     returns 1: 'Kevin Van Zonneveld'
+    // *     example 2: ucwords('HELLO WORLD');
+    // *     returns 2: 'HELLO WORLD'
 
     return str.replace(/^(.)|\s(.)/g, function ( $1 ) { return $1.toUpperCase ( ); } );
 }// }}}
@@ -4388,24 +4409,28 @@ function isset(  ) {
     // Determine whether a variable is set
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_isset/
-    // +       version: 804.1713
+    // +       version: 808.2719
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: FremyCompany
+    // +   improved by: Onno Marsman
     // *     example 1: isset( undefined, true);
     // *     returns 1: false
     // *     example 2: isset( 'Kevin van Zonneveld' );
     // *     returns 2: true
-
+    
     var a=arguments; var l=a.length; var i=0;
     
-    while ( i!=l ) {
-        if (typeof(a[i])=='undefined') { 
+    if (l==0) { 
+        throw new Error('Empty isset'); 
+    }
+    
+    while (i!=l) {
+        if (typeof(a[i])=='undefined' || a[i]===null) { 
             return false; 
         } else { 
             i++; 
         }
     }
-    
     return true;
 }// }}}
 
@@ -4414,12 +4439,12 @@ function print_r( array, return_val ) {
     // Prints human-readable information about a variable
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_print_r/
-    // +       version: 808.523
+    // +       version: 808.2719
     // +   original by: Michael White (http://crestidg.com)
     // +   improved by: Ben Bryan
     // *     example 1: print_r(1, true);
     // *     returns 1: 1
-
+    
     var output = "", pad_char = " ", pad_val = 4;
 
     var formatArray = function (obj, cur_depth, pad_val, pad_char) {
@@ -4468,11 +4493,11 @@ function print_r( array, return_val ) {
 }// }}}
 
 // {{{ serialize
-function serialize( inp ) {
+function serialize( mixed_value ) {
     // Generates a storable representation of a value
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_serialize/
-    // +       version: 808.2716
+    // +       version: 808.2719
     // +   original by: Arpad Ray (mailto:arpad@php.net)
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
     // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
@@ -4480,7 +4505,7 @@ function serialize( inp ) {
     // *     example 2: serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'});
     // *     returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
 
-    var getType = function( inp ) {
+    var _getType = function( inp ) {
         var type = typeof inp, match;
         if (type == 'object' && !inp) {
             return 'null';
@@ -4503,28 +4528,28 @@ function serialize( inp ) {
         }
         return type;
     };
-
-    var type = getType(inp);
+    var type = _getType(mixed_value);
+    
     var val;
     switch (type) {
         case "undefined":
             val = "N";
             break;
         case "boolean":
-            val = "b:" + (inp ? "1" : "0");
+            val = "b:" + (mixed_value ? "1" : "0");
             break;
         case "number":
-            val = (Math.round(inp) == inp ? "i" : "d") + ":" + inp;
+            val = (Math.round(mixed_value) == mixed_value ? "i" : "d") + ":" + mixed_value;
             break;
         case "string":
-            val = "s:" + inp.length + ":\"" + inp + "\"";
+            val = "s:" + mixed_value.length + ":\"" + mixed_value + "\"";
             break;
         case "array":
         case "object":
             val = "a";
             /*
             if (type == "object") {
-                var objname = inp.constructor.toString().match(/(\w+)\(\)/);
+                var objname = mixed_value.constructor.toString().match(/(\w+)\(\)/);
                 if (objname == undefined) {
                     return;
                 }
@@ -4535,10 +4560,10 @@ function serialize( inp ) {
             var count = 0;
             var vals = "";
             var okey;
-            for (key in inp) {
+            for (key in mixed_value) {
                 okey = (key.match(/^[0-9]+$/) ? parseInt(key) : key);
                 vals += serialize(okey) +
-                        serialize(inp[key]);
+                        serialize(mixed_value[key]);
                 count++;
             }
             val += ":" + count + ":{" + vals + "}";
@@ -4673,30 +4698,60 @@ function unserialize(data){
 }// }}}
 
 // {{{ var_export
-function var_export ( mixed_expression, bool_return ) {
+function var_export(mixed_expression, bool_return) {
     // Outputs or returns a parsable string representation of a variable
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_var_export/
-    // +       version: 805.1715
+    // +       version: 808.2719
     // +   original by: Philip Peterson
+    // +   improved by: johnrembo
     // -    depends on: echo
     // *     example 1: var_export(null);
     // *     returns 1: null
+    // *     example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);
+    // *     returns 2: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld'\n)"
+    // *     example 3: data = 'Kevin';
+    // *     example 3: var_export(data, true);
+    // *     returns 3: "'Kevin'"
 
-    var __pad_lines = function ( x ) {
-        return x.split("\n").join("\n  ");
-    };
-    
     var retstr = "";
+    var iret = "";
+    var cnt = 0;
+    var x = [];
     
-    if(mixed_expression instanceof Array) {
-        var iret = "";
-        for(i in mixed_expression) {
-            iret=iret+"\n"+var_export(i,true)+" => "+var_export(mixed_expression[i], true)+",";
+    var __getType = function( inp ) {
+        var type = typeof inp, match;
+        if (type == 'object' && !inp) {
+            return 'null';
         }
-        retstr = "array ("+__pad_lines(iret)+"\n)";
-    } else if( mixed_expression === null) {
+        if (type == "object") {
+            if (!inp.constructor) {
+                return 'object';
+            }
+            var cons = inp.constructor.toString();
+            if (match = cons.match(/(\w+)\(/)) {
+                cons = match[1].toLowerCase();
+            }
+            var types = ["boolean", "number", "string", "array"];
+            for (key in types) {
+                if (cons == types[key]) {
+                    type = types[key];
+                    break;
+                }
+            }
+        }
+        return type;
+    };
+    var type = __getType(mixed_expression);
+    
+    if( type === null) {
         retstr = "NULL";
+    } else if(type == 'array' || type == 'object') {
+        for(i in mixed_expression) {
+            x[cnt++] = var_export(i,true)+" => "+var_export(mixed_expression[i], true);
+        }
+        iret = x.join(',\n  ');
+        retstr = "array (\n  "+iret+"\n)";
     } else {
         retstr = (!isNaN( mixed_expression )) ? mixed_expression : "'" + mixed_expression.replace('/(["\'\])/g', "\\$1").replace('/\0/g', "\\0") + "'";
     }
@@ -4704,8 +4759,7 @@ function var_export ( mixed_expression, bool_return ) {
     if(bool_return != true) {
         echo(retstr);
         return null;
-    }
-    else {
+    } else {
         return retstr;
     }
 }// }}}
@@ -4746,32 +4800,45 @@ function utf8_decode ( str_data ) {
 }// }}}
 
 // {{{ utf8_encode
-function utf8_encode ( str_data ) {
+function utf8_encode ( string ) {
     // Encodes an ISO-8859-1 string to UTF-8
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_encode/
-    // +       version: 805.821
+    // +       version: 808.2719
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)        
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: sowberry
     // *     example 1: utf8_encode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
-
-    str_data = str_data.replace(/\r\n/g,"\n");
-    var tmp_arr = [], ac = 0;
-
-    for (var n = 0; n < str_data.length; n++) {
-        var c = str_data.charCodeAt(n);
+    
+    string = string.replace(/\r\n/g,"\n");
+    var utftext = "";
+    var start, end;
+ 
+    start = end = 0;
+    for (var n = 0; n < string.length; n++) {
+        var c = string.charCodeAt(n);
+        var enc = null;
+ 
         if (c < 128) {
-            tmp_arr[ac++] = String.fromCharCode(c);
+            end++;
         } else if((c > 127) && (c < 2048)) {
-            tmp_arr[ac++] = String.fromCharCode((c >> 6) | 192);
-            tmp_arr[ac++] = String.fromCharCode((c & 63) | 128);
+            enc = String.fromCharCode((c >> 6) | 192) + String.fromCharCode((c & 63) | 128);
         } else {
-            tmp_arr[ac++] = String.fromCharCode((c >> 12) | 224);
-            tmp_arr[ac++] = String.fromCharCode(((c >> 6) & 63) | 128);
-            tmp_arr[ac++] = String.fromCharCode((c & 63) | 128);
+            enc = String.fromCharCode((c >> 12) | 224) + String.fromCharCode(((c >> 6) & 63) | 128) + String.fromCharCode((c & 63) | 128);
+        }
+        if (enc != null) {
+            if (end > start) {
+                utftext += string.substring(start, end);
+            }
+            utftext += enc;
+            start = end = n+1;
         }
     }
     
-    return tmp_arr.join('');
+    if (end > start) {
+        utftext += string.substring(start, string.length);
+    }
+ 
+    return utftext;
 }// }}}
