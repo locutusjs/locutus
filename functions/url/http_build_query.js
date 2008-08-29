@@ -4,6 +4,7 @@ function http_build_query( formdata, numeric_prefix, arg_separator ) {
     // +   improved by: Legaev Andrey
     // +   improved by: Michael White (http://crestidg.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // -    depends on: urlencode
     // *     example 1: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;');
     // *     returns 1: 'foo=bar&amp;php=hypertext+processor&amp;baz=boom&amp;cow=milk'
     // *     example 2: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_');
@@ -16,9 +17,8 @@ function http_build_query( formdata, numeric_prefix, arg_separator ) {
     }
 
     for (key in formdata) {
-        use_key = encodeURIComponent(key);
-        use_val = encodeURIComponent((formdata[key].toString()));
-        use_val = use_val.replace(/%20/g, '+');
+        use_val = urlencode(formdata[key].toString());
+        use_key = urlencode(key);
 
         if (numeric_prefix && !isNaN(key)) {
             use_key = numeric_prefix + j;

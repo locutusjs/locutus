@@ -69,18 +69,21 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
                 continue;
             }
             
-            $match = null;
-            
-            $example = preg_replace('#\[([^\]]+)\]#m', 'array($1)', $example);
-            $example = preg_replace('#\{([^\}]+)\}#m', 'array($1)', $example);
-            $example = preg_replace('#:#m', '=>', $example); 
+            // Replace js arrays with PHP arrays
+            $phpE = $example;
+            $phpE = preg_replace('#\[([^\]]+)\]#m', 'array($1)', $phpE);
+            $phpE = preg_replace('#\{([^\}]+)\}#m', 'array($1)', $phpE);
+            // @todo: Make this more foolproof. Will currently replace all ':' characters!
+            if ($example != $phpE) {
+                $phpE = preg_replace('#:#m', '=>', $phpE); 
+            }
             
             // Execute Example in PHP! Expirimental!!
-            $phpV = eval("return ". $example);
+            $phpV = eval("return ". $phpE);
             $jsV  = $exampleSet["returns"];
             
             
-            $jsV = $this->disCloseQuotes($jsV);
+            $q = $this->disCloseQuotes($jsV);
             
             if ($phpV == $jsV) {
                 $phpResult["php"][$nr-1]['true'] = "";

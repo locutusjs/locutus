@@ -8,7 +8,7 @@ function html_entity_decode( string ) {
     // *     example 1: html_entity_decode('Kevin &amp; van Zonneveld');
     // *     returns 1: 'Kevin & van Zonneveld'
     
-    var histogram = {}, histogram_r = {}, code = 0, str_tmp = [];
+    var histogram = {}, histogram_r = {}, code = 0;
     var entity = chr = '';
     
     histogram['34'] = 'quot';
@@ -113,7 +113,7 @@ function html_entity_decode( string ) {
     histogram['255'] = 'yuml';
     
     // Reverse table. Cause for maintainability purposes, the histogram is 
-    // identical to the on ein htmlentities.
+    // identical to the one in htmlentities.
     for (code in histogram) {
         entity = histogram[code];
         histogram_r[entity] = code; 
