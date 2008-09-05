@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.37
+ * This is version: 1.38
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -27,7 +27,7 @@
  * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pyerre,
  * Sakimori, Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve
  * Clay, Steve Hilder, Steven Levithan (http://blog.stevenlevithan.com),
- * T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
+ * T.Wild, T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
  * (http://www.xorax.info), Yannoo, baris ozdil, booeyOH, djmix, dptr1988,
  * duncan, echo is bad, gabriel paderni, ger, gorthaur, jakes, john
  * (http://www.jd-tech.net), johnrembo, kenneth, loonquawl, metjay,
@@ -3908,11 +3908,16 @@
             // Return part of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr/
-            // +       version: 804.1712
+            // +       version: 809.521
             // +     original by: Martijn Wieringa
-            // *         example 1: $P.substr('abcdef', 0, -1);
-            // *         returns 1: 'abcde'
+            // +     bugfixed by: T.Wild
+            // *       example 1: $P.substr('abcdef', 0, -1);
+            // *       returns 1: 'abcde'
+            // *       example 2: $P.substr(2, 0, -6);
+            // *       returns 2: ''
         
+            f_string = f_string+'';
+            
             if(f_start < 0) {
                 f_start += f_string.length;
             }
