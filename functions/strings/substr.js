@@ -1,9 +1,14 @@
 function substr( f_string, f_start, f_length ) {
     // http://kevin.vanzonneveld.net
     // +     original by: Martijn Wieringa
-    // *         example 1: substr('abcdef', 0, -1);
-    // *         returns 1: 'abcde'
+    // +     bugfixed by: T.Wild
+    // *       example 1: substr('abcdef', 0, -1);
+    // *       returns 1: 'abcde'
+    // *       example 2: substr(2, 0, -6);
+    // *       returns 2: ''
 
+    f_string = f_string+'';
+    
     if(f_start < 0) {
         f_start += f_string.length;
     }
