@@ -1,7 +1,7 @@
 function empty( mixed_var ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philippe Baumann
-    // +   bugfixed by: Onno Marsman
+    // +      input by: Onno Marsman
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: empty(null);
     // *     returns 1: true
