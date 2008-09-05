@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.38
+ * This is version: 1.39
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -10,13 +10,12 @@
  * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
  * (http://www.jsfromhell.com), Ash Searle (http://hexmen.com/blog/),
  * Erkekjetter, GeekFG (http://geekfg.blogspot.com), Johnny Mast
- * (http://www.phpvrouwen.nl), d3x, marrtins, AJ, Alfonso Jimenez
- * (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
- * (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Onno Marsman,
- * Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
- * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
- * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
- * (http://www.winternet.no), Andrea Giammarchi
+ * (http://www.phpvrouwen.nl), Onno Marsman, d3x, marrtins, AJ, Alfonso
+ * Jimenez (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
+ * (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Thunder.m, Tyler
+ * Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), Alex,
+ * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
+ * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Arno, Bayron Guevara, Ben Bryan,
  * Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David,
  * David James, DxGx, FGFEmperor, Felix Geisendoerfer
@@ -4295,12 +4294,30 @@
             // Determine whether a variable is empty
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_empty/
-            // +       version: 804.1712
+            // +       version: 809.521
             // +   original by: Philippe Baumann
+            // +      input by: Onno Marsman
+            // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.empty(null);
             // *     returns 1: true
-        
-            return ( mixed_var === "" || mixed_var === 0   || mixed_var === "0" || mixed_var === null  || mixed_var === false  ||  ( is_array(mixed_var) && mixed_var.length === 0 ) );
+            // *     example 2: $P.empty(undefined);
+            // *     returns 2: true
+            // *     example 3: $P.empty([]);
+            // *     returns 3: true
+            
+            print(typeof mixed_var);
+            
+            if (mixed_var === "" 
+                || mixed_var === 0   
+                || mixed_var === "0"
+                || mixed_var === null  
+                || mixed_var === false
+                || mixed_var === undefined    
+                || ((typeof mixed_var == 'array' || typeof mixed_var == 'object') && mixed_var.length === 0) ){
+                return true;
+            }
+            
+            return false;
         },// }}}
         
         // {{{ floatval
