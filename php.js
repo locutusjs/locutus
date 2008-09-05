@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.36
+ * This is version: 1.37
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -10,7 +10,7 @@
  * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
  * (http://www.jsfromhell.com), Ash Searle (http://hexmen.com/blog/),
  * Erkekjetter, GeekFG (http://geekfg.blogspot.com), Johnny Mast
- * (http://www.phpvrouwen.nl), d3x, marrtins, Alfonso Jimenez
+ * (http://www.phpvrouwen.nl), d3x, marrtins, AJ, Alfonso Jimenez
  * (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
  * (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Onno Marsman,
  * Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
@@ -2200,7 +2200,7 @@ function html_entity_decode( string ) {
     // Convert all HTML entities to their applicable characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_html_entity_decode/
-    // +       version: 808.2715
+    // +       version: 808.2912
     // +   original by: john (http://www.jd-tech.net)
     // +      input by: ger
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -2209,7 +2209,7 @@ function html_entity_decode( string ) {
     // *     example 1: html_entity_decode('Kevin &amp; van Zonneveld');
     // *     returns 1: 'Kevin & van Zonneveld'
     
-    var histogram = {}, histogram_r = {}, code = 0, str_tmp = [];
+    var histogram = {}, histogram_r = {}, code = 0;
     var entity = chr = '';
     
     histogram['34'] = 'quot';
@@ -2314,7 +2314,7 @@ function html_entity_decode( string ) {
     histogram['255'] = 'yuml';
     
     // Reverse table. Cause for maintainability purposes, the histogram is 
-    // identical to the on ein htmlentities.
+    // identical to the one in htmlentities.
     for (code in histogram) {
         entity = histogram[code];
         histogram_r[entity] = code; 
@@ -4160,11 +4160,12 @@ function http_build_query( formdata, numeric_prefix, arg_separator ) {
     // Generate URL-encoded query string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_http_build_query/
-    // +       version: 808.2715
+    // +       version: 808.2912
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Legaev Andrey
     // +   improved by: Michael White (http://crestidg.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // -    depends on: urlencode
     // *     example 1: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;');
     // *     returns 1: 'foo=bar&amp;php=hypertext+processor&amp;baz=boom&amp;cow=milk'
     // *     example 2: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_');
@@ -4177,9 +4178,8 @@ function http_build_query( formdata, numeric_prefix, arg_separator ) {
     }
 
     for (key in formdata) {
-        use_key = encodeURIComponent(key);
-        use_val = encodeURIComponent((formdata[key].toString()));
-        use_val = use_val.replace(/%20/g, '+');
+        use_val = urlencode(formdata[key].toString());
+        use_key = urlencode(key);
 
         if (numeric_prefix && !isNaN(key)) {
             use_key = numeric_prefix + j;
@@ -4196,18 +4196,34 @@ function urldecode( str ) {
     // Decodes URL-encoded string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urldecode/
-    // +       version: 808.2715
+    // +       version: 808.2912
     // +   original by: Philip Peterson
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: AJ
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %          note: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
     // *     example 1: urldecode('Kevin+van+Zonneveld%21');
     // *     returns 1: 'Kevin van Zonneveld!'
+    // *     example 2: urldecode('http%3A%2F%2Fkevin.vanzonneveld.net%2F');
+    // *     returns 2: 'http://kevin.vanzonneveld.net/'
+    // *     example 3: urldecode('http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a');
+    // *     returns 3: 'http://www.google.nl/search?q=php.js&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a'
     
-    var ret = str;
-       
-    ret = ret.replace(/\+/g, '%20');
-    ret = unescape(ret);
-    ret = ret.toString();
+    var histogram = {}, histogram_r = {}, code = 0, str_tmp = [];
+    var ret = str.toString();
+    
+    // The histogram is identical to the one in urlencode.
+    histogram['!']   = '%21';
+    histogram['%20'] = '+';
+
+    for (replace in histogram) {
+        search = histogram[replace]; // Switch order when decoding
+        tmp_arr = ret.split(search); // Custom replace
+        ret = tmp_arr.join(replace);   
+    }
+    
+    // End with decodeURIComponent, which most resembles PHP's encoding functions
+    ret = decodeURIComponent(ret);
 
     return ret;
 }// }}}
@@ -4217,19 +4233,40 @@ function urlencode( str ) {
     // URL-encodes string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urlencode/
-    // +       version: 808.2715
+    // +       version: 808.2912
     // +   original by: Philip Peterson
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: AJ
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %          note: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
     // *     example 1: urlencode('Kevin van Zonneveld!');
     // *     returns 1: 'Kevin+van+Zonneveld%21'
+    // *     example 2: urlencode('http://kevin.vanzonneveld.net/');
+    // *     returns 2: 'http%3A%2F%2Fkevin.vanzonneveld.net%2F'
+    // *     example 3: urlencode('http://www.google.nl/search?q=php.js&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a');
+    // *     returns 3: 'http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a'
                                      
-    var ret = str;
+    var histogram = {}, histogram_r = {}, code = 0, tmp_arr = [];
+    var ret = str.toString();
     
-    ret = ret.toString();
-    ret = escape(ret);
-    ret = ret.replace(/%20/g, '+');
-
+    // The histogram is identical to the one in urldecode.
+    histogram['!']   = '%21';
+    histogram['%20'] = '+';
+    
+    // Begin with encodeURIComponent, which most resembles PHP's encoding functions
+    ret = encodeURIComponent(ret);
+    
+    for (search in histogram) {
+        replace = histogram[search];
+        tmp_arr = ret.split(search); // Custom replace
+        ret = tmp_arr.join(replace); 
+    }
+    
+    // Uppercase for full PHP compatibility
+    return ret.replace(/(\%([a-z0-9]{2}))/g, function(full, m1, m2) {
+        return "%"+m2.toUpperCase();
+    });
+    
     return ret;
 }// }}}
 
