@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.39
+ * This is version: 1.40
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -80,7 +80,7 @@
             // #!#!#!#!# array::$descr1 does not contain valid 'array' at line 258
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array/
-            // +       version: 808.523
+            // +       version: 809.522
             // +   original by: d3x
             // *     example 1: $P.array('Kevin', 'van', 'Zonneveld');
             // *     returns 1: ['Kevin', 'van', 'Zonneveld']
@@ -93,7 +93,7 @@
             // Changes all keys in an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_change_key_case/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Ates Goral (http://magnetiq.com)
             // +   improved by: marrtins
             // *     example 1: $P.array_change_key_case(42);
@@ -135,7 +135,7 @@
             // Split an array into chunks
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_chunk/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
             // *     example 1: $P.array_chunk(['Kevin', 'van', 'Zonneveld'], 2);
             // *     returns 1: {0 : {0: 'Kevin', 1: 'van'} , 1 : {0: 'Zonneveld'}}
@@ -152,7 +152,7 @@
             // Creates an array by using one array for keys and another for its values
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_combine/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_combine([0,1,2], ['kevin','van','zonneveld']);
             // *     returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
@@ -181,7 +181,7 @@
             // Counts all the values of an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_count_values/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Ates Goral (http://magnetiq.com)
             // + namespaced by: Michael White (http://crestidg.com)
             // +      input by: sankai
@@ -228,7 +228,7 @@
             // Computes the difference of arrays
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_diff/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Sanjoy Roy
             // *     example 1: $P.array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld']);
@@ -265,7 +265,7 @@
             // Computes the difference of arrays with additional index check
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_diff_assoc/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'});
             // *     returns 1: {1: 'van', 2: 'Zonneveld'}
@@ -302,7 +302,7 @@
             // Computes the difference of arrays using keys for comparison
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_diff_key/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Ates Goral (http://magnetiq.com)
             // *     example 1: $P.array_diff_key({red: 1, green: 2, blue: 3, white: 4});
             // *     returns 1: {"red":1, "green":2, "blue":3, "white":4}
@@ -336,7 +336,7 @@
             // Fill an array with values
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_fill/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: _argos
             // *     example 1: $P.array_fill(5, 6, 'banana');
@@ -358,7 +358,7 @@
             // Exchanges all keys with their associated values in an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_flip/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_flip( {a: 1, b: 1, c: 2} );
             // *     returns 1: {1: 'b', 2: 'c'}
@@ -377,7 +377,7 @@
             // Checks if the given key or index exists in the array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_key_exists/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Felix Geisendoerfer (http://www.debuggable.com/felix)
             // *     example 1: $P.array_key_exists('kevin', {'kevin': 'van Zonneveld'});
@@ -396,7 +396,7 @@
             // Return all the keys of an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_keys/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
             // *     returns 1: {0: 'firstname', 1: 'surname'}
@@ -427,7 +427,7 @@
             // Applies the callback to the elements of the given arrays
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_map/
-            // +       version: 808.523
+            // +       version: 809.522
             // +   original by: Andrea Giammarchi (http://webreflection.blogspot.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_map( function(a){return (a * a * a)}, [1, 2, 3, 4, 5] );
@@ -463,7 +463,7 @@
             // Pad array to the specified length with a value
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_pad/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: _argos
             // *     example 1: $P.array_pad([ 7, 8, 9 ], 2, 'a');
             // *     returns 1: [ 7, 8, 9]
@@ -494,7 +494,7 @@
             // Pop the element off the end of array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_pop/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_pop([0,1,2]);
             // *     returns 1: 2
@@ -512,7 +512,7 @@
             // Calculate the product of values in an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_product/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: _argos
             // *     example 1: $P.array_product([ 2, 4, 6, 8 ]);
             // *     returns 1: 384
@@ -535,7 +535,7 @@
             // Push one or more elements onto the end of array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_push/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_push(['kevin','van'], 'zonneveld');
             // *     returns 1: 3
@@ -554,7 +554,7 @@
             // Pick one or more random entries out of an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_rand/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: _argos
             // *     example 1: $P.array_rand( ['Kevin'], 1 );
             // *     returns 1: 0
@@ -591,7 +591,7 @@
             // Iteratively reduce the array to a single value using a callback function
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_reduce/
-            // +       version: 808.523
+            // +       version: 809.522
             // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
             // *     example 1: $P.array_reduce([1, 2, 3, 4, 5], function(v, w){v += w;return v;});
             // *     returns 1: 15
@@ -622,7 +622,7 @@
             // Return an array with elements in reverse order
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_reverse/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Karol Kowalski
             // *     example 1: $P.array_reverse( [ 'php', '4.0', ['green', 'red'] ], true );
@@ -644,7 +644,7 @@
             // successful
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_search/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'});
             // *     returns 1: 'surname'
@@ -665,7 +665,7 @@
             // Shift an element off the beginning of array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_shift/
-            // +       version: 805.3114
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Martijn Wieringa
             // *     example 1: $P.array_shift(['Kevin', 'van', 'Zonneveld']);
@@ -683,7 +683,7 @@
             // Calculate the sum of values in an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_sum/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_sum([4, 9, 182.6]);
             // *     returns 1: 195.6
@@ -707,7 +707,7 @@
             // Removes duplicate values from an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_unique/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
             // +      input by: duncan
             // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -734,7 +734,7 @@
             // Prepend one or more elements to the beginning of an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_unshift/
-            // +       version: 805.3114
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Martijn Wieringa
             // *     example 1: $P.array_unshift(['van', 'Zonneveld'], 'Kevin');
@@ -754,7 +754,7 @@
             // Return all the values of an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_values/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );
             // *     returns 1: {0: 'Kevin', 1: 'van Zonneveld'}
@@ -774,7 +774,7 @@
             // Apply a user to: function every member of an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_walk/
-            // +       version: 808.523
+            // +       version: 809.522
             // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
             // *     example 1: $P.array_walk ({'a':'b'} ,'void', 'userdata');
             // *     returns 1: true
@@ -803,7 +803,7 @@
             // Apply a user recursively: function to every member of an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_walk_recursive/
-            // +       version: 808.523
+            // +       version: 809.522
             // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
             // *     example 1: $P.array_walk_recursive ({'a':'b', 'c': {'d' : 'e'}} ,'void', 'userdata');
             // *     returns 1: true
@@ -836,7 +836,7 @@
             // Create array containing variables and their values
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_compact/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: _argos
             // *     example 1: $P.compact('var1', 'var2');
             // *     returns 1: {}
@@ -865,7 +865,7 @@
             // Count elements in an array, or properties in an object
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_count/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +      input by: _argos
             // *     example 1: $P.count([[0,0],[0,-4]], 'COUNT_RECURSIVE');
@@ -893,7 +893,7 @@
             // Set the internal pointer of an array to its last element
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_end/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   bugfixed by: Legaev Andrey
             // +    revised by: J A R
@@ -926,7 +926,7 @@
             // Checks if a value exists in an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_in_array/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.in_array('van', ['Kevin', 'van', 'Zonneveld']);
             // *     returns 1: true
@@ -948,7 +948,7 @@
             // Sort an array by key in reverse order
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_krsort/
-            // +       version: 807.1808
+            // +       version: 809.522
             // +   original by: GeekFG (http://geekfg.blogspot.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.krsort({2: 'van', 3: 'Zonneveld', 1: 'Kevin'});
@@ -997,7 +997,7 @@
             // Sort an array by key
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ksort/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: GeekFG (http://geekfg.blogspot.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}; 
@@ -1045,7 +1045,7 @@
             // Create an array containing a range of elements
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_range/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: _argos
             // *     example 1: $P.range ( 0, 12 );
             // *     returns 1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -1094,7 +1094,7 @@
             // Set the internal pointer of an array to its first element
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_reset/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   bugfixed by: Legaev Andrey
             // *     example 1: $P.reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
@@ -1119,7 +1119,7 @@
             // Sort an array in reverse order
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rsort/
-            // +       version: 806.2211
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.rsort(['Kevin', 'van', 'Zonneveld']);
             // *     returns 1: true
@@ -1152,7 +1152,7 @@
             // Shuffle an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_shuffle/
-            // +       version: 806.2210
+            // +       version: 809.522
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.shuffle(['Kevin', 'van', 'Zonneveld']);
@@ -1167,7 +1167,7 @@
             // Alias of count()
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sizeof/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Philip Peterson
             // -    depends on: count
             // *     example 1: $P.sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE');
@@ -1183,7 +1183,7 @@
             // Sort an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sort/
-            // +       version: 806.2211
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.sort(['Kevin', 'van', 'Zonneveld']);
             // *     returns 1: true
@@ -1213,7 +1213,7 @@
             // Returns the name of the class of an object
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_class/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: Ates Goral (http://magnetiq.com)
             // +   improved by: David James
             // *     example 1: $P.get_class(new (function MyClass() {}));
@@ -1247,7 +1247,7 @@
             // Validate a Gregorian date
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_checkdate/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Pyerre
             // *     example 1: $P.checkdate(12, 31, 2000);
@@ -1270,7 +1270,7 @@
             // Format a local time/date
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_date/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
             // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -1467,7 +1467,7 @@
             // Get Unix timestamp for a date
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_mktime/
-            // +       version: 807.1807
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: baris ozdil
             // +      input by: gabriel paderni 
@@ -1515,7 +1515,7 @@
             // Return current Unix timestamp
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_time/
-            // +       version: 808.2716
+            // +       version: 809.522
             // +   original by: GeekFG (http://geekfg.blogspot.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: metjay
@@ -1530,7 +1530,7 @@
             // Returns filename component of path
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_basename/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Ash Searle (http://hexmen.com/blog/)
             // +   improved by: Lincoln Ramsay
@@ -1550,7 +1550,7 @@
             // Returns directory name component of path
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_dirname/
-            // +       version: 804.2817
+            // +       version: 809.522
             // +   original by: Ozh
             // +   improved by: XoraX (http://www.xorax.info)
             // *     example 1: $P.dirname('/etc/passwd');
@@ -1568,7 +1568,7 @@
             // Reads entire file into an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Legaev Andrey
             // %        note 1: This uses: function XmlHttpRequest and cannot retrieve resource from different domain.
             // *     example 1: $P.file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
@@ -1593,7 +1593,7 @@
             // Reads entire file into a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file_get_contents/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: Legaev Andrey
             // %        note 1: This uses: function XmlHttpRequest and cannot retrieve resource from different domain.
             // *     example 1: $P.file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
@@ -1618,7 +1618,7 @@
             // Call a user given: function with an array of parameters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_call_user_func_array/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Thiago Mata (http://thiagomata.blog.com)
             // +   revised  by: Jon Hohle
             // *     example 1: $P.call_user_func_array('isNaN', ['a']);
@@ -1642,7 +1642,7 @@
             // Create an anonymous (lambda-style) function
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_create_function/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
             // *     example 1: f = create_function('a, b', "return (a + b);");
             // *     example 1: f(1, 2);
@@ -1654,7 +1654,7 @@
             // Return TRUE if the given has: function been defined
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_function_exists/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Steve Clay
             // +   improved by: Legaev Andrey
@@ -1674,7 +1674,7 @@
             // Returns an array with the names of included or required files
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_included_files/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Michael White (http://crestidg.com)
             // *     example 1: $P.get_included_files();
             // *     returns 1: ['http://kevin.vanzonneveld.net/pj_tester.php']
@@ -1699,7 +1699,7 @@
             // The include() statement includes and evaluates the specified file.
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_include/
-            // +       version: 808.523
+            // +       version: 809.522
             // +   original by: mdsjack (http://www.mdsjack.bo.it)
             // +   improved by: Legaev Andrey
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -1739,7 +1739,7 @@
             // will be included just once.
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_include_once/
-            // +       version: 808.523
+            // +       version: 809.522
             // +   original by: Legaev Andrey
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Michael White (http://crestidg.com)
@@ -1766,7 +1766,7 @@
             // The require() statement includes and evaluates the specific file.
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_require/
-            // +       version: 808.523
+            // +       version: 809.522
             // +   original by: Michael White (http://crestidg.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
@@ -1812,7 +1812,7 @@
             // require() for more information on how this statement works.
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_require_once/
-            // +       version: 808.523
+            // +       version: 809.522
             // +   original by: Michael White (http://crestidg.com)
             // -    depends on: require
             // *     example 1: $P.require_once('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
@@ -1838,7 +1838,7 @@
             // Absolute value
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_abs/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: _argos
             // +   improved by: Karol Kowalski
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -1860,7 +1860,7 @@
             // Generate a random integer
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rand/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Leslie Hoare
             // *     example 1: $P.rand(1, 1);
             // *     returns 1: 1
@@ -1877,7 +1877,7 @@
             // Rounds a float
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_round/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Philip Peterson
             // *     example 1: $P.round(1241757, -3);
             // *     returns 1: 1242000
@@ -1893,7 +1893,7 @@
             // Checks whether a given named constant exists
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_defined/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: _argos
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.defined('IMAGINARY_CONSTANT1');
@@ -1908,7 +1908,7 @@
             // proper address
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ip2long/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: _argos
             // *     example 1: $P.ip2long( '192.0.34.166' );
             // *     returns 1: 3221234342
@@ -1934,7 +1934,7 @@
             // dotted format
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_long2ip/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: _argos
             // *     example 1: $P.long2ip( 3221234342 );
             // *     returns 1: '192.0.34.166'
@@ -1956,7 +1956,7 @@
             // Send a cookie
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_setcookie/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // *     example 1: $P.setcookie('author_name', 'Kevin van Zonneveld');
             // *     returns 1: true
@@ -1974,7 +1974,7 @@
             // Quote regular expression characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_preg_quote/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: booeyOH
             // +   improved by: Ates Goral (http://magnetiq.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -1993,7 +1993,7 @@
             // Quote string with slashes
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_addslashes/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Ates Goral (http://magnetiq.com)
             // +   improved by: marrtins
@@ -2010,7 +2010,7 @@
             // Convert binary data into hexadecimal representation
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_bin2hex/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.bin2hex('Kev');
             // *     returns 1: '4b6576'
@@ -2027,7 +2027,7 @@
             // Return a specific character
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_chr/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.chr(75);
             // *     returns 1: 'K'
@@ -2040,7 +2040,7 @@
             // Return information about characters used in a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_count_chars/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: Ates Goral (http://magnetiq.com)
             // *     example 1: $P.count_chars("Hello World!", 1);
             // *     returns 1: "Hd e!lWor"
@@ -2092,7 +2092,7 @@
             // Calculates the crc32 polynomial of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_crc32/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
             // +   improved by: T0bsn
             // -    depends on: utf8_encode
@@ -2121,7 +2121,7 @@
             // Output one or more strings
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_echo/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Philip Peterson
             // +   improved by: echo is bad
             // *     example 1: $P.echo('Hello', 'World');
@@ -2157,7 +2157,7 @@
             // Split a string by string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_explode/
-            // +       version: 805.1715
+            // +       version: 809.522
             // +     original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +     improved by: kenneth
             // +     improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -2214,7 +2214,7 @@
             // Convert all HTML entities to their applicable characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_html_entity_decode/
-            // +       version: 808.2912
+            // +       version: 809.522
             // +   original by: john (http://www.jd-tech.net)
             // +      input by: ger
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -2348,7 +2348,7 @@
             // Convert all applicable characters to HTML entities
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlentities/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // %          note: table from http://www.the-art-of-web.com/html/character-codes/
@@ -2475,7 +2475,7 @@
             // Convert special characters to HTML entities
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars/
-            // +       version: 807.1808
+            // +       version: 809.522
             // +   original by: Mirek Slugen
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   bugfixed by: Nathan
@@ -2507,7 +2507,7 @@
             // Convert special HTML entities back to characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars_decode/
-            // +       version: 805.3114
+            // +       version: 809.522
             // +   original by: Mirek Slugen
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   bugfixed by: loonquawl
@@ -2538,7 +2538,7 @@
             // Join array elements with a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_implode/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: _argos
             // *     example 1: $P.implode(' ', ['Kevin', 'van', 'Zonneveld']);
@@ -2552,7 +2552,7 @@
             // Alias of implode()
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_join/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // -    depends on: implode
             // *     example 1: $P.join(' ', ['Kevin', 'van', 'Zonneveld']);
@@ -2566,7 +2566,7 @@
             // Calculate Levenshtein distance between two strings
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_levenshtein/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
             // *     example 1: $P.levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
             // *     returns 1: 3
@@ -2588,7 +2588,7 @@
             // Strip whitespace (or other characters) from the beginning of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ltrim/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +      input by: Erkekjetter
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -2605,7 +2605,7 @@
             // Calculate the md5 hash of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_md5/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
             // + namespaced by: Michael White (http://crestidg.com)
             // -    depends on: utf8_encode
@@ -2788,7 +2788,7 @@
             // Calculates the md5 hash of a given file
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_md5_file/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // -    depends on: file_get_contents
             // -    depends on: md5
@@ -2809,7 +2809,7 @@
             // Inserts HTML line breaks before all newlines in a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_nl2br/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Philip Peterson
             // *     example 1: $P.nl2br('Kevin\nvan\nZonneveld');
@@ -2823,7 +2823,7 @@
             // Format a number with grouped thousands
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_number_format/
-            // +       version: 806.816
+            // +       version: 809.522
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +     bugfix by: Michael White (http://crestidg.com)
@@ -2847,7 +2847,7 @@
             // Return ASCII value of character
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ord/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.ord('K');
             // *     returns 1: 75
@@ -2860,7 +2860,7 @@
             // Parses the string into variables
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_parse_str/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Cagri Ekin
             // +   improved by: Michael White (http://crestidg.com)
             // *     example 1: $P.parse_str('first=foo&second=bar');
@@ -2890,7 +2890,7 @@
             // Output a formatted string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_printf/
-            // +       version: 808.523
+            // +       version: 809.522
             // +   original by: Ash Searle (http://hexmen.com/blog/)
             // +   improved by: Michael White (http://crestidg.com)
             // -    depends on: sprintf
@@ -2921,7 +2921,7 @@
             // Strip whitespace (or other characters) from the end of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rtrim/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +      input by: Erkekjetter
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -2938,7 +2938,7 @@
             // Calculate the sha1 hash of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sha1/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
             // + namespaced by: Michael White (http://crestidg.com)
             // -    depends on: utf8_encode
@@ -3081,7 +3081,7 @@
             // Calculate the sha1 hash of a file
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sha1_file/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // -    depends on: file_get_contents
             // -    depends on: sha1
@@ -3097,7 +3097,7 @@
             // Calculate the soundex key of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_soundex/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // *     example 1: $P.soundex('Kevin');
             // *     returns 1: 'K150'
@@ -3120,7 +3120,7 @@
             // Split string into array by regular expression
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_split/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // -    depends on: explode
             // *     example 1: $P.split(' ', 'Kevin van Zonneveld');
@@ -3134,7 +3134,7 @@
             // Return a formatted string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sprintf/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Ash Searle (http://hexmen.com/blog/)
             // + namespaced by: Michael White (http://crestidg.com)
             // *     example 1: $P.sprintf("%01.2f", 123.1);
@@ -3269,7 +3269,7 @@
             // Case-insensitive version of str_replace().
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_ireplace/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Martijn Wieringa
             // +      input by: penutbutterjelly
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -3314,7 +3314,7 @@
             // Pad a string to a certain length with another string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_pad/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // + namespaced by: Michael White (http://crestidg.com)
             // *     example 1: $P.str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT');
@@ -3352,7 +3352,7 @@
             // Repeat a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_repeat/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // *     example 1: $P.str_repeat('-=', 10);
@@ -3367,7 +3367,7 @@
             // Replace all occurrences of the search string with the replacement string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_replace/
-            // +       version: 805.3114
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Gabriel Paderni
             // +   improved by: Philip Peterson
@@ -3394,7 +3394,7 @@
             // Perform the rot13 transform on a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_rot13/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +   improved by: Ates Goral (http://magnetiq.com)
             // *     example 1: $P.str_rot13('Kevin van Zonneveld');
@@ -3412,7 +3412,7 @@
             // Convert a string to an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_split/
-            // +       version: 805.211
+            // +       version: 809.522
             // +     original by: Martijn Wieringa
             // +     improved by: Brett Zamir
             // *         example 1: $P.str_split('Hello Friend', 3);
@@ -3438,7 +3438,7 @@
             // Binary safe case-insensitive string comparison
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strcasecmp/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +     original by: Martijn Wieringa
             // *         example 1: $P.strcasecmp('Hello', 'hello');
             // *         returns 1: 0
@@ -3461,7 +3461,7 @@
             // Alias of strstr()
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strchr/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Philip Peterson
             // -    depends on: strstr
             // *     example 1: $P.strchr('Kevin van Zonneveld', 'van');
@@ -3477,7 +3477,7 @@
             // Binary safe string comparison
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strcmp/
-            // +       version: 806.1822
+            // +       version: 809.522
             // +   original by: _argos
             // +      input by: Steve Hilder
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -3495,7 +3495,7 @@
             // Strip HTML and PHP tags from a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Luke Godfrey
             // *     example 1: $P.strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
@@ -3545,7 +3545,7 @@
             // Find position of first occurrence of a case-insensitive string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_stripos/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +     original by: Martijn Wieringa
             // *         example 1: $P.stripos('ABC', 'a');
             // *         returns 1: 0
@@ -3570,7 +3570,7 @@
             // Un-quote string quoted with addslashes()
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_stripslashes/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Ates Goral (http://magnetiq.com)
             // +      fixed by: Mick@el
@@ -3586,7 +3586,7 @@
             // Case-insensitive strstr()
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_stristr/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.stristr('Kevin van Zonneveld', 'Van');
             // *     returns 1: 'van Zonneveld'
@@ -3612,7 +3612,7 @@
             // Get string length
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strlen/
-            // +       version: 805.1616
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Sakimori
             // *     example 1: $P.strlen('Kevin van Zonneveld');
@@ -3626,7 +3626,7 @@
             // String comparisons using a &quot;natural order&quot; algorithm
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strnatcmp/
-            // +       version: 808.2715
+            // +       version: 809.522
             // +   original by: Martijn Wieringa
             // + namespaced by: Michael White (http://crestidg.com)
             // -    depends on: strcmp
@@ -3749,7 +3749,7 @@
             // Search a string for any of a set of characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strpbrk/
-            // +       version: 806.816
+            // +       version: 809.522
             // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
             // *     example 1: $P.strpbrk('This is a Simple text.', 'is');
             // *     returns 1: 'is is a Simple text.'
@@ -3794,7 +3794,7 @@
             // Find position of first occurrence of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strpos/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.strpos('Kevin van Zonneveld', 'e', 5);
             // *     returns 1: 14
@@ -3808,7 +3808,7 @@
             // Reverse a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strrev/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.strrev('Kevin van Zonneveld');
             // *     returns 1: 'dlevennoZ nav niveK'
@@ -3827,7 +3827,7 @@
             // Find position of last occurrence of a case-insensitive string in a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strripos/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.strripos('Kevin van Zonneveld', 'E');
             // *     returns 1: 16
@@ -3841,7 +3841,7 @@
             // Find position of last occurrence of a char in a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strrpos/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.strrpos('Kevin van Zonneveld', 'e');
             // *     returns 1: 16
@@ -3855,7 +3855,7 @@
             // Find first occurrence of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strstr/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.strstr('Kevin van Zonneveld', 'van');
             // *     returns 1: 'van Zonneveld'
@@ -3881,7 +3881,7 @@
             // Make a string lowercase
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strtolower/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.strtolower('Kevin van Zonneveld');
             // *     returns 1: 'kevin van zonneveld'
@@ -3894,7 +3894,7 @@
             // Make a string uppercase
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strtoupper/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.strtoupper('Kevin van Zonneveld');
             // *     returns 1: 'KEVIN VAN ZONNEVELD'
@@ -3907,7 +3907,7 @@
             // Return part of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr/
-            // +       version: 809.521
+            // +       version: 809.522
             // +     original by: Martijn Wieringa
             // +     bugfixed by: T.Wild
             // *       example 1: $P.substr('abcdef', 0, -1);
@@ -3941,7 +3941,7 @@
             // Count the number of substring occurrences
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr_count/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.substr_count('Kevin van Zonneveld', 'e');
             // *     returns 1: 3
@@ -3972,7 +3972,7 @@
             // Strip whitespace (or other characters) from the beginning and end of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_trim/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: mdsjack (http://www.mdsjack.bo.it)
             // +   improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
@@ -4018,7 +4018,7 @@
             // Make a string&#039;s first character uppercase
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ucfirst/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.ucfirst('kevin van zonneveld');
             // *     returns 1: 'Kevin van zonneveld'
@@ -4032,7 +4032,7 @@
             // Uppercase the first character of each word in a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ucwords/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +   improved by: _argos
             // *     example 1: $P.ucwords('kevin van zonneveld');
@@ -4048,7 +4048,7 @@
             // Wraps a string to a given number of characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_wordwrap/
-            // +       version: 804.1715
+            // +       version: 809.522
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +   improved by: Nick Callen
             // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
@@ -4075,7 +4075,7 @@
             // Decodes data encoded with MIME base64
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_decode/
-            // +       version: 805.821
+            // +       version: 809.522
             // +   original by: Tyler Akins (http://rumkin.com)
             // +   improved by: Thunder.m
             // +      input by: Aman Gupta
@@ -4125,7 +4125,7 @@
             // Encodes data with MIME base64
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_encode/
-            // +       version: 805.821
+            // +       version: 809.522
             // +   original by: Tyler Akins (http://rumkin.com)
             // +   improved by: Bayron Guevara
             // +   improved by: Thunder.m
@@ -4179,7 +4179,7 @@
             // Generate URL-encoded query string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_http_build_query/
-            // +       version: 808.2912
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Legaev Andrey
             // +   improved by: Michael White (http://crestidg.com)
@@ -4215,7 +4215,7 @@
             // Decodes URL-encoded string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urldecode/
-            // +       version: 808.2912
+            // +       version: 809.522
             // +   original by: Philip Peterson
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +      input by: AJ
@@ -4252,7 +4252,7 @@
             // URL-encodes string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urlencode/
-            // +       version: 808.2912
+            // +       version: 809.522
             // +   original by: Philip Peterson
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +      input by: AJ
@@ -4294,7 +4294,7 @@
             // Determine whether a variable is empty
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_empty/
-            // +       version: 809.521
+            // +       version: 809.522
             // +   original by: Philippe Baumann
             // +      input by: Onno Marsman
             // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -4339,7 +4339,7 @@
             // Get the integer value of a variable
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_intval/
-            // +       version: 805.2118
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: stensi
             // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -4373,7 +4373,7 @@
             // Finds whether a variable is an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Legaev Andrey
             // +   bugfixed by: Cord
@@ -4390,7 +4390,7 @@
             // Find whether the type of a variable is integer
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_int/
-            // +       version: 805.3114
+            // +       version: 809.522
             // +   original by: Alex
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.is_int(186.31);
@@ -4412,7 +4412,7 @@
             // Finds whether a variable is NULL
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_null/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.is_null('23');
             // *     returns 1: false
@@ -4427,7 +4427,7 @@
             // Finds whether a variable is a number or a numeric string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_numeric/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: David
             // *     example 1: $P.is_numeric(186.31);
@@ -4445,7 +4445,7 @@
             // Finds whether a variable is an object
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_object/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Legaev Andrey
             // +   improved by: Michael White (http://crestidg.com)
@@ -4468,7 +4468,7 @@
             // Find whether the type of a variable is string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_string/
-            // +       version: 804.1712
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.is_string('23');
             // *     returns 1: true
@@ -4483,7 +4483,7 @@
             // Determine whether a variable is set
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_isset/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: FremyCompany
             // +   improved by: Onno Marsman
@@ -4513,7 +4513,7 @@
             // Prints human-readable information about a variable
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_print_r/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Michael White (http://crestidg.com)
             // +   improved by: Ben Bryan
             // *     example 1: $P.print_r(1, true);
@@ -4571,7 +4571,7 @@
             // Generates a storable representation of a value
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_serialize/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Arpad Ray (mailto:arpad@php.net)
             // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
             // *     example 1: $P.serialize(['Kevin', 'van', 'Zonneveld']);
@@ -4652,7 +4652,7 @@
             // Creates a PHP value from a stored representation
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_unserialize/
-            // +       version: 808.2716
+            // +       version: 809.522
             // +     original by: Arpad Ray (mailto:arpad@php.net)
             // +     improved by: Pedro Tainha (http://www.pedrotainha.com)
             // +     bugfixed by: dptr1988
@@ -4776,7 +4776,7 @@
             // Outputs or returns a parsable string representation of a variable
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_var_export/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Philip Peterson
             // +   improved by: johnrembo
             // -    depends on: echo
@@ -4844,7 +4844,7 @@
             // ISO-8859-1
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_decode/
-            // +       version: 805.821
+            // +       version: 809.522
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
             // +      input by: Aman Gupta
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -4878,7 +4878,7 @@
             // Encodes an ISO-8859-1 string to UTF-8
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_encode/
-            // +       version: 808.2719
+            // +       version: 809.522
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: sowberry

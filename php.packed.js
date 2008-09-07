@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.39
+ * This is version: 1.40
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
