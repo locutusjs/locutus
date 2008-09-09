@@ -180,25 +180,28 @@ Class PHPJS_Library {
      */
     static public function autoload($className)
     {
-        $parent     = 'PHPJS_Library';
-        $parent     = '';
-        $parent_len = strlen($parent);
-        if (substr($className, 0, $parent_len) == $parent) {
-            $newClassName = substr($className, $parent_len);
-        } else {
-            $newClassName = $className;
+        
+        $path = str_replace('_', '/', $className).'.php';
+
+        $paths = array();
+        $paths[] = realpath(dirname(__FILE__).'/../'.$path);
+        $paths[] = realpath(dirname(__FILE__).'/'.$path);
+        
+        $found = false;
+        foreach ($paths as $ipath) {
+            if (is_file($ipath)) {
+                $found = true;
+                break;
+            }
         }
-
-        $path = str_replace('_', '/', $newClassName).'.php';
-
-        if (is_file(dirname(__FILE__).'/'.$path) === true) {
-            // Check standard file locations based on class name.
-            include dirname(__FILE__).'/'.$path;
-        } else {
-            // Everything else.
-            @include $path;
+        
+        if (!$found) {
+            throw new PHPJS_Exception("Class: ".$className." could not be autoloaded");
+            return false;
         }
-
+        
+        include $ipath;
+        return true;
     }//end autoload()
         
     

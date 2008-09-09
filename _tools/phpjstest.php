@@ -1,7 +1,7 @@
 #!/usr/bin/php -q
 <?php
     error_reporting(E_ALL);
-    require_once "PHPJS/Library.php";
+    require_once "PHPJS_Library/PHPJS/Library.php";
 
     // Check for CLI
     if ((php_sapi_name() != 'cli')) {
@@ -9,7 +9,7 @@
     }
     
     
-    $dir = realpath(dirname(__FILE__)."/../..")."/functions";
+    $dir = realpath(dirname(__FILE__)."/..")."/functions";
     $PHPJS_Tester_Shell = new PHPJS_Library_Tester_Shell($dir);
     
     // Parse commands
