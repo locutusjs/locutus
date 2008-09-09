@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.40
+ * This is version: 1.41
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -20,9 +20,9 @@
  * Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David,
  * David James, DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), FremyCompany, Gabriel Paderni, Howard
- * Yeend, J A R, Jack, Leslie Hoare, Lincoln Ramsay, Luke Godfrey, MeEtc
- * (http://yass.meetcweb.com), Mick@el, Nate, Nathan, Nick Callen, Ozh, Pedro
- * Tainha (http://www.pedrotainha.com), Peter-Paul Koch
+ * Yeend, J A R, Jack, Kirk Strobeck, Leslie Hoare, Lincoln Ramsay, Luke
+ * Godfrey, MeEtc (http://yass.meetcweb.com), Mick@el, Nate, Nathan, Nick
+ * Callen, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pyerre,
  * Sakimori, Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve
  * Clay, Steve Hilder, Steven Levithan (http://blog.stevenlevithan.com),
@@ -3593,17 +3593,26 @@ function stristr( haystack, needle, bool ) {
 }// }}}
 
 // {{{ strlen
-function strlen( string ){
+function strlen (string) {
     // Get string length
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strlen/
-    // +       version: 809.522
+    // +       version: 809.800
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Sakimori
+    // +      input by: Kirk Strobeck
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strlen('Kevin van Zonneveld');
     // *     returns 1: 19
 
-    return ("" + string).length;
+    var tmp_str = '', l = 0;
+    tmp_str = string + '';
+    
+    if (tmp_str.length) {
+        return tmp_str.length; 
+    }  
+    
+    return 0;
 }// }}}
 
 // {{{ strnatcmp
