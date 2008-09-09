@@ -20,10 +20,10 @@ function max() {
     
     if (arguments.length == 0) {
         throw new Error('Atleast one value should be passed to max()');
-    } else if (arguments.length==1) {
+    } else if (arguments.length == 1) {
         if (arguments[0] instanceof Array) {
             ar = arguments[0];
-        } else if (typeof arguments[0]=='object') {
+        } else if (typeof arguments[0] == 'object') {
             ar = [];
             for (var i in arguments[0]) {
                ar.push(ar[i]);
