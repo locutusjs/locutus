@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.42
+ * This is version: 1.43
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -29,7 +29,7 @@
  * T.Wild, T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
  * (http://www.xorax.info), Yannoo, baris ozdil, booeyOH, djmix, dptr1988,
  * duncan, echo is bad, gabriel paderni, ger, gorthaur, jakes, john
- * (http://www.jd-tech.net), johnrembo, kenneth, loonquawl, metjay,
+ * (http://www.jd-tech.net), johnrembo, kenneth, loonquawl, metjay, nobbler,
  * penutbutterjelly, sankai, sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
@@ -1845,8 +1845,9 @@ function max() {
     // max &mdash; Find highest value
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_max/
-    // +       version: 809.913
+    // +       version: 809.1316
     // +   original by: Onno Marsman
+    // +    revised by: Onno Marsman
     // %          note: Long code cause we're aiming for maximum PHP compatibility
     // %          note: Example 3 doesn't give the expected output yet
     // *     example 1: max(1, 3, 5, 6, 7);
@@ -1862,42 +1863,89 @@ function max() {
     // *     example 6: max([2, 4, 8], [2, 5, 7]);
     // *     returns 6: [2, 5, 7]
 
-    var ar, retVal = -Infinity;
+    var ar, retVal, i=0;
+
+    var _obj2Array = function(obj) {
+       if (obj instanceof Array) {
+           return obj;
+       } else {
+           var ar = [];
+           for (var i in obj) {
+               ar.push(obj[i]);
+           }
+           return ar;
+       }
+    }
     
-    if (arguments.length == 0) {
-        throw new Error('Atleast one value should be passed to max()');
+    var _compare = function(current, next) {
+       if (current===next) {
+           return 0;
+       } else if (typeof current == 'object') {
+           if (typeof next == 'object') {
+               current = _obj2Array(current);
+               next = _obj2Array(next);
+               if (next.length>current.length) {
+                   return 1;
+               } else if (next.length<current.length) {
+                   return -1;
+               } else {
+                   var tmp;
+                   for (var i=0, n=current.length; i<n; ++i) {
+                       tmp = _compare(current[i], next[i]);
+                       if (tmp==1) {
+                           return 1;
+                       } else if (tmp==-1) {
+                           return -1;
+                       }
+                   }
+                   return 0;
+               }
+           } else {
+               return -1;
+           }
+       } else if (typeof next == 'object') {
+           return 1;
+       } else if (isNaN(next) && !isNaN(current)) {
+           if (current==0) {
+               return 0;
+           } else {
+               return (current<0 ? 1 : -1);
+           }
+       } else if (isNaN(current) && !isNaN(next)) {
+           if (next==0) {
+               return 0;
+           } else {
+               return (next>0 ? 1 : -1);
+           }
+       } else {
+           if (next==current) {
+               return 0;
+           } else {
+               return (next>current ? 1 : -1);
+           }
+       }
+    }
+    
+    if (arguments.length==0) {
+       throw new Error('At least one value should be passed to max()');
     } else if (arguments.length==1) {
-        if (arguments[0] instanceof Array) {
-            ar = arguments[0];
-        } else if (typeof arguments[0]=='object') {
-            ar = [];
-            for (var i in arguments[0]) {
-               ar.push(ar[i]);
-            }
-        } else {
-            throw new Error('Wrong parameter count for max()');
-        }
-        if (ar.length==0) {
-            throw new Error('Array must contain at least one element for max()');
-        }
+       if (typeof arguments[0]=='object') {
+           ar = _obj2Array(arguments[0]);
+       } else {
+           throw new Error('Wrong parameter count for max()');
+       }
+       if (ar.length==0) {
+           throw new Error('Array must contain at least one element for max()');
+       }
     } else {
        ar = arguments;
     }
     
-    for (var i=0, n=ar.length; i<n; ++i) {
-        if (retVal==Infinity) {
-            retVal = ar[i];
-        } else if (isNaN(ar[i]) && !isNaN(retVal)) {
-            if (retVal<=0) {
-               retVal = ar[i];
-            }
-        } else if (isNaN(retVal) && !isNaN(ar[i])) {
-           if (ar[i]>0) {
-               retVal = ar[i];
-           }
-        } else if (ar[i]>retVal) {
+    retVal = ar[0];
+    for (i=1, n=ar.length; i<n; ++i) {
+       if (_compare(retVal, ar[i])==1) {
            retVal = ar[i];
-        }
+       }
     }
     
     return retVal;
@@ -1908,8 +1956,9 @@ function min() {
     // min &mdash; Find lowest value
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_min/
-    // +       version: 809.913
+    // +       version: 809.1316
     // +   original by: Onno Marsman
+    // +    revised by: Onno Marsman
     // %          note: Long code cause we're aiming for maximum PHP compatibility
     // %          note: Example 3 doesn't give the expected output yet
     // *     example 1: min(1, 3, 5, 6, 7);
@@ -1924,46 +1973,93 @@ function min() {
     // *     returns 5: -1
     // *     example 6: min([2, 4, 8], [2, 5, 7]);
     // *     returns 6: [2, 4, 8]
+    
+    var ar, retVal, i=0;
 
-   var ar, retVal = Infinity;
-   
-   if (arguments.length == 0) {
-       throw new Error('Atleast one value should be passed to min()');
-   } else if (arguments.length==1) {
-       if (arguments[0] instanceof Array) {
-           ar = arguments[0];
-       } else if (typeof arguments[0]=='object') {
-           ar = [];
-           for (var i in arguments[0]) {
-               ar.push(ar[i]);
+    function _obj2Array(obj) {
+       if (obj instanceof Array) {
+           return obj;
+       } else {
+           var ar = [];
+           for (var i in obj) {
+               ar.push(obj[i]);
            }
+           return ar;
+       }
+    } //function _obj2Array
+    
+    function _compare(current, next) {
+       if (current===next) {
+           return 0;
+       } else if (typeof current == 'object') {
+           if (typeof next == 'object') {
+               current = _obj2Array(current);
+               next = _obj2Array(next);
+               if (next.length>current.length) {
+                   return 1;
+               } else if (next.length<current.length) {
+                   return -1;
+               } else {
+                   var tmp;
+                   for (var i=0, n=current.length; i<n; ++i) {
+                       tmp = _compare(current[i], next[i]);
+                       if (tmp==1) {
+                           return 1;
+                       } else if (tmp==-1) {
+                           return -1;
+                       }
+                   }
+                   return 0;
+               }
+           } else {
+               return -1;
+           }
+       } else if (typeof next == 'object') {
+           return 1;
+       } else if (isNaN(next) && !isNaN(current)) {
+           if (current==0) {
+               return 0;
+           } else {
+               return (current<0 ? 1 : -1);
+           }
+       } else if (isNaN(current) && !isNaN(next)) {
+           if (next==0) {
+               return 0;
+           } else {
+               return (next>0 ? 1 : -1);
+           }
+       } else {
+           if (next==current) {
+               return 0;
+           } else {
+               return (next>current ? 1 : -1);
+           }
+       }
+    } //function _compare
+    
+    if (arguments.length==0) {
+       throw new Error('At least one value should be passed to min()');
+    } else if (arguments.length==1) {
+       if (typeof arguments[0]=='object') {
+           ar = _obj2Array(arguments[0]);
        } else {
            throw new Error('Wrong parameter count for min()');
        }
        if (ar.length==0) {
            throw new Error('Array must contain at least one element for min()');
        }
-   } else {
+    } else {
        ar = arguments;
-   }
-   
-   for (var i=0, n=ar.length; i<n; ++i) {
-       if (retVal==Infinity) {
-           retVal = ar[i];
-       } else if (isNaN(ar[i]) && !isNaN(retVal)) {
-           if (retVal>=0) {
-               retVal = ar[i];
-           }
-       } else if (isNaN(retVal) && !isNaN(ar[i])) {
-           if (ar[i]<0) {
-               retVal = ar[i];
-           }
-       } else if (ar[i]<retVal) {
+    }
+    
+    retVal = ar[0];
+    for (i=1, n=ar.length; i<n; ++i) {
+       if (_compare(retVal, ar[i])==-1) {
            retVal = ar[i];
        }
-   }
-   
-   return retVal;
+    }
+    
+    return retVal;
 }// }}}
 
 // {{{ rand
@@ -2459,14 +2555,15 @@ function htmlentities( string ){
     // Convert all applicable characters to HTML entities
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlentities/
-    // +       version: 809.522
+    // +       version: 809.1316
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: nobbler
     // %          note: table from http://www.the-art-of-web.com/html/character-codes/
     // *     example 1: htmlentities('Kevin & van Zonneveld');
     // *     returns 1: 'Kevin &amp; van Zonneveld'
     
-    var histogram = {}, code = 0, tmp_arr = [];
+    var histogram = {}, code = 0, tmp_arr = [], i = 0;
     
     histogram['34'] = 'quot';
     histogram['38'] = 'amp';
