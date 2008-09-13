@@ -3,7 +3,6 @@ function min() {
     // +   original by: Onno Marsman
     // +    revised by: Onno Marsman
     // %          note: Long code cause we're aiming for maximum PHP compatibility
-    // %          note: Example 3 doesn't give the expected output yet
     // *     example 1: min(1, 3, 5, 6, 7);
     // *     returns 1: 1
     // *     example 2: min([2, 4, 5]);
