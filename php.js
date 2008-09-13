@@ -1,17 +1,17 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.41
+ * This is version: 1.42
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
  * Raoni Soares Silva (http://www.jsfromhell.com), Legaev Andrey, Ates Goral
- * (http://magnetiq.com), Philip Peterson, Martijn Wieringa, Webtoolkit.info
- * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
+ * (http://magnetiq.com), Philip Peterson, Martijn Wieringa, Onno Marsman,
+ * Webtoolkit.info (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
  * (http://www.jsfromhell.com), Ash Searle (http://hexmen.com/blog/),
  * Erkekjetter, GeekFG (http://geekfg.blogspot.com), Johnny Mast
- * (http://www.phpvrouwen.nl), Onno Marsman, d3x, marrtins, AJ, Alfonso
- * Jimenez (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
+ * (http://www.phpvrouwen.nl), d3x, marrtins, AJ, Alfonso Jimenez
+ * (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
  * (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Thunder.m, Tyler
  * Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), Alex,
  * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
@@ -1838,6 +1838,132 @@ function abs( mixed_number )  {
     // *     returns 4: 0
 
     return Math.abs(mixed_number) || 0;
+}// }}}
+
+// {{{ max
+function max() {
+    // max &mdash; Find highest value
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_max/
+    // +       version: 809.913
+    // +   original by: Onno Marsman
+    // %          note: Long code cause we're aiming for maximum PHP compatibility
+    // %          note: Example 3 doesn't give the expected output yet
+    // *     example 1: max(1, 3, 5, 6, 7);
+    // *     returns 1: 7
+    // *     example 2: max([2, 4, 5]);
+    // *     returns 2: 5
+    // *     example 3: max(0, 'hello');
+    // *     returns 3: 0
+    // *     example 4: max('hello', 0);
+    // *     returns 4: 'hello'
+    // *     example 5: max(-1, 'hello');
+    // *     returns 5: 'hello'
+    // *     example 6: max([2, 4, 8], [2, 5, 7]);
+    // *     returns 6: [2, 5, 7]
+
+    var ar, retVal = -Infinity;
+    
+    if (arguments.length == 0) {
+        throw new Error('Atleast one value should be passed to max()');
+    } else if (arguments.length==1) {
+        if (arguments[0] instanceof Array) {
+            ar = arguments[0];
+        } else if (typeof arguments[0]=='object') {
+            ar = [];
+            for (var i in arguments[0]) {
+               ar.push(ar[i]);
+            }
+        } else {
+            throw new Error('Wrong parameter count for max()');
+        }
+        if (ar.length==0) {
+            throw new Error('Array must contain at least one element for max()');
+        }
+    } else {
+       ar = arguments;
+    }
+    
+    for (var i=0, n=ar.length; i<n; ++i) {
+        if (retVal==Infinity) {
+            retVal = ar[i];
+        } else if (isNaN(ar[i]) && !isNaN(retVal)) {
+            if (retVal<=0) {
+               retVal = ar[i];
+            }
+        } else if (isNaN(retVal) && !isNaN(ar[i])) {
+           if (ar[i]>0) {
+               retVal = ar[i];
+           }
+        } else if (ar[i]>retVal) {
+           retVal = ar[i];
+        }
+    }
+    
+    return retVal;
+}// }}}
+
+// {{{ min
+function min() {
+    // min &mdash; Find lowest value
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_min/
+    // +       version: 809.913
+    // +   original by: Onno Marsman
+    // %          note: Long code cause we're aiming for maximum PHP compatibility
+    // %          note: Example 3 doesn't give the expected output yet
+    // *     example 1: min(1, 3, 5, 6, 7);
+    // *     returns 1: 1
+    // *     example 2: min([2, 4, 5]);
+    // *     returns 2: 2
+    // *     example 3: min(0, 'hello');
+    // *     returns 3: 0
+    // *     example 4: min('hello', 0);
+    // *     returns 4: 'hello'
+    // *     example 5: min(-1, 'hello');
+    // *     returns 5: -1
+    // *     example 6: min([2, 4, 8], [2, 5, 7]);
+    // *     returns 6: [2, 4, 8]
+
+   var ar, retVal = Infinity;
+   
+   if (arguments.length == 0) {
+       throw new Error('Atleast one value should be passed to min()');
+   } else if (arguments.length==1) {
+       if (arguments[0] instanceof Array) {
+           ar = arguments[0];
+       } else if (typeof arguments[0]=='object') {
+           ar = [];
+           for (var i in arguments[0]) {
+               ar.push(ar[i]);
+           }
+       } else {
+           throw new Error('Wrong parameter count for min()');
+       }
+       if (ar.length==0) {
+           throw new Error('Array must contain at least one element for min()');
+       }
+   } else {
+       ar = arguments;
+   }
+   
+   for (var i=0, n=ar.length; i<n; ++i) {
+       if (retVal==Infinity) {
+           retVal = ar[i];
+       } else if (isNaN(ar[i]) && !isNaN(retVal)) {
+           if (retVal>=0) {
+               retVal = ar[i];
+           }
+       } else if (isNaN(retVal) && !isNaN(ar[i])) {
+           if (ar[i]<0) {
+               retVal = ar[i];
+           }
+       } else if (ar[i]<retVal) {
+           retVal = ar[i];
+       }
+   }
+   
+   return retVal;
 }// }}}
 
 // {{{ rand
