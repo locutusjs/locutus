@@ -2,11 +2,12 @@ function htmlentities( string ){
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: nobbler
     // %          note: table from http://www.the-art-of-web.com/html/character-codes/
     // *     example 1: htmlentities('Kevin & van Zonneveld');
     // *     returns 1: 'Kevin &amp; van Zonneveld'
     
-    var histogram = {}, code = 0, tmp_arr = [];
+    var histogram = {}, code = 0, tmp_arr = [], i = 0;
     
     histogram['34'] = 'quot';
     histogram['38'] = 'amp';
