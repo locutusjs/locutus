@@ -15,14 +15,19 @@ function urldecode( str ) {
     var histogram = {}, histogram_r = {}, code = 0, str_tmp = [];
     var ret = str.toString();
     
+    var replacer = function(search, replace, str) {
+        var tmp_arr = [];
+        tmp_arr = str.split(search);
+        return tmp_arr.join(replace);
+    };
+    
     // The histogram is identical to the one in urlencode.
     histogram['!']   = '%21';
     histogram['%20'] = '+';
-
+    
     for (replace in histogram) {
         search = histogram[replace]; // Switch order when decoding
-        tmp_arr = ret.split(search); // Custom replace
-        ret = tmp_arr.join(replace);   
+        ret = replacer(search, replace, ret) // Custom replace. No regexing   
     }
     
     // End with decodeURIComponent, which most resembles PHP's encoding functions

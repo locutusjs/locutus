@@ -15,6 +15,12 @@ function urlencode( str ) {
     var histogram = {}, histogram_r = {}, code = 0, tmp_arr = [];
     var ret = str.toString();
     
+    var replacer = function(search, replace, str) {
+        var tmp_arr = [];
+        tmp_arr = str.split(search);
+        return tmp_arr.join(replace);
+    };
+    
     // The histogram is identical to the one in urldecode.
     histogram['!']   = '%21';
     histogram['%20'] = '+';
@@ -24,8 +30,7 @@ function urlencode( str ) {
     
     for (search in histogram) {
         replace = histogram[search];
-        tmp_arr = ret.split(search); // Custom replace
-        ret = tmp_arr.join(replace); 
+        ret = replacer(search, replace, ret) // Custom replace. No regexing
     }
     
     // Uppercase for full PHP compatibility
