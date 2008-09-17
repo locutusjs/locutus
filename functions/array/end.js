@@ -19,7 +19,6 @@ function end ( array ) {
         last_elm = array[(array.length-1)];
     } else {
         for (key in array){
-            print(key);
             last_elm = array[key];
         }
     }
