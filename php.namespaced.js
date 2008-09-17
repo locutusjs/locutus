@@ -1864,7 +1864,6 @@
             // +   original by: Onno Marsman
             // +    revised by: Onno Marsman
             // %          note: Long code cause we're aiming for maximum PHP compatibility
-            // %          note: Example 3 doesn't give the expected output yet
             // *     example 1: $P.max(1, 3, 5, 6, 7);
             // *     returns 1: 7
             // *     example 2: $P.max([2, 4, 5]);
@@ -1975,7 +1974,6 @@
             // +   original by: Onno Marsman
             // +    revised by: Onno Marsman
             // %          note: Long code cause we're aiming for maximum PHP compatibility
-            // %          note: Example 3 doesn't give the expected output yet
             // *     example 1: $P.min(1, 3, 5, 6, 7);
             // *     returns 1: 1
             // *     example 2: $P.min([2, 4, 5]);
