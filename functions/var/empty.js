@@ -3,6 +3,7 @@ function empty( mixed_var ) {
     // +   original by: Philippe Baumann
     // +      input by: Onno Marsman
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: LH
     // *     example 1: empty(null);
     // *     returns 1: true
     // *     example 2: empty(undefined);
