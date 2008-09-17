@@ -10,8 +10,6 @@ function empty( mixed_var ) {
     // *     example 3: empty([]);
     // *     returns 3: true
     
-    print(typeof mixed_var);
-    
     if (mixed_var === "" 
         || mixed_var === 0   
         || mixed_var === "0"
