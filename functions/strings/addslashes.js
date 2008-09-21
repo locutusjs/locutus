@@ -8,5 +8,5 @@ function addslashes( str ) {
     // *     example 1: addslashes("kevin's birthday");
     // *     returns 1: 'kevin\'s birthday'
  
-    return (str+'').replace(/([\\"'])/g, "\\$1").replace(/\0/g, "\\0");   
+    return (str+'').replace(/([\\"'])/g, "\\$1").replace(/\0/g, "\\0");
 }
