@@ -5,14 +5,13 @@ function unserialize(data){
     // +     bugfixed by: dptr1988
     // +      revised by: d3x
     // +     improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %            note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %            note: Aiming for PHP-compatibility, we have to translate objects to arrays 
     // *       example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
     // *       returns 1: ['Kevin', 'van', 'Zonneveld']
     // *       example 2: unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}');
     // *       returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
     
-    
-
     var error = function (type, msg, filename, line){throw new window[type](msg, filename, line);};
     var read_until = function (data, offset, stopchr){
         var buf = [];

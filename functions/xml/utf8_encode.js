@@ -12,15 +12,15 @@ function utf8_encode ( string ) {
  
     start = end = 0;
     for (var n = 0; n < string.length; n++) {
-        var c = string.charCodeAt(n);
+        var c1 = string.charCodeAt(n);
         var enc = null;
  
-        if (c < 128) {
+        if (c1 < 128) {
             end++;
-        } else if((c > 127) && (c < 2048)) {
-            enc = String.fromCharCode((c >> 6) | 192) + String.fromCharCode((c & 63) | 128);
+        } else if((c1 > 127) && (c1 < 2048)) {
+            enc = String.fromCharCode((c1 >> 6) | 192) + String.fromCharCode((c1 & 63) | 128);
         } else {
-            enc = String.fromCharCode((c >> 12) | 224) + String.fromCharCode(((c >> 6) & 63) | 128) + String.fromCharCode((c & 63) | 128);
+            enc = String.fromCharCode((c1 >> 12) | 224) + String.fromCharCode(((c1 >> 6) & 63) | 128) + String.fromCharCode((c1 & 63) | 128);
         }
         if (enc != null) {
             if (end > start) {

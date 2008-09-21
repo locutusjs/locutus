@@ -3,6 +3,7 @@ function utf8_decode ( str_data ) {
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // +      input by: Aman Gupta
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Norman "zEh" Fuchs 
     // *     example 1: utf8_decode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
