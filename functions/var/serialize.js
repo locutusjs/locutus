@@ -1,9 +1,9 @@
 function serialize( mixed_value ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Arpad Ray (mailto:arpad@php.net)
+    // +   improved by: Dino
     // %          note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
-    // +   improved by: Dino
     // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
     // *     example 2: serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'});
