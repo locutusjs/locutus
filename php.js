@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.43
+ * This is version: 1.44
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -20,10 +20,10 @@
  * Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David,
  * David James, DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), FremyCompany, Gabriel Paderni, Howard
- * Yeend, J A R, Jack, Kirk Strobeck, Leslie Hoare, Lincoln Ramsay, Luke
+ * Yeend, J A R, Jack, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Luke
  * Godfrey, MeEtc (http://yass.meetcweb.com), Mick@el, Nate, Nathan, Nick
  * Callen, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
- * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pyerre,
+ * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pul, Pyerre,
  * Sakimori, Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve
  * Clay, Steve Hilder, Steven Levithan (http://blog.stevenlevithan.com),
  * T.Wild, T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
@@ -874,7 +874,7 @@ function end ( array ) {
     // Set the internal pointer of an array to its last element
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_end/
-    // +       version: 809.522
+    // +       version: 809.1713
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Legaev Andrey
     // +    revised by: J A R
@@ -894,7 +894,6 @@ function end ( array ) {
         last_elm = array[(array.length-1)];
     } else {
         for (key in array){
-            print(key);
             last_elm = array[key];
         }
     }
@@ -3701,45 +3700,69 @@ function strip_tags(str, allowed_tags) {
     // Strip HTML and PHP tags from a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-    // +       version: 809.522
+    // +       version: 809.1713
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Luke Godfrey
+    // +      input by: Pul
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
-    // *     example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>');
-    // *     returns 2: 'Kevin van Zonneveld'
+    // *     example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>');
+    // *     returns 2: '<p>Kevin van Zonneveld</p>'
+    // *     example 3: strip_tags("<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>", "<a>");
+    // *     returns 3: '<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>'
     
-    var key = '', tag = '';
+    var key = '', tag = '', allowed = false;
     var matches = allowed_array = [];
     var allowed_keys = {};
     
+    var replacer = function(search, replace, str) {
+        var tmp_arr = [];
+        tmp_arr = str.split(search);
+        return tmp_arr.join(replace);
+    };
+    
     // Build allowes tags associative array
     if (allowed_tags) {
-        allowed_tags  = allowed_tags.replace(/[\<\> ]+/g, '');;
+        allowed_tags  = allowed_tags.replace(/[^a-zA-Z,]+/g, '');;
         allowed_array = allowed_tags.split(',');
-        
-        for (key in allowed_array) {
-            tag = allowed_array[key];
-            allowed_keys['<' + tag + '>']   = true;
-            allowed_keys['<' + tag + ' />'] = true;
-            allowed_keys['</' + tag + '>']  = true;
-        }
     }
     
     // Match tags
     matches = str.match(/(<\/?[^>]+>)/gi);
     
-    // Is tag not in allowed list? Remove from str! 
+    // Go through all HTML tags 
     for (key in matches) {
-        // IE7 Hack
-        if (!isNaN(key)) {
-            tag = matches[key].toString();
-            if (!allowed_keys[tag]) {
-                // Looks like this is
-                // reg = RegExp(tag, 'g');
-                // str = str.replace(reg, '');
-                str = str.replace(tag, "");
+        if (isNaN(key)) {
+            // IE7 Hack
+            continue;
+        }
+        
+        // Save HTML tag
+        html = matches[key].toString();
+        
+        // Is tag not in allowed list? Remove from str!
+        allowed = false;
+        
+        // Go through all allowed tags
+        for (k in allowed_array) {
+            // Init    
+            allowed_tag = allowed_array[k];
+            i = -1;
+            
+            if (i != 0) { i = html.toLowerCase().indexOf('<'+allowed_tag+'>');}
+            if (i != 0) { i = html.toLowerCase().indexOf('<'+allowed_tag+' ');}
+            if (i != 0) { i = html.toLowerCase().indexOf('</'+allowed_tag)   ;}
+            
+            // Determine
+            if (i == 0) {
+                allowed = true;
+                break;
             }
+        }
+        
+        if (!allowed) {
+            str = replacer(html, "", str); // Custom replace. No regexing
         }
     }
     
@@ -4430,7 +4453,7 @@ function urldecode( str ) {
     // Decodes URL-encoded string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urldecode/
-    // +       version: 809.522
+    // +       version: 809.1713
     // +   original by: Philip Peterson
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: AJ
@@ -4446,14 +4469,19 @@ function urldecode( str ) {
     var histogram = {}, histogram_r = {}, code = 0, str_tmp = [];
     var ret = str.toString();
     
+    var replacer = function(search, replace, str) {
+        var tmp_arr = [];
+        tmp_arr = str.split(search);
+        return tmp_arr.join(replace);
+    };
+    
     // The histogram is identical to the one in urlencode.
     histogram['!']   = '%21';
     histogram['%20'] = '+';
-
+    
     for (replace in histogram) {
         search = histogram[replace]; // Switch order when decoding
-        tmp_arr = ret.split(search); // Custom replace
-        ret = tmp_arr.join(replace);   
+        ret = replacer(search, replace, ret) // Custom replace. No regexing   
     }
     
     // End with decodeURIComponent, which most resembles PHP's encoding functions
@@ -4467,7 +4495,7 @@ function urlencode( str ) {
     // URL-encodes string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urlencode/
-    // +       version: 809.522
+    // +       version: 809.1713
     // +   original by: Philip Peterson
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: AJ
@@ -4483,6 +4511,12 @@ function urlencode( str ) {
     var histogram = {}, histogram_r = {}, code = 0, tmp_arr = [];
     var ret = str.toString();
     
+    var replacer = function(search, replace, str) {
+        var tmp_arr = [];
+        tmp_arr = str.split(search);
+        return tmp_arr.join(replace);
+    };
+    
     // The histogram is identical to the one in urldecode.
     histogram['!']   = '%21';
     histogram['%20'] = '+';
@@ -4492,8 +4526,7 @@ function urlencode( str ) {
     
     for (search in histogram) {
         replace = histogram[search];
-        tmp_arr = ret.split(search); // Custom replace
-        ret = tmp_arr.join(replace); 
+        ret = replacer(search, replace, ret) // Custom replace. No regexing
     }
     
     // Uppercase for full PHP compatibility
@@ -4509,18 +4542,17 @@ function empty( mixed_var ) {
     // Determine whether a variable is empty
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_empty/
-    // +       version: 809.522
+    // +       version: 809.1713
     // +   original by: Philippe Baumann
     // +      input by: Onno Marsman
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: LH
     // *     example 1: empty(null);
     // *     returns 1: true
     // *     example 2: empty(undefined);
     // *     returns 2: true
     // *     example 3: empty([]);
     // *     returns 3: true
-    
-    print(typeof mixed_var);
     
     if (mixed_var === "" 
         || mixed_var === 0   
