@@ -1,19 +1,19 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.46
+ * This is version: 1.47
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
- * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
- * Raoni Soares Silva (http://www.jsfromhell.com), Legaev Andrey, Ates Goral
- * (http://magnetiq.com), Philip Peterson, Martijn Wieringa, Onno Marsman,
- * Webtoolkit.info (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
- * (http://www.jsfromhell.com), Ash Searle (http://hexmen.com/blog/),
- * Erkekjetter, GeekFG (http://geekfg.blogspot.com), Johnny Mast
- * (http://www.phpvrouwen.nl), d3x, marrtins, AJ, Alfonso Jimenez
- * (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
- * (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Thunder.m, Tyler
- * Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), Alex,
+ * Portions copyright Onno Marsman, Michael White (http://crestidg.com),
+ * _argos, Jonas Raoni Soares Silva (http://www.jsfromhell.com), Legaev
+ * Andrey, Ates Goral (http://magnetiq.com), Philip Peterson, Martijn
+ * Wieringa, Webtoolkit.info (http://www.webtoolkit.info/), Carlos R. L.
+ * Rodrigues (http://www.jsfromhell.com), Ash Searle
+ * (http://hexmen.com/blog/), Erkekjetter, GeekFG
+ * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
+ * marrtins, AJ, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman Gupta,
+ * Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Thunder.m,
+ * Tyler Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), Alex,
  * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
  * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Arno, Bayron Guevara, Ben Bryan,
@@ -1840,12 +1840,172 @@ function abs( mixed_number )  {
     return Math.abs(mixed_number) || 0;
 }// }}}
 
+// {{{ acos
+function acos(arg) {
+    // acos &mdash; Arc cosine
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_acos/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: acos(0.3);
+    // *     returns 1: 1.2661036727794992
+
+    return Math.acos(arg);
+}// }}}
+
+// {{{ acosh
+function acosh(arg) {
+    // acosh &mdash; Inverse hyperbolic cosine
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_acosh/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: acosh(8723321.4);
+    // *     returns 1: 16.674657798418625
+
+    return Math.log(arg + Math.sqrt(arg*arg-1));
+}// }}}
+
+// {{{ asin
+function asin(arg) {
+    // asin &mdash; Arc sine
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_asin/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: asin(0.3);
+    // *     returns 1: 0.3046926540153975
+
+    return Math.asin(arg);
+}// }}}
+
+// {{{ asinh
+function asinh(arg) {
+    // asinh &mdash; Inverse hyperbolic sine
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_asinh/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: asinh(8723321.4);
+    // *     returns 1: 16.67465779841863
+
+    return Math.log(arg + Math.sqrt(arg*arg+1));
+}// }}}
+
+// {{{ atan
+function atan(arg) {
+    // atan &mdash; Arc tangent
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_atan/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: atan(8723321.4);
+    // *     returns 1: 1.5707962121596615
+
+    return Math.atan(arg);
+}// }}}
+
+// {{{ atanh
+function atanh(arg) {
+    // atanh &mdash; Inverse hyperbolic tangent
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_atanh/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: atanh(0.3);
+    // *     returns 1: 0.3095196042031118
+
+    return 0.5 * Math.log((1+arg)/(1-arg));
+}// }}}
+
+// {{{ ceil
+function ceil(value) {
+    // ceil &mdash; Round fractions up
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ceil/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: ceil(8723321.4);
+    // *     returns 1: 8723322
+
+    return Math.ceil(value);
+}// }}}
+
+// {{{ cos
+function cos(arg) {
+    // cos &mdash; Cosine
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_cos/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: cos(8723321.4);
+    // *     returns 1: -0.18127180117607017
+
+    return Math.cos(arg);
+}// }}}
+
+// {{{ cosh
+function cosh(arg) {
+    // cosh &mdash; Hyperbolic cosine
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_cosh/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: cosh(-0.18127180117607017);
+    // *     returns 1: 1.0164747716114113
+
+    return (Math.exp(arg) + Math.exp(-arg))/2;
+}// }}}
+
+// {{{ exp
+function exp(arg) {
+    // exp &mdash; Calculates the exponent of e
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_exp/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: exp(0.3);
+    // *     returns 1: 1.3498588075760032
+
+    return Math.exp(arg);
+}// }}}
+
+// {{{ floor
+function floor(value) {
+    // floor &mdash; Round fractions down
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_floor/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: floor(8723321.4);
+    // *     returns 1: 8723321
+    
+    return Math.floor(value);
+}// }}}
+
+// {{{ log
+function log(arg, base) {
+    // log &mdash; Natural logarithm
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_log/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: log(8723321.4, 7);
+    // *     returns 1: 8.212871815082147
+
+    if (base === undefined) {
+        return Math.log(arg);
+    } else {
+        return Math.log(arg)/Math.log(base);
+    }
+}// }}}
+
 // {{{ max
 function max() {
     // max &mdash; Find highest value
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_max/
-    // +       version: 809.1316
+    // +       version: 809.2411
     // +   original by: Onno Marsman
     // +    revised by: Onno Marsman
     // %          note: Long code cause we're aiming for maximum PHP compatibility
@@ -1862,34 +2022,36 @@ function max() {
     // *     example 6: max([2, 4, 8], [2, 5, 7]);
     // *     returns 6: [2, 5, 7]
 
-    var ar, retVal, i=0;
+    var ar, retVal, i = 0, n = 0;
 
     var _obj2Array = function(obj) {
-       if (obj instanceof Array) {
-           return obj;
-       } else {
-           var ar = [];
-           for (var i in obj) {
+        if (obj instanceof Array) {
+            return obj;
+        } else {
+            var ar = [];
+            for (var i in obj) {
                ar.push(obj[i]);
-           }
-           return ar;
-       }
+            }
+            return ar;
+        }
     }
     
     var _compare = function(current, next) {
-       if (current===next) {
-           return 0;
-       } else if (typeof current == 'object') {
-           if (typeof next == 'object') {
+        var i = 0, n = 0, tmp = 0;
+        
+        if (current === next) {
+            return 0;
+        } else if (typeof current == 'object') {
+            if (typeof next == 'object') {
                current = _obj2Array(current);
-               next = _obj2Array(next);
-               if (next.length>current.length) {
+               next    = _obj2Array(next);
+               if (next.length > current.length) {
                    return 1;
-               } else if (next.length<current.length) {
+               } else if (next.length < current.length) {
                    return -1;
                } else {
                    var tmp;
-                   for (var i=0, n=current.length; i<n; ++i) {
+                   for (var i = 0, n = current.length; i<n; ++i) {
                        tmp = _compare(current[i], next[i]);
                        if (tmp==1) {
                            return 1;
@@ -1899,52 +2061,52 @@ function max() {
                    }
                    return 0;
                }
-           } else {
+            } else {
                return -1;
-           }
-       } else if (typeof next == 'object') {
-           return 1;
-       } else if (isNaN(next) && !isNaN(current)) {
-           if (current==0) {
+            }
+        } else if (typeof next == 'object') {
+            return 1;
+        } else if (isNaN(next) && !isNaN(current)) {
+            if (current==0) {
                return 0;
-           } else {
+            } else {
                return (current<0 ? 1 : -1);
-           }
-       } else if (isNaN(current) && !isNaN(next)) {
-           if (next==0) {
+            }
+        } else if (isNaN(current) && !isNaN(next)) {
+            if (next==0) {
                return 0;
-           } else {
+            } else {
                return (next>0 ? 1 : -1);
-           }
-       } else {
-           if (next==current) {
+            }
+        } else {
+            if (next==current) {
                return 0;
-           } else {
+            } else {
                return (next>current ? 1 : -1);
-           }
-       }
+            }
+        }
     }
     
     if (arguments.length==0) {
-       throw new Error('At least one value should be passed to max()');
+        throw new Error('At least one value should be passed to max()');
     } else if (arguments.length==1) {
-       if (typeof arguments[0]=='object') {
-           ar = _obj2Array(arguments[0]);
-       } else {
-           throw new Error('Wrong parameter count for max()');
-       }
-       if (ar.length==0) {
-           throw new Error('Array must contain at least one element for max()');
-       }
+        if (typeof arguments[0]=='object') {
+            ar = _obj2Array(arguments[0]);
+        } else {
+            throw new Error('Wrong parameter count for max()');
+        }
+        if (ar.length==0) {
+            throw new Error('Array must contain at least one element for max()');
+        }
     } else {
-       ar = arguments;
+        ar = arguments;
     }
     
     retVal = ar[0];
     for (i=1, n=ar.length; i<n; ++i) {
-       if (_compare(retVal, ar[i])==1) {
-           retVal = ar[i];
-       }
+        if (_compare(retVal, ar[i])==1) {
+            retVal = ar[i];
+        }
     }
     
     return retVal;
@@ -1955,7 +2117,7 @@ function min() {
     // min &mdash; Find lowest value
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_min/
-    // +       version: 809.1316
+    // +       version: 809.2411
     // +   original by: Onno Marsman
     // +    revised by: Onno Marsman
     // %          note: Long code cause we're aiming for maximum PHP compatibility
@@ -1972,7 +2134,7 @@ function min() {
     // *     example 6: min([2, 4, 8], [2, 5, 7]);
     // *     returns 6: [2, 4, 8]
     
-    var ar, retVal, i=0;
+    var ar, retVal, i = 0, n = 0;
 
     function _obj2Array(obj) {
        if (obj instanceof Array) {
@@ -1987,21 +2149,23 @@ function min() {
     } //function _obj2Array
     
     function _compare(current, next) {
-       if (current===next) {
+        var i = 0, n = 0, tmp = 0;
+        
+        if (current === next) {
            return 0;
-       } else if (typeof current == 'object') {
-           if (typeof next == 'object') {
+        } else if (typeof current == 'object') {
+            if (typeof next == 'object') {
                current = _obj2Array(current);
-               next = _obj2Array(next);
-               if (next.length>current.length) {
+               next    = _obj2Array(next);
+               if (next.length > current.length) {
                    return 1;
-               } else if (next.length<current.length) {
+               } else if (next.length < current.length) {
                    return -1;
                } else {
                    var tmp;
-                   for (var i=0, n=current.length; i<n; ++i) {
+                   for (i=0, n=current.length; i<n; ++i) {
                        tmp = _compare(current[i], next[i]);
-                       if (tmp==1) {
+                       if (tmp == 1) {
                            return 1;
                        } else if (tmp==-1) {
                            return -1;
@@ -2009,55 +2173,81 @@ function min() {
                    }
                    return 0;
                }
-           } else {
+            } else {
                return -1;
-           }
-       } else if (typeof next == 'object') {
-           return 1;
-       } else if (isNaN(next) && !isNaN(current)) {
-           if (current==0) {
+            }
+        } else if (typeof next == 'object') {
+            return 1;
+        } else if (isNaN(next) && !isNaN(current)) {
+            if (current == 0) {
                return 0;
-           } else {
+            } else {
                return (current<0 ? 1 : -1);
-           }
-       } else if (isNaN(current) && !isNaN(next)) {
-           if (next==0) {
+            }
+        } else if (isNaN(current) && !isNaN(next)) {
+            if (next==0) {
                return 0;
-           } else {
+            } else {
                return (next>0 ? 1 : -1);
-           }
-       } else {
-           if (next==current) {
+            }
+        } else {
+            if (next==current) {
                return 0;
-           } else {
+            } else {
                return (next>current ? 1 : -1);
-           }
-       }
+            }
+        }
     } //function _compare
     
-    if (arguments.length==0) {
-       throw new Error('At least one value should be passed to min()');
+    if (arguments.length == 0) {
+        throw new Error('At least one value should be passed to min()');
     } else if (arguments.length==1) {
-       if (typeof arguments[0]=='object') {
-           ar = _obj2Array(arguments[0]);
-       } else {
-           throw new Error('Wrong parameter count for min()');
-       }
-       if (ar.length==0) {
-           throw new Error('Array must contain at least one element for min()');
-       }
+        if (typeof arguments[0]=='object') {
+            ar = _obj2Array(arguments[0]);
+        } else {
+            throw new Error('Wrong parameter count for min()');
+        }
+        if (ar.length==0) {
+            throw new Error('Array must contain at least one element for min()');
+        }
     } else {
-       ar = arguments;
+        ar = arguments;
     }
     
     retVal = ar[0];
     for (i=1, n=ar.length; i<n; ++i) {
-       if (_compare(retVal, ar[i])==-1) {
-           retVal = ar[i];
-       }
+        if (_compare(retVal, ar[i])==-1) {
+            retVal = ar[i];
+        }
     }
     
     return retVal;
+}// }}}
+
+// {{{ pi
+function pi() {
+    // pi &mdash; Get value of pi
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_pi/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: pi(8723321.4);
+    // *     returns 1: 3.141592653589793
+
+    return Math.PI;
+}// }}}
+
+// {{{ pow
+function pow(base, exp) {
+    // pow &mdash; Exponential expression
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_pow/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: pow(8723321.4, 7);
+    // *     returns 1: 3.843909168077899e+48
+
+    return Math.pow(base, exp);
 }// }}}
 
 // {{{ rand
@@ -2082,15 +2272,80 @@ function round ( val, precision ) {
     // Rounds a float
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_round/
-    // +       version: 809.522
+    // +       version: 809.2411
     // +   original by: Philip Peterson
+    // +    revised by: Onno Marsman
     // *     example 1: round(1241757, -3);
     // *     returns 1: 1242000
     // *     example 2: round(3.6);
     // *     returns 2: 4
  
-    var precision = (round.arguments.length > 1) ? round.arguments[1] : 0;
-    return Math.round(val * Math.pow(10, precision))/Math.pow(10, precision);
+    return parseFloat(parseFloat(val).toFixed(precision));
+}// }}}
+
+// {{{ sin
+function sin(arg) {
+    // sin &mdash; Sine
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sin/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: sin(8723321.4);
+    // *     returns 1: -0.9834330348825909
+
+    return Math.sin(arg);
+}// }}}
+
+// {{{ sinh
+function sinh(arg) {
+    // sinh &mdash; Hyperbolic sine
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sinh/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: sinh(-0.9834330348825909);
+    // *     returns 1: -1.1497971402636502
+
+    return (Math.exp(arg) - Math.exp(-arg))/2;
+}// }}}
+
+// {{{ sqrt
+function sqrt(arg) {
+    // sqrt &mdash; Square root
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sqrt/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: sqrt(8723321.4);
+    // *     returns 1: 2953.5269424875746
+    
+    return Math.sqrt(arg);
+}// }}}
+
+// {{{ tan
+function tan(arg) {
+    // tan &mdash; Tangent
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_tan/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: tan(8723321.4);
+    // *     returns 1: 5.4251848798444815
+
+    return Math.tan(arg);
+}// }}}
+
+// {{{ tanh
+function tanh(arg) {
+    // tanh &mdash; Hyperbolic tangent
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_tanh/
+    // +       version: 809.2411
+    // +   original by: Onno Marsman
+    // *     example 1: tanh(5.4251848798444815);
+    // *     returns 1: 0.9999612058841574
+
+    return (Math.exp(arg) - Math.exp(-arg)) / (Math.exp(arg) + Math.exp(-arg));
 }// }}}
 
 // {{{ defined
