@@ -1,7 +1,7 @@
 function array_count_values( array ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com)
-    // + namespaced by: Michael White (http://crestidg.com)
+    // + namespaced by: Michael White (http://getsprink.com)
     // +      input by: sankai
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_count_values([ 3, 5, 3, "foo", "bar", "foo" ]);

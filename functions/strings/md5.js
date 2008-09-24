@@ -1,7 +1,7 @@
 function md5 ( str ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
-    // + namespaced by: Michael White (http://crestidg.com)
+    // + namespaced by: Michael White (http://getsprink.com)
     // -    depends on: utf8_encode
     // *     example 1: md5('Kevin van Zonneveld');
     // *     returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'

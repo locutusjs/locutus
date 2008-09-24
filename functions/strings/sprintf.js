@@ -1,7 +1,7 @@
 function sprintf( ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ash Searle (http://hexmen.com/blog/)
-    // + namespaced by: Michael White (http://crestidg.com)
+    // + namespaced by: Michael White (http://getsprink.com)
     // *     example 1: sprintf("%01.2f", 123.1);
     // *     returns 1: 123.10
 

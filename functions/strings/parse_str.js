@@ -1,7 +1,7 @@
 function parse_str(str, array){
     // http://kevin.vanzonneveld.net
     // +   original by: Cagri Ekin
-    // +   improved by: Michael White (http://crestidg.com)
+    // +   improved by: Michael White (http://getsprink.com)
     // *     example 1: parse_str('first=foo&second=bar');
     // *     returns 1: { first: 'foo', second: 'bar' }
     // *     example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.');

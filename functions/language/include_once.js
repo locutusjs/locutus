@@ -2,7 +2,7 @@ function include_once( filename ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Legaev Andrey
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Michael White (http://crestidg.com)
+    // +   improved by: Michael White (http://getsprink.com)
     // -    depends on: include
     // *     example 1: include_once('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: true

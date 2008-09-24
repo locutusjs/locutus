@@ -2,7 +2,7 @@ function http_build_query( formdata, numeric_prefix, arg_separator ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Legaev Andrey
-    // +   improved by: Michael White (http://crestidg.com)
+    // +   improved by: Michael White (http://getsprink.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: urlencode
     // *     example 1: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;');

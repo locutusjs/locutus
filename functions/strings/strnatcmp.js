@@ -1,7 +1,7 @@
 function strnatcmp ( f_string1, f_string2, f_version ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Martijn Wieringa
-    // + namespaced by: Michael White (http://crestidg.com)
+    // + namespaced by: Michael White (http://getsprink.com)
     // -    depends on: strcmp
     // %          note: Added f_version argument against code guidelines, because it's so neat
     // *     example 1: strnatcmp('Price 12.9', 'Price 12.15');

@@ -1,7 +1,7 @@
 function str_pad( input, pad_length, pad_string, pad_type ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // + namespaced by: Michael White (http://crestidg.com)
+    // + namespaced by: Michael White (http://getsprink.com)
     // *     example 1: str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT');
     // *     returns 1: '-=-=-=-=-=-Kevin van Zonneveld'
     // *     example 2: str_pad('Kevin van Zonneveld', 30, '-', 'STR_PAD_BOTH');

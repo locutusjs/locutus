@@ -1,6 +1,6 @@
 function require( filename ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Michael White (http://crestidg.com)
+    // +   original by: Michael White (http://getsprink.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
     // -    depends on: file_get_contents

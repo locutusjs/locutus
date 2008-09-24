@@ -1,7 +1,7 @@
 function sha1 ( str ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
-    // + namespaced by: Michael White (http://crestidg.com)
+    // + namespaced by: Michael White (http://getsprink.com)
     // -    depends on: utf8_encode
     // *     example 1: sha1('Kevin van Zonneveld');
     // *     returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'

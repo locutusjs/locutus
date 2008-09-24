@@ -1,6 +1,6 @@
 function print_r( array, return_val ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Michael White (http://crestidg.com)
+    // +   original by: Michael White (http://getsprink.com)
     // +   improved by: Ben Bryan
     // *     example 1: print_r(1, true);
     // *     returns 1: 1

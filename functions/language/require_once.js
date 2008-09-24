@@ -1,6 +1,6 @@
 function require_once(filename) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Michael White (http://crestidg.com)
+    // +   original by: Michael White (http://getsprink.com)
     // -    depends on: require
     // *     example 1: require_once('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: true

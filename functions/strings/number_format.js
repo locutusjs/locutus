@@ -2,7 +2,7 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +     bugfix by: Michael White (http://crestidg.com)
+    // +     bugfix by: Michael White (http://getsprink.com)
     // +     bugfix by: Benjamin Lupton
     // +     bugfix by: Allan Jensen (http://www.winternet.no)
     // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
