@@ -1,6 +1,7 @@
 function strncasecmp (str1, str2, len) {
     // http://kevin.vanzonneveld.net
     // +   original by: Saulo Vallory
+    // +      input by: Nate
     // %          note: Returns < 0 if str1 is less than str2 ; > 0 if str1 is greater than str2 , and 0 if they are equal.
     // *     example 1: strncasecmp('Price 12.9', 'Price 12.15', 2);
     // *     returns 1: 0
@@ -25,13 +26,13 @@ function strncasecmp (str1, str2, len) {
             }
         } else {
             len = str2.length;
-            // str1 is lengthier than str2
+            // str1 is longer than str2
             if(str1.substr(0, str2.length) == str2) {
                 return str1.length - str2.length; // return the difference of chars
             }
         }
     } else {
-        // avoids trying to get a char that does not exists
+        // Avoids trying to get a char that does not exist 
         len = str1.length;
     }
 
