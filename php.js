@@ -59,7 +59,7 @@
 
 // {{{ array
 function array( ) {
-    // #!#!#!#!# array::$descr1 does not contain valid 'array' at line 258
+    // #!#!#!#!# array::$descr1 does not contain valid 'array' at line 260
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array/
     // +       version: 809.522
@@ -1842,7 +1842,7 @@ function abs( mixed_number )  {
 
 // {{{ acos
 function acos(arg) {
-    // acos &mdash; Arc cosine
+    // Arc cosine
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_acos/
     // +       version: 809.2411
@@ -1855,7 +1855,7 @@ function acos(arg) {
 
 // {{{ acosh
 function acosh(arg) {
-    // acosh &mdash; Inverse hyperbolic cosine
+    // Inverse hyperbolic cosine
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_acosh/
     // +       version: 809.2411
@@ -1868,7 +1868,7 @@ function acosh(arg) {
 
 // {{{ asin
 function asin(arg) {
-    // asin &mdash; Arc sine
+    // Arc sine
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_asin/
     // +       version: 809.2411
@@ -1881,7 +1881,7 @@ function asin(arg) {
 
 // {{{ asinh
 function asinh(arg) {
-    // asinh &mdash; Inverse hyperbolic sine
+    // Inverse hyperbolic sine
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_asinh/
     // +       version: 809.2411
@@ -1894,7 +1894,7 @@ function asinh(arg) {
 
 // {{{ atan
 function atan(arg) {
-    // atan &mdash; Arc tangent
+    // Arc tangent
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_atan/
     // +       version: 809.2411
@@ -1907,7 +1907,7 @@ function atan(arg) {
 
 // {{{ atanh
 function atanh(arg) {
-    // atanh &mdash; Inverse hyperbolic tangent
+    // Inverse hyperbolic tangent
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_atanh/
     // +       version: 809.2411
@@ -1920,7 +1920,7 @@ function atanh(arg) {
 
 // {{{ ceil
 function ceil(value) {
-    // ceil &mdash; Round fractions up
+    // Round fractions up
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ceil/
     // +       version: 809.2411
@@ -1933,7 +1933,7 @@ function ceil(value) {
 
 // {{{ cos
 function cos(arg) {
-    // cos &mdash; Cosine
+    // Cosine
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_cos/
     // +       version: 809.2411
@@ -1946,7 +1946,7 @@ function cos(arg) {
 
 // {{{ cosh
 function cosh(arg) {
-    // cosh &mdash; Hyperbolic cosine
+    // Hyperbolic cosine
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_cosh/
     // +       version: 809.2411
@@ -1959,7 +1959,7 @@ function cosh(arg) {
 
 // {{{ exp
 function exp(arg) {
-    // exp &mdash; Calculates the exponent of e
+    // Calculates the exponent of e
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_exp/
     // +       version: 809.2411
@@ -1972,7 +1972,7 @@ function exp(arg) {
 
 // {{{ floor
 function floor(value) {
-    // floor &mdash; Round fractions down
+    // Round fractions down
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_floor/
     // +       version: 809.2411
@@ -1985,7 +1985,7 @@ function floor(value) {
 
 // {{{ log
 function log(arg, base) {
-    // log &mdash; Natural logarithm
+    // Natural logarithm
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_log/
     // +       version: 809.2411
@@ -2002,7 +2002,7 @@ function log(arg, base) {
 
 // {{{ max
 function max() {
-    // max &mdash; Find highest value
+    // Find highest value
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_max/
     // +       version: 809.2411
@@ -2114,7 +2114,7 @@ function max() {
 
 // {{{ min
 function min() {
-    // min &mdash; Find lowest value
+    // Find lowest value
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_min/
     // +       version: 809.2411
@@ -2226,7 +2226,7 @@ function min() {
 
 // {{{ pi
 function pi() {
-    // pi &mdash; Get value of pi
+    // Get value of pi
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_pi/
     // +       version: 809.2411
@@ -2239,7 +2239,7 @@ function pi() {
 
 // {{{ pow
 function pow(base, exp) {
-    // pow &mdash; Exponential expression
+    // Exponential expression
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_pow/
     // +       version: 809.2411
@@ -2285,7 +2285,7 @@ function round ( val, precision ) {
 
 // {{{ sin
 function sin(arg) {
-    // sin &mdash; Sine
+    // Sine
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sin/
     // +       version: 809.2411
@@ -2298,7 +2298,7 @@ function sin(arg) {
 
 // {{{ sinh
 function sinh(arg) {
-    // sinh &mdash; Hyperbolic sine
+    // Hyperbolic sine
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sinh/
     // +       version: 809.2411
@@ -2311,7 +2311,7 @@ function sinh(arg) {
 
 // {{{ sqrt
 function sqrt(arg) {
-    // sqrt &mdash; Square root
+    // Square root
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sqrt/
     // +       version: 809.2411
@@ -2324,7 +2324,7 @@ function sqrt(arg) {
 
 // {{{ tan
 function tan(arg) {
-    // tan &mdash; Tangent
+    // Tangent
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_tan/
     // +       version: 809.2411
@@ -2337,7 +2337,7 @@ function tan(arg) {
 
 // {{{ tanh
 function tanh(arg) {
-    // tanh &mdash; Hyperbolic tangent
+    // Hyperbolic tangent
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_tanh/
     // +       version: 809.2411
@@ -4240,7 +4240,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
 
 // {{{ strncasecmp
 function strncasecmp (str1, str2, len) {
-    // insensitive string comparison of the first n characters
+    // Binary safe case-insensitive string comparison of the first n characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strncasecmp/
     // +       version: 809.2122
