@@ -1,10 +1,10 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.47
+ * This is version: 1.48
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
- * Portions copyright Onno Marsman, Michael White (http://crestidg.com),
+ * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
  * _argos, Jonas Raoni Soares Silva (http://www.jsfromhell.com), Legaev
  * Andrey, Ates Goral (http://magnetiq.com), Philip Peterson, Martijn
  * Wieringa, Webtoolkit.info (http://www.webtoolkit.info/), Carlos R. L.
@@ -21,10 +21,11 @@
  * David James, Dino, DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), FremyCompany, Gabriel Paderni, Howard
  * Yeend, J A R, Jack, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Luke
- * Godfrey, MeEtc (http://yass.meetcweb.com), Mick@el, Nate, Nathan, Nick
- * Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com),
- * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann,
- * Pul, Pyerre, Sakimori, Sanjoy Roy, Saulo Vallory, Simon Willison
+ * Godfrey, MeEtc (http://yass.meetcweb.com), Michael White
+ * (http://crestidg.com), Mick@el, Nate, Nathan, Nick Callen, Norman "zEh"
+ * Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
+ * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pul, Pyerre,
+ * Sakimori, Sanjoy Roy, Saulo Vallory, Simon Willison
  * (http://simonwillison.net), Steve Clay, Steve Hilder, Steven Levithan
  * (http://blog.stevenlevithan.com), T.Wild, T0bsn, Thiago Mata
  * (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
@@ -182,9 +183,9 @@
             // Counts all the values of an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_count_values/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: Ates Goral (http://magnetiq.com)
-            // + namespaced by: Michael White (http://crestidg.com)
+            // + namespaced by: Michael White (http://getsprink.com)
             // +      input by: sankai
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_count_values([ 3, 5, 3, "foo", "bar", "foo" ]);
@@ -1699,11 +1700,11 @@
             // The include() statement includes and evaluates the specified file.
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_include/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: mdsjack (http://www.mdsjack.bo.it)
             // +   improved by: Legaev Andrey
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-            // +   improved by: Michael White (http://crestidg.com)
+            // +   improved by: Michael White (http://getsprink.com)
             // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
             // %        note 2: The included file does not come available until a second script block, so typically use this in the header.
             // *     example 1: $P.include('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
@@ -1739,10 +1740,10 @@
             // will be included just once.
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_include_once/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: Legaev Andrey
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-            // +   improved by: Michael White (http://crestidg.com)
+            // +   improved by: Michael White (http://getsprink.com)
             // -    depends on: include
             // *     example 1: $P.include_once('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
             // *     returns 1: true
@@ -1766,8 +1767,8 @@
             // The require() statement includes and evaluates the specific file.
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_require/
-            // +       version: 809.522
-            // +   original by: Michael White (http://crestidg.com)
+            // +       version: 809.2411
+            // +   original by: Michael White (http://getsprink.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
             // -    depends on: file_get_contents
@@ -1812,8 +1813,8 @@
             // require() for more information on how this statement works.
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_require_once/
-            // +       version: 809.522
-            // +   original by: Michael White (http://crestidg.com)
+            // +       version: 809.2411
+            // +   original by: Michael White (http://getsprink.com)
             // -    depends on: require
             // *     example 1: $P.require_once('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
             // *     returns 1: true
@@ -3081,9 +3082,9 @@
             // Calculate the md5 hash of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_md5/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
-            // + namespaced by: Michael White (http://crestidg.com)
+            // + namespaced by: Michael White (http://getsprink.com)
             // -    depends on: utf8_encode
             // *     example 1: $P.md5('Kevin van Zonneveld');
             // *     returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
@@ -3299,10 +3300,10 @@
             // Format a number with grouped thousands
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_number_format/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-            // +     bugfix by: Michael White (http://crestidg.com)
+            // +     bugfix by: Michael White (http://getsprink.com)
             // +     bugfix by: Benjamin Lupton
             // +     bugfix by: Allan Jensen (http://www.winternet.no)
             // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
@@ -3336,9 +3337,9 @@
             // Parses the string into variables
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_parse_str/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: Cagri Ekin
-            // +   improved by: Michael White (http://crestidg.com)
+            // +   improved by: Michael White (http://getsprink.com)
             // *     example 1: $P.parse_str('first=foo&second=bar');
             // *     returns 1: { first: 'foo', second: 'bar' }
             // *     example 2: $P.parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.');
@@ -3366,9 +3367,9 @@
             // Output a formatted string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_printf/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: Ash Searle (http://hexmen.com/blog/)
-            // +   improved by: Michael White (http://crestidg.com)
+            // +   improved by: Michael White (http://getsprink.com)
             // -    depends on: sprintf
             // *     example 1: $P.printf("%01.2f", 123.1);
             // *     returns 1: 6
@@ -3414,9 +3415,9 @@
             // Calculate the sha1 hash of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sha1/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
-            // + namespaced by: Michael White (http://crestidg.com)
+            // + namespaced by: Michael White (http://getsprink.com)
             // -    depends on: utf8_encode
             // *     example 1: $P.sha1('Kevin van Zonneveld');
             // *     returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
@@ -3610,9 +3611,9 @@
             // Return a formatted string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sprintf/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: Ash Searle (http://hexmen.com/blog/)
-            // + namespaced by: Michael White (http://crestidg.com)
+            // + namespaced by: Michael White (http://getsprink.com)
             // *     example 1: $P.sprintf("%01.2f", 123.1);
             // *     returns 1: 123.10
         
@@ -3790,9 +3791,9 @@
             // Pad a string to a certain length with another string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_pad/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-            // + namespaced by: Michael White (http://crestidg.com)
+            // + namespaced by: Michael White (http://getsprink.com)
             // *     example 1: $P.str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT');
             // *     returns 1: '-=-=-=-=-=-Kevin van Zonneveld'
             // *     example 2: $P.str_pad('Kevin van Zonneveld', 30, '-', 'STR_PAD_BOTH');
@@ -4135,9 +4136,9 @@
             // String comparisons using a &quot;natural order&quot; algorithm
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strnatcmp/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: Martijn Wieringa
-            // + namespaced by: Michael White (http://crestidg.com)
+            // + namespaced by: Michael White (http://getsprink.com)
             // -    depends on: strcmp
             // %          note: Added f_version argument against code guidelines, because it's so neat
             // *     example 1: $P.strnatcmp('Price 12.9', 'Price 12.15');
@@ -4156,50 +4157,50 @@
             }
         
             var __strnatcmp_split = function( f_string ) {
-                    var result = new Array();
-                    var buffer = '';
-                    var chr = '';
+                var result = new Array();
+                var buffer = '';
+                var chr = '';
         
-                    var text = true;
+                var text = true;
         
-                    for(var i = 0; i < f_string.length; i++){
-                        chr = f_string.substring(i, i + 1);
+                for(var i = 0; i < f_string.length; i++){
+                    chr = f_string.substring(i, i + 1);
         
-                        if(chr.match(/[0-9]/)){
-                            if(text){
-                                if(buffer.length > 0){
-                                    result[result.length] = buffer;
-                                    buffer = '';
-                                }
-        
-                                text = false;
+                    if(chr.match(/[0-9]/)){
+                        if(text){
+                            if(buffer.length > 0){
+                                result[result.length] = buffer;
+                                buffer = '';
                             }
-                            buffer += chr;
-                        } else if((text == false) && (chr == '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i + 2).match(/[0-9]/))) {
-                            result[result.length] = buffer;
-                            buffer = '';
-                        } else {
-                            if(text == false) {
-                                if(buffer.length > 0) {
-                                    result[result.length] = parseInt(buffer);
-                                    buffer = '';
-                                }
-                                text = true;
+        
+                            text = false;
+                        }
+                        buffer += chr;
+                    } else if((text == false) && (chr == '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i + 2).match(/[0-9]/))) {
+                        result[result.length] = buffer;
+                        buffer = '';
+                    } else {
+                        if(text == false) {
+                            if(buffer.length > 0) {
+                                result[result.length] = parseInt(buffer);
+                                buffer = '';
                             }
-                            buffer += chr;
+                            text = true;
                         }
+                        buffer += chr;
                     }
+                }
         
-                    if(buffer.length > 0) {
-                        if(text) {
-                            result[result.length] = buffer;
-                        } else {
-                            result[result.length] = parseInt(buffer);
-                        }
+                if(buffer.length > 0) {
+                    if(text) {
+                        result[result.length] = buffer;
+                    } else {
+                        result[result.length] = parseInt(buffer);
                     }
+                }
         
-                    return result;
-                };
+                return result;
+            };
         
             var array1 = __strnatcmp_split(f_string1);
             var array2 = __strnatcmp_split(f_string2);
@@ -4739,10 +4740,10 @@
             // Generate URL-encoded query string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_http_build_query/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Legaev Andrey
-            // +   improved by: Michael White (http://crestidg.com)
+            // +   improved by: Michael White (http://getsprink.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // -    depends on: urlencode
             // *     example 1: $P.http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;');
@@ -4891,7 +4892,7 @@
         
         // {{{ floatval
         floatval: function(mixed_var) {
-            // +   original by: Michael White (http://crestidg.com)
+            // +   original by: Michael White (http://getsprink.com)
             // %        note 1: The native parseFloat() method of JavaScript returns NaN when it encounters a string before an int or float value.
             // *     example 1: $P.floatval('150.03_page-section');
             // *     returns 1: 150.03
@@ -5014,10 +5015,10 @@
             // Finds whether a variable is an object
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_object/
-            // +       version: 809.522
+            // +       version: 809.2411
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Legaev Andrey
-            // +   improved by: Michael White (http://crestidg.com)
+            // +   improved by: Michael White (http://getsprink.com)
             // *     example 1: $P.is_object('23');
             // *     returns 1: false
             // *     example 2: $P.is_object({foo: 'bar'});
@@ -5082,8 +5083,8 @@
             // Prints human-readable information about a variable
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_print_r/
-            // +       version: 809.522
-            // +   original by: Michael White (http://crestidg.com)
+            // +       version: 809.2411
+            // +   original by: Michael White (http://getsprink.com)
             // +   improved by: Ben Bryan
             // *     example 1: $P.print_r(1, true);
             // *     returns 1: 1
