@@ -7,6 +7,16 @@ Class PHPJS_Library_Tester extends PHPJS_Library {
         return $this->_fleRealRhino;
     }
     
+    public function testCategory($categoryName, $breakOnError=false) {
+        $selectedFunctions = array();
+        foreach ($this->Functions as $funcName=>$Function) {
+            if ($categoryName == $Function->getCategoryName()) {
+                $selectedFunctions[$funcName] = &$Function;
+            }
+        }
+        return $this->_testSelection($selectedFunctions, $breakOnError);
+    }
+        
     public function testAll($breakOnError=false) {
         $selectedFunctions = array();
         $selectedFunctions = &$this->Functions;

@@ -13,21 +13,22 @@ $dir = realpath(dirname(__FILE__)."/..")."/functions";
 $PHPJS_Tester_Shell = new PHPJS_Library_Tester_Shell($dir);
 
 // Parse commands
-$argFunc = "all";
+$arg1 = "all";
 if (isset($argv[1])) {
-    $argFunc = $argv[1];
+    $arg1 = $argv[1];
 }
 
-$argMode = "run";
+$arg2 = "run";
 if (isset($argv[2])) {
-    $argMode = $argv[2];
+    $arg2 = $argv[2];
 }
 
-$funcName = $argFunc;
-$mode     = $argMode;
+$funcName = $arg1;
+$mode     = $arg2;
+$modes = array("all", "category", "from");
 
-// Load funcion if nescessary
-if ($funcName !== "all" && $funcName !== false && strlen($funcName) > 1) {
+// Load function if nescessary
+if (!in_array($funcName, $modes) && $funcName !== false && strlen($funcName) > 1) {
     if (strpos($funcName, "/") !== false || strpos($funcName, ".") !== false) {
         // Convert a path to plain function name
         $funcName = basename($funcName, ".js");
@@ -38,6 +39,9 @@ if ($funcName !== "all" && $funcName !== false && strlen($funcName) > 1) {
     } else {
         $Function = $PHPJS_Tester_Shell->getFunction($funcName);
     }        
+} else {
+    $mode     = $arg1;
+    $funcName = $arg2;
 }
 
 // Choose mode & execute
@@ -82,6 +86,9 @@ switch($mode) {
     case "from":
         $PHPJS_Tester_Shell->testFrom($funcName);
         break;
+    case "category":
+        $PHPJS_Tester_Shell->testCategory($funcName);
+        break;
     case "run":
         if ($funcName == "all") {
             $PHPJS_Tester_Shell->testAll();
@@ -90,7 +97,7 @@ switch($mode) {
         }
         break;
     default:
-        die("Unknown command: ".$argMode);
+        die("Unknown command: ".$mode);
         break;
 }
 ?>
