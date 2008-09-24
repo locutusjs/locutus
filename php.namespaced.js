@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.45
+ * This is version: 1.46
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Michael White (http://crestidg.com), _argos, Jonas
@@ -18,19 +18,20 @@
  * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Arno, Bayron Guevara, Ben Bryan,
  * Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David,
- * David James, DxGx, FGFEmperor, Felix Geisendoerfer
+ * David James, Dino, DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), FremyCompany, Gabriel Paderni, Howard
  * Yeend, J A R, Jack, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Luke
  * Godfrey, MeEtc (http://yass.meetcweb.com), Mick@el, Nate, Nathan, Nick
- * Callen, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
- * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pul, Pyerre,
- * Sakimori, Sanjoy Roy, Simon Willison (http://simonwillison.net), Steve
- * Clay, Steve Hilder, Steven Levithan (http://blog.stevenlevithan.com),
- * T.Wild, T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
- * (http://www.xorax.info), Yannoo, baris ozdil, booeyOH, djmix, dptr1988,
- * duncan, echo is bad, gabriel paderni, ger, gorthaur, jakes, john
- * (http://www.jd-tech.net), johnrembo, kenneth, loonquawl, metjay, nobbler,
- * penutbutterjelly, sankai, sowberry, stensi
+ * Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com),
+ * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann,
+ * Pul, Pyerre, Sakimori, Sanjoy Roy, Saulo Vallory, Simon Willison
+ * (http://simonwillison.net), Steve Clay, Steve Hilder, Steven Levithan
+ * (http://blog.stevenlevithan.com), T.Wild, T0bsn, Thiago Mata
+ * (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
+ * Yannoo, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel
+ * paderni, ger, gorthaur, jakes, john (http://www.jd-tech.net), johnrembo,
+ * kenneth, loonquawl, metjay, nobbler, penutbutterjelly, sankai, sowberry,
+ * stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -2212,7 +2213,7 @@
             // Quote string with slashes
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_addslashes/
-            // +       version: 809.522
+            // +       version: 809.2122
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Ates Goral (http://magnetiq.com)
             // +   improved by: marrtins
@@ -2221,7 +2222,7 @@
             // *     example 1: $P.addslashes("kevin's birthday");
             // *     returns 1: 'kevin\'s birthday'
          
-            return (str+'').replace(/([\\"'])/g, "\\$1").replace(/\0/g, "\\0");   
+            return (str+'').replace(/([\\"'])/g, "\\$1").replace(/\0/g, "\\0");
         },// }}}
         
         // {{{ bin2hex
@@ -3997,6 +3998,57 @@
             return result;
         },// }}}
         
+        // {{{ strncasecmp
+        strncasecmp: function (str1, str2, len) {
+            // insensitive string comparison of the first n characters
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strncasecmp/
+            // +       version: 809.2122
+            // +   original by: Saulo Vallory
+            // %          note: Returns < 0 if str1 is less than str2 ; > 0 if str1 is greater than str2 , and 0 if they are equal.
+            // *     example 1: $P.strncasecmp('Price 12.9', 'Price 12.15', 2);
+            // *     returns 1: 0
+            // *     example 2: $P.strncasecmp('Price 12.09', 'Price 12.15', 10);
+            // *     returns 2: -1
+            // *     example 3: $P.strncasecmp('Price 12.90', 'Price 12.15', 30);
+            // *     returns 3: 8
+            // *     example 4: $P.strncasecmp('Version 12.9', 'Version 12.15', 20);
+            // *     returns 4: 8
+            // *     example 5: $P.strncasecmp('Version 12.15', 'Version 12.9', 20);
+            // *     returns 5: -8
+        
+            var diff;
+            str1 = str1.toLowerCase().substr(0,len);
+            str2 = str2.toLowerCase().substr(0,len);
+        
+            if(str1.length !== str2.length) {
+                if(str1.length < str2.length) {
+                    len = str1.length;
+                    if(str2.substr(0, str1.length) == str1) {
+                        return str1.length - str2.length; // return the difference of chars
+                    }
+                } else {
+                    len = str2.length;
+                    // str1 is lengthier than str2
+                    if(str1.substr(0, str2.length) == str2) {
+                        return str1.length - str2.length; // return the difference of chars
+                    }
+                }
+            } else {
+                // avoids trying to get a char that does not exists
+                len = str1.length;
+            }
+        
+            for(diff = 0, i=0; i < len; i++) {
+                diff = str1.charCodeAt(i) - str2.charCodeAt(i);
+                if(diff !== 0) {
+                    return diff;
+                }
+            }
+        
+            return 0;
+        },// }}}
+        
         // {{{ strpbrk
         strpbrk: function( haystack, char_list ) {
             // Search a string for any of a set of characters
@@ -4833,8 +4885,10 @@
             // Generates a storable representation of a value
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_serialize/
-            // +       version: 809.522
+            // +       version: 809.2122
             // +   original by: Arpad Ray (mailto:arpad@php.net)
+            // +   improved by: Dino
+            // %          note: We feel the main purpose of this should: function be to ease the transport of data between php & js
             // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
             // *     example 1: $P.serialize(['Kevin', 'van', 'Zonneveld']);
             // *     returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
@@ -4865,9 +4919,12 @@
                 return type;
             };
             var type = _getType(mixed_value);
+            var val, ktype = '';
             
-            var val;
             switch (type) {
+                case "function": 
+                    val = ""; 
+                    break;
                 case "undefined":
                     val = "N";
                     break;
@@ -4897,6 +4954,11 @@
                     var vals = "";
                     var okey;
                     for (key in mixed_value) {
+                        ktype = _getType(mixed_value[key]);
+                        if (ktype == "function" && ktype == "object") { 
+                            continue; 
+                        }
+                        
                         okey = (key.match(/^[0-9]+$/) ? parseInt(key) : key);
                         vals += this.serialize(okey) +
                                 this.serialize(mixed_value[key]);
@@ -4914,20 +4976,19 @@
             // Creates a PHP value from a stored representation
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_unserialize/
-            // +       version: 809.522
+            // +       version: 809.2122
             // +     original by: Arpad Ray (mailto:arpad@php.net)
             // +     improved by: Pedro Tainha (http://www.pedrotainha.com)
             // +     bugfixed by: dptr1988
             // +      revised by: d3x
             // +     improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // %            note: We feel the main purpose of this should: function be to ease the transport of data between php & js
             // %            note: Aiming for PHP-compatibility, we have to translate objects to arrays 
             // *       example 1: $P.unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
             // *       returns 1: ['Kevin', 'van', 'Zonneveld']
             // *       example 2: $P.unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}');
             // *       returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
             
-            
-        
             var error = function (type, msg, filename, line){throw new window[type](msg, filename, line);};
             var read_until = function (data, offset, stopchr){
                 var buf = [];
@@ -5106,10 +5167,11 @@
             // ISO-8859-1
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_decode/
-            // +       version: 809.2121
+            // +       version: 809.2122
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
             // +      input by: Aman Gupta
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   improved by: Norman "zEh" Fuchs 
             // *     example 1: $P.utf8_decode('Kevin van Zonneveld');
             // *     returns 1: 'Kevin van Zonneveld'
         
@@ -5140,7 +5202,7 @@
             // Encodes an ISO-8859-1 string to UTF-8
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_encode/
-            // +       version: 809.522
+            // +       version: 809.2122
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: sowberry
@@ -5153,15 +5215,15 @@
          
             start = end = 0;
             for (var n = 0; n < string.length; n++) {
-                var c = string.charCodeAt(n);
+                var c1 = string.charCodeAt(n);
                 var enc = null;
          
-                if (c < 128) {
+                if (c1 < 128) {
                     end++;
-                } else if((c > 127) && (c < 2048)) {
-                    enc = String.fromCharCode((c >> 6) | 192) + String.fromCharCode((c & 63) | 128);
+                } else if((c1 > 127) && (c1 < 2048)) {
+                    enc = String.fromCharCode((c1 >> 6) | 192) + String.fromCharCode((c1 & 63) | 128);
                 } else {
-                    enc = String.fromCharCode((c >> 12) | 224) + String.fromCharCode(((c >> 6) & 63) | 128) + String.fromCharCode((c & 63) | 128);
+                    enc = String.fromCharCode((c1 >> 12) | 224) + String.fromCharCode(((c1 >> 6) & 63) | 128) + String.fromCharCode((c1 & 63) | 128);
                 }
                 if (enc != null) {
                     if (end > start) {
