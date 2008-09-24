@@ -20,50 +20,50 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
     }
 
     var __strnatcmp_split = function( f_string ) {
-            var result = new Array();
-            var buffer = '';
-            var chr = '';
+        var result = new Array();
+        var buffer = '';
+        var chr = '';
 
-            var text = true;
+        var text = true;
 
-            for(var i = 0; i < f_string.length; i++){
-                chr = f_string.substring(i, i + 1);
+        for(var i = 0; i < f_string.length; i++){
+            chr = f_string.substring(i, i + 1);
 
-                if(chr.match(/[0-9]/)){
-                    if(text){
-                        if(buffer.length > 0){
-                            result[result.length] = buffer;
-                            buffer = '';
-                        }
-
-                        text = false;
+            if(chr.match(/[0-9]/)){
+                if(text){
+                    if(buffer.length > 0){
+                        result[result.length] = buffer;
+                        buffer = '';
                     }
-                    buffer += chr;
-                } else if((text == false) && (chr == '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i + 2).match(/[0-9]/))) {
-                    result[result.length] = buffer;
-                    buffer = '';
-                } else {
-                    if(text == false) {
-                        if(buffer.length > 0) {
-                            result[result.length] = parseInt(buffer);
-                            buffer = '';
-                        }
-                        text = true;
+
+                    text = false;
+                }
+                buffer += chr;
+            } else if((text == false) && (chr == '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i + 2).match(/[0-9]/))) {
+                result[result.length] = buffer;
+                buffer = '';
+            } else {
+                if(text == false) {
+                    if(buffer.length > 0) {
+                        result[result.length] = parseInt(buffer);
+                        buffer = '';
                     }
-                    buffer += chr;
+                    text = true;
                 }
+                buffer += chr;
             }
+        }
 
-            if(buffer.length > 0) {
-                if(text) {
-                    result[result.length] = buffer;
-                } else {
-                    result[result.length] = parseInt(buffer);
-                }
+        if(buffer.length > 0) {
+            if(text) {
+                result[result.length] = buffer;
+            } else {
+                result[result.length] = parseInt(buffer);
             }
+        }
 
-            return result;
-        };
+        return result;
+    };
 
     var array1 = __strnatcmp_split(f_string1);
     var array2 = __strnatcmp_split(f_string2);
