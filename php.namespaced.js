@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.48
+ * This is version: 1.49
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -12,18 +12,19 @@
  * (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman Gupta,
- * Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Thunder.m,
- * Tyler Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), Alex,
- * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
- * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
+ * Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Nate,
+ * Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
+ * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
+ * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
+ * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Arno, Bayron Guevara, Ben Bryan,
  * Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David,
  * David James, Dino, DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), FremyCompany, Gabriel Paderni, Howard
  * Yeend, J A R, Jack, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Luke
  * Godfrey, MeEtc (http://yass.meetcweb.com), Michael White
- * (http://crestidg.com), Mick@el, Nate, Nathan, Nick Callen, Norman "zEh"
- * Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
+ * (http://crestidg.com), Mick@el, Nathan, Nick Callen, Norman "zEh" Fuchs,
+ * Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pul, Pyerre,
  * Sakimori, Sanjoy Roy, Saulo Vallory, Simon Willison
  * (http://simonwillison.net), Steve Clay, Steve Hilder, Steven Levithan
@@ -4259,8 +4260,9 @@
             // Binary safe case-insensitive string comparison of the first n characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strncasecmp/
-            // +       version: 809.2122
+            // +       version: 809.2411
             // +   original by: Saulo Vallory
+            // +      input by: Nate
             // %          note: Returns < 0 if str1 is less than str2 ; > 0 if str1 is greater than str2 , and 0 if they are equal.
             // *     example 1: $P.strncasecmp('Price 12.9', 'Price 12.15', 2);
             // *     returns 1: 0
@@ -4285,13 +4287,13 @@
                     }
                 } else {
                     len = str2.length;
-                    // str1 is lengthier than str2
+                    // str1 is longer than str2
                     if(str1.substr(0, str2.length) == str2) {
                         return str1.length - str2.length; // return the difference of chars
                     }
                 }
             } else {
-                // avoids trying to get a char that does not exists
+                // Avoids trying to get a char that does not exist 
                 len = str1.length;
             }
         
