@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.52
+ * This is version: 1.53
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -23,13 +23,13 @@
  * (http://www.debuggable.com/felix), Francois, FremyCompany, Gabriel Paderni,
  * Howard Yeend, J A R, Jack, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay,
  * Luke Godfrey, Mateusz "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com),
- * Michael White (http://crestidg.com), Mick@el, Nathan, Nick Callen, Norman
- * "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul
- * Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pul,
- * Pyerre, ReverseSyntax, Sakimori, Sanjoy Roy, Saulo Vallory, Scott Cariss,
- * Simon Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay,
- * Steve Hilder, Steven Levithan (http://blog.stevenlevithan.com), T.Wild,
- * T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
+ * Mick@el, Nathan, Nick Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha
+ * (http://www.pedrotainha.com), Peter-Paul Koch
+ * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pul, Pyerre,
+ * ReverseSyntax, Sakimori, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon
+ * Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve
+ * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T.Wild, T0bsn,
+ * Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
  * (http://www.xorax.info), Yannoo, baris ozdil, booeyOH, djmix, dptr1988,
  * duncan, echo is bad, gabriel paderni, ger, gorthaur, jakes, john
  * (http://www.jd-tech.net), johnrembo, kenneth, metjay, nobbler,
@@ -1676,8 +1676,8 @@
             // Returns an array with the names of included or required files
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_included_files/
-            // +       version: 809.522
-            // +   original by: Michael White (http://crestidg.com)
+            // +       version: 809.2915
+            // +   original by: Michael White (http://getsprink.com)
             // *     example 1: $P.get_included_files();
             // *     returns 1: ['http://kevin.vanzonneveld.net/pj_tester.php']
         
