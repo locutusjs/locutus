@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.49
+ * This is version: 1.50
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -22,18 +22,17 @@
  * David James, Dino, DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), FremyCompany, Gabriel Paderni, Howard
  * Yeend, J A R, Jack, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Luke
- * Godfrey, MeEtc (http://yass.meetcweb.com), Michael White
- * (http://crestidg.com), Mick@el, Nathan, Nick Callen, Norman "zEh" Fuchs,
- * Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
- * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pul, Pyerre,
- * Sakimori, Sanjoy Roy, Saulo Vallory, Simon Willison
+ * Godfrey, Mateusz "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com),
+ * Michael White (http://crestidg.com), Mick@el, Nathan, Nick Callen, Norman
+ * "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul
+ * Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pul,
+ * Pyerre, ReverseSyntax, Sakimori, Sanjoy Roy, Saulo Vallory, Simon Willison
  * (http://simonwillison.net), Steve Clay, Steve Hilder, Steven Levithan
  * (http://blog.stevenlevithan.com), T.Wild, T0bsn, Thiago Mata
  * (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
  * Yannoo, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel
  * paderni, ger, gorthaur, jakes, john (http://www.jd-tech.net), johnrembo,
- * kenneth, loonquawl, metjay, nobbler, penutbutterjelly, sankai, sowberry,
- * stensi
+ * kenneth, metjay, nobbler, penutbutterjelly, sankai, sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -2985,27 +2984,28 @@
             // Convert special HTML entities back to characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars_decode/
-            // +       version: 809.522
+            // +       version: 809.2510
             // +   original by: Mirek Slugen
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-            // +   bugfixed by: loonquawl
+            // +   bugfixed by: Mateusz "loonquawl" Zalega
+            // +      input by: ReverseSyntax
             // *     example 1: $P.htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
             // *     returns 1: '<p>this -> &quot;</p>'
             
             string = string.toString();
             
             // Always encode
-            string = string.replace('/&amp;/g', '&');
-            string = string.replace('/&lt;/g', '<');
-            string = string.replace(/&gt;/g, '>');
+            string = string.replace(/&amp;/g, '&');
+            string = string.replace(/&lt;/g, '<');
+            string = string.replace(/&gt;/g '>');
             
             // Encode depending on quote_style
             if (quote_style == 'ENT_QUOTES') {
-                string = string.replace('/&quot;/g', '"');
-                string = string.replace('/&#039;/g', '\'');
+                string = string.replace(/&quot;/g, '"');
+                string = string.replace(/&#039;/g, '\'');
             } else if (quote_style != 'ENT_NOQUOTES') {
                 // All other cases (ENT_COMPAT, default, but not ENT_NOQUOTES)
-                string = string.replace('/&quot;/g', '"');
+                string = string.replace(/&quot;/g, '"');
             }
             
             return string;
