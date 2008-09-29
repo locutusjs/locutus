@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.50
+ * This is version: 1.51
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -17,22 +17,23 @@
  * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
- * (http://webreflection.blogspot.com), Arno, Bayron Guevara, Ben Bryan,
- * Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord, David,
- * David James, Dino, DxGx, FGFEmperor, Felix Geisendoerfer
- * (http://www.debuggable.com/felix), FremyCompany, Gabriel Paderni, Howard
- * Yeend, J A R, Jack, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Luke
- * Godfrey, Mateusz "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com),
+ * (http://webreflection.blogspot.com), Anton Ongson, Arno, Bayron Guevara,
+ * Ben Bryan, Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord,
+ * David, David James, Dino, DxGx, FGFEmperor, Felix Geisendoerfer
+ * (http://www.debuggable.com/felix), Francois, FremyCompany, Gabriel Paderni,
+ * Howard Yeend, J A R, Jack, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay,
+ * Luke Godfrey, Mateusz "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com),
  * Michael White (http://crestidg.com), Mick@el, Nathan, Nick Callen, Norman
  * "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul
  * Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pul,
- * Pyerre, ReverseSyntax, Sakimori, Sanjoy Roy, Saulo Vallory, Simon Willison
- * (http://simonwillison.net), Steve Clay, Steve Hilder, Steven Levithan
- * (http://blog.stevenlevithan.com), T.Wild, T0bsn, Thiago Mata
- * (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
- * Yannoo, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel
- * paderni, ger, gorthaur, jakes, john (http://www.jd-tech.net), johnrembo,
- * kenneth, metjay, nobbler, penutbutterjelly, sankai, sowberry, stensi
+ * Pyerre, ReverseSyntax, Sakimori, Sanjoy Roy, Saulo Vallory, Scott Cariss,
+ * Simon Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay,
+ * Steve Hilder, Steven Levithan (http://blog.stevenlevithan.com), T.Wild,
+ * T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
+ * (http://www.xorax.info), Yannoo, baris ozdil, booeyOH, djmix, dptr1988,
+ * duncan, echo is bad, gabriel paderni, ger, gorthaur, jakes, john
+ * (http://www.jd-tech.net), johnrembo, kenneth, metjay, nobbler,
+ * penutbutterjelly, sankai, sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -2984,11 +2985,15 @@
             // Convert special HTML entities back to characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars_decode/
-            // +       version: 809.2510
+            // +       version: 809.2912
             // +   original by: Mirek Slugen
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   bugfixed by: Mateusz "loonquawl" Zalega
             // +      input by: ReverseSyntax
+            // +      input by: Slawomir Kaniecki
+            // +      input by: Scott Cariss
+            // +      input by: Francois
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
             // *     returns 1: '<p>this -> &quot;</p>'
             
@@ -2997,7 +3002,7 @@
             // Always encode
             string = string.replace(/&amp;/g, '&');
             string = string.replace(/&lt;/g, '<');
-            string = string.replace(/&gt;/g '>');
+            string = string.replace(/&gt;/g, '>');
             
             // Encode depending on quote_style
             if (quote_style == 'ENT_QUOTES') {
@@ -3287,13 +3292,13 @@
             // Inserts HTML line breaks before all newlines in a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_nl2br/
-            // +       version: 809.522
+            // +       version: 809.2912
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Philip Peterson
             // *     example 1: $P.nl2br('Kevin\nvan\nZonneveld');
             // *     returns 1: 'Kevin<br />\nvan<br />\nZonneveld'
         
-            return str.replace(/([^>])\n/g, '$1<br />\n');
+            return (str + '').replace(/([^>])\n/g, '$1<br />\n');
         },// }}}
         
         // {{{ number_format
@@ -3845,23 +3850,31 @@
             // Replace all occurrences of the search string with the replacement string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_replace/
-            // +       version: 809.522
+            // +       version: 809.2912
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Gabriel Paderni
             // +   improved by: Philip Peterson
             // +   improved by: Simon Willison (http://simonwillison.net)
             // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-            // -    depends on: is_array
+            // +   bugfixed by: Anton Ongson
+            // +      input by: Onno Marsman
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.str_replace(' ', '.', 'Kevin van Zonneveld');
             // *     returns 1: 'Kevin.van.Zonneveld'
             // *     example 2: $P.str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
             // *     returns 2: 'hemmo, mars'    
             
+            var _is_array = function(mixed_var) {
+                return (mixed_var instanceof Array);
+            };
+            
             var f = search, r = replace, s = subject;
-            var ra = this.is_array(r), sa = this.is_array(s), f = [].concat(f), r = [].concat(r), i = (s = [].concat(s)).length;
+            var ra = _is_array(r), sa = _is_array(s), f = [].concat(f), r = [].concat(r), i = (s = [].concat(s)).length;
         
             while (j = 0, i--) {
-                while (s[i] = s[i].split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f){};
+                if (s[i]) {
+                    while (s[i] = s[i].split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f){};
+                }
             };
              
             return sa ? s : s[0];
@@ -4444,12 +4457,13 @@
             // Make a string lowercase
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strtolower/
-            // +       version: 809.522
+            // +       version: 809.2912
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   improved by: Onno Marsman
             // *     example 1: $P.strtolower('Kevin van Zonneveld');
             // *     returns 1: 'kevin van zonneveld'
         
-            return str.toLowerCase();
+            return (str+'').toLowerCase();
         },// }}}
         
         // {{{ strtoupper
@@ -4457,12 +4471,13 @@
             // Make a string uppercase
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strtoupper/
-            // +       version: 809.522
+            // +       version: 809.2912
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   improved by: Onno Marsman
             // *     example 1: $P.strtoupper('Kevin van Zonneveld');
             // *     returns 1: 'KEVIN VAN ZONNEVELD'
         
-            return str.toUpperCase();
+            return (str+'').toUpperCase();
         },// }}}
         
         // {{{ substr
