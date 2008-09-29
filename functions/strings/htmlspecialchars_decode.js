@@ -4,6 +4,10 @@ function htmlspecialchars_decode(string, quote_style) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Mateusz "loonquawl" Zalega
     // +      input by: ReverseSyntax
+    // +      input by: Slawomir Kaniecki
+    // +      input by: Scott Cariss
+    // +      input by: Francois
+    // +   bugfixed by: Onno Marsman
     // *     example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
     // *     returns 1: '<p>this -> &quot;</p>'
     
@@ -12,7 +16,7 @@ function htmlspecialchars_decode(string, quote_style) {
     // Always encode
     string = string.replace(/&amp;/g, '&');
     string = string.replace(/&lt;/g, '<');
-    string = string.replace(/&gt;/g '>');
+    string = string.replace(/&gt;/g, '>');
     
     // Encode depending on quote_style
     if (quote_style == 'ENT_QUOTES') {
