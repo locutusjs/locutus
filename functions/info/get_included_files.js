@@ -1,6 +1,6 @@
 function get_included_files() {
     // http://kevin.vanzonneveld.net
-    // +   original by: Michael White (http://crestidg.com)
+    // +   original by: Michael White (http://getsprink.com)
     // *     example 1: get_included_files();
     // *     returns 1: ['http://kevin.vanzonneveld.net/pj_tester.php']
 
