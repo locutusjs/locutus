@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.51
+ * This is version: 1.52
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -3277,9 +3277,10 @@ function nl2br( str ) {
     // Inserts HTML line breaks before all newlines in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_nl2br/
-    // +       version: 809.2912
+    // +       version: 809.2914
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Philip Peterson
+    // +   improved by: Onno Marsman
     // *     example 1: nl2br('Kevin\nvan\nZonneveld');
     // *     returns 1: 'Kevin<br />\nvan<br />\nZonneveld'
 
