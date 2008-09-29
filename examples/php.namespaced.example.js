@@ -1,8 +1,7 @@
-// create PHPJS object
-window.$P = PHP_JS();
+// Include the php.namespaced.js file.
 
-// call a PHPJS function
+// Call a PHPJS function
 p = $P.strpos('Kevin van Zonneveld', 'e');
 
-// call another PHPJS function
+// Call another PHPJS function
 d = $P.date('F j, Y, g:i a');

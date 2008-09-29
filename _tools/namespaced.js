@@ -16,7 +16,7 @@ window.onload = function(){
     */
     
     // Create PHPJS object
-    window.$P = PHP_JS();
+    //window.$P = PHP_JS();
     
     // Call a PHPJS function
     p = $P.strpos('Kevin van Zonneveld', 'e');

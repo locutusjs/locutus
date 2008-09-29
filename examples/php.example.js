@@ -1,5 +1,7 @@
-// call a PHPJS function
+// Include the php.js file.
+
+// Call a PHPJS function
 p = strpos('Kevin van Zonneveld', 'e');
 
-// call another PHPJS function
+// Call another PHPJS function
 d = date('F j, Y, g:i a');
