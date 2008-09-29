@@ -89,12 +89,11 @@ switch($mode) {
     case "category":
         $PHPJS_Tester_Shell->testCategory($funcName);
         break;
+    case "all":
+        $PHPJS_Tester_Shell->testAll();
+        break;
     case "run":
-        if ($funcName == "all") {
-            $PHPJS_Tester_Shell->testAll();
-        } else {
-            echo $Function->testFunction();
-        }
+        echo $Function->testFunction();
         break;
     default:
         die("Unknown command: ".$mode);
