@@ -160,7 +160,7 @@ Class PHPJS_Library {
         
         foreach (array($this->_dirRealFunc, $this->_dirRealRoot, $this->_dirRealTemp) as $dir) {
             if (!is_dir($dir)) {
-                $this->_log("Directory not accessible: ".$this->_dirRealTemp, PHPJS_Library::LOG_EMERG);
+                $this->log("Directory not accessible: ".$this->_dirRealTemp, PHPJS_Library::LOG_EMERG);
                 return false;
             }
         }
