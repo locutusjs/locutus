@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.54
+ * This is version: 1.55
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -13,7 +13,7 @@
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman Gupta,
  * Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Nate,
- * Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
+ * Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
  * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
@@ -26,10 +26,10 @@
  * "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick
  * Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com),
  * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann,
- * Pul, Pyerre, ReverseSyntax, Sakimori, Sanjoy Roy, Saulo Vallory, Scott
- * Cariss, Simon Willison (http://simonwillison.net), Slawomir Kaniecki, Steve
- * Clay, Steve Hilder, Steven Levithan (http://blog.stevenlevithan.com),
- * T.Wild, T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
+ * Pul, Pyerre, ReverseSyntax, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon
+ * Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve
+ * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T.Wild, T0bsn,
+ * Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
  * (http://www.xorax.info), Yannoo, baris ozdil, booeyOH, djmix, dptr1988,
  * duncan, echo is bad, gabriel paderni, ger, gorthaur, jakes, john
  * (http://www.jd-tech.net), johnrembo, kenneth, metjay, nobbler,
@@ -4676,20 +4676,31 @@
             // Wraps a string to a given number of characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_wordwrap/
-            // +       version: 809.522
+            // +       version: 810.112
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +   improved by: Nick Callen
             // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   improved by: Sakimori
             // *     example 1: $P.wordwrap('Kevin van Zonneveld', 6, '|', true);
             // *     returns 1: 'Kevin |van |Zonnev|eld'
+            // *     example 2: $P.wordwrap('The quick brown fox jumped over the lazy dog.', 20, '<br />\n');
+            // *     returns 2: 'The quick brown fox <br />\njumped over the lazy<br />\n dog.'
+            // *     example 3: $P.wordwrap('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
+            // *     returns 3: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod \ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim \nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea \ncommodo consequat.'
             
-            var m = int_width, b = str_break, c = cut;
+            // PHP Defaults
+            var m = ((arguments.length >= 2) ? arguments[1] : 75   );
+            var b = ((arguments.length >= 3) ? arguments[2] : "\n" );
+            var c = ((arguments.length >= 4) ? arguments[3] : false);
+            
             var i, j, l, s, r;
             
-            if(m < 1) {
+            if (m < 1) {
                 return str;
             }
-            for(i = -1, l = (r = str.split("\n")).length; ++i < l; r[i] += s) {
+            
+            for (i = -1, l = (r = str.split("\n")).length; ++i < l; r[i] += s) {
                 for(s = r[i], r[i] = ""; s.length > m; r[i] += s.slice(0, j) + ((s = s.slice(j)).length ? b : "")){
                     j = c == 2 || (j = s.slice(0, m + 1).match(/\S*(\s)?$/))[1] ? m : j.input.length - j[0].length || c == 1 && m || j.input.length + (j = s.slice(m).match(/^\S*/)).input.length;
                 }
