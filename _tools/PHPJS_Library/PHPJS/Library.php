@@ -152,7 +152,22 @@ Class PHPJS_Library {
         }
         
         if (!$this->_dirRealRoot) {
-            $this->_dirRealRoot = realpath($this->_dirRealFunc."/..");
+            $testPath = $this->_dirRealFunc;
+            $found    = false;
+            for ($i = 0; $i < 6; $i++) {
+                $testPath = realpath($testPath."/..");
+                if (file_exists($testPath."/php.js")) {
+                    // Found
+                    $found = true;
+                    break;
+                }
+            }
+            if (false === $found) {
+                $this->log("dirRealRoot could not be established. no php.js detected in any level above dirRealFunc");
+                return false;
+            }
+            
+            $this->_dirRealRoot = $testPath;
         }
         if (!$this->_dirRealTemp) {
             $this->_dirRealTemp = $this->_dirRealRoot."/_tools/_temp";
