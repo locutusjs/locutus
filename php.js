@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.56
+ * This is version: 1.57
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -12,8 +12,8 @@
  * (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman Gupta,
- * Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Nate,
- * Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
+ * Arpad Ray (mailto:arpad@php.net), Enrique González, Karol Kowalski, Mirek
+ * Slugen, Nate, Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
  * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
@@ -1963,6 +1963,19 @@ function cosh(arg) {
     return (Math.exp(arg) + Math.exp(-arg))/2;
 }// }}}
 
+// {{{ deg2rad
+function deg2rad(angle) {
+    // Converts the number in degrees to the radian equivalent
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_deg2rad/
+    // +       version: 810.114
+    // +   original by: Enrique González
+    // *     example 1: deg2rad(45);
+    // *     returns 1: 0.7853981633974483
+    
+    return (angle/180)*Math.PI;
+}// }}}
+
 // {{{ exp
 function exp(arg) {
     // Calculates the exponent of e
@@ -2298,6 +2311,19 @@ function pow(base, exp) {
     // *     returns 1: 3.843909168077899e+48
 
     return Math.pow(base, exp);
+}// }}}
+
+// {{{ rad2deg
+function rad2deg(angle) {
+    // Converts the radian number to the equivalent number in degrees
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rad2deg/
+    // +       version: 810.114
+    // +   original by: Enrique González
+    // *     example 1: rad2deg(3.141592653589793);
+    // *     returns 1: 45
+    
+    return (angle/Math.PI) * 180;
 }// }}}
 
 // {{{ rand
