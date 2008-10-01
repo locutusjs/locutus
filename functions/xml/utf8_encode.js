@@ -3,15 +3,18 @@ function utf8_encode ( string ) {
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: sowberry
+    // +    tweaked by: Jack
     // *     example 1: utf8_encode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
     
     string = string.replace(/\r\n/g,"\n");
     var utftext = "";
     var start, end;
+    var stringl = 0;
  
     start = end = 0;
-    for (var n = 0; n < string.length; n++) {
+    stringl = string.length;
+    for (var n = 0; n < stringl; n++) {
         var c1 = string.charCodeAt(n);
         var enc = null;
  

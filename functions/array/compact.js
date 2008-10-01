@@ -1,12 +1,15 @@
 function compact ( var_names ) {
     // http://kevin.vanzonneveld.net
     // +   original by: _argos
-    // *     example 1: compact('var1', 'var2');
-    // *     returns 1: {}
+    // +    tweaked by: Jack
+    // *     example 1: var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';  
+    // *     example 1: compact('var1', 'var2', 'var3');
+    // *     returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}    
 
     var Index = 0, Matrix = {};
     var process = function ( value ) {
-        for ( var i = 0; i < value.length; i++ ) {
+        var i = 0, l = value.length, key_value = '';
+        for (i = 0; i < l; i++ ) {
             var key_value = value [ i ];
             if ( key_value instanceof Array ) {
                 process ( key_value );

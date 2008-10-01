@@ -2,6 +2,8 @@ function sprintf( ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ash Searle (http://hexmen.com/blog/)
     // + namespaced by: Michael White (http://getsprink.com)
+    // +    tweaked by: Jack
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)s
     // *     example 1: sprintf("%01.2f", 123.1);
     // *     returns 1: 123.10
 
@@ -19,9 +21,9 @@ function sprintf( ) {
         var diff = minWidth - value.length;
         if (diff > 0) {
             if (leftJustify || !zeroPad) {
-            value = pad(value, minWidth, ' ', leftJustify);
+                value = pad(value, minWidth, ' ', leftJustify);
             } else {
-            value = value.slice(0, prefix.length) + pad('', diff, '0', true) + value.slice(prefix.length);
+                value = value.slice(0, prefix.length) + pad('', diff, '0', true) + value.slice(prefix.length);
             }
         }
         return value;
@@ -50,7 +52,8 @@ function sprintf( ) {
 
         // parse flags
         var leftJustify = false, positivePrefix = '', zeroPad = false, prefixBaseX = false;
-        for (var j = 0; flags && j < flags.length; j++) switch (flags.charAt(j)) {
+        var flagsl = flags.length;
+        for (var j = 0; flags && j < flagsl; j++) switch (flags.charAt(j)) {
             case ' ': positivePrefix = ' '; break;
             case '+': positivePrefix = '+'; break;
             case '-': leftJustify = true; break;

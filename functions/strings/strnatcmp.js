@@ -2,6 +2,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Martijn Wieringa
     // + namespaced by: Michael White (http://getsprink.com)
+    // +    tweaked by: Jack
     // -    depends on: strcmp
     // %          note: Added f_version argument against code guidelines, because it's so neat
     // *     example 1: strnatcmp('Price 12.9', 'Price 12.15');
@@ -15,7 +16,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
     // *     example 5: strnatcmp('Version 12.15', 'Version 12.9', true);
     // *     returns 5: 6
 
-    if(f_version == undefined) {
+    if (f_version == undefined) {
         f_version = false;
     }
 
@@ -23,14 +24,15 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
         var result = new Array();
         var buffer = '';
         var chr = '';
+        var i = 0, f_stringl = 0;
 
         var text = true;
 
-        for(var i = 0; i < f_string.length; i++){
+        f_stringl = f_string.length;
+        for (i = 0; i < f_stringl; i++) {
             chr = f_string.substring(i, i + 1);
-
-            if(chr.match(/[0-9]/)){
-                if(text){
+            if (chr.match(/[0-9]/)) {
+                if (text) {
                     if(buffer.length > 0){
                         result[result.length] = buffer;
                         buffer = '';
@@ -39,12 +41,12 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
                     text = false;
                 }
                 buffer += chr;
-            } else if((text == false) && (chr == '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i + 2).match(/[0-9]/))) {
+            } else if ((text == false) && (chr == '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i + 2).match(/[0-9]/))) {
                 result[result.length] = buffer;
                 buffer = '';
             } else {
-                if(text == false) {
-                    if(buffer.length > 0) {
+                if (text == false) {
+                    if (buffer.length > 0) {
                         result[result.length] = parseInt(buffer);
                         buffer = '';
                     }
@@ -54,8 +56,8 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
             }
         }
 
-        if(buffer.length > 0) {
-            if(text) {
+        if (buffer.length > 0) {
+            if (text) {
                 result[result.length] = buffer;
             } else {
                 result[result.length] = parseInt(buffer);
@@ -74,38 +76,37 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
     var result = -1;
     var r = 0;
 
-    if(len > array2.length) {
+    if (len > array2.length) {
         len = array2.length;
         result = 1;
     }
 
-    for(i = 0; i < len; i++) {
-        if(isNaN(array1[i])) {
-            if(isNaN(array2[i])){
+    for (i = 0; i < len; i++) {
+        if (isNaN(array1[i])) {
+            if (isNaN(array2[i])) {
                 text = true;
 
-                if((r = strcmp(array1[i], array2[i])) != 0) {
+                if ((r = strcmp(array1[i], array2[i])) != 0) {
                     return r;
                 }
-            }
-            else if(text){
+            } else if (text){
                 return 1;
             } else {
                 return -1;
             }
-        } else if(isNaN(array2[i])){
+        } else if (isNaN(array2[i])) {
             if(text) {
                 return -1;
             } else{
                 return 1;
             }
-        }else  {
+        } else {
             if(text || f_version){
-                if((r = (array1[i] - array2[i])) != 0){
+                if ((r = (array1[i] - array2[i])) != 0) {
                     return r;
                 }
             } else {
-                if((r = strcmp(array1[i].toString(), array2[i].toString())) != 0) {
+                if ((r = strcmp(array1[i].toString(), array2[i].toString())) != 0) {
                     return r;
                 }
             }

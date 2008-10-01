@@ -7,35 +7,35 @@ function sha1 ( str ) {
     // *     returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
 
     var rotate_left = function(n,s) {
-            var t4 = ( n<<s ) | (n>>>(32-s));
-            return t4;
-        };
+        var t4 = ( n<<s ) | (n>>>(32-s));
+        return t4;
+    };
 
     var lsb_hex = function(val) {
-            var str="";
-            var i;
-            var vh;
-            var vl;
+        var str="";
+        var i;
+        var vh;
+        var vl;
 
-            for( i=0; i<=6; i+=2 ) {
-                vh = (val>>>(i*4+4))&0x0f;
-                vl = (val>>>(i*4))&0x0f;
-                str += vh.toString(16) + vl.toString(16);
-            }
-            return str;
-        };
+        for( i=0; i<=6; i+=2 ) {
+            vh = (val>>>(i*4+4))&0x0f;
+            vl = (val>>>(i*4))&0x0f;
+            str += vh.toString(16) + vl.toString(16);
+        }
+        return str;
+    };
 
     var cvt_hex = function(val) {
-            var str="";
-            var i;
-            var v;
+        var str="";
+        var i;
+        var v;
 
-            for( i=7; i>=0; i-- ) {
-                v = (val>>>(i*4))&0x0f;
-                str += v.toString(16);
-            }
-            return str;
-        };
+        for( i=7; i>=0; i-- ) {
+            v = (val>>>(i*4))&0x0f;
+            str += v.toString(16);
+        }
+        return str;
+    };
 
     var blockstart;
     var i, j;

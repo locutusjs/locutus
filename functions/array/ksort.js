@@ -2,6 +2,7 @@ function ksort(array, sort_flags) {
     // http://kevin.vanzonneveld.net
     // +   original by: GeekFG (http://geekfg.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %          note: The examples are correct, this is a new way
     // *     example 1: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}; 
     // *     example 1: ksort(data);
     // *     results 1: data == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
