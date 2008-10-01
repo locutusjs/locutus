@@ -1,11 +1,11 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.53
+ * This is version: 1.54
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
- * _argos, Jonas Raoni Soares Silva (http://www.jsfromhell.com), Legaev
+ * _argos, Jack, Jonas Raoni Soares Silva (http://www.jsfromhell.com), Legaev
  * Andrey, Ates Goral (http://magnetiq.com), Philip Peterson, Martijn
  * Wieringa, Webtoolkit.info (http://www.webtoolkit.info/), Carlos R. L.
  * Rodrigues (http://www.jsfromhell.com), Ash Searle
@@ -21,15 +21,15 @@
  * Ben Bryan, Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord,
  * David, David James, Dino, DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), Francois, FremyCompany, Gabriel Paderni,
- * Howard Yeend, J A R, Jack, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay,
- * Luke Godfrey, Mateusz "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com),
- * Mick@el, Nathan, Nick Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha
- * (http://www.pedrotainha.com), Peter-Paul Koch
- * (http://www.quirksmode.org/js/beat.html), Philippe Baumann, Pul, Pyerre,
- * ReverseSyntax, Sakimori, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon
- * Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve
- * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T.Wild, T0bsn,
- * Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
+ * Howard Yeend, J A R, Kevin van Zonneveld (http://kevin.vanzonneveld.net)s,
+ * Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Luke Godfrey, Mateusz
+ * "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick
+ * Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com),
+ * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann,
+ * Pul, Pyerre, ReverseSyntax, Sakimori, Sanjoy Roy, Saulo Vallory, Scott
+ * Cariss, Simon Willison (http://simonwillison.net), Slawomir Kaniecki, Steve
+ * Clay, Steve Hilder, Steven Levithan (http://blog.stevenlevithan.com),
+ * T.Wild, T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
  * (http://www.xorax.info), Yannoo, baris ozdil, booeyOH, djmix, dptr1988,
  * duncan, echo is bad, gabriel paderni, ger, gorthaur, jakes, john
  * (http://www.jd-tech.net), johnrembo, kenneth, metjay, nobbler,
@@ -839,14 +839,17 @@
             // Create array containing variables and their values
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_compact/
-            // +       version: 809.522
+            // +       version: 810.112
             // +   original by: _argos
-            // *     example 1: $P.compact('var1', 'var2');
-            // *     returns 1: {}
+            // +    tweaked by: Jack
+            // *     example 1: $P.var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';  
+            // *     example 1: $P.compact('var1', 'var2', 'var3');
+            // *     returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}    
         
             var Index = 0, Matrix = {};
             var process = function ( value ) {
-                for ( var i = 0; i < value.length; i++ ) {
+                var i = 0, l = value.length, key_value = '';
+                for (i = 0; i < l; i++ ) {
                     var key_value = value [ i ];
                     if ( key_value instanceof Array ) {
                         process ( key_value );
@@ -999,9 +1002,10 @@
             // Sort an array by key
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ksort/
-            // +       version: 809.522
+            // +       version: 810.112
             // +   original by: GeekFG (http://geekfg.blogspot.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // %          note: The examples are correct, this is a new way
             // *     example 1: $P.data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}; 
             // *     example 1: $P.ksort(data);
             // *     results 1: data == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
@@ -2022,9 +2026,10 @@
             // Find highest value
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_max/
-            // +       version: 809.2411
+            // +       version: 810.112
             // +   original by: Onno Marsman
             // +    revised by: Onno Marsman
+            // +    tweaked by: Jack
             // %          note: Long code cause we're aiming for maximum PHP compatibility
             // *     example 1: $P.max(1, 3, 5, 6, 7);
             // *     returns 1: 7
@@ -2040,6 +2045,7 @@
             // *     returns 6: [2, 5, 7]
         
             var ar, retVal, i = 0, n = 0;
+            var argv = arguments, argc = argv.length;
         
             var _obj2Array = function(obj) {
                 if (obj instanceof Array) {
@@ -2047,14 +2053,15 @@
                 } else {
                     var ar = [];
                     for (var i in obj) {
-                       ar.push(obj[i]);
+                        ar.push(obj[i]);
                     }
                     return ar;
                 }
-            }
+            } //function _obj2Array
             
             var _compare = function(current, next) {
                 var i = 0, n = 0, tmp = 0;
+                var nl = 0, cl = 0;
                 
                 if (current === next) {
                     return 0;
@@ -2062,129 +2069,18 @@
                     if (typeof next == 'object') {
                        current = _obj2Array(current);
                        next    = _obj2Array(next);
-                       if (next.length > current.length) {
+                       cl      = current.length;
+                       nl      = next.length;
+                       if (nl > cl) {
                            return 1;
-                       } else if (next.length < current.length) {
+                       } else if (nl < cl) {
                            return -1;
                        } else {
-                           var tmp;
-                           for (var i = 0, n = current.length; i<n; ++i) {
-                               tmp = _compare(current[i], next[i]);
-                               if (tmp==1) {
-                                   return 1;
-                               } else if (tmp==-1) {
-                                   return -1;
-                               }
-                           }
-                           return 0;
-                       }
-                    } else {
-                       return -1;
-                    }
-                } else if (typeof next == 'object') {
-                    return 1;
-                } else if (isNaN(next) && !isNaN(current)) {
-                    if (current==0) {
-                       return 0;
-                    } else {
-                       return (current<0 ? 1 : -1);
-                    }
-                } else if (isNaN(current) && !isNaN(next)) {
-                    if (next==0) {
-                       return 0;
-                    } else {
-                       return (next>0 ? 1 : -1);
-                    }
-                } else {
-                    if (next==current) {
-                       return 0;
-                    } else {
-                       return (next>current ? 1 : -1);
-                    }
-                }
-            }
-            
-            if (arguments.length==0) {
-                throw new Error('At least one value should be passed to this.max()');
-            } else if (arguments.length==1) {
-                if (typeof arguments[0]=='object') {
-                    ar = _obj2Array(arguments[0]);
-                } else {
-                    throw new Error('Wrong parameter count for this.max()');
-                }
-                if (ar.length==0) {
-                    throw new Error('Array must contain at least one element for this.max()');
-                }
-            } else {
-                ar = arguments;
-            }
-            
-            retVal = ar[0];
-            for (i=1, n=ar.length; i<n; ++i) {
-                if (_compare(retVal, ar[i])==1) {
-                    retVal = ar[i];
-                }
-            }
-            
-            return retVal;
-        },// }}}
-        
-        // {{{ min
-        min: function() {
-            // Find lowest value
-            // 
-            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_min/
-            // +       version: 809.2411
-            // +   original by: Onno Marsman
-            // +    revised by: Onno Marsman
-            // %          note: Long code cause we're aiming for maximum PHP compatibility
-            // *     example 1: $P.min(1, 3, 5, 6, 7);
-            // *     returns 1: 1
-            // *     example 2: $P.min([2, 4, 5]);
-            // *     returns 2: 2
-            // *     example 3: $P.min(0, 'hello');
-            // *     returns 3: 0
-            // *     example 4: $P.min('hello', 0);
-            // *     returns 4: 'hello'
-            // *     example 5: $P.min(-1, 'hello');
-            // *     returns 5: -1
-            // *     example 6: $P.min([2, 4, 8], [2, 5, 7]);
-            // *     returns 6: [2, 4, 8]
-            
-            var ar, retVal, i = 0, n = 0;
-        
-            function _obj2Array(obj) {
-               if (obj instanceof Array) {
-                   return obj;
-               } else {
-                   var ar = [];
-                   for (var i in obj) {
-                       ar.push(obj[i]);
-                   }
-                   return ar;
-               }
-            } //function _obj2Array
-            
-            function _compare(current, next) {
-                var i = 0, n = 0, tmp = 0;
-                
-                if (current === next) {
-                   return 0;
-                } else if (typeof current == 'object') {
-                    if (typeof next == 'object') {
-                       current = _obj2Array(current);
-                       next    = _obj2Array(next);
-                       if (next.length > current.length) {
-                           return 1;
-                       } else if (next.length < current.length) {
-                           return -1;
-                       } else {
-                           var tmp;
-                           for (i=0, n=current.length; i<n; ++i) {
+                           for (i = 0, n = cl; i<n; ++i) {
                                tmp = _compare(current[i], next[i]);
                                if (tmp == 1) {
                                    return 1;
-                               } else if (tmp==-1) {
+                               } else if (tmp == -1) {
                                    return -1;
                                }
                            }
@@ -2216,19 +2112,135 @@
                 }
             } //function _compare
             
-            if (arguments.length == 0) {
+            if (argc == 0) {
+                throw new Error('At least one value should be passed to this.max()');
+            } else if (argc == 1) {
+                if (typeof argv[0]=='object') {
+                    ar = _obj2Array(argv[0]);
+                } else {
+                    throw new Error('Wrong parameter count for this.max()');
+                }
+                if (ar.length == 0) {
+                    throw new Error('Array must contain at least one element for this.max()');
+                }
+            } else {
+                ar = argv;
+            }
+            
+            retVal = ar[0];
+            for (i=1, n=ar.length; i<n; ++i) {
+                if (_compare(retVal, ar[i])==1) {
+                    retVal = ar[i];
+                }
+            }
+            
+            return retVal;
+        },// }}}
+        
+        // {{{ min
+        min: function() {
+            // Find lowest value
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_min/
+            // +       version: 810.112
+            // +   original by: Onno Marsman
+            // +    revised by: Onno Marsman
+            // +    tweaked by: Jack
+            // %          note: Long code cause we're aiming for maximum PHP compatibility
+            // *     example 1: $P.min(1, 3, 5, 6, 7);
+            // *     returns 1: 1
+            // *     example 2: $P.min([2, 4, 5]);
+            // *     returns 2: 2
+            // *     example 3: $P.min(0, 'hello');
+            // *     returns 3: 0
+            // *     example 4: $P.min('hello', 0);
+            // *     returns 4: 'hello'
+            // *     example 5: $P.min(-1, 'hello');
+            // *     returns 5: -1
+            // *     example 6: $P.min([2, 4, 8], [2, 5, 7]);
+            // *     returns 6: [2, 4, 8]
+            
+            var ar, retVal, i = 0, n = 0;
+            var argv = arguments, argc = argv.length;
+        
+            var _obj2Array = function(obj) {
+                if (obj instanceof Array) {
+                    return obj;
+                } else {
+                    var ar = [];
+                    for (var i in obj) {
+                        ar.push(obj[i]);
+                    }
+                    return ar;
+                }
+            } //function _obj2Array
+            
+            var _compare = function(current, next) {
+                var i = 0, n = 0, tmp = 0;
+                var nl = 0, cl = 0;
+                
+                if (current === next) {
+                    return 0;
+                } else if (typeof current == 'object') {
+                    if (typeof next == 'object') {
+                       current = _obj2Array(current);
+                       next    = _obj2Array(next);
+                       cl      = current.length;
+                       nl      = next.length;
+                       if (nl > cl) {
+                           return 1;
+                       } else if (nl < cl) {
+                           return -1;
+                       } else {
+                           for (i = 0, n = cl; i<n; ++i) {
+                               tmp = _compare(current[i], next[i]);
+                               if (tmp == 1) {
+                                   return 1;
+                               } else if (tmp == -1) {
+                                   return -1;
+                               }
+                           }
+                           return 0;
+                       }
+                    } else {
+                       return -1;
+                    }
+                } else if (typeof next == 'object') {
+                    return 1;
+                } else if (isNaN(next) && !isNaN(current)) {
+                    if (current == 0) {
+                       return 0;
+                    } else {
+                       return (current<0 ? 1 : -1);
+                    }
+                } else if (isNaN(current) && !isNaN(next)) {
+                    if (next==0) {
+                       return 0;
+                    } else {
+                       return (next>0 ? 1 : -1);
+                    }
+                } else {
+                    if (next==current) {
+                       return 0;
+                    } else {
+                       return (next>current ? 1 : -1);
+                    }
+                }
+            } //function _compare
+            
+            if (argc == 0) {
                 throw new Error('At least one value should be passed to this.min()');
-            } else if (arguments.length==1) {
-                if (typeof arguments[0]=='object') {
-                    ar = _obj2Array(arguments[0]);
+            } else if (argc == 1) {
+                if (typeof argv[0]=='object') {
+                    ar = _obj2Array(argv[0]);
                 } else {
                     throw new Error('Wrong parameter count for this.min()');
                 }
-                if (ar.length==0) {
+                if (ar.length == 0) {
                     throw new Error('Array must contain at least one element for this.min()');
                 }
             } else {
-                ar = arguments;
+                ar = argv;
             }
             
             retVal = ar[0];
@@ -2517,13 +2529,14 @@
             // Return information about characters used in a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_count_chars/
-            // +       version: 809.522
+            // +       version: 810.112
             // +   original by: Ates Goral (http://magnetiq.com)
+            // +    tweaked by: Jack
             // *     example 1: $P.count_chars("Hello World!", 1);
             // *     returns 1: "Hd e!lWor"
         
             var histogram = new Object(), tmp_arr = new Array();
-            var key, i, code, mode; 
+            var key, i, code, mode, strl = 0; 
             var argc = arguments.length;
         
             if (argc == 1) {
@@ -2536,8 +2549,9 @@
                     histogram[i] = 0;
                 }
             }
-        
-            for (i = 0; i < str.length; ++i) {
+            
+            strl = str.length;
+            for (i = 0; i < strl; ++i) {
                 code = str.charCodeAt(i);
                 if (code in histogram) {
                     ++histogram[code];
@@ -2825,15 +2839,17 @@
             // Convert all applicable characters to HTML entities
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlentities/
-            // +       version: 809.1316
+            // +       version: 810.112
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: nobbler
+            // +    tweaked by: Jack
             // %          note: table from http://www.the-art-of-web.com/html/character-codes/
             // *     example 1: $P.htmlentities('Kevin & van Zonneveld');
             // *     returns 1: 'Kevin &amp; van Zonneveld'
             
             var histogram = {}, code = 0, tmp_arr = [], i = 0;
+            var stringl = 0;
             
             histogram['34'] = 'quot';
             histogram['38'] = 'amp';
@@ -2936,7 +2952,8 @@
             histogram['254'] = 'thorn';
             histogram['255'] = 'yuml';
             
-            for (i = 0; i < string.length; ++i) {
+            stringl = string.length
+            for (i = 0; i < stringl; ++i) {
                 code = string.charCodeAt(i);
                 if (code in histogram) {
                     tmp_arr[i] = '&'+histogram[code]+';';
@@ -3088,37 +3105,39 @@
             // Calculate the md5 hash of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_md5/
-            // +       version: 809.2411
+            // +       version: 810.112
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
             // + namespaced by: Michael White (http://getsprink.com)
+            // +    tweaked by: Jack
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // -    depends on: utf8_encode
             // *     example 1: $P.md5('Kevin van Zonneveld');
             // *     returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
         
             var RotateLeft = function(lValue, iShiftBits) {
-                    return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
-                };
+                return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
+            };
         
             var AddUnsigned = function(lX,lY) {
-                    var lX4,lY4,lX8,lY8,lResult;
-                    lX8 = (lX & 0x80000000);
-                    lY8 = (lY & 0x80000000);
-                    lX4 = (lX & 0x40000000);
-                    lY4 = (lY & 0x40000000);
-                    lResult = (lX & 0x3FFFFFFF)+(lY & 0x3FFFFFFF);
-                    if (lX4 & lY4) {
-                        return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
-                    }
-                    if (lX4 | lY4) {
-                        if (lResult & 0x40000000) {
-                            return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
-                        } else {
-                            return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
-                        }
+                var lX4,lY4,lX8,lY8,lResult;
+                lX8 = (lX & 0x80000000);
+                lY8 = (lY & 0x80000000);
+                lX4 = (lX & 0x40000000);
+                lY4 = (lY & 0x40000000);
+                lResult = (lX & 0x3FFFFFFF)+(lY & 0x3FFFFFFF);
+                if (lX4 & lY4) {
+                    return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
+                }
+                if (lX4 | lY4) {
+                    if (lResult & 0x40000000) {
+                        return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
                     } else {
-                        return (lResult ^ lX8 ^ lY8);
+                        return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
                     }
-                };
+                } else {
+                    return (lResult ^ lX8 ^ lY8);
+                }
+            };
         
             var F = function(x,y,z) { return (x & y) | ((~x) & z); };
             var G = function(x,y,z) { return (x & z) | (y & (~z)); };
@@ -3126,57 +3145,57 @@
             var I = function(x,y,z) { return (y ^ (x | (~z))); };
         
             var FF = function(a,b,c,d,x,s,ac) {
-                    a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
-                    return AddUnsigned(RotateLeft(a, s), b);
-                };
+                a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
+                return AddUnsigned(RotateLeft(a, s), b);
+            };
         
             var GG = function(a,b,c,d,x,s,ac) {
-                    a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
-                    return AddUnsigned(RotateLeft(a, s), b);
-                };
+                a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
+                return AddUnsigned(RotateLeft(a, s), b);
+            };
         
             var HH = function(a,b,c,d,x,s,ac) {
-                    a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
-                    return AddUnsigned(RotateLeft(a, s), b);
-                };
+                a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
+                return AddUnsigned(RotateLeft(a, s), b);
+            };
         
             var II = function(a,b,c,d,x,s,ac) {
-                    a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
-                    return AddUnsigned(RotateLeft(a, s), b);
-                };
+                a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
+                return AddUnsigned(RotateLeft(a, s), b);
+            };
         
             var ConvertToWordArray = function(str) {
-                    var lWordCount;
-                    var lMessageLength = str.length;
-                    var lNumberOfWords_temp1=lMessageLength + 8;
-                    var lNumberOfWords_temp2=(lNumberOfWords_temp1-(lNumberOfWords_temp1 % 64))/64;
-                    var lNumberOfWords = (lNumberOfWords_temp2+1)*16;
-                    var lWordArray=Array(lNumberOfWords-1);
-                    var lBytePosition = 0;
-                    var lByteCount = 0;
-                    while ( lByteCount < lMessageLength ) {
-                        lWordCount = (lByteCount-(lByteCount % 4))/4;
-                        lBytePosition = (lByteCount % 4)*8;
-                        lWordArray[lWordCount] = (lWordArray[lWordCount] | (str.charCodeAt(lByteCount)<<lBytePosition));
-                        lByteCount++;
-                    }
+                var lWordCount;
+                var lMessageLength = str.length;
+                var lNumberOfWords_temp1=lMessageLength + 8;
+                var lNumberOfWords_temp2=(lNumberOfWords_temp1-(lNumberOfWords_temp1 % 64))/64;
+                var lNumberOfWords = (lNumberOfWords_temp2+1)*16;
+                var lWordArray=Array(lNumberOfWords-1);
+                var lBytePosition = 0;
+                var lByteCount = 0;
+                while ( lByteCount < lMessageLength ) {
                     lWordCount = (lByteCount-(lByteCount % 4))/4;
                     lBytePosition = (lByteCount % 4)*8;
-                    lWordArray[lWordCount] = lWordArray[lWordCount] | (0x80<<lBytePosition);
-                    lWordArray[lNumberOfWords-2] = lMessageLength<<3;
-                    lWordArray[lNumberOfWords-1] = lMessageLength>>>29;
-                    return lWordArray;
-                };
+                    lWordArray[lWordCount] = (lWordArray[lWordCount] | (str.charCodeAt(lByteCount)<<lBytePosition));
+                    lByteCount++;
+                }
+                lWordCount = (lByteCount-(lByteCount % 4))/4;
+                lBytePosition = (lByteCount % 4)*8;
+                lWordArray[lWordCount] = lWordArray[lWordCount] | (0x80<<lBytePosition);
+                lWordArray[lNumberOfWords-2] = lMessageLength<<3;
+                lWordArray[lNumberOfWords-1] = lMessageLength>>>29;
+                return lWordArray;
+            };
         
             var WordToHex = function(lValue) {
-                    var WordToHexValue="",WordToHexValue_temp="",lByte,lCount;
-                    for (lCount = 0;lCount<=3;lCount++) {
-                        lByte = (lValue>>>(lCount*8)) & 255;
-                        WordToHexValue_temp = "0" + lByte.toString(16);
-                        WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length-2,2);
-                    }
-                    return WordToHexValue;
-                };
+                var WordToHexValue="",WordToHexValue_temp="",lByte,lCount;
+                for (lCount = 0;lCount<=3;lCount++) {
+                    lByte = (lValue>>>(lCount*8)) & 255;
+                    WordToHexValue_temp = "0" + lByte.toString(16);
+                    WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length-2,2);
+                }
+                return WordToHexValue;
+            };
         
             var x=Array();
             var k,AA,BB,CC,DD,a,b,c,d;
@@ -3188,8 +3207,9 @@
             str = this.utf8_encode(str);
             x = ConvertToWordArray(str);
             a = 0x67452301; b = 0xEFCDAB89; c = 0x98BADCFE; d = 0x10325476;
-        
-            for (k=0;k<x.length;k+=16) {
+            
+            xl = x.length;
+            for (k=0;k<xl;k+=16) {
                 AA=a; BB=b; CC=c; DD=d;
                 a=FF(a,b,c,d,x[k+0], S11,0xD76AA478);
                 d=FF(d,a,b,c,x[k+1], S12,0xE8C7B756);
@@ -3344,9 +3364,10 @@
             // Parses the string into variables
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_parse_str/
-            // +       version: 809.2411
+            // +       version: 810.112
             // +   original by: Cagri Ekin
             // +   improved by: Michael White (http://getsprink.com)
+            // +    tweaked by: Jack
             // *     example 1: $P.parse_str('first=foo&second=bar');
             // *     returns 1: { first: 'foo', second: 'bar' }
             // *     example 2: $P.parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.');
@@ -3357,14 +3378,17 @@
         
             var array2 = str.split(glue2);
             var array3 = [];
-            for(var x=0; x<array2.length; x++){
-                var tmp = array2[x].split(glue1);
+            var array2l = 0, tmp = '', x = 0;
+            
+            array2l = array2.length;
+            for (x = 0; x<array2l; x++) {
+                tmp = array2[x].split(glue1);
                 array3[unescape(tmp[0])] = unescape(tmp[1]).replace(/[+]/g, ' ');
             }
         
-            if(array){
+            if (array) {
                 array = array3;
-            } else{
+            } else {
                 return array3;
             }
         },// }}}
@@ -3422,7 +3446,7 @@
             // Calculate the sha1 hash of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sha1/
-            // +       version: 809.2411
+            // +       version: 810.112
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
             // + namespaced by: Michael White (http://getsprink.com)
             // -    depends on: utf8_encode
@@ -3430,35 +3454,35 @@
             // *     returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
         
             var rotate_left = function(n,s) {
-                    var t4 = ( n<<s ) | (n>>>(32-s));
-                    return t4;
-                };
+                var t4 = ( n<<s ) | (n>>>(32-s));
+                return t4;
+            };
         
             var lsb_hex = function(val) {
-                    var str="";
-                    var i;
-                    var vh;
-                    var vl;
+                var str="";
+                var i;
+                var vh;
+                var vl;
         
-                    for( i=0; i<=6; i+=2 ) {
-                        vh = (val>>>(i*4+4))&0x0f;
-                        vl = (val>>>(i*4))&0x0f;
-                        str += vh.toString(16) + vl.toString(16);
-                    }
-                    return str;
-                };
+                for( i=0; i<=6; i+=2 ) {
+                    vh = (val>>>(i*4+4))&0x0f;
+                    vl = (val>>>(i*4))&0x0f;
+                    str += vh.toString(16) + vl.toString(16);
+                }
+                return str;
+            };
         
             var cvt_hex = function(val) {
-                    var str="";
-                    var i;
-                    var v;
+                var str="";
+                var i;
+                var v;
         
-                    for( i=7; i>=0; i-- ) {
-                        v = (val>>>(i*4))&0x0f;
-                        str += v.toString(16);
-                    }
-                    return str;
-                };
+                for( i=7; i>=0; i-- ) {
+                    v = (val>>>(i*4))&0x0f;
+                    str += v.toString(16);
+                }
+                return str;
+            };
         
             var blockstart;
             var i, j;
@@ -3577,25 +3601,35 @@
         },// }}}
         
         // {{{ soundex
-        soundex: function( str ) {
+        soundex: function(str) {
             // Calculate the soundex key of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_soundex/
-            // +       version: 809.522
+            // +       version: 810.112
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+            // +    tweaked by: Jack
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.soundex('Kevin');
             // *     returns 1: 'K150'
+            // *     example 2: $P.soundex('Ellery');
+            // *     returns 2: 'E460'
+            // *     example 3: $P.soundex('Euler');
+            // *     returns 3: 'E460'
         
-            var i, j, l, r, p = isNaN(p) ? 4 : p > 10 ? 10 : p < 4 ? 4 : p,
-            m = {BFPV: 1, CGJKQSXZ: 2, DT: 3, L: 4, MN: 5, R: 6},
-            r = (s = str.toUpperCase().replace(/[^A-Z]/g, "").split("")).splice(0, 1);
-            for(i = -1, l = s.length; ++i < l;){
-                for(j in m){
-                    if(j.indexOf(s[i]) + 1 && r[r.length-1] != m[j] && r.push(m[j])){
+            var i, j, l, r, p = isNaN(p) ? 4 : p > 10 ? 10 : p < 4 ? 4 : p;
+            var m = {BFPV: 1, CGJKQSXZ: 2, DT: 3, L: 4, MN: 5, R: 6};
+            var r = (s = str.toUpperCase().replace(/[^A-Z]/g, "").split("")).splice(0, 1);
+            var sl = 0;
+            
+            sl = s.length;
+            for (i = -1, l = sl; ++i < l;) {
+                for (j in m) {
+                    if (j.indexOf(s[i]) + 1 && r[r.length-1] != m[j] && r.push(m[j])) {
                         break;
                     }
                 }
             }
+            
             return r.length > p && (r.length = p), r.join("") + (new Array(p - r.length + 1)).join("0");
         },// }}}
         
@@ -3618,9 +3652,11 @@
             // Return a formatted string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sprintf/
-            // +       version: 809.2411
+            // +       version: 810.112
             // +   original by: Ash Searle (http://hexmen.com/blog/)
             // + namespaced by: Michael White (http://getsprink.com)
+            // +    tweaked by: Jack
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)s
             // *     example 1: $P.sprintf("%01.2f", 123.1);
             // *     returns 1: 123.10
         
@@ -3638,9 +3674,9 @@
                 var diff = minWidth - value.length;
                 if (diff > 0) {
                     if (leftJustify || !zeroPad) {
-                    value = pad(value, minWidth, ' ', leftJustify);
+                        value = pad(value, minWidth, ' ', leftJustify);
                     } else {
-                    value = value.slice(0, prefix.length) + pad('', diff, '0', true) + value.slice(prefix.length);
+                        value = value.slice(0, prefix.length) + pad('', diff, '0', true) + value.slice(prefix.length);
                     }
                 }
                 return value;
@@ -3669,7 +3705,8 @@
         
                 // parse flags
                 var leftJustify = false, positivePrefix = '', zeroPad = false, prefixBaseX = false;
-                for (var j = 0; flags && j < flags.length; j++) switch (flags.charAt(j)) {
+                var flagsl = flags.length;
+                for (var j = 0; flags && j < flagsl; j++) switch (flags.charAt(j)) {
                     case ' ': positivePrefix = ' '; break;
                     case '+': positivePrefix = '+'; break;
                     case '-': leftJustify = true; break;
@@ -3753,42 +3790,53 @@
             // Case-insensitive version of str_replace().
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_ireplace/
-            // +       version: 809.522
+            // +       version: 810.112
             // +   original by: Martijn Wieringa
             // +      input by: penutbutterjelly
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +    tweaked by: Jack
+            // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.str_ireplace('l', 'l', 'HeLLo');
             // *     returns 1: 'Hello'
             
-            var i;
+            var i, k = '';
+            var searchl = 0;
             
-            if(!(replace instanceof Array)){
-                replace=new Array(replace);
-                if(search instanceof Array){//If search    is an array and replace    is a string, then this replacement string is used for every value of search
-                    while(search.length>replace.length){
-                        replace[replace.length]=replace[0];
+            searchl = search.length;
+            if (!(replace instanceof Array)) {
+                replace = new Array(replace);
+                if (search instanceof Array) {
+                    // If search is an array and replace is a string, 
+                    // then this replacement string is used for every value of search
+                    while (searchl > replace.length) {
+                        replace[replace.length] = replace[0];
                     }
                 }
             }
         
-            if(!(search instanceof Array))search=new Array(search);
-            while(search.length>replace.length){//If replace    has fewer values than search , then an empty string is used for the rest of replacement values
-                replace[replace.length]='';
+            if (!(search instanceof Array)) {
+                search = new Array(search);
+            }
+            while (search.length>replace.length) {
+                // If replace has fewer values than search, 
+                // then an empty string is used for the rest of replacement values
+                replace[replace.length] = '';
             }
         
-            if(subject instanceof Array){//If subject is an array, then the search and replace is performed with every entry of subject , and the return value is an array as well.
-                for(k in subject){
-                    subject[k]=str_replace(search,replace,subject[k]);
+            if (subject instanceof Array) {
+                // If subject is an array, then the search and replace is performed 
+                // with every entry of subject , and the return value is an array as well.
+                for (k in subject) {
+                    subject[k] = this.str_ireplace(search, replace, subject[k]);
                 }
                 return subject;
             }
         
-        
-            for(var k=0; k<search.length; k++){
-                reg = new RegExp(search[k], 'gi');
-                subject = subject.replace(reg, replace[k]);
+            searchl = search.length;
+            for (i = 0; i < searchl; i++) {
+                reg = new RegExp(search[i], 'gi');
+                subject = subject.replace(reg, replace[i]);
             }
-        
         
             return subject;
         },// }}}
@@ -4151,9 +4199,10 @@
             // String comparisons using a &quot;natural order&quot; algorithm
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strnatcmp/
-            // +       version: 809.2411
+            // +       version: 810.112
             // +   original by: Martijn Wieringa
             // + namespaced by: Michael White (http://getsprink.com)
+            // +    tweaked by: Jack
             // -    depends on: strcmp
             // %          note: Added f_version argument against code guidelines, because it's so neat
             // *     example 1: $P.strnatcmp('Price 12.9', 'Price 12.15');
@@ -4167,7 +4216,7 @@
             // *     example 5: $P.strnatcmp('Version 12.15', 'Version 12.9', true);
             // *     returns 5: 6
         
-            if(f_version == undefined) {
+            if (f_version == undefined) {
                 f_version = false;
             }
         
@@ -4175,14 +4224,15 @@
                 var result = new Array();
                 var buffer = '';
                 var chr = '';
+                var i = 0, f_stringl = 0;
         
                 var text = true;
         
-                for(var i = 0; i < f_string.length; i++){
+                f_stringl = f_string.length;
+                for (i = 0; i < f_stringl; i++) {
                     chr = f_string.substring(i, i + 1);
-        
-                    if(chr.match(/[0-9]/)){
-                        if(text){
+                    if (chr.match(/[0-9]/)) {
+                        if (text) {
                             if(buffer.length > 0){
                                 result[result.length] = buffer;
                                 buffer = '';
@@ -4191,12 +4241,12 @@
                             text = false;
                         }
                         buffer += chr;
-                    } else if((text == false) && (chr == '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i + 2).match(/[0-9]/))) {
+                    } else if ((text == false) && (chr == '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i + 2).match(/[0-9]/))) {
                         result[result.length] = buffer;
                         buffer = '';
                     } else {
-                        if(text == false) {
-                            if(buffer.length > 0) {
+                        if (text == false) {
+                            if (buffer.length > 0) {
                                 result[result.length] = parseInt(buffer);
                                 buffer = '';
                             }
@@ -4206,8 +4256,8 @@
                     }
                 }
         
-                if(buffer.length > 0) {
-                    if(text) {
+                if (buffer.length > 0) {
+                    if (text) {
                         result[result.length] = buffer;
                     } else {
                         result[result.length] = parseInt(buffer);
@@ -4226,38 +4276,37 @@
             var result = -1;
             var r = 0;
         
-            if(len > array2.length) {
+            if (len > array2.length) {
                 len = array2.length;
                 result = 1;
             }
         
-            for(i = 0; i < len; i++) {
-                if(isNaN(array1[i])) {
-                    if(isNaN(array2[i])){
+            for (i = 0; i < len; i++) {
+                if (isNaN(array1[i])) {
+                    if (isNaN(array2[i])) {
                         text = true;
         
-                        if((r = this.strcmp(array1[i], array2[i])) != 0) {
+                        if ((r = this.strcmp(array1[i], array2[i])) != 0) {
                             return r;
                         }
-                    }
-                    else if(text){
+                    } else if (text){
                         return 1;
                     } else {
                         return -1;
                     }
-                } else if(isNaN(array2[i])){
+                } else if (isNaN(array2[i])) {
                     if(text) {
                         return -1;
                     } else{
                         return 1;
                     }
-                }else  {
+                } else {
                     if(text || f_version){
-                        if((r = (array1[i] - array2[i])) != 0){
+                        if ((r = (array1[i] - array2[i])) != 0) {
                             return r;
                         }
                     } else {
-                        if((r = this.strcmp(array1[i].toString(), array2[i].toString())) != 0) {
+                        if ((r = this.strcmp(array1[i].toString(), array2[i].toString())) != 0) {
                             return r;
                         }
                     }
@@ -5476,19 +5525,22 @@
             // Encodes an ISO-8859-1 string to UTF-8
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_encode/
-            // +       version: 809.2122
+            // +       version: 810.112
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: sowberry
+            // +    tweaked by: Jack
             // *     example 1: $P.utf8_encode('Kevin van Zonneveld');
             // *     returns 1: 'Kevin van Zonneveld'
             
             string = string.replace(/\r\n/g,"\n");
             var utftext = "";
             var start, end;
+            var stringl = 0;
          
             start = end = 0;
-            for (var n = 0; n < string.length; n++) {
+            stringl = string.length;
+            for (var n = 0; n < stringl; n++) {
                 var c1 = string.charCodeAt(n);
                 var enc = null;
          
