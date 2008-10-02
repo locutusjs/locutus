@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.57
+ * This is version: 1.58
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -12,7 +12,7 @@
  * (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman Gupta,
- * Arpad Ray (mailto:arpad@php.net), Enrique González, Karol Kowalski, Mirek
+ * Arpad Ray (mailto:arpad@php.net), Enrique Gonzalez, Karol Kowalski, Mirek
  * Slugen, Nate, Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
  * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen

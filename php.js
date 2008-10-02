@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.57
+ * This is version: 1.58
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -12,7 +12,7 @@
  * (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman Gupta,
- * Arpad Ray (mailto:arpad@php.net), Enrique González, Karol Kowalski, Mirek
+ * Arpad Ray (mailto:arpad@php.net), Enrique Gonzalez, Karol Kowalski, Mirek
  * Slugen, Nate, Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
  * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
@@ -1968,8 +1968,8 @@ function deg2rad(angle) {
     // Converts the number in degrees to the radian equivalent
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_deg2rad/
-    // +       version: 810.114
-    // +   original by: Enrique González
+    // +       version: 810.115
+    // +   original by: Enrique Gonzalez
     // *     example 1: deg2rad(45);
     // *     returns 1: 0.7853981633974483
     
@@ -2318,10 +2318,10 @@ function rad2deg(angle) {
     // Converts the radian number to the equivalent number in degrees
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rad2deg/
-    // +       version: 810.114
-    // +   original by: Enrique González
+    // +       version: 810.115
+    // +   original by: Enrique Gonzalez
     // *     example 1: rad2deg(3.141592653589793);
-    // *     returns 1: 45
+    // *     returns 1: 180
     
     return (angle/Math.PI) * 180;
 }// }}}
