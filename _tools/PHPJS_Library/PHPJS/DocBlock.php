@@ -22,6 +22,10 @@ Class PHPJS_DocBlock {
         return $this->_examples;
     }
 
+    public function getNotes() {
+        return $this->_notes;
+    }
+    
     public function getAuthors() {
         return $this->_authors;
     }
