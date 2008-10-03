@@ -7,13 +7,13 @@ function trim( str, charlist ) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: DxGx
     // +   improved by: Steven Levithan (http://blog.stevenlevithan.com)
-    // +   improved by: Jack
+    // +    tweaked by: Jack
     // *     example 1: trim('    Kevin van Zonneveld    ');
     // *     returns 1: 'Kevin van Zonneveld'
     // *     example 2: trim('Hello World', 'Hdle');
     // *     returns 2: 'o Wor'
 
-    var whitespace, l = 0;
+    var whitespace, l = 0, i = 0;
     
     if (!charlist) {
         whitespace = ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000';
@@ -22,7 +22,7 @@ function trim( str, charlist ) {
     }
     
     l = str.length;
-    for (var i = 0; i < l; i++) {
+    for (i = 0; i < l; i++) {
         if (whitespace.indexOf(str.charAt(i)) === -1) {
             str = str.substring(i);
             break;
