@@ -1,20 +1,20 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.60
+ * This is version: 1.61
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
  * _argos, Jack, Jonas Raoni Soares Silva (http://www.jsfromhell.com), Legaev
  * Andrey, Ates Goral (http://magnetiq.com), Philip Peterson, Martijn
  * Wieringa, Webtoolkit.info (http://www.webtoolkit.info/), Carlos R. L.
- * Rodrigues (http://www.jsfromhell.com), Ash Searle
+ * Rodrigues (http://www.jsfromhell.com), Enrique Gonzalez, Ash Searle
  * (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl),
  * Philippe Baumann, d3x, marrtins, AJ, Alfonso Jimenez
  * (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
- * (mailto:arpad@php.net), Enrique Gonzalez, Karol Kowalski, Mirek Slugen,
- * Nate, Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
+ * (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Nate, Sakimori,
+ * Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
  * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
@@ -1963,6 +1963,21 @@ function cosh(arg) {
     return (Math.exp(arg) + Math.exp(-arg))/2;
 }// }}}
 
+// {{{ decbin
+function decbin(number) {
+    // Decimal to binary
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_decbin/
+    // +       version: 810.315
+    // +   original by: Enrique Gonzalez
+    // *     example 1: decbin(12);
+    // *     returns 1: '1100'
+    // *     example 2: decbin(26);
+    // *     returns 2: '11010'
+    
+    return number.toString(2);
+}// }}}
+
 // {{{ dechex
 function dechex(number) {
     // Decimal to hexadecimal
@@ -1976,6 +1991,21 @@ function dechex(number) {
     // *     returns 2: '2f'
     
     return number.toString(16);
+}// }}}
+
+// {{{ decoct
+function decoct(number) {
+    // Decimal to octal
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_decoct/
+    // +       version: 810.315
+    // +   original by: Enrique Gonzalez
+    // *     example 1: decoct(15);
+    // *     returns 1: '17'
+    // *     example 2: decoct(264);
+    // *     returns 2: '410'
+    
+    return number.toString(8);
 }// }}}
 
 // {{{ deg2rad
@@ -4678,7 +4708,7 @@ function trim( str, charlist ) {
     // Strip whitespace (or other characters) from the beginning and end of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_trim/
-    // +       version: 809.522
+    // +       version: 810.315
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: mdsjack (http://www.mdsjack.bo.it)
     // +   improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
@@ -4686,13 +4716,13 @@ function trim( str, charlist ) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: DxGx
     // +   improved by: Steven Levithan (http://blog.stevenlevithan.com)
-    // +   improved by: Jack
+    // +    tweaked by: Jack
     // *     example 1: trim('    Kevin van Zonneveld    ');
     // *     returns 1: 'Kevin van Zonneveld'
     // *     example 2: trim('Hello World', 'Hdle');
     // *     returns 2: 'o Wor'
 
-    var whitespace, l = 0;
+    var whitespace, l = 0, i = 0;
     
     if (!charlist) {
         whitespace = ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000';
@@ -4701,7 +4731,7 @@ function trim( str, charlist ) {
     }
     
     l = str.length;
-    for (var i = 0; i < l; i++) {
+    for (i = 0; i < l; i++) {
         if (whitespace.indexOf(str.charAt(i)) === -1) {
             str = str.substring(i);
             break;
