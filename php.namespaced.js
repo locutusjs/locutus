@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.59
+ * This is version: 1.60
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -10,10 +10,11 @@
  * Wieringa, Webtoolkit.info (http://www.webtoolkit.info/), Carlos R. L.
  * Rodrigues (http://www.jsfromhell.com), Ash Searle
  * (http://hexmen.com/blog/), Erkekjetter, GeekFG
- * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
- * marrtins, AJ, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman Gupta,
- * Arpad Ray (mailto:arpad@php.net), Enrique Gonzalez, Karol Kowalski, Mirek
- * Slugen, Nate, Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
+ * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl),
+ * Philippe Baumann, d3x, marrtins, AJ, Alfonso Jimenez
+ * (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
+ * (mailto:arpad@php.net), Enrique Gonzalez, Karol Kowalski, Mirek Slugen,
+ * Nate, Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
  * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
@@ -25,15 +26,14 @@
  * Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Luke Godfrey, Mateusz
  * "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick
  * Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com),
- * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Philippe Baumann,
- * Pul, Pyerre, ReverseSyntax, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon
- * Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve
- * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T.Wild, T0bsn,
- * Thiago Mata (http://thiagomata.blog.com), Tim Wiel, XoraX
- * (http://www.xorax.info), Yannoo, baris ozdil, booeyOH, djmix, dptr1988,
- * duncan, echo is bad, gabriel paderni, ger, gorthaur, jakes, john
- * (http://www.jd-tech.net), johnrembo, kenneth, metjay, nobbler,
- * penutbutterjelly, sankai, sowberry, stensi
+ * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Pul, Pyerre,
+ * ReverseSyntax, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
+ * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
+ * Steven Levithan (http://blog.stevenlevithan.com), T.Wild, T0bsn, Thiago
+ * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
+ * Yannoo, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel
+ * paderni, ger, gorthaur, jakes, john (http://www.jd-tech.net), johnrembo,
+ * kenneth, metjay, nobbler, penutbutterjelly, sankai, sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -1978,6 +1978,21 @@
             return (Math.exp(arg) + Math.exp(-arg))/2;
         },// }}}
         
+        // {{{ dechex
+        dechex: function(number) {
+            // Decimal to hexadecimal
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_dechex/
+            // +       version: 810.300
+            // +   original by: Philippe Baumann
+            // *     example 1: $P.dechex(10);
+            // *     returns 1: 'a'
+            // *     example 2: $P.dechex(47);
+            // *     returns 2: '2f'
+            
+            return number.toString(16);
+        },// }}}
+        
         // {{{ deg2rad
         deg2rad: function(angle) {
             // Converts the number in degrees to the radian equivalent
@@ -2051,6 +2066,22 @@
             } else {
                 return parseFloat(tmp2.toFixed(-p));
             }
+        },// }}}
+        
+        // {{{ hexdec
+        hexdec: function(hex_string) {
+            // Hexadecimal to decimal
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_hexdec/
+            // +       version: 810.300
+            // +   original by: Philippe Baumann
+            // *     example 1: $P.hexdec('that');
+            // *     returns 1: 10
+            // *     example 2: $P.hexdec('a0');
+            // *     returns 2: 160
+            
+            hex_string = (hex_string+'').replace(/[^a-f0-9]/gi, '');
+            return parseInt(hex_string, 16);
         },// }}}
         
         // {{{ log
