@@ -1,8 +1,6 @@
 function fmod(x, y) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
-    // %          note: Examples in PHP & JS return: 0.8, but according 
-    // %          note: the PHP-manual's it should be 0.5. PHP manual seems to be incorrect?   
     // *     example 1: fmod(5.7, 1.3);
     // *     returns 1: 0.5
     

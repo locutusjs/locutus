@@ -4,15 +4,9 @@ function strlen (string) {
     // +   improved by: Sakimori
     // +      input by: Kirk Strobeck
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
     // *     example 1: strlen('Kevin van Zonneveld');
     // *     returns 1: 19
 
-    var tmp_str = '', l = 0;
-    tmp_str = string + '';
-    
-    if (tmp_str.length) {
-        return tmp_str.length; 
-    }  
-    
-    return 0;
+    return ((string+'').length || 0);
 }

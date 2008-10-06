@@ -3,7 +3,8 @@ function utf8_decode ( str_data ) {
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // +      input by: Aman Gupta
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Norman "zEh" Fuchs 
+    // +   improved by: Norman "zEh" Fuchs
+    // +   bugfixed by: hitwork  
     // *     example 1: utf8_decode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
@@ -14,7 +15,7 @@ function utf8_decode ( str_data ) {
         if (c1 < 128) {
             tmp_arr[ac++] = String.fromCharCode(c1); 
             i++;
-        } else if ((c1 > 191) && (c < 224)) {
+        } else if ((c1 > 191) && (c1 < 224)) {
             c2 = str_data.charCodeAt(i+1);
             tmp_arr[ac++] = String.fromCharCode(((c1 & 31) << 6) | (c2 & 63));
             i += 2;

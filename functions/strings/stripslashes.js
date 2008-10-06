@@ -4,8 +4,9 @@ function stripslashes( str ) {
     // +   improved by: Ates Goral (http://magnetiq.com)
     // +      fixed by: Mick@el
     // +   improved by: marrtins
+    // +   bugfixed by: Onno Marsman
     // *     example 1: stripslashes('Kevin\'s code');
     // *     returns 1: "Kevin's code"
 
-    return str.replace('/\0/g', '0').replace('/\(.)/g', '$1');
+    return (str+'').replace('/\0/g', '0').replace('/\(.)/g', '$1');
 }
