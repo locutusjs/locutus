@@ -2017,7 +2017,7 @@
             // +   original by: Enrique Gonzalez
             // *     example 1: $P.decoct(15);
             // *     returns 1: '17'
-            // *     example 2: $P.decoct(264);
+            // *     example 2: $P.decoct(264); 
             // *     returns 2: '410'
             
             return number.toString(8);
