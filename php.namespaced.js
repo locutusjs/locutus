@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.66
+ * This is version: 1.67
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -4613,12 +4613,13 @@
             // Find position of last occurrence of a case-insensitive string in a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strripos/
-            // +       version: 809.522
+            // +       version: 810.620
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.strripos('Kevin van Zonneveld', 'E');
             // *     returns 1: 16
         
-            var i = haystack.toLowerCase().lastIndexOf( needle.toLowerCase(), offset ); // returns -1
+            var i = (haystack+'').toLowerCase().lastIndexOf( (needle+'').toLowerCase(), offset ); // returns -1
             return i >= 0 ? i : false;
         },// }}}
         
