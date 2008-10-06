@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.62
+ * This is version: 1.63
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -31,8 +31,9 @@
  * Steven Levithan (http://blog.stevenlevithan.com), T.Wild, T0bsn, Thiago
  * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
  * Yannoo, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel
- * paderni, ger, gorthaur, jakes, john (http://www.jd-tech.net), johnrembo,
- * kenneth, metjay, nobbler, penutbutterjelly, sankai, sowberry, stensi
+ * paderni, ger, gorthaur, hitwork, jakes, john (http://www.jd-tech.net),
+ * johnrembo, kenneth, metjay, nobbler, penutbutterjelly, sankai, sowberry,
+ * stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -2044,14 +2045,15 @@
             // Decimal to octal
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_decoct/
-            // +       version: 810.315
+            // +       version: 810.612
             // +   original by: Enrique Gonzalez
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.decoct(15);
             // *     returns 1: '17'
             // *     example 2: $P.decoct(264); 
             // *     returns 2: '410'
             
-            return number.toString(8);
+            return parseInt(number).toString(8);
         },// }}}
         
         // {{{ deg2rad
@@ -2098,10 +2100,8 @@
             // Returns the floating point remainder (modulo) of the division  of the arguments
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_fmod/
-            // +       version: 810.209
+            // +       version: 810.612
             // +   original by: Onno Marsman
-            // %          note: Examples in PHP & JS return: 0.8, but according 
-            // %          note: the PHP-manual's it should be 0.5. PHP manual seems to be incorrect?   
             // *     example 1: $P.fmod(5.7, 1.3);
             // *     returns 1: 0.5
             
@@ -4277,23 +4277,18 @@
             // Find position of first occurrence of a case-insensitive string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_stripos/
-            // +       version: 809.522
+            // +       version: 810.612
             // +     original by: Martijn Wieringa
             // *         example 1: $P.stripos('ABC', 'a');
             // *         returns 1: 0
         
-            var haystack = f_haystack.toLowerCase();
-            var needle = f_needle.toLowerCase();
+            var haystack = (f_haystack+'').toLowerCase();
+            var needle = (f_needle+'').toLowerCase();
             var index = 0;
-        
-            if(f_offset == undefined) {
-                f_offset = 0;
-            }
-        
-            if((index = haystack.indexOf(needle, f_offset)) > -1) {
+         
+            if ((index = haystack.indexOf(needle, f_offset)) !== -1) {
                 return index;
             }
-        
             return false;
         },// }}}
         
@@ -4302,15 +4297,16 @@
             // Un-quote string quoted with addslashes()
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_stripslashes/
-            // +       version: 809.522
+            // +       version: 810.612
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Ates Goral (http://magnetiq.com)
             // +      fixed by: Mick@el
             // +   improved by: marrtins
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.stripslashes('Kevin\'s code');
             // *     returns 1: "Kevin's code"
         
-            return str.replace('/\0/g', '0').replace('/\(.)/g', '$1');
+            return (str+'').replace('/\0/g', '0').replace('/\(.)/g', '$1');
         },// }}}
         
         // {{{ stristr
@@ -4344,22 +4340,16 @@
             // Get string length
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strlen/
-            // +       version: 809.800
+            // +       version: 810.612
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Sakimori
             // +      input by: Kirk Strobeck
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.strlen('Kevin van Zonneveld');
             // *     returns 1: 19
         
-            var tmp_str = '', l = 0;
-            tmp_str = string + '';
-            
-            if (tmp_str.length) {
-                return tmp_str.length; 
-            }  
-            
-            return 0;
+            return ((string+'').length || 0);
         },// }}}
         
         // {{{ strnatcmp
@@ -4588,13 +4578,14 @@
             // Find position of first occurrence of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strpos/
-            // +       version: 809.522
+            // +       version: 810.612
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   improved by: Onno Marsman    
             // *     example 1: $P.strpos('Kevin van Zonneveld', 'e', 5);
             // *     returns 1: 14
         
-            var i = haystack.indexOf( needle, offset ); // returns -1
-            return i >= 0 ? i : false;
+            var i = (haystack+'').indexOf( needle, offset ); 
+            return i===-1 ? false : i;
         },// }}}
         
         // {{{ strrev
@@ -5674,11 +5665,12 @@
             // ISO-8859-1
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_decode/
-            // +       version: 809.2122
+            // +       version: 810.612
             // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
             // +      input by: Aman Gupta
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-            // +   improved by: Norman "zEh" Fuchs 
+            // +   improved by: Norman "zEh" Fuchs
+            // +   bugfixed by: hitwork  
             // *     example 1: $P.utf8_decode('Kevin van Zonneveld');
             // *     returns 1: 'Kevin van Zonneveld'
         
@@ -5689,7 +5681,7 @@
                 if (c1 < 128) {
                     tmp_arr[ac++] = String.fromCharCode(c1); 
                     i++;
-                } else if ((c1 > 191) && (c < 224)) {
+                } else if ((c1 > 191) && (c1 < 224)) {
                     c2 = str_data.charCodeAt(i+1);
                     tmp_arr[ac++] = String.fromCharCode(((c1 & 31) << 6) | (c2 & 63));
                     i += 2;
