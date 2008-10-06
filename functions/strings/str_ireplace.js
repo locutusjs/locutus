@@ -5,17 +5,19 @@ function str_ireplace ( search, replace, subject ) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    tweaked by: Jack
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
     // *     example 1: str_ireplace('l', 'l', 'HeLLo');
     // *     returns 1: 'Hello'
-    
+
     var i, k = '';
     var searchl = 0;
-    
+
+    search += '';
     searchl = search.length;
     if (!(replace instanceof Array)) {
         replace = new Array(replace);
         if (search instanceof Array) {
-            // If search is an array and replace is a string, 
+            // If search is an array and replace is a string,
             // then this replacement string is used for every value of search
             while (searchl > replace.length) {
                 replace[replace.length] = replace[0];
@@ -27,13 +29,13 @@ function str_ireplace ( search, replace, subject ) {
         search = new Array(search);
     }
     while (search.length>replace.length) {
-        // If replace has fewer values than search, 
+        // If replace has fewer values than search,
         // then an empty string is used for the rest of replacement values
         replace[replace.length] = '';
     }
 
     if (subject instanceof Array) {
-        // If subject is an array, then the search and replace is performed 
+        // If subject is an array, then the search and replace is performed
         // with every entry of subject , and the return value is an array as well.
         for (k in subject) {
             subject[k] = str_ireplace(search, replace, subject[k]);

@@ -2,11 +2,12 @@ function count_chars( str, mode ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com)
     // +    tweaked by: Jack
+    // +   bugfixed by: Onno Marsman
     // *     example 1: count_chars("Hello World!", 1);
     // *     returns 1: "Hd e!lWor"
 
     var histogram = new Object(), tmp_arr = new Array();
-    var key, i, code, mode, strl = 0; 
+    var key, i, code, mode, strl = 0;
     var argc = arguments.length;
 
     if (argc == 1) {
@@ -19,7 +20,9 @@ function count_chars( str, mode ) {
             histogram[i] = 0;
         }
     }
-    
+
+    str += '';
+
     strl = str.length;
     for (i = 0; i < strl; ++i) {
         code = str.charCodeAt(i);

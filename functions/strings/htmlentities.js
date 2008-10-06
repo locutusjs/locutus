@@ -4,13 +4,14 @@ function htmlentities( string ){
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: nobbler
     // +    tweaked by: Jack
+    // +   bugfixed by: Onno Marsman
     // %          note: table from http://www.the-art-of-web.com/html/character-codes/
     // *     example 1: htmlentities('Kevin & van Zonneveld');
     // *     returns 1: 'Kevin &amp; van Zonneveld'
-    
+
     var histogram = {}, code = 0, tmp_arr = [], i = 0;
     var stringl = 0;
-    
+
     histogram['34'] = 'quot';
     histogram['38'] = 'amp';
     histogram['60'] = 'lt';
@@ -111,7 +112,8 @@ function htmlentities( string ){
     histogram['253'] = 'yacute';
     histogram['254'] = 'thorn';
     histogram['255'] = 'yuml';
-    
+
+    string += '';
     stringl = string.length
     for (i = 0; i < stringl; ++i) {
         code = string.charCodeAt(i);
@@ -121,6 +123,6 @@ function htmlentities( string ){
             tmp_arr[i] = string.charAt(i);
         }
     }
-    
+
     return tmp_arr.join('');
 }

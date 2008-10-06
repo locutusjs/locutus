@@ -4,13 +4,14 @@ function html_entity_decode( string ) {
     // +      input by: ger
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
     // %          note: table from http://www.the-art-of-web.com/html/character-codes/
     // *     example 1: html_entity_decode('Kevin &amp; van Zonneveld');
     // *     returns 1: 'Kevin & van Zonneveld'
-    
+
     var histogram = {}, histogram_r = {}, code = 0;
     var entity = chr = '';
-    
+
     histogram['34'] = 'quot';
     histogram['38'] = 'amp';
     histogram['60'] = 'lt';
@@ -111,19 +112,19 @@ function html_entity_decode( string ) {
     histogram['253'] = 'yacute';
     histogram['254'] = 'thorn';
     histogram['255'] = 'yuml';
-    
-    // Reverse table. Cause for maintainability purposes, the histogram is 
+
+    // Reverse table. Cause for maintainability purposes, the histogram is
     // identical to the one in htmlentities.
     for (code in histogram) {
         entity = histogram[code];
-        histogram_r[entity] = code; 
+        histogram_r[entity] = code;
     }
-    
-    return string.replace(/(\&([a-zA-Z]+)\;)/g, function(full, m1, m2){
+
+    return (string+'').replace(/(\&([a-zA-Z]+)\;)/g, function(full, m1, m2){
         if (m2 in histogram_r) {
             return String.fromCharCode(histogram_r[m2]);
         } else {
             return m2;
         }
-    });    
+    });
 }
