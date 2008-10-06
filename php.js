@@ -1,20 +1,19 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.61
+ * This is version: 1.62
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
  * _argos, Jack, Jonas Raoni Soares Silva (http://www.jsfromhell.com), Legaev
  * Andrey, Ates Goral (http://magnetiq.com), Philip Peterson, Martijn
- * Wieringa, Webtoolkit.info (http://www.webtoolkit.info/), Carlos R. L.
- * Rodrigues (http://www.jsfromhell.com), Enrique Gonzalez, Ash Searle
- * (http://hexmen.com/blog/), Erkekjetter, GeekFG
- * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl),
- * Philippe Baumann, d3x, marrtins, AJ, Alfonso Jimenez
- * (http://www.alfonsojimenez.com), Aman Gupta, Arpad Ray
- * (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Nate, Sakimori,
- * Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
+ * Wieringa, Philippe Baumann, Webtoolkit.info (http://www.webtoolkit.info/),
+ * Carlos R. L. Rodrigues (http://www.jsfromhell.com), Enrique Gonzalez, Ash
+ * Searle (http://hexmen.com/blog/), Erkekjetter, GeekFG
+ * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
+ * marrtins, AJ, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman Gupta,
+ * Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Nate,
+ * Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
  * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
@@ -1924,6 +1923,37 @@ function atanh(arg) {
     return 0.5 * Math.log((1+arg)/(1-arg));
 }// }}}
 
+// {{{ base_convert
+function base_convert(number, frombase, tobase) {
+    // Convert a number between arbitrary bases
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base_convert/
+    // +       version: 810.612
+    // +   original by: Philippe Baumann
+    // *     example 1: base_convert('A37334', 16, 2);
+    // *     returns 1: '101000110111001100110100'
+
+    return parseInt(number+'', frombase+0).toString(tobase+0);
+}// }}}
+
+// {{{ bindec
+function bindec (binary_string) {
+    // Binary to decimal
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_bindec/
+    // +       version: 810.612
+    // +   original by: Philippe Baumann
+    // *     example 1: bindec('110011');
+    // *     returns 1: 51
+    // *     example 2: bindec('000110011');
+    // *     returns 2: 51
+    // *     example 3: bindec('111');
+    // *     returns 3: 7
+
+    binary_string = (binary_string+'').replace(/[^01]/gi, '');
+    return parseInt(binary_string, 2);
+}// }}}
+
 // {{{ ceil
 function ceil(value) {
     // Round fractions up
@@ -1983,14 +2013,15 @@ function dechex(number) {
     // Decimal to hexadecimal
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_dechex/
-    // +       version: 810.300
+    // +       version: 810.612
     // +   original by: Philippe Baumann
+    // +   bugfixed by: Onno Marsman
     // *     example 1: dechex(10);
     // *     returns 1: 'a'
     // *     example 2: dechex(47);
     // *     returns 2: '2f'
     
-    return number.toString(16);
+    return parseInt(number).toString(16);
 }// }}}
 
 // {{{ decoct
@@ -2346,6 +2377,20 @@ function min() {
     }
     
     return retVal;
+}// }}}
+
+// {{{ octdec
+function octdec (oct_string) {
+    // Octal to decimal
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_octdec/
+    // +       version: 810.612
+    // +   original by: Philippe Baumann
+    // *     example 1: octdec('77');
+    // *     returns 1: 63
+
+    oct_string = (oct_string+'').replace(/[^0-7]/gi, '');
+    return parseInt(oct_string, 8);
 }// }}}
 
 // {{{ pi
@@ -4708,7 +4753,7 @@ function trim( str, charlist ) {
     // Strip whitespace (or other characters) from the beginning and end of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_trim/
-    // +       version: 810.315
+    // +       version: 810.612
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: mdsjack (http://www.mdsjack.bo.it)
     // +   improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
@@ -4717,12 +4762,17 @@ function trim( str, charlist ) {
     // +      input by: DxGx
     // +   improved by: Steven Levithan (http://blog.stevenlevithan.com)
     // +    tweaked by: Jack
+    // +   bugfixed by: Onno Marsman
     // *     example 1: trim('    Kevin van Zonneveld    ');
     // *     returns 1: 'Kevin van Zonneveld'
     // *     example 2: trim('Hello World', 'Hdle');
     // *     returns 2: 'o Wor'
+    // *     example 3: trim(16, 1);
+    // *     returns 3: 6
 
     var whitespace, l = 0, i = 0;
+    str += '';
+    charlist += '';
     
     if (!charlist) {
         whitespace = ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000';
