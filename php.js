@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.63
+ * This is version: 1.64
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -4325,7 +4325,7 @@ function strlen (string) {
     // Get string length
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strlen/
-    // +       version: 810.612
+    // +       version: 810.616
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Sakimori
     // +      input by: Kirk Strobeck
@@ -4334,7 +4334,7 @@ function strlen (string) {
     // *     example 1: strlen('Kevin van Zonneveld');
     // *     returns 1: 19
 
-    return ((string+'').length || 0);
+    return (string+'').length;
 }// }}}
 
 // {{{ strnatcmp
