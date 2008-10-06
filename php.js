@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.65
+ * This is version: 1.66
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -4262,8 +4262,9 @@ function stripos ( f_haystack, f_needle, f_offset ){
     // Find position of first occurrence of a case-insensitive string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_stripos/
-    // +       version: 810.612
+    // +       version: 810.617
     // +     original by: Martijn Wieringa
+    // +      revised by: Onno Marsman
     // *         example 1: stripos('ABC', 'a');
     // *         returns 1: 0
 
