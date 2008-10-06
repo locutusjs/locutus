@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.67
+ * This is version: 1.68
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -2652,12 +2652,15 @@ function bin2hex(s){
     // Convert binary data into hexadecimal representation
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_bin2hex/
-    // +       version: 809.522
+    // +       version: 810.621
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
     // *     example 1: bin2hex('Kev');
     // *     returns 1: '4b6576'
 
-    var i, f = s.length, a = [];
+    var i, f = 0, a = [];
+    s += '';
+    f = s.length;
     for(i = 0; i<f; i++){
         a[i] = s.charCodeAt(i).toString(16);
     }
@@ -2682,14 +2685,15 @@ function count_chars( str, mode ) {
     // Return information about characters used in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_count_chars/
-    // +       version: 810.112
+    // +       version: 810.621
     // +   original by: Ates Goral (http://magnetiq.com)
     // +    tweaked by: Jack
+    // +   bugfixed by: Onno Marsman
     // *     example 1: count_chars("Hello World!", 1);
     // *     returns 1: "Hd e!lWor"
 
     var histogram = new Object(), tmp_arr = new Array();
-    var key, i, code, mode, strl = 0; 
+    var key, i, code, mode, strl = 0;
     var argc = arguments.length;
 
     if (argc == 1) {
@@ -2702,7 +2706,9 @@ function count_chars( str, mode ) {
             histogram[i] = 0;
         }
     }
-    
+
+    str += '';
+
     strl = str.length;
     for (i = 0; i < strl; ++i) {
         code = str.charCodeAt(i);
@@ -2858,18 +2864,19 @@ function html_entity_decode( string ) {
     // Convert all HTML entities to their applicable characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_html_entity_decode/
-    // +       version: 809.522
+    // +       version: 810.621
     // +   original by: john (http://www.jd-tech.net)
     // +      input by: ger
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
     // %          note: table from http://www.the-art-of-web.com/html/character-codes/
     // *     example 1: html_entity_decode('Kevin &amp; van Zonneveld');
     // *     returns 1: 'Kevin & van Zonneveld'
-    
+
     var histogram = {}, histogram_r = {}, code = 0;
     var entity = chr = '';
-    
+
     histogram['34'] = 'quot';
     histogram['38'] = 'amp';
     histogram['60'] = 'lt';
@@ -2970,21 +2977,21 @@ function html_entity_decode( string ) {
     histogram['253'] = 'yacute';
     histogram['254'] = 'thorn';
     histogram['255'] = 'yuml';
-    
-    // Reverse table. Cause for maintainability purposes, the histogram is 
+
+    // Reverse table. Cause for maintainability purposes, the histogram is
     // identical to the one in htmlentities.
     for (code in histogram) {
         entity = histogram[code];
-        histogram_r[entity] = code; 
+        histogram_r[entity] = code;
     }
-    
-    return string.replace(/(\&([a-zA-Z]+)\;)/g, function(full, m1, m2){
+
+    return (string+'').replace(/(\&([a-zA-Z]+)\;)/g, function(full, m1, m2){
         if (m2 in histogram_r) {
             return String.fromCharCode(histogram_r[m2]);
         } else {
             return m2;
         }
-    });    
+    });
 }// }}}
 
 // {{{ htmlentities
@@ -2992,18 +2999,19 @@ function htmlentities( string ){
     // Convert all applicable characters to HTML entities
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlentities/
-    // +       version: 810.112
+    // +       version: 810.621
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: nobbler
     // +    tweaked by: Jack
+    // +   bugfixed by: Onno Marsman
     // %          note: table from http://www.the-art-of-web.com/html/character-codes/
     // *     example 1: htmlentities('Kevin & van Zonneveld');
     // *     returns 1: 'Kevin &amp; van Zonneveld'
-    
+
     var histogram = {}, code = 0, tmp_arr = [], i = 0;
     var stringl = 0;
-    
+
     histogram['34'] = 'quot';
     histogram['38'] = 'amp';
     histogram['60'] = 'lt';
@@ -3104,7 +3112,8 @@ function htmlentities( string ){
     histogram['253'] = 'yacute';
     histogram['254'] = 'thorn';
     histogram['255'] = 'yuml';
-    
+
+    string += '';
     stringl = string.length
     for (i = 0; i < stringl; ++i) {
         code = string.charCodeAt(i);
@@ -3114,7 +3123,7 @@ function htmlentities( string ){
             tmp_arr[i] = string.charAt(i);
         }
     }
-    
+
     return tmp_arr.join('');
 }// }}}
 
@@ -3219,12 +3228,13 @@ function levenshtein( str1, str2 ) {
     // Calculate Levenshtein distance between two strings
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_levenshtein/
-    // +       version: 809.522
+    // +       version: 810.621
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+    // +   bugfixed by: Onno Marsman
     // *     example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
     // *     returns 1: 3
 
-    var s, l = (s = str1.split("")).length, t = (str2 = str2.split("")).length, i, j, m, n;
+    var s, l = (s = (str1+'').split("")).length, t = (str2 = (str2+'').split("")).length, i, j, m, n;
     if(!(l || t)) return Math.max(l, t);
     for(var a = [], i = l + 1; i; a[--i] = [i]);
     for(i = t + 1; a[0][--i] = i;);
@@ -3241,16 +3251,17 @@ function ltrim ( str, charlist ) {
     // Strip whitespace (or other characters) from the beginning of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ltrim/
-    // +       version: 809.522
+    // +       version: 810.621
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Erkekjetter
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
     // *     example 1: ltrim('    Kevin van Zonneveld    ');
     // *     returns 1: 'Kevin van Zonneveld    '
 
-    charlist = !charlist ? ' \s\xA0' : charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\$1');
+    charlist = !charlist ? ' \s\xA0' : (charlist+'').replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\$1');
     var re = new RegExp('^[' + charlist + ']+', 'g');
-    return str.replace(re, '');
+    return (str+'').replace(re, '');
 }// }}}
 
 // {{{ md5
@@ -3504,12 +3515,13 @@ function ord( string ) {
     // Return ASCII value of character
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ord/
-    // +       version: 809.522
+    // +       version: 810.621
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
     // *     example 1: ord('K');
     // *     returns 1: 75
 
-    return string.charCodeAt(0);
+    return (string+'').charCodeAt(0);
 }// }}}
 
 // {{{ parse_str
@@ -3517,10 +3529,11 @@ function parse_str(str, array){
     // Parses the string into variables
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_parse_str/
-    // +       version: 810.112
+    // +       version: 810.621
     // +   original by: Cagri Ekin
     // +   improved by: Michael White (http://getsprink.com)
     // +    tweaked by: Jack
+    // +   bugfixed by: Onno Marsman
     // *     example 1: parse_str('first=foo&second=bar');
     // *     returns 1: { first: 'foo', second: 'bar' }
     // *     example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.');
@@ -3529,10 +3542,10 @@ function parse_str(str, array){
     var glue1 = '=';
     var glue2 = '&';
 
-    var array2 = str.split(glue2);
+    var array2 = (str+'').split(glue2);
     var array3 = [];
     var array2l = 0, tmp = '', x = 0;
-    
+
     array2l = array2.length;
     for (x = 0; x<array2l; x++) {
         tmp = array2[x].split(glue1);
@@ -3582,16 +3595,17 @@ function rtrim ( str, charlist ) {
     // Strip whitespace (or other characters) from the end of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rtrim/
-    // +       version: 809.522
+    // +       version: 810.621
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Erkekjetter
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
     // *     example 1: rtrim('    Kevin van Zonneveld    ');
     // *     returns 1: '    Kevin van Zonneveld'
 
-    charlist = !charlist ? ' \s\xA0' : charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\$1');
+    charlist = !charlist ? ' \s\xA0' : (charlist+'').replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\$1');
     var re = new RegExp('[' + charlist + ']+$', 'g');
-    return str.replace(re, '');
+    return (str+'').replace(re, '');
 }// }}}
 
 // {{{ sha1
@@ -3758,10 +3772,11 @@ function soundex(str) {
     // Calculate the soundex key of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_soundex/
-    // +       version: 810.112
+    // +       version: 810.621
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +    tweaked by: Jack
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
     // *     example 1: soundex('Kevin');
     // *     returns 1: 'K150'
     // *     example 2: soundex('Ellery');
@@ -3771,9 +3786,9 @@ function soundex(str) {
 
     var i, j, l, r, p = isNaN(p) ? 4 : p > 10 ? 10 : p < 4 ? 4 : p;
     var m = {BFPV: 1, CGJKQSXZ: 2, DT: 3, L: 4, MN: 5, R: 6};
-    var r = (s = str.toUpperCase().replace(/[^A-Z]/g, "").split("")).splice(0, 1);
+    var r = (s = (str+'').toUpperCase().replace(/[^A-Z]/g, "").split("")).splice(0, 1);
     var sl = 0;
-    
+
     sl = s.length;
     for (i = -1, l = sl; ++i < l;) {
         for (j in m) {
@@ -3782,7 +3797,7 @@ function soundex(str) {
             }
         }
     }
-    
+
     return r.length > p && (r.length = p), r.join("") + (new Array(p - r.length + 1)).join("0");
 }// }}}
 
@@ -3943,23 +3958,25 @@ function str_ireplace ( search, replace, subject ) {
     // Case-insensitive version of str_replace().
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_ireplace/
-    // +       version: 810.112
+    // +       version: 810.621
     // +   original by: Martijn Wieringa
     // +      input by: penutbutterjelly
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    tweaked by: Jack
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
     // *     example 1: str_ireplace('l', 'l', 'HeLLo');
     // *     returns 1: 'Hello'
-    
+
     var i, k = '';
     var searchl = 0;
-    
+
+    search += '';
     searchl = search.length;
     if (!(replace instanceof Array)) {
         replace = new Array(replace);
         if (search instanceof Array) {
-            // If search is an array and replace is a string, 
+            // If search is an array and replace is a string,
             // then this replacement string is used for every value of search
             while (searchl > replace.length) {
                 replace[replace.length] = replace[0];
@@ -3971,13 +3988,13 @@ function str_ireplace ( search, replace, subject ) {
         search = new Array(search);
     }
     while (search.length>replace.length) {
-        // If replace has fewer values than search, 
+        // If replace has fewer values than search,
         // then an empty string is used for the rest of replacement values
         replace[replace.length] = '';
     }
 
     if (subject instanceof Array) {
-        // If subject is an array, then the search and replace is performed 
+        // If subject is an array, then the search and replace is performed
         // with every entry of subject , and the return value is an array as well.
         for (k in subject) {
             subject[k] = str_ireplace(search, replace, subject[k]);
@@ -4087,15 +4104,16 @@ function str_rot13( str ) {
     // Perform the rot13 transform on a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_rot13/
-    // +       version: 809.522
+    // +       version: 810.621
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +   improved by: Ates Goral (http://magnetiq.com)
+    // +   bugfixed by: Onno Marsman
     // *     example 1: str_rot13('Kevin van Zonneveld');
     // *     returns 1: 'Xriva ina Mbaariryq'
     // *     example 2: str_rot13('Xriva ina Mbaariryq');
     // *     returns 2: 'Kevin van Zonneveld'
 
-    return str.replace(/[A-Za-z]/g, function (c) {
+    return (str+'').replace(/[A-Za-z]/g, function (c) {
         return String.fromCharCode((((c = c.charCodeAt(0)) & 223) - 52) % 26 + (c & 32) + 65);
     });
 }// }}}
@@ -4105,12 +4123,15 @@ function str_split ( f_string, f_split_length){
     // Convert a string to an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_split/
-    // +       version: 809.522
+    // +       version: 810.621
     // +     original by: Martijn Wieringa
     // +     improved by: Brett Zamir
+    // +     bugfixed by: Onno Marsman
     // *         example 1: str_split('Hello Friend', 3);
     // *         returns 1: ['Hel', 'lo ', 'Fri', 'end']
- 
+
+    f_string += '';
+
     if (f_split_length == undefined) {
         f_split_length = 1;
     }
@@ -4131,13 +4152,14 @@ function strcasecmp (f_string1, f_string2){
     // Binary safe case-insensitive string comparison
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strcasecmp/
-    // +       version: 809.522
+    // +       version: 810.621
     // +     original by: Martijn Wieringa
+    // +     bugfixed by: Onno Marsman
     // *         example 1: strcasecmp('Hello', 'hello');
     // *         returns 1: 0
 
-    var string1 = f_string1.toLowerCase();
-    var string2 = f_string2.toLowerCase();
+    var string1 = (f_string1+'').toLowerCase();
+    var string2 = (f_string2+'').toLowerCase();
 
     if(string1 > string2) {
       return 1;
@@ -5662,21 +5684,24 @@ function utf8_decode ( str_data ) {
     // ISO-8859-1
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_decode/
-    // +       version: 810.612
+    // +       version: 810.621
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // +      input by: Aman Gupta
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Norman "zEh" Fuchs
-    // +   bugfixed by: hitwork  
+    // +   bugfixed by: hitwork
+    // +   bugfixed by: Onno Marsman
     // *     example 1: utf8_decode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
     var tmp_arr = [], i = ac = c1 = c2 = c3 = 0;
 
+    str_data += '';
+
     while ( i < str_data.length ) {
         c1 = str_data.charCodeAt(i);
         if (c1 < 128) {
-            tmp_arr[ac++] = String.fromCharCode(c1); 
+            tmp_arr[ac++] = String.fromCharCode(c1);
             i++;
         } else if ((c1 > 191) && (c1 < 224)) {
             c2 = str_data.charCodeAt(i+1);
@@ -5689,7 +5714,7 @@ function utf8_decode ( str_data ) {
             i += 3;
         }
     }
-    
+
     return tmp_arr.join('');
 }// }}}
 
@@ -5698,25 +5723,26 @@ function utf8_encode ( string ) {
     // Encodes an ISO-8859-1 string to UTF-8
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_encode/
-    // +       version: 810.112
+    // +       version: 810.621
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: sowberry
     // +    tweaked by: Jack
+    // +   bugfixed by: Onno Marsman
     // *     example 1: utf8_encode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
-    
-    string = string.replace(/\r\n/g,"\n");
+
+    string = (string+'').replace(/\r\n/g,"\n");
     var utftext = "";
     var start, end;
     var stringl = 0;
- 
+
     start = end = 0;
     stringl = string.length;
     for (var n = 0; n < stringl; n++) {
         var c1 = string.charCodeAt(n);
         var enc = null;
- 
+
         if (c1 < 128) {
             end++;
         } else if((c1 > 127) && (c1 < 2048)) {
@@ -5732,10 +5758,10 @@ function utf8_encode ( string ) {
             start = end = n+1;
         }
     }
-    
+
     if (end > start) {
         utftext += string.substring(start, string.length);
     }
- 
+
     return utftext;
 }// }}}
