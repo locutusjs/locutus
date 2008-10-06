@@ -8,5 +8,5 @@ function strlen (string) {
     // *     example 1: strlen('Kevin van Zonneveld');
     // *     returns 1: 19
 
-    return ((string+'').length || 0);
+    return (string+'').length;
 }
