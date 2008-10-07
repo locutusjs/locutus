@@ -227,5 +227,10 @@ Class PHPJS_Function extends SplFileInfo {
     public function getFunctionName() {
         return $this->_functionName;
     }
+    
+    public function getVersion() {
+        $stamp = $this->getMTime();; 
+        return intval(date("y",$stamp)).date("m.jH", $stamp);
+    }
 }
 ?>

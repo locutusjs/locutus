@@ -30,6 +30,8 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
     
     public function compile($flags = 0, $breakOnError=false) {
         $selectedFunctions = $this->getSelection();
+        
+        // Compile each function individually and store in $compiled array
         $compiled = array();
         foreach ($selectedFunctions as $funcName) {
             if (false === ($x = $this->compileFunction($funcName, $flags))) {
@@ -44,15 +46,67 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
 
         
         $compiledTxt = implode("\n", $compiled);
+        
+        // First namespace it
+        if ($this->_flagIsEnabled($flags, self::COMPILE_NAMESPACED)) {
+            $compiledTxt = $this->_namespace($compiledTxt);
+        }
+        
+        // Compression? And how?
         if ($this->_flagIsEnabled($flags, self::COMPILE_MINFIED)) {
             $compiledTxt = $this->_minify($compiledTxt);
         } elseif ($this->_flagIsEnabled($flags, self::COMPILE_PACKED)) {
             $compiledTxt = $this->_pack($compiledTxt);
         }
         
-        return $compiled;
+        return $compiledTxt;
     }
         
+    protected function _namespace($source) {
+        $str1  = "";
+        $str1 .= "// {{{ init: \n";
+        $str1 .= "init: function() {\n";
+        $str1 .= "    // Makes autoloading system works properly.\n";
+        $str1 .= "    // \n";
+        $str1 .= "    // %        note 1: Not a real PHP.JS function, necessary for namespaced version, though.\n";
+        $str1 .= "\n";
+        $str1 .= "},// }}}\n";
+        $str1 .= $source;
+
+        $str2  = "";
+        $str2 .= "if(window == this || !this.init){\n";
+        $str2 .= "    return new PHP_JS();\n";
+        $str2 .= "}else{\n";
+        $str2 .= "    return this.init();\n";
+        $str2 .= "}\n";
+
+        $str3  = "var PHP_JS = function() {\n";
+        $str3 .= $this->_indentBlock($str2, 4)."\n";
+        $str3 .= "};\n";
+        $str3 .= "";
+
+        $str4  = "";
+        $str4 .= "if(typeof(PHP_JS) == \"undefined\"){\n";
+        $str4 .= $this->_indentBlock($str3, 4)."\n";
+        $str4 .= "}\n";
+
+        $str4 .= "\n";
+        $str4 .= "PHP_JS.prototype = {\n";
+        $str4 .= $this->_indentBlock($str1, 4)."\n";
+        $str4 .= "}; // End PHP_JS prototype \n";
+        $str4 .= "\n";
+        $str4 .= "window.\$P = PHP_JS();\n";
+
+        $str5  = "";
+        $str5 .= "(function() {\n";
+        $str5 .= $this->_indentBlock($str4, 4)."\n";
+        $str5 .= "})();\n";
+
+        $source = $str5;
+                
+        return "//NAMESPACED\n".$source;
+        
+    }
     
     protected function _minify($source) {
         return "//MINIFIED\n".$source;
@@ -72,6 +126,17 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         $results = $Function->compileFunction($namespaced);
         
         return $results; 
+    }
+
+    protected function _indentBlock($block, $indentation=4 ){
+        $tmp_block = trim($block);
+        $tmp_block = str_replace("\r", "", $tmp_block);
+        $tmp_block = str_replace("\t", "    ", $tmp_block);
+        $lines = explode("\n", $tmp_block);
+        foreach($lines as $k=>$line){
+            $lines[$k] = str_repeat(" ", $indentation). $line;
+        }
+        return implode("\n", $lines);
     }    
 }
 ?>

@@ -12,7 +12,9 @@ $dirFunctions = realpath(dirname(__FILE__)."/..")."/functions";
 $dirCompile   = realpath(dirname(__FILE__)."/..")."";
 $PHPJS_Compiler_Shell = new PHPJS_Library_Compiler_Shell($dirFunctions, $dirCompile);
 
-$PHPJS_Compiler_Shell->setSelection("category::math");
-$PHPJS_Compiler_Shell->compile();
+//$PHPJS_Compiler_Shell->setSelection("category::math");
+$PHPJS_Compiler_Shell->setSelection("category::strings");
+
+echo $PHPJS_Compiler_Shell->compile(PHPJS_Library_Compiler_Shell::COMPILE_NAMESPACED && PHPJS_Library_Compiler_Shell::COMPILE_MINFIED);
 
 ?>
