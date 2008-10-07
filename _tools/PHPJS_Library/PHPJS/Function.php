@@ -11,6 +11,9 @@ Class PHPJS_Function extends SplFileInfo {
     protected $_docBlock = "";
     protected $_code = "";
 
+    protected $_t = "    ";
+    protected $_n = "\n";
+    
     protected $_tokWrapHead = array();
     protected $_tokWrapTail = array();
     protected $_tokDocBlock = array();

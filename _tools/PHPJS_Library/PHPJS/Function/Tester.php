@@ -1,8 +1,6 @@
 <?php
 Class PHPJS_Function_Tester extends PHPJS_Function {
     
-    protected $_t = "    ";
-    protected $_n = "\n";
     protected $_includes = array();
     protected $_testCode = "";
     
