@@ -1,6 +1,7 @@
 function substr_count( haystack, needle, offset, length ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
     // *     example 1: substr_count('Kevin van Zonneveld', 'e');
     // *     returns 1: 3
     // *     example 2: substr_count('Kevin van Zonneveld', 'K', 1);
@@ -10,6 +11,8 @@ function substr_count( haystack, needle, offset, length ) {
 
     var pos = 0, cnt = 0;
 
+    haystack += '';
+    needle += '';
     if(isNaN(offset)) offset = 0;
     if(isNaN(length)) length = 0;
     offset--;

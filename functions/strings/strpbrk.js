@@ -1,9 +1,12 @@
 function strpbrk( haystack, char_list ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
+    // +   bugfixed by: Onno Marsman
     // *     example 1: strpbrk('This is a Simple text.', 'is');
     // *     returns 1: 'is is a Simple text.'
 
+    haystack += '';
+    char_list += '';
     var lon = haystack.length;
     var lon_search = char_list.length;
     var ret = false;

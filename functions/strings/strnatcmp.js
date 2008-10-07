@@ -3,6 +3,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
     // +   original by: Martijn Wieringa
     // + namespaced by: Michael White (http://getsprink.com)
     // +    tweaked by: Jack
+    // +   bugfixed by: Onno Marsman
     // -    depends on: strcmp
     // %          note: Added f_version argument against code guidelines, because it's so neat
     // *     example 1: strnatcmp('Price 12.9', 'Price 12.15');
@@ -67,8 +68,8 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
         return result;
     };
 
-    var array1 = __strnatcmp_split(f_string1);
-    var array2 = __strnatcmp_split(f_string2);
+    var array1 = __strnatcmp_split(f_string1+'');
+    var array2 = __strnatcmp_split(f_string2+'');
 
     var len = array1.length;
     var text = true;

@@ -2,6 +2,7 @@ function strncasecmp (str1, str2, len) {
     // http://kevin.vanzonneveld.net
     // +   original by: Saulo Vallory
     // +      input by: Nate
+    // +   bugfixed by: Onno Marsman
     // %          note: Returns < 0 if str1 is less than str2 ; > 0 if str1 is greater than str2 , and 0 if they are equal.
     // *     example 1: strncasecmp('Price 12.9', 'Price 12.15', 2);
     // *     returns 1: 0
@@ -15,8 +16,8 @@ function strncasecmp (str1, str2, len) {
     // *     returns 5: -8
 
     var diff;
-    str1 = str1.toLowerCase().substr(0,len);
-    str2 = str2.toLowerCase().substr(0,len);
+    str1 = (str1+'').toLowerCase().substr(0,len);
+    str2 = (str2+'').toLowerCase().substr(0,len);
 
     if(str1.length !== str2.length) {
         if(str1.length < str2.length) {
@@ -32,7 +33,7 @@ function strncasecmp (str1, str2, len) {
             }
         }
     } else {
-        // Avoids trying to get a char that does not exist 
+        // Avoids trying to get a char that does not exist
         len = str1.length;
     }
 
