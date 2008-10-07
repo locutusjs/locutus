@@ -1,46 +1,11 @@
 <?php
 Class PHPJS_Library_Tester extends PHPJS_Library {
     
-    protected $_fleRealRhino = "/usr/bin/rhino";
-    
-    public function getFleRealRhino() {
-        return $this->_fleRealRhino;
-    }
-    
-    public function testCategory($categoryName, $breakOnError=false) {
-        $selectedFunctions = array();
-        foreach ($this->Functions as $funcName=>$Function) {
-            if ($categoryName == $Function->getCategoryName()) {
-                $selectedFunctions[$funcName] = &$Function;
-            }
-        }
-        return $this->_testSelection($selectedFunctions, $breakOnError);
-    }
-        
-    public function testAll($breakOnError=false) {
-        $selectedFunctions = array();
-        $selectedFunctions = &$this->Functions;
-        return $this->_testSelection($selectedFunctions, $breakOnError);
-    }
-    
-    public function testFrom($fromFunctionName, $breakOnError=false) {
-        $selectedFunctions = array();
-        $record = false;
-        foreach ($this->Functions as $funcName=>$Function) {
-            if ($fromFunctionName == $funcName) {
-                $record = true;
-            }
-            if ($record == true) {
-                $selectedFunctions[$funcName] = &$Function;
-            }
-        }
-        return $this->_testSelection($selectedFunctions, $breakOnError);
-    }
-
-    protected function _testSelection($selectedFunctions, $breakOnError=false) {
+    public function test($breakOnError=false) {
+        $selectedFunctions = $this->getSelection();
         $testResults = array();
-        foreach ($selectedFunctions as $funcName=>$Function) {
-            if (($x = $this->testFunction($funcName, false)) === false) {
+        foreach ($selectedFunctions as $funcName) {
+            if (false === ($x = $this->testFunction($funcName, false))) {
                 $testResults[$funcName] = $x;
                 if ($breakOnError) {
                     break;

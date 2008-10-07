@@ -82,6 +82,8 @@ Class PHPJS_Library {
     public $Functions = false;
     public $Function  = false;
     
+    protected $_selection = array();
+    
     //protected $_functionClass = "PHPJS_Function";
     
     protected $_dirRealFunc = false;
@@ -90,13 +92,69 @@ Class PHPJS_Library {
     
     protected $_dir = false;
     
-    
     public function getDirRealTemp() {
         return $this->_dirRealTemp;
     }
-    
     public function getDirRealRoot() {
         return $this->_dirRealRoot;
+    }
+    
+    public function addToSelection($functionNames = array()) {
+        $addSelection = array();
+        
+        if (!is_array($functionNames)) {
+            $functionNames = array($functionNames);
+        }
+        
+        foreach($functionNames as $functionName) {
+            if ($functionName == 'all') {
+                // Special keywords
+                foreach ($this->Functions as $funcName=>$Function) {
+                    $addSelection[] = $funcName;
+                }
+            } else {
+                // Other
+                $type = false;
+                $name = false;
+                if (strpos($functionName, "::") !== false) {
+                    list($type, $name) = explode("::", $functionName);
+                }
+                
+                if ($type == "function" || $type === false) {
+                    $addSelection[] = $funcName;
+                } elseif (strtolower($type) == "from") {
+                    $record = false;
+                    foreach ($this->Functions as $funcName=>$Function) {
+                        if ($record == false && $name == $funcName) {
+                            $record = true;
+                        }
+                        if ($record == true) {
+                            $addSelection[] = $funcName;
+                        }
+                    }
+                } elseif (strtolower($type) == "category") {
+                    foreach ($this->Functions as $funcName=>$Function) {
+                        if ($name == $Function->getCategoryName()) {
+                            $addSelection[] = $funcName;
+                        }
+                    }
+                }
+            }
+        }
+        
+        $this->_selection = array_merge($this->_selection, $addSelection);
+        return true;
+    }
+    public function setSelection($functionNames = array()) {
+        $this->clearSelection();
+        return $this->addToSelection($functionNames);
+    }
+    public function clearSelection() {
+        $this->_selection = array();
+        return true;
+    }
+    public function getSelection() {
+        return $this->_selection;
     }
     
     /**

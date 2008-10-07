@@ -1,5 +1,11 @@
 <?php
 Class PHPJS_Library_Tester_Shell extends PHPJS_Library_Tester {
+    protected $_fleRealRhino = "/usr/bin/rhino";
+    
+    public function getFleRealRhino() {
+        return $this->_fleRealRhino;
+    }
+    
     public function getAllowedCmdArgs() {
         $posArgs = array();
         $posArgs["func"]     = "--func";

@@ -84,13 +84,16 @@ switch($mode) {
         $Function->testFunction(false, true);
         break;
     case "from":
-        $PHPJS_Tester_Shell->testFrom($funcName);
+        $PHPJS_Tester_Shell->setSelection("from::".$funcName);
+        $PHPJS_Tester_Shell->test();
         break;
     case "category":
-        $PHPJS_Tester_Shell->testCategory($funcName);
+        $PHPJS_Tester_Shell->setSelection("category::".$funcName);
+        $PHPJS_Tester_Shell->test();
         break;
     case "all":
-        $PHPJS_Tester_Shell->testAll();
+        $PHPJS_Tester_Shell->setSelection("all");
+        $PHPJS_Tester_Shell->test();
         break;
     case "run":
         echo $Function->testFunction();

@@ -8,9 +8,11 @@ if ((php_sapi_name() != 'cli')) {
     die("CLI Only");
 }
 
-$functionDir = realpath(dirname(__FILE__)."/..")."/functions";
-$PHPJS_Compiler_Shell = new PHPJS_Library_Compiler_Shell($functionDir, $compileDir);
+$dirFunctions = realpath(dirname(__FILE__)."/..")."/functions";
+$dirCompile   = realpath(dirname(__FILE__)."/..")."";
+$PHPJS_Compiler_Shell = new PHPJS_Library_Compiler_Shell($dirFunctions, $dirCompile);
 
-$PHPJS_Compiler_Shell->compileAll();
+$PHPJS_Compiler_Shell->setSelection("category::math");
+$PHPJS_Compiler_Shell->compile();
 
 ?>
