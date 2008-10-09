@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.68
+ * This is version: 1.69
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -2129,6 +2129,19 @@
             }
         },// }}}
         
+        // {{{ getrandmax
+        getrandmax: function()
+        {
+            // Show largest possible random value
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_getrandmax/
+            // +       version: 810.915
+            // +   original by: Onno Marsman
+            // *     example 1: $P.getrandmax();
+            // *     returns 1: 2147483647
+            return 2147483647;
+        },// }}}
+        
         // {{{ hexdec
         hexdec: function(hex_string) {
             // Hexadecimal to decimal
@@ -2143,6 +2156,162 @@
             
             hex_string = (hex_string+'').replace(/[^a-f0-9]/gi, '');
             return parseInt(hex_string, 16);
+        },// }}}
+        
+        // {{{ hypot
+        hypot: function(x, y) {
+            // Calculate the length of the hypotenuse of a right-angle triangle
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_hypot/
+            // +       version: 810.819
+            // +   original by: Onno Marsman
+            // *     example 1: $P.hypot(3, 4);
+            // *     returns 1: 5
+            // *     example 2: $P.hypot([], 'a');
+            // *     returns 2: 0
+        
+            return Math.sqrt(x*x + y*y) || 0;
+        },// }}}
+        
+        // {{{ is_finite
+        is_finite: function(val) {
+            // Finds whether a value is a legal finite number
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_finite/
+            // +       version: 810.819
+            // +   original by: Onno Marsman
+            // *     example 1: $P.is_finite(Infinity);
+            // *     returns 1: false
+            // *     example 2: $P.is_finite(-Infinity);
+            // *     returns 2: false
+            // *     example 3: $P.is_finite(0);
+            // *     returns 3: true
+        
+            var code = 0, warningType = '';
+        
+            if (val===Infinity || val===-Infinity) {
+                return false;
+            }
+        
+            //Some warnings for maximum PHP compatibility
+            if (typeof val=='object') {
+                warningType = (val instanceof Array ? 'array' : 'object');
+            } else if (typeof val=='string') {
+                //simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
+                code = val.charCodeAt(0);
+                if (isNaN(code) || code<48 || code>57) { //first character is not numeric
+                    if (code==45 || code==43) { // first character is - or +
+                        code = val.charCodeAt(1);
+                        if (isNaN(code) || code<48 || code>57) { //second character is not numeric
+                            warningType = 'string';
+                        }
+                    } else {
+                        warningType = 'string';
+                    }
+                }
+            }
+            if (warningType) {
+                throw new Error('Warning: is_infinite() expects parameter 1 to be double, '+warningType+' given');
+            }
+        
+            return true;
+        },// }}}
+        
+        // {{{ is_infinite
+        is_infinite: function(val) {
+            // Finds whether a value is infinite
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_infinite/
+            // +       version: 810.819
+            // +   original by: Onno Marsman
+            // *     example 1: $P.is_infinite(Infinity);
+            // *     returns 1: true
+            // *     example 2: $P.is_infinite(-Infinity);
+            // *     returns 2: true
+            // *     example 3: $P.is_infinite(0);
+            // *     returns 3: false
+        
+            var code = 0, warningType = '';
+        
+            if (val===Infinity || val===-Infinity) {
+                return true;
+            }
+        
+            //Some warnings for maximum PHP compatibility
+            if (typeof val=='object') {
+                warningType = (val instanceof Array ? 'array' : 'object');
+            } else if (typeof val=='string') {
+                //simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
+                code = val.charCodeAt(0);
+                if (isNaN(code) || code<48 || code>57) { //first character is not numeric
+                    if (code==45 || code==43) { // first character is - or +
+                        code = val.charCodeAt(1);
+                        if (isNaN(code) || code<48 || code>57) { //second character is not numeric
+                            warningType = 'string';
+                        }
+                    } else {
+                        warningType = 'string';
+                    }
+                }
+            }
+            if (warningType) {
+                throw new Error('Warning: this.is_infinite() expects parameter 1 to be double, '+warningType+' given');
+            }
+        
+            return false;
+        },// }}}
+        
+        // {{{ is_nan
+        is_nan: function(val) {
+            // Finds whether a value is not a number
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_nan/
+            // +       version: 810.819
+            // +   original by: Onno Marsman
+            // *     example 1: $P.is_nan(NaN);
+            // *     returns 1: true
+            // *     example 2: $P.is_nan(0);
+            // *     returns 2: false
+        
+            var code = 0, errorType = '';
+        
+            if (typeof val=='number' && isNaN(val)) {
+                return true;
+            }
+        
+            //Some errors for maximum PHP compatibility
+            if (typeof val=='object') {
+                errorType = (val instanceof Array ? 'array' : 'object');
+            } else if (typeof val=='string') {
+                //simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
+                code = val.charCodeAt(0);
+                if (isNaN(code) || code<48 || code>57) { //first character is not numeric
+                    if (code==45 || code==43) { // first character is - or +
+                        code = val.charCodeAt(1);
+                        if (isNaN(code) || code<48 || code>57) { //second character is not numeric
+                            errorType = 'string';
+                        }
+                    } else {
+                        errorType = 'string';
+                    }
+                }
+            }
+            if (errorType) {
+                throw new Error('Warning: is_infinite() expects parameter 1 to be double, '+errorType+' given');
+            }
+        
+            return false;
+        },// }}}
+        
+        // {{{ lcg_value
+        lcg_value: function() {
+            // Combined linear congruential generator
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_lcg_value/
+            // +       version: 810.819
+            // +   original by: Onno Marsman
+        
+            return Math.random();
         },// }}}
         
         // {{{ log
@@ -2394,6 +2563,38 @@
             return retVal;
         },// }}}
         
+        // {{{ mt_getrandmax
+        mt_getrandmax: function()
+        {
+            // Show largest possible random value
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_mt_getrandmax/
+            // +       version: 810.915
+            // +   original by: Onno Marsman
+            // *     example 1: $P.mt_getrandmax();
+            // *     returns 1: 2147483647
+            return 2147483647;
+        },// }}}
+        
+        // {{{ mt_rand
+        mt_rand: function( min, max ) {
+            // Generate a better random value
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_mt_rand/
+            // +       version: 810.915
+            // +   original by: Onno Marsman
+            // *     example 1: $P.mt_rand(1, 1);
+            // *     returns 1: 1
+            var argc = arguments.length;
+            if (argc == 0) {
+                min = 0;
+                max = 2147483647;
+            } else if (argc == 1) {
+                throw new Error('Warning: this.mt_rand() expects exactly 2 parameters, 1 given');
+            }
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        },// }}}
+        
         // {{{ octdec
         octdec: function (oct_string) {
             // Octal to decimal
@@ -2452,16 +2653,19 @@
             // Generate a random integer
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rand/
-            // +       version: 809.522
+            // +       version: 810.915
             // +   original by: Leslie Hoare
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.rand(1, 1);
             // *     returns 1: 1
-        
-            if( max ) {
-                return Math.floor(Math.random() * (max - min + 1)) + min;
-            } else {
-                return Math.floor(Math.random() * (min + 1));
+            var argc = arguments.length;
+            if (argc == 0) {
+                min = 0;
+                max = 2147483647;
+            } else if (argc == 1) {
+                throw new Error('Warning: this.rand() expects exactly 2 parameters, 1 given');
             }
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         },// }}}
         
         // {{{ round
@@ -2631,10 +2835,11 @@
             // Quote regular expression characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_preg_quote/
-            // +       version: 809.522
+            // +       version: 810.819
             // +   original by: booeyOH
             // +   improved by: Ates Goral (http://magnetiq.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.preg_quote("$40");
             // *     returns 1: '\$40'
             // *     example 2: $P.preg_quote("*RRRING* Hello?");
@@ -2642,7 +2847,7 @@
             // *     example 3: $P.preg_quote("\\.+*?[^]$(){}=!<>|:");
             // *     returns 3: '\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:'
         
-            return str.replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
+            return (str+'').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
         },// }}}
         
         // {{{ addslashes
@@ -4031,7 +4236,7 @@
             // Pad a string to a certain length with another string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_pad/
-            // +       version: 809.2411
+            // +       version: 810.819
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // + namespaced by: Michael White (http://getsprink.com)
             // *     example 1: $P.str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT');
@@ -4041,14 +4246,16 @@
         
             var half = '', pad_to_go;
         
-            var str_pad_repeater = function(s, len){
-                    var collect = '', i;
+            var str_pad_repeater = function(s, len) {
+                var collect = '', i;
         
-                    while(collect.length < len) collect += s;
-                    collect = collect.substr(0,len);
+                while(collect.length < len) collect += s;
+                collect = collect.substr(0,len);
         
-                    return collect;
-                };
+                return collect;
+            };
+        
+            input += '';
         
             if (pad_type != 'STR_PAD_LEFT' && pad_type != 'STR_PAD_RIGHT' && pad_type != 'STR_PAD_BOTH') { pad_type = 'STR_PAD_RIGHT'; }
             if ((pad_to_go = pad_length - input.length) > 0) {
@@ -4084,7 +4291,7 @@
             // Replace all occurrences of the search string with the replacement string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_replace/
-            // +       version: 809.2912
+            // +       version: 810.819
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Gabriel Paderni
             // +   improved by: Philip Peterson
@@ -4093,24 +4300,21 @@
             // +   bugfixed by: Anton Ongson
             // +      input by: Onno Marsman
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +    tweaked by: Onno Marsman
             // *     example 1: $P.str_replace(' ', '.', 'Kevin van Zonneveld');
             // *     returns 1: 'Kevin.van.Zonneveld'
             // *     example 2: $P.str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
-            // *     returns 2: 'hemmo, mars'    
-            
-            var _is_array = function(mixed_var) {
-                return (mixed_var instanceof Array);
-            };
-            
+            // *     returns 2: 'hemmo, mars'
+        
             var f = search, r = replace, s = subject;
-            var ra = _is_array(r), sa = _is_array(s), f = [].concat(f), r = [].concat(r), i = (s = [].concat(s)).length;
+            var ra = r instanceof Array, sa = s instanceof Array, f = [].concat(f), r = [].concat(r), i = (s = [].concat(s)).length;
         
             while (j = 0, i--) {
                 if (s[i]) {
                     while (s[i] = s[i].split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f){};
                 }
             };
-             
+        
             return sa ? s : s[0];
         },// }}}
         
@@ -4225,72 +4429,75 @@
             // Strip HTML and PHP tags from a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-            // +       version: 809.1713
+            // +       version: 810.819
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Luke Godfrey
             // +      input by: Pul
             // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
             // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
             // *     example 2: $P.strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>');
             // *     returns 2: '<p>Kevin van Zonneveld</p>'
             // *     example 3: $P.strip_tags("<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>", "<a>");
             // *     returns 3: '<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>'
-            
+        
             var key = '', tag = '', allowed = false;
             var matches = allowed_array = [];
             var allowed_keys = {};
-            
+        
             var replacer = function(search, replace, str) {
                 var tmp_arr = [];
                 tmp_arr = str.split(search);
                 return tmp_arr.join(replace);
             };
-            
+        
             // Build allowes tags associative array
             if (allowed_tags) {
                 allowed_tags  = allowed_tags.replace(/[^a-zA-Z,]+/g, '');;
                 allowed_array = allowed_tags.split(',');
             }
-            
+        
+            str += '';
+        
             // Match tags
             matches = str.match(/(<\/?[^>]+>)/gi);
-            
-            // Go through all HTML tags 
+        
+            // Go through all HTML tags
             for (key in matches) {
                 if (isNaN(key)) {
                     // IE7 Hack
                     continue;
                 }
-                
+        
                 // Save HTML tag
                 html = matches[key].toString();
-                
+        
                 // Is tag not in allowed list? Remove from str!
                 allowed = false;
-                
+        
                 // Go through all allowed tags
                 for (k in allowed_array) {
-                    // Init    
+                    // Init
                     allowed_tag = allowed_array[k];
                     i = -1;
-                    
+        
                     if (i != 0) { i = html.toLowerCase().indexOf('<'+allowed_tag+'>');}
                     if (i != 0) { i = html.toLowerCase().indexOf('<'+allowed_tag+' ');}
                     if (i != 0) { i = html.toLowerCase().indexOf('</'+allowed_tag)   ;}
-                    
+        
                     // Determine
                     if (i == 0) {
                         allowed = true;
                         break;
                     }
                 }
-                
+        
                 if (!allowed) {
                     str = replacer(html, "", str); // Custom replace. No regexing
                 }
             }
-            
+        
             return str;
         },// }}}
         
@@ -4337,8 +4544,9 @@
             // Case-insensitive strstr()
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_stristr/
-            // +       version: 809.522
+            // +       version: 810.819
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfxied by: Onno Marsman
             // *     example 1: $P.stristr('Kevin van Zonneveld', 'Van');
             // *     returns 1: 'van Zonneveld'
             // *     example 2: $P.stristr('Kevin van Zonneveld', 'VAN', true);
@@ -4346,7 +4554,8 @@
         
             var pos = 0;
         
-            pos = haystack.toLowerCase().indexOf( needle.toLowerCase() );
+            haystack += '';
+            pos = haystack.toLowerCase().indexOf( (needle+'').toLowerCase() );
             if( pos == -1 ){
                 return false;
             } else{
@@ -4380,10 +4589,11 @@
             // String comparisons using a &quot;natural order&quot; algorithm
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strnatcmp/
-            // +       version: 810.112
+            // +       version: 810.819
             // +   original by: Martijn Wieringa
             // + namespaced by: Michael White (http://getsprink.com)
             // +    tweaked by: Jack
+            // +   bugfixed by: Onno Marsman
             // -    depends on: strcmp
             // %          note: Added f_version argument against code guidelines, because it's so neat
             // *     example 1: $P.strnatcmp('Price 12.9', 'Price 12.15');
@@ -4448,8 +4658,8 @@
                 return result;
             };
         
-            var array1 = __strnatcmp_split(f_string1);
-            var array2 = __strnatcmp_split(f_string2);
+            var array1 = __strnatcmp_split(f_string1+'');
+            var array2 = __strnatcmp_split(f_string2+'');
         
             var len = array1.length;
             var text = true;
@@ -4504,9 +4714,10 @@
             // Binary safe case-insensitive string comparison of the first n characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strncasecmp/
-            // +       version: 809.2411
+            // +       version: 810.819
             // +   original by: Saulo Vallory
             // +      input by: Nate
+            // +   bugfixed by: Onno Marsman
             // %          note: Returns < 0 if str1 is less than str2 ; > 0 if str1 is greater than str2 , and 0 if they are equal.
             // *     example 1: $P.strncasecmp('Price 12.9', 'Price 12.15', 2);
             // *     returns 1: 0
@@ -4520,8 +4731,8 @@
             // *     returns 5: -8
         
             var diff;
-            str1 = str1.toLowerCase().substr(0,len);
-            str2 = str2.toLowerCase().substr(0,len);
+            str1 = (str1+'').toLowerCase().substr(0,len);
+            str2 = (str2+'').toLowerCase().substr(0,len);
         
             if(str1.length !== str2.length) {
                 if(str1.length < str2.length) {
@@ -4537,7 +4748,7 @@
                     }
                 }
             } else {
-                // Avoids trying to get a char that does not exist 
+                // Avoids trying to get a char that does not exist
                 len = str1.length;
             }
         
@@ -4556,11 +4767,14 @@
             // Search a string for any of a set of characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strpbrk/
-            // +       version: 809.522
+            // +       version: 810.819
             // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.strpbrk('This is a Simple text.', 'is');
             // *     returns 1: 'is is a Simple text.'
         
+            haystack += '';
+            char_list += '';
             var lon = haystack.length;
             var lon_search = char_list.length;
             var ret = false;
@@ -4616,13 +4830,15 @@
             // Reverse a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strrev/
-            // +       version: 809.522
+            // +       version: 810.819
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.strrev('Kevin van Zonneveld');
             // *     returns 1: 'dlevennoZ nav niveK'
         
             var ret = '', i = 0;
         
+            string += '';
             for ( i = string.length-1; i >= 0; i-- ){
                ret += string.charAt(i);
             }
@@ -4650,12 +4866,13 @@
             // Find position of last occurrence of a char in a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strrpos/
-            // +       version: 809.522
+            // +       version: 810.819
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.strrpos('Kevin van Zonneveld', 'e');
             // *     returns 1: 16
         
-            var i = haystack.lastIndexOf( needle, offset ); // returns -1
+            var i = (haystack+'').lastIndexOf( needle, offset ); // returns -1
             return i >= 0 ? i : false;
         },// }}}
         
@@ -4664,8 +4881,9 @@
             // Find first occurrence of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strstr/
-            // +       version: 809.522
+            // +       version: 810.819
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.strstr('Kevin van Zonneveld', 'van');
             // *     returns 1: 'van Zonneveld'
             // *     example 2: $P.strstr('Kevin van Zonneveld', 'van', true);
@@ -4673,6 +4891,7 @@
         
             var pos = 0;
         
+            haystack += '';
             pos = haystack.indexOf( needle );
             if( pos == -1 ){
                 return false;
@@ -4718,16 +4937,17 @@
             // Return part of a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr/
-            // +       version: 809.522
+            // +       version: 810.819
             // +     original by: Martijn Wieringa
             // +     bugfixed by: T.Wild
+            // +      tweaked by: Onno Marsman
             // *       example 1: $P.substr('abcdef', 0, -1);
             // *       returns 1: 'abcde'
             // *       example 2: $P.substr(2, 0, -6);
             // *       returns 2: ''
         
-            f_string = f_string+'';
-            
+            f_string += '';
+        
             if(f_start < 0) {
                 f_start += f_string.length;
             }
@@ -4752,8 +4972,9 @@
             // Count the number of substring occurrences
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr_count/
-            // +       version: 809.522
+            // +       version: 810.819
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.substr_count('Kevin van Zonneveld', 'e');
             // *     returns 1: 3
             // *     example 2: $P.substr_count('Kevin van Zonneveld', 'K', 1);
@@ -4763,6 +4984,8 @@
         
             var pos = 0, cnt = 0;
         
+            haystack += '';
+            needle += '';
             if(isNaN(offset)) offset = 0;
             if(isNaN(length)) length = 0;
             offset--;
@@ -4834,11 +5057,13 @@
             // Make a string&#039;s first character uppercase
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ucfirst/
-            // +       version: 809.522
+            // +       version: 810.819
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.ucfirst('kevin van zonneveld');
             // *     returns 1: 'Kevin van zonneveld'
         
+            str += '';
             var f = str.charAt(0).toUpperCase();
             return f + str.substr(1, str.length-1);
         },// }}}
@@ -4848,15 +5073,16 @@
             // Uppercase the first character of each word in a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ucwords/
-            // +       version: 809.522
+            // +       version: 810.819
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +   improved by: _argos
+            // +   bugfixed by: Onno Marsman
             // *     example 1: $P.ucwords('kevin van zonneveld');
             // *     returns 1: 'Kevin Van Zonneveld'
             // *     example 2: $P.ucwords('HELLO WORLD');
             // *     returns 2: 'HELLO WORLD'
         
-            return str.replace(/^(.)|\s(.)/g, function ( $1 ) { return $1.toUpperCase ( ); } );
+            return (str+'').replace(/^(.)|\s(.)/g, function ( $1 ) { return $1.toUpperCase ( ); } );
         },// }}}
         
         // {{{ wordwrap
@@ -4864,7 +5090,7 @@
             // Wraps a string to a given number of characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_wordwrap/
-            // +       version: 810.112
+            // +       version: 810.819
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +   improved by: Nick Callen
             // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
@@ -4876,24 +5102,26 @@
             // *     returns 2: 'The quick brown fox <br />\njumped over the lazy<br />\n dog.'
             // *     example 3: $P.wordwrap('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
             // *     returns 3: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod \ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim \nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea \ncommodo consequat.'
-            
+        
             // PHP Defaults
             var m = ((arguments.length >= 2) ? arguments[1] : 75   );
             var b = ((arguments.length >= 3) ? arguments[2] : "\n" );
             var c = ((arguments.length >= 4) ? arguments[3] : false);
-            
+        
             var i, j, l, s, r;
-            
+        
+            str += '';
+        
             if (m < 1) {
                 return str;
             }
-            
+        
             for (i = -1, l = (r = str.split("\n")).length; ++i < l; r[i] += s) {
                 for(s = r[i], r[i] = ""; s.length > m; r[i] += s.slice(0, j) + ((s = s.slice(j)).length ? b : "")){
                     j = c == 2 || (j = s.slice(0, m + 1).match(/\S*(\s)?$/))[1] ? m : j.input.length - j[0].length || c == 1 && m || j.input.length + (j = s.slice(m).match(/^\S*/)).input.length;
                 }
             }
-            
+        
             return r.join("\n");
         },// }}}
         
@@ -4902,23 +5130,26 @@
             // Decodes data encoded with MIME base64
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_decode/
-            // +       version: 809.522
+            // +       version: 810.819
             // +   original by: Tyler Akins (http://rumkin.com)
             // +   improved by: Thunder.m
             // +      input by: Aman Gupta
-            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)    
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: Onno Marsman
             // -    depends on: utf8_decode
             // *     example 1: $P.base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
             // *     returns 1: 'Kevin van Zonneveld'
-            
-            // mozilla has this native 
+        
+            // mozilla has this native
             // - but breaks in 2.0.0.12!
             //if (typeof window['btoa'] == 'function') {
             //    return btoa(data);
             //}
-            
+        
             var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
             var o1, o2, o3, h1, h2, h3, h4, bits, i = ac = 0, dec = "", tmp_arr = [];
+        
+            data += '';
         
             do {  // unpack four hexets into three octets using index points in b64
                 h1 = b64.indexOf(data.charAt(i++));
@@ -4940,10 +5171,10 @@
                     tmp_arr[ac++] = String.fromCharCode(o1, o2, o3);
                 }
             } while (i < data.length);
-            
+        
             dec = tmp_arr.join('');
             dec = this.utf8_decode(dec);
-            
+        
             return dec;
         },// }}}
         
@@ -5229,6 +5460,22 @@
             // *     returns 2: false
         
             return ( mixed_var instanceof Array );
+        },// }}}
+        
+        // {{{ is_bool
+        is_bool: function(mixed_var)
+        {
+            // Finds out whether a variable is a boolean
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_bool/
+            // +       version: 810.915
+            // +   original by: Onno Marsman
+            // *     example 1: $P.is_bool(false);
+            // *     returns 1: true
+            // *     example 2: $P.is_bool(0);
+            // *     returns 2: false
+        
+            return (typeof mixed_var == 'boolean');
         },// }}}
         
         // {{{ is_int
