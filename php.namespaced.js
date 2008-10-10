@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.69
+ * This is version: 1.70
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -21,12 +21,12 @@
  * Ben Bryan, Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord,
  * David, David James, Dino, DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), Francois, FremyCompany, Gabriel Paderni,
- * Howard Yeend, J A R, Kevin van Zonneveld (http://kevin.vanzonneveld.net)s,
- * Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Luke Godfrey, Mateusz
- * "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick
- * Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com),
- * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Pul, Pyerre,
- * ReverseSyntax, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
+ * Howard Yeend, J A R, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Luke
+ * Godfrey, Mateusz "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com),
+ * Mick@el, Nathan, Nick Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha
+ * (http://www.pedrotainha.com), Peter-Paul Koch
+ * (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
+ * Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
  * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
  * Steven Levithan (http://blog.stevenlevithan.com), T.Wild, T0bsn, Thiago
  * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
@@ -2178,7 +2178,7 @@
             // Finds whether a value is a legal finite number
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_finite/
-            // +       version: 810.819
+            // +       version: 810.1015
             // +   original by: Onno Marsman
             // *     example 1: $P.is_finite(Infinity);
             // *     returns 1: false
@@ -2211,7 +2211,7 @@
                 }
             }
             if (warningType) {
-                throw new Error('Warning: is_infinite() expects parameter 1 to be double, '+warningType+' given');
+                throw new Error('Warning: this.is_finite() expects parameter 1 to be double, '+warningType+' given');
             }
         
             return true;
@@ -2266,7 +2266,7 @@
             // Finds whether a value is not a number
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_nan/
-            // +       version: 810.819
+            // +       version: 810.1015
             // +   original by: Onno Marsman
             // *     example 1: $P.is_nan(NaN);
             // *     returns 1: true
@@ -2297,7 +2297,7 @@
                 }
             }
             if (errorType) {
-                throw new Error('Warning: is_infinite() expects parameter 1 to be double, '+errorType+' given');
+                throw new Error('Warning: this.is_nan() expects parameter 1 to be double, '+errorType+' given');
             }
         
             return false;
@@ -4040,11 +4040,11 @@
             // Return a formatted string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sprintf/
-            // +       version: 810.112
+            // +       version: 810.1015
             // +   original by: Ash Searle (http://hexmen.com/blog/)
             // + namespaced by: Michael White (http://getsprink.com)
             // +    tweaked by: Jack
-            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)s
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.sprintf("%01.2f", 123.1);
             // *     returns 1: 123.10
         
