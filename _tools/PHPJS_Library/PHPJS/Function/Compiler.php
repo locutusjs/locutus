@@ -8,7 +8,7 @@ Class PHPJS_Function_Compiler extends PHPJS_Function {
         $tail = implode("\n", $this->getWrapTail());
         
         $name = $this->getFunctionName();
-        
+
         if (!$namespaced) {
             
         } else {
@@ -21,8 +21,6 @@ Class PHPJS_Function_Compiler extends PHPJS_Function {
                 $real = preg_replace('/([^a-zA-Z0-9_\.])('.$dependency.')([^a-zA-Z0-9_])/s', '$1this.$2$3', $real);
             }
             $real = preg_replace('/([^a-zA-Z0-9_\.])('.$name.')([^a-zA-Z0-9_])/s', '$1this.$2$3', $real);
-                
-            
         }
         
         $source  = "";

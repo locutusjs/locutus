@@ -61,7 +61,19 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         
         return $compiledTxt;
     }
+    
+    public function compileFunction($funcName, $namespaced = false) {
+        if (($Function = $this->getFunction($funcName)) === false) {
+            throw new PHPJS_Exception("Function $funcName does not exst");
+            return false;
+        }
         
+        // Forward to Function Object 
+        $results = $Function->compileFunction($namespaced);
+        
+        return $results; 
+    }
+    
     protected function _namespace($source) {
         $str1  = "";
         $str1 .= "// {{{ init: \n";
@@ -116,18 +128,6 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         return "//PACKED\n".$source;
     }
     
-    public function compileFunction($funcName, $namespaced=false) {
-        if (($Function = $this->getFunction($funcName)) === false) {
-            throw new PHPJS_Exception("Function $funcName does not exst");
-            return false;
-        }
-        
-        // Forward to Function Object 
-        $results = $Function->compileFunction($namespaced);
-        
-        return $results; 
-    }
-
     protected function _indentBlock($block, $indentation=4 ){
         $tmp_block = trim($block);
         $tmp_block = str_replace("\r", "", $tmp_block);

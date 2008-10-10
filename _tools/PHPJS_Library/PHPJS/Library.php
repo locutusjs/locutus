@@ -79,6 +79,8 @@ Class PHPJS_Library {
     const LOG_DEBUG = 7;
         
     
+    const PROJECT_URL = "http://phpjs.org";
+    
     public $Functions = false;
     public $Function  = false;
     
@@ -155,6 +157,109 @@ Class PHPJS_Library {
     }
     public function getSelection() {
         return $this->_selection;
+    }
+    
+    public function getAuthors($options = false) {
+        if (!$options) $options = array();
+        if (!isset($options["fullblown"])) $options["fullblown"] = false;
+        if (!isset($options["sortby"])) $options["sortby"] = "cntContribs";
+        if (!isset($options["order"])) $options["order"] = "DESC";
+        if (!isset($options["use_selection"])) $options["use_selection"] = false; 
+        
+        $doFunctions = array();
+        if ($options["use_selection"]) {
+            $doFunctions = $this->_selection;
+        } else {
+            // All
+            foreach ($this->Functions as $funcName=>$Function) {
+                $doFunctions[] = $funcName;
+            }
+        }
+        
+        $authors = array();
+        foreach ($doFunctions as $funcName) {
+            $Function = $this->getFunction($funcName);
+            $funcTypeAuthors = $Function->DocBlock->getAuthors();
+            foreach ($funcTypeAuthors as $type=>$funcAuthors) {
+                foreach($funcAuthors as $authorName => &$authorLink) {
+                    trim($authorLink);
+                    $authorSave = $authorName;
+                    if ($authorLink) {
+                        $authorSave .= " (".$authorLink.")";
+                    }
+                    if ($options["fullblown"]) {
+                        if (!isset($authors[$authorSave][$funcName][$type])) {
+                            $authors[$authorSave][$funcName][$type] = 0;
+                        }
+                        $authors[$authorSave][$funcName][$type]++;
+                    } else {
+                        if (!isset($authors[$authorSave])) {
+                            $authors[$authorSave] = 0;
+                        }
+                        $authors[$authorSave]++;
+                    }
+                }
+            }
+        }
+        
+        if ($options["sortby"] == "cntContribs") {
+            natsort($authors);
+        } elseif ($options["sortby"] == "authorName") {
+            ksort($authors);
+        }
+        
+        if ($options["order"] == "DESC") {
+            $authors = array_reverse($authors);
+        }
+        
+        return $authors;
+    }
+    
+    public function genLicense($version) {
+        $authorContribs = $this->getAuthors();
+        $authors        = array();
+        foreach ($authorContribs as $authorNameLink => $cntContrib) {
+            $authors[] = $authorNameLink;
+        }
+        
+        $url        = self::PROJECT_URL;
+        $authorsTxt = wordwrap("Portions copyright ".implode(", ", $authors), 75, "\n * ", false);
+        
+        // Copyright Banner
+        $copyright  = "";
+        $copyright .= "/* \n";
+        $copyright .= " * More info at: %s\n";
+        $copyright .= " * \n";
+        $copyright .= " * This is version: %s\n";
+        $copyright .= " * php.js is copyright 2008 Kevin van Zonneveld.\n";
+        $copyright .= " * \n";
+        $copyright .= " * %s\n";
+        $copyright .= " * \n";
+        $copyright .= " * Dual licensed under the MIT (MIT-LICENSE.txt)\n";
+        $copyright .= " * and GPL (GPL-LICENSE.txt) licenses.\n";
+        $copyright .= " * \n";
+        $copyright .= " * Permission is hereby granted, free of charge, to any person obtaining a\n";
+        $copyright .= " * copy of this software and associated documentation files (the\n";
+        $copyright .= " * \"Software\"), to deal in the Software without restriction, including\n";
+        $copyright .= " * without limitation the rights to use, copy, modify, merge, publish,\n";
+        $copyright .= " * distribute, sublicense, and/or sell copies of the Software, and to\n";
+        $copyright .= " * permit persons to whom the Software is furnished to do so, subject to\n";
+        $copyright .= " * the following conditions:\n";
+        $copyright .= " * \n";
+        $copyright .= " * The above copyright notice and this permission notice shall be included\n";
+        $copyright .= " * in all copies or substantial portions of the Software.\n";
+        $copyright .= " * \n";
+        $copyright .= " * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS\n";
+        $copyright .= " * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n";
+        $copyright .= " * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\n";
+        $copyright .= " * IN NO EVENT SHALL KEVIN VAN ZONNEVELD BE LIABLE FOR ANY CLAIM, DAMAGES\n";
+        $copyright .= " * OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\n";
+        $copyright .= " * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\n";
+        $copyright .= " * OTHER DEALINGS IN THE SOFTWARE.\n";
+        $copyright .= " */ \n";
+        $copyright .= "\n";
+        
+        return sprintf($copyright, $url, $version, $authorsTxt);
     }
     
     /**

@@ -3,7 +3,7 @@ function sprintf( ) {
     // +   original by: Ash Searle (http://hexmen.com/blog/)
     // + namespaced by: Michael White (http://getsprink.com)
     // +    tweaked by: Jack
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)s
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: sprintf("%01.2f", 123.1);
     // *     returns 1: 123.10
 
