@@ -30,7 +30,7 @@ function is_nan(val) {
         }
     }
     if (errorType) {
-        throw new Error('Warning: is_infinite() expects parameter 1 to be double, '+errorType+' given');
+        throw new Error('Warning: is_nan() expects parameter 1 to be double, '+errorType+' given');
     }
 
     return false;
