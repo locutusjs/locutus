@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns an object with properties that describe the DB2 database client</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-bind-param.html">db2_bind_param</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-close.html">db2_close</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.db2-client-info" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">db2_client_info</h1>
+  <p class="verinfo">(PECL ibm_db2:1.1.1-1.6.2)</p><p class="refpurpose"><span class="refname">db2_client_info</span> &mdash; <span class="dc-title">Returns an object with properties that describe the DB2 database client</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">object</span> <span class="methodname"><b><b>db2_client_info</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   This function returns an object with read-only properties that return
+   information about the DB2 database client. The following table lists
+   the DB2 client properties:
+   <table border="5">
+    <caption><b>DB2 client properties</b></caption>
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Property name</th>
+       <th colspan="1">Return type</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">APPL_CODEPAGE</td>
+       <td colspan="1" rowspan="1" align="left">int</td>
+       <td colspan="1" rowspan="1" align="left">The application code page.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">CONN_CODEPAGE</td>
+       <td colspan="1" rowspan="1" align="left">int</td>
+       <td colspan="1" rowspan="1" align="left">The code page for the current connection.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">DATA_SOURCE_NAME</td>
+       <td colspan="1" rowspan="1" align="left">string</td>
+       <td colspan="1" rowspan="1" align="left">The data source name (DSN) used to create the current connection
+        to the database.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">DRIVER_NAME</td>
+       <td colspan="1" rowspan="1" align="left">string</td>
+       <td colspan="1" rowspan="1" align="left">The name of the library that implements the DB2 Call
+        Level Interface (CLI) specification.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">DRIVER_ODBC_VER</td>
+       <td colspan="1" rowspan="1" align="left">string</td>
+       <td colspan="1" rowspan="1" align="left">The version of ODBC that the DB2 client supports. This returns a
+        string &quot;MM.mm&quot; where <var class="varname">MM</var> is the major version and
+        <var class="varname">mm</var> is the minor version. The DB2 client always
+        returns &quot;03.51&quot;.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">DRIVER_VER</td>
+       <td colspan="1" rowspan="1" align="left">string</td>
+       <td colspan="1" rowspan="1" align="left">The version of the client, in the form of a string &quot;MM.mm.uuuu&quot; where
+        <var class="varname">MM</var> is the major version, 
+        <var class="varname">mm</var> is the minor version,
+        and <var class="varname">uuuu</var> is the update. For example, &quot;08.02.0001&quot;
+        represents major version 8, minor version 2, update 1.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ODBC_SQL_CONFORMANCE</td>
+       <td colspan="1" rowspan="1" align="left">string</td>
+       <td colspan="1" rowspan="1" align="left">
+        <p class="para">The level of ODBC SQL grammar supported by the client:
+        <dl>
+
+         <dt>
+
+          <span class="term">MINIMUM</span>
+
+          <dd>
+
+           <p class="para">
+            Supports the minimum ODBC SQL grammar.
+           </p>
+          </dd>
+
+         </dt>
+
+         <dt>
+
+          <span class="term">CORE</span>
+
+          <dd>
+
+           <p class="para">
+            Supports the core ODBC SQL grammar.
+           </p>
+          </dd>
+
+         </dt>
+
+         <dt>
+
+          <span class="term">EXTENDED</span>
+
+          <dd>
+
+           <p class="para">
+            Supports extended ODBC SQL grammar.
+           </p>
+          </dd>
+
+         </dt>
+
+        </dl>
+
+        </p>
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ODBC_VER</td>
+       <td colspan="1" rowspan="1" align="left">string</td>
+       <td colspan="1" rowspan="1" align="left">The version of ODBC that the ODBC driver manager supports. This
+        returns a string &quot;MM.mm.rrrr&quot; where <var class="varname">MM</var> is the major
+        version, <var class="varname">mm</var> is the minor version, and
+        <var class="varname">rrrr</var> is the release. The DB2 client always returns
+        &quot;03.01.0000&quot;.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Specifies an active DB2 client connection.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an object on a successful call. Returns <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ 
+
+ 
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>db2_client_info()</b> example</b></p>
+    <div class="example-contents"><p>
+     To retrieve information about the client, you must pass a valid
+     database connection resource to <b>db2_client_info()</b>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">'SAMPLE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'db2inst1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ibmdb2'&nbsp;</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$client&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_client_info</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$client</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"DRIVER_NAME:&nbsp;"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">DRIVER_NAME&nbsp;</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"DRIVER_VER:&nbsp;"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">DRIVER_VER&nbsp;</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"DATA_SOURCE_NAME:&nbsp;"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">DATA_SOURCE_NAME&nbsp;</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"DRIVER_ODBC_VER:&nbsp;"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">DRIVER_ODBC_VER&nbsp;</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"ODBC_VER:&nbsp;"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ODBC_VER&nbsp;</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"ODBC_SQL_CONFORMANCE:&nbsp;"</span><span style="color: #007700">;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ODBC_SQL_CONFORMANCE&nbsp;</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"APPL_CODEPAGE:&nbsp;"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">APPL_CODEPAGE&nbsp;</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"CONN_CODEPAGE:&nbsp;"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">CONN_CODEPAGE&nbsp;</span><span style="color: #007700">);<br />}<br />else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Error&nbsp;retrieving&nbsp;client&nbsp;information.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perhaps&nbsp;your&nbsp;database&nbsp;connection&nbsp;was&nbsp;invalid."</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">db2_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+DRIVER_NAME: string(8) &quot;libdb2.a&quot;
+DRIVER_VER: string(10) &quot;08.02.0001&quot;
+DATA_SOURCE_NAME: string(6) &quot;SAMPLE&quot;
+DRIVER_ODBC_VER: string(5) &quot;03.51&quot;
+ODBC_VER: string(10) &quot;03.01.0000&quot;
+ODBC_SQL_CONFORMANCE: string(8) &quot;EXTENDED&quot;
+APPL_CODEPAGE: int(819)
+CONN_CODEPAGE: int(819)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.db2-server-info.html" class="function" rel="rdfs-seeAlso">db2_server_info()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-bind-param.html">db2_bind_param</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-close.html">db2_close</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

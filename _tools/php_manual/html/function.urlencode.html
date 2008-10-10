@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>URL-encodes string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.url.html">URL Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="refs.remote.other.html">Other Services</a></div>
+ <div class="up"><a href="ref.url.html">URL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.urlencode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">urlencode</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">urlencode</span> &mdash; <span class="dc-title">URL-encodes string</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>urlencode</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function is convenient when encoding a string to be used in a query
+   part of a URL, as a convenient way to pass variables to the next page.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The string to be encoded.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string in which all non-alphanumeric characters except
+   <i>-_.</i> have been replaced with a percent
+   (<i>%</i>) sign followed by two hex digits and spaces encoded
+   as plus (<i>+</i>) signs.  It is encoded the same way that the
+   posted data from a WWW form is encoded, that is the same way as in
+   <i>application/x-www-form-urlencoded</i> media type. This
+   differs from the <a href="http://www.faqs.org/rfcs/rfc1738" class="link external">&raquo; RFC 1738</a> encoding (see
+   <a href="function.rawurlencode.html" class="function">rawurlencode()</a>) in that for historical reasons, spaces
+   are encoded as plus (+) signs.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3> 
+  <p class="para">  
+   <div class="example">
+    <p><b>Example #1 <b>urlencode()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'&lt;a&nbsp;href="mycgi?foo='</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">urlencode</span><span style="color: #007700">(</span><span style="color: #0000BB">$userinput</span><span style="color: #007700">),&nbsp;</span><span style="color: #DD0000">'"&gt;'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 <b>urlencode()</b> and <a href="function.htmlentities.html" class="function">htmlentities()</a> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$query_string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'foo='&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">urlencode</span><span style="color: #007700">(</span><span style="color: #0000BB">$foo</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">'&amp;bar='&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">urlencode</span><span style="color: #007700">(</span><span style="color: #0000BB">$bar</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">'&lt;a&nbsp;href="mycgi?'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$query_string</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">'"&gt;'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Be careful about variables that may match HTML entities. Things like
+    &amp;amp, &amp;copy and &amp;pound are parsed by the browser and the
+    actual entity is used instead of the desired variable name.  This is an
+    obvious hassle that the W3C has been telling people about for years.
+    The reference is here: <a href="http://www.w3.org/TR/html4/appendix/notes.html#h-B.2.2" class="link external">&raquo; http://www.w3.org/TR/html4/appendix/notes.html#h-B.2.2</a>.
+   <br />
+   
+    PHP supports changing the argument separator to the W3C-suggested
+    semi-colon through the arg_separator .ini directive.  Unfortunately most
+    user agents do not send form data in this semi-colon separated format.
+    A more portable way around this is to use &amp;amp; instead of &amp; as
+    the separator.  You don&#039;t need to change PHP&#039;s arg_separator for this.
+    Leave it as &amp;, but simply encode your URLs using
+    <a href="function.htmlentities.html" class="function">htmlentities()</a> or 
+    <a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.urldecode.html" class="function" rel="rdfs-seeAlso">urldecode()</a></li>
+    <li class="member"><a href="function.htmlentities.html" class="function" rel="rdfs-seeAlso">htmlentities()</a></li>
+    <li class="member"><a href="function.rawurlencode.html" class="function" rel="rdfs-seeAlso">rawurlencode()</a></li>
+    <li class="member"><a href="function.rawurldecode.html" class="function" rel="rdfs-seeAlso">rawurldecode()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.url.html">URL Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="refs.remote.other.html">Other Services</a></div>
+ <div class="up"><a href="ref.url.html">URL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

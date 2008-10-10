@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Converts a string containing an (IPv4) Internet Protocol dotted address into a proper address</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.inet-pton.html">inet_pton</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.long2ip.html">long2ip</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ip2long" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ip2long</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ip2long</span> &mdash; <span class="dc-title">Converts a string containing an (IPv4) Internet Protocol dotted address into a proper address</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>ip2long</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$ip_address</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The function <b>ip2long()</b> generates an IPv4 Internet
+   network address from its Internet standard format (dotted string)
+   representation. 
+  </p>
+  <p class="para">
+   <b>ip2long()</b> will also work with non-complete IP
+   addresses. Read <a href="http://publibn.boulder.ibm.com/doc_link/en_US/a_doc_lib/libs/commtrf2/inet_addr.htm" class="link external">&raquo; http://publibn.boulder.ibm.com/doc_link/en_US/a_doc_lib/libs/commtrf2/inet_addr.htm</a>
+   for more info.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ip_address</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A standard format address.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the IPv4 address or <b><tt>FALSE</tt></b> if <i><tt class="parameter">ip_address</tt></i>
+
+   is invalid.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        Prior to this version, <b>ip2long()</b> returned -1 on
+        failure.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ip2long()</b> Example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$ip&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gethostbyname</span><span style="color: #007700">(</span><span style="color: #DD0000">'www.example.com'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$out&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"The&nbsp;following&nbsp;URLs&nbsp;are&nbsp;equivalent:&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$out&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">'http://www.example.com/,&nbsp;http://'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$ip&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'/,&nbsp;and&nbsp;http://'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%u"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">ip2long</span><span style="color: #007700">(</span><span style="color: #0000BB">$ip</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span style="color: #DD0000">"/&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">$out</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Displaying an IP address</b></p>
+    <div class="example-contents"><p>
+     This second example shows how to print a converted address with the
+     <a href="function.printf.html" class="function">printf()</a> function in both PHP 4 and PHP 5:
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$ip&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gethostbyname</span><span style="color: #007700">(</span><span style="color: #DD0000">'www.example.com'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$long&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ip2long</span><span style="color: #007700">(</span><span style="color: #0000BB">$ip</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$long&nbsp;</span><span style="color: #007700">==&nbsp;-</span><span style="color: #0000BB">1&nbsp;</span><span style="color: #007700">||&nbsp;</span><span style="color: #0000BB">$long&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">FALSE</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Invalid&nbsp;IP,&nbsp;please&nbsp;try&nbsp;again'</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$ip&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;192.0.34.166<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$long&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;-1073732954<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%u\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">ip2long</span><span style="color: #007700">(</span><span style="color: #0000BB">$ip</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//&nbsp;3221234342<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #3 IP validation</b></p>
+    <div class="example-contents"><p>
+     <b>ip2long()</b> should not be used as the sole form
+     of IP validation. Combine it with <a href="function.long2ip.html" class="function">long2ip()</a>:
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;make&nbsp;sure&nbsp;IPs&nbsp;are&nbsp;valid.&nbsp;also&nbsp;converts&nbsp;a&nbsp;non-complete&nbsp;IP&nbsp;into<br />//&nbsp;a&nbsp;proper&nbsp;dotted&nbsp;quad&nbsp;as&nbsp;explained&nbsp;below.<br /></span><span style="color: #0000BB">$ip&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">long2ip</span><span style="color: #007700">(</span><span style="color: #0000BB">ip2long</span><span style="color: #007700">(</span><span style="color: #DD0000">"127.0.0.1"</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//&nbsp;"127.0.0.1"<br /></span><span style="color: #0000BB">$ip&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">long2ip</span><span style="color: #007700">(</span><span style="color: #0000BB">ip2long</span><span style="color: #007700">(</span><span style="color: #DD0000">"10.0.0"</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//&nbsp;"10.0.0.0"<br /></span><span style="color: #0000BB">$ip&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">long2ip</span><span style="color: #007700">(</span><span style="color: #0000BB">ip2long</span><span style="color: #007700">(</span><span style="color: #DD0000">"10.0.256"</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//&nbsp;"10.0.1.0"<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Because PHP&#039;s integer type is signed, and many IP addresses will
+    result in negative integers, you need to use the &quot;%u&quot; formatter of
+    <a href="function.sprintf.html" class="function">sprintf()</a> or <a href="function.printf.html" class="function">printf()</a> to get
+    the string representation of the unsigned IP address.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    <b>ip2long()</b> will return <b><tt>FALSE</tt></b> for the IP
+    <i>255.255.255.255</i> in PHP 5 &lt;= 5.0.2. It was fixed in
+    PHP 5.0.3 where it returns <i>-1</i> (same as PHP 4).
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.long2ip.html" class="function" rel="rdfs-seeAlso">long2ip()</a></li>
+    <li class="member"><a href="function.sprintf.html" class="function" rel="rdfs-seeAlso">sprintf()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.inet-pton.html">inet_pton</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.long2ip.html">long2ip</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

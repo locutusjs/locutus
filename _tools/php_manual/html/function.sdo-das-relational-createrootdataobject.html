@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the special root object in an otherwise 
+   empty data graph. Used when creating a data graph from scratch.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-relational-construct.html">SDO_DAS_Relational::__construct</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-relational-executepreparedquery.html">SDO_DAS_Relational::executePreparedQuery</a></div>
+ <div class="up"><a href="ref.sdo.das.rel.html">SDO-DAS-Relational Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sdo-das-relational-createrootdataobject" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SDO_DAS_Relational::createRootDataObject</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SDO_DAS_Relational::createRootDataObject</span> &mdash; <span class="dc-title">
+   Returns the special root object in an otherwise 
+   empty data graph. Used when creating a data graph from scratch.
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type SDODataObject">SDODataObject</span></span>
+    <span class="methodname"><b><b>SDO_DAS_Relational::createRootDataObject</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+   <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+  <p class="para">
+   Returns the special root object at the top of an otherwise 
+   empty data graph.
+   This call is used when the application wants to create a 
+   data graph from scratch, without having called
+   <b>executeQuery()</b>
+   to create a data graph.
+  </p>
+  <p class="para">
+   The special root object has one multi-valued containment property, 
+   with a name of the application root type that was passed when 
+   the Relational DAS was constructed.
+   The property can take values of only that type.
+   The only thing that the application can usefully do with the root 
+   type is to call
+   <b>createDataObject()</b>
+   on it, passing the name of the application root type,
+   in order to create a data object of their own application type.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   None.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The root object.
+  </p>
+ </div>
+
+
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   None.
+  </p>
+ </div>
+
+
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   Please see the
+   <a href="sdo.das.rel.examples.html" class="link">Examples</a>
+   section in the general information about the Relational DAS
+   for many examples of calling this method.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-relational-construct.html">SDO_DAS_Relational::__construct</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-relational-executepreparedquery.html">SDO_DAS_Relational::executePreparedQuery</a></div>
+ <div class="up"><a href="ref.sdo.das.rel.html">SDO-DAS-Relational Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

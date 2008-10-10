@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Seek to the previous row number of a result set</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-popen.html">sqlite_popen</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-query.html">sqlite_query</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sqlite-prev" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_prev</h1>
+  <h1 class="refname">SQLiteResult-&gt;prev</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">sqlite_prev</span> -- <span class="refname">SQLiteResult-&gt;prev</span> &mdash; <span class="dc-title">Seek to the previous row number of a result set</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>sqlite_prev</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method):</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SQLiteResult</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><a href="function.prev.html" class="function">prev</a></b></span>
+     ( <span class="methodparam">void</span>
+    )</div>
+
+  </div>
+  <p class="para">
+   <b>sqlite_prev()</b> seeks back the 
+   <i><tt class="parameter">result</tt></i>
+ handle to the previous row.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SQLite result resource.  This parameter is not required when using
+       the object-oriented method.
+      </p>
+      <blockquote><p><b class="note">Note</b>: This function cannot be used with 
+unbuffered result handles.<br /></p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success, or <b><tt>FALSE</tt></b> if there are no more previous rows.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sqlite-has-prev.html" class="function" rel="rdfs-seeAlso">sqlite_has_prev()</a></li>
+    <li class="member"><a href="function.sqlite-rewind.html" class="function" rel="rdfs-seeAlso">sqlite_rewind()</a></li>
+    <li class="member"><a href="function.sqlite-next.html" class="function" rel="rdfs-seeAlso">sqlite_next()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-popen.html">sqlite_popen</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-query.html">sqlite_query</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

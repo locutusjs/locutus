@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Adds link to a page in the same document</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ps-add-launchlink.html">ps_add_launchlink</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ps-add-note.html">ps_add_note</a></div>
+ <div class="up"><a href="ref.ps.html">PS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ps-add-locallink" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ps_add_locallink</h1>
+  <p class="verinfo">(PECL ps:1.1.0-1.3.5)</p><p class="refpurpose"><span class="refname">ps_add_locallink</span> &mdash; <span class="dc-title">Adds link to a page in the same document</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ps_add_locallink</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$psdoc</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$llx</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$lly</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$urx</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$ury</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$page</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dest</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Places a hyperlink at the given position pointing to a page in the same
+   document. Clicking on the link will jump to the given page. The first page
+   in a document has number 1.
+  </p>
+  <p class="para">
+   The hyperlink&#039;s source position is a rectangle with its lower left corner at
+   (<i><tt class="parameter">llx</tt></i>
+, <i><tt class="parameter">lly</tt></i>
+) and its upper
+   right corner at (<i><tt class="parameter">urx</tt></i>
+, <i><tt class="parameter">ury</tt></i>
+).
+   The rectangle has by default a thin blue border.
+  </p>
+  <p class="para">
+   The hyperlink will not be visible if the document is printed or viewed but
+   it will show up if the document is converted to pdf by either Acrobat
+   Distiller™ or Ghostview.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">psdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the postscript file
+       as returned by <a href="function.ps-new.html" class="function">ps_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">llx</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The x-coordinate of the lower left corner.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">lly</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The y-coordinate of the lower left corner.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">urx</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The x-coordinate of the upper right corner.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ury</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The y-coordinate of the upper right corner.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">page</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The number of the page displayed when clicking on the link.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dest</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The parameter <i><tt class="parameter">dest</tt></i>
+ determines how the document
+       is being viewed. It can be <i>fitpage</i>,
+       <i>fitwidth</i>, <i>fitheight</i>, or
+       <i>fitbbox</i>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ps-add-launchlink.html" class="function" rel="rdfs-seeAlso">ps_add_launchlink()</a></li>
+    <li class="member"><a href="function.ps-add-pdflink.html" class="function" rel="rdfs-seeAlso">ps_add_pdflink()</a></li>
+    <li class="member"><a href="function.ps-add-weblink.html" class="function" rel="rdfs-seeAlso">ps_add_weblink()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ps-add-launchlink.html">ps_add_launchlink</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ps-add-note.html">ps_add_note</a></div>
+ <div class="up"><a href="ref.ps.html">PS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Restarts the interpreter</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.apd-clunk.html">apd_clunk</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.apd-croak.html">apd_croak</a></div>
+ <div class="up"><a href="ref.apd.html">APD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.apd-continue" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">apd_continue</h1>
+  <p class="verinfo">(PECL apd:0.2-1.0.1)</p><p class="refpurpose"><span class="refname">apd_continue</span> &mdash; <span class="dc-title">Restarts the interpreter</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>apd_continue</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$debug_level</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Usually sent via the socket to restart the interpreter.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+debug_level</tt></i>
+</span>
+<dd>
+<p class="para">An integer which is formed by adding 
+together the <i>XXX_TRACE</i> constants.</p><p class="para">It is not recommended
+to use <b><tt>MEMORY_TRACE</tt></b>. It is very slow and does not appear to be accurate. 
+<b><tt>ASSIGNMENT_TRACE</tt></b> is not implemented yet.</p><p class="para">To turn on all
+functional traces (TIMING, FUNCTIONS, ARGS SUMMARY (like strace -c)) use the value 99</p>
+</dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>apd_continue()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />apd_continue</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.apd-clunk.html">apd_clunk</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.apd-croak.html">apd_croak</a></div>
+ <div class="up"><a href="ref.apd.html">APD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

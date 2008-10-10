@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Waits on or returns the status of a forked child</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pcntl-signal.html">pcntl_signal</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pcntl-waitpid.html">pcntl_waitpid</a></div>
+ <div class="up"><a href="ref.pcntl.html">PCNTL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pcntl-wait" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pcntl_wait</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">pcntl_wait</span> &mdash; <span class="dc-title">Waits on or returns the status of a forked child</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>pcntl_wait</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter reference">&$status</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$options</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   The wait function suspends execution of the current process until a
+   child has exited, or until a signal is delivered whose action is to
+   terminate the current process or to call a signal handling function.  If a
+   child has already exited by the time of the call (a so-called &quot;zombie&quot;
+   process), the function returns immediately.  Any system resources used by
+   the child are freed.  Please see your system&#039;s wait(2) man page for
+   specific details as to how wait works on your system.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function is equivalent to calling <a href="function.pcntl-waitpid.html" class="function">pcntl_waitpid()</a>
+    with a <i>-1</i> <i><tt class="parameter">pid</tt></i>
+ and no
+    <i><tt class="parameter">options</tt></i>
+.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">status</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <b>pcntl_wait()</b> will store status information
+       in the <i><tt class="parameter">status</tt></i>
+ parameter which can be
+       evaluated using the following functions:
+       <a href="function.pcntl-wifexited.html" class="function">pcntl_wifexited()</a>,
+       <a href="function.pcntl-wifstopped.html" class="function">pcntl_wifstopped()</a>,
+       <a href="function.pcntl-wifsignaled.html" class="function">pcntl_wifsignaled()</a>,
+       <a href="function.pcntl-wexitstatus.html" class="function">pcntl_wexitstatus()</a>,
+       <a href="function.pcntl-wtermsig.html" class="function">pcntl_wtermsig()</a> and
+       <a href="function.pcntl-wstopsig.html" class="function">pcntl_wstopsig()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If wait3 is available on your system (mostly BSD-style systems), you can
+       provide the optional <i><tt class="parameter">options</tt></i>
+ parameter.  If this
+       parameter is not provided, wait will be used for the system call.  If
+       wait3 is not available, providing a value for <i><tt class="parameter">options
+       </tt></i>
+ will have no effect. The value of <i><tt class="parameter">options
+       </tt></i>
+ is the value of zero or more of the following two constants
+       <i>OR</i>&#039;ed together:
+       <table border="5">
+        <caption><b>Possible values for <i><tt class="parameter">options</tt></i>
+</b></caption>
+        <colgroup>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><i>WNOHANG</i></td>
+           <td colspan="1" rowspan="1" align="left">
+            Return immediately if no child has exited.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><i>WUNTRACED</i></td>
+           <td colspan="1" rowspan="1" align="left">
+            Return for children which are stopped, and whose status has
+            not been reported.
+           </td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>pcntl_wait()</b> returns the process ID of the
+   child which exited, -1 on error or zero if WNOHANG was provided as an
+   option (on wait3-available systems) and no child was available.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pcntl-fork.html" class="function" rel="rdfs-seeAlso">pcntl_fork()</a></li>
+    <li class="member"><a href="function.pcntl-signal.html" class="function" rel="rdfs-seeAlso">pcntl_signal()</a></li>
+    <li class="member"><a href="function.pcntl-wifexited.html" class="function" rel="rdfs-seeAlso">pcntl_wifexited()</a></li>
+    <li class="member"><a href="function.pcntl-wifstopped.html" class="function" rel="rdfs-seeAlso">pcntl_wifstopped()</a></li>
+    <li class="member"><a href="function.pcntl-wifsignaled.html" class="function" rel="rdfs-seeAlso">pcntl_wifsignaled()</a></li>
+    <li class="member"><a href="function.pcntl-wexitstatus.html" class="function" rel="rdfs-seeAlso">pcntl_wexitstatus()</a></li>
+    <li class="member"><a href="function.pcntl-wtermsig.html" class="function" rel="rdfs-seeAlso">pcntl_wtermsig()</a></li>
+    <li class="member"><a href="function.pcntl-wstopsig.html" class="function" rel="rdfs-seeAlso">pcntl_wstopsig()</a></li>
+    <li class="member"><a href="function.pcntl-waitpid.html" class="function" rel="rdfs-seeAlso">pcntl_waitpid()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pcntl-signal.html">pcntl_signal</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pcntl-waitpid.html">pcntl_waitpid</a></div>
+ <div class="up"><a href="ref.pcntl.html">PCNTL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets/sets various internal readline variables</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.readline-completion-function.html">readline_completion_function</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.readline-list-history.html">readline_list_history</a></div>
+ <div class="up"><a href="ref.readline.html">Readline Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.readline-info" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">readline_info</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">readline_info</span> &mdash; <span class="dc-title">Gets/sets various internal readline variables</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>readline_info</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$varname</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$newvalue</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Gets or sets various internal readline variables.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">varname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A variable name.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">newvalue</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If provided, this will be the new value of the setting.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   If called with no parameters, this function returns an array of
+   values for all the setting readline uses.  The elements will
+   be indexed by the following values: done, end, erase_empty_line,
+   library_version, line_buffer, mark, pending_input, point, prompt,
+   readline_name, and terminal_name.
+  </p>
+  <p class="para">
+   If called with one or two parameters, the old value is returned.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.readline-completion-function.html">readline_completion_function</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.readline-list-history.html">readline_list_history</a></div>
+ <div class="up"><a href="ref.readline.html">Readline Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

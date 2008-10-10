@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets line from file pointer and parse for CSV fields</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fgetc.html">fgetc</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fgets.html">fgets</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.fgetcsv" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fgetcsv</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">fgetcsv</span> &mdash; <span class="dc-title">Gets line from file pointer and parse for CSV fields</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>fgetcsv</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$handle</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$length</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$delimiter</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$enclosure</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$escape</tt></span>
+  ]]]] )</div>
+
+  <p class="para rdfs-comment">
+   Similar to <a href="function.fgets.html" class="function">fgets()</a> except that
+   <b>fgetcsv()</b> parses the line it reads for fields in
+   <acronym title="Comma Separated Value">CSV</acronym> format and returns an array containing the fields
+   read.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">handle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid file pointer to a file successfully opened by
+       <a href="function.fopen.html" class="function">fopen()</a>, <a href="function.popen.html" class="function">popen()</a>, or
+       <a href="function.fsockopen.html" class="function">fsockopen()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">length</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Must be greater than the longest line (in characters) to be found in
+       the CSV file (allowing for trailing line-end characters). It became
+       optional in PHP 5. Omitting this parameter (or setting it to 0 in PHP
+       5.0.4 and later) the maximum line length is not limited, which is
+       slightly slower.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">delimiter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Set the field delimiter (one character only). Defaults as a comma.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">enclosure</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Set the field enclosure character (one character only). Defaults as a
+       double quotation mark.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">escape</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Set the escape character (one character only). Defaults as a backslash
+       (<i>\</i>)
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an indexed array containing the fields read.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    A blank line in a CSV file will be returned as an array
+    comprising a single <a href="language.types.null.html" class="type null">null</a> field, and will not be treated
+    as an error.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">If PHP is not properly recognizing
+the line endings when reading files either on or created by a Macintosh
+computer, enabling the
+<a href="filesystem.configuration.html#ini.auto-detect-line-endings" class="link">auto_detect_line_endings</a>
+run-time configuration option may help resolve the problem.</span></p></blockquote>
+  <p class="para">
+   <b>fgetcsv()</b> returns <b><tt>FALSE</tt></b> on error, including end of
+   file.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">escape</tt></i>
+ parameter was added
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.5</td>
+       <td colspan="1" rowspan="1" align="left">
+        <b>fgetcsv()</b> is now binary safe
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">enclosure</tt></i>
+ parameter was added
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Read and print the entire contents of a CSV file</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$handle&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"test.csv"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"r"</span><span style="color: #007700">);<br />while&nbsp;((</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fgetcsv</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1000</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">","</span><span style="color: #007700">))&nbsp;!==&nbsp;</span><span style="color: #0000BB">FALSE</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$num&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;p&gt;&nbsp;$num&nbsp;fields&nbsp;in&nbsp;line&nbsp;$row:&nbsp;&lt;br&nbsp;/&gt;&lt;/p&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">++;<br />&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(</span><span style="color: #0000BB">$c</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$c&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">$num</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #0000BB">$c</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Locale setting is taken into account by this function. If
+    <var class="varname">LANG</var> is e.g. <i>en_US.UTF-8</i>, files in
+    one-byte encoding are read wrong by this function.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.str-getcsv.html" class="function" rel="rdfs-seeAlso">str_getcsv()</a></li>
+    <li class="member"><a href="function.explode.html" class="function" rel="rdfs-seeAlso">explode()</a></li>
+    <li class="member"><a href="function.file.html" class="function" rel="rdfs-seeAlso">file()</a></li>
+    <li class="member"><a href="function.pack.html" class="function" rel="rdfs-seeAlso">pack()</a></li>
+    <li class="member"><a href="function.fputcsv.html" class="function" rel="rdfs-seeAlso">fputcsv()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fgetc.html">fgetc</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fgets.html">fgets</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

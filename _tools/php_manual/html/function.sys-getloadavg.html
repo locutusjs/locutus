@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets system load average</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sleep.html">sleep</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.time-nanosleep.html">time_nanosleep</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sys-getloadavg" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sys_getloadavg</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.3)</p><p class="refpurpose"><span class="refname">sys_getloadavg</span> &mdash; <span class="dc-title">Gets system load average</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>sys_getloadavg</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns three samples representing the average system load
+   (the number of processes in the system run queue) over the last 1, 5 and 15
+   minutes, respectively.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an <a href="language.types.array.html" class="type array">array</a> with three samples (last 1, 5 and 15
+   minutes).
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>sys_getloadavg()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$load&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sys_getloadavg</span><span style="color: #007700">();<br />if&nbsp;(</span><span style="color: #0000BB">$load</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]&nbsp;&gt;&nbsp;</span><span style="color: #0000BB">80</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'HTTP/1.1&nbsp;503&nbsp;Too&nbsp;busy,&nbsp;try&nbsp;again&nbsp;later'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Server&nbsp;too&nbsp;busy.&nbsp;Please&nbsp;try&nbsp;again&nbsp;later.'</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is not
+implemented on Windows platforms.</span></p></blockquote>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sleep.html">sleep</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.time-nanosleep.html">time_nanosleep</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the SQLSTATE error from previous MaxDB operation</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-set-opt.html">maxdb_set_opt</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-ssl-set.html">maxdb_ssl_set</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.maxdb-sqlstate" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_sqlstate</h1>
+  <h1 class="refname">maxdb-&gt;sqlstate</h1>
+  <p class="verinfo">(PECL maxdb:1.0-7.6.00.38)</p><p class="refpurpose"><span class="refname">maxdb_sqlstate</span> -- <span class="refname">maxdb-&gt;sqlstate</span> &mdash; <span class="dc-title">Returns the SQLSTATE error from previous MaxDB operation</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedural style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>maxdb_sqlstate</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (property):</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">maxdb</b></div>
+   <div class="fieldsynopsis"><span class="type">string</span> <var class="varname">$sqlstate</var>;</div>
+
+  </div>
+  <p class="para">
+   Returns a string containing the SQLSTATE error code for the last error.
+   The error code consists of five characters. <i>&#039;00000&#039;</i> means no error.
+   The values are specified by ANSI SQL and ODBC.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Note that not all MaxDB errors are yet mapped to SQLSTATE&#039;s.
+    The value <i>HY000</i> (general error) is used for unmapped errors.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string containing the SQLSTATE error code for the last error.
+   The error code consists of five characters. <i>&#039;00000&#039;</i> means no error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 Object oriented style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$maxdb&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">maxdb</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Table&nbsp;City&nbsp;already&nbsp;exists,&nbsp;so&nbsp;we&nbsp;should&nbsp;get&nbsp;an&nbsp;error&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;hotel.city&nbsp;(ID&nbsp;INT,&nbsp;Name&nbsp;VARCHAR(30))"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Error&nbsp;-&nbsp;SQLSTATE&nbsp;%s.\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">sqlstate</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example">
+   <p><b>Example #2 Procedural style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Table&nbsp;City&nbsp;already&nbsp;exists,&nbsp;so&nbsp;we&nbsp;should&nbsp;get&nbsp;an&nbsp;error&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;hotel.city&nbsp;(ID&nbsp;INT,&nbsp;Name&nbsp;VARCHAR(30))"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Error&nbsp;-&nbsp;SQLSTATE&nbsp;%s.\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_sqlstate</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">maxdb_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">The above example will output 
+something similar to:</p>
+  <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Warning: maxdb_query(): -6000 POS(20) Duplicate table name:CITY [I6000] &lt;...&gt;
+Error - SQLSTATE I6000.
+</pre></div>
+  </pre></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.maxdb-errno.html" class="function" rel="rdfs-seeAlso">maxdb_errno()</a></li>
+    <li class="member"><a href="function.maxdb-error.html" class="function" rel="rdfs-seeAlso">maxdb_error()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-set-opt.html">maxdb_set_opt</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-ssl-set.html">maxdb_ssl_set</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

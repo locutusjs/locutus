@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Ends a sequence of maxdb_stmt_send_long_data</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-stmt-bind-result.html">maxdb_stmt_bind_result</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-stmt-close.html">maxdb_stmt_close</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.maxdb-stmt-close-long-data" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_stmt_close_long_data</h1>
+  <h1 class="refname">stmt-&gt;close_long_data</h1>
+  <p class="verinfo">(PECL maxdb:1.0)</p><p class="refpurpose"><span class="refname">maxdb_stmt_close_long_data</span> -- <span class="refname">stmt-&gt;close_long_data</span> &mdash; <span class="dc-title">Ends a sequence of <a href="function.maxdb-stmt-send-long-data.html" class="function">maxdb_stmt_send_long_data()</a></span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedural style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>maxdb_stmt_close_long_data</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$stmt</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$param_nr</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method):</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">maxdb_stmt</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><b>maxdb_stmt-&gt;close_long_data</b></b></span>
+     ( <span class="methodparam">void</span>
+    )</div>
+
+  </div>
+  <p class="para">
+   This function has to be called after a sequence of
+   <a href="function.maxdb-stmt-send-long-data.html" class="function">maxdb_stmt_send_long_data()</a>, that was started
+   after <a href="function.maxdb-execute.html" class="function">maxdb_execute()</a>.
+  </p>
+  <p class="para">
+   <i><tt class="parameter">param_nr</tt></i>
+ indicates which parameter to associate the
+   end of data with.
+   Parameters are numbered beginning with 0.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.maxdb-prepare.html" class="function" rel="rdfs-seeAlso">maxdb_prepare()</a></li>
+    <li class="member"><a href="function.maxdb-stmt-bind-param.html" class="function" rel="rdfs-seeAlso">maxdb_stmt_bind_param()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-stmt-bind-result.html">maxdb_stmt_bind_result</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-stmt-close.html">maxdb_stmt_close</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

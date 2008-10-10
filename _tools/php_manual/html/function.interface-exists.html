@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Checks if the interface has been defined</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.get-parent-class.html">get_parent_class</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.is-a.html">is_a</a></div>
+ <div class="up"><a href="ref.classobj.html">Classes/Object Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.interface-exists" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">interface_exists</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.0.2)</p><p class="refpurpose"><span class="refname">interface_exists</span> &mdash; <span class="dc-title">Checks if the interface has been defined</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>interface_exists</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$interface_name</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$autoload</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Checks if the given interface has been defined.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">interface_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The interface name
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">autoload</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Whether to call <a href="language.oop5.autoload.html" class="link">__autoload</a> or not by default
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if the interface given by 
+   <i><tt class="parameter">interface_name</tt></i>
+ has been defined, <b><tt>FALSE</tt></b> otherwise.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>interface_exists()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Check&nbsp;the&nbsp;interface&nbsp;exists&nbsp;before&nbsp;trying&nbsp;to&nbsp;use&nbsp;it<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">interface_exists</span><span style="color: #007700">(</span><span style="color: #DD0000">'MyInterface'</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;</span><span style="color: #0000BB">MyClass&nbsp;</span><span style="color: #007700">implements&nbsp;</span><span style="color: #0000BB">MyInterface<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Methods<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">}<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.class-exists.html" class="function" rel="rdfs-seeAlso">class_exists()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.get-parent-class.html">get_parent_class</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.is-a.html">is_a</a></div>
+ <div class="up"><a href="ref.classobj.html">Classes/Object Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets a meaningful error message for the last error generated</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ingres-errno.html">ingres_errno</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ingres-errsqlstate.html">ingres_errsqlstate</a></div>
+ <div class="up"><a href="ref.ingres.html">Ingres II Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ingres-error" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ingres_error</h1>
+  <p class="verinfo">(PECL ingres:1.1-1.4.3)</p><p class="refpurpose"><span class="refname">ingres_error</span> &mdash; <span class="dc-title">Gets a meaningful error message for the last error generated</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>ingres_error</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns a string containing the last error, or NULL if no error has
+   occurred.
+  </p>
+  <p class="para">
+   If a <i><tt class="parameter">link</tt></i>
+ resource is passed to
+   <b>ingres_error()</b> it returns the last error recorded for
+   the link. If no link is passed then <b>ingres_error()</b>
+   returns the last error reported using the default link.
+  </p>
+  <p class="para">
+   The function, <b>ingres_error()</b>, should always be called
+   after executing any database query.  Calling another function before
+   <b>ingres_error()</b> is called will reset or change any
+   error message from the last Ingres function call.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The connection link identifier. If not specified, the last opened link
+       is used.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string containing the last error, or NULL if no error has
+   occurred.
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ingres_error()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />ingres_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">ingres_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"select&nbsp;*&nbsp;from&nbsp;table"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$error_text&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_error</span><span style="color: #007700">();<br /><br />if&nbsp;(!</span><span style="color: #0000BB">is_null</span><span style="color: #007700">(</span><span style="color: #0000BB">$error_text</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"An&nbsp;error&nbsp;occured&nbsp;-&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$error_text</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ingres-errno.html" class="function" rel="rdfs-seeAlso">ingres_errno()</a></li>
+    <li class="member"><a href="function.ingres-errsqlstate.html" class="function" rel="rdfs-seeAlso">ingres_errsqlstate()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ingres-errno.html">ingres_errno</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ingres-errsqlstate.html">ingres_errsqlstate</a></div>
+ <div class="up"><a href="ref.ingres.html">Ingres II Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

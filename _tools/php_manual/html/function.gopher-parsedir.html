@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Translate a gopher formatted directory entry into an associative array.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.net-gopher.html">Gopher Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.network.html">Network</a></div>
+ <div class="up"><a href="ref.net-gopher.html">Gopher Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.gopher-parsedir" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">gopher_parsedir</h1>
+  <p class="verinfo">(PECL net_gopher:0.1-1.0.0)</p><p class="refpurpose"><span class="refname">gopher_parsedir</span> &mdash; <span class="dc-title">Translate a gopher formatted directory entry into an associative array.</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>gopher_parsedir</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dirent</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>gopher_parsedir()</b> parses a gopher formatted directory
+   entry into an associative array.
+  </p>
+  <p class="para">
+   While gopher returns <i>text/plain</i> documents for
+   actual document requests. A request to a directory (such as /) will
+   return specially encoded series of lines with each line being one
+   directory entry or information line.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dirent</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The directory entry.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative array whose components are: 
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      type - One of the 
+      <i>GOPHER_XXX</i> constants.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      title - The name of the resource.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      path - The path of the resource.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      host - The domain name of the host that has
+      this document (or directory).
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      port - The port at which to connect on
+      <var class="varname">host</var>.
+     </span>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   Upon failure, the additional <var class="varname">data</var> entry of the
+   returned array will hold the parsed line.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example"> 
+    <p><b>Example #1 Hypothetical output from <i>gopher://gopher.example.com/</i></b></p>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+0All about my gopher site.               /allabout.txt               gopher.example.com    70
+9A picture of my cat.                    /pics/cat.png               gopher.example.com    70
+1A collection of my writings.            /stories                    gopher.example.com    70
+hThe HTTP version of this site.          URL:http://www.example.com  gopher.example.com    70
+1Mirror of this site in Spain.           /                           gopher.ejemplo.co.es  70
+iWelcome to my gopher site.                                          error.host            1
+iPlease select one of the options above                              error.host            1
+iSend complaints to /dev/null                                        error.host            1
+iLong live gopher!                                                   error.host            1
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+  <p class="para">
+   In the example above, the root directory at gopher.example.com knows about
+   one <i>DOCUMENT</i> identified by <i>0</i> located at
+   <i>gopher://gopher.example.com:70/allabout.txt</i>.  It also knows
+   about two other directory (which have their own listing files) at
+   <i>gopher://gopher.exmaple.com:70/stories</i> and at
+   <i>gopher://gopher.ejemplo.co.es:70/</i>.
+   In addition there is a binary file, a link to an HTTP url, and several
+   informative lines.
+  </p>
+  <p class="para">
+   By passing each line of the directory listing into 
+   <b>gopher_parsedir()</b>, an associative array is formed containing
+   a parsed out version of the data.
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Using <b>gopher_parsedir()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$directory&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">file</span><span style="color: #007700">(</span><span style="color: #DD0000">"gopher://gopher.example.com"</span><span style="color: #007700">);<br /><br />foreach(</span><span style="color: #0000BB">$directory&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$dirent</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">gopher_parsedir</span><span style="color: #007700">(</span><span style="color: #0000BB">$dirent</span><span style="color: #007700">));<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array (
+  [type] =&gt; 0
+  [title] =&gt; All about my gopher site.
+  [path] =&gt; /allabout.txt
+  [host] =&gt; gopher.example.com
+  [port] =&gt; 70
+)
+Array (
+  [type] =&gt; 9
+  [title] =&gt; A picture of my cat.
+  [path] =&gt; /pics/cat.png
+  [host] =&gt; gopher.example.com
+  [port] =&gt; 70
+)
+Array (
+  [type] =&gt; 1
+  [title] =&gt; A collection of my writings.
+  [path] =&gt; /stories
+  [host] =&gt; gopher.example.com
+  [port] =&gt; 70
+)
+Array (
+  [type] =&gt; 254
+  [title] =&gt; The HTTP version of this site.
+  [path] =&gt; URL:http://www.example.com
+  [host] =&gt; gopher.example.com
+  [port] =&gt; 70
+)
+Array (
+  [type] =&gt; 1
+  [title] =&gt; Mirror of this site in Spain.
+  [path] =&gt; /
+  [host] =&gt; gopher.ejemplo.co.es
+  [port] =&gt; 70
+)
+Array (
+  [type] =&gt; 255
+  [title] =&gt; Welcome to my gopher site.
+  [path] =&gt;
+  [host] =&gt; error.host
+  [port] =&gt; 1
+)
+Array (
+  [type] =&gt; 255
+  [title] =&gt; Please select one of the options above.
+  [path] =&gt;
+  [host] =&gt; error.host
+  [port] =&gt; 1
+)
+Array (
+  [type] =&gt; 255
+  [title] =&gt; Send complaints to /dev/null
+  [path] =&gt;
+  [host] =&gt; error.host
+  [port] =&gt; 1
+)
+Array (
+  [type] =&gt; 255
+  [title] =&gt; Long live gopher!
+  [path] =&gt;
+  [host] =&gt; error.host
+  [port] =&gt; 1
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.net-gopher.html">Gopher Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.network.html">Network</a></div>
+ <div class="up"><a href="ref.net-gopher.html">Gopher Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

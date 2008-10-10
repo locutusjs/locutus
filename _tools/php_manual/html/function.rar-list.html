@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get entries list from the Rar archive</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.rar-getversion.html">Rar::getVersion</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.rar-open.html">rar_open</a></div>
+ <div class="up"><a href="ref.rar.html">Rar Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.rar-list" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">rar_list</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">rar_list</span> &mdash; <span class="dc-title">Get entries list from the Rar archive</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>rar_list</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$rar_file</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Get entries list from the Rar archive.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">rar_file</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A Rar file resource, opened with <a href="function.rar-open.html" class="function">rar_open()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>rar_list()</b> returns array of entries or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>rar_list()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$rar_file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'example.rar'</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Failed&nbsp;to&nbsp;open&nbsp;Rar&nbsp;archive"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$entries_list&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_list</span><span style="color: #007700">(</span><span style="color: #0000BB">$rar_file</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$entries_list</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>   
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.rar-getversion.html">Rar::getVersion</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.rar-open.html">rar_open</a></div>
+ <div class="up"><a href="ref.rar.html">Rar Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetch all HTTP request headers</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.nsapi.html">NSAPI Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.nsapi-response-headers.html">nsapi_response_headers</a></div>
+ <div class="up"><a href="ref.nsapi.html">NSAPI Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.nsapi-request-headers" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">nsapi_request_headers</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.3, PHP 5)</p><p class="refpurpose"><span class="refname">nsapi_request_headers</span> &mdash; <span class="dc-title">Fetch all HTTP request headers</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>nsapi_request_headers</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>nsapi_request_headers()</b> gets all the HTTP headers in
+   the current request. This is only supported when PHP runs as a 
+   <span class="productname">NSAPI</span> module.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Prior to PHP 4.3.3, <a href="function.getallheaders.html" class="function">getallheaders()</a> was only 
+    available for the Apache servers.  After PHP 4.3.3,
+    <a href="function.getallheaders.html" class="function">getallheaders()</a> is an alias for
+    <b>nsapi_request_headers()</b> if you use the NSAPI module.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    You can also get at the value of the common CGI variables by
+    reading them from the <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER</a></var> superglobal, which 
+    works whether or not you are using PHP as a 
+    <span class="productname">NSAPI</span> module.
+   <br />
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative array with all the HTTP headers.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>nsapi_request_headers()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$headers&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">nsapi_request_headers</span><span style="color: #007700">();<br /><br />foreach&nbsp;(</span><span style="color: #0000BB">$headers&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$header&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"$header:&nbsp;$value&nbsp;&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.nsapi.html">NSAPI Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.nsapi-response-headers.html">nsapi_response_headers</a></div>
+ <div class="up"><a href="ref.nsapi.html">NSAPI Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

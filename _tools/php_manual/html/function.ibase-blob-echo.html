@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Output blob contents to browser</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ibase-blob-create.html">ibase_blob_create</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-blob-get.html">ibase_blob_get</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ibase-blob-echo" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ibase_blob_echo</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ibase_blob_echo</span> &mdash; <span class="dc-title">Output blob contents to browser</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ibase_blob_echo</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+   ], <span class="methodparam"><span class="type">string</span> <tt class="parameter">$blob_id</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function opens a BLOB for reading and sends its contents directly to
+   standard output (the browser, in most cases).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An InterBase link identifier. If omitted, the last opened link is
+       assumed.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">blob_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ibase-blob-open.html" class="function" rel="rdfs-seeAlso">ibase_blob_open()</a></li>
+    <li class="member"><a href="function.ibase-blob-close.html" class="function" rel="rdfs-seeAlso">ibase_blob_close()</a></li>
+    <li class="member"><a href="function.ibase-blob-get.html" class="function" rel="rdfs-seeAlso">ibase_blob_get()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ibase-blob-create.html">ibase_blob_create</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-blob-get.html">ibase_blob_get</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

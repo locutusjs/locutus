@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Submits a command to the server and waits for the result, with the ability to pass parameters separately from the SQL command text.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-put-line.html">pg_put_line</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-query.html">pg_query</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-query-params" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_query_params</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0)</p><p class="refpurpose"><span class="refname">pg_query_params</span> &mdash; <span class="dc-title">Submits a command to the server and waits for the result, with the ability to pass parameters separately from the SQL command text.</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>pg_query_params</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$params</tt></span>
+   )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>pg_query_params</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$params</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+    Submits a command to the server and waits for the result, with the ability 
+    to pass parameters separately from the SQL command text.
+  </p>
+  <p class="para">
+    <b>pg_query_params()</b> is like <a href="function.pg-query.html" class="function">pg_query()</a>, 
+    but offers additional functionality: parameter 
+    values can be specified separately from the command string proper. 
+    <b>pg_query_params()</b> is supported only against PostgreSQL 7.4 or
+    higher connections; it will fail when using earlier versions.
+  </p>
+  <p class="para">
+    If parameters are used, they are referred to in the <i><tt class="parameter">query</tt></i>
+ 
+    string as $1, $2, etc.  <i><tt class="parameter">params</tt></i>
+ specifies the actual values of the 
+    parameters. A <b><tt>NULL</tt></b> value in this array means the corresponding parameter is SQL
+    <i>NULL</i>.
+  </p>
+  <p class="para">
+    The primary advantage of <b>pg_query_params()</b> over <a href="function.pg-query.html" class="function">pg_query()</a> 
+    is that parameter values 
+    may be separated from the <i><tt class="parameter">query</tt></i>
+ string, thus avoiding the need for tedious 
+    and error-prone quoting and escaping. Unlike <a href="function.pg-query.html" class="function">pg_query()</a>, 
+    <b>pg_query_params()</b> allows at 
+    most one SQL command in the given string. (There can be semicolons in it, 
+    but not more than one nonempty command.)
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL database connection resource.  When 
+       <i><tt class="parameter">connection</tt></i>
+ is not present, the default connection 
+       is used. The default connection is the last connection made by 
+       <a href="function.pg-connect.html" class="function">pg_connect()</a> or <a href="function.pg-pconnect.html" class="function">pg_pconnect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">query</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The parameterised SQL statement.  Must contain only a single statement.
+       (multiple statements separated by semi-colons are not allowed.)  If any parameters 
+       are used, they are referred to as $1, $2, etc.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">params</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+        An array of parameter values to substitute for the $1, $2, etc. placeholders
+        in the original prepared query string.  The number of elements in the array
+        must match the number of placeholders.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+    A query result resource on success, or <b><tt>FALSE</tt></b> on failure.</p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>pg_query_params()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Connect&nbsp;to&nbsp;a&nbsp;database&nbsp;named&nbsp;"mary"<br /></span><span style="color: #0000BB">$dbconn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=mary"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Find&nbsp;all&nbsp;shops&nbsp;named&nbsp;Joe's&nbsp;Widgets.&nbsp;&nbsp;Note&nbsp;that&nbsp;it&nbsp;is&nbsp;not&nbsp;necessary&nbsp;to<br />//&nbsp;escape&nbsp;"Joe's&nbsp;Widgets"<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_query_params</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbconn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;*&nbsp;FROM&nbsp;shops&nbsp;WHERE&nbsp;name&nbsp;=&nbsp;$1'</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"Joe's&nbsp;Widgets"</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;Compare&nbsp;against&nbsp;just&nbsp;using&nbsp;pg_query<br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_escape_string</span><span style="color: #007700">(</span><span style="color: #DD0000">"Joe's&nbsp;Widgets"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbconn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;FROM&nbsp;shops&nbsp;WHERE&nbsp;name&nbsp;=&nbsp;'{$str}'"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-query.html" class="function" rel="rdfs-seeAlso">pg_query()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-put-line.html">pg_put_line</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-query.html">pg_query</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

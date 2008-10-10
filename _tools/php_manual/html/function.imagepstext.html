@@ -1,0 +1,306 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Draws a text over an image using PostScript Type1 fonts</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagepsslantfont.html">imagepsslantfont</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagerectangle.html">imagerectangle</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagepstext" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imagepstext</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imagepstext</span> &mdash; <span class="dc-title">Draws a text over an image using PostScript Type1 fonts</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>imagepstext</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$image</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$text</tt></span>
+   , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$font_index</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$size</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$foreground</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$background</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$x</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$y</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$space</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$tightness</tt></span>
+   [, <span class="methodparam"><span class="type">float</span> <tt class="parameter">$angle</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$antialias_steps</tt></span>
+  ]]]] )</div>
+
+  <p class="para rdfs-comment">
+   Draws a text on an image using PostScript Type1 fonts.
+  </p>
+  <p class="para">
+   Refer to PostScript documentation about fonts and their measuring system
+   if you have trouble understanding how this works.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+image</tt></i>
+</span>
+<dd>
+<p class="para">An image resource, returned by one of the image creation functions, 
+such as <a href="function.imagecreatetruecolor.html" class="function">imagecreatetruecolor()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">text</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The text to be written.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">font_index</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A font resource, returned by <a href="function.imagepsloadfont.html" class="function">imagepsloadfont()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">size</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">size</tt></i>
+ is expressed in pixels.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">foreground</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The color in which the text will be painted.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">background</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The color to which the text will try to fade in with antialiasing.
+       No pixels with the color <i><tt class="parameter">background</tt></i>
+ are 
+       actually painted, so the background image does not need to be of solid
+       color.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">x</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       x-coordinate for the lower-left corner of the first character.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">y</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       y-coordinate for the lower-left corner of the first character.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">space</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Allows you to change the default value of a space in a font. This
+       amount is added to the normal value and can also be negative.
+       Expressed in character space units, where 1 unit is 1/1000th of an 
+       em-square.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">tightness</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">tightness</tt></i>
+ allows you to control the amount
+       of white space between characters. This amount is added to the
+       normal character width and can also be negative.
+       Expressed in character space units, where 1 unit is 1/1000th of an 
+       em-square.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">angle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">angle</tt></i>
+ is in degrees.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">antialias_steps</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Allows you to control the number of colours used for antialiasing 
+       text. Allowed values are 4 and 16. The higher value is recommended
+       for text sizes lower than 20, where the effect in text quality is
+       quite visible.  With bigger sizes, use 4. It&#039;s less computationally
+       intensive.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an array containing the following elements:
+   <table class="informaltable">
+    <colgroup>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">0</td>
+       <td colspan="1" rowspan="1" align="left">lower left x-coordinate</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">1</td>
+       <td colspan="1" rowspan="1" align="left">lower left y-coordinate</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">2</td>
+       <td colspan="1" rowspan="1" align="left">upper right x-coordinate</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">3</td>
+       <td colspan="1" rowspan="1" align="left">upper right y-coordinate</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 <b>imagepstext()</b> usage</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Create&nbsp;image&nbsp;handle<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatetruecolor</span><span style="color: #007700">(</span><span style="color: #0000BB">200</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">200</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Allocate&nbsp;colors<br /></span><span style="color: #0000BB">$black&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$white&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">255</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">255</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">255</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Load&nbsp;the&nbsp;PostScript&nbsp;Font<br /></span><span style="color: #0000BB">$font&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagepsloadfont</span><span style="color: #007700">(</span><span style="color: #DD0000">'font.pfm'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Write&nbsp;the&nbsp;font&nbsp;to&nbsp;the&nbsp;image<br /></span><span style="color: #0000BB">imagepstext</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Sample&nbsp;text&nbsp;is&nbsp;simple'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$font</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">12</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$black</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$white</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">50</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">50</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Output&nbsp;and&nbsp;free&nbsp;memory<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/png'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">imagepng</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is only available 
+if PHP is compiled using <span class="option">--with-t1lib[=DIR]</span>.
+</span></p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imagepsbbox.html" class="function" rel="rdfs-seeAlso">imagepsbbox()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagepsslantfont.html">imagepsslantfont</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagerectangle.html">imagerectangle</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

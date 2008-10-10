@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Serializing objects - objects in sessions</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="keyword.parent.html">parent</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.oop.magic-functions.html">The magic functions __sleep and __wakeup</a></div>
+ <div class="up"><a href="language.oop.html">Classes and Objects (PHP 4)</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.oop.serialization" class="sect1">
+  <h2 class="title">Serializing objects - objects in sessions</h2>
+
+  <p class="para">
+   <a href="function.serialize.html" class="function">serialize()</a> returns a string containing a
+   byte-stream representation of any value that can be stored in
+   PHP. <a href="function.unserialize.html" class="function">unserialize()</a> can use this string to
+   recreate the original variable values. Using serialize to
+   save an object will save all variables in an object.  The
+   functions in an object will not be saved, only the name of
+   the class.
+  </p>
+  
+  <p class="para">
+   In order to be able to <a href="function.unserialize.html" class="function">unserialize()</a> an object, the
+   class of that object needs to be defined. That is, if you have an object
+   <var class="varname">$a</var> of class A on page1.php and serialize this, you&#039;ll
+   get a string that refers to class A and contains all values of variabled
+   contained in <var class="varname">$a</var>. If you want to be able to unserialize
+   this on page2.php, recreating <var class="varname">$a</var> of class A, the
+   definition of class A must be present in page2.php. This can be done for
+   example by storing the class definition of class A in an include file and
+   including this file in both page1.php and page2.php.
+  </p>
+  
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;classa.inc:<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">A&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;</span><span style="color: #0000BB">$one&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">show_one</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">one</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;<br /></span><span style="color: #FF8000">//&nbsp;page1.php:<br /><br />&nbsp;&nbsp;</span><span style="color: #007700">include(</span><span style="color: #DD0000">"classa.inc"</span><span style="color: #007700">);<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">A</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">serialize</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;store&nbsp;$s&nbsp;somewhere&nbsp;where&nbsp;page2.php&nbsp;can&nbsp;find&nbsp;it.<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"store"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"w"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;page2.php:<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;//&nbsp;this&nbsp;is&nbsp;needed&nbsp;for&nbsp;the&nbsp;unserialize&nbsp;to&nbsp;work&nbsp;properly.<br />&nbsp;&nbsp;</span><span style="color: #007700">include(</span><span style="color: #DD0000">"classa.inc"</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">implode</span><span style="color: #007700">(</span><span style="color: #DD0000">""</span><span style="color: #007700">,&nbsp;@</span><span style="color: #0000BB">file</span><span style="color: #007700">(</span><span style="color: #DD0000">"store"</span><span style="color: #007700">));<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">unserialize</span><span style="color: #007700">(</span><span style="color: #0000BB">$s</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;now&nbsp;use&nbsp;the&nbsp;function&nbsp;show_one()&nbsp;of&nbsp;the&nbsp;$a&nbsp;object.&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">show_one</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  
+  <p class="para">
+   If you are using sessions and use <a href="function.session-register.html" class="function">session_register()</a>
+   to register objects, these objects are serialized automatically
+   at the end of each PHP page, and are unserialized automatically on
+   each of the following pages. This basically means that these objects
+   can show up on any of your pages once they become part of your
+   session.
+  </p>
+  
+  <p class="para">
+   It is strongly recommended that you include the class
+   definitions of all such registered objects on all of your
+   pages, even if you do not actually use these classes on all
+   of your pages. If you don&#039;t and an object is being
+   unserialized without its class definition being present, it
+   will lose its class association and become an object of class
+   <i>stdClass</i> without any functions available
+   at all, that is, it will become quite useless.
+  </p>
+  
+  <p class="para">
+   So if in the example above <var class="varname">$a</var> became part of a session
+   by running <i>session_register(&quot;a&quot;)</i>, you should include the
+   file <i>classa.inc</i> on all of your pages, not only page1.php
+   and page2.php.
+  </p>
+ </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="keyword.parent.html">parent</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.oop.magic-functions.html">The magic functions __sleep and __wakeup</a></div>
+ <div class="up"><a href="language.oop.html">Classes and Objects (PHP 4)</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

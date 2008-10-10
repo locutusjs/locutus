@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get number of days after March 21 on which Easter falls for a given year</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.easter-date.html">easter_date</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.frenchtojd.html">FrenchToJD</a></div>
+ <div class="up"><a href="ref.calendar.html">Calendar Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.easter-days" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">easter_days</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">easter_days</span> &mdash; <span class="dc-title">Get number of days after March 21 on which Easter falls for a given year</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>easter_days</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$year</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$method</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Returns the number of days after March 21 on which Easter falls
+   for a given year. If no year is specified, the current year is
+   assumed.
+  </p>
+  <p class="para">
+   This function can be used instead of
+   <a href="function.easter-date.html" class="function">easter_date()</a> to calculate Easter for years
+   which fall outside the range of Unix timestamps (i.e. before 1970
+   or after 2037).
+  </p>
+  <p class="para">
+   The date of Easter Day was defined by the Council of Nicaea in
+   AD325 as the Sunday after the first full moon which falls on or
+   after the Spring Equinox.  The Equinox is assumed to always fall
+   on 21st March, so the calculation reduces to determining the date
+   of the full moon and the date of the following Sunday.  The
+   algorithm used here was introduced around the year 532 by
+   Dionysius Exiguus.  Under the Julian Calendar (for years before
+   1753) a simple 19-year cycle is used to track the phases of the
+   Moon.  Under the Gregorian Calendar (for years after 1753 -
+   devised by Clavius and Lilius, and introduced by Pope Gregory
+   XIII in October 1582, and into Britain and its then colonies in
+   September 1752) two correction factors are added to make the
+   cycle more accurate.
+  </p>
+  <p class="para">
+   (The code is based on a C program by Simon Kershaw,
+   &lt;webmaster at ely.anglican dot org&gt;)
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">year</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The year as a positive number
+      </p>
+     </dd>
+
+    </dt>
+  
+    <dt>
+
+     <span class="term"><i><tt class="parameter">method</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Allows to calculate easter dates based
+       on the Gregorian calendar during the years 1582 - 1752 when set to
+       <b><tt>CAL_EASTER_ROMAN</tt></b>. See the <a href="calendar.constants.html" class="link">calendar constants</a> for more valid
+       constants.      
+       </p>
+     </dd>
+
+    </dt>
+  
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The number of days after March 21st that the Easter Sunday
+   is in the given <i><tt class="parameter">year</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">Since 4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">year</tt></i>
+ parameter is optional and defaults
+        to the current year according to the local time if omitted.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">Since 4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">method</tt></i>
+ parameter was introduced.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>easter_days()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">easter_days</span><span style="color: #007700">(</span><span style="color: #0000BB">1999</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;14,&nbsp;i.e.&nbsp;April&nbsp;4<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">easter_days</span><span style="color: #007700">(</span><span style="color: #0000BB">1492</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;32,&nbsp;i.e.&nbsp;April&nbsp;22<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">easter_days</span><span style="color: #007700">(</span><span style="color: #0000BB">1913</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;&nbsp;2,&nbsp;i.e.&nbsp;March&nbsp;23<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.easter-date.html" class="function" rel="rdfs-seeAlso">easter_date()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.easter-date.html">easter_date</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.frenchtojd.html">FrenchToJD</a></div>
+ <div class="up"><a href="ref.calendar.html">Calendar Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

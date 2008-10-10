@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the length of a field</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mssql-fetch-row.html">mssql_fetch_row</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mssql-field-name.html">mssql_field_name</a></div>
+ <div class="up"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mssql-field-length" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mssql_field_length</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL odbtp:1.1.1-1.1.4)</p><p class="refpurpose"><span class="refname">mssql_field_length</span> &mdash; <span class="dc-title">Get the length of a field</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>mssql_field_length</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$offset</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns the length of field no. <i><tt class="parameter">offset</tt></i>
+ in 
+   <i><tt class="parameter">result</tt></i>
+. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The result resource that is being evaluated. This result comes from a
+       call to <a href="function.mssql-query.html" class="function">mssql_query()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">offset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The field offset, starts at 0. If omitted, the current field is used.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The length of the specified field index on success, or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mssql_field_length()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Connect&nbsp;MSSQL<br /></span><span style="color: #0000BB">mssql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'MANGO\SQLEXPRESS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'sa'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'phpfi'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">mssql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">'php'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Send&nbsp;a&nbsp;select&nbsp;query&nbsp;to&nbsp;MSSQL<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mssql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT&nbsp;[name],&nbsp;[age]&nbsp;FROM&nbsp;[php].[dbo].[persons]'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Print&nbsp;the&nbsp;field&nbsp;type&nbsp;and&nbsp;length<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'The&nbsp;field&nbsp;\'age\'&nbsp;has&nbsp;a&nbsp;data&nbsp;length&nbsp;of&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mssql_field_length</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Free&nbsp;the&nbsp;query&nbsp;result<br /></span><span style="color: #0000BB">mssql_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+The field &#039;age&#039; has a data length of 4
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   <b>Note to Windows Users</b><br />
+   
+    Due to a limitation in the underlying API used by PHP (MS DBLib C API),
+    the length of <i>VARCHAR</i> fields is limited to 
+    <em class="emphasis">255</em>. If you need to store more data, use a 
+    <i>TEXT</i> field instead.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mssql-field-name.html" class="function" rel="rdfs-seeAlso">mssql_field_name()</a></li>
+    <li class="member"><a href="function.mssql-field-type.html" class="function" rel="rdfs-seeAlso">mssql_field_type()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mssql-fetch-row.html">mssql_fetch_row</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mssql-field-name.html">mssql_field_name</a></div>
+ <div class="up"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

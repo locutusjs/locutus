@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Kills a process opened by proc_open</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.proc-open.html">proc_open</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.shell-exec.html">shell_exec</a></div>
+ <div class="up"><a href="ref.exec.html">Program execution Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.proc-terminate" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">proc_terminate</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">proc_terminate</span> &mdash; <span class="dc-title">Kills a process opened by proc_open</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>proc_terminate</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$process</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$signal</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Signals a <i><tt class="parameter">process</tt></i>
+ (created using
+   <a href="function.proc-open.html" class="function">proc_open()</a>) that it should terminate.
+   <b>proc_terminate()</b> returns immediately and does not wait
+   for the process to terminate.
+  </p>
+  <p class="para">
+   <b>proc_terminate()</b> allows you terminate the process and
+   continue with other tasks.  You may poll the process (to see if it has
+   stopped yet) by using the <a href="function.proc-get-status.html" class="function">proc_get_status()</a> function.
+   However this is only possible with PHP 5.2.2 or newer, as previous versions
+   destroyed the given process <i><tt class="parameter">resource</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">process</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="function.proc-open.html" class="function">proc_open()</a> <a href="language.types.resource.html" class="type resource">resource</a> that will
+       be closed.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">signal</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       This optional parameter is only useful on <acronym title="Portable Operating System Interface">POSIX</acronym>
+       operating systems; you may specify a signal to send to the process
+       using the <i>kill(2)</i> system call.  The default is
+       <i>SIGTERM</i>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the termination status of the process that was run.
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.proc-open.html" class="function" rel="rdfs-seeAlso">proc_open()</a></li>
+    <li class="member"><a href="function.proc-close.html" class="function" rel="rdfs-seeAlso">proc_close()</a></li>
+    <li class="member"><a href="function.proc-get-status.html" class="function" rel="rdfs-seeAlso">proc_get_status()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.proc-open.html">proc_open</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.shell-exec.html">shell_exec</a></div>
+ <div class="up"><a href="ref.exec.html">Program execution Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Check for control character(s)</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ctype-alpha.html">ctype_alpha</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ctype-digit.html">ctype_digit</a></div>
+ <div class="up"><a href="ref.ctype.html">Ctype Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ctype-cntrl" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ctype_cntrl</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p><p class="refpurpose"><span class="refname">ctype_cntrl</span> &mdash; <span class="dc-title">Check for control character(s)</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ctype_cntrl</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$text</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Checks if all of the characters in the provided string,
+   <i><tt class="parameter">text</tt></i>
+, are control characters.
+   Control characters are e.g. line feed, tab, escape.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">text</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The tested string.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if every character in <i><tt class="parameter">text</tt></i>
+ is 
+   a control character from the current locale, <b><tt>FALSE</tt></b> otherwise.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>ctype_cntrl()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$strings&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'string1'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"\n\r\t"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'string2'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'arf12'</span><span style="color: #007700">);<br />foreach&nbsp;(</span><span style="color: #0000BB">$strings&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$testcase</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">ctype_cntrl</span><span style="color: #007700">(</span><span style="color: #0000BB">$testcase</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"The&nbsp;string&nbsp;'$name'&nbsp;consists&nbsp;of&nbsp;all&nbsp;control&nbsp;characters.\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"The&nbsp;string&nbsp;'$name'&nbsp;does&nbsp;not&nbsp;consist&nbsp;of&nbsp;all&nbsp;control&nbsp;characters.\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+The string &#039;string1&#039; consists of all control characters.
+The string &#039;string2&#039; does not consist of all control characters.
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ctype-print.html" class="function" rel="rdfs-seeAlso">ctype_print()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ctype-alpha.html">ctype_alpha</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ctype-digit.html">ctype_digit</a></div>
+ <div class="up"><a href="ref.ctype.html">Ctype Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

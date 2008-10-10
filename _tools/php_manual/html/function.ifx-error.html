@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns error code of last Informix call</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ifx-do.html">ifx_do</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ifx-errormsg.html">ifx_errormsg</a></div>
+ <div class="up"><a href="ref.ifx.html">Informix Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ifx-error" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ifx_error</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">ifx_error</span> &mdash; <span class="dc-title">Returns error code of last Informix call</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>ifx_error</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns in a string one character describing the general results of a
+   statement and both SQLSTATE and SQLCODE associated with the most recent
+   SQL statement executed.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The link identifier.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The Informix error codes (SQLSTATE &amp; SQLCODE) formatted as
+   <i>x [SQLSTATE = aa bbb SQLCODE=cccc]</i>.
+  </p>
+  <p class="para">
+   where x = space : no error
+  </p>
+  <p class="para">
+   E : error
+  </p>
+  <p class="para">
+   N : no more data
+  </p>
+  <p class="para">
+   W : warning
+  </p>
+  <p class="para">
+   ? : undefined
+  </p>
+  <p class="para">
+   If the &quot;x&quot; character is anything other than space, SQLSTATE and
+   SQLCODE describe the error in more detail.
+  </p>
+  <p class="para">
+   See the Informix manual for the description of SQLSTATE and
+   SQLCODE
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ifx-errormsg.html" class="function" rel="rdfs-seeAlso">ifx_errormsg()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ifx-do.html">ifx_do</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ifx-errormsg.html">ifx_errormsg</a></div>
+ <div class="up"><a href="ref.ifx.html">Informix Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

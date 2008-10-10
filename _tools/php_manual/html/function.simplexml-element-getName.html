@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets the name of the XML element</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.simplexml-element-getDocNamespaces.html">SimpleXMLElement->getDocNamespaces</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.simplexml-element-getNamespaces.html">SimpleXMLElement->getNamespaces</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.simplexml-element-getName" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SimpleXMLElement-&gt;getName</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SimpleXMLElement-&gt;getName</span> &mdash; <span class="dc-title">Gets the name of the XML element</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SimpleXMLElement</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">string</span> <span class="methodname"><b><b>getName</b></b></span>
+     ( <span class="methodparam">void</span>
+    )</div>
+
+  </div>
+  <p class="para">
+   Gets the name of the XML element.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The <i>getName</i> method returns as a <a href="language.types.string.html" class="type string">string</a> the 
+   name of the XML tag referenced by the SimpleXMLElement object.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Get XML element names</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;<br />$sxe&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SimpleXMLElement</span><span style="color: #007700">(</span><span style="color: #0000BB">$xmlstr</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$sxe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getName</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br />foreach&nbsp;(</span><span style="color: #0000BB">$sxe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">children</span><span style="color: #007700">()&nbsp;as&nbsp;</span><span style="color: #0000BB">$child</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$child</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getName</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.simplexml-element-getDocNamespaces.html">SimpleXMLElement->getDocNamespaces</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.simplexml-element-getNamespaces.html">SimpleXMLElement->getNamespaces</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

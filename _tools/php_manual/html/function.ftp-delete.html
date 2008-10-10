@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Deletes a file on the FTP server</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ftp-connect.html">ftp_connect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ftp-exec.html">ftp_exec</a></div>
+ <div class="up"><a href="ref.ftp.html">FTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ftp-delete" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ftp_delete</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ftp_delete</span> &mdash; <span class="dc-title">Deletes a file on the FTP server</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ftp_delete</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$ftp_stream</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$path</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>ftp_delete()</b> deletes the file specified by
+   <i><tt class="parameter">path</tt></i>
+ from the FTP server.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ftp_stream</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The link identifier of the FTP connection.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">path</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The file to delete.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ftp_delete()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'public_html/old.txt'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;set&nbsp;up&nbsp;basic&nbsp;connection<br /></span><span style="color: #0000BB">$conn_id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ftp_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$ftp_server</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;login&nbsp;with&nbsp;username&nbsp;and&nbsp;password<br /></span><span style="color: #0000BB">$login_result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ftp_login</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$ftp_user_name</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$ftp_user_pass</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;try&nbsp;to&nbsp;delete&nbsp;$file<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">ftp_delete</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$file</span><span style="color: #007700">))&nbsp;{<br />&nbsp;echo&nbsp;</span><span style="color: #DD0000">"$file&nbsp;deleted&nbsp;successful\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;echo&nbsp;</span><span style="color: #DD0000">"could&nbsp;not&nbsp;delete&nbsp;$file\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;close&nbsp;the&nbsp;connection<br /></span><span style="color: #0000BB">ftp_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ftp-connect.html">ftp_connect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ftp-exec.html">ftp_exec</a></div>
+ <div class="up"><a href="ref.ftp.html">FTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

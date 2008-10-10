@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Tells whether the filename is executable</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.is-dir.html">is_dir</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.is-file.html">is_file</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.is-executable" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">is_executable</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">is_executable</span> &mdash; <span class="dc-title">Tells whether the filename is executable</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>is_executable</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Tells whether the filename is executable.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the file.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if the filename exists and is executable, or <b><tt>FALSE</tt></b> on
+   error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        <b>is_executable()</b> became available with
+        <span class="productname">Windows</span>
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>is_executable()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'/home/vincent/somefile.sh'</span><span style="color: #007700">;<br /><br />if&nbsp;(</span><span style="color: #0000BB">is_executable</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$file</span><span style="color: #007700">.</span><span style="color: #DD0000">'&nbsp;is&nbsp;executable'</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$file</span><span style="color: #007700">.</span><span style="color: #DD0000">'&nbsp;is&nbsp;not&nbsp;executable'</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">The results of this 
+function are cached. See <a href="function.clearstatcache.html" class="function">clearstatcache()</a> for 
+more details.</span></p></blockquote>
+  <div class="tip"><b class="tip">Tip</b><p class="simpara">As of PHP 5.0.0, this function
+can also be used with <em class="emphasis">some</em> URL wrappers.  Refer to 
+<a href="wrappers.html" class="xref">List of Supported Protocols/Wrappers</a> for a listing of which wrappers support 
+<a href="function.stat.html" class="function">stat()</a> family of functionality.</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.is-file.html" class="function" rel="rdfs-seeAlso">is_file()</a></li>
+    <li class="member"><a href="function.is-link.html" class="function" rel="rdfs-seeAlso">is_link()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.is-dir.html">is_dir</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.is-file.html">is_file</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

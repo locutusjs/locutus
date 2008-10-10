@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Create or attach to a message queue</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ftok.html">ftok</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.msg-queue-exists.html">msg_queue_exists</a></div>
+ <div class="up"><a href="ref.sem.html">Semaphore Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.msg-get-queue" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">msg_get_queue</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">msg_get_queue</span> &mdash; <span class="dc-title">Create or attach to a message queue</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>msg_get_queue</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$key</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$perms</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>msg_get_queue()</b> returns an id that can be used to
+   access the System V message queue with the given
+   <i><tt class="parameter">key</tt></i>
+. The first call creates the message queue with
+   the optional <i><tt class="parameter">perms</tt></i>
+.
+   A second call to <b>msg_get_queue()</b> for the same
+   <i><tt class="parameter">key</tt></i>
+ will return a different message queue
+   identifier, but both identifiers access the same underlying message
+   queue.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">key</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Message queue numeric ID
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">perms</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Queue permissions. Default to 0666. If the message queue already
+       exists, the <i><tt class="parameter">perms</tt></i>
+ will be ignored.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a resource handle that can be used to access the System V message queue.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.msg-remove-queue.html" class="function" rel="rdfs-seeAlso">msg_remove_queue()</a></li>
+    <li class="member"><a href="function.msg-receive.html" class="function" rel="rdfs-seeAlso">msg_receive()</a></li>
+    <li class="member"><a href="function.msg-send.html" class="function" rel="rdfs-seeAlso">msg_send()</a></li>
+    <li class="member"><a href="function.msg-stat-queue.html" class="function" rel="rdfs-seeAlso">msg_stat_queue()</a></li>
+    <li class="member"><a href="function.msg-set-queue.html" class="function" rel="rdfs-seeAlso">msg_set_queue()</a></li>
+   </ul>
+  </p>
+ </div>
+  
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ftok.html">ftok</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.msg-queue-exists.html">msg_queue_exists</a></div>
+ <div class="up"><a href="ref.sem.html">Semaphore Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

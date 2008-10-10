@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Adds any type of data to a movie</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="class.swfmovie.html">SWFMovie</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swfmovie.addexport.html">SWFMovie->addExport</a></div>
+ <div class="up"><a href="class.swfmovie.html">SWFMovie</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.swfmovie.add" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SWFMovie-&gt;add</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SWFMovie-&gt;add</span> &mdash; <span class="dc-title">Adds any type of data to a movie</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><a href="class.swfmovie.html" class="classname">SWFMovie</a></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">mixed</span> <span class="methodname"><b><b>add</b></b></span>
+     ( <span class="methodparam"><span class="type">object</span> <tt class="parameter">$instance</tt></span>
+    )</div>
+
+  </div>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+  <p class="para">
+   Adds an SWF object <i><tt class="parameter">instance</tt></i>
+ to the current movie.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">instance</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Any type of object instance, like <a href="class.swfshape.html" class="xref">SWFShape</a>,
+       <a href="class.swftext.html" class="xref">SWFText</a>, <a href="class.swffont.html" class="xref">SWFFont</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   For displayable types (shape, text, button, sprite), this returns an 
+   <a href="class.swfdisplayitem.html" class="xref">SWFDisplayItem</a>, a handle to the object in a display
+   list. Thus, you can add the same shape to a movie multiple 
+   times and get separate handles back for each separate instance. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.swfmovie.remove.html" class="xref">SWFMovie->remove</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="class.swfmovie.html">SWFMovie</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swfmovie.addexport.html">SWFMovie->addExport</a></div>
+ <div class="up"><a href="class.swfmovie.html">SWFMovie</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

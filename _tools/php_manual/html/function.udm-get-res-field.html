@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetch a result field</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.udm-get-doc-count.html">udm_get_doc_count</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.udm-get-res-param.html">udm_get_res_param</a></div>
+ <div class="up"><a href="ref.mnogosearch.html">mnoGoSearch Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.udm-get-res-field" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">udm_get_res_field</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5, PHP 5 &lt;= 5.0.5, PECL mnogosearch:1.0.0)</p><p class="refpurpose"><span class="refname">udm_get_res_field</span> &mdash; <span class="dc-title">Fetch a result field</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>udm_get_res_field</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$res</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$row</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$field</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Fetch a mnoGoSearch result field.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">res</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">res</tt></i>
+ - a link to result identifier, received
+       after call to <a href="function.udm-find.html" class="function">udm_find()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">row</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">row</tt></i>
+ - the number of the link on the current page.
+       May have values from 0 to
+       <i><tt class="parameter">UDM_PARAM_NUM_ROWS-1</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">field</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">field</tt></i>
+ - field identifier, may have the following values:
+      <ul class="itemizedlist">
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_URL - document URL field
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_CONTENT - document Content-type field (for example, text/html).
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_CATEGORY - document category field. Use
+         <a href="function.udm-cat-path.html" class="function">udm_cat_path()</a> to get full path to current category
+         from the categories tree root. (This parameter is available only in PHP
+         4.0.6 or later).
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_TITLE - document title field.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_KEYWORDS - document keywords field (from META KEYWORDS tag).
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_DESC - document description field (from META DESCRIPTION tag).
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_TEXT - document body text (the first couple of lines to give an
+         idea of what the document is about).
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_SIZE - document size.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_URLID - unique URL ID of the link.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_RATING  - page rating (as calculated by mnoGoSearch).
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_MODIFIED - last-modified field in unixtime format.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_ORDER - the number of the current document in set of found documents.
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         UDM_FIELD_CRC - document CRC.
+        </span>
+       </li>
+      </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>udm_get_res_field()</b> returns result field value on
+   success, <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.udm-get-doc-count.html">udm_get_doc_count</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.udm-get-res-param.html">udm_get_res_param</a></div>
+ <div class="up"><a href="ref.mnogosearch.html">mnoGoSearch Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

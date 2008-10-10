@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Seek on a gz-file pointer</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gzrewind.html">gzrewind</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gztell.html">gztell</a></div>
+ <div class="up"><a href="ref.zlib.html">Zlib Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.gzseek" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">gzseek</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">gzseek</span> &mdash; <span class="dc-title">Seek on a gz-file pointer</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>gzseek</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$zp</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$offset</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sets the file position indicator for the given file pointer to the
+   given offset byte into the file stream. Equivalent to calling (in C)
+   <i>gzseek(zp, offset, SEEK_SET)</i>.
+  </p>
+  <p class="para">
+   If the file is opened for reading, this function is emulated but
+   can be extremely slow. If the file is opened for writing, only
+   forward seeks are supported; <b>gzseek()</b> then compresses
+   a sequence of zeroes up to the new starting position.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">zp</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The gz-file pointer. It must be valid, and must point to a file
+       successfully opened by <a href="function.gzopen.html" class="function">gzopen()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">offset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The seeked offset.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Upon success, returns 0; otherwise, returns -1. Note that seeking
+   past EOF is not considered an error.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>gzseek()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$gz&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gzopen</span><span style="color: #007700">(</span><span style="color: #DD0000">'somefile.gz'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'r'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">gzseek</span><span style="color: #007700">(</span><span style="color: #0000BB">$gz</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">gzgetc</span><span style="color: #007700">(</span><span style="color: #0000BB">$gz</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">gzclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$gz</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.gztell.html" class="function" rel="rdfs-seeAlso">gztell()</a></li>
+    <li class="member"><a href="function.gzrewind.html" class="function" rel="rdfs-seeAlso">gzrewind()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gzrewind.html">gzrewind</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gztell.html">gztell</a></div>
+ <div class="up"><a href="ref.zlib.html">Zlib Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

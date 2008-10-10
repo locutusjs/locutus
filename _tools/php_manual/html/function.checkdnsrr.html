@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Check DNS records corresponding to a given Internet host name or IP address</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.network.html">Network Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.closelog.html">closelog</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.checkdnsrr" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">checkdnsrr</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">checkdnsrr</span> &mdash; <span class="dc-title">Check DNS records corresponding to a given Internet host name or IP address</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>checkdnsrr</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$host</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$type</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Searches DNS for records of type <i><tt class="parameter">type</tt></i>
+
+   corresponding to <i><tt class="parameter">host</tt></i>
+. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">host</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">host</tt></i>
+ may either be the IP address in
+       dotted-quad notation or the host name.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">type</tt></i>
+ may be any one of: A, MX, NS, SOA,
+       PTR, CNAME, AAAA, A6, SRV, NAPTR, TXT or ANY.  The default is MX.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if any records are found; returns <b><tt>FALSE</tt></b> if no records
+   were found or if an error occurred.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.2.4</td>
+       <td colspan="1" rowspan="1" align="left">
+        TXT <i><tt class="parameter">type</tt></i>
+ was added.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        AAAA <i><tt class="parameter">type</tt></i>
+ was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function is not implemented on Windows platforms. Try the
+    <a href="http://pear.php.net/" class="link external">&raquo; PEAR</a> class
+    <a href="http://pear.php.net/package/Net_DNS" class="link external">&raquo; Net_DNS</a>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.dns-get-record.html" class="function" rel="rdfs-seeAlso">dns_get_record()</a></li>
+    <li class="member"><a href="function.getmxrr.html" class="function" rel="rdfs-seeAlso">getmxrr()</a></li>
+    <li class="member"><a href="function.gethostbyaddr.html" class="function" rel="rdfs-seeAlso">gethostbyaddr()</a></li>
+    <li class="member"><a href="function.gethostbyname.html" class="function" rel="rdfs-seeAlso">gethostbyname()</a></li>
+    <li class="member"><a href="function.gethostbynamel.html" class="function" rel="rdfs-seeAlso">gethostbynamel()</a></li>
+    <li class="member">the named(8) manual page</li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.network.html">Network Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.closelog.html">closelog</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Binary safe comparison of 2 strings from an offset, up to length characters</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.strtr.html">strtr</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.substr-count.html">substr_count</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.substr-compare" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">substr_compare</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">substr_compare</span> &mdash; <span class="dc-title">Binary safe comparison of 2 strings from an offset, up to length characters</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>substr_compare</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$main_str</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$offset</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$length</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$case_insensitivity</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>substr_compare()</b> compares <i><tt class="parameter">main_str</tt></i>
+
+   from position <i><tt class="parameter">offset</tt></i>
+ with <i><tt class="parameter">str</tt></i>
+
+   up to <i><tt class="parameter">length</tt></i>
+ characters.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">main_str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">offset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The start position for the comparison. If negative, it starts counting
+       from the end of the string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">length</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The length of the comparison.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">case_insensitivity</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <i><tt class="parameter">case_insensitivity</tt></i>
+ is <b><tt>TRUE</tt></b>, comparison is
+       case insensitive.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns &lt; 0 if <i><tt class="parameter">main_str</tt></i>
+ from position
+   <i><tt class="parameter">offset</tt></i>
+ is less than <i><tt class="parameter">str</tt></i>
+, &gt;
+   0 if it is greater than <i><tt class="parameter">str</tt></i>
+, and 0 if they are equal.
+   If <i><tt class="parameter">length</tt></i>
+ is equal or greater than length of
+   <i><tt class="parameter">main_str</tt></i>
+ and <i><tt class="parameter">length</tt></i>
+ is set,
+   <b>substr_compare()</b> prints warning and returns <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.1.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        Added the possibility to use a negative <i><tt class="parameter">offset</tt></i>
+.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>substr_compare()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"bc"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;0<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"de"</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;0<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"bcg"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;0<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"BC"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;0<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"bc"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;1<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"cd"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;-1<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">substr_compare</span><span style="color: #007700">(</span><span style="color: #DD0000">"abcde"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"abc"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;warning<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.strtr.html">strtr</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.substr-count.html">substr_count</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

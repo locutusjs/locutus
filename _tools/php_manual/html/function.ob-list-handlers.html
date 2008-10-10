@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>List all output handlers in use</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ob-implicit-flush.html">ob_implicit_flush</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ob-start.html">ob_start</a></div>
+ <div class="up"><a href="ref.outcontrol.html">Output Control Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ob-list-handlers" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ob_list_handlers</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">ob_list_handlers</span> &mdash; <span class="dc-title">List all output handlers in use</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>ob_list_handlers</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Lists all output handlers in use.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This will return an array with the output handlers in use (if any). If
+   <a href="outcontrol.configuration.html#ini.output-buffering" class="link">output_buffering</a> is enabled or
+   an anonymous function was used with <a href="function.ob-start.html" class="function">ob_start()</a>,
+   <b>ob_list_handlers()</b> will return &quot;default output
+   handler&quot;.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ob_list_handlers()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//using&nbsp;output_buffering=On<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">ob_list_handlers</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">ob_end_flush</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">ob_start</span><span style="color: #007700">(</span><span style="color: #DD0000">"ob_gzhandler"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">ob_list_handlers</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">ob_end_flush</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;anonymous&nbsp;functions<br /></span><span style="color: #0000BB">ob_start</span><span style="color: #007700">(</span><span style="color: #0000BB">create_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'$string'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'return&nbsp;$string;'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">ob_list_handlers</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">ob_end_flush</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; default output handler
+)
+
+Array
+(
+    [0] =&gt; ob_gzhandler
+)
+
+Array
+(
+    [0] =&gt; default output handler
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ob-end-clean.html" class="function" rel="rdfs-seeAlso">ob_end_clean()</a></li>
+    <li class="member"><a href="function.ob-end-flush.html" class="function" rel="rdfs-seeAlso">ob_end_flush()</a></li>
+    <li class="member"><a href="function.ob-get-flush.html" class="function" rel="rdfs-seeAlso">ob_get_flush()</a></li>
+    <li class="member"><a href="function.ob-start.html" class="function" rel="rdfs-seeAlso">ob_start()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ob-implicit-flush.html">ob_implicit_flush</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ob-start.html">ob_start</a></div>
+ <div class="up"><a href="ref.outcontrol.html">Output Control Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

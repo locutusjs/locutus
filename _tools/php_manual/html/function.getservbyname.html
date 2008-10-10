@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get port number associated with an Internet service and protocol</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.getprotobynumber.html">getprotobynumber</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.getservbyport.html">getservbyport</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.getservbyname" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">getservbyname</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">getservbyname</span> &mdash; <span class="dc-title">Get port number associated with an Internet service and protocol</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>getservbyname</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$service</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$protocol</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>getservbyname()</b> returns the Internet port
+   which corresponds to <i><tt class="parameter">service</tt></i>
+ for the
+   specified <i><tt class="parameter">protocol</tt></i>
+ as per
+   <var class="filename">/etc/services</var>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">service</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The Internet service name, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">protocol</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">protocol</tt></i>
+ is either <i>&quot;tcp&quot;</i>
+       or <i>&quot;udp&quot;</i> (in lowercase).
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the port number, or <b><tt>FALSE</tt></b> if <i><tt class="parameter">service</tt></i>
+ or
+   <i><tt class="parameter">protocol</tt></i>
+ is not found.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>getservbyname()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$services&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'http'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ftp'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ssh'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'telnet'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'imap'</span><span style="color: #007700">,<br /></span><span style="color: #DD0000">'smtp'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'nicname'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'gopher'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'finger'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'pop3'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'www'</span><span style="color: #007700">);<br /><br />foreach&nbsp;(</span><span style="color: #0000BB">$services&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$service</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$port&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">getservbyname</span><span style="color: #007700">(</span><span style="color: #0000BB">$service</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'tcp'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$service&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">":&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$port&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.getservbyport.html" class="function" rel="rdfs-seeAlso">getservbyport()</a></li>
+    <li class="member">
+     <a href="http://www.iana.org/assignments/port-numbers" class="link external">&raquo; http://www.iana.org/assignments/port-numbers</a>
+     for a complete list of port numbers.
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.getprotobynumber.html">getprotobynumber</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.getservbyport.html">getservbyport</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

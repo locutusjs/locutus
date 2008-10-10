@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Generates a key</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mhash-get-hash-name.html">mhash_get_hash_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mhash.html">mhash</a></div>
+ <div class="up"><a href="ref.mhash.html">Mhash Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mhash-keygen-s2k" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mhash_keygen_s2k</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p><p class="refpurpose"><span class="refname">mhash_keygen_s2k</span> &mdash; <span class="dc-title">Generates a key</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mhash_keygen_s2k</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$hash</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$password</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$salt</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$bytes</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Generates a key according to the <i><tt class="parameter">hash</tt></i>
+ given a user
+   provided <i><tt class="parameter">password</tt></i>
+.
+  </p>
+  <p class="para">
+   This is the Salted S2K algorithm as specified in the OpenPGP
+   document (<a href="http://www.faqs.org/rfcs/rfc2440" class="link external">&raquo; RFC 2440</a>).
+  </p>
+  <p class="para">
+   Keep in mind that user supplied passwords are not really suitable
+   to be used as keys in cryptographic algorithms, since users normally
+   choose keys they can write on keyboard. These passwords use
+   only 6 to 7 bits per character (or less). It is highly recommended
+   to use some kind of transformation (like this function) to the user
+   supplied key.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">hash</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The hash id used to create the key.
+       One of the <i>MHASH_XXX</i> constants.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">password</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       User supplied password.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">salt</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Must be different and random enough for every key you generate in
+       order to create different keys. That salt must be known when you check
+       the keys, thus it is a good idea to append the key to it. Salt has a
+       fixed length of 8 bytes and will be padded with zeros if you supply
+       less bytes.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">bytes</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The key length, in bytes.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the generated key as a string, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mhash-get-hash-name.html">mhash_get_hash_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mhash.html">mhash</a></div>
+ <div class="up"><a href="ref.mhash.html">Mhash Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

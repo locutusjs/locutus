@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Call a user function given by the first parameter</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.call-user-func-array.html">call_user_func_array</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.create-function.html">create_function</a></div>
+ <div class="up"><a href="ref.funchand.html">Function handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.call-user-func" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">call_user_func</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">call_user_func</span> &mdash; <span class="dc-title">Call a user function given by the first parameter</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>call_user_func</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.callback" class="type callback">callback</a></span> <tt class="parameter">$function</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$parameter</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$...</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Call a user defined function given by the <i><tt class="parameter">function</tt></i>
+
+   parameter.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">function</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The function to be called. Class methods may also be invoked
+       statically using this function by passing
+       <i>array($classname, $methodname)</i> to this parameter.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">parameter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Zero or more parameters to be passed to the function.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        Note that the parameters for <b>call_user_func()</b> are
+        not passed by reference.
+        <div class="informalexample">
+         <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">increment</span><span style="color: #007700">(&amp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">++;<br />}<br /><br /></span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">call_user_func</span><span style="color: #007700">(</span><span style="color: #DD0000">'increment'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;0<br /><br /></span><span style="color: #0000BB">call_user_func_array</span><span style="color: #007700">(</span><span style="color: #DD0000">'increment'</span><span style="color: #007700">,&nbsp;array(&amp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//&nbsp;You&nbsp;can&nbsp;use&nbsp;this&nbsp;instead<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;1<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+         </div>
+
+        </div>
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the function result, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>call_user_func()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">barber</span><span style="color: #007700">(</span><span style="color: #0000BB">$type</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"You&nbsp;wanted&nbsp;a&nbsp;$type&nbsp;haircut,&nbsp;no&nbsp;problem"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">call_user_func</span><span style="color: #007700">(</span><span style="color: #DD0000">'barber'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"mushroom"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">call_user_func</span><span style="color: #007700">(</span><span style="color: #DD0000">'barber'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"shave"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example">
+    <p><b>Example #2 <b>call_user_func()</b> using namespace name</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />namespace&nbsp;Foobar</span><span style="color: #007700">;<br /><br />class&nbsp;</span><span style="color: #0000BB">Foo&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">test</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"Hello&nbsp;world!\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">call_user_func</span><span style="color: #007700">(</span><span style="color: #0000BB">__NAMESPACE__&nbsp;</span><span style="color: #007700">.</span><span style="color: #DD0000">'::Foo::test'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;As&nbsp;of&nbsp;PHP&nbsp;5.3.0<br />//&nbsp;Hello&nbsp;world!<br /></span><span style="color: #0000BB">call_user_func</span><span style="color: #007700">(array(</span><span style="color: #0000BB">__NAMESPACE__&nbsp;</span><span style="color: #007700">.</span><span style="color: #DD0000">'::Foo'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'test'</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//&nbsp;As&nbsp;of&nbsp;PHP&nbsp;5.3.0<br />//&nbsp;Hello&nbsp;world!<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example">
+    <p><b>Example #3 Using a class method</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">myclass&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;</span><span style="color: #0000BB">say_hello</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Hello!\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">$classname&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"myclass"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">call_user_func</span><span style="color: #007700">(array(</span><span style="color: #0000BB">$classname</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'say_hello'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">call_user_func</span><span style="color: #007700">(</span><span style="color: #0000BB">$classname&nbsp;</span><span style="color: #007700">.</span><span style="color: #DD0000">'::say_hello'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;As&nbsp;of&nbsp;5.2.3<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example">
+    <p><b>Example #4 Using lambda function</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />call_user_func</span><span style="color: #007700">(function(</span><span style="color: #0000BB">$arg</span><span style="color: #007700">)&nbsp;{&nbsp;print&nbsp;</span><span style="color: #DD0000">"[$arg]\n"</span><span style="color: #007700">;&nbsp;},&nbsp;</span><span style="color: #DD0000">'test'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">/*&nbsp;As&nbsp;of&nbsp;PHP&nbsp;5.3.0&nbsp;*/<br />//&nbsp;[test]<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.call-user-func-array.html" class="function" rel="rdfs-seeAlso">call_user_func_array()</a></li>
+    <li class="member"><a href="function.is-callable.html" class="function" rel="rdfs-seeAlso">is_callable()</a></li>
+    <li class="member">information about the <a href="language.pseudo-types.html#language.types.callback" class="link">callback</a> type</li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.call-user-func-array.html">call_user_func_array</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.create-function.html">create_function</a></div>
+ <div class="up"><a href="ref.funchand.html">Function handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

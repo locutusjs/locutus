@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Replace value of the existing item</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.memcache-pconnect.html">Memcache::pconnect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.memcache-set.html">Memcache::set</a></div>
+ <div class="up"><a href="ref.memcache.html">Memcache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.memcache-replace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Memcache::replace</h1>
+  <p class="verinfo">(PECL memcache:0.2-2.1.2)</p><p class="refpurpose"><span class="refname">Memcache::replace</span> &mdash; <span class="dc-title">Replace value of the existing item</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>Memcache::replace</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$key</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$var</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flag</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$expire</tt></span>
+  ]] )</div>
+
+
+  <p class="para rdfs-comment">
+   <b>Memcache::replace()</b> should be used to replace value of
+   existing item with <i><tt class="parameter">key</tt></i>
+. In case if item with such
+   key doesn&#039;t exists, <b>Memcache::replace()</b> returns
+   <b><tt>FALSE</tt></b>. For the rest <b>Memcache::replace()</b> behaves
+   similarly to <a href="function.memcache-set.html" class="function">Memcache::set()</a>.
+   Also you can use <b>memcache_replace()</b> function.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">key</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The key that will be associated with the item.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">var</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The variable to store. Strings and integers are stored as is, other
+       types are stored serialized.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flag</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Use <b><tt>MEMCACHE_COMPRESSED</tt></b> to store the item
+       compressed (uses zlib).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">expire</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Expiration time of the item. If it&#039;s equal to zero, the item will never
+       expire. You can also use Unix timestamp or a number of seconds starting
+       from current time, but in the latter case the number of seconds may not
+       exceed 2592000 (30 days).
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>Memcache::replace()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$memcache_obj&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">memcache_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;procedural&nbsp;API&nbsp;*/<br /></span><span style="color: #0000BB">memcache_replace</span><span style="color: #007700">(</span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"test_key"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"some&nbsp;variable"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">30</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;OO&nbsp;API&nbsp;*/<br /></span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">replace</span><span style="color: #007700">(</span><span style="color: #DD0000">"test_key"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"some&nbsp;variable"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">30</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.memcache-set.html" class="function" rel="rdfs-seeAlso">Memcache::set()</a></li>
+    <li class="member"><a href="function.memcache-add.html" class="function" rel="rdfs-seeAlso">Memcache::add()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.memcache-pconnect.html">Memcache::pconnect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.memcache-set.html">Memcache::set</a></div>
+ <div class="up"><a href="ref.memcache.html">Memcache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

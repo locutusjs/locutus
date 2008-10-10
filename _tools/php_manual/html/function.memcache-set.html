@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Store data at the server</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.memcache-replace.html">Memcache::replace</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.memcache-setcompressthreshold.html">Memcache::setCompressThreshold</a></div>
+ <div class="up"><a href="ref.memcache.html">Memcache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.memcache-set" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Memcache::set</h1>
+  <p class="verinfo">(PECL memcache:0.2-2.1.2)</p><p class="refpurpose"><span class="refname">Memcache::set</span> &mdash; <span class="dc-title">Store data at the server</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>Memcache::set</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$key</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$var</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flag</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$expire</tt></span>
+  ]] )</div>
+
+
+  <p class="para rdfs-comment">
+   <b>Memcache::set()</b> stores an item 
+   <i><tt class="parameter">var</tt></i>
+ with <i><tt class="parameter">key</tt></i>
+ on the 
+   memcached server. Parameter <i><tt class="parameter">expire</tt></i>
+ is expiration 
+   time in seconds. If it&#039;s 0, the item never expires (but memcached server 
+   doesn&#039;t guarantee this item to be stored all the time, it could be deleted 
+   from the cache to make place for other items).
+   You can use <b><tt>MEMCACHE_COMPRESSED</tt></b> constant as 
+   <i><tt class="parameter">flag</tt></i>
+ value if you want to use on-the-fly
+   compression (uses zlib).
+   <blockquote><p><b class="note">Note</b>: 
+    
+     Remember that resource variables (i.e. file and connection descriptors)
+     cannot be stored in the cache, because they cannot be adequately
+     represented in serialized state.
+    <br /> 
+   </p></blockquote>
+   Also you can use <b>memcache_set()</b> function.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">key</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The key that will be associated with the item.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">var</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The variable to store. Strings and integers are stored as is, other
+       types are stored serialized.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flag</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Use <b><tt>MEMCACHE_COMPRESSED</tt></b> to store the item
+       compressed (uses zlib).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">expire</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Expiration time of the item. If it&#039;s equal to zero, the item will never
+       expire. You can also use Unix timestamp or a number of seconds starting
+       from current time, but in the latter case the number of seconds may not
+       exceed 2592000 (30 days).
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>Memcache::set()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;procedural&nbsp;API&nbsp;*/<br /><br />/*&nbsp;connect&nbsp;to&nbsp;memcached&nbsp;server&nbsp;*/<br /></span><span style="color: #0000BB">$memcache_obj&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">memcache_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*<br />set&nbsp;value&nbsp;of&nbsp;item&nbsp;with&nbsp;key&nbsp;'var_key'<br />using&nbsp;0&nbsp;as&nbsp;flag&nbsp;value,&nbsp;compression&nbsp;is&nbsp;not&nbsp;used<br />expire&nbsp;time&nbsp;is&nbsp;30&nbsp;seconds<br />*/<br /></span><span style="color: #0000BB">memcache_set</span><span style="color: #007700">(</span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'var_key'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'some&nbsp;variable'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">30</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">memcache_get</span><span style="color: #007700">(</span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'var_key'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example">
+    <p><b>Example #2 <b>Memcache::set()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;OO&nbsp;API&nbsp;*/<br /><br /></span><span style="color: #0000BB">$memcache_obj&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Memcache</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;connect&nbsp;to&nbsp;memcached&nbsp;server&nbsp;*/<br /></span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*<br />set&nbsp;value&nbsp;of&nbsp;item&nbsp;with&nbsp;key&nbsp;'var_key',&nbsp;using&nbsp;on-the-fly&nbsp;compression<br />expire&nbsp;time&nbsp;is&nbsp;50&nbsp;seconds<br />*/<br /></span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #DD0000">'var_key'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'some&nbsp;really&nbsp;big&nbsp;variable'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MEMCACHE_COMPRESSED</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">50</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">(</span><span style="color: #DD0000">'var_key'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.memcache-add.html" class="function" rel="rdfs-seeAlso">Memcache::add()</a></li>
+    <li class="member"><a href="function.memcache-replace.html" class="function" rel="rdfs-seeAlso">Memcache::replace()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.memcache-replace.html">Memcache::replace</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.memcache-setcompressthreshold.html">Memcache::setCompressThreshold</a></div>
+ <div class="up"><a href="ref.memcache.html">Memcache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

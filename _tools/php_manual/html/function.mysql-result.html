@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get result data</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-real-escape-string.html">mysql_real_escape_string</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-select-db.html">mysql_select_db</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mysql-result" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysql_result</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL mysql:1.0)</p><p class="refpurpose"><span class="refname">mysql_result</span> &mdash; <span class="dc-title">Get result data</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mysql_result</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$row</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$field</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Retrieves the contents of one cell from a MySQL result set.
+  </p>
+  <p class="para">
+   When working on large result sets, you should consider using one
+   of the functions that fetch an entire row (specified below).  As
+   these functions return the contents of multiple cells in one
+   function call, they&#039;re MUCH quicker than
+   <b>mysql_result()</b>.  Also, note that specifying a
+   numeric offset for the field argument is much quicker than
+   specifying a fieldname or tablename.fieldname argument.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+result</tt></i>
+</span>
+<dd>
+<p class="para">The result <a href="language.types.resource.html" class="type resource">resource</a> that
+is being evaluated. This result comes from a call to 
+<a href="function.mysql-query.html" class="function">mysql_query()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">row</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The row number from the result that&#039;s being retrieved. Row numbers 
+       start at <i>0</i>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">field</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name or offset of the field being retrieved.
+      </p>
+      <p class="para">
+       It can be the field&#039;s offset, the field&#039;s name, or the field&#039;s table 
+       dot field name (tablename.fieldname). If the column name has been
+       aliased (&#039;select foo as bar from...&#039;), use the alias instead of the 
+       column name. If undefined, the first field is retrieved.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The contents of one cell from a MySQL result set on success, or 
+   <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mysql_result()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_password'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Could&nbsp;not&nbsp;connect:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mysql_error</span><span style="color: #007700">());<br />}<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT&nbsp;name&nbsp;FROM&nbsp;work.employee'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Could&nbsp;not&nbsp;query:'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mysql_error</span><span style="color: #007700">());<br />}<br />echo&nbsp;</span><span style="color: #0000BB">mysql_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;outputs&nbsp;third&nbsp;employee's&nbsp;name<br /><br /></span><span style="color: #0000BB">mysql_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Calls to <b>mysql_result()</b> should not be mixed
+    with calls to other functions that deal with the result set.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mysql-fetch-row.html" class="function" rel="rdfs-seeAlso">mysql_fetch_row()</a></li>
+    <li class="member"><a href="function.mysql-fetch-array.html" class="function" rel="rdfs-seeAlso">mysql_fetch_array()</a></li>
+    <li class="member"><a href="function.mysql-fetch-assoc.html" class="function" rel="rdfs-seeAlso">mysql_fetch_assoc()</a></li>
+    <li class="member"><a href="function.mysql-fetch-object.html" class="function" rel="rdfs-seeAlso">mysql_fetch_object()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-real-escape-string.html">mysql_real_escape_string</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-select-db.html">mysql_select_db</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

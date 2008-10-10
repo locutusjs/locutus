@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Negotiate clients preferred character set</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-support.html">http_support</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-negotiate-content-type.html">http_negotiate_content_type</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.http-negotiate-charset" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">http_negotiate_charset</h1>
+  <p class="verinfo">(PECL pecl_http:0.1.0-1.5.5)</p><p class="refpurpose"><span class="refname">http_negotiate_charset</span> &mdash; <span class="dc-title">Negotiate clients preferred character set</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>http_negotiate_charset</b></b></span>
+    ( <span class="methodparam"><span class="type">array</span> <tt class="parameter">$supported</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$result</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This function negotiates the clients preferred charset based on its
+   <i>Accept-Charset</i> HTTP header. The qualifier is recognized and charsets 
+   without qualifier are rated highest.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">supported</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       array containing the supported charsets as values
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       will be filled with an array containing the negotiation results
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the negotiated charset or the default charset (i.e. first array entry) if none match.
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>http_negotiate_charset()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$charsets&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'iso-8859-1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #FF8000">//&nbsp;default<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'iso-8859-2'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'iso-8859-15'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'utf-8'<br /></span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$pref&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">http_negotiate_charset</span><span style="color: #007700">(</span><span style="color: #0000BB">$charsets</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">strcmp</span><span style="color: #007700">(</span><span style="color: #0000BB">$pref</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'iso-8859-1'</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">iconv_set_encoding</span><span style="color: #007700">(</span><span style="color: #DD0000">'internal_encoding'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'iso-8859-1'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">iconv_set_encoding</span><span style="color: #007700">(</span><span style="color: #DD0000">'output_encoding'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$pref</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">ob_start</span><span style="color: #007700">(</span><span style="color: #DD0000">'ob_iconv_handler'</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+
+ 
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-support.html">http_support</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-negotiate-content-type.html">http_negotiate_content_type</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

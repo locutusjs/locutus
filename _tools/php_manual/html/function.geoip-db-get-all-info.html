@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns detailed informations about all GeoIP database types</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.geoip-db-filename.html">geoip_db_filename</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.geoip-id-by-name.html">geoip_id_by_name</a></div>
+ <div class="up"><a href="ref.geoip.html">GeoIP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.geoip-db-get-all-info" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">geoip_db_get_all_info</h1>
+  <p class="verinfo">(PECL geoip:1.0.1)</p><p class="refpurpose"><span class="refname">geoip_db_get_all_info</span> &mdash; <span class="dc-title">Returns detailed informations about all GeoIP database types</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>geoip_db_get_all_info</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   The <b>geoip_db_get_all_info()</b> function will return 
+   detailed informations as a multi-dimensional array about all the 
+   GeoIP database types.
+  </p>
+  <p class="para">
+   This function is available even if no databases are installed. It
+   will simply list them as non-available.
+  </p>
+  <p class="para">
+   The names of the different keys of the returning associative array are as follows:
+  </p>
+  <p class="para">
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      &quot;available&quot; -- Boolean, indicate if DB is available (see
+      <a href="function.geoip-db-avail.html" class="function">geoip_db_avail()</a>)
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;description&quot; -- The database description
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;filename&quot; -- The database filename on disk (see
+      <a href="function.geoip-db-filename.html" class="function">geoip_db_filename()</a>)
+     </span>
+    </li>
+   </ul>
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the associative array.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>geoip_db_get_all_info()</b> example</b></p>
+    <div class="example-contents"><p>
+     This will print the array containing all the informations.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$infos&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">geoip_db_get_all_info</span><span style="color: #007700">();<br />if&nbsp;(</span><span style="color: #0000BB">is_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$infos</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$infos</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+array(11) {
+  [1]=&gt;
+  array(3) {
+    [&quot;available&quot;]=&gt;
+    bool(true)
+    [&quot;description&quot;]=&gt;
+    string(21) &quot;GeoIP Country Edition&quot;
+    [&quot;filename&quot;]=&gt;
+    string(32) &quot;/usr/share/GeoIP/GeoIP.dat&quot;
+  }
+
+[ ... ]
+
+  [11]=&gt;
+  array(3) {
+    [&quot;available&quot;]=&gt;
+    bool(false)
+    [&quot;description&quot;]=&gt;
+    string(25) &quot;GeoIP Domain Name Edition&quot;
+    [&quot;filename&quot;]=&gt;
+    string(38) &quot;/usr/share/GeoIP/GeoIPDomain.dat&quot;
+  }
+}
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+
+<p class="para">
+   <div class="example">
+    <p><b>Example #2 A <b>geoip_db_get_all_info()</b> example</b></p>
+    <div class="example-contents"><p>
+     You can use the various constants as keys to get only parts of the information.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$infos&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">geoip_db_get_all_info</span><span style="color: #007700">();<br />if&nbsp;(</span><span style="color: #0000BB">$infos</span><span style="color: #007700">[</span><span style="color: #0000BB">GEOIP_COUNTRY_EDITION</span><span style="color: #007700">][</span><span style="color: #DD0000">'available'</span><span style="color: #007700">])&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$infos</span><span style="color: #007700">[</span><span style="color: #0000BB">GEOIP_COUNTRY_EDITION</span><span style="color: #007700">][</span><span style="color: #DD0000">'description'</span><span style="color: #007700">];<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+GeoIP Country Edition
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.geoip-db-filename.html">geoip_db_filename</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.geoip-id-by-name.html">geoip_id_by_name</a></div>
+ <div class="up"><a href="ref.geoip.html">GeoIP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

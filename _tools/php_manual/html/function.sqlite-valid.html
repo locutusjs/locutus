@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns whether more rows are available</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.sqlite3.html">SQLite3</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sqlite-valid" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_valid</h1>
+  <h1 class="refname">SQLiteResult-&gt;valid</h1>
+  <h1 class="refname">SQLiteUnbuffered-&gt;valid</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">sqlite_valid</span> -- <span class="refname">SQLiteResult-&gt;valid</span> -- <span class="refname">SQLiteUnbuffered-&gt;valid</span> &mdash; <span class="dc-title">Returns whether more rows are available</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>sqlite_valid</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method):</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SQLiteResult</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><b>valid</b></b></span>
+     ( <span class="methodparam">void</span>
+    )</div>
+
+  </div>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SQLiteUnbuffered</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><b>valid</b></b></span>
+     ( <span class="methodparam">void</span>
+    )</div>
+
+  </div>
+  <p class="para">
+   Finds whether more rows are available from the given result handle.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SQLite result resource.  This parameter is not required when using
+       the object-oriented method.
+      </p>
+      <blockquote><p><b class="note">Note</b>: This function cannot be used with 
+unbuffered result handles.<br /></p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if there are more rows available from the
+   <i><tt class="parameter">result</tt></i>
+ handle, or <b><tt>FALSE</tt></b> otherwise.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sqlite-num-rows.html" class="function" rel="rdfs-seeAlso">sqlite_num_rows()</a></li>
+    <li class="member"><a href="function.sqlite-changes.html" class="function" rel="rdfs-seeAlso">sqlite_changes()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.sqlite3.html">SQLite3</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

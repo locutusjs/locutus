@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set/Get substitution character</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-strwidth.html">mb_strwidth</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-substr-count.html">mb_substr_count</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-substitute-character" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_substitute_character</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">mb_substitute_character</span> &mdash; <span class="dc-title">Set/Get substitution character</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>mb_substitute_character</b></b></span>
+    ([ <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$substrchar</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Specifies a substitution character when input character encoding is invalid
+   or character code does not exist in output character
+   encoding. Invalid characters may be substituted <b><tt>NULL</tt></b> (no output),
+   <a href="language.types.string.html" class="type string">string</a> or <a href="language.types.integer.html" class="type integer">integer</a> value (Unicode character code value).
+  </p>
+  <p class="para">
+   This setting affects <a href="function.mb-convert-encoding.html" class="function">mb_convert_encoding()</a>,
+   <a href="function.mb-convert-variables.html" class="function">mb_convert_variables()</a>,
+   <a href="function.mb-output-handler.html" class="function">mb_output_handler()</a>,
+   and <a href="function.mb-send-mail.html" class="function">mb_send_mail()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">substrchar</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Specify the Unicode value as an <a href="language.types.integer.html" class="type integer">integer</a>, 
+       or as one of the following <a href="language.types.string.html" class="type string">string</a>s:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          &quot;none&quot; : no output
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          &quot;long&quot; : Output character code value (Example: U+3000,JIS+7E7E)
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   If <i><tt class="parameter">substchar</tt></i>
+ is set, it returns <b><tt>TRUE</tt></b> for success, 
+   otherwise returns <b><tt>FALSE</tt></b>. 
+   If <i><tt class="parameter">substchar</tt></i>
+ is not set, it returns the Unicode value, 
+   or &quot;<i>none</i>&quot; or &quot;<i>long</i>&quot;.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mb_substitute_character()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Set&nbsp;with&nbsp;Unicode&nbsp;U+3013&nbsp;(GETA&nbsp;MARK)&nbsp;*/<br /></span><span style="color: #0000BB">mb_substitute_character</span><span style="color: #007700">(</span><span style="color: #0000BB">0x3013</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Set&nbsp;hex&nbsp;format&nbsp;*/<br /></span><span style="color: #0000BB">mb_substitute_character</span><span style="color: #007700">(</span><span style="color: #DD0000">"long"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Display&nbsp;current&nbsp;setting&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">mb_substitute_character</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-strwidth.html">mb_strwidth</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-substr-count.html">mb_substr_count</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

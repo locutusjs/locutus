@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Return information about a string buffer</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.fileinfo.html">Fileinfo Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.finfo-close.html">finfo_close</a></div>
+ <div class="up"><a href="ref.fileinfo.html">Fileinfo Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.finfo-buffer" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">finfo_buffer</h1>
+  <p class="verinfo">(PECL fileinfo:0.1-1.0.4)</p><p class="refpurpose"><span class="refname">finfo_buffer</span> &mdash; <span class="dc-title">Return information about a string buffer</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>finfo_buffer</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$finfo</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$string</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$options</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$context</tt></span>
+  ]] )</div>
+
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">finfo</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">string</span> <span class="methodname"><b><b>buffer</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$string</tt></span>
+    [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$options</tt></span>
+    [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$context</tt></span>
+   ]] )</div>
+
+  </div>
+
+  <p class="para">
+   This function is used to get information about binary data in a string.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">finfo</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Fileinfo resource returned by <a href="function.finfo-open.html" class="function">finfo_open()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">string</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Content of a file to be checked.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       One or disjunction of more <a href="fileinfo.constants.html" class="link">Fileinfo
+       constants</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">context</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a textual description of the <i><tt class="parameter">string</tt></i>
+
+   argument, or <b><tt>FALSE</tt></b> if an error occurred.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>finfo_buffer()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$finfo&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">finfo</span><span style="color: #007700">(</span><span style="color: #0000BB">FILEINFO_MIME</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$finfo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">buffer</span><span style="color: #007700">(</span><span style="color: #0000BB">$_POST</span><span style="color: #007700">[</span><span style="color: #DD0000">"script"</span><span style="color: #007700">])&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+application/x-sh
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.finfo-file.html" class="function" rel="rdfs-seeAlso">finfo_file()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.fileinfo.html">Fileinfo Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.finfo-close.html">finfo_close</a></div>
+ <div class="up"><a href="ref.fileinfo.html">Fileinfo Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Starts the session debugging</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.apd-get-active-symbols.html">apd_get_active_symbols</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.apd-set-session-trace.html">apd_set_session_trace</a></div>
+ <div class="up"><a href="ref.apd.html">APD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.apd-set-pprof-trace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">apd_set_pprof_trace</h1>
+  <p class="verinfo">(PECL apd:0.2-1.0.1)</p><p class="refpurpose"><span class="refname">apd_set_pprof_trace</span> &mdash; <span class="dc-title">Starts the session debugging</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>apd_set_pprof_trace</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dump_directory</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$fragment</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Starts debugging to <var class="filename">pprof_{process_id}</var> in the
+   dump directory.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dump_directory</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The directory in which the profile dump file is written. If not set, 
+       the apd.dumpdir setting from the <var class="filename">php.ini</var> file is used.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fragment</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns path of the destination file.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>apd_set_pprof_trace()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />apd_set_pprof_trace</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p> 
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.apd-set-session-trace.html" class="function" rel="rdfs-seeAlso">apd_set_session_trace()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.apd-get-active-symbols.html">apd_get_active_symbols</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.apd-set-session-trace.html">apd_set_session_trace</a></div>
+ <div class="up"><a href="ref.apd.html">APD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>To load a second or subsequent schema file to a SDO_DAS_XML object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-xml-document-setxmlversion.html">SDO_DAS_XML_Document::setXMLVersion</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-xml-create.html">SDO_DAS_XML::create</a></div>
+ <div class="up"><a href="ref.sdo-das-xml.html">SDO DAS XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sdo-das-xml-addtypes" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SDO_DAS_XML::addTypes</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SDO_DAS_XML::addTypes</span> &mdash; <span class="dc-title">
+   To load a second or subsequent schema file to a SDO_DAS_XML object
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>SDO_DAS_XML::addTypes</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$xsd_file</tt></span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   Load a second or subsequent schema file to an XML DAS that has already
+   been created with the static method <b>create()</b>.
+   Although the file may be any valid schema file, a likely reason for 
+   using this method is to add a schema file containing definitions of 
+   extra complex types, hence the name. See Example 4 of the parent document 
+   for an example. 
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">xsd_file</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       Path to XSD Schema file. 
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   None if successful, otherwise throws an exception as described below.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">SDO_TypeNotFoundException</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       Thrown if a type is not defined in the underlying model.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">SDO_DAS_XML_ParserException</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       Thrown for any problems while parsing the given XSD File.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">SDO_DAS_XML_FileException</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       Thrown if the specified file cannot be found. 
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-xml-document-setxmlversion.html">SDO_DAS_XML_Document::setXMLVersion</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-xml-create.html">SDO_DAS_XML::create</a></div>
+ <div class="up"><a href="ref.sdo-das-xml.html">SDO DAS XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

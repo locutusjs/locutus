@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Attach another parser in order to use another rule set for argument parsing</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.bbcode-parse.html">bbcode_parse</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.bbcode-set-flags.html">bbcode_set_flags</a></div>
+ <div class="up"><a href="ref.bbcode.html">BBCode Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.bbcode-set-arg-parser" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">bbcode_set_arg_parser</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">bbcode_set_arg_parser</span> &mdash; <span class="dc-title">Attach another parser in order to use another rule set for argument parsing</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>bbcode_set_arg_parser</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$bbcode_container</tt></span>
+   , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$bbcode_arg_parser</tt></span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   Attaches another parser to the bbcode_container.
+   This parser is used only when arguments must be parsed.
+   If this function is not used, the default argument parser
+   is the parser itself.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">bbcode_container</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       BBCode_Container resource, returned by <a href="function.bbcode-create.html" class="function">bbcode_create()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">bbcode_arg_parser</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       BBCode_Container resource, returned by <a href="function.bbcode-create.html" class="function">bbcode_create()</a>.
+       It will be used only for parsed arguments
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>bbcode_set_arg_parser()</b> usage example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Generating&nbsp;bbcode&nbsp;ruleset&nbsp;for&nbsp;main&nbsp;parser&nbsp;<br />&nbsp;*/<br /></span><span style="color: #0000BB">$arrayBBCode</span><span style="color: #007700">=array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'quote'</span><span style="color: #007700">=&gt;&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'type'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_TYPE_ARG</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'open_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;quote&gt;&lt;h4&gt;Source:&nbsp;{PARAM}&lt;/h4&gt;'</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'close_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;/quote&gt;'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'flags'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_FLAGS_REMOVE_IF_EMPTY</span><span style="color: #007700">|</span><span style="color: #0000BB">BBCODE_FLAGS_ARG_PARSING</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'b'</span><span style="color: #007700">=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'type'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_TYPE_NOARG</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'open_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;b&gt;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'close_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;/b&gt;'</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'flags'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_FLAGS_REMOVE_IF_EMPTY</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'u'</span><span style="color: #007700">=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'type'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_TYPE_NOARG</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'open_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;u&gt;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'close_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;/u&gt;'</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'flags'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_FLAGS_SMILEYS_OFF&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">BBCODE_FLAGS_REMOVE_IF_EMPTY&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">BBCODE_FLAGS_SMILEYS_OFF</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'i'</span><span style="color: #007700">=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'type'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_TYPE_NOARG</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'open_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;i&gt;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'close_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;/i&gt;'</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'flags'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_FLAGS_REMOVE_IF_EMPTY</span><span style="color: #007700">),<br />);<br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Generating&nbsp;bbcode&nbsp;ruleset&nbsp;for&nbsp;argument&nbsp;parser&nbsp;<br />&nbsp;*/<br /></span><span style="color: #0000BB">$arrayBBCode_arg</span><span style="color: #007700">=array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'b'</span><span style="color: #007700">=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'type'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_TYPE_NOARG</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'open_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;b&nbsp;class="sub"&gt;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'close_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;/b&gt;'</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'flags'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_FLAGS_REMOVE_IF_EMPTY</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'u'</span><span style="color: #007700">=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'type'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_TYPE_NOARG</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'open_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;u&gt;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'close_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;/u&gt;'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'flags'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_FLAGS_SMILEYS_OFF&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">BBCODE_FLAGS_REMOVE_IF_EMPTY&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">BBCODE_FLAGS_SMILEYS_OFF</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'i'</span><span style="color: #007700">=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'type'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_TYPE_NOARG</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'open_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;i&gt;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'close_tag'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'&lt;/i&gt;'</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'flags'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">BBCODE_FLAGS_REMOVE_IF_EMPTY</span><span style="color: #007700">),<br />);<br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Text&nbsp;we&nbsp;are&nbsp;going&nbsp;to&nbsp;parse<br />&nbsp;*/<br /></span><span style="color: #0000BB">$text</span><span style="color: #007700">=&lt;&lt;&lt;EOF<br /></span><span style="color: #0000BB">[quote="[b]Test[/b]"]<br />Foo&nbsp;:)<br />[/quote]<br />[b]Bar&nbsp;example&nbsp;:)[/b]&nbsp;:)<br /></span><span style="color: #007700">EOF;<br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Init&nbsp;the&nbsp;two&nbsp;parsers<br />&nbsp;*/<br /></span><span style="color: #0000BB">$BBHandler</span><span style="color: #007700">=</span><span style="color: #0000BB">bbcode_create</span><span style="color: #007700">(</span><span style="color: #0000BB">$arrayBBCode</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$BBArgHandler</span><span style="color: #007700">=</span><span style="color: #0000BB">bbcode_create</span><span style="color: #007700">(</span><span style="color: #0000BB">$arrayBBCode_arg</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Setting&nbsp;Flags&nbsp;on&nbsp;the&nbsp;parsers<br />&nbsp;*/<br /></span><span style="color: #0000BB">bbcode_set_flags</span><span style="color: #007700">(</span><span style="color: #0000BB">$BBHandler</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">BBCODE_CORRECT_REOPEN_TAGS</span><span style="color: #007700">|</span><span style="color: #0000BB">BBCODE_DEFAULT_SMILEYS_ON</span><span style="color: #007700">|</span><span style="color: #0000BB">BBCODE_ARG_DOUBLE_QUOTE</span><span style="color: #007700">|<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">BBCODE_ARG_SINGLE_QUOTE</span><span style="color: #007700">|</span><span style="color: #0000BB">BBCODE_ARG_HTML_QUOTE</span><span style="color: #007700">,</span><span style="color: #0000BB">BBCODE_SET_FLAGS_SET</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">bbcode_set_flags</span><span style="color: #007700">(</span><span style="color: #0000BB">$BBArgHandler</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">BBCODE_CORRECT_REOPEN_TAGS</span><span style="color: #007700">|</span><span style="color: #0000BB">BBCODE_DEFAULT_SMILEYS_ON</span><span style="color: #007700">|</span><span style="color: #0000BB">BBCODE_ARG_DOUBLE_QUOTE</span><span style="color: #007700">|<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">BBCODE_ARG_SINGLE_QUOTE</span><span style="color: #007700">|</span><span style="color: #0000BB">BBCODE_ARG_HTML_QUOTE</span><span style="color: #007700">,</span><span style="color: #0000BB">BBCODE_SET_FLAGS_SET</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Setting&nbsp;$BBArgHandler&nbsp;as&nbsp;the&nbsp;BBHandler&nbsp;argument&nbsp;parser<br />&nbsp;*/<br /></span><span style="color: #0000BB">bbcode_set_arg_parser</span><span style="color: #007700">(</span><span style="color: #0000BB">$BBHandler</span><span style="color: #007700">,</span><span style="color: #0000BB">$BBArgHandler</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Adding&nbsp;Smileys&nbsp;handling&nbsp;rules&nbsp;to&nbsp;Main&nbsp;parser<br />&nbsp;*/<br /></span><span style="color: #0000BB">bbcode_add_smiley</span><span style="color: #007700">(</span><span style="color: #0000BB">$BBHandler</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">":)"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"&lt;img&nbsp;src=\"smiley.gif\"&nbsp;alt=\":)\"&nbsp;/&gt;"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Use&nbsp;the&nbsp;main&nbsp;parser&nbsp;to&nbsp;parse&nbsp;text<br />&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">bbcode_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$BBHandler</span><span style="color: #007700">,</span><span style="color: #0000BB">$text</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+&lt;quote&gt;&lt;h4&gt;Source: &lt;b class=&quot;sub&quot;&gt;Test&lt;/b&gt;&lt;/h4&gt;
+Foo &lt;img src=&quot;smiley.gif&quot; alt=&quot;:)&quot; /&gt;
+&lt;/quote&gt;
+&lt;b&gt;Bar example :)&lt;/b&gt; &lt;img src=&quot;smiley.gif&quot; alt=&quot;:)&quot; /&gt;
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.bbcode-parse.html">bbcode_parse</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.bbcode-set-flags.html">bbcode_set_flags</a></div>
+ <div class="up"><a href="ref.bbcode.html">BBCode Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

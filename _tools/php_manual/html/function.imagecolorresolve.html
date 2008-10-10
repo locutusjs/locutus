@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the index of the specified color or its closest possible alternative</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagecolormatch.html">imagecolormatch</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagecolorresolvealpha.html">imagecolorresolvealpha</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagecolorresolve" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imagecolorresolve</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imagecolorresolve</span> &mdash; <span class="dc-title">Get the index of the specified color or its closest possible alternative</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>imagecolorresolve</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$image</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$red</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$green</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$blue</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function is guaranteed to return a color index for a
+   requested color, either the exact color or the closest possible
+   alternative.
+  </p>
+  <p class="para">
+   If you created the image from a file, only colors used in the image are
+   resolved. Colors present only in the pallete are not resolved.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+image</tt></i>
+</span>
+<dd>
+<p class="para">An image resource, returned by one of the image creation functions, 
+such as <a href="function.imagecreatetruecolor.html" class="function">imagecreatetruecolor()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">red</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Value of red component.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">green</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Value of green component.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">blue</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Value of blue component.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a color index.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 Using <b>imagecoloresolve()</b> to get colors from an image</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Load&nbsp;an&nbsp;image<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatefromgif</span><span style="color: #007700">(</span><span style="color: #DD0000">'phplogo.gif'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Get&nbsp;closest&nbsp;colors&nbsp;from&nbsp;the&nbsp;image<br /></span><span style="color: #0000BB">$colors&nbsp;</span><span style="color: #007700">=&nbsp;array();<br /></span><span style="color: #0000BB">$colors</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #0000BB">imagecolorresolve</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">255</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">255</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">255</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$colors</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #0000BB">imagecolorresolve</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">200</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">127</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Output<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$colors</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>  
+   </div>
+
+   <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+   <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; 89
+    [1] =&gt; 85
+)
+</pre></div>
+   </pre></div>
+  </div>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imagecolorclosest.html" class="function" rel="rdfs-seeAlso">imagecolorclosest()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagecolormatch.html">imagecolormatch</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagecolorresolvealpha.html">imagecolorresolvealpha</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Perform search</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.udm-error.html">udm_error</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.udm-free-agent.html">udm_free_agent</a></div>
+ <div class="up"><a href="ref.mnogosearch.html">mnoGoSearch Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.udm-find" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">udm_find</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5, PHP 5 &lt;= 5.0.5, PECL mnogosearch:1.0.0)</p><p class="refpurpose"><span class="refname">udm_find</span> &mdash; <span class="dc-title">Perform search</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>udm_find</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$agent</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Performs a search.
+  </p>
+  <p class="para">
+   The search itself. The first argument - session, the next one -
+   query itself.  To find something just type words you want to find
+   and press SUBMIT button.  For example, &quot;mysql odbc&quot;. You should
+   not use quotes &quot; in query, they are written here only to divide a
+   query from other text. mnoGoSearch will find all documents that
+   contain word &quot;mysql&quot; and/or word &quot;odbc&quot;.  Best documents having
+   bigger weights will be displayed first.  If you use search mode
+   ALL, search will return documents that contain both (or more)
+   words you entered. In case you use mode ANY, the search will
+   return list of documents that contain any of the words you
+   entered.  If you want more advanced results you may use query
+   language.  You should select &quot;bool&quot; match mode in the search
+   from.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">agent</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A link to Agent, received after call to
+       <a href="function.udm-alloc-agent.html" class="function">udm_alloc_agent()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">query</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       mnoGoSearch understands the following boolean operators:
+      </p>
+      <p class="para">
+       &amp; - logical AND. For example, &quot;mysql &amp;
+       odbc&quot;. mnoGoSearch will find any URLs that contain both
+       &quot;mysql&quot; and &quot;odbc&quot;.
+      </p>
+      <p class="para">
+       | - logical OR. For example &quot;mysql|odbc&quot;. mnoGoSearch
+       will find any URLs, that contain word &quot;mysql&quot; or word
+       &quot;odbc&quot;.
+      </p>
+      <p class="para">
+       ~ - logical NOT. For example &quot;mysql &amp; ~odbc&quot;.
+       mnoGoSearch will find URLs that contain word &quot;mysql&quot;
+       and do not contain word &quot;odbc&quot; at the same time. Note
+       that ~ just excludes given word from results.  Query
+       &quot;~odbc&quot; will find nothing!
+      </p>
+      <p class="para">
+       () - group command to compose more complex queries.  For example
+       &quot;(mysql | msql) &amp; ~postgres&quot;.  Query language is
+       simple and powerful at the same time. Just consider query as
+       usual boolean expression.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a result link identifier on success, or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.udm-error.html">udm_error</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.udm-free-agent.html">udm_free_agent</a></div>
+ <div class="up"><a href="ref.mnogosearch.html">mnoGoSearch Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

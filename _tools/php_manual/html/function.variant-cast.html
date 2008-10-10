@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Convert a variant into a new variant object of another type</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.variant-and.html">variant_and</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.variant-cat.html">variant_cat</a></div>
+ <div class="up"><a href="ref.com.html">COM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.variant-cast" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">variant_cast</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">variant_cast</span> &mdash; <span class="dc-title">Convert a variant into a new variant object of another type</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="class.variant.html" class="type variant">variant</a></span> <span class="methodname"><b><b>variant_cast</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="class.variant.html" class="type variant">variant</a></span> <tt class="parameter">$variant</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$type</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function makes a copy of <i><tt class="parameter">variant</tt></i>
+ and then
+   performs a variant cast operation to force the copy to have the type
+   given by <i><tt class="parameter">type</tt></i>
+.
+  </p>
+  <p class="para">
+   This function wraps VariantChangeType() in the COM library; consult MSDN
+   for more information.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">variant</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The variant.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">type</tt></i>
+ should be one of the
+       <b><tt>VT_XXX</tt></b> constants.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a <b><tt>VT_DATE</tt></b> variant.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.variant-set-type.html" class="function" rel="rdfs-seeAlso">variant_set_type()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.variant-and.html">variant_and</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.variant-cat.html">variant_cat</a></div>
+ <div class="up"><a href="ref.com.html">COM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

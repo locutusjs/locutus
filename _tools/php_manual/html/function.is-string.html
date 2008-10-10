@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Find whether the type of a variable is string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.is-scalar.html">is_scalar</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.is-unicode.html">is_unicode</a></div>
+ <div class="up"><a href="ref.var.html">Variable handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.is-string" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">is_string</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">is_string</span> &mdash; <span class="dc-title">Find whether the type of a variable is string</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>is_string</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$var</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Finds whether the type given variable is string.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">var</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The variable being evaluated.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if <i><tt class="parameter">var</tt></i>
+ is of type <a href="language.types.string.html" class="type string">string</a>,
+   <b><tt>FALSE</tt></b> otherwise.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>is_string()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">is_string</span><span style="color: #007700">(</span><span style="color: #DD0000">"23"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;echo&nbsp;</span><span style="color: #DD0000">"is&nbsp;string\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;echo&nbsp;</span><span style="color: #DD0000">"is&nbsp;not&nbsp;an&nbsp;string\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">is_string</span><span style="color: #007700">(</span><span style="color: #DD0000">'abc'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">is_string</span><span style="color: #007700">(</span><span style="color: #DD0000">"23"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">is_string</span><span style="color: #007700">(</span><span style="color: #0000BB">23.5</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">is_string</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+is string
+bool(true)
+bool(true)
+bool(false)
+bool(false)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.is-float.html" class="function" rel="rdfs-seeAlso">is_float()</a></li>
+    <li class="member"><a href="function.is-int.html" class="function" rel="rdfs-seeAlso">is_int()</a></li>
+    <li class="member"><a href="function.is-bool.html" class="function" rel="rdfs-seeAlso">is_bool()</a></li>
+    <li class="member"><a href="function.is-object.html" class="function" rel="rdfs-seeAlso">is_object()</a></li>
+    <li class="member"><a href="function.is-array.html" class="function" rel="rdfs-seeAlso">is_array()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.is-scalar.html">is_scalar</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.is-unicode.html">is_unicode</a></div>
+ <div class="up"><a href="ref.var.html">Variable handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

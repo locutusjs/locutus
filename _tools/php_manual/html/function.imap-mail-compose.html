@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Create a MIME message based on given envelope and body sections</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-lsub.html">imap_lsub</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-mail-copy.html">imap_mail_copy</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imap-mail-compose" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_mail_compose</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imap_mail_compose</span> &mdash; <span class="dc-title">Create a MIME message based on given envelope and body sections</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>imap_mail_compose</b></b></span>
+    ( <span class="methodparam"><span class="type">array</span> <tt class="parameter">$envelope</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$body</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Create a MIME message based on the given <i><tt class="parameter">envelope</tt></i>
+
+   and <i><tt class="parameter">body</tt></i>
+ sections.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">envelope</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An associative array of headers fields
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">body</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An indexed array of bodies
+      </p>
+      <p class="para">
+       A body is an associative array which can consist of the following
+       keys: &quot;type&quot;, &quot;encoding&quot;, &quot;subtype&quot;, &quot;description&quot; and &quot;contents.data&quot;
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the MIME message.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>imap_mail_compose()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$envelope</span><span style="color: #007700">[</span><span style="color: #DD0000">"from"</span><span style="color: #007700">]=&nbsp;</span><span style="color: #DD0000">"joe@example.com"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$envelope</span><span style="color: #007700">[</span><span style="color: #DD0000">"to"</span><span style="color: #007700">]&nbsp;&nbsp;=&nbsp;</span><span style="color: #DD0000">"foo@example.com"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$envelope</span><span style="color: #007700">[</span><span style="color: #DD0000">"cc"</span><span style="color: #007700">]&nbsp;&nbsp;=&nbsp;</span><span style="color: #DD0000">"bar@example.com"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$part1</span><span style="color: #007700">[</span><span style="color: #DD0000">"type"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">TYPEMULTIPART</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$part1</span><span style="color: #007700">[</span><span style="color: #DD0000">"subtype"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"mixed"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$filename&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"/tmp/imap.c.gz"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"r"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$contents&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fread</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">filesize</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$part2</span><span style="color: #007700">[</span><span style="color: #DD0000">"type"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">TYPEAPPLICATION</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$part2</span><span style="color: #007700">[</span><span style="color: #DD0000">"encoding"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">ENCBINARY</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$part2</span><span style="color: #007700">[</span><span style="color: #DD0000">"subtype"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"octet-stream"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$part2</span><span style="color: #007700">[</span><span style="color: #DD0000">"description"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">basename</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$part2</span><span style="color: #007700">[</span><span style="color: #DD0000">"contents.data"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">$contents</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$part3</span><span style="color: #007700">[</span><span style="color: #DD0000">"type"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">TYPETEXT</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$part3</span><span style="color: #007700">[</span><span style="color: #DD0000">"subtype"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"plain"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$part3</span><span style="color: #007700">[</span><span style="color: #DD0000">"description"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"description3"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$part3</span><span style="color: #007700">[</span><span style="color: #DD0000">"contents.data"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"contents.data3\n\n\n\t"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$body</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">$part1</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$body</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">$part2</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$body</span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">$part3</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #0000BB">nl2br</span><span style="color: #007700">(</span><span style="color: #0000BB">imap_mail_compose</span><span style="color: #007700">(</span><span style="color: #0000BB">$envelope</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$body</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-lsub.html">imap_lsub</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-mail-copy.html">imap_mail_copy</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

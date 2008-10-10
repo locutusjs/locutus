@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Deflate output handler</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-negotiate-language.html">http_negotiate_language</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ob-etaghandler.html">ob_etaghandler</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ob-deflatehandler" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ob_deflatehandler</h1>
+  <p class="verinfo">(PECL pecl_http:0.21.0-1.5.5)</p><p class="refpurpose"><span class="refname">ob_deflatehandler</span> &mdash; <span class="dc-title">Deflate output handler</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>ob_deflatehandler</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   For use with <a href="function.ob-start.html" class="function">ob_start()</a>.
+  </p>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This output handler can only be used once.</span></p></blockquote>
+  <p class="para">
+   The deflate output buffer handler can only be used once.
+  </p>
+  <p class="para">
+   It conflicts with <a href="function.ob-gzhandler.html" class="function">ob_gzhandler()</a> and 
+   <a href="ref.zlib.html" class="link">zlib.output_compression</a> as well and should
+   not be used after <a href="ref.mbstring.html" class="link">mbstring</a> extension&#039;s <a href="function.mb-output-handler.html" class="function">mb_output_handler()</a> and 
+   <a href="ref.session.html" class="link">session</a> extension&#039;s URL-Rewriter (AKA session.use_trans_sid).
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ob-inflatehandler.html" class="function" rel="rdfs-seeAlso">ob_inflatehandler()</a></li>
+    <li class="member"><a href="function.ob-start.html" class="function" rel="rdfs-seeAlso">ob_start()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-negotiate-language.html">http_negotiate_language</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ob-etaghandler.html">ob_etaghandler</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets line from stream resource up to a given delimiter</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-get-filters.html">stream_get_filters</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-get-meta-data.html">stream_get_meta_data</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.stream-get-line" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stream_get_line</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">stream_get_line</span> &mdash; <span class="dc-title">Gets line from stream resource up to a given delimiter</span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>stream_get_line</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$handle</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$length</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$ending</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns a string of up to <i><tt class="parameter">length</tt></i>
+ bytes read from the file
+   pointed to by <i><tt class="parameter">handle</tt></i>
+. Reading ends when
+   <i><tt class="parameter">length</tt></i>
+ bytes have been read, when the string specified by
+   <i><tt class="parameter">ending</tt></i>
+ is found (which is <em class="emphasis">not</em> included
+   in the return value), or on EOF (whichever comes first).
+  </p>
+  <p class="para">
+   If an error occurs, returns <b><tt>FALSE</tt></b>.
+  </p>
+  <p class="simpara">
+   This function is nearly identical to <a href="function.fgets.html" class="function">fgets()</a>
+   except in that it allows end of line delimiters other than the
+   standard \n, \r, and \r\n, and does <em class="emphasis">not</em>
+   return the delimiter itself.
+  </p>
+  <p class="para">
+   See also <a href="function.fread.html" class="function">fread()</a>,
+   <a href="function.fgets.html" class="function">fgets()</a>, and
+   <a href="function.fgetc.html" class="function">fgetc()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-get-filters.html">stream_get_filters</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-get-meta-data.html">stream_get_meta_data</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>This function returns an array of messages matching the given search criteria</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-scanmailbox.html">imap_scanmailbox</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-set-quota.html">imap_set_quota</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imap-search" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_search</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imap_search</span> &mdash; <span class="dc-title">This function returns an array of messages matching the given search criteria</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>imap_search</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$imap_stream</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$criteria</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$options</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$charset</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   This function performs a search on the mailbox currently opened
+   in the given imap stream. 
+  </p>
+  <p class="para">
+   For example, to match all unanswered messages sent by Mom, you&#039;d
+   use: &quot;UNANSWERED FROM mom&quot;. Searches appear to be case
+   insensitive. This list of criteria is from a reading of the UW
+   c-client source code and may be incomplete or
+   inaccurate (see also <a href="http://www.faqs.org/rfcs/rfc2060" class="link external">&raquo; RFC2060</a>, 
+   section 6.4.4).
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+imap_stream</tt></i>
+</span>
+<dd>
+<p class="para">An IMAP stream returned by 
+<a href="function.imap-open.html" class="function">imap_open()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">criteria</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A string, delimited by spaces, in which the following keywords are
+       allowed. Any multi-word arguments (e.g. FROM &quot;joey smith&quot;) must be
+       quoted.
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          ALL - return all messages matching the rest of the criteria
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          ANSWERED - match messages with the \\ANSWERED flag set
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          BCC &quot;string&quot; - match messages with &quot;string&quot; in the Bcc: field
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          BEFORE &quot;date&quot; - match messages with Date: before &quot;date&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          BODY &quot;string&quot; - match messages with &quot;string&quot; in the body of the message
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          CC &quot;string&quot; - match messages with &quot;string&quot; in the Cc: field
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          DELETED - match deleted messages
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          FLAGGED - match messages with the \\FLAGGED (sometimes
+          referred to as Important or Urgent) flag set
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          FROM &quot;string&quot; - match messages with &quot;string&quot; in the From: field
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          KEYWORD &quot;string&quot; - match messages with &quot;string&quot; as a keyword
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          NEW - match new messages
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          OLD - match old messages
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          ON &quot;date&quot; - match messages with Date: matching &quot;date&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          RECENT - match messages with the \\RECENT flag set
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          SEEN - match messages that have been read (the \\SEEN flag is set)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          SINCE &quot;date&quot; - match messages with Date: after &quot;date&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          SUBJECT &quot;string&quot; - match messages with &quot;string&quot; in the Subject:
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          TEXT &quot;string&quot; - match messages with text &quot;string&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          TO &quot;string&quot; - match messages with &quot;string&quot; in the To:
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          UNANSWERED - match messages that have not been answered
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          UNDELETED - match messages that are not deleted
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          UNFLAGGED - match messages that are not flagged
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          UNKEYWORD &quot;string&quot; - match messages that do not have the
+          keyword &quot;string&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          UNSEEN - match messages which have not been read yet
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Valid values for <i><tt class="parameter">options</tt></i>
+ are 
+       <b><tt>SE_UID</tt></b>, which causes the returned array to
+       contain UIDs instead of messages sequence numbers.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">charset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array of message numbers or UIDs.
+  </p>
+  <p class="para">
+   Return <b><tt>FALSE</tt></b> if it does not understand the search
+   <i><tt class="parameter">criteria</tt></i>
+ or no messages have been found.
+  </p>
+ </div>
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.3</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">charset</tt></i>
+ parameter was added
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imap-listscan.html" class="function" rel="rdfs-seeAlso">imap_listscan()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-scanmailbox.html">imap_scanmailbox</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-set-quota.html">imap_set_quota</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

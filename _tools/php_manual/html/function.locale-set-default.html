@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set the default Locale</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.i18n.html">i18n Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.iconv.html">iconv</a></div>
+ <div class="up"><a href="ref.i18n.html">i18n Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.locale-set-default" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">locale_set_default</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">locale_set_default</span> &mdash; <span class="dc-title">Set the default Locale</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><a href="locale.setdefault.html" class="function">locale_set_default</a></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sets the default Locale for PHP programs. Please note that this has nothing
+   to do with <a href="function.setlocale.html" class="function">setlocale()</a> nor with the system locale.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The new Locale name. A comprehensive list of the supported locales is
+       available at <a href="http://demo.icu-project.org/icu-bin/locexp" class="link external">&raquo; http://demo.icu-project.org/icu-bin/locexp</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <a href="locale.setdefault.html" class="function">locale_set_default()</a> example</b></p>
+    <div class="example-contents"><p>
+     This example demonstrates a possible usage of
+     <a href="locale.setdefault.html" class="function">locale_set_default()</a> to localize the
+     <a href="function.sort.html" class="function">sort()</a> functions.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;the&nbsp;list&nbsp;of&nbsp;the&nbsp;strings&nbsp;to&nbsp;sort<br /></span><span style="color: #0000BB">$array&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'caramelo'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'cacto'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'caçada'<br /></span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;set&nbsp;our&nbsp;locale&nbsp;(Portuguese,&nbsp;in&nbsp;this&nbsp;case)<br /></span><span style="color: #0000BB">locale_set_default</span><span style="color: #007700">(</span><span style="color: #DD0000">'pt_PT'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;sort&nbsp;using&nbsp;the&nbsp;locale&nbsp;we&nbsp;previously&nbsp;set<br /></span><span style="color: #0000BB">sort</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SORT_LOCALE_STRING</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; caçada
+    [1] =&gt; cacto
+    [2] =&gt; caramelo
+)
+</pre></div>
+    </pre></div>
+    <div class="example-contents"><p>
+     If we didn&#039;t use the locale, PHP would sort the string using the ASCII
+     characters value, thus returning (wrongly):
+    </p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; cacto
+    [1] =&gt; caramelo
+    [2] =&gt; caçada
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="locale.getdefault.html" class="function" rel="rdfs-seeAlso">locale_get_default()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.i18n.html">i18n Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.iconv.html">iconv</a></div>
+ <div class="up"><a href="ref.i18n.html">i18n Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Delete an object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hwapi-reason-type.html">hw_api_reason->type</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hwapi-replace.html">hw_api->replace</a></div>
+ <div class="up"><a href="ref.hwapi.html">Hyperwave API Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.hwapi-remove" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hw_api-&gt;remove</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">hw_api-&gt;remove</span> &mdash; <span class="dc-title">Delete an object</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">hw_api</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><b>remove</b></b></span>
+     ( <span class="methodparam"><span class="type">array</span> <tt class="parameter">$parameter</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   Removes an object from the specified parent. Collections
+   will be removed recursively. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">parameter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       You can pass an optional object query to remove only those objects
+       which match the query. An object will be deleted physically if it is
+       the last instance. 
+      </p>
+      <p class="para">
+       The parameter array contains the required elements &#039;objectidentifier&#039;
+       and &#039;parentidentifier&#039;. If you want to remove a user or group
+       &#039;parentidentifier&#039; can be skipped.
+      </p>
+      <p class="para">
+       The optional parameter &#039;mode&#039; determines how the deletion is
+       performed. In normal mode the object will not be removed physically
+       until all instances are removed. In physical mode all instances of the
+       object will be deleted immediately. In removelinks mode all references
+       to and from the objects will be deleted as well. In nonrecursive the
+       deletion is not performed recursive. Removing a collection which is
+       not empty will cause an error.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.hwapi-move.html" class="xref">hw_api->move</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hwapi-reason-type.html">hw_api_reason->type</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hwapi-replace.html">hw_api->replace</a></div>
+ <div class="up"><a href="ref.hwapi.html">Hyperwave API Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

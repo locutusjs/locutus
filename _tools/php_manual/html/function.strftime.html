@@ -1,0 +1,410 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Format a local time/date according to locale settings</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mktime.html">mktime</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.strptime.html">strptime</a></div>
+ <div class="up"><a href="ref.datetime.html">Date/Time Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.strftime" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">strftime</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">strftime</span> &mdash; <span class="dc-title">Format a local time/date according to locale settings</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>strftime</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$format</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timestamp</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Format a local time/date according to locale settings. Month and weekday
+   names and other language dependent strings respect the current locale set
+   with <a href="function.setlocale.html" class="function">setlocale()</a>.
+  </p>
+  <p class="para">
+   Not all conversion specifiers may be supported by your C library, in which
+   case they will not be supported by PHP&#039;s <b>strftime()</b>.
+   Additionally, not all platforms support negative timestamps, therefore your
+   date range may be limited to no earlier than the Unix epoch. This means that
+   e.g. %e, %T, %R and %D (there might be more) and dates prior to
+   <i>Jan 1, 1970</i> will not work on Windows, some Linux
+   distributions, and a few other operating systems. For Windows systems a
+   complete overview of supported conversion specifiers can be found at this
+   <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vclib/html/_crt_strftime.2c_.wcsftime.asp" class="link external">&raquo; <acronym title="Microsoft Developer Network">MSDN</acronym> website</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">format</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The following conversion specifiers are recognized in the format
+       string:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          %a - abbreviated weekday name according to the current locale
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %A - full weekday name according to the current locale
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %b - abbreviated month name according to the current locale
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %B - full month name according to the current locale
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %c - preferred date and time representation for the current
+          locale
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %C - century number (the year divided by 100 and truncated to
+          an integer, range 00 to 99)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %d - day of the month as a decimal number (range 01 to 31)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %D - same as %m/%d/%y
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %e - day of the month as a decimal number, a single digit is
+          preceded by a space (range &#039; 1&#039; to &#039;31&#039;)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %g - like %G, but without the century.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %G - The 4-digit year corresponding to the ISO week number (see %V).
+          This has the same format and value as %Y, except that if the ISO week
+          number belongs to the previous or next year, that year is used
+          instead.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %h - same as %b
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %H - hour as a decimal number using a 24-hour clock (range 00
+          to 23)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %I - hour as a decimal number using a 12-hour clock (range 01
+          to 12)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %j - day of the year as a decimal number (range 001 to 366)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %m - month as a decimal number (range 01 to 12)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %M - minute as a decimal number
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %n - newline character
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %p - either `am&#039; or `pm&#039; according to the given time value, or
+          the corresponding strings for the current locale
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %r - time in a.m. and p.m. notation
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %R - time in 24 hour notation
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %S - second as a decimal number
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %t - tab character
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %T - current time, equal to %H:%M:%S
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %u - weekday as a decimal number [1,7], with 1 representing
+          Monday
+         </span>
+         <div class="warning"><b class="warning">Warning</b>
+          <p class="simpara">
+           Sun Solaris seems to start with Sunday as 1
+           although ISO 9889:1999 (the current C standard) clearly
+           specifies that it should be Monday.
+          </p>
+         </div>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %U - week number of the current year as a decimal number,
+          starting with the first Sunday as the first day of the first
+          week
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %V - The  ISO 8601:1988 week number of the current year as a
+          decimal number, range 01 to 53, where week 1 is the first
+          week that has at least 4 days in the current year, and with
+          Monday as the first day of the week. (Use %G or %g for the year
+          component that corresponds to the week number for the specified
+          timestamp.)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %W - week number of the current year as a decimal number,
+          starting with the first Monday as the first day of the first
+          week
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %w - day of the week as a decimal, Sunday being 0
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %x - preferred date representation for the current locale
+          without the time
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %X - preferred time representation for the current locale
+          without the date
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %y - year as a decimal number without a century (range 00 to
+          99)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %Y - year as a decimal number including the century
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %Z or %z - time zone offset or name or abbreviation (Operating
+          System dependent)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          %% - a literal `%&#039; character
+         </span>
+        </li>
+       </ul>
+      </p>
+      <p class="para">
+       Maximum length of this parameter is 1023 characters.
+      </p>
+     </dd>
+
+    </dt>
+
+
+    
+<dt>
+<span class="term"><i><tt class="parameter">timestamp</tt></i>
+</span>
+<dd>
+<p class="para">
+The optional <i><tt class="parameter">timestamp</tt></i>
+ parameter is an 
+<a href="language.types.integer.html" class="type integer">integer</a> Unix timestamp that defaults to the current
+local time if a <i><tt class="parameter">timestamp</tt></i>
+ is not given. In other 
+words, it defaults to the value of <a href="function.time.html" class="function">time()</a>. 
+</p></dd>
+</dt>
+
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string formatted according to the given format string
+   using the given <i><tt class="parameter">timestamp</tt></i>
+ or the current
+   local time if no timestamp is given.  Month and weekday names and
+   other language dependent strings respect the current locale set
+   with <a href="function.setlocale.html" class="function">setlocale()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+Every call to a date/time function will generate a <b><tt>E_NOTICE</tt></b> 
+if the time zone is not valid, and/or a <b><tt>E_STRICT</tt></b> message
+if using the system settings or the <var class="varname">TZ</var> environment
+variable. See also <a href="function.date-default-timezone-set.html" class="function">date_default_timezone_set()</a></p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">5.1.0</td><td colspan="1" rowspan="1" align="left"><p class="para">
+Now issues the <b><tt>E_STRICT</tt></b> and <b><tt>E_NOTICE</tt></b> 
+time zone errors.</p></td></tr>
+
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   This example works if you have the respective locales installed
+   in your system.
+   <div class="example">
+    <p><b>Example #1 <b>strftime()</b> locale examples</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />setlocale</span><span style="color: #007700">(</span><span style="color: #0000BB">LC_TIME</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"C"</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">strftime</span><span style="color: #007700">(</span><span style="color: #DD0000">"%A"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">setlocale</span><span style="color: #007700">(</span><span style="color: #0000BB">LC_TIME</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"fi_FI"</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">strftime</span><span style="color: #007700">(</span><span style="color: #DD0000">"&nbsp;in&nbsp;Finnish&nbsp;is&nbsp;%A,"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">setlocale</span><span style="color: #007700">(</span><span style="color: #0000BB">LC_TIME</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"fr_FR"</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">strftime</span><span style="color: #007700">(</span><span style="color: #DD0000">"&nbsp;in&nbsp;French&nbsp;%A&nbsp;and"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">setlocale</span><span style="color: #007700">(</span><span style="color: #0000BB">LC_TIME</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"de_DE"</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">strftime</span><span style="color: #007700">(</span><span style="color: #DD0000">"&nbsp;in&nbsp;German&nbsp;%A.\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example">
+    <p><b>Example #2 ISO 8601:1988 week number example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;December&nbsp;2002&nbsp;/&nbsp;January&nbsp;2003<br />ISOWk&nbsp;&nbsp;M&nbsp;&nbsp;&nbsp;Tu&nbsp;&nbsp;W&nbsp;&nbsp;&nbsp;Thu&nbsp;F&nbsp;&nbsp;&nbsp;Sa&nbsp;&nbsp;Su<br />-----&nbsp;----------------------------<br />51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;21&nbsp;&nbsp;22<br />52&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;27&nbsp;&nbsp;28&nbsp;&nbsp;29<br />1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5<br />2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;10&nbsp;&nbsp;11&nbsp;&nbsp;12<br />3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;&nbsp;*/<br /><br />//&nbsp;Outputs:&nbsp;12/28/2002&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;52,2002,2002<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"12/28/2002&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">strftime</span><span style="color: #007700">(</span><span style="color: #DD0000">"%V,%G,%Y"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">"12/28/2002"</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Outputs:&nbsp;12/30/2002&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;1,2003,2002<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"12/30/2002&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">strftime</span><span style="color: #007700">(</span><span style="color: #DD0000">"%V,%G,%Y"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">"12/30/2002"</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Outputs:&nbsp;1/3/2003&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;1,2003,2003<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"1/3/2003&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">strftime</span><span style="color: #007700">(</span><span style="color: #DD0000">"%V,%G,%Y"</span><span style="color: #007700">,</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">"1/3/2003"</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Outputs:&nbsp;1/10/2003&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;2,2003,2003<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"1/10/2003&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">strftime</span><span style="color: #007700">(</span><span style="color: #DD0000">"%V,%G,%Y"</span><span style="color: #007700">,</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">"1/10/2003"</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /><br /><br /></span><span style="color: #FF8000">/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;December&nbsp;2004&nbsp;/&nbsp;January&nbsp;2005<br />ISOWk&nbsp;&nbsp;M&nbsp;&nbsp;&nbsp;Tu&nbsp;&nbsp;W&nbsp;&nbsp;&nbsp;Thu&nbsp;F&nbsp;&nbsp;&nbsp;Sa&nbsp;&nbsp;Su<br />-----&nbsp;----------------------------<br />51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19<br />52&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;21&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26<br />53&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;28&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;2<br />1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9<br />2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;*/<br /><br />//&nbsp;Outputs:&nbsp;12/23/2004&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;52,2004,2004<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"12/23/2004&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">strftime</span><span style="color: #007700">(</span><span style="color: #DD0000">"%V,%G,%Y"</span><span style="color: #007700">,</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">"12/23/2004"</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Outputs:&nbsp;12/31/2004&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;53,2004,2004<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"12/31/2004&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">strftime</span><span style="color: #007700">(</span><span style="color: #DD0000">"%V,%G,%Y"</span><span style="color: #007700">,</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">"12/31/2004"</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Outputs:&nbsp;1/2/2005&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;53,2004,2005<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"1/2/2005&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">strftime</span><span style="color: #007700">(</span><span style="color: #DD0000">"%V,%G,%Y"</span><span style="color: #007700">,</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">"1/2/2005"</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Outputs:&nbsp;1/3/2005&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;1,2005,2005<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"1/3/2005&nbsp;-&nbsp;%V,%G,%Y&nbsp;=&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">strftime</span><span style="color: #007700">(</span><span style="color: #DD0000">"%V,%G,%Y"</span><span style="color: #007700">,</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">"1/3/2005"</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   <span class="simpara">
+    %G and %V, which are based on ISO 8601:1988 week numbers can
+    give unexpected (albeit correct) results if the numbering system
+    is not thoroughly understood.  See %V examples in this manual page.
+   </span>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.setlocale.html" class="function" rel="rdfs-seeAlso">setlocale()</a></li>
+    <li class="member"><a href="function.mktime.html" class="function" rel="rdfs-seeAlso">mktime()</a></li>
+    <li class="member"><a href="function.strptime.html" class="function" rel="rdfs-seeAlso">strptime()</a></li>
+    <li class="member"><a href="function.gmstrftime.html" class="function" rel="rdfs-seeAlso">gmstrftime()</a></li>
+    <li class="member"><a href="http://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html" class="link external">&raquo; Open Group specification of <b>strftime()</b></a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mktime.html">mktime</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.strptime.html">strptime</a></div>
+ <div class="up"><a href="ref.datetime.html">Date/Time Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

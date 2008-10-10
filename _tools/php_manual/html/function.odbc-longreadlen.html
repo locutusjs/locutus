@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Handling of LONG columns</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.odbc-gettypeinfo.html">odbc_gettypeinfo</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.odbc-next-result.html">odbc_next_result</a></div>
+ <div class="up"><a href="ref.uodbc.html">ODBC Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.odbc-longreadlen" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">odbc_longreadlen</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">odbc_longreadlen</span> &mdash; <span class="dc-title">Handling of LONG columns</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>odbc_longreadlen</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result_id</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$length</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Enables handling of LONG and LONGVARBINARY columns.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The result identifier.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">length</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The number of bytes returned to PHP is controlled by the parameter
+       length. If it is set to 0, Long column data is passed through to the
+       client.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Handling of LONGVARBINARY columns is also affected by
+    <a href="function.odbc-binmode.html" class="function">odbc_binmode()</a>.
+   <br />
+  </p></blockquote>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.odbc-gettypeinfo.html">odbc_gettypeinfo</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.odbc-next-result.html">odbc_next_result</a></div>
+ <div class="up"><a href="ref.uodbc.html">ODBC Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

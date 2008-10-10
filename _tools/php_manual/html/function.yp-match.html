@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the matched line</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.yp-master.html">yp_master</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.yp-next.html">yp_next</a></div>
+ <div class="up"><a href="ref.nis.html">YP/NIS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.yp-match" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">yp_match</h1>
+  <p class="verinfo">(PHP 4, PHP 5 &lt;= 5.0.5)</p><p class="refpurpose"><span class="refname">yp_match</span> &mdash; <span class="dc-title">Returns the matched line</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>yp_match</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$domain</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$map</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$key</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns the value associated with the passed <i><tt class="parameter">key</tt></i>
+
+   out of the specified <i><tt class="parameter">map</tt></i>
+. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">domain</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The NIS domain name.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">map</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The NIS map.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">key</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       This key must be exact.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the value, or <b><tt>FALSE</tt></b> on errors.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Example for NIS match</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$entry&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">yp_match</span><span style="color: #007700">(</span><span style="color: #0000BB">$domain</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"passwd.byname"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"joe"</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"Matched&nbsp;entry&nbsp;is:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$entry</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+joe:##joe:11111:100:Joe User:/home/j/joe:/usr/local/bin/bash
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.yp-get-default-domain.html" class="function" rel="rdfs-seeAlso">yp_get_default_domain()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.yp-master.html">yp_master</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.yp-next.html">yp_next</a></div>
+ <div class="up"><a href="ref.nis.html">YP/NIS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

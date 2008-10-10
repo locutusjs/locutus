@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set the structure flag in the search object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.swish.html">Swish Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="refs.utilspec.server.html">Server Specific Extensions</a></div>
+ <div class="up"><a href="ref.swish.html">Swish Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.swishsearch-setstructure" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SwishSearch-&gt;setStructure</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SwishSearch-&gt;setStructure</span> &mdash; <span class="dc-title">Set the structure flag in the search object</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>SwishSearch->setStructure</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$structure</tt></span>
+   )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">structure</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The structure flag a bitmask is used to limit search to certain parts of HTML
+       documents (like title, meta, body etc.). Its possible values are listed below. 
+       To combine several values use bitwise OR operator, see example below.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+  <p class="para">
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      <b><tt>Swish::IN_FILE</tt></b>
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <b><tt>Swish::IN_TITLE</tt></b>
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <b><tt>Swish::IN_HEAD</tt></b>
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <b><tt>Swish::IN_BODY</tt></b>
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <b><tt>Swish::IN_COMMENTS</tt></b>
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <b><tt>Swish::IN_HEADER</tt></b>
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <b><tt>Swish::IN_EMPHASIZED</tt></b>
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <b><tt>Swish::IN_META</tt></b>
+     </p>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Basic <b>SwishSearch->setStructure()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">try&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$swish&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Swish</span><span style="color: #007700">(</span><span style="color: #DD0000">"index.swish-e"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$search&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$swish</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$results&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$search</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(</span><span style="color: #DD0000">"time"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"First&nbsp;query&nbsp;found:&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$results</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">hits</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"&nbsp;hits\n"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$search</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setStructure</span><span style="color: #007700">(</span><span style="color: #0000BB">Swish</span><span style="color: #007700">::</span><span style="color: #0000BB">IN_TITLE</span><span style="color: #007700">|</span><span style="color: #0000BB">Swish</span><span style="color: #007700">::</span><span style="color: #0000BB">IN_HEAD</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//search&nbsp;in&nbsp;title&nbsp;and&nbsp;head<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$results&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$search</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(</span><span style="color: #DD0000">"time"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Second&nbsp;query&nbsp;found:&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$results</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">hits</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"&nbsp;hits\n"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$search</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setStructure</span><span style="color: #007700">(</span><span style="color: #0000BB">Swish</span><span style="color: #007700">::</span><span style="color: #0000BB">IN_ALL</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//search&nbsp;in&nbsp;whole&nbsp;document,&nbsp;the&nbsp;default&nbsp;value<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$results&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$search</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(</span><span style="color: #DD0000">"time"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Third&nbsp;query&nbsp;found:&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$results</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">hits</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"&nbsp;hits\n"</span><span style="color: #007700">;<br /><br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">SwishException&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">(),&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+First query found: 5 hits
+Second query found: 0 hits
+Third query found: 5 hits
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.swish.html">Swish Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="refs.utilspec.server.html">Server Specific Extensions</a></div>
+ <div class="up"><a href="ref.swish.html">Swish Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Encode character to HTML numeric string reference</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-encode-mimeheader.html">mb_encode_mimeheader</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-ereg-match.html">mb_ereg_match</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-encode-numericentity" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_encode_numericentity</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">mb_encode_numericentity</span> &mdash; <span class="dc-title">Encode character to HTML numeric string reference</span></p>
+
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mb_encode_numericentity</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$convmap</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Converts
+   specified character codes in <a href="language.types.string.html" class="type string">string</a> <i><tt class="parameter">str</tt></i>
+
+   from HTML numeric character reference to character code.    
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="language.types.string.html" class="type string">string</a> being encoded.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">convmap</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">convmap</tt></i>
+ is array specifies code area to
+       convert.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The <i><tt class="parameter">encoding</tt></i>
+ 
+parameter is the character encoding. If it is omitted, the internal character 
+encoding value will be used.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The converted <a href="language.types.string.html" class="type string">string</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <i><tt class="parameter">convmap</tt></i>
+ example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+$convmap&nbsp;=&nbsp;array&nbsp;(<br />&nbsp;int&nbsp;start_code1,&nbsp;int&nbsp;end_code1,&nbsp;int&nbsp;offset1,&nbsp;int&nbsp;mask1,<br />&nbsp;int&nbsp;start_code2,&nbsp;int&nbsp;end_code2,&nbsp;int&nbsp;offset2,&nbsp;int&nbsp;mask2,<br />&nbsp;........<br />&nbsp;int&nbsp;start_codeN,&nbsp;int&nbsp;end_codeN,&nbsp;int&nbsp;offsetN,&nbsp;int&nbsp;maskN&nbsp;);<br />//&nbsp;Specify&nbsp;Unicode&nbsp;value&nbsp;for&nbsp;start_codeN&nbsp;and&nbsp;end_codeN<br />//&nbsp;Add&nbsp;offsetN&nbsp;to&nbsp;value&nbsp;and&nbsp;take&nbsp;bit-wise&nbsp;'AND'&nbsp;with&nbsp;maskN,&nbsp;then<br />//&nbsp;it&nbsp;converts&nbsp;value&nbsp;to&nbsp;numeric&nbsp;string&nbsp;reference.</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 <b>mb_encode_numericentity()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Convert&nbsp;Left&nbsp;side&nbsp;of&nbsp;ISO-8859-1&nbsp;to&nbsp;HTML&nbsp;numeric&nbsp;character&nbsp;reference&nbsp;*/<br /></span><span style="color: #0000BB">$convmap&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">0x80</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xff</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xff</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mb_encode_numericentity</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$convmap</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"ISO-8859-1"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Convert&nbsp;user&nbsp;defined&nbsp;SJIS-win&nbsp;code&nbsp;in&nbsp;block&nbsp;95-104&nbsp;to&nbsp;numeric<br />&nbsp;&nbsp;&nbsp;string&nbsp;reference&nbsp;*/<br /></span><span style="color: #0000BB">$convmap&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">0xe000</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xe03e</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x1040</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xffff</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">0xe03f</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xe0bb</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x1041</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xffff</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">0xe0bc</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xe0fa</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x1084</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xffff</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">0xe0fb</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xe177</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x1085</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xffff</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">0xe178</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xe1b6</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x10c8</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xffff</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">0xe1b7</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xe233</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x10c9</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xffff</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">0xe234</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xe272</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x110c</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xffff</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">0xe273</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xe2ef</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x110d</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xffff</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">0xe2f0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xe32e</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x1150</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xffff</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">0xe32f</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xe3ab</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x1151</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xffff&nbsp;</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mb_encode_numericentity</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$convmap</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"sjis-win"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-decode-numericentity.html" class="function" rel="rdfs-seeAlso">mb_decode_numericentity()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-encode-mimeheader.html">mb_encode_mimeheader</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-ereg-match.html">mb_ereg_match</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

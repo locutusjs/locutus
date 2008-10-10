@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set PDF document to display FDF data in</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fdf-set-encoding.html">fdf_set_encoding</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fdf-set-flags.html">fdf_set_flags</a></div>
+ <div class="up"><a href="ref.fdf.html">FDF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.fdf-set-file" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fdf_set_file</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">fdf_set_file</span> &mdash; <span class="dc-title">Set PDF document to display FDF data in</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>fdf_set_file</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$fdf_document</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$url</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$target_frame</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Selects a different PDF document to display the form results in then the
+   form it originated from. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fdf_document</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The FDF document handle, returned by <a href="function.fdf-create.html" class="function">fdf_create()</a>,
+       <a href="function.fdf-open.html" class="function">fdf_open()</a> or <a href="function.fdf-open-string.html" class="function">fdf_open_string()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">url</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Should be given as an absolute URL.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">target_frame</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Use this parameter to specify the frame in which the document will be
+       displayed. You can also set the default value for this parameter using
+       <a href="function.fdf-set-target-frame.html" class="function">fdf_set_target_frame()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Passing FDF data to a second form</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;set&nbsp;content&nbsp;type&nbsp;for&nbsp;Adobe&nbsp;FDF&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fdf_header</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;start&nbsp;new&nbsp;fdf&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$fdf&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fdf_create</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;set&nbsp;field&nbsp;"foo"&nbsp;to&nbsp;value&nbsp;"bar"&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fdf_set_value</span><span style="color: #007700">(</span><span style="color: #0000BB">$fdf</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"foo"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"bar"</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;tell&nbsp;client&nbsp;to&nbsp;display&nbsp;FDF&nbsp;data&nbsp;using&nbsp;"fdf_form.pdf"&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fdf_set_file</span><span style="color: #007700">(</span><span style="color: #0000BB">$fdf</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"http://www.example.com/fdf_form.pdf"</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;output&nbsp;fdf&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fdf_save</span><span style="color: #007700">(</span><span style="color: #0000BB">$fdf</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;clean&nbsp;up&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fdf_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$fdf</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.fdf-get-file.html" class="function" rel="rdfs-seeAlso">fdf_get_file()</a></li>
+    <li class="member"><a href="function.fdf-set-target-frame.html" class="function" rel="rdfs-seeAlso">fdf_set_target_frame()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fdf-set-encoding.html">fdf_set_encoding</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fdf-set-flags.html">fdf_set_flags</a></div>
+ <div class="up"><a href="ref.fdf.html">FDF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

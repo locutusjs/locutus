@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set Scheme handlers for a XSLT processor</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xslt-set-sax-handlers.html">xslt_set_sax_handlers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xslt-set-scheme-handlers.html">xslt_set_scheme_handlers</a></div>
+ <div class="up"><a href="ref.xslt.html">XSLT Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.xslt-set-scheme-handler" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xslt_set_scheme_handler</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5)</p><p class="refpurpose"><span class="refname">xslt_set_scheme_handler</span> &mdash; <span class="dc-title">Set Scheme handlers for a XSLT processor</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>xslt_set_scheme_handler</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$xh</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$handlers</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Set Scheme handlers on the resource handle given by
+   <i><tt class="parameter">xh</tt></i>
+. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">xh</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The XSLT processor link identifier, created with
+       <a href="function.xslt-create.html" class="function">xslt_create()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">handlers</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Scheme handlers should be an array with the
+       format (all elements are optional):
+       <div class="informalexample">
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+array(<br />[get_all]&nbsp;=&gt;&nbsp;get&nbsp;all&nbsp;handler,<br />[open]&nbsp;=&gt;&nbsp;open&nbsp;handler,<br />[get]&nbsp;=&gt;&nbsp;get&nbsp;handler,<br />[put]&nbsp;=&gt;&nbsp;put&nbsp;handler,<br />[close]&nbsp;=&gt;&nbsp;close&nbsp;handler<br />)</span>
+</code></div>
+        </div>
+
+       </div>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xslt-set-sax-handlers.html">xslt_set_sax_handlers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xslt-set-scheme-handlers.html">xslt_set_scheme_handlers</a></div>
+ <div class="up"><a href="ref.xslt.html">XSLT Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

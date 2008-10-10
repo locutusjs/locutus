@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Replaces image in the object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-setformat.html">Imagick::setFormat</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-setimagebackgroundcolor.html">Imagick::setImageBackgroundColor</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagick-setimage" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::setImage</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Imagick::setImage</span> &mdash; <span class="dc-title">Replaces image in the object</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>Imagick::setImage</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="class.imagick.html" class="type Imagick">Imagick</a></span> <tt class="parameter">$replace</tt></span>
+   )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+currently not documented; only its argument list is available.
+</p></div>
+  <p class="para">
+   Replaces the current image sequence with the image from replace object.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">replace</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The replace Imagick object
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws ImagickException on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>Imagick::setImage()</b> example</b></p>
+    <div class="example-contents"><p>
+     An example of using Imagick::setImage()
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Create&nbsp;the&nbsp;objects&nbsp;*/<br /></span><span style="color: #0000BB">$image&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">(</span><span style="color: #DD0000">'source.jpg'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$replace&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">(</span><span style="color: #DD0000">'replace.jpg'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;source.jpg&nbsp;is&nbsp;replaced&nbsp;with&nbsp;replace.jpg&nbsp;*/<br /></span><span style="color: #0000BB">$image</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setImage</span><span style="color: #007700">(</span><span style="color: #0000BB">$replace</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;output&nbsp;the&nbsp;image&nbsp;*/<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/jpeg'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$image</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-setformat.html">Imagick::setFormat</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-setimagebackgroundcolor.html">Imagick::setImageBackgroundColor</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

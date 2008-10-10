@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the textual description of an error code</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-current.html">sqlite_current</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-escape-string.html">sqlite_escape_string</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sqlite-error-string" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_error_string</h1>
+  <p class="verinfo">(PHP 5, PECL sqlite:1.0-1.0.3)</p><p class="refpurpose"><span class="refname">sqlite_error_string</span> &mdash; <span class="dc-title">Returns the textual description of an error code</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>sqlite_error_string</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$error_code</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns a human readable description of the
+   <i><tt class="parameter">error_code</tt></i>
+ returned from
+   <a href="function.sqlite-last-error.html" class="function">sqlite_last_error()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">error_code</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The error code being used, which might be passed in from
+       <a href="function.sqlite-last-error.html" class="function">sqlite_last_error()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a human readable description of the <i><tt class="parameter">error_code</tt></i>
+,
+   as a <a href="language.types.string.html" class="type string">string</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sqlite-last-error.html" class="function" rel="rdfs-seeAlso">sqlite_last_error()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-current.html">sqlite_current</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-escape-string.html">sqlite_escape_string</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

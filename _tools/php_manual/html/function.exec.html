@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Execute an external program</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.escapeshellcmd.html">escapeshellcmd</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.passthru.html">passthru</a></div>
+ <div class="up"><a href="ref.exec.html">Program execution Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.exec" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">exec</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">exec</span> &mdash; <span class="dc-title">Execute an external program</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>exec</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$command</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$output</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter reference">&$return_var</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>exec()</b> executes the given
+   <i><tt class="parameter">command</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">command</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The command that will be executed.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">output</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the <i><tt class="parameter">output</tt></i>
+ argument is present, then the
+       specified array will be filled with every line of output from the
+       command.  Trailing whitespace, such as <i>\n</i>, is not
+       included in this array.  Note that if the array already contains some
+       elements, <b>exec()</b> will append to the end of the array.
+       If you do not want the function to append elements, call
+       <a href="function.unset.html" class="function">unset()</a> on the array before passing it to
+       <b>exec()</b>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">return_var</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the <i><tt class="parameter">return_var</tt></i>
+ argument is present
+       along with the <i><tt class="parameter">output</tt></i>
+ argument, then the
+       return status of the executed command will be written to this
+       variable.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The last line from the result of the command.  If you need to execute a 
+   command and have all the data from the command passed directly back without 
+   any interference, use the <a href="function.passthru.html" class="function">passthru()</a> function.
+  </p>
+  <p class="para">
+   To get the output of the executed command, be sure to set and use the
+   <i><tt class="parameter">output</tt></i>
+ parameter.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 An <b>exec()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;outputs&nbsp;the&nbsp;username&nbsp;that&nbsp;owns&nbsp;the&nbsp;running&nbsp;php/httpd&nbsp;process<br />//&nbsp;(on&nbsp;a&nbsp;system&nbsp;with&nbsp;the&nbsp;"whoami"&nbsp;executable&nbsp;in&nbsp;the&nbsp;path)<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">exec</span><span style="color: #007700">(</span><span style="color: #DD0000">'whoami'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b><p class="para">When allowing user-supplied data to be
+passed to this function, use
+<a href="function.escapeshellarg.html" class="function">escapeshellarg()</a> or <a href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a>
+to ensure that users cannot trick the system into executing arbitrary
+commands.</p></div>
+  <blockquote><p><b class="note">Note</b>: If a program is started with this function,
+in order for it to continue running in the background, the output of the
+program must be redirected to a file or another output stream. Failing to do so
+will cause PHP to hang until the execution of the program ends.<br /></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">When
+<a href="features.safe-mode.html" class="link">safe mode</a> is enabled, you can only
+execute files within the <a href="features.safe-mode.html#ini.safe-mode-exec-dir" class="link">safe_mode_exec_dir</a>.
+For practical reasons, it is currently not allowed to have <i>..</i>
+components in the path to the executable.</span></p></blockquote>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">With <a href="features.safe-mode.html" class="link">safe mode</a> enabled,
+the command string is escaped with <a href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a>. Thus, 
+<i>echo y | echo x</i> becomes <i>echo y \| echo x</i>.</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.system.html" class="function" rel="rdfs-seeAlso">system()</a></li>
+    <li class="member"><a href="function.passthru.html" class="function" rel="rdfs-seeAlso">passthru()</a></li>
+    <li class="member"><a href="function.escapeshellcmd.html" class="function" rel="rdfs-seeAlso">escapeshellcmd()</a></li>
+    <li class="member"><a href="function.pcntl-exec.html" class="function" rel="rdfs-seeAlso">pcntl_exec()</a></li>
+    <li class="member"><a href="language.operators.execution.html" class="link">backtick operator</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.escapeshellcmd.html">escapeshellcmd</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.passthru.html">passthru</a></div>
+ <div class="up"><a href="ref.exec.html">Program execution Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

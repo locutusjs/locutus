@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the auto generated id used in the last query</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-init.html">maxdb_init</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-kill.html">maxdb_kill</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.maxdb-insert-id" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_insert_id</h1>
+  <h1 class="refname">maxdb-&gt;insert_id</h1>
+  <p class="verinfo">(PECL maxdb:1.0-7.6.00.38)</p><p class="refpurpose"><span class="refname">maxdb_insert_id</span> -- <span class="refname">maxdb-&gt;insert_id</span> &mdash; <span class="dc-title">Returns the auto generated id used in the last query</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedural style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>maxdb_insert_id</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (property):</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">maxdb</b></div>
+   <div class="fieldsynopsis"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <var class="varname">$insert_id</var>;</div>
+
+  </div>
+  <p class="para">
+   The <b>maxdb_insert_id()</b> function returns the ID generated
+   by a query on a table with a column having the DEFAULT SERIAL attribute. If
+   the last query wasn&#039;t an INSERT or UPDATE statement or if the modified table
+   does not have a column with the DEFAULT SERIAL attribute, this function will
+   return zero.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The value of the <i>DEFAULT SERIAL</i> field that was updated
+   by the previous query. Returns zero if there was no previous query on the
+   connection or if the query did not update an <i>DEFAULT_SERIAL</i>
+   value.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    If the number is greater than maximal int value, <b>maxdb_insert_id()</b>
+    will return a string.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 Object oriented style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$maxdb&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">maxdb</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_OFF</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;mycity"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_ERROR</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;mycity&nbsp;LIKE&nbsp;hotel.city"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"ALTER&nbsp;TABLE&nbsp;mycity&nbsp;ADD&nbsp;id&nbsp;FIXED(11)&nbsp;DEFAULT&nbsp;SERIAL"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;mycity&nbsp;(zip,name,state)&nbsp;VALUES&nbsp;('12203','Albany'&nbsp;,'NY')"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"New&nbsp;Record&nbsp;has&nbsp;id&nbsp;%d.\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert_id</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;drop&nbsp;table&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;mycity"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example">
+   <p><b>Example #2 Procedural style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_OFF</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;mycity"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_ERROR</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;mycity&nbsp;LIKE&nbsp;hotel.city"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"ALTER&nbsp;TABLE&nbsp;mycity&nbsp;ADD&nbsp;id&nbsp;FIXED(11)&nbsp;DEFAULT&nbsp;SERIAL"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;mycity&nbsp;(zip,name,state)&nbsp;VALUES&nbsp;('12203','Albany'&nbsp;,'NY')"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"New&nbsp;Record&nbsp;has&nbsp;id&nbsp;%d.\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_insert_id</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/*&nbsp;drop&nbsp;table&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;mycity"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">The above example will output 
+something similar to:</p>
+  <div class="example-contents"><pre>
+<div class="cdata"><pre>
+New Record has id 1.
+</pre></div>
+  </pre></div>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-init.html">maxdb_init</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-kill.html">maxdb_kill</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

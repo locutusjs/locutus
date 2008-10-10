@@ -1,0 +1,374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Convert all applicable characters to HTML entities</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.html-entity-decode.html">html_entity_decode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.htmlspecialchars-decode.html">htmlspecialchars_decode</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.htmlentities" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">htmlentities</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">htmlentities</span> &mdash; <span class="dc-title">Convert all applicable characters to HTML entities</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>htmlentities</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$string</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$quote_style</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$charset</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$double_encode</tt></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   This function is identical to <a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a> in all
+   ways, except with <b>htmlentities()</b>, all characters which
+   have HTML character entity equivalents are translated into these entities.
+  </p>
+  <p class="para">
+   If you&#039;re wanting to decode instead (the reverse) you can use
+   <a href="function.html-entity-decode.html" class="function">html_entity_decode()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">string</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">quote_style</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Like <a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a>, the optional second
+       <i><tt class="parameter">quote_style</tt></i>
+ parameter lets you define what will
+       be done with &#039;single&#039; and &quot;double&quot; quotes.  It takes on one of three
+       constants with the default being <b><tt>ENT_COMPAT</tt></b>:
+       <table border="5">
+        <caption><b>Available <i><tt class="parameter">quote_style</tt></i>
+ constants</b></caption>
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">Constant Name</th>
+           <th colspan="1">Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>ENT_COMPAT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">Will convert double-quotes and leave single-quotes alone.</td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>ENT_QUOTES</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">Will convert both double and single quotes.</td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>ENT_NOQUOTES</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">Will leave both double and single quotes unconverted.</td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">charset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Like <a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a>, it takes an optional
+       third argument <i><tt class="parameter">charset</tt></i>
+ which defines character
+       set used in conversion.
+       Presently, the ISO-8859-1 character set is used as the default.
+      </p>
+      
+
+<p class="para">
+ Following character sets are supported in PHP 4.3.0 and later.
+ <table border="5">
+  <caption><b>Supported charsets</b></caption>
+  <colgroup>
+
+   <thead valign="middle">
+    <tr valign="middle">
+     <th colspan="1">Charset</th>
+     <th colspan="1">Aliases</th>
+     <th colspan="1">Description</th>
+    </tr>
+
+   </thead>
+
+   <tbody valign="middle" class="tbody">
+    <tr valign="middle">
+     <td colspan="1" rowspan="1" align="left">ISO-8859-1</td>
+     <td colspan="1" rowspan="1" align="left">ISO8859-1</td>
+     <td colspan="1" rowspan="1" align="left">
+      Western European, Latin-1
+     </td>
+    </tr>
+
+    <tr valign="middle">
+     <td colspan="1" rowspan="1" align="left">ISO-8859-15</td>
+     <td colspan="1" rowspan="1" align="left">ISO8859-15</td>
+     <td colspan="1" rowspan="1" align="left">
+      Western European, Latin-9. Adds the Euro sign, French and Finnish
+      letters missing in Latin-1(ISO-8859-1).
+     </td>
+    </tr>
+
+    <tr valign="middle">
+     <td colspan="1" rowspan="1" align="left">UTF-8</td>
+     <td class="empty">&nbsp;</td>
+     <td colspan="1" rowspan="1" align="left">
+      ASCII compatible multi-byte 8-bit Unicode.
+     </td>
+    </tr>
+
+    <tr valign="middle">
+     <td colspan="1" rowspan="1" align="left">cp866</td>
+     <td colspan="1" rowspan="1" align="left">ibm866, 866</td>
+     <td colspan="1" rowspan="1" align="left">
+      DOS-specific Cyrillic charset.
+      This charset is supported in 4.3.2.
+     </td>
+    </tr>
+
+    <tr valign="middle">
+     <td colspan="1" rowspan="1" align="left">cp1251</td>
+     <td colspan="1" rowspan="1" align="left">Windows-1251, win-1251, 1251</td>
+     <td colspan="1" rowspan="1" align="left">
+      Windows-specific Cyrillic charset.
+      This charset is supported in 4.3.2.
+     </td>
+    </tr>
+
+    <tr valign="middle">
+     <td colspan="1" rowspan="1" align="left">cp1252</td>
+     <td colspan="1" rowspan="1" align="left">Windows-1252, 1252</td>
+     <td colspan="1" rowspan="1" align="left">
+      Windows specific charset for Western European.
+     </td>
+    </tr>
+
+    <tr valign="middle">
+     <td colspan="1" rowspan="1" align="left">KOI8-R</td>
+     <td colspan="1" rowspan="1" align="left">koi8-ru, koi8r</td>
+     <td colspan="1" rowspan="1" align="left">
+      Russian. This charset is supported in 4.3.2.
+     </td>
+    </tr>
+
+    <tr valign="middle">
+     <td colspan="1" rowspan="1" align="left">BIG5</td>
+     <td colspan="1" rowspan="1" align="left">950</td>
+     <td colspan="1" rowspan="1" align="left">
+      Traditional Chinese, mainly used in Taiwan.
+     </td>
+    </tr>
+
+    <tr valign="middle">
+     <td colspan="1" rowspan="1" align="left">GB2312</td>
+     <td colspan="1" rowspan="1" align="left">936</td>
+     <td colspan="1" rowspan="1" align="left">
+      Simplified Chinese, national standard character set.
+     </td>
+    </tr>
+
+    <tr valign="middle">
+     <td colspan="1" rowspan="1" align="left">BIG5-HKSCS</td>
+     <td class="empty">&nbsp;</td>
+     <td colspan="1" rowspan="1" align="left">
+      Big5 with Hong Kong extensions, Traditional Chinese.
+     </td>
+    </tr>
+
+    <tr valign="middle">
+     <td colspan="1" rowspan="1" align="left">Shift_JIS</td>
+     <td colspan="1" rowspan="1" align="left">SJIS, 932</td>
+     <td colspan="1" rowspan="1" align="left">
+      Japanese
+     </td>
+    </tr>
+
+    <tr valign="middle">
+     <td colspan="1" rowspan="1" align="left">EUC-JP</td>
+     <td colspan="1" rowspan="1" align="left">EUCJP</td>
+     <td colspan="1" rowspan="1" align="left">
+      Japanese
+     </td>
+    </tr>
+
+   </tbody>
+  </colgroup>
+
+ </table>
+
+ <blockquote><p><b class="note">Note</b>: 
+  <span class="simpara">
+   Any other character sets are not recognized and ISO-8859-1 will be used
+   instead.
+  </span>
+ </p></blockquote>
+</p>
+
+
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">double_encode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       When <i><tt class="parameter">double_encode</tt></i>
+ is turned off PHP will not
+       encode existing html entities. The default is to convert everything.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the encoded string.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.2.3</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">double_encode</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.1.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">charset</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.3</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">quote_style</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>htmlentities()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"A&nbsp;'quote'&nbsp;is&nbsp;&lt;b&gt;bold&lt;/b&gt;"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Outputs:&nbsp;A&nbsp;'quote'&nbsp;is&nbsp;&amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt;<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Outputs:&nbsp;A&nbsp;&amp;#039;quote&amp;#039;&nbsp;is&nbsp;&amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt;<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.html-entity-decode.html" class="function" rel="rdfs-seeAlso">html_entity_decode()</a></li>
+    <li class="member"><a href="function.get-html-translation-table.html" class="function" rel="rdfs-seeAlso">get_html_translation_table()</a></li>
+    <li class="member"><a href="function.htmlspecialchars.html" class="function" rel="rdfs-seeAlso">htmlspecialchars()</a></li>
+    <li class="member"><a href="function.nl2br.html" class="function" rel="rdfs-seeAlso">nl2br()</a></li>
+    <li class="member"><a href="function.urlencode.html" class="function" rel="rdfs-seeAlso">urlencode()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.html-entity-decode.html">html_entity_decode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.htmlspecialchars-decode.html">htmlspecialchars_decode</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Opens a persistent handle to an SQLite database and create the database if it does not exist</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-open.html">sqlite_open</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-prev.html">sqlite_prev</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sqlite-popen" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_popen</h1>
+  <p class="verinfo">(PHP 5, PECL sqlite:1.0-1.0.3)</p><p class="refpurpose"><span class="refname">sqlite_popen</span> &mdash; <span class="dc-title">
+   Opens a persistent handle to an SQLite database and create the database if it does not exist
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>sqlite_popen</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter reference">&$error_message</tt></span>
+  ]] )</div>
+
+  <p class="simpara">
+   This function behaves identically to <a href="function.sqlite-open.html" class="function">sqlite_open()</a>
+   except that is uses the persistent resource mechanism of PHP.
+   For information about the meaning of the parameters, read the
+   <a href="function.sqlite-open.html" class="function">sqlite_open()</a> manual page.
+  </p>
+  <p class="para">
+   <b>sqlite_popen()</b> will first check to see if a persistent
+   handle has already been opened for the given
+   <i><tt class="parameter">filename</tt></i>
+.  If it finds one, it returns that handle
+   to your script, otherwise it opens a fresh handle to the database.
+  </p>
+  <p class="para">
+   The benefit of this approach is that you don&#039;t incur the performance
+   cost of re-reading the database and index schema on each page hit served
+   by persistent web server SAPI&#039;s (any SAPI except for regular CGI or CLI).
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   <span class="simpara">
+    If you use persistent handles and have the database updated by a
+    background process (perhaps via a crontab), and that process re-creates
+    the database by overwriting it (either by unlinking and rebuilding, or
+    moving the updated version to replace the current version),
+    you may experience undefined behaviour when a persistent handle on the
+    old version of the database is recycled.
+   </span>
+   <span class="simpara">
+    To avoid this situation, have your background processes open the same
+    database file and perform their updates in a transaction.
+   </span>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The filename of the SQLite database.  If the file does not exist, SQLite
+       will attempt to create it.  PHP must have write permissions to the file
+       if data is inserted, the database schema is modified or to create the
+       database if it does not exist.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The mode of the file. Intended to be used to open the database in
+       read-only mode.  Presently, this parameter is ignored by the sqlite
+       library.  The default value for mode is the octal value
+       <i>0666</i> and this is the recommended value.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">error_message</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Passed by reference and is set to hold a descriptive error message
+       explaining why the database could not be opened if there was an error.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a resource (database handle) on success, <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sqlite-open.html" class="function" rel="rdfs-seeAlso">sqlite_open()</a></li>
+    <li class="member"><a href="function.sqlite-close.html" class="function" rel="rdfs-seeAlso">sqlite_close()</a></li>
+    <li class="member"><a href="function.sqlite-factory.html" class="function" rel="rdfs-seeAlso">sqlite_factory()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-open.html">sqlite_open</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-prev.html">sqlite_prev</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gives information about a file</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.set-file-buffer.html">set_file_buffer</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.symlink.html">symlink</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.stat" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stat</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL maxdb:7.5.00.24-7.6.00.38)</p><p class="refpurpose"><span class="refname">stat</span> &mdash; <span class="dc-title">Gives information about a file</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>stat</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gathers the statistics of the file named by
+   <i><tt class="parameter">filename</tt></i>
+.  If <i><tt class="parameter">filename</tt></i>
+ is a
+   symbolic link, statistics are from the file itself, not the symlink.
+  </p>
+  <p class="para">
+   <a href="function.lstat.html" class="function">lstat()</a> is identical to <b>stat()</b>
+   except it would instead be based off the symlinks status.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the file.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <table border="5">
+    <caption><b><b>stat()</b> and <a href="function.fstat.html" class="function">fstat()</a> result
+     format</b></caption>
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Numeric</th>
+       <th colspan="1">Associative (since PHP 4.0.6)</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">0</td>
+       <td colspan="1" rowspan="1" align="left">dev</td>
+       <td colspan="1" rowspan="1" align="left">device number</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">1</td>
+       <td colspan="1" rowspan="1" align="left">ino</td>
+       <td colspan="1" rowspan="1" align="left">inode number *</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">2</td>
+       <td colspan="1" rowspan="1" align="left">mode</td>
+       <td colspan="1" rowspan="1" align="left">inode protection mode</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">3</td>
+       <td colspan="1" rowspan="1" align="left">nlink</td>
+       <td colspan="1" rowspan="1" align="left">number of links</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4</td>
+       <td colspan="1" rowspan="1" align="left">uid</td>
+       <td colspan="1" rowspan="1" align="left">userid of owner *</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5</td>
+       <td colspan="1" rowspan="1" align="left">gid</td>
+       <td colspan="1" rowspan="1" align="left">groupid of owner *</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">6</td>
+       <td colspan="1" rowspan="1" align="left">rdev</td>
+       <td colspan="1" rowspan="1" align="left">device type, if inode device</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">7</td>
+       <td colspan="1" rowspan="1" align="left">size</td>
+       <td colspan="1" rowspan="1" align="left">size in bytes</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">8</td>
+       <td colspan="1" rowspan="1" align="left">atime</td>
+       <td colspan="1" rowspan="1" align="left">time of last access (Unix timestamp)</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">9</td>
+       <td colspan="1" rowspan="1" align="left">mtime</td>
+       <td colspan="1" rowspan="1" align="left">time of last modification (Unix timestamp)</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">10</td>
+       <td colspan="1" rowspan="1" align="left">ctime</td>
+       <td colspan="1" rowspan="1" align="left">time of last inode change (Unix timestamp)</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">11</td>
+       <td colspan="1" rowspan="1" align="left">blksize</td>
+       <td colspan="1" rowspan="1" align="left">blocksize of filesystem IO **</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">12</td>
+       <td colspan="1" rowspan="1" align="left">blocks</td>
+       <td colspan="1" rowspan="1" align="left">number of blocks allocated **</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+   * On Windows this will always be 0.
+  </p>
+  <p class="para">
+   ** Only valid on systems supporting the st_blksize type - other
+   systems (e.g. Windows) return -1.
+  </p>
+  <p class="para">
+   In case of error, <b>stat()</b> returns <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Upon failure, an <b><tt>E_WARNING</tt></b> is emitted.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.6</td>
+       <td colspan="1" rowspan="1" align="left">
+        In addition to returning these attributes in a numeric array, they
+        can be accessed with associative indices, as noted next to each
+        parameter
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>stat()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Get&nbsp;file&nbsp;stat&nbsp;*/<br /></span><span style="color: #0000BB">$stat&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stat</span><span style="color: #007700">(</span><span style="color: #DD0000">'C:\php\php.exe'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Print&nbsp;file&nbsp;access&nbsp;file,&nbsp;this&nbsp;is&nbsp;the&nbsp;same&nbsp;<br />&nbsp;*&nbsp;as&nbsp;calling&nbsp;fileatime()<br />&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'Access&nbsp;time:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span style="color: #DD0000">'atime'</span><span style="color: #007700">];<br /><br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Print&nbsp;file&nbsp;modification&nbsp;time,&nbsp;this&nbsp;is&nbsp;the&nbsp;<br />&nbsp;*&nbsp;same&nbsp;as&nbsp;calling&nbsp;filemtime()<br />&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'Modification&nbsp;time:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span style="color: #DD0000">'mtime'</span><span style="color: #007700">];<br /><br /></span><span style="color: #FF8000">/*&nbsp;Print&nbsp;the&nbsp;device&nbsp;number&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'Device&nbsp;number:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span style="color: #DD0000">'dev'</span><span style="color: #007700">];</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Using <b>stat()</b> information together with <a href="function.touch.html" class="function">touch()</a></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Get&nbsp;file&nbsp;stat&nbsp;*/<br /></span><span style="color: #0000BB">$stat&nbsp;</span><span style="color: #007700">=&nbsp;@</span><span style="color: #0000BB">stat</span><span style="color: #007700">(</span><span style="color: #DD0000">'C:\php\php.exe'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Did&nbsp;we&nbsp;failed&nbsp;to&nbsp;get&nbsp;stat&nbsp;information&nbsp;?&nbsp;*/<br /></span><span style="color: #007700">if(!</span><span style="color: #0000BB">$stat</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Stat&nbsp;call&nbsp;failed...'</span><span style="color: #007700">;<br />}<br />else<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;We&nbsp;want&nbsp;the&nbsp;access&nbsp;time&nbsp;to&nbsp;be&nbsp;1&nbsp;week&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;before&nbsp;the&nbsp;current&nbsp;access&nbsp;time.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$atime&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span style="color: #DD0000">'atime'</span><span style="color: #007700">]&nbsp;+&nbsp;</span><span style="color: #0000BB">604800</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Touch&nbsp;the&nbsp;file&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if(!@</span><span style="color: #0000BB">touch</span><span style="color: #007700">(</span><span style="color: #DD0000">'some_file.txt'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">time</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">$atime</span><span style="color: #007700">))<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Failed&nbsp;to&nbsp;touch&nbsp;file...'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;else<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Touch&nbsp;returned&nbsp;success...'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: Note that time resolution may differ 
+from one file system to another.<br /></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">The results of this 
+function are cached. See <a href="function.clearstatcache.html" class="function">clearstatcache()</a> for 
+more details.</span></p></blockquote>
+  <div class="tip"><b class="tip">Tip</b><p class="simpara">As of PHP 5.0.0, this function
+can also be used with <em class="emphasis">some</em> URL wrappers.  Refer to 
+<a href="wrappers.html" class="xref">List of Supported Protocols/Wrappers</a> for a listing of which wrappers support 
+<b>stat()</b> family of functionality.</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.lstat.html" class="function" rel="rdfs-seeAlso">lstat()</a></li>
+    <li class="member"><a href="function.fstat.html" class="function" rel="rdfs-seeAlso">fstat()</a></li>
+    <li class="member"><a href="function.filemtime.html" class="function" rel="rdfs-seeAlso">filemtime()</a></li>
+    <li class="member"><a href="function.filegroup.html" class="function" rel="rdfs-seeAlso">filegroup()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.set-file-buffer.html">set_file_buffer</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.symlink.html">symlink</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

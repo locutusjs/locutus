@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Generates a backtrace</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.errorfunc.html">Error Handling Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.debug-print-backtrace.html">debug_print_backtrace</a></div>
+ <div class="up"><a href="ref.errorfunc.html">Error Handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.debug-backtrace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">debug_backtrace</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">debug_backtrace</span> &mdash; <span class="dc-title">Generates a backtrace</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>debug_backtrace</b></b></span>
+    ([ <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$provide_object</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>debug_backtrace()</b> generates a PHP backtrace.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative <a href="language.types.array.html" class="type array">array</a>. The possible returned elements
+   are as follows:
+  </p>
+  <p class="para">
+   <table border="5">
+    <caption><b>Possible returned elements from <b>debug_backtrace()</b></b></caption>
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Name</th>
+       <th colspan="1">Type</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">function</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.string.html" class="type string">string</a></td>
+       <td colspan="1" rowspan="1" align="left">
+        The current function name.  See also
+        <a href="language.constants.predefined.html" class="link">__FUNCTION__</a>.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">line</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.integer.html" class="type integer">integer</a></td>
+       <td colspan="1" rowspan="1" align="left">
+        The current line number.  See also
+        <a href="language.constants.predefined.html" class="link">__LINE__</a>.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">file</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.string.html" class="type string">string</a></td>
+       <td colspan="1" rowspan="1" align="left">
+        The current file name.  See also
+        <a href="language.constants.predefined.html" class="link">__FILE__</a>.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">class</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.string.html" class="type string">string</a></td>
+       <td colspan="1" rowspan="1" align="left">
+        The current <a href="language.oop.html" class="link">class</a> name.  See also
+        <a href="language.constants.predefined.html" class="link">__CLASS__</a>
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">object</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.object.html" class="type object">object</a></td>
+       <td colspan="1" rowspan="1" align="left">
+        The current <a href="language.oop.html" class="link">object</a>.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">type</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.string.html" class="type string">string</a></td>
+       <td colspan="1" rowspan="1" align="left">
+        The current call type. If a method call, &quot;-&gt;&quot; is returned. If a static
+        method call, &quot;::&quot; is returned. If a function call, nothing is returned.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">args</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.array.html" class="type array">array</a></td>
+       <td colspan="1" rowspan="1" align="left">
+        If inside a function, this lists the functions arguments.  If
+        inside an included file, this lists the included file name(s).
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.2.5</td>
+       <td colspan="1" rowspan="1" align="left">
+        Added the optional parameter <i><tt class="parameter">provide_object</tt></i>
+.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.1.1</td>
+       <td colspan="1" rowspan="1" align="left">
+        Added the current <a href="language.types.object.html" class="type object">object</a> as a possible return element.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>debug_backtrace()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;filename:&nbsp;/tmp/a.php<br /><br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">a_test</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"\nHi:&nbsp;$str"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">debug_backtrace</span><span style="color: #007700">());<br />}<br /><br /></span><span style="color: #0000BB">a_test</span><span style="color: #007700">(</span><span style="color: #DD0000">'friend'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;<br /></span><br /><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;filename:&nbsp;/tmp/b.php<br /></span><span style="color: #007700">include_once&nbsp;</span><span style="color: #DD0000">'/tmp/a.php'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Results similar to the following when executing
+    <var class="filename">/tmp/b.php</var>:
+    </p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Hi: friend
+array(2) {
+[0]=&gt;
+array(4) {
+    [&quot;file&quot;] =&gt; string(10) &quot;/tmp/a.php&quot;
+    [&quot;line&quot;] =&gt; int(10)
+    [&quot;function&quot;] =&gt; string(6) &quot;a_test&quot;
+    [&quot;args&quot;]=&gt;
+    array(1) {
+      [0] =&gt; &amp;string(6) &quot;friend&quot;
+    }
+}
+[1]=&gt;
+array(4) {
+    [&quot;file&quot;] =&gt; string(10) &quot;/tmp/b.php&quot;
+    [&quot;line&quot;] =&gt; int(2)
+    [&quot;args&quot;] =&gt;
+    array(1) {
+      [0] =&gt; string(10) &quot;/tmp/a.php&quot;
+    }
+    [&quot;function&quot;] =&gt; string(12) &quot;include_once&quot;
+  }
+}
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.trigger-error.html" class="function" rel="rdfs-seeAlso">trigger_error()</a></li>
+    <li class="member"><a href="function.debug-print-backtrace.html" class="function" rel="rdfs-seeAlso">debug_print_backtrace()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.errorfunc.html">Error Handling Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.debug-print-backtrace.html">debug_print_backtrace</a></div>
+ <div class="up"><a href="ref.errorfunc.html">Error Handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

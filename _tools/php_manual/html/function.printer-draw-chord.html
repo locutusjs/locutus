@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Draw a chord</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.printer-draw-bmp.html">printer_draw_bmp</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.printer-draw-elipse.html">printer_draw_elipse</a></div>
+ <div class="up"><a href="ref.printer.html">Printer Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.printer-draw-chord" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">printer_draw_chord</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">printer_draw_chord</span> &mdash; <span class="dc-title">Draw a chord</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>printer_draw_chord</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$printer_handle</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$rec_x</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$rec_y</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$rec_x1</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$rec_y1</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$rad_x</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$rad_y</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$rad_x1</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$rad_y1</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The function simply draws an chord.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">printer_handle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">printer_handle</tt></i>
+ must be a valid printer handle.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">rec_x</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">rec_x</tt></i>
+ is the upper left x coordinate of the
+       bounding rectangle.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">rec_y</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">rec_y</tt></i>
+ is the upper left y coordinate of
+       the bounding rectangle.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">rec_x1</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">rec_x1</tt></i>
+ is the lower right x coordinate of
+       the bounding rectangle.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">rec_y1</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">rec_y1</tt></i>
+ is the lower right y coordinate of
+       the bounding rectangle.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">rad_x</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">rad_x</tt></i>
+ is x coordinate of the radial defining
+       the beginning of the chord.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">rad_y</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">rad_y</tt></i>
+ is y coordinate of the radial defining
+       the beginning of the chord.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">rad_x1</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">rad_x1</tt></i>
+ is x coordinate of the radial defining
+       the end of the chord.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">rad_y1</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">rad_y1</tt></i>
+ is y coordinate of the radial defining
+       the end of the chord.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>printer_draw_chord()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$handle&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">printer_open</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">printer_start_doc</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"My&nbsp;Document"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printer_start_page</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$pen&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">printer_create_pen</span><span style="color: #007700">(</span><span style="color: #0000BB">PRINTER_PEN_SOLID</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"000000"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printer_select_pen</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$pen</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$brush&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">printer_create_brush</span><span style="color: #007700">(</span><span style="color: #0000BB">PRINTER_BRUSH_SOLID</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"2222FF"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printer_select_brush</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$brush</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printer_draw_chord</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">500</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">500</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">500</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printer_delete_brush</span><span style="color: #007700">(</span><span style="color: #0000BB">$brush</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printer_delete_pen</span><span style="color: #007700">(</span><span style="color: #0000BB">$pen</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printer_end_page</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printer_end_doc</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printer_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.printer-draw-bmp.html">printer_draw_bmp</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.printer-draw-elipse.html">printer_draw_elipse</a></div>
+ <div class="up"><a href="ref.printer.html">Printer Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

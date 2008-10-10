@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets stat information about the file descriptor fd</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dio-seek.html">dio_seek</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dio-tcsetattr.html">dio_tcsetattr</a></div>
+ <div class="up"><a href="ref.dio.html">Direct IO Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.dio-stat" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dio_stat</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5 &lt;= 5.0.5)</p><p class="refpurpose"><span class="refname">dio_stat</span> &mdash; <span class="dc-title">
+   Gets stat information about the file descriptor fd
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>dio_stat</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$fd</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>dio_stat()</b> returns information about the given file
+   descriptor.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fd</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The file descriptor returned by <a href="function.dio-open.html" class="function">dio_open()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative array with the following keys:
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      &quot;device&quot; - device
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      &quot;inode&quot; - inode
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      &quot;mode&quot; - mode
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      &quot;nlink&quot; - number of hard links
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      &quot;uid&quot; - user id
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      &quot;gid&quot; - group id
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      &quot;device_type&quot; - device type (if inode device)
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      &quot;size&quot; - total size in bytes
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      &quot;blocksize&quot; - blocksize
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      &quot;blocks&quot; - number of blocks allocated
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      &quot;atime&quot; - time of last access
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      &quot;mtime&quot; - time of last modification
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      &quot;ctime&quot; - time of last change
+     </p>
+    </li>
+   </ul>
+   On error <b>dio_stat()</b> returns <b><tt>NULL</tt></b>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dio-seek.html">dio_seek</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dio-tcsetattr.html">dio_tcsetattr</a></div>
+ <div class="up"><a href="ref.dio.html">Direct IO Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

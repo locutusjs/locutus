@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Prepares for a connection to a Z39.50 server</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.yaz-close.html">yaz_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.yaz-database.html">yaz_database</a></div>
+ <div class="up"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.yaz-connect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">yaz_connect</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PECL yaz:0.9-1.0.9)</p><p class="refpurpose"><span class="refname">yaz_connect</span> &mdash; <span class="dc-title">
+   Prepares for a connection to a Z39.50 server
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>yaz_connect</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$zurl</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$options</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This function returns a connection resource on success, zero on
+   failure.
+  </p>
+  <p class="para">
+   <b>yaz_connect()</b> prepares for a connection to a
+   Z39.50 server. 
+   This function is non-blocking and does not attempt to establish
+   a connection  - it merely prepares a connect to be performed later when
+   <a href="function.yaz-wait.html" class="function">yaz_wait()</a> is called.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    The <a href="http://www.indexdata.dk/yazproxy/" class="link external">&raquo; YAZ proxy</a> is a
+    freely available Z39.50 proxy.
+   <br />
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">zurl</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A string that takes the form <i>host[:port][/database]</i>.
+       If port is omitted, port 210 is used. If database is omitted 
+       <i>Default</i> is used.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If given as a string, it is treated as the Z39.50 V2 authentication 
+       string (OpenAuth).
+      </p>
+      <p class="para">
+       If given as an array, the contents of the array serves as options.
+       <dl>
+
+        <dt>
+
+         <span class="term">user</span>
+
+         <dd>
+
+          <p class="para">
+           Username for authentication.
+          </p>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">group</span>
+
+         <dd>
+
+          <p class="para">
+           Group for authentication.
+          </p>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">password</span>
+
+          <dd>
+
+           <p class="para">
+            Password for authentication.
+           </p>
+          </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">cookie</span>
+
+         <dd>
+
+          <p class="para">
+           Cookie for session (YAZ proxy).
+          </p>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">proxy</span>
+
+         <dd>
+
+          <p class="para">
+           Proxy for connection (YAZ proxy).
+          </p>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">persistent</span>
+
+         <dd>
+
+          <p class="para">
+           A boolean. If <b><tt>TRUE</tt></b> the connection is persistent; If <b><tt>FALSE</tt></b> the
+           connection is not persistent. By default connections are persistent.
+          </p>
+          <blockquote><p><b class="note">Note</b>: 
+           
+            If you open a persistent connection, you won&#039;t be able to close 
+            it later with <a href="function.yaz-close.html" class="function">yaz_close()</a>.
+           <br />
+          </p></blockquote>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">piggyback</span>
+
+         <dd>
+
+          <p class="para">
+           A boolean. If <b><tt>TRUE</tt></b> piggyback is enabled for searches; If <b><tt>FALSE</tt></b>
+           piggyback is disabled. By default piggyback is enabled.
+          </p>
+          <p class="para">
+           Enabling piggyback is more efficient and usually saves a 
+           network-round-trip for first time fetches of records. However, a 
+           few Z39.50 servers do not support piggyback or they ignore element
+           set names. For those, piggyback should be disabled.
+          </p>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">charset</span>
+
+         <dd>
+
+          <p class="para">
+           A string that specifies character set to be used in Z39.50 
+           language and character set negotiation. Use strings such as:
+           <i>ISO-8859-1</i>, <i>UTF-8</i>, 
+           <i>UTF-16</i>.
+          </p>
+          <p class="para">
+           Most Z39.50 servers do not support this feature (and thus, this is
+           ignored). Many servers use the ISO-8859-1 encoding for queries and
+           messages. MARC21/USMARC records are not affected by this setting.
+          </p>
+         </dd>
+
+        </dt>
+
+
+        <dt>
+
+         <span class="term">preferredMessageSize</span>
+
+         <dd>
+
+          <p class="para">
+           An integer that specifies the maximum byte size of all records
+           to be returned by a target during retrieval. See the
+           <a href="http://www.loc.gov/z3950/agency/markup/04.html#3.2.1.1.4" class="link external">&raquo; Z39.50 standard</a> for more
+           information.
+          </p>
+          <blockquote><p><b class="note">Note</b>: 
+           
+            This option is supported in PECL YAZ 1.0.5 or later.
+           <br />
+          </p></blockquote>
+         </dd>
+
+        </dt>
+
+
+        <dt>
+
+         <span class="term">maximumRecordSize</span>
+
+         <dd>
+
+          <p class="para">
+           An integer that specifies the maximum byte size of a single record
+           to be returned by a target during retrieval. This
+           entity is referred to as Exceptional-record-size in the
+          <a href="http://www.loc.gov/z3950/agency/markup/04.html#3.2.1.1.4" class="link external">&raquo; Z39.50 standard</a>.
+          </p>
+          <blockquote><p><b class="note">Note</b>: 
+           
+            This option is supported in PECL YAZ 1.0.5 or later.
+           <br />
+          </p></blockquote>
+         </dd>
+
+        </dt>
+
+
+       </dl>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A connection resource on success, <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.1.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The parameter <i><tt class="parameter">options</tt></i>
+ was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.yaz-close.html" class="function" rel="rdfs-seeAlso">yaz_close()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.yaz-close.html">yaz_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.yaz-database.html">yaz_database</a></div>
+ <div class="up"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the next row from the result data as an associative or
+   numeric array, or both</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.oci-fetch-all.html">oci_fetch_all</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.oci-fetch-assoc.html">oci_fetch_assoc</a></div>
+ <div class="up"><a href="ref.oci8.html">OCI8 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.oci-fetch-array" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">oci_fetch_array</h1>
+  <p class="verinfo">(PHP 5, PECL oci8:1.1-1.2.4)</p><p class="refpurpose"><span class="refname">oci_fetch_array</span> &mdash; <span class="dc-title">Returns the next row from the result data as an associative or
+   numeric array, or both
+  </span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>oci_fetch_array</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$statement</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns an array, which corresponds to the next result row.
+  </p>
+  <p class="para">For details on the data type mapping performed by 
+the oci8 driver, see the <a href="oci8.datatypes.html" class="link">datatypes 
+supported by the driver</a></p>
+  <p class="para">
+   It should be mentioned here, that <b>oci_fetch_array()</b>
+   is <em class="emphasis">insignificantly</em> slower, than
+   <a href="function.oci-fetch-row.html" class="function">oci_fetch_row()</a>, but much more handy.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">statement</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid OCI statement identifier.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">statement</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An optional second parameter can be any combination of the following
+       constants:
+       <ul class="simplelist">
+        <li class="member">
+         <b><tt>OCI_BOTH</tt></b> - return an array with both associative
+         and numeric indices (the same as <b><tt>OCI_ASSOC</tt></b>
+         + <b><tt>OCI_NUM</tt></b>). This is the default behavior.
+        </li>
+        <li class="member">
+         <b><tt>OCI_ASSOC</tt></b> - return an associative array
+         (as <a href="function.oci-fetch-assoc.html" class="function">oci_fetch_assoc()</a> works).
+        </li>
+        <li class="member">
+         <b><tt>OCI_NUM</tt></b> - return a numeric array,
+         (as <a href="function.oci-fetch-row.html" class="function">oci_fetch_row()</a> works).
+        </li>
+        <li class="member">
+         <b><tt>OCI_RETURN_NULLS</tt></b> - create empty elements
+         for the <b><tt>NULL</tt></b> fields.
+        </li>
+        <li class="member">
+         <b><tt>OCI_RETURN_LOBS</tt></b> - return the value of a LOB
+         of the descriptor.
+        </li>
+       </ul>
+       Default <i><tt class="parameter">mode</tt></i>
+ is <b><tt>OCI_BOTH</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array with both associative and numeric indices, or <b><tt>FALSE</tt></b> if
+   there are no more rows in the <i><tt class="parameter">statement</tt></i>
+.
+  </p>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function sets NULL fields to
+the PHP <b><tt>NULL</tt></b> value.</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   <span class="simpara">
+    Oracle returns all field names in uppercase and associative indices in
+    the result array will be uppercased too.
+   </span>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>oci_fetch_array()</b> with <b><tt>OCI_BOTH</tt></b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$connection&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"apelsin"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"kanistra"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;name&nbsp;FROM&nbsp;fruits"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$statement&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_parse&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_execute&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$statement</span><span style="color: #007700">);<br /><br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_fetch_array&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$statement</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">OCI_BOTH</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">].</span><span style="color: #DD0000">"&nbsp;and&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'ID'</span><span style="color: #007700">].</span><span style="color: #DD0000">"&nbsp;is&nbsp;the&nbsp;same&lt;br&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">].</span><span style="color: #DD0000">"&nbsp;and&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'NAME'</span><span style="color: #007700">].</span><span style="color: #DD0000">"&nbsp;is&nbsp;the&nbsp;same&lt;br&gt;"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 <b>oci_fetch_array()</b> with
+     <b><tt>OCI_NUM</tt></b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$connection&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;name,&nbsp;lob_field&nbsp;FROM&nbsp;fruits"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$statement&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_parse&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_execute&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$statement</span><span style="color: #007700">);<br /><br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_fetch_array&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$statement</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">OCI_NUM</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">].</span><span style="color: #DD0000">"&lt;br&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">].</span><span style="color: #DD0000">"&lt;br&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">read</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">).</span><span style="color: #DD0000">"&lt;br&gt;"</span><span style="color: #007700">;&nbsp;&nbsp;</span><span style="color: #FF8000">//this&nbsp;will&nbsp;output&nbsp;first&nbsp;100&nbsp;bytes&nbsp;from&nbsp;LOB<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #3 <b>oci_fetch_array()</b> with
+     <b><tt>OCI_ASSOC</tt></b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$connection&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;name,&nbsp;lob_field&nbsp;FROM&nbsp;fruits"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$statement&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_parse&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_execute&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$statement</span><span style="color: #007700">);<br /><br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_fetch_array&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$statement</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">OCI_ASSOC</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'ID'</span><span style="color: #007700">].</span><span style="color: #DD0000">"&lt;br&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'NAME'</span><span style="color: #007700">].</span><span style="color: #DD0000">"&lt;br&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'LOB_FIELD'</span><span style="color: #007700">].</span><span style="color: #DD0000">"&lt;br&gt;"</span><span style="color: #007700">;&nbsp;&nbsp;</span><span style="color: #FF8000">//this&nbsp;will&nbsp;output&nbsp;"Object&nbsp;id&nbsp;#1"<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #4 <b>oci_fetch_array()</b> with
+     <b><tt>OCI_RETURN_LOBS</tt></b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$connection&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;name,&nbsp;lob_field&nbsp;FROM&nbsp;fruits"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$statement&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_parse&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_execute&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$statement</span><span style="color: #007700">);<br /><br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_fetch_array&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$statement</span><span style="color: #007700">,&nbsp;(</span><span style="color: #0000BB">OCI_NUM</span><span style="color: #007700">+</span><span style="color: #0000BB">OCI_RETURN_LOBS</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">].</span><span style="color: #DD0000">"&lt;br&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">].</span><span style="color: #DD0000">"&lt;br&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'LOB_FIELD'</span><span style="color: #007700">].</span><span style="color: #DD0000">"&lt;br&gt;"</span><span style="color: #007700">;&nbsp;&nbsp;</span><span style="color: #FF8000">//this&nbsp;will&nbsp;output&nbsp;LOB's&nbsp;content<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.oci-fetch-assoc.html" class="function" rel="rdfs-seeAlso">oci_fetch_assoc()</a></li>
+    <li class="member"><a href="function.oci-fetch-object.html" class="function" rel="rdfs-seeAlso">oci_fetch_object()</a></li>
+    <li class="member"><a href="function.oci-fetch-row.html" class="function" rel="rdfs-seeAlso">oci_fetch_row()</a></li>
+    <li class="member"><a href="function.oci-fetch-all.html" class="function" rel="rdfs-seeAlso">oci_fetch_all()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.oci-fetch-all.html">oci_fetch_all</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.oci-fetch-assoc.html">oci_fetch_assoc</a></div>
+ <div class="up"><a href="ref.oci8.html">OCI8 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

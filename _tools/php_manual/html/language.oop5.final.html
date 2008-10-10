@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Final Keyword</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.oop5.magic.html">Magic Methods</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.oop5.cloning.html">Object cloning</a></div>
+ <div class="up"><a href="language.oop5.html">Classes and Objects (PHP 5)</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.oop5.final" class="sect1">
+  <h2 class="title">Final Keyword</h2>
+  <p class="para">
+   PHP 5 introduces the final keyword, which prevents child classes from
+   overriding a method by prefixing the definition with final. If the class
+   itself is being defined final then it cannot be extended.
+  </p>
+  
+  <div class="example">
+   <p><b>Example #1 Final methods example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">BaseClass&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">test</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"BaseClass::test()&nbsp;called\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;final&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">moreTesting</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"BaseClass::moreTesting()&nbsp;called\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />}<br /><br />class&nbsp;</span><span style="color: #0000BB">ChildClass&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">BaseClass&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">moreTesting</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"ChildClass::moreTesting()&nbsp;called\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #FF8000">//&nbsp;Results&nbsp;in&nbsp;Fatal&nbsp;error:&nbsp;Cannot&nbsp;override&nbsp;final&nbsp;method&nbsp;BaseClass::moreTesting()<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <div class="example">
+   <p><b>Example #2 Final class example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">final&nbsp;class&nbsp;</span><span style="color: #0000BB">BaseClass&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">test</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"BaseClass::test()&nbsp;called\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Here&nbsp;it&nbsp;doesn't&nbsp;matter&nbsp;if&nbsp;you&nbsp;specify&nbsp;the&nbsp;function&nbsp;as&nbsp;final&nbsp;or&nbsp;not<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">final&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">moreTesting</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"BaseClass::moreTesting()&nbsp;called\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />}<br /><br />class&nbsp;</span><span style="color: #0000BB">ChildClass&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">BaseClass&nbsp;</span><span style="color: #007700">{<br />}<br /></span><span style="color: #FF8000">//&nbsp;Results&nbsp;in&nbsp;Fatal&nbsp;error:&nbsp;Class&nbsp;ChildClass&nbsp;may&nbsp;not&nbsp;inherit&nbsp;from&nbsp;final&nbsp;class&nbsp;(BaseClass)<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.oop5.magic.html">Magic Methods</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.oop5.cloning.html">Object cloning</a></div>
+ <div class="up"><a href="language.oop5.html">Classes and Objects (PHP 5)</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

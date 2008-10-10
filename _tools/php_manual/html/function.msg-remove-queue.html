@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Destroy a message queue</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.msg-receive.html">msg_receive</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.msg-send.html">msg_send</a></div>
+ <div class="up"><a href="ref.sem.html">Semaphore Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.msg-remove-queue" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">msg_remove_queue</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">msg_remove_queue</span> &mdash; <span class="dc-title">Destroy a message queue</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>msg_remove_queue</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$queue</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>msg_remove_queue()</b> destroys the message queue specified
+   by the <i><tt class="parameter">queue</tt></i>
+.  Only use this function when all
+   processes have finished working with the message queue and you need to
+   release the system resources held by it.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">queue</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Message queue resource handle
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.msg-get-queue.html" class="function" rel="rdfs-seeAlso">msg_get_queue()</a></li>
+    <li class="member"><a href="function.msg-receive.html" class="function" rel="rdfs-seeAlso">msg_receive()</a></li>
+    <li class="member"><a href="function.msg-stat-queue.html" class="function" rel="rdfs-seeAlso">msg_stat_queue()</a></li>
+    <li class="member"><a href="function.msg-set-queue.html" class="function" rel="rdfs-seeAlso">msg_set_queue()</a></li>
+   </ul>
+  </p>
+ </div>
+  
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.msg-receive.html">msg_receive</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.msg-send.html">msg_send</a></div>
+ <div class="up"><a href="ref.sem.html">Semaphore Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

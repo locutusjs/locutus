@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Adds an attribute to the SimpleXML element</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.simplexml-element-addChild.html">SimpleXMLElement->addChild</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.simplexml-element-addAttribute" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SimpleXMLElement-&gt;addAttribute</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SimpleXMLElement-&gt;addAttribute</span> &mdash; <span class="dc-title">
+   Adds an attribute to the SimpleXML element
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SimpleXMLElement</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">void</span> <span class="methodname"><b><b>addAttribute</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+    , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$value</tt></span>
+    [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$namespace</tt></span>
+   ] )</div>
+
+  </div>
+  <p class="para">
+   Adds an attribute to the SimpleXML element.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name of the attribute to add.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">value</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The value of the attribute.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">namespace</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If specified, the namespace to which the attribute belongs.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Add attributes and children to a SimpleXML element</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">include&nbsp;</span><span style="color: #DD0000">'example.php'</span><span style="color: #007700">;<br />&nbsp;<br /></span><span style="color: #0000BB">$sxe&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SimpleXMLElement</span><span style="color: #007700">(</span><span style="color: #0000BB">$xmlstr</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$sxe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addAttribute</span><span style="color: #007700">(</span><span style="color: #DD0000">'type'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'documentary'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$movie&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$sxe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addChild</span><span style="color: #007700">(</span><span style="color: #DD0000">'movie'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$movie</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addChild</span><span style="color: #007700">(</span><span style="color: #DD0000">'title'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PHP2:&nbsp;More&nbsp;Parser&nbsp;Stories'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$movie</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addChild</span><span style="color: #007700">(</span><span style="color: #DD0000">'plot'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;all&nbsp;about&nbsp;the&nbsp;people&nbsp;who&nbsp;make&nbsp;it&nbsp;work.'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$characters&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$movie</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addChild</span><span style="color: #007700">(</span><span style="color: #DD0000">'characters'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$character&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$characters</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addChild</span><span style="color: #007700">(</span><span style="color: #DD0000">'character'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$character</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addChild</span><span style="color: #007700">(</span><span style="color: #DD0000">'name'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Mr.&nbsp;Parser'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$character</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addChild</span><span style="color: #007700">(</span><span style="color: #DD0000">'actor'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'John&nbsp;Doe'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$rating&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$movie</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addChild</span><span style="color: #007700">(</span><span style="color: #DD0000">'rating'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'5'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$rating</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addAttribute</span><span style="color: #007700">(</span><span style="color: #DD0000">'type'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'stars'</span><span style="color: #007700">);<br />&nbsp;<br />echo&nbsp;</span><span style="color: #0000BB">$sxe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">asXML</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.simplexml-element-addChild.html" class="xref">SimpleXMLElement->addChild</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.simplexml-element-addChild.html">SimpleXMLElement->addChild</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

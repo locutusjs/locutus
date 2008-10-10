@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set miscellaneous runtime FTP options</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ftp-rmdir.html">ftp_rmdir</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ftp-site.html">ftp_site</a></div>
+ <div class="up"><a href="ref.ftp.html">FTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ftp-set-option" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ftp_set_option</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">ftp_set_option</span> &mdash; <span class="dc-title">Set miscellaneous runtime FTP options</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ftp_set_option</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$ftp_stream</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$option</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$value</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function controls various runtime options for the specified FTP 
+   stream.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ftp_stream</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The link identifier of the FTP connection.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">option</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Currently, the following options are supported:
+       <table border="5">
+        <caption><b>Supported runtime FTP options</b></caption>
+        <colgroup>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>FTP_TIMEOUT_SEC</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            Changes the timeout in seconds used for all network related 
+            functions. <i><tt class="parameter">value</tt></i>
+ must be an integer that
+            is greater than 0. The default timeout is 90 seconds.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>FTP_AUTOSEEK</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            When enabled, GET or PUT requests with a 
+            <i><tt class="parameter">resumepos</tt></i>
+ or <i><tt class="parameter">startpos</tt></i>
+
+            parameter will first seek to the requested position within the file.
+            This is enabled by default.
+           </td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">value</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       This parameter depends on which <i><tt class="parameter">option</tt></i>
+ is chosen
+       to be altered.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if the option could be set; <b><tt>FALSE</tt></b> if not. A warning
+   message will be thrown if the <i><tt class="parameter">option</tt></i>
+ is not
+   supported or the passed <i><tt class="parameter">value</tt></i>
+ doesn&#039;t match the
+   expected value for the given <i><tt class="parameter">option</tt></i>
+.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ftp_set_option()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Set&nbsp;the&nbsp;network&nbsp;timeout&nbsp;to&nbsp;10&nbsp;seconds<br /></span><span style="color: #0000BB">ftp_set_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">FTP_TIMEOUT_SEC</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ftp-get-option.html" class="function" rel="rdfs-seeAlso">ftp_get_option()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ftp-rmdir.html">ftp_rmdir</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ftp-site.html">ftp_site</a></div>
+ <div class="up"><a href="ref.ftp.html">FTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

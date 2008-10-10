@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Binds a name to a socket</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.socket-accept.html">socket_accept</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-clear-error.html">socket_clear_error</a></div>
+ <div class="up"><a href="ref.sockets.html">Socket Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.socket-bind" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">socket_bind</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">socket_bind</span> &mdash; <span class="dc-title">Binds a name to a socket</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>socket_bind</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$socket</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$address</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$port</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Binds the name given in <i><tt class="parameter">address</tt></i>
+ to the socket
+   described by <i><tt class="parameter">socket</tt></i>
+. This has to be done before
+   a connection is be established using <a href="function.socket-connect.html" class="function">socket_connect()</a>
+   or <a href="function.socket-listen.html" class="function">socket_listen()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">socket</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid socket resource created with <a href="function.socket-create.html" class="function">socket_create()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">address</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the socket is of the <b><tt>AF_INET</tt></b> family, the
+       <i><tt class="parameter">address</tt></i>
+ is an IP in dotted-quad notation
+       (e.g. <i>127.0.0.1</i>).
+      </p>
+      <p class="para">
+       If the socket is of the <b><tt>AF_UNIX</tt></b> family, the
+       <i><tt class="parameter">address</tt></i>
+ is the path of a
+       Unix-domain socket (e.g. <var class="filename">/tmp/my.sock</var>).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">port</tt></i>
+ (Optional)</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">port</tt></i>
+ parameter is only used when
+       connecting to an <b><tt>AF_INET</tt></b> socket, and
+       designates the port on the remote host to which a connection
+       should be made.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+  <p class="para">
+   The error code can be retrieved with <a href="function.socket-last-error.html" class="function">socket_last_error()</a>.
+   This code may be passed to <a href="function.socket-strerror.html" class="function">socket_strerror()</a> to get a
+   textual explanation of the error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>socket_bind()</b> to set the source address</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;socket<br /></span><span style="color: #0000BB">$sock&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">socket_create</span><span style="color: #007700">(</span><span style="color: #0000BB">AF_INET</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SOCK_STREAM</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SOL_TCP</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;An&nbsp;example&nbsp;list&nbsp;of&nbsp;IP&nbsp;addresses&nbsp;owned&nbsp;by&nbsp;the&nbsp;computer<br /></span><span style="color: #0000BB">$sourceips</span><span style="color: #007700">[</span><span style="color: #DD0000">'kevin'</span><span style="color: #007700">]&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;</span><span style="color: #DD0000">'127.0.0.1'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$sourceips</span><span style="color: #007700">[</span><span style="color: #DD0000">'madcoder'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">'127.0.0.2'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Bind&nbsp;the&nbsp;source&nbsp;address<br /></span><span style="color: #0000BB">socket_bind</span><span style="color: #007700">(</span><span style="color: #0000BB">$sock</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sourceips</span><span style="color: #007700">[</span><span style="color: #DD0000">'madcoder'</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">//&nbsp;Connect&nbsp;to&nbsp;destination&nbsp;address<br /></span><span style="color: #0000BB">socket_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$sock</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'127.0.0.1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">80</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Write<br /></span><span style="color: #0000BB">$request&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'GET&nbsp;/&nbsp;HTTP/1.1'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\r\n"&nbsp;</span><span style="color: #007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'Host:&nbsp;example.com'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\r\n\r\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">socket_write</span><span style="color: #007700">(</span><span style="color: #0000BB">$sock</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$request</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Close<br /></span><span style="color: #0000BB">socket_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$sock</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function must be used on the socket before
+    <a href="function.socket-connect.html" class="function">socket_connect()</a>.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Windows 9x/ME compatibility note:
+    <a href="function.socket-last-error.html" class="function">socket_last_error()</a> may return an invalid error code
+    if trying to bind the socket to a wrong address that does not belong to
+    your machine.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.socket-connect.html" class="function" rel="rdfs-seeAlso">socket_connect()</a></li>
+    <li class="member"><a href="function.socket-listen.html" class="function" rel="rdfs-seeAlso">socket_listen()</a></li>
+    <li class="member"><a href="function.socket-create.html" class="function" rel="rdfs-seeAlso">socket_create()</a></li>
+    <li class="member"><a href="function.socket-last-error.html" class="function" rel="rdfs-seeAlso">socket_last_error()</a></li>
+    <li class="member"><a href="function.socket-strerror.html" class="function" rel="rdfs-seeAlso">socket_strerror()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.socket-accept.html">socket_accept</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-clear-error.html">socket_clear_error</a></div>
+ <div class="up"><a href="ref.sockets.html">Socket Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

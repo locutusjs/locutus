@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>List all the subscribed mailboxes</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-getmailboxes.html">imap_getmailboxes</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-header.html">imap_header</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imap-getsubscribed" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_getsubscribed</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imap_getsubscribed</span> &mdash; <span class="dc-title">List all the subscribed mailboxes</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>imap_getsubscribed</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$imap_stream</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$ref</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pattern</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets information on the subscribeds mailboxes.
+  </p>
+  <p class="para">
+   Identical to <a href="function.imap-getmailboxes.html" class="function">imap_getmailboxes()</a>, except that it only
+   returns mailboxes that the user is subscribed to.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+imap_stream</tt></i>
+</span>
+<dd>
+<p class="para">An IMAP stream returned by 
+<a href="function.imap-open.html" class="function">imap_open()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ref</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">ref</tt></i>
+ should normally be just the server
+       specification as described in <a href="function.imap-open.html" class="function">imap_open()</a>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pattern</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Specifies where in the mailbox hierarchy to start searching.
+      </p>
+      <p class="para">
+       There are two special characters you can pass as part of the
+       <i><tt class="parameter">pattern</tt></i>
+: &#039;*&#039; and &#039;%&#039;. &#039;*&#039; means to return
+       all mailboxes. If you pass <i><tt class="parameter">pattern</tt></i>
+ as &#039;*&#039;,
+       you will get a list of the entire mailbox hierarchy. &#039;%&#039; means to
+       return the current level only. &#039;%&#039; as the
+       <i><tt class="parameter">pattern</tt></i>
+ parameter will return only the top
+       level mailboxes; &#039;~/mail/%&#039; on UW_IMAPD will return every mailbox
+       in the ~/mail directory, but none in subfolders of that
+       directory.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array of objects containing mailbox information. Each
+   object has the attributes <i><tt class="parameter">name</tt></i>
+, specifying
+   the full name of the mailbox; <i><tt class="parameter">delimiter</tt></i>
+,
+   which is the hierarchy delimiter for the part of the hierarchy
+   this mailbox is in; and
+   <i><tt class="parameter">attributes</tt></i>
+. <i><tt class="parameter">Attributes</tt></i>
+
+   is a bitmask that can be tested against:
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      <b><tt>LATT_NOINFERIORS</tt></b> - This mailbox has no
+      &quot;children&quot; (there are no mailboxes below this one).
+     </span>
+    </li>
+   <li class="listitem">
+     <span class="simpara">
+      <b><tt>LATT_NOSELECT</tt></b> - This is only a container,
+      not a mailbox - you cannot open it.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <b><tt>LATT_MARKED</tt></b> - This mailbox is marked.
+      Only used by UW-IMAPD.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <b><tt>LATT_UNMARKED</tt></b> - This mailbox is not marked.
+      Only used by UW-IMAPD.
+     </span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-getmailboxes.html">imap_getmailboxes</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-header.html">imap_header</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

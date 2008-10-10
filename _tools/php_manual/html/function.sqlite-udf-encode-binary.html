@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Encode binary data before returning it from an UDF</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-udf-decode-binary.html">sqlite_udf_decode_binary</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-unbuffered-query.html">sqlite_unbuffered_query</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sqlite-udf-encode-binary" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_udf_encode_binary</h1>
+  <p class="verinfo">(PHP 5, PECL sqlite:1.0-1.0.3)</p><p class="refpurpose"><span class="refname">sqlite_udf_encode_binary</span> &mdash; <span class="dc-title">Encode binary data before returning it from an UDF</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>sqlite_udf_encode_binary</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>sqlite_udf_encode_binary()</b> applies a binary encoding
+   to the <i><tt class="parameter">data</tt></i>
+ so that it can be safely returned from
+   queries (since the underlying libsqlite API is not binary safe).
+  </p>
+  <p class="para">
+   If there is a chance that your data might be binary unsafe (e.g.: it
+   contains a NUL byte in the middle rather than at the end, or if it has and
+   <i>0x01</i> byte as the first character) then you must
+   call this function to encode the return value from your UDF.
+  </p>
+  <p class="para">
+   PHP does not perform this encode/decode operation automatically as it would
+   severely impact performance if it did.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Do not use <a href="function.sqlite-escape-string.html" class="function">sqlite_escape_string()</a> to quote strings
+    returned from UDF&#039;s as it will lead to double-quoting of the data.  Use
+    <b>sqlite_udf_encode_binary()</b> instead!
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="language.types.string.html" class="type string">string</a> being encoded.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The encoded <a href="language.types.string.html" class="type string">string</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sqlite-udf-decode-binary.html" class="function" rel="rdfs-seeAlso">sqlite_udf_decode_binary()</a></li>
+    <li class="member"><a href="function.sqlite-escape-string.html" class="function" rel="rdfs-seeAlso">sqlite_escape_string()</a></li>
+    <li class="member"><a href="function.sqlite-create-function.html" class="function" rel="rdfs-seeAlso">sqlite_create_function()</a></li>
+    <li class="member"><a href="function.sqlite-create-aggregate.html" class="function" rel="rdfs-seeAlso">sqlite_create_aggregate()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-udf-decode-binary.html">sqlite_udf_decode_binary</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-unbuffered-query.html">sqlite_unbuffered_query</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

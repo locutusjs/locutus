@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Retrieves a file from the FTP server and writes it to a local file (non-blocking)</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ftp-nb-fput.html">ftp_nb_fput</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ftp-nb-put.html">ftp_nb_put</a></div>
+ <div class="up"><a href="ref.ftp.html">FTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ftp-nb-get" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ftp_nb_get</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">ftp_nb_get</span> &mdash; <span class="dc-title">Retrieves a file from the FTP server and writes it to a local file (non-blocking)</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>ftp_nb_get</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$ftp_stream</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$local_file</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$remote_file</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$resumepos</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>ftp_nb_get()</b> retrieves a remote file from the FTP server,
+   and saves it into a local file. 
+  </p>
+  <p class="para">
+   The difference between this function and <a href="function.ftp-get.html" class="function">ftp_get()</a> is that
+   this function retrieves the file asynchronously, so your program can perform 
+   other operations while the file is being downloaded.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ftp_stream</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The link identifier of the FTP connection.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">local_file</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The local file path (will be overwritten if the file already exists).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">remote_file</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The remote file path.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The transfer mode. Must be either <b><tt>FTP_ASCII</tt></b> or
+       <b><tt>FTP_BINARY</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">resumepos</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para"/>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>FTP_FAILED</tt></b> or <b><tt>FTP_FINISHED</tt></b>
+   or <b><tt>FTP_MOREDATA</tt></b>.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ftp_nb_get()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Initate&nbsp;the&nbsp;download<br /></span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ftp_nb_get</span><span style="color: #007700">(</span><span style="color: #0000BB">$my_connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"test"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"README"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">FTP_BINARY</span><span style="color: #007700">);<br />while&nbsp;(</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">FTP_MOREDATA</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Do&nbsp;whatever&nbsp;you&nbsp;want<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"."</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Continue&nbsp;downloading...<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ftp_nb_continue</span><span style="color: #007700">(</span><span style="color: #0000BB">$my_connection</span><span style="color: #007700">);<br />}<br />if&nbsp;(</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">!=&nbsp;</span><span style="color: #0000BB">FTP_FINISHED</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"There&nbsp;was&nbsp;an&nbsp;error&nbsp;downloading&nbsp;the&nbsp;file..."</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;exit(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example">
+    <p><b>Example #2 Resuming a download with <b>ftp_nb_get()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Initate&nbsp;<br /></span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ftp_nb_get</span><span style="color: #007700">(</span><span style="color: #0000BB">$my_connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"test"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"README"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">FTP_BINARY</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">filesize</span><span style="color: #007700">(</span><span style="color: #DD0000">"test"</span><span style="color: #007700">));<br /></span><span style="color: #FF8000">//&nbsp;OR:&nbsp;$ret&nbsp;=&nbsp;ftp_nb_get($my_connection,&nbsp;"test",&nbsp;"README",&nbsp;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FTP_BINARY,&nbsp;FTP_AUTORESUME);<br /></span><span style="color: #007700">while&nbsp;(</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">FTP_MOREDATA</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Do&nbsp;whatever&nbsp;you&nbsp;want<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"."</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Continue&nbsp;downloading...<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ftp_nb_continue</span><span style="color: #007700">(</span><span style="color: #0000BB">$my_connection</span><span style="color: #007700">);<br />}<br />if&nbsp;(</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">!=&nbsp;</span><span style="color: #0000BB">FTP_FINISHED</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"There&nbsp;was&nbsp;an&nbsp;error&nbsp;downloading&nbsp;the&nbsp;file..."</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;exit(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example">
+    <p><b>Example #3 
+     Resuming a download at position 100 to a new
+     file with <b>ftp_nb_get()</b>
+    </b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Disable&nbsp;Autoseek<br /></span><span style="color: #0000BB">ftp_set_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$my_connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">FTP_AUTOSEEK</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Initiate<br /></span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ftp_nb_get</span><span style="color: #007700">(</span><span style="color: #0000BB">$my_connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"newfile"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"README"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">FTP_BINARY</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br />while&nbsp;(</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">FTP_MOREDATA</span><span style="color: #007700">)&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;...&nbsp;*/<br />&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;//&nbsp;Continue&nbsp;downloading...<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ftp_nb_continue</span><span style="color: #007700">(</span><span style="color: #0000BB">$my_connection</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   In the example above, <var class="filename">newfile</var> is 100 bytes smaller
+   than <var class="filename">README</var> on the FTP server because we started
+   reading at offset 100. If we didn&#039;t disable 
+   <b><tt>FTP_AUTOSEEK</tt></b>, the first 100 bytes of
+   <var class="filename">newfile</var> would be <i>&#039;\0&#039;</i>.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ftp-nb-fget.html" class="function" rel="rdfs-seeAlso">ftp_nb_fget()</a></li>
+    <li class="member"><a href="function.ftp-nb-continue.html" class="function" rel="rdfs-seeAlso">ftp_nb_continue()</a></li>
+    <li class="member"><a href="function.ftp-fget.html" class="function" rel="rdfs-seeAlso">ftp_fget()</a></li>
+    <li class="member"><a href="function.ftp-get.html" class="function" rel="rdfs-seeAlso">ftp_get()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ftp-nb-fput.html">ftp_nb_fput</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ftp-nb-put.html">ftp_nb_put</a></div>
+ <div class="up"><a href="ref.ftp.html">FTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

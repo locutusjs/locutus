@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Creating a parallelogram</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-shaveimage.html">Imagick::shaveImage</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-sigmoidalcontrastimage.html">Imagick::sigmoidalContrastImage</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagick-shearimage" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::shearImage</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Imagick::shearImage</span> &mdash; <span class="dc-title">Creating a parallelogram</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>Imagick::shearImage</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$background</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$x_shear</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$y_shear</tt></span>
+   )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+currently not documented; only its argument list is available.
+</p></div>
+  <p class="para">
+   Slides one edge of an image along the X or Y axis, creating a parallelogram.
+   An X direction shear slides an edge along the X axis, while a Y direction
+   shear slides an edge along the Y axis.  The amount of the shear is controlled
+   by a shear angle.  For X direction shears, x_shear is measured relative to
+   the Y axis, and similarly, for Y direction shears y_shear is measured
+   relative to the X axis.  Empty triangles left over from shearing the image
+   are filled with the background color.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">background</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The background color
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">x_shear</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The number of degrees to shear on the x axis
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">y_shear</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The number of degrees to shear on the y axis
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">2.1.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        Now allows a string representing the color as the first parameter.
+        Previous versions allow only an ImagickPixel object.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-shaveimage.html">Imagick::shaveImage</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-sigmoidalcontrastimage.html">Imagick::sigmoidalContrastImage</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Performs logical negation on a variant</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.variant-mul.html">variant_mul</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.variant-not.html">variant_not</a></div>
+ <div class="up"><a href="ref.com.html">COM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.variant-neg" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">variant_neg</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">variant_neg</span> &mdash; <span class="dc-title">Performs logical negation on a variant</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>variant_neg</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$variant</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Performs logical negation of <i><tt class="parameter">variant</tt></i>
+.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">variant</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The variant.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+
+ As with all the variant arithmetic functions, the parameters for this function
+ can be either a PHP native type (integer, string, floating point, boolean or
+ <b><tt>NULL</tt></b>), or an instance of a COM, VARIANT or DOTNET class.  PHP native types
+ will be converted to variants using the same rules as found in the constructor
+ for the <a href="class.variant.html" class="xref">VARIANT</a> class.  COM and DOTNET objects
+ will have the value of their default property taken and used as the variant value.
+<br />
+
+ The variant arithmetic functions are wrappers around the similarly named
+ functions in the COM library; for more information on these functions, consult
+ the MSDN library.  The PHP functions are named slightly differently; for example
+ <a href="function.variant-add.html" class="function">variant_add()</a> in PHP corresponds to <i>VarAdd()
+ </i> in the MSDN documentation.
+<br />
+</p></blockquote>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the result of the logical negation.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.variant-mul.html">variant_mul</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.variant-not.html">variant_not</a></div>
+ <div class="up"><a href="ref.com.html">COM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

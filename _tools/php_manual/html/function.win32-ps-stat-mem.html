@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Stat memory utilization</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.win32-ps-list-procs.html">win32_ps_list_procs</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.win32-ps-stat-proc.html">win32_ps_stat_proc</a></div>
+ <div class="up"><a href="ref.win32ps.html">win32ps Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.win32-ps-stat-mem" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">win32_ps_stat_mem</h1>
+  <p class="verinfo">(PECL win32ps:1.0.1)</p><p class="refpurpose"><span class="refname">win32_ps_stat_mem</span> &mdash; <span class="dc-title">Stat memory utilization</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>win32_ps_stat_mem</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Retrieves statistics about the global memory utilization.
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>FALSE</tt></b> on failure, or an array consisting of the
+   following information on success:
+  </p>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">load</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The current memory load in percent of physical memory.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">unit</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       This is always 1024, and indicates that the following values are the count of 1024 bytes.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">total_phys</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The amount of total physical memory.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">avail_phys</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The amount of still available physical memory.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">total_pagefile</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The amount of total pageable memory (physical memory + paging file).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">avail_pagefile</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The amount of still available pageable memory (physical memory + paging file).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">total_virtual</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The amount of total virtual memory for a process.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">avail_virtual</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The amount of still available virtual memory for a process.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.win32-ps-list-procs.html">win32_ps_list_procs</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.win32-ps-stat-proc.html">win32_ps_stat_proc</a></div>
+ <div class="up"><a href="ref.win32ps.html">win32ps Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Return current Unix timestamp</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.strtotime.html">strtotime</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.timezone-abbreviations-list.html">timezone_abbreviations_list</a></div>
+ <div class="up"><a href="ref.datetime.html">Date/Time Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.time" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">time</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">time</span> &mdash; <span class="dc-title">Return current Unix timestamp</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>time</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns the current time measured in the number of seconds since
+   the Unix Epoch (January 1 1970 00:00:00 GMT).
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>time()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$nextWeek&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">time</span><span style="color: #007700">()&nbsp;+&nbsp;(</span><span style="color: #0000BB">7&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB">24&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB">60&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB">60</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;7&nbsp;days;&nbsp;24&nbsp;hours;&nbsp;60&nbsp;mins;&nbsp;60secs<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'Now:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y-m-d'</span><span style="color: #007700">)&nbsp;.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #DD0000">'Next&nbsp;Week:&nbsp;'</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y-m-d'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$nextWeek</span><span style="color: #007700">)&nbsp;.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">//&nbsp;or&nbsp;using&nbsp;strtotime():<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'Next&nbsp;Week:&nbsp;'</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">'Y-m-d'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">'+1&nbsp;week'</span><span style="color: #007700">))&nbsp;.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Now:       2005-03-30
+Next Week: 2005-04-06
+Next Week: 2005-04-06
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="tip"><b class="tip">Tip</b>
+   <p class="para">
+    Timestamp of the start of the request is available in
+    <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER['REQUEST_TIME']</a></var> since PHP 5.1.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.date.html" class="function" rel="rdfs-seeAlso">date()</a></li>
+    <li class="member"><a href="function.microtime.html" class="function" rel="rdfs-seeAlso">microtime()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.strtotime.html">strtotime</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.timezone-abbreviations-list.html">timezone_abbreviations_list</a></div>
+ <div class="up"><a href="ref.datetime.html">Date/Time Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Searches the array for a given value and returns the corresponding key if successful</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.array-reverse.html">array_reverse</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.array-shift.html">array_shift</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.array-search" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">array_search</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5, PHP 5)</p><p class="refpurpose"><span class="refname">array_search</span> &mdash; <span class="dc-title">Searches the array for a given value and returns the corresponding key if successful</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>array_search</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$needle</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$haystack</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$strict</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Searches <i><tt class="parameter">haystack</tt></i>
+ for <i><tt class="parameter">needle</tt></i>
+.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">needle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The searched value.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        If <i><tt class="parameter">needle</tt></i>
+ is a string, the comparison is done
+        in a case-sensitive manner.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">haystack</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The array.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">strict</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the third parameter <i><tt class="parameter">strict</tt></i>
+ is set to <b><tt>TRUE</tt></b>
+       then the <b>array_search()</b> function will also check the
+       <a href="language.types.html" class="link">types</a> of the
+       <i><tt class="parameter">needle</tt></i>
+ in the <i><tt class="parameter">haystack</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the key for <i><tt class="parameter">needle</tt></i>
+ if it is found in the
+   array, <b><tt>FALSE</tt></b> otherwise.
+  </p>
+  <p class="para">
+   If <i><tt class="parameter">needle</tt></i>
+ is found in <i><tt class="parameter">haystack</tt></i>
+
+   more than once, the first matching key is returned. To return the keys for
+   all matching values, use <a href="function.array-keys.html" class="function">array_keys()</a> with the optional
+   <i><tt class="parameter">search_value</tt></i>
+ parameter instead.
+  </p>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function may
+return Boolean <b><tt>FALSE</tt></b>, but may also return a non-Boolean value which
+evaluates to <b><tt>FALSE</tt></b>, such as <i>0</i> or
+&quot;&quot;. Please read the section on <a href="language.types.boolean.html" class="link">Booleans</a> for more
+information. Use <a href="language.operators.comparison.html" class="link">the ===
+operator</a> for testing the return value of this
+function.</p></div>
+ </div>
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.2.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        Prior to PHP 4.2.0, <b>array_search()</b> returns <b><tt>NULL</tt></b>
+        on failure instead of <b><tt>FALSE</tt></b>.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>array_search()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$array&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">0&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'blue'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'red'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'green'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'red'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">array_search</span><span style="color: #007700">(</span><span style="color: #DD0000">'green'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$array</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;$key&nbsp;=&nbsp;2;<br /></span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">array_search</span><span style="color: #007700">(</span><span style="color: #DD0000">'red'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$array</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;$key&nbsp;=&nbsp;1;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.array-keys.html" class="function" rel="rdfs-seeAlso">array_keys()</a></li>
+    <li class="member"><a href="function.array-values.html" class="function" rel="rdfs-seeAlso">array_values()</a></li>
+    <li class="member"><a href="function.array-key-exists.html" class="function" rel="rdfs-seeAlso">array_key_exists()</a></li>
+    <li class="member"><a href="function.in-array.html" class="function" rel="rdfs-seeAlso">in_array()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.array-reverse.html">array_reverse</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.array-shift.html">array_shift</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

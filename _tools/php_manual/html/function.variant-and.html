@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Performs a bitwise AND operation between two variants</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.variant-add.html">variant_add</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.variant-cast.html">variant_cast</a></div>
+ <div class="up"><a href="ref.com.html">COM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.variant-and" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">variant_and</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">variant_and</span> &mdash; <span class="dc-title">Performs a bitwise AND operation between two variants</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>variant_and</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$left</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$right</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Performs a bitwise AND operation.
+   Note that this is slightly different from a regular AND operation.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">left</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The left operand.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">right</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The right operand.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+   <blockquote><p><b class="note">Note</b>: 
+
+ As with all the variant arithmetic functions, the parameters for this function
+ can be either a PHP native type (integer, string, floating point, boolean or
+ <b><tt>NULL</tt></b>), or an instance of a COM, VARIANT or DOTNET class.  PHP native types
+ will be converted to variants using the same rules as found in the constructor
+ for the <a href="class.variant.html" class="xref">VARIANT</a> class.  COM and DOTNET objects
+ will have the value of their default property taken and used as the variant value.
+<br />
+
+ The variant arithmetic functions are wrappers around the similarly named
+ functions in the COM library; for more information on these functions, consult
+ the MSDN library.  The PHP functions are named slightly differently; for example
+ <a href="function.variant-add.html" class="function">variant_add()</a> in PHP corresponds to <i>VarAdd()
+ </i> in the MSDN documentation.
+<br />
+</p></blockquote>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <table border="5">
+    <caption><b>Variant AND Rules</b></caption>
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">If <i><tt class="parameter">left</tt></i>
+ is</th>
+       <th colspan="1">If <i><tt class="parameter">right</tt></i>
+ is</th>
+       <th colspan="1">then the result is</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b></td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>FALSE</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>FALSE</tt></b></td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>NULL</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>NULL</tt></b></td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left"><b><tt>FALSE</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>FALSE</tt></b></td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left"><b><tt>FALSE</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>FALSE</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>FALSE</tt></b></td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left"><b><tt>FALSE</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>NULL</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>FALSE</tt></b></td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left"><b><tt>NULL</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>NULL</tt></b></td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left"><b><tt>NULL</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>FALSE</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>FALSE</tt></b></td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left"><b><tt>NULL</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>NULL</tt></b></td><td colspan="1" rowspan="1" align="left"><b><tt>NULL</tt></b></td></tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.variant-or.html" class="function" rel="rdfs-seeAlso">variant_or()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.variant-add.html">variant_add</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.variant-cast.html">variant_cast</a></div>
+ <div class="up"><a href="ref.com.html">COM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

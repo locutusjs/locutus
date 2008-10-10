@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetch a result row from a query as an associative array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ibase-execute.html">ibase_execute</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-fetch-object.html">ibase_fetch_object</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ibase-fetch-assoc" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ibase_fetch_assoc</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">ibase_fetch_assoc</span> &mdash; <span class="dc-title">Fetch a result row from a query as an associative array</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>ibase_fetch_assoc</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$fetch_flag</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Fetch a result row from a query as an associative array.
+  </p>
+  <p class="para">
+   <b>ibase_fetch_assoc()</b> fetches one row of data from the
+   <i><tt class="parameter">result</tt></i>
+.  If two or more columns of the result
+   have the same field names, the last column will take precedence. To
+   access the other column(s) of the same name, you either need to access
+   the result with numeric indices by using
+   <a href="function.ibase-fetch-row.html" class="function">ibase_fetch_row()</a> or use alias names in your query.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The result handle.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fetch_flag</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">fetch_flag</tt></i>
+ is a combination of the constants
+       <b><tt>IBASE_TEXT</tt></b> and <b><tt>IBASE_UNIXTIME</tt></b>
+       ORed together. Passing <b><tt>IBASE_TEXT</tt></b> will cause this
+       function to return BLOB contents instead of BLOB ids. Passing
+       <b><tt>IBASE_UNIXTIME</tt></b> will cause this function to return
+       date/time values as Unix timestamps instead of as formatted strings.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative array that corresponds to the fetched row.
+   Subsequent calls will return the next row in the result set, or <b><tt>FALSE</tt></b> if
+   there are no more rows.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ibase-fetch-row.html" class="function" rel="rdfs-seeAlso">ibase_fetch_row()</a></li>
+    <li class="member"><a href="function.ibase-fetch-object.html" class="function" rel="rdfs-seeAlso">ibase_fetch_object()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ibase-execute.html">ibase_execute</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-fetch-object.html">ibase_fetch_object</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

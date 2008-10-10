@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Close shared memory block</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.shmop.html">Shared Memory Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.shmop-delete.html">shmop_delete</a></div>
+ <div class="up"><a href="ref.shmop.html">Shared Memory Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.shmop-close" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">shmop_close</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p><p class="refpurpose"><span class="refname">shmop_close</span> &mdash; <span class="dc-title">Close shared memory block</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>shmop_close</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$shmid</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>shmop_close()</b> is used to close a shared memory block.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">shmid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The shared memory block identifier created by 
+       <a href="function.shmop-open.html" class="function">shmop_open()</a>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Closing shared memory block</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />shmop_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$shm_id</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   This example will close shared memory block identified by <i>$shm_id</i>.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.shmop-open.html" class="function" rel="rdfs-seeAlso">shmop_open()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.shmop.html">Shared Memory Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.shmop-delete.html">shmop_delete</a></div>
+ <div class="up"><a href="ref.shmop.html">Shared Memory Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

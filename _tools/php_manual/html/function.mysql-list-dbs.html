@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>List databases available on a MySQL server</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-insert-id.html">mysql_insert_id</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-list-fields.html">mysql_list_fields</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mysql-list-dbs" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysql_list_dbs</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL mysql:1.0)</p><p class="refpurpose"><span class="refname">mysql_list_dbs</span> &mdash; <span class="dc-title">List databases available on a MySQL server</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>mysql_list_dbs</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns a result pointer containing the databases available from the 
+   current mysql daemon.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+link_identifier</tt></i>
+</span>
+<dd>
+<p class="para">The MySQL connection. If the 
+link identifier is not specified, the last link opened by 
+<a href="function.mysql-connect.html" class="function">mysql_connect()</a> is assumed. If no such link is found, it
+will try to create one as if <a href="function.mysql-connect.html" class="function">mysql_connect()</a> was called
+with no arguments. If by chance no connection is found or established, an
+<b><tt>E_WARNING</tt></b> level error is generated.</p></dd>
+
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a result pointer <a href="language.types.resource.html" class="type resource">resource</a> on success, or <b><tt>FALSE</tt></b> on
+   failure. Use the <a href="function.mysql-tablename.html" class="function">mysql_tablename()</a> function to traverse 
+   this result pointer, or any function for result tables, such as 
+   <a href="function.mysql-fetch-array.html" class="function">mysql_fetch_array()</a>.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mysql_list_dbs()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_password'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$db_list&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_list_dbs</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /><br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_fetch_object</span><span style="color: #007700">(</span><span style="color: #0000BB">$db_list</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">Database&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+database1
+database2
+database3
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    For backward compatibility, the following 
+deprecated alias may be used: 
+    <b>mysql_listdbs()</b>
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mysql-db-name.html" class="function" rel="rdfs-seeAlso">mysql_db_name()</a></li>
+    <li class="member"><a href="function.mysql-select-db.html" class="function" rel="rdfs-seeAlso">mysql_select_db()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-insert-id.html">mysql_insert_id</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-list-fields.html">mysql_list_fields</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

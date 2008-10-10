@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Perform a partial request for the specified URI and return all info about it</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.apache-getenv.html">apache_getenv</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.apache-note.html">apache_note</a></div>
+ <div class="up"><a href="ref.apache.html">Apache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.apache-lookup-uri" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">apache_lookup_uri</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">apache_lookup_uri</span> &mdash; <span class="dc-title">Perform a partial request for the specified URI and return all info about it</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">object</span> <span class="methodname"><b><b>apache_lookup_uri</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This performs a partial request for a URI.  It goes just far
+   enough to obtain all the important information about the given
+   resource.
+  </p>
+  <p class="simpara">This function is only supported when PHP 
+is installed as an Apache module.</p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The filename (URI) that&#039;s being requested.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An <a href="language.types.object.html" class="type object">object</a> of related URI information. The properties of
+   this <a href="language.types.object.html" class="type object">object</a> are:
+  </p>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">status</li>
+    <li class="member">the_request</li>
+    <li class="member">status_line</li>
+    <li class="member">method</li>
+    <li class="member">content_type</li>
+    <li class="member">handler</li>
+    <li class="member">uri</li>
+    <li class="member">filename</li>
+    <li class="member">path_info</li>
+    <li class="member">args</li>
+    <li class="member">boundary</li>
+    <li class="member">no_cache</li>
+    <li class="member">no_local_copy</li>
+    <li class="member">allowed</li>
+    <li class="member">send_bodyct</li>
+    <li class="member">bytes_sent</li>
+    <li class="member">byterange</li>
+    <li class="member">clength</li>
+    <li class="member">unparsed_uri</li>
+    <li class="member">mtime</li>
+    <li class="member">request_time</li>
+   </ul>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>apache_lookup_uri()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$info&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">apache_lookup_uri</span><span style="color: #007700">(</span><span style="color: #DD0000">'index.php?var=value'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$info</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">file_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$info</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">filename</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'file&nbsp;exists!'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+stdClass Object
+(
+    [status] =&gt; 200
+    [the_request] =&gt; GET /dir/file.php HTTP/1.1
+    [method] =&gt; GET
+    [mtime] =&gt; 0
+    [clength] =&gt; 0
+    [chunked] =&gt; 0
+    [content_type] =&gt; application/x-httpd-php
+    [no_cache] =&gt; 0
+    [no_local_copy] =&gt; 1
+    [unparsed_uri] =&gt; /dir/index.php?var=value
+    [uri] =&gt; /dir/index.php
+    [filename] =&gt; /home/htdocs/dir/index.php
+    [args] =&gt; var=value
+    [allowed] =&gt; 0
+    [sent_bodyct] =&gt; 0
+    [bytes_sent] =&gt; 0
+    [request_time] =&gt; 1074282764
+)
+file exists!
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.apache-getenv.html">apache_getenv</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.apache-note.html">apache_note</a></div>
+ <div class="up"><a href="ref.apache.html">Apache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

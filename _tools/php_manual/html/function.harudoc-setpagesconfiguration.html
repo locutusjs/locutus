@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set the number of pages per set of pages</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.harudoc-setpagemode.html">HaruDoc::setPageMode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.harudoc-setpassword.html">HaruDoc::setPassword</a></div>
+ <div class="up"><a href="class.harudoc.html">HaruDoc</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.harudoc-setpagesconfiguration" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">HaruDoc::setPagesConfiguration</h1>
+  <p class="verinfo">(PECL haru:0.0.1)</p><p class="refpurpose"><span class="refname">HaruDoc::setPagesConfiguration</span> &mdash; <span class="dc-title">Set the number of pages per set of pages</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>HaruDoc::setPagesConfiguration</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$page_per_pages</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   By default the document has one pages object as a root for all pages.
+   All page objects are create as branches of this object. One pages object
+   can contain only 8191, therefore the maximum number of pages per document
+   is 8191. But you can change that fact by setting
+   <i><tt class="parameter">page_per_pages</tt></i>
+ parameter, so that the root pages
+   object contains 8191 more pages (not page) objects, which in turn contain
+   8191 pages each. So the maximum number of pages in the document becomes
+   8191*<i><tt class="parameter">page_per_pages</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">page_per_pages</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The numbers of pages that a pages object can contain.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws <a href="class.haruexception.html" class="classname">HaruException</a> on error. 
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.harudoc-setpagemode.html">HaruDoc::setPageMode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.harudoc-setpassword.html">HaruDoc::setPassword</a></div>
+ <div class="up"><a href="class.harudoc.html">HaruDoc</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

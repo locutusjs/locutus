@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get part of string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.pspell.html">Pspell</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-substr" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_substr</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">mb_substr</span> &mdash; <span class="dc-title">Get part of string</span></p>
+
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mb_substr</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$start</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$length</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Performs a multi-byte safe
+   <a href="function.substr.html" class="function">substr()</a> operation based on
+   number of characters. Position is
+   counted from the beginning of
+   <i><tt class="parameter">str</tt></i>
+. First character&#039;s position is
+   0. Second character position is 1, and so on. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="language.types.string.html" class="type string">string</a> being checked.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">start</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The first position used in <i><tt class="parameter">str</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">length</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The maximum length of the returned <a href="language.types.string.html" class="type string">string</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The <i><tt class="parameter">encoding</tt></i>
+ 
+parameter is the character encoding. If it is omitted, the internal character 
+encoding value will be used.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>mb_substr()</b> returns the portion of
+   <i><tt class="parameter">str</tt></i>
+ specified by the
+   <i><tt class="parameter">start</tt></i>
+ and
+   <i><tt class="parameter">length</tt></i>
+ parameters.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-strcut.html" class="function" rel="rdfs-seeAlso">mb_strcut()</a></li>
+    <li class="member"><a href="function.mb-internal-encoding.html" class="function" rel="rdfs-seeAlso">mb_internal_encoding()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.pspell.html">Pspell</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

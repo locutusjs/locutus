@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the image properties</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-getimageprofiles.html">Imagick::getImageProfiles</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-getimageproperty.html">Imagick::getImageProperty</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagick-getimageproperties" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::getImageProperties</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Imagick::getImageProperties</span> &mdash; <span class="dc-title">Returns the image properties</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>Imagick::getImageProperties</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pattern</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$only_names</tt></span>
+  ]] )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+currently not documented; only its argument list is available.
+</p></div>
+  <p class="para">
+   Returns all associated properties that match the pattern. If <b><tt>TRUE</tt></b> is passed as second parameter
+   only the property names are returned. This method is present if Imagick is compiled against 
+   ImageMagick 6.3.5-9 or later.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pattern</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      The pattern for property names. Defaults to &quot;*&quot;
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">only_names</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      Whether to return only property names
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+  Returns an array containing the image properties or property names.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>Imagick::getImageProperties()</b>:</b></p>
+    <div class="example-contents"><p>
+     An example of extracting EXIF information.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;Create&nbsp;the&nbsp;object&nbsp;*/<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">imagick</span><span style="color: #007700">(</span><span style="color: #DD0000">"/path/to/example.jpg"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Get&nbsp;the&nbsp;EXIF&nbsp;information&nbsp;*/<br /></span><span style="color: #0000BB">$exifArray&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$im</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getImageProperties</span><span style="color: #007700">(</span><span style="color: #DD0000">"exif:*"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Loop&nbsp;trough&nbsp;the&nbsp;exif&nbsp;properties&nbsp;*/<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">$exifArray&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$property</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"{$name}&nbsp;=&gt;&nbsp;{$property}&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;&nbsp;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-getimageprofiles.html">Imagick::getImageProfiles</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-getimageproperty.html">Imagick::getImageProperty</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

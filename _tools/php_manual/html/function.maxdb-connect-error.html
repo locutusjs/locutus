@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns a string description of the last connect error</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-connect-errno.html">maxdb_connect_errno</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-connect.html">maxdb_connect</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.maxdb-connect-error" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_connect_error</h1>
+  <p class="verinfo">(PECL maxdb:1.0-7.6.00.38)</p><p class="refpurpose"><span class="refname">maxdb_connect_error</span> &mdash; <span class="dc-title">Returns a string description of the last connect error</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>maxdb_connect_error</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The <b>maxdb_connect_error()</b> function is identical to the corresponding
+   <a href="function.maxdb-connect-errno.html" class="function">maxdb_connect_errno()</a> function in every way, except instead of returning
+   an integer error code the <b>maxdb_connect_error()</b> function will return
+   a string representation of the last error to occur for the last
+   <a href="function.maxdb-connect.html" class="function">maxdb_connect()</a> call.
+   If no error has occured, this function will return an empty string.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A string that describes the error. An empty string if no error occurred.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 maxdb_connect_error sample</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"nonexisting_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Can't&nbsp;connect&nbsp;to&nbsp;localhost.&nbsp;Error:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">The above example will output 
+something similar to:</p>
+  <div class="example-contents"><pre>
+<div class="cdata"><pre>
+PHP Warning:  maxdb_connect(): -4008 POS(1) Unknown user name/password combination &lt;...&gt;
+Can&#039;t connect to localhost. Error: POS(1) Unknown user name/password combination
+</pre></div>
+  </pre></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.maxdb-connect.html" class="function" rel="rdfs-seeAlso">maxdb_connect()</a></li>
+    <li class="member"><a href="function.maxdb-connect-errno.html" class="function" rel="rdfs-seeAlso">maxdb_connect_errno()</a></li>
+    <li class="member"><a href="function.maxdb-errno.html" class="function" rel="rdfs-seeAlso">maxdb_errno()</a></li>
+    <li class="member"><a href="function.maxdb-error.html" class="function" rel="rdfs-seeAlso">maxdb_error()</a></li>
+    <li class="member"><a href="function.maxdb-sqlstate.html" class="function" rel="rdfs-seeAlso">maxdb_sqlstate()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-connect-errno.html">maxdb_connect_errno</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-connect.html">maxdb_connect</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

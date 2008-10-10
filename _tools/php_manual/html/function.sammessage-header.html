@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>The header properties of the message.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.sam.html">SAM Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.snmp.html">SNMP</a></div>
+ <div class="up"><a href="ref.sam.html">SAM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sammessage-header" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SAMMessage-&gt;header</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SAMMessage-&gt;header</span> &mdash; <span class="dc-title">
+   The header properties of the message.
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SAMMessage</b></div>
+   <div class="fieldsynopsis"><span class="type">object</span> <var class="varname">$header</var>;</div>
+
+  </div>
+  <p class="para">
+   The <i>header</i> property is a container for any system or
+   user properties that area associated with the message.
+  </p>
+  <p class="para">
+   Properties may be assigned by the sender of a message to control the way
+   the messaging systems handles it or may be assigned by the messaging
+   system itself to tell the recipient extra information about the message or
+   the way in which it has been handled.
+  </p>
+  <p class="para">
+   Some properties are understood by SAM in which case constants have been
+   defined for them. The majority of properties however are ignored by the
+   SAM implementation and simply passed through to the underlying messaging
+   systems allowing the application to use messaging specific property names
+   or to define its own &quot;user&quot; properties.
+  </p>
+  <p class="para">
+   The SAM defined properties are as follows:
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Property name</th>
+       <th colspan="1">Possible values</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">SAM_MESSAGEID</td>
+       <td colspan="1" rowspan="1" align="left">
+        When a message is received this field contains the unique
+        identifier of the message as allocated by the underlying
+        messaging system. When sending a message this field is ignored.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">SAM_REPLY_TO</td>
+       <td colspan="1" rowspan="1" align="left">
+        A string providing the identity of the queue on to which
+        responses to this message should be posted.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">SAM_TYPE</td>
+       <td colspan="1" rowspan="1" align="left">
+        <p class="para">
+         An indication of the type of message to be sent. The value may be
+         <b><tt>SAM_TEXT</tt></b> indicating the contents of the
+         message body is a text string, or <b><tt>SAM_BYTES</tt></b>
+         indicating the contents of the message body are some application
+         defined format.
+        </p>
+        <p class="para">
+         The way in which this property is used may depend on the underlying
+         messaging server. For instance a messaging server that supports the
+         JMS (Java Message Service) specification may interpret this value and
+         send messages of type &quot;jms_text&quot; and &quot;jms_bytes&quot;. In addition, if 
+         the SAM_TYPE property is set to <b><tt>SAM_TEXT</tt></b> the
+         data provided for the message body is expected to be a UTF8 encoded
+         string.
+        </p>
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+  <p class="para">
+   When setting the values of properties it is often useful to give a hint as
+   to the format in which the property should be delivered to the messaging
+   system.  By default property values are delivered as text and the
+   following simple syntax may be used to set a value:
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Setting a text format property using the default syntax</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$msg&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SAMMessage</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myPropertyName&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'textData'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   If it is desired to pass type information an alternative syntax may be
+   used where the value and the type hint are passed in an associative
+   array:
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Setting a text format property using a type hint</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$msg&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SAMMessage</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myPropertyName&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'textData'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SAM_STRING</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   When passing a type hint the type entry should be one of the SAM defined
+   constant values as defined by the following table:
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Constant</th>
+       <th colspan="1">Type description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">SAM_BOOLEAN</td>
+       <td colspan="1" rowspan="1" align="left">
+        Any value passed will be interpreted as logical true or false. 
+        If the value cannot be interpreted as a PHP boolean value the value
+        passed to the messaging system is undefined.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">SAM_BYTE</td>
+       <td colspan="1" rowspan="1" align="left">
+        An 8-bit signed integer value. SAM will attempt to convert the
+        property value specified into a single byte value to pass to the
+        messaging system. If a string value is passed an attempt will be
+        made to interpret the string as a numeric value. If the numeric
+        value cannot be expressed as an 8-bit signed binary value data may
+        be lost in the conversion.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">SAM_DOUBLE</td>
+       <td colspan="1" rowspan="1" align="left">
+        A long floating point value. SAM will attempt to convert the
+        property value specified into a floating point value with 15 digits
+        of precision. If a string value is passed an attempt will be made to
+        interpret the string as a numeric value. If the passed value cannot
+        be expressed as a 15 digit floating point value data may be lost in
+        the conversion.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">SAM_FLOAT</td>
+       <td colspan="1" rowspan="1" align="left">
+        A short floating point value. SAM will attempt to convert the
+        property value specified into a floating point value with 7 digits of
+        precision. If a string value is passed an attempt will be made to
+        interpret the string as a numeric value. If the passed value cannot
+        be expressed as a 7 digit floating point value data may be lost in
+        the conversion.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">SAM_INT</td>
+       <td colspan="1" rowspan="1" align="left">
+        An 32-bit signed integer value. SAM will attempt to convert the
+        property value specified into a 32-bit value to pass to the messaging
+        system. If a string value is passed an attempt will be made to
+        interpret the string as a numeric value. If the numeric value cannot
+        be expressed as an 32-bit signed binary value data may be lost in the
+        conversion.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">SAM_LONG</td>
+       <td colspan="1" rowspan="1" align="left">
+        An 64-bit signed integer value. SAM will attempt to convert the
+        property value specified into a 64-bit value to pass to the messaging
+        system. If a string value is passed an attempt will be made to
+        interpret the string as a numeric value. If the numeric value cannot
+        be expressed as an 64-bit signed binary value data may be lost in the
+        conversion.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">SAM_STRING</td>
+       <td colspan="1" rowspan="1" align="left">
+        SAM will interpret the property value specified as a string and pass
+        it to the messaging system accordingly.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #3 Setting properties as the sender of a message</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$msg&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SAMMessage</span><span style="color: #007700">(</span><span style="color: #DD0000">'This&nbsp;is&nbsp;a&nbsp;test&nbsp;message'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;defining&nbsp;SAM&nbsp;specific&nbsp;properties...<br /></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">SAM_REPLY_TO&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'queue://test/replyQueue'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;defining&nbsp;arbitrary&nbsp;properties...<br />//<br />//&nbsp;a&nbsp;default&nbsp;string&nbsp;property<br /></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myStringProp1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'a&nbsp;string&nbsp;property'</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">//&nbsp;a&nbsp;string&nbsp;property&nbsp;with&nbsp;a&nbsp;type&nbsp;hint<br /></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myStringProp2&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'another&nbsp;string&nbsp;property'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SAM_STRING</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;a&nbsp;boolean&nbsp;property<br /></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myBoolProp&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">FALSE</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SAM_BOOL</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;numeric&nbsp;format&nbsp;properties<br /></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myIntProp&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">32768</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SAM_INT</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myLongProp&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">9876543</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SAM_LONG</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myByteProp1&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">123</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SAM_BYTE</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myByteProp2&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'12'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SAM_BYTE</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myFloatProp&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">3.141592</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SAM_FLOAT</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myDoubleProp&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">3.14159265358979</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SAM_DOUBLE</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #4 Retreiving property values from a message</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;accessing&nbsp;an&nbsp;application&nbsp;specific&nbsp;property<br /></span><span style="color: #0000BB">$intProp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #DD0000">'MyIntProp'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;accessing&nbsp;a&nbsp;messaging&nbsp;system&nbsp;specific&nbsp;property<br /></span><span style="color: #0000BB">$encoding&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$msg</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">header</span><span style="color: #007700">-&gt;</span><span style="color: #DD0000">'JMS_IBM_Msgtype'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sammessage-body.html" class="xref">SAMMessage->body</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.sam.html">SAM Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.snmp.html">SNMP</a></div>
+ <div class="up"><a href="ref.sam.html">SAM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

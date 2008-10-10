@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Determine the type of an image</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.exif.html">Exif Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.exif-read-data.html">exif_read_data</a></div>
+ <div class="up"><a href="ref.exif.html">Exif Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.exif-imagetype" class="refentry">
+  <div class="refnamediv">
+   <h1 class="refname">exif_imagetype</h1>
+   <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">exif_imagetype</span> &mdash; <span class="dc-title">Determine the type of an image</span></p>
+
+  </div>
+  <div class="refsect1 description">
+   <h3 class="title">Description</h3>
+   <div class="methodsynopsis dc-description">
+    <span class="type">int</span> <span class="methodname"><b><b>exif_imagetype</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+    )</div>
+
+   <p class="para rdfs-comment">
+    <b>exif_imagetype()</b> reads the first bytes of an image and
+    checks its signature.
+   </p>
+   <p class="para">
+    <b>exif_imagetype()</b> can be used to avoid calls to other 
+    <a href="ref.exif.html" class="link">exif</a> functions with unsupported file types 
+    or in conjunction with <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER['HTTP_ACCEPT']</a></var> to check 
+    whether or not the viewer is able to see a specific image in the browser.
+   </p>
+  </div>
+
+  <div class="refsect1 parameters">
+   <h3 class="title">Parameters</h3>
+   <p class="para">
+    <dl>
+
+     <dt>
+
+      <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+      <dd>
+
+       <span class="simpara">
+        The image being checked.
+       </span>
+      </dd>
+
+     </dt>
+
+    </dl>
+
+   </p>
+  </div>
+
+  <div class="refsect1 returnvalues">
+   <h3 class="title">Return Values</h3>
+   <p class="para">
+    When a correct signature is found, the appropriate constant value will be
+    returned otherwise the return value is <b><tt>FALSE</tt></b>. The return value is the
+    same value that <a href="function.getimagesize.html" class="function">getimagesize()</a> returns in index 2 but
+    <b>exif_imagetype()</b> is much faster.
+   </p>
+  </div>
+
+  <div class="refsect1 changelog">
+   <h3 class="title">ChangeLog</h3>
+   <p class="para">
+    <table class="informaltable">
+     <colgroup>
+
+      <thead valign="middle">
+       <tr valign="middle">
+        <th colspan="1">Version</th>
+        <th colspan="1">Description</th>
+       </tr>
+
+      </thead>
+
+      <tbody valign="middle" class="tbody">
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">4.3.2</td>
+        <td colspan="1" rowspan="1" align="left">
+         Support for <acronym title="Japan Picture">JPC</acronym>, <acronym title="JPEG-2000">JP2</acronym>,
+         <acronym>JPX</acronym>, <acronym title="Joint Bilevel Image Experts Group">JB2</acronym>,
+         <acronym title="X Bitmap">XBM</acronym>, and <acronym title="Wireless Bitmap">WBMP</acronym>
+        </td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">4.3.0</td>
+        <td colspan="1" rowspan="1" align="left">Support for <acronym>SWC</acronym></td>
+       </tr>
+
+      </tbody>
+     </colgroup>
+
+    </table>
+   </p>
+  </div>
+
+  <div class="refsect1 constants">
+   <h3 class="title">Predefined Constants</h3>
+   <p class="para">
+    The following constants are defined, and represent possible 
+    <b>exif_imagetype()</b> return values:
+    <table border="5">
+    <caption><b>Imagetype Constants</b></caption>
+     <colgroup>
+
+      <thead valign="middle">
+       <tr valign="middle">
+        <th colspan="1">Value</th>
+        <th colspan="1">Constant</th>
+       </tr>
+
+      </thead>
+
+      <tbody valign="middle" class="tbody">
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">1</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_GIF</tt></b></td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">2</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_JPEG</tt></b></td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">3</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_PNG</tt></b></td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">4</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_SWF</tt></b></td>
+       </tr>
+        
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">5</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_PSD</tt></b></td>
+       </tr>
+        
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">6</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_BMP</tt></b></td>
+       </tr>
+        
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">7</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_TIFF_II</tt></b> (intel byte order)</td>
+       </tr>
+        
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">8</td>
+        <td colspan="1" rowspan="1" align="left">
+         <b><tt>IMAGETYPE_TIFF_MM</tt></b> (motorola byte order)
+        </td>
+       </tr>
+      
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">9</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_JPC</tt></b></td>
+       </tr>
+      
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">10</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_JP2</tt></b></td>
+       </tr>
+      
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">11</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_JPX</tt></b></td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">12</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_JB2</tt></b></td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">13</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_SWC</tt></b></td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">14</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_IFF</tt></b></td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">15</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_WBMP</tt></b></td>
+       </tr>
+
+       <tr valign="middle"> 
+        <td colspan="1" rowspan="1" align="left">16</td>
+        <td colspan="1" rowspan="1" align="left"><b><tt>IMAGETYPE_XBM</tt></b></td>
+       </tr>
+
+      </tbody>
+     </colgroup>
+     
+    </table>
+       
+   </p>
+  </div>
+
+  <div class="refsect1 examples">
+   <h3 class="title">Examples</h3>
+   <p class="para">
+    <div class="example">
+     <p><b>Example #1 <b>exif_imagetype()</b> example</b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">exif_imagetype</span><span style="color: #007700">(</span><span style="color: #DD0000">'image.gif'</span><span style="color: #007700">)&nbsp;!=&nbsp;</span><span style="color: #0000BB">IMAGETYPE_GIF</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'The&nbsp;picture&nbsp;is&nbsp;not&nbsp;a&nbsp;gif'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>  
+     </div>
+
+    </div>
+   </p>
+  </div>
+
+  <div class="refsect1 seealso">
+   <h3 class="title">See Also</h3>
+   <p class="para">
+    <ul class="simplelist">
+     <li class="member"><a href="function.getimagesize.html" class="function" rel="rdfs-seeAlso">getimagesize()</a></li>
+    </ul>
+   </p>
+  </div>
+
+ </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.exif.html">Exif Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.exif-read-data.html">exif_read_data</a></div>
+ <div class="up"><a href="ref.exif.html">Exif Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

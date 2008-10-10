@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Add an authorized publickey</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ssh2-methods-negotiated.html">ssh2_methods_negotiated</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ssh2-publickey-init.html">ssh2_publickey_init</a></div>
+ <div class="up"><a href="ref.ssh2.html">SSH2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ssh2-publickey-add" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ssh2_publickey_add</h1>
+  <p class="verinfo">(PECL ssh2:0.10)</p><p class="refpurpose"><span class="refname">ssh2_publickey_add</span> &mdash; <span class="dc-title">
+   Add an authorized publickey
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ssh2_publickey_add</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$pkey</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$algoname</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$blob</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$overwrite</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$attributes</tt></span>
+  ]] )</div>
+
+
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">The public key subsystem
+is used for managing public keys on a server to which the client is
+<em class="emphasis">already</em> authenticated.  To authenticate to a remote system
+using public key authentication, use the
+<a href="function.ssh2-auth-pubkey-file.html" class="function">ssh2_auth_pubkey_file()</a> function instead.</span></p></blockquote>
+
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pkey</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Publickey Subsystem resource created by <a href="function.ssh2-publickey-init.html" class="function">ssh2_publickey_init()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">algoname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Publickey algorithm (e.g.): ssh-dss, ssh-rsa
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">blob</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Publickey blob as raw binary data
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">overwrite</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the specified key already exists, should it be overwritten?
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">attributes</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Associative array of attributes to assign to this public key.
+       Refer to ietf-secsh-publickey-subsystem for a list of supported attributes.
+       To mark an attribute as mandatory, precede its name with an asterisk.
+       If the server is unable to support an attribute marked mandatory,
+       it will abort the add process.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Adding a publickey with <b>ssh2_publickey_add()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$ssh2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ssh2_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'shell.example.com'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">22</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ssh2_auth_password</span><span style="color: #007700">(</span><span style="color: #0000BB">$ssh2</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'jdoe'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'password'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$pkey&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ssh2_publickey_init</span><span style="color: #007700">(</span><span style="color: #0000BB">$ssh2</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$keyblob&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">base64_decode</span><span style="color: #007700">(</span><span style="color: #DD0000">'<br />AAAAB3NzaC1yc2EAAAABIwAAAIEA5HVt6VqSGd5PTrLRdjNONxXH1tVFGn0<br />Bd26BF0aCP9qyJRlvdJ3j4WBeX4ZmrveGrjMgkseSYc4xZ26sDHwfL351xj<br />zaLpipu\BGRrw17mWVBhuCExo476ri5tQFzbTc54VEHYckxQ16CjSTibI5X<br />69GmnYC9PNqEYq/1TP+HF10='</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">ssh2_publickey_add</span><span style="color: #007700">(</span><span style="color: #0000BB">$ssh2</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ssh-rsa'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$keyblob</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'comment'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"John's&nbsp;Key"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ssh2-publickey-init.html" class="function" rel="rdfs-seeAlso">ssh2_publickey_init()</a></li>
+    <li class="member"><a href="function.ssh2-publickey-remove.html" class="function" rel="rdfs-seeAlso">ssh2_publickey_remove()</a></li>
+    <li class="member"><a href="function.ssh2-publickey-list.html" class="function" rel="rdfs-seeAlso">ssh2_publickey_list()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ssh2-methods-negotiated.html">ssh2_methods_negotiated</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ssh2-publickey-init.html">ssh2_publickey_init</a></div>
+ <div class="up"><a href="ref.ssh2.html">SSH2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

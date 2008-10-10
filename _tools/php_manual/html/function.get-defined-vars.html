@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns an array of all defined variables</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.floatval.html">floatval</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.get-resource-type.html">get_resource_type</a></div>
+ <div class="up"><a href="ref.var.html">Variable handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.get-defined-vars" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">get_defined_vars</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p><p class="refpurpose"><span class="refname">get_defined_vars</span> &mdash; <span class="dc-title">
+   Returns an array of all defined variables
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>get_defined_vars</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function returns a multidimensional array containing a list of
+   all defined variables, be them environment, server or user-defined
+   variables, within the scope that <b>get_defined_vars()</b> is
+   called. 
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A multidimensional array with all the variables.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>get_defined_vars()</b> Example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$b&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">8</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$arr&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">get_defined_vars</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;print&nbsp;$b<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #DD0000">"b"</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">/*&nbsp;print&nbsp;path&nbsp;to&nbsp;the&nbsp;PHP&nbsp;interpreter&nbsp;(if&nbsp;used&nbsp;as&nbsp;a&nbsp;CGI)<br />&nbsp;*&nbsp;e.g.&nbsp;/usr/local/bin/php&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #DD0000">"_"</span><span style="color: #007700">];<br /><br /></span><span style="color: #FF8000">//&nbsp;print&nbsp;the&nbsp;command-line&nbsp;parameters&nbsp;if&nbsp;any<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #DD0000">"argv"</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">//&nbsp;print&nbsp;all&nbsp;the&nbsp;server&nbsp;vars<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #DD0000">"_SERVER"</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">//&nbsp;print&nbsp;all&nbsp;the&nbsp;available&nbsp;keys&nbsp;for&nbsp;the&nbsp;arrays&nbsp;of&nbsp;variables<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">array_keys</span><span style="color: #007700">(</span><span style="color: #0000BB">get_defined_vars</span><span style="color: #007700">()));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <var class="varname"><a href="reserved.variables.globals.html" class="classname">$GLOBALS</a></var> variable is included in the results of
+        the array returned.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.isset.html" class="function" rel="rdfs-seeAlso">isset()</a></li>
+    <li class="member"><a href="function.get-defined-functions.html" class="function" rel="rdfs-seeAlso">get_defined_functions()</a></li>
+    <li class="member"><a href="function.get-defined-constants.html" class="function" rel="rdfs-seeAlso">get_defined_constants()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.floatval.html">floatval</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.get-resource-type.html">get_resource_type</a></div>
+ <div class="up"><a href="ref.var.html">Variable handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

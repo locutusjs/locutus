@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Converts a 16 byte binary GUID to a string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mssql-get-last-message.html">mssql_get_last_message</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mssql-init.html">mssql_init</a></div>
+ <div class="up"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mssql-guid-string" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mssql_guid_string</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5, PECL odbtp:1.1.1-1.1.4)</p><p class="refpurpose"><span class="refname">mssql_guid_string</span> &mdash; <span class="dc-title">Converts a 16 byte binary GUID to a string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mssql_guid_string</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$binary</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$short_format</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Converts a 16 byte binary GUID to a string.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">binary</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A 16 byte binary GUID.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">short_format</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Whenever to use short to use short format, defaults to <b><tt>FALSE</tt></b>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the converted string on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mssql_guid_string()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$binary&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'19555081977808608437941339997619274330352755554827939936'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">mssql_guid_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$binary</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">mssql_guid_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$binary</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+string(36) &quot;35353931-3035-3138-3937-373830383630&quot;
+string(32) &quot;31393535353038313937373830383630&quot;
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mssql-get-last-message.html">mssql_get_last_message</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mssql-init.html">mssql_init</a></div>
+ <div class="up"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

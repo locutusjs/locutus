@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Passing by Reference</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.references.arent.html">What References Are Not</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.references.return.html">Returning References</a></div>
+ <div class="up"><a href="language.references.html">References Explained</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.references.pass" class="sect1">
+   <h2 class="title">Passing by Reference</h2>
+   <p class="para">
+   You can pass variable to function by reference, so that function could modify
+   its arguments. The syntax is as follows:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">(&amp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">++;<br />}<br /><br /></span><span style="color: #0000BB">$a</span><span style="color: #007700">=</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;$a&nbsp;is&nbsp;6&nbsp;here<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+  Note that there&#039;s no reference sign on function call - only on
+  function definition. Function definition alone is enough to
+  correctly pass the argument by reference. In recent versions of PHP
+  you will get a warning saying that &quot;Call-time pass-by-reference&quot; is
+  deprecated when you use a &amp; in <i>foo(&amp;$a);</i>.
+  </p>
+  <p class="para">
+  The following things can be passed by reference:
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      Variable, i.e. <i>foo($a)</i>
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      New statement, i.e. <i>foo(new foobar())</i>
+     </span>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Reference, returned from a function, i.e.:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;&amp;</span><span style="color: #0000BB">bar</span><span style="color: #007700">()<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">bar</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+    See also explanations about <a href="language.references.return.html" class="link">returning by reference</a>. 
+     </p>
+    </li>
+  </ul>
+  </p>
+  <p class="para">
+  Any other expression should not be passed by reference, as the
+  result is undefined. For example, the following examples of passing
+  by reference are invalid:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">bar</span><span style="color: #007700">()&nbsp;</span><span style="color: #FF8000">//&nbsp;Note&nbsp;the&nbsp;missing&nbsp;&amp;<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">bar</span><span style="color: #007700">());&nbsp;</span><span style="color: #FF8000">//&nbsp;Produces&nbsp;fatal&nbsp;error&nbsp;since&nbsp;PHP&nbsp;5.0.5<br /><br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;Expression,&nbsp;not&nbsp;variable<br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">5</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;Produces&nbsp;fatal&nbsp;error<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+    These requirements are for PHP 4.0.4 and later.
+  </p>
+  </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.references.arent.html">What References Are Not</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.references.return.html">Returning References</a></div>
+ <div class="up"><a href="language.references.html">References Explained</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

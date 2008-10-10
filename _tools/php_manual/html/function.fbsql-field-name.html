@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the name of the specified field in a result</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fbsql-field-len.html">fbsql_field_len</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fbsql-field-seek.html">fbsql_field_seek</a></div>
+ <div class="up"><a href="ref.fbsql.html">FrontBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.fbsql-field-name" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fbsql_field_name</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">fbsql_field_name</span> &mdash; <span class="dc-title">Get the name of the specified field in a result</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>fbsql_field_name</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$field_index</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns the name of the specified field index.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A result pointer returned by <a href="function.fbsql-list-fields.html" class="function">fbsql_list_fields()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">field_index</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The numerical offset of the field. The field index starts at 0.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the name as a string, or <b><tt>FALSE</tt></b> if the field doesn&#039;t exist.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>fbsql_field_name()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;The&nbsp;users&nbsp;table&nbsp;consists&nbsp;of&nbsp;three&nbsp;fields:<br />//&nbsp;&nbsp;&nbsp;user_id<br />//&nbsp;&nbsp;&nbsp;username<br />//&nbsp;&nbsp;&nbsp;password.<br /><br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fbsql_db_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"users"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"select&nbsp;*&nbsp;from&nbsp;users"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">fbsql_field_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">fbsql_field_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+user_id
+password
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.fbsql-field-type.html" class="function" rel="rdfs-seeAlso">fbsql_field_type()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fbsql-field-len.html">fbsql_field_len</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fbsql-field-seek.html">fbsql_field_seek</a></div>
+ <div class="up"><a href="ref.fbsql.html">FrontBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

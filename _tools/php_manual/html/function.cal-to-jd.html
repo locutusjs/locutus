@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Converts from a supported calendar to Julian Day Count</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.cal-info.html">cal_info</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.easter-date.html">easter_date</a></div>
+ <div class="up"><a href="ref.calendar.html">Calendar Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.cal-to-jd" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">cal_to_jd</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">cal_to_jd</span> &mdash; <span class="dc-title">Converts from a supported calendar to Julian Day Count</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>cal_to_jd</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$calendar</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$month</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$day</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$year</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>cal_to_jd()</b> calculates the Julian day count
+   for a date in the specified <i><tt class="parameter">calendar</tt></i>
+.
+   Supported <i><tt class="parameter">calendar</tt></i>
+s are
+   <b><tt>CAL_GREGORIAN</tt></b>,
+   <b><tt>CAL_JULIAN</tt></b>,
+   <b><tt>CAL_JEWISH</tt></b> and
+   <b><tt>CAL_FRENCH</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">calendar</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Calendar to convert from, one of 
+       <b><tt>CAL_GREGORIAN</tt></b>,
+       <b><tt>CAL_JULIAN</tt></b>,
+       <b><tt>CAL_JEWISH</tt></b> or
+       <b><tt>CAL_FRENCH</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">month</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The month as a number, the valid range depends 
+       on the <i><tt class="parameter">calendar</tt></i>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">day</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The day as a number, the valid range depends 
+       on the <i><tt class="parameter">calendar</tt></i>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">year</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The year as a number, the valid range depends 
+       on the <i><tt class="parameter">calendar</tt></i>
+
+      </p>
+     </dd>
+
+    </dt>
+  
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A Julian Day number.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.cal-from-jd.html" class="function" rel="rdfs-seeAlso">cal_from_jd()</a></li>
+    <li class="member"><a href="function.frenchtojd.html" class="function" rel="rdfs-seeAlso">frenchtojd()</a></li> 
+    <li class="member"><a href="function.gregoriantojd.html" class="function" rel="rdfs-seeAlso">gregoriantojd()</a></li>  
+    <li class="member"><a href="function.jewishtojd.html" class="function" rel="rdfs-seeAlso">jewishtojd()</a></li>  
+    <li class="member"><a href="function.juliantojd.html" class="function" rel="rdfs-seeAlso">juliantojd()</a></li>  
+    <li class="member"><a href="function.unixtojd.html" class="function" rel="rdfs-seeAlso">unixtojd()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.cal-info.html">cal_info</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.easter-date.html">easter_date</a></div>
+ <div class="up"><a href="ref.calendar.html">Calendar Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

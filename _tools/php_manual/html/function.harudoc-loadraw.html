@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Load a RAW image</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.harudoc-loadpng.html">HaruDoc::loadPNG</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.harudoc-loadttc.html">HaruDoc::loadTTC</a></div>
+ <div class="up"><a href="class.harudoc.html">HaruDoc</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.harudoc-loadraw" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">HaruDoc::loadRaw</h1>
+  <p class="verinfo">(PECL haru:0.0.1)</p><p class="refpurpose"><span class="refname">HaruDoc::loadRaw</span> &mdash; <span class="dc-title">Load a RAW image</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">object</span> <span class="methodname"><b><b>HaruDoc::loadRaw</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$width</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$height</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$color_space</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Loads a RAW image.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name of a RAW image file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">width</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The width of the image.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">height</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The height of the image.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">color_space</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The color space of the image. Can be one of the following values:
+       <ul class="simplelist">
+        <li class="member">
+         <b><tt>HaruDoc::CS_DEVICE_GRAY</tt></b>
+        </li>
+        <li class="member">
+         <b><tt>HaruDoc::CS_DEVICE_RGB</tt></b>
+        </li>
+        <li class="member">
+         <b><tt>HaruDoc::CS_DEVICE_CMYK</tt></b>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a <a href="class.haruimage.html" class="classname">HaruImage</a> instance.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws <a href="class.haruexception.html" class="classname">HaruException</a> on error. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.harudoc-loadjpeg.html" class="link"><a href="class.harudoc.html" class="classname">HaruDoc</a>::<b>loadJPEG()</b></a></li>
+    <li class="member"><a href="function.harudoc-loadpng.html" class="link"><a href="class.harudoc.html" class="classname">HaruDoc</a>::<b>loadPNG()</b></a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.harudoc-loadpng.html">HaruDoc::loadPNG</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.harudoc-loadttc.html">HaruDoc::loadTTC</a></div>
+ <div class="up"><a href="class.harudoc.html">HaruDoc</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

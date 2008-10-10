@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets position for text output</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ps-set-parameter.html">ps_set_parameter</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ps-set-value.html">ps_set_value</a></div>
+ <div class="up"><a href="ref.ps.html">PS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ps-set-text-pos" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ps_set_text_pos</h1>
+  <p class="verinfo">(PECL ps:1.1.0-1.3.5)</p><p class="refpurpose"><span class="refname">ps_set_text_pos</span> &mdash; <span class="dc-title">Sets position for text output</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ps_set_text_pos</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$psdoc</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$x</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$y</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Set the position for the next text output. You may alternatively set the x
+   and y value separately by calling <a href="function.ps-set-value.html" class="function">ps_set_value()</a> and
+   choosing <i>textx</i> respectively <i>texty</i> as
+   the value name.
+  </p>
+  <p class="para">
+   If you want to output text at a certain position it is more convenient
+   to use <a href="function.ps-show-xy.html" class="function">ps_show_xy()</a> instead of setting the text position
+   and calling <a href="function.ps-show.html" class="function">ps_show()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">psdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the postscript file
+       as returned by <a href="function.ps-new.html" class="function">ps_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">x</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       x-coordinate of the new text position.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">y</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       y-coordinate of the new text position.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Placing text at a given position</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$ps&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ps_new</span><span style="color: #007700">();<br />if&nbsp;(!</span><span style="color: #0000BB">ps_open_file</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"text.ps"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"Cannot&nbsp;open&nbsp;PostScript&nbsp;file\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;exit;<br />}<br /><br /></span><span style="color: #0000BB">ps_set_info</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Creator"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"rectangle.php"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ps_set_info</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Author"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Uwe&nbsp;Steinmann"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ps_set_info</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Title"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Text&nbsp;placement&nbsp;example"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">ps_begin_page</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">596</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">842</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$psfont&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ps_findfont</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Helvetica"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ps_setfont</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$psfont</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">8.0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ps_show_xy</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Some&nbsp;text&nbsp;at&nbsp;(100,&nbsp;100)"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">ps_set_value</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"textx"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ps_set_value</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"texty"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">120</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ps_show</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Some&nbsp;text&nbsp;at&nbsp;(100,&nbsp;120)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ps_end_page</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">ps_delete</span><span style="color: #007700">(</span><span style="color: #0000BB">$ps</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ps-set-value.html" class="function" rel="rdfs-seeAlso">ps_set_value()</a></li>
+    <li class="member"><a href="function.ps-show.html" class="function" rel="rdfs-seeAlso">ps_show()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ps-set-parameter.html">ps_set_parameter</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ps-set-value.html">ps_set_value</a></div>
+ <div class="up"><a href="ref.ps.html">PS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

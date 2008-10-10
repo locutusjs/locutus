@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Reopen IMAP stream to new mailbox</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-renamemailbox.html">imap_renamemailbox</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-rfc822-parse-adrlist.html">imap_rfc822_parse_adrlist</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imap-reopen" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_reopen</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imap_reopen</span> &mdash; <span class="dc-title">Reopen IMAP stream to new mailbox</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>imap_reopen</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$imap_stream</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$mailbox</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$options</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$n_retries</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Reopens the specified stream to a new <i><tt class="parameter">mailbox</tt></i>
+ on an
+   IMAP or NNTP server.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+imap_stream</tt></i>
+</span>
+<dd>
+<p class="para">An IMAP stream returned by 
+<a href="function.imap-open.html" class="function">imap_open()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mailbox</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The mailbox name, see <a href="function.imap-open.html" class="function">imap_open()</a> for more
+       information
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">options</tt></i>
+ are a bit mask with one or more of
+       the following:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>OP_READONLY</tt></b> - Open mailbox read-only
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>OP_ANONYMOUS</tt></b> - Don&#039;t use or update a
+          <var class="filename">.newsrc</var> for news (NNTP only)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>OP_HALFOPEN</tt></b> - For IMAP and NNTP names, open a connection but
+          don&#039;t open a mailbox.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>OP_EXPUNGE</tt></b> - Silently expunge recycle stream
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>CL_EXPUNGE</tt></b> - Expunge mailbox automatically upon mailbox close
+          (see also <a href="function.imap-delete.html" class="function">imap_delete()</a> and
+          <a href="function.imap-expunge.html" class="function">imap_expunge()</a>)
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">n_retries</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Number of maximum connect attempts
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.2.0</td>
+       <td colspan="1" rowspan="1" align="left"><i><tt class="parameter">n_retries</tt></i>
+ added</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>imap_reopen()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mbox&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imap_open</span><span style="color: #007700">(</span><span style="color: #DD0000">"{imap.example.org:143}INBOX"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #0000BB">implode</span><span style="color: #007700">(</span><span style="color: #DD0000">",&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">imap_errors</span><span style="color: #007700">()));<br /></span><span style="color: #FF8000">//&nbsp;...<br /></span><span style="color: #0000BB">imap_reopen</span><span style="color: #007700">(</span><span style="color: #0000BB">$mbox</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"{imap.example.org:143}INBOX.Sent"</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #0000BB">implode</span><span style="color: #007700">(</span><span style="color: #DD0000">",&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">imap_errors</span><span style="color: #007700">()));<br /></span><span style="color: #FF8000">//&nbsp;..<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-renamemailbox.html">imap_renamemailbox</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-rfc822-parse-adrlist.html">imap_rfc822_parse_adrlist</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

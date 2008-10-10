@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Return available SPL classes</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.spl-autoload.html">spl_autoload</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.spl-object-hash.html">spl_object_hash</a></div>
+ <div class="up"><a href="ref.spl.html">SPL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.spl-classes" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">spl_classes</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">spl_classes</span> &mdash; <span class="dc-title">Return available SPL classes</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>spl_classes</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function returns an array with the current available SPL classes.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>spl_classes()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">spl_classes</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [ArrayObject] =&gt; ArrayObject
+    [ArrayIterator] =&gt; ArrayIterator
+    [CachingIterator] =&gt; CachingIterator
+    [RecursiveCachingIterator] =&gt; RecursiveCachingIterator
+    [DirectoryIterator] =&gt; DirectoryIterator
+    [FilterIterator] =&gt; FilterIterator
+    [LimitIterator] =&gt; LimitIterator
+    [ParentIterator] =&gt; ParentIterator
+    [RecursiveDirectoryIterator] =&gt; RecursiveDirectoryIterator
+    [RecursiveIterator] =&gt; RecursiveIterator
+    [RecursiveIteratorIterator] =&gt; RecursiveIteratorIterator
+    [SeekableIterator] =&gt; SeekableIterator
+    [SimpleXMLIterator] =&gt; SimpleXMLIterator
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.spl-autoload.html">spl_autoload</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.spl-object-hash.html">spl_object_hash</a></div>
+ <div class="up"><a href="ref.spl.html">SPL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

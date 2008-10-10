@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Convert GMP number to string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gmp-sqrtrem.html">gmp_sqrtrem</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gmp-sub.html">gmp_sub</a></div>
+ <div class="up"><a href="ref.gmp.html">GMP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.gmp-strval" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">gmp_strval</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p><p class="refpurpose"><span class="refname">gmp_strval</span> &mdash; <span class="dc-title">Convert GMP number to string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>gmp_strval</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$gmpnumber</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$base</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Convert GMP number to string representation in base
+   <i><tt class="parameter">base</tt></i>
+. The default base is 10.  
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">gmpnumber</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The GMP number that will be converted to a string.
+      </p>
+      <p class="para">It can be either a GMP number <a href="language.types.resource.html" class="type resource">resource</a>, or a 
+numeric string given that it is possible to convert the latter to a number.</p> 
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">base</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The base of the returned number. The default base is 10. 
+       Allowed values for the base are from 2 to 36.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The number, as a <a href="language.types.string.html" class="type string">string</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Converting a GMP number to a string</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gmp_init</span><span style="color: #007700">(</span><span style="color: #DD0000">"0x41682179fbf5"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Decimal:&nbsp;%s,&nbsp;36-based:&nbsp;%s"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,</span><span style="color: #0000BB">36</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gmp-sqrtrem.html">gmp_sqrtrem</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gmp-sub.html">gmp_sub</a></div>
+ <div class="up"><a href="ref.gmp.html">GMP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

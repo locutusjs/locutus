@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fills in the passed references with the current size of the
+  terminal</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.newt-form.html">newt_form</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.newt-grid-add-components-to-form.html">newt_grid_add_components_to_form</a></div>
+ <div class="up"><a href="ref.newt.html">Newt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.newt-get-screen-size" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">newt_get_screen_size</h1>
+  <p class="verinfo">(PECL newt:0.1-1.1)</p><p class="refpurpose"><span class="refname">newt_get_screen_size</span> &mdash; <span class="dc-title">Fills in the passed references with the current size of the
+  terminal</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>newt_get_screen_size</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter reference">&$cols</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter reference">&$rows</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Fills in the passed references with the current size of the terminal.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">cols</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Number of columns in the terminal
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">rows</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Number of rows in the terminal
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>newt_get_screen_size()</b> example</b></p>
+    <div class="example-contents"><p>
+     This code prints out the screen size of your terminal.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;newt_init</span><span style="color: #007700">();<br />&nbsp;</span><span style="color: #0000BB">newt_get_screen_size&nbsp;</span><span style="color: #007700">(&amp;</span><span style="color: #0000BB">$cols</span><span style="color: #007700">,&nbsp;&amp;</span><span style="color: #0000BB">$rows</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #0000BB">newt_finished</span><span style="color: #007700">();<br /><br />&nbsp;print&nbsp;</span><span style="color: #DD0000">"Your&nbsp;terminal&nbsp;size&nbsp;is:&nbsp;{$cols}x{$rows}\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Your terminal size is: 138x47
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.newt-form.html">newt_form</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.newt-grid-add-components-to-form.html">newt_grid_add_components_to_form</a></div>
+ <div class="up"><a href="ref.newt.html">Newt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

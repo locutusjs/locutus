@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Performs a SOAP request</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.soap-soapclient-construct.html">SoapClient->__construct</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.soap-soapclient-getfunctions.html">SoapClient->__getFunctions</a></div>
+ <div class="up"><a href="ref.soap.html">SOAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.soap-soapclient-dorequest" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SoapClient-&gt;__doRequest</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SoapClient-&gt;__doRequest</span> &mdash; <span class="dc-title">
+   Performs a SOAP request
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SoapClient</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">string</span>
+     <span class="methodname"><b><b>__doRequest</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$request</tt></span>
+    , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$location</tt></span>
+    , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$action</tt></span>
+    , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$version</tt></span>
+    [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$one_way</tt></span>
+   ] )</div>
+
+  </div>
+  <p class="para">
+   Performs SOAP request over HTTP.
+  </p>
+  <p class="para">
+   This method can be overridden in subclasses to implement different transport
+   layers, perform additional XML processing or other purpose.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">request</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The XML SOAP request.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">location</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The URL to request.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">action</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SOAP action.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">version</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SOAP version.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">one_way</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The XML SOAP response.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.1.3</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">one_way</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Some examples</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">Add</span><span style="color: #007700">(</span><span style="color: #0000BB">$x</span><span style="color: #007700">,</span><span style="color: #0000BB">$y</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$x</span><span style="color: #007700">+</span><span style="color: #0000BB">$y</span><span style="color: #007700">;<br />}<br /><br />class&nbsp;</span><span style="color: #0000BB">LocalSoapClient&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">SoapClient&nbsp;</span><span style="color: #007700">{<br /><br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$wsdl</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$wsdl</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">server&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SoapServer</span><span style="color: #007700">(</span><span style="color: #0000BB">$wsdl</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">server</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addFunction</span><span style="color: #007700">(</span><span style="color: #DD0000">'Add'</span><span style="color: #007700">);<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">__doRequest</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$location</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$action</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$version</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">ob_start</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">server</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ob_get_contents</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">ob_end_clean</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$response</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br /><br />}<br /><br /></span><span style="color: #0000BB">$x&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">LocalSoapClient</span><span style="color: #007700">(</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,array(</span><span style="color: #DD0000">'location'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'test://'</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'uri'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'http://testuri.org'</span><span style="color: #007700">));&nbsp;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$x</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">Add</span><span style="color: #007700">(</span><span style="color: #0000BB">3</span><span style="color: #007700">,</span><span style="color: #0000BB">4</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.soap-soapclient-construct.html">SoapClient->__construct</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.soap-soapclient-getfunctions.html">SoapClient->__getFunctions</a></div>
+ <div class="up"><a href="ref.soap.html">SOAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

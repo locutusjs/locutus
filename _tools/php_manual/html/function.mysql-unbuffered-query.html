@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Send an SQL query to MySQL, without fetching and buffering the result rows</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.mysqli.html">Mysqli</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mysql-unbuffered-query" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysql_unbuffered_query</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5, PECL mysql:1.0)</p><p class="refpurpose"><span class="refname">mysql_unbuffered_query</span> &mdash; <span class="dc-title">Send an SQL query to MySQL, without fetching and buffering the result rows</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>mysql_unbuffered_query</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>mysql_unbuffered_query()</b> sends a SQL query
+   <i><tt class="parameter">query</tt></i>
+ to MySQL, without fetching and
+   buffering the result rows automatically, as
+   <a href="function.mysql-query.html" class="function">mysql_query()</a> does.  On the one hand, this
+   saves a considerable amount of memory with SQL queries that
+   produce large result sets. On the other hand, you can start
+   working on the result set immediately after the first row has
+   been retrieved: you don&#039;t have to wait until the complete SQL
+   query has been performed.  When using multiple DB-connects, you
+   have to specify the optional parameter
+   <i><tt class="parameter">link_identifier</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">query</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A SQL query
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+link_identifier</tt></i>
+</span>
+<dd>
+<p class="para">The MySQL connection. If the 
+link identifier is not specified, the last link opened by 
+<a href="function.mysql-connect.html" class="function">mysql_connect()</a> is assumed. If no such link is found, it
+will try to create one as if <a href="function.mysql-connect.html" class="function">mysql_connect()</a> was called
+with no arguments. If by chance no connection is found or established, an
+<b><tt>E_WARNING</tt></b> level error is generated.</p></dd>
+
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   For SELECT, SHOW, DESCRIBE or EXPLAIN statements,
+   <b>mysql_unbuffered_query()</b> 
+   returns a <a href="language.types.resource.html" class="type resource">resource</a> on success, or <b><tt>FALSE</tt></b> on
+   error.
+  </p>
+  <p class="para">
+   For other type of SQL statements, UPDATE, DELETE, DROP, etc,
+   <b>mysql_unbuffered_query()</b> returns <b><tt>TRUE</tt></b> on success
+   or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    The benefits of <b>mysql_unbuffered_query()</b> come
+    at a cost: You cannot use <a href="function.mysql-num-rows.html" class="function">mysql_num_rows()</a> and
+    <a href="function.mysql-data-seek.html" class="function">mysql_data_seek()</a> on a result set returned from
+    <b>mysql_unbuffered_query()</b>. You also have to
+    fetch all result rows from an unbuffered SQL query, before you
+    can send a new SQL query to MySQL.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mysql-query.html" class="function" rel="rdfs-seeAlso">mysql_query()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.mysqli.html">Mysqli</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

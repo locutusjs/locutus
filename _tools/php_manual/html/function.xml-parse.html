@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Start parsing an XML document</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xml-parse-into-struct.html">xml_parse_into_struct</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xml-parser-create-ns.html">xml_parser_create_ns</a></div>
+ <div class="up"><a href="ref.xml.html">XML Parser Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.xml-parse" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xml_parse</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">xml_parse</span> &mdash; <span class="dc-title">Start parsing an XML document</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>xml_parse</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$parser</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$is_final</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>xml_parse()</b> parses an XML document. The handlers for
+   the configured events are called as many times as necessary.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">parser</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A reference to the XML parser to use.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Chunk of data to parse.  A document may be parsed piece-wise by
+       calling <b>xml_parse()</b> several times with new data,
+       as long as the <i><tt class="parameter">is_final</tt></i>
+ parameter is set and
+       <b><tt>TRUE</tt></b> when the last data is parsed.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">is_final</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If set and <b><tt>TRUE</tt></b>, <i><tt class="parameter">data</tt></i>
+ is the last piece of
+       data sent in this parse.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns 1 on success or 0 on failure.
+  </p>
+  <p class="para">
+   For unsuccessful parses, error information can be retrieved with
+   <a href="function.xml-get-error-code.html" class="function">xml_get_error_code()</a>,
+   <a href="function.xml-error-string.html" class="function">xml_error_string()</a>,
+   <a href="function.xml-get-current-line-number.html" class="function">xml_get_current_line_number()</a>,
+   <a href="function.xml-get-current-column-number.html" class="function">xml_get_current_column_number()</a> and
+   <a href="function.xml-get-current-byte-index.html" class="function">xml_get_current_byte_index()</a>.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Entity errors are reported at the end of the data thus only if
+    <i><tt class="parameter">is_final</tt></i>
+ is set and <b><tt>TRUE</tt></b>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xml-parse-into-struct.html">xml_parse_into_struct</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xml-parser-create-ns.html">xml_parser_create_ns</a></div>
+ <div class="up"><a href="ref.xml.html">XML Parser Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

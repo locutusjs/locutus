@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns a bzip2 error number</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.bzdecompress.html">bzdecompress</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.bzerror.html">bzerror</a></div>
+ <div class="up"><a href="ref.bzip2.html">Bzip2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.bzerrno" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">bzerrno</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.3, PHP 5, PECL bz2:1.0)</p><p class="refpurpose"><span class="refname">bzerrno</span> &mdash; <span class="dc-title">Returns a bzip2 error number</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>bzerrno</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$bz</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns the error number of any bzip2 error returned by the given file
+   pointer.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">bz</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The file pointer. It must be valid and must point to a file 
+       successfully opened by <a href="function.bzopen.html" class="function">bzopen()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the error number as an integer.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.bzerror.html" class="function" rel="rdfs-seeAlso">bzerror()</a></li>
+    <li class="member"><a href="function.bzerrstr.html" class="function" rel="rdfs-seeAlso">bzerrstr()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.bzdecompress.html">bzdecompress</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.bzerror.html">bzerror</a></div>
+ <div class="up"><a href="ref.bzip2.html">Bzip2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

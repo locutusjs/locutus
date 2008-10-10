@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the type of interface between web server and PHP</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-logo-guid.html">php_logo_guid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-uname.html">php_uname</a></div>
+ <div class="up"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-sapi-name" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_sapi_name</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p><p class="refpurpose"><span class="refname">php_sapi_name</span> &mdash; <span class="dc-title">Returns the type of interface between web server and PHP</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>php_sapi_name</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="simpara">
+   Returns a lowercase string which describes the type of interface between
+   web server and PHP (Server API, SAPI). In CGI PHP, this string is &quot;cgi&quot;,
+   in <i>mod_php</i> for Apache, this string is &quot;apache&quot; and so
+   on.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the interface type, as a lowercase string.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>php_sapi_name()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$sapi_type&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">php_sapi_name</span><span style="color: #007700">();<br />if&nbsp;(</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$sapi_type</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">)&nbsp;==&nbsp;</span><span style="color: #DD0000">'cgi'</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"You&nbsp;are&nbsp;using&nbsp;CGI&nbsp;PHP\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"You&nbsp;are&nbsp;not&nbsp;using&nbsp;CGI&nbsp;PHP\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="reserved.constants.html#reserved.constants.core" class="link">PHP_SAPI</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-logo-guid.html">php_logo_guid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-uname.html">php_uname</a></div>
+ <div class="up"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

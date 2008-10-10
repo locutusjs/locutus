@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Return an array of printers attached to the server</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.printer-get-option.html">printer_get_option</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.printer-logical-fontheight.html">printer_logical_fontheight</a></div>
+ <div class="up"><a href="ref.printer.html">Printer Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.printer-list" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">printer_list</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">printer_list</span> &mdash; <span class="dc-title">Return an array of printers attached to the server</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>printer_list</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$enumtype</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$level</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   The function enumerates available printers and their capabilities.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">enumtype</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">enumtype</tt></i>
+ must be one of the following predefined
+       constants:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_ENUM_LOCAL</tt></b>:
+          enumerates the locally installed printers.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_ENUM_NAME</tt></b>:
+          enumerates the printer of <i><tt class="parameter">name</tt></i>
+, can be a server,
+          domain or print provider.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_ENUM_SHARED</tt></b>:
+          this parameter can&#039;t be used alone, it has to be OR&#039;ed with other
+          parameters, i.e. PRINTER_ENUM_LOCAL to detect the locally shared
+          printers.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_ENUM_DEFAULT</tt></b>:
+          (Win9.x only) enumerates the default printer.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_ENUM_CONNECTIONS</tt></b>:
+          (WinNT/2000 only) enumerates the printers to which the user has
+          made connections.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_ENUM_NETWORK</tt></b>:
+          (WinNT/2000 only) enumerates network printers in the computer&#039;s
+          domain. Only valid if <i><tt class="parameter">level</tt></i>
+ is 1.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_ENUM_REMOTE</tt></b>:
+          (WinNT/2000 only) enumerates network printers and print servers in the
+          computer&#039;s domain. Only valid if <i><tt class="parameter">level</tt></i>
+ is 1.
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Used with <b><tt>PRINTER_ENUM_NAME</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">level</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">level</tt></i>
+ sets the level of information request.
+       Can be 1,2,4 or 5.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Return an array of printers.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>printer_list()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;detect&nbsp;locally&nbsp;shared&nbsp;printer&nbsp;*/<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">printer_list</span><span style="color: #007700">(</span><span style="color: #0000BB">PRINTER_ENUM_LOCAL&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">PRINTER_ENUM_SHARED</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.printer-get-option.html">printer_get_option</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.printer-logical-fontheight.html">printer_logical_fontheight</a></div>
+ <div class="up"><a href="ref.printer.html">Printer Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

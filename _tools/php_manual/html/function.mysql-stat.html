@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get current system status</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-set-charset.html">mysql_set_charset</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-tablename.html">mysql_tablename</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mysql-stat" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysql_stat</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5, PECL mysql:1.0)</p><p class="refpurpose"><span class="refname">mysql_stat</span> &mdash; <span class="dc-title">Get current system status</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mysql_stat</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>mysql_stat()</b> returns the current server status.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+link_identifier</tt></i>
+</span>
+<dd>
+<p class="para">The MySQL connection. If the 
+link identifier is not specified, the last link opened by 
+<a href="function.mysql-connect.html" class="function">mysql_connect()</a> is assumed. If no such link is found, it
+will try to create one as if <a href="function.mysql-connect.html" class="function">mysql_connect()</a> was called
+with no arguments. If by chance no connection is found or established, an
+<b><tt>E_WARNING</tt></b> level error is generated.</p></dd>
+
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string with the status for uptime, threads, queries, open tables, 
+   flush tables and queries per second. For a complete list of other status 
+   variables, you have to use the <i>SHOW STATUS</i> SQL command. 
+   If <i><tt class="parameter">link_identifier</tt></i>
+ is invalid, <b><tt>NULL</tt></b> is returned.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mysql_stat()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_password'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$status&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">explode</span><span style="color: #007700">(</span><span style="color: #DD0000">'&nbsp;&nbsp;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysql_stat</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$status</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; Uptime: 5380
+    [1] =&gt; Threads: 2
+    [2] =&gt; Questions: 1321299
+    [3] =&gt; Slow queries: 0
+    [4] =&gt; Opens: 26
+    [5] =&gt; Flush tables: 1
+    [6] =&gt; Open tables: 17
+    [7] =&gt; Queries per second avg: 245.595
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Alternative <b>mysql_stat()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_password'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">'SHOW&nbsp;VARIABLES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'Variable_name'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">'&nbsp;=&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'Value'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+back_log = 50
+basedir = /usr/local/
+bdb_cache_size = 8388600
+bdb_log_buffer_size = 32768
+bdb_home = /var/db/mysql/
+bdb_max_lock = 10000
+bdb_logdir = 
+bdb_shared_data = OFF
+bdb_tmpdir = /var/tmp/
+...
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mysql-get-server-info.html" class="function" rel="rdfs-seeAlso">mysql_get_server_info()</a></li>
+    <li class="member"><a href="function.mysql-list-processes.html" class="function" rel="rdfs-seeAlso">mysql_list_processes()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-set-charset.html">mysql_set_charset</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-tablename.html">mysql_tablename</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

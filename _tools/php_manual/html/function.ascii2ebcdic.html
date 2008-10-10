@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Translate string from ASCII to EBCDIC</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.apache-setenv.html">apache_setenv</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ebcdic2ascii.html">ebcdic2ascii</a></div>
+ <div class="up"><a href="ref.apache.html">Apache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ascii2ebcdic" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ascii2ebcdic</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">ascii2ebcdic</span> &mdash; <span class="dc-title">Translate string from ASCII to EBCDIC</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>ascii2ebcdic</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$ascii_str</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>ascii2ebcdic()</b> is an Apache-specific function which
+   is available only on EBCDIC based operating systems (OS/390, BS2000).
+   It translates the ASCII encoded string <i><tt class="parameter">ascii_str</tt></i>
+
+   to its equivalent EBCDIC representation (binary safe), and returns
+   the result.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ascii_str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The ASCII string that will be translated.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The EBCDIC representation of an ASCII string.
+  </p>
+ </div>
+
+
+  <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ebcdic2ascii.html" class="function" rel="rdfs-seeAlso">ebcdic2ascii()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.apache-setenv.html">apache_setenv</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ebcdic2ascii.html">ebcdic2ascii</a></div>
+ <div class="up"><a href="ref.apache.html">Apache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Convert associative array values into suitable for SQL statement</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-connection-status.html">pg_connection_status</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-copy-from.html">pg_copy_from</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-convert" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_convert</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">pg_convert</span> &mdash; <span class="dc-title">
+   Convert associative array values into suitable for SQL statement
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>pg_convert</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$table_name</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$assoc_array</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$options</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>pg_convert()</b> checks and converts the values in
+   <i><tt class="parameter">assoc_array</tt></i>
+ into suitable values for use in a SQL
+   statement. Precondition for <b>pg_convert()</b> is the 
+   existence of a table <i><tt class="parameter">table_name</tt></i>
+ which has at least
+   as many columns as <i><tt class="parameter">assoc_array</tt></i>
+ has elements. The
+   fieldnames in <i><tt class="parameter">table_name</tt></i>
+ must match the indices in
+   <i><tt class="parameter">assoc_array</tt></i>
+ and the corresponding datatypes must be
+   compatible. Returns an array with the converted values on success, <b><tt>FALSE</tt></b>
+   otherwise.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    If there are boolean fields in <i><tt class="parameter">table_name</tt></i>
+ don&#039;t 
+    use the constant <b><tt>TRUE</tt></b> in <i><tt class="parameter">assoc_array</tt></i>
+. It will be
+    converted to the string &#039;TRUE&#039; which is no valid entry for boolean fields
+    in PostgreSQL. Use one of t, true, 1, y, yes instead.
+   <br />
+  </p></blockquote>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL database connection resource.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">table_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Name of the table against which to convert types.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">assoc_array</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Data to be converted.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Any number of <b><tt>PGSQL_CONV_IGNORE_DEFAULT</tt></b>, 
+       <b><tt>PGSQL_CONV_FORCE_NULL</tt></b> or
+       <b><tt>PGSQL_CONV_IGNORE_NOT_NULL</tt></b>, combined.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An <a href="language.types.array.html" class="type array">array</a> of converted values, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pg_convert()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php&nbsp;<br />&nbsp;&nbsp;$dbconn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'dbname=foo'</span><span style="color: #007700">);<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$tmp&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'author'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'Joe&nbsp;Thackery'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'year'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">2005</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'title'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'My&nbsp;Life,&nbsp;by&nbsp;Joe&nbsp;Thackery'<br />&nbsp;&nbsp;</span><span style="color: #007700">);<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$vals&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_convert</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbconn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'authors'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$tmp</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-meta-data.html" class="function" rel="rdfs-seeAlso">pg_meta_data()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-connection-status.html">pg_connection_status</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-copy-from.html">pg_copy_from</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

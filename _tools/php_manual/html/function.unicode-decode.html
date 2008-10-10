@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Convert a binary string into a Unicode string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.unicode.html">Unicode Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.unicode-encode.html">unicode_encode</a></div>
+ <div class="up"><a href="ref.unicode.html">Unicode Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.unicode-decode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">unicode_decode</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">unicode_decode</span> &mdash; <span class="dc-title">Convert a binary string into a Unicode string</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type unicode">unicode</span></span> <span class="methodname"><b><b>unicode_decode</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$input</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$errmode</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Convert a binary string encoded in <i><tt class="parameter">encoding</tt></i>
+ to a 
+   <span class="type unicode">unicode</span> string.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">input</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Try <a href="language.types.string.html" class="type string">string</a> that is converted.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The encoding of <i><tt class="parameter">input</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">errmode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Conversion error mode. This parameter determines the action to take when
+       the converter cannot convert a character. For a list of available modes,
+       refer to <a href="function.unicode-set-error-mode.html" class="function">unicode_set_error_mode()</a>. If the parameter 
+       is not set, the global error mode is used.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A <span class="type unicode">unicode</span> string or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Emits a <b><tt>E_WARNING</tt></b> level error if a converter cannot 
+   be created for the desired <i><tt class="parameter">encoding</tt></i>
+.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.unicode-set-error-mode.html" class="function" rel="rdfs-seeAlso">unicode_set_error_mode()</a></li>
+    <li class="member"><b>unicode_semantics()</b></li>
+    <li class="member"><a href="function.unicode-encode.html" class="function" rel="rdfs-seeAlso">unicode_encode()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.unicode.html">Unicode Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.unicode-encode.html">unicode_encode</a></div>
+ <div class="up"><a href="ref.unicode.html">Unicode Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

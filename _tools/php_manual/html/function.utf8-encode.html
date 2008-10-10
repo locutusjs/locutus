@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Encodes an ISO-8859-1 string to UTF-8</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.utf8-decode.html">utf8_decode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xml-error-string.html">xml_error_string</a></div>
+ <div class="up"><a href="ref.xml.html">XML Parser Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.utf8-encode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">utf8_encode</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">utf8_encode</span> &mdash; <span class="dc-title">Encodes an ISO-8859-1 string to UTF-8</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>utf8_encode</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function encodes the string <i><tt class="parameter">data</tt></i>
+ to
+   <i>UTF-8</i>, and returns the encoded version.
+   <i>UTF-8</i> is a standard mechanism used by
+   <acronym title="Unique, Universal, and Uniform character enCoding">Unicode</acronym> for encoding <span class="glossterm">wide
+   character</span> values into a byte stream.
+   <i>UTF-8</i> is transparent to plain <abbr class="abbrev">ASCII</abbr>
+   characters, is self-synchronized (meaning it is possible for a program to
+   figure out where in the bytestream characters start) and can be used with
+   normal string comparison functions for sorting and such. PHP encodes
+   <i>UTF-8</i> characters in up to four bytes, like this:
+   <table border="5">
+    <caption><b>UTF-8 encoding</b></caption>
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">bytes</th>
+       <th colspan="1">bits</th>
+       <th colspan="1">representation</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">1</td>
+       <td colspan="1" rowspan="1" align="left">7</td>
+       <td colspan="1" rowspan="1" align="left">0bbbbbbb</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">2</td>
+       <td colspan="1" rowspan="1" align="left">11</td>
+       <td colspan="1" rowspan="1" align="left">110bbbbb 10bbbbbb</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">3</td>
+       <td colspan="1" rowspan="1" align="left">16</td>
+       <td colspan="1" rowspan="1" align="left">1110bbbb 10bbbbbb 10bbbbbb</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4</td>
+       <td colspan="1" rowspan="1" align="left">21</td>
+       <td colspan="1" rowspan="1" align="left">11110bbb 10bbbbbb 10bbbbbb 10bbbbbb</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+   Each <span class="replaceable">b</span> represents a bit that can be
+   used to store character data.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An ISO-8859-1 string.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the UTF-8 translation of <i><tt class="parameter">data</tt></i>
+.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.utf8-decode.html">utf8_decode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xml-error-string.html">xml_error_string</a></div>
+ <div class="up"><a href="ref.xml.html">XML Parser Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

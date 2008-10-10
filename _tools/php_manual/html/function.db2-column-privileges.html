@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns a result set listing the columns and associated privileges for a table</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-close.html">db2_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-columns.html">db2_columns</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.db2-column-privileges" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">db2_column_privileges</h1>
+  <p class="verinfo">(PECL ibm_db2:1.0-1.6.2)</p><p class="refpurpose"><span class="refname">db2_column_privileges</span> &mdash; <span class="dc-title">
+   Returns a result set listing the columns and associated privileges for a table
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>db2_column_privileges</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$qualifier</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$schema</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$table-name</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$column-name</tt></span>
+  ]]]] )</div>
+
+
+
+  <p class="para rdfs-comment">
+   Returns a result set listing the columns and associated privileges for a
+   table.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid connection to an IBM DB2, Cloudscape, or Apache Derby database.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">qualifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A qualifier for DB2 databases running on OS/390 or z/OS servers. For
+       other databases, pass <b><tt>NULL</tt></b> or an empty string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">schema</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The schema which contains the tables. To match all schemas, pass <b><tt>NULL</tt></b>
+       or an empty string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">table-name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name of the table or view. To match all tables in the database,
+       pass <b><tt>NULL</tt></b> or an empty string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">column-name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name of the column. To match all columns in the table, pass <b><tt>NULL</tt></b>
+       or an empty string.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a statement resource with a result set containing rows describing
+   the column privileges for columns matching the specified parameters. The
+   rows are composed of the following columns:
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Column name</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">TABLE_CAT</td>
+        <td colspan="1" rowspan="1" align="left">Name of the catalog. The value is NULL if this table does not
+         have catalogs.</td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">TABLE_SCHEM</td>
+        <td colspan="1" rowspan="1" align="left">Name of the schema.</td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">TABLE_NAME</td>
+        <td colspan="1" rowspan="1" align="left">Name of the table or view.</td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">COLUMN_NAME</td>
+        <td colspan="1" rowspan="1" align="left">Name of the column.</td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">GRANTOR</td>
+        <td colspan="1" rowspan="1" align="left">Authorization ID of the user who granted the privilege.</td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">GRANTEE</td>
+        <td colspan="1" rowspan="1" align="left">Authorization ID of the user to whom the privilege was
+         granted.</td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">PRIVILEGE</td>
+        <td colspan="1" rowspan="1" align="left">The privilege for the column.</td>
+       </tr>
+
+       <tr valign="middle">
+        <td colspan="1" rowspan="1" align="left">IS_GRANTABLE</td>
+        <td colspan="1" rowspan="1" align="left">Whether the GRANTEE is permitted to grant this privilege to
+        other users.</td>
+       </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ 
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.db2-columns.html" class="function" rel="rdfs-seeAlso">db2_columns()</a></li>
+    <li class="member"><a href="function.db2-foreign-keys.html" class="function" rel="rdfs-seeAlso">db2_foreign_keys()</a></li>
+    <li class="member"><a href="function.db2-primary-keys.html" class="function" rel="rdfs-seeAlso">db2_primary_keys()</a></li>
+    <li class="member"><a href="function.db2-procedure-columns.html" class="function" rel="rdfs-seeAlso">db2_procedure_columns()</a></li>
+    <li class="member"><a href="function.db2-procedures.html" class="function" rel="rdfs-seeAlso">db2_procedures()</a></li>
+    <li class="member"><a href="function.db2-special-columns.html" class="function" rel="rdfs-seeAlso">db2_special_columns()</a></li>
+    <li class="member"><a href="function.db2-statistics.html" class="function" rel="rdfs-seeAlso">db2_statistics()</a></li>
+    <li class="member"><a href="function.db2-table-privileges.html" class="function" rel="rdfs-seeAlso">db2_table_privileges()</a></li>
+    <li class="member"><a href="function.db2-tables.html" class="function" rel="rdfs-seeAlso">db2_tables()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-close.html">db2_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-columns.html">db2_columns</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

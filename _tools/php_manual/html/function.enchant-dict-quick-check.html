@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Check the word is correctly spelled and provide suggestions</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.enchant-dict-is-in-session.html">enchant_dict_is_in_session</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.enchant-dict-store-replacement.html">enchant_dict_store_replacement</a></div>
+ <div class="up"><a href="ref.enchant.html">Enchant Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.enchant-dict-quick-check" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">enchant_dict_quick_check</h1>
+  <p class="verinfo">(PECL enchant:0.2.0-1.0.1)</p><p class="refpurpose"><span class="refname">enchant_dict_quick_check</span> &mdash; <span class="dc-title">Check the word is correctly spelled and provide suggestions</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>enchant_dict_quick_check</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$dict</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$word</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$suggestions</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   If the word is correctly spelled return <b><tt>TRUE</tt></b>, otherwise return <b><tt>FALSE</tt></b>, if suggestions variable
+   is provided, fill it with spelling alternatives.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dict</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Dictionary resource
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">word</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The word to check
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">suggestions</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the word is not correctly spelled, this variable will
+       contain an array of suggestions.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if the word is correctly spelled or <b><tt>FALSE</tt></b>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>enchant_dict_quick_check()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$tag&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'en_US'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$r&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">enchant_broker_init</span><span style="color: #007700">();<br /><br />if&nbsp;(</span><span style="color: #0000BB">enchant_broker_dict_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$r</span><span style="color: #007700">,</span><span style="color: #0000BB">$tag</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$d&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">enchant_broker_request_dict</span><span style="color: #007700">(</span><span style="color: #0000BB">$r</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$tag</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">enchant_dict_quick_check</span><span style="color: #007700">(</span><span style="color: #0000BB">$d</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'soong'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$suggs</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$suggs</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; song
+    [1] =&gt; snog
+    [2] =&gt; soon
+    [3] =&gt; Sang
+    [4] =&gt; Sung
+    [5] =&gt; sang
+    [6] =&gt; sung
+    [7] =&gt; sponge
+    [8] =&gt; spongy
+    [9] =&gt; snag
+    [10] =&gt; snug
+    [11] =&gt; sonic
+    [12] =&gt; sing
+    [13] =&gt; songs
+    [14] =&gt; Son
+    [15] =&gt; Sonja
+    [16] =&gt; Synge
+    [17] =&gt; son
+    [18] =&gt; Sejong
+    [19] =&gt; sarong
+    [20] =&gt; sooner
+    [21] =&gt; Sony
+    [22] =&gt; sown
+    [23] =&gt; scone
+    [24] =&gt; song&#039;s
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.enchant-dict-check.html" class="function" rel="rdfs-seeAlso">enchant_dict_check()</a></li>
+    <li class="member"><a href="function.enchant-dict-suggest.html" class="function" rel="rdfs-seeAlso">enchant_dict_suggest()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.enchant-dict-is-in-session.html">enchant_dict_is_in_session</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.enchant-dict-store-replacement.html">enchant_dict_store_replacement</a></div>
+ <div class="up"><a href="ref.enchant.html">Enchant Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

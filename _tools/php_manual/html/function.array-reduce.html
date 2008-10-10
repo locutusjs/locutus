@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Iteratively reduce the array to a single value using a callback function</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.array-rand.html">array_rand</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.array-reverse.html">array_reverse</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.array-reduce" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">array_reduce</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5, PHP 5)</p><p class="refpurpose"><span class="refname">array_reduce</span> &mdash; <span class="dc-title">Iteratively reduce the array to a single value using a callback function</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>array_reduce</b></b></span>
+    ( <span class="methodparam"><span class="type">array</span> <tt class="parameter">$input</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.callback" class="type callback">callback</a></span> <tt class="parameter">$function</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$initial</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>array_reduce()</b> applies iteratively the
+   <i><tt class="parameter">function</tt></i>
+ function to the elements of the
+   array <i><tt class="parameter">input</tt></i>
+, so as to reduce the array to
+   a single value.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">input</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input array.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">function</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The callback function.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">initial</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the optional <i><tt class="parameter">initial</tt></i>
+ is available, it will
+       be used at the beginning of the process, or as a final result in case
+       the array is empty.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the resulting value.
+  </p>
+  <p class="para">
+   If the array is empty and <i><tt class="parameter">initial</tt></i>
+ is not passed,
+   <b>array_reduce()</b> returns <b><tt>NULL</tt></b>.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>array_reduce()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">rsum</span><span style="color: #007700">(</span><span style="color: #0000BB">$v</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$w</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$v&nbsp;</span><span style="color: #007700">+=&nbsp;</span><span style="color: #0000BB">$w</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$v</span><span style="color: #007700">;<br />}<br /><br />function&nbsp;</span><span style="color: #0000BB">rmul</span><span style="color: #007700">(</span><span style="color: #0000BB">$v</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$w</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$v&nbsp;</span><span style="color: #007700">*=&nbsp;</span><span style="color: #0000BB">$w</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$v</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$x&nbsp;</span><span style="color: #007700">=&nbsp;array();<br /></span><span style="color: #0000BB">$b&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">array_reduce</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"rsum"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$c&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">array_reduce</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"rmul"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$d&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">array_reduce</span><span style="color: #007700">(</span><span style="color: #0000BB">$x</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"rsum"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     This will result in <var class="varname">$b</var> containing
+     <i>15</i>, <var class="varname">$c</var> containing
+     <i>1200</i> (= 10*1*2*3*4*5), and <var class="varname">$d</var>
+     containing <i>1</i>.
+    </p></div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.array-filter.html" class="function" rel="rdfs-seeAlso">array_filter()</a></li>
+    <li class="member"><a href="function.array-map.html" class="function" rel="rdfs-seeAlso">array_map()</a></li>
+    <li class="member"><a href="function.array-unique.html" class="function" rel="rdfs-seeAlso">array_unique()</a></li>
+    <li class="member"><a href="function.array-count-values.html" class="function" rel="rdfs-seeAlso">array_count_values()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.array-rand.html">array_rand</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.array-reverse.html">array_reverse</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

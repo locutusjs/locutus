@@ -1,0 +1,1405 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set an option for a cURL transfer</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.curl-setopt-array.html">curl_setopt_array</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.curl-version.html">curl_version</a></div>
+ <div class="up"><a href="ref.curl.html">cURL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.curl-setopt" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">curl_setopt</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5)</p><p class="refpurpose"><span class="refname">curl_setopt</span> &mdash; <span class="dc-title">Set an option for a cURL transfer</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>curl_setopt</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$ch</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$option</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$value</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sets an option on the given cURL session handle.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">ch</tt></i>
+
+</span>
+<dd>
+<p class="para">A cURL handle returned by 
+<a href="function.curl-init.html" class="function">curl_init()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">option</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i>CURLOPT_XXX</i> option to set.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">value</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The value to be set on <i><tt class="parameter">option</tt></i>
+.
+      </p>
+      <p class="para">
+       <i><tt class="parameter">value</tt></i>
+ should be a bool for the
+       following values of the <i><tt class="parameter">option</tt></i>
+ parameter:
+       <table class="informaltable">
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">Option</th>
+           <th colspan="1">Set <i><tt class="parameter">value</tt></i>
+ to</th>
+           <th colspan="1">Notes</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_AUTOREFERER</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to automatically set the <i>Referer:</i> field in
+            requests where it follows a <i>Location:</i> redirect.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Available since PHP 5.1.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_BINARYTRANSFER</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to return the raw output when
+            <b><tt>CURLOPT_RETURNTRANSFER</tt></b> is used.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_COOKIESESSION</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to mark this as a new cookie &quot;session&quot;. It will force libcurl
+            to ignore all cookies it is about to load that are &quot;session cookies&quot;
+            from the previous session. By default, libcurl always stores and
+            loads all cookies, independent if they are session cookies are not.
+            Session cookies are cookies without expiry date and they are meant
+            to be alive and existing for this &quot;session&quot; only.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Available since PHP 5.1.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_CRLF</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to convert Unix newlines to CRLF newlines
+            on transfers.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_DNS_USE_GLOBAL_CACHE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to use a global DNS cache. This option is
+            not thread-safe and is enabled by default.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FAILONERROR</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to fail silently if the HTTP code returned
+            is greater than or equal to 400. The default behavior is to return
+            the page normally, ignoring the code.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FILETIME</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to attempt to retrieve the modification
+            date of the remote document. This value can be retrieved using
+            the <i><tt class="parameter">CURLINFO_FILETIME</tt></i>
+ option with
+            <a href="function.curl-getinfo.html" class="function">curl_getinfo()</a>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FOLLOWLOCATION</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to follow any
+            <i>&quot;Location: &quot;</i> header that the server sends as
+            part of the HTTP header (note this is recursive, PHP will follow as
+            many <i>&quot;Location: &quot;</i> headers that it is sent,
+            unless <b><tt>CURLOPT_MAXREDIRS</tt></b> is set).
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FORBID_REUSE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to force the connection to explicitly
+            close when it has finished processing, and not be pooled for reuse.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FRESH_CONNECT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to force the use of a new connection
+            instead of a cached one.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FTP_USE_EPRT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to use EPRT (and LPRT) when doing active
+            FTP downloads. Use <b><tt>FALSE</tt></b> to disable EPRT and LPRT and use PORT
+            only.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in PHP 5.0.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FTP_USE_EPSV</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to first try an EPSV command for FTP
+            transfers before reverting back to PASV. Set to <b><tt>FALSE</tt></b>
+            to disable EPSV.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FTPAPPEND</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to append to the remote file instead of
+            overwriting it.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FTPASCII</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            An alias of
+            <b><tt>CURLOPT_TRANSFERTEXT</tt></b>. Use that instead.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FTPLISTONLY</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to only list the names of an FTP
+            directory.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_HEADER</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to include the header in the output.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_HTTPGET</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to reset the HTTP request method to GET.
+            Since GET is the default, this is only necessary if the request
+            method has been changed.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_HTTPPROXYTUNNEL</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to tunnel through a given HTTP proxy.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_MUTE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to be completely silent with regards to
+            the cURL functions.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_NETRC</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to scan the <var class="filename">~/.netrc</var>
+            file to find a username and password for the remote site that
+            a connection is being established with.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_NOBODY</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to exclude the body from the output.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_NOPROGRESS</tt></b></td>
+           <td colspan="1" rowspan="1" align="left"><p class="para">
+            <b><tt>TRUE</tt></b> to disable the progress meter for cURL transfers.
+            <blockquote><p><b class="note">Note</b>: 
+             
+              PHP automatically sets this option to <b><tt>TRUE</tt></b>, this should only be
+              changed for debugging purposes.
+             <br />
+            </p></blockquote>
+           </p></td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_NOSIGNAL</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to ignore any cURL function that causes a
+            signal to be sent to the PHP process. This is turned on by default
+            in multi-threaded SAPIs so timeout options can still be used.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in cURL 7.10 and PHP 5.0.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_POST</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to do a regular HTTP POST. This POST is the
+            normal <i>application/x-www-form-urlencoded</i> kind,
+            most commonly used by HTML forms.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_PUT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to HTTP PUT a file. The file to PUT must
+            be set with <b><tt>CURLOPT_INFILE</tt></b> and
+            <b><tt>CURLOPT_INFILESIZE</tt></b>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_RETURNTRANSFER</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to return the transfer as a string of the
+            return value of <a href="function.curl-exec.html" class="function">curl_exec()</a> instead of outputting
+            it out directly.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_SSL_VERIFYPEER</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>FALSE</tt></b> to stop cURL from verifying the peer&#039;s
+            certificate. Alternate certificates to verify against can be
+            specified with the <b><tt>CURLOPT_CAINFO</tt></b> option
+            or a certificate directory can be specified with the
+            <b><tt>CURLOPT_CAPATH</tt></b> option.
+            <b><tt>CURLOPT_SSL_VERIFYHOST</tt></b> may also need to be
+            <b><tt>TRUE</tt></b> or <b><tt>FALSE</tt></b> if
+            <b><tt>CURLOPT_SSL_VERIFYPEER</tt></b> is disabled (it
+            defaults to 2).
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> by default as of cURL 7.10. Default bundle installed as of
+            cURL 7.10.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_TRANSFERTEXT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to use ASCII mode for FTP transfers.
+            For LDAP, it retrieves data in plain text instead of HTML. On
+            Windows systems, it will not set <i>STDOUT</i> to binary
+            mode.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_UNRESTRICTED_AUTH</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to keep sending the username and password
+            when following locations (using
+            <b><tt>CURLOPT_FOLLOWLOCATION</tt></b>), even when the
+            hostname has changed.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in PHP 5.0.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_UPLOAD</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to prepare for an upload.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_VERBOSE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>TRUE</tt></b> to output verbose information. Writes
+            output to <i>STDERR</i>, or the file specified using
+            <b><tt>CURLOPT_STDERR</tt></b>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+      </p>
+      <p class="para">
+       <i><tt class="parameter">value</tt></i>
+ should be an integer for the
+       following values of the <i><tt class="parameter">option</tt></i>
+ parameter:
+       <table class="informaltable">
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">Option</th>
+           <th colspan="1">Set <i><tt class="parameter">value</tt></i>
+ to</th>
+           <th colspan="1">Notes</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_BUFFERSIZE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The size of the buffer to use for each read. There is no guarantee
+            this request will be fulfilled, however.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in cURL 7.10 and PHP 5.0.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_CLOSEPOLICY</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            Either
+            <i><tt class="parameter">CURLCLOSEPOLICY_LEAST_RECENTLY_USED</tt></i>
+ or
+            <i><tt class="parameter">CURLCLOSEPOLICY_OLDEST</tt></i>
+.
+            There are three other <i>CURLCLOSEPOLICY_</i>
+            constants, but cURL does not support them yet.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_CONNECTTIMEOUT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The number of seconds to wait whilst trying to connect. Use 0 to
+            wait indefinitely.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_DNS_CACHE_TIMEOUT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The number of seconds to keep DNS entries in memory. This
+            option is set to 120 (2 minutes) by default.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FTPSSLAUTH</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The FTP authentication method (when is activated):
+            <i>CURLFTPAUTH_SSL</i> (try SSL first),
+            <i>CURLFTPAUTH_TLS</i> (try TLS first), or
+            <i>CURLFTPAUTH_DEFAULT</i> (let cURL decide).
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in cURL 7.12.2 and PHP 5.1.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_HTTP_VERSION</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <i><tt class="parameter">CURL_HTTP_VERSION_NONE</tt></i>
+ (default, lets CURL
+            decide which version to use),
+            <i><tt class="parameter">CURL_HTTP_VERSION_1_0</tt></i>
+ (forces HTTP/1.0),
+            or <i><tt class="parameter">CURL_HTTP_VERSION_1_1</tt></i>
+ (forces HTTP/1.1).
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_HTTPAUTH</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            <p class="para">
+             The HTTP authentication method(s) to use. The options are:
+             <i><tt class="parameter">CURLAUTH_BASIC</tt></i>
+,
+             <i><tt class="parameter">CURLAUTH_DIGEST</tt></i>
+,
+             <i><tt class="parameter">CURLAUTH_GSSNEGOTIATE</tt></i>
+,
+             <i><tt class="parameter">CURLAUTH_NTLM</tt></i>
+,
+             <i><tt class="parameter">CURLAUTH_ANY</tt></i>
+, and
+             <i><tt class="parameter">CURLAUTH_ANYSAFE</tt></i>
+.
+            </p>
+            <p class="para">
+             The bitwise <i>|</i> (or) operator can be used to combine
+             more than one method. If this is done, cURL will poll the server to see
+             what methods it supports and pick the best one.
+            </p>
+            <p class="para">
+             <i><tt class="parameter">CURLAUTH_ANY</tt></i>
+ is an alias for
+             <i>CURLAUTH_BASIC | CURLAUTH_DIGEST | CURLAUTH_GSSNEGOTIATE | CURLAUTH_NTLM</i>.
+            </p>
+            <p class="para">
+             <i><tt class="parameter">CURLAUTH_ANYSAFE</tt></i>
+ is an alias for
+             <i>CURLAUTH_DIGEST | CURLAUTH_GSSNEGOTIATE | CURLAUTH_NTLM</i>.
+            </p>
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in PHP 5.0.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_INFILESIZE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The expected size, in bytes, of the file when uploading a file to a
+            remote site.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_LOW_SPEED_LIMIT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The transfer speed, in bytes per second, that the transfer should be
+            below during <b><tt>CURLOPT_LOW_SPEED_TIME</tt></b> seconds
+            for PHP to consider the transfer too slow and abort.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_LOW_SPEED_TIME</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The number of seconds the transfer should be below
+            <b><tt>CURLOPT_LOW_SPEED_LIMIT</tt></b> for PHP to consider
+            the transfer too slow and abort.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_MAXCONNECTS</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The maximum amount of persistent connections that are allowed.
+            When the limit is reached,
+            <b><tt>CURLOPT_CLOSEPOLICY</tt></b> is used to determine
+            which connection to close.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_MAXREDIRS</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The maximum amount of HTTP redirections to follow. Use this option
+            alongside <b><tt>CURLOPT_FOLLOWLOCATION</tt></b>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_PORT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            An alternative port number to connect to.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_PROXYAUTH</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+           The HTTP authentication method(s) to use for the proxy connection.
+           Use the same bitmasks as described in
+           <b><tt>CURLOPT_HTTPAUTH</tt></b>. For proxy authentication,
+           only <i><tt class="parameter">CURLAUTH_BASIC</tt></i>
+ and
+           <i><tt class="parameter">CURLAUTH_NTLM</tt></i>
+ are currently supported.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in cURL 7.10.7 and PHP 5.1.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_PROXYPORT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The port number of the proxy to connect to. This port number can
+            also be set in <b><tt>CURLOPT_PROXY</tt></b>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in PHP 5.0.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_PROXYTYPE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            Either <i><tt class="parameter">CURLPROXY_HTTP</tt></i>
+ (default) or
+            <i><tt class="parameter">CURLPROXY_SOCKS5</tt></i>
+.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in cURL 7.10 and PHP 5.0.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_RESUME_FROM</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The offset, in bytes, to resume a transfer from.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_SSL_VERIFYHOST</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            1 to check the existence of a common name in the
+            SSL peer certificate. 2 to check the existence of
+            a common name and also verify that it matches the hostname
+            provided.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_SSLVERSION</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The SSL version (2 or 3) to use. By default PHP will try to determine
+            this itself, although in some cases this must be set manually.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_TIMECONDITION</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            How <b><tt>CURLOPT_TIMEVALUE</tt></b> is treated.
+            Use <i><tt class="parameter">CURL_TIMECOND_IFMODSINCE</tt></i>
+ to return the
+            page only if it has been modified since the time specified in
+            <b><tt>CURLOPT_TIMEVALUE</tt></b>. If it hasn&#039;t been modified,
+            a <i>&quot;304 Not Modified&quot;</i> header will be returned
+            assuming <b><tt>CURLOPT_HEADER</tt></b> is <b><tt>TRUE</tt></b>.
+            Use <i><tt class="parameter">CURL_TIMECOND_ISUNMODSINCE</tt></i>
+ for the reverse
+            effect. <i><tt class="parameter">CURL_TIMECOND_IFMODSINCE</tt></i>
+ is the
+            default.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in PHP 5.1.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_TIMEOUT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The maximum number of seconds to allow cURL functions to execute.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_TIMEVALUE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The time in seconds since January 1st, 1970. The time will be used
+            by <b><tt>CURLOPT_TIMECONDITION</tt></b>. By default,
+            <i><tt class="parameter">CURL_TIMECOND_IFMODSINCE</tt></i>
+ is used.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+      </p>
+      <p class="para">
+       <i><tt class="parameter">value</tt></i>
+ should be a string for the
+       following values of the <i><tt class="parameter">option</tt></i>
+ parameter:
+       <table class="informaltable">
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">Option</th>
+           <th colspan="1">Set <i><tt class="parameter">value</tt></i>
+ to</th>
+           <th colspan="1">Notes</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_CAINFO</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The name of a file holding one or more certificates to verify the
+            peer with. This only makes sense when used in combination with
+            <b><tt>CURLOPT_SSL_VERIFYPEER</tt></b>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_CAPATH</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            A directory that holds multiple CA certificates. Use this option
+            alongside <b><tt>CURLOPT_SSL_VERIFYPEER</tt></b>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_COOKIE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The contents of the <i>&quot;Set-Cookie: &quot;</i> header to be
+            used in the HTTP request.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_COOKIEFILE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The name of the file containing the cookie data. The cookie file can
+            be in Netscape format, or just plain HTTP-style headers dumped into
+            a file.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_COOKIEJAR</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The name of a file to save all internal cookies to when the
+            connection closes.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_CUSTOMREQUEST</tt></b></td>
+           <td colspan="1" rowspan="1" align="left"><p class="para">
+            A custom request method to use instead of
+            <i>&quot;GET&quot;</i> or <i>&quot;HEAD&quot;</i> when doing
+            a HTTP request. This is useful for doing
+            <i>&quot;DELETE&quot;</i> or other, more obscure HTTP requests.
+            Valid values are things like <i>&quot;GET&quot;</i>,
+            <i>&quot;POST&quot;</i>, <i>&quot;CONNECT&quot;</i> and so on;
+            i.e. Do not enter a whole HTTP request line here. For instance,
+            entering <i>&quot;GET /index.html HTTP/1.0\r\n\r\n&quot;</i>
+            would be incorrect.
+            <blockquote><p><b class="note">Note</b>: 
+             
+              Don&#039;t do this without making sure the server supports the custom
+              request method first.
+             <br />
+            </p></blockquote>
+           </p></td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_EGDSOCKET</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            Like <b><tt>CURLOPT_RANDOM_FILE</tt></b>, except a filename
+            to an Entropy Gathering Daemon socket.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_ENCODING</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The contents of the <i>&quot;Accept-Encoding: &quot;</i> header.
+            This enables decoding of the response. Supported encodings are
+            <i>&quot;identity&quot;</i>, <i>&quot;deflate&quot;</i>, and
+            <i>&quot;gzip&quot;</i>. If an empty string, <i>&quot;&quot;</i>,
+            is set, a header containing all supported encoding types is sent.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in cURL 7.10.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FTPPORT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The value which will be used to get the IP address to use
+            for the FTP &quot;POST&quot; instruction. The &quot;POST&quot; instruction tells
+            the remote server to connect to our specified IP address.  The
+            string may be a plain IP address, a hostname, a network
+            interface name (under Unix), or just a plain &#039;-&#039; to use the
+            systems default IP address.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_INTERFACE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The name of the outgoing network interface to use. This can be an
+            interface name, an IP address or a host name.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_KRB4LEVEL</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The KRB4 (Kerberos 4) security level. Any of the following values
+            (in order from least to most powerful) are valid:
+            <i>&quot;clear&quot;</i>,
+            <i>&quot;safe&quot;</i>,
+            <i>&quot;confidential&quot;</i>,
+            <i>&quot;private&quot;.</i>.
+            If the string does not match one of these,
+            <i>&quot;private&quot;</i> is used. Setting this option to <b><tt>NULL</tt></b>
+            will disable KRB4 security. Currently KRB4 security only works
+            with FTP transactions.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_POSTFIELDS</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The full data to post in a HTTP &quot;POST&quot; operation.
+            To post a file, prepend a filename with <i>@</i> and
+            use the full path. This can either be passed as a urlencoded 
+            string like &#039;<i>para1=val1&amp;para2=val2&amp;...</i>&#039; 
+            or as an array with the field name as key and field data as value.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_PROXY</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The HTTP proxy to tunnel requests through.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_PROXYUSERPWD</tt></b></td>
+            <td colspan="1" rowspan="1" align="left">
+             A username and password formatted as
+             <i>&quot;[username]:[password]&quot;</i> to use for the
+             connection to the proxy.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_RANDOM_FILE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            A filename to be used to seed the random number generator for SSL.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_RANGE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            Range(s) of data to retrieve in the format
+            <i>&quot;X-Y&quot;</i> where X or Y are optional. HTTP transfers
+            also support several intervals, separated with commas in the format
+            <i>&quot;X-Y,N-M&quot;</i>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_REFERER</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The contents of the <i>&quot;Referer: &quot;</i> header to be used
+            in a HTTP request.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_SSL_CIPHER_LIST</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            A list of ciphers to use for SSL. For example,
+            <i>RC4-SHA</i> and <i>TLSv1</i> are valid
+            cipher lists.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_SSLCERT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The name of a file containing a PEM formatted certificate.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_SSLCERTPASSWD</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The password required to use the
+            <b><tt>CURLOPT_SSLCERT</tt></b> certificate.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_SSLCERTTYPE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The format of the certificate. Supported formats are
+            <i>&quot;PEM&quot;</i> (default), <i>&quot;DER&quot;</i>,
+            and <i>&quot;ENG&quot;</i>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in cURL 7.9.3 and PHP 5.0.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_SSLENGINE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The identifier for the crypto engine of the private SSL key
+            specified in <b><tt>CURLOPT_SSLKEY</tt></b>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_SSLENGINE_DEFAULT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The identifier for the crypto engine used for asymmetric crypto
+            operations.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_SSLKEY</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The name of a file containing a private SSL key.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_SSLKEYPASSWD</tt></b></td>
+           <td colspan="1" rowspan="1" align="left"><p class="para">
+            The secret password needed to use the private SSL key specified in
+            <b><tt>CURLOPT_SSLKEY</tt></b>.
+            <blockquote><p><b class="note">Note</b>: 
+             
+              Since this option contains a sensitive password, remember to keep
+              the PHP script it is contained within safe.
+             <br />
+            </p></blockquote>
+           </p></td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_SSLKEYTYPE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The key type of the private SSL key specified in
+            <b><tt>CURLOPT_SSLKEY</tt></b>. Supported key types are
+            <i>&quot;PEM&quot;</i> (default), <i>&quot;DER&quot;</i>,
+            and <i>&quot;ENG&quot;</i>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_URL</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The URL to fetch. This can also be set when initializing a
+            session with <a href="function.curl-init.html" class="function">curl_init()</a>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_USERAGENT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The contents of the <i>&quot;User-Agent: &quot;</i> header to be
+            used in a HTTP request.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_USERPWD</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            A username and password formatted as
+            <i>&quot;[username]:[password]&quot;</i> to use for the
+            connection.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+      </p>
+      <p class="para">
+       <i><tt class="parameter">value</tt></i>
+ should be an array for the
+       following values of the <i><tt class="parameter">option</tt></i>
+ parameter:
+       <table class="informaltable">
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">Option</th>
+           <th colspan="1">Set <i><tt class="parameter">value</tt></i>
+ to</th>
+           <th colspan="1">Notes</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_HTTP200ALIASES</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            An array of HTTP 200 responses that will be treated as valid
+            responses and not as errors.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Added in cURL 7.10.3 and PHP 5.0.0.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_HTTPHEADER</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            An array of HTTP header fields to set.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_POSTQUOTE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            An array of FTP commands to execute on the server after the FTP
+            request has been performed.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_QUOTE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            An array of FTP commands to execute on the server prior to the FTP
+            request.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+      </p>
+      <p class="para">
+       <i><tt class="parameter">value</tt></i>
+ should be a stream resource (using
+       <a href="function.fopen.html" class="function">fopen()</a>, for example) for the following values of the
+       <i><tt class="parameter">option</tt></i>
+ parameter:
+       <table class="informaltable">
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">Option</th>
+           <th colspan="1">Set <i><tt class="parameter">value</tt></i>
+ to</th>
+           <th colspan="1">Notes</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_FILE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The file that the transfer should be written to. The default
+            is <i>STDOUT</i> (the browser window).
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_INFILE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The file that the transfer should be read from when uploading.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_STDERR</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            An alternative location to output errors to instead of
+            <i>STDERR</i>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_WRITEHEADER</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The file that the header part of the transfer is written to.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+      </p>
+      <p class="para">
+       <i><tt class="parameter">value</tt></i>
+ should be a string that is the name of a valid
+       callback function for the following values of the
+       <i><tt class="parameter">option</tt></i>
+ parameter:
+       <table class="informaltable">
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">Option</th>
+           <th colspan="1">Set <i><tt class="parameter">value</tt></i>
+ to</th>
+           <th colspan="1">Notes</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_HEADERFUNCTION</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The name of a callback function where the callback function takes
+            two parameters. The first is the cURL resource, the second is a
+            string with the header data to be written. The header data must
+            be written when using this callback function. Return the number of 
+            bytes written.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_PASSWDFUNCTION</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The name of a callback function where the callback function takes
+            three parameters. The first is the cURL resource, the second is a
+            string containing a password prompt, and the third is the maximum
+            password length. Return the string containing the password.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_READFUNCTION</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The name of a callback function where the callback function takes
+            two parameters. The first is the cURL resource, and the second is a
+            string with the data to be read. The data must be read by using this
+            callback function. Return the number of bytes read. Return 0 to signal
+            <i>EOF</i>.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>CURLOPT_WRITEFUNCTION</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            The name of a callback function where the callback function takes
+            two parameters. The first is the cURL resource, and the second is a
+            string with the data to be written. The data must be written by using
+            this callback function. Must return the exact number of bytes written 
+            or this will fail.
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+           </td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Initializing a new cURL session and fetching a web page</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;create&nbsp;a&nbsp;new&nbsp;cURL&nbsp;resource<br /></span><span style="color: #0000BB">$ch&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">curl_init</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;set&nbsp;URL&nbsp;and&nbsp;other&nbsp;appropriate&nbsp;options<br /></span><span style="color: #0000BB">curl_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">CURLOPT_URL</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"http://www.example.com/"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">curl_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">CURLOPT_HEADER</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;grab&nbsp;URL&nbsp;and&nbsp;pass&nbsp;it&nbsp;to&nbsp;the&nbsp;browser<br /></span><span style="color: #0000BB">curl_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;close&nbsp;cURL&nbsp;resource,&nbsp;and&nbsp;free&nbsp;up&nbsp;system&nbsp;resources<br /></span><span style="color: #0000BB">curl_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Uploading file</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;http://localhost/upload.php:<br />print_r($_POST);<br />print_r($_FILES);<br />*/<br /><br /></span><span style="color: #0000BB">$ch&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">curl_init</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'name'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'Foo'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'file'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'@/home/user/test.png'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">curl_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">CURLOPT_URL</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'http://localhost/upload.php'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">curl_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">CURLOPT_POST</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">curl_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">CURLOPT_POSTFIELDS</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">curl_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [name] =&gt; Foo
+)
+Array
+(
+    [file] =&gt; Array
+        (
+            [name] =&gt; test.png
+            [type] =&gt; image/png
+            [tmp_name] =&gt; /tmp/phpcpjNeQ
+            [error] =&gt; 0
+            [size] =&gt; 279
+        )
+
+)
+
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.curl-setopt-array.html" class="function" rel="rdfs-seeAlso">curl_setopt_array()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.curl-setopt-array.html">curl_setopt_array</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.curl-version.html">curl_version</a></div>
+ <div class="up"><a href="ref.curl.html">cURL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

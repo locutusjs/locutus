@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets external variables and optionally filters them</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.filter-id.html">filter_id</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.filter-input.html">filter_input</a></div>
+ <div class="up"><a href="ref.filter.html">Filter Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.filter-input-array" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">filter_input_array</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.2.0, PECL filter:0.11.0)</p><p class="refpurpose"><span class="refname">filter_input_array</span> &mdash; <span class="dc-title">Gets external variables and optionally filters them</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>filter_input_array</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$type</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$definition</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This function is useful for retrieving many values without
+   repetitively calling <a href="function.filter-input.html" class="function">filter_input()</a>.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       One of <b><tt>INPUT_GET</tt></b>, <b><tt>INPUT_POST</tt></b>,
+       <b><tt>INPUT_COOKIE</tt></b>, <b><tt>INPUT_SERVER</tt></b>,
+       <b><tt>INPUT_ENV</tt></b>, <b><tt>INPUT_SESSION</tt></b>, or
+       <b><tt>INPUT_REQUEST</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">definition</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An array defining the arguments. A valid key is a <a href="language.types.string.html" class="type string">string</a>
+       containing a variable name and a valid value is either a filter type,
+       or an <a href="language.types.array.html" class="type array">array</a> optionally specifying the filter, flags and
+       options. If the value is an array, valid keys are
+       <i>filter</i> which specifies the filter type,
+       <i>flags</i> which specifies any flags that apply to the
+       filter, and <i>options</i> which specifies any options
+       that apply to the filter. See the example below for a better
+       understanding.
+      </p>
+      <p class="para">
+       This parameter can be also an integer holding a <a href="filter.constants.html" class="link">filter constant</a>. Then all values in the
+       input array are filtered by this filter.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An array containing the values of the requested variables on success, or <b><tt>FALSE</tt></b> 
+   on failure. An array value will be <b><tt>FALSE</tt></b> if the filter fails, or <b><tt>NULL</tt></b> if 
+   the variable is not set. Or if the flag <b><tt>FILTER_NULL_ON_FAILURE</tt></b>
+   is used, it returns <b><tt>FALSE</tt></b> if the variable is not set and <b><tt>NULL</tt></b> if the filter 
+   fails.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>filter_input_array()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />error_reporting</span><span style="color: #007700">(</span><span style="color: #0000BB">E_ALL&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">E_STRICT</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">/*&nbsp;data&nbsp;actually&nbsp;came&nbsp;from&nbsp;POST<br />$_POST&nbsp;=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;'product_id'&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'libgd&lt;script&gt;',<br />&nbsp;&nbsp;&nbsp;&nbsp;'component'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'10',<br />&nbsp;&nbsp;&nbsp;&nbsp;'versions'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'2.0.33',<br />&nbsp;&nbsp;&nbsp;&nbsp;'testscalar'&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;array('2',&nbsp;'23',&nbsp;'10',&nbsp;'12'),<br />&nbsp;&nbsp;&nbsp;&nbsp;'testarray'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;'2',<br />);<br />*/<br /><br /></span><span style="color: #0000BB">$args&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'product_id'&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">FILTER_SANITIZE_ENCODED</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'component'&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">'filter'&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">FILTER_VALIDATE_INT</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'flags'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">FILTER_REQUIRE_ARRAY</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'options'&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">'min_range'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'max_range'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'versions'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">FILTER_SANITIZE_ENCODED</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'doesnotexist'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">FILTER_VALIDATE_INT</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'testscalar'&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'filter'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">FILTER_VALIDATE_INT</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'flags'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">FILTER_REQUIRE_SCALAR</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'testarray'&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'filter'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">FILTER_VALIDATE_INT</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'flags'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">FILTER_REQUIRE_ARRAY</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br /><br />);<br /><br /></span><span style="color: #0000BB">$myinputs&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">filter_input_array</span><span style="color: #007700">(</span><span style="color: #0000BB">INPUT_POST</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$args</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$myinputs</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+array(6) {
+  [&quot;product_id&quot;]=&gt;
+  array(1) {
+    [0]=&gt;
+    string(17) &quot;libgd%3Cscript%3E&quot;
+  }
+  [&quot;component&quot;]=&gt;
+  array(1) {
+    [0]=&gt;
+    int(10)
+  }
+  [&quot;versions&quot;]=&gt;
+  array(1) {
+    [0]=&gt;
+    string(6) &quot;2.0.33&quot;
+  }
+  [&quot;doesnotexist&quot;]=&gt;
+  NULL
+  [&quot;testscalar&quot;]=&gt;
+  bool(false)
+  [&quot;testarray&quot;]=&gt;
+  array(1) {
+    [0]=&gt;
+    int(2)
+  }
+}
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.filter-input.html" class="function" rel="rdfs-seeAlso">filter_input()</a></li>
+    <li class="member"><a href="function.filter-var-array.html" class="function" rel="rdfs-seeAlso">filter_var_array()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.filter-id.html">filter_id</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.filter-input.html">filter_input</a></div>
+ <div class="up"><a href="ref.filter.html">Filter Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

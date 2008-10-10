@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Determine whether to save a replacement pairs list
+  along with the wordlist</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pspell-config-runtogether.html">pspell_config_runtogether</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pspell-new-config.html">pspell_new_config</a></div>
+ <div class="up"><a href="ref.pspell.html">Pspell Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pspell-config-save-repl" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pspell_config_save_repl</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5)</p><p class="refpurpose"><span class="refname">pspell_config_save_repl</span> &mdash; <span class="dc-title">Determine whether to save a replacement pairs list
+  along with the wordlist</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>pspell_config_save_repl</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$dictionary_link</tt></span>
+   , <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$flag</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>pspell_config_save_repl()</b> determines whether
+   <a href="function.pspell-save-wordlist.html" class="function">pspell_save_wordlist()</a> will save the replacement pairs
+   along with the wordlist. Usually there is no need to use this function
+   because if <a href="function.pspell-config-repl.html" class="function">pspell_config_repl()</a> is used, the
+   replacement pairs will be saved by
+   <a href="function.pspell-save-wordlist.html" class="function">pspell_save_wordlist()</a> anyway, and if it is not,
+   the replacement pairs will not be saved. 
+  </p>
+  <p class="para">
+   <b>pspell_config_save_repl()</b> should be used on a config
+   before calling <a href="function.pspell-new-config.html" class="function">pspell_new_config()</a>. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dictionary_link</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flag</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <b><tt>TRUE</tt></b> if replacement pairs should be saved, <b><tt>FALSE</tt></b> otherwise.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function will not work unless you have pspell .11.2 and aspell .32.5
+    or later.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pspell-config-runtogether.html">pspell_config_runtogether</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pspell-new-config.html">pspell_new_config</a></div>
+ <div class="up"><a href="ref.pspell.html">Pspell Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

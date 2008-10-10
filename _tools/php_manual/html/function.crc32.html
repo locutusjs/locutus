@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Calculates the crc32 polynomial of a string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.count-chars.html">count_chars</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.crypt.html">crypt</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.crc32" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">crc32</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p><p class="refpurpose"><span class="refname">crc32</span> &mdash; <span class="dc-title">Calculates the crc32 polynomial of a string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>crc32</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Generates the cyclic redundancy checksum polynomial of 32-bit
+   lengths of the <i><tt class="parameter">str</tt></i>
+. This is usually used
+   to validate the integrity of data being transmitted.
+  </p>
+  <p class="para">
+   Because PHP&#039;s integer type is signed, and many crc32 checksums will
+   result in negative integers, you need to use the &quot;%u&quot; formatter of
+   <a href="function.sprintf.html" class="function">sprintf()</a> or <a href="function.printf.html" class="function">printf()</a> to get
+   the string representation of the unsigned crc32 checksum.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The data.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the crc32 checksum of <i><tt class="parameter">str</tt></i>
+ as an integer.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Displaying a crc32 checksum</b></p>
+    <div class="example-contents"><p>
+     This example shows how to print a converted checksum with the
+     <a href="function.printf.html" class="function">printf()</a> function:
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$checksum&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">crc32</span><span style="color: #007700">(</span><span style="color: #DD0000">"The&nbsp;quick&nbsp;brown&nbsp;fox&nbsp;jumped&nbsp;over&nbsp;the&nbsp;lazy&nbsp;dog."</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%u\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$checksum</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.md5.html" class="function" rel="rdfs-seeAlso">md5()</a></li>
+    <li class="member"><a href="function.sha1.html" class="function" rel="rdfs-seeAlso">sha1()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.count-chars.html">count_chars</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.crypt.html">crypt</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

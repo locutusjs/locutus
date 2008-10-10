@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Import a large object from file</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-lo-export.html">pg_lo_export</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-lo-open.html">pg_lo_open</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-lo-import" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_lo_import</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">pg_lo_import</span> &mdash; <span class="dc-title">Import a large object from file</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>pg_lo_import</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pathname</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$object_id</tt></span>
+   )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>pg_lo_import</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pathname</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$object_id</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>pg_lo_import()</b> creates a new large object
+   in the database using a file on the filesystem as its data
+   source.
+  </p>
+  <p class="para">
+   To use the large object interface, it is necessary to
+   enclose it within a transaction block.
+  </p>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">When <a href="features.safe-mode.html" class="link">safe mode</a> is enabled, PHP checks whether 
+the files or directories being operated upon have the same UID (owner) as the 
+script that is being executed.</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function used to be called <b>pg_loimport()</b>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL database connection resource.  When 
+       <i><tt class="parameter">connection</tt></i>
+ is not present, the default connection 
+       is used. The default connection is the last connection made by 
+       <a href="function.pg-connect.html" class="function">pg_connect()</a> or <a href="function.pg-pconnect.html" class="function">pg_pconnect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pathname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The full path and file name of the file on the client
+       filesystem from which to read the large object data.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">object_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If an <i><tt class="parameter">object_id</tt></i>
+ is given the function
+       will try to create a large object with this id, else a free
+       object id is assigned by the server. The parameter
+       was added in PHP 5.3 and relies on functionality that first
+       appeared in PostgreSQL 8.1.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The <var class="varname">OID</var> of the newly created large object, or
+   <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.3.0</td>
+       <td colspan="1" rowspan="1" align="left"><p class="para">
+        The optional <i><tt class="parameter">object_id</tt></i>
+ was added.
+       </p></td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.2.0</td>
+       <td colspan="1" rowspan="1" align="left"><p class="para">
+        The syntax of this function changed. It used to be:
+        <div class="methodsynopsis dc-description">
+         <span class="type">int</span> <span class="methodname"><b><b>pg_lo_import</b></b></span>
+          ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pathname</tt></span>
+         [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+        ] )</div>
+
+       </p></td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pg_lo_import()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;$database&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=jacarta"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"begin"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$oid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_lo_import</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/tmp/lob.dat'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"commit"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div> 
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-lo-export.html" class="function" rel="rdfs-seeAlso">pg_lo_export()</a></li>
+    <li class="member"><a href="function.pg-lo-open.html" class="function" rel="rdfs-seeAlso">pg_lo_open()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-lo-export.html">pg_lo_export</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-lo-open.html">pg_lo_open</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

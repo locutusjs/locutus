@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetches a column from the current row of a result set</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-close.html">sqlite_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-create-aggregate.html">sqlite_create_aggregate</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sqlite-column" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_column</h1>
+  <h1 class="refname">SQLiteResult-&gt;column</h1>
+  <h1 class="refname">SQLiteUnbuffered-&gt;column</h1>
+  <p class="verinfo">(PHP 5, PECL sqlite:1.0-1.0.3)</p><p class="refpurpose"><span class="refname">sqlite_column</span> -- <span class="refname">SQLiteResult-&gt;column</span> -- <span class="refname">SQLiteUnbuffered-&gt;column</span> &mdash; <span class="dc-title">Fetches a column from the current row of a result set</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3> 
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>sqlite_column</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$index_or_name</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$decode_binary</tt></span>
+  ] )</div>
+
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SQLiteResult</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">mixed</span> <span class="methodname"><b><b>column</b></b></span>
+     ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$index_or_name</tt></span>
+    [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$decode_binary</tt></span>
+   ] )</div>
+
+  </div>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SQLiteUnbuffered</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">mixed</span> <span class="methodname"><b><b>column</b></b></span>
+     ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$index_or_name</tt></span>
+    [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$decode_binary</tt></span>
+   ] )</div>
+
+  </div>
+  <p class="para">
+   Fetches the value of a column named <i><tt class="parameter">index_or_name</tt></i>
+
+   (if it is a string), or of the ordinal column numbered
+   <i><tt class="parameter">index_or_name</tt></i>
+ (if it is an integer) from the
+   current row of the query result handle <i><tt class="parameter">result</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SQLite result resource.  This parameter is not required when using
+       the object-oriented method.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">index_or_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The column index or name to fetch.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">decode_binary</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">When the <i><tt class="parameter">decode_binary</tt></i>
+
+parameter is set to <b><tt>TRUE</tt></b> (the default), PHP will decode the binary encoding
+it applied to the data if it was encoded using the
+<a href="function.sqlite-escape-string.html" class="function">sqlite_escape_string()</a>.  You should normally leave this
+value at its default, unless you are interoperating with databases created by
+other sqlite capable applications.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Use this function when you are iterating a large result set with many
+    columns, or with columns that contain large amounts of data.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sqlite-fetch-string.html" class="function" rel="rdfs-seeAlso">sqlite_fetch_string()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-close.html">sqlite_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-create-aggregate.html">sqlite_create_aggregate</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

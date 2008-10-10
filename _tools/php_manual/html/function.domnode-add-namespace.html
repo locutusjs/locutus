@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Adds a namespace declaration to a node</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domelement-tagname.html">DomElement->tagname</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domnode-append-child.html">DomNode->append_child</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.domnode-add-namespace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">DomNode-&gt;add_namespace</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">DomNode-&gt;add_namespace</span> &mdash; <span class="dc-title">
+   Adds a namespace declaration to a node
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><a href="class.domnode.html" class="classname">DOMNode</a></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><b>add_namespace</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$uri</tt></span>
+    , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$prefix</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   This method adds a namespace declaration to a node.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This method is not part of the DOM specification.
+   <br />
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">uri</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The namespace URI of the node.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">prefix</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The namespace prefix of the node.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 migration">
+  <h3 class="title">Migrating to PHP 5</h3>
+  <p class="para">
+   You can set the namespace URI and prefix of a <a href="class.domelement.html" class="classname">DOMElement</a>
+   or a <a href="class.domattr.html" class="classname">DOMAttr</a> at creation time by using 
+   <a href="domdocument.createelementns.html" class="xref">DOMDocument::createElementNS</a> or 
+   <a href="domdocument.createattributens.html" class="xref">DOMDocument::createAttributeNS</a>.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Remember the an attribute does not inherit its namespace from the element
+    it is attached to.
+   <br />
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.domdocument-create-element-ns.html" class="xref">DomDocument->create_element_ns</a></li>
+    <li class="member"><a href="function.domnode-set-namespace.html" class="xref">DomNode->set_namespace</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domelement-tagname.html">DomElement->tagname</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domnode-append-child.html">DomNode->append_child</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

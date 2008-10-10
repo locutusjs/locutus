@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets the best way of encoding</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.mailparse.html">Mailparse Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mailparse-msg-create.html">mailparse_msg_create</a></div>
+ <div class="up"><a href="ref.mailparse.html">Mailparse Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mailparse-determine-best-xfer-encoding" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mailparse_determine_best_xfer_encoding</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PECL mailparse:0.9-2.1.1)</p><p class="refpurpose"><span class="refname">mailparse_determine_best_xfer_encoding</span> &mdash; <span class="dc-title">Gets the best way of encoding</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mailparse_determine_best_xfer_encoding</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$fp</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Figures out the best way of encoding the content read from the given file
+   pointer.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fp</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid file pointer, which must be seek-able.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns one of the character encodings supported by the
+   <a href="ref.mbstring.html" class="link">mbstring</a> module.
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mailparse_determine_best_xfer_encoding()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">'somemail.eml'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'r'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">'Best&nbsp;encoding:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mailparse_determine_best_xfer_encoding</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Best encoding: 7bit
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.mailparse.html">Mailparse Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mailparse-msg-create.html">mailparse_msg_create</a></div>
+ <div class="up"><a href="ref.mailparse.html">Mailparse Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

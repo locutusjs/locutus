@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Incrementally parse data into buffer</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mailparse-msg-parse-file.html">mailparse_msg_parse_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mailparse-rfc822-parse-addresses.html">mailparse_rfc822_parse_addresses</a></div>
+ <div class="up"><a href="ref.mailparse.html">Mailparse Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mailparse-msg-parse" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mailparse_msg_parse</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PECL mailparse:0.9-2.1.1)</p><p class="refpurpose"><span class="refname">mailparse_msg_parse</span> &mdash; <span class="dc-title">Incrementally parse data into buffer</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>mailparse_msg_parse</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$mimemail</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Incrementally parse data into the supplied mime mail resource.
+  </p>
+  <p class="para">
+   This function allow you to stream portions of a file at a time, rather
+   than read and parse the whole thing.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mimemail</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid <i>MIME</i> resource.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mailparse-msg-parse-file.html">mailparse_msg_parse_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mailparse-rfc822-parse-addresses.html">mailparse_rfc822_parse_addresses</a></div>
+ <div class="up"><a href="ref.mailparse.html">Mailparse Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

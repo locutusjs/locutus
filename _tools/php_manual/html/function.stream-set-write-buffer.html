@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets file buffering on the given stream</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-set-timeout.html">stream_set_timeout</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-socket-accept.html">stream_socket_accept</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.stream-set-write-buffer" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stream_set_write_buffer</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">stream_set_write_buffer</span> &mdash; <span class="dc-title">Sets file buffering on the given stream</span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>stream_set_write_buffer</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$stream</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$buffer</tt></span>
+   )</div>
+
+  <p class="simpara">
+   Output using <a href="function.fwrite.html" class="function">fwrite()</a> is normally buffered at
+   8K.  This means that if there are two processes wanting to write
+   to the same output stream (a file), each is paused after 8K of
+   data to allow the other to write.
+   <b>stream_set_write_buffer()</b>
+   sets the buffering for write operations on the given filepointer
+   <i><tt class="parameter">stream</tt></i>
+ to <i><tt class="parameter">buffer</tt></i>
+ bytes.
+   If <i><tt class="parameter">buffer</tt></i>
+ is 0 then write operations are
+   unbuffered.  This ensures that all writes with
+   <a href="function.fwrite.html" class="function">fwrite()</a> are completed before other processes
+   are allowed to write to that output stream.
+  </p>
+  <p class="simpara">
+   The function returns 0 on success, or EOF if the request cannot
+   be honored.
+  </p>
+  <p class="para">
+   The following example demonstrates how to use
+   <b>stream_set_write_buffer()</b> to create an unbuffered stream.
+   <div class="example">
+    <p><b>Example #1 <b>stream_set_write_buffer()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"w"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">stream_set_write_buffer</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$output</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+
+  <p class="simpara">
+   See also
+   <a href="function.fopen.html" class="function">fopen()</a> and
+   <a href="function.fwrite.html" class="function">fwrite()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-set-timeout.html">stream_set_timeout</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-socket-accept.html">stream_socket_accept</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

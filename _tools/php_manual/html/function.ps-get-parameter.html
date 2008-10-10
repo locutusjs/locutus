@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets certain parameters</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ps-get-buffer.html">ps_get_buffer</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ps-get-value.html">ps_get_value</a></div>
+ <div class="up"><a href="ref.ps.html">PS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ps-get-parameter" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ps_get_parameter</h1>
+  <p class="verinfo">(PECL ps:1.1.0-1.3.5)</p><p class="refpurpose"><span class="refname">ps_get_parameter</span> &mdash; <span class="dc-title">Gets certain parameters</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>ps_get_parameter</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$psdoc</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+   [, <span class="methodparam"><span class="type">float</span> <tt class="parameter">$modifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Gets several parameters which were directly set by
+   <a href="function.ps-set-parameter.html" class="function">ps_set_parameter()</a> or indirectly by one of the other
+   functions. Parameters are by definition string
+   values. This function cannot be used to retrieve resources which were also
+   set by <a href="function.ps-set-parameter.html" class="function">ps_set_parameter()</a>.
+  </p>
+  <p class="para">
+   The parameter <i><tt class="parameter">name</tt></i>
+ can have the following values.
+  </p>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i>fontname</i></span>
+
+     <dd>
+
+      <p class="para">
+       The name of the currently active font or the font whose
+       identifier is passed in parameter <i><tt class="parameter">modifier</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i>fontencoding</i></span>
+
+     <dd>
+
+      <p class="para">
+       The encoding of the currently active font.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i>dottedversion</i></span>
+
+     <dd>
+
+      <p class="para">
+       The version of the underlying pslib library in the format
+       &lt;major&gt;.&lt;minor&gt;.&lt;subminor&gt;
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i>scope</i></span>
+
+     <dd>
+
+      <p class="para">
+       The current drawing scope. Can be object, document, null, page,
+       pattern, path, template, prolog, font, glyph.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i>ligaturedisolvechar</i></span>
+
+     <dd>
+
+      <p class="para">
+       The character which dissolves a ligature. If your are using a font
+       which contains the ligature `ff&#039; and `|&#039; is the char to dissolve the
+       ligature, then `f|f&#039; will result in two `f&#039; instead of the ligature `ff&#039;.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i>imageencoding</i></span>
+
+     <dd>
+
+      <p class="para">
+       The encoding used for encoding images. Can be either
+       <i>hex</i> or <i>85</i>. hex encoding
+       uses two bytes in the postscript file each byte in the image.
+       85 stand for Ascii85 encoding.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i>linenumbermode</i></span>
+
+     <dd>
+
+      <p class="para">
+       Set to <i>paragraph</i> if lines are numbered
+       within a paragraph or <i>box</i> if they are
+       numbered within the surrounding box.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i>linebreak</i></span>
+
+     <dd>
+
+      <p class="para">
+       Only used if text is output with <a href="function.ps-show-boxed.html" class="function">ps_show_boxed()</a>.
+       If set to <i>true</i> a carriage return will add a line
+       break.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i>parbreak</i></span>
+
+     <dd>
+
+      <p class="para">
+       Only used if text is output with <a href="function.ps-show-boxed.html" class="function">ps_show_boxed()</a>.
+       If set to <i>true</i> a carriage return will start
+       a new paragraph.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i>hyphenation</i></span>
+
+     <dd>
+
+      <p class="para">
+       Only used if text is output with <a href="function.ps-show-boxed.html" class="function">ps_show_boxed()</a>.
+       If set to <i>true</i> the paragraph will be hyphenated
+       if a hypen dictionary is set and exists.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i>hyphendict</i></span>
+
+     <dd>
+
+      <p class="para">
+       Filename of the dictionary used for hyphenation pattern.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">psdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the postscript file
+       as returned by <a href="function.ps-new.html" class="function">ps_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Name of the parameter.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">modifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An identifier needed if a parameter of a resource is requested,
+       e.g. the size of an image. In such a case the resource id is
+       passed.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the value of the parameter or <b><tt>FALSE</tt></b> in case of an error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ps-set-parameter.html" class="function" rel="rdfs-seeAlso">ps_set_parameter()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ps-get-buffer.html">ps_get_buffer</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ps-get-value.html">ps_get_value</a></div>
+ <div class="up"><a href="ref.ps.html">PS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the peak of memory allocated by PHP</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.main.html">main</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.memory-get-usage.html">memory_get_usage</a></div>
+ <div class="up"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.memory-get-peak-usage" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">memory_get_peak_usage</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.2.0)</p><p class="refpurpose"><span class="refname">memory_get_peak_usage</span> &mdash; <span class="dc-title">Returns the peak of memory allocated by PHP</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>memory_get_peak_usage</b></b></span>
+    ([ <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$real_usage</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns the peak of memory, in bytes, that&#039;s been allocated to your PHP
+   script.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">real_usage</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Set this to <b><tt>TRUE</tt></b> to get the real size of memory allocated from
+       system. If not set or <b><tt>FALSE</tt></b> only the memory used by
+       <i>emalloc()</i> is reported.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the memory peak in bytes.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.2.1</td>
+       <td colspan="1" rowspan="1" align="left">
+        Compiling with <a href="ini.core.html#ini.memory-limit" class="link">--enable-memory-limit</a> 
+        is no longer required for this function to exist.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.2.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        <i><tt class="parameter">real_usage</tt></i>
+ was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.memory-get-usage.html" class="function" rel="rdfs-seeAlso">memory_get_usage()</a></li>
+    <li class="member"><a href="ini.core.html#ini.memory-limit" class="link">memory_limit</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.main.html">main</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.memory-get-usage.html">memory_get_usage</a></div>
+ <div class="up"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

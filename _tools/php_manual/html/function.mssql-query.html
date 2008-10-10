@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Send MS SQL query</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mssql-pconnect.html">mssql_pconnect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mssql-result.html">mssql_result</a></div>
+ <div class="up"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mssql-query" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mssql_query</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL odbtp:1.1.1-1.1.4)</p><p class="refpurpose"><span class="refname">mssql_query</span> &mdash; <span class="dc-title">Send MS SQL query</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>mssql_query</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$batch_size</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>mssql_query()</b> sends a query to the currently active
+   database on the server that&#039;s associated with the specified link
+   identifier. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">query</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A SQL query.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A MS SQL link identifier, returned by 
+       <a href="function.mssql-connect.html" class="function">mssql_connect()</a> or 
+       <a href="function.mssql-pconnect.html" class="function">mssql_pconnect()</a>.
+      </p>
+      <p class="para">
+       If the link identifier isn&#039;t specified, the last opened link is
+       assumed.  If no link is open, the function tries to establish a link
+       as if <a href="function.mssql-connect.html" class="function">mssql_connect()</a> was called, and use it.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">batch_size</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The number of records to batch in the buffer.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a MS SQL result resource on success, <b><tt>TRUE</tt></b> if no rows were
+   returned, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mssql_query()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Connect&nbsp;to&nbsp;MSSQL<br /></span><span style="color: #0000BB">$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mssql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'KALLESPC\SQLEXPRESS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'sa'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'phpfi'</span><span style="color: #007700">);<br /><br />if(!</span><span style="color: #0000BB">$link&nbsp;</span><span style="color: #007700">||&nbsp;!</span><span style="color: #0000BB">mssql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">'php'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$link</span><span style="color: #007700">))<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Unable&nbsp;to&nbsp;connect&nbsp;or&nbsp;select&nbsp;database!'</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Do&nbsp;a&nbsp;simple&nbsp;query,&nbsp;select&nbsp;the&nbsp;version&nbsp;of&nbsp;<br />//&nbsp;MSSQL&nbsp;and&nbsp;print&nbsp;it.<br /></span><span style="color: #0000BB">$version&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mssql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT&nbsp;@@VERSION'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mssql_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$version</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br /><br /></span><span style="color: #FF8000">//&nbsp;Clean&nbsp;up<br /></span><span style="color: #0000BB">mssql_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$version</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    If the query returns multiple results then it is necessary to fetch all
+    results by <a href="function.mssql-next-result.html" class="function">mssql_next_result()</a> or free the results by
+    <a href="function.mssql-free-result.html" class="function">mssql_free_result()</a> before executing next query.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mssql-select-db.html" class="function" rel="rdfs-seeAlso">mssql_select_db()</a></li>
+    <li class="member"><a href="function.mssql-connect.html" class="function" rel="rdfs-seeAlso">mssql_connect()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mssql-pconnect.html">mssql_pconnect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mssql-result.html">mssql_result</a></div>
+ <div class="up"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

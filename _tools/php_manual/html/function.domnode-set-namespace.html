@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets namespace of a node</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domnode-set-name.html">DomNode->set_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domnode-unlink-node.html">DomNode->unlink_node</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.domnode-set-namespace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">DomNode-&gt;set_namespace</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">DomNode-&gt;set_namespace</span> &mdash; <span class="dc-title">
+   Sets namespace of a node
+  </span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>DomNode->set_namespace</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$uri</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$prefix</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Sets the namespace of a node to <i><tt class="parameter">uri</tt></i>
+.
+   If there is already a namespace declaration with the same uri in one of the parent nodes
+   of the node, the prefix of this is taken, otherwise it will take the one provided 
+   in the optional parameter <i><tt class="parameter">prefix</tt></i>
+ or generate a random one.
+  </p>
+  <p class="para">
+   See also <a href="function.domdocument-create-element-ns.html" class="function">domdocument_create_element_ns()</a>, and
+   <a href="function.domnode-add-namespace.html" class="function">domnode_add_namespace()</a>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domnode-set-name.html">DomNode->set_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domnode-unlink-node.html">DomNode->unlink_node</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

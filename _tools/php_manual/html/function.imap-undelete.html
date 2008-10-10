@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Unmark the message which is marked deleted</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-uid.html">imap_uid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-unsubscribe.html">imap_unsubscribe</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imap-undelete" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_undelete</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imap_undelete</span> &mdash; <span class="dc-title">Unmark the message which is marked deleted</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>imap_undelete</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$imap_stream</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$msg_number</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Removes the deletion flag for a specified message, which is set by
+   <a href="function.imap-delete.html" class="function">imap_delete()</a> or <a href="function.imap-mail-move.html" class="function">imap_mail_move()</a>.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+imap_stream</tt></i>
+</span>
+<dd>
+<p class="para">An IMAP stream returned by 
+<a href="function.imap-open.html" class="function">imap_open()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">msg_number</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The message number
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imap-delete.html" class="function" rel="rdfs-seeAlso">imap_delete()</a></li>
+    <li class="member"><a href="function.imap-mail-move.html" class="function" rel="rdfs-seeAlso">imap_mail_move()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-uid.html">imap_uid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-unsubscribe.html">imap_unsubscribe</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

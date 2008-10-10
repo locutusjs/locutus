@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Inflate a deflated string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gzgetss.html">gzgetss</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gzopen.html">gzopen</a></div>
+ <div class="up"><a href="ref.zlib.html">Zlib Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.gzinflate" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">gzinflate</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p><p class="refpurpose"><span class="refname">gzinflate</span> &mdash; <span class="dc-title">Inflate a deflated string</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>gzinflate</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$length</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">   
+   This function inflate a deflated string.  
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The data compressed by <a href="function.gzdeflate.html" class="function">gzdeflate()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">length</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The maximum length of data to decode.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The original uncompressed data or <b><tt>FALSE</tt></b> on error.
+  </p>
+  <p class="para">
+   The function will return an error if the uncompressed data is more than
+   32768 times the length of the compressed input <i><tt class="parameter">data</tt></i>
+ 
+   or more than the optional parameter <i><tt class="parameter">length</tt></i>
+.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>gzinflate()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$compressed&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gzdeflate</span><span style="color: #007700">(</span><span style="color: #DD0000">'Compress&nbsp;me'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">9</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$uncompressed&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gzinflate</span><span style="color: #007700">(</span><span style="color: #0000BB">$compressed</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$uncompressed</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.gzdeflate.html" class="function" rel="rdfs-seeAlso">gzdeflate()</a></li>
+    <li class="member"><a href="function.gzcompress.html" class="function" rel="rdfs-seeAlso">gzcompress()</a></li>
+    <li class="member"><a href="function.gzuncompress.html" class="function" rel="rdfs-seeAlso">gzuncompress()</a></li>
+    <li class="member"><a href="function.gzencode.html" class="function" rel="rdfs-seeAlso">gzencode()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gzgetss.html">gzgetss</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gzopen.html">gzopen</a></div>
+ <div class="up"><a href="ref.zlib.html">Zlib Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

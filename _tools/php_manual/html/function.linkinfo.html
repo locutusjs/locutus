@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets information about a link</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.link.html">link</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.lstat.html">lstat</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.linkinfo" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">linkinfo</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">linkinfo</span> &mdash; <span class="dc-title">Gets information about a link</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>linkinfo</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$path</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets information about a link.  
+  </p>
+  <p class="para">
+   This function is used to verify if a link (pointed to by
+   <i><tt class="parameter">path</tt></i>
+) really exists (using the same method as the
+   S_ISLNK macro defined in <var class="filename">stat.h</var>).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">path</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the link.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>linkinfo()</b> returns the <i>st_dev</i> field
+   of the Unix C stat structure returned by the <i>lstat</i>
+   system call. Returns 0 or <b><tt>FALSE</tt></b> in case of error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>linkinfo()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">linkinfo</span><span style="color: #007700">(</span><span style="color: #DD0000">'/vmlinuz'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;835<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is not
+implemented on Windows platforms.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.symlink.html" class="function" rel="rdfs-seeAlso">symlink()</a></li>
+    <li class="member"><a href="function.link.html" class="function" rel="rdfs-seeAlso">link()</a></li>
+    <li class="member"><a href="function.readlink.html" class="function" rel="rdfs-seeAlso">readlink()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.link.html">link</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.lstat.html">lstat</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetch a row</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.odbc-fetch-object.html">odbc_fetch_object</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.odbc-field-len.html">odbc_field_len</a></div>
+ <div class="up"><a href="ref.uodbc.html">ODBC Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.odbc-fetch-row" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">odbc_fetch_row</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">odbc_fetch_row</span> &mdash; <span class="dc-title">Fetch a row</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>odbc_fetch_row</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result_id</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$row_number</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Fetches a row of the data that was returned by <a href="function.odbc-do.html" class="function">odbc_do()</a>
+   or <a href="function.odbc-exec.html" class="function">odbc_exec()</a>. After <b>odbc_fetch_row()</b>
+   is called, the fields of that row can be accessed with
+   <a href="function.odbc-result.html" class="function">odbc_result()</a>.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The result identifier.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">row_number</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <i><tt class="parameter">row_number</tt></i>
+ is not specified,
+       <b>odbc_fetch_row()</b> will try to fetch the next row in
+       the result set. Calls to <b>odbc_fetch_row()</b> with and
+       without <i><tt class="parameter">row_number</tt></i>
+ can be mixed.
+      </p>
+      <p class="para">
+       To step through the result more than once, you can call
+       <b>odbc_fetch_row()</b> with
+       <i><tt class="parameter">row_number</tt></i>
+ 1, and then continue doing
+       <b>odbc_fetch_row()</b> without
+       <i><tt class="parameter">row_number</tt></i>
+ to review the result.  If a driver
+       doesn&#039;t support fetching rows by number, the
+       <i><tt class="parameter">row_number</tt></i>
+ parameter is ignored.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if there was a row, <b><tt>FALSE</tt></b> otherwise.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.odbc-fetch-object.html">odbc_fetch_object</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.odbc-field-len.html">odbc_field_len</a></div>
+ <div class="up"><a href="ref.uodbc.html">ODBC Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

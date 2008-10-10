@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Prepare a SQL statement for execution</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-ping.html">maxdb_ping</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-query.html">maxdb_query</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.maxdb-prepare" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_prepare</h1>
+  <h1 class="refname">maxdb-&gt;prepare</h1>
+  <p class="verinfo">(PECL maxdb:1.0-7.6.00.38)</p><p class="refpurpose"><span class="refname">maxdb_prepare</span> -- <span class="refname">maxdb-&gt;prepare</span> &mdash; <span class="dc-title">Prepare a SQL statement for execution</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedure style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>maxdb_prepare</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method)</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">stmt</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">resource</span> <span class="methodname"><b><b>prepare</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   <b>maxdb_prepare()</b> prepares the SQL query pointed to by the
+   null-terminated string query, and returns a statement handle to be used for
+   further operations on the statement. The query must consist of a single SQL statement.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    You should not add a terminating semicolon or <i>\g</i>
+    to the statement.
+   <br />
+  </p></blockquote>
+  <p class="para">
+   The parameter <i><tt class="parameter">query</tt></i>
+  can include one or more parameter markers
+   in the SQL statement by embedding question mark (<i>?</i>) characters
+   at the appropriate positions.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    The markers are legal only in certain places in SQL statements.
+    For example, they are allowed in the VALUES() list of an INSERT statement
+    (to specify column values for a row), or in a comparison with a column in
+    a WHERE clause to specify a comparison value.
+   <br />
+   
+    However, they are not allowed for identifiers (such as table or column names),
+    in the select list that names the columns to be returned by a SELECT statement),
+    or to specify both operands of a binary operator such as the <i>=</i>
+    equal sign. The latter restriction is necessary because it would be impossible
+    to determine the parameter type. In general, parameters are legal only in Data
+    Manipulation Languange (DML) statements, and not in Data Defination Language
+    (DDL) statements.
+   <br />
+  </p></blockquote>
+  <p class="para">
+   The parameter markers must be bound to application variables using
+   <a href="function.maxdb-stmt-bind-param.html" class="function">maxdb_stmt_bind_param()</a> and/or <a href="function.maxdb-stmt-bind-result.html" class="function">maxdb_stmt_bind_result()</a>
+   before executing the statement or fetching rows.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>maxdb_prepare()</b> returns a statement resource or <b><tt>FALSE</tt></b> if an error occured.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 Object oriented style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$maxdb&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">maxdb</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">$city&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Rosemont"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;create&nbsp;a&nbsp;prepared&nbsp;statement&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;state&nbsp;FROM&nbsp;hotel.city&nbsp;WHERE&nbsp;name=?"</span><span style="color: #007700">))&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;bind&nbsp;parameters&nbsp;for&nbsp;markers&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bind_param</span><span style="color: #007700">(</span><span style="color: #DD0000">"s"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$city</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;execute&nbsp;query&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;bind&nbsp;result&nbsp;variables&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bind_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$district</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;fetch&nbsp;value&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;is&nbsp;in&nbsp;district&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$city</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$district</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;close&nbsp;statement&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+  </div>
+
+  </div>
+  <div class="example">
+   <p><b>Example #2 Procedural style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">$city&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Rosemont"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;create&nbsp;a&nbsp;prepared&nbsp;statement&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;state&nbsp;FROM&nbsp;hotel.city&nbsp;WHERE&nbsp;name=?"</span><span style="color: #007700">))&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;bind&nbsp;parameters&nbsp;for&nbsp;markers&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">maxdb_stmt_bind_param</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"s"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$city</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;execute&nbsp;query&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">maxdb_stmt_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;bind&nbsp;result&nbsp;variables&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">maxdb_stmt_bind_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$district</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;fetch&nbsp;value&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">maxdb_stmt_fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;is&nbsp;in&nbsp;district&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$city</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$district</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;close&nbsp;statement&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">maxdb_stmt_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">The above example will output 
+something similar to:</p>
+  <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Rosemont is in district IL
+</pre></div>
+  </pre></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.maxdb-stmt-execute.html" class="function" rel="rdfs-seeAlso">maxdb_stmt_execute()</a></li>
+    <li class="member"><a href="function.maxdb-stmt-fetch.html" class="function" rel="rdfs-seeAlso">maxdb_stmt_fetch()</a></li>
+    <li class="member"><a href="function.maxdb-stmt-bind-param.html" class="function" rel="rdfs-seeAlso">maxdb_stmt_bind_param()</a></li>
+    <li class="member"><a href="function.maxdb-stmt-bind-result.html" class="function" rel="rdfs-seeAlso">maxdb_stmt_bind_result()</a></li>
+    <li class="member"><a href="function.maxdb-stmt-close.html" class="function" rel="rdfs-seeAlso">maxdb_stmt_close()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-ping.html">maxdb_ping</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-query.html">maxdb_query</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

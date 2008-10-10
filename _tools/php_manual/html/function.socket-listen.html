@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Listens for a connection on a socket</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.socket-last-error.html">socket_last_error</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-read.html">socket_read</a></div>
+ <div class="up"><a href="ref.sockets.html">Socket Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.socket-listen" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">socket_listen</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">socket_listen</span> &mdash; <span class="dc-title">Listens for a connection on a socket</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>socket_listen</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$socket</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$backlog</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   After the socket <i><tt class="parameter">socket</tt></i>
+ has been created
+   using <a href="function.socket-create.html" class="function">socket_create()</a> and bound to a name with
+   <a href="function.socket-bind.html" class="function">socket_bind()</a>, it may be told to listen for incoming
+   connections on <i><tt class="parameter">socket</tt></i>
+.
+  </p>
+  <p class="para">
+   <b>socket_listen()</b> is applicable only to sockets of
+   type <b><tt>SOCK_STREAM</tt></b> or
+   <b><tt>SOCK_SEQPACKET</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">socket</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid socket resource created with <a href="function.socket-create.html" class="function">socket_create()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">backlog</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A maximum of <i><tt class="parameter">backlog</tt></i>
+ incoming connections will be
+       queued for processing. If a connection request arrives with the queue
+       full the client may receive an error with an indication of
+       <i>ECONNREFUSED</i>, or, if the underlying protocol supports
+       retransmission, the request may be ignored so that retries may succeed.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        The maximum number passed to the <i><tt class="parameter">backlog</tt></i>
+
+        parameter highly depends on the underlying platform. On Linux, it is
+        silently truncated to <b><tt>SOMAXCONN</tt></b>. On win32, if
+        passed <b><tt>SOMAXCONN</tt></b>, the underlying service provider
+        responsible for the socket will set the backlog to a maximum
+        <em class="emphasis">reasonable</em> value. There is no standard provision to
+        find out the actual backlog value on this platform.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure. The error code can be retrieved with
+   <a href="function.socket-last-error.html" class="function">socket_last_error()</a>. This code may be passed to
+   <a href="function.socket-strerror.html" class="function">socket_strerror()</a> to get a textual explanation of the
+   error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.socket-accept.html" class="function" rel="rdfs-seeAlso">socket_accept()</a></li>
+    <li class="member"><a href="function.socket-bind.html" class="function" rel="rdfs-seeAlso">socket_bind()</a></li>
+    <li class="member"><a href="function.socket-connect.html" class="function" rel="rdfs-seeAlso">socket_connect()</a></li>
+    <li class="member"><a href="function.socket-create.html" class="function" rel="rdfs-seeAlso">socket_create()</a></li>
+    <li class="member"><a href="function.socket-strerror.html" class="function" rel="rdfs-seeAlso">socket_strerror()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.socket-last-error.html">socket_last_error</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-read.html">socket_read</a></div>
+ <div class="up"><a href="ref.sockets.html">Socket Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

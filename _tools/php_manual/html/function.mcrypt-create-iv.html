@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Create an initialization vector (IV) from a random source</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-cfb.html">mcrypt_cfb</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mcrypt-decrypt.html">mcrypt_decrypt</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mcrypt-create-iv" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mcrypt_create_iv</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">mcrypt_create_iv</span> &mdash; <span class="dc-title">Create an initialization vector (IV) from a random source</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mcrypt_create_iv</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$size</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$source</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>mcrypt_create_iv()</b> is used to create an IV.
+  </p>
+  <p class="para">
+   Parameter
+   <i><tt class="parameter">size</tt></i>
+ determines the size of the IV,
+   parameter <i><tt class="parameter">source</tt></i>
+ (defaults to random value)
+   specifies the source of the IV.
+  </p>
+  <p class="para">
+   The source can be <b><tt>MCRYPT_RAND</tt></b> (system random
+   number generator), <b><tt>MCRYPT_DEV_RANDOM</tt></b> (read
+   data from <var class="filename">/dev/random</var>) and
+   <b><tt>MCRYPT_DEV_URANDOM</tt></b> (read data from
+   <var class="filename">/dev/urandom</var>). <b><tt>MCRYPT_RAND</tt></b>
+   is the only one supported on Windows because Windows (of course)
+   doesn&#039;t have <var class="filename">/dev/random</var> or
+   <var class="filename">/dev/urandom</var>.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    When using <b><tt>MCRYPT_RAND</tt></b>, remember to call
+    <a href="function.srand.html" class="function">srand()</a> before
+    <b>mcrypt_create_iv()</b> to initialize the random
+    number generator; it is not seeded automatically like
+    <a href="function.rand.html" class="function">rand()</a> is.
+   <br />
+  </p></blockquote>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mcrypt_create_iv()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;$size&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_get_iv_size</span><span style="color: #007700">(</span><span style="color: #0000BB">MCRYPT_CAST_256</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MCRYPT_MODE_CFB</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$iv&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_create_iv</span><span style="color: #007700">(</span><span style="color: #0000BB">$size</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MCRYPT_DEV_RANDOM</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   The IV is only meant to give an alternative seed to the encryption
+   routines. This IV does not need to be secret at all, though it can be
+   desirable. You even can send it along with your ciphertext without
+   losing security.
+  </p>
+  <p class="para">
+   More information can be found at <a href="http://www.ciphersbyritter.com/GLOSSARY.HTM#IV" class="link external">&raquo; http://www.ciphersbyritter.com/GLOSSARY.HTM#IV</a>, <a href="http://fn2.freenet.edmonton.ab.ca/~jsavard/crypto/co0409.htm" class="link external">&raquo; http://fn2.freenet.edmonton.ab.ca/~jsavard/crypto/co0409.htm</a> and in chapter 9.3 of
+   Applied Cryptography by Schneier (ISBN 0-471-11709-9) for a discussion of
+   this topic.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-cfb.html">mcrypt_cfb</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mcrypt-decrypt.html">mcrypt_decrypt</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

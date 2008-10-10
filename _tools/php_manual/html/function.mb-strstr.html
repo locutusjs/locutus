@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Finds first occurrence of a string within another</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-strrpos.html">mb_strrpos</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-strtolower.html">mb_strtolower</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-strstr" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_strstr</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.2.0)</p><p class="refpurpose"><span class="refname">mb_strstr</span> &mdash; <span class="dc-title">Finds first occurrence of a string within another</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mb_strstr</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$haystack</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$needle</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$part</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>mb_strstr()</b> finds the first occurrence of
+   <i><tt class="parameter">needle</tt></i>
+ in <i><tt class="parameter">haystack</tt></i>
+
+   and returns the portion of <i><tt class="parameter">haystack</tt></i>
+.
+   If <i><tt class="parameter">needle</tt></i>
+ is not found, it returns <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">haystack</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The string from which to get the first occurrence
+       of <i><tt class="parameter">needle</tt></i>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">needle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The string to find in <i><tt class="parameter">haystack</tt></i>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">part</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Determines which portion of <i><tt class="parameter">haystack</tt></i>
+
+       this function returns. 
+       If set to <b><tt>TRUE</tt></b>, it returns all of  <i><tt class="parameter">haystack</tt></i>
+
+       from the beginning to the first occurrence of <i><tt class="parameter">needle</tt></i>
+.
+       If set to <b><tt>FALSE</tt></b>, it returns all of <i><tt class="parameter">haystack</tt></i>
+
+       from the first occurrence of <i><tt class="parameter">needle</tt></i>
+ to the end,
+       Default value is <b><tt>FALSE</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Character encoding name to use.
+       If it is omitted, internal character encoding is used.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the portion of <i><tt class="parameter">haystack</tt></i>
+,
+   or <b><tt>FALSE</tt></b> if <i><tt class="parameter">needle</tt></i>
+ is not found.
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ 
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.stristr.html" class="function" rel="rdfs-seeAlso">stristr()</a></li>
+    <li class="member"><a href="function.strstr.html" class="function" rel="rdfs-seeAlso">strstr()</a></li>
+    <li class="member"><a href="function.mb-stristr.html" class="function" rel="rdfs-seeAlso">mb_stristr()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-strrpos.html">mb_strrpos</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-strtolower.html">mb_strtolower</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

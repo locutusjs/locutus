@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Define a viewing transformation</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.swf-labelframe.html">swf_labelframe</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swf-modifyobject.html">swf_modifyobject</a></div>
+ <div class="up"><a href="ref.swf.html">SWF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.swf-lookat" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">swf_lookat</h1>
+  <p class="verinfo">(PHP 4)</p><p class="refpurpose"><span class="refname">swf_lookat</span> &mdash; <span class="dc-title">Define a viewing transformation</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>swf_lookat</b></b></span>
+    ( <span class="methodparam"><span class="type">float</span> <tt class="parameter">$view_x</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$view_y</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$view_z</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$reference_x</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$reference_y</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$reference_z</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$twist</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Defines a viewing transformation by giving the viewing position and the
+   coordinates of a reference point in the scene.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">view_x</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       x-coordinate for the viewing position
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">view_y</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       y-coordinate for the viewing position
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">view_z</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       z-coordinate for the viewing position
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">reference_x</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       x-coordinate for the reference point
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">reference_y</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       y-coordinate for the reference point
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">reference_z</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       z-coordinate for the reference point
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">twist</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Controls the rotation along with viewer&#039;s z axis.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A simple 3D-rotation around a text</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;application/x-shockwave-flash'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">swf_openfile</span><span style="color: #007700">(</span><span style="color: #DD0000">"php://stdout"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">320</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">200</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">25</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">swf_ortho</span><span style="color: #007700">(-</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;create&nbsp;3D&nbsp;coordinates<br /><br /></span><span style="color: #0000BB">swf_definefont</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Pix3"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_addcolor</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_fontsize</span><span style="color: #007700">(</span><span style="color: #0000BB">10</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_fonttracking</span><span style="color: #007700">(</span><span style="color: #0000BB">0.2</span><span style="color: #007700">);<br /><br />for&nbsp;(</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">628</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">+=&nbsp;</span><span style="color: #0000BB">8</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$j&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">/&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_pushmatrix</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_translate</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_perspective</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_lookat</span><span style="color: #007700">(</span><span style="color: #0000BB">sin</span><span style="color: #007700">(</span><span style="color: #0000BB">$j</span><span style="color: #007700">)&nbsp;*&nbsp;</span><span style="color: #0000BB">60</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">50</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">cos</span><span style="color: #007700">(</span><span style="color: #0000BB">$j</span><span style="color: #007700">)&nbsp;*&nbsp;</span><span style="color: #0000BB">60</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_definetext&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'HotKey@'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_translate</span><span style="color: #007700">(-</span><span style="color: #0000BB">50</span><span style="color: #007700">,</span><span style="color: #0000BB">0</span><span style="color: #007700">,</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_placeobject</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,</span><span style="color: #0000BB">10</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_definetext</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'example.com'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_translate</span><span style="color: #007700">(</span><span style="color: #0000BB">55</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_placeobject</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_showframe</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_removeobject</span><span style="color: #007700">(</span><span style="color: #0000BB">10</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_removeobject</span><span style="color: #007700">(</span><span style="color: #0000BB">11</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">swf_popmatrix</span><span style="color: #007700">();<br />}<br /><br /></span><span style="color: #0000BB">swf_closefile</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.swf-labelframe.html">swf_labelframe</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swf-modifyobject.html">swf_modifyobject</a></div>
+ <div class="up"><a href="ref.swf.html">SWF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

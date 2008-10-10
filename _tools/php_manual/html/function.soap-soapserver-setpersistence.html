@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets persistence mode of SoapServer</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.soap-soapserver-setclass.html">SoapServer->setClass</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.soap-soapvar-construct.html">SoapVar->__construct</a></div>
+ <div class="up"><a href="ref.soap.html">SOAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.soap-soapserver-setpersistence" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SoapServer-&gt;setPersistence</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SoapServer-&gt;setPersistence</span> &mdash; <span class="dc-title">
+   Sets persistence mode of SoapServer
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SoapServer</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">void</span> <span class="methodname"><b><b>setPersistence</b></b></span>
+     ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   This function allows saving data between requests in a PHP session. It works only
+   with a server that exports functions from a class with
+   <a href="function.soap-soapserver-setclass.html" class="xref">SoapServer->setClass</a>.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       One of the <i>SOAP_PERSISTENCE_XXX</i> constants.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Some examples</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$server</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setPersistence</span><span style="color: #007700">(</span><span style="color: #0000BB">SOAP_PERSISTENCE_SESSION</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$server</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setPersistence</span><span style="color: #007700">(</span><span style="color: #0000BB">SOAP_PERSISTENCE_REQUEST</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <blockquote><p><b class="note">Note</b>: 
+    <span class="simpara">
+     The persistence
+     <b><tt>SOAP_PERSISTENCE_SESSION</tt></b> makes persistent only object
+     of given class, but not the class static data. You may use $this-&gt;bar
+     instead of self::$bar.
+    </span>
+   </p></blockquote>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.soap-soapserver-construct.html" class="xref">SoapServer->__construct</a></li>
+    <li class="member"><a href="function.soap-soapserver-setclass.html" class="xref">SoapServer->setClass</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.soap-soapserver-setclass.html">SoapServer->setClass</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.soap-soapvar-construct.html">SoapVar->__construct</a></div>
+ <div class="up"><a href="ref.soap.html">SOAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

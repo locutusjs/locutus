@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Delay for a number of seconds and nanoseconds</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sys-getloadavg.html">sys_getloadavg</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.time-sleep-until.html">time_sleep_until</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.time-nanosleep" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">time_nanosleep</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">time_nanosleep</span> &mdash; <span class="dc-title">Delay for a number of seconds and nanoseconds</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>time_nanosleep</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$seconds</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$nanoseconds</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Delays program execution for the given number of
+   <i><tt class="parameter">seconds</tt></i>
+ and <i><tt class="parameter">nanoseconds</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">seconds</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Must be a positive integer.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">nanoseconds</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Must be a positive integer less than 1 billion.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+  <p class="para">
+   If the delay was interrupted by a signal, an associative array will be
+   returned with the components:
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      <i>seconds</i> - number of seconds remaining in
+      the delay
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <i>nanoseconds</i> - number of nanoseconds
+      remaining in the delay
+     </span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>time_nanosleep()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Careful!&nbsp;This&nbsp;won't&nbsp;work&nbsp;as&nbsp;expected&nbsp;if&nbsp;an&nbsp;array&nbsp;is&nbsp;returned<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">time_nanosleep</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">500000000</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Slept&nbsp;for&nbsp;half&nbsp;a&nbsp;second.\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;This&nbsp;is&nbsp;better:<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">time_nanosleep</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">500000000</span><span style="color: #007700">)&nbsp;===&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Slept&nbsp;for&nbsp;half&nbsp;a&nbsp;second.\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;And&nbsp;this&nbsp;is&nbsp;the&nbsp;best:<br /></span><span style="color: #0000BB">$nano&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">time_nanosleep</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100000</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$nano&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Slept&nbsp;for&nbsp;2&nbsp;seconds,&nbsp;100&nbsp;milliseconds.\n"</span><span style="color: #007700">;<br />}&nbsp;elseif&nbsp;(</span><span style="color: #0000BB">$nano&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Sleeping&nbsp;failed.\n"</span><span style="color: #007700">;<br />}&nbsp;elseif&nbsp;(</span><span style="color: #0000BB">is_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$nano</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$seconds&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$nano</span><span style="color: #007700">[</span><span style="color: #DD0000">'seconds'</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$nanoseconds&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$nano</span><span style="color: #007700">[</span><span style="color: #DD0000">'nanoseconds'</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Interrupted&nbsp;by&nbsp;a&nbsp;signal.\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Time&nbsp;remaining:&nbsp;$seconds&nbsp;seconds,&nbsp;$nanoseconds&nbsp;nanoseconds."</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is not
+implemented on Windows platforms.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <a href="function.sleep.html" class="function" rel="rdfs-seeAlso">sleep()</a>,
+   <a href="function.usleep.html" class="function" rel="rdfs-seeAlso">usleep()</a>,
+   <a href="function.set-time-limit.html" class="function" rel="rdfs-seeAlso">set_time_limit()</a>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sys-getloadavg.html">sys_getloadavg</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.time-sleep-until.html">time_sleep_until</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

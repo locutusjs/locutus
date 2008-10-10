@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Send Last-Modified</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-send-file.html">http_send_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-send-status.html">http_send_status</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.http-send-last-modified" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">http_send_last_modified</h1>
+  <p class="verinfo">(PECL pecl_http:0.1.0-1.5.5)</p><p class="refpurpose"><span class="refname">http_send_last_modified</span> &mdash; <span class="dc-title">Send Last-Modified</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>http_send_last_modified</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timestamp</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Send a <i>Last-Modified</i> header with a valid HTTP date.
+  </p>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function should be used in conjunction with
+   <a href="function.http-send-data.html" class="function">http_send_data()</a>, <a href="function.http-send-file.html" class="function">http_send_file()</a>  and <a href="function.http-send-stream.html" class="function">http_send_stream()</a>.</span></p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">timestamp</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       a Unix timestamp, converted to a valid HTTP date;
+       if omitted, the current time will be sent
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">the <a href="class.httpresponse.html" class="link">
+<b class="classname">HttpResponse</b></a> class if you are using PHP 5.1.0
+and above</li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-send-file.html">http_send_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-send-status.html">http_send_status</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

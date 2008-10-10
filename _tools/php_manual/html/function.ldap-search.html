@@ -1,0 +1,318 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Search LDAP tree</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ldap-sasl-bind.html">ldap_sasl_bind</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ldap-set-option.html">ldap_set_option</a></div>
+ <div class="up"><a href="ref.ldap.html">LDAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ldap-search" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ldap_search</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ldap_search</span> &mdash; <span class="dc-title">Search LDAP tree</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>ldap_search</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$base_dn</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filter</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$attributes</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$attrsonly</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$sizelimit</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timelimit</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$deref</tt></span>
+  ]]]]] )</div>
+
+  <p class="para rdfs-comment">
+   Performs the search for a specified filter on the directory with the scope
+   of <b><tt>LDAP_SCOPE_SUBTREE</tt></b>. This is equivalent to searching
+   the entire directory.
+  </p>
+  <p class="para">
+   From 4.0.5 on it&#039;s also possible to do parallel searches. To do this
+   you use an array of link identifiers, rather than a single identifier,
+   as the first argument. If you don&#039;t want the same base DN and the
+   same filter for all the searches, you can also use an array of base DNs
+   and/or an array of filters. Those arrays must be of the same size as
+   the link identifier array since the first entries of the arrays are
+   used for one search, the second entries are used for another, and so
+   on. When doing parallel searches an array of search result
+   identifiers is returned, except in case of error, then the entry
+   corresponding to the search will be <b><tt>FALSE</tt></b>. This is very much like
+   the value normally returned, except that a result identifier is always
+   returned when a search was made. There are some rare cases where the
+   normal search returns <b><tt>FALSE</tt></b> while the parallel search returns an
+   identifier.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An LDAP link identifier, returned by <a href="function.ldap-connect.html" class="function">ldap_connect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">base_dn</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The base DN for the directory.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The search filter can be simple or advanced, using boolean operators in
+       the format described in the LDAP documentation (see the <a href="http://www.mozilla.org/directory/csdk-docs/filter.htm" class="link external">&raquo; Netscape Directory SDK</a> for full
+       information on filters).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">attributes</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An array of the required attributes, e.g. array(&quot;mail&quot;, &quot;sn&quot;, &quot;cn&quot;).
+       Note that the &quot;dn&quot; is always returned irrespective of which attributes
+       types are requested.
+      </p>
+      <p class="para">
+       Using this parameter is much more efficient than the default action
+       (which is to return all attributes and their associated values). 
+       The use of this parameter should therefore be considered good
+       practice.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">attrsonly</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Should be set to 1 if only attribute types are wanted. If set to 0
+       both attributes types and attribute values are fetched which is the
+       default behaviour.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">sizelimit</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Enables you to limit the count of entries fetched. Setting this to 0
+       means no limit.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        This parameter can NOT override server-side preset sizelimit. You can
+        set it lower though.
+       <br />
+       
+        Some directory server hosts will be configured to return no more than
+        a preset number of entries. If this occurs, the server will indicate
+        that it has only returned a partial results set. This also occurs if
+        you use this parameter to limit the count of fetched entries.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">timelimit</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Sets the number of seconds how long is spend on the search. Setting
+       this to 0 means no limit.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        This parameter can NOT override server-side preset timelimit. You can
+        set it lower though.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">deref</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Specifies how aliases should be handled during the search. It can be
+       one of the following:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>LDAP_DEREF_NEVER</tt></b> - (default) aliases are never
+          dereferenced.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>LDAP_DEREF_SEARCHING</tt></b> - aliases should be
+          dereferenced during the search but not when locating the base object
+          of the search.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>LDAP_DEREF_FINDING</tt></b> - aliases should be
+          dereferenced when locating the base object but not during the search.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>LDAP_DEREF_ALWAYS</tt></b> - aliases should be dereferenced
+          always.
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a search result identifier or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.5</td>
+       <td colspan="1" rowspan="1" align="left">
+        Parallel searches support was added.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.2</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">attrsonly</tt></i>
+, <i><tt class="parameter">sizelimit</tt></i>
+,
+        <i><tt class="parameter">timelimit</tt></i>
+ and <i><tt class="parameter">deref</tt></i>
+ were
+        added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   The example below retrieves the organizational unit, surname,
+   given name and email address for all people in &quot;My Company&quot; where
+   the surname or given name contains the substring $person. This
+   example uses a boolean filter to tell the server to look for
+   information in more than one attribute.
+   <div class="example">
+    <p><b>Example #1 LDAP search</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;$ds&nbsp;is&nbsp;a&nbsp;valid&nbsp;link&nbsp;identifier&nbsp;for&nbsp;a&nbsp;directory&nbsp;server<br /><br />//&nbsp;$person&nbsp;is&nbsp;all&nbsp;or&nbsp;part&nbsp;of&nbsp;a&nbsp;person's&nbsp;name,&nbsp;eg&nbsp;"Jo"<br /><br /></span><span style="color: #0000BB">$dn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"o=My&nbsp;Company,&nbsp;c=US"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$filter</span><span style="color: #007700">=</span><span style="color: #DD0000">"(|(sn=$person*)(givenname=$person*))"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$justthese&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"ou"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"sn"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"givenname"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"mail"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$sr</span><span style="color: #007700">=</span><span style="color: #0000BB">ldap_search</span><span style="color: #007700">(</span><span style="color: #0000BB">$ds</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$dn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$filter</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$justthese</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$info&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ldap_get_entries</span><span style="color: #007700">(</span><span style="color: #0000BB">$ds</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sr</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$info</span><span style="color: #007700">[</span><span style="color: #DD0000">"count"</span><span style="color: #007700">].</span><span style="color: #DD0000">"&nbsp;entries&nbsp;returned\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ldap-sasl-bind.html">ldap_sasl_bind</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ldap-set-option.html">ldap_set_option</a></div>
+ <div class="up"><a href="ref.ldap.html">LDAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

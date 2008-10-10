@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Load PNG image and return HaruImage instance</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.harudoc-loadjpeg.html">HaruDoc::loadJPEG</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.harudoc-loadraw.html">HaruDoc::loadRaw</a></div>
+ <div class="up"><a href="class.harudoc.html">HaruDoc</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.harudoc-loadpng" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">HaruDoc::loadPNG</h1>
+  <p class="verinfo">(PECL haru:0.0.1)</p><p class="refpurpose"><span class="refname">HaruDoc::loadPNG</span> &mdash; <span class="dc-title">Load PNG image and return <a href="class.haruimage.html" class="classname">HaruImage</a> instance</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">object</span> <span class="methodname"><b><b>HaruDoc::loadPNG</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$deferred</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Loads a PNG image.
+  </p>
+  <p class="para">
+   Libharu might be built without libpng support, in this case each call to
+   this function would result in exception.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name of a PNG image file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">deferred</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Do not load data immediately. Defaults to <b><tt>FALSE</tt></b>.
+       You can set <i><tt class="parameter">deferred</tt></i>
+ parameter to <b><tt>TRUE</tt></b> for
+       deferred data loading, in this case only size and color are loaded
+       immediately. 
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a <a href="class.haruimage.html" class="classname">HaruImage</a> instance.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws <a href="class.haruexception.html" class="classname">HaruException</a> on error. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.harudoc-loadjpeg.html" class="link"><a href="class.harudoc.html" class="classname">HaruDoc</a>::<b>loadJPEG()</b></a></li>
+    <li class="member"><a href="function.harudoc-loadraw.html" class="link"><a href="class.harudoc.html" class="classname">HaruDoc</a>::<b>loadRAW()</b></a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.harudoc-loadjpeg.html">HaruDoc::loadJPEG</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.harudoc-loadraw.html">HaruDoc::loadRaw</a></div>
+ <div class="up"><a href="class.harudoc.html">HaruDoc</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

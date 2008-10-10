@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Shuffle an array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.rsort.html">rsort</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sizeof.html">sizeof</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.shuffle" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">shuffle</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">shuffle</span> &mdash; <span class="dc-title">Shuffle an array</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>shuffle</b></b></span>
+    ( <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$array</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function shuffles (randomizes the order of the elements in) an array.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">array</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The array.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>shuffle()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$numbers&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">range</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">20</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">srand</span><span style="color: #007700">((float)</span><span style="color: #0000BB">microtime</span><span style="color: #007700">()&nbsp;*&nbsp;</span><span style="color: #0000BB">1000000</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">shuffle</span><span style="color: #007700">(</span><span style="color: #0000BB">$numbers</span><span style="color: #007700">);<br />foreach&nbsp;(</span><span style="color: #0000BB">$numbers&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$number</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"$number&nbsp;"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function
+assigns new keys to the elements in <i><tt class="parameter">array</tt></i>
+.
+It will remove any existing keys that may have been assigned, rather
+than just reordering the keys.</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">As of PHP 4.2.0, there is no need 
+to seed the random number generator with <a href="function.srand.html" class="function">srand()</a> or 
+<a href="function.mt-srand.html" class="function">mt_srand()</a> as this is now done automatically.
+</span></p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.arsort.html" class="function" rel="rdfs-seeAlso">arsort()</a></li>
+    <li class="member"><a href="function.asort.html" class="function" rel="rdfs-seeAlso">asort()</a></li>
+    <li class="member"><a href="function.ksort.html" class="function" rel="rdfs-seeAlso">ksort()</a></li>
+    <li class="member"><a href="function.rsort.html" class="function" rel="rdfs-seeAlso">rsort()</a></li>
+    <li class="member"><a href="function.sort.html" class="function" rel="rdfs-seeAlso">sort()</a></li>
+    <li class="member"><a href="function.usort.html" class="function" rel="rdfs-seeAlso">usort()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.rsort.html">rsort</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sizeof.html">sizeof</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

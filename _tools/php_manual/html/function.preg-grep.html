@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Return array entries that match the pattern</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.pcre.html">PCRE Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.preg-last-error.html">preg_last_error</a></div>
+ <div class="up"><a href="ref.pcre.html">PCRE Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.preg-grep" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">preg_grep</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">preg_grep</span> &mdash; <span class="dc-title">Return array entries that match the pattern</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>preg_grep</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pattern</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$input</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns the array consisting of the elements of the 
+   <i><tt class="parameter">input</tt></i>
+ array that match the given
+   <i><tt class="parameter">pattern</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pattern</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The pattern to search for, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">input</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input array.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If set to <b><tt>PREG_GREP_INVERT</tt></b>, this function returns
+       the elements of the input array that do <em class="emphasis">not</em> match
+       the given <i><tt class="parameter">pattern</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array indexed using the keys from the
+   <i><tt class="parameter">input</tt></i>
+ array. 
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.2.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">flags</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.4</td>
+       <td colspan="1" rowspan="1" align="left">
+        <p class="para">
+         Prior to this version, the returned array was indexed regardless of
+         the keys of the <i><tt class="parameter">input</tt></i>
+ array.
+        </p>
+        <p class="para">
+         If you want to reproduce this old behavior, use 
+         <a href="function.array-values.html" class="function">array_values()</a> on the returned array to reindex
+          the values.
+        </p>
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>preg_grep()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;return&nbsp;all&nbsp;array&nbsp;elements<br />//&nbsp;containing&nbsp;floating&nbsp;point&nbsp;numbers<br /></span><span style="color: #0000BB">$fl_array&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">preg_grep</span><span style="color: #007700">(</span><span style="color: #DD0000">"/^(\d+)?\.\d+$/"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.pcre.html">PCRE Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.preg-last-error.html">preg_last_error</a></div>
+ <div class="up"><a href="ref.pcre.html">PCRE Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

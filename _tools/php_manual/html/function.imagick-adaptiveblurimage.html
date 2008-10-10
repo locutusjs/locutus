@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Adds adaptive blur filter to image</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-adaptiveresizeimage.html">Imagick::adaptiveResizeImage</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagick-adaptiveblurimage" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::adaptiveBlurImage</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Imagick::adaptiveBlurImage</span> &mdash; <span class="dc-title">Adds adaptive blur filter to image</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>Imagick::adaptiveBlurImage</b></b></span>
+    ( <span class="methodparam"><span class="type">float</span> <tt class="parameter">$radius</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$sigma</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$channel</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Adds an adaptive blur filter to image. The intensity of an adaptive blur
+   depends is dramatically decreased at edge of the image, whereas a standard
+   blur is uniform across the image.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">radius</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The radius of the Gaussian, in pixels, not counting the center pixel.
+       Provide a value of 0 and the radius will be chosen automagically.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">sigma</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The standard deviation of the Gaussian, in pixels.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">channel</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Provide any channel constant that is valid for your channel mode. To
+       apply to more than one channel, combine channeltype constants using
+       bitwise operators. Defaults to Imagick::CHANNEL_ALL. Refer to this
+       list of <a href="imagick.constants.html#imagick.constants.channel" class="link">channel constants</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws ImagickException on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>Imagick::adaptiveBlurImage()</b>:</b></p>
+    <div class="example-contents"><p>
+     Adaptively blur an image, then display to the browser.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/jpeg'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$image&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">(</span><span style="color: #DD0000">'test.jpg'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$image</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">adaptiveBlurImage</span><span style="color: #007700">(</span><span style="color: #0000BB">5</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$image</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imagick-blurimage.html" class="function" rel="rdfs-seeAlso">Imagick::blurImage()</a></li>
+    <li class="member"><a href="function.imagick-motionblurimage.html" class="function" rel="rdfs-seeAlso">Imagick::motionBlurImage()</a></li>
+    <li class="member"><a href="function.imagick-radialblurimage.html" class="function" rel="rdfs-seeAlso">Imagick::radialBlurImage()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-adaptiveresizeimage.html">Imagick::adaptiveResizeImage</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

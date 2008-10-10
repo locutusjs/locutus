@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Adds javascript code to the FDF document</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.fdf.html">FDF Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fdf-add-template.html">fdf_add_template</a></div>
+ <div class="up"><a href="ref.fdf.html">FDF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.fdf-add-doc-javascript" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fdf_add_doc_javascript</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">fdf_add_doc_javascript</span> &mdash; <span class="dc-title">Adds javascript code to the FDF document</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>fdf_add_doc_javascript</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$fdf_document</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$script_name</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$script_code</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Adds a script to the FDF, which Acrobat then adds to the doc-level scripts
+   of a document, once the FDF is imported into it. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fdf_document</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The FDF document handle, returned by <a href="function.fdf-create.html" class="function">fdf_create()</a>,
+       <a href="function.fdf-open.html" class="function">fdf_open()</a> or <a href="function.fdf-open-string.html" class="function">fdf_open_string()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">script_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The script name.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">script_code</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The script code. It is strongly suggested to use <i>\r</i>
+       for linebreaks within the script code.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Adding JavaScript code to a FDF</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fdf&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fdf_create</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">fdf_add_doc_javascript</span><span style="color: #007700">(</span><span style="color: #0000BB">$fdf</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"PlusOne"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"function&nbsp;PlusOne(x)\r{\r&nbsp;&nbsp;return&nbsp;x+1;\r}\r"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fdf_save</span><span style="color: #007700">(</span><span style="color: #0000BB">$fdf</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     will create a FDF like this:
+    </p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+%FDF-1.2
+%âãÏÓ
+1 0 obj
+&lt;&lt;
+/FDF &lt;&lt; /JavaScript &lt;&lt; /Doc [ (PlusOne)(function PlusOne\(x\)\r{\r  return x+1;\r}\r)] &gt;&gt; &gt;&gt;
+&gt;&gt;
+endobj
+trailer
+&lt;&lt;
+/Root 1 0 R
+
+&gt;&gt;
+%%EOF
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.fdf.html">FDF Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fdf-add-template.html">fdf_add_template</a></div>
+ <div class="up"><a href="ref.fdf.html">FDF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

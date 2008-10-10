@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Runs the select() system call on the given arrays of sockets with a specified timeout</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.socket-recvfrom.html">socket_recvfrom</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-send.html">socket_send</a></div>
+ <div class="up"><a href="ref.sockets.html">Socket Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.socket-select" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">socket_select</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">socket_select</span> &mdash; <span class="dc-title">Runs the select() system call on the given arrays of sockets with a specified timeout</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>socket_select</b></b></span>
+    ( <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$read</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$write</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$except</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$tv_sec</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$tv_usec</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>socket_select()</b> accepts arrays of sockets and waits for
+   them to change status. Those coming with BSD sockets background will
+   recognize that those socket resource arrays are in fact the so-called file
+   descriptor sets. Three independent arrays of socket resources are watched.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">read</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The sockets listed in the <i><tt class="parameter">read</tt></i>
+ array will be
+       watched to see if characters become available for reading (more
+       precisely, to see if a read will not block - in particular, a socket
+       resource is also ready on end-of-file, in which case a
+       <a href="function.socket-read.html" class="function">socket_read()</a> will return a zero length string).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">write</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The sockets listed in the <i><tt class="parameter">write</tt></i>
+ array will be
+       watched to see if a write will not block.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">except</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The sockets listed in the <i><tt class="parameter">except</tt></i>
+ array will be
+       watched for exceptions.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">tv_sec</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">tv_sec</tt></i>
+ and <i><tt class="parameter">tv_usec</tt></i>
+
+       together form the <em class="emphasis">timeout</em> parameter. The
+       <em class="emphasis">timeout</em> is an upper bound on the amount of time
+       elapsed before <b>socket_select()</b> return.
+       <i><tt class="parameter">tv_sec</tt></i>
+ may be zero , causing
+       <b>socket_select()</b> to return immediately. This is useful
+       for polling. If <i><tt class="parameter">tv_sec</tt></i>
+ is <b><tt>NULL</tt></b> (no timeout),
+       <b>socket_select()</b> can block indefinitely.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">tv_usec</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="para">
+    On exit, the arrays are modified to indicate which socket resource
+    actually changed status.
+   </p>
+  </div>
+  <p class="para">
+   You do not need to pass every array to
+   <b>socket_select()</b>. You can leave it out and use an
+   empty array or <b><tt>NULL</tt></b> instead. Also do not forget that those arrays are
+   passed <em class="emphasis">by reference</em> and will be modified after
+   <b>socket_select()</b> returns.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Due a limitation in the current Zend Engine it is not possible to pass a
+    constant modifier like <b><tt>NULL</tt></b> directly as a parameter to a function
+    which expects this parameter to be passed by reference. Instead use a
+    temporary variable or an expression with the leftmost member being a
+    temporary variable:
+    <div class="example">
+     <p><b>Example #1 Using <b><tt>NULL</tt></b> with <b>socket_select()</b></b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$e&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">socket_select</span><span style="color: #007700">(</span><span style="color: #0000BB">$r</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$w</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$e</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   On success <b>socket_select()</b> returns the number of
+   socket resources contained in the modified arrays, which may be zero if
+   the timeout expires before anything interesting happens. On error <b><tt>FALSE</tt></b>
+   is returned. The error code can be retrieved with
+   <a href="function.socket-last-error.html" class="function">socket_last_error()</a>.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Be sure to use the <i>===</i> operator when checking for an
+    error. Since the <b>socket_select()</b> may return 0 the
+    comparison with <i>==</i> would evaluate to <b><tt>TRUE</tt></b>:
+    <div class="example">
+     <p><b>Example #2 Understanding <b>socket_select()</b>&#039;s result</b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$e&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br />if&nbsp;(</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">socket_select</span><span style="color: #007700">(</span><span style="color: #0000BB">$r</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$w</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$e</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"socket_select()&nbsp;failed,&nbsp;reason:&nbsp;"&nbsp;</span><span style="color: #007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">socket_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">socket_last_error</span><span style="color: #007700">())&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #3 <b>socket_select()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Prepare&nbsp;the&nbsp;read&nbsp;array&nbsp;*/<br /></span><span style="color: #0000BB">$read&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">$socket1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$socket2</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$write&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$except&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$num_changed_sockets&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">socket_select</span><span style="color: #007700">(</span><span style="color: #0000BB">$read</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$write</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$except</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$num_changed_sockets&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Error&nbsp;handling&nbsp;*/<br /></span><span style="color: #007700">}&nbsp;else&nbsp;if&nbsp;(</span><span style="color: #0000BB">$num_changed_sockets&nbsp;</span><span style="color: #007700">&gt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;At&nbsp;least&nbsp;at&nbsp;one&nbsp;of&nbsp;the&nbsp;sockets&nbsp;something&nbsp;interesting&nbsp;happened&nbsp;*/<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Be aware that some socket implementations need to be handled very
+    carefully. A few basic rules:
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       You should always try to use <b>socket_select()</b>
+       without timeout. Your program should have nothing to do if there is
+       no data available. Code that depends on timeouts is not usually
+       portable and difficult to debug.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       No socket resource must be added to any set if you do not intend to
+       check its result after the <b>socket_select()</b> call,
+       and respond appropriately. After <b>socket_select()</b>
+       returns, all socket resources in all arrays must be checked. Any
+       socket resource that is available for writing must be written to, and
+       any socket resource available for reading must be read from.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       If you read/write to a socket returns in the arrays be aware that
+       they do not necessarily read/write the full amount of data you have
+       requested. Be prepared to even only be able to read/write a single
+       byte.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       It&#039;s common to most socket implementations that the only exception
+       caught with the <i><tt class="parameter">except</tt></i>
+ array is out-of-bound
+       data received on a socket.
+      </span>
+     </li>
+    </ul>
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.socket-read.html" class="function" rel="rdfs-seeAlso">socket_read()</a></li>
+    <li class="member"><a href="function.socket-write.html" class="function" rel="rdfs-seeAlso">socket_write()</a></li>
+    <li class="member"><a href="function.socket-last-error.html" class="function" rel="rdfs-seeAlso">socket_last_error()</a></li>
+    <li class="member"><a href="function.socket-strerror.html" class="function" rel="rdfs-seeAlso">socket_strerror()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.socket-recvfrom.html">socket_recvfrom</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-send.html">socket_send</a></div>
+ <div class="up"><a href="ref.sockets.html">Socket Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

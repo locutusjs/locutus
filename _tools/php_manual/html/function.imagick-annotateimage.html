@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Annotates an image with text</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-affinetransformimage.html">Imagick::affineTransformImage</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-appendimages.html">Imagick::appendImages</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagick-annotateimage" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::annotateImage</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Imagick::annotateImage</span> &mdash; <span class="dc-title">Annotates an image with text</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>Imagick::annotateImage</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="class.imagickdraw.html" class="type ImagickDraw">ImagickDraw</a></span> <tt class="parameter">$draw_settings</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$x</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$y</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$angle</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$text</tt></span>
+   )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+currently not documented; only its argument list is available.
+</p></div>
+  <p class="para">
+   Annotates an image with text.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">draw_settings</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The ImagickDraw object that contains settings for drawing the text
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">x</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Horizontal offset in pixels to the left of text
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">y</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Vertical offset in pixels to the baseline of text
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">angle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The angle at which to write the text
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">text</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The string to draw
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>Imagick::annotateImage()</b>:</b></p>
+    <div class="example-contents"><p>
+     Annotate text on an empty image
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Create&nbsp;some&nbsp;objects&nbsp;*/<br /></span><span style="color: #0000BB">$image&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$draw&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">ImagickDraw</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$pixel&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">ImagickPixel</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">'gray'&nbsp;</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;New&nbsp;image&nbsp;*/<br /></span><span style="color: #0000BB">$image</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">newImage</span><span style="color: #007700">(</span><span style="color: #0000BB">800</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">75</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$pixel</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Black&nbsp;text&nbsp;*/<br /></span><span style="color: #0000BB">$pixel</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setColor</span><span style="color: #007700">(</span><span style="color: #DD0000">'black'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Font&nbsp;properties&nbsp;*/<br /></span><span style="color: #0000BB">$draw</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setFont</span><span style="color: #007700">(</span><span style="color: #DD0000">'Bookman-DemiItalic'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$draw</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setFontSize</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">30&nbsp;</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Create&nbsp;text&nbsp;*/<br /></span><span style="color: #0000BB">$image</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">annotateImage</span><span style="color: #007700">(</span><span style="color: #0000BB">$draw</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">45</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'The&nbsp;quick&nbsp;brown&nbsp;fox&nbsp;jumps&nbsp;over&nbsp;the&nbsp;lazy&nbsp;dog'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Give&nbsp;image&nbsp;a&nbsp;format&nbsp;*/<br /></span><span style="color: #0000BB">$image</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setImageFormat</span><span style="color: #007700">(</span><span style="color: #DD0000">'png'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Output&nbsp;the&nbsp;image&nbsp;with&nbsp;headers&nbsp;*/<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/png'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$image</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imagickdraw-annotation.html" class="function" rel="rdfs-seeAlso">ImagickDraw::annotation()</a></li>
+    <li class="member"><a href="function.imagickdraw-setfont.html" class="function" rel="rdfs-seeAlso">ImagickDraw::setFont()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-affinetransformimage.html">Imagick::affineTransformImage</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-appendimages.html">Imagick::appendImages</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

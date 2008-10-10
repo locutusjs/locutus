@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Free result memory</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ldap-first-reference.html">ldap_first_reference</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ldap-get-attributes.html">ldap_get_attributes</a></div>
+ <div class="up"><a href="ref.ldap.html">LDAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ldap-free-result" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ldap_free_result</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ldap_free_result</span> &mdash; <span class="dc-title">Free result memory</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ldap_free_result</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result_identifier</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Frees up the memory allocated internally to store the result. All result
+   memory will be automatically freed when the script terminates.
+  </p>
+  <p class="para">
+   Typically all the memory allocated for the LDAP result gets freed at the
+   end of the script. In case the script is making successive searches which
+   return large result sets, <b>ldap_free_result()</b> could be
+   called to keep the runtime memory usage by the script low.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ldap-first-reference.html">ldap_first_reference</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ldap-get-attributes.html">ldap_get_attributes</a></div>
+ <div class="up"><a href="ref.ldap.html">LDAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

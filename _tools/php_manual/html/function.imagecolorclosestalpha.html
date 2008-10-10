@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the index of the closest color to the specified color + alpha</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagecolorclosest.html">imagecolorclosest</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagecolorclosesthwb.html">imagecolorclosesthwb</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagecolorclosestalpha" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imagecolorclosestalpha</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">imagecolorclosestalpha</span> &mdash; <span class="dc-title">Get the index of the closest color to the specified color + alpha</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>imagecolorclosestalpha</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$image</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$red</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$green</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$blue</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$alpha</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns the index of the color in the palette of the image which
+   is &quot;closest&quot; to the specified <acronym title="Red-Green-Blue">RGB</acronym> value and 
+   <i><tt class="parameter">alpha</tt></i>
+ level.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+image</tt></i>
+</span>
+<dd>
+<p class="para">An image resource, returned by one of the image creation functions, 
+such as <a href="function.imagecreatetruecolor.html" class="function">imagecreatetruecolor()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">red</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Value of red component.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">green</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Value of green component.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">blue</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Value of blue component.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">alpha</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A value between <i>0</i> and <i>127</i>.
+       <i>0</i> indicates completely opaque while 
+       <i>127</i> indicates completely transparent.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+   The colors parameters are integers between 0 and 255 or hexadecimals
+   between 0x00 and 0xFF.
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the index of the closest color in the palette.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Search for a set of colors in an image</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Start&nbsp;with&nbsp;an&nbsp;image&nbsp;and&nbsp;convert&nbsp;it&nbsp;to&nbsp;a&nbsp;palette-based&nbsp;image<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatefrompng</span><span style="color: #007700">(</span><span style="color: #DD0000">'figures/imagecolorclosest.png'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagetruecolortopalette</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">255</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Search&nbsp;colors&nbsp;(RGB)<br /></span><span style="color: #0000BB">$colors&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #0000BB">254</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">145</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">154</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">50</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #0000BB">153</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">145</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">188</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">127</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #0000BB">153</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">90</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">145</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #0000BB">255</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">137</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">92</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">84</span><span style="color: #007700">)<br />);<br /><br /></span><span style="color: #FF8000">//&nbsp;Loop&nbsp;through&nbsp;each&nbsp;search&nbsp;and&nbsp;find&nbsp;the&nbsp;closest&nbsp;color&nbsp;in&nbsp;the&nbsp;palette.<br />//&nbsp;Return&nbsp;the&nbsp;search&nbsp;number,&nbsp;the&nbsp;search&nbsp;RGB&nbsp;and&nbsp;the&nbsp;converted&nbsp;RGB&nbsp;match<br /></span><span style="color: #007700">foreach(</span><span style="color: #0000BB">$colors&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$id&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$rgb</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecolorclosestalpha</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rgb</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$rgb</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$rgb</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$rgb</span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecolorsforindex</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"({$result['red']},&nbsp;{$result['green']},&nbsp;{$result['blue']},&nbsp;{$result['alpha']})"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"#$id:&nbsp;Search&nbsp;($rgb[0],&nbsp;$rgb[1],&nbsp;$rgb[2],&nbsp;$rgb[3]);&nbsp;Closest&nbsp;match:&nbsp;$result.\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+#0: Search (254, 145, 154, 50); Closest match: (252, 150, 148, 0).
+#1: Search (153, 145, 188, 127); Closest match: (148, 150, 196, 0).
+#2: Search (153, 90, 145, 0); Closest match: (148, 90, 156, 0).
+#3: Search (255, 137, 92, 84); Closest match: (252, 150, 92, 0).
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function requires GD 2.0.1 or later (2.0.28 or later is recommended).</span></p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imagecolorexactalpha.html" class="function" rel="rdfs-seeAlso">imagecolorexactalpha()</a></li>
+    <li class="member"><a href="function.imagecolorclosest.html" class="function" rel="rdfs-seeAlso">imagecolorclosest()</a></li>
+    <li class="member"><a href="function.imagecolorclosesthwb.html" class="function" rel="rdfs-seeAlso">imagecolorclosesthwb()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagecolorclosest.html">imagecolorclosest</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagecolorclosesthwb.html">imagecolorclosesthwb</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

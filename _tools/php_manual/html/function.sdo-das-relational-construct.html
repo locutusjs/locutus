@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Creates an instance of a Relational Data Access Service</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-relational-applychanges.html">SDO_DAS_Relational::applyChanges</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-relational-createrootdataobject.html">SDO_DAS_Relational::createRootDataObject</a></div>
+ <div class="up"><a href="ref.sdo.das.rel.html">SDO-DAS-Relational Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sdo-das-relational-construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SDO_DAS_Relational::__construct</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SDO_DAS_Relational::__construct</span> &mdash; <span class="dc-title">
+   Creates an instance of a Relational Data Access Service
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type SDO_DAS_Relational">SDO_DAS_Relational</span></span>
+    <span class="methodname"><b><b>SDO_DAS_Relational::__construct</b></b></span>
+    ( <span class="methodparam">
+    <span class="type">array</span>
+     <tt class="parameter">$database_metadata</tt>
+   </span>
+   [, <span class="methodparam">
+    <span class="type">string</span>
+     <tt class="parameter">$application_root_type</tt>
+   </span>
+   [, <span class="methodparam">
+    <span class="type">array</span>
+     <tt class="parameter">$SDO_containment_references_metadata</tt>
+   </span>
+  ]] )</div>
+
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+
+  <p class="para">
+   Constructs an instance of a Relational Data Access Service 
+   from the passed metadata.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term">database_metadata</span>
+
+     <dd>
+
+      <p class="para">
+       An array containing one or more table definitions, 
+       each of which is an associative array containing the keys
+       <var class="varname">name</var>,
+       <var class="varname">columns</var>,
+       <var class="varname">PK</var>, and optionally,
+       <var class="varname">FK</var>.
+       For a full discussion of the metadata, see the
+       <a href="sdo.das.rel.metadata.html" class="link">metadata</a>
+       section in the general information about the Relational DAS.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">application_root_type</span>
+
+     <dd>
+
+      <p class="para">
+       The root of each data graph is an object of a special root type and 
+       the application data objects come below that.
+       Of the various application types in the SDO model, 
+       one has to be the the application type immediately 
+       below the root of the data graph.
+       If there is only one table in the database metadata, 
+       so the application root type can be inferred, this argument can be omitted.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">SDO_containment_references_metadata</span>
+
+     <dd>
+
+      <p class="para">
+       An array containing one or more definitions of a containment relation, 
+       each of which is an associative array containing the keys
+       <var class="varname">parent</var>
+       and
+       <var class="varname">child</var>.
+       The containment relations describe how the types in the model 
+       are connected to form a tree.
+       The type specified as the application root type must be present 
+       as one of the parent types in the containment references.
+       If the application only needs to work with one table at a time, 
+       and there are no containment relations in the model, 
+       this argument can be omitted.
+       For a full discussion of the metadata, see the
+       <a href="sdo.das.rel.metadata.html" class="link">metadata</a>
+       section in the general information about the Relational DAS.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an SDO_DAS_Relational object on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   <b>SDO_DAS_Relational::__construct()</b>
+   throws a SDO_DAS_Relational_Exception if 
+   any problems are found in the metadata.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   For a full discussion of the metadata, see the
+   <a href="sdo.das.rel.metadata.html" class="link">metadata</a>
+   section in the general information about the Relational DAS.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-relational-applychanges.html">SDO_DAS_Relational::applyChanges</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-relational-createrootdataobject.html">SDO_DAS_Relational::createRootDataObject</a></div>
+ <div class="up"><a href="ref.sdo.das.rel.html">SDO-DAS-Relational Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Decodes multiple MIME header fields at once</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.iconv-get-encoding.html">iconv_get_encoding</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.iconv-mime-decode.html">iconv_mime_decode</a></div>
+ <div class="up"><a href="ref.iconv.html">iconv Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.iconv-mime-decode-headers" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">iconv_mime_decode_headers</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">iconv_mime_decode_headers</span> &mdash; <span class="dc-title">Decodes multiple <i>MIME</i> header fields at once</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>iconv_mime_decode_headers</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoded_headers</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$charset</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Returns an associative array that holds a whole set of
+   <i>MIME</i> header fields specified by
+   <i><tt class="parameter">encoded_headers</tt></i>
+ on success, or <b><tt>FALSE</tt></b>
+   if an error occurs during the decoding.
+  </p>
+  <p class="para">
+   Each key of the return value represents an individual
+   field name and the corresponding element represents a field value.
+   If more than one field of the same name are present,
+   <b>iconv_mime_decode_headers()</b> automatically incorporates
+   them into a numerically indexed array in the order of occurrence.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoded_headers</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The encoded headers, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">mode</tt></i>
+ determines the behaviour in the event
+       <b>iconv_mime_decode_headers()</b> encounters a malformed
+       <i>MIME</i> header field. You can specify any combination
+       of the following bitmasks.
+       <table border="5">
+        <caption><b>Bitmasks acceptable to <b>iconv_mime_decode_headers()</b></b></caption>
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">Value</th>
+           <th colspan="1">Constant</th>
+           <th colspan="1">Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">1</td>
+           <td colspan="1" rowspan="1" align="left">ICONV_MIME_DECODE_STRICT</td>
+           <td colspan="1" rowspan="1" align="left">
+            If set, the given header is decoded in full conformance with the
+            standards defined in <a href="http://www.faqs.org/rfcs/rfc2047" class="link external">&raquo; RFC2047</a>.
+            This option is disabled by default because there are a lot of
+            broken mail user agents that don&#039;t follow the specification and don&#039;t
+            produce correct <i>MIME</i> headers.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">2</td>
+           <td colspan="1" rowspan="1" align="left">ICONV_MIME_DECODE_CONTINUE_ON_ERROR</td>
+           <td colspan="1" rowspan="1" align="left">
+            If set, <b>iconv_mime_decode_headers()</b>
+            attempts to ignore any grammatical errors and continue to process
+            a given header.
+           </td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">charset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The optional <i><tt class="parameter">charset</tt></i>
+ parameter specifies the
+       character set to represent the result by. If omitted,
+       <a href="iconv.configuration.html" class="link">iconv.internal_encoding</a>
+       will be used.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>iconv_mime_decode_headers()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$headers_string&nbsp;</span><span style="color: #007700">=&nbsp;&lt;&lt;&lt;EOF<br /></span><span style="color: #0000BB">Subject:&nbsp;=?UTF-8?B?UHLDvGZ1bmcgUHLDvGZ1bmc=?=<br />To:&nbsp;example@example.com<br />Date:&nbsp;Thu,&nbsp;1&nbsp;Jan&nbsp;1970&nbsp;00:00:00&nbsp;+0000<br />Message-Id:&nbsp;&lt;example@example.com&gt;<br />Received:&nbsp;from&nbsp;localhost&nbsp;(localhost&nbsp;[127.0.0.1])&nbsp;by&nbsp;localhost<br />&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;SMTP&nbsp;id&nbsp;example&nbsp;for&nbsp;&lt;example@example.com&gt;;<br />&nbsp;&nbsp;&nbsp;&nbsp;Thu,&nbsp;1&nbsp;Jan&nbsp;1970&nbsp;00:00:00&nbsp;+0000&nbsp;(UTC)<br />&nbsp;&nbsp;&nbsp;&nbsp;(envelope-from&nbsp;example-return-0000-example=example.com@example.com)<br />Received:&nbsp;(qmail&nbsp;0&nbsp;invoked&nbsp;by&nbsp;uid&nbsp;65534);&nbsp;1&nbsp;Thu&nbsp;2003&nbsp;00:00:00&nbsp;+0000<br /><br /></span><span style="color: #007700">EOF;<br /><br /></span><span style="color: #0000BB">$headers&nbsp;</span><span style="color: #007700">=&nbsp;&nbsp;</span><span style="color: #0000BB">iconv_mime_decode_headers</span><span style="color: #007700">(</span><span style="color: #0000BB">$headers_string</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"ISO-8859-1"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$headers</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>The above example will output:</p></div>
+     <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [Subject] =&gt; Prüfung Prüfung
+    [To] =&gt; example@example.com
+    [Date] =&gt; Thu, 1 Jan 1970 00:00:00 +0000
+    [Message-Id] =&gt; &lt;example@example.com&gt;
+    [Received] =&gt; Array
+        (
+            [0] =&gt; from localhost (localhost [127.0.0.1]) by localhost with SMTP id example for &lt;example@example.com&gt;; Thu, 1 Jan 1970 00:00:00 +0000 (UTC) (envelope-from example-return-0000-example=example.com@example.com)
+            [1] =&gt; (qmail 0 invoked by uid 65534); 1 Thu 2003 00:00:00 +0000
+        )
+
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.iconv-mime-decode.html" class="function" rel="rdfs-seeAlso">iconv_mime_decode()</a></li>
+    <li class="member"><a href="function.mb-decode-mimeheader.html" class="function" rel="rdfs-seeAlso">mb_decode_mimeheader()</a></li>
+    <li class="member"><a href="function.imap-mime-header-decode.html" class="function" rel="rdfs-seeAlso">imap_mime_header_decode()</a></li>
+    <li class="member"><a href="function.imap-base64.html" class="function" rel="rdfs-seeAlso">imap_base64()</a></li>
+    <li class="member"><a href="function.imap-qprint.html" class="function" rel="rdfs-seeAlso">imap_qprint()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.iconv-get-encoding.html">iconv_get_encoding</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.iconv-mime-decode.html">iconv_mime_decode</a></div>
+ <div class="up"><a href="ref.iconv.html">iconv Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

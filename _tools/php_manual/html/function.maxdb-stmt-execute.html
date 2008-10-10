@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Executes a prepared Query</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-stmt-error.html">maxdb_stmt_error</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-stmt-fetch.html">maxdb_stmt_fetch</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.maxdb-stmt-execute" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_stmt_execute</h1>
+  <h1 class="refname">stmt-&gt;execute</h1>
+  <p class="verinfo">(PECL maxdb:1.0-7.6.00.38)</p><p class="refpurpose"><span class="refname">maxdb_stmt_execute</span> -- <span class="refname">stmt-&gt;execute</span> &mdash; <span class="dc-title">Executes a prepared Query</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedural style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>maxdb_stmt_execute</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$stmt</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method):</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">stmt</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span>
+     <span class="methodname"><b><b>execute</b></b></span>
+     ( <span class="methodparam">void</span>
+    )</div>
+
+  </div>
+  <p class="para">
+   The <b>maxdb_stmt_execute()</b> function executes a query that has been previously
+   prepared using the <a href="function.maxdb-prepare.html" class="function">maxdb_prepare()</a> function represented by the
+   <i><tt class="parameter">stmt</tt></i>
+ resource. When executed any parameter markers which exist will
+   automatically be replaced with the appropiate data.
+  </p>
+  <p class="para">
+   If the statement is UPDATE, DELETE, or INSERT, the total number of affected rows can be
+   determined by using the <a href="function.maxdb-stmt-affected-rows.html" class="function">maxdb_stmt_affected_rows()</a> function. Likewise,
+   if the query yields a result set the <a href="function.maxdb-fetch.html" class="function">maxdb_fetch()</a> function is used.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    When using <b>maxdb_stmt_execute()</b>, the <a href="function.maxdb-fetch.html" class="function">maxdb_fetch()</a>
+    function must be used to fetch the data prior to preforming any additional queries.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 Object oriented style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$maxdb&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">maxdb</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;temp.mycity&nbsp;LIKE&nbsp;hotel.city"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Prepare&nbsp;an&nbsp;insert&nbsp;statement&nbsp;*/<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;temp.mycity&nbsp;(zip,&nbsp;name,&nbsp;state)&nbsp;VALUES&nbsp;(?,?,?)"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bind_param</span><span style="color: #007700">(</span><span style="color: #DD0000">"sss"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$val1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$val2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$val3</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$val1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'11111'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$val2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Georgetown'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$val3&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'NY'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Execute&nbsp;the&nbsp;statement&nbsp;*/<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$val1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'22222'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$val2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Hubbatown'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$val3&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'CA'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Execute&nbsp;the&nbsp;statement&nbsp;*/<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;statement&nbsp;*/<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;retrieve&nbsp;all&nbsp;rows&nbsp;from&nbsp;myCity&nbsp;*/<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;zip,&nbsp;name,&nbsp;state&nbsp;FROM&nbsp;temp.mycity"</span><span style="color: #007700">;<br />if&nbsp;(</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_row</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;(%s,%s)\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;free&nbsp;result&nbsp;set&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;remove&nbsp;table&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;temp.mycity"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example">
+   <p><b>Example #2 Procedural style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;temp.mycity&nbsp;LIKE&nbsp;hotel.city"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Prepare&nbsp;an&nbsp;insert&nbsp;statement&nbsp;*/<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;temp.mycity&nbsp;(zip,&nbsp;name,&nbsp;state)&nbsp;VALUES&nbsp;(?,?,?)"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">maxdb_stmt_bind_param</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"sss"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$val1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$val2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$val3</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$val1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'11111'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$val2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Georgetown'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$val3&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'NY'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Execute&nbsp;the&nbsp;statement&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_stmt_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$val1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'22222'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$val2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Hubbatown'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$val3&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'CA'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Execute&nbsp;the&nbsp;statement&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_stmt_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;statement&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_stmt_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;retrieve&nbsp;all&nbsp;rows&nbsp;from&nbsp;myCity&nbsp;*/<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;zip,&nbsp;name,&nbsp;state&nbsp;FROM&nbsp;temp.mycity"</span><span style="color: #007700">;<br />if&nbsp;(</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_fetch_row</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;(%s,%s)\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;free&nbsp;result&nbsp;set&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">maxdb_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;remove&nbsp;table&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;temp.mycity"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">The above example will output 
+something similar to:</p>
+  <div class="example-contents"><pre>
+<div class="cdata"><pre>
+11111 (Georgetown,NY)
+22222 (Hubbatown,CA)
+</pre></div>
+  </pre></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.maxdb-prepare.html" class="function" rel="rdfs-seeAlso">maxdb_prepare()</a></li>
+    <li class="member"><a href="function.maxdb-stmt-bind-param.html" class="function" rel="rdfs-seeAlso">maxdb_stmt_bind_param()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-stmt-error.html">maxdb_stmt_error</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-stmt-fetch.html">maxdb_stmt_fetch</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

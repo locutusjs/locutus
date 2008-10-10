@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Floating point numbers</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.types.integer.html">Integers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.types.string.html">Strings</a></div>
+ <div class="up"><a href="language.types.html">Types</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.types.float" class="sect1">
+ <h2 class="title">Floating point numbers</h2>
+
+ <p class="para">
+  Floating point numbers (also known as &quot;floats&quot;, &quot;doubles&quot;, or &quot;real numbers&quot;)
+  can be specified using any of the following syntaxes:
+ </p>
+
+ <div class="informalexample">
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1.234</span><span style="color: #007700">;&nbsp;<br /></span><span style="color: #0000BB">$b&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1.2e3</span><span style="color: #007700">;&nbsp;<br /></span><span style="color: #0000BB">$c&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">7E-10</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+  </div>
+
+ </div>
+
+ <p class="para">
+  Formally:
+ </p>
+
+ <div class="informalexample">
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+LNUM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0-9]+<br />DNUM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;([0-9]*[\.]{LNUM})&nbsp;|&nbsp;({LNUM}[\.][0-9]*)<br />EXPONENT_DNUM&nbsp;[+-]?(({LNUM}&nbsp;|&nbsp;{DNUM})&nbsp;[eE][+-]?&nbsp;{LNUM})</span>
+</code></div>
+  </div>
+
+ </div>
+
+ <p class="para">
+  The size of a float is platform-dependent, although a maximum of ~1.8e308 with
+  a precision of roughly 14 decimal digits is a common value (the 64 bit IEEE
+  format).
+ </p>
+
+ <div class="warning"><b class="warning">Warning</b>
+  <h1 class="title">Floating point precision</h1>
+
+  <p class="para">
+   It is typical that simple decimal fractions like <i>0.1</i> or
+   <i>0.7</i> cannot be converted into their internal binary
+   counterparts without a small loss of precision. This can lead to confusing
+   results: for example, <i>floor((0.1+0.7)*10)</i> will usually
+   return <i>7</i> instead of the expected <i>8</i>,
+   since the internal representation will be something like
+   <i>7.<span style="text-decoration: overline;">9</span></i>.
+  </p>
+
+  <p class="para">
+   This is due to the fact that it is impossible to express some
+   fractions in decimal notation with a finite number of digits. For instance,
+   <i>1/3</i> in decimal form becomes
+   <i>0.<span style="text-decoration: overline;">3</span></i>.
+  </p>
+
+  <p class="para">
+   So never trust floating number results to the last digit, and never compare
+   floating point numbers for equality. If higher precision is necessary,
+   the <a href="ref.bc.html" class="link">arbitrary precision math functions</a> and
+   <a href="ref.gmp.html" class="link">gmp</a> functions are available.
+  </p>
+ </div>
+
+ <div id="language.types.float.casting" class="sect2">
+  <h3 class="title">Converting to float</h3>
+  
+  <p class="para">
+   For information on converting <a href="language.types.string.html" class="type string">string</a>s to <a href="language.types.float.html" class="type float">float</a>, see
+   <a href="language.types.string.html#language.types.string.conversion" class="link">String conversion to
+   numbers</a>. For values of other types, the conversion is performed by
+   converting the value to <a href="language.types.integer.html" class="type integer">integer</a> first and then to
+   <a href="language.types.float.html" class="type float">float</a>. See
+   <a href="language.types.integer.html#language.types.integer.casting" class="link">Converting to integer</a>
+   for more information. As of PHP 5, a notice is thrown if an
+   <a href="language.types.object.html" class="type object">object</a> is converted to <a href="language.types.float.html" class="type float">float</a>.
+  </p>
+
+ </div>
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.types.integer.html">Integers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.types.string.html">Strings</a></div>
+ <div class="up"><a href="language.types.html">Types</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

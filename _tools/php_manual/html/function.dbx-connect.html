@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Open a connection/database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbx-compare.html">dbx_compare</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbx-error.html">dbx_error</a></div>
+ <div class="up"><a href="ref.dbx.html">dbx Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.dbx-connect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dbx_connect</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5 &lt;= 5.0.5, PECL dbx:1.1.0)</p><p class="refpurpose"><span class="refname">dbx_connect</span> &mdash; <span class="dc-title">Open a connection/database</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">object</span> <span class="methodname"><b><b>dbx_connect</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$module</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$host</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$database</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$username</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$password</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$persistent</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Opens a connection to a database.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">module</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">module</tt></i>
+ parameter can be either a string or a
+       constant, though the latter form is preferred. The possible values are 
+       given below, but keep in mind that they only work if the module is 
+       actually loaded.
+      </p>
+      <p class="para">
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>DBX_MYSQL</tt></b> or &quot;mysql&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>DBX_ODBC</tt></b> or &quot;odbc&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>DBX_PGSQL</tt></b> or &quot;pgsql&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>DBX_MSSQL</tt></b> or &quot;mssql&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>DBX_FBSQL</tt></b> or &quot;fbsql&quot; (available from PHP 4.1.0)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>DBX_SYBASECT</tt></b> or &quot;sybase_ct&quot; (available from PHP
+          4.2.0)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>DBX_OCI8</tt></b> or &quot;oci8&quot; (available from PHP 4.3.0)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>DBX_SQLITE</tt></b> or &quot;sqlite&quot; (PHP 5)
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">host</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SQL server host
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">database</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The database name
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">username</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The username
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">password</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The password
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">persistent</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">persistent</tt></i>
+ parameter can be set to 
+       <b><tt>DBX_PERSISTENT</tt></b>, if so, a persistent connection
+       will be created.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+  <p class="para">
+   The <i><tt class="parameter">host</tt></i>
+, <i><tt class="parameter">database</tt></i>
+, 
+   <i><tt class="parameter">username</tt></i>
+ and <i><tt class="parameter">password</tt></i>
+ 
+   parameters are expected, but not always used depending on the connect
+   functions for the abstracted module.
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an object on success, <b><tt>FALSE</tt></b> on error. If a connection has been
+   made but the database could not be selected, the connection is closed and
+   <b><tt>FALSE</tt></b> is returned. 
+  </p>
+  <p class="para">
+   The returned <var class="varname">object</var> has three properties:
+   <dl>
+
+    <dt>
+
+     <span class="term">
+      <span class="property">database</span>
+     </span>
+
+     <dd>
+
+      <span class="simpara">
+       It is the name of the currently selected database. 
+      </span>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <span class="property">handle</span>
+     </span>
+
+     <dd>
+
+      <p class="para">
+       It is a valid handle for the connected database, and as such it can be
+       used in module-specific functions (if required).
+       <div class="informalexample">
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">DBX_MYSQL</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"db"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">mysql_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">handle</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;dbx_close($link)&nbsp;would&nbsp;be&nbsp;better&nbsp;here<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+        </div>
+
+       </div>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <span class="property">module</span>
+     </span>
+
+     <dd>
+
+      <span class="simpara">
+       It is used internally by dbx only, and is actually the module number
+       mentioned above.
+      </span>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>dbx_connect()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">DBX_ODBC</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"db"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DBX_PERSISTENT</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Could&nbsp;not&nbsp;connect"</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Connected&nbsp;successfully"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">dbx_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Always refer to the module-specific documentation as well.
+   <br />
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.dbx-close.html" class="function" rel="rdfs-seeAlso">dbx_close()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbx-compare.html">dbx_compare</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbx-error.html">dbx_error</a></div>
+ <div class="up"><a href="ref.dbx.html">dbx Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

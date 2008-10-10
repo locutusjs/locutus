@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Alias of xdiff_file_bpatch</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xdiff-file-merge3.html">xdiff_file_merge3</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xdiff-file-patch.html">xdiff_file_patch</a></div>
+ <div class="up"><a href="ref.xdiff.html">xdiff Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.xdiff-file-patch-binary" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xdiff_file_patch_binary</h1>
+  <p class="verinfo">(PECL xdiff:0.2-1.4)</p><p class="refpurpose"><span class="refname">xdiff_file_patch_binary</span> &mdash; <span class="dc-title">Alias of xdiff_file_bpatch</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>xdiff_file_patch_binary</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$file</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$patch</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dest</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Patches a <i><tt class="parameter">file</tt></i>
+ with a binary
+   <i><tt class="parameter">patch</tt></i>
+ and stores the result in a file <i><tt class="parameter">dest</tt></i>
+. 
+   This function accepts patches created both via <a href="function.xdiff-file-bdiff.html" class="function">xdiff_file_bdiff()</a> 
+   or <a href="function.xdiff-file-rabdiff.html" class="function">xdiff_file_rabdiff()</a> functions or their string counterparts.
+  </p> 
+  <p class="para">
+   Starting with version 1.5.0 this function is an alias of <a href="function.xdiff-file-bpatch.html" class="function">xdiff_file_bpatch()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">file</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The original file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">patch</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The binary patch file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dest</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path of the resulting file.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>xdiff_file_patch_binary()</b> example</b></p>
+    <div class="example-contents"><p>
+     The following code applies binary diff to a file.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$old_version&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'archive-1.0.tgz'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$patch&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'archive.bpatch'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">xdiff_file_patch_binary</span><span style="color: #007700">(</span><span style="color: #0000BB">$old_version</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$patch</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'archive-1.1.tgz'</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"File&nbsp;patched"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"File&nbsp;couldn't&nbsp;be&nbsp;patched"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Both files (<i><tt class="parameter">file</tt></i>
+ and <i><tt class="parameter">patch</tt></i>
+)
+    will be loaded into memory so ensure that your memory_limit is set high
+    enough.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.xdiff-string-patch-binary.html" class="function" rel="rdfs-seeAlso">xdiff_string_patch_binary()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xdiff-file-merge3.html">xdiff_file_merge3</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xdiff-file-patch.html">xdiff_file_patch</a></div>
+ <div class="up"><a href="ref.xdiff.html">xdiff Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

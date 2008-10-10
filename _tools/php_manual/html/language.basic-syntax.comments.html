@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Comments</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.basic-syntax.html">Basic syntax</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.types.html">Types</a></div>
+ <div class="up"><a href="language.basic-syntax.html">Basic syntax</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.basic-syntax.comments" class="sect1">
+   <h2 class="title">Comments</h2>   
+   <p class="para">
+    PHP supports &#039;C&#039;, &#039;C++&#039; and Unix shell-style (Perl style) comments. For example:
+
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;a&nbsp;test'</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;This&nbsp;is&nbsp;a&nbsp;one-line&nbsp;c++&nbsp;style&nbsp;comment<br />&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;This&nbsp;is&nbsp;a&nbsp;multi&nbsp;line&nbsp;comment<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yet&nbsp;another&nbsp;line&nbsp;of&nbsp;comment&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;yet&nbsp;another&nbsp;test'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'One&nbsp;Final&nbsp;Test'</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">#&nbsp;This&nbsp;is&nbsp;a&nbsp;one-line&nbsp;shell-style&nbsp;comment<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="simpara">
+    The &quot;one-line&quot; comment styles only comment to the end of
+    the line or the current block of PHP code, whichever comes first.
+    This means that HTML code after <i>// ... ?&gt;</i> 
+    or <i># ...  ?&gt;</i> WILL be printed:
+    ?&gt; breaks out of PHP mode and returns to HTML mode, and
+    <i>//</i> or <i>#</i> cannot influence that.
+    If the <a href="ini.core.html#ini.asp-tags" class="link">asp_tags</a> configuration directive
+    is enabled, it behaves the same with <i>// %&gt;</i> and
+    <i># %&gt;</i>.
+    However, the <i>&lt;/script&gt;</i> tag doesn&#039;t break out of PHP mode in
+    a one-line comment.
+   </p>
+   <p class="para">
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+&lt;h1&gt;This&nbsp;is&nbsp;an&nbsp;<span style="color: #0000BB">&lt;?php&nbsp;</span><span style="color: #FF8000">#&nbsp;echo&nbsp;'simple';</span><span style="color: #0000BB">?&gt;</span>&nbsp;example.&lt;/h1&gt;<br />&lt;p&gt;The&nbsp;header&nbsp;above&nbsp;will&nbsp;say&nbsp;'This&nbsp;is&nbsp;an&nbsp;&nbsp;example'.&lt;/p&gt;</span>
+</code></div>
+     </div>
+
+    </div> 
+   </p>
+   <p class="simpara">
+    &#039;C&#039; style comments end at the first <i>*/</i> encountered.
+    Make sure you don&#039;t nest &#039;C&#039; style comments.  It is easy to make this
+    mistake if you are trying to comment out a large block of code.
+   </p>
+   <p class="para">
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;</span><span style="color: #FF8000">/*&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;'This&nbsp;is&nbsp;a&nbsp;test';&nbsp;/*&nbsp;This&nbsp;comment&nbsp;will&nbsp;cause&nbsp;a&nbsp;problem&nbsp;*/<br />&nbsp;</span><span style="color: #007700">*/<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.basic-syntax.html">Basic syntax</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.types.html">Types</a></div>
+ <div class="up"><a href="language.basic-syntax.html">Basic syntax</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

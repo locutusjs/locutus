@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Create a new font</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.printer-create-dc.html">printer_create_dc</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.printer-create-pen.html">printer_create_pen</a></div>
+ <div class="up"><a href="ref.printer.html">Printer Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.printer-create-font" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">printer_create_font</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">printer_create_font</span> &mdash; <span class="dc-title">Create a new font</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>printer_create_font</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$face</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$height</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$width</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$font_weight</tt></span>
+   , <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$italic</tt></span>
+   , <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$underline</tt></span>
+   , <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$strikeout</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$orientation</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The function creates a new font and returns a handle to it. A font is
+   used to draw text. For an example see
+   <a href="function.printer-select-font.html" class="function">printer_select_font()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">face</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">face</tt></i>
+ must be a string specifying the font face.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">height</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">height</tt></i>
+ specifies the font height.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">width</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">width</tt></i>
+ specifies the font width. 
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">font_weight</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">font_weight</tt></i>
+ specifies the font weight
+       (400 is normal), and can be one of the following predefined constants.
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_FW_THIN</tt></b>:
+          sets the font weight to thin (100).
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_FW_ULTRALIGHT</tt></b>:
+          sets the font weight to ultra light (200).
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_FW_LIGHT</tt></b>:
+          sets the font weight to light (300).
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_FW_NORMAL</tt></b>:
+          sets the font weight to normal (400).
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_FW_MEDIUM</tt></b>:
+          sets the font weight to medium (500).
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_FW_BOLD</tt></b>:
+          sets the font weight to bold (700).
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_FW_ULTRABOLD</tt></b>:
+          sets the font weight to ultra bold (800).
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_FW_HEAVY</tt></b>:
+          sets the font weight to heavy (900).
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">italic</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">italic</tt></i>
+ can be <b><tt>TRUE</tt></b> or <b><tt>FALSE</tt></b>,
+       and sets whether the font should be italic.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">underline</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">underline</tt></i>
+ can be <b><tt>TRUE</tt></b> or <b><tt>FALSE</tt></b>,
+       and sets whether the font should be underlined.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">strikeout</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">strikeout</tt></i>
+ can be <b><tt>TRUE</tt></b> or <b><tt>FALSE</tt></b>,
+       and sets whether the font should be stroked out.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">orientaton</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">orientation</tt></i>
+ specifies a rotation.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a font handle on success or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+ 
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.printer-create-dc.html">printer_create_dc</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.printer-create-pen.html">printer_create_pen</a></div>
+ <div class="up"><a href="ref.printer.html">Printer Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

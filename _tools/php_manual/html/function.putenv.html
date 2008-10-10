@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets the value of an environment variable</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.phpversion.html">phpversion</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.restore-include-path.html">restore_include_path</a></div>
+ <div class="up"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.putenv" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">putenv</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">putenv</span> &mdash; <span class="dc-title">Sets the value of an environment variable</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>putenv</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$setting</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Adds <i><tt class="parameter">setting</tt></i>
+ to the server environment.  The
+   environment variable will only exist for the duration of the current
+   request. At the end of the request the environment is restored to its
+   original state.
+  </p>
+  <p class="para">
+   Setting certain environment variables may be a potential security breach.
+   The <i>safe_mode_allowed_env_vars</i> directive contains a
+   comma-delimited list of prefixes. In Safe Mode, the user may only alter
+   environment variables whose names begin with the prefixes supplied by
+   this directive. By default, users will only be able to set environment
+   variables that begin with <i>PHP_</i> (e.g.
+   <i>PHP_FOO=BAR</i>). Note: if this directive is empty, PHP
+   will let the user modify ANY environment variable!
+  </p>
+  <p class="para">
+   The <i>safe_mode_protected_env_vars</i> directive contains a
+   comma-delimited list of environment variables, that the end user won&#039;t be
+   able to change using <b>putenv()</b>.  These variables will
+   be protected even if <i>safe_mode_allowed_env_vars</i> is set
+   to allow to change them.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">setting</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The setting, like <i>&quot;FOO=BAR&quot;</i>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Setting an environment variable</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />putenv</span><span style="color: #007700">(</span><span style="color: #DD0000">"UNIQID=$uniqid"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="para">
+    These directives have only effect when <a href="features.safe-mode.html" class="link">safe-mode</a> itself is enabled!
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.getenv.html" class="function" rel="rdfs-seeAlso">getenv()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.phpversion.html">phpversion</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.restore-include-path.html">restore_include_path</a></div>
+ <div class="up"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

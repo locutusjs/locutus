@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>__NAMESPACE__</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.namespaces.global.html">Global space</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.namespaces.rules.html">Name resolution rules</a></div>
+ <div class="up"><a href="language.namespaces.html">Namespaces</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.namespaces.constant" class="sect1">
+  <h2 class="title">__NAMESPACE__</h2>
+  <p class="para">
+   The compile-time constant <b><tt>__NAMESPACE__</tt></b> is defined to
+   the name of the current namespace. Outside namespace this constant has the 
+   value of empty string. This constant is useful when one needs to compose 
+   full name for local namespaced names.
+   <div class="example">
+    <p><b>Example #1 Using __NAMESPACE__</b></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />namespace&nbsp;A</span><span style="color: #007700">::</span><span style="color: #0000BB">B</span><span style="color: #007700">::</span><span style="color: #0000BB">C</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">()&nbsp;{<br /></span><span style="color: #FF8000">//&nbsp;do&nbsp;stuff<br /></span><span style="color: #007700">}<br /><br /></span><span style="color: #0000BB">set_error_handler</span><span style="color: #007700">(</span><span style="color: #0000BB">__NAMESPACE__&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"::foo"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.namespaces.global.html">Global space</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.namespaces.rules.html">Name resolution rules</a></div>
+ <div class="up"><a href="language.namespaces.html">Namespaces</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

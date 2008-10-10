@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Retrieve list of registered filters</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-get-contents.html">stream_get_contents</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-get-line.html">stream_get_line</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.stream-get-filters" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stream_get_filters</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">stream_get_filters</span> &mdash; <span class="dc-title">Retrieve list of registered filters</span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>stream_get_filters</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="simpara">
+   Returns an indexed array containing the name of all stream filters
+   available on the running system.
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>stream_get_filters()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$streamlist&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_get_filters</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$streamlist</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Output will be similar to the following.
+     Note: there may be more or fewer filters in your version of PHP.
+    </p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array (
+  [0] =&gt; string.rot13
+  [1] =&gt; string.toupper
+  [2] =&gt; string.tolower
+  [3] =&gt; string.base64
+  [4] =&gt; string.quoted-printable
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+  <p class="para">
+   See also
+   <a href="function.stream-filter-register.html" class="function">stream_filter_register()</a>, and
+   <a href="function.stream-get-wrappers.html" class="function">stream_get_wrappers()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-get-contents.html">stream_get_contents</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-get-line.html">stream_get_line</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

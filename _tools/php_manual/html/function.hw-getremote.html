@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets a remote document</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hw-getrellink.html">hw_getrellink</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hw-getremotechildren.html">hw_getremotechildren</a></div>
+ <div class="up"><a href="ref.hw.html">Hyperwave Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.hw-getremote" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hw_GetRemote</h1>
+  <p class="verinfo">(PHP 4)</p><p class="refpurpose"><span class="refname">hw_GetRemote</span> &mdash; <span class="dc-title">Gets a remote document</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>hw_getremote</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$objectID</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets a remote document.
+  </p>
+  <p class="para">
+   Remote documents in Hyperwave notation are documents retrieved from an
+   external source. Common remote documents are for example external web
+   pages or queries in a database.
+  </p>
+  <p class="para">
+   In order to be able to access external sources through remote documents
+   Hyperwave introduces the HGI (Hyperwave Gateway Interface) which is
+   similar to the CGI. Currently, only ftp, http-servers and some databases
+   can be accessed by the HGI.
+  </p>
+  <p class="para">
+   Calling <b>hw_getremote()</b> returns the document from
+   the external source.  If you want to use this function you should be
+   very familiar with HGIs.  You should also consider to use PHP instead
+   of Hyperwave to access external sources. Adding database support
+   by a Hyperwave gateway should be more difficult than doing it in PHP.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The connection identifier.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">objectID</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The object identifier.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a remote document.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.hw-getremotechildren.html" class="function" rel="rdfs-seeAlso">hw_getremotechildren()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hw-getrellink.html">hw_getrellink</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hw-getremotechildren.html">hw_getremotechildren</a></div>
+ <div class="up"><a href="ref.hw.html">Hyperwave Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

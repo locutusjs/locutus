@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Create a new paradox database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-close.html">px_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-date2string.html">px_date2string</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.px-create-fp" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">px_create_fp</h1>
+  <p class="verinfo">(PECL paradox:1.0-1.4.1)</p><p class="refpurpose"><span class="refname">px_create_fp</span> &mdash; <span class="dc-title">Create a new paradox database</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>px_create_fp</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$pxdoc</tt></span>
+   , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$file</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$fielddesc</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Create a new paradox database file. The actual file has to be opened before
+   with <a href="function.fopen.html" class="function">fopen()</a>. Make sure the file is writable.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   Calling this functions issues a warning about an empty tablename which
+    can be safely ignored. Just set the tablename afterwards with
+    <a href="function.px-set-parameter.html" class="function">px_set_parameter()</a>.<br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   This function is highly experimental, due to insufficient
+    documentation of the paradox file format. Database files created with this
+    function can be opened by <a href="function.px-open-fp.html" class="function">px_open_fp()</a> and has been
+    successfully opened by the Paradox software, but your milage may vary.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pxdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the paradox database
+       as returned by <a href="function.px-new.html" class="function">px_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">file</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">File handle as returned by <a href="function.fopen.html" class="function">fopen()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fielddesc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <span class="option">fielddesc</span> is an array containing one element for each
+       field specification. A field specification is an array itself with
+       either two or three elements.The first element is always a string value
+       used as the name of the field. It may not be larger than ten
+       characters. The second element contains the field type which is one of
+       the constants listed in the table <a href="paradox.constants.html#paradox.table-fieldtypes" class="link">Constants for field types</a>.
+       In the case of a character field or bcd field, you will have to provide
+       a third element specifying the length respectively the precesion of the
+       field. If your field specification contains blob fields, you will have
+       to make sure to either make the field large enough for all field values
+       to fit or specify a blob file with
+       <a href="function.px-set-blob-file.html" class="function">px_set_blob_file()</a> for storing the blobs. If this is
+       not done the field data is truncated.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Creating a Paradox database with two fields</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if(!</span><span style="color: #0000BB">$pxdoc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">px_new</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Error&nbsp;handling&nbsp;*/<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"test.db"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"w+"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$fields&nbsp;</span><span style="color: #007700">=&nbsp;array(array(</span><span style="color: #DD0000">"col1"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"S"</span><span style="color: #007700">),&nbsp;array(</span><span style="color: #DD0000">"col2"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"I"</span><span style="color: #007700">));<br />if(!</span><span style="color: #0000BB">px_create_fp</span><span style="color: #007700">(</span><span style="color: #0000BB">$pxdoc</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$fields</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Error&nbsp;handling&nbsp;*/<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">px_set_parameter</span><span style="color: #007700">(</span><span style="color: #0000BB">$pxdoc</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"tablename"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"testtable"</span><span style="color: #007700">);<br />for(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=-</span><span style="color: #0000BB">50</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">50</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$rec&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">$i</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">$i</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">px_put_record</span><span style="color: #007700">(</span><span style="color: #0000BB">$pxdoc</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rec</span><span style="color: #007700">);<br />}&nbsp;&nbsp;&nbsp;<br /></span><span style="color: #0000BB">px_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$pxdoc</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">px_delete</span><span style="color: #007700">(</span><span style="color: #0000BB">$pxdoc</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.px-new.html" class="function" rel="rdfs-seeAlso">px_new()</a></li>
+    <li class="member"><a href="function.px-put-record.html" class="function" rel="rdfs-seeAlso">px_put_record()</a></li>
+    <li class="member"><a href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-close.html">px_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-date2string.html">px_date2string</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

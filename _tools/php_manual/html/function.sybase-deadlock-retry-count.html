@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets the deadlock retry count</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sybase-data-seek.html">sybase_data_seek</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sybase-fetch-array.html">sybase_fetch_array</a></div>
+ <div class="up"><a href="ref.sybase.html">Sybase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sybase-deadlock-retry-count" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sybase_deadlock_retry_count</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">sybase_deadlock_retry_count</span> &mdash; <span class="dc-title">Sets the deadlock retry count</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>sybase_deadlock_retry_count</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$retry_count</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Using <b>sybase_deadlock_retry_count()</b>, the number of retries
+   can be defined in cases of deadlocks. By default, every deadlock is retried
+   an infinite number of times or until the process is killed by Sybase, the
+   executing script is killed (for instance, by <a href="function.set-time-limit.html" class="function">set_time_limit()</a>)
+   or the query succeeds.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">retry_count</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <table border="5">
+        <caption><b>Values for retry_count</b></caption>
+        <colgroup>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">-1</td>
+           <td colspan="1" rowspan="1" align="left">Retry forever (default)</td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">0</td>
+           <td colspan="1" rowspan="1" align="left">Do not retry</td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">n</td>
+           <td colspan="1" rowspan="1" align="left">Retry n times</td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is only available when
+using the CT library interface to Sybase, and not with the DB library.
+</span></p></blockquote>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sybase-data-seek.html">sybase_data_seek</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sybase-fetch-array.html">sybase_fetch_array</a></div>
+ <div class="up"><a href="ref.sybase.html">Sybase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

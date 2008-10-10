@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Factorial</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gmp-divexact.html">gmp_divexact</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gmp-gcd.html">gmp_gcd</a></div>
+ <div class="up"><a href="ref.gmp.html">GMP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.gmp-fact" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">gmp_fact</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p><p class="refpurpose"><span class="refname">gmp_fact</span> &mdash; <span class="dc-title">Factorial</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>gmp_fact</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$a</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Calculates factorial (<i>a!</i>) of <i><tt class="parameter">a</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">a</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The factorial number.
+      </p>
+      <p class="para">It can be either a GMP number <a href="language.types.resource.html" class="type resource">resource</a>, or a 
+numeric string given that it is possible to convert the latter to a number.</p> 
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A GMP number <a href="language.types.resource.html" class="type resource">resource</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>gmp_fact()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fact1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gmp_fact</span><span style="color: #007700">(</span><span style="color: #0000BB">5</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;5&nbsp;*&nbsp;4&nbsp;*&nbsp;3&nbsp;*&nbsp;2&nbsp;*&nbsp;1<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$fact1</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$fact2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gmp_fact</span><span style="color: #007700">(</span><span style="color: #0000BB">50</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;50&nbsp;*&nbsp;49&nbsp;*&nbsp;48,&nbsp;...&nbsp;etc<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$fact2</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+120
+30414093201713378043612608166064768844377641568960512000000000000
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gmp-divexact.html">gmp_divexact</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gmp-gcd.html">gmp_gcd</a></div>
+ <div class="up"><a href="ref.gmp.html">GMP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

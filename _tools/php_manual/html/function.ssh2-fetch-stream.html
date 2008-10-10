@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetch an extended data stream</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ssh2-exec.html">ssh2_exec</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ssh2-fingerprint.html">ssh2_fingerprint</a></div>
+ <div class="up"><a href="ref.ssh2.html">SSH2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ssh2-fetch-stream" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ssh2_fetch_stream</h1>
+  <p class="verinfo">(PECL ssh2:0.10-0.9)</p><p class="refpurpose"><span class="refname">ssh2_fetch_stream</span> &mdash; <span class="dc-title">Fetch an extended data stream</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>ssh2_fetch_stream</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$channel</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$streamid</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Fetches an alternate substream associated with an SSH2 channel stream.
+   The SSH2 protocol currently defines only one substream, STDERR, which has
+   a substream ID of <b><tt>SSH2_STREAM_STDERR</tt></b> (defined as 1).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">channel</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">streamid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An SSH2 channel stream.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the requested stream resource.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Opening a shell and retrieving the stderr stream associated with it</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$connection&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ssh2_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'shell.example.com'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">22</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ssh2_auth_password</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'username'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'password'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$stdio_stream&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ssh2_shell</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stderr_stream&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ssh2_fetch_stream</span><span style="color: #007700">(</span><span style="color: #0000BB">$stdio_stream</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SSH2_STREAM_STDERR</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ssh2-shell.html" class="function" rel="rdfs-seeAlso">ssh2_shell()</a></li>
+    <li class="member"><a href="function.ssh2-exec.html" class="function" rel="rdfs-seeAlso">ssh2_exec()</a></li>
+    <li class="member"><a href="function.ssh2-connect.html" class="function" rel="rdfs-seeAlso">ssh2_connect()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ssh2-exec.html">ssh2_exec</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ssh2-fingerprint.html">ssh2_fingerprint</a></div>
+ <div class="up"><a href="ref.ssh2.html">SSH2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

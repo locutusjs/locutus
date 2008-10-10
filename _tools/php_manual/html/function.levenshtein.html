@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Calculate Levenshtein distance between two strings</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.lcfirst.html">lcfirst</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.localeconv.html">localeconv</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.levenshtein" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">levenshtein</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p><p class="refpurpose"><span class="refname">levenshtein</span> &mdash; <span class="dc-title">Calculate Levenshtein distance between two strings</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>levenshtein</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str1</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str2</tt></span>
+   )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>levenshtein</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str1</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str2</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$cost_ins</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$cost_rep</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$cost_del</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The Levenshtein distance is defined as the minimal number of
+   characters you have to replace, insert or delete to transform
+   <i><tt class="parameter">str1</tt></i>
+ into <i><tt class="parameter">str2</tt></i>
+.
+   The complexity of the algorithm is <i>O(m*n)</i>,
+   where <i>n</i> and <i>m</i> are the
+   length of <i><tt class="parameter">str1</tt></i>
+ and
+   <i><tt class="parameter">str2</tt></i>
+ (rather good when compared to
+   <a href="function.similar-text.html" class="function">similar_text()</a>, which is O(max(n,m)**3),
+   but still expensive).
+  </p>
+  <p class="para">
+   In its simplest form the function will take only the two
+   strings as parameter and will calculate just the number of
+   insert, replace and delete operations needed to transform
+   <i><tt class="parameter">str1</tt></i>
+ into <i><tt class="parameter">str2</tt></i>
+.
+  </p>
+  <p class="para">
+   A second variant will take three additional parameters that
+   define the cost of insert, replace and delete operations.  This
+   is more general and adaptive than variant one, but not as
+   efficient.
+  </p>
+ </div>
+
+
+<div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str1</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       One of the strings being evaluated for Levenshtein distance.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str2</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       One of the strings being evaluated for Levenshtein distance.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">cost_ins</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Defines the cost of insertion.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">cost_rep</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Defines the cost of replacement.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">cost_del</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Defines the cost of deletion.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns the Levenshtein-Distance between the
+   two argument strings or -1, if one of the argument strings
+   is longer than the limit of 255 characters.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>levenshtein()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;input&nbsp;misspelled&nbsp;word<br /></span><span style="color: #0000BB">$input&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'carrrot'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;array&nbsp;of&nbsp;words&nbsp;to&nbsp;check&nbsp;against<br /></span><span style="color: #0000BB">$words&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'apple'</span><span style="color: #007700">,</span><span style="color: #DD0000">'pineapple'</span><span style="color: #007700">,</span><span style="color: #DD0000">'banana'</span><span style="color: #007700">,</span><span style="color: #DD0000">'orange'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'radish'</span><span style="color: #007700">,</span><span style="color: #DD0000">'carrot'</span><span style="color: #007700">,</span><span style="color: #DD0000">'pea'</span><span style="color: #007700">,</span><span style="color: #DD0000">'bean'</span><span style="color: #007700">,</span><span style="color: #DD0000">'potato'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;no&nbsp;shortest&nbsp;distance&nbsp;found,&nbsp;yet<br /></span><span style="color: #0000BB">$shortest&nbsp;</span><span style="color: #007700">=&nbsp;-</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;loop&nbsp;through&nbsp;words&nbsp;to&nbsp;find&nbsp;the&nbsp;closest<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">$words&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$word</span><span style="color: #007700">)&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;calculate&nbsp;the&nbsp;distance&nbsp;between&nbsp;the&nbsp;input&nbsp;word,<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;and&nbsp;the&nbsp;current&nbsp;word<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$lev&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">levenshtein</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$word</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;check&nbsp;for&nbsp;an&nbsp;exact&nbsp;match<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$lev&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;closest&nbsp;word&nbsp;is&nbsp;this&nbsp;one&nbsp;(exact&nbsp;match)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$closest&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$word</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$shortest&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;break&nbsp;out&nbsp;of&nbsp;the&nbsp;loop;&nbsp;we've&nbsp;found&nbsp;an&nbsp;exact&nbsp;match<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">break;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;if&nbsp;this&nbsp;distance&nbsp;is&nbsp;less&nbsp;than&nbsp;the&nbsp;next&nbsp;found&nbsp;shortest<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;distance,&nbsp;OR&nbsp;if&nbsp;a&nbsp;next&nbsp;shortest&nbsp;word&nbsp;has&nbsp;not&nbsp;yet&nbsp;been&nbsp;found<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$lev&nbsp;</span><span style="color: #007700">&lt;=&nbsp;</span><span style="color: #0000BB">$shortest&nbsp;</span><span style="color: #007700">||&nbsp;</span><span style="color: #0000BB">$shortest&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;set&nbsp;the&nbsp;closest&nbsp;match,&nbsp;and&nbsp;shortest&nbsp;distance<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$closest&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$word</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$shortest&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$lev</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Input&nbsp;word:&nbsp;$input\n"</span><span style="color: #007700">;<br />if&nbsp;(</span><span style="color: #0000BB">$shortest&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Exact&nbsp;match&nbsp;found:&nbsp;$closest\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Did&nbsp;you&nbsp;mean:&nbsp;$closest?\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Input word: carrrot
+Did you mean: carrot?
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.soundex.html" class="function" rel="rdfs-seeAlso">soundex()</a></li>
+    <li class="member"><a href="function.similar-text.html" class="function" rel="rdfs-seeAlso">similar_text()</a></li>
+    <li class="member"><a href="function.metaphone.html" class="function" rel="rdfs-seeAlso">metaphone()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.lcfirst.html">lcfirst</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.localeconv.html">localeconv</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

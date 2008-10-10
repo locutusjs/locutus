@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Constants</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.variables.external.html">Variables From External Sources</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.constants.predefined.html">Magic constants</a></div>
+ <div class="up"><a href="langref.html">Language Reference</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div>
+  <h1>Constants</h1>
+<h2>Table of Contents</h2><ul class="chunklist chunklist_chapter"><li><a href="language.constants.predefined.html">Magic constants</a></li></ul>
+
+
+  <p class="simpara">
+   A constant is an identifier (name) for a simple value. As the name
+   suggests, that value cannot change during the execution of the
+   script (except for <a href="language.constants.predefined.html" class="link">
+   magic constants</a>, which aren&#039;t actually constants).
+   A constant is case-sensitive by default. By convention, constant 
+   identifiers are always uppercase.
+  </p>
+  <p class="para">
+   The name of a constant follows the same rules as any label in PHP. A 
+   valid constant name starts with a letter or underscore, followed
+   by any number of letters, numbers, or underscores. As a regular
+   expression, it would be expressed thusly:
+   <i>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*</i>
+  </p>
+  <div class="tip"><b class="tip">Tip</b><p class="simpara">See also the
+<a href="userlandnaming.html" class="xref">Userland Naming Guide</a>.</p></div>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Valid and invalid constant names</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Valid&nbsp;constant&nbsp;names<br /></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">"FOO"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"something"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">"FOO2"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"something&nbsp;else"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">"FOO_BAR"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"something&nbsp;more"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Invalid&nbsp;constant&nbsp;names<br /></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">"2FOO"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"something"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;This&nbsp;is&nbsp;valid,&nbsp;but&nbsp;should&nbsp;be&nbsp;avoided:<br />//&nbsp;PHP&nbsp;may&nbsp;one&nbsp;day&nbsp;provide&nbsp;a&nbsp;magical&nbsp;constant<br />//&nbsp;that&nbsp;will&nbsp;break&nbsp;your&nbsp;script<br /></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">"__FOO__"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"something"</span><span style="color: #007700">);&nbsp;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   <span class="simpara">
+    For our purposes here, a letter is a-z, A-Z, and the ASCII
+    characters from 127 through 255 (0x7f-0xff).
+   </span>
+  </p></blockquote>
+
+  <p class="simpara">
+   Like <a href="language.variables.predefined.html" class="link">superglobals</a>, the scope of a constant is global.  You 
+   can access constants anywhere in your script without regard to scope.  
+   For more information on scope, read the manual section on
+   <a href="language.variables.scope.html" class="link">variable scope</a>.
+  </p>
+
+  <div id="language.constants.syntax" class="sect1">
+   <h2 class="title">Syntax</h2>
+   <p class="simpara">
+    You can define a constant by using the 
+    <a href="function.define.html" class="function">define()</a>-function. Once a constant is defined,
+    it can never be changed or undefined.
+   </p>
+   <p class="simpara">
+    Only scalar data (<a href="language.types.boolean.html" class="type boolean">boolean</a>, <a href="language.types.integer.html" class="type integer">integer</a>, 
+    <a href="language.types.float.html" class="type float">float</a> and <a href="language.types.string.html" class="type string">string</a>) can be contained 
+    in constants.
+    Do not define <a href="language.types.resource.html" class="type resource">resource</a> constants.
+   </p>
+   <p class="simpara">
+    You can get the value of a constant by simply specifying its name.
+    Unlike with variables, you should <em class="emphasis">not</em> prepend
+    a constant with a <i>$</i>.
+    You can also use the function <a href="function.constant.html" class="function">constant()</a> to
+    read a constant&#039;s value if you wish to obtain the constant&#039;s name
+    dynamically. 
+    Use <a href="function.get-defined-constants.html" class="function">get_defined_constants()</a> to get a list of 
+    all defined constants.
+   </p>
+   <blockquote><p><b class="note">Note</b>: 
+    <span class="simpara">
+     Constants and (global) variables are in a different namespace. 
+     This implies that for example <b><tt>TRUE</tt></b> and 
+     <var class="varname">$TRUE</var> are generally different.
+    </span>
+   </p></blockquote>
+   <p class="simpara">
+    If you use an undefined constant, PHP assumes that you mean
+    the name of the constant itself, just as if you called it as
+    a <a href="language.types.string.html" class="type string">string</a> (CONSTANT vs &quot;CONSTANT&quot;).  An error of level
+    <a href="ref.errorfunc.html" class="link">E_NOTICE</a> will be issued
+    when this happens.  See also the manual entry on why 
+    <a href="language.types.array.html#language.types.array.foo-bar" class="link">$foo[bar]</a> is
+    wrong (unless you first <a href="function.define.html" class="function">define()</a>
+    <i>bar</i> as a constant).  If you simply want to check if a
+    constant is set, use the <a href="function.defined.html" class="function">defined()</a> function.
+   </p>
+   <p class="para">
+    These are the differences between constants and variables:
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       Constants do not have a dollar sign (<i>$</i>)
+       before them;
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       Constants may only be defined using the
+       <a href="function.define.html" class="function">define()</a> function, not by simple assignment;
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       Constants may be defined and accessed anywhere without regard
+       to variable scoping rules;
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       Constants may not be redefined or undefined once they have been
+       set; and
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       Constants may only evaluate to scalar values.
+       </span>
+     </li>
+    </ul>
+   </p>
+
+   <p class="para">
+    <div class="example">
+     <p><b>Example #2 Defining Constants</b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />define</span><span style="color: #007700">(</span><span style="color: #DD0000">"CONSTANT"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Hello&nbsp;world."</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">CONSTANT</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;outputs&nbsp;"Hello&nbsp;world."<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">Constant</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;outputs&nbsp;"Constant"&nbsp;and&nbsp;issues&nbsp;a&nbsp;notice.<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+
+   </p>
+
+   <p class="simpara">
+    See also <a href="language.oop5.constants.html" class="link">Class Constants</a>.
+   </p>
+  </div>
+  
+  
+ </div>
+<hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.variables.external.html">Variables From External Sources</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.constants.predefined.html">Magic constants</a></div>
+ <div class="up"><a href="langref.html">Language Reference</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

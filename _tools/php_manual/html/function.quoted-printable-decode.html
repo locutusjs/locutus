@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Convert a quoted-printable string to an 8 bit string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.printf.html">printf</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.quoted-printable-encode.html">quoted_printable_encode</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.quoted-printable-decode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">quoted_printable_decode</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">quoted_printable_decode</span> &mdash; <span class="dc-title">Convert a quoted-printable string to an 8 bit string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>quoted_printable_decode</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function returns an 8-bit binary string corresponding to the decoded
+   quoted printable string (according to <a href="http://www.faqs.org/rfcs/rfc2045" class="link external">&raquo; RFC2045</a>, section 6.7, not <a href="http://www.faqs.org/rfcs/rfc2821" class="link external">&raquo; RFC2821</a>, section 4.5.2, so additional periods
+   are not stripped from the beginning of line).
+  </p>
+  <p class="para">
+   This function is similar to <a href="function.imap-qprint.html" class="function">imap_qprint()</a>, except this
+   one does not require the IMAP module to work.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input string.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the 8-bit binary string.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.printf.html">printf</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.quoted-printable-encode.html">quoted_printable_encode</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

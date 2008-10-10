@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Split a string by string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.echo.html">echo</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fprintf.html">fprintf</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.explode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">explode</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">explode</span> &mdash; <span class="dc-title">Split a string by string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>explode</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$delimiter</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$string</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$limit</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns an array of strings, each of which is a substring of
+   <i><tt class="parameter">string</tt></i>
+ formed by splitting it on
+   boundaries formed by the string <i><tt class="parameter">delimiter</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">delimiter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The boundary string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">string</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">limit</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <i><tt class="parameter">limit</tt></i>
+ is set, the returned array will contain
+       a maximum of <i><tt class="parameter">limit</tt></i>
+ elements with the last
+       element containing the rest of <i><tt class="parameter">string</tt></i>
+.
+      </p>
+      <p class="para">
+       If the <i><tt class="parameter">limit</tt></i>
+ parameter is negative, all components
+       except the last -<i><tt class="parameter">limit</tt></i>
+ are returned.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+  <p class="para">
+   Although <a href="function.implode.html" class="function">implode()</a> can, for historical reasons,
+   accept its parameters in either order,
+   <b>explode()</b> cannot. You must ensure that the
+   <i><tt class="parameter">delimiter</tt></i>
+ argument comes before the
+   <i><tt class="parameter">string</tt></i>
+ argument.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   If <i><tt class="parameter">delimiter</tt></i>
+ is an empty string (&quot;&quot;),
+   <b>explode()</b> will return <b><tt>FALSE</tt></b>.  If
+   <i><tt class="parameter">delimiter</tt></i>
+ contains a value that is not contained
+   in <i><tt class="parameter">string</tt></i>
+, then <b>explode()</b> will
+   return an array containing <i><tt class="parameter">string</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.1.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        Support for negative <i><tt class="parameter">limit</tt></i>
+s was added
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.1</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">limit</tt></i>
+ parameter was added
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>explode()</b> examples</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Example&nbsp;1<br /></span><span style="color: #0000BB">$pizza&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"piece1&nbsp;piece2&nbsp;piece3&nbsp;piece4&nbsp;piece5&nbsp;piece6"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$pieces&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">explode</span><span style="color: #007700">(</span><span style="color: #DD0000">"&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$pizza</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$pieces</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;piece1<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$pieces</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;piece2<br /><br />//&nbsp;Example&nbsp;2<br /></span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"foo:*:1023:1000::/home/foo:/bin/sh"</span><span style="color: #007700">;<br />list(</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$pass</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$uid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$gid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$gecos</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$home</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$shell</span><span style="color: #007700">)&nbsp;=&nbsp;</span><span style="color: #0000BB">explode</span><span style="color: #007700">(</span><span style="color: #DD0000">":"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;foo<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$pass</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;*<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 <i><tt class="parameter">limit</tt></i>
+ parameter examples</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'one|two|three|four'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;positive&nbsp;limit<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">explode</span><span style="color: #007700">(</span><span style="color: #DD0000">'|'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;negative&nbsp;limit&nbsp;(since&nbsp;PHP&nbsp;5.1)<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">explode</span><span style="color: #007700">(</span><span style="color: #DD0000">'|'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; one
+    [1] =&gt; two|three|four
+)
+Array
+(
+    [0] =&gt; one
+    [1] =&gt; two
+    [2] =&gt; three
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is
+binary-safe.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.preg-split.html" class="function" rel="rdfs-seeAlso">preg_split()</a></li>
+    <li class="member"><a href="function.str-split.html" class="function" rel="rdfs-seeAlso">str_split()</a></li>
+    <li class="member"><a href="function.str-word-count.html" class="function" rel="rdfs-seeAlso">str_word_count()</a></li>
+    <li class="member"><a href="function.strtok.html" class="function" rel="rdfs-seeAlso">strtok()</a></li>
+    <li class="member"><a href="function.implode.html" class="function" rel="rdfs-seeAlso">implode()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.echo.html">echo</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fprintf.html">fprintf</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

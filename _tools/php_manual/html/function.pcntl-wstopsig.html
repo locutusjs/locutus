@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the signal which caused the child to stop</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pcntl-wifstopped.html">pcntl_wifstopped</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pcntl-wtermsig.html">pcntl_wtermsig</a></div>
+ <div class="up"><a href="ref.pcntl.html">PCNTL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pcntl-wstopsig" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pcntl_wstopsig</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">pcntl_wstopsig</span> &mdash; <span class="dc-title">Returns the signal which caused the child to stop</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>pcntl_wstopsig</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$status</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns the number of the signal which caused the child to stop.
+   This function is only useful if
+   <a href="function.pcntl-wifstopped.html" class="function">pcntl_wifstopped()</a> returned <b><tt>TRUE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">status</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The <i><tt class="parameter">status</tt></i>
+
+parameter is the status parameter supplied to a successful
+call to <a href="function.pcntl-waitpid.html" class="function">pcntl_waitpid()</a>.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the signal number.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pcntl-waitpid.html" class="function" rel="rdfs-seeAlso">pcntl_waitpid()</a></li>
+    <li class="member"><a href="function.pcntl-wifstopped.html" class="function" rel="rdfs-seeAlso">pcntl_wifstopped()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pcntl-wifstopped.html">pcntl_wifstopped</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pcntl-wtermsig.html">pcntl_wtermsig</a></div>
+ <div class="up"><a href="ref.pcntl.html">PCNTL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set the client encoding</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-send-query.html">pg_send_query</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-set-error-verbosity.html">pg_set_error_verbosity</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-set-client-encoding" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_set_client_encoding</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.3, PHP 5)</p><p class="refpurpose"><span class="refname">pg_set_client_encoding</span> &mdash; <span class="dc-title">
+   Set the client encoding
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>pg_set_client_encoding</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+   )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>pg_set_client_encoding</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>pg_set_client_encoding()</b> sets the client
+   encoding and returns 0 if success or -1 if error.
+  </p>
+  <p class="para">
+   PostgreSQL will automatically convert data in the backend database
+   encoding into the frontend encoding.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    The function used to be called
+    <b>pg_setclientencoding()</b>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL database connection resource.  When 
+       <i><tt class="parameter">connection</tt></i>
+ is not present, the default connection 
+       is used. The default connection is the last connection made by 
+       <a href="function.pg-connect.html" class="function">pg_connect()</a> or <a href="function.pg-pconnect.html" class="function">pg_pconnect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The required client encoding.  One of <i>SQL_ASCII</i>, <i>EUC_JP</i>, 
+       <i>EUC_CN</i>, <i>EUC_KR</i>, <i>EUC_TW</i>, 
+       <i>UNICODE</i>, <i>MULE_INTERNAL</i>, <i>LATINX</i> (X=1...9), 
+       <i>KOI8</i>, <i>WIN</i>, <i>ALT</i>, <i>SJIS</i>, 
+       <i>BIG5</i> or <i>WIN1250</i>.
+      </p>
+      <p class="para">
+       The exact list of available encodings depends on your PostgreSQL version, so check your
+       PostgreSQL manual for a more specific list.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns 0 on success or -1 on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pg_set_client_encoding()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_pconnect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=publisher"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"An&nbsp;error&nbsp;occured.\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;exit;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Set&nbsp;the&nbsp;client&nbsp;encoding&nbsp;to&nbsp;UNICODE.&nbsp;&nbsp;Data&nbsp;will&nbsp;be&nbsp;automatically<br />//&nbsp;converted&nbsp;from&nbsp;the&nbsp;backend&nbsp;encoding&nbsp;to&nbsp;the&nbsp;frontend.<br /></span><span style="color: #0000BB">pg_set_client_encoding</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">UNICODE</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;author,&nbsp;email&nbsp;FROM&nbsp;authors"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"An&nbsp;error&nbsp;occured.\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;exit;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Write&nbsp;out&nbsp;UTF-8&nbsp;data<br /></span><span style="color: #007700">while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_fetch_row</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Author:&nbsp;$row[0]&nbsp;&nbsp;E-mail:&nbsp;$row[1]"</span><span style="color: #007700">;<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />}<br />&nbsp;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-client-encoding.html" class="function" rel="rdfs-seeAlso">pg_client_encoding()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-send-query.html">pg_send_query</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-set-error-verbosity.html">pg_set_error_verbosity</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

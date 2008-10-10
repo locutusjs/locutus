@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get a SimpleXMLElement object from a DOM node.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.simplexml-element-xpath.html">SimpleXMLElement->xpath</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.simplexml-load-file.html">simplexml_load_file</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.simplexml-import-dom" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">simplexml_import_dom</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">simplexml_import_dom</span> &mdash; <span class="dc-title">Get a <i>SimpleXMLElement</i> object from a DOM node.</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type SimpleXMLElement">SimpleXMLElement</span></span> <span class="methodname"><b><b>simplexml_import_dom</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="class.domnode.html" class="type DOMNode">DOMNode</a></span> <tt class="parameter">$node</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$class_name</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This function takes a node of a <a href="book.dom.html" class="link">DOM</a>
+   document and makes it into a SimpleXML node. This new object can
+   then be used as a native SimpleXML element. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">node</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A <a href="book.dom.html" class="link">DOM</a> Element node
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">class_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       You may use this optional parameter so that
+       <b>simplexml_import_dom()</b> will return an object of 
+       the specified class. That class should extend the 
+       <span class="type SimpleXMLElement">SimpleXMLElement</span> class.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a <span class="type SimpleXMLElement">SimpleXMLElement</span> or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Importing DOM</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dom&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">DOMDocument</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$dom</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadXML</span><span style="color: #007700">(</span><span style="color: #DD0000">'&lt;books&gt;&lt;book&gt;&lt;title&gt;blah&lt;/title&gt;&lt;/book&gt;&lt;/books&gt;'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$dom</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Error&nbsp;while&nbsp;parsing&nbsp;the&nbsp;document'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /><br /></span><span style="color: #0000BB">$s&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">simplexml_import_dom</span><span style="color: #007700">(</span><span style="color: #0000BB">$dom</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">book</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">title</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;blah<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.dom-import-simplexml.html" class="function" rel="rdfs-seeAlso">dom_import_simplexml()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.simplexml-element-xpath.html">SimpleXMLElement->xpath</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.simplexml-load-file.html">simplexml_load_file</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

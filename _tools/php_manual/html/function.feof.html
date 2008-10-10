@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Tests for end-of-file on a file pointer</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fclose.html">fclose</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fflush.html">fflush</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.feof" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">feof</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">feof</span> &mdash; <span class="dc-title">Tests for end-of-file on a file pointer</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>feof</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$handle</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Tests for end-of-file on a file pointer.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">handle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The file pointer must be valid, and must point to
+a file successfully opened by <a href="function.fopen.html" class="function">fopen()</a> or
+<a href="function.fsockopen.html" class="function">fsockopen()</a> (and not yet closed by
+<a href="function.fclose.html" class="function">fclose()</a>).</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if the file pointer is at EOF or an error occurs
+   (including socket timeout); otherwise returns <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="simpara">
+    If a connection opened by <a href="function.fsockopen.html" class="function">fsockopen()</a> wasn&#039;t closed
+    by the server, <b>feof()</b> will wait until a timeout has
+    been reached to return <b><tt>TRUE</tt></b>. The default timeout value is 60 seconds.
+    You may use <a href="function.stream-set-timeout.html" class="function">stream_set_timeout()</a> to change this
+    value.
+   </p>
+  </div>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="para">
+    If passed file pointer is not valid you may get an infinite loop, because
+    EOF fails to return TRUE.
+    <div class="example">
+     <p><b>Example #1 <b>feof()</b> example with an invalid file pointer</b></p>
+     <div class="example-contents">
+ <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;if&nbsp;file&nbsp;can&nbsp;not&nbsp;be&nbsp;read&nbsp;or&nbsp;doesn't&nbsp;exist&nbsp;fopen&nbsp;function&nbsp;returns&nbsp;FALSE<br /></span><span style="color: #0000BB">$file&nbsp;</span><span style="color: #007700">=&nbsp;@</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"no_such_file"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"r"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;FALSE&nbsp;from&nbsp;fopen&nbsp;will&nbsp;issue&nbsp;warning&nbsp;and&nbsp;result&nbsp;in&nbsp;infinite&nbsp;loop&nbsp;here<br /></span><span style="color: #007700">while&nbsp;(!</span><span style="color: #0000BB">feof</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">))&nbsp;{<br />}<br /><br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fclose.html">fclose</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fflush.html">fflush</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

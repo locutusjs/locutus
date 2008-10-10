@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set the type of a variable</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.serialize.html">serialize</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.strval.html">strval</a></div>
+ <div class="up"><a href="ref.var.html">Variable handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.settype" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">settype</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">settype</span> &mdash; <span class="dc-title">Set the type of a variable</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>settype</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter reference">&$var</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$type</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Set the type of variable <i><tt class="parameter">var</tt></i>
+ to
+   <i><tt class="parameter">type</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">var</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The variable being converted.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Possibles values of <i><tt class="parameter">type</tt></i>
+ are:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          &quot;boolean&quot; (or, since PHP 4.2.0, &quot;bool&quot;)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          &quot;integer&quot; (or, since PHP 4.2.0, &quot;int&quot;)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          &quot;float&quot; (only possible since PHP 4.2.0, for older versions use the
+          deprecated variant &quot;double&quot;)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          &quot;string&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          &quot;array&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          &quot;object&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          &quot;null&quot; (since PHP 4.2.0)
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>settype()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$foo&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"5bar"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;string<br /></span><span style="color: #0000BB">$bar&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;boolean<br /><br /></span><span style="color: #0000BB">settype</span><span style="color: #007700">(</span><span style="color: #0000BB">$foo</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"integer"</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;$foo&nbsp;is&nbsp;now&nbsp;5&nbsp;&nbsp;&nbsp;(integer)<br /></span><span style="color: #0000BB">settype</span><span style="color: #007700">(</span><span style="color: #0000BB">$bar</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"string"</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;$bar&nbsp;is&nbsp;now&nbsp;"1"&nbsp;(string)<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Maximum value for &quot;int&quot; is <b><tt>PHP_INT_MAX</tt></b>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.gettype.html" class="function" rel="rdfs-seeAlso">gettype()</a></li>
+    <li class="member"><a href="language.types.type-juggling.html#language.types.typecasting" class="link">type-casting</a></li>
+    <li class="member"><a href="language.types.type-juggling.html" class="link">type-juggling</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.serialize.html">serialize</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.strval.html">strval</a></div>
+ <div class="up"><a href="ref.var.html">Variable handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Read the structure of a particular message</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-fetchheader.html">imap_fetchheader</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-get-quota.html">imap_get_quota</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imap-fetchstructure" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_fetchstructure</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imap_fetchstructure</span> &mdash; <span class="dc-title">Read the structure of a particular message</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">object</span> <span class="methodname"><b><b>imap_fetchstructure</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$imap_stream</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$msg_number</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$options</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Fetches all the structured information for a given message. 
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+imap_stream</tt></i>
+</span>
+<dd>
+<p class="para">An IMAP stream returned by 
+<a href="function.imap-open.html" class="function">imap_open()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">msg_number</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The message number
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       This optional parameter only has a single option, 
+       <b><tt>FT_UID</tt></b>, which tells the function to treat the
+       <i><tt class="parameter">msg_number</tt></i>
+ argument as a 
+       <i>UID</i>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an object includes the envelope, internal date, size, flags and
+   body structure along with a similar object for each mime attachment. The
+   structure of the returned objects is as follows:
+  </p>
+  <p class="para">
+   <table border="5">
+    <caption><b>
+     Returned Objects for <b>imap_fetchstructure()</b>
+    </b></caption>
+    <colgroup>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">type</td>
+       <td colspan="1" rowspan="1" align="left">Primary body type</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">encoding</td>
+       <td colspan="1" rowspan="1" align="left">Body transfer encoding</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ifsubtype</td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if there is a subtype string</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">subtype</td>
+       <td colspan="1" rowspan="1" align="left"><acronym title="Multipurpose Internet Mail Extensions">MIME</acronym> subtype</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ifdescription</td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if there is a description string</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">description</td>
+       <td colspan="1" rowspan="1" align="left">Content description string</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ifid</td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if there is an identification string</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">id</td>
+       <td colspan="1" rowspan="1" align="left">Identification string</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">lines</td>
+       <td colspan="1" rowspan="1" align="left">Number of lines</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">bytes</td>
+       <td colspan="1" rowspan="1" align="left">Number of bytes</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ifdisposition</td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if there is a disposition string</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">disposition</td>
+       <td colspan="1" rowspan="1" align="left">Disposition string</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ifdparameters</td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if the dparameters array exists</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">dparameters</td>
+       <td colspan="1" rowspan="1" align="left">An array of objects where each object has an &quot;attribute&quot; and a
+       &quot;value&quot; property corresponding to the parameters on the
+       Content-disposition <acronym title="Multipurpose Internet Mail Extensions">MIME</acronym>header.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ifparameters</td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if the parameters array exists</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">parameters</td>
+       <td colspan="1" rowspan="1" align="left">An array of objects where each object has an &quot;attribute&quot; and
+       a &quot;value&quot; property.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">parts</td>
+       <td colspan="1" rowspan="1" align="left">An array of objects identical in structure to the top-level
+       object, each of which corresponds to a <acronym title="Multipurpose Internet Mail Extensions">MIME</acronym> body
+       part.</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+  </p>
+  <p class="para">
+   <table border="5">
+     <caption><b>Primary body type</b></caption>
+     <colgroup>
+
+      <tbody valign="middle" class="tbody">
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">0</td><td colspan="1" rowspan="1" align="left">text</td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">1</td><td colspan="1" rowspan="1" align="left">multipart</td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">2</td><td colspan="1" rowspan="1" align="left">message</td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">3</td><td colspan="1" rowspan="1" align="left">application</td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">4</td><td colspan="1" rowspan="1" align="left">audio</td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">5</td><td colspan="1" rowspan="1" align="left">image</td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">6</td><td colspan="1" rowspan="1" align="left">video</td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">7</td><td colspan="1" rowspan="1" align="left">other</td></tr>
+
+      </tbody>
+     </colgroup>
+
+   </table>
+
+  </p>
+  <p class="para">
+   <table border="5">
+     <caption><b>Transfer encodings</b></caption>
+     <colgroup>
+
+      <tbody valign="middle" class="tbody">
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">0</td><td colspan="1" rowspan="1" align="left">7BIT</td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">1</td><td colspan="1" rowspan="1" align="left">8BIT</td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">2</td><td colspan="1" rowspan="1" align="left">BINARY</td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">3</td><td colspan="1" rowspan="1" align="left">BASE64</td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">4</td><td colspan="1" rowspan="1" align="left">QUOTED-PRINTABLE</td></tr>
+
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">5</td><td colspan="1" rowspan="1" align="left">OTHER</td></tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imap-fetchbody.html" class="function" rel="rdfs-seeAlso">imap_fetchbody()</a></li>
+    <li class="member"><a href="function.imap-bodystruct.html" class="function" rel="rdfs-seeAlso">imap_bodystruct()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-fetchheader.html">imap_fetchheader</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-get-quota.html">imap_get_quota</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

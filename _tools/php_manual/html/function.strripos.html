@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Find position of last occurrence of a case-insensitive string in a string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.strrev.html">strrev</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.strrpos.html">strrpos</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.strripos" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">strripos</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">strripos</span> &mdash; <span class="dc-title">Find position of last occurrence of a case-insensitive string in a string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>strripos</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$haystack</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$needle</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$offset</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Find position of last occurrence of a case-insensitive string in a string.
+   Unlike <a href="function.strrpos.html" class="function">strrpos()</a>, <b>strripos()</b> is
+   case-insensitive.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">haystack</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The string to search in
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">needle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Note that the <i><tt class="parameter">needle</tt></i>
+ may be a string of one or
+       more characters.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">offset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">offset</tt></i>
+ parameter may be specified to begin
+       searching an arbitrary number of characters into the string.
+      </p>
+      <p class="para">
+       Negative offset values will start the search at
+       <i><tt class="parameter">offset</tt></i>
+ characters from the
+       <em class="emphasis">start</em> of the string.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the numerical position of the last occurence of
+   <i><tt class="parameter">needle</tt></i>
+. Also note that string positions start at 0,
+   and not 1.
+  </p>
+  <p class="para">
+   If <i><tt class="parameter">needle</tt></i>
+ is not found, <b><tt>FALSE</tt></b> is returned.
+  </p>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function may
+return Boolean <b><tt>FALSE</tt></b>, but may also return a non-Boolean value which
+evaluates to <b><tt>FALSE</tt></b>, such as <i>0</i> or
+&quot;&quot;. Please read the section on <a href="language.types.boolean.html" class="link">Booleans</a> for more
+information. Use <a href="language.operators.comparison.html" class="link">the ===
+operator</a> for testing the return value of this
+function.</p></div>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A simple <b>strripos()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$haystack&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'ababcd'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$needle&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'aB'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$pos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">strripos</span><span style="color: #007700">(</span><span style="color: #0000BB">$haystack</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$needle</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$pos&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Sorry,&nbsp;we&nbsp;did&nbsp;not&nbsp;find&nbsp;($needle)&nbsp;in&nbsp;($haystack)"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Congratulations!\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"We&nbsp;found&nbsp;the&nbsp;last&nbsp;($needle)&nbsp;in&nbsp;($haystack)&nbsp;at&nbsp;position&nbsp;($pos)"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+   Congratulations!
+   We found the last (aB) in (ababcd) at position (2)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.strpos.html" class="function" rel="rdfs-seeAlso">strpos()</a></li>
+    <li class="member"><a href="function.stripos.html" class="function" rel="rdfs-seeAlso">stripos()</a></li>
+    <li class="member"><a href="function.strrchr.html" class="function" rel="rdfs-seeAlso">strrchr()</a></li>
+    <li class="member"><a href="function.substr.html" class="function" rel="rdfs-seeAlso">substr()</a></li>
+    <li class="member"><a href="function.stristr.html" class="function" rel="rdfs-seeAlso">stristr()</a></li>
+    <li class="member"><a href="function.strstr.html" class="function" rel="rdfs-seeAlso">strstr()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.strrev.html">strrev</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.strrpos.html">strrpos</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

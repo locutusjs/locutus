@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set up unparsed entity declaration handler</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.xml.html">XML Parser Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.xmlreader.html">XMLReader</a></div>
+ <div class="up"><a href="ref.xml.html">XML Parser Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.xml-set-unparsed-entity-decl-handler" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xml_set_unparsed_entity_decl_handler</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">xml_set_unparsed_entity_decl_handler</span> &mdash; <span class="dc-title">
+   Set up unparsed entity declaration handler
+  </span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>xml_set_unparsed_entity_decl_handler</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$parser</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.callback" class="type callback">callback</a></span> <tt class="parameter">$handler</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sets the unparsed entity declaration handler function for the XML parser
+   <i><tt class="parameter">parser</tt></i>
+.
+  </p>
+  <p class="para">
+   The <i><tt class="parameter">handler</tt></i>
+ will be called if the XML parser
+   encounters an external entity declaration with an NDATA declaration, like
+   the following:
+   <div class="example-contents">
+<div class="cdata"><pre>
+&lt;!ENTITY &lt;parameter&gt;name&lt;/parameter&gt; {&lt;parameter&gt;publicId&lt;/parameter&gt; | &lt;parameter&gt;systemId&lt;/parameter&gt;}
+        NDATA &lt;parameter&gt;notationName&lt;/parameter&gt;
+</pre></div>
+   </div>
+
+  </p>
+  <p class="para">
+   See <a href="http://www.w3.org/TR/1998/REC-xml-19980210#sec-external-ent" class="link external">&raquo; section 4.2.2 of
+   the XML 1.0 spec</a> for the definition of notation declared
+   external entities.
+  </p> 
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">parser</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">handler</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">handler</tt></i>
+ is a string containing the name of a
+       function that must exist when <a href="function.xml-parse.html" class="function">xml_parse()</a> is called
+       for <i><tt class="parameter">parser</tt></i>
+.
+      </p>
+      <p class="para">
+       The function named by <i><tt class="parameter">handler</tt></i>
+ must accept six
+       parameters:
+       <div class="methodsynopsis dc-description">
+         <span class="methodname"><b><span class="replaceable">handler</span></b></span>
+         ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$parser</tt></span>
+        , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$entity_name</tt></span>
+        , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$base</tt></span>
+        , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$system_id</tt></span>
+        , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$public_id</tt></span>
+        , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$notation_name</tt></span>
+        )</div>
+
+       <dl>
+
+        <dt>
+
+         <span class="term"><i><tt class="parameter">parser</tt></i>
+</span>
+
+         <dd>
+
+          <span class="simpara">
+           The first parameter, <span class="replaceable">parser</span>, is a
+           reference to the XML parser calling the
+           handler.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><i><tt class="parameter">entity_name</tt></i>
+</span>
+
+         <dd>
+
+          <span class="simpara">
+           The name of the entity that is about to be defined.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><i><tt class="parameter">base</tt></i>
+</span>
+
+         <dd>
+
+          <span class="simpara">
+           This is the base for resolving the system identifier
+           (<i><tt class="parameter">systemId</tt></i>
+) of the external entity.Currently
+           this parameter will always be set to an empty string.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><i><tt class="parameter">system_id</tt></i>
+</span>
+
+         <dd>
+
+          <span class="simpara">
+           System identifier for the external entity.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><i><tt class="parameter">public_id</tt></i>
+</span>
+
+         <dd>
+
+          <span class="simpara"> 
+           Public identifier for the external entity.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><i><tt class="parameter">notation_name</tt></i>
+</span>
+
+         <dd>
+
+          <span class="simpara"> 
+           Name of the notation of this entity (see
+           <a href="function.xml-set-notation-decl-handler.html" class="function">xml_set_notation_decl_handler()</a>).
+          </span>
+         </dd>
+
+        </dt>
+
+       </dl>
+
+      </p>
+      <p class="para">
+       If a handler function is set to an empty string, or <b><tt>FALSE</tt></b>, the handler
+       in question is disabled.
+      </p>
+      <blockquote><p><b class="note">Note</b>: <span class="simpara">Instead of a function name, an
+array containing an object reference and a method name can also be
+supplied.</span></p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.xml.html">XML Parser Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.xmlreader.html">XMLReader</a></div>
+ <div class="up"><a href="ref.xml.html">XML Parser Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

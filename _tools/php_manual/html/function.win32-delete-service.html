@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Deletes a service entry from the SCM database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.win32-create-service.html">win32_create_service</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.win32-get-last-control-message.html">win32_get_last_control_message</a></div>
+ <div class="up"><a href="ref.win32service.html">win32service Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.win32-delete-service" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">win32_delete_service</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">win32_delete_service</span> &mdash; <span class="dc-title">Deletes a service entry from the SCM database</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>win32_delete_service</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$servicename</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$machine</tt></span>
+  ] )</div>
+
+
+  <p class="para rdfs-comment">
+   Attempts to delete a service from the SCM database.  Administrative
+   privileges are required for this to succeed.
+  </p>
+  <p class="para">
+   This function really just marks the service for deletion.  If other
+   processes (such as the Services Applet) are open, then the deletion will be
+   deferred until those applications are closed.  If a service is marked for
+   deletion, further attempts to delete it will fail, and attempts to create a
+   new service with that name will also fail.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">servicename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The short name of the service.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">machine</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The optional machine name.  If omitted, the local machine will be used.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success, or a win32 error code on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>win32_delete_service()</b> example</b></p>
+    <div class="example-contents"><p>
+     Deletes the dummyphp service.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />win32_delete_service</span><span style="color: #007700">(</span><span style="color: #DD0000">'dummyphp'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+
+ 
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.win32-create-service.html">win32_create_service</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.win32-get-last-control-message.html">win32_get_last_control_message</a></div>
+ <div class="up"><a href="ref.win32service.html">win32service Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

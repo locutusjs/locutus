@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Controls location, appearance and active area of the current button</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.swf-actionwaitforframe.html">swf_actionwaitforframe</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swf-addcolor.html">swf_addcolor</a></div>
+ <div class="up"><a href="ref.swf.html">SWF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.swf-addbuttonrecord" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">swf_addbuttonrecord</h1>
+  <p class="verinfo">(PHP 4)</p><p class="refpurpose"><span class="refname">swf_addbuttonrecord</span> &mdash; <span class="dc-title">Controls location, appearance and active area of the current button</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>swf_addbuttonrecord</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$states</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$shapeid</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$depth</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Allow you to define the specifics of using a button.  
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">states</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Defines what states the button can have, these can be any or all of
+       the following constants: <b><tt>BSHitTest</tt></b>, 
+       <b><tt>BSDown</tt></b>, <b><tt>BSOver</tt></b> or
+       <b><tt>BSUp</tt></b>.   
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">shapeid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The second parameter, the <i><tt class="parameter">shapeid</tt></i>
+ is the look
+       of the button, this is usually the object id of the shape of the
+       button. 
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">depth</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       This parameter is the placement of the button in the current frame.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>swf_addbuttonrecord()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />swf_startButton</span><span style="color: #007700">(</span><span style="color: #0000BB">$objid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">TYPE_MENUBUTTON</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_addButtonRecord</span><span style="color: #007700">(</span><span style="color: #0000BB">BSDown</span><span style="color: #007700">|</span><span style="color: #0000BB">BSOver</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$buttonImageId</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">340</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_onCondition</span><span style="color: #007700">(</span><span style="color: #0000BB">MenuEnter</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_actionGetUrl</span><span style="color: #007700">(</span><span style="color: #DD0000">"http://www.example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"_level1"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_onCondition</span><span style="color: #007700">(</span><span style="color: #0000BB">MenuExit</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_actionGetUrl</span><span style="color: #007700">(</span><span style="color: #DD0000">""</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"_level1"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_endButton</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.swf-actionwaitforframe.html">swf_actionwaitforframe</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swf-addcolor.html">swf_addcolor</a></div>
+ <div class="up"><a href="ref.swf.html">SWF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

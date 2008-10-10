@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Execute TCL code on server side</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbplus-sql.html">dbplus_sql</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbplus-tremove.html">dbplus_tremove</a></div>
+ <div class="up"><a href="ref.dbplus.html">DB++ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.dbplus-tcl" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dbplus_tcl</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PECL dbplus:0.9)</p><p class="refpurpose"><span class="refname">dbplus_tcl</span> &mdash; <span class="dc-title">Execute TCL code on server side</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>dbplus_tcl</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$sid</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$script</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   A db++ server will prepare a TCL interpreter for each client
+   connection. This interpreter will enable the server to execute
+   TCL code provided by the client as a sort of stored procedures to
+   improve the performance of database operations by avoiding
+   client/server data transfers and context switches.
+  </p>
+  <p class="para">
+   <b>dbplus_tcl()</b> needs to pass the client
+   connection id the TCL <i><tt class="parameter">script</tt></i>
+ code should
+   be executed by. <a href="function.dbplus-resolve.html" class="function">dbplus_resolve()</a> will provide
+   this connection id. The function will return whatever the TCL
+   code returns or a TCL error message if the TCL code fails.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">sid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">script</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.dbplus-resolve.html" class="function" rel="rdfs-seeAlso">dbplus_resolve()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbplus-sql.html">dbplus_sql</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbplus-tremove.html">dbplus_tremove</a></div>
+ <div class="up"><a href="ref.dbplus.html">DB++ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

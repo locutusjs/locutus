@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Stores record into paradox database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-open-fp.html">px_open_fp</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-retrieve-record.html">px_retrieve_record</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.px-put-record" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">px_put_record</h1>
+  <p class="verinfo">(PECL paradox:1.0-1.4.1)</p><p class="refpurpose"><span class="refname">px_put_record</span> &mdash; <span class="dc-title">Stores record into paradox database</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>px_put_record</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$pxdoc</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$record</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$recpos</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Stores a record into a paradox database. The record is always added at
+   the end of the database, regardless of any free slots. Use
+   <a href="function.px-insert-record.html" class="function">px_insert_record()</a> to add a new record into the first
+   free slot found in the database.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pxdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the paradox database
+       as returned by <a href="function.px-new.html" class="function">px_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">record</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Associated or indexed array containing the field values as e.g.
+       returned by <a href="function.px-retrieve-record.html" class="function">px_retrieve_record()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">recpos</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       This optional parameter may be used to specify a record number
+       greater than the current number of records in the database. The
+       function will add as many empty records as needed. There is hardly
+       any need for this parameter.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-open-fp.html">px_open_fp</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-retrieve-record.html">px_retrieve_record</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

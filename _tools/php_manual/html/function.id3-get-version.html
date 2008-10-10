@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get version of an ID3 tag</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.id3-get-tag.html">id3_get_tag</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.id3-remove-tag.html">id3_remove_tag</a></div>
+ <div class="up"><a href="ref.id3.html">ID3 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.id3-get-version" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">id3_get_version</h1>
+  <p class="verinfo">(PECL id3:0.1-0.2)</p><p class="refpurpose"><span class="refname">id3_get_version</span> &mdash; <span class="dc-title">Get version of an ID3 tag</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>id3_get_version</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>id3_get_version()</b> retrieves the version(s) of the 
+   ID3 tag(s) in the MP3 file.
+  </p>
+  <p class="para">
+   If a file contains an ID3 v1.1 tag, it always contains
+   a 1.0 tag, as version 1.1 is just an extension of 1.0.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The path to the MP3 file
+      </p>
+      <p class="para">
+       Instead of a filename you may also pass a valid stream resource
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the version number of the ID3 tag of the file.
+   As a tag can contain ID3 v1.x and v2.x tags, the return value of this
+   function should be bitwise compared with the predefined constants 
+   <b><tt>ID3_V1_0</tt></b>, <b><tt>ID3_V1_1</tt></b> and  
+   <b><tt>ID3_V2</tt></b>.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>id3_get_version()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$version&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">id3_get_version</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">"path/to/example.mp3"&nbsp;</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$version&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">ID3_V1_0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Contains&nbsp;a&nbsp;1.x&nbsp;tag\n"</span><span style="color: #007700">;<br />}<br />if&nbsp;(</span><span style="color: #0000BB">$version&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">ID3_V1_1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Contains&nbsp;a&nbsp;1.1&nbsp;tag\n"</span><span style="color: #007700">;<br />}<br />if&nbsp;(</span><span style="color: #0000BB">$version&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">ID3_V2</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Contains&nbsp;a&nbsp;2.x&nbsp;tag\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Contains a 1.x tag
+Contains a 1.1 tag
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.id3-set-tag.html" class="function" rel="rdfs-seeAlso">id3_set_tag()</a></li>
+    <li class="member"><a href="function.id3-get-tag.html" class="function" rel="rdfs-seeAlso">id3_get_tag()</a></li>
+    <li class="member"><a href="function.id3-remove-tag.html" class="function" rel="rdfs-seeAlso">id3_remove_tag()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.id3-get-tag.html">id3_get_tag</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.id3-remove-tag.html">id3_remove_tag</a></div>
+ <div class="up"><a href="ref.id3.html">ID3 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

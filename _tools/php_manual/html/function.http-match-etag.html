@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Match ETag</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-get-request-headers.html">http_get_request_headers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-match-modified.html">http_match_modified</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.http-match-etag" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">http_match_etag</h1>
+  <p class="verinfo">(PECL pecl_http:0.1.0-1.5.5)</p><p class="refpurpose"><span class="refname">http_match_etag</span> &mdash; <span class="dc-title">Match ETag</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>http_match_etag</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$etag</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$for_range = FALSE</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Matches the given <i>ETag</i> against the clients <i>If-Match</i> resp. 
+   <i>If-None-Match</i> HTTP headers.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">etag</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       the <i>ETag</i> to match
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">for_range</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       if set to <b><tt>TRUE</tt></b>, the header usually used to validate HTTP ranges will be checked
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if <i>ETag</i> matches or the header contained the asterisk (&quot;*&quot;), else <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><b>http_match_last_modified()</b></li>
+    <li class="member"><a href="function.http-match-request-header.html" class="function" rel="rdfs-seeAlso">http_match_request_header()</a></li>
+    <li class="member"><a href="function.http-cache-etag.html" class="function" rel="rdfs-seeAlso">http_cache_etag()</a></li>
+    <li class="member"><a href="function.http-cache-last-modified.html" class="function" rel="rdfs-seeAlso">http_cache_last_modified()</a></li>
+    <li class="member"><a href="function.ob-etaghandler.html" class="function" rel="rdfs-seeAlso">ob_etaghandler()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-get-request-headers.html">http_get_request_headers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-match-modified.html">http_match_modified</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

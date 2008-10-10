@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Output text</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ps-show2.html">ps_show2</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ps-string-geometry.html">ps_string_geometry</a></div>
+ <div class="up"><a href="ref.ps.html">PS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ps-show" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ps_show</h1>
+  <p class="verinfo">(PECL ps:1.1.0-1.3.5)</p><p class="refpurpose"><span class="refname">ps_show</span> &mdash; <span class="dc-title">Output text</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ps_show</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$psdoc</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$text</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Output a text at the current text position. The text position can be set
+   by storing the x and y coordinates into the values <i>textx</i>
+   and <i>texty</i> with the function
+   <a href="function.ps-set-value.html" class="function">ps_set_value()</a>. The function will issue an
+   error if a font was not set before with <a href="function.ps-setfont.html" class="function">ps_setfont()</a>.
+  </p>
+  <p class="para">
+   <b>ps_show()</b> evaluates the following parameters and values
+   as set by <a href="function.ps-set-parameter.html" class="function">ps_set_parameter()</a> and
+   <a href="function.ps-set-value.html" class="function">ps_set_value()</a>.
+  </p>
+  <dl>
+
+   <dt>
+
+    <span class="term">charspacing (value)</span>
+
+    <dd>
+
+     <p class="para">
+      Distance between two consecutive glyphs. If this value is unequal to
+      zero then all ligatures will be resolved. Values less than zero are
+      allowed.
+     </p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">kerning (parameter)</span>
+
+    <dd>
+
+     <p class="para">
+      Setting this parameter to &quot;false&quot; will turn off kerning. Kerning is
+      turned on by default.
+     </p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">ligatures (parameter)</span>
+
+    <dd>
+
+     <p class="para">
+      Setting this parameter to &quot;false&quot; will turn off the use of ligatures. 
+      Ligatures are turned on by default.
+     </p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">underline (parameter)</span>
+
+    <dd>
+
+     <p class="para">
+      Setting this parameter to &quot;true&quot; will turn on underlining. Underlining
+      is turned off by default.
+     </p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">overline (parameter)</span>
+
+    <dd>
+
+     <p class="para">
+      Setting this parameter to &quot;true&quot; will turn on overlining. Overlining is
+      turned off by default.
+     </p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">strikeout (parameter)</span>
+
+    <dd>
+ 
+     <p class="para">
+      Setting this parameter to &quot;true&quot; will turn on striking out. Striking out
+      is turned off by default.
+     </p>
+    </dd>
+
+   </dt>
+
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">psdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the postscript file
+       as returned by <a href="function.ps-new.html" class="function">ps_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">text</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The text to be output.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ps-continue-text.html" class="function" rel="rdfs-seeAlso">ps_continue_text()</a></li>
+    <li class="member"><a href="function.ps-show-xy.html" class="function" rel="rdfs-seeAlso">ps_show_xy()</a></li>
+    <li class="member"><a href="function.ps-setfont.html" class="function" rel="rdfs-seeAlso">ps_setfont()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ps-show2.html">ps_show2</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ps-string-geometry.html">ps_string_geometry</a></div>
+ <div class="up"><a href="ref.ps.html">PS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

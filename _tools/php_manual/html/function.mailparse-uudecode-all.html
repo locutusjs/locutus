@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Scans the data from fp and extract each embedded uuencoded file</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.mailparse.html">Mailparse Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.vpopmail.html">vpopmail</a></div>
+ <div class="up"><a href="ref.mailparse.html">Mailparse Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mailparse-uudecode-all" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mailparse_uudecode_all</h1>
+  <p class="verinfo">(PECL mailparse:0.9-2.1.1)</p><p class="refpurpose"><span class="refname">mailparse_uudecode_all</span> &mdash; <span class="dc-title">
+   Scans the data from fp and extract each embedded uuencoded file
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>mailparse_uudecode_all</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$fp</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Scans the data from the given file pointer and extract each embedded
+   uuencoded file into a temporary file.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fp</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid file pointer.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array of associative arrays listing filename information.
+   <table class="informaltable">
+    <colgroup>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>filename</i></td>
+       <td colspan="1" rowspan="1" align="left">Path to the temporary file name created</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>origfilename</i></td>
+       <td colspan="1" rowspan="1" align="left">The original filename, for uuencoded parts only</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+   The first filename entry is the message body. The next entries are the
+   decoded uuencoded files.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mailparse_uudecode_all()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$text&nbsp;</span><span style="color: #007700">=&nbsp;&lt;&lt;&lt;EOD<br /></span><span style="color: #0000BB">To:&nbsp;fred@example.com<br /><br />hello,&nbsp;this&nbsp;is&nbsp;some&nbsp;text&nbsp;hello.<br />blah&nbsp;blah&nbsp;blah.<br /><br />begin&nbsp;644&nbsp;test.txt<br />/=&amp;AI&lt;R!I&lt;R!A('1E&lt;W0*<br />`<br />end<br /><br /></span><span style="color: #007700">EOD;<br /><br /></span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">tmpfile</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$text</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mailparse_uudecode_all</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"BODY\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">readfile</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #DD0000">"filename"</span><span style="color: #007700">]);<br />echo&nbsp;</span><span style="color: #DD0000">"UUE&nbsp;({$data[1]['origfilename']})\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">readfile</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">][</span><span style="color: #DD0000">"filename"</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">//&nbsp;Clean&nbsp;up<br /></span><span style="color: #0000BB">unlink</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #DD0000">"filename"</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">unlink</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">][</span><span style="color: #DD0000">"filename"</span><span style="color: #007700">]);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+BODY
+To: fred@example.com
+
+hello, this is some text hello.
+blah blah blah.
+
+UUE (test.txt)
+this is a test
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.mailparse.html">Mailparse Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.vpopmail.html">vpopmail</a></div>
+ <div class="up"><a href="ref.mailparse.html">Mailparse Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

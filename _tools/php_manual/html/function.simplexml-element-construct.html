@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Creates a new SimpleXMLElement object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.simplexml-element-children.html">SimpleXMLElement->children</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.simplexml-element-getDocNamespaces.html">SimpleXMLElement->getDocNamespaces</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.simplexml-element-construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SimpleXMLElement-&gt;__construct</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SimpleXMLElement-&gt;__construct</span> &mdash; <span class="dc-title">
+   Creates a new SimpleXMLElement object
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SimpleXMLElement</b></div>
+    <div class="constructorsynopsis dc-description">
+      <span class="methodname"><b><b>__construct</b></b></span>
+      ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+     [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$options</tt></span>
+     [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$data_is_url</tt></span>
+     [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$ns</tt></span>
+     [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$is_prefix</tt></span>
+   ]]]] )</div>
+ 
+  </div>
+  <p class="para">
+   Creates a new <b class="classname">SimpleXMLElement</b> object.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A well-formed XML string or the path or URL to an XML document if 
+       <i><tt class="parameter">data_is_url</tt></i>
+ is <b><tt>TRUE</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Optionally used to specify <a href="libxml.constants.html" class="link">additional
+       Libxml parameters</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data_is_url</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       By default, <i><tt class="parameter">data_is_url</tt></i>
+ is <b><tt>FALSE</tt></b>. Use <b><tt>TRUE</tt></b> to
+       specify that <i><tt class="parameter">data</tt></i>
+ is a path or URL to an XML 
+       document instead of <a href="language.types.string.html" class="type string">string</a> data.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ns</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">is_prefix</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a <span class="type SimpleXMLElement">SimpleXMLElement</span> object representing 
+   <i><tt class="parameter">data</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Produces an <b><tt>E_WARNING</tt></b> error message for each error
+   found in the XML data and throws an exception if errors were detected.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Create a SimpleXMLElement object</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">include&nbsp;</span><span style="color: #DD0000">'example.php'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$sxe&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SimpleXMLElement</span><span style="color: #007700">(</span><span style="color: #0000BB">$xmlstr</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$sxe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">movie</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">title</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Create a SimpleXMLElement object from a URL</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$sxe&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SimpleXMLElement</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://example.org/document.xml'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$sxe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">asXML</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.simplexml-load-string.html" class="xref">simplexml_load_string</a></li>
+    <li class="member"><a href="function.simplexml-load-file.html" class="xref">simplexml_load_file</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.simplexml-element-children.html">SimpleXMLElement->children</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.simplexml-element-getDocNamespaces.html">SimpleXMLElement->getDocNamespaces</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

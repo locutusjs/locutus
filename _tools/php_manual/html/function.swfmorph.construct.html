@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Creates a new SWFMorph object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="class.swfmorph.html">SWFMorph</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swfmorph.getshape1.html">SWFMorph->getShape1</a></div>
+ <div class="up"><a href="class.swfmorph.html">SWFMorph</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.swfmorph.construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SWFMorph-&gt;__construct</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SWFMorph-&gt;__construct</span> &mdash; <span class="dc-title">Creates a new SWFMorph object</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><a href="class.swfmorph.html" class="classname">SWFMorph</a></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">SWFMorph</span> <span class="methodname"><b><b>__construct</b></b></span>
+     ( <span class="methodparam">void</span>
+    )</div>
+
+  </div>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+  <p class="para">
+   Creates a new <a href="class.swfmorph.html" class="classname">SWFMorph</a> object. 
+  </p>
+  <p class="para">
+   Also called a &quot;shape tween&quot;. This thing lets you make those tacky 
+   twisting things that make your computer choke. Oh, joy! 
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   This simple example will morph a big red square into a smaller
+   blue black-bordered square.
+   <div class="example">
+    <p><b>Example #1 <b>swfmorph()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$p&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SWFMorph</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getShape1</span><span style="color: #007700">();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setLine</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Note&nbsp;that&nbsp;this&nbsp;is&nbsp;backwards&nbsp;from&nbsp;normal&nbsp;shapes&nbsp;(left&nbsp;instead&nbsp;of&nbsp;right).<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;have&nbsp;no&nbsp;idea&nbsp;why,&nbsp;but&nbsp;this&nbsp;seems&nbsp;to&nbsp;work..&nbsp;*/<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setLeftFill</span><span style="color: #007700">(</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addFill</span><span style="color: #007700">(</span><span style="color: #0000BB">0xff</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">));<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">movePenTo</span><span style="color: #007700">(-</span><span style="color: #0000BB">1000</span><span style="color: #007700">,-</span><span style="color: #0000BB">1000</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drawLine</span><span style="color: #007700">(</span><span style="color: #0000BB">2000</span><span style="color: #007700">,</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drawLine</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,</span><span style="color: #0000BB">2000</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drawLine</span><span style="color: #007700">(-</span><span style="color: #0000BB">2000</span><span style="color: #007700">,</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drawLine</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,-</span><span style="color: #0000BB">2000</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getShape2</span><span style="color: #007700">();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setLine</span><span style="color: #007700">(</span><span style="color: #0000BB">60</span><span style="color: #007700">,</span><span style="color: #0000BB">0</span><span style="color: #007700">,</span><span style="color: #0000BB">0</span><span style="color: #007700">,</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setLeftFill</span><span style="color: #007700">(</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addFill</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xff</span><span style="color: #007700">));<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">movePenTo</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,-</span><span style="color: #0000BB">1000</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drawLine</span><span style="color: #007700">(</span><span style="color: #0000BB">1000</span><span style="color: #007700">,</span><span style="color: #0000BB">1000</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drawLine</span><span style="color: #007700">(-</span><span style="color: #0000BB">1000</span><span style="color: #007700">,</span><span style="color: #0000BB">1000</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drawLine</span><span style="color: #007700">(-</span><span style="color: #0000BB">1000</span><span style="color: #007700">,-</span><span style="color: #0000BB">1000</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drawLine</span><span style="color: #007700">(</span><span style="color: #0000BB">1000</span><span style="color: #007700">,-</span><span style="color: #0000BB">1000</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SWFMovie</span><span style="color: #007700">();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setDimension</span><span style="color: #007700">(</span><span style="color: #0000BB">3000</span><span style="color: #007700">,</span><span style="color: #0000BB">2000</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setBackground</span><span style="color: #007700">(</span><span style="color: #0000BB">0xff</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xff</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xff</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #0000BB">$p</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">moveTo</span><span style="color: #007700">(</span><span style="color: #0000BB">1500</span><span style="color: #007700">,</span><span style="color: #0000BB">1000</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;for&nbsp;(</span><span style="color: #0000BB">$r</span><span style="color: #007700">=</span><span style="color: #0000BB">0.0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$r</span><span style="color: #007700">&lt;=</span><span style="color: #0000BB">1.0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$r</span><span style="color: #007700">+=</span><span style="color: #0000BB">0.1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setRatio</span><span style="color: #007700">(</span><span style="color: #0000BB">$r</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">nextFrame</span><span style="color: #007700">();<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;application/x-shockwave-flash'</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">output</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="class.swfmorph.html">SWFMorph</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swfmorph.getshape1.html">SWFMorph->getShape1</a></div>
+ <div class="up"><a href="class.swfmorph.html">SWFMorph</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

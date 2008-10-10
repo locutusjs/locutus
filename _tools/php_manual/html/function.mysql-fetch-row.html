@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get a result row as an enumerated array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-fetch-object.html">mysql_fetch_object</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-field-flags.html">mysql_field_flags</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mysql-fetch-row" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysql_fetch_row</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL mysql:1.0)</p><p class="refpurpose"><span class="refname">mysql_fetch_row</span> &mdash; <span class="dc-title">Get a result row as an enumerated array</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>mysql_fetch_row</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns a numerical array that corresponds to the fetched row
+   and moves the internal data pointer ahead.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+result</tt></i>
+</span>
+<dd>
+<p class="para">The result <a href="language.types.resource.html" class="type resource">resource</a> that
+is being evaluated. This result comes from a call to 
+<a href="function.mysql-query.html" class="function">mysql_query()</a>.</p></dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an numerical array of strings that corresponds to the fetched row, or 
+   <b><tt>FALSE</tt></b> if there are no more rows.
+  </p>
+  <p class="para">
+   <b>mysql_fetch_row()</b> fetches one row of data from
+   the result associated with the specified result identifier.  The
+   row is returned as an array.  Each result column is stored in an
+   array offset, starting at offset 0.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Fetching one row with <b>mysql_fetch_row()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id,email&nbsp;FROM&nbsp;people&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;'42'"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Could&nbsp;not&nbsp;run&nbsp;query:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mysql_error</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_fetch_row</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;42<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;the&nbsp;email&nbsp;value<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function sets NULL fields to
+the PHP <b><tt>NULL</tt></b> value.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mysql-fetch-array.html" class="function" rel="rdfs-seeAlso">mysql_fetch_array()</a></li>
+    <li class="member"><a href="function.mysql-fetch-assoc.html" class="function" rel="rdfs-seeAlso">mysql_fetch_assoc()</a></li>
+    <li class="member"><a href="function.mysql-fetch-object.html" class="function" rel="rdfs-seeAlso">mysql_fetch_object()</a></li>
+    <li class="member"><a href="function.mysql-data-seek.html" class="function" rel="rdfs-seeAlso">mysql_data_seek()</a></li>
+    <li class="member"><a href="function.mysql-fetch-lengths.html" class="function" rel="rdfs-seeAlso">mysql_fetch_lengths()</a></li>
+    <li class="member"><a href="function.mysql-result.html" class="function" rel="rdfs-seeAlso">mysql_result()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-fetch-object.html">mysql_fetch_object</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-field-flags.html">mysql_field_flags</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

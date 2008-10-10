@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get truncated string with specified width</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-strcut.html">mb_strcut</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-stripos.html">mb_stripos</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-strimwidth" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_strimwidth</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">mb_strimwidth</span> &mdash; <span class="dc-title">Get truncated string with specified width</span></p>
+
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mb_strimwidth</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$start</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$width</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$trimmarker</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Truncates <a href="language.types.string.html" class="type string">string</a> <i><tt class="parameter">str</tt></i>
+ to specified <i><tt class="parameter">width</tt></i>
+. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="language.types.string.html" class="type string">string</a> being decoded.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">start</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The start position offset. Number of
+       characters from the beginning of string. (First character is 0)
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">width</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The width of the desired trim.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">trimmarker</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A string that is added to the end of string 
+       when string is truncated.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The <i><tt class="parameter">encoding</tt></i>
+ 
+parameter is the character encoding. If it is omitted, the internal character 
+encoding value will be used.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The truncated <a href="language.types.string.html" class="type string">string</a>. If <i><tt class="parameter">trimmarker</tt></i>
+ is set,
+   <i><tt class="parameter">trimmarker</tt></i>
+ is appended to the return value.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mb_strimwidth()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mb_strimwidth</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">40</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"..&gt;"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-strwidth.html" class="function" rel="rdfs-seeAlso">mb_strwidth()</a></li>
+    <li class="member"><a href="function.mb-internal-encoding.html" class="function" rel="rdfs-seeAlso">mb_internal_encoding()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-strcut.html">mb_strcut</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-stripos.html">mb_stripos</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

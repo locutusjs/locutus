@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns an array with information about sunset/sunrise and twilight begin/end</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.date-sub.html">date_sub</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.date-sunrise.html">date_sunrise</a></div>
+ <div class="up"><a href="ref.datetime.html">Date/Time Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.date-sun-info" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">date_sun_info</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.2)</p><p class="refpurpose"><span class="refname">date_sun_info</span> &mdash; <span class="dc-title">Returns an array with information about sunset/sunrise and twilight begin/end</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>date_sun_info</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$time</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$latitude</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$longitude</tt></span>
+   )</div>
+
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">time</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Timestamp.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">latitude</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Latitude in degrees.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">longitude</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Longitude in degrees.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns array on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>date_sun_info()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$sun_info&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">date_sun_info</span><span style="color: #007700">(</span><span style="color: #0000BB">strtotime</span><span style="color: #007700">(</span><span style="color: #DD0000">"2006-12-12"</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">31.7667</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">35.2333</span><span style="color: #007700">);<br />foreach&nbsp;(</span><span style="color: #0000BB">$sun_info&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"$key:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">"H:i:s"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+sunrise: 05:52:11
+sunset: 15:41:21
+transit: 10:46:46
+civil_twilight_begin: 05:24:08
+civil_twilight_end: 16:09:24
+nautical_twilight_begin: 04:52:25
+nautical_twilight_end: 16:41:06
+astronomical_twilight_begin: 04:21:32
+astronomical_twilight_end: 17:12:00
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.date-sunrise.html" class="function" rel="rdfs-seeAlso">date_sunrise()</a></li>
+    <li class="member"><a href="function.date-sunset.html" class="function" rel="rdfs-seeAlso">date_sunset()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.date-sub.html">date_sub</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.date-sunrise.html">date_sunrise</a></div>
+ <div class="up"><a href="ref.datetime.html">Date/Time Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

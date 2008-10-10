@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Define a text string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.swf-definerect.html">swf_definerect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swf-endbutton.html">swf_endbutton</a></div>
+ <div class="up"><a href="ref.swf.html">SWF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.swf-definetext" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">swf_definetext</h1>
+  <p class="verinfo">(PHP 4)</p><p class="refpurpose"><span class="refname">swf_definetext</span> &mdash; <span class="dc-title">Define a text string</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>swf_definetext</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$objid</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$docenter</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Defines a text string using the current font and font size.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">objid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The object id.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The text, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">docenter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">docenter</tt></i>
+ is where the word is centered, if
+       <i><tt class="parameter">docenter</tt></i>
+ is 1, then the word is centered in x.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Horizontal text example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$Xposition&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">50</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$Yposition&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">50</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$Zposition&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$Obj_depth&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$char&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'THIS&nbsp;IS&nbsp;THE&nbsp;TEXT'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">swf_pushmatrix</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">swf_definefont&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">swf_nextid</span><span style="color: #007700">(),&nbsp;</span><span style="color: #DD0000">"Mod"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_fontsize</span><span style="color: #007700">(</span><span style="color: #0000BB">10</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$secondid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">swf_nextid</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">swf_definetext</span><span style="color: #007700">(</span><span style="color: #0000BB">$secondid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$char</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_translate</span><span style="color: #007700">(</span><span style="color: #0000BB">$Xposition</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$Yposition</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">Zposition</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_placeobject</span><span style="color: #007700">(</span><span style="color: #0000BB">$secondid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$Obj_depth</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">swf_popmatrix</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.swf-definefont.html" class="function" rel="rdfs-seeAlso">swf_definefont()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.swf-definerect.html">swf_definerect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swf-endbutton.html">swf_endbutton</a></div>
+ <div class="up"><a href="ref.swf.html">SWF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

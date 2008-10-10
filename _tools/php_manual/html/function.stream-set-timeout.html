@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set timeout period on a stream</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-set-blocking.html">stream_set_blocking</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-set-write-buffer.html">stream_set_write_buffer</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.stream-set-timeout" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stream_set_timeout</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">stream_set_timeout</span> &mdash; <span class="dc-title">Set timeout period on a stream</span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>stream_set_timeout</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$stream</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$seconds</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$microseconds</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Sets the timeout value on <i><tt class="parameter">stream</tt></i>
+,
+   expressed in the sum of <i><tt class="parameter">seconds</tt></i>
+ and
+   <i><tt class="parameter">microseconds</tt></i>
+. Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+  <p class="para">
+   When the stream times out, the &#039;timed_out&#039; key of the array returned by
+   <a href="function.stream-get-meta-data.html" class="function">stream_get_meta_data()</a> is set to <b><tt>TRUE</tt></b>, although no
+   error/warning is generated.
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>stream_set_timeout()</b> example</b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fsockopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"www.example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">80</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$fp</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Unable&nbsp;to&nbsp;open\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"GET&nbsp;/&nbsp;HTTP/1.0\r\n\r\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">stream_set_timeout</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fread</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2000</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$info&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_get_meta_data</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$info</span><span style="color: #007700">[</span><span style="color: #DD0000">'timed_out'</span><span style="color: #007700">])&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Connection&nbsp;timed&nbsp;out!'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   <span class="simpara">
+    As of PHP 4.3, this function can (potentially) work on any kind of
+    stream.  In PHP 4.3, socket based streams are still the only kind
+    supported in the PHP core, although streams from other extensions
+    may support this function.
+   </span>
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function doesn&#039;t work with advanced operations like
+    <a href="function.stream-socket-recvfrom.html" class="function">stream_socket_recvfrom()</a>, use
+    <a href="function.stream-select.html" class="function">stream_select()</a> with timeout parameter instead.
+   <br />
+  </p></blockquote>
+  <p class="para">
+   This function was previously called as
+   <b>set_socket_timeout()</b> and later
+   <a href="function.socket-set-timeout.html" class="function">socket_set_timeout()</a> but this usage is deprecated.
+  </p>
+  <p class="para">
+   See also
+   <a href="function.fsockopen.html" class="function">fsockopen()</a> and
+   <a href="function.fopen.html" class="function">fopen()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-set-blocking.html">stream_set_blocking</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-set-write-buffer.html">stream_set_write_buffer</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

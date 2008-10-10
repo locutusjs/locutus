@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Adds a comment to your image</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-combineimages.html">Imagick::combineImages</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-compareimagechannels.html">Imagick::compareImageChannels</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagick-commentimage" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::commentImage</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Imagick::commentImage</span> &mdash; <span class="dc-title">Adds a comment to your image</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>Imagick::commentImage</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$comment</tt></span>
+   )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+currently not documented; only its argument list is available.
+</p></div>
+  <p class="para">
+   Adds a comment to your image.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">comment</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The comment to add
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws ImagickException on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>Imagick::commentImage()</b>:</b></p>
+    <div class="example-contents"><p>
+     Commenting an image and retrieving the comment:
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;Create&nbsp;new&nbsp;Imagick&nbsp;object&nbsp;*/<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">imagick</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;Create&nbsp;an&nbsp;empty&nbsp;image&nbsp;*/<br /></span><span style="color: #0000BB">$im</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">newImage</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;new&nbsp;</span><span style="color: #0000BB">ImagickPixel</span><span style="color: #007700">(</span><span style="color: #DD0000">"red"</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/*&nbsp;Add&nbsp;comment&nbsp;to&nbsp;the&nbsp;image&nbsp;*/<br /></span><span style="color: #0000BB">$im</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">commentImage</span><span style="color: #007700">(</span><span style="color: #DD0000">"Hello&nbsp;World!"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Display&nbsp;the&nbsp;comment&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$im</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getImageProperty</span><span style="color: #007700">(</span><span style="color: #DD0000">"comment"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-combineimages.html">Imagick::combineImages</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-compareimagechannels.html">Imagick::compareImageChannels</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

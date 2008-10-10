@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the short name of an ID3v2 frame</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.id3-get-frame-long-name.html">id3_get_frame_long_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.id3-get-genre-id.html">id3_get_genre_id</a></div>
+ <div class="up"><a href="ref.id3.html">ID3 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.id3-get-frame-short-name" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">id3_get_frame_short_name</h1>
+  <p class="verinfo">(PECL id3:0.2)</p><p class="refpurpose"><span class="refname">id3_get_frame_short_name</span> &mdash; <span class="dc-title">Get the short name of an ID3v2 frame</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>id3_get_frame_short_name</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$frameId</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>id3_get_frame_short_name()</b> returns the short name for an
+   ID3v2 frame.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">frameId</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An ID3v2 frame
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the frame short name or <b><tt>FALSE</tt></b> on errors.
+  </p>
+  <p class="para">
+   The values returned by <b>id3_get_short_name()</b> are used in the
+   array returned by <a href="function.id3-get-tag.html" class="function">id3_get_tag()</a>.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>id3_get_frame_short_name()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$shortName&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">id3_get_frame_short_name</span><span style="color: #007700">(</span><span style="color: #DD0000">"TOLY"</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$shortName</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+originalLyricist
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.id3-get-frame-long-name.html" class="function" rel="rdfs-seeAlso">id3_get_frame_long_name()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.id3-get-frame-long-name.html">id3_get_frame_long_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.id3-get-genre-id.html">id3_get_genre_id</a></div>
+ <div class="up"><a href="ref.id3.html">ID3 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetches the current row from a result set as an array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-create-function.html">sqlite_create_function</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-error-string.html">sqlite_error_string</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sqlite-current" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_current</h1>
+  <h1 class="refname">SQLiteResult-&gt;current</h1>
+  <h1 class="refname">SQLiteUnbuffered-&gt;current</h1>
+  <p class="verinfo">(PHP 5, PECL sqlite:1.0-1.0.3)</p><p class="refpurpose"><span class="refname">sqlite_current</span> -- <span class="refname">SQLiteResult-&gt;current</span> -- <span class="refname">SQLiteUnbuffered-&gt;current</span> &mdash; <span class="dc-title">Fetches the current row from a result set as an array</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>sqlite_current</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$result_type</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$decode_binary</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method):</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SQLiteResult</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">array</span> <span class="methodname"><b><a href="function.current.html" class="function">current</a></b></span>
+     ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$result_type</tt></span>
+    [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$decode_binary</tt></span>
+   ]] )</div>
+
+  </div>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SQLiteUnbuffered</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">array</span> <span class="methodname"><b><a href="function.current.html" class="function">current</a></b></span>
+     ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$result_type</tt></span>
+    [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$decode_binary</tt></span>
+   ]] )</div>
+
+  </div>
+  <p class="para">
+   <b>sqlite_current()</b> is identical to
+   <a href="function.sqlite-fetch-array.html" class="function">sqlite_fetch_array()</a> except that it does not advance
+   to the next row prior to returning the data; it returns the data from the
+   current position only.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SQLite result resource.  This parameter is not required when using
+       the object-oriented method.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The optional <i><tt class="parameter">result_type</tt></i>
+
+parameter accepts a constant and determines how the returned array will be
+indexed. Using <b><tt>SQLITE_ASSOC</tt></b> will return only associative
+indices (named fields) while <b><tt>SQLITE_NUM</tt></b> will return
+only numerical indices (ordinal field numbers). <b><tt>SQLITE_BOTH</tt></b>
+will return both associative and numerical indices.
+<b><tt>SQLITE_BOTH</tt></b> is the default for this function.</p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">decode_binary</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">When the <i><tt class="parameter">decode_binary</tt></i>
+
+parameter is set to <b><tt>TRUE</tt></b> (the default), PHP will decode the binary encoding
+it applied to the data if it was encoded using the
+<a href="function.sqlite-escape-string.html" class="function">sqlite_escape_string()</a>.  You should normally leave this
+value at its default, unless you are interoperating with databases created by
+other sqlite capable applications.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array of the current row from a result set; <b><tt>FALSE</tt></b> if the
+   current position is beyond the final row.
+  </p>
+  <p class="para">The column names returned by
+<b><tt>SQLITE_ASSOC</tt></b> and <b><tt>SQLITE_BOTH</tt></b> will be
+case-folded according to the value of the
+<a href="sqlite.configuration.html#ini.sqlite.assoc-case" class="link">sqlite.assoc_case</a> configuration
+option.</p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sqlite-seek.html" class="function" rel="rdfs-seeAlso">sqlite_seek()</a></li>
+    <li class="member"><a href="function.sqlite-next.html" class="function" rel="rdfs-seeAlso">sqlite_next()</a></li>
+    <li class="member"><a href="function.sqlite-fetch-array.html" class="function" rel="rdfs-seeAlso">sqlite_fetch_array()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-create-function.html">sqlite_create_function</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-error-string.html">sqlite_error_string</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

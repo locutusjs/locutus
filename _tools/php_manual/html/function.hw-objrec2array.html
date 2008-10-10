@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Convert attributes from object record to object array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hw-new-document.html">hw_New_Document</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hw-output-document.html">hw_Output_Document</a></div>
+ <div class="up"><a href="ref.hw.html">Hyperwave Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.hw-objrec2array" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hw_objrec2array</h1>
+  <p class="verinfo">(PHP 4)</p><p class="refpurpose"><span class="refname">hw_objrec2array</span> &mdash; <span class="dc-title">Convert attributes from object record to object array</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>hw_objrec2array</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$object_record</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$format</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Converts an <i><tt class="parameter">object_record</tt></i>
+ into an object array.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">object_record</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The object record.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">format</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An associative array with the attribute name as its key and the value
+       being one of <i>HW_ATTR_LANG</i> or
+       <i>HW_ATTR_NONE</i>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array. The keys of the resulting array are the attributes names.
+   Multi-value attributes like &#039;Title&#039; in different languages form its own
+   array. The keys of this array are the left part to the colon of the
+   attribute value. This left part must be two characters long.
+  </p>
+  <p class="para">
+   Other multi-value attributes without a prefix form an indexed array. If
+   the optional parameter is missing the attributes &#039;Title&#039;, &#039;Description&#039;
+   and &#039;Keyword&#039; are treated as language attributes and the attributes
+   &#039;Group&#039;, &#039;Parent&#039; and &#039;HtmlAttr&#039; as non-prefixed multi-value attributes.
+   By passing an array holding the type for each attribute you can
+   alter this behaviour.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.hw-array2objrec.html" class="function" rel="rdfs-seeAlso">hw_array2objrec()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hw-new-document.html">hw_New_Document</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hw-output-document.html">hw_Output_Document</a></div>
+ <div class="up"><a href="ref.hw.html">Hyperwave Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

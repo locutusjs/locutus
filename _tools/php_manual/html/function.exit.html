@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Output a message and terminate the current script</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.eval.html">eval</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.get-browser.html">get_browser</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.exit" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">exit</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">exit</span> &mdash; <span class="dc-title">Output a message and terminate the current script</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>exit</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$status</tt></span>
+  ] )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>exit</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$status</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Terminates execution of the script.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">status</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <i><tt class="parameter">status</tt></i>
+ is a string, this function prints the
+       <i><tt class="parameter">status</tt></i>
+ just before exiting.
+      </p>
+      <p class="para">
+       If <i><tt class="parameter">status</tt></i>
+ is an <a href="language.types.integer.html" class="type integer">integer</a>, that
+       value will also be used as the exit status. Exit statuses should be in
+       the range 0 to 254, the exit status 255 is reserved by PHP and shall
+       not be used. The status 0 is used to terminate the program
+       successfully.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       <span class="simpara">
+        PHP &gt;= 4.2.0 does NOT print the <i><tt class="parameter">status</tt></i>
+
+        if it is an <a href="language.types.integer.html" class="type integer">integer</a>.
+       </span>
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>exit()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$filename&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'/path/to/data-file'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'r'</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;exit(</span><span style="color: #DD0000">"unable&nbsp;to&nbsp;open&nbsp;file&nbsp;($filename)"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 <b>exit()</b> status example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//exit&nbsp;program&nbsp;normally<br /></span><span style="color: #007700">exit;<br />exit();<br />exit(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//exit&nbsp;with&nbsp;an&nbsp;error&nbsp;code<br /></span><span style="color: #007700">exit(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />exit(</span><span style="color: #0000BB">0376</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//octal<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">Because this is a 
+language construct and not a function, it cannot be called using 
+<a href="functions.variable-functions.html" class="link">variable functions</a></span>
+</p></blockquote>
+
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This language construct is equivalent to <a href="function.die.html" class="function">die()</a>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.register-shutdown-function.html" class="function" rel="rdfs-seeAlso">register_shutdown_function()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.eval.html">eval</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.get-browser.html">get_browser</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

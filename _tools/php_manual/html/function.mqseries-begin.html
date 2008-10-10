@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>MQseries MQBEGIN</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mqseries-back.html">mqseries_back</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mqseries-close.html">mqseries_close</a></div>
+ <div class="up"><a href="ref.mqseries.html">mqseries Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mqseries-begin" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mqseries_begin</h1>
+  <p class="verinfo">(PECL mqseries:0.10.0-0.9.0)</p><p class="refpurpose"><span class="refname">mqseries_begin</span> &mdash; <span class="dc-title">MQseries MQBEGIN</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+    <span class="methodname"><b><b>mqseries_begin</b></b></span>
+    ( <span class="methodparam">
+    <span class="type">resource</span>
+     <tt class="parameter">$hconn</tt>
+   </span>
+   , <span class="methodparam">
+    <span class="type">array</span>
+     <tt class="parameter">$beginOptions</tt>
+   </span>
+   , <span class="methodparam">
+    <span class="type">resource</span>
+     <tt class="parameter">$compCode</tt>
+   </span>
+   , <span class="methodparam">
+    <span class="type">resource</span>
+     <tt class="parameter">$reason</tt>
+   </span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The
+   <b>mqseries_begin()</b>
+   (MQBEGIN) call begins a unit of work that is coordinated by the queue
+   manager, and that may involve external resource managers.
+  </p>
+  <p class="para">
+   Using
+   <b>mqseries_begin()</b>
+   starts the unit of work. Either
+   <a href="function.mqseries-back.html" class="function">mqseries_back()</a>
+   or
+   <a href="function.mqseries-cmit.html" class="function">mqseries_cmit()</a>
+   ends the unit of work.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">hConn</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">Connection handle.</p>
+      <p class="para">This handle represents the connection to the queue manager.</p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">compCode</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">Completion code.</p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">reason</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">Reason code qualifying the compCode.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">No value is returned.</p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 
+     <b>mqseries_begin()</b>
+     example
+    </b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;$mqbo&nbsp;</span><span style="color: #007700">=&nbsp;array();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">mqseries_begin</span><span style="color: #007700">(&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$mqbo</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$comp_code</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$reason</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$comp_code&nbsp;</span><span style="color: #007700">!==&nbsp;</span><span style="color: #0000BB">MQSERIES_MQCC_OK</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;reason&nbsp;code&nbsp;2121&nbsp;is&nbsp;a&nbsp;warning&nbsp;for&nbsp;more&nbsp;information&nbsp;see&nbsp;MQSeries&nbsp;reference&nbsp;manual.*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$reason&nbsp;</span><span style="color: #007700">!==&nbsp;</span><span style="color: #0000BB">2121</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"CompCode:%d&nbsp;Reason:%d&nbsp;Text:%s&lt;br&gt;\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$comp_code</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$reason</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mqseries_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">$reason</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    <b>mqseries_begin()</b>
+    will not function when using MQSeries Client to connect to a Queueu Manager.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mqseries-conn.html" class="function" rel="rdfs-seeAlso">mqseries_conn()</a></li>
+    <li class="member"><a href="function.mqseries-connx.html" class="function" rel="rdfs-seeAlso">mqseries_connx()</a></li>
+    <li class="member"><a href="function.mqseries-back.html" class="function" rel="rdfs-seeAlso">mqseries_back()</a></li>
+    <li class="member"><a href="function.mqseries-cmit.html" class="function" rel="rdfs-seeAlso">mqseries_cmit()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mqseries-back.html">mqseries_back</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mqseries-close.html">mqseries_close</a></div>
+ <div class="up"><a href="ref.mqseries.html">mqseries Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

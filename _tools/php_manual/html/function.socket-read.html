@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Reads a maximum of length bytes from a socket</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.socket-listen.html">socket_listen</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-recv.html">socket_recv</a></div>
+ <div class="up"><a href="ref.sockets.html">Socket Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.socket-read" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">socket_read</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">socket_read</span> &mdash; <span class="dc-title">Reads a maximum of length bytes from a socket</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>socket_read</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$socket</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$length</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$type</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   The function <b>socket_read()</b> reads from the socket
+   resource <i><tt class="parameter">socket</tt></i>
+ created by the
+   <a href="function.socket-create.html" class="function">socket_create()</a> or
+   <a href="function.socket-accept.html" class="function">socket_accept()</a> functions. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">socket</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid socket resource created with <a href="function.socket-create.html" class="function">socket_create()</a>
+       or <a href="function.socket-accept.html" class="function">socket_accept()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">length</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The maximum number of bytes read is specified by the
+       <i><tt class="parameter">length</tt></i>
+ parameter. Otherwise you can use \r, \n,
+       or \0 to end reading (depending on the <i><tt class="parameter">type</tt></i>
+
+       parameter, see below).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Optional <i><tt class="parameter">type</tt></i>
+ parameter is a named constant:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PHP_BINARY_READ</tt></b> (Default) - use the system
+          <i>recv()</i> function. Safe for reading binary data.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PHP_NORMAL_READ</tt></b> - reading stops at \n or \r.
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>socket_read()</b> returns the data as a string on success,
+   or <b><tt>FALSE</tt></b> on error (including if the remote host has closed the
+   connection). The error code can be retrieved with
+   <a href="function.socket-last-error.html" class="function">socket_last_error()</a>. This code may be passed to
+   <a href="function.socket-strerror.html" class="function">socket_strerror()</a> to get a textual representation of
+   the error.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    <b>socket_read()</b> returns a zero length string (&quot;&quot;)
+    when there is no more data to read.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.1.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The default value for <i><tt class="parameter">type</tt></i>
+ was changed from
+        <b><tt>PHP_NORMAL_READ</tt></b> to
+        <b><tt>PHP_BINARY_READ</tt></b>
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.socket-accept.html" class="function" rel="rdfs-seeAlso">socket_accept()</a></li>
+    <li class="member"><a href="function.socket-bind.html" class="function" rel="rdfs-seeAlso">socket_bind()</a></li>
+    <li class="member"><a href="function.socket-connect.html" class="function" rel="rdfs-seeAlso">socket_connect()</a></li>
+    <li class="member"><a href="function.socket-listen.html" class="function" rel="rdfs-seeAlso">socket_listen()</a></li>
+    <li class="member"><a href="function.socket-last-error.html" class="function" rel="rdfs-seeAlso">socket_last_error()</a></li>
+    <li class="member"><a href="function.socket-strerror.html" class="function" rel="rdfs-seeAlso">socket_strerror()</a></li>
+    <li class="member"><a href="function.socket-write.html" class="function" rel="rdfs-seeAlso">socket_write()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.socket-listen.html">socket_listen</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-recv.html">socket_recv</a></div>
+ <div class="up"><a href="ref.sockets.html">Socket Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

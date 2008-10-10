@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Parses the string into variables</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ord.html">ord</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.print.html">print</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.parse-str" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">parse_str</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">parse_str</span> &mdash; <span class="dc-title">Parses the string into variables</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>parse_str</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$arr</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Parses <i><tt class="parameter">str</tt></i>
+ as if it were the query string
+   passed via a URL and sets variables in the current scope. 
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    To get the current <em class="emphasis">QUERY_STRING</em>, you may use the variable
+    <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER['QUERY_STRING']</a></var>.
+    Also, you may want to read the section on
+    <a href="language.variables.external.html" class="link">variables from external
+    sources</a>.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    The <a href="info.configuration.html#ini.magic-quotes-gpc" class="link">magic_quotes_gpc</a> setting
+    affects the output of this function, as <b>parse_str()</b> uses
+    the same mechanism that PHP uses to populate the <var class="varname"><a href="reserved.variables.get.html" class="classname">$_GET</a></var>,
+    <var class="varname"><a href="reserved.variables.post.html" class="classname">$_POST</a></var>, etc. variables.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">arr</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the second parameter <i><tt class="parameter">arr</tt></i>
+ is present,
+       variables are stored in this variable as array elements instead.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.3</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">arr</tt></i>
+ parameter was added
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>parse_str()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"first=value&amp;arr[]=foo+bar&amp;arr[]=baz"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">parse_str</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$first</span><span style="color: #007700">;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;value<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;foo&nbsp;bar<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;baz<br /><br /></span><span style="color: #0000BB">parse_str</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$output</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$output</span><span style="color: #007700">[</span><span style="color: #DD0000">'first'</span><span style="color: #007700">];&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;value<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$output</span><span style="color: #007700">[</span><span style="color: #DD0000">'arr'</span><span style="color: #007700">][</span><span style="color: #0000BB">0</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;foo&nbsp;bar<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$output</span><span style="color: #007700">[</span><span style="color: #DD0000">'arr'</span><span style="color: #007700">][</span><span style="color: #0000BB">1</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;baz<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.parse-url.html" class="function" rel="rdfs-seeAlso">parse_url()</a></li>
+    <li class="member"><a href="function.pathinfo.html" class="function" rel="rdfs-seeAlso">pathinfo()</a></li>
+    <li class="member"><a href="function.http-build-query.html" class="function" rel="rdfs-seeAlso">http_build_query()</a></li>
+    <li class="member"><a href="function.get-magic-quotes-gpc.html" class="function" rel="rdfs-seeAlso">get_magic_quotes_gpc()</a></li>
+    <li class="member"><a href="function.urldecode.html" class="function" rel="rdfs-seeAlso">urldecode()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ord.html">ord</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.print.html">print</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Syntax highlighting of a string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.highlight-file.html">highlight_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ignore-user-abort.html">ignore_user_abort</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.highlight-string" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">highlight_string</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">highlight_string</span> &mdash; <span class="dc-title">Syntax highlighting of a string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>highlight_string</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$return</tt></span>
+  ] )</div>
+
+  <p class="simpara">
+   Outputs or returns a syntax highlighted version of the given PHP code
+   using the colors defined in the built-in syntax highlighter for PHP.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The PHP code to be highligthed. This should include the opening tag.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">return</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Set this parameter to <b><tt>TRUE</tt></b> to make this function return the
+       highlighted code.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   If <i><tt class="parameter">return</tt></i>
+ is set to <b><tt>TRUE</tt></b>, returns the highlighted
+   code as a string instead of printing it out. Otherwise, it will return
+   <b><tt>TRUE</tt></b> on success, <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.2.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">return</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>highlight_string()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />highlight_string</span><span style="color: #007700">(</span><span style="color: #DD0000">'&lt;?php&nbsp;phpinfo();&nbsp;?&gt;'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     The above example will output (in PHP 4):
+    </p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+&lt;code&gt;&lt;font color=&quot;#000000&quot;&gt;
+&lt;font color=&quot;#0000BB&quot;&gt;&amp;lt;?php phpinfo&lt;/font&gt;&lt;font color=&quot;#007700&quot;&gt;(); &lt;/font&gt;&lt;font color=&quot;#0000BB&quot;&gt;?&amp;gt;&lt;/font&gt;
+&lt;/font&gt;
+&lt;/code&gt;
+</pre></div>
+    </pre></div>
+    <div class="example-contents"><p>
+     The above example will output (in PHP 5):
+    </p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+&lt;code&gt;&lt;span style=&quot;color: #000000&quot;&gt;
+&lt;span style=&quot;color: #0000BB&quot;&gt;&amp;lt;?php phpinfo&lt;/span&gt;&lt;span style=&quot;color: #007700&quot;&gt;(); &lt;/span&gt;&lt;span style=&quot;color: #0000BB&quot;&gt;?&amp;gt;&lt;/span&gt;
+&lt;/span&gt;
+&lt;/code&gt;
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: This function uses internal output buffering
+with this parameter so it can not be used inside an
+<a href="function.ob-start.html" class="function">ob_start()</a> callback function.<br /></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.highlight-file.html" class="function" rel="rdfs-seeAlso">highlight_file()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.highlight-file.html">highlight_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ignore-user-abort.html">ignore_user_abort</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Match last modification</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-match-etag.html">http_match_etag</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-match-request-header.html">http_match_request_header</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.http-match-modified" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">http_match_modified</h1>
+  <p class="verinfo">(PECL pecl_http:0.1.0-1.5.5)</p><p class="refpurpose"><span class="refname">http_match_modified</span> &mdash; <span class="dc-title">Match last modification</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>http_match_modified</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timestamp</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$for_range = FALSE</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Matches the given Unix timestamp against the clients <i>If-Modified-Since</i>
+   resp. <i>If-Unmodified-Since</i> HTTP headers.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">timestamp</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Unix timestamp; current time, if omitted
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">for_range</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       if set to <b><tt>TRUE</tt></b>, the header usually used to validate HTTP ranges will be checked
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if timestamp represents an earlier date than the header, else <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.http-match-etag.html" class="function" rel="rdfs-seeAlso">http_match_etag()</a></li>
+    <li class="member"><a href="function.http-match-request-header.html" class="function" rel="rdfs-seeAlso">http_match_request_header()</a></li>
+    <li class="member"><a href="function.http-cache-etag.html" class="function" rel="rdfs-seeAlso">http_cache_etag()</a></li>
+    <li class="member"><a href="function.http-cache-last-modified.html" class="function" rel="rdfs-seeAlso">http_cache_last_modified()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-match-etag.html">http_match_etag</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-match-request-header.html">http_match_request_header</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

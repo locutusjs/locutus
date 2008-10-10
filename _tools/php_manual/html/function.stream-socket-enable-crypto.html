@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Turns encryption on/off on an already connected socket</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-socket-client.html">stream_socket_client</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-socket-get-name.html">stream_socket_get_name</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.stream-socket-enable-crypto" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stream_socket_enable_crypto</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0)</p><p class="refpurpose"><span class="refname">stream_socket_enable_crypto</span> &mdash; <span class="dc-title">Turns encryption on/off on an already connected socket</span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>stream_socket_enable_crypto</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$stream</tt></span>
+   , <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$enable</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$crypto_type</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$session_stream</tt></span>
+  ]] )</div>
+
+
+  <p class="simpara">
+   When called with the <i><tt class="parameter">crypto_type</tt></i>
+ parameter,
+   <b>stream_socket_enable_crypto()</b> will setup
+   encryption on the stream using the specified method.
+  </p>
+
+  <p class="para">
+   Valid values for <i><tt class="parameter">crypto_type</tt></i>
+
+   <ul class="itemizedlist">
+    <li class="listitem"><span class="simpara"><b><tt>STREAM_CRYPTO_METHOD_SSLv2_CLIENT</tt></b></span></li>
+    <li class="listitem"><span class="simpara"><b><tt>STREAM_CRYPTO_METHOD_SSLv3_CLIENT</tt></b></span></li>
+    <li class="listitem"><span class="simpara"><b><tt>STREAM_CRYPTO_METHOD_SSLv23_CLIENT</tt></b></span></li>
+    <li class="listitem"><span class="simpara"><b><tt>STREAM_CRYPTO_METHOD_TLS_CLIENT</tt></b></span></li>
+    <li class="listitem"><span class="simpara"><b><tt>STREAM_CRYPTO_METHOD_SSLv2_SERVER</tt></b></span></li>
+    <li class="listitem"><span class="simpara"><b><tt>STREAM_CRYPTO_METHOD_SSLv3_SERVER</tt></b></span></li>
+    <li class="listitem"><span class="simpara"><b><tt>STREAM_CRYPTO_METHOD_SSLv23_SERVER</tt></b></span></li>
+    <li class="listitem"><span class="simpara"><b><tt>STREAM_CRYPTO_METHOD_TLS_SERVER</tt></b></span></li>
+   </ul>
+  </p>
+
+  <p class="simpara">
+   Once the crypto settings are established, cryptography can be turned
+   on and off dynamically by passing <b><tt>TRUE</tt></b> or <b><tt>FALSE</tt></b> in the
+   <i><tt class="parameter">enable</tt></i>
+ parameter.
+  </p>
+
+  <p class="simpara">
+   If this stream should be seeded with settings from an already established
+   crypto enabled stream, pass that stream&#039;s resource variable
+   in the fourth parameter.
+  </p>
+
+  <p class="simpara">
+   Returns <b><tt>TRUE</tt></b> on success, <b><tt>FALSE</tt></b> if negotiation has failed or
+   <i>0</i> if there isn&#039;t enough data and you should try again
+   (only for non-blocking sockets).
+  </p>
+
+  <div class="example">
+   <p><b>Example #1 <b>stream_socket_enable_crypto()</b> Example</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_socket_client</span><span style="color: #007700">(</span><span style="color: #DD0000">"tcp://myproto.example.com:31337"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$errstr</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">30</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$fp</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;die(</span><span style="color: #DD0000">"Unable&nbsp;to&nbsp;connect:&nbsp;$errstr&nbsp;($errno)"</span><span style="color: #007700">);<br />}<br /></span><span style="color: #FF8000">/*&nbsp;Turn&nbsp;on&nbsp;encryption&nbsp;for&nbsp;login&nbsp;phase&nbsp;*/<br /></span><span style="color: #0000BB">stream_socket_enable_crypto</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">STREAM_CRYPTO_METHOD_SSLv23_CLIENT</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"USER&nbsp;god\r\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"PASS&nbsp;secret\r\n"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">/*&nbsp;Turn&nbsp;off&nbsp;encryption&nbsp;for&nbsp;the&nbsp;rest&nbsp;*/<br /></span><span style="color: #0000BB">stream_socket_enable_crypto</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br />while&nbsp;(</span><span style="color: #0000BB">$motd&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fgets</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$motd</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="simpara">
+   <a href="ref.openssl.html" class="xref">OpenSSL Functions</a>, and
+   <a href="transports.html" class="xref">List of Supported Socket Transports</a>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-socket-client.html">stream_socket_client</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-socket-get-name.html">stream_socket_get_name</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

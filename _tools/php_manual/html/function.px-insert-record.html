@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Inserts record into paradox database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-get-value.html">px_get_value</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-new.html">px_new</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.px-insert-record" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">px_insert_record</h1>
+  <p class="verinfo">(PECL paradox:1.4.0-1.4.1)</p><p class="refpurpose"><span class="refname">px_insert_record</span> &mdash; <span class="dc-title">Inserts record into paradox database</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>px_insert_record</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$pxdoc</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$data</tt></span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   Inserts a new record into the database. The record is not necessarily
+   inserted at the end of the database, but may be inserted at any
+   position depending on where the first free slot is found.
+  </p>
+  <p class="para">
+   The record data is passed as an array of field values. The elements in
+   the array must correspond to the fields in the database. If the array
+   has less elements than fields in the database, the remaining fields
+   will be set to null.
+  </p>
+  <p class="para">
+   Most field values can be passed as its equivalent php type e.g. a long
+   value is used for fields of type PX_FIELD_LONG, PX_FIELD_SHORT and
+   PX_FIELD_AUTOINC, a double values is used for fields of type
+   PX_FIELD_CURRENCY and PX_FIELD_NUMBER.
+   Field values for blob and alpha fields are passed as strings.
+  </p>
+  <p class="para">
+   Fields of type PX_FIELD_TIME and PX_FIELD_DATE both require a long
+   value. In the first case this is the number of milliseconds since
+   midnight. In the second case this is the number of days since 1.1.0000.
+   Below there are two examples to convert the current date or timestamp
+   into a value suitable for one of paradox&#039;s date/time fields.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function is only available if pxlib &gt;= 0.6.0 is used.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pxdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the paradox database
+       as returned by <a href="function.px-new.html" class="function">px_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Associated or indexed array containing the field values as e.g.
+       returned by <a href="function.px-retrieve-record.html" class="function">px_retrieve_record()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>FALSE</tt></b> on failure or the record number in case of success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Set the date/time fields in a paradox database to the current
+    date/time</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$px&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">px_new</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"test.db"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"w+"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">px_create_fp</span><span style="color: #007700">(</span><span style="color: #0000BB">$px</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;array(array(</span><span style="color: #DD0000">"timestamp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"@"</span><span style="color: #007700">),&nbsp;array(</span><span style="color: #DD0000">"time"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"T"</span><span style="color: #007700">),&nbsp;array(</span><span style="color: #DD0000">"date"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"D"</span><span style="color: #007700">)));<br /><br /></span><span style="color: #0000BB">$curdate&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">getdate</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$jd&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gregoriantojd</span><span style="color: #007700">(</span><span style="color: #0000BB">$curdate</span><span style="color: #007700">[</span><span style="color: #DD0000">"mon"</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$curdate</span><span style="color: #007700">[</span><span style="color: #DD0000">"mday"</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$curdate</span><span style="color: #007700">[</span><span style="color: #DD0000">"year"</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$days&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$jd&nbsp;</span><span style="color: #007700">-&nbsp;</span><span style="color: #0000BB">1721425</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Number&nbsp;of&nbsp;days&nbsp;between&nbsp;1.1.4714&nbsp;b.c.&nbsp;and&nbsp;1.1.0000&nbsp;*/<br /></span><span style="color: #0000BB">$secs&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$curdate</span><span style="color: #007700">[</span><span style="color: #DD0000">"hours"</span><span style="color: #007700">]*</span><span style="color: #0000BB">3600&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">$curdate</span><span style="color: #007700">[</span><span style="color: #DD0000">"minutes"</span><span style="color: #007700">]*</span><span style="color: #0000BB">60&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">$curdate</span><span style="color: #007700">[</span><span style="color: #DD0000">"seconds"</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">px_insert_record</span><span style="color: #007700">(</span><span style="color: #0000BB">$px</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #0000BB">$days</span><span style="color: #007700">*</span><span style="color: #0000BB">86400000.0&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">$secs</span><span style="color: #007700">*</span><span style="color: #0000BB">1000.0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$secs</span><span style="color: #007700">*</span><span style="color: #0000BB">1000.0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$days</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">$curtimestamp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$days&nbsp;</span><span style="color: #007700">=&nbsp;(int)&nbsp;(</span><span style="color: #0000BB">$curtimestamp</span><span style="color: #007700">/</span><span style="color: #0000BB">86400</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$secs&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$curtimestamp&nbsp;</span><span style="color: #007700">-&nbsp;(</span><span style="color: #0000BB">$days&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB">86400.0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$days&nbsp;</span><span style="color: #007700">+=&nbsp;</span><span style="color: #0000BB">2440588</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Number&nbsp;of&nbsp;days&nbsp;between&nbsp;1.1.4714&nbsp;b.c.&nbsp;and&nbsp;1.1.1970&nbsp;*/<br /></span><span style="color: #0000BB">$days&nbsp;</span><span style="color: #007700">-=&nbsp;</span><span style="color: #0000BB">1721425</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Number&nbsp;of&nbsp;days&nbsp;between&nbsp;1.1.4714&nbsp;b.c.&nbsp;and&nbsp;1.1.0000&nbsp;*/<br /></span><span style="color: #0000BB">px_insert_record</span><span style="color: #007700">(</span><span style="color: #0000BB">$px</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #0000BB">$days</span><span style="color: #007700">*</span><span style="color: #0000BB">86400000.0&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">$secs</span><span style="color: #007700">*</span><span style="color: #0000BB">1000.0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$secs</span><span style="color: #007700">*</span><span style="color: #0000BB">1000.0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$days</span><span style="color: #007700">));<br />for(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">2</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$rec&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">px_retrieve_record</span><span style="color: #007700">(</span><span style="color: #0000BB">$px</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">px_timestamp2string</span><span style="color: #007700">(</span><span style="color: #0000BB">$px</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rec</span><span style="color: #007700">[</span><span style="color: #DD0000">"timestamp"</span><span style="color: #007700">],&nbsp;</span><span style="color: #DD0000">"n/d/Y&nbsp;H:i:s"</span><span style="color: #007700">).</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">px_date2string</span><span style="color: #007700">(</span><span style="color: #0000BB">$px</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rec</span><span style="color: #007700">[</span><span style="color: #DD0000">"date"</span><span style="color: #007700">],&nbsp;</span><span style="color: #DD0000">"n/d/Y"</span><span style="color: #007700">).</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">px_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$px</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">px_delete</span><span style="color: #007700">(</span><span style="color: #0000BB">$px</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+2/21/2006 21:42:30
+2/21/2006
+2/21/2006 20:42:30
+2/21/2006
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+
+  <p class="para">
+    The Julian day count as passed to <a href="function.jdtogregorian.html" class="function">jdtogregorian()</a>
+    has a different base of 1.1.4714 b.c. and must therefore be calculated
+    by adding 1721425 to the day count used in the paradox file. Turning the
+    day count into a timestamp is easily done by multiplying with 86400000.0
+    to obtain milli seconds.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+    <a href="function.px-update-record.html" class="function" rel="rdfs-seeAlso">px_update_record()</a>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-get-value.html">px_get_value</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-new.html">px_new</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

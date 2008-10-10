@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Calculate the similarity between two strings</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sha1.html">sha1</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.soundex.html">soundex</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.similar-text" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">similar_text</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">similar_text</span> &mdash; <span class="dc-title">Calculate the similarity between two strings</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>similar_text</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$first</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$second</tt></span>
+   [, <span class="methodparam"><span class="type">float</span> <tt class="parameter reference">&$percent</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This calculates the similarity between two strings as described in Oliver
+   [1993]. Note that this implementation does not use a stack as in Oliver&#039;s
+   pseudo code, but recursive calls which may or may not speed up the whole
+   process. Note also that the complexity of this algorithm is O(N**3) where
+   N is the length of the longest string.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">first</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The first string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">second</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The second string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">percent</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       By passing a reference as third argument,
+       <b>similar_text()</b> will calculate the similarity in
+       percent for you. 
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of matching chars in both strings.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.levenshtein.html" class="function" rel="rdfs-seeAlso">levenshtein()</a></li>
+    <li class="member"><a href="function.soundex.html" class="function" rel="rdfs-seeAlso">soundex()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sha1.html">sha1</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.soundex.html">soundex</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

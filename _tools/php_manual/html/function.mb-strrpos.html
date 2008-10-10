@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Find position of last occurrence of a string in a string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-strripos.html">mb_strripos</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-strstr.html">mb_strstr</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-strrpos" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_strrpos</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">mb_strrpos</span> &mdash; <span class="dc-title">Find position of last occurrence of a string in a string</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>mb_strrpos</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$haystack</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$needle</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$offset</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Performs a multibyte safe
+   <a href="function.strrpos.html" class="function">strrpos()</a> operation based on the 
+   number of characters. <i><tt class="parameter">needle</tt></i>
+ position is
+   counted from the beginning of
+   <i><tt class="parameter">haystack</tt></i>
+. First character&#039;s position is
+   0. Second character position is 1. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">haystack</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="language.types.string.html" class="type string">string</a> being checked, for the last occurrence
+       of <i><tt class="parameter">needle</tt></i>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">needle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="language.types.string.html" class="type string">string</a> to find in <i><tt class="parameter">haystack</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">offset</tt></i>
+</span>
+
+     <dd>
+
+      <span class="simpara">
+       May be specified to begin searching an arbitrary number of characters into
+       the <a href="language.types.string.html" class="type string">string</a>.  Negative values will stop searching at an arbitrary point
+       prior to the end of the <a href="language.types.string.html" class="type string">string</a>.
+      </span>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The <i><tt class="parameter">encoding</tt></i>
+ 
+parameter is the character encoding. If it is omitted, the internal character 
+encoding value will be used.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the numeric position of
+   the last occurrence of <i><tt class="parameter">needle</tt></i>
+ in the
+   <i><tt class="parameter">haystack</tt></i>
+ <a href="language.types.string.html" class="type string">string</a>. If
+   <i><tt class="parameter">needle</tt></i>
+ is not found, it returns <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.2.0</td>
+       <td colspan="1" rowspan="1" align="left">Added the optional parameter <i><tt class="parameter">offset</tt></i>
+.</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   <span class="simpara">
+    The <i><tt class="parameter">encoding</tt></i>
+ parameter was moved from
+    the third position to the fourth in PHP 5.2.0.  For backward
+    compatibility, <i><tt class="parameter">encoding</tt></i>
+ can be specified
+    as the third parameter, but doing so is deprecated and will be
+    removed in the future.
+   </span>
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: The internal encoding or the 
+character encoding specified by <a href="function.mb-regex-encoding.html" class="function">mb_regex_encoding()</a> 
+will be used as the character encoding for this function.<br /></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-strpos.html" class="function" rel="rdfs-seeAlso">mb_strpos()</a></li>
+    <li class="member"><a href="function.mb-internal-encoding.html" class="function" rel="rdfs-seeAlso">mb_internal_encoding()</a></li>
+    <li class="member"><a href="function.strrpos.html" class="function" rel="rdfs-seeAlso">strrpos()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-strripos.html">mb_strripos</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-strstr.html">mb_strstr</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sends the request and waites for a reply</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.radius-request-authenticator.html">radius_request_authenticator</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.radius-server-secret.html">radius_server_secret</a></div>
+ <div class="up"><a href="ref.radius.html">Radius Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.radius-send-request" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">radius_send_request</h1>
+  <p class="verinfo">(PECL radius:1.1-1.2.5)</p><p class="refpurpose"><span class="refname">radius_send_request</span> &mdash; <span class="dc-title">Sends the request and waites for a reply</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>radius_send_request</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$radius_handle</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   After the Radius request has been constructed, it is sent by
+   <b>radius_send_request()</b>.
+  </p>
+  <p class="para">
+   The <b>radius_send_request()</b> function sends the request and
+   waits for a valid reply, retrying the defined servers in round-robin
+   fashion as necessary.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   If a valid response is received, <b>radius_send_request()</b>
+   returns the Radius code which specifies the type of the response. This will
+   typically be <b><tt>RADIUS_ACCESS_ACCEPT</tt></b>,
+   <b><tt>RADIUS_ACCESS_REJECT</tt></b>, or
+   <b><tt>RADIUS_ACCESS_CHALLENGE</tt></b>. If no valid response is
+   received, <b>radius_send_request()</b> returns <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.radius-create-request.html" class="function" rel="rdfs-seeAlso">radius_create_request()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.radius-request-authenticator.html">radius_request_authenticator</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.radius-server-secret.html">radius_server_secret</a></div>
+ <div class="up"><a href="ref.radius.html">Radius Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

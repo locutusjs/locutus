@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Divide two arbitrary precision numbers</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.bccomp.html">bccomp</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.bcmod.html">bcmod</a></div>
+ <div class="up"><a href="ref.bc.html">BC Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.bcdiv" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">bcdiv</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">bcdiv</span> &mdash; <span class="dc-title">Divide two arbitrary precision numbers</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>bcdiv</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$left_operand</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$right_operand</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$scale</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Divides the <i><tt class="parameter">left_operand</tt></i>
+ by the
+   <i><tt class="parameter">right_operand</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">left_operand</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The left operand, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">right_operand</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The right operand, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+scale</tt></i>
+</span>
+<dd>
+<p class="para">This optional parameter is used to set the number
+of digits after the decimal place in the result. You can also set the global default scale
+for all functions by using <a href="function.bcscale.html" class="function">bcscale()</a>.</p></dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the result of the division as a string, or <b><tt>NULL</tt></b> if 
+   <i><tt class="parameter">right_operand</tt></i>
+ is 0.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 <b>bcdiv()</b> example</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">bcdiv</span><span style="color: #007700">(</span><span style="color: #DD0000">'105'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'6.55957'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;16.007<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ 
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.bcmul.html" class="function" rel="rdfs-seeAlso">bcmul()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.bccomp.html">bccomp</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.bcmod.html">bcmod</a></div>
+ <div class="up"><a href="ref.bc.html">BC Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

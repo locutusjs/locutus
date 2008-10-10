@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Output image to browser or file</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagegd.html">imagegd</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagegrabscreen.html">imagegrabscreen</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagegif" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imagegif</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imagegif</span> &mdash; <span class="dc-title">Output image to browser or file</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>imagegif</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$image</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>imagegif()</b> creates the <acronym title="Graphic Interchange Format">GIF</acronym>
+   file in filename from the image <i><tt class="parameter">image</tt></i>
+. The
+   <i><tt class="parameter">image</tt></i>
+ argument is the return from the
+   <a href="function.imagecreate.html" class="function">imagecreate()</a> or <i>imagecreatefrom*</i>
+   function.
+  </p>
+  <p class="para">
+   The image format will be <acronym>GIF87a</acronym> unless the
+   image has been made transparent with
+   <a href="function.imagecolortransparent.html" class="function">imagecolortransparent()</a>, in which case the
+   image format will be <acronym>GIF89a</acronym>.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+image</tt></i>
+</span>
+<dd>
+<p class="para">An image resource, returned by one of the image creation functions, 
+such as <a href="function.imagecreatetruecolor.html" class="function">imagecreatetruecolor()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The path to save the file to. If not set or <b><tt>NULL</tt></b>, the raw image stream
+       will be outputted directly.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Outputting an image using <b>imagegif()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;image&nbsp;instance<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatetruecolor</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Make&nbsp;the&nbsp;background&nbsp;white<br /></span><span style="color: #0000BB">imagefilledrectangle</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">99</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">99</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xFFFFFF</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Draw&nbsp;a&nbsp;text&nbsp;string&nbsp;on&nbsp;the&nbsp;image<br /></span><span style="color: #0000BB">imagestring</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">40</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">20</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GD&nbsp;Library'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xFFBA00</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Output&nbsp;the&nbsp;image&nbsp;to&nbsp;browser<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/gif'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">imagegif</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example">
+    <p><b>Example #2 Converting a PNG image to GIF using <b>imagegif()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Load&nbsp;the&nbsp;PNG<br /></span><span style="color: #0000BB">$png&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatefrompng</span><span style="color: #007700">(</span><span style="color: #DD0000">'./php.png'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Save&nbsp;the&nbsp;image&nbsp;as&nbsp;a&nbsp;GIF<br /></span><span style="color: #0000BB">imagegif</span><span style="color: #007700">(</span><span style="color: #0000BB">$png</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'./php.gif'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Free&nbsp;from&nbsp;memory<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$png</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;We're&nbsp;done<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'Converted&nbsp;PNG&nbsp;image&nbsp;to&nbsp;GIF&nbsp;with&nbsp;success!'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Since all <acronym title="Graphic Interchange Format">GIF</acronym> support was removed from the
+    <acronym title="Graphics Draw">GD</acronym> library in version 1.6, this function is
+    not available if you are using that version of the GD library.
+    Support is expected to return in a version subsequent to the
+    rerelease of <acronym title="Graphic Interchange Format">GIF</acronym> support in the GD library in
+    mid 2004.  For more information, see the
+    <a href="http://www.libgd.org/" class="link external">&raquo; GD Project</a> site.
+   <br />
+   
+    The following code snippet allows you to write more
+    portable PHP applications by auto-detecting the
+    type of GD support which is available. Replace
+    the sequence <i>header (&quot;Content-type: image/gif&quot;);
+    imagegif ($im);</i> by the more flexible sequence:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Create&nbsp;a&nbsp;new&nbsp;image&nbsp;instance<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatetruecolor</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Do&nbsp;some&nbsp;image&nbsp;operations&nbsp;here<br /><br />//&nbsp;Handle&nbsp;output<br /></span><span style="color: #007700">if(</span><span style="color: #0000BB">function_exists</span><span style="color: #007700">(</span><span style="color: #DD0000">'imagegif'</span><span style="color: #007700">))<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;For&nbsp;GIF<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/gif'</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">imagegif</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br />}<br />elseif(</span><span style="color: #0000BB">function_exists</span><span style="color: #007700">(</span><span style="color: #DD0000">'imagejpeg'</span><span style="color: #007700">))<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;For&nbsp;JPEG<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/jpeg'</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">imagejpeg</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br />}<br />elseif(</span><span style="color: #0000BB">function_exists</span><span style="color: #007700">(</span><span style="color: #DD0000">'imagepng'</span><span style="color: #007700">))<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;For&nbsp;PNG<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/png'</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">imagepng</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br />}<br />elseif(</span><span style="color: #0000BB">function_exists</span><span style="color: #007700">(</span><span style="color: #DD0000">'imagewbmp'</span><span style="color: #007700">))<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;For&nbsp;WBMP<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/vnd.wap.wbmp'</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">imagewbmp</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br />}<br />else<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'No&nbsp;image&nbsp;support&nbsp;in&nbsp;this&nbsp;PHP&nbsp;server'</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;If&nbsp;image&nbsp;support&nbsp;was&nbsp;found&nbsp;for&nbsp;one&nbsp;of&nbsp;these<br />//&nbsp;formats,&nbsp;then&nbsp;free&nbsp;it&nbsp;from&nbsp;memory<br /></span><span style="color: #007700">if(</span><span style="color: #0000BB">$im</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    As of PHP 3.0.18 and 4.0.2 you can use the function
+    <a href="function.imagetypes.html" class="function">imagetypes()</a> in place of
+    <a href="function.function-exists.html" class="function">function_exists()</a> for checking
+    the presence of the various supported image formats:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if(</span><span style="color: #0000BB">imagetypes</span><span style="color: #007700">()&nbsp;&amp;&nbsp;</span><span style="color: #0000BB">IMG_GIF</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/gif'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">imagegif</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br />}<br />elseif(</span><span style="color: #0000BB">imagetypes</span><span style="color: #007700">()&nbsp;&amp;&nbsp;</span><span style="color: #0000BB">IMG_JPG</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;...&nbsp;etc.&nbsp;*/<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   <br />
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imagepng.html" class="function" rel="rdfs-seeAlso">imagepng()</a></li>
+    <li class="member"><a href="function.imagewbmp.html" class="function" rel="rdfs-seeAlso">imagewbmp()</a></li>
+    <li class="member"><a href="function.imagejpeg.html" class="function" rel="rdfs-seeAlso">imagejpeg()</a></li>
+    <li class="member"><a href="function.imagetypes.html" class="function" rel="rdfs-seeAlso">imagetypes()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagegd.html">imagegd</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagegrabscreen.html">imagegrabscreen</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

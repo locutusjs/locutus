@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get all binary values from a result entry</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ldap-get-option.html">ldap_get_option</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ldap-get-values.html">ldap_get_values</a></div>
+ <div class="up"><a href="ref.ldap.html">LDAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ldap-get-values-len" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ldap_get_values_len</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ldap_get_values_len</span> &mdash; <span class="dc-title">Get all binary values from a result entry</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>ldap_get_values_len</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+   , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result_entry_identifier</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$attribute</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Reads all the values of the attribute in the entry in the result.
+  </p>
+  <p class="para">
+   This function is used exactly like <a href="function.ldap-get-values.html" class="function">ldap_get_values()</a>
+   except that it handles binary data and not string data.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An LDAP link identifier, returned by <a href="function.ldap-connect.html" class="function">ldap_connect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_entry_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">attribute</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array of values for the attribute on success and <b><tt>FALSE</tt></b> on
+   error. Individual values are accessed by integer index in the array. The
+   first index is 0. The number of values can be found by indexing &quot;count&quot;
+   in the resultant array. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ldap-get-values.html" class="function" rel="rdfs-seeAlso">ldap_get_values()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ldap-get-option.html">ldap_get_option</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ldap-get-values.html">ldap_get_values</a></div>
+ <div class="up"><a href="ref.ldap.html">LDAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

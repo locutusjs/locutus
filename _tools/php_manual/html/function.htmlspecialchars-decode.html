@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Convert special HTML entities back to characters</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.htmlentities.html">htmlentities</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.htmlspecialchars.html">htmlspecialchars</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.htmlspecialchars-decode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">htmlspecialchars_decode</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0)</p><p class="refpurpose"><span class="refname">htmlspecialchars_decode</span> &mdash; <span class="dc-title">
+   Convert special HTML entities back to characters
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>htmlspecialchars_decode</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$string</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$quote_style</tt></span>
+  ] )</div>
+
+
+  <p class="para rdfs-comment">
+   This function is the opposite of <a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a>. It
+   converts special HTML entities back to characters.
+  </p>
+  <p class="para">
+   The converted entities are: <i>&amp;amp;</i>,
+   <i>&amp;quot;</i> (when ENT_NOQUOTES is not set),
+   <i>&amp;#039;</i> (when ENT_QUOTES is set),
+   <i>&amp;lt;</i> and <i>&amp;gt;</i>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">string</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The string to decode
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">quote_style</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The quote style. One of the following constants:
+       <table border="5">
+        <caption><b>quote_style constants</b></caption>
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">Constant Name</th>
+           <th colspan="1">Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>ENT_COMPAT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">Will convert double-quotes and leave single-quotes alone
+            (default)</td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>ENT_QUOTES</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">Will convert both double and single quotes</td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>ENT_NOQUOTES</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">Will leave both double and single quotes unconverted</td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the decoded string.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>htmlspecialchars_decode()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'&lt;p&gt;this&nbsp;-&amp;gt;&nbsp;&amp;quot;&lt;/p&gt;'</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #0000BB">htmlspecialchars_decode</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;note&nbsp;that&nbsp;here&nbsp;the&nbsp;quotes&nbsp;aren't&nbsp;converted<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">htmlspecialchars_decode</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">ENT_NOQUOTES</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+&lt;p&gt;this -&gt; &quot;&lt;/p&gt;
+&lt;p&gt;this -&gt; &amp;quot;&lt;/p&gt;
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.htmlspecialchars.html" class="function" rel="rdfs-seeAlso">htmlspecialchars()</a></li>
+    <li class="member"><a href="function.html-entity-decode.html" class="function" rel="rdfs-seeAlso">html_entity_decode()</a></li>
+    <li class="member"><a href="function.get-html-translation-table.html" class="function" rel="rdfs-seeAlso">get_html_translation_table()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.htmlentities.html">htmlentities</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.htmlspecialchars.html">htmlspecialchars</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

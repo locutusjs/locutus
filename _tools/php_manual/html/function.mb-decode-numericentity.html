@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Decode HTML numeric string reference to character</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-decode-mimeheader.html">mb_decode_mimeheader</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-detect-encoding.html">mb_detect_encoding</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-decode-numericentity" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_decode_numericentity</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">mb_decode_numericentity</span> &mdash; <span class="dc-title">Decode HTML numeric string reference to character</span></p>
+
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mb_decode_numericentity</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$convmap</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Convert numeric string reference of <a href="language.types.string.html" class="type string">string</a>
+   <i><tt class="parameter">str</tt></i>
+ in a specified block to character. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="language.types.string.html" class="type string">string</a> being decoded.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">convmap</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">convmap</tt></i>
+ is an <a href="language.types.array.html" class="type array">array</a> that specifies 
+       the code area to convert.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The <i><tt class="parameter">encoding</tt></i>
+ 
+parameter is the character encoding. If it is omitted, the internal character 
+encoding value will be used.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The converted <a href="language.types.string.html" class="type string">string</a>.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <i><tt class="parameter">convmap</tt></i>
+ example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+$convmap&nbsp;=&nbsp;array&nbsp;(<br />&nbsp;&nbsp;&nbsp;int&nbsp;start_code1,&nbsp;int&nbsp;end_code1,&nbsp;int&nbsp;offset1,&nbsp;int&nbsp;mask1,<br />&nbsp;&nbsp;&nbsp;int&nbsp;start_code2,&nbsp;int&nbsp;end_code2,&nbsp;int&nbsp;offset2,&nbsp;int&nbsp;mask2,<br />&nbsp;&nbsp;&nbsp;........<br />&nbsp;&nbsp;&nbsp;int&nbsp;start_codeN,&nbsp;int&nbsp;end_codeN,&nbsp;int&nbsp;offsetN,&nbsp;int&nbsp;maskN&nbsp;);<br />//&nbsp;Specify&nbsp;Unicode&nbsp;value&nbsp;for&nbsp;start_codeN&nbsp;and&nbsp;end_codeN<br />//&nbsp;Add&nbsp;offsetN&nbsp;to&nbsp;value&nbsp;and&nbsp;take&nbsp;bit-wise&nbsp;'AND'&nbsp;with&nbsp;maskN,&nbsp;<br />//&nbsp;then&nbsp;convert&nbsp;value&nbsp;to&nbsp;numeric&nbsp;string&nbsp;reference.</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-encode-numericentity.html" class="function" rel="rdfs-seeAlso">mb_encode_numericentity()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-decode-mimeheader.html">mb_decode_mimeheader</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-detect-encoding.html">mb_detect_encoding</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

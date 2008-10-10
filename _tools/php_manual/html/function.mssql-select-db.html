@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Select MS SQL database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.mysql.html">MySQL</a></div>
+ <div class="up"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mssql-select-db" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mssql_select_db</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL odbtp:1.1.1-1.1.4)</p><p class="refpurpose"><span class="refname">mssql_select_db</span> &mdash; <span class="dc-title">Select MS SQL database</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>mssql_select_db</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$database_name</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>mssql_select_db()</b> sets the current active
+   database on the server that&#039;s associated with the specified link
+   identifier.  
+  </p>
+  <p class="para">
+   Every subsequent call to <a href="function.mssql-query.html" class="function">mssql_query()</a> will be
+   made on the active database.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">database_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The database name.
+      </p>
+      <p class="para">
+       To escape the name of a database that contains spaces, hyphens (&quot;-&quot;),
+       or any other exceptional characters, the database name must be
+       enclosed in brackets, as is shown in the example, below. This
+       technique must also be applied when selecting a database name that is
+       also a reserved word (such as <i>primary</i>).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A MS SQL link identifier, returned by 
+       <a href="function.mssql-connect.html" class="function">mssql_connect()</a> or 
+       <a href="function.mssql-pconnect.html" class="function">mssql_pconnect()</a>.
+      </p>
+      <p class="para">
+       If no link identifier is specified, the last opened link is assumed.
+       If no link is open, the function will try to establish a link as if
+       <a href="function.mssql-connect.html" class="function">mssql_connect()</a> was called, and use it.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mssql_select_db()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Create&nbsp;a&nbsp;link&nbsp;to&nbsp;MSSQL<br /></span><span style="color: #0000BB">$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mssql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'KALLESPC\SQLEXPRESS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'sa'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'phpfi'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Select&nbsp;the&nbsp;database&nbsp;'php'<br /></span><span style="color: #0000BB">mssql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">'php'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mssql-connect.html" class="function" rel="rdfs-seeAlso">mssql_connect()</a></li>
+    <li class="member"><a href="function.mssql-pconnect.html" class="function" rel="rdfs-seeAlso">mssql_pconnect()</a></li>
+    <li class="member"><a href="function.mssql-query.html" class="function" rel="rdfs-seeAlso">mssql_query()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.mysql.html">MySQL</a></div>
+ <div class="up"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Requests the next result set from a stored procedure</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-lob-read.html">db2_lob_read</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-num-fields.html">db2_num_fields</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.db2-next-result" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">db2_next_result</h1>
+  <p class="verinfo">(PECL ibm_db2:1.0-1.6.2)</p><p class="refpurpose"><span class="refname">db2_next_result</span> &mdash; <span class="dc-title">
+   Requests the next result set from a stored procedure
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>db2_next_result</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$stmt</tt></span>
+   )</div>
+
+
+
+  <p class="para rdfs-comment">
+   A stored procedure can return zero or more result sets. While you handle
+   the first result set in exactly the same way you would handle the results
+   returned by a simple SELECT statement, to fetch the second and subsequent
+   result sets from a stored procedure you must call the
+   <b>db2_next_result()</b> function and return the result to a
+   uniquely named PHP variable.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">stmt</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A prepared statement returned from <a href="function.db2-exec.html" class="function">db2_exec()</a> or
+       <a href="function.db2-execute.html" class="function">db2_execute()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a new statement resource containing the next result set if the
+   stored procedure returned another result set. Returns <b><tt>FALSE</tt></b> if the stored
+   procedure did not return another result set.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Calling a stored procedure that returns multiple result sets</b></p>
+    <div class="example-contents"><p>
+     In the following example, we call a stored procedure that returns three
+     result sets. The first result set is fetched directly from the same
+     statement resource on which we invoked the CALL statement, while the
+     second and third result sets are fetched from statement resources
+     returned from our calls to the <b>db2_next_result()</b>
+     function.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CALL&nbsp;multiResults()'</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"Fetching&nbsp;first&nbsp;result&nbsp;set\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$row</span><span style="color: #007700">);<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"\nFetching&nbsp;second&nbsp;result&nbsp;set\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_next_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br />&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$res</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$row</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"\nFetching&nbsp;third&nbsp;result&nbsp;set\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$res2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_next_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br />&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$res2</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$res2</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$row</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">db2_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Fetching first result set
+array(2) {
+  [0]=&gt;
+  string(16) &quot;Bubbles         &quot;
+  [1]=&gt;
+  int(3)
+}
+array(2) {
+  [0]=&gt;
+  string(16) &quot;Gizmo           &quot;
+  [1]=&gt;
+  int(4)
+}
+
+Fetching second result set
+array(4) {
+  [0]=&gt;
+  string(16) &quot;Sweater         &quot;
+  [1]=&gt;
+  int(6)
+  [2]=&gt;
+  string(5) &quot;llama&quot;
+  [3]=&gt;
+  string(6) &quot;150.00&quot;
+}
+array(4) {
+  [0]=&gt;
+  string(16) &quot;Smarty          &quot;
+  [1]=&gt;
+  int(2)
+  [2]=&gt;
+  string(5) &quot;horse&quot;
+  [3]=&gt;
+  string(6) &quot;350.00&quot;
+}
+
+Fetching third result set
+array(1) {
+  [0]=&gt;
+  string(16) &quot;Bubbles         &quot;
+}
+array(1) {
+  [0]=&gt;
+  string(16) &quot;Gizmo           &quot;
+}
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+
+ 
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-lob-read.html">db2_lob_read</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-num-fields.html">db2_num_fields</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

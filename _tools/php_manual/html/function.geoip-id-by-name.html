@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the Internet connection speed</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.geoip-db-get-all-info.html">geoip_db_get_all_info</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.geoip-isp-by-name.html">geoip_isp_by_name</a></div>
+ <div class="up"><a href="ref.geoip.html">GeoIP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.geoip-id-by-name" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">geoip_id_by_name</h1>
+  <p class="verinfo">(PECL geoip:0.2.0-1.0.1)</p><p class="refpurpose"><span class="refname">geoip_id_by_name</span> &mdash; <span class="dc-title">Get the Internet connection speed</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>geoip_id_by_name</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$hostname</tt></span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   The <b>geoip_id_by_name()</b> function will return the country
+   and region corresponding to a hostname or an IP address.
+  </p>
+  <p class="para">
+   The return value is numeric and can be compared to the following constants:
+  </p>
+  <p class="para">
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      GEOIP_UNKNOWN_SPEED
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      GEOIP_DIALUP_SPEED
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      GEOIP_CABLEDSL_SPEED
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      GEOIP_CORPORATE_SPEED
+     </span>
+    </li>
+   </ul>
+  </p>
+  
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">hostname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The hostname or IP address whose net speed is to be looked-up.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the net speed.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>geoip_id_by_name()</b> example</b></p>
+    <div class="example-contents"><p>
+     This will output the net speed of the host example.com.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$netspeed&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">geoip_id_by_name</span><span style="color: #007700">(</span><span style="color: #DD0000">'www.example.com'</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">'The&nbsp;connection&nbsp;type&nbsp;is&nbsp;'</span><span style="color: #007700">;<br /><br />switch&nbsp;(</span><span style="color: #0000BB">$netspeed</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">GEOIP_DIALUP_SPEED</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'dial-up'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">GEOIP_CABLEDSL_SPEED</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'cable&nbsp;or&nbsp;DSL'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">GEOIP_CORPORATE_SPEED</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'corporate'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">GEOIP_UNKNOWN_SPEED</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'unknown'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+The connection type is corporate
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.geoip-db-get-all-info.html">geoip_db_get_all_info</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.geoip-isp-by-name.html">geoip_isp_by_name</a></div>
+ <div class="up"><a href="ref.geoip.html">GeoIP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

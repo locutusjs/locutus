@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets length of dashes for border of annotations</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ps-set-border-color.html">ps_set_border_color</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ps-set-border-style.html">ps_set_border_style</a></div>
+ <div class="up"><a href="ref.ps.html">PS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ps-set-border-dash" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ps_set_border_dash</h1>
+  <p class="verinfo">(PECL ps:1.1.0-1.3.5)</p><p class="refpurpose"><span class="refname">ps_set_border_dash</span> &mdash; <span class="dc-title">Sets length of dashes for border of annotations</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ps_set_border_dash</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$psdoc</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$black</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$white</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Links added with one of the functions <a href="function.ps-add-weblink.html" class="function">ps_add_weblink()</a>,
+   <a href="function.ps-add-pdflink.html" class="function">ps_add_pdflink()</a>, etc. will be displayed with a
+   surounded rectangle when the postscript document is converted to
+   pdf and viewed in a pdf viewer. This rectangle is not visible in
+   the postscript document.
+   This function sets the length of the black and white portion of a
+   dashed border line.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">psdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the postscript file
+       as returned by <a href="function.ps-new.html" class="function">ps_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">black</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The length of the dash.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">white</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The length of the gap between dashes.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ps-set-border-color.html" class="function" rel="rdfs-seeAlso">ps_set_border_color()</a></li>
+    <li class="member"><a href="function.ps-set-border-style.html" class="function" rel="rdfs-seeAlso">ps_set_border_style()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ps-set-border-color.html">ps_set_border_color</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ps-set-border-style.html">ps_set_border_style</a></div>
+ <div class="up"><a href="ref.ps.html">PS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

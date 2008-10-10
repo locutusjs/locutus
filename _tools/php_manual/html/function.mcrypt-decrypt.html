@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Decrypts crypttext with given parameters</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-create-iv.html">mcrypt_create_iv</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mcrypt-ecb.html">mcrypt_ecb</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mcrypt-decrypt" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mcrypt_decrypt</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5)</p><p class="refpurpose"><span class="refname">mcrypt_decrypt</span> &mdash; <span class="dc-title">Decrypts crypttext with given parameters</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mcrypt_decrypt</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$cipher</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$key</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$mode</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$iv</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Decrypts the <i><tt class="parameter">data</tt></i>
+ and returns the unencrypted data.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">cipher</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">cipher</tt></i>
+ is one of the MCRYPT_ciphername constants
+       of the name of the algorithm as string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">key</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">key</tt></i>
+ is the key with which the data is encrypted.
+       If it&#039;s smaller that the required keysize, it is padded with
+       &#039;<i>\0</i>&#039;.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">data</tt></i>
+ is the data that will be decrypted with
+       the given cipher and mode. If the size of the data is not n * blocksize,
+       the data will be padded with &#039;<i>\0</i>&#039;.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">mode</tt></i>
+ is one of the MCRYPT_MODE_modename
+       constants of one of &quot;ecb&quot;, &quot;cbc&quot;, &quot;cfb&quot;, &quot;ofb&quot;, &quot;nofb&quot; or &quot;stream&quot;.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">iv</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">iv</tt></i>
+ parameter is used for the initialisation
+       in CBC, CFB, OFB modes, and in some algorithms in STREAM mode. If you
+       do not supply an IV, while it is needed for an algorithm, the function
+       issues a warning and uses an IV with all bytes set to
+       &#039;<i>\0</i>&#039;.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the decrypted data as a string.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-create-iv.html">mcrypt_create_iv</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mcrypt-ecb.html">mcrypt_ecb</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

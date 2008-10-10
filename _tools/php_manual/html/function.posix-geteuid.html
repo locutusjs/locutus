@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Return the effective user ID of the current process</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.posix-getegid.html">posix_getegid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.posix-getgid.html">posix_getgid</a></div>
+ <div class="up"><a href="ref.posix.html">POSIX Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.posix-geteuid" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">posix_geteuid</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">posix_geteuid</span> &mdash; <span class="dc-title">Return the effective user ID of the current process</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>posix_geteuid</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Return the numeric effective user ID of the current process. See
+   also <a href="function.posix-getpwuid.html" class="function">posix_getpwuid()</a> for information on how
+   to convert this into a useable username.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the user id, as an <a href="language.types.integer.html" class="type integer">integer</a>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>posix_geteuid()</b> example</b></p>
+    <div class="example-contents"><p>This example will show the current user id then set the
+    effective user id to a separate id using
+    <a href="function.posix-seteuid.html" class="function">posix_seteuid()</a>, then show the difference between
+    the real id and the effective id.</p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">posix_getuid</span><span style="color: #007700">().</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//10001<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">posix_geteuid</span><span style="color: #007700">().</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//10001<br /></span><span style="color: #0000BB">posix_seteuid</span><span style="color: #007700">(</span><span style="color: #0000BB">10000</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">posix_getuid</span><span style="color: #007700">().</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//10001<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">posix_geteuid</span><span style="color: #007700">().</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//10000<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.posix-getpwuid.html" class="function" rel="rdfs-seeAlso">posix_getpwuid()</a> for more information
+    about the user.</li>
+    <li class="member"><a href="function.posix-getuid.html" class="function" rel="rdfs-seeAlso">posix_getuid()</a> get real user id.</li>
+    <li class="member"><a href="function.posix-setuid.html" class="function" rel="rdfs-seeAlso">posix_setuid()</a> change the effective user 
+    id</li>
+    <li class="member">POSIX man page GETEUID(2)</li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.posix-getegid.html">posix_getegid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.posix-getgid.html">posix_getgid</a></div>
+ <div class="up"><a href="ref.posix.html">POSIX Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

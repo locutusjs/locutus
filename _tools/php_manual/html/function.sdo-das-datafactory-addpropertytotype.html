@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Adds a property to a type</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-changesummary-islogging.html">SDO_DAS_ChangeSummary::isLogging</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-datafactory-addtype.html">SDO_DAS_DataFactory::addType</a></div>
+ <div class="up"><a href="ref.sdo.html">SDO Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sdo-das-datafactory-addpropertytotype" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SDO_DAS_DataFactory::addPropertyToType</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SDO_DAS_DataFactory::addPropertyToType</span> &mdash; <span class="dc-title">
+   Adds a property to a type
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>SDO_DAS_DataFactory::addPropertyToType</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$parent_type_namespace_uri</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$parent_type_name</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$property_name</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$type_namespace_uri</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$type_name</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$options</tt></span>
+  ] )</div>
+
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+
+  <p class="para">
+   Adds a property to a type. The type must already be known to the
+   SDO_DAS_DataFactory (i.e. have been added using addType()). The property
+   becomes a property of the type. This is how the graph model for the
+   structure of an SDO_DataObject is built.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">parent_type_namespace_uri</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       The namespace URI for the parent type.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">parent_type_name</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       The type name for the parent type.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">property_name</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       The name by which the property will be known in the parent type.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">type_namespace_uri</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       The namespace URI for the type of the property.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">type_name</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       The type name for the type of the property
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">options</tt></i>
+
+     </span>
+
+     <dd>
+<p class="para"> This array holds one or more key=&gt;value pairs to set attribute
+      values for the property. The optional keywords are:</p>
+      <dl>
+
+       <dt>
+
+        <span class="term"><i><tt class="parameter">many</tt></i>
+</span>
+
+        <dd>
+
+         <p class="para">A flag to say whether the property is many-valued. A value of &#039;true&#039; adds the
+          property as a many-valued property (default is &#039;false&#039;).
+         </p>
+        </dd>
+
+       </dt>
+
+       <dt>
+
+        <span class="term">
+         <i><tt class="parameter">readOnly</tt></i>
+
+        </span>
+
+        <dd>
+
+         <p class="para"> A flag to say whether the property is read-only. A value of &#039;true&#039; means the
+          property value cannot be modified through the SDO application APIs (default is
+          &#039;false&#039;).
+         </p>
+        </dd>
+
+       </dt>
+
+       <dt>
+
+        <span class="term">
+         <i><tt class="parameter">containment</tt></i>
+
+        </span>
+
+        <dd>
+
+         <p class="para"> A flag to say whether the property is contained by the parent. A value of
+          &#039;true&#039; means the property is contained by the parent. A value of &#039;false&#039; results
+          in a non-containment reference (default is &#039;true&#039;). This flag is only
+          interpreted when adding properties which are data object types, otherwise it is
+          ignored.
+         </p>
+        </dd>
+
+       </dt>
+
+       <dt>
+
+        <span class="term">
+         <i><tt class="parameter">default</tt></i>
+
+        </span>
+
+        <dd>
+
+         <p class="para"> A default value for the property. Omitting this key means that the property
+          does not have a default value. A property can only have a default value if it is a
+          single-valued data type (primitive).
+         </p>
+        </dd>
+
+       </dt>
+
+      </dl>
+
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   None.
+  </p>
+ </div>
+
+
+ 
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">0.5.2</td>
+       <td colspan="1" rowspan="1" align="left">Optional parameters <var class="varname">many</var>, 
+        <var class="varname">readOnly</var>, and <var class="varname">containment</var>
+        deprecated in favour of the <var class="varname">options</var> array.
+        </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A
+     <b>SDO_DAS_DataFactory::addPropertyToType()</b>
+     example</b></p>
+    <div class="example-contents"><p> The following adds an &#039;addressline&#039; property to a Person type. The person type is
+     identified by its namespace, &#039;PersonNS&#039;, and type name, &#039;PersonType&#039;. The type of the
+     &#039;addressline&#039; property is a many-valued SDO data type (primitive) with namespace
+     &#039;commonj.sdo&#039; and type name &#039;String&#039;.
+    </p></div>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$df</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addPropertyToType</span><span style="color: #007700">(</span><span style="color: #DD0000">'PersonNS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PersonType'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'addressline'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'commonj.sdo'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'String'</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'many'</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ 
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-changesummary-islogging.html">SDO_DAS_ChangeSummary::isLogging</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-datafactory-addtype.html">SDO_DAS_DataFactory::addType</a></div>
+ <div class="up"><a href="ref.sdo.html">SDO Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Creates a composite image</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-modulateimage.html">Imagick::modulateImage</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-morphimages.html">Imagick::morphImages</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagick-montageimage" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::montageImage</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Imagick::montageImage</span> &mdash; <span class="dc-title">Creates a composite image</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="class.imagick.html" class="type Imagick">Imagick</a></span> <span class="methodname"><b><b>Imagick::montageImage</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="class.imagickdraw.html" class="type ImagickDraw">ImagickDraw</a></span> <tt class="parameter">$draw</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$tile_geometry</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$thumbnail_geometry</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$frame</tt></span>
+   )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+currently not documented; only its argument list is available.
+</p></div>
+  <p class="para">
+   Creates a composite image by combining several separate images.
+   he images are tiled on the composite image with the name of the
+   image optionally appearing just below the individual tile.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">draw</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      The font name, size, and color are obtained from this object.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">tile_geometry</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The number of tiles per row and page (e.g. 6x4+0+0).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">thumbnail_geometry</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Preferred image size and border size of each thumbnail
+       (e.g. 120x120+4+3&gt;).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Thumbnail framing mode, see <a href="imagick.constants.html#imagick.constants.montagemode" class="link">Montage Mode constants</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">frame</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Surround the image with an ornamental border (e.g. 15x15+3+3). The
+       frame color is that of the thumbnail&#039;s matte color.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-modulateimage.html">Imagick::modulateImage</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-morphimages.html">Imagick::morphImages</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

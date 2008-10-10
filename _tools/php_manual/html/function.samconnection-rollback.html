@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Cancels (rolls back) an in-flight unit of work.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.samconnection-remove.html">SAMConnection->remove</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.samconnection-send.html">SAMConnection->send</a></div>
+ <div class="up"><a href="ref.sam.html">SAM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.samconnection-rollback" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SAMConnection-&gt;rollback</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SAMConnection-&gt;rollback</span> &mdash; <span class="dc-title">
+   Cancels (rolls back) an in-flight unit of work.
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SAMConnection</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><b>rollback</b></b></span> ( <span class="methodparam">void</span>
+    )</div>
+
+  </div>
+  <p class="para">
+   Rolls back an in-flight unit of work.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This method returns <b><tt>FALSE</tt></b> if an error occurs.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Cancelling an in-flight unit of work</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">rollback</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;The&nbsp;rollback&nbsp;failed!<br />&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"Rollback&nbsp;failed&nbsp;($conn-&gt;errno)&nbsp;$conn-&gt;error"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.samconnection-commit.html" class="xref">SAMConnection->commit</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.samconnection-remove.html">SAMConnection->remove</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.samconnection-send.html">SAMConnection->send</a></div>
+ <div class="up"><a href="ref.sam.html">SAM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

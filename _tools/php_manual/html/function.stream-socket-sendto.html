@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sends a message to a socket, whether it is connected or not</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-socket-recvfrom.html">stream_socket_recvfrom</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-socket-server.html">stream_socket_server</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.stream-socket-sendto" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stream_socket_sendto</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">stream_socket_sendto</span> &mdash; <span class="dc-title">Sends a message to a socket, whether it is connected or not </span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>stream_socket_sendto</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$socket</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$address</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   The function <b>stream_socket_sendto()</b> sends
+   the data specified by <i><tt class="parameter">data</tt></i>
+ through the
+   socket specified by <i><tt class="parameter">socket</tt></i>
+.  The address
+   specified when the socket stream was created will be used unless
+   an alternate address is specified in <i><tt class="parameter">address</tt></i>
+.
+  </p>
+  <p class="para">
+   The value of <i><tt class="parameter">flags</tt></i>
+ can be any combination
+   of the following:
+   <table border="5">
+    <caption><b>possible values for <i><tt class="parameter">flags</tt></i>
+</b></caption>
+    <colgroup>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><b><tt>STREAM_OOB</tt></b></td>
+       <td colspan="1" rowspan="1" align="left">
+        Process OOB (out-of-band) data.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+  </p>
+  <div class="example">
+   <p><b>Example #1 <b>stream_socket_sendto()</b> Example</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Open&nbsp;a&nbsp;socket&nbsp;to&nbsp;port&nbsp;1234&nbsp;on&nbsp;localhost&nbsp;*/<br /></span><span style="color: #0000BB">$socket&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_socket_client</span><span style="color: #007700">(</span><span style="color: #DD0000">'tcp://127.0.0.1:1234'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Send&nbsp;ordinary&nbsp;data&nbsp;via&nbsp;ordinary&nbsp;channels.&nbsp;*/<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Normal&nbsp;data&nbsp;transmit."</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Send&nbsp;more&nbsp;data&nbsp;out&nbsp;of&nbsp;band.&nbsp;*/<br /></span><span style="color: #0000BB">stream_socket_sendto</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Out&nbsp;of&nbsp;Band&nbsp;data."</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">STREAM_OOB</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Close&nbsp;it&nbsp;up&nbsp;*/<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">
+   See also
+   <a href="function.stream-socket-recvfrom.html" class="function">stream_socket_recvfrom()</a>,
+   <a href="function.stream-socket-client.html" class="function">stream_socket_client()</a>, and
+   <a href="function.stream-socket-server.html" class="function">stream_socket_server()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-socket-recvfrom.html">stream_socket_recvfrom</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-socket-server.html">stream_socket_server</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

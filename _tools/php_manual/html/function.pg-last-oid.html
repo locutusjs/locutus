@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the last row's OID</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-last-notice.html">pg_last_notice</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-lo-close.html">pg_lo_close</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-last-oid" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_last_oid</h1> 
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">pg_last_oid</span> &mdash; <span class="dc-title">Returns the last row&#039;s OID</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>pg_last_oid</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>pg_last_oid()</b> is used to retrieve the
+   <var class="varname">OID</var> assigned to an inserted row.
+  </p>
+  <p class="para">
+   OID field became an optional field from PostgreSQL 7.2 and will
+   not be present by default in PostgreSQL 8.1. When the
+   OID field is not present in a table, the programmer must use 
+   <a href="function.pg-result-status.html" class="function">pg_result_status()</a> to check for successful
+   insertion.
+  </p>
+  <p class="para">
+   To get the value of a <i>SERIAL</i> field in an inserted
+   row, it is necessary to use the PostgreSQL <i>CURRVAL</i>
+   function, naming the sequence whose last value is required.  If the
+   name of the sequence is unknown, the <i>pg_get_serial_sequence</i>
+   PostgreSQL 8.0 function is necessary.
+  </p>
+  <p class="para">
+   PostgreSQL 8.1 has a function <i>LASTVAL</i> that returns
+   the value of the most recently used sequence in the session.  This avoids
+   the need for naming the sequence, table or column altogether.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function used to be called <b>pg_getlastoid()</b>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL query result resource, returned by <a href="function.pg-query.html" class="function">pg_query()</a>,
+       <a href="function.pg-query-params.html" class="function">pg_query_params()</a> or <a href="function.pg-execute.html" class="function">pg_execute()</a>
+       (among others).
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A <a href="language.types.string.html" class="type string">string</a> containing the OID assigned to the most recently inserted
+   row in the specified <i><tt class="parameter">connection</tt></i>
+, or <b><tt>FALSE</tt></b> on error or
+   no available OID.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pg_last_oid()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$pgsql_conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=mark&nbsp;host=localhost"</span><span style="color: #007700">);<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$res1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;test&nbsp;(a&nbsp;INTEGER)&nbsp;WITH&nbsp;OIDS"</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$res2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;test&nbsp;VALUES&nbsp;(1)"</span><span style="color: #007700">);<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$oid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_last_oid</span><span style="color: #007700">(</span><span style="color: #0000BB">$res2</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-query.html" class="function" rel="rdfs-seeAlso">pg_query()</a></li>
+    <li class="member"><a href="function.pg-result-status.html" class="function" rel="rdfs-seeAlso">pg_result_status()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-last-notice.html">pg_last_notice</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-lo-close.html">pg_lo_close</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

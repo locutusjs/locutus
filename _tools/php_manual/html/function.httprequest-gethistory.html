@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get history</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.httprequest-getheaders.html">HttpRequest::getHeaders</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.httprequest-getmethod.html">HttpRequest::getMethod</a></div>
+ <div class="up"><a href="class.httprequest.html">The HttpRequest</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.httprequest-gethistory" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">HttpRequest::getHistory</h1>
+  <p class="verinfo">(PECL pecl_http:0.15.0-1.5.5)</p><p class="refpurpose"><span class="refname">HttpRequest::getHistory</span> &mdash; <span class="dc-title">Get history</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="type"><a href="class.httpmessage.html" class="type HttpMessage">HttpMessage</a></span> <span class="methodname"><b><b>HttpRequest::getHistory</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   Get all sent requests and received responses as an HttpMessage object.
+  </p>
+  <p class="para">
+   If you want to record history, set the instance variable
+   <b class="classname">HttpRequest</b>::<var class="varname">recordHistory</var> to TRUE.
+  </p>
+  <p class="para">
+   The returned object references the last received response, use <a href="function.httpmessage-getparentmessage.html" class="function">HttpMessage::getParentMessage()</a> 
+   to access the data of previously sent requests and received responses.
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an HttpMessage object representing the complete request/response history.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws HttpRuntimeException.
+  </p>
+ </div>
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.httprequest-getheaders.html">HttpRequest::getHeaders</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.httprequest-getmethod.html">HttpRequest::getMethod</a></div>
+ <div class="up"><a href="class.httprequest.html">The HttpRequest</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

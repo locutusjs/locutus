@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Locks an object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hwapi-link.html">hw_api->link</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hwapi-move.html">hw_api->move</a></div>
+ <div class="up"><a href="ref.hwapi.html">Hyperwave API Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.hwapi-lock" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hw_api-&gt;lock</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">hw_api-&gt;lock</span> &mdash; <span class="dc-title">Locks an object</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">hw_api</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><b>lock</b></b></span>
+     ( <span class="methodparam"><span class="type">array</span> <tt class="parameter">$parameter</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   Locks an object for exclusive editing by the user calling this function.
+   The object can be only unlocked by this user or the system user.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">parameter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The parameter array contains the required element &#039;objectIdentifier&#039;
+       and the optional parameters &#039;mode&#039; and &#039;objectquery&#039;.
+      </p>
+      <p class="para">
+       &#039;mode&#039; determines how an object is locked.
+       <b><tt>HW_API_LOCK_NORMAL</tt></b> means, an object is locked
+       until it is unlocked. <b><tt>HW_API_LOCK_RECURSIVE</tt></b> is
+       only valid for collection and locks all objects within the collection
+       and possible subcollections. <b><tt>HW_API_LOCK_SESSION</tt></b>
+       means, an object is locked only as long as the session is valid.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.hwapi-unlock.html" class="xref">hw_api->unlock</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hwapi-link.html">hw_api->link</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hwapi-move.html">hw_api->move</a></div>
+ <div class="up"><a href="ref.hwapi.html">Hyperwave API Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

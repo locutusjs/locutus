@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Compile a string of PHP code and return the resulting op array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.parsekit.html">Parsekit Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.parsekit-compile-string.html">parsekit_compile_string</a></div>
+ <div class="up"><a href="ref.parsekit.html">Parsekit Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.parsekit-compile-file" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">parsekit_compile_file</h1>
+  <p class="verinfo">(PECL parsekit:0.2-1.2)</p><p class="refpurpose"><span class="refname">parsekit_compile_file</span> &mdash; <span class="dc-title">Compile a string of PHP code and return the resulting op array</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>parsekit_compile_file</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$errors</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$options</tt></span>
+  ]] )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A string containing the name of the file to compile. 
+       Similar to the argument to <b>include()</b>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">errors</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A 2D hash of errors (including fatal errors) encountered during compilation.
+       Returned by reference.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       One of either <b><tt>PARSEKIT_QUIET</tt></b> or 
+       <b><tt>PARSEKIT_SIMPLE</tt></b>. To produce varying
+       degrees of verbosity in the returned output.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a complex multi-layer array structure as detailed below.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>parsekit_compile_file()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">parsekit_compile_file</span><span style="color: #007700">(</span><span style="color: #DD0000">'hello_world.php'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$errors</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PARSEKIT_SIMPLE</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+array(5) {
+  [0]=&gt;
+  string(37) &quot;ZEND_ECHO UNUSED &#039;Hello World&#039; UNUSED&quot;
+  [1]=&gt;
+  string(30) &quot;ZEND_RETURN UNUSED NULL UNUSED&quot;
+  [2]=&gt;
+  string(42) &quot;ZEND_HANDLE_EXCEPTION UNUSED UNUSED UNUSED&quot;
+  [&quot;function_table&quot;]=&gt;
+  NULL
+  [&quot;class_table&quot;]=&gt;
+  NULL
+}
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.parsekit-compile-string.html" class="function" rel="rdfs-seeAlso">parsekit_compile_string()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.parsekit.html">Parsekit Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.parsekit-compile-string.html">parsekit_compile_string</a></div>
+ <div class="up"><a href="ref.parsekit.html">Parsekit Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

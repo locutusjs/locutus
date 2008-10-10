@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Caching by last modification</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-cache-etag.html">http_cache_etag</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-chunked-decode.html">http_chunked_decode</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.http-cache-last-modified" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">http_cache_last_modified</h1>
+  <p class="verinfo">(PECL pecl_http:0.1.0-1.5.5)</p><p class="refpurpose"><span class="refname">http_cache_last_modified</span> &mdash; <span class="dc-title">Caching by last modification</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>http_cache_last_modified</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timestamp_or_expires</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Attempts to cache the sent entity by its last modification date.
+  </p>
+  <p class="para">
+   If the supplied argument is greater than 0, it is handled as timestamp
+   and will be sent as date of last modification. If it is 0 or omitted,
+   the current time will be sent as <i>Last-Modified</i> date.
+   If it&#039;s negative, it is handled as expiration time in seconds, which means 
+   that if the requested last modification date is not between the calculated timespan,
+   the <i>Last-Modified</i> header is updated and the actual body will be sent.
+  </p>
+  <p class="para">
+   A log entry will be written to the cache log if the <a href="http.configuration.html" class="link">INI setting</a>
+   <a href="http.configuration.html#http.configuration.log.cache" class="link">http.log.cache</a> is set
+   and the cache attempt was successful.
+  </p>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function may be used in conjunction with
+   <a href="function.http-send-data.html" class="function">http_send_data()</a>, <a href="function.http-send-file.html" class="function">http_send_file()</a>  and <a href="function.http-send-stream.html" class="function">http_send_stream()</a>.</span></p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">timestamp_or_expires</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Unix timestamp
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>FALSE</tt></b> or <em class="emphasis">exits</em> on success with <i>304 Not Modified</i> if the entity is cached.
+   See the <a href="http.configuration.html" class="link">INI setting</a>
+   <a href="http.configuration.html#http.configuration.force_exit" class="link">http.force_exit</a> for what &quot;exits&quot; means.
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>http_cache_last_modified()</b> example</b></p>
+    <div class="example-contents"><p>
+     Caching for 5 seconds.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />http_cache_last_modified</span><span style="color: #007700">(-</span><span style="color: #0000BB">5</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">http_date</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.http-cache-etag.html" class="function" rel="rdfs-seeAlso">http_cache_etag()</a></li>
+    <li class="member">the <a href="class.httpresponse.html" class="link">
+<b class="classname">HttpResponse</b></a> class if you are using PHP 5.1.0
+and above</li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-cache-etag.html">http_cache_etag</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-chunked-decode.html">http_chunked_decode</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

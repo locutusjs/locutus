@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get current Tidy configuration</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.tidy-get-body.html">tidy_get_body</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.tidy-get-error-buffer.html">tidy_get_error_buffer</a></div>
+ <div class="up"><a href="ref.tidy.html">Tidy Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.tidy-get-config" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">tidy_get_config</h1>
+  <p class="verinfo">(PHP 5, PECL tidy:0.7-1.2)</p><p class="refpurpose"><span class="refname">tidy_get_config</span> &mdash; <span class="dc-title">Get current Tidy configuration</span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedural style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>tidy_get_config</b></b></span>
+    ( <span class="methodparam"><span class="type"><span class="type tidy">tidy</span></span> <tt class="parameter">$object</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>tidy->getConfig</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>tidy_get_config()</b> returns an array with the
+   configuration options in use by the given tidy
+   <i><tt class="parameter">object</tt></i>
+.
+  </p>
+  <p class="para">
+   For an explanation about each option, visit <a href="http://tidy.sourceforge.net/docs/quickref.html" class="link external">&raquo; http://tidy.sourceforge.net/docs/quickref.html</a>.
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>tidy_get_config()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$html&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'&lt;p&gt;test&lt;/p&gt;'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$config&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'indent'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'output-xhtml'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'wrap'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">200</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$tidy&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">tidy_parse_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$html</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$config</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">tidy_get_config</span><span style="color: #007700">(</span><span style="color: #0000BB">$tidy</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [indent-spaces] =&gt; 2
+    [wrap] =&gt; 200
+    [tab-size] =&gt; 8
+    [char-encoding] =&gt; 1
+    [input-encoding] =&gt; 3
+    [output-encoding] =&gt; 1
+    [newline] =&gt; 1
+    [doctype-mode] =&gt; 1
+    [doctype] =&gt;
+    [repeated-attributes] =&gt; 1
+    [alt-text] =&gt;
+    [slide-style] =&gt;
+    [error-file] =&gt;
+    [output-file] =&gt;
+    [write-back] =&gt;
+    [markup] =&gt; 1
+    [show-warnings] =&gt; 1
+    [quiet] =&gt;
+    [indent] =&gt; 1
+    [hide-endtags] =&gt;
+    [input-xml] =&gt;
+    [output-xml] =&gt; 1
+    [output-xhtml] =&gt; 1
+    [output-html] =&gt;
+    [add-xml-decl] =&gt;
+    [uppercase-tags] =&gt;
+    [uppercase-attributes] =&gt;
+    [bare] =&gt;
+    [clean] =&gt;
+    [logical-emphasis] =&gt;
+    [drop-proprietary-attributes] =&gt;
+    [drop-font-tags] =&gt;
+    [drop-empty-paras] =&gt; 1
+    [fix-bad-comments] =&gt; 1
+    [break-before-br] =&gt;
+    [split] =&gt;
+    [numeric-entities] =&gt;
+    [quote-marks] =&gt;
+    [quote-nbsp] =&gt; 1
+    [quote-ampersand] =&gt; 1
+    [wrap-attributes] =&gt;
+    [wrap-script-literals] =&gt;
+    [wrap-sections] =&gt; 1
+    [wrap-asp] =&gt; 1
+    [wrap-jste] =&gt; 1
+    [wrap-php] =&gt; 1
+    [fix-backslash] =&gt; 1
+    [indent-attributes] =&gt;
+    [assume-xml-procins] =&gt;
+    [add-xml-space] =&gt;
+    [enclose-text] =&gt;
+    [enclose-block-text] =&gt;
+    [keep-time] =&gt;
+    [word-2000] =&gt;
+    [tidy-mark] =&gt;
+    [gnu-emacs] =&gt;
+    [gnu-emacs-file] =&gt;
+    [literal-attributes] =&gt;
+    [show-body-only] =&gt;
+    [fix-uri] =&gt; 1
+    [lower-literals] =&gt; 1
+    [hide-comments] =&gt;
+    [indent-cdata] =&gt;
+    [force-output] =&gt; 1
+    [show-errors] =&gt; 6
+    [ascii-chars] =&gt; 1
+    [join-classes] =&gt;
+    [join-styles] =&gt; 1
+    [escape-cdata] =&gt;
+    [language] =&gt;
+    [ncr] =&gt; 1
+    [output-bom] =&gt; 2
+    [replace-color] =&gt;
+    [css-prefix] =&gt;
+    [new-inline-tags] =&gt;
+    [new-blocklevel-tags] =&gt;
+    [new-empty-tags] =&gt;
+    [new-pre-tags] =&gt;
+    [accessibility-check] =&gt; 0
+    [vertical-space] =&gt;
+    [punctuation-wrap] =&gt;
+    [merge-divs] =&gt; 1
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+  <p class="para">
+   See also <a href="function.tidy-reset-config.html" class="function">tidy_reset_config()</a> and
+   <a href="function.tidy-save-config.html" class="function">tidy_save_config()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.tidy-get-body.html">tidy_get_body</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.tidy-get-error-buffer.html">tidy_get_error_buffer</a></div>
+ <div class="up"><a href="ref.tidy.html">Tidy Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

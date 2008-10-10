@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Reads entire file into an array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.file-put-contents.html">file_put_contents</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fileatime.html">fileatime</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.file" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">file</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">file</span> &mdash; <span class="dc-title">Reads entire file into an array</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>file</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$context</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Reads an entire file into an array.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    You can use <a href="function.file-get-contents.html" class="function">file_get_contents()</a> to return the contents
+    of a file as a string.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the file.
+      </p>
+      <div class="tip"><b class="tip">Tip</b><p class="simpara">A URL can be used as a
+filename with this function if the <a href="filesystem.configuration.html#ini.allow-url-fopen" class="link">fopen wrappers</a> have been enabled.
+See <a href="function.fopen.html" class="function">fopen()</a> for more details on how to specify
+the filename and <a href="wrappers.html" class="xref">List of Supported Protocols/Wrappers</a> for a list of supported
+URL protocols.</p></div>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The optional parameter <i><tt class="parameter">flags</tt></i>
+ can be one, or
+       more, of the following constants:
+       <dl>
+
+        <dt>
+
+         <span class="term">
+          <b><tt>FILE_USE_INCLUDE_PATH</tt></b>
+         </span>
+
+         <dd>
+
+          <span class="simpara">
+           Search for the file in the <a href="ini.core.html#ini.include-path" class="link">include_path</a>.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">
+          <b><tt>FILE_IGNORE_NEW_LINES</tt></b>
+         </span>
+
+         <dd>
+
+          <span class="simpara">
+           Do not add newline at the end of each array element
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">
+          <b><tt>FILE_SKIP_EMPTY_LINES</tt></b>
+         </span>
+
+         <dd>
+
+          <span class="simpara">
+           Skip empty lines
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">
+          <b><tt>FILE_TEXT</tt></b>
+         </span>
+
+         <dd>
+
+          <span class="simpara">
+           The content is returned in UTF-8 encoding. You can specify a different
+           encoding by creating a custom context. This flag cannot be used with 
+           <b><tt>FILE_BINARY</tt></b>. This flag is only available since 
+           PHP 6.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">
+          <b><tt>FILE_BINARY</tt></b>
+         </span>
+
+         <dd>
+
+          <span class="simpara">
+           The content is read as binary data. This is the default setting 
+           and cannot be used with <b><tt>FILE_TEXT</tt></b>. This flag is 
+           only available since PHP 6.
+          </span>
+         </dd>
+
+        </dt>
+
+       </dl>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">context</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A context resource created with the 
+       <a href="function.stream-context-create.html" class="function">stream_context_create()</a> function.
+      </p>
+      <p class="para">
+       <blockquote><p><b class="note">Note</b>: <span class="simpara">Context support was added
+with PHP 5.0.0. For a description of <i>contexts</i>, refer to
+<a href="ref.stream.html" class="xref">Stream Functions</a>.</span></p></blockquote>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the file in an array. Each element of the array corresponds to a
+   line in the file, with the newline still attached. Upon failure,
+   <b>file()</b> returns <b><tt>FALSE</tt></b>.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Each line in the resulting array will include the line ending, unless
+    <b><tt>FILE_IGNORE_NEW_LINES</tt></b> is used, so you still need to
+    use <a href="function.rtrim.html" class="function">rtrim()</a> if you do not want the line ending
+    present.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">If PHP is not properly recognizing
+the line endings when reading files either on or created by a Macintosh
+computer, enabling the
+<a href="filesystem.configuration.html#ini.auto-detect-line-endings" class="link">auto_detect_line_endings</a>
+run-time configuration option may help resolve the problem.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">6.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        Added support for the <b><tt>FILE_TEXT</tt></b> and 
+        <b><tt>FILE_BINARY</tt></b> flags.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">context</tt></i>
+ parameter was added
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        Prior to PHP 5.0.0 the <i><tt class="parameter">flags</tt></i>
+ parameter only
+        covered <a href="ini.core.html#ini.include-path" class="link">include_path</a> and was
+        enabled with 1
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        <b>file()</b> became binary safe
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>file()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Get&nbsp;a&nbsp;file&nbsp;into&nbsp;an&nbsp;array.&nbsp;&nbsp;In&nbsp;this&nbsp;example&nbsp;we'll&nbsp;go&nbsp;through&nbsp;HTTP&nbsp;to&nbsp;get<br />//&nbsp;the&nbsp;HTML&nbsp;source&nbsp;of&nbsp;a&nbsp;URL.<br /></span><span style="color: #0000BB">$lines&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">file</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://www.example.com/'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Loop&nbsp;through&nbsp;our&nbsp;array,&nbsp;show&nbsp;HTML&nbsp;source&nbsp;as&nbsp;HTML&nbsp;source;&nbsp;and&nbsp;line&nbsp;numbers&nbsp;too.<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">$lines&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$line_num&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$line</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Line&nbsp;#&lt;b&gt;{$line_num}&lt;/b&gt;&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">$line</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Another&nbsp;example,&nbsp;let's&nbsp;get&nbsp;a&nbsp;web&nbsp;page&nbsp;into&nbsp;a&nbsp;string.&nbsp;&nbsp;See&nbsp;also&nbsp;file_get_contents().<br /></span><span style="color: #0000BB">$html&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">implode</span><span style="color: #007700">(</span><span style="color: #DD0000">''</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">file</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://www.example.com/'</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;Using&nbsp;the&nbsp;optional&nbsp;flags&nbsp;parameter&nbsp;since&nbsp;PHP&nbsp;5<br /></span><span style="color: #0000BB">$trimmed&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">file</span><span style="color: #007700">(</span><span style="color: #DD0000">'somefile.txt'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">FILE_IGNORE_NEW_LINES&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">FILE_SKIP_EMPTY_LINES</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b><p class="para">When using SSL, Microsoft IIS
+will violate the protocol by closing the connection without sending a
+<i>close_notify</i> indicator. PHP will report this as &quot;SSL: Fatal
+Protocol Error&quot; when you reach the end of the data. To work around this, the
+value of <a href="errorfunc.configuration.html#ini.error-reporting" class="link">error_reporting</a> should be
+lowered to a level that does not include warnings.
+PHP 4.3.7 and higher can detect buggy IIS server software when you open
+the stream using the <i>https://</i> wrapper and will suppress the
+warning. When using <a href="function.fsockopen.html" class="function">fsockopen()</a> to create an
+<i>ssl://</i> socket, the developer is responsible for detecting
+and suppressing this warning.</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.readfile.html" class="function" rel="rdfs-seeAlso">readfile()</a></li>
+    <li class="member"><a href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a></li>
+    <li class="member"><a href="function.fsockopen.html" class="function" rel="rdfs-seeAlso">fsockopen()</a></li>
+    <li class="member"><a href="function.popen.html" class="function" rel="rdfs-seeAlso">popen()</a></li>
+    <li class="member"><a href="function.file-get-contents.html" class="function" rel="rdfs-seeAlso">file_get_contents()</a></li>
+    <li class="member"><b>include()</b></li>
+    <li class="member"><a href="function.stream-context-create.html" class="function" rel="rdfs-seeAlso">stream_context_create()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.file-put-contents.html">file_put_contents</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fileatime.html">fileatime</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

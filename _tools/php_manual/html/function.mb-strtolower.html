@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Make a string lowercase</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-strstr.html">mb_strstr</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-strtoupper.html">mb_strtoupper</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-strtolower" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_strtolower</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">mb_strtolower</span> &mdash; <span class="dc-title">Make a string lowercase</span></p>
+
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mb_strtolower</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns <i><tt class="parameter">str</tt></i>
+
+   with all alphabetic characters converted to lowercase.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="language.types.string.html" class="type string">string</a> being lowercased.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The <i><tt class="parameter">encoding</tt></i>
+ 
+parameter is the character encoding. If it is omitted, the internal character 
+encoding value will be used.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <i><tt class="parameter">str</tt></i>
+ with all alphabetic characters converted to lowercase.
+  </p>
+ </div>
+
+
+ <div class="refsect1 unicode">
+  <h3 class="title">Unicode</h3>
+  <p class="para">
+   For more information about the Unicode properties, please see <a href="http://www.unicode.org/unicode/reports/tr21/" class="link external">&raquo; http://www.unicode.org/unicode/reports/tr21/</a>.
+  </p>
+  <p class="para">
+   By contrast to <a href="function.strtolower.html" class="function">strtolower()</a>, &#039;alphabetic&#039; is
+   determined by the Unicode character properties. Thus the behaviour
+   of this function is not affected by locale settings and it can convert
+   any characters that have &#039;alphabetic&#039; property, such as A-umlaut (Ä). 
+  </p>
+</div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mb_strtolower()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Mary&nbsp;Had&nbsp;A&nbsp;Little&nbsp;Lamb&nbsp;and&nbsp;She&nbsp;LOVED&nbsp;It&nbsp;So"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mb_strtolower</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;Prints&nbsp;mary&nbsp;had&nbsp;a&nbsp;little&nbsp;lamb&nbsp;and&nbsp;she&nbsp;loved&nbsp;it&nbsp;so<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-strtoupper.html" class="function" rel="rdfs-seeAlso">mb_strtoupper()</a></li>
+    <li class="member"><a href="function.mb-convert-case.html" class="function" rel="rdfs-seeAlso">mb_convert_case()</a></li>
+    <li class="member"><a href="function.strtolower.html" class="function" rel="rdfs-seeAlso">strtolower()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-strstr.html">mb_strstr</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-strtoupper.html">mb_strtoupper</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

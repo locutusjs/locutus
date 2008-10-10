@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Exports a PKCS#12 Compatible Certificate Store File</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.openssl-open.html">openssl_open</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.openssl-pkcs12-export.html">openssl_pkcs12_export</a></div>
+ <div class="up"><a href="ref.openssl.html">OpenSSL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.openssl-pkcs12-export-to-file" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">openssl_pkcs12_export_to_file</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.2.2)</p><p class="refpurpose"><span class="refname">openssl_pkcs12_export_to_file</span> &mdash; <span class="dc-title">Exports a PKCS#12 Compatible Certificate Store File</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>openssl_pkcs12_export_to_file</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$x509</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$priv_key</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pass</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$args</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>openssl_pkcs12_export_to_file()</b> stores
+   <i><tt class="parameter">x509</tt></i>
+ into a file named by
+   <i><tt class="parameter">filename</tt></i>
+ in a PKCS#12 file format.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">x509</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the output file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">priv_key</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      Private key component of PKCS#12 file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pass</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      Encryption password for unlocking the PKCS#12 file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">args</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.openssl-open.html">openssl_open</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.openssl-pkcs12-export.html">openssl_pkcs12_export</a></div>
+ <div class="up"><a href="ref.openssl.html">OpenSSL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

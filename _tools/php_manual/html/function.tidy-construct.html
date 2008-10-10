@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Constructs a new tidy object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.tidy-config-count.html">tidy_config_count</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.tidy-diagnose.html">tidy_diagnose</a></div>
+ <div class="up"><a href="ref.tidy.html">Tidy Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.tidy-construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">tidy::__construct</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">tidy::__construct</span> &mdash; <span class="dc-title">Constructs a new tidy object</span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type tidy">tidy</span></span> <span class="methodname"><b><b>tidy::__construct</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$config</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$use_include_path</tt></span>
+  ]]]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>tidy::__construct()</b> constructs a new tidy object.
+  </p>
+  <p class="para">
+   If the <i><tt class="parameter">filename</tt></i>
+ parameter is given, this function
+   will also read that file and initialize the object with the file,
+   acting like <a href="function.tidy-parse-file.html" class="function">tidy_parse_file()</a>.
+  </p>
+  <p class="para">The <i><tt class="parameter">config</tt></i>
+ parameter
+can be passed either as an array or as a string. If a string is passed,
+it is interpreted as the name of the configuration file, otherwise, it is
+interpreted as the options themselves. Check
+<a href="http://tidy.sourceforge.net/docs/quickref.html" class="link external">&raquo; http://tidy.sourceforge.net/docs/quickref.html</a>
+for an explanation about each option.</p><p class="para">The
+<i><tt class="parameter">encoding</tt></i>
+ parameter sets the encoding for input/output
+documents. The possible values for <i><tt class="parameter">encoding</tt></i>
+ are:
+<i>ascii</i>, <i>latin0</i>, <i>latin1</i>,
+<i>raw</i>, <i>utf8</i>, <i>iso2022</i>,
+<i>mac</i>, <i>win1252</i>, <i>ibm858</i>,
+<i>utf16</i>, <i>utf16le</i>,
+<i>utf16be</i>, <i>big5</i> and
+<i>shiftjis</i>.</p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>tidy::__construct()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$html&nbsp;</span><span style="color: #007700">=&nbsp;&lt;&lt;&lt;&nbsp;HTML<br /></span><span style="color: #0000BB"><br />&lt;!DOCTYPE&nbsp;html&nbsp;PUBLIC&nbsp;"-//W3C//DTD&nbsp;XHTML&nbsp;1.0&nbsp;Strict//EN"<br />"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;<br /><br />&lt;html&nbsp;xmlns="http://www.w3.org/1999/xhtml"&nbsp;xml:lang="en"&nbsp;lang="en"&gt;<br />&lt;head&gt;&lt;title&gt;title&lt;/title&gt;&lt;/head&gt;<br />&lt;body&gt;<br />&lt;p&gt;paragraph&nbsp;&lt;bt&nbsp;/&gt;<br />text&lt;/p&gt;<br />&lt;/body&gt;&lt;/html&gt;<br /><br /></span><span style="color: #007700">HTML;<br /><br /></span><span style="color: #0000BB">$tidy&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">tidy</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$tidy</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parseString</span><span style="color: #007700">(</span><span style="color: #0000BB">$html</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$tidy</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">CleanRepair</span><span style="color: #007700">();<br /><br />if&nbsp;(</span><span style="color: #0000BB">$tidy</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errorBuffer</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"The&nbsp;following&nbsp;errors&nbsp;were&nbsp;detected:\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$tidy</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errorBuffer</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+The following errors were detected:
+line 8 column 14 - Error: &lt;bt&gt; is not recognized!
+line 8 column 14 - Warning: discarding unexpected &lt;bt&gt;
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+  <p class="para">
+   See also <a href="function.tidy-parse-file.html" class="function">tidy_parse_file()</a> and
+   <a href="function.tidy-parse-string.html" class="function">tidy_parse_string()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.tidy-config-count.html">tidy_config_count</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.tidy-diagnose.html">tidy_diagnose</a></div>
+ <div class="up"><a href="ref.tidy.html">Tidy Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

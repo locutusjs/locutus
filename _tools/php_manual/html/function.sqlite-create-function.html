@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Registers a "regular" User Defined Function for use in SQL statements</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-create-aggregate.html">sqlite_create_aggregate</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-current.html">sqlite_current</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sqlite-create-function" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_create_function</h1>
+  <h1 class="refname">SQLiteDatabase-&gt;createFunction</h1>
+  <p class="verinfo">(PHP 5, PECL pdo_sqlite:0.2-0.3 sqlite:1.0-1.0.3)</p><p class="refpurpose"><span class="refname">sqlite_create_function</span> -- <span class="refname">SQLiteDatabase-&gt;createFunction</span> &mdash; <span class="dc-title">
+   Registers a &quot;regular&quot; User Defined Function for use in SQL statements
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>sqlite_create_function</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$dbhandle</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$function_name</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.callback" class="type callback">callback</a></span> <tt class="parameter">$callback</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$num_args</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method):</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SQLiteDatabase</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">void</span> <span class="methodname"><b><b>createFunction</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$function_name</tt></span>
+    , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.callback" class="type callback">callback</a></span> <tt class="parameter">$callback</tt></span>
+    [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$num_args</tt></span>
+   ] )</div>
+
+  </div>
+  <p class="para">
+   <b>sqlite_create_function()</b> allows you to register a PHP
+   function with SQLite as an <acronym title="User Defined Functions">UDF</acronym> (User Defined
+   Function), so that it can be called from within your SQL statements.
+  </p>
+  <p class="para">
+   The UDF can be used in any SQL statement that can call functions, such as
+   SELECT and UPDATE statements and also in triggers.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dbhandle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SQLite Database resource; returned from <a href="function.sqlite-open.html" class="function">sqlite_open()</a>
+       when used procedurally.  This parameter is not required
+       when using the object-oriented method.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">function_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name of the function used in SQL statements.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">callback</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Callback function to handle the defined SQL function.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       <span class="simpara">
+        Callback functions should return a type understood by SQLite (i.e.
+        <a href="language.types.html#language.types.intro" class="link">scalar type</a>).
+       </span>
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">num_args</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Hint to the SQLite parser if the callback function accepts a
+       predetermined number of arguments.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">Two alternative syntaxes are
+supported for compatibility with other database extensions (such as MySQL).
+The preferred form is the first, where the <i><tt class="parameter">dbhandle</tt></i>
+
+parameter is the first parameter to the function.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>sqlite_create_function()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">md5_and_reverse</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">)&nbsp;<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">strrev</span><span style="color: #007700">(</span><span style="color: #0000BB">md5</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">));<br />}<br /><br />if&nbsp;(</span><span style="color: #0000BB">$dbhandle&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlite_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'mysqlitedb'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0666</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sqliteerror</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">sqlite_create_function</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'md5rev'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'md5_and_reverse'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$sql&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;md5rev(filename)&nbsp;FROM&nbsp;files'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$rows&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlite_array_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Error&nbsp;opening&nbsp;sqlite&nbsp;db:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$sqliteerror</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   In this example, we have a function that calculates the md5 sum of a
+   string, and then reverses it.  When the SQL statement executes, it
+   returns the value of the filename transformed by our function.  The data
+   returned in <i><tt class="parameter">$rows</tt></i>
+ contains the processed result.
+  </p>
+  <p class="para">
+   The beauty of this technique is that you do not need to process the
+   result using a foreach() loop after you have queried for the data.
+  </p>
+  <p class="para">
+   PHP registers a special function named <i>php</i> when the
+   database is first opened.  The php function can be used to call any PHP
+   function without having to register it first.
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Example of using the PHP function</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$rows&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlite_array_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;php('md5',&nbsp;filename)&nbsp;from&nbsp;files"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     This example will call the <a href="function.md5.html" class="function">md5()</a> on each
+     <i>filename</i> column in the database and return the result
+     into <i><tt class="parameter">$rows</tt></i>
+
+    </p></div>
+   </div>
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    For performance reasons, PHP will not automatically encode/decode binary
+    data passed to and from your UDF&#039;s.  You need to manually encode/decode
+    the parameters and return values if you need to process binary data in
+    this way.  Take a look at <a href="function.sqlite-udf-encode-binary.html" class="function">sqlite_udf_encode_binary()</a>
+    and <a href="function.sqlite-udf-decode-binary.html" class="function">sqlite_udf_decode_binary()</a> for more details.
+   <br />
+  </p></blockquote>
+  <div class="tip"><b class="tip">Tip</b>
+   <p class="para">
+    It is not recommended to use UDF&#039;s to handle processing of
+    binary data, unless high performance is not a key requirement of your
+    application.
+   </p>
+  </div>
+  <div class="tip"><b class="tip">Tip</b>
+   <p class="para">
+    You can use <b>sqlite_create_function()</b> and
+    <a href="function.sqlite-create-aggregate.html" class="function">sqlite_create_aggregate()</a> to override SQLite native
+    SQL functions.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sqlite-create-aggregate.html" class="function" rel="rdfs-seeAlso">sqlite_create_aggregate()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-create-aggregate.html">sqlite_create_aggregate</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-current.html">sqlite_current</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

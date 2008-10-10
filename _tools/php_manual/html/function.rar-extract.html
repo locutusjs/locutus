@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Extract entry from the archive</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.rar-entry-get.html">rar_entry_get</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.rar-getattr.html">Rar::getAttr</a></div>
+ <div class="up"><a href="ref.rar.html">Rar Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.rar-extract" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Rar::extract</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Rar::extract</span> &mdash; <span class="dc-title">Extract entry from the archive</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">Rar</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><a href="function.extract.html" class="function">extract</a></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dir</tt></span>
+    [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filepath</tt></span>
+   ] )</div>
+
+  </div>
+  <p class="para">
+   <b>Rar::extract()</b> extracts entry&#039;s data to the
+   <i><tt class="parameter">dir</tt></i>
+. It will create new file in the specified
+   <i><tt class="parameter">dir</tt></i>
+ with the name identical to the entry&#039;s name.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dir</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the directory where files should be extracted.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filepath</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If parameter <i><tt class="parameter">filepath</tt></i>
+ is specified instead
+       <i><tt class="parameter">dir</tt></i>
+, <b>Rar::extract()</b> will extract
+       entry&#039;s data to the specified file.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>Rar::extract()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$rar_file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'example.rar'</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Failed&nbsp;to&nbsp;open&nbsp;Rar&nbsp;archive"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$entry&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_entry_get</span><span style="color: #007700">(</span><span style="color: #0000BB">$rar_file</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Dir/file.txt'</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Failed&nbsp;to&nbsp;find&nbsp;such&nbsp;entry"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$entry</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">extract</span><span style="color: #007700">(</span><span style="color: #DD0000">'/dir/to'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;create&nbsp;/dir/to/Dir/file.txt<br /></span><span style="color: #0000BB">$entry</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">extract</span><span style="color: #007700">(</span><span style="color: #0000BB">false</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/dir/to/new_name.txt'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;create&nbsp;/dir/to/new_name.txt<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example">
+    <p><b>Example #2 How to extract all files in archive: </b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;example&nbsp;by&nbsp;Erik&nbsp;Jenssen&nbsp;aka&nbsp;erix&nbsp;*/<br /><br /></span><span style="color: #0000BB">$filename&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"foobar.rar"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$filepath&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"/home/foo/bar/"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$rar_file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_open</span><span style="color: #007700">(</span><span style="color: #0000BB">$filepath</span><span style="color: #007700">.</span><span style="color: #0000BB">$filename</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$list&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_list</span><span style="color: #007700">(</span><span style="color: #0000BB">$rar_file</span><span style="color: #007700">);<br />foreach(</span><span style="color: #0000BB">$list&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$file</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$entry&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_entry_get</span><span style="color: #007700">(</span><span style="color: #0000BB">$rar_file</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$file</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$entry</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">extract</span><span style="color: #007700">(</span><span style="color: #DD0000">"."</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;extract&nbsp;to&nbsp;the&nbsp;current&nbsp;dir<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">rar_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$rar_file</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.rar-entry-get.html">rar_entry_get</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.rar-getattr.html">Rar::getAttr</a></div>
+ <div class="up"><a href="ref.rar.html">Rar Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

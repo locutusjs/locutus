@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Multibyte regular expression match for predefined multibyte string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-ereg-search-setpos.html">mb_ereg_search_setpos</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-ereg.html">mb_ereg</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-ereg-search" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_ereg_search</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">mb_ereg_search</span> &mdash; <span class="dc-title">Multibyte regular expression match for predefined multibyte string</span></p>
+
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>mb_ereg_search</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pattern</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$option</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Performs a multibyte regular expression match for a predefined multibyte string.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pattern</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The search pattern.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">option</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The search option.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="simpara">
+   <b>mb_ereg_search()</b> returns <b><tt>TRUE</tt></b> if the
+   multibyte string matches with the regular expression, or <b><tt>FALSE</tt></b>
+   otherwise. The <a href="language.types.string.html" class="type string">string</a> for matching is set by 
+   <a href="function.mb-ereg-search-init.html" class="function">mb_ereg_search_init()</a>. If
+   <i><tt class="parameter">pattern</tt></i>
+ is not specified, the previous one
+   is used.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  
+  <blockquote><p><b class="note">Note</b>: The internal encoding or the 
+character encoding specified by <a href="function.mb-regex-encoding.html" class="function">mb_regex_encoding()</a> 
+will be used as the character encoding for this function.<br /></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-regex-encoding.html" class="function" rel="rdfs-seeAlso">mb_regex_encoding()</a></li>
+    <li class="member"><a href="function.mb-ereg-search-init.html" class="function" rel="rdfs-seeAlso">mb_ereg_search_init()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-ereg-search-setpos.html">mb_ereg_search_setpos</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-ereg.html">mb_ereg</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Stat process</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.win32ps.html">win32ps Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.win32service.html">win32service</a></div>
+ <div class="up"><a href="ref.win32ps.html">win32ps Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.win32-ps-stat-proc" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">win32_ps_stat_proc</h1>
+  <p class="verinfo">(PECL win32ps:1.0.1)</p><p class="refpurpose"><span class="refname">win32_ps_stat_proc</span> &mdash; <span class="dc-title">Stat process</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>win32_ps_stat_proc</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$pid</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Retrieves statistics about the process with the process id <i><tt class="parameter">pid</tt></i>
+.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The process id of the process to stat.  If omitted, the id of the current process.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>FALSE</tt></b> on failure, or an array consisting of the
+   following information on success:
+  </p>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The process id.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">exe</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The path to the executable image.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mem</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An array containing information about the following memory utilization indicators:
+       <i><tt class="parameter">page_fault_count</tt></i>
+,
+       <i><tt class="parameter">peak_working_set_size</tt></i>
+,
+       <i><tt class="parameter">working_set_size</tt></i>
+,
+       <i><tt class="parameter">quota_peak_paged_pool_usage</tt></i>
+,
+       <i><tt class="parameter">quota_paged_pool_usage</tt></i>
+,
+       <i><tt class="parameter">quota_peak_non_paged_pool_usage</tt></i>
+,
+       <i><tt class="parameter">quota_non_paged_pool_usage</tt></i>
+,
+       <i><tt class="parameter">pagefile_usage</tt></i>
+ and
+       <i><tt class="parameter">peak_pagefile_usage</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">tms</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An array containing information about the following CPU time utilization indicators:
+       <i><tt class="parameter">created</tt></i>
+, <i><tt class="parameter">kernel</tt></i>
+ and <i><tt class="parameter">user</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.win32-ps-list-procs.html" class="function" rel="rdfs-seeAlso">win32_ps_list_procs()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.win32ps.html">win32ps Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.win32service.html">win32service</a></div>
+ <div class="up"><a href="ref.win32ps.html">win32ps Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

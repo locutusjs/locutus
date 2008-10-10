@@ -1,0 +1,435 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Send a query and fetch all results (if any)</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbx-fetch-row.html">dbx_fetch_row</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbx-sort.html">dbx_sort</a></div>
+ <div class="up"><a href="ref.dbx.html">dbx Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.dbx-query" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dbx_query</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5 &lt;= 5.0.5, PECL dbx:1.1.0)</p><p class="refpurpose"><span class="refname">dbx_query</span> &mdash; <span class="dc-title">Send a query and fetch all results (if any)</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>dbx_query</b></b></span>
+    ( <span class="methodparam"><span class="type">object</span> <tt class="parameter">$link_identifier</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$sql_statement</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Sends a query and fetch all results.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The DBX link object returned by <a href="function.dbx-connect.html" class="function">dbx_connect()</a>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">sql_statement</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       SQL statement.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">flags</tt></i>
+ parameter is used to control the amount of
+       information that is returned. It may be any combination of the following 
+       constants with the bitwise OR operator (|). The DBX_COLNAMES_* flags 
+       override the dbx.colnames_case setting from <var class="filename">php.ini</var>.
+       <dl>
+
+        <dt>
+
+         <span class="term">
+          <b><tt>DBX_RESULT_INDEX</tt></b>
+         </span>
+
+         <dd>
+
+          <span class="simpara">
+           It is <em class="emphasis">always</em> set, that is, the returned object 
+           has a <span class="property">data</span> property which is a 2 dimensional
+           array indexed numerically. For example, in the expression 
+           <i>data[2][3]</i> <i>2</i> stands for the row
+           (or record) number and <i>3</i> stands for the column 
+           (or field) number. The first row and column are indexed at 0.
+          </span>
+          <span class="simpara">
+           If <b><tt>DBX_RESULT_ASSOC</tt></b> is also specified, the 
+           returning object contains the information related to 
+           <b><tt>DBX_RESULT_INFO</tt></b> too, even if it was not specified. 
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">
+          <b><tt>DBX_RESULT_INFO</tt></b>
+         </span>
+
+         <dd>
+
+          <span class="simpara">
+           It provides info about columns, such as field names and field types.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">
+          <b><tt>DBX_RESULT_ASSOC</tt></b>
+         </span>
+
+         <dd>
+
+          <span class="simpara">
+           It effects that the field values can be accessed with the respective 
+           column names used as keys to the returned object&#039;s 
+           <span class="property">data</span> property.
+          </span>
+          <span class="simpara">
+           Associated results are actually references to the numerically indexed 
+           data, so modifying <i>data[0][0]</i> causes that
+           <i>data[0][&#039;field_name_for_first_column&#039;]</i> is modified
+           as well.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">
+          <b><tt>DBX_RESULT_UNBUFFERED</tt></b> (PHP 5)
+         </span>
+
+         <dd>
+
+          <span class="simpara">
+           This flag will not create the <span class="property">data</span> property, and 
+           the <span class="property">rows</span> property will initially be 0. Use this 
+           flag for large datasets, and use <a href="function.dbx-fetch-row.html" class="function">dbx_fetch_row()</a> to
+           retrieve the results row by row.
+          </span>
+          <span class="simpara">
+           The <a href="function.dbx-fetch-row.html" class="function">dbx_fetch_row()</a> function will return rows that
+           are conformant to the flags set with this query. Incidentally, it will
+           also update the <span class="property">rows</span> each time it is called.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">
+          <b><tt>DBX_COLNAMES_UNCHANGED</tt></b> (available from PHP 4.3.0)
+         </span>
+
+         <dd>
+
+          <span class="simpara">
+           The case of the returned column names will not be changed.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">
+          <b><tt>DBX_COLNAMES_UPPERCASE</tt></b> (available from PHP 4.3.0)
+         </span>
+
+         <dd>
+
+          <span class="simpara">
+           The case of the returned column names will be changed to 
+           uppercase.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term">
+          <b><tt>DBX_COLNAMES_LOWERCASE</tt></b> (available from PHP 4.3.0)
+         </span>
+
+         <dd>
+
+          <span class="simpara">
+           The case of the returned column names will be changed to 
+           lowercase.
+          </span>
+         </dd>
+
+        </dt>
+
+       </dl>
+
+       Note that <b><tt>DBX_RESULT_INDEX</tt></b> is always used, regardless 
+       of the actual value of <i><tt class="parameter">flags</tt></i>
+ parameter. This means 
+       that only the following combinations are effective:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>DBX_RESULT_INDEX</tt></b>
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>DBX_RESULT_INDEX</tt></b> |
+          <b><tt>DBX_RESULT_INFO</tt></b>
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>DBX_RESULT_INDEX</tt></b> |
+          <b><tt>DBX_RESULT_INFO</tt></b> |
+          <b><tt>DBX_RESULT_ASSOC</tt></b> - this is the default, if 
+          <i><tt class="parameter">flags</tt></i>
+ is not specified.
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>dbx_query()</b> returns an object or <i>1</i> 
+   on success, and <i>0</i> on failure. The result object is 
+   returned only if the query given in <i><tt class="parameter">sql_statement</tt></i>
+
+   produces a result set (i.e. a SELECT query, even if the result set is
+   empty). 
+  </p>
+  <p class="para">
+   The returned <var class="varname">object</var> has four or five
+   properties depending on <i><tt class="parameter">flags</tt></i>
+:
+   <dl>
+
+    <dt>
+
+     <span class="term">
+      <span class="property">handle</span>
+     </span>
+
+     <dd>
+
+      <p class="para">
+       It is a valid handle for the connected database, and as such it can be
+       used in module specific functions (if required).
+       <div class="informalexample">
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id&nbsp;FROM&nbsp;table"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">mysql_field_len</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+        </div>
+
+       </div>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <span class="property">cols</span> and <span class="property">rows</span>
+     </span>
+
+     <dd>
+
+      <p class="para">
+       These contain the number of columns (or fields) and rows (or records)
+       respectively.
+       <div class="informalexample">
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;id&nbsp;FROM&nbsp;table'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">rows</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;number&nbsp;of&nbsp;records<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">cols</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;number&nbsp;of&nbsp;fields&nbsp;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+        </div>
+
+       </div>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <span class="property">info</span> (optional)
+     </span>
+
+     <dd>
+
+      <span class="simpara">
+       It is returned only if either <b><tt>DBX_RESULT_INFO</tt></b> or
+       <b><tt>DBX_RESULT_ASSOC</tt></b> is specified in the
+       <i><tt class="parameter">flags</tt></i>
+ parameter. It is a 2 dimensional array,
+       that has two named rows (<i>name</i> and 
+       <i>type</i>) to retrieve column information.
+      </span>
+      <div class="example">
+       <p><b>Example #1 lists each field&#039;s name and type</b></p>
+       <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;id&nbsp;FROM&nbsp;table'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">DBX_RESULT_INDEX&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">DBX_RESULT_INFO</span><span style="color: #007700">);<br /><br />for&nbsp;(</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">cols</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++&nbsp;)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">info</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">][</span><span style="color: #0000BB">$i</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">info</span><span style="color: #007700">[</span><span style="color: #DD0000">'type'</span><span style="color: #007700">][</span><span style="color: #0000BB">$i</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;&nbsp;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+       </div>
+
+      </div>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <span class="property">data</span>
+     </span>
+
+     <dd>
+
+      <span class="simpara">
+       This property contains the actual resulting data, possibly associated 
+       with column names as well depending on <i><tt class="parameter">flags</tt></i>
+.
+       If <b><tt>DBX_RESULT_ASSOC</tt></b> is set, it is possible to use
+       <i>$result-&gt;data[2][&quot;field_name&quot;]</i>.
+      </span>
+      <div class="example">
+       <p><b>Example #2 outputs the content of data property into HTML table</b></p>
+       <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;id,&nbsp;parentid,&nbsp;description&nbsp;FROM&nbsp;table'</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"&lt;table&gt;\n"</span><span style="color: #007700">;<br />foreach&nbsp;(</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;tr&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$field</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;td&gt;$field&lt;/td&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;/tr&gt;\n"</span><span style="color: #007700">;<br />}<br />echo&nbsp;</span><span style="color: #DD0000">"&lt;/table&gt;\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+       </div>
+
+      </div>
+      <div class="example">
+       <p><b>Example #3 How to handle UNBUFFERED queries</b></p>
+       <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_query&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;id,&nbsp;parentid,&nbsp;description&nbsp;FROM&nbsp;table'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DBX_RESULT_UNBUFFERED</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"&lt;table&gt;\n"</span><span style="color: #007700">;<br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_fetch_row</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;tr&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$field</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;td&gt;$field&lt;/td&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;/tr&gt;\n"</span><span style="color: #007700">;<br />}<br />echo&nbsp;</span><span style="color: #DD0000">"&lt;/table&gt;\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+       </div>
+
+      </div>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #4 How to handle the returned value</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">DBX_ODBC</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"db"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Could&nbsp;not&nbsp;connect"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;id,&nbsp;parentid,&nbsp;description&nbsp;FROM&nbsp;table'</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">is_object</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;...&nbsp;do&nbsp;some&nbsp;stuff&nbsp;here,&nbsp;see&nbsp;detailed&nbsp;examples&nbsp;below&nbsp;...<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;first,&nbsp;print&nbsp;out&nbsp;field&nbsp;names&nbsp;and&nbsp;types&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;then,&nbsp;draw&nbsp;a&nbsp;table&nbsp;filled&nbsp;with&nbsp;the&nbsp;returned&nbsp;field&nbsp;values<br /></span><span style="color: #007700">}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;exit(</span><span style="color: #DD0000">"Query&nbsp;failed"</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">dbx_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Always refer to the module-specific documentation as well.
+   <br />
+   
+    Column names for queries on an Oracle database are returned in lowercase.
+   <br />
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.dbx-escape-string.html" class="function" rel="rdfs-seeAlso">dbx_escape_string()</a></li>
+    <li class="member"><a href="function.dbx-fetch-row.html" class="function" rel="rdfs-seeAlso">dbx_fetch_row()</a></li>
+    <li class="member"><a href="function.dbx-connect.html" class="function" rel="rdfs-seeAlso">dbx_connect()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbx-fetch-row.html">dbx_fetch_row</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbx-sort.html">dbx_sort</a></div>
+ <div class="up"><a href="ref.dbx.html">dbx Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

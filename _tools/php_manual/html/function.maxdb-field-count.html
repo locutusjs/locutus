@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the number of columns for the most recent query</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-fetch.html">maxdb_fetch</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-field-seek.html">maxdb_field_seek</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.maxdb-field-count" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_field_count</h1>
+  <h1 class="refname">maxdb-&gt;field_count</h1>
+  <p class="verinfo">(PECL maxdb:1.0-7.6.00.38)</p><p class="refpurpose"><span class="refname">maxdb_field_count</span> -- <span class="refname">maxdb-&gt;field_count</span> &mdash; <span class="dc-title">Returns the number of columns for the most recent query</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedural style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>maxdb_field_count</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method):</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">maxdb</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">int</span>
+     <span class="methodname"><b><b>field_count</b></b></span>
+     ( <span class="methodparam">void</span>
+    )</div>
+
+  </div>
+  <p class="para">
+   Returns the number of columns for the most recent query on the connection
+   represented by the <i><tt class="parameter">link</tt></i>
+ parameter. This function
+   can be useful when using the <a href="function.maxdb-store-result.html" class="function">maxdb_store_result()</a>
+   function to determine if the query should have produced a non-empty result
+   set or not without knowing the nature of the query.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An integer representing the number of fields in a result set.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Object oriented style</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$maxdb&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">maxdb</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_OFF</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;friends"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_ERROR</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;friends&nbsp;(id&nbsp;int,&nbsp;name&nbsp;varchar(20))"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;friends&nbsp;VALUES&nbsp;(1,'Hartmut')"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;friends&nbsp;VALUES&nbsp;(2,&nbsp;'Ulf')"</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">field_count</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;this&nbsp;was&nbsp;a&nbsp;select/show&nbsp;or&nbsp;describe&nbsp;query&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">store_result</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;process&nbsp;resultset&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_row</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;free&nbsp;resultset&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example">
+    <p><b>Example #2 Procedural style</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_OFF</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;friends"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_ERROR</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;friends&nbsp;(id&nbsp;int,&nbsp;name&nbsp;varchar(20))"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;friends&nbsp;VALUES&nbsp;(1,'Hartmut')"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;friends&nbsp;VALUES&nbsp;(2,&nbsp;'Ulf')"</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">maxdb_field_count</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;this&nbsp;was&nbsp;a&nbsp;select/show&nbsp;or&nbsp;describe&nbsp;query&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_store_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;process&nbsp;resultset&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_fetch_row</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;free&nbsp;resultset&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">maxdb_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   The above example produces no output.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-fetch.html">maxdb_fetch</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-field-seek.html">maxdb_field_seek</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

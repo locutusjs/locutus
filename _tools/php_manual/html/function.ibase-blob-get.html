@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get len bytes data from open blob</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ibase-blob-echo.html">ibase_blob_echo</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-blob-import.html">ibase_blob_import</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ibase-blob-get" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ibase_blob_get</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ibase_blob_get</span> &mdash; <span class="dc-title">Get len bytes data from open blob</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>ibase_blob_get</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$blob_handle</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$len</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function returns at most <i><tt class="parameter">len</tt></i>
+ bytes from a BLOB
+   that has been opened for reading by <a href="function.ibase-blob-open.html" class="function">ibase_blob_open()</a>.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    It is not possible to read from a BLOB that has been opened for writing
+    by <a href="function.ibase-blob-create.html" class="function">ibase_blob_create()</a>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">blob_handle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A BLOB handle opened with <a href="function.ibase-blob-open.html" class="function">ibase_blob_open()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">len</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Size of returned data.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns at most <i><tt class="parameter">len</tt></i>
+ bytes from the BLOB, or <b><tt>FALSE</tt></b>
+   on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ibase_blob_get()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$result&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ibase_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;blob_value&nbsp;FROM&nbsp;table"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ibase_fetch_object</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$blob_data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ibase_blob_info</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">BLOB_VALUE</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$blob_hndl&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ibase_blob_open</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">BLOB_VALUE</span><span style="color: #007700">);<br />echo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">ibase_blob_get</span><span style="color: #007700">(</span><span style="color: #0000BB">$blob_hndl</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$blob_data</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   Whilst this example doesn&#039;t do much more than a
+   &#039;ibase_blob_echo($data-&gt;BLOB_VALUE)&#039; would do, it does show you how to get
+   information into a $variable to manipulate as you please. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ibase-blob-open.html" class="function" rel="rdfs-seeAlso">ibase_blob_open()</a></li>
+    <li class="member"><a href="function.ibase-blob-close.html" class="function" rel="rdfs-seeAlso">ibase_blob_close()</a></li>
+    <li class="member"><a href="function.ibase-blob-echo.html" class="function" rel="rdfs-seeAlso">ibase_blob_echo()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ibase-blob-echo.html">ibase_blob_echo</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-blob-import.html">ibase_blob_import</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

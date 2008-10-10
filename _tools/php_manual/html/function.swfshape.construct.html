@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Creates a new shape object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.swfshape.addfill.html">SWFShape->addFill</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swfshape.drawarc.html">SWFShape->drawArc</a></div>
+ <div class="up"><a href="class.swfshape.html">SWFShape</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.swfshape.construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SWFShape-&gt;__construct</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SWFShape-&gt;__construct</span> &mdash; <span class="dc-title">Creates a new shape object</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><a href="class.swfshape.html" class="classname">SWFShape</a></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">SWFShape</span> <span class="methodname"><b><b>__construct</b></b></span>
+     ( <span class="methodparam">void</span>
+    )</div>
+
+  </div>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+  <p class="para">
+   Created a new <a href="class.swfshape.html" class="classname">SWFShape</a> object.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   This simple example will draw a big red elliptic quadrant.
+   <div class="example">
+    <p><b>Example #1 <b>swfshape()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$s&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SWFShape</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setLine</span><span style="color: #007700">(</span><span style="color: #0000BB">40</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x7f</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setRightFill</span><span style="color: #007700">(</span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addFill</span><span style="color: #007700">(</span><span style="color: #0000BB">0xff</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">movePenTo</span><span style="color: #007700">(</span><span style="color: #0000BB">200</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">200</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drawLineTo</span><span style="color: #007700">(</span><span style="color: #0000BB">6200</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">200</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drawLineTo</span><span style="color: #007700">(</span><span style="color: #0000BB">6200</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4600</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$s</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drawCurveTo</span><span style="color: #007700">(</span><span style="color: #0000BB">200</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4600</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">200</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">200</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SWFMovie</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setDimension</span><span style="color: #007700">(</span><span style="color: #0000BB">6400</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4800</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setRate</span><span style="color: #007700">(</span><span style="color: #0000BB">12.0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #0000BB">$s</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">nextFrame</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;application/x-shockwave-flash'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">output</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.swfshape.addfill.html">SWFShape->addFill</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swfshape.drawarc.html">SWFShape->drawArc</a></div>
+ <div class="up"><a href="class.swfshape.html">SWFShape</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

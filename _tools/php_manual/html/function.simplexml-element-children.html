@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Finds children of given node</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.simplexml-element-attributes.html">SimpleXMLElement->attributes</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.simplexml-element-construct.html">SimpleXMLElement->__construct</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.simplexml-element-children" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SimpleXMLElement-&gt;children</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SimpleXMLElement-&gt;children</span> &mdash; <span class="dc-title">Finds children of given node</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SimpleXMLElement</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">SimpleXMLElement</span> <span class="methodname"><b><b>children</b></b></span>
+     ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$ns</tt></span>
+    [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$is_prefix</tt></span>
+   ]] )</div>
+
+  </div>
+  <p class="para">
+   This method finds the children of the element of which it is a member. The result
+   follows normal iteration rules.
+  </p>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">SimpleXML has made a rule of adding
+iterative properties to most methods. They cannot be viewed using <a href="function.var-dump.html" class="function">var_dump()</a>
+or anything else which can examine objects.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ns</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">is_prefix</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Default to <b><tt>FALSE</tt></b>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.2.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The optional parameter <i><tt class="parameter">is_prefix</tt></i>
+ was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Traversing a <i>children()</i> pseudo-array</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$xml&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SimpleXMLElement</span><span style="color: #007700">(<br /></span><span style="color: #DD0000">'&lt;person&gt;<br />&nbsp;&lt;child&nbsp;role="son"&gt;<br />&nbsp;&nbsp;&lt;child&nbsp;role="daughter"/&gt;<br />&nbsp;&lt;/child&gt;<br />&nbsp;&lt;child&nbsp;role="daughter"&gt;<br />&nbsp;&nbsp;&lt;child&nbsp;role="son"&gt;<br />&nbsp;&nbsp;&nbsp;&lt;child&nbsp;role="son"/&gt;<br />&nbsp;&nbsp;&lt;/child&gt;<br />&nbsp;&lt;/child&gt;<br />&lt;/person&gt;'</span><span style="color: #007700">);<br /><br />foreach&nbsp;(</span><span style="color: #0000BB">$xml</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">children</span><span style="color: #007700">()&nbsp;as&nbsp;</span><span style="color: #0000BB">$second_gen</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'&nbsp;The&nbsp;person&nbsp;begot&nbsp;a&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$second_gen</span><span style="color: #007700">[</span><span style="color: #DD0000">'role'</span><span style="color: #007700">];<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$second_gen</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">children</span><span style="color: #007700">()&nbsp;as&nbsp;</span><span style="color: #0000BB">$third_gen</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'&nbsp;who&nbsp;begot&nbsp;a&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$third_gen</span><span style="color: #007700">[</span><span style="color: #DD0000">'role'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">';'</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$third_gen</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">children</span><span style="color: #007700">()&nbsp;as&nbsp;</span><span style="color: #0000BB">$fourth_gen</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'&nbsp;and&nbsp;that&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$third_gen</span><span style="color: #007700">[</span><span style="color: #DD0000">'role'</span><span style="color: #007700">]&nbsp;.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'&nbsp;begot&nbsp;a&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$fourth_gen</span><span style="color: #007700">[</span><span style="color: #DD0000">'role'</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+The person begot a son who begot a daughter; The person
+begot a daughter who begot a son; and that son begot a son
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.simplexml-element-attributes.html">SimpleXMLElement->attributes</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.simplexml-element-construct.html">SimpleXMLElement->__construct</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

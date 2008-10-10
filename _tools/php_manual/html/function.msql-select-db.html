@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Select mSQL database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.msql-result.html">msql_result</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.msql-tablename.html">msql_tablename</a></div>
+ <div class="up"><a href="ref.msql.html">mSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.msql-select-db" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">msql_select_db</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">msql_select_db</span> &mdash; <span class="dc-title">Select mSQL database</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>msql_select_db</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$database_name</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">  
+   <b>msql_select_db()</b> sets the current active database on 
+   the server that&#039;s associated with the specified
+   <i><tt class="parameter">link_identifier</tt></i>
+.
+  </p>
+  <p class="para"> 
+   Subsequent calls to <a href="function.msql-query.html" class="function">msql_query()</a> will be made on the
+   active database.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">database_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The database name.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+link_identifier</tt></i>
+</span>
+<dd>
+<p class="para">The mSQL connection.
+If not specified, the last link opened by <a href="function.msql-connect.html" class="function">msql_connect()</a>
+is assumed. If no such link is found, the function will try to establish a
+link as if <a href="function.msql-connect.html" class="function">msql_connect()</a> was called, and use it.
+</p></dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>  
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.msql-connect.html" class="function" rel="rdfs-seeAlso">msql_connect()</a></li>
+    <li class="member"><a href="function.msql-pconnect.html" class="function" rel="rdfs-seeAlso">msql_pconnect()</a></li>
+    <li class="member"><a href="function.msql-query.html" class="function" rel="rdfs-seeAlso">msql_query()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.msql-result.html">msql_result</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.msql-tablename.html">msql_tablename</a></div>
+ <div class="up"><a href="ref.msql.html">mSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

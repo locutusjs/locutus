@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Combined linear congruential generator</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.is-nan.html">is_nan</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.log10.html">log10</a></div>
+ <div class="up"><a href="ref.math.html">Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.lcg-value" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">lcg_value</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">lcg_value</span> &mdash; <span class="dc-title">Combined linear congruential generator</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+   <div class="methodsynopsis dc-description">
+    <span class="type">float</span> <span class="methodname"><b><b>lcg_value</b></b></span>
+     ( <span class="methodparam">void</span>
+    )</div>
+
+  <p class="para rdfs-comment">
+   <b>lcg_value()</b> returns a pseudo random number in
+   the range of (0, 1).  The function combines two CGs with periods
+   of 2^31 - 85 and 2^31 - 249. The period of this function is equal
+   to the product of both primes.
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A pseudo random float value in the range of (0, 1)
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.rand.html" class="function" rel="rdfs-seeAlso">rand()</a></li>
+    <li class="member"><a href="function.mt-rand.html" class="function" rel="rdfs-seeAlso">mt_rand()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.is-nan.html">is_nan</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.log10.html">log10</a></div>
+ <div class="up"><a href="ref.math.html">Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

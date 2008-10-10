@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Determine if GeoIP Database is available</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.geoip-database-info.html">geoip_database_info</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.geoip-db-filename.html">geoip_db_filename</a></div>
+ <div class="up"><a href="ref.geoip.html">GeoIP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.geoip-db-avail" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">geoip_db_avail</h1>
+  <p class="verinfo">(PECL geoip:1.0.1)</p><p class="refpurpose"><span class="refname">geoip_db_avail</span> &mdash; <span class="dc-title">Determine if GeoIP Database is available</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>geoip_db_avail</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$database</tt></span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   The <b>geoip_db_avail()</b> function returns if the corresponding
+   GeoIP Database is available and can be opened on disk.
+  </p>
+
+  <p class="para">
+   It does not indicate if the file is a proper database, only if it is readable.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">database</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The database type as an integer. You can use the
+       <a href="geoip.constants.html" class="link">various constants</a> defined with
+       this extension (ie: GEOIP_*_EDITION).
+      </p>
+
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> is database exists, <b><tt>FALSE</tt></b> if not found, or <b><tt>NULL</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>geoip_db_avail()</b> example</b></p>
+    <div class="example-contents"><p>
+     This will output the current database version string.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">geoip_db_avail</span><span style="color: #007700">(</span><span style="color: #0000BB">GEOIP_COUNTRY_EDITION</span><span style="color: #007700">))<br />&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #0000BB">geoip_database_info</span><span style="color: #007700">(</span><span style="color: #0000BB">GEOIP_COUNTRY_EDITION</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+GEO-106FREE 20080801 Build 1 Copyright (c) 2006 MaxMind LLC All Rights Reserved
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+  
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.geoip-database-info.html">geoip_database_info</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.geoip-db-filename.html">geoip_db_filename</a></div>
+ <div class="up"><a href="ref.geoip.html">GeoIP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

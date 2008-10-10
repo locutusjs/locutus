@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Describe a transition used to trigger an action list</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.swf-nextid.html">swf_nextid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swf-openfile.html">swf_openfile</a></div>
+ <div class="up"><a href="ref.swf.html">SWF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.swf-oncondition" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">swf_oncondition</h1>
+  <p class="verinfo">(PHP 4)</p><p class="refpurpose"><span class="refname">swf_oncondition</span> &mdash; <span class="dc-title">Describe a transition used to trigger an action list</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>swf_oncondition</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$transition</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The <b>swf_oncondition()</b> function describes a
+   transition that will trigger an action list.  
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">transition</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       There are several types of possible transitions, the following are for
+       buttons defined as TYPE_MENUBUTTON:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          IdletoOverUp
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          OverUptoIdle
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          OverUptoOverDown
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          OverDowntoOverUp
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          IdletoOverDown
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          OutDowntoIdle
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          MenuEnter (IdletoOverUp|IdletoOverDown)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          MenuExit (OverUptoIdle|OverDowntoIdle)
+         </span>
+        </li>
+       </ul>
+       For TYPE_PUSHBUTTON there are the following options:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          IdletoOverUp
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          OverUptoIdle
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          OverUptoOverDown
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          OverDowntoOverUp
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          OverDowntoOutDown
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          OutDowntoOverDown
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          OutDowntoIdle
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          ButtonEnter (IdletoOverUp|OutDowntoOverDown)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          ButtonExit  (OverUptoIdle|OverDowntoOutDown)
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.swf-nextid.html">swf_nextid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swf-openfile.html">swf_openfile</a></div>
+ <div class="up"><a href="ref.swf.html">SWF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

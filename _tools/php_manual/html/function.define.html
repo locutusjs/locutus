@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Defines a named constant</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.constant.html">constant</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.defined.html">defined</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.define" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">define</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">define</span> &mdash; <span class="dc-title">Defines a named constant</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>define</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$value</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$case_insensitive</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Defines a named constant at runtime.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name of the constant.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">value</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The value of the constant; only scalar and <a href="language.types.null.html" class="type null">null</a> values are allowed. 
+       Scalar values are <a href="language.types.integer.html" class="type integer">integer</a>, 
+       <a href="language.types.float.html" class="type float">float</a>, <a href="language.types.string.html" class="type string">string</a> or <a href="language.types.boolean.html" class="type boolean">boolean</a> values.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">case_insensitive</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If set to <b><tt>TRUE</tt></b>, the constant will be defined case-insensitive. 
+       The default behaviour is case-sensitive; i.e. 
+       <i>CONSTANT</i> and <i>Constant</i> represent
+       different values.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Defining Constants</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />define</span><span style="color: #007700">(</span><span style="color: #DD0000">"CONSTANT"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Hello&nbsp;world."</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">CONSTANT</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;outputs&nbsp;"Hello&nbsp;world."<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">Constant</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;outputs&nbsp;"Constant"&nbsp;and&nbsp;issues&nbsp;a&nbsp;notice.<br /><br /></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">"GREETING"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Hello&nbsp;you."</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">GREETING</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;outputs&nbsp;"Hello&nbsp;you."<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">Greeting</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;outputs&nbsp;"Hello&nbsp;you."<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.defined.html" class="function" rel="rdfs-seeAlso">defined()</a></li>
+    <li class="member"><a href="function.constant.html" class="function" rel="rdfs-seeAlso">constant()</a></li>
+    <li class="member">The section on <a href="language.constants.html" class="link">Constants</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.constant.html">constant</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.defined.html">defined</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

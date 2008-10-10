@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Exports a certificate as a string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.openssl-x509-export-to-file.html">openssl_x509_export_to_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.openssl-x509-free.html">openssl_x509_free</a></div>
+ <div class="up"><a href="ref.openssl.html">OpenSSL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.openssl-x509-export" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">openssl_x509_export</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">openssl_x509_export</span> &mdash; <span class="dc-title">Exports a certificate as a string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>openssl_x509_export</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$x509</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter reference">&$output</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$notext</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>openssl_x509_export()</b> stores
+   <i><tt class="parameter">x509</tt></i>
+ into a string named by
+   <i><tt class="parameter">output</tt></i>
+ in a PEM encoded format.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">x509</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">output</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       On success, this will hold the PEM.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">notext</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+ The optional parameter <i><tt class="parameter">notext</tt></i>
+ affects
+ the verbosity of the output; if it is <b><tt>FALSE</tt></b>, then additional human-readable
+ information is included in the output. The default value of
+ <i><tt class="parameter">notext</tt></i>
+ is <b><tt>TRUE</tt></b>.
+</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.openssl-x509-export-to-file.html">openssl_x509_export_to_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.openssl-x509-free.html">openssl_x509_free</a></div>
+ <div class="up"><a href="ref.openssl.html">OpenSSL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

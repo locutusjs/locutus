@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get number of affected rows in previous MySQL operation</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-change-user.html">mysql_change_user</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mysql-affected-rows" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysql_affected_rows</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL mysql:1.0)</p><p class="refpurpose"><span class="refname">mysql_affected_rows</span> &mdash; <span class="dc-title">Get number of affected rows in previous MySQL operation</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>mysql_affected_rows</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Get the number of affected rows by the last INSERT, UPDATE, REPLACE 
+   or DELETE query associated with <i><tt class="parameter">link_identifier</tt></i>
+.  
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+link_identifier</tt></i>
+</span>
+<dd>
+<p class="para">The MySQL connection. If the 
+link identifier is not specified, the last link opened by 
+<a href="function.mysql-connect.html" class="function">mysql_connect()</a> is assumed. If no such link is found, it
+will try to create one as if <a href="function.mysql-connect.html" class="function">mysql_connect()</a> was called
+with no arguments. If by chance no connection is found or established, an
+<b><tt>E_WARNING</tt></b> level error is generated.</p></dd>
+
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of affected rows on success, and -1 if the last query
+   failed.
+  </p>
+  <p class="para">
+   If the last query was a DELETE query with no WHERE clause, all
+   of the records will have been deleted from the table but this
+   function will return zero with MySQL versions prior to 4.1.2.
+  </p>
+  <p class="para">
+   When using UPDATE, MySQL will not update columns where the new value is the 
+   same as the old value.  This creates the possibility that 
+   <b>mysql_affected_rows()</b> may not actually equal the number 
+   of rows matched, only the number of rows that were literally affected by 
+   the query.
+  </p>
+  <p class="para">
+   The REPLACE statement first deletes the record with the same primary key 
+   and then inserts the new record. This function returns the number of 
+   deleted records plus the number of inserted records.
+  </p> 
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mysql_affected_rows()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_password'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Could&nbsp;not&nbsp;connect:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mysql_error</span><span style="color: #007700">());<br />}<br /></span><span style="color: #0000BB">mysql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">'mydb'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;this&nbsp;should&nbsp;return&nbsp;the&nbsp;correct&nbsp;numbers&nbsp;of&nbsp;deleted&nbsp;records&nbsp;*/<br /></span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">'DELETE&nbsp;FROM&nbsp;mytable&nbsp;WHERE&nbsp;id&nbsp;&lt;&nbsp;10'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Records&nbsp;deleted:&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysql_affected_rows</span><span style="color: #007700">());<br /><br /></span><span style="color: #FF8000">/*&nbsp;with&nbsp;a&nbsp;where&nbsp;clause&nbsp;that&nbsp;is&nbsp;never&nbsp;true,&nbsp;it&nbsp;should&nbsp;return&nbsp;0&nbsp;*/<br /></span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">'DELETE&nbsp;FROM&nbsp;mytable&nbsp;WHERE&nbsp;0'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Records&nbsp;deleted:&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysql_affected_rows</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Records deleted: 10
+Records deleted: 0
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 <b>mysql_affected_rows()</b> example using transactions</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_password'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Could&nbsp;not&nbsp;connect:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mysql_error</span><span style="color: #007700">());<br />}<br /></span><span style="color: #0000BB">mysql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">'mydb'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Update&nbsp;records&nbsp;*/<br /></span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"UPDATE&nbsp;mytable&nbsp;SET&nbsp;used=1&nbsp;WHERE&nbsp;id&nbsp;&lt;&nbsp;10"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"Updated&nbsp;records:&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysql_affected_rows</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"COMMIT"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Updated Records: 10
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   <b>Transactions</b><br />
+   
+    If you are using transactions, you need to call
+    <b>mysql_affected_rows()</b> after your INSERT, UPDATE, or 
+    DELETE query, not after the COMMIT.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   <b>SELECT Statements</b><br />
+   
+    To retrieve the number of rows returned by a SELECT, it is possible to
+    use <a href="function.mysql-num-rows.html" class="function">mysql_num_rows()</a>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mysql-num-rows.html" class="function" rel="rdfs-seeAlso">mysql_num_rows()</a></li>
+    <li class="member"><a href="function.mysql-info.html" class="function" rel="rdfs-seeAlso">mysql_info()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-change-user.html">mysql_change_user</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

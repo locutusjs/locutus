@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Read a large object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-lo-read-all.html">pg_lo_read_all</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-lo-seek.html">pg_lo_seek</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-lo-read" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_lo_read</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">pg_lo_read</span> &mdash; <span class="dc-title">Read a large object</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>pg_lo_read</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$large_object</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$len</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>pg_lo_read()</b> reads at most
+   <i><tt class="parameter">len</tt></i>
+ bytes from a large object and
+   returns it as a <a href="language.types.string.html" class="type string">string</a>.
+  </p>
+  <p class="para">
+   To use the large object interface, it is necessary to
+   enclose it within a transaction block.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function used to be called <b>pg_loread()</b>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">large_object</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL large object (LOB) resource, returned by <a href="function.pg-lo-open.html" class="function">pg_lo_open()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">len</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An optional maximum number of bytes to return.  Defaults to 8192.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A <a href="language.types.string.html" class="type string">string</a> containing <i><tt class="parameter">len</tt></i>
+ bytes from the
+   large object, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pg_lo_read()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;$doc_oid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">189762345</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$database&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=jacarta"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"begin"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$handle&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_lo_open</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$doc_oid</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"r"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_lo_read</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">50000</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"commit"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div> 
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-lo-read-all.html" class="function" rel="rdfs-seeAlso">pg_lo_read_all()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-lo-read-all.html">pg_lo_read_all</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-lo-seek.html">pg_lo_seek</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

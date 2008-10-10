@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Decrypts an S/MIME encrypted message</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.openssl-pkcs12-read.html">openssl_pkcs12_read</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.openssl-pkcs7-encrypt.html">openssl_pkcs7_encrypt</a></div>
+ <div class="up"><a href="ref.openssl.html">OpenSSL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.openssl-pkcs7-decrypt" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">openssl_pkcs7_decrypt</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">openssl_pkcs7_decrypt</span> &mdash; <span class="dc-title">Decrypts an S/MIME encrypted message</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>openssl_pkcs7_decrypt</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$infilename</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$outfilename</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$recipcert</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$recipkey</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Decrypts the S/MIME encrypted message contained in the file specified by
+   <i><tt class="parameter">infilename</tt></i>
+ using the certificate and its
+   associated private key specified by <i><tt class="parameter">recipcert</tt></i>
+ and
+   <i><tt class="parameter">recipkey</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">infilename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">outfilename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The decrypted message is written to the file specified by
+       <i><tt class="parameter">outfilename</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">recipcert</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">recipkey</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>openssl_pkcs7_decrypt()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;$cert&nbsp;and&nbsp;$key&nbsp;are&nbsp;assumed&nbsp;to&nbsp;contain&nbsp;your&nbsp;personal&nbsp;certificate&nbsp;and&nbsp;private<br />//&nbsp;key&nbsp;pair,&nbsp;and&nbsp;that&nbsp;you&nbsp;are&nbsp;the&nbsp;recipient&nbsp;of&nbsp;an&nbsp;S/MIME&nbsp;message<br /></span><span style="color: #0000BB">$infilename&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"encrypted.msg"</span><span style="color: #007700">;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;this&nbsp;file&nbsp;holds&nbsp;your&nbsp;encrypted&nbsp;message<br /></span><span style="color: #0000BB">$outfilename&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"decrypted.msg"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;make&nbsp;sure&nbsp;you&nbsp;can&nbsp;write&nbsp;to&nbsp;this&nbsp;file<br /><br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">openssl_pkcs7_decrypt</span><span style="color: #007700">(</span><span style="color: #0000BB">$infilename</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$outfilename</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$cert</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$key</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"decrypted!"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"failed&nbsp;to&nbsp;decrypt!"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.openssl-pkcs12-read.html">openssl_pkcs12_read</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.openssl-pkcs7-encrypt.html">openssl_pkcs7_encrypt</a></div>
+ <div class="up"><a href="ref.openssl.html">OpenSSL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

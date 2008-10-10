@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>This function runs a self test on the specified module</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-module-open.html">mcrypt_module_open</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mcrypt-ofb.html">mcrypt_ofb</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mcrypt-module-self-test" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mcrypt_module_self_test</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5)</p><p class="refpurpose"><span class="refname">mcrypt_module_self_test</span> &mdash; <span class="dc-title">This function runs a self test on the specified module</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>mcrypt_module_self_test</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$algorithm</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$lib_dir</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This function runs the self test on the algorithm specified.  The
+   optional <i><tt class="parameter">lib_dir</tt></i>
+ parameter can contain the
+   location of where the algorithm module is on the system.
+  </p>
+  <p class="para">
+   The function returns <b><tt>TRUE</tt></b> if the self test succeeds, or <b><tt>FALSE</tt></b> when if
+   fails.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mcrypt_module_self_test()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">mcrypt_module_self_test</span><span style="color: #007700">(</span><span style="color: #0000BB">MCRYPT_RIJNDAEL_128</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">mcrypt_module_self_test</span><span style="color: #007700">(</span><span style="color: #0000BB">MCRYPT_BOGUS_CYPHER</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+bool(true)
+bool(false)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-module-open.html">mcrypt_module_open</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mcrypt-ofb.html">mcrypt_ofb</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

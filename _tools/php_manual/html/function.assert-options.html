@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set/get the various assert flags</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.assert.html">assert</a></div>
+ <div class="up"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.assert-options" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">assert_options</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">assert_options</span> &mdash; <span class="dc-title">Set/get the various assert flags</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>assert_options</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$what</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$value</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Set the various <a href="function.assert.html" class="function">assert()</a> control options or just query
+   their current settings.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">what</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <table border="5">
+        <caption><b>Assert Options</b></caption>
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">option</th>
+           <th colspan="1">ini-parameter</th>
+           <th colspan="1">default</th>
+           <th colspan="1">description</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">ASSERT_ACTIVE</td>
+           <td colspan="1" rowspan="1" align="left">assert.active</td>
+           <td colspan="1" rowspan="1" align="left">1</td>
+           <td colspan="1" rowspan="1" align="left">enable <a href="function.assert.html" class="function">assert()</a> evaluation</td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">ASSERT_WARNING</td>
+           <td colspan="1" rowspan="1" align="left">assert.warning</td>
+           <td colspan="1" rowspan="1" align="left">1</td>
+           <td colspan="1" rowspan="1" align="left">issue a PHP warning for each failed assertion</td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">ASSERT_BAIL</td>
+           <td colspan="1" rowspan="1" align="left">assert.bail</td>
+           <td colspan="1" rowspan="1" align="left">0</td>
+           <td colspan="1" rowspan="1" align="left">terminate execution on failed assertions</td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">ASSERT_QUIET_EVAL</td>
+           <td colspan="1" rowspan="1" align="left">assert.quiet_eval</td>
+           <td colspan="1" rowspan="1" align="left">0</td>
+           <td colspan="1" rowspan="1" align="left">
+            disable error_reporting during assertion expression
+            evaluation
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">ASSERT_CALLBACK</td>
+           <td colspan="1" rowspan="1" align="left">assert.callback</td>
+           <td colspan="1" rowspan="1" align="left">(<b><tt>NULL</tt></b>)</td>
+           <td colspan="1" rowspan="1" align="left">user function to call on failed assertions</td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">value</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An optional new value for the option.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the original setting of any option or <b><tt>FALSE</tt></b> on errors.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.assert.html">assert</a></div>
+ <div class="up"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

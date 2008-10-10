@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Replaces an object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hwapi-remove.html">hw_api->remove</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hwapi-setcommittedversion.html">hw_api->setcommittedversion</a></div>
+ <div class="up"><a href="ref.hwapi.html">Hyperwave API Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.hwapi-replace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hw_api-&gt;replace</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">hw_api-&gt;replace</span> &mdash; <span class="dc-title">Replaces an object</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">hw_api</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">hw_api_object</span> <span class="methodname"><b><b>replace</b></b></span>
+     ( <span class="methodparam"><span class="type">array</span> <tt class="parameter">$parameter</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   Replaces the attributes and the content of an object.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">parameter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The parameter array contains the required elements &#039;objectIdentifier&#039;
+       and &#039;object&#039; and the optional parameters &#039;content&#039;, &#039;parameters&#039;,
+       &#039;mode&#039; and &#039;attributeSelector&#039;. &#039;objectIdentifier&#039; contains the object
+       to be replaced. &#039;object&#039; contains the new object. &#039;content&#039; contains
+       the new content. &#039;parameters&#039; contain extra information for HTML
+       documents. HTML_Language is the letter abbreviation of the language of
+       the title. HTML_Base sets the base attribute of the HTML document.
+      </p>
+      <p class="para">
+       &#039;mode&#039; can be a combination of the following flags:
+       <dl>
+
+        <dt>
+
+         <span class="term"><b><tt>HW_API_REPLACE_NORMAL</tt></b></span>
+
+         <dd>
+
+          <span class="simpara">
+           The object on the server is replace with the object passed.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><b><tt>HW_API_REPLACE_FORCE_VERSION_CONTROL</tt></b></span>
+
+         <dd>
+
+          <span class="simpara">
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><b><tt>HW_API_REPLACE_AUTOMATIC_CHECKOUT</tt></b></span>
+
+         <dd>
+
+          <span class="simpara">
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><b><tt>HW_API_REPLACE_AUTOMATIC_CHECKIN</tt></b></span>
+
+         <dd>
+
+          <span class="simpara">
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><b><tt>HW_API_REPLACE_PLAIN</tt></b></span>
+
+         <dd>
+
+          <span class="simpara">
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><b><tt>HW_API_REPLACE_REVERT_IF_NOT_CHANGED</tt></b></span>
+
+         <dd>
+
+          <span class="simpara">
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><b><tt>HW_API_REPLACE_KEEP_TIME_MODIFIED</tt></b></span>
+
+         <dd>
+
+          <span class="simpara">
+          </span>
+         </dd>
+
+        </dt>
+
+       </dl>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.hwapi-insert.html" class="xref">hw_api->insert</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hwapi-remove.html">hw_api->remove</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hwapi-setcommittedversion.html">hw_api->setcommittedversion</a></div>
+ <div class="up"><a href="ref.hwapi.html">Hyperwave API Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

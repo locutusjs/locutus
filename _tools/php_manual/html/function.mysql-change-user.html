@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Change logged in user of the active connection</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-affected-rows.html">mysql_affected_rows</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-client-encoding.html">mysql_client_encoding</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mysql-change-user" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysql_change_user</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">mysql_change_user</span> &mdash; <span class="dc-title">Change logged in user of the active connection</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>mysql_change_user</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$user</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$password</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$database</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>mysql_change_user()</b> changes the logged in user
+   of the current active connection, or the connection given by the
+   optional <i><tt class="parameter">link_identifier</tt></i>
+ parameter. If a
+   database is specified, this will be the current database after
+   the user has been changed. If the new user and password
+   authorization fails, the current connected user stays active.
+  </p>
+  <p class="para">
+   This function is deprecated and no longer exists in PHP.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">user</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The new MySQL username.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">password</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The new MySQL password.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">database</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The MySQL database. If not specified, the current selected database
+       is used.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+link_identifier</tt></i>
+</span>
+<dd>
+<p class="para">The MySQL connection. If the 
+link identifier is not specified, the last link opened by 
+<a href="function.mysql-connect.html" class="function">mysql_connect()</a> is assumed. If no such link is found, it
+will try to create one as if <a href="function.mysql-connect.html" class="function">mysql_connect()</a> was called
+with no arguments. If by chance no connection is found or established, an
+<b><tt>E_WARNING</tt></b> level error is generated.</p></dd>
+
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">3.0.14</td>
+       <td colspan="1" rowspan="1" align="left">
+        This function was removed from PHP.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   <b>Requirements</b><br />
+   
+    This function requires MySQL 3.23.3 or higher.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mysql-connect.html" class="function" rel="rdfs-seeAlso">mysql_connect()</a></li>
+    <li class="member"><a href="function.mysql-select-db.html" class="function" rel="rdfs-seeAlso">mysql_select_db()</a></li>
+    <li class="member"><a href="function.mysql-query.html" class="function" rel="rdfs-seeAlso">mysql_query()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-affected-rows.html">mysql_affected_rows</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-client-encoding.html">mysql_client_encoding</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

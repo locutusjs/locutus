@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Octal to decimal</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mt-srand.html">mt_srand</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pi.html">pi</a></div>
+ <div class="up"><a href="ref.math.html">Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.octdec" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">octdec</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">octdec</span> &mdash; <span class="dc-title">Octal to decimal</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+   <div class="methodsynopsis dc-description">
+    <span class="type"><a href="language.pseudo-types.html#language.types.number" class="type number">number</a></span> <span class="methodname"><b><b>octdec</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$octal_string</tt></span>
+    )</div>
+
+  <p class="para rdfs-comment">
+   Returns the decimal equivalent of the octal number
+   represented by the <i><tt class="parameter">octal_string</tt></i>
+ argument.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">octal_string</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The octal string to convert
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The decimal representation of <i><tt class="parameter">octal_string</tt></i>
+
+  </p>
+ </div>
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">Since 4.1.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The function can now convert numbers that are too large to
+        fit into the platforms <a href="language.types.integer.html" class="type integer">integer</a> type, larger values
+        are returned as <a href="language.types.float.html" class="type float">float</a> in that case.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>octdec()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">octdec</span><span style="color: #007700">(</span><span style="color: #DD0000">'77'</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">octdec</span><span style="color: #007700">(</span><span style="color: #0000BB">decoct</span><span style="color: #007700">(</span><span style="color: #0000BB">45</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+63
+45
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.decoct.html" class="function" rel="rdfs-seeAlso">decoct()</a></li>
+    <li class="member"><a href="function.bindec.html" class="function" rel="rdfs-seeAlso">bindec()</a></li>
+    <li class="member"><a href="function.hexdec.html" class="function" rel="rdfs-seeAlso">hexdec()</a></li>
+    <li class="member"><a href="function.base-convert.html" class="function" rel="rdfs-seeAlso">base_convert()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mt-srand.html">mt_srand</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pi.html">pi</a></div>
+ <div class="up"><a href="ref.math.html">Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

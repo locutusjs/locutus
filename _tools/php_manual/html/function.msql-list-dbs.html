@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>List mSQL databases on server</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.msql-free-result.html">msql_free_result</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.msql-list-fields.html">msql_list_fields</a></div>
+ <div class="up"><a href="ref.msql.html">mSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.msql-list-dbs" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">msql_list_dbs</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">msql_list_dbs</span> &mdash; <span class="dc-title">List mSQL databases on server</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>msql_list_dbs</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <a href="function.msql-list-tables.html" class="function">msql_list_tables()</a> lists the databases available on the
+   specified <i><tt class="parameter">link_identifier</tt></i>
+. 
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+link_identifier</tt></i>
+</span>
+<dd>
+<p class="para">The mSQL connection.
+If not specified, the last link opened by <a href="function.msql-connect.html" class="function">msql_connect()</a>
+is assumed. If no such link is found, the function will try to establish a
+link as if <a href="function.msql-connect.html" class="function">msql_connect()</a> was called, and use it.
+</p></dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a result set which may be traversed with any function that fetches
+   result sets, such as <a href="function.msql-fetch-array.html" class="function">msql_fetch_array()</a>. On failure, 
+   this function will return <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.msql-list-tables.html" class="function" rel="rdfs-seeAlso">msql_list_tables()</a></li>
+    <li class="member"><a href="function.msql-list-fields.html" class="function" rel="rdfs-seeAlso">msql_list_fields()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.msql-free-result.html">msql_free_result</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.msql-list-fields.html">msql_list_fields</a></div>
+ <div class="up"><a href="ref.msql.html">mSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

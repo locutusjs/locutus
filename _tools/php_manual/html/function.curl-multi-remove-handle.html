@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Remove a multi handle from a set of cURL handles</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.curl-multi-init.html">curl_multi_init</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.curl-multi-select.html">curl_multi_select</a></div>
+ <div class="up"><a href="ref.curl.html">cURL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.curl-multi-remove-handle" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">curl_multi_remove_handle</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">curl_multi_remove_handle</span> &mdash; <span class="dc-title">Remove a multi handle from a set of cURL handles</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>curl_multi_remove_handle</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$mh</tt></span>
+   , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$ch</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Removes a given <i><tt class="parameter">ch</tt></i>
+ handle from the given <i><tt class="parameter">mh</tt></i>
+
+   handle. When the <i><tt class="parameter">ch</tt></i>
+ handle has been removed, it is again perfectly 
+   legal to run <a href="function.curl-exec.html" class="function">curl_exec()</a> on this handle.  Removing a handle while being 
+   used, will effectively halt all transfers in progress.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">mh</tt></i>
+
+</span>
+<dd>
+<p class="para">A cURL multi handle returned by 
+<a href="function.curl-multi-init.html" class="function">curl_multi_init()</a>.</p></dd>
+</dt>
+
+    <dt>
+<span class="term"><i><tt class="parameter">ch</tt></i>
+
+</span>
+<dd>
+<p class="para">A cURL handle returned by 
+<a href="function.curl-init.html" class="function">curl_init()</a>.</p></dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   On success, returns a cURL handle, <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.curl-init.html" class="function" rel="rdfs-seeAlso">curl_init()</a></li>
+    <li class="member"><a href="function.curl-multi-init.html" class="function" rel="rdfs-seeAlso">curl_multi_init()</a></li>
+    <li class="member"><a href="function.curl-multi-add-handle.html" class="function" rel="rdfs-seeAlso">curl_multi_add_handle()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.curl-multi-init.html">curl_multi_init</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.curl-multi-select.html">curl_multi_select</a></div>
+ <div class="up"><a href="ref.curl.html">cURL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

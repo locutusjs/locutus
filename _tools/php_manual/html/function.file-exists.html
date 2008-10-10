@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Checks whether a file or directory exists</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fgetss.html">fgetss</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.file-get-contents.html">file_get_contents</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.file-exists" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">file_exists</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">file_exists</span> &mdash; <span class="dc-title">Checks whether a file or directory exists</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>file_exists</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Checks whether a file or directory exists.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the file or directory.
+      </p>
+      <p class="para">
+       On windows, use <var class="filename">//computername/share/filename</var> or
+       <var class="filename">\\computername\share\filename</var> to check files on
+       network shares.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if the file or directory specified by
+   <i><tt class="parameter">filename</tt></i>
+ exists; <b><tt>FALSE</tt></b> otherwise.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function will return <b><tt>FALSE</tt></b> for symlinks pointing to non-existing
+    files.
+   <br />
+  </p></blockquote>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="para">
+    This function returns <b><tt>FALSE</tt></b> for files inaccessible due to <a href="features.safe-mode.html" class="link">safe mode</a> restrictions. However these
+    files still can be <a href="function.include.html" class="link">included</a> if
+    they are located in <a href="features.safe-mode.html#ini.safe-mode-include-dir" class="link">safe_mode_include_dir</a>.
+   </p>
+  </div>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    The check is done using the real UID/GID instead of the effective one.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Testing whether a file exists</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$filename&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'/path/to/foo.txt'</span><span style="color: #007700">;<br /><br />if&nbsp;(</span><span style="color: #0000BB">file_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"The&nbsp;file&nbsp;$filename&nbsp;exists"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"The&nbsp;file&nbsp;$filename&nbsp;does&nbsp;not&nbsp;exist"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">The results of this 
+function are cached. See <a href="function.clearstatcache.html" class="function">clearstatcache()</a> for 
+more details.</span></p></blockquote>
+  <div class="tip"><b class="tip">Tip</b><p class="simpara">As of PHP 5.0.0, this function
+can also be used with <em class="emphasis">some</em> URL wrappers.  Refer to 
+<a href="wrappers.html" class="xref">List of Supported Protocols/Wrappers</a> for a listing of which wrappers support 
+<a href="function.stat.html" class="function">stat()</a> family of functionality.</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.is-readable.html" class="function" rel="rdfs-seeAlso">is_readable()</a></li>
+    <li class="member"><a href="function.is-writable.html" class="function" rel="rdfs-seeAlso">is_writable()</a></li>
+    <li class="member"><a href="function.is-file.html" class="function" rel="rdfs-seeAlso">is_file()</a></li>
+    <li class="member"><a href="function.file.html" class="function" rel="rdfs-seeAlso">file()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fgetss.html">fgetss</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.file-get-contents.html">file_get_contents</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

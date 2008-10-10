@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Opens a new filename with specified permissions of flags and
+   creation permissions of mode</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dio-fcntl.html">dio_fcntl</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dio-read.html">dio_read</a></div>
+ <div class="up"><a href="ref.dio.html">Direct IO Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.dio-open" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dio_open</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5 &lt;= 5.0.5)</p><p class="refpurpose"><span class="refname">dio_open</span> &mdash; <span class="dc-title">
+   Opens a new filename with specified permissions of flags and
+   creation permissions of mode
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>dio_open</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>dio_open()</b> opens a file and returns a new file
+   descriptor for it.  
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The opened file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">flags</tt></i>
+ parameter can also include any
+       combination of the following flags:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <p class="para">
+          <b><tt>O_CREAT</tt></b> - creates the file, if it doesn&#039;t
+          already exist.
+         </p>
+        </li> 
+        <li class="listitem">
+         <p class="para">
+          <b><tt>O_EXCL</tt></b> - if both, <b><tt>O_CREAT</tt></b>
+          and <b><tt>O_EXCL</tt></b> are set, <b>dio_open()</b>
+          fails, if the file already exists.
+         </p>
+        </li> 
+        <li class="listitem">
+         <p class="para">
+          <b><tt>O_TRUNC</tt></b> - if the file exists, and its opened 
+          for write access, the file will be truncated to zero length.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <b><tt>O_APPEND</tt></b> - write operations write data at the
+          end of the file.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <b><tt>O_NONBLOCK</tt></b> - sets non blocking mode.
+         </p>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <i><tt class="parameter">flags</tt></i>
+ is <b><tt>O_CREAT</tt></b>,
+       <i><tt class="parameter">mode</tt></i>
+ will set the mode of the file
+       (creation permissions).  
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <p class="para">
+          <b><tt>O_RDONLY</tt></b> - opens the file for read access.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <b><tt>O_WRONLY</tt></b> - opens the file for write access.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <b><tt>O_RDWR</tt></b> - opens the file for both reading and
+          writing.
+         </p>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A file descriptor or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 Opening a file descriptor</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$fd&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dio_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'/dev/ttyS0'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">O_RDWR&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">O_NOCTTY&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">O_NONBLOCK</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">dio_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$fd</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>    
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.dio-close.html" class="function" rel="rdfs-seeAlso">dio_close()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dio-fcntl.html">dio_fcntl</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dio-read.html">dio_read</a></div>
+ <div class="up"><a href="ref.dio.html">Direct IO Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

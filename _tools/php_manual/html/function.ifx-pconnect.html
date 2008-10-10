@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Open persistent Informix connection</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ifx-num-rows.html">ifx_num_rows</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ifx-prepare.html">ifx_prepare</a></div>
+ <div class="up"><a href="ref.ifx.html">Informix Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ifx-pconnect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ifx_pconnect</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">ifx_pconnect</span> &mdash; <span class="dc-title">Open persistent Informix connection</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>ifx_pconnect</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$database</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$userid</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$password</tt></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>ifx_pconnect()</b> acts very much like
+   <a href="function.ifx-connect.html" class="function">ifx_connect()</a> with two major differences.
+  </p>
+  <p class="para">
+   First, when connecting, the function would first try to find a
+   (persistent) link that&#039;s already open with the same host,
+   username and password.  If one is found, an identifier for it
+   will be returned instead of opening a new connection.
+  </p>
+  <p class="para">
+   Second, the connection to the SQL server will not be closed when
+   the execution of the script ends.  Instead, the link will remain
+   open for future use (<a href="function.ifx-close.html" class="function">ifx_close()</a> will not
+   close links established by <b>ifx_pconnect()</b>).
+  </p>
+  <p class="para">
+   This type of links is therefore called &#039;persistent&#039;.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   All of the arguments are optional, and if they&#039;re missing, defaults are
+   taken from values supplied in <var class="filename">php.ini</var> (ifx.default_host for the host
+   (Informix libraries will use <span class="envar">INFORMIXSERVER</span> environment
+   value if not defined), ifx.default_user for user, ifx.default_password for
+   the password (none if not defined).
+  </p>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">database</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The database name, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">userid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The username, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">password</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The password, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns: valid Informix persistent link identifier on success, or <b><tt>FALSE</tt></b>
+   on errors.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ifx-connect.html" class="function" rel="rdfs-seeAlso">ifx_connect()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ifx-num-rows.html">ifx_num_rows</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ifx-prepare.html">ifx_prepare</a></div>
+ <div class="up"><a href="ref.ifx.html">Informix Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

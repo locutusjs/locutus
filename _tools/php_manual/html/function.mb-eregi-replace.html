@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Replace regular expression with multibyte support ignoring case</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-ereg.html">mb_ereg</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-eregi.html">mb_eregi</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-eregi-replace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_eregi_replace</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">mb_eregi_replace</span> &mdash; <span class="dc-title">Replace regular expression with multibyte support ignoring case</span></p>
+     
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mb_eregi_replace</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pattern</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$replace</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$string</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$option</tt></span>
+  ] )</div>
+
+  <p class="simpara">
+   Scans <i><tt class="parameter">string</tt></i>
+ for matches to
+   <i><tt class="parameter">pattern</tt></i>
+, then replaces the matched text
+   with <i><tt class="parameter">replacement</tt></i>
+. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pattern</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The regular expression pattern.  Multibyte characters may be used. The case will be ignored.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">replace</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The replacement text.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">string</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The searched <a href="language.types.string.html" class="type string">string</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">option</tt></i>
+</span>
+
+     <dd>
+
+      <span class="simpara">
+       <i><tt class="parameter">option</tt></i>
+ has the same meaning as in
+       <a href="function.mb-ereg-replace.html" class="function">mb_ereg_replace()</a>.
+      </span>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The resultant <a href="language.types.string.html" class="type string">string</a> or <b><tt>FALSE</tt></b> on error. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  
+  <blockquote><p><b class="note">Note</b>: The internal encoding or the 
+character encoding specified by <a href="function.mb-regex-encoding.html" class="function">mb_regex_encoding()</a> 
+will be used as the character encoding for this function.<br /></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-regex-encoding.html" class="function" rel="rdfs-seeAlso">mb_regex_encoding()</a></li>
+    <li class="member"><a href="function.mb-ereg-replace.html" class="function" rel="rdfs-seeAlso">mb_ereg_replace()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-ereg.html">mb_ereg</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-eregi.html">mb_eregi</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

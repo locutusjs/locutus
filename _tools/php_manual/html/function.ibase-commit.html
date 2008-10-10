@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Commit a transaction</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ibase-commit-ret.html">ibase_commit_ret</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-connect.html">ibase_connect</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ibase-commit" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ibase_commit</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ibase_commit</span> &mdash; <span class="dc-title">Commit a transaction</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ibase_commit</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_or_trans_identifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Commits a transaction.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link_or_trans_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If called without an argument, this function commits the default
+       transaction of the default link. If the argument is a connection
+       identifier, the default transaction of the corresponding connection
+       will be committed. If the argument is a transaction identifier, the
+       corresponding transaction will be committed.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ibase-commit-ret.html">ibase_commit_ret</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-connect.html">ibase_connect</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

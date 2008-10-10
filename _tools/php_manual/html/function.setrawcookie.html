@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Send a cookie without urlencoding the cookie value</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.setcookie.html">setcookie</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-get-status.html">socket_get_status</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.setrawcookie" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">setrawcookie</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">setrawcookie</span> &mdash; <span class="dc-title">Send a cookie without urlencoding the cookie value</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>setrawcookie</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$value</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$expire</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$path</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$domain</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$secure</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$httponly</tt></span>
+  ]]]]]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>setrawcookie()</b> is exactly the same as
+   <a href="function.setcookie.html" class="function">setcookie()</a> except that the cookie value will not be
+   automatically urlencoded when sent to the browser.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   For parameter information, see the <a href="function.setcookie.html" class="function">setcookie()</a>
+   documentation.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.2.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">httponly</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.setcookie.html" class="function" rel="rdfs-seeAlso">setcookie()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.setcookie.html">setcookie</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-get-status.html">socket_get_status</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

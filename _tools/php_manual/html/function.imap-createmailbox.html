@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Create a new mailbox</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-close.html">imap_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-delete.html">imap_delete</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imap-createmailbox" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_createmailbox</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imap_createmailbox</span> &mdash; <span class="dc-title">Create a new mailbox</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>imap_createmailbox</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$imap_stream</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$mailbox</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Creates a new mailbox specified by <i><tt class="parameter">mailbox</tt></i>
+. 
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+imap_stream</tt></i>
+</span>
+<dd>
+<p class="para">An IMAP stream returned by 
+<a href="function.imap-open.html" class="function">imap_open()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mailbox</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The mailbox name, see <a href="function.imap-open.html" class="function">imap_open()</a> for more
+       information. Names containing international characters should be
+       encoded by <a href="function.imap-utf7-encode.html" class="function">imap_utf7_encode()</a>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>imap_createmailbox()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mbox&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imap_open</span><span style="color: #007700">(</span><span style="color: #DD0000">"{imap.example.org}"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">OP_HALFOPEN</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"can't&nbsp;connect:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">imap_last_error</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">$name1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"phpnewbox"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$name2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imap_utf7_encode</span><span style="color: #007700">(</span><span style="color: #DD0000">"phpnewb&amp;ouml;x"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$newname&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$name1</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Newname&nbsp;will&nbsp;be&nbsp;'$name1'&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;we&nbsp;will&nbsp;now&nbsp;create&nbsp;a&nbsp;new&nbsp;mailbox&nbsp;"phptestbox"&nbsp;in&nbsp;your&nbsp;inbox&nbsp;folder,<br />//&nbsp;check&nbsp;its&nbsp;status&nbsp;after&nbsp;creation&nbsp;and&nbsp;finaly&nbsp;remove&nbsp;it&nbsp;to&nbsp;restore<br />//&nbsp;your&nbsp;inbox&nbsp;to&nbsp;its&nbsp;initial&nbsp;state<br /><br /></span><span style="color: #007700">if&nbsp;(@</span><span style="color: #0000BB">imap_createmailbox</span><span style="color: #007700">(</span><span style="color: #0000BB">$mbox</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">imap_utf7_encode</span><span style="color: #007700">(</span><span style="color: #DD0000">"{imap.example.org}INBOX.$newname"</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$status&nbsp;</span><span style="color: #007700">=&nbsp;@</span><span style="color: #0000BB">imap_status</span><span style="color: #007700">(</span><span style="color: #0000BB">$mbox</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"{imap.example.org}INBOX.$newname"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SA_ALL</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$status</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"your&nbsp;new&nbsp;mailbox&nbsp;'$name1'&nbsp;has&nbsp;the&nbsp;following&nbsp;status:&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Messages:&nbsp;&nbsp;&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$status</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">messages&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Recent:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$status</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">recent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Unseen:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$status</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unseen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"UIDnext:&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$status</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">uidnext&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"UIDvalidity:"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$status</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">uidvalidity&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">imap_renamemailbox</span><span style="color: #007700">(</span><span style="color: #0000BB">$mbox</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"{imap.example.org}INBOX.$newname"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"{imap.example.org}INBOX.$name2"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"renamed&nbsp;new&nbsp;mailbox&nbsp;from&nbsp;'$name1'&nbsp;to&nbsp;'$name2'&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$newname&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$name2</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"imap_renamemailbox&nbsp;on&nbsp;new&nbsp;mailbox&nbsp;failed:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">imap_last_error</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"imap_status&nbsp;on&nbsp;new&nbsp;mailbox&nbsp;failed:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">imap_last_error</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(@</span><span style="color: #0000BB">imap_deletemailbox</span><span style="color: #007700">(</span><span style="color: #0000BB">$mbox</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"{imap.example.org}INBOX.$newname"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"new&nbsp;mailbox&nbsp;removed&nbsp;to&nbsp;restore&nbsp;initial&nbsp;state&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"imap_deletemailbox&nbsp;on&nbsp;new&nbsp;mailbox&nbsp;failed:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">implode</span><span style="color: #007700">(</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">imap_errors</span><span style="color: #007700">())&nbsp;.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"could&nbsp;not&nbsp;create&nbsp;new&nbsp;mailbox:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">implode</span><span style="color: #007700">(</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">imap_errors</span><span style="color: #007700">())&nbsp;.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">imap_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$mbox</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imap-renamemailbox.html" class="function" rel="rdfs-seeAlso">imap_renamemailbox()</a></li>
+    <li class="member"><a href="function.imap-deletemailbox.html" class="function" rel="rdfs-seeAlso">imap_deletemailbox()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-close.html">imap_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-delete.html">imap_delete</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

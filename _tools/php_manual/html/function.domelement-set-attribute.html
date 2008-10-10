@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets the value of an attribute</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domelement-set-attribute-node.html">DomElement->set_attribute_node</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domelement-tagname.html">DomElement->tagname</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.domelement-set-attribute" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">DomElement-&gt;set_attribute</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">DomElement-&gt;set_attribute</span> &mdash; <span class="dc-title">
+   Sets the value of an attribute
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><a href="class.domelement.html" class="classname">DomElement</a></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">DomAttribute</span> <span class="methodname"><b><b>set_attribute</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+    , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$value</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   Sets an attribute with name <i><tt class="parameter">name</tt></i>
+ to the given
+   <i><tt class="parameter">value</tt></i>
+.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name of the attribute. If this attribute doesn&#039;t exist, it will be 
+       created.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">value</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The value of the attribute.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the old <b class="classname">DomAttribute</b> node, or the new one
+   if you are creating the attribute for the first time.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Setting an attribute</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$doc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">domxml_new_doc</span><span style="color: #007700">(</span><span style="color: #DD0000">"1.0"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$node&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">create_element</span><span style="color: #007700">(</span><span style="color: #DD0000">"para"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$newnode&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">append_child</span><span style="color: #007700">(</span><span style="color: #0000BB">$node</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$newnode</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set_attribute</span><span style="color: #007700">(</span><span style="color: #DD0000">"align"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"left"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 migration">
+  <h3 class="title">Migrating to PHP 5</h3>
+  <p class="para">
+   Use <a href="domelement.setattribute.html" class="xref">DOMElement::setAttribute</a>.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.domelement-get-attribute-node.html" class="xref">DomElement->get_attribute_node</a></li>
+    <li class="member"><a href="function.domelement-get-attribute.html" class="xref">DomElement->get_attribute</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domelement-set-attribute-node.html">DomElement->set_attribute_node</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domelement-tagname.html">DomElement->tagname</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

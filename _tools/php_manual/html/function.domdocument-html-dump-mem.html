@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Dumps the internal XML tree back into a string as HTML</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domdocument-get-elements-by-tagname.html">DomDocument->get_elements_by_tagname</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domdocument-xinclude.html">DomDocument->xinclude</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.domdocument-html-dump-mem" class="refentry">
+   <div class="refnamediv">
+    <h1 class="refname">DomDocument-&gt;html_dump_mem</h1>
+    <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">DomDocument-&gt;html_dump_mem</span> &mdash; <span class="dc-title">
+     Dumps the internal XML tree back into a string as HTML
+    </span></p>
+
+   </div>
+   <div class="refsect1 unknown">
+    <h3 class="title">Description</h3>
+    <div class="methodsynopsis dc-description">
+     <span class="type">string</span> <span class="methodname"><b><b>DomDocument->html_dump_mem</b></b></span>
+      ( <span class="methodparam">void</span>
+     )</div>
+
+    <p class="para rdfs-comment">
+     Creates an HTML document from the dom representation. This function
+     usually is called after building a new dom document from scratch
+     as in the example below. 
+    </p>
+    <p class="para">
+     <div class="example">
+      <p><b>Example #1 Creating a simple HTML document header</b></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Creates&nbsp;the&nbsp;document<br /></span><span style="color: #0000BB">$doc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">domxml_new_doc</span><span style="color: #007700">(</span><span style="color: #DD0000">"1.0"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$root&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">create_element</span><span style="color: #007700">(</span><span style="color: #DD0000">"html"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$root&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">append_child</span><span style="color: #007700">(</span><span style="color: #0000BB">$root</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$head&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">create_element</span><span style="color: #007700">(</span><span style="color: #DD0000">"head"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$head&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$root</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">append_child</span><span style="color: #007700">(</span><span style="color: #0000BB">$head</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$title&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">create_element</span><span style="color: #007700">(</span><span style="color: #DD0000">"title"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$title&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$head</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">append_child</span><span style="color: #007700">(</span><span style="color: #0000BB">$title</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$text&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">create_text_node</span><span style="color: #007700">(</span><span style="color: #DD0000">"This&nbsp;is&nbsp;the&nbsp;title"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$text&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$title</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">append_child</span><span style="color: #007700">(</span><span style="color: #0000BB">$text</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">html_dump_mem</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+      <div class="example-contents"><p>The above example will output:</p></div>
+      <div class="example-contents"><pre>
+<div class="cdata"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;This is the title&lt;/title&gt;&lt;/head&gt;&lt;/html&gt;
+</pre></div>
+      </pre></div>
+     </div>
+    </p>
+    <p class="para">
+     See also <a href="function.domdocument-dump-file.html" class="function">domdocument_dump_file()</a>, and
+     <b>domdocument_html_dump_mem()</b>.
+    </p>
+   </div>
+
+  </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domdocument-get-elements-by-tagname.html">DomDocument->get_elements_by_tagname</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domdocument-xinclude.html">DomDocument->xinclude</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

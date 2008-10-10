@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Initializes soft label key functions</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ncurses-slk-color.html">ncurses_slk_color</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ncurses-slk-noutrefresh.html">ncurses_slk_noutrefresh</a></div>
+ <div class="up"><a href="ref.ncurses.html">Ncurses Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ncurses-slk-init" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ncurses_slk_init</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5, PECL ncurses:1.0.0)</p><p class="refpurpose"><span class="refname">ncurses_slk_init</span> &mdash; <span class="dc-title">Initializes soft label key functions</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ncurses_slk_init</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$format</tt></span>
+   )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+  <p class="para">
+   Initializes soft label key functions
+  </p>
+  <p class="para">
+   This function must be called before <b>ncurses_initscr()</b>
+   or <b>ncurses_newterm()</b> is called. 
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">format</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <b>ncurses_initscr()</b> eventually uses a line from
+       stdscr to emulate the soft labels, then this parameter determines how
+       the labels are arranged of the screen.
+      </p>
+      <p class="para">
+       0 indicates a 3-2-3 arrangement of the labels, 1 indicates a 4-4
+       arrangement and 2 indicates the PC like 4-4-4 mode, but in addition an
+       index line will be created.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ncurses-slk-color.html">ncurses_slk_color</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ncurses-slk-noutrefresh.html">ncurses_slk_noutrefresh</a></div>
+ <div class="up"><a href="ref.ncurses.html">Ncurses Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Add weblink for current page [deprecated]</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pdf-add-thumbnail.html">PDF_add_thumbnail</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pdf-arc.html">PDF_arc</a></div>
+ <div class="up"><a href="ref.pdf.html">PDF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pdf-add-weblink" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">PDF_add_weblink</h1>
+  <p class="verinfo">(PHP 4, PECL pdflib:1.0-2.1.3)</p><p class="refpurpose"><span class="refname">PDF_add_weblink</span> &mdash; <span class="dc-title">Add weblink for current page [deprecated]</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>PDF_add_weblink</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$pdfdoc</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$lowerleftx</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$lowerlefty</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$upperrightx</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$upperrighty</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$url</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Adds a weblink annotation to a target <i><tt class="parameter">url</tt></i>
+ on the Web.
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+  <p class="para">
+   This function is deprecated since PDFlib version 6, use
+   <a href="function.pdf-create-action.html" class="function">PDF_create_action()</a> with <i><tt class="parameter">type=URI</tt></i>
+
+   and <a href="function.pdf-create-annotation.html" class="function">PDF_create_annotation()</a> with
+   <i><tt class="parameter">type=Link</tt></i>
+ instead.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pdf-add-thumbnail.html">PDF_add_thumbnail</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pdf-arc.html">PDF_arc</a></div>
+ <div class="up"><a href="ref.pdf.html">PDF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

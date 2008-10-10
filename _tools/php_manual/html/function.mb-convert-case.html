@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Perform case folding on a string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-check-encoding.html">mb_check_encoding</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-convert-encoding.html">mb_convert_encoding</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-convert-case" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_convert_case</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">mb_convert_case</span> &mdash; <span class="dc-title">Perform case folding on a string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mb_convert_case</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Performs case folding on a <a href="language.types.string.html" class="type string">string</a>, converted in the way specified by
+   <i><tt class="parameter">mode</tt></i>
+.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="language.types.string.html" class="type string">string</a> being converted.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The mode of the conversion. It can be one of 
+       <b><tt>MB_CASE_UPPER</tt></b>, 
+       <b><tt>MB_CASE_LOWER</tt></b>, or 
+       <b><tt>MB_CASE_TITLE</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The <i><tt class="parameter">encoding</tt></i>
+ 
+parameter is the character encoding. If it is omitted, the internal character 
+encoding value will be used.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A case folded version of <i><tt class="parameter">string</tt></i>
+ converted in the
+   way specified by <i><tt class="parameter">mode</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 unicode">
+  <h3 class="title">Unicode</h3>
+  <p class="para">
+   By contrast to the standard case folding functions such as
+   <a href="function.strtolower.html" class="function">strtolower()</a> and <a href="function.strtoupper.html" class="function">strtoupper()</a>,
+   case folding is performed on the basis of the Unicode character
+   properties. Thus the behaviour of this function is not affected
+   by locale settings and it can convert any characters that have
+   &#039;alphabetic&#039; property, such as A-umlaut (Ä). 
+  </p>
+  <p class="para">
+   For more information about the Unicode properties, please see <a href="http://www.unicode.org/unicode/reports/tr21/" class="link external">&raquo; http://www.unicode.org/unicode/reports/tr21/</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mb_convert_case()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"mary&nbsp;had&nbsp;a&nbsp;Little&nbsp;lamb&nbsp;and&nbsp;she&nbsp;loved&nbsp;it&nbsp;so"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mb_convert_case</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MB_CASE_UPPER</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"UTF-8"</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;Prints&nbsp;MARY&nbsp;HAD&nbsp;A&nbsp;LITTLE&nbsp;LAMB&nbsp;AND&nbsp;SHE&nbsp;LOVED&nbsp;IT&nbsp;SO<br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mb_convert_case</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MB_CASE_TITLE</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"UTF-8"</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;Prints&nbsp;Mary&nbsp;Had&nbsp;A&nbsp;Little&nbsp;Lamb&nbsp;And&nbsp;She&nbsp;Loved&nbsp;It&nbsp;So<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-strtolower.html" class="function" rel="rdfs-seeAlso">mb_strtolower()</a></li>
+    <li class="member"><a href="function.mb-strtoupper.html" class="function" rel="rdfs-seeAlso">mb_strtoupper()</a></li>
+    <li class="member"><a href="function.strtolower.html" class="function" rel="rdfs-seeAlso">strtolower()</a></li>
+    <li class="member"><a href="function.strtoupper.html" class="function" rel="rdfs-seeAlso">strtoupper()</a></li>
+    <li class="member"><a href="function.ucfirst.html" class="function" rel="rdfs-seeAlso">ucfirst()</a></li>
+    <li class="member"><a href="function.ucwords.html" class="function" rel="rdfs-seeAlso">ucwords()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-check-encoding.html">mb_check_encoding</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-convert-encoding.html">mb_convert_encoding</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

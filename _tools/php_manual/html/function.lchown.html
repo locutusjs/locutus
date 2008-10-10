@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Changes user ownership of symlink</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.lchgrp.html">lchgrp</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.link.html">link</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.lchown" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">lchown</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.2)</p><p class="refpurpose"><span class="refname">lchown</span> &mdash; <span class="dc-title">Changes user ownership of symlink</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>lchown</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$user</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Attempts to change the owner of the symlink <i><tt class="parameter">filename</tt></i>
+
+   to user <i><tt class="parameter">user</tt></i>
+.
+  </p>
+  <p class="para">
+   Only the superuser may change the owner of a symlink.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">user</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       User name or number.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function will not work on 
+<a href="features.remote-files.html" class="link">remote files</a> as the file to
+be examined must be accessible via the server&#039;s filesystem.</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">When <a href="features.safe-mode.html" class="link">safe mode</a> is enabled, PHP checks whether 
+the files or directories being operated upon have the same UID (owner) as the 
+script that is being executed.</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is not
+implemented on Windows platforms.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.chgrp.html" class="function" rel="rdfs-seeAlso">chgrp()</a></li>
+    <li class="member"><a href="function.lchgrp.html" class="function" rel="rdfs-seeAlso">lchgrp()</a></li>
+    <li class="member"><a href="function.chgrp.html" class="function" rel="rdfs-seeAlso">chgrp()</a></li>
+    <li class="member"><a href="function.chmod.html" class="function" rel="rdfs-seeAlso">chmod()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.lchgrp.html">lchgrp</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.link.html">link</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

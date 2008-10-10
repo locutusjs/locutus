@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets width of a glyph</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ps-symbol-name.html">ps_symbol_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ps-symbol.html">ps_symbol</a></div>
+ <div class="up"><a href="ref.ps.html">PS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ps-symbol-width" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ps_symbol_width</h1>
+  <p class="verinfo">(PECL ps:1.2.0-1.3.5)</p><p class="refpurpose"><span class="refname">ps_symbol_width</span> &mdash; <span class="dc-title">Gets width of a glyph</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">float</span> <span class="methodname"><b><b>ps_symbol_width</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$psdoc</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$ord</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$fontid</tt></span>
+   [, <span class="methodparam"><span class="type">float</span> <tt class="parameter">$size</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Calculates the width of a glyph in points if it was output in the given
+   font and font size.  This function needs an Adobe font metrics file to
+   calculate the precise width.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">psdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the postscript file
+       as returned by <a href="function.ps-new.html" class="function">ps_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ord</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The position of the glyph in the font encoding vector.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fontid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The identifier of the font to be used. If not font is specified
+       the current font will be used.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">size</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The size of the font. If no size is specified the current size
+       is used.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The width of a glyph in points.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ps-symbol.html" class="function" rel="rdfs-seeAlso">ps_symbol()</a></li>
+    <li class="member"><a href="function.ps-symbol-name.html" class="function" rel="rdfs-seeAlso">ps_symbol_name()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ps-symbol-name.html">ps_symbol_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ps-symbol.html">ps_symbol</a></div>
+ <div class="up"><a href="ref.ps.html">PS Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

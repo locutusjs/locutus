@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the document this node belongs to</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domnode-node-value.html">DomNode->node_value</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domnode-parent-node.html">DomNode->parent_node</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.domnode-owner-document" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">DomNode-&gt;owner_document</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">DomNode-&gt;owner_document</span> &mdash; <span class="dc-title">
+   Returns the document this node belongs to
+  </span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="class.domdocument.html" class="type domdocument">domdocument</a></span> <span class="methodname"><b><b>DomNode->owner_document</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function returns the document the current node belongs to.
+  </p>
+  <p class="para">
+   The following example will create two identical lists of children.
+   <div class="example">
+    <p><b>Example #1 Finding the document of a node</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$doc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">domxml_new_doc</span><span style="color: #007700">(</span><span style="color: #DD0000">"1.0"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$node&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">create_element</span><span style="color: #007700">(</span><span style="color: #DD0000">"para"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$node&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">append_child</span><span style="color: #007700">(</span><span style="color: #0000BB">$node</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$children&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">children</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$children</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$doc2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$node</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">owner_document</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$children&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doc2</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">children</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$children</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   See also <a href="function.domnode-insert-before.html" class="function">domnode_insert_before()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domnode-node-value.html">DomNode->node_value</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domnode-parent-node.html">DomNode->parent_node</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

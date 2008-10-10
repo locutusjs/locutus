@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns all of the IMAP errors that have occured</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-deletemailbox.html">imap_deletemailbox</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-expunge.html">imap_expunge</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imap-errors" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_errors</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imap_errors</span> &mdash; <span class="dc-title">Returns all of the IMAP errors that have occured</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>imap_errors</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets all of the IMAP errors (if any) that have occurred during this page
+   request or since the error stack was reset.
+  </p>
+  <p class="para">
+   When <b>imap_errors()</b> is called, the error stack is
+   subsequently cleared.
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an array of all of the IMAP error messages
+   generated since the last <b>imap_errors()</b> call,
+   or the beginning of the page. Returns <b><tt>FALSE</tt></b> if no error messages are
+   available. 
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imap-last-error.html" class="function" rel="rdfs-seeAlso">imap_last_error()</a></li>
+    <li class="member"><a href="function.imap-alerts.html" class="function" rel="rdfs-seeAlso">imap_alerts()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-deletemailbox.html">imap_deletemailbox</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-expunge.html">imap_expunge</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Flush the output buffer</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.outcontrol.html">Output Control Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ob-clean.html">ob_clean</a></div>
+ <div class="up"><a href="ref.outcontrol.html">Output Control Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.flush" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">flush</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">flush</span> &mdash; <span class="dc-title">Flush the output buffer</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>flush</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Flushes the output buffers of PHP and whatever backend PHP is using (CGI,
+   a web server, etc).  This effectively tries to push all the output so far
+   to the user&#039;s browser.
+  </p>
+  <p class="para">
+   <b>flush()</b> has no effect on the buffering scheme of your
+   web server or the browser on the client side.
+   Thus you need to call both <a href="function.ob-flush.html" class="function">ob_flush()</a> and
+   <b>flush()</b> to flush the output buffers.
+  </p>
+  <p class="para">
+   Several servers, especially on Win32, will still buffer the output from
+   your script until it terminates before transmitting the results to the
+   browser.
+  </p>
+  <p class="para">
+   Server modules for Apache like mod_gzip may do buffering of their own that
+   will cause <b>flush()</b> to not result in data being sent
+   immediately to the client.
+  </p>
+  <p class="para">
+   Even the browser may buffer its input before displaying it. Netscape, for
+   example, buffers text until it receives an end-of-line or the beginning of
+   a tag, and it won&#039;t render tables until the &lt;/table&gt; tag of the
+   outermost table is seen.
+  </p>
+  <p class="para">
+   Some versions of Microsoft Internet Explorer will only start to display
+   the page after they have received 256 bytes of output, so you may need to
+   send extra whitespace before flushing to get those browsers to display the
+   page.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.outcontrol.html">Output Control Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ob-clean.html">ob_clean</a></div>
+ <div class="up"><a href="ref.outcontrol.html">Output Control Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

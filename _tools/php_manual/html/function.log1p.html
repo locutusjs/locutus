@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns log(1 + number), computed in a way that is accurate even when
+   the value of number is close to zero</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.log10.html">log10</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.log.html">log</a></div>
+ <div class="up"><a href="ref.math.html">Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.log1p" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">log1p</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">log1p</span> &mdash; <span class="dc-title">
+   Returns log(1 + number), computed in a way that is accurate even when
+   the value of number is close to zero
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">float</span> <span class="methodname"><b><b>log1p</b></b></span>
+    ( <span class="methodparam"><span class="type">float</span> <tt class="parameter">$number</tt></span>
+   )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+  <p class="para">
+   <b>log1p()</b> returns log(1 +
+   <i><tt class="parameter">number</tt></i>
+) computed in a way that is accurante even
+   when the value of <i><tt class="parameter">number</tt></i>
+ is close to zero.
+   <a href="function.log.html" class="function">log()</a> might only return log(1) in this case
+   due to lack of precision.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">number</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The argument to process
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   log(1 + <i><tt class="parameter">number</tt></i>
+)
+  </p>
+ </div>
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+         This function is now available on all platforms
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.expm1.html" class="function" rel="rdfs-seeAlso">expm1()</a></li>
+    <li class="member"><a href="function.log.html" class="function" rel="rdfs-seeAlso">log()</a></li>
+    <li class="member"><a href="function.log10.html" class="function" rel="rdfs-seeAlso">log10()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.log10.html">log10</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.log.html">log</a></div>
+ <div class="up"><a href="ref.math.html">Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Formats all rows of a query into a HTML table</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ifx-getsqlca.html">ifx_getsqlca</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ifx-nullformat.html">ifx_nullformat</a></div>
+ <div class="up"><a href="ref.ifx.html">Informix Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ifx-htmltbl-result" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ifx_htmltbl_result</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">ifx_htmltbl_result</span> &mdash; <span class="dc-title">Formats all rows of a query into a HTML table</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>ifx_htmltbl_result</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result_id</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$html_table_options</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Formats and prints all rows of the <i><tt class="parameter">result_id</tt></i>
+ query
+   into a HTML table. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">result_id</tt></i>
+ is a valid resultid returned by
+       <a href="function.ifx-query.html" class="function">ifx_query()</a> or
+       <a href="function.ifx-prepare.html" class="function">ifx_prepare()</a> (select type queries only!).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">html_table_options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       This optional argument is a string of &lt;table&gt; tag options.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of fetched rows, or <b><tt>FALSE</tt></b> on errors.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Informix results as HTML table</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$rid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ifx_prepare&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"select&nbsp;*&nbsp;from&nbsp;emp&nbsp;where&nbsp;name&nbsp;like&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$name</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$connid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">IFX_SCROLL</span><span style="color: #007700">);<br />if&nbsp;(!&nbsp;</span><span style="color: #0000BB">$rid</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;...&nbsp;error&nbsp;...&nbsp;*/<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">$rowcount&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ifx_affected_rows&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$rid</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$rowcount&nbsp;</span><span style="color: #007700">&gt;&nbsp;</span><span style="color: #0000BB">1000</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"Too&nbsp;many&nbsp;rows&nbsp;in&nbsp;result&nbsp;set&nbsp;(%d)\n&lt;br&nbsp;/&gt;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rowcount</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;die&nbsp;(</span><span style="color: #DD0000">"Please&nbsp;restrict&nbsp;your&nbsp;query&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">);<br />}<br />if&nbsp;(!&nbsp;</span><span style="color: #0000BB">ifx_do</span><span style="color: #007700">(</span><span style="color: #0000BB">$rid</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;...&nbsp;error&nbsp;...&nbsp;*/<br /></span><span style="color: #007700">}<br /><br /></span><span style="color: #0000BB">ifx_htmltbl_result&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$rid</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"border=\"2\""</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">ifx_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$rid</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ifx-getsqlca.html">ifx_getsqlca</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ifx-nullformat.html">ifx_nullformat</a></div>
+ <div class="up"><a href="ref.ifx.html">Informix Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

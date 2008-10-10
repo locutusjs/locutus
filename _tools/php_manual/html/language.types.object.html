@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Objects</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.types.array.html">Arrays</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.types.resource.html">Resources</a></div>
+ <div class="up"><a href="language.types.html">Types</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.types.object" class="sect1">
+ <h2 class="title">Objects</h2>
+
+ <div id="language.types.object.init" class="sect2">
+  <h3 class="title">Object Initialization</h3>
+
+  <p class="para">
+   To create a new <a href="language.types.object.html" class="type object">object</a>, use the <i>new</i> statement
+   to instantiate a class:
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">foo<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">do_foo</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Doing&nbsp;foo."</span><span style="color: #007700">;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">$bar&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$bar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">do_foo</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="simpara">
+   For a full discussion, see the
+   <a href="language.oop.html" class="link">Classes and Objects</a> chapter.
+  </p>
+
+ </div>
+ 
+ <div id="language.types.object.casting" class="sect2">
+  <h3 class="title">Converting to object</h3>
+  
+  <p class="para">
+   If an <a href="language.types.object.html" class="type object">object</a> is converted to an <a href="language.types.object.html" class="type object">object</a>, it is not
+   modified. If a value of any other type is converted to an
+   <a href="language.types.object.html" class="type object">object</a>, a new instance of the <i>stdClass</i>
+   built-in class is created. If the value was <b><tt>NULL</tt></b>, the new instance will be
+   empty. <a href="language.types.array.html" class="type Array">Array</a>s convert to an <a href="language.types.object.html" class="type object">object</a> with properties
+   named by keys, and corresponding values. For any other value, a member
+   variable named <i>scalar</i> will contain the value.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$obj&nbsp;</span><span style="color: #007700">=&nbsp;(object)&nbsp;</span><span style="color: #DD0000">'ciao'</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">scalar</span><span style="color: #007700">;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;outputs&nbsp;'ciao'<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+ </div>
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.types.array.html">Arrays</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.types.resource.html">Resources</a></div>
+ <div class="up"><a href="language.types.html">Types</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>List files and directories inside the specified path</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.dir.html">Directory Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.fileinfo.html">Fileinfo</a></div>
+ <div class="up"><a href="ref.dir.html">Directory Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.scandir" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">scandir</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">scandir</span> &mdash; <span class="dc-title">List files and directories inside the specified path</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>scandir</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$directory</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$sorting_order</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$context</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Returns an <a href="language.types.array.html" class="type array">array</a> of files and directories from the
+   <i><tt class="parameter">directory</tt></i>
+.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">directory</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The directory that will be scanned.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">sorting_order</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       By default, the sorted order is alphabetical in ascending order.  If
+       the optional <i><tt class="parameter">sorting_order</tt></i>
+ is used (set to 1),
+       then the sort order is alphabetical in descending order.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">context</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       For a description of the <i><tt class="parameter">context</tt></i>
+ parameter, 
+       refer to <a href="ref.stream.html" class="link">the streams section</a> of
+       the manual.
+      </p> 
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an <a href="language.types.array.html" class="type array">array</a> of filenames on success, or <b><tt>FALSE</tt></b> on 
+   failure. If <i><tt class="parameter">directory</tt></i>
+ is not a directory, then 
+   boolean <b><tt>FALSE</tt></b> is returned, and an error of level 
+   <b><tt>E_WARNING</tt></b> is generated.
+  </p> 
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A simple <b>scandir()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dir&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'/tmp'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$files1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">scandir</span><span style="color: #007700">(</span><span style="color: #0000BB">$dir</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$files2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">scandir</span><span style="color: #007700">(</span><span style="color: #0000BB">$dir</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$files1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$files2</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; .
+    [1] =&gt; ..
+    [2] =&gt; bar.php
+    [3] =&gt; foo.txt
+    [4] =&gt; somedir
+)
+Array
+(
+    [0] =&gt; somedir
+    [1] =&gt; foo.txt
+    [2] =&gt; bar.php
+    [3] =&gt; ..
+    [4] =&gt; .
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 PHP 4 alternatives to <b>scandir()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dir&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"/tmp"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$dh&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">opendir</span><span style="color: #007700">(</span><span style="color: #0000BB">$dir</span><span style="color: #007700">);<br />while&nbsp;(</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">!==&nbsp;(</span><span style="color: #0000BB">$filename&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">readdir</span><span style="color: #007700">(</span><span style="color: #0000BB">$dh</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$files</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #0000BB">$filename</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">sort</span><span style="color: #007700">(</span><span style="color: #0000BB">$files</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$files</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">rsort</span><span style="color: #007700">(</span><span style="color: #0000BB">$files</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$files</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; .
+    [1] =&gt; ..
+    [2] =&gt; bar.php
+    [3] =&gt; foo.txt
+    [4] =&gt; somedir
+)
+Array
+(
+    [0] =&gt; somedir
+    [1] =&gt; foo.txt
+    [2] =&gt; bar.php
+    [3] =&gt; ..
+    [4] =&gt; .
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="tip"><b class="tip">Tip</b><p class="simpara">A URL can be used as a
+filename with this function if the <a href="filesystem.configuration.html#ini.allow-url-fopen" class="link">fopen wrappers</a> have been enabled.
+See <a href="function.fopen.html" class="function">fopen()</a> for more details on how to specify
+the filename and <a href="wrappers.html" class="xref">List of Supported Protocols/Wrappers</a> for a list of supported
+URL protocols.</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.opendir.html" class="function" rel="rdfs-seeAlso">opendir()</a></li>
+    <li class="member"><a href="function.readdir.html" class="function" rel="rdfs-seeAlso">readdir()</a></li>
+    <li class="member"><a href="function.glob.html" class="function" rel="rdfs-seeAlso">glob()</a></li>
+    <li class="member"><a href="function.is-dir.html" class="function" rel="rdfs-seeAlso">is_dir()</a></li>
+    <li class="member"><a href="function.sort.html" class="function" rel="rdfs-seeAlso">sort()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.dir.html">Directory Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.fileinfo.html">Fileinfo</a></div>
+ <div class="up"><a href="ref.dir.html">Directory Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

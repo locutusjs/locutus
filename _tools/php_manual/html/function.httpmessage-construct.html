@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>HttpMessage constructor</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.httpmessage-addheaders.html">HttpMessage::addHeaders</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.httpmessage-detach.html">HttpMessage::detach</a></div>
+ <div class="up"><a href="class.httpmessage.html">The HttpMessage class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.httpmessage-construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">HttpMessage::__construct</h1>
+  <p class="verinfo">(PECL pecl_http:0.10.0-1.5.5)</p><p class="refpurpose"><span class="refname">HttpMessage::__construct</span> &mdash; <span class="dc-title">HttpMessage constructor</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>HttpMessage::__construct</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$message</tt></span>
+  ] )</div>
+
+
+  <p class="para rdfs-comment">
+   Instantiate a new HttpMessage object.
+  </p>
+  <p class="para">
+   The constructed object will actually represent the <em class="emphasis">last</em> message of the passed string. If there were
+   prior messages, those can be accessed by <b class="classname">HttpMessage</b>::<b>getParentMessage()</b>.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">message</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       a single or several consecutive HTTP messages
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws HttpMalformedHeaderException.
+  </p>
+ </div>
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.httpmessage-addheaders.html">HttpMessage::addHeaders</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.httpmessage-detach.html">HttpMessage::detach</a></div>
+ <div class="up"><a href="class.httpmessage.html">The HttpMessage class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

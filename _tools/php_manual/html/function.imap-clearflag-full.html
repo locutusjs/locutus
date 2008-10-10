@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Clears flags on messages</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-check.html">imap_check</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-close.html">imap_close</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imap-clearflag-full" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_clearflag_full</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imap_clearflag_full</span> &mdash; <span class="dc-title">Clears flags on messages</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>imap_clearflag_full</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$imap_stream</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$sequence</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$flag</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$options</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This function causes a store to delete the specified
+   <i><tt class="parameter">flag</tt></i>
+ to the flags set for the
+   messages in the specified <i><tt class="parameter">sequence</tt></i>
+.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+imap_stream</tt></i>
+</span>
+<dd>
+<p class="para">An IMAP stream returned by 
+<a href="function.imap-open.html" class="function">imap_open()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">sequence</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A sequence of message numbers. You can enumerate desired messages
+       with the <i>X,Y</i> syntax, or retrieve all messages 
+       within an interval with the <i>X:Y</i> syntax
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flag</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The flags which you can unset are &quot;\\Seen&quot;, &quot;\\Answered&quot;, &quot;\\Flagged&quot;,
+       &quot;\\Deleted&quot;, and &quot;\\Draft&quot; (as defined by <a href="http://www.faqs.org/rfcs/rfc2060" class="link external">&raquo; RFC2060</a>)
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">options</tt></i>
+ are a bit mask and may contain
+       the single option:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>ST_UID</tt></b> - The sequence argument contains UIDs
+          instead of sequence numbers
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imap-setflag-full.html" class="function" rel="rdfs-seeAlso">imap_setflag_full()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-check.html">imap_check</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-close.html">imap_close</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

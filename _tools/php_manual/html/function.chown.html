@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Changes file owner</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.chmod.html">chmod</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.clearstatcache.html">clearstatcache</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.chown" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">chown</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">chown</span> &mdash; <span class="dc-title">Changes file owner</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>chown</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$user</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Attempts to change the owner of the file <i><tt class="parameter">filename</tt></i>
+
+   to user <i><tt class="parameter">user</tt></i>
+. Only the superuser may change the
+   owner of a file.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">user</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A user name or number.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Simple <b>chown()</b> usage</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;File&nbsp;name&nbsp;and&nbsp;username&nbsp;to&nbsp;use<br /></span><span style="color: #0000BB">$file_name</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"foo.php"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$path&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"/home/sites/php.net/public_html/sandbox"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$file_name&nbsp;</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$user_name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"root"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Set&nbsp;the&nbsp;user<br /></span><span style="color: #0000BB">chown</span><span style="color: #007700">(</span><span style="color: #0000BB">$path</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user_name</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Check&nbsp;the&nbsp;result<br /></span><span style="color: #0000BB">$stat&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stat</span><span style="color: #007700">(</span><span style="color: #0000BB">$path</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">posix_getpwuid</span><span style="color: #007700">(</span><span style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span style="color: #DD0000">'uid'</span><span style="color: #007700">]));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+array(7) {
+  [&quot;name&quot;]=&gt;
+  string(13) &quot;php.net&quot;
+  [&quot;passwd&quot;]=&gt;
+  string(1) &quot;x&quot;
+  [&quot;uid&quot;]=&gt;
+  int(148864)
+  [&quot;gid&quot;]=&gt;
+  int(148910)
+  [&quot;gecos&quot;]=&gt;
+  string(13) &quot;php.net&quot;
+  [&quot;dir&quot;]=&gt;
+  string(25) &quot;/home/sites/php.net&quot;
+  [&quot;shell&quot;]=&gt;
+  string(13) &quot;/sbin/nologin&quot;
+}
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function will not work on 
+<a href="features.remote-files.html" class="link">remote files</a> as the file to
+be examined must be accessible via the server&#039;s filesystem.</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">When <a href="features.safe-mode.html" class="link">safe mode</a> is enabled, PHP checks whether 
+the files or directories being operated upon have the same UID (owner) as the 
+script that is being executed.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.chmod.html" class="function" rel="rdfs-seeAlso">chmod()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.chmod.html">chmod</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.clearstatcache.html">clearstatcache</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

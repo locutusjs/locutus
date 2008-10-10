@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get mnoGoSearch result parameters</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.udm-get-res-field.html">udm_get_res_field</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.udm-hash32.html">udm_hash32</a></div>
+ <div class="up"><a href="ref.mnogosearch.html">mnoGoSearch Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.udm-get-res-param" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">udm_get_res_param</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5, PHP 5 &lt;= 5.0.5, PECL mnogosearch:1.0.0)</p><p class="refpurpose"><span class="refname">udm_get_res_param</span> &mdash; <span class="dc-title">Get mnoGoSearch result parameters</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>udm_get_res_param</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$res</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$param</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets the mnoGoSearch result parameters.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">res</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">res</tt></i>
+ - a link to result identifier, received after
+       call to <a href="function.udm-find.html" class="function">udm_find()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">param</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">param</tt></i>
+ - parameter identifier, may have the following values:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          UDM_PARAM_NUM_ROWS - number of received found links on the current page.  It is equal to
+          UDM_PARAM_PAGE_SIZE for all search pages, on the last page - the rest of links.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          UDM_PARAM_FOUND - total number of results matching the query.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          UDM_PARAM_WORDINFO - information on the words found. E.g. search for
+          &quot;a good book&quot; will return &quot;a: stopword, good:5637, book: 120&quot;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          UDM_PARAM_SEARCHTIME - search time in seconds.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          UDM_PARAM_FIRST_DOC - the number of the first document displayed on current page.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          UDM_PARAM_LAST_DOC - the number of the last document displayed on current page.
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>udm_get_res_param()</b> returns result parameter value on
+   success, <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.udm-get-res-field.html">udm_get_res_field</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.udm-hash32.html">udm_hash32</a></div>
+ <div class="up"><a href="ref.mnogosearch.html">mnoGoSearch Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

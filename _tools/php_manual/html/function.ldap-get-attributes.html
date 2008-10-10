@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get attributes from a search result entry</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ldap-free-result.html">ldap_free_result</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ldap-get-dn.html">ldap_get_dn</a></div>
+ <div class="up"><a href="ref.ldap.html">LDAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ldap-get-attributes" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ldap_get_attributes</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ldap_get_attributes</span> &mdash; <span class="dc-title">Get attributes from a search result entry</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>ldap_get_attributes</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+   , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result_entry_identifier</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Reads attributes and values from an entry in the search result. 
+  </p>
+  <p class="para">
+   Having located a specific entry in the directory, you can find out what
+   information is held for that entry by using this call. You would use this
+   call for an application which &quot;browses&quot; directory entries and/or where you
+   do not know the structure of the directory entries. In many applications
+   you will be searching for a specific attribute such as an email address or
+   a surname, and won&#039;t care what other data is held.
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="cdata"><pre>
+return_value[&quot;count&quot;] = number of attributes in the entry
+return_value[0] = first attribute
+return_value[n] = nth attribute
+
+return_value[&quot;attribute&quot;][&quot;count&quot;] = number of values for attribute
+return_value[&quot;attribute&quot;][0] = first value of the attribute
+return_value[&quot;attribute&quot;][i] = (i+1)th value of the attribute
+</pre></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An LDAP link identifier, returned by <a href="function.ldap-connect.html" class="function">ldap_connect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_entry_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a complete entry information in a multi-dimensional array
+   on success and <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 
+     Show the list of attributes held for a particular directory entry
+    </b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;$ds&nbsp;is&nbsp;the&nbsp;link&nbsp;identifier&nbsp;for&nbsp;the&nbsp;directory<br /><br />//&nbsp;$sr&nbsp;is&nbsp;a&nbsp;valid&nbsp;search&nbsp;result&nbsp;from&nbsp;a&nbsp;prior&nbsp;call&nbsp;to<br />//&nbsp;one&nbsp;of&nbsp;the&nbsp;ldap&nbsp;directory&nbsp;search&nbsp;calls<br /><br /></span><span style="color: #0000BB">$entry&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ldap_first_entry</span><span style="color: #007700">(</span><span style="color: #0000BB">$ds</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sr</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$attrs&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ldap_get_attributes</span><span style="color: #007700">(</span><span style="color: #0000BB">$ds</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$entry</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$attrs</span><span style="color: #007700">[</span><span style="color: #DD0000">"count"</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"&nbsp;attributes&nbsp;held&nbsp;for&nbsp;this&nbsp;entry:&lt;p&gt;"</span><span style="color: #007700">;<br /><br />for&nbsp;(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">$attrs</span><span style="color: #007700">[</span><span style="color: #DD0000">"count"</span><span style="color: #007700">];&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$attrs</span><span style="color: #007700">[</span><span style="color: #0000BB">$i</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ldap-first-attribute.html" class="function" rel="rdfs-seeAlso">ldap_first_attribute()</a></li>
+    <li class="member"><a href="function.ldap-next-attribute.html" class="function" rel="rdfs-seeAlso">ldap_next_attribute()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ldap-free-result.html">ldap_free_result</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ldap-get-dn.html">ldap_get_dn</a></div>
+ <div class="up"><a href="ref.ldap.html">LDAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

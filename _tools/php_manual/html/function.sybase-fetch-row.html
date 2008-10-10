@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get a result row as an enumerated array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sybase-fetch-object.html">sybase_fetch_object</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sybase-field-seek.html">sybase_field_seek</a></div>
+ <div class="up"><a href="ref.sybase.html">Sybase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sybase-fetch-row" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sybase_fetch_row</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">sybase_fetch_row</span> &mdash; <span class="dc-title">Get a result row as an enumerated array</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>sybase_fetch_row</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>sybase_fetch_row()</b> fetches one row of data
+   from the result associated with the specified result identifier.
+  </p>
+  <p class="para">
+   Subsequent call to <b>sybase_fetch_row()</b> would
+   return the next row in the result set, or <b><tt>FALSE</tt></b> if there are no
+   more rows.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array that corresponds to the fetched row, or <b><tt>FALSE</tt></b> if there
+   are no more rows. Each result column is stored in an array offset,
+   starting at offset 0.
+  </p>
+  <table border="5">
+   <caption><b>Data types</b></caption>
+   <colgroup>
+
+    <thead valign="middle">
+     <tr valign="middle">
+      <th colspan="1">PHP</th>
+      <th colspan="1">Sybase</th>
+     </tr>
+
+    </thead>
+
+    <tbody valign="middle" class="tbody">
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left">string</td>
+      <td colspan="1" rowspan="1" align="left">VARCHAR, TEXT, CHAR, IMAGE, BINARY, VARBINARY, DATETIME</td>
+     </tr>
+
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left">int</td>
+      <td colspan="1" rowspan="1" align="left">NUMERIC (w/o precision), DECIMAL (w/o precision), INT, BIT, TINYINT, SMALLINT</td>
+     </tr>
+
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left">float</td>
+      <td colspan="1" rowspan="1" align="left">NUMERIC (w/ precision), DECIMAL (w/ precision), REAL, FLOAT, MONEY</td>
+     </tr>
+
+     <tr valign="middle">
+      <td colspan="1" rowspan="1" align="left"><b><tt>NULL</tt></b></td>
+      <td colspan="1" rowspan="1" align="left">NULL</td>
+     </tr>
+
+    </tbody>
+   </colgroup>
+
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sybase-fetch-array.html" class="function" rel="rdfs-seeAlso">sybase_fetch_array()</a></li>
+    <li class="member"><a href="function.sybase-fetch-assoc.html" class="function" rel="rdfs-seeAlso">sybase_fetch_assoc()</a></li>
+    <li class="member"><a href="function.sybase-fetch-object.html" class="function" rel="rdfs-seeAlso">sybase_fetch_object()</a></li>
+    <li class="member"><a href="function.sybase-data-seek.html" class="function" rel="rdfs-seeAlso">sybase_data_seek()</a></li>
+    <li class="member"><a href="function.sybase-result.html" class="function" rel="rdfs-seeAlso">sybase_result()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sybase-fetch-object.html">sybase_fetch_object</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sybase-field-seek.html">sybase_field_seek</a></div>
+ <div class="up"><a href="ref.sybase.html">Sybase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

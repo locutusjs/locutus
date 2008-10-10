@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Split multibyte string using regular expression</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-send-mail.html">mb_send_mail</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-strcut.html">mb_strcut</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-split" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_split</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">mb_split</span> &mdash; <span class="dc-title">Split multibyte string using regular expression</span></p>
+
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>mb_split</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pattern</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$string</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$limit</tt></span>
+  ] )</div>
+
+  <p class="simpara">
+   Split a multibyte
+   <i><tt class="parameter">string</tt></i>
+ using regular expression
+   <i><tt class="parameter">pattern</tt></i>
+ and returns the result as an
+   <a href="language.types.array.html" class="type array">array</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pattern</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The regular expression pattern.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">string</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="language.types.string.html" class="type string">string</a> being split.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">limit</tt></i>
+</span>
+
+     <dd>
+
+      <span class="simpara">
+       If optional parameter <i><tt class="parameter">limit</tt></i>
+ is specified, 
+       it will be split in <i><tt class="parameter">limit</tt></i>
+ elements as
+       maximum.
+      </span>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The result as an <a href="language.types.array.html" class="type array">array</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  
+  <blockquote><p><b class="note">Note</b>: The internal encoding or the 
+character encoding specified by <a href="function.mb-regex-encoding.html" class="function">mb_regex_encoding()</a> 
+will be used as the character encoding for this function.<br /></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-regex-encoding.html" class="function" rel="rdfs-seeAlso">mb_regex_encoding()</a></li>
+    <li class="member"><a href="function.mb-ereg.html" class="function" rel="rdfs-seeAlso">mb_ereg()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-send-mail.html">mb_send_mail</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-strcut.html">mb_strcut</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

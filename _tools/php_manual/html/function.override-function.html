@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Overrides built-in functions</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.apd-set-socket-session-trace.html">apd_set_socket_session_trace</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.rename-function.html">rename_function</a></div>
+ <div class="up"><a href="ref.apd.html">APD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.override-function" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">override_function</h1>
+  <p class="verinfo">(PECL apd:0.2-1.0.1)</p><p class="refpurpose"><span class="refname">override_function</span> &mdash; <span class="dc-title">Overrides built-in functions</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>override_function</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$function_name</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$function_args</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$function_code</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Overrides built-in functions by replacing them in the symbol table.
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">function_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The function to override.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">function_args</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The function arguments, as a coma separated string.
+      </p>
+      <p class="para">
+       Usually you will want to pass this parameter, as well as the 
+       <i><tt class="parameter">function_code</tt></i>
+ parameter, as a single quote 
+       delimited string. The reason for using single quoted strings, is to
+       protect the variable names from parsing, otherwise, if you use double
+       quotes there will be a need to escape the variable names, e.g. 
+       \<var class="varname">$your_var</var>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">function_code</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The new code for the function.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>override_function()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />override_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'test'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'$a,$b'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'echo&nbsp;"DOING&nbsp;TEST";&nbsp;return&nbsp;$a&nbsp;*&nbsp;$b;'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p> 
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.apd-set-socket-session-trace.html">apd_set_socket_session_trace</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.rename-function.html">rename_function</a></div>
+ <div class="up"><a href="ref.apd.html">APD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

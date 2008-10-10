@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the number of fields returned by the last query</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ingres-field-type.html">ingres_field_type</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ingres-num-rows.html">ingres_num_rows</a></div>
+ <div class="up"><a href="ref.ingres.html">Ingres II Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ingres-num-fields" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ingres_num_fields</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5 &lt;= 5.0.5, PECL ingres:1.0-1.4.3)</p><p class="refpurpose"><span class="refname">ingres_num_fields</span> &mdash; <span class="dc-title">Get the number of fields returned by the last query</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>ingres_num_fields</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>ingres_num_fields()</b> returns the number of
+   fields in the results returned by the Ingres server after a call
+   to <a href="function.ingres-query.html" class="function">ingres_query()</a>
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The connection link identifier. If not specified, the last opened link
+       is used.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of fields.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ingres-query.html" class="function" rel="rdfs-seeAlso">ingres_query()</a></li>
+    <li class="member"><a href="function.ingres-fetch-array.html" class="function" rel="rdfs-seeAlso">ingres_fetch_array()</a></li>
+    <li class="member"><a href="function.ingres-fetch-object.html" class="function" rel="rdfs-seeAlso">ingres_fetch_object()</a></li>
+    <li class="member"><a href="function.ingres-fetch-row.html" class="function" rel="rdfs-seeAlso">ingres_fetch_row()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ingres-field-type.html">ingres_field_type</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ingres-num-rows.html">ingres_num_rows</a></div>
+ <div class="up"><a href="ref.ingres.html">Ingres II Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

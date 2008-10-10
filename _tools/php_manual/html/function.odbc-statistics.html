@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Retrieve statistics about a table</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.odbc-specialcolumns.html">odbc_specialcolumns</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.odbc-tableprivileges.html">odbc_tableprivileges</a></div>
+ <div class="up"><a href="ref.uodbc.html">ODBC Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.odbc-statistics" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">odbc_statistics</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">odbc_statistics</span> &mdash; <span class="dc-title">Retrieve statistics about a table</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>odbc_statistics</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection_id</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$qualifier</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$owner</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$table_name</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$unique</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$accuracy</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Get statistics about a table and its indexes.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The ODBC connection identifier,
+see <a href="function.odbc-connect.html" class="function">odbc_connect()</a> for details.</p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">qualifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The qualifier.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">owner</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The owner.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">table_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The table name.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">unique</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The unique attribute.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">accuracy</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The accuracy.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an ODBC result identifier or <b><tt>FALSE</tt></b> on failure.
+  </p>
+  <p class="para">
+   The result set has the following columns:
+   <ul class="itemizedlist">
+    <li class="listitem"><span class="simpara">TABLE_QUALIFIER</span></li>
+    <li class="listitem"><span class="simpara">TABLE_OWNER</span></li>
+    <li class="listitem"><span class="simpara">TABLE_NAME</span></li>
+    <li class="listitem"><span class="simpara">NON_UNIQUE</span></li>
+    <li class="listitem"><span class="simpara">INDEX_QUALIFIER</span></li>
+    <li class="listitem"><span class="simpara">INDEX_NAME</span></li>
+    <li class="listitem"><span class="simpara">TYPE</span></li>
+    <li class="listitem"><span class="simpara">SEQ_IN_INDEX</span></li>
+    <li class="listitem"><span class="simpara">COLUMN_NAME</span></li>
+    <li class="listitem"><span class="simpara">COLLATION</span></li>
+    <li class="listitem"><span class="simpara">CARDINALITY</span></li>
+    <li class="listitem"><span class="simpara">PAGES</span></li>
+    <li class="listitem"><span class="simpara">FILTER_CONDITION</span></li>
+   </ul>
+  </p>
+  <p class="simpara">
+   The result set is ordered by NON_UNIQUE, TYPE, INDEX_QUALIFIER,
+   INDEX_NAME and SEQ_IN_INDEX.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.odbc-specialcolumns.html">odbc_specialcolumns</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.odbc-tableprivileges.html">odbc_tableprivileges</a></div>
+ <div class="up"><a href="ref.uodbc.html">ODBC Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>List all the handlers available</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dba-firstkey.html">dba_firstkey</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dba-insert.html">dba_insert</a></div>
+ <div class="up"><a href="ref.dba.html">DBA Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.dba-handlers" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dba_handlers</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">dba_handlers</span> &mdash; <span class="dc-title">List all the handlers available</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>dba_handlers</b></b></span>
+    ([ <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$full_info</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>dba_handlers()</b> list all the handlers supported by this
+   extension.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">full_info</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Turns on/off full information display in the result. The default is
+       <b><tt>FALSE</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array of database handlers. If <i><tt class="parameter">full_info</tt></i>
+
+   is set to <b><tt>TRUE</tt></b>, the array will be associative with the handlers names as
+   keys, and their version information as value. Otherwise, the result will be
+   an indexed array of handlers names.  
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    When the internal cdb library is used you will see 
+    <i>cdb</i> and <i>cdb_make</i>.
+   <br />
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>dba_handlers()</b> Example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"Available&nbsp;DBA&nbsp;handlers:\n"</span><span style="color: #007700">;<br />foreach&nbsp;(</span><span style="color: #0000BB">dba_handlers</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;as&nbsp;</span><span style="color: #0000BB">$handler_name&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$handler_version</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;clean&nbsp;the&nbsp;versions<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$handler_version&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">str_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'$'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$handler_version</span><span style="color: #007700">);<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&nbsp;-&nbsp;$handler_name:&nbsp;$handler_version\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Available DBA handlers:
+ - cdb: 0.75, Revision: 1.3.2.3 
+ - cdb_make: 0.75, Revision: 1.2.2.4 
+ - db2: Sleepycat Software: Berkeley DB 2.7.7: (08/20/99)
+ - inifile: 1.0, Revision: 1.6.2.3 
+ - flatfile: 1.0, Revision: 1.5.2.4 
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dba-firstkey.html">dba_firstkey</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dba-insert.html">dba_insert</a></div>
+ <div class="up"><a href="ref.dba.html">DBA Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

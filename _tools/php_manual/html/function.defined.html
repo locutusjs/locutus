@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Checks whether a given named constant exists</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.define.html">define</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.die.html">die</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.defined" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">defined</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">defined</span> &mdash; <span class="dc-title">Checks whether a given named constant exists</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>defined</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Checks whether the given constant exists and is defined.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    If you want to see if a variable exists, use <a href="function.isset.html" class="function">isset()</a>
+    as <b>defined()</b> only applies to <a href="language.constants.html" class="link">constants</a>. If you want to see if a
+    function exists, use <a href="function.function-exists.html" class="function">function_exists()</a>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The constant name.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if the named constant given by <i><tt class="parameter">name</tt></i>
+
+   has been defined, <b><tt>FALSE</tt></b> otherwise.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Checking Constants</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Note&nbsp;the&nbsp;use&nbsp;of&nbsp;quotes,&nbsp;this&nbsp;is&nbsp;important.&nbsp;&nbsp;This&nbsp;example&nbsp;is&nbsp;checking<br />&nbsp;*&nbsp;if&nbsp;the&nbsp;string&nbsp;'CONSTANT'&nbsp;is&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;constant&nbsp;named&nbsp;CONSTANT&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">defined</span><span style="color: #007700">(</span><span style="color: #DD0000">'CONSTANT'</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">CONSTANT</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.define.html" class="function" rel="rdfs-seeAlso">define()</a></li>
+    <li class="member"><a href="function.constant.html" class="function" rel="rdfs-seeAlso">constant()</a></li>
+    <li class="member"><a href="function.get-defined-constants.html" class="function" rel="rdfs-seeAlso">get_defined_constants()</a></li>
+    <li class="member"><a href="function.function-exists.html" class="function" rel="rdfs-seeAlso">function_exists()</a></li>
+    <li class="member">The section on <a href="language.constants.html" class="link">Constants</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.define.html">define</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.die.html">die</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

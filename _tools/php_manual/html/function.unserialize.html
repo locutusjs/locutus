@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Creates a PHP value from a stored representation</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.strval.html">strval</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.unset.html">unset</a></div>
+ <div class="up"><a href="ref.var.html">Variable handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.unserialize" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">unserialize</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">unserialize</span> &mdash; <span class="dc-title">
+   Creates a PHP value from a stored representation
+  </span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>unserialize</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   )</div>
+
+  <p class="simpara">
+   <b>unserialize()</b> takes a single serialized variable and
+   converts it back into a PHP value.  
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The serialized string.
+      </p>
+      <p class="para">
+       If the variable being unserialized is an object, after successfully 
+       reconstructing the object PHP will automatically attempt to call the
+       <b>__wakeup()</b> member function (if it exists).
+      </p>
+      <p class="para">
+       <blockquote><p><b class="note">Note</b>: 
+        <b>unserialize_callback_func directive</b><br />
+        
+         It&#039;s possible to set a callback-function which will be called,
+         if an undefined class should be instantiated during unserializing.
+         (to prevent getting an incomplete <a href="language.types.object.html" class="type object">object</a> &quot;__PHP_Incomplete_Class&quot;.)
+         Use your <var class="filename">php.ini</var>, <a href="function.ini-set.html" class="function">ini_set()</a> or <var class="filename">.htaccess</var> 
+         to define &#039;unserialize_callback_func&#039;.  Everytime an undefined class
+         should be instantiated, it&#039;ll be called.  To disable this feature just
+         empty this setting.
+        <br />
+       </p></blockquote>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The converted value is returned, and can be a <a href="language.types.boolean.html" class="type boolean">boolean</a>,
+   <a href="language.types.integer.html" class="type integer">integer</a>, <a href="language.types.float.html" class="type float">float</a>, <a href="language.types.string.html" class="type string">string</a>,
+   <a href="language.types.array.html" class="type array">array</a> or <a href="language.types.object.html" class="type object">object</a>.
+  </p>
+  <p class="para">
+   In case the passed string is not unserializeable, <b><tt>FALSE</tt></b> is returned and
+   <i>E_NOTICE</i> is issued.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.2.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The directive unserialize_callback_func became available.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        When serializing an object, methods are not lost anymore. 
+        Please see the 
+        <a href="language.oop.serialization.html" class="link">Serializing Objects</a>
+        for more information.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>unserialize()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Here,&nbsp;we&nbsp;use&nbsp;unserialize()&nbsp;to&nbsp;load&nbsp;session&nbsp;data&nbsp;to&nbsp;the<br />//&nbsp;$session_data&nbsp;array&nbsp;from&nbsp;the&nbsp;string&nbsp;selected&nbsp;from&nbsp;a&nbsp;database.<br />//&nbsp;This&nbsp;example&nbsp;complements&nbsp;the&nbsp;one&nbsp;described&nbsp;with&nbsp;serialize().<br /><br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"webdb"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"php"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"chicken"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;data&nbsp;FROM&nbsp;sessions&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;?"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$sqldata&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'PHP_AUTH_USER'</span><span style="color: #007700">]);<br />if&nbsp;(!</span><span style="color: #0000BB">odbc_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;&amp;</span><span style="color: #0000BB">$sqldata</span><span style="color: #007700">)&nbsp;||&nbsp;!</span><span style="color: #0000BB">odbc_fetch_into</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;&amp;</span><span style="color: #0000BB">$tmp</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;if&nbsp;the&nbsp;execute&nbsp;or&nbsp;fetch&nbsp;fails,&nbsp;initialize&nbsp;to&nbsp;empty&nbsp;array<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$session_data&nbsp;</span><span style="color: #007700">=&nbsp;array();<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;we&nbsp;should&nbsp;now&nbsp;have&nbsp;the&nbsp;serialized&nbsp;data&nbsp;in&nbsp;$tmp[0].<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$session_data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">unserialize</span><span style="color: #007700">(</span><span style="color: #0000BB">$tmp</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!</span><span style="color: #0000BB">is_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$session_data</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;something&nbsp;went&nbsp;wrong,&nbsp;initialize&nbsp;to&nbsp;empty&nbsp;array<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$session_data&nbsp;</span><span style="color: #007700">=&nbsp;array();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 unserialize_callback_func example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$serialized_object</span><span style="color: #007700">=</span><span style="color: #DD0000">'O:1:"a":1:{s:5:"value";s:3:"100";}'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;unserialize_callback_func&nbsp;directive&nbsp;available&nbsp;as&nbsp;of&nbsp;PHP&nbsp;4.2.0<br /></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">'unserialize_callback_func'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mycallback'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;set&nbsp;your&nbsp;callback_function<br /><br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">mycallback</span><span style="color: #007700">(</span><span style="color: #0000BB">$classname</span><span style="color: #007700">)&nbsp;<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;just&nbsp;include&nbsp;a&nbsp;file&nbsp;containing&nbsp;your&nbsp;classdefinition<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;you&nbsp;get&nbsp;$classname&nbsp;to&nbsp;figure&nbsp;out&nbsp;which&nbsp;classdefinition&nbsp;is&nbsp;required<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="para">
+    <b><tt>FALSE</tt></b> is returned both in the case of an error and if unserializing
+    the serialized <b><tt>FALSE</tt></b> value. It is possible to catch this special case by
+    comparing <i><tt class="parameter">str</tt></i>
+ with
+    <i>serialize(false)</i> or by catching the issued
+    <i>E_NOTICE</i>.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.serialize.html" class="function" rel="rdfs-seeAlso">serialize()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.strval.html">strval</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.unset.html">unset</a></div>
+ <div class="up"><a href="ref.var.html">Variable handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

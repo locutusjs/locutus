@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Return a string representing the parsed tidy markup</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.tidy-get-opt-doc.html">tidy_get_opt_doc</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.tidy-get-release.html">tidy_get_release</a></div>
+ <div class="up"><a href="ref.tidy.html">Tidy Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.tidy-get-output" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">tidy_get_output</h1>
+  <p class="verinfo">(PHP 5, PECL tidy:0.5.2-1.2)</p><p class="refpurpose"><span class="refname">tidy_get_output</span> &mdash; <span class="dc-title">Return a string representing the parsed tidy markup</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>tidy_get_output</b></b></span>
+    ( <span class="methodparam"><span class="type"><span class="type tidy">tidy</span></span> <tt class="parameter">$object</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets a string with the repaired html.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">object</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The tidy object.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the parsed tidy markup.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>tidy_get_output()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$html&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'&lt;p&gt;paragraph&lt;/i&gt;'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$tidy&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">tidy_parse_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$html</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$tidy</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">CleanRepair</span><span style="color: #007700">();<br /><br />echo&nbsp;</span><span style="color: #0000BB">tidy_get_output</span><span style="color: #007700">(</span><span style="color: #0000BB">$tidy</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 3.2//EN&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;paragraph&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.tidy-get-opt-doc.html">tidy_get_opt_doc</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.tidy-get-release.html">tidy_get_release</a></div>
+ <div class="up"><a href="ref.tidy.html">Tidy Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

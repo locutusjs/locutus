@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns a list of response headers sent (or ready to send)</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.header.html">header</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.headers-sent.html">headers_sent</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.headers-list" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">headers_list</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">headers_list</span> &mdash; <span class="dc-title">Returns a list of response headers sent (or ready to send)</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>headers_list</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>headers_list()</b> will return a list of headers to be sent
+   to the browser / client.  To determine whether or not these headers have
+   been sent yet, use <a href="function.headers-sent.html" class="function">headers_sent()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a numerically indexed array of headers.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Examples using <b>headers_list()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;setcookie()&nbsp;will&nbsp;add&nbsp;a&nbsp;response&nbsp;header&nbsp;on&nbsp;its&nbsp;own&nbsp;*/<br /></span><span style="color: #0000BB">setcookie</span><span style="color: #007700">(</span><span style="color: #DD0000">'foo'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'bar'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Define&nbsp;a&nbsp;custom&nbsp;response&nbsp;header<br />&nbsp;&nbsp;&nbsp;This&nbsp;will&nbsp;be&nbsp;ignored&nbsp;by&nbsp;most&nbsp;clients&nbsp;*/<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">"X-Sample-Test:&nbsp;foo"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Specify&nbsp;plain&nbsp;text&nbsp;content&nbsp;in&nbsp;our&nbsp;response&nbsp;*/<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;text/plain'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;What&nbsp;headers&nbsp;are&nbsp;going&nbsp;to&nbsp;be&nbsp;sent?&nbsp;*/<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">headers_list</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+array(4) {
+  [0]=&gt;
+  string(23) &quot;X-Powered-By: PHP/5.1.3&quot;
+  [1]=&gt;
+  string(19) &quot;Set-Cookie: foo=bar&quot;
+  [2]=&gt;
+  string(18) &quot;X-Sample-Test: foo&quot;
+  [3]=&gt;
+  string(24) &quot;Content-type: text/plain&quot;
+}
+
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.headers-sent.html" class="function" rel="rdfs-seeAlso">headers_sent()</a></li>
+    <li class="member"><a href="function.header.html" class="function" rel="rdfs-seeAlso">header()</a></li>
+    <li class="member"><a href="function.setcookie.html" class="function" rel="rdfs-seeAlso">setcookie()</a></li>
+    <li class="member"><a href="function.apache-response-headers.html" class="function" rel="rdfs-seeAlso">apache_response_headers()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.header.html">header</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.headers-sent.html">headers_sent</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

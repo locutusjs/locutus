@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>What References Are Not</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.references.whatdo.html">What References Do</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.references.pass.html">Passing by Reference</a></div>
+ <div class="up"><a href="language.references.html">References Explained</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.references.arent" class="sect1">
+   <h2 class="title">What References Are Not</h2>
+   <p class="para">
+    As said before, references aren&#039;t pointers. That means, the
+    following construct won&#039;t do what you expect:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">(&amp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$var&nbsp;</span><span style="color: #007700">=&amp;&nbsp;</span><span style="color: #0000BB">$GLOBALS</span><span style="color: #007700">[</span><span style="color: #DD0000">"baz"</span><span style="color: #007700">];<br />}<br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$bar</span><span style="color: #007700">);&nbsp;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="simpara">
+    What happens is that <var class="varname">$var</var> in
+    <var class="varname">foo</var> will be bound with
+    <var class="varname">$bar</var> in caller, but then it will be
+    re-bound with <var class="varname"><a href="reserved.variables.globals.html" class="classname">$GLOBALS["baz"]</a></var>. There&#039;s no way
+    to bind <var class="varname">$bar</var> in the calling scope to something else
+    using the reference mechanism, since <var class="varname">$bar</var> is not
+    available in the function <var class="varname">foo</var> (it is represented by
+    <var class="varname">$var</var>, but <var class="varname">$var</var> has only
+    variable contents and not name-to-value binding in the calling
+    symbol table).
+    You can use <a href="language.references.return.html" class="link">returning
+    references</a> to reference variables selected by the function.
+   </p>
+  </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.references.whatdo.html">What References Do</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.references.pass.html">Passing by Reference</a></div>
+ <div class="up"><a href="language.references.html">References Explained</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

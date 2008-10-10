@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets the internal pointer of the large object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.oci-lob-savefile.html">OCI-Lob->saveFile</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.oci-lob-setbuffering.html">OCI-Lob->setBuffering</a></div>
+ <div class="up"><a href="ref.oci8.html">OCI8 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.oci-lob-seek" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">OCI-Lob-&gt;seek</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">OCI-Lob-&gt;seek</span> &mdash; <span class="dc-title">Sets the internal pointer of the large object</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">OCI-Lob</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><b>seek</b></b></span>
+     ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$offset</tt></span>
+    [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$whence</tt></span>
+   ] )</div>
+
+  </div>
+  <p class="para">
+   Sets the internal pointer of the large object.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">offset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Indicates the amount of bytes, on which internal pointer should be
+       moved from the position, pointed by <i><tt class="parameter">whence</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">whence</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       May be one of:
+       <ul class="simplelist">
+        <li class="member">
+         <b><tt>OCI_SEEK_SET</tt></b> - sets the position equal to 
+         <i><tt class="parameter">offset</tt></i>
+
+        </li>
+        <li class="member">
+         <b><tt>OCI_SEEK_CUR</tt></b> - adds <i><tt class="parameter">offset</tt></i>
+ 
+         bytes to the current position  
+        </li>
+        <li class="member">
+         <b><tt>OCI_SEEK_END</tt></b> - adds <i><tt class="parameter">offset</tt></i>
+
+         bytes to the end of large object (use negative value to move to a position
+         before the end of large object)
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.oci-lob-rewind.html" class="xref">OCI-Lob->rewind</a></li>
+    <li class="member"><a href="function.oci-lob-tell.html" class="xref">OCI-Lob->tell</a></li>
+    <li class="member"><a href="function.oci-lob-eof.html" class="xref">OCI-Lob->eof</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.oci-lob-savefile.html">OCI-Lob->saveFile</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.oci-lob-setbuffering.html">OCI-Lob->setBuffering</a></div>
+ <div class="up"><a href="ref.oci8.html">OCI8 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

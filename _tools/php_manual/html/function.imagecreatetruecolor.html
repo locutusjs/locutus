@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Create a new true color image</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagecreatefromxpm.html">imagecreatefromxpm</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagedashedline.html">imagedashedline</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagecreatetruecolor" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imagecreatetruecolor</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">imagecreatetruecolor</span> &mdash; <span class="dc-title">Create a new true color image</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>imagecreatetruecolor</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$width</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$height</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>imagecreatetruecolor()</b> returns an image identifier
+   representing a black image of the specified size.
+  </p>
+  <p class="para">
+   Depending on your PHP and GD versions this function is defined or not. With
+   PHP 4.0.6 through 4.1.x this function always exists if the GD module is
+   loaded, but calling it without GD2 being installed PHP will issue a fatal
+   error and exit. With PHP 4.2.x this behaviour is different in issuing a
+   warning instead of an error. Other versions only define this function, if
+   the correct GD version is installed.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">width</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Image width.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">height</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Image height.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an image resource identifier on success, <b><tt>FALSE</tt></b> on errors.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 
+     Creating a new GD image stream and outputting an image.
+    </b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />header&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/png'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;@</span><span style="color: #0000BB">imagecreatetruecolor</span><span style="color: #007700">(</span><span style="color: #0000BB">120</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">20</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die(</span><span style="color: #DD0000">'Cannot&nbsp;Initialize&nbsp;new&nbsp;GD&nbsp;image&nbsp;stream'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$text_color&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">233</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">14</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">91</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagestring</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;&nbsp;</span><span style="color: #DD0000">'A&nbsp;Simple&nbsp;Text&nbsp;String'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$text_color</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagepng</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="mediaobject">
+     <div class="imageobject">
+      <img src="figures/image.imagecreatetruecolor.png" />
+     </div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function requires GD 2.0.1 or later (2.0.28 or later is recommended).</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function will not work with GIF file formats.
+   <br />
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imagedestroy.html" class="function" rel="rdfs-seeAlso">imagedestroy()</a></li>
+    <li class="member"><a href="function.imagecreate.html" class="function" rel="rdfs-seeAlso">imagecreate()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagecreatefromxpm.html">imagecreatefromxpm</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagedashedline.html">imagedashedline</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

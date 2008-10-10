@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Replace regular expression with multibyte support</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-ereg-match.html">mb_ereg_match</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-ereg-search-getpos.html">mb_ereg_search_getpos</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-ereg-replace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_ereg_replace</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">mb_ereg_replace</span> &mdash; <span class="dc-title">Replace regular expression with multibyte support</span></p>
+
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mb_ereg_replace</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pattern</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$replacement</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$string</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$option</tt></span>
+  ] )</div>
+
+  <p class="simpara">
+   Scans <i><tt class="parameter">string</tt></i>
+ for matches to
+   <i><tt class="parameter">pattern</tt></i>
+, then replaces the matched text
+   with <i><tt class="parameter">replacement</tt></i>
+  
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pattern</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The regular expression pattern.
+      </p>
+      <p class="para">
+       Multibyte characters may be used in <i><tt class="parameter">pattern</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">replacement</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The replacement text.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">string</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="language.types.string.html" class="type string">string</a> being checked.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">option</tt></i>
+</span>
+
+     <dd>
+
+      <span class="simpara">
+       Matching condition can be set by <i><tt class="parameter">option</tt></i>
+
+       parameter. If <i>i</i> is specified for this
+       parameter, the case will be ignored. If <i>x</i> is
+       specified, white space will be ignored. If <i>m</i>
+       is specified, match will be executed in multiline mode and line
+       break will be included in &#039;.&#039;. If <i>p</i> is
+       specified, match will be executed in POSIX mode, line break 
+       will be considered as normal character. If <i>e</i>
+       is specified, <i><tt class="parameter">replacement</tt></i>
+ string will be
+       evaluated as PHP expression.
+      </span>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The resultant <a href="language.types.string.html" class="type string">string</a> on success, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  
+  <blockquote><p><b class="note">Note</b>: The internal encoding or the 
+character encoding specified by <a href="function.mb-regex-encoding.html" class="function">mb_regex_encoding()</a> 
+will be used as the character encoding for this function.<br /></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-regex-encoding.html" class="function" rel="rdfs-seeAlso">mb_regex_encoding()</a></li>
+    <li class="member"><a href="function.mb-eregi-replace.html" class="function" rel="rdfs-seeAlso">mb_eregi_replace()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-ereg-match.html">mb_ereg_match</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-ereg-search-getpos.html">mb_ereg_search_getpos</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

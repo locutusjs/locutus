@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sort an array using a "natural order" algorithm</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.natcasesort.html">natcasesort</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.next.html">next</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.natsort" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">natsort</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">natsort</span> &mdash; <span class="dc-title">Sort an array using a &quot;natural order&quot; algorithm</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>natsort</b></b></span>
+    ( <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$array</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function implements a sort algorithm that orders alphanumeric strings
+   in the way a human being would while maintaining key/value associations.
+   This is described as a &quot;natural ordering&quot;.  An example of the difference
+   between this algorithm and the regular computer string sorting algorithms
+   (used in <a href="function.sort.html" class="function">sort()</a>) can be seen in the example below.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">array</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input array.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>natsort()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$array1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$array2&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"img12.png"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"img10.png"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"img2.png"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"img1.png"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">sort</span><span style="color: #007700">(</span><span style="color: #0000BB">$array1</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"Standard&nbsp;sorting\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$array1</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">natsort</span><span style="color: #007700">(</span><span style="color: #0000BB">$array2</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"\nNatural&nbsp;order&nbsp;sorting\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$array2</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Standard sorting
+Array
+(
+    [0] =&gt; img1.png
+    [1] =&gt; img10.png
+    [2] =&gt; img12.png
+    [3] =&gt; img2.png
+)
+
+Natural order sorting
+Array
+(
+    [3] =&gt; img1.png
+    [2] =&gt; img2.png
+    [1] =&gt; img10.png
+    [0] =&gt; img12.png
+)
+</pre></div>
+    </pre></div>
+    <div class="example-contents"><p>
+     For more information see: Martin Pool&#039;s <a href="http://sourcefrog.net/projects/natsort/" class="link external">&raquo; Natural Order String Comparison</a>
+     page.
+    </p></div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.natcasesort.html" class="function" rel="rdfs-seeAlso">natcasesort()</a></li>
+    <li class="member"><a href="function.strnatcmp.html" class="function" rel="rdfs-seeAlso">strnatcmp()</a></li>
+    <li class="member"><a href="function.strnatcasecmp.html" class="function" rel="rdfs-seeAlso">strnatcasecmp()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.natcasesort.html">natcasesort</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.next.html">next</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

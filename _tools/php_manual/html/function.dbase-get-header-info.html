@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets the header info of a database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbase-delete-record.html">dbase_delete_record</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbase-get-record-with-names.html">dbase_get_record_with_names</a></div>
+ <div class="up"><a href="ref.dbase.html">dBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.dbase-get-header-info" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dbase_get_header_info</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">dbase_get_header_info</span> &mdash; <span class="dc-title">Gets the header info of a database</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>dbase_get_header_info</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$dbase_identifier</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns information on the column structure of the given database link
+   identifier.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dbase_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The database link identifier, returned by <a href="function.dbase-open.html" class="function">dbase_open()</a>
+       or <a href="function.dbase-create.html" class="function">dbase_create()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An indexed array with an entry for each column in the database. The array index
+   starts at 0.
+  </p>
+  <p class="para">
+   Each array element contains an associative array of column information, as
+   described here:
+   <dl>
+
+    <dt>
+
+     <span class="term">name</span>
+
+     <dd>
+
+      <span class="simpara">
+       The name of the column
+      </span>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">type</span>
+
+     <dd>
+
+      <span class="simpara">
+       The human-readable name for the dbase type of the column (i.e. date,
+       boolean, etc.)
+      </span>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">length</span>
+
+     <dd>
+
+      <span class="simpara">
+       The number of bytes this column can hold
+      </span>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">precision</span>
+
+     <dd>
+
+      <span class="simpara">
+       The number of digits of decimal precision for the column
+      </span>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">format</span>
+
+     <dd>
+
+      <span class="simpara">
+       A suggested <a href="function.printf.html" class="function">printf()</a> format specifier for the column
+      </span>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">offset</span>
+
+     <dd>
+
+      <span class="simpara">
+       The byte offset of the column from the start of the row
+      </span>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+  <p class="para">
+   If the database header information cannot be read, <b><tt>FALSE</tt></b> is returned.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Showing header information for a dBase database file</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Path&nbsp;to&nbsp;dbase&nbsp;file<br /></span><span style="color: #0000BB">$db_path&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"/tmp/test.dbf"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Open&nbsp;dbase&nbsp;file<br /></span><span style="color: #0000BB">$dbh&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbase_open</span><span style="color: #007700">(</span><span style="color: #0000BB">$db_path</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">)<br />&nbsp;&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Error!&nbsp;Could&nbsp;not&nbsp;open&nbsp;dbase&nbsp;database&nbsp;file&nbsp;'$db_path'."</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Get&nbsp;column&nbsp;information<br /></span><span style="color: #0000BB">$column_info&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbase_get_header_info</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Display&nbsp;information<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$column_info</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbase-delete-record.html">dbase_delete_record</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbase-get-record-with-names.html">dbase_get_record_with_names</a></div>
+ <div class="up"><a href="ref.dbase.html">dBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

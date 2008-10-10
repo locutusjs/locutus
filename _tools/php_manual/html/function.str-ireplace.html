@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Case-insensitive version of str_replace.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.str-getcsv.html">str_getcsv</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.str-pad.html">str_pad</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.str-ireplace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">str_ireplace</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">str_ireplace</span> &mdash; <span class="dc-title">Case-insensitive version of <a href="function.str-replace.html" class="function">str_replace()</a>.</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>str_ireplace</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$search</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$replace</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$subject</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter reference">&$count</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This function returns a string or an array with all occurrences of
+   <i><tt class="parameter">search</tt></i>
+ in <i><tt class="parameter">subject</tt></i>
+
+   (ignoring case) replaced with the given <i><tt class="parameter">replace</tt></i>
+
+   value.  If you don&#039;t need fancy replacing rules, you should generally
+   use this function instead of <a href="function.eregi-replace.html" class="function">eregi_replace()</a> or
+   <a href="function.preg-replace.html" class="function">preg_replace()</a> with the <i>i</i> modifier.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">search</tt></i>
+</span>
+
+     <dd>
+
+      <blockquote><p><b class="note">Note</b>: 
+       
+        Every replacement with <i><tt class="parameter">search</tt></i>
+ array is
+        performed on the result of previous replacement.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">replace</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">subject</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <i><tt class="parameter">subject</tt></i>
+ is an array, then the search and
+       replace is performed with every entry of 
+       <i><tt class="parameter">subject</tt></i>
+, and the return value is an array as
+       well.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">count</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The number of matched and replaced <i><tt class="parameter">needles</tt></i>
+ will
+       be returned in <i><tt class="parameter">count</tt></i>
+ which is passed by
+       reference.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+  <p class="para">
+   If <i><tt class="parameter">search</tt></i>
+ and <i><tt class="parameter">replace</tt></i>
+ are
+   arrays, then <b>str_ireplace()</b> takes a value from each
+   array and uses them to do search and replace on
+   <i><tt class="parameter">subject</tt></i>
+. If <i><tt class="parameter">replace</tt></i>
+ has
+   fewer values than <i><tt class="parameter">search</tt></i>
+, then an empty string is
+   used for the rest of replacement values. If <i><tt class="parameter">search</tt></i>
+
+   is an array and <i><tt class="parameter">replace</tt></i>
+ is a string; then this
+   replacement string is used for every value of
+   <i><tt class="parameter">search</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string or an array of replacements.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">count</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>str_ireplace()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$bodytag&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">str_ireplace</span><span style="color: #007700">(</span><span style="color: #DD0000">"%body%"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"black"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"&lt;body&nbsp;text=%BODY%&gt;"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function is binary safe.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.str-replace.html" class="function" rel="rdfs-seeAlso">str_replace()</a></li>
+    <li class="member"><a href="function.preg-replace.html" class="function" rel="rdfs-seeAlso">preg_replace()</a></li>
+    <li class="member"><a href="function.strtr.html" class="function" rel="rdfs-seeAlso">strtr()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.str-getcsv.html">str_getcsv</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.str-pad.html">str_pad</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

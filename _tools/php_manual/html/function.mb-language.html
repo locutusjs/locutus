@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set/Get current language</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-internal-encoding.html">mb_internal_encoding</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-list-encodings.html">mb_list_encodings</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-language" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_language</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">mb_language</span> &mdash; <span class="dc-title">Set/Get current language</span></p>
+
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>mb_language</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$language</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Set/Get the current language.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">language</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Used for encoding
+       e-mail messages. Valid languages are &quot;Japanese&quot;,
+       &quot;ja&quot;,&quot;English&quot;,&quot;en&quot; and &quot;uni&quot;
+       (UTF-8). <a href="function.mb-send-mail.html" class="function">mb_send_mail()</a> uses this setting to
+       encode e-mail.
+      </p>
+      <p class="para"> 
+       Language and its setting is ISO-2022-JP/Base64 for
+       Japanese, UTF-8/Base64 for uni, ISO-8859-1/quoted printable for
+       English.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   If <i><tt class="parameter">language</tt></i>
+ is set and
+   <i><tt class="parameter">language</tt></i>
+ is valid, it returns
+   <b><tt>TRUE</tt></b>. Otherwise, it returns <b><tt>FALSE</tt></b>. 
+   When <i><tt class="parameter">language</tt></i>
+ is omitted, it returns the language
+   name as a <a href="language.types.string.html" class="type string">string</a>. If no language is set previously, it then returns
+   <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-send-mail.html" class="function" rel="rdfs-seeAlso">mb_send_mail()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-internal-encoding.html">mb_internal_encoding</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-list-encodings.html">mb_list_encodings</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Interprets a string of XML into an object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.wddx.html">WDDX</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.simplexml-load-string" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">simplexml_load_string</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">simplexml_load_string</span> &mdash; <span class="dc-title">
+   Interprets a string of XML into an object
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">object</span> <span class="methodname"><b><b>simplexml_load_string</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$class_name</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$options</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$ns</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$is_prefix</tt></span>
+  ]]]] )</div>
+
+  <p class="para rdfs-comment">
+   Takes a well-formed XML string and returns it as an object.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A well-formed XML string
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">class_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       You may use this optional parameter so that
+       <b>simplexml_load_string()</b> will return an object of 
+       the specified class. That class should extend the 
+       <span class="type SimpleXMLElement">SimpleXMLElement</span> class.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Since PHP 5.1.0 and Libxml 2.6.0, you may also use the
+       <i><tt class="parameter">options</tt></i>
+ parameter to specify <a href="libxml.constants.html" class="link">additional Libxml parameters</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ns</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">is_prefix</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an <a href="language.types.object.html" class="type object">object</a> of class <span class="type SimpleXMLElement">SimpleXMLElement</span> with
+   properties containing the data held within the xml document. On errors, it
+   will return <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Interpret an XML string</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$string&nbsp;</span><span style="color: #007700">=&nbsp;&lt;&lt;&lt;XML<br /></span><span style="color: #0000BB">&lt;?xml&nbsp;version='1.0'?&gt;&nbsp;<br />&lt;document&gt;<br />&nbsp;&lt;title&gt;Forty&nbsp;What?&lt;/title&gt;<br />&nbsp;&lt;from&gt;Joe&lt;/from&gt;<br />&nbsp;&lt;to&gt;Jane&lt;/to&gt;<br />&nbsp;&lt;body&gt;<br />&nbsp;&nbsp;I&nbsp;know&nbsp;that's&nbsp;the&nbsp;answer&nbsp;--&nbsp;but&nbsp;what's&nbsp;the&nbsp;question?<br />&nbsp;&lt;/body&gt;<br />&lt;/document&gt;<br /></span><span style="color: #007700">XML;<br /><br /></span><span style="color: #0000BB">$xml&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">simplexml_load_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$xml</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+SimpleXMLElement Object
+(
+  [title] =&gt; Forty What?
+  [from] =&gt; Joe
+  [to] =&gt; Jane
+  [body] =&gt;
+   I know that&#039;s the answer -- but what&#039;s the question?
+)
+</pre></div>
+    </pre></div>
+    <div class="example-contents"><p>
+     At this point, you can go about using <i>$xml-&gt;body</i>
+     and such.
+    </p></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.simplexml-load-file.html" class="xref">simplexml_load_file</a></li>
+    <li class="member"><a href="function.simplexml-element-construct.html" class="xref">SimpleXMLElement->__construct</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.wddx.html">WDDX</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

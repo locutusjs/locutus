@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set the error mode for strings conversions</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.unicode-get-subst-char.html">unicode_get_subst_char</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.unicode-set-subst-char.html">unicode_set_subst_char</a></div>
+ <div class="up"><a href="ref.unicode.html">Unicode Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.unicode-set-error-mode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">unicode_set_error_mode</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">unicode_set_error_mode</span> &mdash; <span class="dc-title">Set the error mode for strings conversions</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>unicode_set_error_mode</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$direction</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function sets the error mode for string conversions between different
+   encodings. An error can occur during conversion when an illegal character 
+   is encountered or if a character cannot be represented into the new encoding.
+   By default, when an error is encountered, the conversion stops.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">direction</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">direction</tt></i>
+ sets the conversion direction to
+       which the error mode will apply. This can either be 
+       <b><tt>FROM_UNICODE</tt></b>, which will set the error mode for 
+       conversions from a <span class="type unicode">unicode</span> string to a binary string 
+       or <b><tt>TO_UNICODE</tt></b>, which will set the error mode
+       for conversions from a binary string to a <span class="type unicode">unicode</span> string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">mode</tt></i>
+ determines how the conversion errors are 
+       handled. It should be one of the following constants:
+      </p>
+      <p class="para">
+       <table border="5">
+        <caption><b>Available modes</b></caption>
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">Mode</th>
+           <th colspan="1">Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>U_CONV_ERROR_STOP</tt></b>
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Stop the conversion. This is the default mode.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>U_CONV_ERROR_SKIP</tt></b>
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Skip the character.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>U_CONV_ERROR_SUBST</tt></b>
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Substitute the character. The substituting character can be set with
+            <a href="function.unicode-set-subst-char.html" class="function">unicode_set_subst_char()</a>.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>U_CONV_ERROR_ESCAPE_UNICODE</tt></b>
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Escape the faulty bytes and represent them in the Unicode character
+            format.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>U_CONV_ERROR_ESCAPE_ICU</tt></b>
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Escape the faulty bytes and represent them in the ICU character
+            format.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>U_CONV_ERROR_ESCAPE_JAVA</tt></b>
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Escape the faulty bytes and print them in the Java character 
+            format.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>U_CONV_ERROR_ESCAPE_XML_DEC</tt></b>
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Escape the faulty bytes and represent them in decimal format.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">
+            <b><tt>U_CONV_ERROR_ESCAPE_XML_HEX</tt></b>
+           </td>
+           <td colspan="1" rowspan="1" align="left">
+            Escape the faulty bytes and represent them in hexadecimal
+            format.
+           </td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Emits a <b><tt>E_WARNING</tt></b> level error if the direction or the
+   mode are invalid.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.unicode-encode.html" class="function" rel="rdfs-seeAlso">unicode_encode()</a></li>
+    <li class="member"><a href="function.unicode-decode.html" class="function" rel="rdfs-seeAlso">unicode_decode()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.unicode-get-subst-char.html">unicode_get_subst_char</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.unicode-set-subst-char.html">unicode_set_subst_char</a></div>
+ <div class="up"><a href="ref.unicode.html">Unicode Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

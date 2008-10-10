@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>This function terminates encryption</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-generic-deinit.html">mcrypt_generic_deinit</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mcrypt-generic-init.html">mcrypt_generic_init</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mcrypt-generic-end" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mcrypt_generic_end</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5 &lt;= 5.1.6)</p><p class="refpurpose"><span class="refname">mcrypt_generic_end</span> &mdash; <span class="dc-title">This function terminates encryption</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>mcrypt_generic_end</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$td</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <div class="warning"><b class="warning">Warning</b>
+    <p class="para">
+     This function is deprecated, use
+     <a href="function.mcrypt-generic-deinit.html" class="function">mcrypt_generic_deinit()</a> instead. It can cause
+     crashes when used with <a href="function.mcrypt-module-close.html" class="function">mcrypt_module_close()</a> due to
+     multiple buffer frees.
+    </p>
+   </div>
+  </p>
+  <p class="para">
+   This function terminates encryption specified by the encryption
+   descriptor (<i><tt class="parameter">td</tt></i>
+). Actually it clears all buffers,
+   and closes all the modules used. Returns <b><tt>FALSE</tt></b> on error, or <b><tt>TRUE</tt></b> on
+   success.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-generic-deinit.html">mcrypt_generic_deinit</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mcrypt-generic-init.html">mcrypt_generic_init</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

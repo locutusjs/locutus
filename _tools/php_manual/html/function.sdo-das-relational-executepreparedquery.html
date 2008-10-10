@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Executes an SQL query passed as a prepared statement, with a 
+   list of values to substitute for placeholders, and return the 
+   results as a normalised data graph.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-relational-createrootdataobject.html">SDO_DAS_Relational::createRootDataObject</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-relational-executequery.html">SDO_DAS_Relational::executeQuery</a></div>
+ <div class="up"><a href="ref.sdo.das.rel.html">SDO-DAS-Relational Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sdo-das-relational-executepreparedquery" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SDO_DAS_Relational::executePreparedQuery</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SDO_DAS_Relational::executePreparedQuery</span> &mdash; <span class="dc-title">
+   Executes an SQL query passed as a prepared statement, with a 
+   list of values to substitute for placeholders, and return the 
+   results as a normalised data graph.
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type SDODataObject">SDODataObject</span></span>
+    <span class="methodname"><b><b>SDO_DAS_Relational::executePreparedQuery</b></b></span>
+    ( <span class="methodparam">
+    <span class="type"><a href="class.pdo.html" class="type PDO">PDO</a></span>
+     <tt class="parameter">$database_handle</tt>
+   </span>
+   , <span class="methodparam">
+    <span class="type"><a href="class.pdostatement.html" class="type PDOStatement">PDOStatement</a></span>
+     <tt class="parameter">$prepared_statement</tt>
+   </span>
+   , <span class="methodparam">
+    <span class="type">array</span>
+     <tt class="parameter">$value_list</tt>
+   </span>
+   [, <span class="methodparam">
+    <span class="type">array</span>
+     <tt class="parameter">$column_specifier</tt>
+   </span>
+  ] )</div>
+
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+
+  <p class="para">
+   Executes a given query against the relational database, 
+   using the supplied PDO database handle.
+   Differs from the simpler 
+   <b>executeQuery()</b>
+   in that it takes a prepared statement and a list of values.
+   This is the appropriate call to use either when the statement is 
+   to executed a number of times with different arguments, and there
+   is therefore a performance benefit to be had from preparing the 
+   statement only once, or when the the SQL statement is to contain 
+   varying values taken from a source that cannot be completely trusted.
+   In this latter case it may be unsafe to construct the SQL statement
+   by simply concatenating the parts of the statement together, 
+   since the values may contain pieces of SQL. 
+   To guard against this, a so-called SQL injection attack,
+   it is safer to prepare the SQL statement with placeholders 
+   (also known as parameter markers, denoted by &#039;?&#039;) and supply a 
+   list of the values to be substituted as a separate argument. 
+   Otherwise this function is the same as 
+   <b>executeQuery()</b> in that 
+   it uses the model that it built from the the metadata 
+   to interpret the result set and returns a data graph.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term">PDO_database_handle</span>
+
+     <dd>
+
+      <p class="para">
+       Constructed using the PDO extension. 
+       A typical line to construct a PDO database handle might look 
+       like this:
+       <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+$dbh&nbsp;=&nbsp;new&nbsp;PDO("mysql:dbname=COMPANYDB;host=localhost",DATABASE_USER,DATABASE_PASSWORD);</span>
+</code></div>
+       </div>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">prepared_statement</span>
+
+     <dd>
+
+      <p class="para">
+       A prepared SQL statement to be executed against the database.
+       This will have been prepared by PDO&#039;s
+       <b>prepare()</b>
+       method.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">value_list</span>
+
+     <dd>
+
+      <p class="para">
+       An array of the values to be substituted into the 
+       SQL statement in place of the placeholders. In the event
+       that there are no placeholders or parameter markers in the
+       SQL statement then this argument can be specified as <b><tt>NULL</tt></b>
+       or as an empty array; 
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">column_specifier</span>
+
+     <dd>
+
+      <p class="para">
+       The Relational DAS needs to examine the result set and 
+       for every column, know which table and which column of 
+       that table it came from.
+       In some circumstances it can find this information for itself, 
+       but sometimes it cannot.
+       In these cases a column specifier is needed, 
+       which is an array that identifies the columns.
+       Each entry in the array is simply a string in the form
+       <var class="varname">table-name.column_name</var>.
+      </p>
+          
+
+      <p class="para">
+       The column specifier is needed when there are duplicate 
+       column names in the database metadata,
+       For example, in the database used within the examples, 
+       all the tables have both a
+       <var class="varname">id</var>
+       and a
+       <var class="varname">name</var>
+       column.
+       When the Relational DAS fetches the result set from PDO 
+       it can do so with the PDO_FETCH_ASSOC attribute, 
+       which will cause the columns in the results set 
+       to be labelled with  the column name, but will not distinguish 
+       duplicates.
+       So this will only work when there are no duplicates 
+       possible in the results set.
+      </p>
+          
+      <p class="para">
+       To summarise, specify a column specifier array whenever there 
+       is any uncertainty about which column could be from which table and
+       only omit it when every column name in the database metadata is unique.
+      </p>
+          
+      <p class="para">
+       All of the examples in the
+       <a href="sdo.das.rel.examples.html" class="link">Examples</a>
+       use a column specifier.
+       There is one example in the
+       <var class="filename">Scenarios</var>
+       directory of the installation that does not: 
+       that which works with just the employee table, 
+       and because it works with just one table, 
+       there can not exist duplicate column names.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a data graph. 
+   Specifically, it returns a root object of a special type.
+   Under this root object will be the data from the result set.
+   The root object will have a multi-valued containment property 
+   with the same name as the application root type 
+   specified on the constructor,
+   and that property will contain one or more data objects 
+   of the application root type.
+  </p>
+  <p class="para">
+   In the event that the query returns no data, 
+   the special root object will still be returned but 
+   the containment property for the application root type will be empty.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   <b>SDO_DAS_Relational::executePreparedQuery()</b>
+   can throw an SDO_DAS_Relational_Exception if it is unable 
+   to construct the data graph correctly.
+   This can occur for a  number of reasons: 
+   for example if it finds that it does not have primary keys 
+   in the result set for all the objects.
+   It also catches any PDO exceptions and obtains PDO 
+   diagnostic information which it includes in an 
+   SDO_DAS_Relational_Exception which it then throws.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Retrieving a data object using
+    <b>executePreparedQuery()</b></b></p>
+    <div class="example-contents"><p>
+     In this example a single data object is retrieved from the database 
+     - or possibly more than one if there is more than one company 
+     called &#039;Acme&#039;. For each company returned, the
+     <var class="varname">name</var>
+     and
+     <var class="varname">id</var>
+     properties are echoed.
+    </p></div>
+    <div class="example-contents"><p>
+     Other examples of the use of 
+     <b>executePreparedQuery()</b>
+     can be found in the example code supplied in 
+     <var class="filename">sdo/DAS/Relational/Scenarios</var>
+     .
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">require_once&nbsp;</span><span style="color: #DD0000">'SDO/DAS/Relational.php'</span><span style="color: #007700">;<br />require_once&nbsp;</span><span style="color: #DD0000">'company_metadata.inc.php'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/**************************************************************<br />&nbsp;*&nbsp;Construct&nbsp;the&nbsp;DAS&nbsp;with&nbsp;the&nbsp;metadata<br />&nbsp;***************************************************************/<br /></span><span style="color: #0000BB">$das&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SDO_DAS_Relational&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$database_metadata</span><span style="color: #007700">,</span><span style="color: #DD0000">'company'</span><span style="color: #007700">,</span><span style="color: #0000BB">$SDO_reference_metadata</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/**************************************************************<br />&nbsp;*&nbsp;Get&nbsp;a&nbsp;database&nbsp;connection<br />&nbsp;***************************************************************/<br /></span><span style="color: #0000BB">$dbh&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO_DSN</span><span style="color: #007700">,</span><span style="color: #0000BB">DATABASE_USER</span><span style="color: #007700">,</span><span style="color: #0000BB">DATABASE_PASSWORD</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/**************************************************************<br />&nbsp;*&nbsp;Issue&nbsp;a&nbsp;query&nbsp;to&nbsp;obtain&nbsp;a&nbsp;company&nbsp;object&nbsp;-&nbsp;possibly&nbsp;more&nbsp;if&nbsp;they&nbsp;exist<br />&nbsp;*&nbsp;Use&nbsp;a&nbsp;prepared&nbsp;query&nbsp;with&nbsp;a&nbsp;placeholder.<br />&nbsp;***************************************************************/<br /></span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Acme'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$pdo_stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">'select&nbsp;name,&nbsp;id&nbsp;from&nbsp;company&nbsp;where&nbsp;name=?'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$root&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$das</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">executePreparedQuery</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$pdo_stmt</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #0000BB">$name</span><span style="color: #007700">),&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'company.name'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'company.id'</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/**************************************************************<br />&nbsp;*&nbsp;Echo&nbsp;name&nbsp;and&nbsp;id&nbsp;<br />&nbsp;***************************************************************/<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">$root</span><span style="color: #007700">[</span><span style="color: #DD0000">'company'</span><span style="color: #007700">]&nbsp;as&nbsp;</span><span style="color: #0000BB">$company</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Company&nbsp;obtained&nbsp;from&nbsp;the&nbsp;database&nbsp;has&nbsp;name&nbsp;=&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$company</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"&nbsp;and&nbsp;id&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$company</span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-relational-createrootdataobject.html">SDO_DAS_Relational::createRootDataObject</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-relational-executequery.html">SDO_DAS_Relational::executeQuery</a></div>
+ <div class="up"><a href="ref.sdo.das.rel.html">SDO-DAS-Relational Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

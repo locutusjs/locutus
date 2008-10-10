@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Used to escape certain characters</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-cursor-type.html">db2_cursor_type</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-exec.html">db2_exec</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.db2-escape-string" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">db2_escape_string</h1>
+  <p class="verinfo">(PECL ibm_db2:1.6.0-1.6.2)</p><p class="refpurpose"><span class="refname">db2_escape_string</span> &mdash; <span class="dc-title">
+   Used to escape certain characters
+  </span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>db2_escape_string</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$string_literal</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Prepends backslashes to special characters in the string argument.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">string_literal</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The string that contains special characters that need to be modified. 
+       Characters that are prepended with a backslash are <i>\x00</i>, 
+       <i>\n</i>, <i>\r</i>, <i>\</i>, 
+       <i>&#039;</i>, <i>&quot;</i> and <i>\x1a</i>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <i><tt class="parameter">string_literal</tt></i>
+ with the special characters 
+   noted above prepended with backslashes.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>db2_escape_string()</b> example</b></p>
+    <div class="example-contents"><p>
+     Result of using the <b>db2_escape_string()</b> function
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"All&nbsp;characters:&nbsp;\x00&nbsp;,&nbsp;\n&nbsp;,&nbsp;\r&nbsp;,&nbsp;\&nbsp;,&nbsp;'&nbsp;,&nbsp;\"&nbsp;,&nbsp;\x1a&nbsp;."</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"Backslash&nbsp;(\).&nbsp;Single&nbsp;quote&nbsp;(').&nbsp;Double&nbsp;quote&nbsp;(\")"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"The&nbsp;NULL&nbsp;character&nbsp;\0&nbsp;must&nbsp;be&nbsp;quoted&nbsp;as&nbsp;well"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"Intersting&nbsp;characters:&nbsp;\x1a&nbsp;,&nbsp;\x00&nbsp;."</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">4</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"Nothing&nbsp;to&nbsp;quote"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">5</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">200676</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">[</span><span style="color: #0000BB">6</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;foreach(&nbsp;</span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$string&nbsp;</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"db2_escape_string:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">db2_escape_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">).&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+db2_escape_string: All characters: \0 , \n , \r , \\ , \&#039; , \&quot; , \Z .
+db2_escape_string: Backslash (\\). Single quote (\&#039;). Double quote (\&quot;)
+db2_escape_string: The NULL character \0 must be quoted as well
+db2_escape_string: Intersting characters: \Z , \0 .
+db2_escape_string: Nothing to quote
+db2_escape_string: 200676
+db2_escape_string:
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.db2-prepare.html" class="function" rel="rdfs-seeAlso">db2_prepare()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-cursor-type.html">db2_cursor_type</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-exec.html">db2_exec</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Acquire a semaphore</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.msg-stat-queue.html">msg_stat_queue</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sem-get.html">sem_get</a></div>
+ <div class="up"><a href="ref.sem.html">Semaphore Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sem-acquire" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sem_acquire</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">sem_acquire</span> &mdash; <span class="dc-title">Acquire a semaphore</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>sem_acquire</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$sem_identifier</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>sem_acquire()</b> blocks (if necessary) until the semaphore
+   can be acquired.  A process attempting to acquire a semaphore which it has
+   already acquired will block forever if acquiring the semaphore would cause
+   its maximum number of semaphore to be exceeded.
+  </p>
+  <p class="para">
+   After processing a request, any semaphores acquired by the process but not
+   explicitly released will be released automatically and a warning will be
+   generated.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">sem_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">sem_identifier</tt></i>
+ is a semaphore resource,
+       obtained from <a href="function.sem-get.html" class="function">sem_get()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sem-get.html" class="function" rel="rdfs-seeAlso">sem_get()</a></li>
+    <li class="member"><a href="function.sem-release.html" class="function" rel="rdfs-seeAlso">sem_release()</a></li>
+   </ul>
+  </p>
+ </div>
+  
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.msg-stat-queue.html">msg_stat_queue</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sem-get.html">sem_get</a></div>
+ <div class="up"><a href="ref.sem.html">Semaphore Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

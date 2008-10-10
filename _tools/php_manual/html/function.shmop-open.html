@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Create or open shared memory block</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.shmop-delete.html">shmop_delete</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.shmop-read.html">shmop_read</a></div>
+ <div class="up"><a href="ref.shmop.html">Shared Memory Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.shmop-open" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">shmop_open</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p><p class="refpurpose"><span class="refname">shmop_open</span> &mdash; <span class="dc-title">Create or open shared memory block</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>shmop_open</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$key</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$flags</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$size</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>shmop_open()</b> can create or open a shared memory block.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">key</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       System&#039;s id for the shared memory block.
+       Can be passed as a decimal or hex.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The flags that you can use:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          &quot;a&quot; for access (sets SHM_RDONLY for shmat)
+          use this flag when you need to open an existing shared memory
+          segment for read only
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          &quot;c&quot; for create (sets IPC_CREATE)
+          use this flag when you need to create a new shared memory segment
+          or if a segment with the same key exists, try to open it for read
+          and write
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          &quot;w&quot; for read &amp; write access
+          use this flag when you need to read and write to a shared memory
+          segment, use this flag in most cases.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          &quot;n&quot; create a new memory segment (sets IPC_CREATE|IPC_EXCL)
+          use this flag when you want to create a new shared memory segment
+          but if one already exists with the same flag, fail. This is useful
+          for security purposes, using this you can prevent race condition
+          exploits.
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The permissions that you wish to assign to your memory segment, those
+       are the same as permission for a file. Permissions need to be passed
+       in octal form, like for example <i>0644</i>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">size</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The size of the shared memory block you wish to create in bytes
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+   <blockquote><p><b class="note">Note</b>: 
+    
+     Note: the 3rd and 4th should be entered as 0 if you are opening an
+     existing memory segment.
+    <br />
+   </p></blockquote>
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   On success <b>shmop_open()</b> will return an id that you can
+   use to access the shared memory segment you&#039;ve created. <b><tt>FALSE</tt></b> is 
+   returned on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Create a new shared memory block</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$shm_key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ftok</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'t'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$shm_id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">shmop_open</span><span style="color: #007700">(</span><span style="color: #0000BB">$shm_key</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"c"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0644</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   This example opened a shared memory block with a system id returned by
+   <a href="function.ftok.html" class="function">ftok()</a>.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.shmop-close.html" class="function" rel="rdfs-seeAlso">shmop_close()</a></li>
+    <li class="member"><a href="function.shmop-delete.html" class="function" rel="rdfs-seeAlso">shmop_delete()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.shmop-delete.html">shmop_delete</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.shmop-read.html">shmop_read</a></div>
+ <div class="up"><a href="ref.shmop.html">Shared Memory Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

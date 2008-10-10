@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Un-quotes a quoted string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stripos.html">stripos</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stristr.html">stristr</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.stripslashes" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stripslashes</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">stripslashes</span> &mdash; <span class="dc-title">Un-quotes a quoted string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>stripslashes</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Un-quotes a quoted string.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    If <a href="sybase.configuration.html#ini.magic-quotes-sybase" class="link">magic_quotes_sybase</a> is
+    on, no backslashes are stripped off but two apostrophes are replaced by
+    one instead.
+   <br />
+  </p></blockquote>
+  <p class="para">
+   An example use of <b>stripslashes()</b> is when the PHP
+   directive <a href="info.configuration.html#ini.magic-quotes-gpc" class="link">magic_quotes_gpc</a>
+   is <i>on</i> (it&#039;s on by default), and you aren&#039;t inserting
+   this data into a place (such as a database) that requires escaping.
+   For example, if you&#039;re simply outputting data straight from an HTML form.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input string.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string with backslashes stripped off.
+   (<i>\&#039;</i> becomes <i>&#039;</i> and so on.)
+   Double backslashes (<i>\\</i>) are made into a single
+   backslash (<i>\</i>).
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>stripslashes()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Is&nbsp;your&nbsp;name&nbsp;O\'reilly?"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Outputs:&nbsp;Is&nbsp;your&nbsp;name&nbsp;O'reilly?<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">stripslashes</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    <b>stripslashes()</b> is not recursive. If you want to apply
+    this function to a multi-dimensional array, you need to use a recursive
+    function.
+   <br />
+  </p></blockquote>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Using <b>stripslashes()</b> on an array</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">stripslashes_deep</span><span style="color: #007700">(</span><span style="color: #0000BB">$value</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$value&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">is_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&nbsp;?<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">array_map</span><span style="color: #007700">(</span><span style="color: #DD0000">'stripslashes_deep'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&nbsp;:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">stripslashes</span><span style="color: #007700">(</span><span style="color: #0000BB">$value</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$value</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Example<br /></span><span style="color: #0000BB">$array&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"f\\'oo"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"b\\'ar"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"fo\\'o"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"b\\'ar"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$array&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stripslashes_deep</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Output<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; f&#039;oo
+    [1] =&gt; b&#039;ar
+    [2] =&gt; Array
+        (
+            [0] =&gt; fo&#039;o
+            [1] =&gt; b&#039;ar
+        )
+
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.addslashes.html" class="function" rel="rdfs-seeAlso">addslashes()</a></li>
+    <li class="member"><a href="function.get-magic-quotes-gpc.html" class="function" rel="rdfs-seeAlso">get_magic_quotes_gpc()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stripos.html">stripos</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stristr.html">stristr</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

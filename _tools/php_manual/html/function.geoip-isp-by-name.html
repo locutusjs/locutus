@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the Internet Service Provider (ISP) name</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.geoip-id-by-name.html">geoip_id_by_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.geoip-org-by-name.html">geoip_org_by_name</a></div>
+ <div class="up"><a href="ref.geoip.html">GeoIP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.geoip-isp-by-name" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">geoip_isp_by_name</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">geoip_isp_by_name</span> &mdash; <span class="dc-title">Get the Internet Service Provider (ISP) name</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>geoip_isp_by_name</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$hostname</tt></span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   The <b>geoip_isp_by_name()</b> function will return the name of
+   the Internet Service Provider (ISP) that an IP is assigned to.
+  </p>
+  <p class="para">
+   This function is currently only available to users who have bought a commercial
+   GeoIP ISP Edition. A warning will be issued if the proper database cannot be 
+   located.
+  </p>
+  
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">hostname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The hostname or IP address.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the ISP name on success, or <b><tt>FALSE</tt></b> if the address
+   cannot be found in the database.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>geoip_isp_by_name()</b> example</b></p>
+    <div class="example-contents"><p>
+     This will print the ISP name of host example.com.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$isp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">geoip_isp_by_name</span><span style="color: #007700">(</span><span style="color: #DD0000">'www.example.com'</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$isp</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'This&nbsp;host&nbsp;IP&nbsp;is&nbsp;from&nbsp;ISP:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$isp</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+This host IP is allocated to: ICANN c/o Internet Assigned Numbers Authority
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.geoip-id-by-name.html">geoip_id_by_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.geoip-org-by-name.html">geoip_org_by_name</a></div>
+ <div class="up"><a href="ref.geoip.html">GeoIP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

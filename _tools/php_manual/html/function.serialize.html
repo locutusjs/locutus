@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Generates a storable representation of a value</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.print-r.html">print_r</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.settype.html">settype</a></div>
+ <div class="up"><a href="ref.var.html">Variable handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.serialize" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">serialize</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL axis2:0.1.0-0.1.1)</p><p class="refpurpose"><span class="refname">serialize</span> &mdash; <span class="dc-title">Generates a storable representation of a value</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+   <div class="methodsynopsis dc-description">
+    <span class="type">string</span> <span class="methodname"><b><b>serialize</b></b></span>
+     ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$value</tt></span>
+    )</div>
+
+  <p class="para rdfs-comment">
+   Generates a storable representation of a value
+  </p>
+  <p class="para">
+   This is useful for storing or passing PHP values around without
+   losing their type and structure.
+  </p>
+  <p class="para">
+   To make the serialized string into a PHP value again, use
+   <a href="function.unserialize.html" class="function">unserialize()</a>.  
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">value</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The value to be serialized. <b>serialize()</b>
+       handles all types, except the <a href="language.types.resource.html" class="type resource">resource</a>-type.
+       You can even <b>serialize()</b> arrays that contain
+       references to itself. Circular references inside the array/object you 
+       are <b>serialize()</b>ing will also be stored. Any other 
+       reference will be lost.
+      </p>
+      <p class="para">
+       When serializing objects, PHP will attempt to call the member function
+       <a href="language.oop5.magic.html" class="link">__sleep</a> prior to serialization. 
+       This is to allow the object to do any last minute clean-up, etc. prior 
+       to being serialized. Likewise, when the object is restored using 
+       <a href="function.unserialize.html" class="function">unserialize()</a> the <a href="language.oop5.magic.html" class="link">__wakeup</a> member function is called.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string containing a byte-stream representation of 
+   <i><tt class="parameter">value</tt></i>
+ that can be stored anywhere.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>serialize()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;$session_data&nbsp;contains&nbsp;a&nbsp;multi-dimensional&nbsp;array&nbsp;with&nbsp;session<br />//&nbsp;information&nbsp;for&nbsp;the&nbsp;current&nbsp;user.&nbsp;&nbsp;We&nbsp;use&nbsp;serialize()&nbsp;to&nbsp;store<br />//&nbsp;it&nbsp;in&nbsp;a&nbsp;database&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;request.<br /><br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"webdb"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"php"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"chicken"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"UPDATE&nbsp;sessions&nbsp;SET&nbsp;data&nbsp;=&nbsp;?&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;?"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$sqldata&nbsp;</span><span style="color: #007700">=&nbsp;array&nbsp;(</span><span style="color: #0000BB">serialize</span><span style="color: #007700">(</span><span style="color: #0000BB">$session_data</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'PHP_AUTH_USER'</span><span style="color: #007700">]);<br />if&nbsp;(!</span><span style="color: #0000BB">odbc_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;&amp;</span><span style="color: #0000BB">$sqldata</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;sessions&nbsp;(id,&nbsp;data)&nbsp;VALUES(?,&nbsp;?)"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!</span><span style="color: #0000BB">odbc_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;&amp;</span><span style="color: #0000BB">$sqldata</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Something&nbsp;went&nbsp;wrong..&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.7</td>
+       <td colspan="1" rowspan="1" align="left">
+        The object serialization process was fixed.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        When serializing an object, methods are not lost anymore. 
+        Please see the 
+        <a href="language.oop.serialization.html" class="link">Serializing Objects</a>
+        for more information.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    It is not possible to serialize PHP built-in objects.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.unserialize.html" class="function" rel="rdfs-seeAlso">unserialize()</a></li>
+    <li class="member"><a href="language.oop.serialization.html" class="link">Serializing Objects</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.print-r.html">print_r</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.settype.html">settype</a></div>
+ <div class="up"><a href="ref.var.html">Variable handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get MX records corresponding to a given Internet host name</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gethostbynamel.html">gethostbynamel</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.getprotobyname.html">getprotobyname</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.getmxrr" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">getmxrr</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">getmxrr</span> &mdash; <span class="dc-title">Get MX records corresponding to a given Internet host name</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>getmxrr</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$hostname</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$mxhosts</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$weight</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Searches DNS for MX records corresponding to 
+   <i><tt class="parameter">hostname</tt></i>
+. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">hostname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The Internet host name.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mxhosts</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A list of the MX records found is placed into the array
+       <i><tt class="parameter">mxhosts</tt></i>
+. 
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">weight</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the <i><tt class="parameter">weight</tt></i>
+ array is given, it will be filled
+       with the weight information gathered.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if any records are found; returns <b><tt>FALSE</tt></b> if no records
+   were found or if an error occurred.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function should not be used for the purposes of address
+    verification.  Only the mailexchangers found in DNS are returned,
+    however, according to <a href="http://www.faqs.org/rfcs/rfc2821" class="link external">&raquo; RFC 2821</a>
+    when no mail exchangers are listed, <i><tt class="parameter">hostname</tt></i>
+
+    itself should be used as the only mail exchanger with a priority of
+    <i>0</i>.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function is not implemented on Windows platforms. Try the
+    <a href="http://pear.php.net/" class="link external">&raquo; PEAR</a> class
+    <a href="http://pear.php.net/package/Net_DNS" class="link external">&raquo; Net_DNS</a>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.checkdnsrr.html" class="function" rel="rdfs-seeAlso">checkdnsrr()</a></li>
+    <li class="member"><a href="function.dns-get-record.html" class="function" rel="rdfs-seeAlso">dns_get_record()</a></li>
+    <li class="member"><a href="function.gethostbyname.html" class="function" rel="rdfs-seeAlso">gethostbyname()</a></li>
+    <li class="member"><a href="function.gethostbynamel.html" class="function" rel="rdfs-seeAlso">gethostbynamel()</a></li>
+    <li class="member"><a href="function.gethostbyaddr.html" class="function" rel="rdfs-seeAlso">gethostbyaddr()</a></li>
+    <li class="member">the <i>named(8)</i> manual page</li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gethostbynamel.html">gethostbynamel</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.getprotobyname.html">getprotobyname</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

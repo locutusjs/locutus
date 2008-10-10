@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns a list of available dictionaries</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.enchant-broker-init.html">enchant_broker_init</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.enchant-broker-request-dict.html">enchant_broker_request_dict</a></div>
+ <div class="up"><a href="ref.enchant.html">Enchant Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.enchant-broker-list-dicts" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">enchant_broker_list_dicts</h1>
+  <p class="verinfo">(PECL enchant:1.0.1)</p><p class="refpurpose"><span class="refname">enchant_broker_list_dicts</span> &mdash; <span class="dc-title">Returns a list of available dictionaries</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>enchant_broker_list_dicts</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$broker</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns a list of available dictionaries with their details.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">broker</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Broker resource
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 List all available dictionaries for one broker</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$r&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">enchant_broker_init</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$dicts&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">enchant_broker_list_dicts</span><span style="color: #007700">(</span><span style="color: #0000BB">$r</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$dicts</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; Array
+        (
+            [lang_tag] =&gt; de
+            [provider_name] =&gt; aspell
+            [provider_desc] =&gt; Aspell Provider
+            [provider_file] =&gt; /usr/lib/enchant/libenchant_aspell.so
+        )
+
+    [1] =&gt; Array
+        (
+            [lang_tag] =&gt; de_DE
+            [provider_name] =&gt; aspell
+            [provider_desc] =&gt; Aspell Provider
+            [provider_file] =&gt; /usr/lib/enchant/libenchant_aspell.so
+        )
+
+    [3] =&gt; Array
+        (
+            [lang_tag] =&gt; en
+            [provider_name] =&gt; aspell
+            [provider_desc] =&gt; Aspell Provider
+            [provider_file] =&gt; /usr/lib/enchant/libenchant_aspell.so
+        )
+
+    [4] =&gt; Array
+        (
+            [lang_tag] =&gt; en_GB
+            [provider_name] =&gt; aspell
+            [provider_desc] =&gt; Aspell Provider
+            [provider_file] =&gt; /usr/lib/enchant/libenchant_aspell.so
+        )
+
+    [5] =&gt; Array
+        (
+            [lang_tag] =&gt; en_US
+            [provider_name] =&gt; aspell
+            [provider_desc] =&gt; Aspell Provider
+            [provider_file] =&gt; /usr/lib/enchant/libenchant_aspell.so
+        )
+
+    [6] =&gt; Array
+        (
+            [lang_tag] =&gt; hi_IN
+            [provider_name] =&gt; myspell
+            [provider_desc] =&gt; Myspell Provider
+            [provider_file] =&gt; /usr/lib/enchant/libenchant_myspell.so
+        )
+
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><b>enchant_broker_describe ()</b></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.enchant-broker-init.html">enchant_broker_init</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.enchant-broker-request-dict.html">enchant_broker_request_dict</a></div>
+ <div class="up"><a href="ref.enchant.html">Enchant Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

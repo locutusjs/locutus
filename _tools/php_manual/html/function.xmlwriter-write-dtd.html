@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Write full DTD tag</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xmlwriter-write-dtd-entity.html">XMLWriter::writeDTDEntity</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xmlwriter-write-element-ns.html">XMLWriter::writeElementNS</a></div>
+ <div class="up"><a href="ref.xmlwriter.html">XMLWriter Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.xmlwriter-write-dtd" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">XMLWriter::writeDTD</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">XMLWriter::writeDTD</span> &mdash; <span class="dc-title">Write full DTD tag</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">Object oriented style:</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">XMLWriter</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><b>writeDTD</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+    [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$publicId</tt></span>
+    [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$systemId</tt></span>
+    [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$subset</tt></span>
+   ]]] )</div>
+
+  </div>
+  <p class="para">Procedural style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>xmlwriter_write_dtd</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$xmlwriter</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$publicId</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$systemId</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$subset</tt></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   Writes a full DTD.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+xmlwriter</tt></i>
+</span>
+<dd>
+<p class="para">Only for procedural calls. 
+The XMLWriter <a href="language.types.resource.html" class="type resource">resource</a> that is being modified. This resource comes from a call to <b>xmlwriter_open_uri()</b> or <b>xmlwriter_open_memory()</b>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The DTD name.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">publicId</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The external subset public identifier.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">systemId</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The external subset system identifier.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">subset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The content of the DTD.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.xmlwriter-start-dtd.html" class="xref">XMLWriter::startDTD</a></li>
+    <li class="member"><a href="function.xmlwriter-end-dtd.html" class="xref">XMLWriter::endDTD</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xmlwriter-write-dtd-entity.html">XMLWriter::writeDTDEntity</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xmlwriter-write-element-ns.html">XMLWriter::writeElementNS</a></div>
+ <div class="up"><a href="ref.xmlwriter.html">XMLWriter Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

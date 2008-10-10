@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Turns passive mode on or off</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ftp-nlist.html">ftp_nlist</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ftp-put.html">ftp_put</a></div>
+ <div class="up"><a href="ref.ftp.html">FTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ftp-pasv" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ftp_pasv</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ftp_pasv</span> &mdash; <span class="dc-title">Turns passive mode on or off</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ftp_pasv</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$ftp_stream</tt></span>
+   , <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$pasv</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>ftp_pasv()</b> turns on or off passive mode. In
+   passive mode, data connections are initiated by the client,
+   rather than by the server.
+   It may be needed if the client is behind firewall.
+  </p>
+  <p class="para">
+   Please note that <b>ftp_pasv()</b> can only be called after a
+   successfull login or otherwise it will fail.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ftp_stream</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The link identifier of the FTP connection.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pasv</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <b><tt>TRUE</tt></b>, the passive mode is turned on, else it&#039;s turned off.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ftp_pasv()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'somefile.txt'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$remote_file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'readme.txt'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;set&nbsp;up&nbsp;basic&nbsp;connection<br /></span><span style="color: #0000BB">$conn_id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ftp_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$ftp_server</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;login&nbsp;with&nbsp;username&nbsp;and&nbsp;password<br /></span><span style="color: #0000BB">$login_result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ftp_login</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$ftp_user_name</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$ftp_user_pass</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;turn&nbsp;passive&nbsp;mode&nbsp;on<br /></span><span style="color: #0000BB">ftp_pasv</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;upload&nbsp;a&nbsp;file<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">ftp_put</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$remote_file</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$file</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">FTP_ASCII</span><span style="color: #007700">))&nbsp;{<br />&nbsp;echo&nbsp;</span><span style="color: #DD0000">"successfully&nbsp;uploaded&nbsp;$file\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;echo&nbsp;</span><span style="color: #DD0000">"There&nbsp;was&nbsp;a&nbsp;problem&nbsp;while&nbsp;uploading&nbsp;$file\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;close&nbsp;the&nbsp;connection<br /></span><span style="color: #0000BB">ftp_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ftp-nlist.html">ftp_nlist</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ftp-put.html">ftp_put</a></div>
+ <div class="up"><a href="ref.ftp.html">FTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

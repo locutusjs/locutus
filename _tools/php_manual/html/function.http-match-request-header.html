@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Match any header</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-match-modified.html">http_match_modified</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-support.html">http_support</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.http-match-request-header" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">http_match_request_header</h1>
+  <p class="verinfo">(PECL pecl_http:0.10.0-1.5.5)</p><p class="refpurpose"><span class="refname">http_match_request_header</span> &mdash; <span class="dc-title">Match any header</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>http_match_request_header</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$header</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$value</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$match_case = FALSE</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Match an incoming HTTP header.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">header</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       the header name (case-insensitive)
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">value</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       the header value that should be compared
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">match_case</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       whether the value should be compared case sensitively
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if header value matches, else <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.http-match-etag.html" class="function" rel="rdfs-seeAlso">http_match_etag()</a></li>
+    <li class="member"><b>http_match_last_modified()</b></li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-match-modified.html">http_match_modified</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-support.html">http_support</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

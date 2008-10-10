@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Changes file group</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.basename.html">basename</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.chmod.html">chmod</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.chgrp" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">chgrp</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">chgrp</span> &mdash; <span class="dc-title">Changes file group</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>chgrp</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$group</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Attempts to change the group of the file <i><tt class="parameter">filename</tt></i>
+
+   to <i><tt class="parameter">group</tt></i>
+.
+  </p>
+  <p class="para">
+   Only the superuser may change the group of a file arbitrarily; other users
+   may change the group of a file to any group of which that user is a member.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">group</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A group name or number.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function will not work on 
+<a href="features.remote-files.html" class="link">remote files</a> as the file to
+be examined must be accessible via the server&#039;s filesystem.</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">When <a href="features.safe-mode.html" class="link">safe mode</a> is enabled, PHP checks whether 
+the files or directories being operated upon have the same UID (owner) as the 
+script that is being executed.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.chown.html" class="function" rel="rdfs-seeAlso">chown()</a></li>
+    <li class="member"><a href="function.chmod.html" class="function" rel="rdfs-seeAlso">chmod()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.basename.html">basename</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.chmod.html">chmod</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

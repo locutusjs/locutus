@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetch a result row as an object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fbsql-fetch-lengths.html">fbsql_fetch_lengths</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fbsql-fetch-row.html">fbsql_fetch_row</a></div>
+ <div class="up"><a href="ref.fbsql.html">FrontBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.fbsql-fetch-object" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fbsql_fetch_object</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">fbsql_fetch_object</span> &mdash; <span class="dc-title">Fetch a result row as an object</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">object</span> <span class="methodname"><b><b>fbsql_fetch_object</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>fbsql_fetch_object()</b> is similar to
+   <a href="function.fbsql-fetch-array.html" class="function">fbsql_fetch_array()</a>, with one difference - an
+   object is returned, instead of an array.  Indirectly, that means
+   that you can only access the data by the field names, and not by
+   their offsets (numbers are illegal property names).
+  </p>
+  <p class="para">
+   Speed-wise, the function is identical to
+   <a href="function.fbsql-fetch-array.html" class="function">fbsql_fetch_array()</a>, and almost as quick as
+   <a href="function.fbsql-fetch-row.html" class="function">fbsql_fetch_row()</a> (the difference is
+   insignificant).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+result</tt></i>
+</span>
+<dd>
+<p class="para">A result identifier
+returned by <a href="function.fbsql-query.html" class="function">fbsql_query()</a> or 
+<a href="function.fbsql-db-query.html" class="function">fbsql_db_query()</a>.</p></dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an object with properties that correspond to the fetched row, or
+   <b><tt>FALSE</tt></b> if there are no more rows.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>fbsql_fetch_object()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />fbsql_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$host</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fbsql_db_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"database"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"select&nbsp;*&nbsp;from&nbsp;table"</span><span style="color: #007700">);<br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fbsql_fetch_object</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">user_id</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fullname</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">fbsql_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.fbsql-fetch-array.html" class="function" rel="rdfs-seeAlso">fbsql_fetch_array()</a></li>
+    <li class="member"><a href="function.fbsql-fetch-row.html" class="function" rel="rdfs-seeAlso">fbsql_fetch_row()</a></li>
+    <li class="member"><a href="function.fbsql-fetch-assoc.html" class="function" rel="rdfs-seeAlso">fbsql_fetch_assoc()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fbsql-fetch-lengths.html">fbsql_fetch_lengths</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fbsql-fetch-row.html">fbsql_fetch_row</a></div>
+ <div class="up"><a href="ref.fbsql.html">FrontBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get process times</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.posix-strerror.html">posix_strerror</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.posix-ttyname.html">posix_ttyname</a></div>
+ <div class="up"><a href="ref.posix.html">POSIX Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.posix-times" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">posix_times</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">posix_times</span> &mdash; <span class="dc-title">Get process times</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>posix_times</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets information about the current CPU usage.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a hash of strings with information about the current
+   process CPU usage. The indices of the hash are:
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      ticks - the number of clock ticks that have elapsed since
+      reboot.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      utime - user time used by the current process.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      stime - system time used by the current process.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      cutime - user time used by current process and children.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      cstime - system time used by current process and children.
+     </span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="para">
+    This function isn&#039;t reliable to use, it may return negative values for
+    high times.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Example use of <b>posix_times()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$times&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">posix_times</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$times</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [ticks] =&gt; 25814410
+    [utime] =&gt; 1
+    [stime] =&gt; 1
+    [cutime] =&gt; 0
+    [cstime] =&gt; 0
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.posix-strerror.html">posix_strerror</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.posix-ttyname.html">posix_ttyname</a></div>
+ <div class="up"><a href="ref.posix.html">POSIX Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

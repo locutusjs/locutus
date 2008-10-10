@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns time of sunrise for a given day and location</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.date-sun-info.html">date_sun_info</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.date-sunset.html">date_sunset</a></div>
+ <div class="up"><a href="ref.datetime.html">Date/Time Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.date-sunrise" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">date_sunrise</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">date_sunrise</span> &mdash; <span class="dc-title">Returns time of sunrise for a given day and location</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>date_sunrise</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timestamp</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$format</tt></span>
+   [, <span class="methodparam"><span class="type">float</span> <tt class="parameter">$latitude</tt></span>
+   [, <span class="methodparam"><span class="type">float</span> <tt class="parameter">$longitude</tt></span>
+   [, <span class="methodparam"><span class="type">float</span> <tt class="parameter">$zenith</tt></span>
+   [, <span class="methodparam"><span class="type">float</span> <tt class="parameter">$gmt_offset</tt></span>
+  ]]]]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>date_sunrise()</b> returns the sunrise time for a given
+   day (specified as a <i><tt class="parameter">timestamp</tt></i>
+) and location.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">timestamp</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">timestamp</tt></i>
+ of the day from which the sunrise
+       time is taken.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">format</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <table border="5">
+        <caption><b><i><tt class="parameter">format</tt></i>
+ constants</b></caption>
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">constant</th>
+           <th colspan="1">description</th>
+           <th colspan="1">example</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">SUNFUNCS_RET_STRING</td>
+           <td colspan="1" rowspan="1" align="left">returns the result as <a href="language.types.string.html" class="type string">string</a></td>
+           <td colspan="1" rowspan="1" align="left">16:46</td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">SUNFUNCS_RET_DOUBLE</td>
+           <td colspan="1" rowspan="1" align="left">returns the result as <a href="language.types.float.html" class="type float">float</a></td>
+           <td colspan="1" rowspan="1" align="left">16.78243132</td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left">SUNFUNCS_RET_TIMESTAMP</td>
+           <td colspan="1" rowspan="1" align="left">returns the result as <a href="language.types.integer.html" class="type integer">integer</a> (timestamp)</td>
+           <td colspan="1" rowspan="1" align="left">1095034606</td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">latitude</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Defaults to North, pass in a negative value for South.
+       See also: <i>date.default_latitude</i>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">longitude</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Defaults to East, pass in a negative value for West.
+       See also: <i>date.default_longitude</i>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">zenith</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Default: <i>date.sunrise_zenith</i>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">gmtoffset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Specified in hours.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the sunrise time in a specified <i><tt class="parameter">format</tt></i>
+ on
+   success, or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+   
+   <p class="para">
+Every call to a date/time function will generate a <b><tt>E_NOTICE</tt></b> 
+if the time zone is not valid, and/or a <b><tt>E_STRICT</tt></b> message
+if using the system settings or the <var class="varname">TZ</var> environment
+variable. See also <a href="function.date-default-timezone-set.html" class="function">date_default_timezone_set()</a></p>
+ 
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      
+      <tr valign="middle"><td colspan="1" rowspan="1" align="left">5.1.0</td><td colspan="1" rowspan="1" align="left"><p class="para">
+Now issues the <b><tt>E_STRICT</tt></b> and <b><tt>E_NOTICE</tt></b> 
+time zone errors.</p></td></tr>
+
+     
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>date_sunrise()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;calculate&nbsp;the&nbsp;sunrise&nbsp;time&nbsp;for&nbsp;Lisbon,&nbsp;Portugal<br />Latitude:&nbsp;38.4&nbsp;North<br />Longitude:&nbsp;9&nbsp;West<br />Zenith&nbsp;~=&nbsp;90<br />offset:&nbsp;+1&nbsp;GMT<br />*/<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">"D&nbsp;M&nbsp;d&nbsp;Y"</span><span style="color: #007700">).&nbsp;</span><span style="color: #DD0000">',&nbsp;sunrise&nbsp;time&nbsp;:&nbsp;'&nbsp;</span><span style="color: #007700">.</span><span style="color: #0000BB">date_sunrise</span><span style="color: #007700">(</span><span style="color: #0000BB">time</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">SUNFUNCS_RET_STRING</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">38.4</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">9</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">90</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Mon Dec 20 2004, sunrise time : 08:54
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.date-sunset.html" class="function" rel="rdfs-seeAlso">date_sunset()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.date-sun-info.html">date_sun_info</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.date-sunset.html">date_sunset</a></div>
+ <div class="up"><a href="ref.datetime.html">Date/Time Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

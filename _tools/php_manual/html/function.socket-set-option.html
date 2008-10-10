@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets socket options for the socket</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.socket-set-nonblock.html">socket_set_nonblock</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-shutdown.html">socket_shutdown</a></div>
+ <div class="up"><a href="ref.sockets.html">Socket Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.socket-set-option" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">socket_set_option</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">socket_set_option</span> &mdash; <span class="dc-title">Sets socket options for the socket</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>socket_set_option</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$socket</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$level</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$optname</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$optval</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The <b>socket_set_option()</b> function sets the option
+   specified by the <i><tt class="parameter">optname</tt></i>
+ parameter, at the
+   specified protocol <i><tt class="parameter">level</tt></i>
+, to the value pointed to
+   by the <i><tt class="parameter">optval</tt></i>
+ parameter for the 
+   <i><tt class="parameter">socket</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">socket</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid socket resource created with <a href="function.socket-create.html" class="function">socket_create()</a>
+       or <a href="function.socket-accept.html" class="function">socket_accept()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">level</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">level</tt></i>
+ parameter specifies the protocol
+       level at which the option resides. For example, to retrieve options at
+       the socket level, a <i><tt class="parameter">level</tt></i>
+ parameter of
+       <b><tt>SOL_SOCKET</tt></b> would be used. Other levels, such as
+       TCP, can be used by specifying the protocol number of that level. 
+       Protocol numbers can be found by using the 
+       <a href="function.getprotobyname.html" class="function">getprotobyname()</a> function.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">optname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The available socket options are the same as those for the
+       <a href="function.socket-get-option.html" class="function">socket_get_option()</a> function.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">optval</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The option value.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>socket_set_option()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$socket&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">socket_create</span><span style="color: #007700">(</span><span style="color: #0000BB">AF_INET</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SOCK_STREAM</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SOL_TCP</span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">is_resource</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Unable&nbsp;to&nbsp;create&nbsp;socket:&nbsp;'</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">socket_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">socket_last_error</span><span style="color: #007700">())&nbsp;.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />}<br /><br />if&nbsp;(!</span><span style="color: #0000BB">socket_set_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SOL_SOCKET</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SO_REUSEADDR</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Unable&nbsp;to&nbsp;set&nbsp;option&nbsp;on&nbsp;socket:&nbsp;'</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">socket_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">socket_last_error</span><span style="color: #007700">())&nbsp;.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />}<br /><br />if&nbsp;(!</span><span style="color: #0000BB">socket_bind</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'127.0.0.1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1223</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Unable&nbsp;to&nbsp;bind&nbsp;socket:&nbsp;'</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">socket_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">socket_last_error</span><span style="color: #007700">())&nbsp;.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$rval&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">socket_get_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SOL_SOCKET</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SO_REUSEADDR</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$rval&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Unable&nbsp;to&nbsp;get&nbsp;socket&nbsp;option:&nbsp;'</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">socket_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">socket_last_error</span><span style="color: #007700">())&nbsp;.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;if&nbsp;(</span><span style="color: #0000BB">$rval&nbsp;</span><span style="color: #007700">!==&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'SO_REUSEADDR&nbsp;is&nbsp;set&nbsp;on&nbsp;socket&nbsp;!'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        This function was renamed. It used to be called
+        <b>socket_setopt()</b>.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.socket-set-nonblock.html">socket_set_nonblock</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-shutdown.html">socket_shutdown</a></div>
+ <div class="up"><a href="ref.sockets.html">Socket Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

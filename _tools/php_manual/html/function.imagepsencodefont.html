@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Change the character encoding vector of a font</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagepsbbox.html">imagepsbbox</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagepsextendfont.html">imagepsextendfont</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagepsencodefont" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imagepsencodefont</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imagepsencodefont</span> &mdash; <span class="dc-title">Change the character encoding vector of a font</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>imagepsencodefont</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$font_index</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encodingfile</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Loads a character encoding vector from a file and changes the fonts 
+   encoding vector to it. As a PostScript fonts default vector lacks most of
+   the character positions above 127, you&#039;ll definitely want to change this
+   if you use an other language than English. 
+  </p>
+  <p class="para">
+   If you find yourself using this function all the time, a much
+   better way to define the encoding is to set ps.default_encoding in
+   the <a href="configuration.html#configuration.file" class="link">configuration file</a>
+   to point to the right encoding file and all fonts you load will
+   automatically have the right encoding.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">font_index</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A font resource, returned by <a href="function.imagepsloadfont.html" class="function">imagepsloadfont()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encodingfile</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The exact format of this file is described in T1libs documentation. 
+       T1lib comes with two ready-to-use files, 
+       <var class="filename">IsoLatin1.enc</var> and 
+       <var class="filename">IsoLatin2.enc</var>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>imagepsencodefont()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Load&nbsp;a&nbsp;.pfb&nbsp;font&nbsp;file<br /></span><span style="color: #0000BB">$font&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagepsloadfont</span><span style="color: #007700">(</span><span style="color: #DD0000">'./px3l.pfb'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Tell&nbsp;T1lib&nbsp;to&nbsp;use&nbsp;ISO&nbsp;Latin&nbsp;1&nbsp;encoding<br /></span><span style="color: #0000BB">imagepsencode</span><span style="color: #007700">(</span><span style="color: #0000BB">$font</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'./IsoLatin1.enc'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Do&nbsp;any&nbsp;operations&nbsp;with&nbsp;the&nbsp;font&nbsp;here<br /><br />//&nbsp;Free&nbsp;the&nbsp;font&nbsp;from&nbsp;memory<br /></span><span style="color: #0000BB">imagepsfreefont</span><span style="color: #007700">(</span><span style="color: #0000BB">$font</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is only available 
+if PHP is compiled using <span class="option">--with-t1lib[=DIR]</span>.
+</span></p></blockquote>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagepsbbox.html">imagepsbbox</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagepsextendfont.html">imagepsextendfont</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

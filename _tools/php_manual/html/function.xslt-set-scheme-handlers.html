@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set the scheme handlers for the XSLT processor</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xslt-set-scheme-handler.html">xslt_set_scheme_handler</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xslt-setopt.html">xslt_setopt</a></div>
+ <div class="up"><a href="ref.xslt.html">XSLT Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.xslt-set-scheme-handlers" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xslt_set_scheme_handlers</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6)</p><p class="refpurpose"><span class="refname">xslt_set_scheme_handlers</span> &mdash; <span class="dc-title">Set the scheme handlers for the XSLT processor</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>xslt_set_scheme_handlers</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$xh</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$handlers</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Registers the scheme handlers (XPath handlers) for the document.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">xh</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The XSLT processor link identifier, created with
+       <a href="function.xslt-create.html" class="function">xslt_create()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">handlers</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An array with the following keys: &quot;get_all&quot;, &quot;open&quot;, &quot;get&quot;, &quot;put&quot;,
+       and &quot;close&quot;.
+      </p>
+      <p class="para">
+       Every entry must be a function name or an array in the following
+       format: array($obj, &quot;method&quot;).
+      </p>
+      <p class="para">
+       Note that the given array does not need to contain all of the
+       different scheme handler elements (although it can), but it only needs
+       to conform to the &quot;handler&quot; =&gt; &quot;function&quot; format described above.
+      </p>
+      <p class="para">
+       Each of the individual scheme handler functions called are in the
+       formats below:
+       <div class="example-contents"><pre>
+<div class="cdata"><pre>
+string   get_all(resource processor, string scheme, string rest)
+resource open(resource processor, string scheme, string rest)
+int      get(resource processor, resource fp, string &amp;data)
+int      put(resource processor, resource fp, string data)
+void     close(resource processor, resource fp)
+</pre></div>
+       </pre></div>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>xslt_set_scheme_handlers()</b> example</b></p>
+    <div class="example-contents"><p>
+     For example, here is an implementation of the &quot;file_exists()&quot; PHP function.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Definition&nbsp;of&nbsp;the&nbsp;handler<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">mySchemeHandler</span><span style="color: #007700">(</span><span style="color: #0000BB">$processor</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$scheme</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rest</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$rest&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$rest</span><span style="color: #007700">,</span><span style="color: #0000BB">1</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;to&nbsp;remove&nbsp;the&nbsp;first&nbsp;/&nbsp;automatically&nbsp;added&nbsp;by&nbsp;the&nbsp;engine<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$scheme&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #DD0000">'file_exists'</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;result&nbsp;is&nbsp;embedded&nbsp;in&nbsp;a&nbsp;small&nbsp;xml&nbsp;string<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">return&nbsp;</span><span style="color: #DD0000">'&lt;?xml&nbsp;version="1.0"&nbsp;encoding="UTF-8"?&gt;&lt;root&gt;'&nbsp;</span><span style="color: #007700">.&nbsp;(</span><span style="color: #0000BB">file_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$rest</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'true'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'false'</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">'&lt;/root&gt;'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">$SchemeHandlerArray&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'get_all'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'mySchemeHandler'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Start&nbsp;the&nbsp;engine<br /></span><span style="color: #0000BB">$params&nbsp;</span><span style="color: #007700">=&nbsp;array();<br /></span><span style="color: #0000BB">$xh&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">xslt_create</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">xslt_set_scheme_handlers</span><span style="color: #007700">(</span><span style="color: #0000BB">$xh</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$SchemeHandlerArray</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">xslt_process</span><span style="color: #007700">(</span><span style="color: #0000BB">$xh</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"myFile.xml"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"myFile.xsl"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;array(),&nbsp;</span><span style="color: #0000BB">$params</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">xslt_free</span><span style="color: #007700">(</span><span style="color: #0000BB">$xh</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Then, inside the stylesheet, you can test whether a certain file exists with:
+    </p></div>
+    <div class="example-contents">
+<div class="cdata"><pre>
+&lt;xsl:if test=&quot;document(&#039;file_exists:anotherXMLfile.xml&#039;)/root=&#039;true&#039;&quot;&gt;
+ &lt;!-- The file exist --&gt;
+&lt;/xsl:if&gt;
+</pre></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.xslt-set-scheme-handler.html" class="function" rel="rdfs-seeAlso">xslt_set_scheme_handler()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xslt-set-scheme-handler.html">xslt_set_scheme_handler</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xslt-setopt.html">xslt_setopt</a></div>
+ <div class="up"><a href="ref.xslt.html">XSLT Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

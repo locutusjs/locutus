@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sends a SITE command to the server</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ftp-set-option.html">ftp_set_option</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ftp-size.html">ftp_size</a></div>
+ <div class="up"><a href="ref.ftp.html">FTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ftp-site" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ftp_site</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ftp_site</span> &mdash; <span class="dc-title">Sends a SITE command to the server</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ftp_site</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$ftp_stream</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$command</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>ftp_site()</b> sends the given <i>SITE</i> 
+   command to the FTP server.
+  </p>
+  <p class="para">
+   <i>SITE</i> commands are not standardized, and vary from server
+   to server. They are useful for handling such things as file permissions and 
+   group membership.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ftp_stream</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The link identifier of the FTP connection.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">command</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SITE command. Note that this parameter isn&#039;t escaped so there may
+       be some issues with filenames containing spaces and other characters.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Sending a SITE command to an ftp server</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Connect&nbsp;to&nbsp;FTP&nbsp;server&nbsp;*/<br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ftp_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'ftp.example.com'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&nbsp;die(</span><span style="color: #DD0000">'Unable&nbsp;to&nbsp;connect&nbsp;to&nbsp;ftp.example.com'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Login&nbsp;as&nbsp;"user"&nbsp;with&nbsp;password&nbsp;"pass"&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">ftp_login</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'pass'</span><span style="color: #007700">))&nbsp;die(</span><span style="color: #DD0000">'Error&nbsp;logging&nbsp;into&nbsp;ftp.example.com'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Issue:&nbsp;"SITE&nbsp;CHMOD&nbsp;0600&nbsp;/home/user/privatefile"&nbsp;command&nbsp;to&nbsp;ftp&nbsp;server&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">ftp_site</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CHMOD&nbsp;0600&nbsp;/home/user/privatefile'</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Command&nbsp;executed&nbsp;successfully.\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Command&nbsp;failed.'</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ftp-raw.html" class="function" rel="rdfs-seeAlso">ftp_raw()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ftp-set-option.html">ftp_set_option</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ftp-size.html">ftp_size</a></div>
+ <div class="up"><a href="ref.ftp.html">FTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

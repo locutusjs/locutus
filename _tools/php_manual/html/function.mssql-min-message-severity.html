@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets the minimum message severity</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mssql-min-error-severity.html">mssql_min_error_severity</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mssql-next-result.html">mssql_next_result</a></div>
+ <div class="up"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mssql-min-message-severity" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mssql_min_message_severity</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL odbtp:1.1.1-1.1.4)</p><p class="refpurpose"><span class="refname">mssql_min_message_severity</span> &mdash; <span class="dc-title">Sets the minimum message severity</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>mssql_min_message_severity</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$severity</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sets the minimum message severity.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">severity</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The new message severity.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mssql_min_message_severity()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Connect&nbsp;to&nbsp;MSSQL<br /></span><span style="color: #0000BB">mssql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'KALLESPC\SQLEXPRESS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'sa'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'phpfi'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Set&nbsp;the&nbsp;minimum&nbsp;message&nbsp;severity&nbsp;to&nbsp;17,&nbsp;this&nbsp;<br />//&nbsp;will&nbsp;not&nbsp;show&nbsp;any&nbsp;messages&nbsp;issued&nbsp;by&nbsp;the&nbsp;underlaying<br />//&nbsp;API&nbsp;when&nbsp;we&nbsp;select&nbsp;a&nbsp;non-existent&nbsp;database&nbsp;below<br /></span><span style="color: #0000BB">mssql_min_message_severity</span><span style="color: #007700">(</span><span style="color: #0000BB">17</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Select&nbsp;a&nbsp;non-existent&nbsp;database<br /></span><span style="color: #0000BB">mssql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">'THIS_DATABASE_DOES_NOT_EXISTS'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+mssql_select_db(): Unable to select database:  THIS_DATABASE_DOES_NOT_EXISTS
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mssql-min-error-severity.html">mssql_min_error_severity</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mssql-next-result.html">mssql_next_result</a></div>
+ <div class="up"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

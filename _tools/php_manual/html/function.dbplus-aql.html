@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Perform AQL query</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbplus-add.html">dbplus_add</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbplus-chdir.html">dbplus_chdir</a></div>
+ <div class="up"><a href="ref.dbplus.html">DB++ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.dbplus-aql" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dbplus_aql</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PECL dbplus:0.9)</p><p class="refpurpose"><span class="refname">dbplus_aql</span> &mdash; <span class="dc-title">Perform AQL query</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>dbplus_aql</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$server</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dbpath</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Executes an AQL <i><tt class="parameter">query</tt></i>
+ on the given
+   <i><tt class="parameter">server</tt></i>
+ and <i><tt class="parameter">dbpath</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">query</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       
+       The AQL query to be executed. Further information on the AQL A...
+       Query Language is provided in the original db++ manual.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">server</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dbpath</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a relation handle on success. The result data may be fetched from
+   this relation by calling <a href="function.dbplus-next.html" class="function">dbplus_next()</a> and
+   <b>dbplus_current()</b>. Other relation access functions will
+   not work on a result relation.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbplus-add.html">dbplus_add</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbplus-chdir.html">dbplus_chdir</a></div>
+ <div class="up"><a href="ref.dbplus.html">DB++ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

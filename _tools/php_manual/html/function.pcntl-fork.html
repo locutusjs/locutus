@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Forks the currently running process</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pcntl-exec.html">pcntl_exec</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pcntl-getpriority.html">pcntl_getpriority</a></div>
+ <div class="up"><a href="ref.pcntl.html">PCNTL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pcntl-fork" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pcntl_fork</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">pcntl_fork</span> &mdash; <span class="dc-title">Forks the currently running process</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>pcntl_fork</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The <b>pcntl_fork()</b> function creates a child
+   process that differs from the parent process only in its PID and
+   PPID. Please see your system&#039;s fork(2) man page for specific details as to
+   how fork works on your system.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   On success, the PID of the child process is returned in the
+   parent&#039;s thread of execution, and a 0 is returned in the child&#039;s
+   thread of execution.  On failure, a -1 will be returned in the
+   parent&#039;s context, no child process will be created, and a PHP
+   error is raised.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pcntl_fork()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$pid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pcntl_fork</span><span style="color: #007700">();<br />if&nbsp;(</span><span style="color: #0000BB">$pid&nbsp;</span><span style="color: #007700">==&nbsp;-</span><span style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'could&nbsp;not&nbsp;fork'</span><span style="color: #007700">);<br />}&nbsp;else&nbsp;if&nbsp;(</span><span style="color: #0000BB">$pid</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;we&nbsp;are&nbsp;the&nbsp;parent<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">pcntl_wait</span><span style="color: #007700">(</span><span style="color: #0000BB">$status</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//Protect&nbsp;against&nbsp;Zombie&nbsp;children<br /></span><span style="color: #007700">}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;we&nbsp;are&nbsp;the&nbsp;child<br /></span><span style="color: #007700">}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pcntl-waitpid.html" class="function" rel="rdfs-seeAlso">pcntl_waitpid()</a></li>
+    <li class="member"><a href="function.pcntl-signal.html" class="function" rel="rdfs-seeAlso">pcntl_signal()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pcntl-exec.html">pcntl_exec</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pcntl-getpriority.html">pcntl_getpriority</a></div>
+ <div class="up"><a href="ref.pcntl.html">PCNTL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

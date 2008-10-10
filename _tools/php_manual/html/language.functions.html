@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Functions</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.include-once.html">include_once</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="functions.arguments.html">Function arguments</a></div>
+ <div class="up"><a href="langref.html">Language Reference</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div>
+  <h1>Functions</h1>
+<h2>Table of Contents</h2><ul class="chunklist chunklist_chapter"><li><a href="functions.arguments.html">Function arguments</a></li><li><a href="functions.returning-values.html">Returning values</a></li><li><a href="functions.variable-functions.html">Variable functions</a></li><li><a href="functions.internal.html">Internal (built-in) functions</a></li></ul>
+
+
+  <div id="functions.user-defined" class="sect1">
+   <h2 class="title">User-defined functions</h2>
+ 
+   <p class="para">
+    A function may be defined using syntax such as the following:
+   </p>
+   <p class="para">
+    <div class="example">
+     <p><b>Example #1 Pseudo code to demonstrate function uses</b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$arg_1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$arg_2</span><span style="color: #007700">,&nbsp;</span><span style="color: #FF8000">/*&nbsp;...,&nbsp;*/&nbsp;</span><span style="color: #0000BB">$arg_n</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Example&nbsp;function.\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$retval</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   
+   <p class="simpara">
+    Any valid PHP code may appear inside a function, even other
+    functions and <a href="language.oop.html#keyword.class" class="link">class</a>
+    definitions.
+   </p>
+   <p class="para">
+    Function names follow the same rules as other labels in PHP. A
+    valid function name starts with a letter or underscore, followed
+    by any number of letters, numbers, or underscores. As a regular
+    expression, it would be expressed thus:
+    <i>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*</i>.
+   </p>
+   <div class="tip"><b class="tip">Tip</b><p class="simpara">See also the
+<a href="userlandnaming.html" class="xref">Userland Naming Guide</a>.</p></div>
+   <p class="simpara">
+    Functions need not be defined before they are referenced,
+    <em class="emphasis">except</em> when a function is conditionally defined as
+    shown in the two examples below.
+   </p>
+   <p class="para">
+    When a function is defined in a conditional manner such as the two
+    examples shown. Its definition must be processed <em class="emphasis">prior</em>
+    to being called.
+   </p>
+   <p class="para">
+    <div class="example">
+     <p><b>Example #2 Conditional functions</b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$makefoo&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;We&nbsp;can't&nbsp;call&nbsp;foo()&nbsp;from&nbsp;here&nbsp;<br />&nbsp;&nbsp;&nbsp;since&nbsp;it&nbsp;doesn't&nbsp;exist&nbsp;yet,<br />&nbsp;&nbsp;&nbsp;but&nbsp;we&nbsp;can&nbsp;call&nbsp;bar()&nbsp;*/<br /><br /></span><span style="color: #0000BB">bar</span><span style="color: #007700">();<br /><br />if&nbsp;(</span><span style="color: #0000BB">$makefoo</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">()<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"I&nbsp;don't&nbsp;exist&nbsp;until&nbsp;program&nbsp;execution&nbsp;reaches&nbsp;me.\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Now&nbsp;we&nbsp;can&nbsp;safely&nbsp;call&nbsp;foo()<br />&nbsp;&nbsp;&nbsp;since&nbsp;$makefoo&nbsp;evaluated&nbsp;to&nbsp;true&nbsp;*/<br /><br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$makefoo</span><span style="color: #007700">)&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">();<br /><br />function&nbsp;</span><span style="color: #0000BB">bar</span><span style="color: #007700">()&nbsp;<br />{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"I&nbsp;exist&nbsp;immediately&nbsp;upon&nbsp;program&nbsp;start.\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    <div class="example">
+     <p><b>Example #3 Functions within functions</b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">()&nbsp;<br />{<br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">bar</span><span style="color: #007700">()&nbsp;<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"I&nbsp;don't&nbsp;exist&nbsp;until&nbsp;foo()&nbsp;is&nbsp;called.\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;We&nbsp;can't&nbsp;call&nbsp;bar()&nbsp;yet<br />&nbsp;&nbsp;&nbsp;since&nbsp;it&nbsp;doesn't&nbsp;exist.&nbsp;*/<br /><br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;Now&nbsp;we&nbsp;can&nbsp;call&nbsp;bar(),<br />&nbsp;&nbsp;&nbsp;foo()'s&nbsp;processesing&nbsp;has<br />&nbsp;&nbsp;&nbsp;made&nbsp;it&nbsp;accessible.&nbsp;*/<br /><br /></span><span style="color: #0000BB">bar</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    All functions and classes in PHP have the global scope - they can be
+    called outside a function even if they were defined inside and vice versa.
+   </p>
+   <p class="simpara">
+    PHP does not support function overloading, nor is it possible to
+    undefine or redefine previously-declared functions.
+   </p>
+   <blockquote><p><b class="note">Note</b>: 
+    <span class="simpara">
+     Function names are case-insensitive, though it is usually good form
+     to call functions as they appear in their declaration.
+    </span>
+   </p></blockquote>   
+   <p class="simpara">
+    Both <a href="functions.arguments.html#functions.variable-arg-list" class="link">variable number of
+    arguments</a> and <a href="functions.arguments.html#functions.arguments.default" class="link">default
+    arguments</a> are supported in functions. See also the function
+    references for
+    <a href="function.func-num-args.html" class="function">func_num_args()</a>,
+    <a href="function.func-get-arg.html" class="function">func_get_arg()</a>, and
+    <a href="function.func-get-args.html" class="function">func_get_args()</a> for more information.
+   </p>
+   
+   <p class="para">
+    It is possible to call recursive functions in PHP. However avoid recursive
+    function/method calls with over 100-200 recursion levels as it can smash
+    the stack and cause a termination of the current script.
+    <div class="example">
+     <p><b>Example #4 Recursive functions</b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">recursion</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">20</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"$a\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">recursion</span><span style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+
+  </div>
+ 
+  
+ 
+  
+ 
+  
+  
+  
+
+ </div>
+<hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.include-once.html">include_once</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="functions.arguments.html">Function arguments</a></div>
+ <div class="up"><a href="langref.html">Language Reference</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

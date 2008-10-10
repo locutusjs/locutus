@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Free result memory</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-field-type.html">mysql_field_type</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-get-client-info.html">mysql_get_client_info</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mysql-free-result" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysql_free_result</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL mysql:1.0)</p><p class="refpurpose"><span class="refname">mysql_free_result</span> &mdash; <span class="dc-title">Free result memory</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>mysql_free_result</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>mysql_free_result()</b> will free all memory
+   associated with the result identifier <i><tt class="parameter">result</tt></i>
+.
+  </p>
+  <p class="para">
+   <b>mysql_free_result()</b> only needs to be called if
+   you are concerned about how much memory is being used for queries
+   that return large result sets.  All associated result memory is
+   automatically freed at the end of the script&#039;s execution.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+result</tt></i>
+</span>
+<dd>
+<p class="para">The result <a href="language.types.resource.html" class="type resource">resource</a> that
+is being evaluated. This result comes from a call to 
+<a href="function.mysql-query.html" class="function">mysql_query()</a>.</p></dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+  <p class="para">
+   If a non-resource is used for the <i><tt class="parameter">result</tt></i>
+, an
+   error of level E_WARNING will be emitted.  It&#039;s worth noting that
+   <a href="function.mysql-query.html" class="function">mysql_query()</a> only returns a <a href="language.types.resource.html" class="type resource">resource</a>
+   for SELECT, SHOW, EXPLAIN, and DESCRIBE queries.
+  </p>
+ </div>
+
+ 
+  <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>mysql_free_result()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id,email&nbsp;FROM&nbsp;people&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;'42'"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Could&nbsp;not&nbsp;run&nbsp;query:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mysql_error</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /></span><span style="color: #FF8000">/*&nbsp;Use&nbsp;the&nbsp;result,&nbsp;assuming&nbsp;we're&nbsp;done&nbsp;with&nbsp;it&nbsp;afterwards&nbsp;*/<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Now&nbsp;we&nbsp;free&nbsp;up&nbsp;the&nbsp;result&nbsp;and&nbsp;continue&nbsp;on&nbsp;with&nbsp;our&nbsp;script&nbsp;*/<br /></span><span style="color: #0000BB">mysql_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'id'</span><span style="color: #007700">];<br />echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'email'</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    For backward compatibility, the following 
+deprecated alias may be used: 
+    <b>mysql_freeresult()</b>
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mysql-query.html" class="function" rel="rdfs-seeAlso">mysql_query()</a></li>
+    <li class="member"><a href="function.is-resource.html" class="function" rel="rdfs-seeAlso">is_resource()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-field-type.html">mysql_field_type</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-get-client-info.html">mysql_get_client_info</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

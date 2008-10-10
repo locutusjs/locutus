@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Loads a font definition</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="class.swffont.html">SWFFont</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swffont.getascent.html">SWFFont->getAscent</a></div>
+ <div class="up"><a href="class.swffont.html">SWFFont</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.swffont.construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SWFFont-&gt;__construct</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SWFFont-&gt;__construct</span> &mdash; <span class="dc-title">Loads a font definition</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><a href="class.swffont.html" class="classname">SWFFont</a></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">SWFFont</span> <span class="methodname"><b><b>__construct</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+    )</div>
+
+  </div>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+  <p class="para">
+   If <i><tt class="parameter">filename</tt></i>
+ is the name of an FDB file 
+   (i.e., it ends in &quot;.fdb&quot;), load the font definition found in said 
+   file. Otherwise, create a browser-defined font reference. 
+  </p>
+  <p class="para">
+   FDB (&quot;font definition block&quot;) is a very simple wrapper for the SWF DefineFont2
+   block which contains a full description of a font. One may create FDB files from 
+   SWT Generator template files with the included makefdb utility- look in the 
+   util directory off the main ming distribution directory. 
+  </p>
+  <p class="para">
+   Browser-defined fonts don&#039;t contain any information about the font other 
+   than its name. It is assumed that the font definition will be provided by
+   the movie player. The fonts _serif, _sans, and _typewriter should always 
+   be available. For example: 
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$f&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">newSWFFont</span><span style="color: #007700">(</span><span style="color: #DD0000">"_sans"</span><span style="color: #007700">);&nbsp;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   will give you the standard sans-serif font, probably the same as what you&#039;d get
+   with <i>&lt;font name=&quot;sans-serif&quot;&gt;</i> in HTML.
+  </p>
+  <p class="para">
+
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="class.swffont.html">SWFFont</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swffont.getascent.html">SWFFont->getAscent</a></div>
+ <div class="up"><a href="class.swffont.html">SWFFont</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

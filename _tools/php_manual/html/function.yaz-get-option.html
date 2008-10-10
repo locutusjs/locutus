@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns value of option for connection</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.yaz-es.html">yaz_es</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.yaz-hits.html">yaz_hits</a></div>
+ <div class="up"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.yaz-get-option" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">yaz_get_option</h1>
+  <p class="verinfo">(PECL yaz:0.9-1.0.9)</p><p class="refpurpose"><span class="refname">yaz_get_option</span> &mdash; <span class="dc-title">Returns value of option for connection</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>yaz_get_option</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$id</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns the value of the option specified with <i><tt class="parameter">name</tt></i>
+.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The connection resource returned by <a href="function.yaz-connect.html" class="function">yaz_connect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The option name.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the value of the specified option or an empty string if the option
+   wasn&#039;t set.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     The description of <a href="function.yaz-set-option.html" class="function" rel="rdfs-seeAlso">yaz_set_option()</a> for available 
+     options
+    </li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.yaz-es.html">yaz_es</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.yaz-hits.html">yaz_hits</a></div>
+ <div class="up"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

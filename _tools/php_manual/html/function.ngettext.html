@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Plural version of gettext</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gettext.html">gettext</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.textdomain.html">textdomain</a></div>
+ <div class="up"><a href="ref.gettext.html">Gettext Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ngettext" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ngettext</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">ngettext</span> &mdash; <span class="dc-title">Plural version of gettext</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>ngettext</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$msgid1</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$msgid2</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$n</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The plural version of <a href="function.gettext.html" class="function">gettext()</a>.  Some languages 
+   have more than one form for plural messages dependent on the count.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">msgid1</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">msgid2</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">n</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns correct plural form of message identified by 
+   <i><tt class="parameter">msgid1</tt></i>
+ and <i><tt class="parameter">msgid2</tt></i>
+
+   for count <i><tt class="parameter">n</tt></i>
+. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ngettext()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />setlocale</span><span style="color: #007700">(</span><span style="color: #0000BB">LC_ALL</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'cs_CZ'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #0000BB">ngettext</span><span style="color: #007700">(</span><span style="color: #DD0000">"%d&nbsp;window"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"%d&nbsp;windows"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;1&nbsp;okno<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #0000BB">ngettext</span><span style="color: #007700">(</span><span style="color: #DD0000">"%d&nbsp;window"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"%d&nbsp;windows"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;2&nbsp;okna<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #0000BB">ngettext</span><span style="color: #007700">(</span><span style="color: #DD0000">"%d&nbsp;window"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"%d&nbsp;windows"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;5&nbsp;oken<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gettext.html">gettext</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.textdomain.html">textdomain</a></div>
+ <div class="up"><a href="ref.gettext.html">Gettext Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

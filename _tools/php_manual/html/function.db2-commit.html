@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Commits a transaction</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-columns.html">db2_columns</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-conn-error.html">db2_conn_error</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.db2-commit" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">db2_commit</h1>
+  <p class="verinfo">(PECL ibm_db2:1.0-1.6.2)</p><p class="refpurpose"><span class="refname">db2_commit</span> &mdash; <span class="dc-title">
+   Commits a transaction
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>db2_commit</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   )</div>
+
+
+
+  <p class="para rdfs-comment">
+   Commits an in-progress transaction on the specified connection resource and
+   begins a new transaction. PHP applications normally default to AUTOCOMMIT
+   mode, so <b>db2_commit()</b> is not necessary unless AUTOCOMMIT
+   has been turned off for the connection resource.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    If the specified connection resource is a persistent connection, all
+    transactions in progress for all applications using that persistent
+    connection will be committed. For this reason, persistent connections are
+    not recommended for use in applications that require transactions.
+   <br />
+  </p></blockquote>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid database connection resource variable as returned from
+       <a href="function.db2-connect.html" class="function">db2_connect()</a> or <a href="function.db2-pconnect.html" class="function">db2_pconnect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ 
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.db2-autocommit.html" class="function" rel="rdfs-seeAlso">db2_autocommit()</a></li>
+    <li class="member"><a href="function.db2-rollback.html" class="function" rel="rdfs-seeAlso">db2_rollback()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-columns.html">db2_columns</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-conn-error.html">db2_conn_error</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

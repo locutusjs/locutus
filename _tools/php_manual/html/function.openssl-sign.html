@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Generate signature</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.openssl-seal.html">openssl_seal</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.openssl-verify.html">openssl_verify</a></div>
+ <div class="up"><a href="ref.openssl.html">OpenSSL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.openssl-sign" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">openssl_sign</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p><p class="refpurpose"><span class="refname">openssl_sign</span> &mdash; <span class="dc-title">Generate signature</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>openssl_sign</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter reference">&$signature</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$priv_key_id</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$signature_alg</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>openssl_sign()</b> computes a signature for the
+   specified <i><tt class="parameter">data</tt></i>
+ by using SHA1 for hashing
+   followed by encryption using the private key associated with
+   <i><tt class="parameter">priv_key_id</tt></i>
+. Note that the data itself is
+   not encrypted.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">signature</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the call was successful the signature is returned in
+       <i><tt class="parameter">signature</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">priv_key_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">signature_alg</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Defaults to <b><tt>OPENSSL_ALGO_SHA1</tt></b>. For more
+       information see the list of <a href="openssl.signature-algos.html" class="link">Signature Algorithms</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">signature_alg</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>openssl_sign()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;$data&nbsp;is&nbsp;assumed&nbsp;to&nbsp;contain&nbsp;the&nbsp;data&nbsp;to&nbsp;be&nbsp;signed<br /><br />//&nbsp;fetch&nbsp;private&nbsp;key&nbsp;from&nbsp;file&nbsp;and&nbsp;ready&nbsp;it<br /></span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"/src/openssl-0.9.6/demos/sign/key.pem"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"r"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$priv_key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fread</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">8192</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$pkeyid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">openssl_get_privatekey</span><span style="color: #007700">(</span><span style="color: #0000BB">$priv_key</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;compute&nbsp;signature<br /></span><span style="color: #0000BB">openssl_sign</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$signature</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$pkeyid</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;free&nbsp;the&nbsp;key&nbsp;from&nbsp;memory<br /></span><span style="color: #0000BB">openssl_free_key</span><span style="color: #007700">(</span><span style="color: #0000BB">$pkeyid</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.openssl-verify.html" class="function" rel="rdfs-seeAlso">openssl_verify()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.openssl-seal.html">openssl_seal</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.openssl-verify.html">openssl_verify</a></div>
+ <div class="up"><a href="ref.openssl.html">OpenSSL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

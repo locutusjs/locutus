@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get and/or set the current session id</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-get-cookie-params.html">session_get_cookie_params</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-is-registered.html">session_is_registered</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.session-id" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">session_id</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">session_id</span> &mdash; <span class="dc-title">Get and/or set the current session id</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>session_id</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$id</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>session_id()</b> is used to get or set the session id for
+   the current session.
+  </p>
+  <p class="para">
+   The constant <code class="systemitem systemitem">SID</code>
+ can also be used to
+   retrieve the current name and session id as a string suitable for
+   adding to URLs. See also <a href="ref.session.html" class="link">Session
+   handling</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">id</tt></i>
+</span>
+
+      <dd>
+
+       <p class="para">
+        If <i><tt class="parameter">id</tt></i>
+ is specified, it will replace the current
+        session id. <b>session_id()</b> needs to be called before
+        <a href="function.session-start.html" class="function">session_start()</a> for that purpose. Depending on the
+        session handler, not all characters are allowed within the session id.
+        For example, the file session handler only allows characters in the
+        range <i>a-z, A-Z and 0-9</i>!
+       </p>
+       <blockquote><p><b class="note">Note</b>: 
+        <span class="simpara">
+         When using session cookies, specifying an <i><tt class="parameter">id</tt></i>
+
+         for <b>session_id()</b> will always send a new cookie
+         when <a href="function.session-start.html" class="function">session_start()</a> is called, regardless if the
+         current session id is identical to the one being set.
+        </span>
+       </p></blockquote>
+      </dd>
+
+     </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>session_id()</b> returns the session id for the current
+   session or the empty string (<i>&quot;&quot;</i>) if there is no current
+   session (no current session id exists).
+  </p>
+ </div>
+
+
+<div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.session-regenerate-id.html" class="function" rel="rdfs-seeAlso">session_regenerate_id()</a></li>
+    <li class="member"><a href="function.session-start.html" class="function" rel="rdfs-seeAlso">session_start()</a></li>
+    <li class="member"><a href="function.session-set-save-handler.html" class="function" rel="rdfs-seeAlso">session_set_save_handler()</a></li>
+    <li class="member">
+     <a href="session.configuration.html#ini.session.save-handler" class="link">session.save_handler</a>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-get-cookie-params.html">session_get_cookie_params</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-is-registered.html">session_is_registered</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Deflate data</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-chunked-decode.html">http_chunked_decode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-inflate.html">http_inflate</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.http-deflate" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">http_deflate</h1>
+  <p class="verinfo">(PECL pecl_http:0.15.0-1.5.5)</p><p class="refpurpose"><span class="refname">http_deflate</span> &mdash; <span class="dc-title">Deflate data</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>http_deflate</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags = 0</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Compress data with <i>gzip</i>, <i>zlib</i> AKA <i>deflate</i> or <i>raw deflate</i> encoding.
+  </p>
+  <p class="para">
+   See the <a href="http.constants.html#http.constants.deflate" class="link">deflate constants table</a> for possible values for the <var class="varname">flags</var> parameter.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       String containing the data that should be encoded
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       deflate options
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the encoded string on success, or NULL on failure.
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.http-inflate.html" class="function" rel="rdfs-seeAlso">http_inflate()</a></li>
+    <li class="member"><a href="class.httpdeflatestream.html" class="link"><b class="classname">HttpDeflateStream</b></a></li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-chunked-decode.html">http_chunked_decode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-inflate.html">http_inflate</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

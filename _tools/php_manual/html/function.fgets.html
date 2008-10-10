@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets line from file pointer</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fgetcsv.html">fgetcsv</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fgetss.html">fgetss</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.fgets" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fgets</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">fgets</span> &mdash; <span class="dc-title">Gets line from file pointer</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>fgets</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$handle</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$length</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Gets a line from file pointer.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">handle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The file pointer must be valid, and must point to
+a file successfully opened by <a href="function.fopen.html" class="function">fopen()</a> or
+<a href="function.fsockopen.html" class="function">fsockopen()</a> (and not yet closed by
+<a href="function.fclose.html" class="function">fclose()</a>).</p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">length</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Reading ends when <i><tt class="parameter">length</tt></i>
+ - 1 bytes have been
+       read, on a newline (which is included in the return value), or on EOF
+       (whichever comes first). If no length is specified, it will keep
+       reading from the stream until it reaches the end of the line.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        Until PHP 4.3.0, omitting it would assume 1024 as the line length.
+        If the majority of the lines in the file are all larger than 8KB,
+        it is more resource efficient for your script to specify the maximum
+        line length.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string of up to <i><tt class="parameter">length</tt></i>
+ - 1 bytes read from
+   the file pointed to by <i><tt class="parameter">handle</tt></i>
+.
+  </p>
+  <p class="para">
+   If an error occurs, returns <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        <b>fgets()</b> is now binary safe
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.2.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">length</tt></i>
+ parameter became optional
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Reading a file line by line</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$handle&nbsp;</span><span style="color: #007700">=&nbsp;@</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"/tmp/inputfile.txt"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"r"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(!</span><span style="color: #0000BB">feof</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$buffer&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fgets</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4096</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$buffer</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">If PHP is not properly recognizing
+the line endings when reading files either on or created by a Macintosh
+computer, enabling the
+<a href="filesystem.configuration.html#ini.auto-detect-line-endings" class="link">auto_detect_line_endings</a>
+run-time configuration option may help resolve the problem.</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    People used to the &#039;C&#039; semantics of <b>fgets()</b>
+    should note the difference in how <i>EOF</i> is returned.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.fgetss.html" class="function" rel="rdfs-seeAlso">fgetss()</a></li>
+    <li class="member"><a href="function.fread.html" class="function" rel="rdfs-seeAlso">fread()</a></li>
+    <li class="member"><a href="function.fgetc.html" class="function" rel="rdfs-seeAlso">fgetc()</a></li>
+    <li class="member"><a href="function.stream-get-line.html" class="function" rel="rdfs-seeAlso">stream_get_line()</a></li>
+    <li class="member"><a href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a></li>
+    <li class="member"><a href="function.popen.html" class="function" rel="rdfs-seeAlso">popen()</a></li>
+    <li class="member"><a href="function.fsockopen.html" class="function" rel="rdfs-seeAlso">fsockopen()</a></li>
+    <li class="member"><a href="function.stream-set-timeout.html" class="function" rel="rdfs-seeAlso">stream_set_timeout()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fgetcsv.html">fgetcsv</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fgetss.html">fgetss</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

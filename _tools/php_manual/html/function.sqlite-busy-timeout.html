@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set busy timeout duration, or disable busy handlers</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-array-query.html">sqlite_array_query</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-changes.html">sqlite_changes</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sqlite-busy-timeout" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_busy_timeout</h1>
+  <h1 class="refname">SQLiteDatabase-&gt;busyTimeout</h1>
+  <p class="verinfo">(PHP 5, PECL sqlite:1.0-1.0.3)</p><p class="refpurpose"><span class="refname">sqlite_busy_timeout</span> -- <span class="refname">SQLiteDatabase-&gt;busyTimeout</span> &mdash; <span class="dc-title">Set busy timeout duration, or disable busy handlers</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>sqlite_busy_timeout</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$dbhandle</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$milliseconds</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method):</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SQLiteDatabase</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">void</span> <span class="methodname"><b><b>busyTimeout</b></b></span>
+     ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$milliseconds</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   Set the maximum time, in milliseconds, that SQLite will wait for a
+   <i><tt class="parameter">dbhandle</tt></i>
+ to become ready for use.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dbhandle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SQLite Database resource; returned from <a href="function.sqlite-open.html" class="function">sqlite_open()</a>
+       when used procedurally.  This parameter is not required
+       when using the object-oriented method.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">milliseconds</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The number of milliseconds.  When set to
+       <i>0</i>, busy handlers will be disabled and SQLite will
+       return immediately with a <i>SQLITE_BUSY</i> status code
+       if another process/thread has the database locked for an update.
+      </p>
+      <p class="para">
+       PHP sets the default busy timeout to be 60 seconds when the database is
+       opened.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        There are one thousand (1000) milliseconds in one second.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Procedural style</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dbhandle&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlite_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'sqlitedb'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">sqlite_busy_timeout</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">10000</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;set&nbsp;timeout&nbsp;to&nbsp;10&nbsp;seconds<br /></span><span style="color: #0000BB">sqlite_busy_timeout</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;disable&nbsp;busy&nbsp;handler<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Object oriented style</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dbhandle&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SQLiteDatabase</span><span style="color: #007700">(</span><span style="color: #DD0000">'sqlitedb'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">busyTimeout</span><span style="color: #007700">(</span><span style="color: #0000BB">10000</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;10&nbsp;seconds<br /></span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">busyTimeout</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;disable<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sqlite-open.html" class="function" rel="rdfs-seeAlso">sqlite_open()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-array-query.html">sqlite_array_query</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-changes.html">sqlite_changes</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

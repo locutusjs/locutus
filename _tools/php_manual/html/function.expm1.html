@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns exp(number) - 1, computed in a way that is accurate even
+   when the value of number is close to zero</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.exp.html">exp</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.floor.html">floor</a></div>
+ <div class="up"><a href="ref.math.html">Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.expm1" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">expm1</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">expm1</span> &mdash; <span class="dc-title">
+   Returns exp(number) - 1, computed in a way that is accurate even
+   when the value of number is close to zero
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">float</span> <span class="methodname"><b><b>expm1</b></b></span>
+    ( <span class="methodparam"><span class="type">float</span> <tt class="parameter">$arg</tt></span>
+   )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+  <p class="para">
+   <b>expm1()</b> returns the equivalent to
+   &#039;exp(<i><tt class="parameter">arg</tt></i>
+) -  1&#039; computed in a way that is
+   accurate even if the value of <i><tt class="parameter">arg</tt></i>
+ is near zero,
+   a case where &#039;exp (<i><tt class="parameter">arg</tt></i>
+) - 1&#039; would be
+   inaccurate due to subtraction of two numbers that are nearly equal.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">arg</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The argument to process
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   &#039;e&#039; to the power of <i><tt class="parameter">arg</tt></i>
+ minus one
+  </p>
+ </div>
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+         This function is now available on all platforms
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.log1p.html" class="function" rel="rdfs-seeAlso">log1p()</a></li>
+    <li class="member"><a href="function.exp.html" class="function" rel="rdfs-seeAlso">exp()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.exp.html">exp</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.floor.html">floor</a></div>
+ <div class="up"><a href="ref.math.html">Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

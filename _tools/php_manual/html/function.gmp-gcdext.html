@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Calculate GCD and multipliers</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gmp-gcd.html">gmp_gcd</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gmp-hamdist.html">gmp_hamdist</a></div>
+ <div class="up"><a href="ref.gmp.html">GMP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.gmp-gcdext" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">gmp_gcdext</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p><p class="refpurpose"><span class="refname">gmp_gcdext</span> &mdash; <span class="dc-title">Calculate GCD and multipliers</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>gmp_gcdext</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$a</tt></span>
+   , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$b</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Calculates g, s, and t, such that <i>a*s + b*t = g =
+   gcd(a,b)</i>, where gcd is the greatest common divisor. Returns
+   an array with respective elements g, s and t.
+  </p>
+  <p class="para">
+   This function can be used to solve linear Diophantine equations in two
+   variables. These are equations that allow only integer solutions and have the form:
+   <i>a*x + b*y = c</i>.
+   For more information, go to the <a href="http://mathworld.wolfram.com/DiophantineEquation.html" class="link external">&raquo; &quot;Diophantine
+   Equation&quot; page at MathWorld</a>
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">a</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">It can be either a GMP number <a href="language.types.resource.html" class="type resource">resource</a>, or a 
+numeric string given that it is possible to convert the latter to a number.</p> 
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">b</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">It can be either a GMP number <a href="language.types.resource.html" class="type resource">resource</a>, or a 
+numeric string given that it is possible to convert the latter to a number.</p> 
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An <a href="language.types.array.html" class="type array">array</a> of GMP numbers.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Solving a linear Diophantine equation</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Solve&nbsp;the&nbsp;equation&nbsp;a*s&nbsp;+&nbsp;b*t&nbsp;=&nbsp;g<br />//&nbsp;where&nbsp;a&nbsp;=&nbsp;12,&nbsp;b&nbsp;=&nbsp;21,&nbsp;g&nbsp;=&nbsp;gcd(12,&nbsp;21)&nbsp;=&nbsp;3<br /></span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gmp_init</span><span style="color: #007700">(</span><span style="color: #0000BB">12</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$b&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gmp_init</span><span style="color: #007700">(</span><span style="color: #0000BB">21</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$g&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gmp_gcd</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$r&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gmp_gcdext</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$check_gcd&nbsp;</span><span style="color: #007700">=&nbsp;(</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$g</span><span style="color: #007700">)&nbsp;==&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$r</span><span style="color: #007700">[</span><span style="color: #DD0000">'g'</span><span style="color: #007700">]));<br /></span><span style="color: #0000BB">$eq_res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gmp_add</span><span style="color: #007700">(</span><span style="color: #0000BB">gmp_mul</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$r</span><span style="color: #007700">[</span><span style="color: #DD0000">'s'</span><span style="color: #007700">]),&nbsp;</span><span style="color: #0000BB">gmp_mul</span><span style="color: #007700">(</span><span style="color: #0000BB">$b</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$r</span><span style="color: #007700">[</span><span style="color: #DD0000">'t'</span><span style="color: #007700">]));<br /></span><span style="color: #0000BB">$check_res&nbsp;</span><span style="color: #007700">=&nbsp;(</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$g</span><span style="color: #007700">)&nbsp;==&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$eq_res</span><span style="color: #007700">));<br /><br />if&nbsp;(</span><span style="color: #0000BB">$check_gcd&nbsp;</span><span style="color: #007700">&amp;&amp;&nbsp;</span><span style="color: #0000BB">$check_res</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$fmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Solution:&nbsp;%d*%d&nbsp;+&nbsp;%d*%d&nbsp;=&nbsp;%d\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #0000BB">$fmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$r</span><span style="color: #007700">[</span><span style="color: #DD0000">'s'</span><span style="color: #007700">]),&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$b</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$r</span><span style="color: #007700">[</span><span style="color: #DD0000">'t'</span><span style="color: #007700">]),&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$r</span><span style="color: #007700">[</span><span style="color: #DD0000">'g'</span><span style="color: #007700">]));<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Error&nbsp;while&nbsp;solving&nbsp;the&nbsp;equation\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;output:&nbsp;Solution:&nbsp;12*2&nbsp;+&nbsp;21*-1&nbsp;=&nbsp;3<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gmp-gcd.html">gmp_gcd</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gmp-hamdist.html">gmp_hamdist</a></div>
+ <div class="up"><a href="ref.gmp.html">GMP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Variable variables</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.variables.scope.html">Variable scope</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.variables.external.html">Variables From External Sources</a></div>
+ <div class="up"><a href="language.variables.html">Variables</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.variables.variable" class="sect1">
+   <h2 class="title">Variable variables</h2>
+
+   <p class="simpara">
+    Sometimes it is convenient to be able to have variable variable
+    names.  That is, a variable name which can be set and used
+    dynamically.  A normal variable is set with a statement such as:
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'hello'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+
+   <p class="simpara">
+    A variable variable takes the value of a variable and treats that
+    as the name of a variable.  In the above example,
+    <em class="emphasis">hello</em>, can be used as the name of a variable
+    by using two dollar signs. i.e.
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">$</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'world'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+
+   <p class="simpara">
+    At this point two variables have been defined and stored in the
+    PHP symbol tree: <var class="varname">$a</var> with contents &quot;hello&quot; and
+    <var class="varname">$hello</var> with contents &quot;world&quot;.  Therefore, this
+    statement:
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"$a&nbsp;${$a}"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+
+   <p class="simpara">
+    produces the exact same output as:
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"$a&nbsp;$hello"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+
+   <p class="simpara">
+    i.e. they both produce: <span class="computeroutput">hello world</span>.
+   </p>
+
+   <p class="simpara">
+    In order to use variable variables with arrays, you have to
+    resolve an ambiguity problem.  That is, if you write
+    <var class="varname">$$a[1]</var> then the parser needs to know if you
+    meant to use <var class="varname">$a[1]</var> as a variable, or if you
+    wanted <var class="varname">$$a</var> as the variable and then the [1]
+    index from that variable.  The syntax for resolving this ambiguity
+    is: <var class="varname">${$a[1]}</var> for the first case and
+    <var class="varname">${$a}[1]</var> for the second.
+   </p>
+   
+   <div class="warning"><b class="warning">Warning</b>
+    <p class="simpara">
+     Please note that variable variables cannot be used with PHP&#039;s 
+     <a href="language.variables.superglobals.html" class="link">Superglobal arrays</a>
+     within functions or class methods. The variable <i>$this</i>
+     is also a special variable that cannot be referenced dynamically.
+    </p>
+   </div>
+  
+  </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.variables.scope.html">Variable scope</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.variables.external.html">Variables From External Sources</a></div>
+ <div class="up"><a href="language.variables.html">Variables</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

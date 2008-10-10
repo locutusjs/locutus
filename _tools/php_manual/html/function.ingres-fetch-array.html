@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetch a row of result into an array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ingres-errsqlstate.html">ingres_errsqlstate</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ingres-fetch-object.html">ingres_fetch_object</a></div>
+ <div class="up"><a href="ref.ingres.html">Ingres II Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ingres-fetch-array" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ingres_fetch_array</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5 &lt;= 5.0.5, PECL ingres:1.0-1.4.3)</p><p class="refpurpose"><span class="refname">ingres_fetch_array</span> &mdash; <span class="dc-title">Fetch a row of result into an array</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>ingres_fetch_array</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$result_type</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   This function is an extended version of
+   <a href="function.ingres-fetch-row.html" class="function">ingres_fetch_row()</a>.  In addition to storing
+   the data in the numeric indices of the result array, it also
+   stores the data in associative indices, using the field names as
+   keys.
+  </p>
+  <p class="para">
+   If two or more columns of the result have the same field names,
+   the last column will take precedence. To access the other
+   column(s) of the same name, you must use the numeric index of the
+   column or make an alias for the column.
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />ingres_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"select&nbsp;t1.f1&nbsp;as&nbsp;foo&nbsp;t2.f1&nbsp;as&nbsp;bar&nbsp;from&nbsp;t1,&nbsp;t2"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_fetch_array</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$foo&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">[</span><span style="color: #DD0000">"foo"</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">$bar&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">[</span><span style="color: #DD0000">"bar"</span><span style="color: #007700">];<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Speed-wise, the function is identical to
+   <a href="function.ingres-fetch-object.html" class="function">ingres_fetch_object()</a>, and almost as quick as
+   <a href="function.ingres-fetch-row.html" class="function">ingres_fetch_row()</a> (the difference is
+   insignificant).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">result_type</tt></i>
+ can be INGRES_NUM for
+       enumerated array, INGRES_ASSOC for associative array, or
+       INGRES_BOTH (default).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The connection link identifier. If not specified, the last opened link
+       is used.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array that corresponds to the fetched row,
+   or <b><tt>FALSE</tt></b> if there are no more rows.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ingres_fetch_array()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />ingres_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">ingres_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"select&nbsp;*&nbsp;from&nbsp;table"</span><span style="color: #007700">);<br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_fetch_array</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"user_id"</span><span style="color: #007700">];&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;using&nbsp;associative&nbsp;array<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"fullname"</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;using&nbsp;enumerated&nbsp;array<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">];<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ingres-query.html" class="function" rel="rdfs-seeAlso">ingres_query()</a></li>
+    <li class="member"><a href="function.ingres-num-fields.html" class="function" rel="rdfs-seeAlso">ingres_num_fields()</a></li>
+    <li class="member"><a href="function.ingres-field-name.html" class="function" rel="rdfs-seeAlso">ingres_field_name()</a></li>
+    <li class="member"><a href="function.ingres-fetch-object.html" class="function" rel="rdfs-seeAlso">ingres_fetch_object()</a></li>
+    <li class="member"><a href="function.ingres-fetch-row.html" class="function" rel="rdfs-seeAlso">ingres_fetch_row()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ingres-errsqlstate.html">ingres_errsqlstate</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ingres-fetch-object.html">ingres_fetch_object</a></div>
+ <div class="up"><a href="ref.ingres.html">Ingres II Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

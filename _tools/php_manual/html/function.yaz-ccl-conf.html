@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Configure CCL parser</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.yaz-addinfo.html">yaz_addinfo</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.yaz-ccl-parse.html">yaz_ccl_parse</a></div>
+ <div class="up"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.yaz-ccl-conf" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">yaz_ccl_conf</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5, PECL yaz:0.9-1.0.9)</p><p class="refpurpose"><span class="refname">yaz_ccl_conf</span> &mdash; <span class="dc-title">Configure CCL parser</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>yaz_ccl_conf</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$id</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$config</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function configures the CCL query parser for a server with 
+   definitions of access points (CCL qualifiers) and their mapping to RPN.
+  </p>
+  <p class="para">
+   To map a specific CCL query to RPN afterwards call the 
+   <a href="function.yaz-ccl-parse.html" class="function">yaz_ccl_parse()</a> function.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The connection resource returned by <a href="function.yaz-connect.html" class="function">yaz_connect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">config</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An array of configuration. Each key of the array is the name of a CCL
+       field and the corresponding value holds a string that specifies a 
+       mapping to RPN.
+      </p>
+      <p class="para">
+       The mapping is a sequence of attribute-type, attribute-value pairs. 
+       Attribute-type and attribute-value is separated by an equal sign 
+       (<i>=</i>). Each pair is separated by white space.
+      </p>
+      <p class="para">
+       Additional information can be found on the <a href="http://www.indexdata.dk/yaz/doc/tools.tkl#CCL" class="link external">&raquo; CCL</a> page.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   In the example below, the CCL parser is configured to support three CCL
+   fields: <i>ti</i>, <i>au</i> and
+   <i>isbn</i>. Each field is mapped to their BIB-1 equivalent.
+   It is assumed that variable <i>$id</i> is the connection ID.
+  </p>
+  <div class="example">
+   <p><b>Example #1 CCL configuration</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fields&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;</span><span style="color: #DD0000">"ti"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"1=4"</span><span style="color: #007700">,<br />&nbsp;&nbsp;</span><span style="color: #DD0000">"au"&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"1=1"</span><span style="color: #007700">,<br />&nbsp;&nbsp;</span><span style="color: #DD0000">"isbn"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"1=7"<br /></span><span style="color: #007700">);<br /></span><span style="color: #0000BB">yaz_ccl_conf</span><span style="color: #007700">(</span><span style="color: #0000BB">$id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$fields</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.yaz-ccl-parse.html" class="function" rel="rdfs-seeAlso">yaz_ccl_parse()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.yaz-addinfo.html">yaz_addinfo</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.yaz-ccl-parse.html">yaz_ccl_parse</a></div>
+ <div class="up"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

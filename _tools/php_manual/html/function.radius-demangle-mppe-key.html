@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Derives mppe-keys from mangled data</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.radius-cvt-string.html">radius_cvt_string</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.radius-demangle.html">radius_demangle</a></div>
+ <div class="up"><a href="ref.radius.html">Radius Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.radius-demangle-mppe-key" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">radius_demangle_mppe_key</h1>
+  <p class="verinfo">(PECL radius:1.2-1.2.5)</p><p class="refpurpose"><span class="refname">radius_demangle_mppe_key</span> &mdash; <span class="dc-title">Derives mppe-keys from mangled data</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>radius_demangle_mppe_key</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$radius_handle</tt></span>      
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$mangled</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   When using MPPE with MS-CHAPv2, the send- and recv-keys are mangled
+   (see <a href="http://www.faqs.org/rfcs/rfc2548" class="link external">&raquo; RFC 2548</a>), however this function is
+   useless, because I don&#039;t think that there is or will be a PPTP-MPPE
+   implementation in PHP.  
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the demangled string, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.radius-cvt-string.html">radius_cvt_string</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.radius-demangle.html">radius_demangle</a></div>
+ <div class="up"><a href="ref.radius.html">Radius Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

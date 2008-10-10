@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets a specific external variable by name and optionally filters it</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.filter-input-array.html">filter_input_array</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.filter-list.html">filter_list</a></div>
+ <div class="up"><a href="ref.filter.html">Filter Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.filter-input" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">filter_input</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.2.0, PECL filter:0.11.0)</p><p class="refpurpose"><span class="refname">filter_input</span> &mdash; <span class="dc-title">Gets a specific external variable by name and optionally filters it</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>filter_input</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$type</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$variable_name</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$filter</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$options</tt></span>
+  ]] )</div>
+
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       One of <b><tt>INPUT_GET</tt></b>, <b><tt>INPUT_POST</tt></b>,
+       <b><tt>INPUT_COOKIE</tt></b>, <b><tt>INPUT_SERVER</tt></b>,
+       <b><tt>INPUT_ENV</tt></b>, <b><tt>INPUT_SESSION</tt></b> (not
+       implemented yet) and <b><tt>INPUT_REQUEST</tt></b> (not
+       implemented yet).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">variable_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Name of a variable to get.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Filter to apply. Defaults to <b><tt>FILTER_DEFAULT</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Associative array of options or bitwise disjunction of flags. If filter
+       accepts options, flags can be provided in &quot;flags&quot; field of array.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Value of the requested variable on success, <b><tt>FALSE</tt></b> if the filter fails,
+   or <b><tt>NULL</tt></b> if the <i><tt class="parameter">variable_name</tt></i>
+ variable is not set.
+   If the flag <b><tt>FILTER_NULL_ON_FAILURE</tt></b> is used, it
+   returns <b><tt>FALSE</tt></b> if the variable is not set and <b><tt>NULL</tt></b> if the filter fails.
+   </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>filter_input()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$search_html&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">filter_input</span><span style="color: #007700">(</span><span style="color: #0000BB">INPUT_GET</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'search'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">FILTER_SANITIZE_SPECIAL_CHARS</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$search_url&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">filter_input</span><span style="color: #007700">(</span><span style="color: #0000BB">INPUT_GET</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'search'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">FILTER_SANITIZE_ENCODED</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"You&nbsp;have&nbsp;searched&nbsp;for&nbsp;$search_html.\n"</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #DD0000">"&lt;a&nbsp;href='?search=$search_url'&gt;Search&nbsp;again.&lt;/a&gt;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+You have searched for Me &amp;#38; son.
+&lt;a href=&#039;?search=Me%20%26%20son&#039;&gt;Search again.&lt;/a&gt;
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.filter-var.html" class="function" rel="rdfs-seeAlso">filter_var()</a></li>
+    <li class="member"><a href="function.filter-input-array.html" class="function" rel="rdfs-seeAlso">filter_input_array()</a></li>
+    <li class="member"><a href="function.filter-var-array.html" class="function" rel="rdfs-seeAlso">filter_var_array()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.filter-input-array.html">filter_input_array</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.filter-list.html">filter_list</a></div>
+ <div class="up"><a href="ref.filter.html">Filter Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

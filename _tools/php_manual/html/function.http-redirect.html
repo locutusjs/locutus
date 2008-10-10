@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Issue HTTP redirect</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-request.html">http_request</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-send-content-disposition.html">http_send_content_disposition</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.http-redirect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">http_redirect</h1>
+  <p class="verinfo">(PECL pecl_http:0.1.0-1.5.5)</p><p class="refpurpose"><span class="refname">http_redirect</span> &mdash; <span class="dc-title">Issue HTTP redirect</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>http_redirect</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$url</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$params</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$session = FALSE</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$status</tt></span>
+  ]]]] )</div>
+
+  <p class="para rdfs-comment">
+   Redirect to the given url.
+  </p>
+  <p class="para">
+   The supplied <i><tt class="parameter">url</tt></i>
+ will be expanded with <a href="function.http-build-url.html" class="function">http_build_url()</a>, the <i><tt class="parameter">params</tt></i>
+ array will
+   be treated with <a href="function.http-build-str.html" class="function">http_build_str()</a> and the session identification will be appended
+   if <i><tt class="parameter">session</tt></i>
+ is true. The HTTP response code will be set according to <i><tt class="parameter">status</tt></i>
+.
+   You can use one of the <a href="http.constants.html#http.constants.redirect" class="link">redirect constants</a> for convenience.
+   Please see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3" class="link external">&raquo; RFC 2616</a>
+   for which redirect response code to use in which situation. By default PHP will decide which response status fits best.
+  </p>
+  <p class="para">
+   To be RFC compliant, &quot;Redirecting to &lt;a&gt;URL&lt;/a&gt;.&quot; will be displayed,
+   if the client doesn&#039;t redirect immediately, and the request method was another one than HEAD.
+  </p>
+  <p class="para">
+   A log entry will be written to the redirect log, if the <a href="http.configuration.html" class="link">INI setting</a>
+   <a href="http.configuration.html#http.configuration.log.redirect" class="link">http.log.redirect</a> is set and the redirect attempt was successful.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">url</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       the URL to redirect to
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">params</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       associative array of query parameters
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">session</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       whether to append session information
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">status</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       custom response status code
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>FALSE</tt></b> or <em class="emphasis">exits</em> on success with the specified redirection status code.
+   See the <a href="http.configuration.html" class="link">INI setting</a>
+   <a href="http.configuration.html#http.configuration.force_exit" class="link">http.force_exit</a> for what &quot;exits&quot; means.
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>http_redirect()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />http_redirect</span><span style="color: #007700">(</span><span style="color: #DD0000">"relpath"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"value"</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">HTTP_REDIRECT_PERM</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+HTTP/1.1 301 Moved Permanently
+X-Powered-By: PHP/5.2.2
+Content-Type: text/html
+Location: http://www.example.com/curdir/relpath?name=value&amp;PHPSESSID=abc
+
+Redirecting to &lt;a href=&quot;http://www.example.com/curdir/relpath?name=value&amp;PHPSESSID=abc&quot;&gt;http://www.example.com/curdir/relpath?name=value&amp;PHPSESSID=abc&lt;/a&gt;.
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">the <a href="class.httpresponse.html" class="link">
+<b class="classname">HttpResponse</b></a> class if you are using PHP 5.1.0
+and above</li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-request.html">http_request</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-send-content-disposition.html">http_send_content_disposition</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Pad a string to a certain length with another string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.str-ireplace.html">str_ireplace</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.str-repeat.html">str_repeat</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.str-pad" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">str_pad</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p><p class="refpurpose"><span class="refname">str_pad</span> &mdash; <span class="dc-title">Pad a string to a certain length with another string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>str_pad</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$input</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$pad_length</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pad_string</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$pad_type</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   This functions returns the <i><tt class="parameter">input</tt></i>
+ string
+   padded on the left, the right, or both sides to the specified
+   padding length. If the optional argument
+   <i><tt class="parameter">pad_string</tt></i>
+ is not supplied, the
+   <i><tt class="parameter">input</tt></i>
+ is padded with spaces, otherwise it
+   is padded with characters from <i><tt class="parameter">pad_string</tt></i>
+
+   up to the limit.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">input</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pad_length</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the value of <i><tt class="parameter">pad_length</tt></i>
+ is negative or
+       less than the length of the input string, no padding takes place.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pad_string</tt></i>
+</span>
+
+     <dd>
+
+      <blockquote><p><b class="note">Note</b>: 
+       
+        The <i><tt class="parameter">pad_string</tt></i>
+ may be truncated if the
+        required number of padding characters can&#039;t be evenly divided by the
+        <i><tt class="parameter">pad_string</tt></i>
+&#039;s length.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pad_type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Optional argument <i><tt class="parameter">pad_type</tt></i>
+ can be
+       <b><tt>STR_PAD_RIGHT</tt></b>, <b><tt>STR_PAD_LEFT</tt></b>,
+       or <b><tt>STR_PAD_BOTH</tt></b>. If
+       <i><tt class="parameter">pad_type</tt></i>
+ is not specified it is assumed to be
+       <b><tt>STR_PAD_RIGHT</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the padded string.
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>str_pad()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$input&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Alien"</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">str_pad</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;produces&nbsp;"Alien&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">str_pad</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"-="</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">STR_PAD_LEFT</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;produces&nbsp;"-=-=-Alien"<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">str_pad</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"_"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">STR_PAD_BOTH</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;produces&nbsp;"__Alien___"<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">str_pad</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">6&nbsp;</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"___"</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;produces&nbsp;"Alien_"<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.str-ireplace.html">str_ireplace</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.str-repeat.html">str_repeat</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Prepares for a search</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.yaz-schema.html">yaz_schema</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.yaz-set-option.html">yaz_set_option</a></div>
+ <div class="up"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.yaz-search" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">yaz_search</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PECL yaz:0.9-1.0.9)</p><p class="refpurpose"><span class="refname">yaz_search</span> &mdash; <span class="dc-title">Prepares for a search</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>yaz_search</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$id</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$type</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>yaz_search()</b> prepares for a search on the given 
+   connection.
+  </p>
+  <p class="para">
+   Like <a href="function.yaz-connect.html" class="function">yaz_connect()</a> this function is non-blocking and
+   only prepares for a search to be executed later when 
+   <a href="function.yaz-wait.html" class="function">yaz_wait()</a> is called.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The connection resource returned by <a href="function.yaz-connect.html" class="function">yaz_connect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       This parameter represents the query type - only <i>&quot;rpn&quot;</i>
+       is supported now in which case the third argument specifies a Type-1 
+       query in prefix query notation. 
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">query</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The RPN query is a textual representation of the Type-1 query as
+       defined by the Z39.50 standard. However, in the text representation
+       as used by YAZ a prefix notation is used, that is the operator
+       precedes the operands. The query string is a sequence of tokens where
+       white space is ignored unless surrounded by double quotes. Tokens beginning
+       with an at-character (<i>@</i>) are considered operators,
+       otherwise they are treated as search terms.
+      </p>
+      <table border="5">
+       <caption><b>RPN Operators</b></caption>
+       <colgroup>
+
+        <col align="left" width="1" />
+        <col align="left" width="2" />
+        <thead valign="middle">
+         <tr valign="middle">
+          <th colspan="1">Construct</th>
+          <th colspan="1">Description</th>
+         </tr>
+
+        </thead>
+
+        <tbody valign="middle" class="tbody">
+         <tr valign="middle">
+          <td colspan="1" rowspan="1" align="left"><i>@and</i> query1 query2</td>
+          <td colspan="1" rowspan="1" align="left">intersection of query1 and query2</td>
+         </tr>
+
+         <tr valign="middle">
+          <td colspan="1" rowspan="1" align="left"><i>@or</i> query1 query2</td>
+          <td colspan="1" rowspan="1" align="left">union of query1 and query2</td>
+         </tr>
+
+         <tr valign="middle">
+          <td colspan="1" rowspan="1" align="left"><i>@not</i> query1 query2</td>
+          <td colspan="1" rowspan="1" align="left">query1 and not query2</td>
+         </tr>
+
+         <tr valign="middle">
+          <td colspan="1" rowspan="1" align="left"><i>@set</i> name</td>
+          <td colspan="1" rowspan="1" align="left">result set reference</td>
+         </tr>
+
+         <tr valign="middle">
+          <td colspan="1" rowspan="1" align="left"><i>@attrset</i> set query</td>
+          <td colspan="1" rowspan="1" align="left">
+           specifies attribute-set for query. This construction is only allowed
+           once - in the beginning of the whole query
+          </td>
+         </tr>
+
+         <tr valign="middle">
+          <td colspan="1" rowspan="1" align="left"><i>@attr</i> [set] type=value query</td>
+          <td colspan="1" rowspan="1" align="left">
+           applies attribute to query. The type and value are integers 
+           specifying the attribute-type and attribute-value respectively. 
+           The set, if given, specifies the attribute-set.
+          </td>
+         </tr>
+
+        </tbody>
+       </colgroup>
+
+      </table>
+     
+      <p class="para">
+       You can find information about attributes at the 
+       <a href="http://www.loc.gov/z3950/agency/defns/bib1.html" class="link external">&raquo; Z39.50 Maintenance Agency</a>
+       site.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        If you would like to use a more friendly notation,
+        use the CCL parser - functions <a href="function.yaz-ccl-conf.html" class="function">yaz_ccl_conf()</a> and 
+        <a href="function.yaz-ccl-parse.html" class="function">yaz_ccl_parse()</a>.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 Query Examples</b></p>
+   <div class="example-contents"><p>
+    You can search for simple terms, like this:
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+computer
+</pre></div>
+    </pre></div>
+    which matches documents where &quot;computer&quot; occur. No attributes are 
+    specified.
+   </p></div>
+   <div class="example-contents"><p>
+    The query 
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+&quot;knuth donald&quot;
+</pre></div>
+    </pre></div>
+    matches documents where &quot;knuth donald&quot; occur (provided that the
+    server supports phrase search).
+   </p></div>
+   <div class="example-contents"><p>
+    This query applies two attributes for the same phrase.
+    <div class="example-contents"><pre>@attr 1=1003 @attr 4=1 &quot;knuth donald&quot;</pre></div>
+    First attribute is type 1 (Bib-1 use), attribute value is 1003
+    (Author).
+    Second attribute has is type 4 (structure), value 1 (phrase),
+    so this should match documents where Donald Knuth is author.
+   </p></div>
+   <div class="example-contents"><p>
+    The query
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+@and @or a b @not @or c d e
+</pre></div>
+    </pre></div>
+    would in infix notation look like <i>(a or b) and ((c or d) not 
+    e)</i>.
+   </p></div>
+   <div class="example-contents"><p>
+    Another, more complex, one:
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+@attrset gils @and @attr 1=4 art @attr 1=2000 company
+</pre></div>
+    </pre></div>
+    The query as a whole uses the GILS attributeset. The query matches
+    documents where <i>art</i> occur in the title (GILS,BIB-1)
+    and in which <i>company</i> occur as Distributor (GILS).
+   </p></div>
+  </div>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.yaz-schema.html">yaz_schema</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.yaz-set-option.html">yaz_set_option</a></div>
+ <div class="up"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

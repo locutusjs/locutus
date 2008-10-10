@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Copies a method from class to another</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.runkit-method-add.html">runkit_method_add</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.runkit-method-redefine.html">runkit_method_redefine</a></div>
+ <div class="up"><a href="ref.runkit.html">runkit Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.runkit-method-copy" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">runkit_method_copy</h1>
+  <p class="verinfo">(PECL runkit:0.7-0.9)</p><p class="refpurpose"><span class="refname">runkit_method_copy</span> &mdash; <span class="dc-title">Copies a method from class to another</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>runkit_method_copy</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dClass</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dMethod</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$sClass</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$sMethod</tt></span>
+  ] )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dClass</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Destination class for copied method
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dMethod</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Destination method name
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">sClass</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Source class of the method to copy
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">sMethod</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Name of the method to copy from the source class. If this parameter is
+       omitted, the value of <i><tt class="parameter">dMethod</tt></i>
+ is assumed.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>runkit_method_copy()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">Foo&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">example</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">"foo!\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />class&nbsp;</span><span style="color: #0000BB">Bar&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;initially,&nbsp;no&nbsp;methods<br /></span><span style="color: #007700">}<br /><br /></span><span style="color: #FF8000">//&nbsp;copy&nbsp;the&nbsp;example()&nbsp;method&nbsp;from&nbsp;the&nbsp;Foo&nbsp;class&nbsp;to&nbsp;the&nbsp;Bar&nbsp;class,&nbsp;as&nbsp;baz()<br /></span><span style="color: #0000BB">runkit_method_copy</span><span style="color: #007700">(</span><span style="color: #DD0000">'Bar'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'baz'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Foo'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'example'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;output&nbsp;copied&nbsp;function<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">Bar</span><span style="color: #007700">::</span><span style="color: #0000BB">baz</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+foo!
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.runkit-method-add.html" class="function" rel="rdfs-seeAlso">runkit_method_add()</a></li>
+    <li class="member"><a href="function.runkit-method-redefine.html" class="function" rel="rdfs-seeAlso">runkit_method_redefine()</a></li>
+    <li class="member"><a href="function.runkit-method-remove.html" class="function" rel="rdfs-seeAlso">runkit_method_remove()</a></li>
+    <li class="member"><a href="function.runkit-method-rename.html" class="function" rel="rdfs-seeAlso">runkit_method_rename()</a></li>
+    <li class="member"><a href="function.runkit-function-copy.html" class="function" rel="rdfs-seeAlso">runkit_function_copy()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.runkit-method-add.html">runkit_method_add</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.runkit-method-redefine.html">runkit_method_redefine</a></div>
+ <div class="up"><a href="ref.runkit.html">runkit Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

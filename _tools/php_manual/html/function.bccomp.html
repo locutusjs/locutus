@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Compare two arbitrary precision numbers</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.bcadd.html">bcadd</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.bcdiv.html">bcdiv</a></div>
+ <div class="up"><a href="ref.bc.html">BC Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.bccomp" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">bccomp</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">bccomp</span> &mdash; <span class="dc-title">Compare two arbitrary precision numbers</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>bccomp</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$left_operand</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$right_operand</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$scale</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Compares the <i><tt class="parameter">left_operand</tt></i>
+ to the
+   <i><tt class="parameter">right_operand</tt></i>
+ and returns the result as an
+   integer.  
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">left_operand</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The left operand, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">right_operand</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The right operand, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">scale</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The optional <i><tt class="parameter">scale</tt></i>
+ parameter is used to set the
+       number of digits after the decimal place which will be used in the
+       comparison.  
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns 0 if the two operands are equal, 1 if the
+   <i><tt class="parameter">left_operand</tt></i>
+ is larger than the 
+   <i><tt class="parameter">right_operand</tt></i>
+, -1 otherwise.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 <b>bccomp()</b> example</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">bccomp</span><span style="color: #007700">(</span><span style="color: #DD0000">'1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'2'</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;-1<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">bccomp</span><span style="color: #007700">(</span><span style="color: #DD0000">'1.00001'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;0<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">bccomp</span><span style="color: #007700">(</span><span style="color: #DD0000">'1.00001'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;1<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.bcadd.html">bcadd</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.bcdiv.html">bcdiv</a></div>
+ <div class="up"><a href="ref.bc.html">BC Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Replace regular expression</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.regex.html">POSIX Regex Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ereg.html">ereg</a></div>
+ <div class="up"><a href="ref.regex.html">POSIX Regex Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ereg-replace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ereg_replace</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ereg_replace</span> &mdash; <span class="dc-title">Replace regular expression</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>ereg_replace</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pattern</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$replacement</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$string</tt></span>
+   )</div>
+
+  <p class="simpara">
+   This function scans <i><tt class="parameter">string</tt></i>
+ for matches to
+   <i><tt class="parameter">pattern</tt></i>
+, then replaces the matched text
+   with <i><tt class="parameter">replacement</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pattern</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A POSIX extended regular expression.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">replacement</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <i><tt class="parameter">pattern</tt></i>
+ contains parenthesized substrings,
+       <i><tt class="parameter">replacement</tt></i>
+ may contain substrings of the form
+       <i>\\<span class="replaceable">digit</span></i>, which will be
+       replaced by the text matching the digit&#039;th parenthesized substring; 
+       <i>\\0</i> will produce the entire contents of string.
+       Up to nine substrings may be used. Parentheses may be nested, in which
+       case they are counted by the opening parenthesis.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">string</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input string.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The modified string is returned. If no matches are found in 
+   <i><tt class="parameter">string</tt></i>
+, then it will be returned unchanged.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   For example, the following code snippet prints &quot;This was a test&quot;
+   three times:
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ereg_replace()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"This&nbsp;is&nbsp;a&nbsp;test"</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">str_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">"&nbsp;is"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"&nbsp;was"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">ereg_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">"(&nbsp;)is"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"\\1was"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">ereg_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">"((&nbsp;)is)"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"\\2was"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   One thing to take note of is that if you use an integer value as
+   the <i><tt class="parameter">replacement</tt></i>
+ parameter, you may not get
+   the results you expect. This is because
+   <b>ereg_replace()</b> will interpret the number as
+   the ordinal value of a character, and apply that. For instance:
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 <b>ereg_replace()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;This&nbsp;will&nbsp;not&nbsp;work&nbsp;as&nbsp;expected.&nbsp;*/<br /></span><span style="color: #0000BB">$num&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"This&nbsp;string&nbsp;has&nbsp;four&nbsp;words."</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ereg_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'four'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$num</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Output:&nbsp;'This&nbsp;string&nbsp;has&nbsp;&nbsp;&nbsp;words.'&nbsp;*/<br /><br />/*&nbsp;This&nbsp;will&nbsp;work.&nbsp;*/<br /></span><span style="color: #0000BB">$num&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'4'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"This&nbsp;string&nbsp;has&nbsp;four&nbsp;words."</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ereg_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'four'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$num</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Output:&nbsp;'This&nbsp;string&nbsp;has&nbsp;4&nbsp;words.'&nbsp;*/<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #3 Replace URLs with links</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$text&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ereg_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">"[[:alpha:]]+://[^&lt;&gt;[:space:]]+[[:alnum:]/]"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"&lt;a&nbsp;href=\"\\0\"&gt;\\0&lt;/a&gt;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$text</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="tip"><b class="tip">Tip</b>
+   <p class="para">
+    <a href="function.preg-replace.html" class="function">preg_replace()</a>, which uses a Perl-compatible
+    regular expression syntax, is often a faster alternative to
+    <b>ereg_replace()</b>.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ereg.html" class="function" rel="rdfs-seeAlso">ereg()</a></li>
+    <li class="member"><a href="function.eregi.html" class="function" rel="rdfs-seeAlso">eregi()</a></li>
+    <li class="member"><a href="function.eregi-replace.html" class="function" rel="rdfs-seeAlso">eregi_replace()</a></li>
+    <li class="member"><a href="function.str-replace.html" class="function" rel="rdfs-seeAlso">str_replace()</a></li>
+    <li class="member"><a href="function.preg-match.html" class="function" rel="rdfs-seeAlso">preg_match()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.regex.html">POSIX Regex Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ereg.html">ereg</a></div>
+ <div class="up"><a href="ref.regex.html">POSIX Regex Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

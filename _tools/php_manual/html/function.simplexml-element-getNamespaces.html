@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns namespaces used in document</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.simplexml-element-getName.html">SimpleXMLElement->getName</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.simplexml-element-registerXPathNamespace.html">SimpleXMLElement->registerXPathNamespace</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.simplexml-element-getNamespaces" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SimpleXMLElement-&gt;getNamespaces</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SimpleXMLElement-&gt;getNamespaces</span> &mdash; <span class="dc-title">
+   Returns namespaces used in document
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SimpleXMLElement</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">array</span> <span class="methodname"><b><b>getNamespaces</b></b></span>
+     ([ <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$recursive</tt></span>
+   ] )</div>
+
+  </div>
+  <p class="para">
+   Returns namespaces used in document
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">recursive</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If specified, returns all namespaces used in parent and child nodes. 
+       Otherwise, returns only namespaces used in root node.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The <i>getNamespaces</i> method returns an <a href="language.types.array.html" class="type array">array</a> of 
+   namespace names with their associated URIs.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Get document namespaces in use</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$xml&nbsp;</span><span style="color: #007700">=&nbsp;&lt;&lt;&lt;XML<br /></span><span style="color: #0000BB">&lt;?xml&nbsp;version="1.0"&nbsp;standalone="yes"?&gt;<br />&lt;people&nbsp;xmlns:p="http://example.org/ns"&nbsp;xmlns:t="http://example.org/test"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;p:person&nbsp;id="1"&gt;John&nbsp;Doe&lt;/p:person&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;p:person&nbsp;id="2"&gt;Susie&nbsp;Q.&nbsp;Public&lt;/p:person&gt;<br />&lt;/people&gt;<br /></span><span style="color: #007700">XML;<br />&nbsp;<br /></span><span style="color: #0000BB">$sxe&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SimpleXMLElement</span><span style="color: #007700">(</span><span style="color: #0000BB">$xml</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$namespaces&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$sxe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getNamespaces</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$namespaces</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+array(1) {
+  [&quot;p&quot;]=&gt;
+  string(21) &quot;http://example.org/ns&quot;
+}
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.simplexml-element-getDocNamespaces.html" class="xref">SimpleXMLElement->getDocNamespaces</a></li>
+    <li class="member"><a href="function.simplexml-element-registerXPathNamespace.html" class="xref">SimpleXMLElement->registerXPathNamespace</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.simplexml-element-getName.html">SimpleXMLElement->getName</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.simplexml-element-registerXPathNamespace.html">SimpleXMLElement->registerXPathNamespace</a></div>
+ <div class="up"><a href="ref.simplexml.html">SimpleXML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

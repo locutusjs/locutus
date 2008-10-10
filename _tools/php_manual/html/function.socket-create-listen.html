@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Opens a socket on port to accept connections</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.socket-connect.html">socket_connect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-create-pair.html">socket_create_pair</a></div>
+ <div class="up"><a href="ref.sockets.html">Socket Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.socket-create-listen" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">socket_create_listen</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">socket_create_listen</span> &mdash; <span class="dc-title">Opens a socket on port to accept connections </span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>socket_create_listen</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$port</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$backlog</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>socket_create_listen()</b> creates a new socket resource of
+   type <b><tt>AF_INET</tt></b> listening on <em class="emphasis">all</em>
+   local interfaces on the given port waiting for new connections.
+  </p>
+  <p class="para">
+   This function is meant to ease the task of creating a new socket which
+   only listens to accept new connections.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">port</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The port on which to listen on all interfaces.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">backlog</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">backlog</tt></i>
+ parameter defines the maximum length
+       the queue of pending connections may grow to.
+       <b><tt>SOMAXCONN</tt></b> may be passed as
+       <i><tt class="parameter">backlog</tt></i>
+ parameter, see
+       <a href="function.socket-listen.html" class="function">socket_listen()</a> for more information.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>socket_create_listen()</b> returns a new socket resource
+   on success or <b><tt>FALSE</tt></b> on error. The error code can be retrieved with
+   <a href="function.socket-last-error.html" class="function">socket_last_error()</a>. This code may be passed to
+   <a href="function.socket-strerror.html" class="function">socket_strerror()</a> to get a textual explanation of the
+   error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    If you want to create a socket which only listens on a certain
+    interface you need to use <a href="function.socket-create.html" class="function">socket_create()</a>,
+    <a href="function.socket-bind.html" class="function">socket_bind()</a> and <a href="function.socket-listen.html" class="function">socket_listen()</a>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.socket-create.html" class="function" rel="rdfs-seeAlso">socket_create()</a></li>
+    <li class="member"><a href="function.socket-create-pair.html" class="function" rel="rdfs-seeAlso">socket_create_pair()</a></li>
+    <li class="member"><a href="function.socket-bind.html" class="function" rel="rdfs-seeAlso">socket_bind()</a></li>
+    <li class="member"><a href="function.socket-listen.html" class="function" rel="rdfs-seeAlso">socket_listen()</a></li>
+    <li class="member"><a href="function.socket-last-error.html" class="function" rel="rdfs-seeAlso">socket_last_error()</a></li>
+    <li class="member"><a href="function.socket-strerror.html" class="function" rel="rdfs-seeAlso">socket_strerror()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.socket-connect.html">socket_connect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.socket-create-pair.html">socket_create_pair</a></div>
+ <div class="up"><a href="ref.sockets.html">Socket Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

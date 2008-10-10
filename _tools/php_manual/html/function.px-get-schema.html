@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the database schema</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-get-record.html">px_get_record</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-get-value.html">px_get_value</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.px-get-schema" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">px_get_schema</h1>
+  <p class="verinfo">(PECL paradox:1.0-1.4.1)</p><p class="refpurpose"><span class="refname">px_get_schema</span> &mdash; <span class="dc-title">Returns the database schema</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>px_get_schema</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$pxdoc</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>px_get_schema()</b> returns the database schema.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pxdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the paradox database
+       as returned by <a href="function.px-new.html" class="function">px_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the optional <i><tt class="parameter">mode</tt></i>
+ is
+       <b><tt>PX_KEYTOLOWER</tt></b> or
+       <b><tt>PX_KEYTOUPPER</tt></b> the keys of the returned array
+       will be converted to lower
+       or upper case. If <i><tt class="parameter">mode</tt></i>
+ is 0 or not passed at all,
+       then the key name will be identical to the field name.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the schema of a database file as an associated array. The key name
+   is equal to the field name. Each array element is itself an associated
+   array containing the two fields <i>type</i> and
+   <i>size</i>. <i>type</i> is one of the constants in
+   table <a href="paradox.constants.html#paradox.table-fieldtypes" class="link">Constants for field
+   types</a>. <i>size</i> is the number of bytes this field
+   consumes in the record. The total of all field sizes is equal to the
+   record size as it can be retrieved with <a href="function.px-get-info.html" class="function">px-get-info()</a>.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-get-record.html">px_get_record</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-get-value.html">px_get_value</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Superglobals are built-in variables that are always available in all scopes</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="reserved.variables.html">Predefined variables</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="reserved.variables.globals.html">$GLOBALS</a></div>
+ <div class="up"><a href="reserved.variables.html">Predefined variables</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.variables.superglobals" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Superglobals</h1>
+  <p class="refpurpose"><span class="refname">Superglobals</span> &mdash; <span class="dc-title">Superglobals are built-in variables that are always available in all scopes</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">
+   Several predefined variables in PHP are &quot;superglobals&quot;, which means they
+   are available in all scopes throughout a script. There is no need to do
+   <strong class="command">global $variable;</strong> to access them within functions
+   or methods.
+  </p>
+  <p class="para">
+   These superglobal variables are:
+   <ul class="simplelist">
+    <li class="member"><var class="varname"><a href="reserved.variables.globals.html" class="classname">$GLOBALS</a></var></li>
+    <li class="member"><var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER</a></var></li>
+    <li class="member"><var class="varname"><a href="reserved.variables.get.html" class="classname">$_GET</a></var></li>
+    <li class="member"><var class="varname"><a href="reserved.variables.post.html" class="classname">$_POST</a></var></li>
+    <li class="member"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES</a></var></li>
+    <li class="member"><var class="varname"><a href="reserved.variables.cookies.html" class="classname">$_COOKIE</a></var></li>
+    <li class="member"><var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var></li>
+    <li class="member"><var class="varname"><a href="reserved.variables.request.html" class="classname">$_REQUEST</a></var></li>
+    <li class="member"><var class="varname"><a href="reserved.variables.environment.html" class="classname">$_ENV</a></var></li>
+   </ul>
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.1.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        Superglobals were introduced to PHP.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   <b>Variable availability</b><br />
+   
+    By default, all of the superglobals are available but there are
+    directives that affect this availability. For further information, refer
+    to the documentation for
+    <a href="ini.core.html#ini.variables-order" class="link">variables_order</a>.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   <b>Dealing with register_globals</b><br />
+   
+    If the deprecated <a href="ini.core.html#ini.register-globals" class="link">register_globals</a>
+    directive is set to <i>on</i> then the variables within will
+    also be made available in the global scope of the script. For example,
+    <var class="varname"><a href="reserved.variables.post.html" class="classname">$_POST['foo']</a></var> would also exist as <var class="varname">$foo</var>.
+   <br />
+   
+    For related information, see the FAQ titled 
+    &quot;<a href="faq.using.html#faq.register-globals" class="link">How does register_globals affect me?</a>&quot;
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   <b>Variable variables</b><br />
+   
+    Superglobals cannot be used as 
+    <a href="language.variables.variable.html" class="link">variable variables</a>
+    inside functions or class methods.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="language.variables.scope.html" class="link">variable scope</a></li>
+    <li class="member">The <a href="ini.core.html#ini.variables-order" class="link">variables_order</a> directive</li>
+    <li class="member"><a href="book.filter.html" class="link">The filter extension</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="reserved.variables.html">Predefined variables</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="reserved.variables.globals.html">$GLOBALS</a></div>
+ <div class="up"><a href="reserved.variables.html">Predefined variables</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Autoloading Objects</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.oop5.basic.html">The Basics</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.oop5.decon.html">Constructors and Destructors</a></div>
+ <div class="up"><a href="language.oop5.html">Classes and Objects (PHP 5)</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.oop5.autoload" class="sect1">
+  <h2 class="title">Autoloading Objects</h2>
+  <p class="para">
+   Many developers writing object-oriented applications create
+   one PHP source file per-class definition. One of the biggest
+   annoyances is having to write a long list of needed includes
+   at the beginning of each script (one for each class).
+  </p>
+  <p class="para">
+   In PHP 5, this is no longer necessary. You may define an
+   __autoload function which is automatically
+   called in case you are trying to use a class/interface which hasn&#039;t been
+   defined yet. By calling this function the scripting engine is given
+   a last chance to load the class before PHP fails with an error.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Exceptions thrown in __autoload function cannot be caught in the
+    <a href="language.exceptions.html" class="link">catch</a> block and results in
+    a fatal error.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Autoloading is not available if using PHP in CLI
+    <a href="features.commandline.html" class="link">interactive mode</a>.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    If the class name is used e.g. in <a href="function.call-user-func.html" class="function">call_user_func()</a> then
+    it can contain some dangerous characters such as <i>../</i>.
+    It is recommended to not use the user-input in such functions or at least
+    verify the input in <b>__autoload()</b>.
+   <br />
+  </p></blockquote>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Autoload example</b></p>
+    <div class="example-contents"><p>
+     This example attempts to load the classes <i>MyClass1</i>
+     and <i>MyClass2</i> from the files <var class="filename">MyClass1.php</var>
+     and <var class="filename">MyClass2.php</var> respectively.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">__autoload</span><span style="color: #007700">(</span><span style="color: #0000BB">$class_name</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;require_once&nbsp;</span><span style="color: #0000BB">$class_name&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'.php'</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$obj&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MyClass1</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$obj2&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MyClass2</span><span style="color: #007700">();&nbsp;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example">
+    <p><b>Example #2 Autoload other example</b></p>
+    <div class="example-contents"><p>
+     This example attempts to load the interface <i>ITest</i>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">__autoload</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">);<br />}<br /><br />class&nbsp;</span><span style="color: #0000BB">Foo&nbsp;</span><span style="color: #007700">implements&nbsp;</span><span style="color: #0000BB">ITest&nbsp;</span><span style="color: #007700">{<br />}<br /><br /></span><span style="color: #FF8000">/*<br />string(5)&nbsp;"ITest"<br /><br />Fatal&nbsp;error:&nbsp;Interface&nbsp;'ITest'&nbsp;not&nbsp;found&nbsp;in&nbsp;...<br />*/<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+
+ </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.oop5.basic.html">The Basics</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.oop5.decon.html">Constructors and Destructors</a></div>
+ <div class="up"><a href="language.oop5.html">Classes and Objects (PHP 5)</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

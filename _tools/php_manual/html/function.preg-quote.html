@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Quote regular expression characters</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.preg-match.html">preg_match</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.preg-replace-callback.html">preg_replace_callback</a></div>
+ <div class="up"><a href="ref.pcre.html">PCRE Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.preg-quote" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">preg_quote</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">preg_quote</span> &mdash; <span class="dc-title">Quote regular expression characters</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>preg_quote</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+  [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$delimiter</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>preg_quote()</b> takes <i><tt class="parameter">str</tt></i>
+
+   and puts a backslash in front of every character that is part of
+   the regular expression syntax.  This is useful if you have a
+   run-time string that you need to match in some text and the
+   string may contain special regex characters.
+  </p>
+  <p class="para">
+   The special regular expression characters are:
+   <i>. \ + * ? [ ^ ] $ ( ) { } = ! &lt; &gt; | :</i>
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">delimiter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the optional <i><tt class="parameter">delimiter</tt></i>
+ is specified, it
+       will also be escaped.  This is useful for escaping the delimiter
+       that is required by the PCRE functions. The / is the most commonly
+       used delimiter.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the quoted string.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>preg_quote()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$keywords&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'$40&nbsp;for&nbsp;a&nbsp;g3/400'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$keywords&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">preg_quote</span><span style="color: #007700">(</span><span style="color: #0000BB">$keywords</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$keywords</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;returns&nbsp;\$40&nbsp;for&nbsp;a&nbsp;g3\/400<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Italicizing a word within some text</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;In&nbsp;this&nbsp;example,&nbsp;preg_quote($word)&nbsp;is&nbsp;used&nbsp;to&nbsp;keep&nbsp;the<br />//&nbsp;asterisks&nbsp;from&nbsp;having&nbsp;special&nbsp;meaning&nbsp;to&nbsp;the&nbsp;regular<br />//&nbsp;expression.<br /><br /></span><span style="color: #0000BB">$textbody&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"This&nbsp;book&nbsp;is&nbsp;*very*&nbsp;difficult&nbsp;to&nbsp;find."</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$word&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"*very*"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$textbody&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">preg_replace&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"/"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">preg_quote</span><span style="color: #007700">(</span><span style="color: #0000BB">$word</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"/"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"&lt;i&gt;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$word&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&lt;/i&gt;"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$textbody</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is
+binary-safe.</span></p></blockquote>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.preg-match.html">preg_match</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.preg-replace-callback.html">preg_replace_callback</a></div>
+ <div class="up"><a href="ref.pcre.html">PCRE Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Open paradox database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-numrecords.html">px_numrecords</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-put-record.html">px_put_record</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.px-open-fp" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">px_open_fp</h1>
+  <p class="verinfo">(PECL paradox:1.0-1.4.1)</p><p class="refpurpose"><span class="refname">px_open_fp</span> &mdash; <span class="dc-title">Open paradox database</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>px_open_fp</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$pxdoc</tt></span>
+   , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$file</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Open an existing paradox database file. The actual file has to be opened
+   before with <a href="function.fopen.html" class="function">fopen()</a>. This function can also be used to
+   open primary index files and tread them like a paradox database. This is
+   supported for those who would like to investigate a primary index. It
+   cannot be used to accelerate access to a database file.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pxdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the paradox database
+       as returned by <a href="function.px-new.html" class="function">px_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">file</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">file</tt></i>
+ is the return value from
+       <a href="function.fopen.html" class="function">fopen()</a> with the actual database file as parameter.
+       Make sure the database is writable if you plan to update or insert
+       records.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a></li>
+    <li class="member">The example at <a href="function.px-new.html" class="function" rel="rdfs-seeAlso">px_new()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-numrecords.html">px_numrecords</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-put-record.html">px_put_record</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

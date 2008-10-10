@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Unregister a global variable from the current session</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-start.html">session_start</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-unset.html">session_unset</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.session-unregister" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">session_unregister</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">session_unregister</span> &mdash; <span class="dc-title">Unregister a global variable from the current session</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>session_unregister</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>session_unregister()</b> unregisters the global variable
+   named <i><tt class="parameter">name</tt></i>
+ from the current session.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The variable name.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    If <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var> (or <var class="varname">$HTTP_SESSION_VARS</var>
+    for PHP 4.0.6 or less) is used, use <a href="function.unset.html" class="function">unset()</a> to
+    unregister a session variable. Do not <a href="function.unset.html" class="function">unset()</a>
+    <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var> itself as this will disable the special
+    function of the <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var> superglobal.
+   <br />
+  </p></blockquote>
+  <div class="caution"><b class="caution">Caution</b>
+   <p class="para">
+    This function does not unset the corresponding global variable for
+    <i><tt class="parameter">name</tt></i>
+, it only prevents the variable from being
+    saved as part of the session. You must call <a href="function.unset.html" class="function">unset()</a>
+    to remove the corresponding global variable.
+   </p>
+  </div>
+  <div class="caution"><b class="caution">Caution</b>
+   <p class="para">
+    If you are using <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var> (or
+    <var class="varname">$HTTP_SESSION_VARS</var>), do not use
+    <a href="function.session-register.html" class="function">session_register()</a>,
+    <a href="function.session-is-registered.html" class="function">session_is_registered()</a> and
+    <b>session_unregister()</b>.
+   </p>
+  </div>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-start.html">session_start</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-unset.html">session_unset</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

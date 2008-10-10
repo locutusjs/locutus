@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetch an SNMP object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.snmp-set-valueretrieval.html">snmp_set_valueretrieval</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.snmpgetnext.html">snmpgetnext</a></div>
+ <div class="up"><a href="ref.snmp.html">SNMP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.snmpget" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">snmpget</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">snmpget</span> &mdash; <span class="dc-title">Fetch an SNMP object</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>snmpget</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$hostname</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$community</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$object_id</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timeout</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$retries</tt></span>
+  ]] )</div>
+
+
+  <p class="para rdfs-comment">
+   The <b>snmpget()</b> function is used to read the
+   value of an SNMP object specified by the
+   <i><tt class="parameter">object_id</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">hostname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SNMP agent.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">community</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The read community.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">object_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SNMP object.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">timeout</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">retries</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns SNMP object value on success or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>snmpget()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$syscontact&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">snmpget</span><span style="color: #007700">(</span><span style="color: #DD0000">"127.0.0.1"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"public"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"system.SysContact.0"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.snmpset.html" class="function" rel="rdfs-seeAlso">snmpset()</a></li>
+   </ul>
+  </p>
+ </div>
+
+ 
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.snmp-set-valueretrieval.html">snmp_set_valueretrieval</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.snmpgetnext.html">snmpgetnext</a></div>
+ <div class="up"><a href="ref.snmp.html">SNMP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Convert string to requested character encoding</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.iconv-substr.html">iconv_substr</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ob-iconv-handler.html">ob_iconv_handler</a></div>
+ <div class="up"><a href="ref.iconv.html">iconv Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.iconv" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">iconv</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5, PHP 5)</p><p class="refpurpose"><span class="refname">iconv</span> &mdash; <span class="dc-title">Convert string to requested character encoding</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>iconv</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$in_charset</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$out_charset</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Performs a character set conversion on the string
+   <i><tt class="parameter">str</tt></i>
+ from <i><tt class="parameter">in_charset</tt></i>
+
+   to <i><tt class="parameter">out_charset</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">in_charset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input charset.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">out_charset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The output charset.
+      </p>
+      <p class="para">
+       If you append the string <i>//TRANSLIT</i> to
+       <i><tt class="parameter">out_charset</tt></i>
+ transliteration is activated. This
+       means that when a character can&#039;t be represented in the target charset,
+       it can be approximated through one or several similarly looking
+       characters. If you append the string <i>//IGNORE</i>,
+       characters that cannot be represented in the target charset are silently
+       discarded. Otherwise, <i><tt class="parameter">str</tt></i>
+ is cut from the first
+       illegal character.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The string to be converted.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the converted string or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>iconv()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">iconv</span><span style="color: #007700">(</span><span style="color: #DD0000">"ISO-8859-1"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"UTF-8"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"This&nbsp;is&nbsp;a&nbsp;test."</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.iconv-substr.html">iconv_substr</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ob-iconv-handler.html">ob_iconv_handler</a></div>
+ <div class="up"><a href="ref.iconv.html">iconv Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set options in an XML parser</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xml-parser-get-option.html">xml_parser_get_option</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xml-set-character-data-handler.html">xml_set_character_data_handler</a></div>
+ <div class="up"><a href="ref.xml.html">XML Parser Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.xml-parser-set-option" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xml_parser_set_option</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">xml_parser_set_option</span> &mdash; <span class="dc-title">Set options in an XML parser</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>xml_parser_set_option</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$parser</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$option</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$value</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sets an option in an XML parser.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">parser</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A reference to the XML parser to set an option in.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">option</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Which option to set.  See below.
+      </p>
+      <p class="para">
+       The following options are available:
+       <table border="5">
+        <caption><b>XML parser options</b></caption>
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">Option constant</th>
+           <th colspan="1">Data type</th>
+           <th colspan="1">Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>XML_OPTION_CASE_FOLDING</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">integer</td>
+           <td colspan="1" rowspan="1" align="left">
+            Controls whether <a href="xml.case-folding.html" class="link">case-folding</a> is enabled for this
+            XML parser.  Enabled by default.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>XML_OPTION_SKIP_TAGSTART</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">integer</td> 
+           <td colspan="1" rowspan="1" align="left">
+            Specify how many characters should be skipped in the beginning of a
+            tag name.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>XML_OPTION_SKIP_WHITE</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">integer</td> 
+           <td colspan="1" rowspan="1" align="left">
+            Whether to skip values consisting of whitespace characters.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>XML_OPTION_TARGET_ENCODING</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">string</td> 
+           <td colspan="1" rowspan="1" align="left">
+            Sets which <a href="xml.encoding.html" class="link">target encoding</a> to
+            use in this XML parser.By default, it is set to the same as the
+            source encoding used by <a href="function.xml-parser-create.html" class="function">xml_parser_create()</a>.
+            Supported target encodings are <i>ISO-8859-1</i>,
+            <i>US-ASCII</i> and <i>UTF-8</i>.
+           </td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">value</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The option&#039;s new value.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns <b><tt>FALSE</tt></b> if <i><tt class="parameter">parser</tt></i>
+ does not
+   refer to a valid parser, or if the option could not be set.  Else the
+   option is set and <b><tt>TRUE</tt></b> is returned.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xml-parser-get-option.html">xml_parser_get_option</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xml-set-character-data-handler.html">xml_set_character_data_handler</a></div>
+ <div class="up"><a href="ref.xml.html">XML Parser Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

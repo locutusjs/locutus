@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Renames a file or directory</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.realpath.html">realpath</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.rewind.html">rewind</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.rename" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">rename</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL zip:1.1.0-1.4.1)</p><p class="refpurpose"><span class="refname">rename</span> &mdash; <span class="dc-title">Renames a file or directory</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>rename</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$oldname</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$newname</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$context</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Attempts to rename <i><tt class="parameter">oldname</tt></i>
+ to
+   <i><tt class="parameter">newname</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">oldname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        The old name. The wrapper used in <i><tt class="parameter">oldname</tt></i>
+
+        <em class="emphasis">must</em> match the wrapper used in
+        <i><tt class="parameter">newname</tt></i>
+.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">newname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The new name.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">context</tt></i>
+</span>
+
+     <dd>
+
+      <blockquote><p><b class="note">Note</b>: <span class="simpara">Context support was added
+with PHP 5.0.0. For a description of <i>contexts</i>, refer to
+<a href="ref.stream.html" class="xref">Stream Functions</a>.</span></p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        <b>rename()</b> can now also be used with
+        <em class="emphasis">some</em> URL wrappers.  Refer to <a href="wrappers.html" class="xref">List of Supported Protocols/Wrappers</a> for a listing of which wrappers
+        support <b>rename()</b>.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.3</td>
+       <td colspan="1" rowspan="1" align="left">
+        <b>rename()</b> is now able to rename files across
+        partitions on *nix based systems.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Example with <b>rename()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />rename</span><span style="color: #007700">(</span><span style="color: #DD0000">"/tmp/tmp_file.txt"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"/home/user/login/docs/my_file.txt"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.copy.html" class="function" rel="rdfs-seeAlso">copy()</a></li>
+    <li class="member"><a href="function.unlink.html" class="function" rel="rdfs-seeAlso">unlink()</a></li>
+    <li class="member"><a href="function.move-uploaded-file.html" class="function" rel="rdfs-seeAlso">move_uploaded_file()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.realpath.html">realpath</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.rewind.html">rewind</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

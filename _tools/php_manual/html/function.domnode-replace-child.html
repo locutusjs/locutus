@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Replaces a child</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domnode-remove-child.html">DomNode->remove_child</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domnode-replace-node.html">DomNode->replace_node</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.domnode-replace-child" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">DomNode-&gt;replace_child</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">DomNode-&gt;replace_child</span> &mdash; <span class="dc-title">
+   Replaces a child
+  </span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="class.domelement.html" class="type domelement">domelement</a></span> <span class="methodname"><b><b>DomNode->replace_child</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="class.domelement.html" class="type domelement">domelement</a></span> <tt class="parameter">$newnode</tt></span>
+   , <span class="methodparam"><span class="type"><a href="class.domelement.html" class="type domelement">domelement</a></span> <tt class="parameter">$oldnode</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   (PHP 4.2) This function replaces the child <i><tt class="parameter">oldnode</tt></i>
+
+   with the passed new node. If the new node is already a child it
+   will not be added a second time. If the old node cannot be found
+   the function returns <b><tt>FALSE</tt></b>. If the replacement succeeds the old node
+   is returned.
+  </p>
+  <p class="para">
+   (PHP 4.3) This function replaces the child <i><tt class="parameter">oldnode</tt></i>
+
+   with the passed <i><tt class="parameter">newnode</tt></i>
+, even if the new node already 
+   is a child of the DomNode. If <i><tt class="parameter">newnode</tt></i>
+ was already 
+   inserted in the document it is first unlinked from its existing context.
+   If the old node cannot be found the function returns <b><tt>FALSE</tt></b>. If the replacement 
+   succeeds the old node is returned. (This behaviour is according to the W3C specs).
+  </p>
+  <p class="para">
+   See also <a href="function.domnode-append-child.html" class="function">domnode_append_child()</a>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domnode-remove-child.html">DomNode->remove_child</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domnode-replace-node.html">DomNode->replace_node</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

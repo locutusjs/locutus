@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Parse RFC 822 compliant addresses</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mailparse-msg-parse.html">mailparse_msg_parse</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mailparse-stream-encode.html">mailparse_stream_encode</a></div>
+ <div class="up"><a href="ref.mailparse.html">Mailparse Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mailparse-rfc822-parse-addresses" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mailparse_rfc822_parse_addresses</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PECL mailparse:0.9-2.1.1)</p><p class="refpurpose"><span class="refname">mailparse_rfc822_parse_addresses</span> &mdash; <span class="dc-title">Parse RFC 822 compliant addresses</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>mailparse_rfc822_parse_addresses</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$addresses</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Parses a <a href="http://www.faqs.org/rfcs/rfc822" class="link external">&raquo; RFC 822</a> compliant recipient
+   list, such as that found in the <i>To:</i> header.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">addresses</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A string containing addresses, like in:
+       <i>Wez Furlong &lt;wez@example.com&gt;, doe@example.com</i>
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        This string must not include the header name.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array of associative arrays with the following keys for each
+   recipient:
+   <table class="informaltable">
+    <colgroup>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>display</i></td>
+       <td colspan="1" rowspan="1" align="left">
+        The recipient name, for display purpose. If this part is not set for a
+        recipient, this key will hold the same value as 
+        <i>address</i>.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>address</i></td>
+       <td colspan="1" rowspan="1" align="left">The email address</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>is_group</i></td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if the recipient is a newsgroup, <b><tt>FALSE</tt></b> otherwise.</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mailparse_rfc822_parse_addresses()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$to&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Wez&nbsp;Furlong&nbsp;&lt;wez@example.com&gt;,&nbsp;doe@example.com'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">mailparse_rfc822_parse_addresses</span><span style="color: #007700">(</span><span style="color: #0000BB">$to</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+array(2) {
+  [0]=&gt;
+  array(3) {
+    [&quot;display&quot;]=&gt;
+    string(11) &quot;Wez Furlong&quot;
+    [&quot;address&quot;]=&gt;
+    string(15) &quot;wez@example.com&quot;
+    [&quot;is_group&quot;]=&gt;
+    bool(false)
+  }
+  [1]=&gt;
+  array(3) {
+    [&quot;display&quot;]=&gt;
+    string(15) &quot;doe@example.com&quot;
+    [&quot;address&quot;]=&gt;
+    string(15) &quot;doe@example.com&quot;
+    [&quot;is_group&quot;]=&gt;
+    bool(false)
+  }
+}
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mailparse-msg-parse.html">mailparse_msg_parse</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mailparse-stream-encode.html">mailparse_stream_encode</a></div>
+ <div class="up"><a href="ref.mailparse.html">Mailparse Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

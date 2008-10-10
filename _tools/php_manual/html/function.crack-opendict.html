@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Opens a new CrackLib dictionary</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.crack.html">Crack Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.hash.html">Hash</a></div>
+ <div class="up"><a href="ref.crack.html">Crack Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.crack-opendict" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">crack_opendict</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5, PECL crack:0.1-0.4)</p><p class="refpurpose"><span class="refname">crack_opendict</span> &mdash; <span class="dc-title">Opens a new CrackLib dictionary</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>crack_opendict</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dictionary</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>crack_opendict()</b> opens the specified CrackLib 
+   <i><tt class="parameter">dictionary</tt></i>
+ for use with
+   <a href="function.crack-check.html" class="function">crack_check()</a>.
+  </p>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Only one dictionary may be open at a time.
+   <br />
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dictionary</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The path to the Cracklib dictionary.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a dictionary resource identifier on success, or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.crack-check.html" class="function" rel="rdfs-seeAlso">crack_check()</a></li>
+    <li class="member"><a href="function.crack-closedict.html" class="function" rel="rdfs-seeAlso">crack_closedict()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.crack.html">Crack Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.hash.html">Hash</a></div>
+ <div class="up"><a href="ref.crack.html">Crack Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

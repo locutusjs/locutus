@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Join array elements with a string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.htmlspecialchars.html">htmlspecialchars</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.join.html">join</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.implode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">implode</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">implode</span> &mdash; <span class="dc-title">Join array elements with a string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>implode</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$glue</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$pieces</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Join array elements with a <i><tt class="parameter">glue</tt></i>
+ string.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    <b>implode()</b> can, for historical reasons, accept
+    its parameters in either order. For consistency with
+    <a href="function.explode.html" class="function">explode()</a>, however, it may be less confusing
+    to use the documented order of arguments.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">glue</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Defaults to an empty string. This is not the preferred usage of
+       <b>implode()</b> as <i><tt class="parameter">glue</tt></i>
+ would be
+       the second parameter and thus, the bad prototype would be used.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pieces</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The array of strings to implode.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string containing a string representation of all the array
+   elements in the same order, with the glue string between each element.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">glue</tt></i>
+ parameter became optional.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>implode()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$array&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'lastname'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'email'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$comma_separated&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">implode</span><span style="color: #007700">(</span><span style="color: #DD0000">","</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$comma_separated</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;lastname,email,phone<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>   
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is
+binary-safe.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.explode.html" class="function" rel="rdfs-seeAlso">explode()</a></li>
+    <li class="member"><a href="function.split.html" class="function" rel="rdfs-seeAlso">split()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.htmlspecialchars.html">htmlspecialchars</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.join.html">join</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

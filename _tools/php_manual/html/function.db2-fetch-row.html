@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets the result set pointer to the next row or requested row</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-fetch-object.html">db2_fetch_object</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-field-display-size.html">db2_field_display_size</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.db2-fetch-row" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">db2_fetch_row</h1>
+  <p class="verinfo">(PECL ibm_db2:1.0-1.6.2)</p><p class="refpurpose"><span class="refname">db2_fetch_row</span> &mdash; <span class="dc-title">
+   Sets the result set pointer to the next row or requested row
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>db2_fetch_row</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$stmt</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$row_number</tt></span>
+  ] )</div>
+
+
+
+  <p class="para rdfs-comment">
+   Use <b>db2_fetch_row()</b> to iterate through a result set, or
+   to point to a specific row in a result set if you requested a scrollable
+   cursor.
+  </p>
+  <p class="para">
+   To retrieve individual fields from the result set, call the
+   <a href="function.db2-result.html" class="function">db2_result()</a> function.
+  </p>
+  <p class="para">
+   Rather than calling <b>db2_fetch_row()</b> and
+   <a href="function.db2-result.html" class="function">db2_result()</a>, most applications will call one of
+   <a href="function.db2-fetch-assoc.html" class="function">db2_fetch_assoc()</a>, <a href="function.db2-fetch-both.html" class="function">db2_fetch_both()</a>,
+   or <a href="function.db2-fetch-array.html" class="function">db2_fetch_array()</a> to advance the result set pointer
+   and return a complete row as an array.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">stmt</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid <i>stmt</i> resource.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">row_number</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       With scrollable cursors, you can request a specific row number in the
+       result set. Row numbering is 1-indexed.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if the requested row exists in the result set. Returns
+   <b><tt>FALSE</tt></b> if the requested row does not exist in the result set.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Iterating through a result set</b></p>
+    <div class="example-contents"><p>
+     The following example demonstrates how to iterate through a result set
+     with <b>db2_fetch_row()</b> and retrieve columns from the
+     result set with <a href="function.db2-result.html" class="function">db2_result()</a>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;name,&nbsp;breed&nbsp;FROM&nbsp;animals&nbsp;WHERE&nbsp;weight&nbsp;&lt;&nbsp;?'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">db2_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #0000BB">10</span><span style="color: #007700">));<br />while&nbsp;(</span><span style="color: #0000BB">db2_fetch_row</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$breed&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"$name&nbsp;$breed"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+cat Pook
+gold fish Bubbles
+budgerigar Gizmo
+goat Rickety Ride
+</pre></div>
+    </pre></div>
+   </div>
+   <div class="example">
+    <p><b>Example #2 i5/OS recommended alternatives to db2_fetch_row/db2_result</b></p>
+    <div class="example-contents"><p>
+     On i5/OS it is recommended that you use <a href="function.db2-fetch-both.html" class="function">db2_fetch_both()</a>, 
+     <a href="function.db2-fetch-array.html" class="function">db2_fetch_array()</a>, or <a href="function.db2-fetch-object.html" class="function">db2_fetch_object()</a> 
+     over <b>db2_fetch_row()</b>/<a href="function.db2-result.html" class="function">db2_result()</a>. In general 
+     <b>db2_fetch_row()</b>/<a href="function.db2-result.html" class="function">db2_result()</a> have more issues 
+     with various column types in <i>EBCIDIC</i> to <i>ASCII</i> 
+     translation, including possible truncation in <i>DBCS</i> applications. 
+     You may also find the performance of <a href="function.db2-fetch-both.html" class="function">db2_fetch_both()</a>, 
+     <a href="function.db2-fetch-array.html" class="function">db2_fetch_array()</a>, and <a href="function.db2-fetch-object.html" class="function">db2_fetch_object()</a> to 
+     be superior to <b>db2_fetch_row()</b>/<a href="function.db2-result.html" class="function">db2_result()</a>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">""</span><span style="color: #007700">,</span><span style="color: #DD0000">""</span><span style="color: #007700">,</span><span style="color: #DD0000">""</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;SPECIFIC_SCHEMA,&nbsp;SPECIFIC_NAME,&nbsp;ROUTINE_SCHEMA,&nbsp;ROUTINE_NAME,&nbsp;ROUTINE_TYPE,&nbsp;ROUTINE_CREATED,&nbsp;ROUTINE_BODY,&nbsp;IN_PARMS,&nbsp;OUT_PARMS,&nbsp;INOUT_PARMS,&nbsp;PARAMETER_STYLE,&nbsp;EXTERNAL_NAME,&nbsp;EXTERNAL_LANGUAGE&nbsp;FROM&nbsp;QSYS2.SYSROUTINES&nbsp;FETCH&nbsp;FIRST&nbsp;2&nbsp;ROWS&nbsp;ONLY'</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'cursor'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">DB2_SCROLLABLE</span><span style="color: #007700">));<br />&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_fetch_both</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">)){<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;br&gt;db2_fetch_both&nbsp;{$row['SPECIFIC_NAME']}&nbsp;{$row['ROUTINE_CREATED']}&nbsp;{$row[5]}"</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'cursor'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">DB2_SCROLLABLE</span><span style="color: #007700">));<br />&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">)){<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;br&gt;db2_fetch_array&nbsp;{$row[1]}&nbsp;&nbsp;{$row[5]}"</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'cursor'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">DB2_SCROLLABLE</span><span style="color: #007700">));<br />&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_fetch_object</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">)){<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;br&gt;db2_fetch_object&nbsp;{$row-&gt;SPECIFIC_NAME}&nbsp;{$row-&gt;ROUTINE_CREATED}"</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;</span><span style="color: #0000BB">db2_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+db2_fetch_both MATCH_ANIMAL 2006-08-25-17.10.23.775000 2006-08-25-17.10.23.775000
+db2_fetch_both MULTIRESULTS 2006-10-17-10.11.05.308000 2006-10-17-10.11.05.308000
+db2_fetch_array MATCH_ANIMAL 2006-08-25-17.10.23.775000
+db2_fetch_array MULTIRESULTS 2006-10-17-10.11.05.308000
+db2_fetch_object MATCH_ANIMAL 2006-08-25-17.10.23.775000
+db2_fetch_object MULTIRESULTS 2006-10-17-10.11.05.308000
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.db2-fetch-array.html" class="function" rel="rdfs-seeAlso">db2_fetch_array()</a></li>
+    <li class="member"><a href="function.db2-fetch-assoc.html" class="function" rel="rdfs-seeAlso">db2_fetch_assoc()</a></li>
+    <li class="member"><a href="function.db2-fetch-both.html" class="function" rel="rdfs-seeAlso">db2_fetch_both()</a></li>
+    <li class="member"><a href="function.db2-fetch-object.html" class="function" rel="rdfs-seeAlso">db2_fetch_object()</a></li>
+    <li class="member"><a href="function.db2-result.html" class="function" rel="rdfs-seeAlso">db2_result()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-fetch-object.html">db2_fetch_object</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-field-display-size.html">db2_field_display_size</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

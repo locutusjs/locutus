@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Dynamically changes the name of the given method</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.classkit.html">Classkit Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.ctype.html">Ctype</a></div>
+ <div class="up"><a href="ref.classkit.html">Classkit Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.classkit-method-rename" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">classkit_method_rename</h1>
+  <p class="verinfo">(PECL classkit:0.1-0.4 runkit:0.7-0.9)</p><p class="refpurpose"><span class="refname">classkit_method_rename</span> &mdash; <span class="dc-title">Dynamically changes the name of the given method</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>classkit_method_rename</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$classname</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$methodname</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$newname</tt></span>
+   )</div>
+
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function cannot
+be used to manipulate the currently running (or chained) method.</span>
+</p></blockquote>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">classname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The class in which to rename the method
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">methodname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name of the method to rename
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">newname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The new name to give to the renamed method
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>classkit_method_rename()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">Example&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">"foo!\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Rename&nbsp;the&nbsp;'foo'&nbsp;method&nbsp;to&nbsp;'bar'<br /></span><span style="color: #0000BB">classkit_method_rename</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'Example'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'foo'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'bar'<br /></span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;output&nbsp;renamed&nbsp;function<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">Example</span><span style="color: #007700">::</span><span style="color: #0000BB">bar</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+foo!
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.classkit-method-add.html" class="function" rel="rdfs-seeAlso">classkit_method_add()</a></li>
+    <li class="member"><a href="function.classkit-method-copy.html" class="function" rel="rdfs-seeAlso">classkit_method_copy()</a></li>
+    <li class="member"><a href="function.classkit-method-redefine.html" class="function" rel="rdfs-seeAlso">classkit_method_redefine()</a></li>
+    <li class="member"><a href="function.classkit-method-remove.html" class="function" rel="rdfs-seeAlso">classkit_method_remove()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.classkit.html">Classkit Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.ctype.html">Ctype</a></div>
+ <div class="up"><a href="ref.classkit.html">Classkit Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

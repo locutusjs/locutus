@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Generates a user-level error/warning/notice message</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.set-exception-handler.html">set_exception_handler</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.user-error.html">user_error</a></div>
+ <div class="up"><a href="ref.errorfunc.html">Error Handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.trigger-error" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">trigger_error</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p><p class="refpurpose"><span class="refname">trigger_error</span> &mdash; <span class="dc-title">Generates a user-level error/warning/notice message</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>trigger_error</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$error_msg</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$error_type</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Used to trigger a user error condition, it can be used by in conjunction
+   with the built-in error handler, or with a user defined function that has
+   been set as the new error handler
+   (<a href="function.set-error-handler.html" class="function">set_error_handler()</a>). 
+  </p>
+  <p class="para">
+   This function is useful when you need to generate a particular response to
+   an exception at runtime.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">error_msg</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The designated error message for this error. It&#039;s limited to 1024 
+       characters in length. Any additional characters beyond 1024 will be 
+       truncated.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">error_type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The designated error type for this error. It only works with the E_USER
+       family of constants, and will default to <b><tt>E_USER_NOTICE</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns <b><tt>FALSE</tt></b> if wrong <i><tt class="parameter">error_type</tt></i>
+ is
+   specified, <b><tt>TRUE</tt></b> otherwise.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>trigger_error()</b> example</b></p>
+    <div class="example-contents"><p>
+     See <a href="function.set-error-handler.html" class="function">set_error_handler()</a> for a more extensive example.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">assert</span><span style="color: #007700">(</span><span style="color: #0000BB">$divisor&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #DD0000">"Cannot&nbsp;divide&nbsp;by&nbsp;zero"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.error-reporting.html" class="function" rel="rdfs-seeAlso">error_reporting()</a></li>
+    <li class="member"><a href="function.set-error-handler.html" class="function" rel="rdfs-seeAlso">set_error_handler()</a></li>
+    <li class="member"><a href="function.restore-error-handler.html" class="function" rel="rdfs-seeAlso">restore_error_handler()</a></li>
+    <li class="member">The <a href="errorfunc.constants.html" class="link">error level constants</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.set-exception-handler.html">set_exception_handler</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.user-error.html">user_error</a></div>
+ <div class="up"><a href="ref.errorfunc.html">Error Handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

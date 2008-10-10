@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get date/time information</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.date.html">date</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gettimeofday.html">gettimeofday</a></div>
+ <div class="up"><a href="ref.datetime.html">Date/Time Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.getdate" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">getdate</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">getdate</span> &mdash; <span class="dc-title">Get date/time information</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>getdate</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timestamp</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns an associative <a href="language.types.array.html" class="type array">array</a> containing the date
+   information of the <i><tt class="parameter">timestamp</tt></i>
+, or the current
+   local time if no <i><tt class="parameter">timestamp</tt></i>
+ is given.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    
+    
+<dt>
+<span class="term"><i><tt class="parameter">timestamp</tt></i>
+</span>
+<dd>
+<p class="para">
+The optional <i><tt class="parameter">timestamp</tt></i>
+ parameter is an 
+<a href="language.types.integer.html" class="type integer">integer</a> Unix timestamp that defaults to the current
+local time if a <i><tt class="parameter">timestamp</tt></i>
+ is not given. In other 
+words, it defaults to the value of <a href="function.time.html" class="function">time()</a>. 
+</p></dd>
+</dt>
+
+   
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative <a href="language.types.array.html" class="type array">array</a> of information related to
+   the <i><tt class="parameter">timestamp</tt></i>
+. Elements from the returned 
+   associative array are as follows:
+  </p>
+  <p class="para">
+   <table border="5">
+    <caption><b>Key elements of the returned associative array</b></caption>
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Key</th>
+       <th colspan="1">Description</th>
+       <th colspan="1">Example returned values</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>&quot;seconds&quot;</i></td>
+       <td colspan="1" rowspan="1" align="left">Numeric representation of seconds</td>
+       <td colspan="1" rowspan="1" align="left"><i>0</i> to <i>59</i></td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>&quot;minutes&quot;</i></td>
+       <td colspan="1" rowspan="1" align="left">Numeric representation of minutes</td>
+       <td colspan="1" rowspan="1" align="left"><i>0</i> to <i>59</i></td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>&quot;hours&quot;</i></td>
+       <td colspan="1" rowspan="1" align="left">Numeric representation of hours</td>
+       <td colspan="1" rowspan="1" align="left"><i>0</i> to <i>23</i></td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>&quot;mday&quot;</i></td>
+       <td colspan="1" rowspan="1" align="left">Numeric representation of the day of the month</td>
+       <td colspan="1" rowspan="1" align="left"><i>1</i> to <i>31</i></td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>&quot;wday&quot;</i></td>
+       <td colspan="1" rowspan="1" align="left">Numeric representation of the day of the week</td>
+       <td colspan="1" rowspan="1" align="left"><i>0</i> (for Sunday) through <i>6</i> (for Saturday)</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>&quot;mon&quot;</i></td>
+       <td colspan="1" rowspan="1" align="left">Numeric representation of a month</td>
+       <td colspan="1" rowspan="1" align="left"><i>1</i> through <i>12</i></td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>&quot;year&quot;</i></td>
+       <td colspan="1" rowspan="1" align="left">A full numeric representation of a year, 4 digits</td>
+       <td colspan="1" rowspan="1" align="left">Examples: <i>1999</i> or <i>2003</i></td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>&quot;yday&quot;</i></td>
+       <td colspan="1" rowspan="1" align="left">Numeric representation of the day of the year</td>
+       <td colspan="1" rowspan="1" align="left"><i>0</i> through <i>365</i></td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>&quot;weekday&quot;</i></td>
+       <td colspan="1" rowspan="1" align="left">A full textual representation of the day of the week</td>
+       <td colspan="1" rowspan="1" align="left"><i>Sunday</i> through <i>Saturday</i></td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>&quot;month&quot;</i></td>
+       <td colspan="1" rowspan="1" align="left">A full textual representation of a month, such as January or March</td>
+       <td colspan="1" rowspan="1" align="left"><i>January</i> through <i>December</i></td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>0</i></td>
+       <td colspan="1" rowspan="1" align="left">
+        Seconds since the Unix Epoch, similar to the values returned by
+        <a href="function.time.html" class="function">time()</a> and used by <a href="function.date.html" class="function">date()</a>.
+       </td>
+       <td colspan="1" rowspan="1" align="left">
+        System Dependent, typically <i>-2147483648</i> through
+        <i>2147483647</i>.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>getdate()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$today&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">getdate</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$today</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [seconds] =&gt; 40
+    [minutes] =&gt; 58
+    [hours]   =&gt; 21
+    [mday]    =&gt; 17
+    [wday]    =&gt; 2
+    [mon]     =&gt; 6
+    [year]    =&gt; 2003
+    [yday]    =&gt; 167
+    [weekday] =&gt; Tuesday
+    [month]   =&gt; June
+    [0]       =&gt; 1055901520
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.date.html" class="function" rel="rdfs-seeAlso">date()</a></li>
+    <li class="member"><a href="function.time.html" class="function" rel="rdfs-seeAlso">time()</a></li>
+    <li class="member"><a href="function.setlocale.html" class="function" rel="rdfs-seeAlso">setlocale()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.date.html">date</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gettimeofday.html">gettimeofday</a></div>
+ <div class="up"><a href="ref.datetime.html">Date/Time Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

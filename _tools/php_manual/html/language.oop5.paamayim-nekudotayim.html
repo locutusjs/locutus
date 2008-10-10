@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Scope Resolution Operator (::)</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.oop5.visibility.html">Visibility</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.oop5.static.html">Static Keyword</a></div>
+ <div class="up"><a href="language.oop5.html">Classes and Objects (PHP 5)</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.oop5.paamayim-nekudotayim" class="sect1">
+  <h2 class="title">Scope Resolution Operator (::)</h2>
+
+  <p class="para">
+   The Scope Resolution Operator (also called Paamayim Nekudotayim) or in
+   simpler terms, the double colon, is a token that allows access to 
+   <a href="language.oop5.static.html" class="link">static</a>,
+   <a href="language.oop5.constants.html" class="link">constant</a>, and overridden 
+   members or methods of a class. 
+  </p>
+
+  <p class="para">
+   When referencing these items from outside the class definition, use
+   the name of the class.
+  </p>
+
+  <p class="para">
+   As of PHP 5.3.0, it&#039;s possible to reference the class using a variable.
+   The variable&#039;s value can not be a keyword (e.g. <i>self</i>,
+   <i>parent</i> and <i>static</i>).
+  </p>
+
+  <p class="para">
+   Paamayim Nekudotayim would, at first, seem like a strange choice for
+   naming a double-colon. However, while writing the Zend Engine 0.5
+   (which powers PHP 3), that&#039;s what the Zend team decided to call it.
+   It actually does mean double-colon - in Hebrew!
+  </p>
+
+  <div class="example">
+   <p><b>Example #1 :: from outside the class definition</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">MyClass&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;</span><span style="color: #0000BB">CONST_VALUE&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'A&nbsp;constant&nbsp;value'</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$classname&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'MyClass'</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">$classname</span><span style="color: #007700">::</span><span style="color: #0000BB">CONST_VALUE</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;As&nbsp;of&nbsp;PHP&nbsp;5.3.0<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">MyClass</span><span style="color: #007700">::</span><span style="color: #0000BB">CONST_VALUE</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   Two special keywords <var class="varname">self</var> and <var class="varname">parent</var>
+   are used to access members or methods from inside the class definition.
+  </p>
+
+  <div class="example">
+   <p><b>Example #2 :: from inside the class definition</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">OtherClass&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">MyClass<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;</span><span style="color: #0000BB">$my_static&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'static&nbsp;var'</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #0000BB">doubleColon</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">CONST_VALUE&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">self</span><span style="color: #007700">::</span><span style="color: #0000BB">$my_static&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">$classname&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'OtherClass'</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">$classname</span><span style="color: #007700">::</span><span style="color: #0000BB">doubleColon</span><span style="color: #007700">();&nbsp;</span><span style="color: #FF8000">//&nbsp;As&nbsp;of&nbsp;PHP&nbsp;5.3.0<br /><br /></span><span style="color: #0000BB">OtherClass</span><span style="color: #007700">::</span><span style="color: #0000BB">doubleColon</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   When an extending class overrides the parents definition of a method,
+   PHP will not call the parent&#039;s method. It&#039;s up to the extended class
+   on whether or not the parent&#039;s method is called. This also applies to <a href="language.oop5.decon.html" class="link">Constructors and Destructors</a>, <a href="language.oop5.overloading.html" class="link">Overloading</a>, and <a href="language.oop5.magic.html" class="link">Magic</a> method definitions.
+  </p>
+
+  <div class="example">
+   <p><b>Example #3 Calling a parent&#039;s method</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">MyClass<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;function&nbsp;</span><span style="color: #0000BB">myFunc</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"MyClass::myFunc()\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />class&nbsp;</span><span style="color: #0000BB">OtherClass&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">MyClass<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Override&nbsp;parent's&nbsp;definition<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">myFunc</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;But&nbsp;still&nbsp;call&nbsp;the&nbsp;parent&nbsp;function<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">myFunc</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"OtherClass::myFunc()\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">$class&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">OtherClass</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$class</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">myFunc</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+ </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.oop5.visibility.html">Visibility</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.oop5.static.html">Static Keyword</a></div>
+ <div class="up"><a href="language.oop5.html">Classes and Objects (PHP 5)</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

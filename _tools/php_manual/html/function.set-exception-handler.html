@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets a user-defined exception handler function</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.set-error-handler.html">set_error_handler</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.trigger-error.html">trigger_error</a></div>
+ <div class="up"><a href="ref.errorfunc.html">Error Handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.set-exception-handler" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">set_exception_handler</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">set_exception_handler</span> &mdash; <span class="dc-title">
+   Sets a user-defined exception handler function 
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>set_exception_handler</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.callback" class="type callback">callback</a></span> <tt class="parameter">$exception_handler</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sets the default exception handler if an exception is not caught within a
+   try/catch block. Execution will stop after the
+   <i><tt class="parameter">exception_handler</tt></i>
+ is called.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">exception_handler</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Name of the function to be called when an uncaught exception occurs.
+       This function must be defined before calling
+       <b>set_exception_handler()</b>. This handler function
+       needs to accept one parameter, which will be the exception object that
+       was thrown.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the name of the previously defined exception handler, or <b><tt>NULL</tt></b> on error. If
+   no previous handler was defined, <b><tt>NULL</tt></b> is also returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>set_exception_handler()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">exception_handler</span><span style="color: #007700">(</span><span style="color: #0000BB">$exception</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Uncaught&nbsp;exception:&nbsp;"&nbsp;</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$exception</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">(),&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">set_exception_handler</span><span style="color: #007700">(</span><span style="color: #DD0000">'exception_handler'</span><span style="color: #007700">);<br /><br />throw&nbsp;new&nbsp;</span><span style="color: #0000BB">Exception</span><span style="color: #007700">(</span><span style="color: #DD0000">'Uncaught&nbsp;Exception'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"Not&nbsp;Executed\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <a href="function.restore-exception-handler.html" class="function" rel="rdfs-seeAlso">restore_exception_handler()</a>,
+   <a href="function.restore-error-handler.html" class="function" rel="rdfs-seeAlso">restore_error_handler()</a>,
+   <a href="function.error-reporting.html" class="function" rel="rdfs-seeAlso">error_reporting()</a>,
+   information about the <a href="language.pseudo-types.html#language.types.callback" class="link">callback</a> type,  and
+   <a href="language.exceptions.html" class="link">PHP 5 Exceptions</a>.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.set-error-handler.html">set_error_handler</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.trigger-error.html">trigger_error</a></div>
+ <div class="up"><a href="ref.errorfunc.html">Error Handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns a string containing the SQLSTATE returned by an SQL statement</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-statistics.html">db2_statistics</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-stmt-errormsg.html">db2_stmt_errormsg</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.db2-stmt-error" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">db2_stmt_error</h1>
+  <p class="verinfo">(PECL ibm_db2:1.0-1.6.2)</p><p class="refpurpose"><span class="refname">db2_stmt_error</span> &mdash; <span class="dc-title">
+   Returns a string containing the SQLSTATE returned by an SQL statement
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>db2_stmt_error</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$stmt</tt></span>
+  ] )</div>
+
+
+  <p class="para rdfs-comment">
+   Returns a string containing the SQLSTATE value returned by an SQL statement.
+  </p>
+  <p class="para">
+   If you do not pass a statement resource as an argument to
+   <b>db2_stmt_error()</b>, the driver returns the SQLSTATE
+   value associated with the last attempt to return a statement resource, for
+   example, from <a href="function.db2-prepare.html" class="function">db2_prepare()</a> or
+   <a href="function.db2-exec.html" class="function">db2_exec()</a>.
+  </p>
+  <p class="para">
+   To learn what the SQLSTATE value means, you can issue the following command
+   at a DB2 Command Line Processor prompt:
+   <strong class="userinput"><code>db2 &#039;? <i><tt class="parameter">sqlstate-value</tt></i>
+&#039;</code></strong>
+. You
+   can also call <a href="function.db2-stmt-errormsg.html" class="function">db2_stmt_errormsg()</a> to retrieve an
+   explicit error message and the associated SQLCODE value.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">stmt</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid statement resource.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string containing an SQLSTATE value.
+  </p>
+ </div>
+
+
+ 
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.db2-conn-error.html" class="function" rel="rdfs-seeAlso">db2_conn_error()</a></li>
+    <li class="member"><a href="function.db2-conn-errormsg.html" class="function" rel="rdfs-seeAlso">db2_conn_errormsg()</a></li>
+    <li class="member"><a href="function.db2-stmt-errormsg.html" class="function" rel="rdfs-seeAlso">db2_stmt_errormsg()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-statistics.html">db2_statistics</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-stmt-errormsg.html">db2_stmt_errormsg</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

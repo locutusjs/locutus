@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns an array with the names of all modules compiled and loaded</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.get-included-files.html">get_included_files</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.get-magic-quotes-gpc.html">get_magic_quotes_gpc</a></div>
+ <div class="up"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.get-loaded-extensions" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">get_loaded_extensions</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">get_loaded_extensions</span> &mdash; <span class="dc-title">Returns an array with the names of all modules compiled and loaded</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>get_loaded_extensions</b></b></span>
+    ([ <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$zend_extensions</tt><span class="initializer">=FALSE</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This function returns the names of all the modules compiled and
+   loaded in the PHP interpreter.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">zend_extensions</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Return zend_extensions or not, defaults to <b><tt>FALSE</tt></b> (do not list
+       zend_extensions).
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an indexed array of all the modules names.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.2.4</td>
+       <td colspan="1" rowspan="1" align="left">
+        The optional <i><tt class="parameter">zend_extensions</tt></i>
+ parameter was added
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>get_loaded_extensions()</b> Example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">get_loaded_extensions</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+   [0] =&gt; xml
+   [1] =&gt; wddx
+   [2] =&gt; standard
+   [3] =&gt; session
+   [4] =&gt; posix
+   [5] =&gt; pgsql
+   [6] =&gt; pcre
+   [7] =&gt; gd
+   [8] =&gt; ftp
+   [9] =&gt; db
+   [10] =&gt; calendar
+   [11] =&gt; bcmath
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.get-extension-funcs.html" class="function" rel="rdfs-seeAlso">get_extension_funcs()</a></li>
+    <li class="member"><a href="function.extension-loaded.html" class="function" rel="rdfs-seeAlso">extension_loaded()</a></li>
+    <li class="member"><a href="function.dl.html" class="function" rel="rdfs-seeAlso">dl()</a></li>
+    <li class="member"><a href="function.phpinfo.html" class="function" rel="rdfs-seeAlso">phpinfo()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.get-included-files.html">get_included_files</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.get-magic-quotes-gpc.html">get_magic_quotes_gpc</a></div>
+ <div class="up"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

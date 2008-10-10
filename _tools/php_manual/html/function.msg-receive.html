@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Receive a message from a message queue</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.msg-queue-exists.html">msg_queue_exists</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.msg-remove-queue.html">msg_remove_queue</a></div>
+ <div class="up"><a href="ref.sem.html">Semaphore Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.msg-receive" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">msg_receive</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">msg_receive</span> &mdash; <span class="dc-title">Receive a message from a message queue</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>msg_receive</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$queue</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$desiredmsgtype</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter reference">&$msgtype</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$maxsize</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter reference">&$message</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$unserialize</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter reference">&$errorcode</tt></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>msg_receive()</b> will receive the first message from the
+   specified <i><tt class="parameter">queue</tt></i>
+ of the type specified by
+   <i><tt class="parameter">desiredmsgtype</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">queue</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">desiredmsgtype</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <i><tt class="parameter">desiredmsgtype</tt></i>
+ is 0, the message from the front
+       of the queue is returned. If <i><tt class="parameter">desiredmsgtype</tt></i>
+ is
+       greater than 0, then the first message of that type is returned.
+       If <i><tt class="parameter">desiredmsgtype</tt></i>
+ is less than 0, the first
+       message on the queue with the lowest type less than or equal to the
+       absolute value of <i><tt class="parameter">desiredmsgtype</tt></i>
+ will be read.
+       If no messages match the criteria, your script will wait until a suitable
+       message arrives on the queue.  You can prevent the script from blocking
+       by specifying <b><tt>MSG_IPC_NOWAIT</tt></b> in the
+       <i><tt class="parameter">flags</tt></i>
+ parameter.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">msgtype</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The type of the message that was received will be stored in this
+       parameter.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">maxsize</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The maximum size of message to be accepted is specified by the
+       <i><tt class="parameter">maxsize</tt></i>
+; if the message in the queue is larger
+       than this size the function will fail (unless you set
+       <i><tt class="parameter">flags</tt></i>
+ as described below).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">message</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The received message will be stored in <i><tt class="parameter">message</tt></i>
+,
+       unless there were errors receiving the message.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">unserialize</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">unserialize</tt></i>
+ defaults to <b><tt>TRUE</tt></b>; if it is set to
+       <b><tt>TRUE</tt></b>, the message is treated as though it was serialized using the
+       same mechanism as the session module. The message will be unserialized
+       and then returned to your script. This allows you to easily receive
+       arrays or complex object structures from other PHP scripts, or if you
+       are using the WDDX serializer, from any WDDX compatible source.
+      </p>
+      <p class="para">
+       If <i><tt class="parameter">unserialize</tt></i>
+ is <b><tt>FALSE</tt></b>, the message will be
+       returned as a binary-safe string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The optional <i><tt class="parameter">flags</tt></i>
+ allows you to pass flags to the
+       low-level msgrcv system call.  It defaults to 0, but you may specify one
+       or more of the following values (by adding or ORing them together).
+       <table border="5">
+        <caption><b>Flag values for msg_receive</b></caption>
+        <colgroup>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>MSG_IPC_NOWAIT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">If there are no messages of the
+            <i><tt class="parameter">desiredmsgtype</tt></i>
+, return immediately and do not
+            wait.  The function will fail and return an integer value
+            corresponding to <b><tt>MSG_ENOMSG</tt></b>.
+           </td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>MSG_EXCEPT</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">Using this flag in combination with a
+            <i><tt class="parameter">desiredmsgtype</tt></i>
+ greater than 0 will cause the
+            function to receive the first message that is not equal to
+            <i><tt class="parameter">desiredmsgtype</tt></i>
+.</td>
+          </tr>
+
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><b><tt>MSG_NOERROR</tt></b></td>
+           <td colspan="1" rowspan="1" align="left">
+            If the message is longer than <i><tt class="parameter">maxsize</tt></i>
+,
+            setting this flag will truncate the message to
+            <i><tt class="parameter">maxsize</tt></i>
+ and will not signal an error.
+           </td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">errorcode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the function fails, the optional <i><tt class="parameter">errorcode</tt></i>
+
+       will be set to the value of the system errno variable.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+  <p class="para">
+   Upon successful completion the message queue data structure is updated as
+   follows: <i>msg_lrpid</i> is set to the process-ID of the
+   calling process, <i>msg_qnum</i> is decremented by 1 and
+   <i>msg_rtime</i> is set to the current time.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.msg-remove-queue.html" class="function" rel="rdfs-seeAlso">msg_remove_queue()</a></li>
+    <li class="member"><a href="function.msg-send.html" class="function" rel="rdfs-seeAlso">msg_send()</a></li>
+    <li class="member"><a href="function.msg-stat-queue.html" class="function" rel="rdfs-seeAlso">msg_stat_queue()</a></li>
+    <li class="member"><a href="function.msg-set-queue.html" class="function" rel="rdfs-seeAlso">msg_set_queue()</a></li>
+   </ul>
+  </p>
+ </div>
+  
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.msg-queue-exists.html">msg_queue_exists</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.msg-remove-queue.html">msg_remove_queue</a></div>
+ <div class="up"><a href="ref.sem.html">Semaphore Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

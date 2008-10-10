@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the type of change made to an SDO_DataObject</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-changesummary-endlogging.html">SDO_DAS_ChangeSummary::endLogging</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-changesummary-getchangeddataobjects.html">SDO_DAS_ChangeSummary::getChangedDataObjects</a></div>
+ <div class="up"><a href="ref.sdo.html">SDO Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sdo-das-changesummary-getchangetype" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SDO_DAS_ChangeSummary::getChangeType</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SDO_DAS_ChangeSummary::getChangeType</span> &mdash; <span class="dc-title">
+   Get the type of change made to an SDO_DataObject
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>SDO_DAS_ChangeSummary::getChangeType</b></b></span>
+    ( <span class="methodparam"><span class="type"><span class="type SDO_DataObject">SDO_DataObject</span></span> <tt class="parameter">$dataObject</tt></span>
+   )</div>
+
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+
+  <p class="para">
+   Get the type of change which has been made to the supplied SDO_DataObject.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">dataObject</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       The SDO_DataObject which has been changed.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The type of change which has been made. The change type is expressed as an 
+   enumeration and will be one of the following four values:
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      SDO_DAS_ChangeSummary::NONE
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      SDO_DAS_ChangeSummary::MODIFICATION
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      SDO_DAS_ChangeSummary::ADDITION
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      SDO_DAS_ChangeSummary::DELETION
+     </p>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-changesummary-endlogging.html">SDO_DAS_ChangeSummary::endLogging</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-changesummary-getchangeddataobjects.html">SDO_DAS_ChangeSummary::getChangedDataObjects</a></div>
+ <div class="up"><a href="ref.sdo.html">SDO Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

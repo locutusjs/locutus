@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Changes server parameters and status at runtime</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.memcache.html">Memcache Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.mqseries.html">mqseries</a></div>
+ <div class="up"><a href="ref.memcache.html">Memcache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.memcache-setserverparams" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Memcache::setServerParams</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Memcache::setServerParams</span> &mdash; <span class="dc-title">Changes server parameters and status at runtime</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>Memcache::setServerParams</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$host</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$port</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timeout</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$retry_interval</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$status</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.callback" class="type callback">callback</a></span> <tt class="parameter">$failure_callback</tt></span>
+  ]]]]] )</div>
+
+  
+  <p class="para rdfs-comment">
+   <b>Memcache::setServerParams()</b> changes server parameters at runtime.
+   You can also use the <b>memcache_set_server_params()</b> function.
+  </p>
+  
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function has been added to Memcache version 2.1.0.
+   <br />
+  </p></blockquote>
+
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">host</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Point to the host where memcached is listening for connections.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">port</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Point to the port where memcached is listening for connections.
+       This parameter is optional and its default value is 11211.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">timeout</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Value in seconds which will be used for connecting to the daemon. Think
+       twice before changing the default value of 1 second - you can lose all
+       the advantages of caching if your connection is too slow.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">retry_interval</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Controls how often a failed server will be retried, the default value
+       is 15 seconds. Setting this parameter to -1 disables automatic retry. 
+       Neither this nor the <i><tt class="parameter">persistent</tt></i>
+ parameter has any 
+       effect when the extension is loaded dynamically via <a href="function.dl.html" class="function">dl()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">status</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Controls if the server should be flagged as online. Setting this parameter
+       to <b><tt>FALSE</tt></b> and <i><tt class="parameter">retry_interval</tt></i>
+ to -1 allows a failed 
+       server to be kept in the pool so as not to affect the key distribution 
+       algoritm. Requests for this server will then failover or fail immediatly 
+       depending on the <i><tt class="parameter">memcache.allow_failover</tt></i>
+ setting.
+       Default to <b><tt>TRUE</tt></b>, meaning the server should be considered online.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">failure_callback</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Allows the user to specify a callback function to run upon encountering an 
+       error. The callback is run before failover is attemped. The function takes 
+       two parameters, the hostname and port of the failed server.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>Memcache::setServerParams()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">_callback_memcache_failure</span><span style="color: #007700">(</span><span style="color: #0000BB">$host</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$port</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"memcache&nbsp;'$host:$port'&nbsp;failed"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;OO&nbsp;API&nbsp;*/<br /><br /></span><span style="color: #0000BB">$memcache&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Memcache</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Add&nbsp;the&nbsp;server&nbsp;in&nbsp;offline&nbsp;mode<br /></span><span style="color: #0000BB">$memcache</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addServer</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Bring&nbsp;the&nbsp;server&nbsp;back&nbsp;online<br /></span><span style="color: #0000BB">$memcache</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setServerParams</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">15</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'_callback_memcache_failure'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;procedural&nbsp;API&nbsp;*/<br /><br /></span><span style="color: #0000BB">$memcache_obj&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">memcache_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">memcache_set_server_params</span><span style="color: #007700">(</span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">15</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'_callback_memcache_failure'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.memcache-addserver.html" class="function" rel="rdfs-seeAlso">Memcache::addServer()</a></li>
+    <li class="member"><a href="function.memcache-getserverstatus.html" class="function" rel="rdfs-seeAlso">Memcache::getServerStatus()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.memcache.html">Memcache Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.mqseries.html">mqseries</a></div>
+ <div class="up"><a href="ref.memcache.html">Memcache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

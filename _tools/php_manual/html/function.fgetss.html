@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets line from file pointer and strip HTML tags</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fgets.html">fgets</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.file-exists.html">file_exists</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.fgetss" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fgetss</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">fgetss</span> &mdash; <span class="dc-title">Gets line from file pointer and strip HTML tags</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>fgetss</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$handle</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$length</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$allowable_tags</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Identical to <a href="function.fgets.html" class="function">fgets()</a>, except that
+   <b>fgetss()</b> attempts to strip any HTML and PHP tags from
+   the text it reads.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">handle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The file pointer must be valid, and must point to
+a file successfully opened by <a href="function.fopen.html" class="function">fopen()</a> or
+<a href="function.fsockopen.html" class="function">fsockopen()</a> (and not yet closed by
+<a href="function.fclose.html" class="function">fclose()</a>).</p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">length</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Length of the data to be retrieved.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">allowable_tags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       You can use the optional third parameter to specify tags which should
+       not be stripped.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string of up to <i><tt class="parameter">length</tt></i>
+ - 1 bytes read from
+   the file pointed to by <i><tt class="parameter">handle</tt></i>
+, with all HTML and PHP
+   code striped.
+  </p>
+  <p class="para">
+   If an error occurs, returns <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">length</tt></i>
+ parameter is optional
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">3.0.13 and 4.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">allowable_tags</tt></i>
+ parameter was added,
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">If PHP is not properly recognizing
+the line endings when reading files either on or created by a Macintosh
+computer, enabling the
+<a href="filesystem.configuration.html#ini.auto-detect-line-endings" class="link">auto_detect_line_endings</a>
+run-time configuration option may help resolve the problem.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.fgets.html" class="function" rel="rdfs-seeAlso">fgets()</a></li>
+    <li class="member"><a href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a></li>
+    <li class="member"><a href="function.popen.html" class="function" rel="rdfs-seeAlso">popen()</a></li>
+    <li class="member"><a href="function.fsockopen.html" class="function" rel="rdfs-seeAlso">fsockopen()</a></li>
+    <li class="member"><a href="function.strip-tags.html" class="function" rel="rdfs-seeAlso">strip_tags()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fgets.html">fgets</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.file-exists.html">file_exists</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

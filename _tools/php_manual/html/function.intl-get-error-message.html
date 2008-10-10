@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get description of the last error</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.intl-get-error-code.html">intl_get_error_code</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.intl-is-failure.html">intl_is_failure</a></div>
+ <div class="up"><a href="ref.intl.html">intl Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.intl-get-error-message" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">intl_get_error_message</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">intl_get_error_message</span> &mdash; <span class="dc-title">Get description of the last error</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span>
+    <span class="methodname"><b><b>intl_get_error_message</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Get error message from last internationalization function called.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Description of an error occurred in the last API function call.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>intl_get_error_message()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if(&nbsp;</span><span style="color: #0000BB">Collator</span><span style="color: #007700">::</span><span style="color: #0000BB">getAvailableLocales</span><span style="color: #007700">()&nbsp;===&nbsp;</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">show_error</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">intl_get_error_message</span><span style="color: #007700">()&nbsp;);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.intl-error-name.html" class="function" rel="rdfs-seeAlso">intl_error_name()</a></li>
+    <li class="member"><a href="function.intl-get-error-code.html" class="function" rel="rdfs-seeAlso">intl_get_error_code()</a></li>
+    <li class="member"><a href="function.intl-is-failure.html" class="function" rel="rdfs-seeAlso">intl_is_failure()</a></li>
+    <li class="member"><a href="collator.geterrormessage.html" class="function" rel="rdfs-seeAlso">collator_get_error_message()</a></li>
+    <li class="member"><a href="numberformatter.geterrormessage.html" class="function" rel="rdfs-seeAlso">numfmt_get_error_message()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.intl-get-error-code.html">intl_get_error_code</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.intl-is-failure.html">intl_is_failure</a></div>
+ <div class="up"><a href="ref.intl.html">intl Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

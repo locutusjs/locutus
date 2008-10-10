@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Handling of binary column data</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.odbc-autocommit.html">odbc_autocommit</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.odbc-close-all.html">odbc_close_all</a></div>
+ <div class="up"><a href="ref.uodbc.html">ODBC Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.odbc-binmode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">odbc_binmode</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">odbc_binmode</span> &mdash; <span class="dc-title">Handling of binary column data</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>odbc_binmode</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result_id</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Enables handling of binary column data. ODBC SQL types affected are
+   BINARY, VARBINARY, and LONGVARBINARY.
+  </p>
+  <p class="para">
+   When binary SQL data is converted to character C data, each byte
+   (8 bits) of source data is represented as two ASCII characters.
+   These characters are the ASCII character representation of the
+   number in its hexadecimal form. For example, a binary 00000001 is
+   converted to <i>&quot;01&quot;</i> and a binary 11111111 is
+   converted to <i>&quot;FF&quot;</i>.
+   <table border="5">
+    <caption><b>LONGVARBINARY handling</b></caption>
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">binmode</th>
+       <th colspan="1">longreadlen</th>
+       <th colspan="1">result</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ODBC_BINMODE_PASSTHRU</td>
+       <td colspan="1" rowspan="1" align="left">0</td>
+       <td colspan="1" rowspan="1" align="left">passthru</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ODBC_BINMODE_RETURN</td>
+       <td colspan="1" rowspan="1" align="left">0</td>
+       <td colspan="1" rowspan="1" align="left">passthru</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ODBC_BINMODE_CONVERT</td>
+       <td colspan="1" rowspan="1" align="left">0</td>
+       <td colspan="1" rowspan="1" align="left">passthru</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ODBC_BINMODE_PASSTHRU</td>
+       <td colspan="1" rowspan="1" align="left">0</td>
+       <td colspan="1" rowspan="1" align="left">passthru</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ODBC_BINMODE_PASSTHRU</td>
+       <td colspan="1" rowspan="1" align="left">&gt;0</td>
+       <td colspan="1" rowspan="1" align="left">passthru</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ODBC_BINMODE_RETURN</td>
+       <td colspan="1" rowspan="1" align="left">&gt;0</td>
+       <td colspan="1" rowspan="1" align="left">return as is</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">ODBC_BINMODE_CONVERT</td>
+       <td colspan="1" rowspan="1" align="left">&gt;0</td>
+       <td colspan="1" rowspan="1" align="left">return as char</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+  </p>
+  <p class="para">
+   If <a href="function.odbc-fetch-into.html" class="function">odbc_fetch_into()</a> is used, passthru means that an
+   empty string is returned for these columns.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The result identifier.
+      </p>
+      <p class="para">
+       If <i><tt class="parameter">result_id</tt></i>
+ is <i>0</i>, the
+       settings apply as default for new results.
+       <blockquote><p><b class="note">Note</b>: 
+        <span class="simpara">
+         Default for longreadlen is <i>4096</i> and
+         <i><tt class="parameter">mode</tt></i>
+ defaults to
+         <i>ODBC_BINMODE_RETURN</i>.  Handling of binary long
+         columns is also affected by <a href="function.odbc-longreadlen.html" class="function">odbc_longreadlen()</a>.
+        </span>
+       </p></blockquote>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Possible values for <i><tt class="parameter">mode</tt></i>
+ are:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>ODBC_BINMODE_PASSTHRU</tt></b>: Passthru BINARY data
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>ODBC_BINMODE_RETURN</tt></b>: Return as is
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>ODBC_BINMODE_CONVERT</tt></b>: Convert to char and return
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.odbc-autocommit.html">odbc_autocommit</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.odbc-close-all.html">odbc_close_all</a></div>
+ <div class="up"><a href="ref.uodbc.html">ODBC Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

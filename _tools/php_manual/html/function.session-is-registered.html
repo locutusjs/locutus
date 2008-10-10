@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Find out whether a global variable is registered in a session</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-id.html">session_id</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-module-name.html">session_module_name</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.session-is-registered" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">session_is_registered</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">session_is_registered</span> &mdash; <span class="dc-title">Find out whether a global variable is registered in a session</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>session_is_registered</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Finds out whether a global variable is registered in a session.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The variable name.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>session_is_registered()</b> returns <b><tt>TRUE</tt></b> if there is a
+   global variable with the name <i><tt class="parameter">name</tt></i>
+ registered in
+   the current session, <b><tt>FALSE</tt></b> otherwise.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    If <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var> (or <var class="varname">$HTTP_SESSION_VARS</var>
+    for PHP 4.0.6 or less) is used, use <a href="function.isset.html" class="function">isset()</a> to check a
+    variable is registered in <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var>.
+   <br />
+  </p></blockquote>
+  <div class="caution"><b class="caution">Caution</b>
+   <p class="para">
+    If you are using <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var>
+    (or <var class="varname">$HTTP_SESSION_VARS</var>), do not use
+    <a href="function.session-register.html" class="function">session_register()</a>,
+    <b>session_is_registered()</b> and
+    <a href="function.session-unregister.html" class="function">session_unregister()</a>.
+   </p>
+  </div>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-id.html">session_id</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-module-name.html">session_module_name</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Encrypt/decrypt data in OFB mode</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-module-self-test.html">mcrypt_module_self_test</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mdecrypt-generic.html">mdecrypt_generic</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mcrypt-ofb" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mcrypt_ofb</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">mcrypt_ofb</span> &mdash; <span class="dc-title">Encrypt/decrypt data in OFB mode</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mcrypt_ofb</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$cipher</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$key</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$iv</tt></span>
+   )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mcrypt_ofb</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$cipher</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$key</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$iv</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   The first prototype is when linked against libmcrypt 2.2.x, the
+   second when linked against libmcrypt 2.4.x or higher. The
+   <i><tt class="parameter">mode</tt></i>
+ should be either
+   <b><tt>MCRYPT_ENCRYPT</tt></b> or
+   <b><tt>MCRYPT_DECRYPT</tt></b>.
+  </p>
+  <p class="para">
+   This function should not be used anymore, see
+   <a href="function.mcrypt-generic.html" class="function">mcrypt_generic()</a> and
+   <a href="function.mdecrypt-generic.html" class="function">mdecrypt_generic()</a> for replacements.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-module-self-test.html">mcrypt_module_self_test</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mdecrypt-generic.html">mdecrypt_generic</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

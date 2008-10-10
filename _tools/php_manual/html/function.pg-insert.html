@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Insert array into table</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-host.html">pg_host</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-last-error.html">pg_last_error</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-insert" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_insert</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">pg_insert</span> &mdash; <span class="dc-title">
+   Insert array into table
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>pg_insert</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$table_name</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$assoc_array</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$options</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>pg_insert()</b> inserts the values of <i><tt class="parameter">assoc_array</tt></i>
+ 
+   into the table specified by <i><tt class="parameter">table_name</tt></i>
+.
+   If <i><tt class="parameter">options</tt></i>
+ is
+   specified, <a href="function.pg-convert.html" class="function">pg_convert()</a> is applied
+   to <i><tt class="parameter">assoc_array</tt></i>
+ with the specified options.
+  </p>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+
+<div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL database connection resource.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">table_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Name of the table into which to insert rows.  The table <i><tt class="parameter">table_name</tt></i>
+ must at least 
+       have as many columns as <i><tt class="parameter">assoc_array</tt></i>
+ has elements.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">assoc_array</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An <a href="language.types.array.html" class="type array">array</a> whose keys are field names in the table <i><tt class="parameter">table_name</tt></i>
+,
+       and whose values are the values of those fields that are to be inserted.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Any number of <b><tt>PGSQL_CONV_OPTS</tt></b>, 
+       <b><tt>PGSQL_DML_NO_CONV</tt></b>,
+       <b><tt>PGSQL_DML_EXEC</tt></b>,
+       <b><tt>PGSQL_DML_ASYNC</tt></b> or
+       <b><tt>PGSQL_DML_STRING</tt></b> combined. If <b><tt>PGSQL_DML_STRING</tt></b> is part of the
+       <i><tt class="parameter">options</tt></i>
+ then query string is returned.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.  Returns <a href="language.types.string.html" class="type string">string</a> if <b><tt>PGSQL_DML_STRING</tt></b> is passed
+   via <i><tt class="parameter">options</tt></i>
+.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pg_insert()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php&nbsp;<br />&nbsp;&nbsp;$dbconn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'dbname=foo'</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;This&nbsp;is&nbsp;safe,&nbsp;since&nbsp;$_POST&nbsp;is&nbsp;converted&nbsp;automatically<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_insert</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbconn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'post_log'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$_POST</span><span style="color: #007700">);<br />&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$res</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"POST&nbsp;data&nbsp;is&nbsp;successfully&nbsp;logged\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"User&nbsp;must&nbsp;have&nbsp;sent&nbsp;wrong&nbsp;inputs\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-convert.html" class="function" rel="rdfs-seeAlso">pg_convert()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-host.html">pg_host</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-last-error.html">pg_last_error</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

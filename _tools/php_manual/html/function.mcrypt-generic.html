@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>This function encrypts data</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-generic-init.html">mcrypt_generic_init</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mcrypt-get-block-size.html">mcrypt_get_block_size</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mcrypt-generic" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mcrypt_generic</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5)</p><p class="refpurpose"><span class="refname">mcrypt_generic</span> &mdash; <span class="dc-title">This function encrypts data</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mcrypt_generic</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$td</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function encrypts data. The data is padded with &quot;<i>\0</i>&quot;
+   to make sure the length of the data is n * blocksize. This
+   function returns the encrypted data. Note that the length
+   of the returned string can in fact be longer then the input,
+   due to the padding of the data.
+  </p>
+  <p class="para">
+   If you want to store the encrypted data in a database make sure to store
+   the entire string as returned by mcrypt_generic, or the string will not
+   entirely decrypt properly.  If your original string is 10 characters long
+   and the block size is 8 (use
+   <a href="function.mcrypt-enc-get-block-size.html" class="function">mcrypt_enc_get_block_size()</a> to determine the
+   blocksize), you would need at least 16 characters in your database field.
+   Note the string returned by <a href="function.mdecrypt-generic.html" class="function">mdecrypt_generic()</a> will be
+   16 characters as well...use rtrim($str, &quot;\0&quot;) to remove the padding.
+  </p>
+  <p class="para">
+   If you are for example storing the data in a MySQL database remember that
+   varchar fields automatically have trailing spaces removed during
+   insertion. As encrypted data can end in a space (ASCII 32), the data will
+   be damaged by this removal.  Store data in a tinyblob/tinytext (or
+   larger) field instead.
+  </p>
+  <p class="para">
+   The encryption handle should always be initialized with
+   <a href="function.mcrypt-generic-init.html" class="function">mcrypt_generic_init()</a> with a key and an IV before
+   calling this function. Where the encryption is done, you should free the
+   encryption buffers by calling <a href="function.mcrypt-generic-deinit.html" class="function">mcrypt_generic_deinit()</a>.
+   See <a href="function.mcrypt-module-open.html" class="function">mcrypt_module_open()</a> for an example.
+  </p>
+  <p class="para">
+   See also <a href="function.mdecrypt-generic.html" class="function">mdecrypt_generic()</a>,
+   <a href="function.mcrypt-generic-init.html" class="function">mcrypt_generic_init()</a>, and
+   <a href="function.mcrypt-generic-deinit.html" class="function">mcrypt_generic_deinit()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mcrypt-generic-init.html">mcrypt_generic_init</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mcrypt-get-block-size.html">mcrypt_get_block_size</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Mcrypt Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

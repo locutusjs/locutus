@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the contents of sqlca.sqlerrd[0..5] after a query</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ifx-get-char.html">ifx_get_char</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ifx-htmltbl-result.html">ifx_htmltbl_result</a></div>
+ <div class="up"><a href="ref.ifx.html">Informix Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ifx-getsqlca" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ifx_getsqlca</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">ifx_getsqlca</span> &mdash; <span class="dc-title">Get the contents of sqlca.sqlerrd[0..5] after a query</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>ifx_getsqlca</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result_id</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns a pseudo-row with sqlca.sqlerrd[0] ... sqlca.sqlerrd[5] after the
+   query associated with <i><tt class="parameter">result_id</tt></i>
+.
+  </p>
+  <p class="para">
+   For inserts, updates and deletes the values returned are those as set by
+   the server after executing the query. This gives access to the number of
+   affected rows and the serial insert value. For <i>SELECT</i>s
+   the values are those saved after the <i>PREPARE</i> statement.
+   This gives access to the *estimated* number of affected rows. The use of
+   this function saves the overhead of executing a <i>SELECT 
+   dbinfo(&#039;sqlca.sqlerrdx&#039;)</i> query, as it retrieves the values that
+   were saved by the ifx driver at the appropriate moment.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">result_id</tt></i>
+ is a valid result id returned by
+       <a href="function.ifx-query.html" class="function">ifx_query()</a> or
+       <a href="function.ifx-prepare.html" class="function">ifx_prepare()</a> (select type queries only!).
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative array with the following entries:
+   <i>sqlerrd0</i>, <i>sqlerrd1</i>,
+   <i>sqlerrd2</i>, <i>sqlerrd3</i>,
+   <i>sqlerrd4</i> and <i>sqlerrd5</i>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Retrieve Informix sqlca.sqlerrd[x] values</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;assume&nbsp;the&nbsp;first&nbsp;column&nbsp;of&nbsp;'sometable'&nbsp;is&nbsp;a&nbsp;serial&nbsp;*/<br /></span><span style="color: #0000BB">$qid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ifx_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"insert&nbsp;into&nbsp;sometable<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values&nbsp;(0,&nbsp;'2nd&nbsp;column',&nbsp;'another&nbsp;column')&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$connid</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$qid</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;...&nbsp;error&nbsp;...&nbsp;*/<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">$sqlca&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ifx_getsqlca</span><span style="color: #007700">(</span><span style="color: #0000BB">$qid</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$serial_value&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$sqlca</span><span style="color: #007700">[</span><span style="color: #DD0000">"sqlerrd1"</span><span style="color: #007700">];<br />echo&nbsp;</span><span style="color: #DD0000">"The&nbsp;serial&nbsp;value&nbsp;of&nbsp;the&nbsp;inserted&nbsp;row&nbsp;is&nbsp;:&nbsp;$serial_value&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ifx-get-char.html">ifx_get_char</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ifx-htmltbl-result.html">ifx_htmltbl_result</a></div>
+ <div class="up"><a href="ref.ifx.html">Informix Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Add a user to a security database (only for IB6 or later)</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-affected-rows.html">ibase_affected_rows</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ibase-add-user" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ibase_add_user</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">ibase_add_user</span> &mdash; <span class="dc-title">Add a user to a security database (only for IB6 or later)</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ibase_add_user</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$service_handle</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$user_name</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$password</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$first_name</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$middle_name</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$last_name</tt></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   PHP 4 uses <i><tt class="parameter">server</tt></i>
+,
+   <i><tt class="parameter">dba_user_name</tt></i>
+ and
+   <i><tt class="parameter">dba_user_password</tt></i>
+ instead of
+   <i><tt class="parameter">service_handle</tt></i>
+ parameter.
+  </p>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+currently not documented; only its argument list is available.
+</p></div>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ibase-modify-user.html" class="function" rel="rdfs-seeAlso">ibase_modify_user()</a></li>
+    <li class="member"><a href="function.ibase-delete-user.html" class="function" rel="rdfs-seeAlso">ibase_delete_user()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-affected-rows.html">ibase_affected_rows</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

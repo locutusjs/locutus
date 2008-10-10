@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Random number</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gmp-prob-prime.html">gmp_prob_prime</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gmp-scan0.html">gmp_scan0</a></div>
+ <div class="up"><a href="ref.gmp.html">GMP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.gmp-random" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">gmp_random</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p><p class="refpurpose"><span class="refname">gmp_random</span> &mdash; <span class="dc-title">Random number</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>gmp_random</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$limiter</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Generate a random number. The number will be between
+   zero and the number of bits per limb multiplied by
+   <i><tt class="parameter">limiter</tt></i>
+. If <i><tt class="parameter">limiter</tt></i>
+
+   is negative, negative numbers are generated.
+  </p>
+  <p class="para">
+   A limb is an internal GMP mechanism. The number of bits in a limb is
+   not static, and can vary from system to system. Generally, the number
+   of bits in a limb is either 16 or 32, but this is not guaranteed.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">limiter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The limiter.
+      </p>
+      <p class="para">It can be either a GMP number <a href="language.types.resource.html" class="type resource">resource</a>, or a 
+numeric string given that it is possible to convert the latter to a number.</p> 
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A random GMP number.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>gmp_random()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$rand1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gmp_random</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;random&nbsp;number&nbsp;from&nbsp;0&nbsp;to&nbsp;1&nbsp;*&nbsp;bits&nbsp;per&nbsp;limb<br /></span><span style="color: #0000BB">$rand2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gmp_random</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;random&nbsp;number&nbsp;from&nbsp;0&nbsp;to&nbsp;2&nbsp;*&nbsp;bits&nbsp;per&nbsp;limb<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$rand1</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">gmp_strval</span><span style="color: #007700">(</span><span style="color: #0000BB">$rand2</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+1915834968
+8642564075890328087
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gmp-prob-prime.html">gmp_prob_prime</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gmp-scan0.html">gmp_scan0</a></div>
+ <div class="up"><a href="ref.gmp.html">GMP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get symbolic name for a given error code</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.grapheme-substr.html">grapheme_substr</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.intl-get-error-code.html">intl_get_error_code</a></div>
+ <div class="up"><a href="ref.intl.html">intl Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.intl-error-name" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">intl_error_name</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">intl_error_name</span> &mdash; <span class="dc-title">Get symbolic name for a given error code</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span>
+    <span class="methodname"><b><b>intl_error_name</b></b></span>
+    ( <span class="methodparam"><span class="type">integer</span> <tt class="parameter">$error_code</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Return ICU error code name.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">error_code</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       ICU error code.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The returned string will be the same as the name of the error code
+   constant.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>intl_error_name()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$coll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">collator_create</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">'en_RU'&nbsp;</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$err_code&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">collator_get_error_code</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$coll&nbsp;</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">"Symbolic&nbsp;name&nbsp;for&nbsp;%d&nbsp;is&nbsp;%s\n."</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$err_code</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">intl_error_name</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$err_code&nbsp;</span><span style="color: #007700">)&nbsp;);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Symbolic name for -128 is U_USING_FALLBACK_WARNING.
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.intl-is-failure.html" class="function" rel="rdfs-seeAlso">intl_is_failure()</a></li>
+    <li class="member"><a href="function.intl-get-error-code.html" class="function" rel="rdfs-seeAlso">intl_get_error_code()</a></li>
+    <li class="member"><a href="function.intl-get-error-message.html" class="function" rel="rdfs-seeAlso">intl_get_error_message()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.grapheme-substr.html">grapheme_substr</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.intl-get-error-code.html">intl_get_error_code</a></div>
+ <div class="up"><a href="ref.intl.html">intl Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

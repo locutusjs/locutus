@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>SoapServer constructor</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.soap-soapserver-addfunction.html">SoapServer->addFunction</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.soap-soapserver-fault.html">SoapServer->fault</a></div>
+ <div class="up"><a href="ref.soap.html">SOAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.soap-soapserver-construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SoapServer-&gt;__construct</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SoapServer-&gt;__construct</span> &mdash; <span class="dc-title">
+   SoapServer constructor
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SoapServer</b></div>
+   <div class="constructorsynopsis dc-description">
+     <span class="methodname"><b><b>__construct</b></b></span>
+     ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$wsdl</tt></span>
+    [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$options</tt></span>
+   ] )</div>
+
+  </div>
+  <p class="para">
+   This constructor allows the creation of <b class="classname">SoapServer</b>
+   objects in WSDL or non-WSDL mode.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">wsdl</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If you want the WSDL mode, you must set this to the URI of a WSDL file.
+       In the other case, you must set this to <b><tt>NULL</tt></b> and set the <i>uri</i>
+       option.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Allow setting a default SOAP version (<i>soap_version</i>),
+       internal character encoding (<i>encoding</i>),
+       and actor URI (<i>actor</i>).
+      </p>
+      <p class="para">
+       The <i>classmap</i> option can be used to map some WSDL 
+       types to PHP classes. This option must be an array with WSDL types 
+       as keys and names of PHP classes as values.
+      </p>
+      <p class="para">
+       The <i>typemap</i> option is an array of type mappings.
+       Type mapping is an array with keys <i>type_name</i>,
+       <i>type_ns</i> (namespace URI), <i>from_xml</i>
+       (callback accepting one string parameter) and <i>to_xml</i>
+       (callback accepting one object parameter).
+      </p>
+      <p class="para">
+       Other options are <i>features</i> and
+       <i>cache_wsdl</i>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Some examples</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$server&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SoapServer</span><span style="color: #007700">(</span><span style="color: #DD0000">"some.wsdl"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$server&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SoapServer</span><span style="color: #007700">(</span><span style="color: #DD0000">"some.wsdl"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'soap_version'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">SOAP_1_2</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">$server&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SoapServer</span><span style="color: #007700">(</span><span style="color: #DD0000">"some.wsdl"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'actor'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"http://example.org/ts-tests/C"</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">$server&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SoapServer</span><span style="color: #007700">(</span><span style="color: #DD0000">"some.wsdl"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'encoding'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'ISO-8859-1'</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">$server&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SoapServer</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'uri'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"http://test-uri/"</span><span style="color: #007700">));<br /><br />class&nbsp;</span><span style="color: #0000BB">MyBook&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;</span><span style="color: #0000BB">$title</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;</span><span style="color: #0000BB">$author</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$server&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SoapServer</span><span style="color: #007700">(</span><span style="color: #DD0000">"books.wsdl"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'classmap'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">'book'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"MyBook"</span><span style="color: #007700">)));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.soap-soapserver-addfunction.html">SoapServer->addFunction</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.soap-soapserver-fault.html">SoapServer->fault</a></div>
+ <div class="up"><a href="ref.soap.html">SOAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Close FrontBase connection</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fbsql-clob-size.html">fbsql_clob_size</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fbsql-commit.html">fbsql_commit</a></div>
+ <div class="up"><a href="ref.fbsql.html">FrontBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.fbsql-close" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fbsql_close</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">fbsql_close</span> &mdash; <span class="dc-title">Close FrontBase connection</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>fbsql_close</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Closes the connection to the FrontBase server that&#039;s associated with the
+   specified link identifier.
+  </p>
+  <p class="para">
+   Using <b>fbsql_close()</b> isn&#039;t usually necessary,
+   as non-persistent open links are automatically closed at the end
+   of the script&#039;s execution.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+link_identifier</tt></i>
+</span>
+<dd>
+<p class="para">A FrontBase link identifier
+returned by <a href="function.fbsql-connect.html" class="function">fbsql_connect()</a> or 
+<a href="function.fbsql-pconnect.html" class="function">fbsql_pconnect()</a>.</p><p class="para">If optional and not specified,
+the function will try to find an open link to the FrontBase server and if no
+such link is found it will try to create one as if 
+<a href="function.fbsql-connect.html" class="function">fbsql_connect()</a> was called with no arguments</p>
+</dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>fbsql_close()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fbsql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"_SYSTEM"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"secret"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Could&nbsp;not&nbsp;connect"</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"Connected&nbsp;successfully"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">fbsql_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.fbsql-connect.html" class="function" rel="rdfs-seeAlso">fbsql_connect()</a></li>
+    <li class="member"><a href="function.fbsql-pconnect.html" class="function" rel="rdfs-seeAlso">fbsql_pconnect()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fbsql-clob-size.html">fbsql_clob_size</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fbsql-commit.html">fbsql_commit</a></div>
+ <div class="up"><a href="ref.fbsql.html">FrontBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

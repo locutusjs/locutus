@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Convert character encoding as output buffer handler</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.iconv.html">iconv Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.intl.html">intl</a></div>
+ <div class="up"><a href="ref.iconv.html">iconv Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ob-iconv-handler" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ob_iconv_handler</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5, PHP 5)</p><p class="refpurpose"><span class="refname">ob_iconv_handler</span> &mdash; <span class="dc-title">Convert character encoding as output buffer handler</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>ob_iconv_handler</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$contents</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$status</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Converts the string encoded in <i><tt class="parameter">internal_encoding</tt></i>
+ to
+   <i><tt class="parameter">output_encoding</tt></i>
+.
+  </p>
+  <p class="para">
+   <i><tt class="parameter">internal_encoding</tt></i>
+ and 
+   <i><tt class="parameter">output_encoding</tt></i>
+ should be defined in the <var class="filename">php.ini</var>
+   file or in <a href="function.iconv-set-encoding.html" class="function">iconv_set_encoding()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   See <a href="function.ob-start.html" class="function">ob_start()</a> for information about this handler
+   parameters.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   See <a href="function.ob-start.html" class="function">ob_start()</a> for information about this handler
+   return values.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ob_iconv_handler()</b> example:</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />iconv_set_encoding</span><span style="color: #007700">(</span><span style="color: #DD0000">"internal_encoding"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"UTF-8"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">iconv_set_encoding</span><span style="color: #007700">(</span><span style="color: #DD0000">"output_encoding"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"ISO-8859-1"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ob_start</span><span style="color: #007700">(</span><span style="color: #DD0000">"ob_iconv_handler"</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;start&nbsp;output&nbsp;buffering<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.iconv-get-encoding.html" class="function" rel="rdfs-seeAlso">iconv_get_encoding()</a></li>
+    <li class="member"><a href="function.iconv-set-encoding.html" class="function" rel="rdfs-seeAlso">iconv_set_encoding()</a></li>
+    <li class="member"><a href="ref.outcontrol.html" class="link">output-control functions</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.iconv.html">iconv Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.intl.html">intl</a></div>
+ <div class="up"><a href="ref.iconv.html">iconv Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

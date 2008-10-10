@@ -1,0 +1,315 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Split string by a regular expression</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.pcre.html">PCRE Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.regex.html">POSIX Regex</a></div>
+ <div class="up"><a href="ref.pcre.html">PCRE Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.preg-split" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">preg_split</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">preg_split</span> &mdash; <span class="dc-title">Split string by a regular expression</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>preg_split</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pattern</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$subject</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$limit</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Split the given string by a regular expression.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pattern</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The pattern to search for, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">subject</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">limit</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If specified, then only substrings up to <i><tt class="parameter">limit</tt></i>
+
+       are returned, and if <i><tt class="parameter">limit</tt></i>
+ is -1, it actually
+       means &quot;no limit&quot;, which is useful for specifying the
+       <i><tt class="parameter">flags</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">flags</tt></i>
+ can be any combination of the following
+       flags (combined with bitwise | operator):
+       <dl>
+
+        <dt>
+
+         <span class="term"><b><tt>PREG_SPLIT_NO_EMPTY</tt></b></span>
+
+         <dd>
+
+          <span class="simpara">
+          If this flag is set, only non-empty pieces will be returned by
+          <b>preg_split()</b>.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><b><tt>PREG_SPLIT_DELIM_CAPTURE</tt></b></span>
+
+         <dd>
+
+          <span class="simpara">
+          If this flag is set, parenthesized expression in the delimiter pattern
+          will be captured and returned as well.
+          </span>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><b><tt>PREG_SPLIT_OFFSET_CAPTURE</tt></b></span>
+
+         <dd>
+
+          <p class="para">
+           If this flag is set, for every occurring match the appendant string
+           offset will also be returned. Note that this changes the return
+           value in an array where every element is an array consisting of the
+           matched string at offset <i>0</i> and its string offset
+           into <i><tt class="parameter">subject</tt></i>
+ at offset <i>1</i>.
+          </p>
+         </dd>
+
+        </dt>
+
+       </dl>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array containing substrings of <i><tt class="parameter">subject</tt></i>
+
+   split along boundaries matched by <i><tt class="parameter">pattern</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <b><tt>PREG_SPLIT_OFFSET_CAPTURE</tt></b> was added
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.5</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <b><tt>PREG_SPLIT_DELIM_CAPTURE</tt></b> was added
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">flags</tt></i>
+ parameter was added
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>preg_split()</b> example : Get the parts of a search string</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;split&nbsp;the&nbsp;phrase&nbsp;by&nbsp;any&nbsp;number&nbsp;of&nbsp;commas&nbsp;or&nbsp;space&nbsp;characters,<br />//&nbsp;which&nbsp;include&nbsp;"&nbsp;",&nbsp;\r,&nbsp;\t,&nbsp;\n&nbsp;and&nbsp;\f<br /></span><span style="color: #0000BB">$keywords&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">preg_split</span><span style="color: #007700">(</span><span style="color: #DD0000">"/[\s,]+/"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"hypertext&nbsp;language,&nbsp;programming"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Splitting a string into component characters</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'string'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$chars&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">preg_split</span><span style="color: #007700">(</span><span style="color: #DD0000">'//'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PREG_SPLIT_NO_EMPTY</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$chars</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #3 Splitting a string into matches and their offsets</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'hypertext&nbsp;language&nbsp;programming'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$chars&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">preg_split</span><span style="color: #007700">(</span><span style="color: #DD0000">'/&nbsp;/'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PREG_SPLIT_OFFSET_CAPTURE</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$chars</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; Array
+        (
+            [0] =&gt; hypertext
+            [1] =&gt; 0
+        )
+
+    [1] =&gt; Array
+        (
+            [0] =&gt; language
+            [1] =&gt; 10
+        )
+
+    [2] =&gt; Array
+        (
+            [0] =&gt; programming
+            [1] =&gt; 19
+        )
+
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="tip"><b class="tip">Tip</b>
+   <p class="para">
+    If you don&#039;t need the power of regular expressions, you can choose
+    faster (albeit simpler) alternatives like <a href="function.explode.html" class="function">explode()</a>
+    or <a href="function.str-split.html" class="function">str_split()</a>.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.spliti.html" class="function" rel="rdfs-seeAlso">spliti()</a></li>
+    <li class="member"><a href="function.split.html" class="function" rel="rdfs-seeAlso">split()</a></li>
+    <li class="member"><a href="function.implode.html" class="function" rel="rdfs-seeAlso">implode()</a></li>
+    <li class="member"><a href="function.preg-match.html" class="function" rel="rdfs-seeAlso">preg_match()</a></li>
+    <li class="member"><a href="function.preg-match-all.html" class="function" rel="rdfs-seeAlso">preg_match_all()</a></li>
+    <li class="member"><a href="function.preg-replace.html" class="function" rel="rdfs-seeAlso">preg_replace()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.pcre.html">PCRE Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.regex.html">POSIX Regex</a></div>
+ <div class="up"><a href="ref.pcre.html">PCRE Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

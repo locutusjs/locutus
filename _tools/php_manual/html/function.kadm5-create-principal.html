@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Creates a kerberos principal with the given parameters</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.kadm5-chpass-principal.html">kadm5_chpass_principal</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.kadm5-delete-principal.html">kadm5_delete_principal</a></div>
+ <div class="up"><a href="ref.kadm5.html">KADM5 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.kadm5-create-principal" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">kadm5_create_principal</h1>
+  <p class="verinfo">(PECL kadm5:0.2.3)</p><p class="refpurpose"><span class="refname">kadm5_create_principal</span> &mdash; <span class="dc-title">Creates a kerberos principal with the given parameters</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>kadm5_create_principal</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$handle</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$principal</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$password</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$options</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Creates a <i><tt class="parameter">principal</tt></i>
+ with the given
+   <i><tt class="parameter">password</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">handle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A KADM5 handle.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">principal</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The principal.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">password</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <i><tt class="parameter">password</tt></i>
+ is omitted or is <b><tt>NULL</tt></b>, a random
+       key will be generated.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       It is possible to specify several optional parameters within the
+       array <i><tt class="parameter">options</tt></i>
+. Allowed are the following options:
+       <b><tt>KADM5_PRINC_EXPIRE_TIME</tt></b>,
+       <b><tt>KADM5_PW_EXPIRATION</tt></b>,
+       <b><tt>KADM5_ATTRIBUTES</tt></b>,
+       <b><tt>KADM5_MAX_LIFE</tt></b>,
+       <b><tt>KADM5_KVNO</tt></b>,
+       <b><tt>KADM5_POLICY</tt></b>,
+       <b><tt>KADM5_CLEARPOLICY</tt></b>,
+       <b><tt>KADM5_MAX_RLIFE</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Example of principal&#039;s creation</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$handle&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">kadm5_init_with_password</span><span style="color: #007700">(</span><span style="color: #DD0000">"afs-1"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"GONICUS.LOCAL"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"admin/admin"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$attributes&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">KRB5_KDB_REQUIRES_PRE_AUTH&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">KRB5_KDB_DISALLOW_PROXIABLE</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$options&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">KADM5_PRINC_EXPIRE_TIME&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">KADM5_POLICY&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"default"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">KADM5_ATTRIBUTES&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$attributes</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">kadm5_create_principal</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"burbach@GONICUS.LOCAL"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">kadm5_destroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.kadm5-modify-principal.html" class="function" rel="rdfs-seeAlso">kadm5_modify_principal()</a></li>
+    <li class="member"><a href="function.kadm5-delete-principal.html" class="function" rel="rdfs-seeAlso">kadm5_delete_principal()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.kadm5-chpass-principal.html">kadm5_chpass_principal</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.kadm5-delete-principal.html">kadm5_delete_principal</a></div>
+ <div class="up"><a href="ref.kadm5.html">KADM5 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

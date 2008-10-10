@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Cancel a subscription to a specified topic.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.samconnection-subscribe.html">SAMConnection->subscribe</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sammessage-body.html">SAMMessage->body</a></div>
+ <div class="up"><a href="ref.sam.html">SAM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.samconnection-unsubscribe" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SAMConnection-&gt;unsubscribe</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SAMConnection-&gt;unsubscribe</span> &mdash; <span class="dc-title">
+   Cancel a subscription to a specified topic.
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SAMConnection</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><b>unsubscribe</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$subscriptionId</tt></span>
+    [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$targetTopic</tt></span>
+   ] )</div>
+
+  </div>
+  <p class="para">
+   The &quot;unsubscribe&quot; method is used to delete an existing subscription to a
+   specified topic.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">subscriptionId</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The identifier of an existing subscription as returned by a call to
+       the subscribe method.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This method returns <b><tt>FALSE</tt></b> if an error occurs.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Delete a subscription</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unsubscribe</span><span style="color: #007700">(</span><span style="color: #0000BB">$subid</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;The&nbsp;unsubscribe&nbsp;failed!<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"Unsubscribe&nbsp;failed&nbsp;($conn-&gt;errno)&nbsp;$conn-&gt;error"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.samconnection-subscribe.html" class="xref">SAMConnection->subscribe</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.samconnection-subscribe.html">SAMConnection->subscribe</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sammessage-body.html">SAMMessage->body</a></div>
+ <div class="up"><a href="ref.sam.html">SAM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

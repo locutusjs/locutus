@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set the value of a field</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fdf-set-target-frame.html">fdf_set_target_frame</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fdf-set-version.html">fdf_set_version</a></div>
+ <div class="up"><a href="ref.fdf.html">FDF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.fdf-set-value" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fdf_set_value</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">fdf_set_value</span> &mdash; <span class="dc-title">Set the value of a field</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>fdf_set_value</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$fdf_document</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$fieldname</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$value</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$isName</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Sets the <i><tt class="parameter">value</tt></i>
+ for the given field.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fdf_document</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The FDF document handle, returned by <a href="function.fdf-create.html" class="function">fdf_create()</a>,
+       <a href="function.fdf-open.html" class="function">fdf_open()</a> or <a href="function.fdf-open-string.html" class="function">fdf_open_string()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fieldname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Name of the FDF field, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">value</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       This parameter will be stored as a string unless it is an array. In
+       this case all array elements will be stored as a value array.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">isName</tt></i>
+</span>
+
+     <dd>
+
+      <blockquote><p><b class="note">Note</b>: 
+       
+        In older versions of the FDF toolkit last parameter determined if the
+        field value was to be converted to a PDF Name (= 1) or set to a PDF
+        String (= 0).
+       <br />
+       
+        The value is no longer used in the current toolkit version 5.0. For
+        compatibility reasons it is still supported as an optional parameter
+        beginning with PHP 4.3, but ignored internally.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        Support for arrays in the <i><tt class="parameter">value</tt></i>
+ parameter was
+        added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.fdf-get-value.html" class="function" rel="rdfs-seeAlso">fdf_get_value()</a></li>
+    <li class="member"><a href="function.fdf-remove-item.html" class="function" rel="rdfs-seeAlso">fdf_remove_item()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fdf-set-target-frame.html">fdf_set_target_frame</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fdf-set-version.html">fdf_set_version</a></div>
+ <div class="up"><a href="ref.fdf.html">FDF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

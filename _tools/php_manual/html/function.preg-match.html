@@ -1,0 +1,370 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Perform a regular expression match</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.preg-match-all.html">preg_match_all</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.preg-quote.html">preg_quote</a></div>
+ <div class="up"><a href="ref.pcre.html">PCRE Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.preg-match" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">preg_match</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">preg_match</span> &mdash; <span class="dc-title">Perform a regular expression match</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>preg_match</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pattern</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$subject</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$matches</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$offset</tt></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   Searches <i><tt class="parameter">subject</tt></i>
+ for a match to the regular
+   expression given in <i><tt class="parameter">pattern</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pattern</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The pattern to search for, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">subject</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">matches</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <i><tt class="parameter">matches</tt></i>
+ is provided, then it is filled with
+       the results of search. <var class="varname">$matches[0]</var> will contain the
+       text that matched the full pattern, <var class="varname">$matches[1]</var>
+       will have the text that matched the first captured parenthesized
+       subpattern, and so on.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">flags</tt></i>
+ can be the following flag:
+       <dl>
+
+        <dt>
+
+         <span class="term"><b><tt>PREG_OFFSET_CAPTURE</tt></b></span>
+
+         <dd>
+
+          <span class="simpara">
+           If this flag is passed, for every occurring match the appendant string
+           offset will also be returned. Note that this changes the return value
+           in an array where every element is an array consisting of the matched
+           string at index <i>0</i> and its string offset into
+           <i><tt class="parameter">subject</tt></i>
+ at index <i>1</i>.
+          </span>
+         </dd>
+
+        </dt>
+
+       </dl>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">offset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Normally, the search starts from the beginning of the subject string.
+       The optional parameter <i><tt class="parameter">offset</tt></i>
+ can be used to
+       specify the alternate place from which to start the search (in bytes).
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        Using <i><tt class="parameter">offset</tt></i>
+ is not equivalent to passing 
+        <i>substr($subject, $offset)</i> to
+        <b>preg_match()</b> in place of the subject string,
+        because <i><tt class="parameter">pattern</tt></i>
+ can contain assertions such as
+        <em class="emphasis">^</em>, <em class="emphasis">$</em> or
+        <em class="emphasis">(?&lt;=x)</em>. Compare:
+        <div class="informalexample">
+         <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$subject&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"abcdef"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$pattern&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'/^def/'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #0000BB">$pattern</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$subject</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$matches</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PREG_OFFSET_CAPTURE</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$matches</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+         </div>
+
+         <p class="para">The above example will output:</p>
+         <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+)
+</pre></div>
+         </pre></div>
+         <p class="para">
+          while this example
+         </p>
+         <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$subject&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"abcdef"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$pattern&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'/^def/'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #0000BB">$pattern</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$subject</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">$matches</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PREG_OFFSET_CAPTURE</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$matches</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+         </div>
+
+         <p class="para">
+          will produce
+         </p>
+         <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; Array
+        (
+            [0] =&gt; def
+            [1] =&gt; 0
+        )
+
+)
+</pre></div>
+         </pre></div>
+        </div>
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>preg_match()</b> returns the number of times
+   <i><tt class="parameter">pattern</tt></i>
+ matches. That will be either 0 times
+   (no match) or 1 time because <b>preg_match()</b> will stop
+   searching after the first match. <a href="function.preg-match-all.html" class="function">preg_match_all()</a>
+   on the contrary will continue until it reaches the end of
+   <i><tt class="parameter">subject</tt></i>
+.
+   <b>preg_match()</b> returns <b><tt>FALSE</tt></b> if an error occurred.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.3</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">offset</tt></i>
+ parameter was added
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <b><tt>PREG_OFFSET_CAPTURE</tt></b> flag was added
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">flags</tt></i>
+ parameter was added
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Find the string of text &quot;php&quot;</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;The&nbsp;"i"&nbsp;after&nbsp;the&nbsp;pattern&nbsp;delimiter&nbsp;indicates&nbsp;a&nbsp;case-insensitive&nbsp;search<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #DD0000">"/php/i"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"PHP&nbsp;is&nbsp;the&nbsp;web&nbsp;scripting&nbsp;language&nbsp;of&nbsp;choice."</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"A&nbsp;match&nbsp;was&nbsp;found."</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"A&nbsp;match&nbsp;was&nbsp;not&nbsp;found."</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Find the word &quot;web&quot;</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;The&nbsp;\b&nbsp;in&nbsp;the&nbsp;pattern&nbsp;indicates&nbsp;a&nbsp;word&nbsp;boundary,&nbsp;so&nbsp;only&nbsp;the&nbsp;distinct<br />&nbsp;*&nbsp;word&nbsp;"web"&nbsp;is&nbsp;matched,&nbsp;and&nbsp;not&nbsp;a&nbsp;word&nbsp;partial&nbsp;like&nbsp;"webbing"&nbsp;or&nbsp;"cobweb"&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #DD0000">"/\bweb\b/i"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"PHP&nbsp;is&nbsp;the&nbsp;web&nbsp;scripting&nbsp;language&nbsp;of&nbsp;choice."</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"A&nbsp;match&nbsp;was&nbsp;found."</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"A&nbsp;match&nbsp;was&nbsp;not&nbsp;found."</span><span style="color: #007700">;<br />}<br /><br />if&nbsp;(</span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #DD0000">"/\bweb\b/i"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"PHP&nbsp;is&nbsp;the&nbsp;website&nbsp;scripting&nbsp;language&nbsp;of&nbsp;choice."</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"A&nbsp;match&nbsp;was&nbsp;found."</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"A&nbsp;match&nbsp;was&nbsp;not&nbsp;found."</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #3 Getting the domain name out of a URL</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;get&nbsp;host&nbsp;name&nbsp;from&nbsp;URL<br /></span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #DD0000">'@^(?:http://)?([^/]+)@i'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"http://www.php.net/index.html"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$matches</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$host&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$matches</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br /><br /></span><span style="color: #FF8000">//&nbsp;get&nbsp;last&nbsp;two&nbsp;segments&nbsp;of&nbsp;host&nbsp;name<br /></span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #DD0000">'/[^.]+\.[^.]+$/'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$host</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$matches</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"domain&nbsp;name&nbsp;is:&nbsp;{$matches[0]}\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+domain name is: php.net
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #4 Using named subpattern</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'foobar:&nbsp;2008'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #DD0000">'/(?&lt;name&gt;\w+):&nbsp;(?&lt;digit&gt;\d+)/'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$matches</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$matches</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; foobar: 2008
+    [name] =&gt; foobar
+    [1] =&gt; foobar
+    [digit] =&gt; 2008
+    [2] =&gt; 2008
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="tip"><b class="tip">Tip</b>
+   <p class="para">
+    Do not use <b>preg_match()</b> if you only want to check if
+    one string is contained in another string. Use
+    <a href="function.strpos.html" class="function">strpos()</a> or <a href="function.strstr.html" class="function">strstr()</a> instead as
+    they will be faster.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.preg-match-all.html" class="function" rel="rdfs-seeAlso">preg_match_all()</a></li>
+    <li class="member"><a href="function.preg-replace.html" class="function" rel="rdfs-seeAlso">preg_replace()</a></li>
+    <li class="member"><a href="function.preg-split.html" class="function" rel="rdfs-seeAlso">preg_split()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.preg-match-all.html">preg_match_all</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.preg-quote.html">preg_quote</a></div>
+ <div class="up"><a href="ref.pcre.html">PCRE Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

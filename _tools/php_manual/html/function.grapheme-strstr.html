@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns part of haystack string from the first occurrence of needle to the end of haystack.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.grapheme-strrpos.html">grapheme_strrpos</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.grapheme-substr.html">grapheme_substr</a></div>
+ <div class="up"><a href="ref.intl.html">intl Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.grapheme-strstr" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">grapheme_strstr</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">grapheme_strstr</span> &mdash; <span class="dc-title">Returns part of haystack string from the first occurrence of needle to the end of haystack.</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedural style</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>grapheme_strstr</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$haystack</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$needle</tt></span>
+   [, <span class="methodparam"><span class="type">boolean</span> <tt class="parameter">$before_needle</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns part of haystack string from the first occurrence of needle to the end of haystack.
+  </p> 
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">haystack</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The input string. Must be valid UTF-8. 
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">needle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The string to look for. Must be valid UTF-8. 
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">before_needle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If TRUE (the default is FALSE), grapheme_strstr() returns the part of the	  
+       haystack before the first occurence of the needle.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+   
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the portion of string, or FALSE if needle is not found.   
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 <b>grapheme_strstr()</b> example</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$char_a_ring_nfd&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"a\xCC\x8A"</span><span style="color: #007700">;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;'LATIN&nbsp;SMALL&nbsp;LETTER&nbsp;A&nbsp;WITH&nbsp;RING&nbsp;ABOVE'&nbsp;(U+00E5)&nbsp;normalization&nbsp;form&nbsp;"D"<br /></span><span style="color: #0000BB">$char_o_diaeresis_nfd&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"o\xCC\x88"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;'LATIN&nbsp;SMALL&nbsp;LETTER&nbsp;O&nbsp;WITH&nbsp;DIAERESIS'&nbsp;(U+00F6)&nbsp;normalization&nbsp;form&nbsp;"D"<br /><br /></span><span style="color: #007700">print&nbsp;</span><span style="color: #0000BB">urlencode</span><span style="color: #007700">(</span><span style="color: #0000BB">grapheme_stristr</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$char_a_ring_nfd&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$char_o_diaeresis_nfd&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$char_a_ring_nfd</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$char_o_diaeresis_nfd</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">The above example will output:</p>
+  <div class="example-contents"><pre>
+<div class="cdata"><pre>
+o%CC%88a%CC%8A
+</pre></div>
+  </pre></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.grapheme-stristr.html" class="function" rel="rdfs-seeAlso">grapheme_stristr()</a></li>
+    <li class="member"><a href="function.grapheme-stripos.html" class="function" rel="rdfs-seeAlso">grapheme_stripos()</a></li>
+    <li class="member"><a href="function.grapheme-strpos.html" class="function" rel="rdfs-seeAlso">grapheme_strpos()</a></li>
+    <li class="member"><a href="function.grapheme-strripos.html" class="function" rel="rdfs-seeAlso">grapheme_strripos()</a></li>
+    <li class="member"><a href="function.grapheme-strrpos.html" class="function" rel="rdfs-seeAlso">grapheme_strrpos()</a></li>
+    <li class="member">
+     <a href="http://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries" class="link external">&raquo; 
+      Unicode Text Segmentation: Grapheme Cluster Boundaries
+     </a>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.grapheme-strrpos.html">grapheme_strrpos</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.grapheme-substr.html">grapheme_substr</a></div>
+ <div class="up"><a href="ref.intl.html">intl Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

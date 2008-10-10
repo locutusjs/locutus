@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Generates XML for a method request</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xmlrpc-decode.html">xmlrpc_decode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xmlrpc-encode.html">xmlrpc_encode</a></div>
+ <div class="up"><a href="ref.xmlrpc.html">XML-RPC Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.xmlrpc-encode-request" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xmlrpc_encode_request</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">xmlrpc_encode_request</span> &mdash; <span class="dc-title">Generates XML for a method request</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>xmlrpc_encode_request</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$method</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$params</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$output_options</tt></span>
+  ] )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">method</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Name of the method to call.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">params</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Method parameters compatible with method signature.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">output_options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Array specifying output options may contain (default values are
+       emphasised):
+       <ul class="itemizedlist">
+        <li class="listitem"><p class="para">output_type: php, <em class="emphasis">xml</em></p></li>
+        <li class="listitem"><p class="para">verbosity: no_white_space, newlines_only, <em class="emphasis">pretty</em></p></li>
+        <li class="listitem"><p class="para">escaping: cdata, <em class="emphasis">non-ascii, non-print, markup</em>
+          (may be a string with one value or an array with multiple values)</p></li>
+        <li class="listitem"><p class="para">version: simple, <em class="emphasis">xmlrpc</em>, soap 1.1, auto</p></li>
+        <li class="listitem"><p class="para">encoding: <em class="emphasis">iso-8859-1</em>, other character set supported by iconv</p></li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string containing the XML representation of the request.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 XMLRPC client functions example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$request&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">xmlrpc_encode_request</span><span style="color: #007700">(</span><span style="color: #DD0000">"method"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$context&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_context_create</span><span style="color: #007700">(array(</span><span style="color: #DD0000">'http'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'method'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"POST"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'header'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"Content-Type:&nbsp;text/xml"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'content'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$request<br /></span><span style="color: #007700">)));<br /></span><span style="color: #0000BB">$file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">"http://www.example.com/xmlrpc"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$context</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">xmlrpc_decode</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">xmlrpc_is_fault</span><span style="color: #007700">(</span><span style="color: #0000BB">$response</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #DD0000">"xmlrpc:&nbsp;$response[faultString]&nbsp;($response[faultCode])"</span><span style="color: #007700">);<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$response</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.stream-context-create.html" class="function" rel="rdfs-seeAlso">stream_context_create()</a></li>
+    <li class="member"><a href="function.file-get-contents.html" class="function" rel="rdfs-seeAlso">file_get_contents()</a></li>
+    <li class="member"><a href="function.xmlrpc-decode.html" class="function" rel="rdfs-seeAlso">xmlrpc_decode()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xmlrpc-decode.html">xmlrpc_decode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xmlrpc-encode.html">xmlrpc_encode</a></div>
+ <div class="up"><a href="ref.xmlrpc.html">XML-RPC Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

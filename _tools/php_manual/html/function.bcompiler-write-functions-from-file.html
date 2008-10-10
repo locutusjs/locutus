@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Writes all functions defined in a file as bytecodes</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.bcompiler-write-function.html">bcompiler_write_function</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.bcompiler-write-header.html">bcompiler_write_header</a></div>
+ <div class="up"><a href="ref.bcompiler.html">bcompiler Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.bcompiler-write-functions-from-file" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">bcompiler_write_functions_from_file</h1>
+  <p class="verinfo">(PECL bcompiler:0.5-0.8)</p><p class="refpurpose"><span class="refname">bcompiler_write_functions_from_file</span> &mdash; <span class="dc-title">Writes all functions defined in a file as bytecodes</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>bcompiler_write_functions_from_file</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$filehandle</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$fileName</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Searches for all functions declared in the given file, and writes their
+   correspondent bytecodes to the open file handle. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filehandle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A file handle as returned by <a href="function.fopen.html" class="function">fopen()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fileName</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The file to be compiled.
+       You must always include or require the file you intend to compile.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>bcompiler_write_functions_from_file()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">require(</span><span style="color: #DD0000">'module.php'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$fh&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"/tmp/example"</span><span style="color: #007700">,</span><span style="color: #DD0000">"w"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">bcompiler_write_header</span><span style="color: #007700">(</span><span style="color: #0000BB">$fh</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">bcompiler_write_functions_from_file</span><span style="color: #007700">(</span><span style="color: #0000BB">$fh</span><span style="color: #007700">,</span><span style="color: #DD0000">'module.php'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">bcompiler_write_footer</span><span style="color: #007700">(</span><span style="color: #0000BB">$fh</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fh</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.bcompiler-write-header.html" class="function" rel="rdfs-seeAlso">bcompiler_write_header()</a></li>
+    <li class="member"><a href="function.bcompiler-write-footer.html" class="function" rel="rdfs-seeAlso">bcompiler_write_footer()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.bcompiler-write-function.html">bcompiler_write_function</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.bcompiler-write-header.html">bcompiler_write_header</a></div>
+ <div class="up"><a href="ref.bcompiler.html">bcompiler Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

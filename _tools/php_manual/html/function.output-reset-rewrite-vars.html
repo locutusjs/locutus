@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Reset URL rewriter values</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.outcontrol.html">Output Control Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.inclued.html">inclued</a></div>
+ <div class="up"><a href="ref.outcontrol.html">Output Control Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.output-reset-rewrite-vars" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">output_reset_rewrite_vars</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">output_reset_rewrite_vars</span> &mdash; <span class="dc-title">Reset URL rewriter values</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>output_reset_rewrite_vars</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function resets the URL rewriter and removes all rewrite
+   variables previously set by the <a href="function.output-add-rewrite-var.html" class="function">output_add_rewrite_var()</a>
+   function or the session mechanism (if <i>session.use_trans_sid</i>
+   was set on <a href="function.session-start.html" class="function">session_start()</a>).
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>output_reset_rewrite_vars()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />session_start</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">output_add_rewrite_var</span><span style="color: #007700">(</span><span style="color: #DD0000">'var'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'value'</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">'&lt;a&nbsp;href="file.php"&gt;link&lt;/a&gt;'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">ob_flush</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">output_reset_rewrite_vars</span><span style="color: #007700">();<br />echo&nbsp;</span><span style="color: #DD0000">'&lt;a&nbsp;href="file.php"&gt;link&lt;/a&gt;'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+&lt;a href=&quot;file.php?PHPSESSID=xxx&amp;var=value&quot;&gt;link&lt;/a&gt;
+&lt;a href=&quot;file.php&quot;&gt;link&lt;/a&gt;
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.output-add-rewrite-var.html" class="function" rel="rdfs-seeAlso">output_add_rewrite_var()</a></li>
+    <li class="member"><a href="function.ob-flush.html" class="function" rel="rdfs-seeAlso">ob_flush()</a></li>
+    <li class="member"><a href="function.ob-list-handlers.html" class="function" rel="rdfs-seeAlso">ob_list_handlers()</a></li>
+    <li class="member"><a href="function.session-start.html" class="function" rel="rdfs-seeAlso">session_start()</a></li>
+   </ul>
+  </p>
+ </div>
+  
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.outcontrol.html">Output Control Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.inclued.html">inclued</a></div>
+ <div class="up"><a href="ref.outcontrol.html">Output Control Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

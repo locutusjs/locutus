@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Stops the interpreter and waits on a CR from the socket</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.apd.html">APD Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.apd-callstack.html">apd_callstack</a></div>
+ <div class="up"><a href="ref.apd.html">APD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.apd-breakpoint" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">apd_breakpoint</h1>
+  <p class="verinfo">(PECL apd:0.2-1.0.1)</p><p class="refpurpose"><span class="refname">apd_breakpoint</span> &mdash; <span class="dc-title">Stops the interpreter and waits on a CR from the socket</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>apd_breakpoint</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$debug_level</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This can be used to stop the running of your script, and await responses 
+   on the connected socket.  To step the program, just send enter (a blank 
+   line), or enter a php command to be executed. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+debug_level</tt></i>
+</span>
+<dd>
+<p class="para">An integer which is formed by adding 
+together the <i>XXX_TRACE</i> constants.</p><p class="para">It is not recommended
+to use <b><tt>MEMORY_TRACE</tt></b>. It is very slow and does not appear to be accurate. 
+<b><tt>ASSIGNMENT_TRACE</tt></b> is not implemented yet.</p><p class="para">To turn on all
+functional traces (TIMING, FUNCTIONS, ARGS SUMMARY (like strace -c)) use the value 99</p>
+</dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Typical session using tcplisten</b></p>
+    <div class="example-contents">
+<div class="cdata"><pre>
+bash#tcplisten localhost 7777
+
+APD - Advanced PHP Debugger Trace File
+---------------------------------------------------------------------------
+Process Pid (6118)
+Trace Begun at Sun Mar 10 23:13:12 2002
+---------------------------------------------------------------------------
+(  0.000000): apd_set_session_trace called at /home/alan/Projects/project2/test. 
+php:5
+(  0.074824): apd_set_session_trace_socket() at /home/alan/Projects/project2/tes 
+t.php:5 returned.  Elapsed (0.074824)
+(  0.074918): apd_breakpoint() /home/alan/Projects/project2/test.php:7
+              ++ argv[0] $(??) = 9
+apd_breakpoint() at /home/alan/Projects/project2/test.php:7 returned.  Elapsed ( 
+-2089521468.1073275368)
+&gt;\n 
+statement: /home/alan/Projects/project2/test.php:8
+&gt;\n 
+statement: /home/alan/Projects/project2/test.php:8
+&gt;\n 
+statement: /home/alan/Projects/project2/test.php:10
+&gt;apd_echo($i);
+EXEC: apd_echo($i);
+0
+&gt;apd_echo(serialize(apd_get_active_symbols()));
+EXEC:  apd_echo(serialize(apd_get_active_symbols()));
+a:47:{i:0;s:4:&quot;PWD&quot;;i:1;s:10:&quot;COLORFGBG&quot;;i:2;s:11:&quot;XAUTHORITY&quot;;i:3;s:14:&quot;
+COLORTERM_BCE&quot;;i:4;s:9:&quot;WINDOWID&quot;;i:5;s:14:&quot;ETERM_VERSION&quot;;i:6;s:16:&quot;SE
+SSION_MANAGER&quot;;i:7;s:4:&quot;PS1&quot;;i:8;s:11:&quot;GDMSESSION&quot;;i:9;s:5:&quot;USER&quot;;i:10;s:5:&quot;
+MAIL&quot;;i:11;s:7:&quot;OLDPWD&quot;;i:12;s:5:&quot;LANG&quot;;i:13;s:10:&quot;COLORTERM&quot;;i:14;s:8:&quot;DISP
+LAY&quot;;i:15;s:8:&quot;LOGNAME&quot;;i:16;s:6:&quot;
+&gt;apd_echo(system(&#039;ls /home/mydir&#039;));
+........
+&gt;apd_continue(0);
+</pre></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.apd.html">APD Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.apd-callstack.html">apd_callstack</a></div>
+ <div class="up"><a href="ref.apd.html">APD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

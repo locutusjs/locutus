@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns an array representing the font metrics</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-quantizeimages.html">Imagick::quantizeImages</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-queryfonts.html">Imagick::queryFonts</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagick-queryfontmetrics" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::queryFontMetrics</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Imagick::queryFontMetrics</span> &mdash; <span class="dc-title">Returns an array representing the font metrics</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>Imagick::queryFontMetrics</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="class.imagickdraw.html" class="type ImagickDraw">ImagickDraw</a></span> <tt class="parameter">$properties</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$text</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$multiline</tt></span>
+  ] )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+currently not documented; only its argument list is available.
+</p></div>
+  <p class="para">
+   Returns a multi-dimensional array representing the font metrics.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">properties</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      ImagickDraw object containing font properties
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">text</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The text
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">multiline</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Multiline parameter. If left empty it is autodetected
+      </p>
+     </dd>
+
+    </dt>
+
+
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array containing the formats supported by Imagick, throws
+   ImagickException on error.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws ImagickException on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>Imagick::queryFontMetrics()</b>:</b></p>
+    <div class="example-contents"><p>
+     Query the metrics for the text and dump the results on the screen.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Create&nbsp;a&nbsp;new&nbsp;Imagick&nbsp;object&nbsp;*/<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;Create&nbsp;an&nbsp;ImagickDraw&nbsp;object&nbsp;*/<br /></span><span style="color: #0000BB">$draw&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">ImagickDraw</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;Set&nbsp;the&nbsp;font&nbsp;*/<br /></span><span style="color: #0000BB">$draw</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setFont</span><span style="color: #007700">(</span><span style="color: #DD0000">'/path/to/font.ttf'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Dump&nbsp;the&nbsp;font&nbsp;metrics,&nbsp;autodetect&nbsp;multiline&nbsp;*/<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">queryFontMetrics</span><span style="color: #007700">(</span><span style="color: #0000BB">$draw</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Hello&nbsp;World!"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-quantizeimages.html">Imagick::quantizeImages</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-queryfonts.html">Imagick::queryFonts</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

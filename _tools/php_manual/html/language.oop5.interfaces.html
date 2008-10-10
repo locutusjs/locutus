@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Object Interfaces</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.oop5.abstract.html">Class Abstraction</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.oop5.overloading.html">Overloading</a></div>
+ <div class="up"><a href="language.oop5.html">Classes and Objects (PHP 5)</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.oop5.interfaces" class="sect1">
+  <h2 class="title">Object Interfaces</h2>
+  <p class="para">
+   Object interfaces allow you to create code which specifies which methods a
+   class must implement, without having to define how these methods are
+   handled.
+  </p>
+  <p class="para">
+   Interfaces are defined using the interface keyword, in the same way as a
+   standard class, but without any of the methods having their contents
+   defined.
+  </p>
+  <p class="para">
+   All methods declared in an interface must be public, this is the nature of an
+   interface.
+  </p>
+  <div id="language.oop5.interfaces.implements" class="sect2">
+   <h3 class="title"><i>implements</i></h3>
+   <p class="para">
+    To implement an interface, the <i>implements</i> operator is used.
+    All methods in the interface must be implemented within a class; failure to do
+    so will result in a fatal error. Classes may implement more than one interface
+    if desired by separating each interface with a comma.
+   </p>
+   <blockquote><p><b class="note">Note</b>: 
+    
+     A class cannot implement two interfaces that share function names, since
+     it would cause ambiguity.
+    <br />
+   </p></blockquote>
+   <blockquote><p><b class="note">Note</b>: 
+    
+     Interfaces can be extended like classes using the <i>extend</i> 
+     operator.
+    <br />
+   </p></blockquote>
+  </div>
+  <div id="language.oop5.interfaces.constants" class="sect2">
+   <h3 class="title"><i>Constants</i></h3>
+   <p class="para">
+    Its possible for interfaces to have constants. Interface constants works exactly 
+    like <a href="language.oop5.constants.html" class="link">class constants</a>. They cannot 
+    be overridden by a class/interface that inherits it.
+   </p>
+  </div>
+  <div id="language.oop5.interfaces.examples" class="sect2">
+   <h3 class="title">Examples</h3>
+   <div class="example" id="language.oop5.interfaces.examples.ex1" name="language.oop5.interfaces.examples.ex1">
+    <p><b>Example #1 Interface example</b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Declare&nbsp;the&nbsp;interface&nbsp;'iTemplate'<br /></span><span style="color: #007700">interface&nbsp;</span><span style="color: #0000BB">iTemplate<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">setVariable</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">getHtml</span><span style="color: #007700">(</span><span style="color: #0000BB">$template</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Implement&nbsp;the&nbsp;interface<br />//&nbsp;This&nbsp;will&nbsp;work<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">Template&nbsp;</span><span style="color: #007700">implements&nbsp;</span><span style="color: #0000BB">iTemplate<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;</span><span style="color: #0000BB">$vars&nbsp;</span><span style="color: #007700">=&nbsp;array();<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">setVariable</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">vars</span><span style="color: #007700">[</span><span style="color: #0000BB">$name</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">getHtml</span><span style="color: #007700">(</span><span style="color: #0000BB">$template</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">vars&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$template&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">str_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'{'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'}'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$value</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$template</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$template</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;This&nbsp;will&nbsp;not&nbsp;work<br />//&nbsp;Fatal&nbsp;error:&nbsp;Class&nbsp;BadTemplate&nbsp;contains&nbsp;1&nbsp;abstract&nbsp;methods<br />//&nbsp;and&nbsp;must&nbsp;therefore&nbsp;be&nbsp;declared&nbsp;abstract&nbsp;(iTemplate::getHtml)<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">BadTemplate&nbsp;</span><span style="color: #007700">implements&nbsp;</span><span style="color: #0000BB">iTemplate<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;</span><span style="color: #0000BB">$vars&nbsp;</span><span style="color: #007700">=&nbsp;array();<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">setVariable</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">vars</span><span style="color: #007700">[</span><span style="color: #0000BB">$name</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="language.oop5.interfaces.examples.ex2" name="language.oop5.interfaces.examples.ex2">
+    <p><b>Example #2 Extendable Interfaces</b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">interface&nbsp;</span><span style="color: #0000BB">a<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">();<br />}<br /><br />interface&nbsp;</span><span style="color: #0000BB">b&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">a<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">baz</span><span style="color: #007700">(</span><span style="color: #0000BB">Baz&nbsp;$baz</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;This&nbsp;will&nbsp;work<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">c&nbsp;</span><span style="color: #007700">implements&nbsp;</span><span style="color: #0000BB">b<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">baz</span><span style="color: #007700">(</span><span style="color: #0000BB">Baz&nbsp;$baz</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;This&nbsp;will&nbsp;not&nbsp;work&nbsp;and&nbsp;result&nbsp;in&nbsp;a&nbsp;fatal&nbsp;error<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">d&nbsp;</span><span style="color: #007700">implements&nbsp;</span><span style="color: #0000BB">b<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">baz</span><span style="color: #007700">(</span><span style="color: #0000BB">Foo&nbsp;$foo</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+   </div>
+   <div class="example" id="language.oop5.interfaces.examples.ex3" name="language.oop5.interfaces.examples.ex3">
+    <p><b>Example #3 Multiple interface inheritance</b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">interface&nbsp;</span><span style="color: #0000BB">a<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">();<br />}<br /><br />interface&nbsp;</span><span style="color: #0000BB">b<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">bar</span><span style="color: #007700">();<br />}<br /><br />interface&nbsp;</span><span style="color: #0000BB">c&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">b<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">baz</span><span style="color: #007700">();<br />}<br /><br />class&nbsp;</span><span style="color: #0000BB">d&nbsp;</span><span style="color: #007700">implements&nbsp;</span><span style="color: #0000BB">c<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">bar</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">baz</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+   </div>
+   <div class="example" id="language.oop5.interfaces.examples.ex4" name="language.oop5.interfaces.examples.ex4">
+    <p><b>Example #4 Interfaces with constants</b></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">interface&nbsp;</span><span style="color: #0000BB">a<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;</span><span style="color: #0000BB">b&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Interface&nbsp;constant'</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Prints:&nbsp;Interface&nbsp;constant<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">a</span><span style="color: #007700">::</span><span style="color: #0000BB">b</span><span style="color: #007700">;<br /><br /><br /></span><span style="color: #FF8000">//&nbsp;This&nbsp;will&nbsp;however&nbsp;not&nbsp;work&nbsp;because&nbsp;its&nbsp;not&nbsp;allowed&nbsp;to&nbsp;<br />//&nbsp;override&nbsp;constants.&nbsp;This&nbsp;is&nbsp;the&nbsp;same&nbsp;concept&nbsp;as&nbsp;with&nbsp;<br />//&nbsp;class&nbsp;constants<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">b&nbsp;</span><span style="color: #007700">implements&nbsp;</span><span style="color: #0000BB">a<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;</span><span style="color: #0000BB">b&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Class&nbsp;constant'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+   </div>
+   <p class="simpara">
+     See also the <a href="language.operators.type.html" class="link">instanceof</a>
+     operator.
+   </p>
+  </div>
+
+ </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.oop5.abstract.html">Class Abstraction</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.oop5.overloading.html">Overloading</a></div>
+ <div class="up"><a href="language.oop5.html">Classes and Objects (PHP 5)</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

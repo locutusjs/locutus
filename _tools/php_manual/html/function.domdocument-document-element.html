@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns root element node</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domdocument-doctype.html">DomDocument->doctype</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domdocument-dump-file.html">DomDocument->dump_file</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.domdocument-document-element" class="refentry">
+   <div class="refnamediv">
+    <h1 class="refname">DomDocument-&gt;document_element</h1>
+    <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">DomDocument-&gt;document_element</span> &mdash; <span class="dc-title">
+     Returns root element node
+    </span></p>
+
+   </div>
+   <div class="refsect1 unknown">
+    <h3 class="title">Description</h3>
+    <div class="methodsynopsis dc-description">
+     <span class="type"><a href="class.domelement.html" class="type domelement">domelement</a></span> <span class="methodname"><b><b>DomDocument->document_element</b></b></span>
+      ( <span class="methodparam">void</span>
+     )</div>
+
+    <p class="para rdfs-comment">
+     This function returns the root element node of a document. 
+    </p>
+    <p class="para">
+     The following example returns just the element with name CHAPTER and
+     prints it. The other node -- the comment -- is not returned.
+     <div class="example">
+      <p><b>Example #1 Retrieving root element</b></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">include(</span><span style="color: #DD0000">"example.inc"</span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$dom&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">domxml_open_mem</span><span style="color: #007700">(</span><span style="color: #0000BB">$xmlstr</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Error&nbsp;while&nbsp;parsing&nbsp;the&nbsp;document\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;exit;<br />}<br /><br /></span><span style="color: #0000BB">$root&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dom</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">document_element</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$root</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+      <div class="example-contents"><p>The above example will output:</p></div>
+      <div class="example-contents"><pre>
+<div class="cdata"><pre>
+domelement Object
+(
+    [type] =&gt; 1
+    [tagname] =&gt; chapter
+    [0] =&gt; 6
+    [1] =&gt; 137960648
+)
+</pre></div>
+      </pre></div>
+     </div>
+    </p>
+   </div>
+
+  </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domdocument-doctype.html">DomDocument->doctype</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domdocument-dump-file.html">DomDocument->dump_file</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

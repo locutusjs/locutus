@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns an array of all supported encodings</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-language.html">mb_language</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-output-handler.html">mb_output_handler</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-list-encodings" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_list_encodings</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">mb_list_encodings</span> &mdash; <span class="dc-title">Returns an array of all supported encodings</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>mb_list_encodings</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns an array containing all supported encodings.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a numerically indexed array.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   This function does not emit any errors.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mb_list_encodings()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">mb_list_encodings</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; pass
+    [1] =&gt; auto
+    [2] =&gt; wchar
+    [3] =&gt; byte2be
+    [4] =&gt; byte2le
+    [5] =&gt; byte4be
+    [6] =&gt; byte4le
+    [7] =&gt; BASE64
+    [8] =&gt; UUENCODE
+    [9] =&gt; HTML-ENTITIES
+    [10] =&gt; Quoted-Printable
+    [11] =&gt; 7bit
+    [12] =&gt; 8bit
+    [13] =&gt; UCS-4
+    [14] =&gt; UCS-4BE
+    [15] =&gt; UCS-4LE
+    [16] =&gt; UCS-2
+    [17] =&gt; UCS-2BE
+    [18] =&gt; UCS-2LE
+    [19] =&gt; UTF-32
+    [20] =&gt; UTF-32BE
+    [21] =&gt; UTF-32LE
+    [22] =&gt; UTF-16
+    [23] =&gt; UTF-16BE
+    [24] =&gt; UTF-16LE
+    [25] =&gt; UTF-8
+    [26] =&gt; UTF-7
+    [27] =&gt; UTF7-IMAP
+    [28] =&gt; ASCII
+    [29] =&gt; EUC-JP
+    [30] =&gt; SJIS
+    [31] =&gt; eucJP-win
+    [32] =&gt; SJIS-win
+    [33] =&gt; JIS
+    [34] =&gt; ISO-2022-JP
+    [35] =&gt; Windows-1252
+    [36] =&gt; ISO-8859-1
+    [37] =&gt; ISO-8859-2
+    [38] =&gt; ISO-8859-3
+    [39] =&gt; ISO-8859-4
+    [40] =&gt; ISO-8859-5
+    [41] =&gt; ISO-8859-6
+    [42] =&gt; ISO-8859-7
+    [43] =&gt; ISO-8859-8
+    [44] =&gt; ISO-8859-9
+    [45] =&gt; ISO-8859-10
+    [46] =&gt; ISO-8859-13
+    [47] =&gt; ISO-8859-14
+    [48] =&gt; ISO-8859-15
+    [49] =&gt; EUC-CN
+    [50] =&gt; CP936
+    [51] =&gt; HZ
+    [52] =&gt; EUC-TW
+    [53] =&gt; BIG-5
+    [54] =&gt; EUC-KR
+    [55] =&gt; UHC
+    [56] =&gt; ISO-2022-KR
+    [57] =&gt; Windows-1251
+    [58] =&gt; CP866
+    [59] =&gt; KOI8-R
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ 
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-language.html">mb_language</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-output-handler.html">mb_output_handler</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

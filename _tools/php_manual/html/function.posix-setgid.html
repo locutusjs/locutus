@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set the GID of the current process</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.posix-seteuid.html">posix_seteuid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.posix-setpgid.html">posix_setpgid</a></div>
+ <div class="up"><a href="ref.posix.html">POSIX Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.posix-setgid" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">posix_setgid</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">posix_setgid</span> &mdash; <span class="dc-title">Set the GID of the current process</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>posix_setgid</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$gid</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Set the real group ID of the current process. This is a
+   privileged function and needs appropriate privileges (usually
+   root) on the system to be able to perform this function. The
+   appropriate order of function calls is
+   <b>posix_setgid()</b> first,
+   <a href="function.posix-setuid.html" class="function">posix_setuid()</a> last.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    If the caller is a super user, this will also set the effective
+    group id.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">gid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The group id.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>posix_setgid()</b> example</b></p>
+    <div class="example-contents"><p>
+     This example will print out the effective group id, once it is changed.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'My&nbsp;real&nbsp;group&nbsp;id&nbsp;is&nbsp;'</span><span style="color: #007700">.</span><span style="color: #0000BB">posix_getgid</span><span style="color: #007700">();&nbsp;</span><span style="color: #FF8000">//20<br /></span><span style="color: #0000BB">posix_setgid</span><span style="color: #007700">(</span><span style="color: #0000BB">40</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">'My&nbsp;real&nbsp;group&nbsp;id&nbsp;is&nbsp;'</span><span style="color: #007700">.</span><span style="color: #0000BB">posix_getgid</span><span style="color: #007700">();&nbsp;</span><span style="color: #FF8000">//40<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'My&nbsp;effective&nbsp;group&nbsp;id&nbsp;is&nbsp;'</span><span style="color: #007700">.</span><span style="color: #0000BB">posix_getegid</span><span style="color: #007700">();&nbsp;</span><span style="color: #FF8000">//40<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.posix-getgrgid.html" class="function" rel="rdfs-seeAlso">posix_getgrgid()</a> for information on how
+     to convert this into a useable group name</li>
+    <li class="member"><a href="function.posix-getgid.html" class="function" rel="rdfs-seeAlso">posix_getgid()</a> get real group id.</li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.posix-seteuid.html">posix_seteuid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.posix-setpgid.html">posix_setpgid</a></div>
+ <div class="up"><a href="ref.posix.html">POSIX Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Retrieve item from the server</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.memcache-flush.html">Memcache::flush</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.memcache-getextendedstats.html">Memcache::getExtendedStats</a></div>
+ <div class="up"><a href="ref.memcache.html">Memcache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.memcache-get" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Memcache::get</h1>
+  <p class="verinfo">(PECL memcache:0.2-2.1.2)</p><p class="refpurpose"><span class="refname">Memcache::get</span> &mdash; <span class="dc-title">Retrieve item from the server</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>Memcache::get</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$key</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter reference">&$flags</tt></span>
+  ] )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>Memcache::get</b></b></span>
+    ( <span class="methodparam"><span class="type">array</span> <tt class="parameter">$keys</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$flags</tt></span>
+  ] )</div>
+
+  
+  <p class="para rdfs-comment">
+   <b>Memcache::get()</b> returns previously stored data if
+   an item with such <i><tt class="parameter">key</tt></i>
+ exists on the server at this
+   moment.
+  </p>
+
+  <p class="para">
+   You can pass array of keys to <b>Memcache::get()</b> to get
+   array of values. The result array will contain only found key-value pairs.
+  </p>
+  
+ </div>
+
+  
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">key</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The key or array of keys to fetch.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If present, flags fetched along with the values will be written to this parameter. These
+       flags are the same as the ones given to for example <a href="function.memcache-set.html" class="function">Memcache::set()</a>.
+       The lowest byte of the int is reserved for pecl/memcache internal usage (e.g. to indicate
+       compression and serialization status).
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the string associated with the <i><tt class="parameter">key</tt></i>
+ or
+   <b><tt>FALSE</tt></b> on failure or if such <i><tt class="parameter">key</tt></i>
+ was not found.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>Memcache::get()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;procedural&nbsp;API&nbsp;*/<br /></span><span style="color: #0000BB">$memcache_obj&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">memcache_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$var&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">memcache_get</span><span style="color: #007700">(</span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'some_key'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;OO&nbsp;API&nbsp;*/<br /></span><span style="color: #0000BB">$memcache_obj&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Memcache</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$var&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">(</span><span style="color: #DD0000">'some_key'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;<br />You&nbsp;also&nbsp;can&nbsp;use&nbsp;array&nbsp;of&nbsp;keys&nbsp;as&nbsp;a&nbsp;parameter.<br />If&nbsp;such&nbsp;item&nbsp;wasn't&nbsp;found&nbsp;at&nbsp;the&nbsp;server,&nbsp;the&nbsp;result<br />array&nbsp;simply&nbsp;will&nbsp;not&nbsp;include&nbsp;such&nbsp;key.<br />*/<br /><br />/*&nbsp;procedural&nbsp;API&nbsp;*/<br /></span><span style="color: #0000BB">$memcache_obj&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">memcache_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$var&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">memcache_get</span><span style="color: #007700">(</span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">,&nbsp;Array(</span><span style="color: #DD0000">'some_key'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'another_key'</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/*&nbsp;OO&nbsp;API&nbsp;*/<br /></span><span style="color: #0000BB">$memcache_obj&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Memcache</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$var&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">(Array(</span><span style="color: #DD0000">'some_key'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'second_key'</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.memcache-flush.html">Memcache::flush</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.memcache-getextendedstats.html">Memcache::getExtendedStats</a></div>
+ <div class="up"><a href="ref.memcache.html">Memcache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

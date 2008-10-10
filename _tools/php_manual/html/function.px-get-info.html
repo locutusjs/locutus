@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Return lots of information about a paradox file</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-get-field.html">px_get_field</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-get-parameter.html">px_get_parameter</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.px-get-info" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">px_get_info</h1>
+  <p class="verinfo">(PECL paradox:1.0-1.4.1)</p><p class="refpurpose"><span class="refname">px_get_info</span> &mdash; <span class="dc-title">Return lots of information about a paradox file</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>px_get_info</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$pxdoc</tt></span>
+   )</div>
+
+ </div>
+
+  
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pxdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the paradox database
+       as returned by <a href="function.px-new.html" class="function">px_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associated array with lots of information about a paradox
+   file. This array is likely to be extended in the future.
+  </p>
+  <dl>
+
+   <dt>
+
+    <span class="term">fileversion</span>
+
+    <dd>
+
+     <p class="para">Version of file multiplied by 10, e.g. 70.</p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">tablename</span>
+
+    <dd>
+
+     <p class="para">Name of table as stored in the file. If the database was created
+       by pxlib, then this will be the name of the file without the
+       extension.</p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">numrecords</span>
+
+    <dd>
+
+     <p class="para">Number of records in this table.</p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">numfields</span>
+
+    <dd>
+
+     <p class="para">Number of fields in this table.</p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">headersize</span>
+
+    <dd>
+
+     <p class="para">Number of bytes used for the header. This is usually 0x800.</p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">recordsize</span>
+
+    <dd>
+
+     <p class="para">Number of bytes used for each record. This is the sum of all
+       field sizes (available since version 1.4.2).</p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">maxtablesize</span>
+
+    <dd>
+
+     <p class="para">
+      This value multiplied by 0x400 is the size of a data block in bytes.
+      The maximum number of records in a datablock is the integer part of
+      (maxtablesize * 0x400 - 8) / recordsize.
+     </p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">numdatablocks</span>
+
+    <dd>
+
+     <p class="para">
+      The number of data blocks in the file. Each data block contains a
+      certain number of records which depends on the record size and the data
+      block size (maxtablesize). Data blocks may not necessarily be
+      completely filled.
+     </p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">numindexfields</span>
+
+    <dd>
+
+     <p class="para">
+      Number of fields used for the primary index. The fields do always start
+      with field number 1.
+    </p>
+   </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term">codepage</span>
+
+    <dd>
+
+     <p class="para">
+      The DOS codepage which was used for encoding fields with character data.
+      If the target encoding is not set with
+      <a href="function.px-set-targetencoding.html" class="function">px_set_targetencoding()</a> this will be the encoding for
+      character fields when records are being accessed with
+      <a href="function.px-get-record.html" class="function">px_get_record()</a> or
+      <a href="function.px-retrieve-record.html" class="function">px_retrieve_record()</a>.
+     </p>
+    </dd>
+
+   </dt>
+
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.px-numfields.html" class="function" rel="rdfs-seeAlso">px_numfields()</a></li>
+    <li class="member"><a href="function.px-numrecords.html" class="function" rel="rdfs-seeAlso">px_numrecords()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-get-field.html">px_get_field</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-get-parameter.html">px_get_parameter</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

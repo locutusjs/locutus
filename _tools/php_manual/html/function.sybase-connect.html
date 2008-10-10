@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Opens a Sybase server connection</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sybase-close.html">sybase_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sybase-data-seek.html">sybase_data_seek</a></div>
+ <div class="up"><a href="ref.sybase.html">Sybase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sybase-connect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sybase_connect</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">sybase_connect</span> &mdash; <span class="dc-title">Opens a Sybase server connection</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>sybase_connect</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$servername</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$username</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$password</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$charset</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$appname</tt></span>
+  ]]]]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>sybase_connect()</b> establishes a connection to a
+   Sybase server. 
+  </p>
+  <p class="para">
+   In case a second call is made to
+   <b>sybase_connect()</b> with the same arguments, no
+   new link will be established, but instead, the link identifier of
+   the already opened link will be returned.
+  </p>
+  <p class="para">
+   The link to the server will be closed as soon as the
+   execution of the script ends, unless it&#039;s closed earlier by
+   explicitly calling <a href="function.sybase-close.html" class="function">sybase_close()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">servername</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The servername argument has to be a valid servername that is defined
+       in the &#039;interfaces&#039; file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">username</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Sybase user name
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">password</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Password associated with <i><tt class="parameter">username</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">charset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Specifies the charset for the connection
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">appname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a positive Sybase link identifier on success, or <b><tt>FALSE</tt></b> on
+   failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.2</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">charset</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>sybase_connect()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sybase_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'SYBASE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Could&nbsp;not&nbsp;connect&nbsp;!"</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"Connected&nbsp;successfully"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">sybase_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sybase-pconnect.html" class="function" rel="rdfs-seeAlso">sybase_pconnect()</a></li>
+    <li class="member"><a href="function.sybase-close.html" class="function" rel="rdfs-seeAlso">sybase_close()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sybase-close.html">sybase_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sybase-data-seek.html">sybase_data_seek</a></div>
+ <div class="up"><a href="ref.sybase.html">Sybase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

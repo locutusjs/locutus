@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sends asynchronous query</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-send-query-params.html">pg_send_query_params</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-set-client-encoding.html">pg_set_client_encoding</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-send-query" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_send_query</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">pg_send_query</span> &mdash; <span class="dc-title">
+   Sends asynchronous query
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>pg_send_query</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>pg_send_query()</b> sends a query or queries asynchronously to the
+   <i><tt class="parameter">connection</tt></i>
+. Unlike
+   <a href="function.pg-query.html" class="function">pg_query()</a>, it can send multiple queries at once to
+   PostgreSQL and get the results one by one using
+   <a href="function.pg-get-result.html" class="function">pg_get_result()</a>.
+  </p>
+  <p class="para">
+   Script execution is not blocked while the queries are executing. Use
+   <a href="function.pg-connection-busy.html" class="function">pg_connection_busy()</a> to check if the connection is
+   busy (i.e. the query is executing). Queries may be cancelled using
+   <a href="function.pg-cancel-query.html" class="function">pg_cancel_query()</a>.
+  </p>
+  <p class="para">
+   Although the user can send multiple queries at once, multiple queries
+   cannot be sent over a busy connection. If a query is sent while
+   the connection is busy, it waits until the last query is finished and
+   discards all its results.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL database connection resource.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">query</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SQL statement or statements to be executed.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.</p>
+  <p class="para">
+   Use <a href="function.pg-get-result.html" class="function">pg_get_result()</a> to determine the query result.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pg_send_query()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$dbconn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=publisher"</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Could&nbsp;not&nbsp;connect"</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;if&nbsp;(!</span><span style="color: #0000BB">pg_connection_busy</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbconn</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">pg_send_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbconn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"select&nbsp;*&nbsp;from&nbsp;authors;&nbsp;select&nbsp;count(*)&nbsp;from&nbsp;authors;"</span><span style="color: #007700">);<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$res1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_get_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbconn</span><span style="color: #007700">);<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"First&nbsp;call&nbsp;to&nbsp;pg_get_result():&nbsp;$res1\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$rows1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_num_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$res1</span><span style="color: #007700">);<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"$res1&nbsp;has&nbsp;$rows1&nbsp;records\n\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$res2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_get_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbconn</span><span style="color: #007700">);<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Second&nbsp;call&nbsp;to&nbsp;pg_get_result():&nbsp;$res2\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$rows2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_num_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$res2</span><span style="color: #007700">);<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"$res2&nbsp;has&nbsp;$rows2&nbsp;records\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+First call to pg_get_result(): Resource id #3
+Resource id #3 has 3 records
+
+Second call to pg_get_result(): Resource id #4
+Resource id #4 has 1 records
+</pre></div>
+    </pre></div>
+   </div> 
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-query.html" class="function" rel="rdfs-seeAlso">pg_query()</a></li>
+    <li class="member"><a href="function.pg-cancel-query.html" class="function" rel="rdfs-seeAlso">pg_cancel_query()</a></li>
+    <li class="member"><a href="function.pg-get-result.html" class="function" rel="rdfs-seeAlso">pg_get_result()</a></li>
+    <li class="member"><a href="function.pg-connection-busy.html" class="function" rel="rdfs-seeAlso">pg_connection_busy()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-send-query-params.html">pg_send_query_params</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-set-client-encoding.html">pg_set_client_encoding</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

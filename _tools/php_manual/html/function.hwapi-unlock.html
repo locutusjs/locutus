@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Unlocks a locked object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hwapi-srcsofdst.html">hw_api->srcsofdst</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hwapi-user.html">hw_api->user</a></div>
+ <div class="up"><a href="ref.hwapi.html">Hyperwave API Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.hwapi-unlock" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hw_api-&gt;unlock</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">hw_api-&gt;unlock</span> &mdash; <span class="dc-title">Unlocks a locked object</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">hw_api</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><b>unlock</b></b></span>
+     ( <span class="methodparam"><span class="type">array</span> <tt class="parameter">$parameter</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   Unlocks a locked object. Only the user who has locked the object and the
+   system user may unlock an object. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">parameter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The parameter array contains the required element &#039;objectIdentifier&#039;
+       and the optional parameters &#039;mode&#039; and &#039;objectquery&#039;. The meaning of
+       &#039;mode&#039; is the same as in function <b>hwapi_lock()</b>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or an object of class HW_API_Error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.hwapi-lock.html" class="xref">hw_api->lock</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hwapi-srcsofdst.html">hw_api->srcsofdst</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hwapi-user.html">hw_api->user</a></div>
+ <div class="up"><a href="ref.hwapi.html">Hyperwave API Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

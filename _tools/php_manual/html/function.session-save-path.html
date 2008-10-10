@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get and/or set the current session save path</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-register.html">session_register</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-set-cookie-params.html">session_set_cookie_params</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.session-save-path" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">session_save_path</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">session_save_path</span> &mdash; <span class="dc-title">Get and/or set the current session save path</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>session_save_path</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$path</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>session_save_path()</b> returns the path of the current
+   directory used to save session data. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">path</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Session data path. If specified, the path to which data is saved will
+       be changed. <b>session_save_path()</b> needs to be called
+       before <a href="function.session-start.html" class="function">session_start()</a> for that purpose.
+      </p>
+      <p class="para">
+       <blockquote><p><b class="note">Note</b>: 
+        
+         On some operating systems, you may want to specify a path on a
+         filesystem that handles lots of small files efficiently. For example,
+         on Linux, reiserfs may provide better performance than ext2fs.
+        <br />
+       </p></blockquote>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the path of the current directory used for data storage.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     The <a href="session.configuration.html#ini.session.save-path" class="link">session.save_path</a>
+     configuration directive
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-register.html">session_register</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-set-cookie-params.html">session_set_cookie_params</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

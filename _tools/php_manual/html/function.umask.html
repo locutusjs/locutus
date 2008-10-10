@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Changes the current umask</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.touch.html">touch</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.unlink.html">unlink</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.umask" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">umask</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">umask</span> &mdash; <span class="dc-title">Changes the current umask</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>umask</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mask</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>umask()</b> sets PHP&#039;s umask to
+   <i><tt class="parameter">mask</tt></i>
+ &amp; 0777 and returns the old
+   umask. When PHP is being used as a server module, the umask
+   is restored when each request is finished.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mask</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The new umask.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>umask()</b> without arguments simply returns the
+   current umask otherwise the old umask is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>umask()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$old&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">umask</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">chmod</span><span style="color: #007700">(</span><span style="color: #DD0000">"/path/some_dir/some_file.txt"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0755</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">umask</span><span style="color: #007700">(</span><span style="color: #0000BB">$old</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Checking<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$old&nbsp;</span><span style="color: #007700">!=&nbsp;</span><span style="color: #0000BB">umask</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'An&nbsp;error&nbsp;occured&nbsp;while&nbsp;changing&nbsp;back&nbsp;the&nbsp;umask'</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Avoid using this function in multithreaded webservers. It is better to
+    change the file permissions with <a href="function.chmod.html" class="function">chmod()</a> after
+    creating the file. Using <b>umask()</b> can lead to
+    unexpected behavior of concurrently running scripts and the webserver
+    itself because they all use the same umask.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.touch.html">touch</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.unlink.html">unlink</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Open Internet or Unix domain socket connection</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-socket-accept.html">stream_socket_accept</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-socket-enable-crypto.html">stream_socket_enable_crypto</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.stream-socket-client" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stream_socket_client</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">stream_socket_client</span> &mdash; <span class="dc-title">Open Internet or Unix domain socket connection</span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>stream_socket_client</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$remote_socket</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter reference">&$errno</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter reference">&$errstr</tt></span>
+   [, <span class="methodparam"><span class="type">float</span> <tt class="parameter">$timeout</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$context</tt></span>
+  ]]]]] )</div>
+
+  <p class="para rdfs-comment">
+   Initiates a stream or datagram connection to the destination specified
+   by <i><tt class="parameter">remote_socket</tt></i>
+.  The type of socket created
+   is determined by the transport specified using standard URL formatting:
+   <i>transport://target</i>.  For Internet Domain sockets
+   (AF_INET) such as TCP and UDP, the <i>target</i> portion
+   of the <i><tt class="parameter">remote_socket</tt></i>
+ parameter should consist of
+   a hostname or IP address followed by a colon and a port number.  For Unix
+   domain sockets, the <i><tt class="parameter">target</tt></i>
+ portion should point
+   to the socket file on the filesystem.
+
+   The optional <i><tt class="parameter">timeout</tt></i>
+ can be used to
+   set a timeout in seconds for the connect system call.
+
+   <i><tt class="parameter">flags</tt></i>
+ is a bitmask field which may be set to any
+   combination of connection flags.  Currently the selection of connection
+   flags is limited to <b><tt>STREAM_CLIENT_CONNECT</tt></b> (default),
+   <b><tt>STREAM_CLIENT_ASYNC_CONNECT</tt></b> and
+   <b><tt>STREAM_CLIENT_PERSISTENT</tt></b>.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   <span class="simpara">
+    If you need to set a timeout for reading/writing data over the socket,
+    use <a href="function.stream-set-timeout.html" class="function">stream_set_timeout()</a>, as the <i><tt class="parameter">timeout</tt></i>
+
+    parameter to <b>stream_socket_client()</b> only applies while
+    connecting the socket.
+   </span>
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   <span class="simpara">
+    The timeout parameter only applies if you are not making an asynchronous
+    connection attempt.
+   </span>
+  </p></blockquote>
+  <p class="para">
+   <b>stream_socket_client()</b> returns a
+   stream resource which may
+   be used together with the other file functions (such as
+   <a href="function.fgets.html" class="function">fgets()</a>, <a href="function.fgetss.html" class="function">fgetss()</a>,
+   <a href="function.fwrite.html" class="function">fwrite()</a>, <a href="function.fclose.html" class="function">fclose()</a>, and
+   <a href="function.feof.html" class="function">feof()</a>).
+  </p>
+  <p class="para">
+   If the call fails, it will return <b><tt>FALSE</tt></b> and if the optional
+   <i><tt class="parameter">errno</tt></i>
+ and <i><tt class="parameter">errstr</tt></i>
+
+   arguments are present they will be set to indicate the actual
+   system level error that occurred in the system-level
+   <i>connect()</i> call. If the value returned in
+   <i><tt class="parameter">errno</tt></i>
+ is <i>0</i> and the
+   function returned <b><tt>FALSE</tt></b>, it is an indication that the error
+   occurred before the <i>connect()</i> call. This is
+   most likely due to a problem initializing the socket. Note that
+   the <i><tt class="parameter">errno</tt></i>
+ and
+   <i><tt class="parameter">errstr</tt></i>
+ arguments will always be passed by
+   reference.
+  </p>
+  <p class="para">
+   Depending on the environment, the Unix domain or the optional
+   connect timeout may not be available.  A list of available
+   transports can be retrieved using <a href="function.stream-get-transports.html" class="function">stream_get_transports()</a>.
+   See <a href="transports.html" class="xref">List of Supported Socket Transports</a> for a list of built in transports.
+  </p>
+  <p class="para">
+   The stream will by default be opened in blocking mode.  You can
+   switch it to non-blocking mode by using
+   <a href="function.stream-set-blocking.html" class="function">stream_set_blocking()</a>.
+   <div class="example">
+    <p><b>Example #1 <b>stream_socket_client()</b> Example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_socket_client</span><span style="color: #007700">(</span><span style="color: #DD0000">"tcp://www.example.com:80"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$errstr</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">30</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$fp</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"$errstr&nbsp;($errno)&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"GET&nbsp;/&nbsp;HTTP/1.0\r\nHost:&nbsp;www.example.com\r\nAccept:&nbsp;*/*\r\n\r\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(!</span><span style="color: #0000BB">feof</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">fgets</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1024</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   The example below shows how to retrieve the day and time
+   from the UDP service &quot;daytime&quot; (port 13) in your own machine.
+   <div class="example">
+    <p><b>Example #2 Using UDP connection</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_socket_client</span><span style="color: #007700">(</span><span style="color: #DD0000">"udp://127.0.0.1:13"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$errstr</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$fp</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"ERROR:&nbsp;$errno&nbsp;-&nbsp;$errstr&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">fread</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">26</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="warning"><b class="warning">Warning</b>
+    <p class="simpara">
+      UDP sockets will sometimes appear to have opened without an error,
+      even if the remote host is unreachable.  The error will only
+      become apparent when you read or write data to/from the socket.
+      The reason for this is because UDP is a &quot;connectionless&quot; protocol,
+      which means that the operating system does not try to establish
+      a link for the socket until it actually needs to send or receive data.
+    </p>
+   </div>
+  </p>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">When specifying a numerical IPv6 address
+(e.g. <i>fe80::1</i>), you must enclose the IP in square
+brackets—for example, <i>tcp://[fe80::1]:80</i>.</span></p></blockquote>
+  <p class="para">
+   See also <a href="function.stream-socket-server.html" class="function">stream_socket_server()</a>,
+   <a href="function.stream-set-blocking.html" class="function">stream_set_blocking()</a>,
+   <a href="function.stream-set-timeout.html" class="function">stream_set_timeout()</a>,
+   <a href="function.stream-select.html" class="function">stream_select()</a>,
+   <a href="function.fgets.html" class="function">fgets()</a>,
+   <a href="function.fgetss.html" class="function">fgetss()</a>, <a href="function.fwrite.html" class="function">fwrite()</a>,
+   <a href="function.fclose.html" class="function">fclose()</a>, <a href="function.feof.html" class="function">feof()</a>, and
+   the <a href="ref.curl.html" class="link">Curl extension</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-socket-accept.html">stream_socket_accept</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-socket-enable-crypto.html">stream_socket_enable_crypto</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

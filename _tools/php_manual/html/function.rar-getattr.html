@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get attributes of the entry</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.rar-extract.html">Rar::extract</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.rar-getcrc.html">Rar::getCrc</a></div>
+ <div class="up"><a href="ref.rar.html">Rar Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.rar-getattr" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Rar::getAttr</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Rar::getAttr</span> &mdash; <span class="dc-title">Get attributes of the entry</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">Rar</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">int</span> <span class="methodname"><b><b>getAttr</b></b></span>
+     ( <span class="methodparam">void</span>
+    )</div>
+
+  </div>
+  <p class="para">
+   <b>Rar::getAttr()</b> returns attributes of the archive
+   entry. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the attributes or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>Rar::getAttr()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$rar_file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'example.rar'</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Can't&nbsp;open&nbsp;Rar&nbsp;archive"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$entry&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_entry_get</span><span style="color: #007700">(</span><span style="color: #0000BB">$rar_file</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'dir/in/the/archive'</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Can't&nbsp;find&nbsp;such&nbsp;entry"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$host_os&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$entry</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getHostOs</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$entry</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getAttr</span><span style="color: #007700">();<br /><br />switch(</span><span style="color: #0000BB">$host_os</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">RAR_HOST_MSDOS</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">RAR_HOST_OS2</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">RAR_HOST_WIN32</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">RAR_HOST_MACOS</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%c%c%c%c%c%c\n"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x08</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'V'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'.'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x10</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'D'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'.'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x01</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'R'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'.'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x02</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'H'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'.'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x04</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'S'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'.'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x20</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'A'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'.'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">RAR_HOST_UNIX</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">RAR_HOST_BEOS</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0xF000</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">0x4000</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"d"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">0xA000</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"l"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"-"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%c%c%c%c%c%c%c%c%c\n"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0100</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'r'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'-'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0080</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'w'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'-'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0040</span><span style="color: #007700">)&nbsp;?&nbsp;((</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0800</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'s'</span><span style="color: #007700">:</span><span style="color: #DD0000">'x'</span><span style="color: #007700">):((</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0800</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'S'</span><span style="color: #007700">:</span><span style="color: #DD0000">'-'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0020</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'r'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'-'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0010</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'w'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'-'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0008</span><span style="color: #007700">)&nbsp;?&nbsp;((</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0400</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'s'</span><span style="color: #007700">:</span><span style="color: #DD0000">'x'</span><span style="color: #007700">):((</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0400</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'S'</span><span style="color: #007700">:</span><span style="color: #DD0000">'-'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0004</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'r'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'-'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0002</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'w'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'-'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">&amp;&nbsp;</span><span style="color: #0000BB">0x0001</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">'x'&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'-'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />}<br /><br /></span><span style="color: #0000BB">rar_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$rar_file</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.rar-gethostos.html" class="xref">Rar::getHostOs</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.rar-extract.html">Rar::extract</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.rar-getcrc.html">Rar::getCrc</a></div>
+ <div class="up"><a href="ref.rar.html">Rar Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

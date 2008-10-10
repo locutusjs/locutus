@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Open Informix server connection</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ifx-close.html">ifx_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ifx-copy-blob.html">ifx_copy_blob</a></div>
+ <div class="up"><a href="ref.ifx.html">Informix Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ifx-connect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ifx_connect</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">ifx_connect</span> &mdash; <span class="dc-title">Open Informix server connection</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>ifx_connect</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$database</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$userid</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$password</tt></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>ifx_connect()</b> establishes a connection to an Informix
+   server.  
+  </p>
+  <p class="para">
+   In case a second call is made to <b>ifx_connect()</b> with the
+   same arguments, no new link will be established, but instead, the link
+   identifier of the already opened link will be returned.
+  </p>
+  <p class="para">
+   The link to the server will be closed as soon as the execution of the
+   script ends, unless it&#039;s closed earlier by explicitly calling
+   <a href="function.ifx-close.html" class="function">ifx_close()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   All of the arguments are optional, and if they&#039;re missing, defaults are
+   taken from values supplied in <var class="filename">php.ini</var> (ifx.default_host for the host
+   (Informix libraries will use <span class="envar">INFORMIXSERVER</span> environment
+   value if not defined), ifx.default_user for user, ifx.default_password for
+   the password (none if not defined).
+  </p>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">database</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The database name, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">userid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The username, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">password</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The password, as a string.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a connection identifier on success, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Connect to a Informix database</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$conn_id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ifx_connect&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"mydb@ol_srv1"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"imyself"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"mypassword"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ifx-pconnect.html" class="function" rel="rdfs-seeAlso">ifx_pconnect()</a></li>
+    <li class="member"><a href="function.ifx-close.html" class="function" rel="rdfs-seeAlso">ifx_close()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ifx-close.html">ifx_close</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ifx-copy-blob.html">ifx_copy_blob</a></div>
+ <div class="up"><a href="ref.ifx.html">Informix Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

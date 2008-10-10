@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Modifies object record</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hw-mapid.html">hw_mapid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hw-mv.html">hw_mv</a></div>
+ <div class="up"><a href="ref.hw.html">Hyperwave Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.hw-modifyobject" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hw_Modifyobject</h1>
+  <p class="verinfo">(PHP 4)</p><p class="refpurpose"><span class="refname">hw_Modifyobject</span> &mdash; <span class="dc-title">Modifies object record</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>hw_modifyobject</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$object_to_change</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$remove</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$add</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This command allows to remove, add, or modify individual attributes
+   of an object record.  The object is specified by the Object ID
+   <i><tt class="parameter">object_to_change</tt></i>
+.
+   In order to modify an attribute one will have to remove
+   the old one and add a new one. <b>hw_modifyobject()</b>
+   will always remove the attributes before it adds attributes unless
+   the value of the attribute to remove is not a string or array.
+  </p>
+  <p class="para">
+   The keys of both arrays are the attributes name. The value of each
+   array element can either be an array, a string or anything else.
+   If it is an array
+   each attribute value is constructed by the key of each element plus
+   a colon and the value of each element. If it is a string it is taken
+   as the attribute value. An empty string will result in a complete
+   removal of that attribute. If the value is neither a string nor an
+   array but something else, e.g. an integer, no operation at all will
+   be performed on the attribute. This is necessary if you want to
+   add a completely new attribute not just a new value for an existing
+   attribute. If the remove array contained
+   an empty string for that attribute, the attribute would be tried to be
+   removed which would fail since it doesn&#039;t exist. The following addition of
+   a new value for that attribute would also fail. Setting the value
+   for that attribute to e.g. 0 would not even try to remove it and
+   the addition will work.
+  </p>
+  <p class="para">
+   If you would like to change the attribute &#039;Name&#039; with the current
+   value &#039;books&#039; into &#039;articles&#039; you will have to create two arrays
+   and call <b>hw_modifyobject()</b>.
+   <div class="example">
+    <p><b>Example #1 modifying an attribute</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;$connect&nbsp;is&nbsp;an&nbsp;existing&nbsp;connection&nbsp;to&nbsp;the&nbsp;Hyperwave&nbsp;server<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;$objid&nbsp;is&nbsp;the&nbsp;ID&nbsp;of&nbsp;the&nbsp;object&nbsp;to&nbsp;modify<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$remarr&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"Name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"books"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$addarr&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"Name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"articles"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$hw_modifyobject</span><span style="color: #007700">(</span><span style="color: #0000BB">$connect</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$objid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$remarr</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$addarr</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   In order to delete/add a name=value pair from/to the object record just
+   pass the remove/add array and set the last/third parameter to an empty
+   array. If the attribute is the first one with that name to add, set
+   attribute value in the remove array to an integer.
+   <div class="example">
+    <p><b>Example #2 adding a completely new attribute</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;$connect&nbsp;is&nbsp;an&nbsp;existing&nbsp;connection&nbsp;to&nbsp;the&nbsp;Hyperwave&nbsp;server<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;$objid&nbsp;is&nbsp;the&nbsp;ID&nbsp;of&nbsp;the&nbsp;object&nbsp;to&nbsp;modify<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$remarr&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"Name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$addarr&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"Name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"articles"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$hw_modifyobject</span><span style="color: #007700">(</span><span style="color: #0000BB">$connect</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$objid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$remarr</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$addarr</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <blockquote><p><b class="note">Note</b>: 
+    <span class="simpara">
+     Multilingual attributes, e.g. &#039;Title&#039;, can be modified in two
+     ways. Either by providing the attributes value in its native
+     form &#039;language&#039;:&#039;title&#039; or by providing an array with elements
+     for each language as described above. The above example would
+     than be:
+    </span>
+   </p></blockquote>
+   <div class="example">
+    <p><b>Example #3 modifying Title attribute</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$remarr&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"Title"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"en:Books"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$addarr&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"Title"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"en:Articles"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$hw_modifyobject</span><span style="color: #007700">(</span><span style="color: #0000BB">$connect</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$objid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$remarr</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$addarr</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+    or
+   <div class="example">
+    <p><b>Example #4 modifying Title attribute</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$remarr&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"Title"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">"en"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"Books"</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$addarr&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"Title"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">"en"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"Articles"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"ge"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"Artikel"</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$hw_modifyobject</span><span style="color: #007700">(</span><span style="color: #0000BB">$connect</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$objid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$remarr</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$addarr</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   This removes the English title &#039;Books&#039; and adds the English title
+   &#039;Articles&#039; and the German title &#039;Artikel&#039;.
+   <div class="example">
+    <p><b>Example #5 removing attribute</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$remarr&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"Title"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$addarr&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"Title"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"en:Articles"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$hw_modifyobject</span><span style="color: #007700">(</span><span style="color: #0000BB">$connect</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$objid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$remarr</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$addarr</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <blockquote><p><b class="note">Note</b>: 
+    <span class="simpara">
+     This will remove all attributes with the name &#039;Title&#039; and adds
+     a new &#039;Title&#039; attribute. This comes in handy if you want to
+     remove attributes recursively.
+    </span>
+   </p></blockquote>
+   <blockquote><p><b class="note">Note</b>: 
+    <span class="simpara">
+     If you need to delete all attributes with a certain name you
+     will have to pass an empty string as the attribute value.
+    </span>
+   </p></blockquote>
+   <blockquote><p><b class="note">Note</b>: 
+    <span class="simpara">
+     Only the attributes &#039;Title&#039;, &#039;Description&#039; and &#039;Keyword&#039; will
+     properly handle the language prefix. If those attributes don&#039;t carry
+     a language prefix, the prefix &#039;xx&#039; will be assigned.
+    </span>
+   </p></blockquote>
+   <blockquote><p><b class="note">Note</b>: 
+    <span class="simpara">
+     The &#039;Name&#039; attribute is somewhat special. In some cases it cannot
+     be complete removed. You will get an error message &#039;Change of base
+     attribute&#039; (not clear when this happens). Therefore you will always
+     have to add a new Name first and than remove the old one.
+    </span>
+   </p></blockquote>
+   <blockquote><p><b class="note">Note</b>: 
+    <span class="simpara">
+     You may not surround this function by calls to
+     <a href="function.hw-getandlock.html" class="function">hw_getandlock()</a> and <a href="function.hw-unlock.html" class="function">hw_unlock()</a>.
+     <b>hw_modifyobject()</b> does this internally.
+    </span>
+   </p></blockquote>
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The connection identifier.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">object_to_change</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The object to be changed.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">remove</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An array of attributes to remove.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">add</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An array of attributes to add.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The last parameter determines if the modification is performed
+       recursively. 1 means recursive modification. If some of the objects
+       cannot be modified they will be skipped without notice.
+       <a href="function.hw-error.html" class="function">hw_error()</a> may not indicate an error though some of
+       the objects could not be modified.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hw-mapid.html">hw_mapid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hw-mv.html">hw_mv</a></div>
+ <div class="up"><a href="ref.hw.html">Hyperwave Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

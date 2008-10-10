@@ -1,0 +1,363 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Send a raw HTTP header</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.getservbyport.html">getservbyport</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.headers-list.html">headers_list</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.header" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">header</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">header</span> &mdash; <span class="dc-title">Send a raw HTTP header</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>header</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$string</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$replace</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$http_response_code</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>header()</b> is used to send a raw <acronym title="Hypertext Transfer Protocol">HTTP</acronym>
+   header. See the <a href="http://www.faqs.org/rfcs/rfc2616" class="link external">&raquo; HTTP/1.1 specification</a>
+   for more information on <acronym title="Hypertext Transfer Protocol">HTTP</acronym> headers.
+  </p>
+  <p class="para">
+   Remember that <b>header()</b> must be called before any
+   actual output is sent, either by normal HTML tags, blank lines in a
+   file, or from PHP. It is a very common error to read code with
+   <b>include()</b>, or <b>require()</b>, 
+   functions, or another file access function, and have spaces or empty
+   lines that are output before <b>header()</b> is called.
+   The same problem exists when using a single PHP/HTML file.
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+&lt;html&gt;<br /><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;This&nbsp;will&nbsp;give&nbsp;an&nbsp;error.&nbsp;Note&nbsp;the&nbsp;output<br />&nbsp;*&nbsp;above,&nbsp;which&nbsp;is&nbsp;before&nbsp;the&nbsp;header()&nbsp;call&nbsp;*/<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Location:&nbsp;http://www.example.com/'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">string</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The header string.
+      </p>
+      <p class="para">
+       There are two special-case header calls.  The first is a header
+       that starts with the string &quot;<i>HTTP/</i>&quot; (case is not
+       significant), which will be used to figure out the HTTP status
+       code to send. For example, if you have configured Apache to
+       use a PHP script to handle requests for missing files (using
+       the <i>ErrorDocument</i> directive), you may want to
+       make sure that your script generates the proper status code.
+      </p>
+      <p class="para">
+       <div class="informalexample">
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />header</span><span style="color: #007700">(</span><span style="color: #DD0000">"HTTP/1.0&nbsp;404&nbsp;Not&nbsp;Found"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+        </div>
+
+       </div>
+      </p>
+      <p class="para">
+       The second special case is the &quot;Location:&quot; header.  Not only does
+       it send this header back to the browser, but it also returns a
+       <i>REDIRECT</i> (302) status code to the browser unless
+       some <i>3xx</i> status code has already been set.
+      </p>
+      <p class="para">
+       <div class="informalexample">
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />header</span><span style="color: #007700">(</span><span style="color: #DD0000">"Location:&nbsp;http://www.example.com/"</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">/*&nbsp;Redirect&nbsp;browser&nbsp;*/<br /><br />/*&nbsp;Make&nbsp;sure&nbsp;that&nbsp;code&nbsp;below&nbsp;does&nbsp;not&nbsp;get&nbsp;executed&nbsp;when&nbsp;we&nbsp;redirect.&nbsp;*/<br /></span><span style="color: #007700">exit;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+        </div>
+
+       </div>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">replace</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The optional <i><tt class="parameter">replace</tt></i>
+ parameter indicates
+       whether the header should replace a previous similar header, or
+       add a second header of the same type.  By default it will replace,
+       but if you pass in <b><tt>FALSE</tt></b> as the second argument you can force
+       multiple headers of the same type.  For example:
+      </p>
+      <p class="para">
+       <div class="informalexample">
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />header</span><span style="color: #007700">(</span><span style="color: #DD0000">'WWW-Authenticate:&nbsp;Negotiate'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'WWW-Authenticate:&nbsp;NTLM'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+        </div>
+
+       </div>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">http_response_code</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Forces the HTTP response code to the specified value.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.4.2 and 5.1.2</td>
+       <td colspan="1" rowspan="1" align="left">
+        This function now prevents more than one header to be sent at once as
+        a protection against header injection attacks.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">http_response_code</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.4</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">replace</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Download dialog</b></p>
+    <div class="example-contents"><p>
+     If you want the user to be prompted to save the data you are
+     sending, such as a generated PDF file, you can use the <a href="http://www.faqs.org/rfcs/rfc2183" class="link external">&raquo; Content-Disposition</a> header to
+     supply a recommended filename and force the browser to display the
+     save dialog.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;We'll&nbsp;be&nbsp;outputting&nbsp;a&nbsp;PDF<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;application/pdf'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;It&nbsp;will&nbsp;be&nbsp;called&nbsp;downloaded.pdf<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-Disposition:&nbsp;attachment;&nbsp;filename="downloaded.pdf"'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;The&nbsp;PDF&nbsp;source&nbsp;is&nbsp;in&nbsp;original.pdf<br /></span><span style="color: #0000BB">readfile</span><span style="color: #007700">(</span><span style="color: #DD0000">'original.pdf'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Caching directives</b></p>
+    <div class="example-contents"><p>
+     PHP scripts often generate dynamic content that must not be cached
+     by the client browser or any proxy caches between the server and the
+     client browser. Many proxies and clients can be forced to disable
+     caching with:
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />header</span><span style="color: #007700">(</span><span style="color: #DD0000">"Cache-Control:&nbsp;no-cache,&nbsp;must-revalidate"</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;HTTP/1.1<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">"Expires:&nbsp;Sat,&nbsp;26&nbsp;Jul&nbsp;1997&nbsp;05:00:00&nbsp;GMT"</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;Date&nbsp;in&nbsp;the&nbsp;past<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     <blockquote><p><b class="note">Note</b>: 
+      
+       You may find that your pages aren&#039;t cached even if you don&#039;t
+       output all of the headers above. There are a number of options
+       that users may be able to set for their browser that change its
+       default caching behavior. By sending the headers above, you should
+       override any settings that may otherwise cause the output of your
+       script to be cached.
+      <br />
+      
+       Additionally, <a href="function.session-cache-limiter.html" class="function">session_cache_limiter()</a> and
+       the <i>session.cache_limiter</i> configuration
+       setting can be used to automatically generate the correct
+       caching-related headers when sessions are being used.
+      <br />
+     </p></blockquote>
+    </p></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    As of PHP 4, you can use output buffering to get around this problem,
+    with the overhead of all of your output to the browser being buffered
+    in the server until you send it. You can do this by calling
+    <a href="function.ob-start.html" class="function">ob_start()</a> and <a href="function.ob-end-flush.html" class="function">ob_end_flush()</a>
+    in your script, or setting the <i>output_buffering</i>
+    configuration directive on in your <var class="filename">php.ini</var> or
+    server configuration files.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    The HTTP status header line will always be the first sent
+    to the client, regardless of the actual <b>header()</b>
+    call being the first or not. The status may be overridden
+    by calling <b>header()</b> with a new status line
+    at any time unless the HTTP headers have already been sent.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    There is a bug in Microsoft Internet Explorer 4.01 that prevents
+    this from working. There is no workaround. There is also a bug
+    in Microsoft Internet Explorer 5.5 that interferes with this,
+    which can be resolved by upgrading to Service Pack 2 or later.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   <span class="simpara">
+    If <a href="features.safe-mode.html#ini.safe-mode" class="link">safe mode</a> is enabled the
+    uid of the script is added to the <i>realm</i> part
+    of the <i>WWW-Authenticate</i> header if you set
+    this header (used for HTTP Authentication).
+   </span>
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    HTTP/1.1 requires an absolute <acronym title="Uniform Resource Identifier">URI</acronym> as argument to
+    <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.30" class="link external">&raquo; Location:</a>
+    including the scheme, hostname and absolute path, but
+    some clients accept relative URIs. You can usually use
+    <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER['HTTP_HOST']</a></var>,
+    <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER['PHP_SELF']</a></var>
+    and <a href="function.dirname.html" class="function">dirname()</a> to make an absolute URI from a
+    relative one yourself:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Redirect&nbsp;to&nbsp;a&nbsp;different&nbsp;page&nbsp;in&nbsp;the&nbsp;current&nbsp;directory&nbsp;that&nbsp;was&nbsp;requested&nbsp;*/<br /></span><span style="color: #0000BB">$host&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'HTTP_HOST'</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">$uri&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rtrim</span><span style="color: #007700">(</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'PHP_SELF'</span><span style="color: #007700">]),&nbsp;</span><span style="color: #DD0000">'/\\'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$extra&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'mypage.php'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">"Location:&nbsp;http://$host$uri/$extra"</span><span style="color: #007700">);<br />exit;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Session ID is not passed with Location header even if <a href="session.configuration.html#ini.session.use-trans-sid" class="link">session.use_trans_sid</a> is
+    enabled. It must by passed manually using <b><tt>SID</tt></b>
+    constant.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.headers-sent.html" class="function" rel="rdfs-seeAlso">headers_sent()</a></li>
+    <li class="member"><a href="function.setcookie.html" class="function" rel="rdfs-seeAlso">setcookie()</a></li>
+    <li class="member">
+     The section on <a href="features.http-auth.html" class="link">HTTP
+     authentication</a>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.getservbyport.html">getservbyport</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.headers-list.html">headers_list</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

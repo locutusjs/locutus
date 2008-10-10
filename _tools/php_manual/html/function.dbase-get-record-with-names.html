@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets a record from a database as an associative array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbase-get-header-info.html">dbase_get_header_info</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbase-get-record.html">dbase_get_record</a></div>
+ <div class="up"><a href="ref.dbase.html">dBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.dbase-get-record-with-names" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dbase_get_record_with_names</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">dbase_get_record_with_names</span> &mdash; <span class="dc-title">
+   Gets a record from a database as an associative array
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>dbase_get_record_with_names</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$dbase_identifier</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$record_number</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets a record from a dBase database as an associative array.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dbase_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The database link identifier, returned by <a href="function.dbase-open.html" class="function">dbase_open()</a>
+       or <a href="function.dbase-create.html" class="function">dbase_create()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">record_number</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The index of the record.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An associative array with the record. This will also include a key named 
+   <i>deleted</i> which is set to 1 if the record has been marked
+   for deletion (see <a href="function.dbase-delete-record.html" class="function">dbase_delete_record()</a>).
+  </p>
+  <p class="para">
+   Each field is converted to the appropriate PHP type, except:
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      Dates are left as strings.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Integers that would have caused an overflow (&gt; 32 bits)
+      are returned as strings.
+     </span>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   On error, <b>dbase_get_record_with_names()</b> will return <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Listing all the registered members in the database</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;open&nbsp;in&nbsp;read-only&nbsp;mode<br /></span><span style="color: #0000BB">$db&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbase_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'/tmp/test.dbf'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$db</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$record_numbers&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbase_numrecords</span><span style="color: #007700">(</span><span style="color: #0000BB">$db</span><span style="color: #007700">);<br />&nbsp;&nbsp;for&nbsp;(</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">&lt;=&nbsp;</span><span style="color: #0000BB">$record_numbers</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbase_get_record_with_names</span><span style="color: #007700">(</span><span style="color: #0000BB">$db</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'ismember'</span><span style="color: #007700">]&nbsp;==&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Member&nbsp;#$i:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">trim</span><span style="color: #007700">(</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">])&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.dbase-get-record.html" class="function" rel="rdfs-seeAlso">dbase_get_record()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbase-get-header-info.html">dbase_get_header_info</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbase-get-record.html">dbase_get_record</a></div>
+ <div class="up"><a href="ref.dbase.html">dBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets the image opacity level</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-setimagemattecolor.html">Imagick::setImageMatteColor</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-setimageorientation.html">Imagick::setImageOrientation</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagick-setimageopacity" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::setImageOpacity</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Imagick::setImageOpacity</span> &mdash; <span class="dc-title">Sets the image opacity level</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>Imagick::setImageOpacity</b></b></span>
+    ( <span class="methodparam"><span class="type">float</span> <tt class="parameter">$opacity</tt></span>
+   )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+currently not documented; only its argument list is available.
+</p></div>
+  <p class="para">
+   Sets the image to the specified opacity level. This method is present if
+   Imagick is compiled against
+   ImageMagick 6.3.1 or later.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">opacity</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The level of transparency: 1.0 is fully opaque and 0.0 is fully
+       transparent.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>Imagick::setImageOpacity()</b> example</b></p>
+    <div class="example-contents"><p>
+     An example of using Imagick::setImageOpacity()
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Create&nbsp;the&nbsp;object&nbsp;*/<br /></span><span style="color: #0000BB">$image&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">(</span><span style="color: #DD0000">'source.png'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Set&nbsp;the&nbsp;opacity&nbsp;*/<br /></span><span style="color: #0000BB">$image</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setImageOpacity</span><span style="color: #007700">(</span><span style="color: #0000BB">0.7</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;output&nbsp;the&nbsp;image&nbsp;*/<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/png'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$image</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-setimagemattecolor.html">Imagick::setImageMatteColor</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-setimageorientation.html">Imagick::setImageOrientation</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

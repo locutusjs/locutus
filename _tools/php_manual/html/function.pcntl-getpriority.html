@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the priority of any process</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pcntl-fork.html">pcntl_fork</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pcntl-setpriority.html">pcntl_setpriority</a></div>
+ <div class="up"><a href="ref.pcntl.html">PCNTL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pcntl-getpriority" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pcntl_getpriority</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">pcntl_getpriority</span> &mdash; <span class="dc-title">Get the priority of any process</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>pcntl_getpriority</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$pid</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$process_identifier</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>pcntl_getpriority()</b> gets the priority of
+   <i><tt class="parameter">pid</tt></i>
+. Because priority levels can differ between
+   system types and kernel versions, please see your system&#039;s getpriority(2)
+   man page for specific details.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If not specified, the pid of the current process is used.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">process_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       One of <b><tt>PRIO_PGRP</tt></b>, <b><tt>PRIO_USER</tt></b>
+       or <b><tt>PRIO_PROCESS</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>pcntl_getpriority()</b> returns the priority of the process
+   or <b><tt>FALSE</tt></b> on error.  A lower numerical value causes more favorable
+   scheduling.
+  </p>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function may
+return Boolean <b><tt>FALSE</tt></b>, but may also return a non-Boolean value which
+evaluates to <b><tt>FALSE</tt></b>, such as <i>0</i> or
+&quot;&quot;. Please read the section on <a href="language.types.boolean.html" class="link">Booleans</a> for more
+information. Use <a href="language.operators.comparison.html" class="link">the ===
+operator</a> for testing the return value of this
+function.</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pcntl-setpriority.html" class="function" rel="rdfs-seeAlso">pcntl_setpriority()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pcntl-fork.html">pcntl_fork</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pcntl-setpriority.html">pcntl_setpriority</a></div>
+ <div class="up"><a href="ref.pcntl.html">PCNTL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

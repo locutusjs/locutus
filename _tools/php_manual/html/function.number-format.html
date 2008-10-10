@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Format a number with grouped thousands</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.nl2br.html">nl2br</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ord.html">ord</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.number-format" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">number_format</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">number_format</span> &mdash; <span class="dc-title">Format a number with grouped thousands</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>number_format</b></b></span>
+    ( <span class="methodparam"><span class="type">float</span> <tt class="parameter">$number</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$decimals</tt></span>
+  ] )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>number_format</b></b></span>
+    ( <span class="methodparam"><span class="type">float</span> <tt class="parameter">$number</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$decimals</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dec_point</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$thousands_sep</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function accepts either one, two, or four parameters (not three):
+  </p>
+  <p class="para">
+   If only one parameter is given,
+   <i><tt class="parameter">number</tt></i>
+ will be formatted without decimals,
+   but with a comma (&quot;,&quot;) between every group of thousands.
+  </p>
+  <p class="para">
+   If two parameters are given, <i><tt class="parameter">number</tt></i>
+ will
+   be formatted with <i><tt class="parameter">decimals</tt></i>
+ decimals with a
+   dot (&quot;.&quot;) in front, and a comma (&quot;,&quot;) between every group of
+   thousands.
+  </p>
+  <p class="para">
+   If all four parameters are given, <i><tt class="parameter">number</tt></i>
+
+   will be formatted with <i><tt class="parameter">decimals</tt></i>
+ decimals,
+   <i><tt class="parameter">dec_point</tt></i>
+ instead of a dot (&quot;.&quot;) before
+   the decimals and <i><tt class="parameter">thousands_sep</tt></i>
+ instead of
+   a comma (&quot;,&quot;) between every group of thousands.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A formatted version of <i><tt class="parameter">number</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">number</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The number being formatted.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">decimals</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Sets the number of decimal points.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dec_point</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Sets the separator for the decimal point.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">thousands_sep</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Sets the thousands separator.
+      </p>
+      <p class="para">
+       Only the first character of <i><tt class="parameter">thousands_sep</tt></i>
+
+       is used.  For example, if you use <i>bar</i> as
+       <i><tt class="parameter">thousands_sep</tt></i>
+ on the number
+       <i>1000</i>, <b>number_format()</b> will
+       return <i>1b000</i>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>number_format()</b> Example</b></p>
+    <div class="example-contents"><p>
+     For instance, French notation usually use two decimals,
+     comma (&#039;,&#039;) as decimal separator, and space (&#039; &#039;) as
+     thousand separator. This is achieved with this line :
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$number&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1234.56</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;english&nbsp;notation&nbsp;(default)<br /></span><span style="color: #0000BB">$english_format_number&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">number_format</span><span style="color: #007700">(</span><span style="color: #0000BB">$number</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;1,235<br /><br />//&nbsp;French&nbsp;notation<br /></span><span style="color: #0000BB">$nombre_format_francais&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">number_format</span><span style="color: #007700">(</span><span style="color: #0000BB">$number</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">','</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'&nbsp;'</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;1&nbsp;234,56<br /><br /></span><span style="color: #0000BB">$number&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1234.5678</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;english&nbsp;notation&nbsp;without&nbsp;thousands&nbsp;seperator<br /></span><span style="color: #0000BB">$english_format_number&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">number_format</span><span style="color: #007700">(</span><span style="color: #0000BB">$number</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;1234.57<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.money-format.html" class="function" rel="rdfs-seeAlso">money_format()</a></li>
+    <li class="member"><a href="function.sprintf.html" class="function" rel="rdfs-seeAlso">sprintf()</a></li>
+    <li class="member"><a href="function.printf.html" class="function" rel="rdfs-seeAlso">printf()</a></li>
+    <li class="member"><a href="function.sscanf.html" class="function" rel="rdfs-seeAlso">sscanf()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.nl2br.html">nl2br</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ord.html">ord</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

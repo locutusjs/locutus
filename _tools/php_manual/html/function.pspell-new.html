@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Load a new dictionary</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pspell-new-personal.html">pspell_new_personal</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pspell-save-wordlist.html">pspell_save_wordlist</a></div>
+ <div class="up"><a href="ref.pspell.html">Pspell Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pspell-new" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pspell_new</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5)</p><p class="refpurpose"><span class="refname">pspell_new</span> &mdash; <span class="dc-title">Load a new dictionary</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>pspell_new</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$language</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$spelling</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$jargon</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+  ]]]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>pspell_new()</b> opens up a new dictionary and
+   returns the dictionary link identifier for use in other pspell
+   functions.
+  </p>
+  <p class="para">
+   For more information and examples, check out inline manual pspell
+   website:<a href="http://aspell.net/" class="link external">&raquo; http://aspell.net/</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">language</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The language parameter is the language code which consists of the
+       two letter ISO 639 language code and an optional two letter ISO
+       3166 country code after a dash or underscore.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">spelling</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The spelling parameter is the requested spelling for languages
+       with more than one spelling such as English. Known values are
+       &#039;american&#039;, &#039;british&#039;, and &#039;canadian&#039;.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">jargon</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The jargon parameter contains extra information to distinguish
+       two different words lists that have the same language and
+       spelling parameters.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The encoding parameter is the encoding that words are expected to
+       be in.  Valid values are &#039;utf-8&#039;, &#039;iso8859-*&#039;, &#039;koi8-r&#039;,
+       &#039;viscii&#039;, &#039;cp1252&#039;, &#039;machine unsigned 16&#039;, &#039;machine unsigned
+       32&#039;. This parameter is largely untested, so be careful when
+       using.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The mode parameter is the mode in which spellchecker will work.
+       There are several modes available:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PSPELL_FAST</tt></b> - Fast mode (least number of
+          suggestions)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PSPELL_NORMAL</tt></b> - Normal mode (more suggestions)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PSPELL_BAD_SPELLERS</tt></b> - Slow mode (a lot of
+          suggestions)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PSPELL_RUN_TOGETHER</tt></b> - Consider run-together words
+          as legal compounds.  That is, &quot;thecat&quot; will be a legal compound,
+          although there should be a space between the two words. Changing this
+          setting only affects the results returned by
+          <a href="function.pspell-check.html" class="function">pspell_check()</a>; <a href="function.pspell-suggest.html" class="function">pspell_suggest()</a>
+          will still return suggestions.
+         </span>
+        </li>
+       </ul>
+       Mode is a bitmask constructed from different constants listed above.
+       However, <b><tt>PSPELL_FAST</tt></b>,
+       <b><tt>PSPELL_NORMAL</tt></b> and
+       <b><tt>PSPELL_BAD_SPELLERS</tt></b> are mutually exclusive, so you
+       should select only one of them.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the dictionary link identifier on success, or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pspell_new()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$pspell_link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pspell_new</span><span style="color: #007700">(</span><span style="color: #DD0000">"en"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">PSPELL_FAST</span><span style="color: #007700">|</span><span style="color: #0000BB">PSPELL_RUN_TOGETHER</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pspell-new-personal.html">pspell_new_personal</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pspell-save-wordlist.html">pspell_save_wordlist</a></div>
+ <div class="up"><a href="ref.pspell.html">Pspell Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

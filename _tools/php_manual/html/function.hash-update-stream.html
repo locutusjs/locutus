@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Pump data into an active hashing context from an open stream</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hash-update-file.html">hash_update_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hash-update.html">hash_update</a></div>
+ <div class="up"><a href="ref.hash.html">Hash Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.hash-update-stream" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hash_update_stream</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.2, PECL hash:1.1-1.5)</p><p class="refpurpose"><span class="refname">hash_update_stream</span> &mdash; <span class="dc-title">Pump data into an active hashing context from an open stream</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>hash_update_stream</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$context</tt></span>
+   , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$handle</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$length</tt></span>
+  ] )</div>
+
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">context</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Hashing context returned by <a href="function.hash-init.html" class="function">hash_init()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">handle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Open file handle as returned by any stream creation function.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">length</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Maximum number of characters to copy from <i><tt class="parameter">handle</tt></i>
+
+       into the hashing context.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Actual number of bytes added to the hashing context from <i><tt class="parameter">handle</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>hash_update_stream()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">tmpfile</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'The&nbsp;quick&nbsp;brown&nbsp;fox&nbsp;jumped&nbsp;over&nbsp;the&nbsp;lazy&nbsp;dog.'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">rewind</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$ctx&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">hash_init</span><span style="color: #007700">(</span><span style="color: #DD0000">'md5'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">hash_update_stream</span><span style="color: #007700">(</span><span style="color: #0000BB">$ctx</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">hash_final</span><span style="color: #007700">(</span><span style="color: #0000BB">$ctx</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+5c6ffbdd40d9556b73a21e63c3e0e904
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.hash-init.html" class="function" rel="rdfs-seeAlso">hash_init()</a></li>
+    <li class="member"><a href="function.hash-update.html" class="function" rel="rdfs-seeAlso">hash_update()</a></li>
+    <li class="member"><a href="function.hash-final.html" class="function" rel="rdfs-seeAlso">hash_final()</a></li>
+    <li class="member"><a href="function.hash.html" class="function" rel="rdfs-seeAlso">hash()</a></li>
+    <li class="member"><a href="function.hash-file.html" class="function" rel="rdfs-seeAlso">hash_file()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hash-update-file.html">hash_update_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hash-update.html">hash_update</a></div>
+ <div class="up"><a href="ref.hash.html">Hash Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

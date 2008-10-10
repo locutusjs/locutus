@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Converts a date in the Jewish Calendar to Julian Day Count</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.jdtounix.html">jdtounix</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.juliantojd.html">JulianToJD</a></div>
+ <div class="up"><a href="ref.calendar.html">Calendar Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.jewishtojd" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">JewishToJD</h1> 
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">JewishToJD</span> &mdash; <span class="dc-title">Converts a date in the Jewish Calendar to Julian Day Count</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>jewishtojd</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$month</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$day</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$year</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Although this function can handle dates all the way back to the year 1
+   (3761 B.C.), such use may not be meaningful.  The Jewish calendar has
+   been in use for several thousand years, but in the early days there was
+   no formula to determine the start of a month. A new month was started
+   when the new moon was first observed.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">month</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The month as a number from 1 to 13
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">day</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The day as a number from 1 to 30
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">year</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The year as a number between 1 and 9999
+      </p>
+     </dd>
+
+    </dt>
+  
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The julian day for the given jewish date as an integer.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.jdtojewish.html" class="function" rel="rdfs-seeAlso">jdtojewish()</a></li> 
+    <li class="member"><a href="function.cal-to-jd.html" class="function" rel="rdfs-seeAlso">cal_to_jd()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.jdtounix.html">jdtounix</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.juliantojd.html">JulianToJD</a></div>
+ <div class="up"><a href="ref.calendar.html">Calendar Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

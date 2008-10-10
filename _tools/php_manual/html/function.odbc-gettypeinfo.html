@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Retrieves information about data types supported by the data source</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.odbc-free-result.html">odbc_free_result</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.odbc-longreadlen.html">odbc_longreadlen</a></div>
+ <div class="up"><a href="ref.uodbc.html">ODBC Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.odbc-gettypeinfo" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">odbc_gettypeinfo</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">odbc_gettypeinfo</span> &mdash; <span class="dc-title">Retrieves information about data types supported by the data source</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>odbc_gettypeinfo</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection_id</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$data_type</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Retrieves information about data types supported by the data source.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The ODBC connection identifier,
+see <a href="function.odbc-connect.html" class="function">odbc_connect()</a> for details.</p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data_type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The data type, which can be used to restrict the information to a
+       single data type.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an ODBC result identifier or
+   <b><tt>FALSE</tt></b> on failure.
+  </p>
+  <p class="para">
+   The result set has the following columns:
+   <ul class="itemizedlist">
+    <li class="listitem"><span class="simpara">TYPE_NAME</span></li>
+    <li class="listitem"><span class="simpara">DATA_TYPE</span></li>
+    <li class="listitem"><span class="simpara">PRECISION</span></li>
+    <li class="listitem"><span class="simpara">LITERAL_PREFIX</span></li>
+    <li class="listitem"><span class="simpara">LITERAL_SUFFIX</span></li>
+    <li class="listitem"><span class="simpara">CREATE_PARAMS</span></li>
+    <li class="listitem"><span class="simpara">NULLABLE</span></li>
+    <li class="listitem"><span class="simpara">CASE_SENSITIVE</span></li>
+    <li class="listitem"><span class="simpara">SEARCHABLE</span></li>
+    <li class="listitem"><span class="simpara">UNSIGNED_ATTRIBUTE</span></li>
+    <li class="listitem"><span class="simpara">MONEY</span></li>
+    <li class="listitem"><span class="simpara">AUTO_INCREMENT</span></li>
+    <li class="listitem"><span class="simpara">LOCAL_TYPE_NAME</span></li>
+    <li class="listitem"><span class="simpara">MINIMUM_SCALE</span></li>
+    <li class="listitem"><span class="simpara">MAXIMUM_SCALE</span></li>
+   </ul>
+  </p>
+  <p class="para">
+   The result set is ordered by DATA_TYPE and TYPE_NAME.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.odbc-free-result.html">odbc_free_result</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.odbc-longreadlen.html">odbc_longreadlen</a></div>
+ <div class="up"><a href="ref.uodbc.html">ODBC Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

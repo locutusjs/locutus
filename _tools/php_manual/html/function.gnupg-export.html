@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Exports a key</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gnupg-encryptsign.html">gnupg_encryptsign</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gnupg-geterror.html">gnupg_geterror</a></div>
+ <div class="up"><a href="ref.gnupg.html">GnuPG Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.gnupg-export" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">gnupg_export</h1>
+  <p class="verinfo">(PECL gnupg:0.1-1.3.1)</p><p class="refpurpose"><span class="refname">gnupg_export</span> &mdash; <span class="dc-title">Exports a key</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>gnupg_export</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$identifier</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$fingerprint</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Exports the key <i><tt class="parameter">fingerprint</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The gnupg identifier, from a call to 
+<a href="function.gnupg-init.html" class="function">gnupg_init()</a> or <b class="classname">gnupg</b>.</p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fingerprint</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">The fingerprint key.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   On success, this function returns the keydata.
+   On failure, this function returns <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Procedural <b>gnupg_export()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gnupg_init</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$export&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gnupg_export</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,</span><span style="color: #DD0000">"8660281B6051D071D94B5B230549F9DC851566DC"</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$export</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example">
+    <p><b>Example #2 OO <b>gnupg_export()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$gpg&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">gnupg</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$export&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$gpg&nbsp;</span><span style="color: #007700">-&gt;&nbsp;</span><span style="color: #0000BB">export</span><span style="color: #007700">(</span><span style="color: #DD0000">"8660281B6051D071D94B5B230549F9DC851566DC"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gnupg-encryptsign.html">gnupg_encryptsign</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gnupg-geterror.html">gnupg_geterror</a></div>
+ <div class="up"><a href="ref.gnupg.html">GnuPG Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

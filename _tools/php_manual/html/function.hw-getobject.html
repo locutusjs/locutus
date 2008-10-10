@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Object record</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hw-getchilddoccollobj.html">hw_GetChildDocCollObj</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hw-getobjectbyquery.html">hw_GetObjectByQuery</a></div>
+ <div class="up"><a href="ref.hw.html">Hyperwave Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.hw-getobject" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hw_GetObject</h1>
+  <p class="verinfo">(PHP 4)</p><p class="refpurpose"><span class="refname">hw_GetObject</span> &mdash; <span class="dc-title">Object record</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>hw_getobject</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$objectID</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Gets an object record.
+   If the second parameter is an array of integer the function will
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The connection identifier.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">objectID</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The object identifier, or an array of identifiers.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">query</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The query string has the following syntax:
+       <div class="example-contents"><pre>
+<div class="cdata"><pre>
+&lt;expr&gt; ::= &quot;(&quot; &lt;expr&gt; &quot;)&quot; |
+           &quot;!&quot; &amp;lt;expr&gt; |          /* NOT */
+           &lt;expr&gt; &quot;||&quot; &lt;expr&gt; |  /* OR */
+           &lt;expr&gt; &quot;&amp;amp;&amp;amp;&quot; &lt;expr&gt; |  /* AND */
+           &lt;attribute&gt; &lt;operator&gt; &lt;value&gt;
+
+&lt;attribute&gt; ::= /* any attribute name (Title, Author, DocumentType ...) */
+
+&lt;operator&gt; ::= &quot;=&quot; |    /* equal */
+               &quot;&lt;&quot; |    /* less than (string compare) */
+               &quot;&gt;&quot; |    /* greater than (string compare) */
+               &quot;~&quot;      /* regular expression matching */
+</pre></div>
+       </pre></div>
+       The query allows to further select certain objects from the list
+       of given objects. Unlike the other
+       query functions, this query may use not indexed attributes. How many
+       object records are returned depends on the query and if access to
+       the object is allowed.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the object record for the given object ID if the second parameter
+   is an integer.
+  </p>
+  <p class="para">
+   If the second parameter is an array of integer the function will
+   return an array of object records. In such a case the last
+   parameter is also evaluated which is a query string.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.hw-getandlock.html" class="function" rel="rdfs-seeAlso">hw_getandlock()</a></li>
+    <li class="member"><a href="function.hw-getobjectbyquery.html" class="function" rel="rdfs-seeAlso">hw_getobjectbyquery()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hw-getchilddoccollobj.html">hw_GetChildDocCollObj</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hw-getobjectbyquery.html">hw_GetObjectByQuery</a></div>
+ <div class="up"><a href="ref.hw.html">Hyperwave Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

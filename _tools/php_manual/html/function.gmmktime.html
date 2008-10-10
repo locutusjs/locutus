@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get Unix timestamp for a GMT date</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gmdate.html">gmdate</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gmstrftime.html">gmstrftime</a></div>
+ <div class="up"><a href="ref.datetime.html">Date/Time Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.gmmktime" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">gmmktime</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">gmmktime</span> &mdash; <span class="dc-title">Get Unix timestamp for a GMT date</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>gmmktime</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$hour</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$minute</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$second</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$month</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$day</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$year</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$is_dst</tt></span>
+  ]]]]]]] )</div>
+
+  <p class="para rdfs-comment">
+   Identical to <a href="function.mktime.html" class="function">mktime()</a> except the passed parameters represents a 
+   GMT date. <b>gmmktime()</b> internally uses <a href="function.mktime.html" class="function">mktime()</a>
+   so only times valid in derived local time can be used.
+  </p>
+  <p class="para">
+   Like <a href="function.mktime.html" class="function">mktime()</a>, arguments may be left out in order
+   from right to left, with any omitted arguments being set to the
+   current corresponding GMT value.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">hour</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The hour
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">minute</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The minute
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">second</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The second
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">month</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The month
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">day</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The day
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">year</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The year
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">is_dst</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Parameters always represent a GMT date so <i><tt class="parameter">is_dst</tt></i>
+
+       doesn&#039;t influence the result.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a <a href="language.types.integer.html" class="type integer">integer</a> Unix timestamp.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.1.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        As of PHP 5.1.0, the <i><tt class="parameter">is_dst</tt></i>
+ parameter became
+        deprecated. As a result, the new timezone handling features should be used
+        instead.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>gmmktime()</b> on Windows boundary</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />gmmktime</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1970</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;valid&nbsp;in&nbsp;GMT&nbsp;and&nbsp;west,&nbsp;invalid&nbsp;in&nbsp;east<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mktime.html" class="function" rel="rdfs-seeAlso">mktime()</a></li>
+    <li class="member"><a href="function.date.html" class="function" rel="rdfs-seeAlso">date()</a></li>
+    <li class="member"><a href="function.time.html" class="function" rel="rdfs-seeAlso">time()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gmdate.html">gmdate</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gmstrftime.html">gmstrftime</a></div>
+ <div class="up"><a href="ref.datetime.html">Date/Time Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

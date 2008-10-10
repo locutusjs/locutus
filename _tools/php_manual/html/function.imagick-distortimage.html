@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Distorts an image using various distortion methods</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-displayimages.html">Imagick::displayImages</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-drawimage.html">Imagick::drawImage</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagick-distortimage" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::distortImage</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Imagick::distortImage</span> &mdash; <span class="dc-title">Distorts an image using various distortion methods</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>Imagick::distortImage</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$method</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$arguments</tt></span>
+   , <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$bestfit</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Distorts an image using various distortion methods, by mapping color
+   lookups of the source image to a new destination image usally of the same
+   size as the source image, unless &#039;bestfit&#039; is set to <b><tt>TRUE</tt></b>.
+  </p>
+  <p class="para">
+   If &#039;bestfit&#039; is enabled, and distortion allows it, the destination image
+   is adjusted to ensure the whole source &#039;image&#039; will just fit within the
+   final destination image, which will be sized and offset accordingly. Also
+   in many cases the virtual offset of the source image will be taken into
+   account in the mapping.
+  </p>
+  <p class="para">
+   This functionality is present if Imagick is compiled against ImageMagick
+   6.3.6 or later.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">method</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The method of image distortion. See <a href="imagick.constants.html#imagick.constants.distortion" class="link">distortion constants</a>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">arguments</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The arguments for this distortion method
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">bestfit</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Attempt to resize destination to fit distorted source
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws ImagickException on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>Imagick::distortImage()</b>:</b></p>
+    <div class="example-contents"><p>
+     Distort an image and write it to the disk.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$im&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">imagick</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">"example.jpg"&nbsp;</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$im</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">distortImage</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">Imagick</span><span style="color: #007700">::</span><span style="color: #0000BB">DISTORTION_PERSPECTIVE</span><span style="color: #007700">,&nbsp;array(&nbsp;</span><span style="color: #0000BB">7</span><span style="color: #007700">,</span><span style="color: #0000BB">40</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">,</span><span style="color: #0000BB">30</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">,</span><span style="color: #0000BB">124</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">,</span><span style="color: #0000BB">123</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">85</span><span style="color: #007700">,</span><span style="color: #0000BB">122</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">,</span><span style="color: #0000BB">123</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">85</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">,</span><span style="color: #0000BB">30&nbsp;</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">true&nbsp;</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$im</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">writeImage</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">"example_out.jpg"&nbsp;</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imagick-blurimage.html" class="function" rel="rdfs-seeAlso">Imagick::blurImage()</a></li>
+    <li class="member"><a href="function.imagick-motionblurimage.html" class="function" rel="rdfs-seeAlso">Imagick::motionBlurImage()</a></li>
+    <li class="member"><a href="function.imagick-radialblurimage.html" class="function" rel="rdfs-seeAlso">Imagick::radialBlurImage()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-displayimages.html">Imagick::displayImages</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-drawimage.html">Imagick::drawImage</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

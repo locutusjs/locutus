@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the filename of the corresponding GeoIP Database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.geoip-db-avail.html">geoip_db_avail</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.geoip-db-get-all-info.html">geoip_db_get_all_info</a></div>
+ <div class="up"><a href="ref.geoip.html">GeoIP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.geoip-db-filename" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">geoip_db_filename</h1>
+  <p class="verinfo">(PECL geoip:1.0.1)</p><p class="refpurpose"><span class="refname">geoip_db_filename</span> &mdash; <span class="dc-title">Returns the filename of the corresponding GeoIP Database</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>geoip_db_filename</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$database</tt></span>
+   )</div>
+
+
+  <p class="para rdfs-comment">
+   The <b>geoip_db_filename()</b> function returns the filename of
+   the corresponding GeoIP Database.
+  </p>
+
+  <p class="para">
+   It does not indicate if the file exists or not on disk, only where the library
+   is looking for the database.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">database</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The database type as an integer. You can use the
+       <a href="geoip.constants.html" class="link">various constants</a> defined with
+       this extension (ie: GEOIP_*_EDITION).
+      </p>
+
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the filename of the corresponding database, or <b><tt>NULL</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>geoip_db_filename()</b> example</b></p>
+    <div class="example-contents"><p>
+     This will output the filename of the corresponding database.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">print&nbsp;</span><span style="color: #0000BB">geoip_db_filename</span><span style="color: #007700">(</span><span style="color: #0000BB">GEOIP_COUNTRY_EDITION</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+/usr/share/GeoIP/GeoIP.dat
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+  
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.geoip-db-avail.html">geoip_db_avail</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.geoip-db-get-all-info.html">geoip_db_get_all_info</a></div>
+ <div class="up"><a href="ref.geoip.html">GeoIP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Moves internal row pointer</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mssql-connect.html">mssql_connect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mssql-execute.html">mssql_execute</a></div>
+ <div class="up"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mssql-data-seek" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mssql_data_seek</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL odbtp:1.1.1-1.1.4)</p><p class="refpurpose"><span class="refname">mssql_data_seek</span> &mdash; <span class="dc-title">Moves internal row pointer</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>mssql_data_seek</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result_identifier</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$row_number</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>mssql_data_seek()</b> moves the internal row
+   pointer of the MS SQL result associated with the specified result
+   identifier to point to the specified row number, first row being
+   number 0. The next call to <a href="function.mssql-fetch-row.html" class="function">mssql_fetch_row()</a>
+   would return that row.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The result resource that is being evaluated. 
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">row_number</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The desired row number of the new result pointer. 
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <a href="function.mssql-fetch-array.html" class="function">mssql_fetch_array()</a> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Connect&nbsp;to&nbsp;MSSQL<br /></span><span style="color: #0000BB">$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mssql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'MANGO\SQLEXPRESS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'sa'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'phpfi'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">mssql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">'php'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Select&nbsp;all&nbsp;people<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mssql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT&nbsp;[name],&nbsp;[age]&nbsp;FROM&nbsp;[persons]&nbsp;WHERE&nbsp;[age]&nbsp;&gt;=&nbsp;13'</span><span style="color: #007700">);<br /><br />if(!</span><span style="color: #0000BB">$result</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Query&nbsp;failed.'</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Select&nbsp;every&nbsp;4th&nbsp;student&nbsp;in&nbsp;the&nbsp;results<br /></span><span style="color: #007700">for(</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mssql_num_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;-&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">%&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;if(!</span><span style="color: #0000BB">mssql_data_seek</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">))<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Fetch&nbsp;the&nbsp;row&nbsp;...<br /></span><span style="color: #007700">}<br /><br /></span><span style="color: #FF8000">//&nbsp;Free&nbsp;the&nbsp;query&nbsp;result<br /></span><span style="color: #0000BB">mssql_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mssql-connect.html">mssql_connect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mssql-execute.html">mssql_execute</a></div>
+ <div class="up"><a href="ref.mssql.html">Mssql Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

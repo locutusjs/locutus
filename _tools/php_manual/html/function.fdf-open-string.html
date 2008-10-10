@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Read a FDF document from a string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fdf-next-field-name.html">fdf_next_field_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fdf-open.html">fdf_open</a></div>
+ <div class="up"><a href="ref.fdf.html">FDF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.fdf-open-string" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fdf_open_string</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">fdf_open_string</span> &mdash; <span class="dc-title">Read a FDF document from a string</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>fdf_open_string</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$fdf_data</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Reads form data from a string. 
+  </p>
+  <p class="para">
+   You can use <b>fdf_open_string()</b> together with
+   <var class="varname">$HTTP_FDF_DATA</var> to process FDF form input from a remote
+   client.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fdf_data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The data as returned from a PDF form or created using 
+       <a href="function.fdf-create.html" class="function">fdf_create()</a> and 
+       <a href="function.fdf-save-string.html" class="function">fdf_save_string()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a FDF document handle, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Accessing the form data</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fdf&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fdf_open_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$HTTP_FDF_DATA</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">/*&nbsp;...&nbsp;*/<br /></span><span style="color: #0000BB">fdf_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$fdf</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.fdf-open.html" class="function" rel="rdfs-seeAlso">fdf_open()</a></li>
+    <li class="member"><a href="function.fdf-close.html" class="function" rel="rdfs-seeAlso">fdf_close()</a></li>
+    <li class="member"><a href="function.fdf-create.html" class="function" rel="rdfs-seeAlso">fdf_create()</a></li>
+    <li class="member"><a href="function.fdf-save-string.html" class="function" rel="rdfs-seeAlso">fdf_save_string()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fdf-next-field-name.html">fdf_next_field_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.fdf-open.html">fdf_open</a></div>
+ <div class="up"><a href="ref.fdf.html">FDF Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

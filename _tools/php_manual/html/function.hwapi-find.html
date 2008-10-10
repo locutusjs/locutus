@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Search for objects</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hwapi-error-reason.html">hw_api_error->reason</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hwapi-ftstat.html">hw_api->ftstat</a></div>
+ <div class="up"><a href="ref.hwapi.html">Hyperwave API Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.hwapi-find" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hw_api-&gt;find</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">hw_api-&gt;find</span> &mdash; <span class="dc-title">Search for objects</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">hw_api</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">array</span> <span class="methodname"><b><b>find</b></b></span>
+     ( <span class="methodparam"><span class="type">array</span> <tt class="parameter">$parameter</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   This functions searches for objects either by executing a key or/and full
+   text query. The found objects can further be filtered by an optional
+   object query. They are sorted by their importance. The second search
+   operation is relatively slow and its result can be limited to a certain
+   number of hits. This allows to perform an incremental search, each
+   returning just a subset of all found documents, starting at a given
+   index. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">parameter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The parameter array contains the &#039;keyquery&#039; or/and &#039;fulltextquery&#039;
+       depending on who you would like to search. Optional parameters are
+       &#039;objectquery&#039;, &#039;scope&#039;, &#039;languages&#039; and &#039;attributeselector&#039;. In case
+       of an incremental search the optional parameters &#039;startIndex&#039;,
+       &#039;numberOfObjectsToGet&#039; and &#039;exactMatchUnit&#039; can be passed.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.hwapi-error-reason.html">hw_api_error->reason</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.hwapi-ftstat.html">hw_api->ftstat</a></div>
+ <div class="up"><a href="ref.hwapi.html">Hyperwave API Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Dynamically changes the code of the given method</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.runkit-method-copy.html">runkit_method_copy</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.runkit-method-remove.html">runkit_method_remove</a></div>
+ <div class="up"><a href="ref.runkit.html">runkit Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.runkit-method-redefine" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">runkit_method_redefine</h1>
+  <p class="verinfo">(PECL runkit:0.7-0.9)</p><p class="refpurpose"><span class="refname">runkit_method_redefine</span> &mdash; <span class="dc-title">Dynamically changes the code of the given method</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>runkit_method_redefine</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$classname</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$methodname</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$args</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$code</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+  ] )</div>
+
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function cannot
+be used to manipulate the currently running (or chained) method.</span>
+</p></blockquote>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">classname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The class in which to redefine the method
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">methodname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name of the method to redefine
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">args</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Comma-delimited list of arguments for the redefined method
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">code</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The new code to be evaluated when <i><tt class="parameter">methodname</tt></i>
+
+       is called
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The redefined method can be
+       <b><tt>RUNKIT_ACC_PUBLIC</tt></b>,
+       <b><tt>RUNKIT_ACC_PROTECTED</tt></b> or
+       <b><tt>RUNKIT_ACC_PRIVATE</tt></b>
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        This parameter is only used as of PHP 5, because, prior to this,
+        all methods were public.
+       <br />
+      </p></blockquote>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>runkit_method_redefine()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">Example&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">"foo!\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;create&nbsp;an&nbsp;Example&nbsp;object<br /></span><span style="color: #0000BB">$e&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Example</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;output&nbsp;Example::foo()&nbsp;(before&nbsp;redefine)<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"Before:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">foo</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;Redefine&nbsp;the&nbsp;'foo'&nbsp;method<br /></span><span style="color: #0000BB">runkit_method_redefine</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'Example'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'foo'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'return&nbsp;"bar!\n";'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">RUNKIT_ACC_PUBLIC<br /></span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;output&nbsp;Example::foo()&nbsp;(after&nbsp;redefine)<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"After:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">foo</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Before: foo!
+After: bar!
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.runkit-method-add.html" class="function" rel="rdfs-seeAlso">runkit_method_add()</a></li>
+    <li class="member"><a href="function.runkit-method-copy.html" class="function" rel="rdfs-seeAlso">runkit_method_copy()</a></li>
+    <li class="member"><a href="function.runkit-method-remove.html" class="function" rel="rdfs-seeAlso">runkit_method_remove()</a></li>
+    <li class="member"><a href="function.runkit-method-rename.html" class="function" rel="rdfs-seeAlso">runkit_method_rename()</a></li>
+    <li class="member"><a href="function.runkit-function-redefine.html" class="function" rel="rdfs-seeAlso">runkit_function_redefine()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.runkit-method-copy.html">runkit_method_copy</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.runkit-method-remove.html">runkit_method_remove</a></div>
+ <div class="up"><a href="ref.runkit.html">runkit Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

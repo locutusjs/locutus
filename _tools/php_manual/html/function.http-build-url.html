@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Build an URL</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.java.html">Java</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.http-build-url" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">http_build_url</h1>
+  <p class="verinfo">(PECL pecl_http:0.21.0-1.5.5)</p><p class="refpurpose"><span class="refname">http_build_url</span> &mdash; <span class="dc-title">Build an URL</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>http_build_url</b></b></span>
+    ([ <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$url</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$parts</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags = HTTP_URL_REPLACE</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$new_url</tt></span>
+  ]]]] )</div>
+
+
+  <p class="para rdfs-comment">
+   Build an URL.
+  </p>
+  <p class="para">
+   The parts of the second URL will be merged into the first according to the flags argument.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">url</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       (part(s) of) an URL in form of a string or associative array like <a href="function.parse-url.html" class="function">parse_url()</a> returns
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">parts</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       same as the first argument
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       a bitmask of binary or&#039;ed <a href="http.constants.html#http.constants.url" class="link">HTTP_URL constants</a>;
+       <b><tt>HTTP_URL_REPLACE</tt></b> is the default
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">new_url</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       if set, it will be filled with the parts of the composed url like <a href="function.parse-url.html" class="function">parse_url()</a> would return
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the new URL as string on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>http_build_url()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">http_build_url</span><span style="color: #007700">(</span><span style="color: #DD0000">"http://user@www.example.com/pub/index.php?a=b#files"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"scheme"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"ftp"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"host"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"ftp.example.com"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"path"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"files/current/"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"query"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"a=c"<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">HTTP_URL_STRIP_AUTH&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">HTTP_URL_JOIN_PATH&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">HTTP_URL_JOIN_QUERY&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">HTTP_URL_STRIP_FRAGMENT<br /></span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+ftp://ftp.example.com/pub/files/current/?a=b&amp;a=c
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.parse-url.html" class="function" rel="rdfs-seeAlso">parse_url()</a></li>
+    <li class="member"><a href="function.http-build-str.html" class="function" rel="rdfs-seeAlso">http_build_str()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.java.html">Java</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

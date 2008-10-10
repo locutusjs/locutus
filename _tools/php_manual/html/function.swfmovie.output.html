@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Dumps your lovingly prepared movie out</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.swfmovie.nextframe.html">SWFMovie->nextFrame</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swfmovie.remove.html">SWFMovie->remove</a></div>
+ <div class="up"><a href="class.swfmovie.html">SWFMovie</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.swfmovie.output" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SWFMovie-&gt;output</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SWFMovie-&gt;output</span> &mdash; <span class="dc-title">Dumps your lovingly prepared movie out</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><a href="class.swfmovie.html" class="classname">SWFMovie</a></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">int</span> <span class="methodname"><b><b>output</b></b></span>
+     ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$compression</tt></span>
+   ] )</div>
+
+  </div>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+  <p class="para">
+   Dumps the <a href="class.swfmovie.html" class="classname">SWFMovie</a>.
+  </p>
+  <p class="para">
+   Don&#039;t forget to send the <i>Content-Type</i> HTTP header file
+   before using this function, in order to display the movie in a browser.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">compression</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The compression level can be a value between 0 and 9, defining the SWF
+       compression similar to gzip compression.
+      </p>
+      <p class="para">
+       This parameter is only available as of Flash MX (6).
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Return the number of bytes written or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Displaying your $movie in a browser</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;application/x-shockwave-flash'</span><span style="color: #007700">);&nbsp;<br /></span><span style="color: #0000BB">$movie</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">output</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.swfmovie.save.html" class="xref">SWFMovie->save</a></li>
+    <li class="member"><a href="function.swfmovie.savetofile.html" class="xref">SWFMovie->saveToFile</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.swfmovie.nextframe.html">SWFMovie->nextFrame</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.swfmovie.remove.html">SWFMovie->remove</a></div>
+ <div class="up"><a href="class.swfmovie.html">SWFMovie</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

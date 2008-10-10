@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Captures a window</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagegrabscreen.html">imagegrabscreen</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imageinterlace.html">imageinterlace</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagegrabwindow" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imagegrabwindow</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.2.2)</p><p class="refpurpose"><span class="refname">imagegrabwindow</span> &mdash; <span class="dc-title">Captures a window</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>imagegrabwindow</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$window</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$client_area</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Grabs a window or its client area using a windows handle (HWND property in COM instance)
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">window</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The HWND window ID.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">client_area</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Include the client area of the application window.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an image resource identifier on success, <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   E_NOTICE is issued if <i><tt class="parameter">window_handle</tt></i>
+ is invalid
+   window handle.
+   E_WARNING is issued if the Windows API is too old.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>imagegrabwindow()</b> example</b></p>
+    <div class="example-contents"><p>
+     Capture a window (IE for example)
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$browser&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">COM</span><span style="color: #007700">(</span><span style="color: #DD0000">"InternetExplorer.Application"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$handle&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$browser</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">HWND</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$browser</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">Visible&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagegrabwindow</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$browser</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">Quit</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">imagepng</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"iesnap.png"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Capture a window (IE for example) but with its content
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$browser&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">COM</span><span style="color: #007700">(</span><span style="color: #DD0000">"InternetExplorer.Application"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$handle&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$browser</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">HWND</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$browser</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">Visible&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$browser</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">Navigate</span><span style="color: #007700">(</span><span style="color: #DD0000">"http://www.libgd.org"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Still&nbsp;working?&nbsp;*/<br /></span><span style="color: #007700">while&nbsp;(</span><span style="color: #0000BB">$browser</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">Busy</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">com_message_pump</span><span style="color: #007700">(</span><span style="color: #0000BB">4000</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagegrabwindow</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$browser</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">Quit</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">imagepng</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"iesnap.png"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function is only available on Windows.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imagegrabscreen.html" class="function" rel="rdfs-seeAlso">imagegrabscreen()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagegrabscreen.html">imagegrabscreen</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imageinterlace.html">imageinterlace</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

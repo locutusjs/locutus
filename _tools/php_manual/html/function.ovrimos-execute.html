@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Executes a prepared SQL statement</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ovrimos-exec.html">ovrimos_exec</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ovrimos-fetch-into.html">ovrimos_fetch_into</a></div>
+ <div class="up"><a href="ref.ovrimos.html">Ovrimos SQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ovrimos-execute" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ovrimos_execute</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.3, PHP 5 &lt;= 5.0.5)</p><p class="refpurpose"><span class="refname">ovrimos_execute</span> &mdash; <span class="dc-title">Executes a prepared SQL statement</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ovrimos_execute</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$result_id</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$parameters_array</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Executes a prepared statement.  
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An Ovrimos result identifier prepared with
+       <a href="function.ovrimos-prepare.html" class="function">ovrimos_prepare()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">parameters_array</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the prepared statement contained parameters (question marks in the
+       statement), the correct number of parameters should be passed in an
+       array.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ovrimos-prepare.html" class="function" rel="rdfs-seeAlso">ovrimos_prepare()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ovrimos-exec.html">ovrimos_exec</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ovrimos-fetch-into.html">ovrimos_fetch_into</a></div>
+ <div class="up"><a href="ref.ovrimos.html">Ovrimos SQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

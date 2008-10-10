@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Send a SQL query to Ingres II</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ingres-pconnect.html">ingres_pconnect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ingres-rollback.html">ingres_rollback</a></div>
+ <div class="up"><a href="ref.ingres.html">Ingres II Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ingres-query" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ingres_query</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5 &lt;= 5.0.5, PECL ingres:1.0-1.4.3)</p><p class="refpurpose"><span class="refname">ingres_query</span> &mdash; <span class="dc-title">Send a SQL query to Ingres II</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ingres_query</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>ingres_query()</b> sends the given
+   <i><tt class="parameter">query</tt></i>
+ to the Ingres server. 
+  </p>
+  <p class="para">
+   The query becomes part of the currently open transaction.  If
+   there is no open transaction, <b>ingres_query()</b>
+   opens a new transaction. To close the transaction, you can either
+   call <a href="function.ingres-commit.html" class="function">ingres_commit()</a> to commit the changes
+   made to the database or <a href="function.ingres-rollback.html" class="function">ingres_rollback()</a> to
+   cancel these changes. When the script ends, any open transaction
+   is rolled back (by calling
+   <a href="function.ingres-rollback.html" class="function">ingres_rollback()</a>). You can also use
+   <a href="function.ingres-autocommit.html" class="function">ingres_autocommit()</a> before opening a new
+   transaction to have every SQL query immediately committed.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">query</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid SQL query (see the Ingres SQL reference guide).
+      </p>
+      <p class="para">
+       Some types of SQL queries can&#039;t be sent with this function:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          close (see <a href="function.ingres-close.html" class="function">ingres_close()</a>)
+         </span>
+        </li>
+       <li class="listitem">
+         <span class="simpara">
+          commit (see <a href="function.ingres-commit.html" class="function">ingres_commit()</a>)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          connect (see <a href="function.ingres-connect.html" class="function">ingres_connect()</a>)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          disconnect (see <a href="function.ingres-close.html" class="function">ingres_close()</a>)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">get dbevent</span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">prepare to commit</span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          rollback (see <a href="function.ingres-rollback.html" class="function">ingres_rollback()</a>)
+         </span>
+        </li>
+        <li class="listitem"><span class="simpara">savepoint</span></li>
+        <li class="listitem">
+         <span class="simpara">
+          set autocommit (see <a href="function.ingres-autocommit.html" class="function">ingres_autocommit()</a>)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">all cursor related queries are unsupported</span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The connection link identifier. If not specified, the last opened link
+       is used.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ingres_query()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />ingres_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">ingres_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"select&nbsp;*&nbsp;from&nbsp;table"</span><span style="color: #007700">);<br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_fetch_row</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">];<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ingres-fetch-array.html" class="function" rel="rdfs-seeAlso">ingres_fetch_array()</a></li>
+    <li class="member"><a href="function.ingres-fetch-object.html" class="function" rel="rdfs-seeAlso">ingres_fetch_object()</a></li>
+    <li class="member"><a href="function.ingres-fetch-row.html" class="function" rel="rdfs-seeAlso">ingres_fetch_row()</a></li>
+    <li class="member"><a href="function.ingres-commit.html" class="function" rel="rdfs-seeAlso">ingres_commit()</a></li>
+    <li class="member"><a href="function.ingres-rollback.html" class="function" rel="rdfs-seeAlso">ingres_rollback()</a></li>
+    <li class="member"><a href="function.ingres-autocommit.html" class="function" rel="rdfs-seeAlso">ingres_autocommit()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ingres-pconnect.html">ingres_pconnect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ingres-rollback.html">ingres_rollback</a></div>
+ <div class="up"><a href="ref.ingres.html">Ingres II Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

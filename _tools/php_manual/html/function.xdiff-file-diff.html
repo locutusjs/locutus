@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Make unified diff of two files</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xdiff-file-diff-binary.html">xdiff_file_diff_binary</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xdiff-file-merge3.html">xdiff_file_merge3</a></div>
+ <div class="up"><a href="ref.xdiff.html">xdiff Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.xdiff-file-diff" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xdiff_file_diff</h1>
+  <p class="verinfo">(PECL xdiff:0.2-1.4)</p><p class="refpurpose"><span class="refname">xdiff_file_diff</span> &mdash; <span class="dc-title">Make unified diff of two files</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>xdiff_file_diff</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$old_file</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$new_file</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$dest</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$context</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$minimal</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Makes an unified diff containing differences between <i><tt class="parameter">old_file</tt></i>
+ and
+   <i><tt class="parameter">new_file</tt></i>
+ and stores it in <i><tt class="parameter">dest</tt></i>
+ file. The
+   resulting file is human-readable. An optional <i><tt class="parameter">context</tt></i>
+ parameter
+   specifies how many lines of context should be added around each change (with default value of 3).
+   Setting <i><tt class="parameter">minimal</tt></i>
+ parameter to true will result in outputting the shortest
+   patch file possible (can take a long time). 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">old_file</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the first file. This file acts as &quot;old&quot; file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">new_file</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the second file. This file acts as &quot;new&quot; file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dest</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path of the resulting patch file.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">context</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Indicates how many lines of context you want to include in diff
+       result. Default is 3.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">minimal</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Set this parameter to <b><tt>TRUE</tt></b> if you want to minimalize size of the result
+       (can take a long time). 
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>xdiff_file_diff()</b> example</b></p>
+    <div class="example-contents"><p>
+     The following code makes unified diff of two php files with context lenght of 2.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$old_version&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'my_script.php'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$new_version&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'my_new_script.php'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">xdiff_file_diff</span><span style="color: #007700">(</span><span style="color: #0000BB">$old_version</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$new_version</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_script.diff'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function doesn&#039;t work well with binary files. To make diff of binary
+    files use <a href="function.xdiff-file-bdiff.html" class="function">xdiff_file_bdiff()</a>/<a href="function.xdiff-file-rabdiff.html" class="function">xdiff_file_rabdiff()</a> function.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.xdiff-file-patch.html" class="function" rel="rdfs-seeAlso">xdiff_file_patch()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xdiff-file-diff-binary.html">xdiff_file_diff_binary</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xdiff-file-merge3.html">xdiff_file_merge3</a></div>
+ <div class="up"><a href="ref.xdiff.html">xdiff Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

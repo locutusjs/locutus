@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Detect character encoding</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-decode-numericentity.html">mb_decode_numericentity</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-detect-order.html">mb_detect_order</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-detect-encoding" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_detect_encoding</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">mb_detect_encoding</span> &mdash; <span class="dc-title">Detect character encoding</span></p>
+
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mb_detect_encoding</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$str</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$encoding_list</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$strict</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Detects character encoding in <a href="language.types.string.html" class="type string">string</a> <i><tt class="parameter">str</tt></i>
+. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="language.types.string.html" class="type string">string</a> being detected.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding_list</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">encoding_list</tt></i>
+ is list of character
+       encoding. Encoding order may be specified by array or comma
+       separated list string.
+      </p>
+      <p class="para">
+       If <i><tt class="parameter">encoding_list</tt></i>
+ is omitted,
+       detect_order is used.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">strict</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">strict</tt></i>
+ specifies whether to use
+       the strict encoding detection or not.
+       Default is <b><tt>FALSE</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The detected character encoding.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mb_detect_encoding()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Detect&nbsp;character&nbsp;encoding&nbsp;with&nbsp;current&nbsp;detect_order&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">mb_detect_encoding</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;"auto"&nbsp;is&nbsp;expanded&nbsp;to&nbsp;"ASCII,JIS,UTF-8,EUC-JP,SJIS"&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">mb_detect_encoding</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"auto"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Specify&nbsp;encoding_list&nbsp;character&nbsp;encoding&nbsp;by&nbsp;comma&nbsp;separated&nbsp;list&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">mb_detect_encoding</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"JIS,&nbsp;eucjp-win,&nbsp;sjis-win"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Use&nbsp;array&nbsp;to&nbsp;specify&nbsp;encoding_list&nbsp;&nbsp;*/<br /></span><span style="color: #0000BB">$ary</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #DD0000">"ASCII"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$ary</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #DD0000">"JIS"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$ary</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #DD0000">"EUC-JP"</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">mb_detect_encoding</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$ary</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-detect-order.html" class="function" rel="rdfs-seeAlso">mb_detect_order()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-decode-numericentity.html">mb_decode_numericentity</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-detect-order.html">mb_detect_order</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

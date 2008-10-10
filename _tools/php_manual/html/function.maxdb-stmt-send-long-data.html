@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Send data in blocks</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-stmt-result-metadata.html">maxdb_stmt_result_metadata</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-stmt-sqlstate.html">maxdb_stmt_sqlstate</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.maxdb-stmt-send-long-data" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_stmt_send_long_data</h1>
+  <h1 class="refname">stmt-&gt;send_long_data</h1>
+  <p class="verinfo">(PECL maxdb:1.0)</p><p class="refpurpose"><span class="refname">maxdb_stmt_send_long_data</span> -- <span class="refname">stmt-&gt;send_long_data</span> &mdash; <span class="dc-title">Send data in blocks</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedural style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>maxdb_stmt_send_long_data</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$stmt</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$param_nr</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method)</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">stmt</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">bool</span> <span class="methodname"><b><b>stmt_send_long_data</b></b></span>
+     ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$param_nr</tt></span>
+    , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   Allows to send parameter data to the server in pieces (or chunks).
+   This function can be called multiple times to send the parts of a character or
+   binary data value for a column, which must be one of the TEXT or BLOB datatypes.
+  </p>
+  <p class="para">
+   <i><tt class="parameter">param_nr</tt></i>
+ indicates which parameter to associate the data with.
+   Parameters are numbered beginning with 0.
+   <i><tt class="parameter">data</tt></i>
+ is a string containing data to be sent.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    For efficiency reasons, this function should be used after calling
+    <a href="function.maxdb-execute.html" class="function">maxdb_execute()</a>. In this case, the data is not stored
+    on the client side. The end of the sequence must end with a call
+    to <a href="function.maxdb-stmt-close-long-data.html" class="function">maxdb_stmt_close_long_data()</a>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.maxdb-prepare.html" class="function" rel="rdfs-seeAlso">maxdb_prepare()</a></li>
+    <li class="member"><a href="function.maxdb-stmt-bind-param.html" class="function" rel="rdfs-seeAlso">maxdb_stmt_bind_param()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-stmt-result-metadata.html">maxdb_stmt_result_metadata</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-stmt-sqlstate.html">maxdb_stmt_sqlstate</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

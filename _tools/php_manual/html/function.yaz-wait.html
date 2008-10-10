@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Wait for Z39.50 requests to complete</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.nis.html">YP/NIS</a></div>
+ <div class="up"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.yaz-wait" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">yaz_wait</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PECL yaz:0.9-1.0.9)</p><p class="refpurpose"><span class="refname">yaz_wait</span> &mdash; <span class="dc-title">Wait for Z39.50 requests to complete</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>yaz_wait</b></b></span>
+    ([ <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$options</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This function carries out networked (blocked) activity for outstanding
+   requests which have been prepared by the functions 
+   <a href="function.yaz-connect.html" class="function">yaz_connect()</a>, <a href="function.yaz-search.html" class="function">yaz_search()</a>, 
+   <a href="function.yaz-present.html" class="function">yaz_present()</a>, <a href="function.yaz-scan.html" class="function">yaz_scan()</a> and 
+   <a href="function.yaz-itemorder.html" class="function">yaz_itemorder()</a>.
+  </p>
+  <p class="para">
+   <b>yaz_wait()</b> returns when all servers have either
+   completed all requests or aborted (in case of errors).
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An associative array of options:
+       <dl>
+
+        <dt>
+
+         <br /><span class="term"><i>timeout</i></span>
+
+         <dd>
+
+          <p class="para">
+           Sets timeout in seconds. If a server has not responded within the
+           timeout it is considered dead and <b>yaz_wait()</b>
+           returns. The default value for timeout is 15 seconds.
+          </p>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><i>event</i></span>
+
+         <dd>
+
+          <p class="para">
+           A boolean.
+          </p>
+         </dd>
+
+        </dt>
+
+       </dl>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+   In event mode, returns resource or <b><tt>FALSE</tt></b> in case of an error.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.nis.html">YP/NIS</a></div>
+ <div class="up"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Logical Operators</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.operators.increment.html">Incrementing/Decrementing Operators</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.operators.string.html">String Operators</a></div>
+ <div class="up"><a href="language.operators.html">Operators</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.operators.logical" class="sect1">
+   <h2 class="title">Logical Operators</h2>
+
+   <table border="5">
+    <caption><b>Logical Operators</b></caption>
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Example</th>
+       <th colspan="1">Name</th>
+       <th colspan="1">Result</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">$a and $b</td>
+       <td colspan="1" rowspan="1" align="left">And</td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if both $a and $b are <b><tt>TRUE</tt></b>.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">$a or $b</td>
+       <td colspan="1" rowspan="1" align="left">Or</td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if either $a or $b is <b><tt>TRUE</tt></b>.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">$a xor $b</td>
+       <td colspan="1" rowspan="1" align="left">Xor</td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if either $a or $b is <b><tt>TRUE</tt></b>, but not both.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">! $a</td>
+       <td colspan="1" rowspan="1" align="left">Not</td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if $a is not <b><tt>TRUE</tt></b>.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">$a &amp;&amp; $b</td>
+       <td colspan="1" rowspan="1" align="left">And</td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if both $a and $b are <b><tt>TRUE</tt></b>.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">$a || $b</td>
+       <td colspan="1" rowspan="1" align="left">Or</td>
+       <td colspan="1" rowspan="1" align="left"><b><tt>TRUE</tt></b> if either $a or $b is <b><tt>TRUE</tt></b>.</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+   <p class="simpara">
+    The reason for the two different variations of &quot;and&quot; and &quot;or&quot;
+    operators is that they operate at different precedences. (See
+    <a href="language.operators.html#language.operators.precedence" class="link">Operator
+    Precedence</a>.)
+   </p>
+   <div class="example">
+    <p><b>Example #1 Logical operators illustrated</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;foo()&nbsp;will&nbsp;never&nbsp;get&nbsp;called&nbsp;as&nbsp;those&nbsp;operators&nbsp;are&nbsp;short-circuit<br /></span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;(</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">&amp;&amp;&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">$b&nbsp;</span><span style="color: #007700">=&nbsp;(</span><span style="color: #0000BB">true&nbsp;&nbsp;</span><span style="color: #007700">||&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">$c&nbsp;</span><span style="color: #007700">=&nbsp;(</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">and&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">$d&nbsp;</span><span style="color: #007700">=&nbsp;(</span><span style="color: #0000BB">true&nbsp;&nbsp;</span><span style="color: #007700">or&nbsp;&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">());<br /><br /></span><span style="color: #FF8000">//&nbsp;"||"&nbsp;has&nbsp;a&nbsp;greater&nbsp;precedence&nbsp;than&nbsp;"or"<br /></span><span style="color: #0000BB">$e&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">||&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;$e&nbsp;will&nbsp;be&nbsp;assigned&nbsp;to&nbsp;(false&nbsp;||&nbsp;true)&nbsp;which&nbsp;is&nbsp;true<br /></span><span style="color: #0000BB">$f&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">or&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;$f&nbsp;will&nbsp;be&nbsp;assigned&nbsp;to&nbsp;false<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$f</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;"&amp;&amp;"&nbsp;has&nbsp;a&nbsp;greater&nbsp;precedence&nbsp;than&nbsp;"and"<br /></span><span style="color: #0000BB">$g&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true&nbsp;</span><span style="color: #007700">&amp;&amp;&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;$g&nbsp;will&nbsp;be&nbsp;assigned&nbsp;to&nbsp;(true&nbsp;&amp;&amp;&nbsp;false)&nbsp;which&nbsp;is&nbsp;false<br /></span><span style="color: #0000BB">$h&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true&nbsp;</span><span style="color: #007700">and&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;$h&nbsp;will&nbsp;be&nbsp;assigned&nbsp;to&nbsp;true<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$g</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$h</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+bool(true)
+bool(false)
+bool(false)
+bool(true)
+</pre></div>
+    </pre></div>
+   </div>
+  </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.operators.increment.html">Incrementing/Decrementing Operators</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.operators.string.html">String Operators</a></div>
+ <div class="up"><a href="language.operators.html">Operators</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get current byte index for an XML parser</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xml-error-string.html">xml_error_string</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xml-get-current-column-number.html">xml_get_current_column_number</a></div>
+ <div class="up"><a href="ref.xml.html">XML Parser Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.xml-get-current-byte-index" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xml_get_current_byte_index</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">xml_get_current_byte_index</span> &mdash; <span class="dc-title">Get current byte index for an XML parser</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>xml_get_current_byte_index</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$parser</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets the current byte index of the given XML parser.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">parser</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A reference to the XML parser to get byte index from.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns <b><tt>FALSE</tt></b> if <i><tt class="parameter">parser</tt></i>
+ does
+   not refer to a valid parser, or else it returns which byte index
+   the parser is currently at in its data buffer (starting at 0).
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="para">
+    This function returns byte index according to UTF-8 encoded text
+    disregarding if input is in another encoding.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><b>xml_get_current_column_index()</b></li>
+    <li class="member"><b>xml_get_current_line_index()</b></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xml-error-string.html">xml_error_string</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xml-get-current-column-number.html">xml_get_current_column_number</a></div>
+ <div class="up"><a href="ref.xml.html">XML Parser Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

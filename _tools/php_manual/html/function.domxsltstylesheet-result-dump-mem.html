@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Dumps the result from a XSLT-Transformation back into a string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domxsltstylesheet-result-dump-file.html">DomXsltStylesheet->result_dump_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domxml-new-doc.html">domxml_new_doc</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.domxsltstylesheet-result-dump-mem" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">DomXsltStylesheet-&gt;result_dump_mem</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">DomXsltStylesheet-&gt;result_dump_mem</span> &mdash; <span class="dc-title">
+   Dumps the result from a XSLT-Transformation back into a string
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">DomXsltStylesheet</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">string</span> <span class="methodname"><b><b>result_dump_mem</b></b></span>
+     ( <span class="methodparam"><span class="type"><a href="class.domdocument.html" class="type DomDocument">DomDocument</a></span> <tt class="parameter">$xmldoc</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   Since <a href="function.domxsltstylesheet-process.html" class="xref">DomXsltStylesheet->process</a> always returns
+   a well-formed XML DomDocument, no matter what output method was declared 
+   in <div class="cdata"><pre>&lt;xsl:output&gt;</pre></div> and similar attributes/elements, it&#039;s of not 
+   much use, if you want to output HTML 4 or text data.
+  </p>
+  <p class="para">
+   This function on the contrary honors <div class="cdata"><pre>&lt;xsl:output method=&quot;html|text&quot;&gt;</pre></div>
+   and other output control directives. See the example for instruction on how to use it.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Outputting the result of a XSLT transformation</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$filename&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"stylesheet.xsl"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$xmldoc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">domxml_open_file</span><span style="color: #007700">(</span><span style="color: #DD0000">"data.xml"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$xsldoc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">domxml_xslt_stylesheet_file</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;&nbsp;</span><span style="color: #0000BB">$xsldoc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">process</span><span style="color: #007700">(</span><span style="color: #0000BB">$xmldoc</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$xsldoc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">result_dump_mem</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.domxsltstylesheet-result-dump-file.html" class="xref">DomXsltStylesheet->result_dump_file</a></li>
+    <li class="member"><a href="function.domxsltstylesheet-process.html" class="xref">DomXsltStylesheet->process</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domxsltstylesheet-result-dump-file.html">DomXsltStylesheet->result_dump_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domxml-new-doc.html">domxml_new_doc</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

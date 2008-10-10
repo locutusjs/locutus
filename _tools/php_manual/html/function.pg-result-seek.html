@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set internal row offset in result resource</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-result-error.html">pg_result_error</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-result-status.html">pg_result_status</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-result-seek" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_result_seek</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">pg_result_seek</span> &mdash; <span class="dc-title">Set internal row offset in result resource</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>pg_result_seek</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$offset</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>pg_result_seek()</b> sets the internal row offset in
+   a result resource.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL query result resource, returned by <a href="function.pg-query.html" class="function">pg_query()</a>,
+       <a href="function.pg-query-params.html" class="function">pg_query_params()</a> or <a href="function.pg-execute.html" class="function">pg_execute()</a>
+       (among others).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">offset</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Row to move the internal offset to in the <i><tt class="parameter">result</tt></i>
+ resource.
+       Rows are numbered starting from zero.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pg_result_seek()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Connect&nbsp;to&nbsp;the&nbsp;database<br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_pconnect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=publisher"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Execute&nbsp;a&nbsp;query<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;author,&nbsp;email&nbsp;FROM&nbsp;authors"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Seek&nbsp;to&nbsp;the&nbsp;3rd&nbsp;row&nbsp;(assuming&nbsp;there&nbsp;are&nbsp;3&nbsp;rows)<br /></span><span style="color: #0000BB">pg_result_seek</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Fetch&nbsp;the&nbsp;3rd&nbsp;row<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_fetch_row</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br />&nbsp;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-fetch-row.html" class="function" rel="rdfs-seeAlso">pg_fetch_row()</a></li>
+    <li class="member"><a href="function.pg-fetch-assoc.html" class="function" rel="rdfs-seeAlso">pg_fetch_assoc()</a></li>
+    <li class="member"><a href="function.pg-fetch-array.html" class="function" rel="rdfs-seeAlso">pg_fetch_array()</a></li>
+    <li class="member"><a href="function.pg-fetch-object.html" class="function" rel="rdfs-seeAlso">pg_fetch_object()</a></li>
+    <li class="member"><a href="function.pg-fetch-result.html" class="function" rel="rdfs-seeAlso">pg_fetch_result()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-result-error.html">pg_result_error</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-result-status.html">pg_result_status</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

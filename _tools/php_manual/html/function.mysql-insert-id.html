@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the ID generated from the previous INSERT operation</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-info.html">mysql_info</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-list-dbs.html">mysql_list_dbs</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mysql-insert-id" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysql_insert_id</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL mysql:1.0)</p><p class="refpurpose"><span class="refname">mysql_insert_id</span> &mdash; <span class="dc-title">Get the ID generated from the previous INSERT operation</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>mysql_insert_id</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Retrieves the ID generated for an AUTO_INCREMENT column by the previous 
+   INSERT query.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+link_identifier</tt></i>
+</span>
+<dd>
+<p class="para">The MySQL connection. If the 
+link identifier is not specified, the last link opened by 
+<a href="function.mysql-connect.html" class="function">mysql_connect()</a> is assumed. If no such link is found, it
+will try to create one as if <a href="function.mysql-connect.html" class="function">mysql_connect()</a> was called
+with no arguments. If by chance no connection is found or established, an
+<b><tt>E_WARNING</tt></b> level error is generated.</p></dd>
+
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The ID generated for an AUTO_INCREMENT column by the previous 
+   INSERT query on success, <i>0</i> if the previous
+   query does not generate an AUTO_INCREMENT value, or <b><tt>FALSE</tt></b> if
+   no MySQL connection was established.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mysql_insert_id()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mysql_password'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Could&nbsp;not&nbsp;connect:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mysql_error</span><span style="color: #007700">());<br />}<br /></span><span style="color: #0000BB">mysql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">'mydb'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;mytable&nbsp;(product)&nbsp;values&nbsp;('kossu')"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Last&nbsp;inserted&nbsp;record&nbsp;has&nbsp;id&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysql_insert_id</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="caution"><b class="caution">Caution</b>
+   <p class="para">
+    <b>mysql_insert_id()</b> converts the return type of
+    the native MySQL C API function
+    <i>mysql_insert_id()</i> to a type of
+    <i>long</i> (named <a href="language.types.integer.html" class="type int">int</a> in PHP).
+    If your AUTO_INCREMENT column has a column type of BIGINT,
+    the value returned by <b>mysql_insert_id()</b>
+    will be incorrect. Instead, use the internal MySQL SQL function
+    <i>LAST_INSERT_ID()</i> in an SQL query.
+   </p>
+  </div>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Because <b>mysql_insert_id()</b> acts on the last performed
+    query, be sure to call <b>mysql_insert_id()</b> immediately 
+    after the query that generates the value.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    The value of the MySQL SQL function
+    <i>LAST_INSERT_ID()</i> always contains the most
+    recently generated AUTO_INCREMENT value, and is not reset
+    between queries.
+  <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mysql-query.html" class="function" rel="rdfs-seeAlso">mysql_query()</a></li>
+    <li class="member"><a href="function.mysql-info.html" class="function" rel="rdfs-seeAlso">mysql_info()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-info.html">mysql_info</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-list-dbs.html">mysql_list_dbs</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

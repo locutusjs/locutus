@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets the number of affected rows in a previous MaxDB operation</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-autocommit.html">maxdb_autocommit</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.maxdb-affected-rows" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_affected_rows</h1>
+  <h1 class="refname">maxdb-&gt;affected_rows</h1>
+  <p class="verinfo">(PECL maxdb:1.0-7.6.00.38)</p><p class="refpurpose"><span class="refname">maxdb_affected_rows</span> -- <span class="refname">maxdb-&gt;affected_rows</span> &mdash; <span class="dc-title">Gets the number of affected rows in a previous MaxDB operation</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedural style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>maxdb_affected_rows</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">Object oriented style (property):</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">maxdb</b></div>
+   <div class="fieldsynopsis"><span class="type">int</span> <var class="varname">$affected_rows</var>;</div>
+
+  </div>
+  <p class="para">
+   <b>maxdb_affected_rows()</b> returns the number of rows affected by the last
+   INSERT, UPDATE, or DELETE query associated with the provided <i><tt class="parameter">link</tt></i>
+
+   parameter. If this number cannot be determined, this function will return -1.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    For SELECT statements <b>maxdb_affected_rows()</b> works like
+    <a href="function.maxdb-num-rows.html" class="function">maxdb_num_rows()</a>.
+   <br />
+  </p></blockquote>
+  <p class="para">
+   The <b>maxdb_affected_rows()</b> function only works with queries which modify
+   a table. In order to return the number of rows from a SELECT query, use the
+   <a href="function.maxdb-num-rows.html" class="function">maxdb_num_rows()</a> function instead.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An integer greater than zero indicates the number of rows affected or retrieved.
+   Zero indicates that no records where updated for an UPDATE statement, no rows matched
+   the WHERE clause in the query or that no query has yet been executed.
+   -1 indicates that the number of rows affected can not be determined.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 Object oriented style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$maxdb&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">maxdb</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_OFF</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;mycustomer"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_ERROR</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Insert&nbsp;rows&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;mycustomer&nbsp;AS&nbsp;SELECT&nbsp;*&nbsp;from&nbsp;hotel.customer"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected&nbsp;rows&nbsp;(INSERT):&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">affected_rows</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"ALTER&nbsp;TABLE&nbsp;mycustomer&nbsp;ADD&nbsp;Status&nbsp;int&nbsp;default&nbsp;0"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;update&nbsp;rows&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"UPDATE&nbsp;mycustomer&nbsp;SET&nbsp;Status=1&nbsp;WHERE&nbsp;cno&nbsp;&gt;&nbsp;50"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected&nbsp;rows&nbsp;(UPDATE):&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">affected_rows</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;delete&nbsp;rows&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DELETE&nbsp;FROM&nbsp;mycustomer&nbsp;WHERE&nbsp;cno&nbsp;&lt;&nbsp;50"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected&nbsp;rows&nbsp;(DELETE):&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">affected_rows</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;select&nbsp;all&nbsp;rows&nbsp;*/<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;title&nbsp;FROM&nbsp;mycustomer"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected&nbsp;rows&nbsp;(SELECT):&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">affected_rows</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;Delete&nbsp;table&nbsp;Language&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;mycustomer"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example">
+   <p><b>Example #2 Procedural style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Can't&nbsp;connect&nbsp;to&nbsp;localhost.&nbsp;Error:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_OFF</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;mycustomer"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_ERROR</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Insert&nbsp;rows&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;mycustomer&nbsp;AS&nbsp;SELECT&nbsp;*&nbsp;from&nbsp;hotel.customer"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected&nbsp;rows&nbsp;(INSERT):&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_affected_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"ALTER&nbsp;TABLE&nbsp;mycustomer&nbsp;ADD&nbsp;Status&nbsp;int&nbsp;default&nbsp;0"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;update&nbsp;rows&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"UPDATE&nbsp;mycustomer&nbsp;SET&nbsp;Status=1&nbsp;WHERE&nbsp;cno&nbsp;&gt;&nbsp;50"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected&nbsp;rows&nbsp;(UPDATE):&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_affected_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/*&nbsp;delete&nbsp;rows&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DELETE&nbsp;FROM&nbsp;mycustomer&nbsp;WHERE&nbsp;cno&nbsp;&lt;&nbsp;50"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected&nbsp;rows&nbsp;(DELETE):&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_affected_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/*&nbsp;select&nbsp;all&nbsp;rows&nbsp;*/<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;title&nbsp;FROM&nbsp;mycustomer"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Affected&nbsp;rows&nbsp;(SELECT):&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_affected_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">maxdb_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Delete&nbsp;table&nbsp;Language&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;mycustomer"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">The above example will output 
+something similar to:</p>
+  <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Affected rows (INSERT): 15
+Affected rows (UPDATE): 15
+Affected rows (DELETE): 0
+Affected rows (SELECT): 15
+</pre></div>
+  </pre></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.maxdb-num-rows.html" class="function" rel="rdfs-seeAlso">maxdb_num_rows()</a></li>
+    <li class="member"><a href="function.maxdb-info.html" class="function" rel="rdfs-seeAlso">maxdb_info()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-autocommit.html">maxdb_autocommit</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

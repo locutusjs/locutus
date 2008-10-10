@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get meta data for table</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-lo-write.html">pg_lo_write</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-num-fields.html">pg_num_fields</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-meta-data" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_meta_data</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">pg_meta_data</span> &mdash; <span class="dc-title">
+   Get meta data for table
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>pg_meta_data</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$table_name</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>pg_meta_data()</b> returns table definition for
+   <i>table_name</i> as an array.
+  </p>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div> 
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL database connection resource.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">table_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name of the table.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An <a href="language.types.array.html" class="type array">array</a> of the table definition, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Getting table metadata</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$dbconn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=publisher"</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Could&nbsp;not&nbsp;connect"</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$meta&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_meta_data</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbconn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'authors'</span><span style="color: #007700">);<br />&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">is_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$meta</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'&lt;pre&gt;'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$meta</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'&lt;/pre&gt;'</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+array(3) {
+[&quot;author&quot;]=&gt;
+array(5) {
+  [&quot;num&quot;]=&gt;
+  int(1)
+  [&quot;type&quot;]=&gt;
+  string(7) &quot;varchar&quot;
+  [&quot;len&quot;]=&gt;
+  int(-1)
+  [&quot;not null&quot;]=&gt;
+  bool(false)
+  [&quot;has default&quot;]=&gt;
+  bool(false)
+}
+[&quot;year&quot;]=&gt;
+array(5) {
+  [&quot;num&quot;]=&gt;
+  int(2)
+  [&quot;type&quot;]=&gt;
+  string(4) &quot;int2&quot;
+  [&quot;len&quot;]=&gt;
+  int(2)
+  [&quot;not null&quot;]=&gt;
+  bool(false)
+  [&quot;has default&quot;]=&gt;
+  bool(false)
+}
+[&quot;title&quot;]=&gt;
+array(5) {
+  [&quot;num&quot;]=&gt;
+  int(3)
+  [&quot;type&quot;]=&gt;
+  string(7) &quot;varchar&quot;
+  [&quot;len&quot;]=&gt;
+  int(-1)
+  [&quot;not null&quot;]=&gt;
+  bool(false)
+  [&quot;has default&quot;]=&gt;
+  bool(false)
+}
+}
+</pre></div>
+    </pre></div>
+   </div> 
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-convert.html" class="function" rel="rdfs-seeAlso">pg_convert()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-lo-write.html">pg_lo_write</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-num-fields.html">pg_num_fields</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Output one or more strings</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.crypt.html">crypt</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.explode.html">explode</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.echo" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">echo</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">echo</span> &mdash; <span class="dc-title">Output one or more strings</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>echo</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$arg1</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$...</tt></span>
+  ] )</div>
+
+  <p class="simpara">
+   Outputs all parameters.
+  </p>
+  <p class="para">
+   <b>echo()</b> is not actually a function (it is a
+   language construct), so you are not required to use parentheses
+   with it. <b>echo()</b> (unlike some other language
+   constructs) does not behave like a function, so it cannot
+   always be used in the context of a function. Additionally, if you want to
+   pass more than one parameter to <b>echo()</b>, the parameters
+   must not be enclosed within parentheses.
+  </p>
+  <p class="para">
+   <b>echo()</b> also has a shortcut syntax, where you can
+   immediately follow the opening tag with an equals sign. This short syntax
+   only works with the <a href="ini.core.html#ini.short-open-tag" class="link">short_open_tag</a> configuration setting
+   enabled.
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+I&nbsp;have&nbsp;<span style="color: #0000BB">&lt;?=$foo?&gt;</span>&nbsp;foo.</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">arg1</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The parameter to output.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">...</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>echo()</b> examples</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"Hello&nbsp;World"</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #DD0000">"This&nbsp;spans<br />multiple&nbsp;lines.&nbsp;The&nbsp;newlines&nbsp;will&nbsp;be<br />output&nbsp;as&nbsp;well"</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #DD0000">"This&nbsp;spans\nmultiple&nbsp;lines.&nbsp;The&nbsp;newlines&nbsp;will&nbsp;be\noutput&nbsp;as&nbsp;well."</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Escaping&nbsp;characters&nbsp;is&nbsp;done&nbsp;\"Like&nbsp;this\"."</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;You&nbsp;can&nbsp;use&nbsp;variables&nbsp;inside&nbsp;of&nbsp;an&nbsp;echo&nbsp;statement<br /></span><span style="color: #0000BB">$foo&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"foobar"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$bar&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"barbaz"</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #DD0000">"foo&nbsp;is&nbsp;$foo"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;foo&nbsp;is&nbsp;foobar<br /><br />//&nbsp;You&nbsp;can&nbsp;also&nbsp;use&nbsp;arrays<br /></span><span style="color: #0000BB">$baz&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"value"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"foo"</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"this&nbsp;is&nbsp;{$baz['value']}&nbsp;!"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;this&nbsp;is&nbsp;foo&nbsp;!<br /><br />//&nbsp;Using&nbsp;single&nbsp;quotes&nbsp;will&nbsp;print&nbsp;the&nbsp;variable&nbsp;name,&nbsp;not&nbsp;the&nbsp;value<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'foo&nbsp;is&nbsp;$foo'</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;foo&nbsp;is&nbsp;$foo<br /><br />//&nbsp;If&nbsp;you&nbsp;are&nbsp;not&nbsp;using&nbsp;any&nbsp;other&nbsp;characters,&nbsp;you&nbsp;can&nbsp;just&nbsp;echo&nbsp;variables<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$foo</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;foobar<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$foo</span><span style="color: #007700">,</span><span style="color: #0000BB">$bar</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;foobarbarbaz<br /><br />//&nbsp;Some&nbsp;people&nbsp;prefer&nbsp;passing&nbsp;multiple&nbsp;parameters&nbsp;to&nbsp;echo&nbsp;over&nbsp;concatenation.<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'This&nbsp;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'string&nbsp;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'was&nbsp;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'made&nbsp;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'with&nbsp;multiple&nbsp;parameters.'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">chr</span><span style="color: #007700">(</span><span style="color: #0000BB">10</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">'This&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'string&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'was&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'made&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'with&nbsp;concatenation.'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br />echo&nbsp;&lt;&lt;&lt;END<br /></span><span style="color: #0000BB">This&nbsp;uses&nbsp;the&nbsp;"here&nbsp;document"&nbsp;syntax&nbsp;to&nbsp;output<br />multiple&nbsp;lines&nbsp;with&nbsp;$variable&nbsp;interpolation.&nbsp;Note<br />that&nbsp;the&nbsp;here&nbsp;document&nbsp;terminator&nbsp;must&nbsp;appear&nbsp;on&nbsp;a<br />line&nbsp;with&nbsp;just&nbsp;a&nbsp;semicolon.&nbsp;no&nbsp;extra&nbsp;whitespace!<br /></span><span style="color: #007700">END;<br /><br /></span><span style="color: #FF8000">//&nbsp;Because&nbsp;echo&nbsp;does&nbsp;not&nbsp;behave&nbsp;like&nbsp;a&nbsp;function,&nbsp;the&nbsp;following&nbsp;code&nbsp;is&nbsp;invalid.<br /></span><span style="color: #007700">(</span><span style="color: #0000BB">$some_var</span><span style="color: #007700">)&nbsp;?&nbsp;echo&nbsp;</span><span style="color: #DD0000">'true'&nbsp;</span><span style="color: #007700">:&nbsp;echo&nbsp;</span><span style="color: #DD0000">'false'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;However,&nbsp;the&nbsp;following&nbsp;examples&nbsp;will&nbsp;work:<br /></span><span style="color: #007700">(</span><span style="color: #0000BB">$some_var</span><span style="color: #007700">)&nbsp;?&nbsp;print&nbsp;</span><span style="color: #DD0000">'true'&nbsp;</span><span style="color: #007700">:&nbsp;print&nbsp;</span><span style="color: #DD0000">'false'</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;print&nbsp;is&nbsp;also&nbsp;a&nbsp;construct,&nbsp;but<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;it&nbsp;behaves&nbsp;like&nbsp;a&nbsp;function,&nbsp;so<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;it&nbsp;may&nbsp;be&nbsp;used&nbsp;in&nbsp;this&nbsp;context.<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$some_var&nbsp;</span><span style="color: #007700">?&nbsp;</span><span style="color: #DD0000">'true'</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">'false'</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;changing&nbsp;the&nbsp;statement&nbsp;around<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <p class="simpara">
+   For a short discussion about the differences between
+   <a href="function.print.html" class="function">print()</a> and <b>echo()</b>, see this FAQTs
+   Knowledge Base Article: <a href="http://www.faqts.com/knowledge_base/view.phtml/aid/1/fid/40" class="link external">&raquo; http://www.faqts.com/knowledge_base/view.phtml/aid/1/fid/40
+   </a>
+  </p>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">Because this is a 
+language construct and not a function, it cannot be called using 
+<a href="functions.variable-functions.html" class="link">variable functions</a></span>
+</p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.print.html" class="function" rel="rdfs-seeAlso">print()</a></li>
+    <li class="member"><a href="function.printf.html" class="function" rel="rdfs-seeAlso">printf()</a></li>
+    <li class="member"><a href="function.flush.html" class="function" rel="rdfs-seeAlso">flush()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.crypt.html">crypt</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.explode.html">explode</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

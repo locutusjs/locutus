@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Merge two or more arrays recursively</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.array-map.html">array_map</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.array-merge.html">array_merge</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.array-merge-recursive" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">array_merge_recursive</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p><p class="refpurpose"><span class="refname">array_merge_recursive</span> &mdash; <span class="dc-title">Merge two or more arrays recursively</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>array_merge_recursive</b></b></span>
+    ( <span class="methodparam"><span class="type">array</span> <tt class="parameter">$array1</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$...</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>array_merge_recursive()</b> merges the elements of
+   one or more arrays together so that the values of one are appended
+   to the end of the previous one.  It returns the resulting array.
+  </p>
+  <p class="para">
+   If the input arrays have the same string keys, then the values for
+   these keys are merged together into an array, and this is done
+   recursively, so that if one of the values is an array itself, the
+   function will merge it with a corresponding entry in another array
+   too. If, however, the arrays have the same numeric key, the later
+   value will not overwrite the original value, but will be appended.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">array1</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Initial array to merge.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">array</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Variable list of arrays to recursively merge.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An array of values resulted from merging the arguments together.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>array_merge_recursive()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$ar1&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"color"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">"favorite"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"red"</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$ar2&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">10</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"color"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">"favorite"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"green"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"blue"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">array_merge_recursive</span><span style="color: #007700">(</span><span style="color: #0000BB">$ar1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$ar2</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [color] =&gt; Array
+        (
+            [favorite] =&gt; Array
+                (
+                    [0] =&gt; red
+                    [1] =&gt; green
+                )
+
+            [0] =&gt; blue
+        )
+
+    [0] =&gt; 5
+    [1] =&gt; 10
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.array-merge.html" class="function" rel="rdfs-seeAlso">array_merge()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.array-map.html">array_map</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.array-merge.html">array_merge</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

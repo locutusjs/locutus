@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get error string for given errorcode or last error</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbplus-curr.html">dbplus_curr</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbplus-errno.html">dbplus_errno</a></div>
+ <div class="up"><a href="ref.dbplus.html">DB++ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.dbplus-errcode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dbplus_errcode</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PECL dbplus:0.9)</p><p class="refpurpose"><span class="refname">dbplus_errcode</span> &mdash; <span class="dc-title">Get error string for given errorcode or last error</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>dbplus_errcode</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$errno</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Returns a clear error string for the given error code.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">errno</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The error code. If not provided, the result code of the last db++
+       operation is assumed.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the error message.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dbplus-curr.html">dbplus_curr</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dbplus-errno.html">dbplus_errno</a></div>
+ <div class="up"><a href="ref.dbplus.html">DB++ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

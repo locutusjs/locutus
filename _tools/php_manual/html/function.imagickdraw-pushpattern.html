@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Indicates that subsequent commands up to a ImagickDraw::opPattern() command comprise the definition of a named pattern</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagickdraw-pushdefs.html">ImagickDraw::pushDefs</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagickdraw-rectangle.html">ImagickDraw::rectangle</a></div>
+ <div class="up"><a href="class.imagickdraw.html">The ImagickDraw class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagickdraw-pushpattern" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ImagickDraw::pushPattern</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">ImagickDraw::pushPattern</span> &mdash; <span class="dc-title">Indicates that subsequent commands up to a ImagickDraw::opPattern() command comprise the definition of a named pattern</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>ImagickDraw::pushPattern</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pattern_id</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$x</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$y</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$width</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$height</tt></span>
+   )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+currently not documented; only its argument list is available.
+</p></div>
+  <p class="para">
+   Indicates that subsequent commands up to a DrawPopPattern() command
+   comprise the definition of a named pattern. The pattern space is assigned
+   top left corner coordinates, a width and height, and becomes its own
+   drawing space.  Anything which can be drawn may be used in a pattern
+   definition. Named patterns may be used as stroke or brush definitions.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pattern_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       the pattern Id
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">x</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       x coordinate of the top-left corner
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">y</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       y coordinate of the top-left corner
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">width</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       width of the pattern
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">height</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       height of the pattern
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagickdraw-pushdefs.html">ImagickDraw::pushDefs</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagickdraw-rectangle.html">ImagickDraw::rectangle</a></div>
+ <div class="up"><a href="class.imagickdraw.html">The ImagickDraw class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

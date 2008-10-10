@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Send a NULL-terminated string to PostgreSQL backend</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-prepare.html">pg_prepare</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-query-params.html">pg_query_params</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-put-line" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_put_line</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.3, PHP 5)</p><p class="refpurpose"><span class="refname">pg_put_line</span> &mdash; <span class="dc-title">Send a NULL-terminated string to PostgreSQL backend</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>pg_put_line</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>pg_put_line</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>pg_put_line()</b> sends a NULL-terminated string
+   to the PostgreSQL backend server.  This is needed in conjunction
+   with PostgreSQL&#039;s <i>COPY FROM</i> command.
+  </p>
+  <p class="para"><i>COPY</i> is a high-speed data loading interface
+   supported by PostgreSQL.  Data is passed in without being parsed, 
+   and in a single transaction.
+  </p>
+  <p class="para">
+   An alternative to using raw <b>pg_put_line()</b> commands
+   is to use <a href="function.pg-copy-from.html" class="function">pg_copy_from()</a>.  This is a far simpler 
+   interface.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+    
+    The application must explicitly send the two characters &quot;\.&quot;
+    on the last line to indicate to the backend that it has finished
+    sending its data, before issuing <a href="function.pg-end-copy.html" class="function">pg_end_copy()</a>.
+   <br />
+  </p></blockquote>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="para">
+    Use of the <b>pg_put_line()</b> causes most large object
+    operations, including <a href="function.pg-lo-read.html" class="function">pg_lo_read()</a> and
+    <a href="function.pg-lo-tell.html" class="function">pg_lo_tell()</a>, to subsequently fail. You can use
+    <a href="function.pg-copy-from.html" class="function">pg_copy_from()</a> and <a href="function.pg-copy-to.html" class="function">pg_copy_to()</a>
+    instead.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL database connection resource.  When 
+       <i><tt class="parameter">connection</tt></i>
+ is not present, the default connection 
+       is used. The default connection is the last connection made by 
+       <a href="function.pg-connect.html" class="function">pg_connect()</a> or <a href="function.pg-pconnect.html" class="function">pg_pconnect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A line of text to be sent directly to the PostgreSQL backend.  A <i>NULL</i>
+       terminator is added automatically.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pg_put_line()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php&nbsp;<br />&nbsp;&nbsp;$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_pconnect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=foo"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"create&nbsp;table&nbsp;bar&nbsp;(a&nbsp;int4,&nbsp;b&nbsp;char(16),&nbsp;d&nbsp;float8)"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"copy&nbsp;bar&nbsp;from&nbsp;stdin"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">pg_put_line</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"3\thello&nbsp;world\t4.5\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">pg_put_line</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"4\tgoodbye&nbsp;world\t7.11\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">pg_put_line</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"\\.\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">pg_end_copy</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-end-copy.html" class="function" rel="rdfs-seeAlso">pg_end_copy()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-prepare.html">pg_prepare</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-query-params.html">pg_query_params</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetches all rows of result data into an array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.oci-execute.html">oci_execute</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.oci-fetch-array.html">oci_fetch_array</a></div>
+ <div class="up"><a href="ref.oci8.html">OCI8 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.oci-fetch-all" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">oci_fetch_all</h1>
+  <p class="verinfo">(PHP 5, PECL oci8:1.1-1.2.4)</p><p class="refpurpose"><span class="refname">oci_fetch_all</span> &mdash; <span class="dc-title">Fetches all rows of result data into an array</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>oci_fetch_all</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$statement</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter reference">&$output</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$skip</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$maxrows</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   Fetches all the rows from a result into a user-defined array.
+  </p>
+  <p class="para">For details on the data type mapping performed by 
+the oci8 driver, see the <a href="oci8.datatypes.html" class="link">datatypes 
+supported by the driver</a></p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">statement</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid OCI statement identifier.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">output</tt></i>
+</span>
+
+     <dd>
+
+      <blockquote><p><b class="note">Note</b>: <span class="simpara">This function sets NULL fields to
+the PHP <b><tt>NULL</tt></b> value.</span></p></blockquote>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">skip</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The number of initial rows to ignore when fetching the result (default
+       value of 0, to start at the first line).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">maxrows</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The number of rows to read, starting at the <i><tt class="parameter">skip</tt></i>
+th
+       row (default to -1, meaning all the rows).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Parameter <i><tt class="parameter">flags</tt></i>
+ can be any combination of
+       the following:
+       <ul class="simplelist">
+        <li class="member">
+         <b><tt>OCI_FETCHSTATEMENT_BY_ROW</tt></b>
+        </li>
+        <li class="member">
+         <b><tt>OCI_FETCHSTATEMENT_BY_COLUMN</tt></b> (default value)
+        </li>
+        <li class="member">
+         <b><tt>OCI_NUM</tt></b>
+        </li>
+        <li class="member">
+         <b><tt>OCI_ASSOC</tt></b>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of rows fetched or <b><tt>FALSE</tt></b> in case of an error. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>oci_fetch_all()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;oci_fetch_all&nbsp;example&nbsp;mbritton&nbsp;at&nbsp;verinet&nbsp;dot&nbsp;com&nbsp;(990624)&nbsp;*/<br /><br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"scott"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"tiger"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"select&nbsp;*&nbsp;from&nbsp;emp"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$nrows&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_fetch_all</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$results</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$nrows&nbsp;</span><span style="color: #007700">&gt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;table&nbsp;border=\"1\"&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;tr&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$results&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;th&gt;$key&lt;/th&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;/tr&gt;\n"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;for&nbsp;(</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">$nrows</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;tr&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$results&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;td&gt;$data[$i]&lt;/td&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;/tr&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;/table&gt;\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"No&nbsp;data&nbsp;found&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />}<br />echo&nbsp;</span><span style="color: #DD0000">"$nrows&nbsp;Records&nbsp;Selected&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    In PHP versions before 5.0.0 you must use <a href="function.ocifetchstatement.html" class="function">ocifetchstatement()</a> instead.
+    This name still can be used, it was left as alias of
+    <b>oci_fetch_all()</b> for downwards compatability.
+    This, however, is deprecated and not recommended.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.oci-execute.html">oci_execute</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.oci-fetch-array.html">oci_fetch_array</a></div>
+ <div class="up"><a href="ref.oci8.html">OCI8 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

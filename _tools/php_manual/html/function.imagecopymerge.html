@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Copy and merge part of an image</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagecopy.html">imagecopy</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagecopymergegray.html">imagecopymergegray</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagecopymerge" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imagecopymerge</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p><p class="refpurpose"><span class="refname">imagecopymerge</span> &mdash; <span class="dc-title">Copy and merge part of an image</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>imagecopymerge</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$dst_im</tt></span>
+   , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$src_im</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$dst_x</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$dst_y</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$src_x</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$src_y</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$src_w</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$src_h</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$pct</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Copy a part of <i><tt class="parameter">src_im</tt></i>
+ onto
+   <i><tt class="parameter">dst_im</tt></i>
+ starting at the x,y coordinates
+   <i><tt class="parameter">src_x</tt></i>
+, <i><tt class="parameter">src_y </tt></i>
+ with
+   a width of <i><tt class="parameter">src_w</tt></i>
+ and a height of
+   <i><tt class="parameter">src_h</tt></i>
+.  The portion defined will be copied
+   onto the x,y coordinates, <i><tt class="parameter">dst_x</tt></i>
+ and
+   <i><tt class="parameter">dst_y</tt></i>
+.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dst_im</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Destination image link resource.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">src_im</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Source image link resource.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dst_x</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       x-coordinate of destination point.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">dst_y</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       y-coordinate of destination point.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">src_x</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       x-coordinate of source point.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">src_y</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       y-coordinate of source point.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">src_w</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Source width.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">src_h</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Source height.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pct</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The two images will be merged according to <i><tt class="parameter">pct</tt></i>
+
+       which can range from 0 to 100.  When <i><tt class="parameter">pct</tt></i>
+ = 0,
+       no action is taken, when 100 this function behaves identically
+       to <a href="function.imagecopy.html" class="function">imagecopy()</a> for pallete images, while it
+       implements alpha transparency for true colour images.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Merging two copies of the PHP.net logo with 75% transparency</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Create&nbsp;image&nbsp;instances<br /></span><span style="color: #0000BB">$dest&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatefromgif</span><span style="color: #007700">(</span><span style="color: #DD0000">'php.gif'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$src&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatefromgif</span><span style="color: #007700">(</span><span style="color: #DD0000">'php.gif'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Copy&nbsp;and&nbsp;merge<br /></span><span style="color: #0000BB">imagecopymerge</span><span style="color: #007700">(</span><span style="color: #0000BB">$dest</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$src</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">47</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">75</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Output&nbsp;and&nbsp;free&nbsp;free&nbsp;from&nbsp;memory<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-Type:&nbsp;image/gif'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagegif</span><span style="color: #007700">(</span><span style="color: #0000BB">$dest</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$dest</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$src</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagecopy.html">imagecopy</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagecopymergegray.html">imagecopymergegray</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Changes the size of an image</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-thresholdimage.html">Imagick::thresholdImage</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-tintimage.html">Imagick::tintImage</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagick-thumbnailimage" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::thumbnailImage</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">Imagick::thumbnailImage</span> &mdash; <span class="dc-title">Changes the size of an image</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>Imagick::thumbnailImage</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$columns</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$rows</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$fit</tt></span>
+  ] )</div>
+
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+currently not documented; only its argument list is available.
+</p></div>
+  <p class="para">
+   Changes the size of an image to the given dimensions and removes any
+   associated profiles. The goal is to produce small low cost thumbnail
+   images suited for display on the Web. 
+
+   If <b><tt>TRUE</tt></b> is given as a third parameter then columns and rows parameters
+   are used as maximums for each side. Both sides will be scaled down until
+   the match or are smaller than the parameter given for the side.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">columns</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      Image width
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">rows</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      Image height
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fit</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      Whether to force maximum values
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws ImagickException on error.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagick-thresholdimage.html">Imagick::thresholdImage</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagick-tintimage.html">Imagick::tintImage</a></div>
+ <div class="up"><a href="class.imagick.html">The Imagick class</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

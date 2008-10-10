@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get next result entry</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ldap-next-attribute.html">ldap_next_attribute</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ldap-next-reference.html">ldap_next_reference</a></div>
+ <div class="up"><a href="ref.ldap.html">LDAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ldap-next-entry" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ldap_next_entry</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ldap_next_entry</span> &mdash; <span class="dc-title">Get next result entry</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>ldap_next_entry</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+   , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result_entry_identifier</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Retrieve the entries stored in the result. Successive calls to the
+   <b>ldap_next_entry()</b> return entries one by one till there
+   are no more entries. The first call to <b>ldap_next_entry()</b>
+   is made after the call to <a href="function.ldap-first-entry.html" class="function">ldap_first_entry()</a> with the
+   <i><tt class="parameter">result_entry_identifier</tt></i>
+ as returned from the
+   <a href="function.ldap-first-entry.html" class="function">ldap_first_entry()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An LDAP link identifier, returned by <a href="function.ldap-connect.html" class="function">ldap_connect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_entry_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns entry identifier for the next entry in the result whose entries
+   are being read starting with <a href="function.ldap-first-entry.html" class="function">ldap_first_entry()</a>. If
+   there are no more entries in the result then it returns <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ldap-get-entries.html" class="function" rel="rdfs-seeAlso">ldap_get_entries()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ldap-next-attribute.html">ldap_next_attribute</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ldap-next-reference.html">ldap_next_reference</a></div>
+ <div class="up"><a href="ref.ldap.html">LDAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

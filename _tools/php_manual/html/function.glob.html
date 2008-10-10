@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Find pathnames matching a pattern</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fwrite.html">fwrite</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.is-dir.html">is_dir</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.glob" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">glob</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">glob</span> &mdash; <span class="dc-title">Find pathnames matching a pattern</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>glob</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$pattern</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   The <b>glob()</b> function searches for all the pathnames
+   matching <i><tt class="parameter">pattern</tt></i>
+ according to the rules used by
+   the libc glob() function, which is similar to the rules used by common
+   shells.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pattern</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The pattern. No tilde expansion or parameter substitution is done.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Valid flags:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>GLOB_MARK</tt></b> - Adds a slash to each directory returned
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>GLOB_NOSORT</tt></b> - Return files as they appear in the
+          directory (no sorting)
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>GLOB_NOCHECK</tt></b> - Return the search pattern if no
+          files matching it were found
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>GLOB_NOESCAPE</tt></b> - Backslashes do not quote
+          metacharacters
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>GLOB_BRACE</tt></b> - Expands {a,b,c} to match &#039;a&#039;, &#039;b&#039;,
+          or &#039;c&#039;
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>GLOB_ONLYDIR</tt></b> - Return only directory entries
+          which match the pattern
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>GLOB_ERR</tt></b> - Stop on read errors (like unreadable
+          directories), by default errors are ignored.
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array containing the matched files/directories, an empty array
+   if no file matched or <b><tt>FALSE</tt></b> on error.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    On some systems it is impossible to distinguish between empty match and an
+    error.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.1.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        <b><tt>GLOB_ERR</tt></b> was added
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.3</td>
+       <td colspan="1" rowspan="1" align="left">
+        <b><tt>GLOB_ONLYDIR</tt></b> became available on Windows and
+        other systems not using the GNU C library
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 
+     Convenient way how <b>glob()</b> can replace
+     <a href="function.opendir.html" class="function">opendir()</a> and friends.
+    </b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">glob</span><span style="color: #007700">(</span><span style="color: #DD0000">"*.txt"</span><span style="color: #007700">)&nbsp;as&nbsp;</span><span style="color: #0000BB">$filename</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"$filename&nbsp;size&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">filesize</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+funclist.txt size 44686
+funcsummary.txt size 267625
+quickref.txt size 137820
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function will not work on 
+<a href="features.remote-files.html" class="link">remote files</a> as the file to
+be examined must be accessible via the server&#039;s filesystem.</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   <span class="simpara">
+    This function isn&#039;t available on some systems (e.g. old Sun OS).
+   </span>
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   <span class="simpara">
+    The <b><tt>GLOB_BRACE</tt></b> flag is not available on some non GNU
+    systems, like Solaris.
+   </span>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.opendir.html" class="function" rel="rdfs-seeAlso">opendir()</a></li>
+    <li class="member"><a href="function.readdir.html" class="function" rel="rdfs-seeAlso">readdir()</a></li>
+    <li class="member"><a href="function.closedir.html" class="function" rel="rdfs-seeAlso">closedir()</a></li>
+    <li class="member"><a href="function.fnmatch.html" class="function" rel="rdfs-seeAlso">fnmatch()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.fwrite.html">fwrite</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.is-dir.html">is_dir</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

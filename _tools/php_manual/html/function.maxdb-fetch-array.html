@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Fetch a result row as an associative, a numeric array, or both</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-execute.html">maxdb_execute</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-fetch-assoc.html">maxdb_fetch_assoc</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.maxdb-fetch-array" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_fetch_array</h1>
+  <h1 class="refname">result-&gt;fetch_array</h1>
+  <p class="verinfo">(PECL maxdb:1.0-7.6.00.38)</p><p class="refpurpose"><span class="refname">maxdb_fetch_array</span> -- <span class="refname">result-&gt;fetch_array</span> &mdash; <span class="dc-title">Fetch a result row as an associative, a numeric array, or both</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <p class="para">Procedural style:</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>maxdb_fetch_array</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$resulttype</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">Object oriented style (method):</p>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">result</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">mixed</span>
+     <span class="methodname"><b><b>fetch_array</b></b></span>
+     ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$resulttype</tt></span>
+   ] )</div>
+
+  </div>
+  <p class="para">
+   Returns an array that corresponds to the fetched row or <b><tt>NULL</tt></b> if there are no more rows for the
+   resultset represented by the <i><tt class="parameter">result</tt></i>
+ parameter.
+  </p>
+  <p class="para">
+   <b>maxdb_fetch_array()</b> is an extended version of the
+   <a href="function.maxdb-fetch-row.html" class="function">maxdb_fetch_row()</a> function. In addition to storing the data in the
+   numeric indices of the result array, the <b>maxdb_fetch_array()</b> function can
+   also store the data in associative indices, using the field names of the result set as keys.
+  </p>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">Field names returned by this function
+are <em class="emphasis">case-sensitive</em>.</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function sets NULL fields to
+the PHP <b><tt>NULL</tt></b> value.</span></p></blockquote>
+  <p class="para">
+   If two or more columns of the result have the same field names, the last column will take
+   precedence and overwrite the earlier data. In order to access multiple columns with the same
+   name, the numerically indexed version of the row must be used.
+  </p>
+  <p class="para">
+   The optional second argument <i><tt class="parameter">resulttype</tt></i>
+ is a constant indicating what
+   type of array should be produced from the current row data. The possible values for this parameter
+   are the constants MAXDB_ASSOC, MAXDB_ASSOC_UPPER, MAXDB_ASSOC_LOWER, MAXDB_NUM, or MAXDB_BOTH.
+   By default the
+   <b>maxdb_fetch_array()</b> function will assume MAXDB_BOTH, which is a combination of
+   MAXDB_NUM and MAXDB_ASSOC  for this parameter.
+  </p>
+  <p class="para">
+   By using the MAXDB_ASSOC constant this function will behave identically to the
+   <a href="function.maxdb-fetch-assoc.html" class="function">maxdb_fetch_assoc()</a>, while MAXDB_NUM will behave identically to the
+   <a href="function.maxdb-fetch-row.html" class="function">maxdb_fetch_row()</a> function. The final option MAXDB_BOTH will create a single
+   array with the attributes of both.
+  </p>
+  <p class="para">
+   By using the MAXDB_ASSOC_UPPER constant, the behaviour of this function is identical to the use
+   of MAXDB_ASSOC except the array index of a column is the fieldname in upper case.
+  </p>
+  <p class="para">
+   By using the MAXDB_ASSOC_LOWER constant, the behaviour of this function is identical to the use
+   of MAXDB_ASSOC except the array index of a column is the fieldname in lower case.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array that corresponds to the fetched row or <b><tt>NULL</tt></b> if there are no more rows in resultset.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 Object oriented style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$maxdb&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">maxdb</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;name,&nbsp;state&nbsp;FROM&nbsp;hotel.city&nbsp;ORDER&nbsp;by&nbsp;zip"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;numeric&nbsp;array&nbsp;*/<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_NUM</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;(%s)\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">/*&nbsp;associative&nbsp;array&nbsp;*/<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_ASSOC</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;(%s)\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"NAME"</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"STATE"</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">/*&nbsp;associative&nbsp;and&nbsp;numeric&nbsp;array&nbsp;*/<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_BOTH</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;(%s)\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"STATE"</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">/*&nbsp;free&nbsp;result&nbsp;set&nbsp;*/<br /></span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example">
+   <p><b>Example #2 Procedural style</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;check&nbsp;connection&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Connect&nbsp;failed:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;name,&nbsp;state&nbsp;FROM&nbsp;hotel.city&nbsp;ORDER&nbsp;by&nbsp;zip"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;numeric&nbsp;array&nbsp;*/<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MAXDB_NUM</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;(%s)\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">/*&nbsp;associative&nbsp;array&nbsp;*/<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MAXDB_ASSOC</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;(%s)\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"NAME"</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"STATE"</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">/*&nbsp;associative&nbsp;and&nbsp;numeric&nbsp;array&nbsp;*/<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MAXDB_BOTH</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;(%s)\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"STATE"</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">/*&nbsp;free&nbsp;result&nbsp;set&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;close&nbsp;connection&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">The above example will output 
+something similar to:</p>
+  <div class="example-contents"><pre>
+<div class="cdata"><pre>
+New York (NY)
+New York (NY)
+Long Island (NY)
+</pre></div>
+  </pre></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.maxdb-fetch-assoc.html" class="function" rel="rdfs-seeAlso">maxdb_fetch_assoc()</a></li>
+    <li class="member"><a href="function.maxdb-fetch-row.html" class="function" rel="rdfs-seeAlso">maxdb_fetch_row()</a></li>
+    <li class="member"><b>maxdb_fetch_resource()</b></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.maxdb-execute.html">maxdb_execute</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.maxdb-fetch-assoc.html">maxdb_fetch_assoc</a></div>
+ <div class="up"><a href="ref.maxdb.html">MaxDB Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

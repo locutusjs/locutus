@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Decodes a modified UTF-7 encoded string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-unsubscribe.html">imap_unsubscribe</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-utf7-encode.html">imap_utf7_encode</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imap-utf7-decode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_utf7_decode</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imap_utf7_decode</span> &mdash; <span class="dc-title">Decodes a modified UTF-7 encoded string</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>imap_utf7_decode</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$text</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Decodes modified UTF-7 <i><tt class="parameter">text</tt></i>
+ into ISO-8859-1 string.
+  </p>
+  <p class="para">
+   This function is needed to decode mailbox names that contain certain
+   characters which are not in range of printable ASCII characters.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">text</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A modified UTF-7 encoding string, as defined in <a href="http://www.faqs.org/rfcs/rfc2060" class="link external">&raquo; RFC 2060</a>, section 5.1.3 (original UTF-7
+       was defined in <a href="http://www.faqs.org/rfcs/rfc1642" class="link external">&raquo; RFC1642</a>).
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string that is encoded in ISO-8859-1 and consists of the same
+   sequence of characters in <i><tt class="parameter">text</tt></i>
+, or <b><tt>FALSE</tt></b>
+   if <i><tt class="parameter">text</tt></i>
+ contains invalid modified UTF-7 sequence
+   or <i><tt class="parameter">text</tt></i>
+ contains a character that is not part of
+   ISO-8859-1 character set.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imap-utf7-encode.html" class="function" rel="rdfs-seeAlso">imap_utf7_encode()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-unsubscribe.html">imap_unsubscribe</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-utf7-encode.html">imap_utf7_encode</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

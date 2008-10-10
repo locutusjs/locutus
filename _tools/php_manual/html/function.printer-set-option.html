@@ -1,0 +1,331 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Configure the printer connection</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.printer-select-pen.html">printer_select_pen</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.printer-start-doc.html">printer_start_doc</a></div>
+ <div class="up"><a href="ref.printer.html">Printer Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.printer-set-option" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">printer_set_option</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">printer_set_option</span> &mdash; <span class="dc-title">Configure the printer connection</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>printer_set_option</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$printer_handle</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$option</tt></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$value</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The function sets options for the current connection.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">printer_handle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">printer_handle</tt></i>
+ must be a valid printer handle.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">option</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Option can be one of the following constants:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_COPIES</tt></b>:
+          sets how many copies should be printed, <i><tt class="parameter">value</tt></i>
+
+          must be an integer.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_MODE</tt></b>:
+          specifies the type of data (text, raw or emf),
+          <i><tt class="parameter">value</tt></i>
+ must be a string.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_TITLE</tt></b>:
+          specifies the name of the document, <i><tt class="parameter">value</tt></i>
+
+          must be a string.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_ORIENTATION</tt></b>:
+          specifies the orientation of the paper, <i><tt class="parameter">value</tt></i>
+
+          can be either PRINTER_ORIENTATION_PORTRAIT or
+          PRINTER_ORIENTATION_LANDSCAPE
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_RESOLUTION_Y</tt></b>:
+          specifies the y-resolution in DPI, <i><tt class="parameter">value</tt></i>
+
+          must be an integer.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_RESOLUTION_X</tt></b>:
+          specifies the x-resolution in DPI, <i><tt class="parameter">value</tt></i>
+
+          must be an integer.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_PAPER_FORMAT</tt></b>:
+          specifies a predefined paper format, set <i><tt class="parameter">value</tt></i>
+
+          to PRINTER_FORMAT_CUSTOM if you want to specify a custom format with
+          PRINTER_PAPER_WIDTH and PRINTER_PAPER_LENGTH. <i><tt class="parameter">value</tt></i>
+
+          can be one of the following constants.
+         </span>
+         <ul class="itemizedlist">
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_FORMAT_CUSTOM</tt></b>:
+            let&#039;s you specify a custom paper format.
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_FORMAT_LETTER</tt></b>:
+            specifies standard letter format (8 1/2- by 11-inches).
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_FORMAT_LEGAL</tt></b>:
+            specifies standard legal format (8 1/2- by 14-inches).
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_FORMAT_A3</tt></b>:
+            specifies standard A3 format (297- by 420-millimeters).
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_FORMAT_A4</tt></b>:
+            specifies standard A4 format (210- by 297-millimeters).
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_FORMAT_A5</tt></b>:
+            specifies standard A5 format (148- by 210-millimeters).
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_FORMAT_B4</tt></b>:
+            specifies standard B4 format (250- by 354-millimeters).
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_FORMAT_B5</tt></b>:
+            specifies standard B5 format (182- by 257-millimeter).
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_FORMAT_FOLIO</tt></b>:
+            specifies standard FOLIO format (8 1/2- by 13-inch).
+           </span>
+          </li>
+         </ul>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_PAPER_LENGTH</tt></b>:
+          if PRINTER_PAPER_FORMAT is set to PRINTER_FORMAT_CUSTOM,
+          PRINTER_PAPER_LENGTH specifies a custom paper length in mm,
+          <i><tt class="parameter">value</tt></i>
+ must be an integer.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_PAPER_WIDTH</tt></b>:
+          if PRINTER_PAPER_FORMAT is set to PRINTER_FORMAT_CUSTOM,
+          PRINTER_PAPER_WIDTH specifies a custom paper width in mm,
+          <i><tt class="parameter">value</tt></i>
+ must be an integer.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_SCALE</tt></b>:
+          specifies the factor by which the printed output is to be scaled.
+          the page size is scaled from the physical page size by a factor
+          of scale/100. for example if you set the scale to 50, the output
+          would be half of its original size. <i><tt class="parameter">value</tt></i>
+
+          must be an integer.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_BACKGROUND_COLOR</tt></b>:
+          specifies the background color for the actual device context,
+          <i><tt class="parameter">value</tt></i>
+ must be a string containing the rgb
+          information in hex format i.e. &quot;005533&quot;.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_TEXT_COLOR</tt></b>:
+          specifies the text color for the actual device context,
+          <i><tt class="parameter">value</tt></i>
+ must be a string containing the rgb
+          information in hex format i.e. &quot;005533&quot;.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <b><tt>PRINTER_TEXT_ALIGN</tt></b>:
+          specifies the text alignment for the actual device context,
+          <i><tt class="parameter">value</tt></i>
+ can be combined through OR&#039;ing the
+          following constants:
+         </span>
+         <ul class="itemizedlist">
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_TA_BASELINE</tt></b>:
+            text will be aligned at the base line.
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_TA_BOTTOM</tt></b>:
+            text will be aligned at the bottom.
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_TA_TOP</tt></b>:
+            text will be aligned at the top.
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_TA_CENTER</tt></b>:
+            text will be aligned at the center.
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_TA_LEFT</tt></b>:
+            text will be aligned at the left.
+           </span>
+          </li>
+          <li class="listitem">
+           <span class="simpara">
+            <b><tt>PRINTER_TA_RIGHT</tt></b>:
+            text will be aligned at the right.
+           </span>
+          </li>
+         </ul>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">value</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">option</tt></i>
+ value.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>printer_set_option()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$handle&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">printer_open</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">printer_set_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PRINTER_SCALE</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">75</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printer_set_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PRINTER_TEXT_ALIGN</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PRINTER_TA_LEFT</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printer_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+  
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.printer-select-pen.html">printer_select_pen</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.printer-start-doc.html">printer_start_doc</a></div>
+ <div class="up"><a href="ref.printer.html">Printer Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

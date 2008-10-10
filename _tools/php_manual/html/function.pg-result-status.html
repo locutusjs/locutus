@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get status of query result</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-result-seek.html">pg_result_seek</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-select.html">pg_select</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-result-status" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_result_status</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">pg_result_status</span> &mdash; <span class="dc-title">
+   Get status of query result
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>pg_result_status</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$type</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>pg_result_status()</b> returns the status of a result
+   resource, or the PostgreSQL command completion tag associated with the result
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL query result resource, returned by <a href="function.pg-query.html" class="function">pg_query()</a>,
+       <a href="function.pg-query-params.html" class="function">pg_query_params()</a> or <a href="function.pg-execute.html" class="function">pg_execute()</a>
+       (among others).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Either <b><tt>PGSQL_STATUS_LONG</tt></b> to return the numeric status 
+       of the <i><tt class="parameter">result</tt></i>
+, or <b><tt>PGSQL_STATUS_STRING</tt></b> 
+       to return the command tag of the <i><tt class="parameter">result</tt></i>
+.
+       If not specified, <b><tt>PGSQL_STATUS_LONG</tt></b> is the default.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Possible return values are <b><tt>PGSQL_EMPTY_QUERY</tt></b>,
+   <b><tt>PGSQL_COMMAND_OK</tt></b>, <b><tt>PGSQL_TUPLES_OK</tt></b>, <b><tt>PGSQL_COPY_OUT</tt></b>,
+   <b><tt>PGSQL_COPY_IN</tt></b>, <b><tt>PGSQL_BAD_RESPONSE</tt></b>, <b><tt>PGSQL_NONFATAL_ERROR</tt></b> and
+   <b><tt>PGSQL_FATAL_ERROR</tt></b> if <b><tt>PGSQL_STATUS_LONG</tt></b> is
+   specified.  Otherwise, a <a href="language.types.string.html" class="type string">string</a> containing the PostgreSQL command tag is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i><tt class="parameter">type</tt></i>
+ parameter was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pg_result_status()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Connect&nbsp;to&nbsp;the&nbsp;database<br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_pconnect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=publisher"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Execute&nbsp;a&nbsp;COPY<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"COPY&nbsp;authors&nbsp;FROM&nbsp;STDIN;"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Get&nbsp;the&nbsp;result&nbsp;status<br /></span><span style="color: #0000BB">$status&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_result_status</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Determine&nbsp;status<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$status&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">PGSQL_COPY_IN</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Copy&nbsp;began."</span><span style="color: #007700">;<br />else<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Copy&nbsp;failed."</span><span style="color: #007700">;<br />&nbsp;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Copy began.
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-connection-status.html" class="function" rel="rdfs-seeAlso">pg_connection_status()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-result-seek.html">pg_result_seek</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-select.html">pg_select</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

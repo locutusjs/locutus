@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Search a string for any of a set of characters</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.strncmp.html">strncmp</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.strpos.html">strpos</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.strpbrk" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">strpbrk</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">strpbrk</span> &mdash; <span class="dc-title">Search a string for any of a set of characters</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>strpbrk</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$haystack</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$char_list</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>strpbrk()</b> searches the <i><tt class="parameter">haystack</tt></i>
+
+   string for a <i><tt class="parameter">char_list</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">haystack</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The string where <i><tt class="parameter">char_list</tt></i>
+ is looked for.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">char_list</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       This parameter is case sensitive.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string starting from the character found, or <b><tt>FALSE</tt></b> if it is
+   not found.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>strpbrk()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$text&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;a&nbsp;Simple&nbsp;text.'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;this&nbsp;echoes&nbsp;"is&nbsp;is&nbsp;a&nbsp;Simple&nbsp;text."&nbsp;because&nbsp;'i'&nbsp;is&nbsp;matched&nbsp;first<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">strpbrk</span><span style="color: #007700">(</span><span style="color: #0000BB">$text</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'mi'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;this&nbsp;echoes&nbsp;"Simple&nbsp;text."&nbsp;because&nbsp;chars&nbsp;are&nbsp;case&nbsp;sensitive<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">strpbrk</span><span style="color: #007700">(</span><span style="color: #0000BB">$text</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'S'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.strncmp.html">strncmp</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.strpos.html">strpos</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

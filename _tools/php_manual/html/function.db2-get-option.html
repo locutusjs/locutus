@@ -1,0 +1,313 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Retrieves an option value for a statement resource or a connection resource</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-free-stmt.html">db2_free_stmt</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-lob-read.html">db2_lob_read</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.db2-get-option" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">db2_get_option</h1>
+  <p class="verinfo">(PECL ibm_db2:1.6.0-1.6.2)</p><p class="refpurpose"><span class="refname">db2_get_option</span> &mdash; <span class="dc-title">Retrieves an option value for a statement resource or a connection resource</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>db2_get_option</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$resource</tt></span>      
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$option</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Retrieves the value of a specified option value for a statement resource 
+   or a connection resource.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">resource</tt></i>
+</span>
+
+     <dd>
+
+     <p class="para">
+      A valid statement resource as returned from
+      <a href="function.db2-prepare.html" class="function">db2_prepare()</a> or a valid connection resource as
+      returned from <a href="function.db2-connect.html" class="function">db2_connect()</a> or
+      <a href="function.db2-pconnect.html" class="function">db2_pconnect()</a>.
+     </p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term"><i><tt class="parameter">option</tt></i>
+</span>
+
+    <dd>
+
+     <p class="para">
+      A valid statement or connection options. The following new options are available 
+      as of ibm_db2 version 1.6.0. They provide useful tracking information 
+      that can be set during execution with <b>db2_get_option()</b>.
+      <blockquote><p><b class="note">Note</b>: 
+       <b>Note</b><br />
+       
+        Prior versions of ibm_db2 do not support these new options.
+       <br />
+       
+        When the value in each option is being set, some servers might not handle 
+        the entire length provided and might truncate the value.
+       <br />
+       
+        To ensure that the data specified in each option is converted correctly 
+        when transmitted to a host system, use only the characters A through Z, 
+        0 through 9, and the underscore (_) or period (.).
+       <br />
+      </p></blockquote>
+      <dl>
+
+       <dt>
+
+        <span class="term"><i><tt class="parameter">userid</tt></i>
+</span>
+
+         <dd>
+
+          <p class="para">
+           <i>SQL_ATTR_INFO_USERID</i> - A pointer to a null-terminated 
+           character string used to identify the client user ID sent to the host 
+           database server when using DB2 Connect.
+           <blockquote><p><b class="note">Note</b>: 
+            <b>Note</b><br />
+            
+             DB2 for z/OS and OS/390 servers support up to a length of 16 characters. 
+             This user-id is not to be confused with the authentication user-id, it is for 
+             identification purposes only and is not used for any authorization.
+            <br />
+           </p></blockquote>
+          </p>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><i><tt class="parameter">acctstr</tt></i>
+</span>
+
+         <dd>
+
+          <p class="para">
+           <i>SQL_ATTR_INFO_ACCTSTR</i> - A pointer to a null-terminated 
+           character string used to identify the client accounting string sent to the 
+           host database server when using DB2 Connect.
+           <blockquote><p><b class="note">Note</b>: 
+            <b>Note</b><br />
+            
+             DB2 for z/OS and OS/390 servers support up to a length of 200 characters.
+            <br />
+           </p></blockquote>
+          </p>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><i><tt class="parameter">applname</tt></i>
+</span>
+
+         <dd>
+
+          <p class="para">
+           <i>SQL_ATTR_INFO_APPLNAME</i> - A pointer to a null-terminated 
+           character string used to identify the client application name sent to the 
+           host database server when using DB2 Connect.
+           <blockquote><p><b class="note">Note</b>: 
+            <b>Note</b><br />
+            
+             DB2 for z/OS and OS/390 servers support up to a length of 32 characters.
+            <br />
+           </p></blockquote>
+          </p>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><i><tt class="parameter">wrkstnname</tt></i>
+</span>
+
+         <dd>
+
+          <p class="para">
+           <i>SQL_ATTR_INFO_WRKSTNNAME</i> - A pointer to a null-terminated 
+           character string used to identify the client workstation name sent to the 
+           host database server when using DB2 Connect.
+           <blockquote><p><b class="note">Note</b>: 
+            <b>Note</b><br />
+            
+             DB2 for z/OS and OS/390 servers support up to a length of 18 characters.
+            <br />
+           </p></blockquote>
+          </p>
+         </dd>
+
+        </dt>
+
+       </dl>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+  <p class="para">
+   The following table specifies which options are compatible with
+   the available resource types:
+   <table border="5">
+    <caption><b>Resource-Parameter Matrix</b></caption>
+    <colgroup>
+
+     <col align="center" />
+     <col align="center" />
+     <col align="center" />
+     <col align="center" />
+     <col align="center" />
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Key</th>
+       <th colspan="1">Value</th>
+       <th colspan="3">Resource Type</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td class="empty">&nbsp;</td><td class="empty">&nbsp;</td><td colspan="1" rowspan="1" align="left">Connection</td>
+       <td colspan="1" rowspan="1" align="left">Statement</td>
+       <td colspan="1" rowspan="1" align="left">Result Set</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">userid</td>
+       <td colspan="1" rowspan="1" align="left"><i>SQL_ATTR_INFO_USERID</i></td>
+       <td colspan="1" rowspan="1" align="left">X</td>
+       <td colspan="1" rowspan="1" align="left">X</td>
+       <td colspan="1" rowspan="1" align="left">-</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">acctstr</td>
+       <td colspan="1" rowspan="1" align="left"><i>SQL_ATTR_INFO_ACCTSTR</i></td>
+       <td colspan="1" rowspan="1" align="left">X</td>
+       <td colspan="1" rowspan="1" align="left">X</td>
+       <td colspan="1" rowspan="1" align="left">-</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">applname</td>
+       <td colspan="1" rowspan="1" align="left"><i>SQL_ATTR_INFO_APPLNAME</i></td>
+       <td colspan="1" rowspan="1" align="left">X</td>
+       <td colspan="1" rowspan="1" align="left">X</td>
+       <td colspan="1" rowspan="1" align="left">-</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">wrkstnname</td>
+       <td colspan="1" rowspan="1" align="left"><i>SQL_ATTR_INFO_WRKSTNNAME</i></td>
+       <td colspan="1" rowspan="1" align="left">X</td>
+       <td colspan="1" rowspan="1" align="left">X</td>
+       <td colspan="1" rowspan="1" align="left">-</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the current setting of the connection attribute provided on success 
+   or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Setting and retrieving parameters through a connection resource</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Database&nbsp;Connection&nbsp;Parameters&nbsp;*/<br /></span><span style="color: #0000BB">$database&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'SAMPLE'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$user&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'db2inst1'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$password&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'ibmdb2'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Obtain&nbsp;Connection&nbsp;Resource&nbsp;*/<br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Client&nbsp;attributes&nbsp;passed&nbsp;through&nbsp;connection&nbsp;string:\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Create&nbsp;the&nbsp;associative&nbsp;options&nbsp;array&nbsp;with&nbsp;valid&nbsp;key-value&nbsp;pairs&nbsp;*/<br />/*&nbsp;Assign&nbsp;the&nbsp;attributes&nbsp;through&nbsp;connection&nbsp;string&nbsp;*/<br />/*&nbsp;Access&nbsp;the&nbsp;options&nbsp;specified&nbsp;*/<br /></span><span style="color: #0000BB">$options1&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'userid'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'db2inst1'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$conn1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_get_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn1</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'userid'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$options2&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'acctstr'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'account'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$conn2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options2</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_get_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn2</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'acctstr'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$options3&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'applname'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'myapp'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$conn3&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options3</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_get_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn3</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'applname'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$options4&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'wrkstnname'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'workstation'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$conn4&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options4</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_get_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn4</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'wrkstnname'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Client&nbsp;attributes&nbsp;passed&nbsp;post-connection:\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Create&nbsp;the&nbsp;associative&nbsp;options&nbsp;array&nbsp;with&nbsp;valid&nbsp;key-value&nbsp;pairs&nbsp;*/<br />/*&nbsp;Assign&nbsp;the&nbsp;attributes&nbsp;after&nbsp;a&nbsp;connection&nbsp;is&nbsp;made&nbsp;*/<br />/*&nbsp;Access&nbsp;the&nbsp;options&nbsp;specified&nbsp;*/<br /></span><span style="color: #0000BB">$options5&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'userid'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'db2inst1'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$conn5&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$rc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_set_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_get_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn5</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'userid'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$options6&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'acctstr'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'account'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$conn6&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$rc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_set_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn6</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options6</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_get_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn6</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'acctstr'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$options7&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'applname'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'myapp'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$conn7&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$rc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_set_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn7</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options7</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_get_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn7</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'applname'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$options8&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'wrkstnname'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'workstation'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$conn8&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$rc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_set_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn8</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options8</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_get_option</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn8</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'wrkstnname'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Client attributes passed through connection string:
+db2inst1
+account
+myapp
+workstation
+Client attributes passed post-connection:
+db2inst1
+account
+myapp
+workstation</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.db2-connect.html" class="function" rel="rdfs-seeAlso">db2_connect()</a></li>
+    <li class="member"><a href="function.db2-cursor-type.html" class="function" rel="rdfs-seeAlso">db2_cursor_type()</a></li>
+    <li class="member"><a href="function.db2-exec.html" class="function" rel="rdfs-seeAlso">db2_exec()</a></li>
+    <li class="member"><a href="function.db2-set-option.html" class="function" rel="rdfs-seeAlso">db2_set_option()</a></li>
+    <li class="member"><a href="function.db2-pconnect.html" class="function" rel="rdfs-seeAlso">db2_pconnect()</a></li>
+    <li class="member"><a href="function.db2-prepare.html" class="function" rel="rdfs-seeAlso">db2_prepare()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-free-stmt.html">db2_free_stmt</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-lob-read.html">db2_lob_read</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

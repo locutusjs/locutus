@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Tells whether the filename is a symbolic link</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.is-file.html">is_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.is-readable.html">is_readable</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.is-link" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">is_link</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">is_link</span> &mdash; <span class="dc-title">Tells whether the filename is a symbolic link</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>is_link</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Tells whether the given file is a symbolic link.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the file.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> if the filename exists and is a symbolic link, <b><tt>FALSE</tt></b>
+   otherwise.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Create and confirm if a file is a symbolic link</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'uploads'</span><span style="color: #007700">;<br /><br />if(</span><span style="color: #0000BB">is_link</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">))<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo(</span><span style="color: #0000BB">readlink</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br />}<br />else<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">symlink</span><span style="color: #007700">(</span><span style="color: #DD0000">'uploads.php'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">The results of this 
+function are cached. See <a href="function.clearstatcache.html" class="function">clearstatcache()</a> for 
+more details.</span></p></blockquote>
+  <div class="tip"><b class="tip">Tip</b><p class="simpara">As of PHP 5.0.0, this function
+can also be used with <em class="emphasis">some</em> URL wrappers.  Refer to 
+<a href="wrappers.html" class="xref">List of Supported Protocols/Wrappers</a> for a listing of which wrappers support 
+<a href="function.stat.html" class="function">stat()</a> family of functionality.</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.is-dir.html" class="function" rel="rdfs-seeAlso">is_dir()</a></li>
+    <li class="member"><a href="function.is-file.html" class="function" rel="rdfs-seeAlso">is_file()</a></li>
+    <li class="member"><a href="function.readlink.html" class="function" rel="rdfs-seeAlso">readlink()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.is-file.html">is_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.is-readable.html">is_readable</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

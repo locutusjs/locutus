@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Commits outstanding statements</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.oci-collection-trim.html">OCI-Collection->trim</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.oci-connect.html">oci_connect</a></div>
+ <div class="up"><a href="ref.oci8.html">OCI8 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.oci-commit" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">oci_commit</h1>
+  <p class="verinfo">(PHP 5, PECL oci8:1.1-1.2.4)</p><p class="refpurpose"><span class="refname">oci_commit</span> &mdash; <span class="dc-title">Commits outstanding statements</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>oci_commit</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Commits all outstanding statements for the active transaction on the
+   Oracle <i><tt class="parameter">connection</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An Oracle connection identifier, returned by 
+       <a href="function.oci-connect.html" class="function">oci_connect()</a> or <a href="function.oci-pconnect.html" class="function">oci_pconnect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>oci_commit()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Login&nbsp;to&nbsp;Oracle&nbsp;server<br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'scott'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'tiger'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Parse&nbsp;SQL<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INSERT&nbsp;INTO<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;employees&nbsp;(name,&nbsp;surname)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUES<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('Maxim',&nbsp;'Maletsky')<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Execute&nbsp;statement<br />&nbsp;&nbsp;&nbsp;OCI_DEFAULT&nbsp;tells&nbsp;oci_execute()<br />&nbsp;&nbsp;&nbsp;not&nbsp;to&nbsp;commit&nbsp;statement&nbsp;immediately&nbsp;*/<br /></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">OCI_DEFAULT</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*<br />....<br />Parsing&nbsp;and&nbsp;executing&nbsp;other&nbsp;statements&nbsp;here&nbsp;...<br />....<br />*/<br /><br />//&nbsp;Commit&nbsp;transaction<br /></span><span style="color: #0000BB">$committed&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_commit</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Test&nbsp;whether&nbsp;commit&nbsp;was&nbsp;successful.&nbsp;If&nbsp;error&nbsp;occurred,&nbsp;return&nbsp;error&nbsp;message<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$committed</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$error&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Commit&nbsp;failed.&nbsp;Oracle&nbsp;reports:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$error</span><span style="color: #007700">[</span><span style="color: #DD0000">'message'</span><span style="color: #007700">];<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Transactions are automatically rolled back when you close
+    the connection, or when the script ends, whichever is soonest. You
+    need to explicitly call <b>oci_commit()</b> to commit
+    the transaction, or <a href="function.oci-rollback.html" class="function">oci_rollback()</a> to abort it.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.oci-rollback.html" class="function" rel="rdfs-seeAlso">oci_rollback()</a></li>
+    <li class="member"><a href="function.oci-execute.html" class="function" rel="rdfs-seeAlso">oci_execute()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.oci-collection-trim.html">OCI-Collection->trim</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.oci-connect.html">oci_connect</a></div>
+ <div class="up"><a href="ref.oci8.html">OCI8 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

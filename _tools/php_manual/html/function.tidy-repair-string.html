@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Repair a string using an optionally provided configuration file</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.tidy-repair-file.html">tidy_repair_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.tidy-reset-config.html">tidy_reset_config</a></div>
+ <div class="up"><a href="ref.tidy.html">Tidy Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.tidy-repair-string" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">tidy_repair_string</h1>
+  <p class="verinfo">(PHP 5, PECL tidy:0.7-1.2)</p><p class="refpurpose"><span class="refname">tidy_repair_string</span> &mdash; <span class="dc-title">Repair a string using an optionally provided configuration file</span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>tidy_repair_string</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$config</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   This function repairs the given string.
+  </p>
+  <p class="para">The <i><tt class="parameter">config</tt></i>
+ parameter
+can be passed either as an array or as a string. If a string is passed,
+it is interpreted as the name of the configuration file, otherwise, it is
+interpreted as the options themselves. Check
+<a href="http://tidy.sourceforge.net/docs/quickref.html" class="link external">&raquo; http://tidy.sourceforge.net/docs/quickref.html</a>
+for an explanation about each option.</p><p class="para">The
+<i><tt class="parameter">encoding</tt></i>
+ parameter sets the encoding for input/output
+documents. The possible values for <i><tt class="parameter">encoding</tt></i>
+ are:
+<i>ascii</i>, <i>latin0</i>, <i>latin1</i>,
+<i>raw</i>, <i>utf8</i>, <i>iso2022</i>,
+<i>mac</i>, <i>win1252</i>, <i>ibm858</i>,
+<i>utf16</i>, <i>utf16le</i>,
+<i>utf16be</i>, <i>big5</i> and
+<i>shiftjis</i>.</p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>tidy_repair_string()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />ob_start</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;<br /></span><br />&lt;html&gt;<br />&nbsp;&nbsp;&lt;head&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;test&lt;/title&gt;<br />&nbsp;&nbsp;&lt;/head&gt;<br />&nbsp;&nbsp;&lt;body&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;error&lt;/i&gt;<br />&nbsp;&nbsp;&lt;/body&gt;<br />&lt;/html&gt;<br /><br /><span style="color: #0000BB">&lt;?php<br /><br />$buffer&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ob_get_clean</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$tidy&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">tidy_repair_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$buffer</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$tidy</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 3.2//EN&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;test&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;error&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+   <blockquote><p><b class="note">Note</b>: <span class="simpara">The optional parameters
+<i><tt class="parameter">config</tt></i>
+ and <i><tt class="parameter">encoding</tt></i>
+ were
+added in Tidy 2.0.</span></p></blockquote>
+  <p class="para">
+   See also <a href="function.tidy-parse-file.html" class="function">tidy_parse_file()</a>,
+   <a href="function.tidy-parse-string.html" class="function">tidy_parse_string()</a> and
+   <a href="function.tidy-repair-file.html" class="function">tidy_repair_file()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.tidy-repair-file.html">tidy_repair_file</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.tidy-reset-config.html">tidy_reset_config</a></div>
+ <div class="up"><a href="ref.tidy.html">Tidy Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

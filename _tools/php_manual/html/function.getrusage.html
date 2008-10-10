@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Gets the current resource usages</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.getopt.html">getopt</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ini-alter.html">ini_alter</a></div>
+ <div class="up"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.getrusage" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">getrusage</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">getrusage</span> &mdash; <span class="dc-title">Gets the current resource usages</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>getrusage</b></b></span>
+    ([ <span class="methodparam"><span class="type">int</span> <tt class="parameter">$who</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This is an interface to getrusage(2). It gets data returned from the
+   system call. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">who</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If who is 1, getrusage will be called with RUSAGE_CHILDREN.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative array containing the data returned from the system
+   call. All entries are accessible by using their documented field names.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>getrusage()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dat&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">getrusage</span><span style="color: #007700">();<br />echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_nswap"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;number&nbsp;of&nbsp;swaps<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_majflt"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;number&nbsp;of&nbsp;page&nbsp;faults<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_utime.tv_sec"</span><span style="color: #007700">];&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;user&nbsp;time&nbsp;used&nbsp;(seconds)<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_utime.tv_usec"</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;user&nbsp;time&nbsp;used&nbsp;(microseconds)<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is not
+implemented on Windows platforms.</span></p></blockquote>
+ </div>
+
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">Your system&#039;s man page on getrusage(2)</li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.getopt.html">getopt</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ini-alter.html">ini_alter</a></div>
+ <div class="up"><a href="ref.info.html">PHP Options/Info Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

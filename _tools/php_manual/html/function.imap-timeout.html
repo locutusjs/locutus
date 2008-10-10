@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set or fetch imap timeout</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-thread.html">imap_thread</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-uid.html">imap_uid</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imap-timeout" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_timeout</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.3, PHP 5)</p><p class="refpurpose"><span class="refname">imap_timeout</span> &mdash; <span class="dc-title">Set or fetch imap timeout</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>imap_timeout</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timeout_type</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timeout</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Sets or fetchs the imap timeout.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">timeout_type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       One of the following:
+       <b><tt>IMAP_OPENTIMEOUT</tt></b>,
+       <b><tt>IMAP_READTIMEOUT</tt></b>,
+       <b><tt>IMAP_WRITETIMEOUT</tt></b>, or
+       <b><tt>IMAP_CLOSETIMEOUT</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">timeout</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The timeout, in seconds.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   If the <i><tt class="parameter">timeout</tt></i>
+ parameter is set, this function
+   returns <b><tt>TRUE</tt></b> on success and <b><tt>FALSE</tt></b> on failure.
+  </p>
+  <p class="para">
+   If <i><tt class="parameter">timeout</tt></i>
+  is not provided or evaluates to -1,
+   the current timeout value of <i><tt class="parameter">timeout_type</tt></i>
+ is
+   returned as an integer.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>imap_timeout()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"The&nbsp;current&nbsp;read&nbsp;timeout&nbsp;is&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">imap_timeout</span><span style="color: #007700">(</span><span style="color: #0000BB">IMAP_READTIMEOUT</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-thread.html">imap_thread</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-uid.html">imap_uid</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

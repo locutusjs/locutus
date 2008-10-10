@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Imports an unversioned path into a repository</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.svn-fs-youngest-rev.html">svn_fs_youngest_rev</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.svn-log.html">svn_log</a></div>
+ <div class="up"><a href="ref.svn.html">SVN Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.svn-import" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">svn_import</h1>
+  <p class="verinfo">(PECL svn:0.2)</p><p class="refpurpose"><span class="refname">svn_import</span> &mdash; <span class="dc-title">Imports an unversioned path into a repository</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>svn_import</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$path</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$url</tt></span>
+   , <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$nonrecursive</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Commits unversioned <i><tt class="parameter">path</tt></i>
+ into repository at
+   <i><tt class="parameter">url</tt></i>
+. If <i><tt class="parameter">path</tt></i>
+ is a
+   directory and <i><tt class="parameter">nonrecursive</tt></i>
+ is <b><tt>FALSE</tt></b>, 
+   the directory will be imported recursively.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">path</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path of file or directory to import.
+      </p>
+      <blockquote><p><b class="note">Note</b>: <span class="simpara">Relative paths will be resolved as if the current working directory was the one that contains the PHP binary. To use the calling script&#039;s working directory, use <a href="function.realpath.html" class="function">realpath()</a> or dirname(__FILE__).</span></p></blockquote>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">url</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Repository URL to import into.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">nonrecursive</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Whether or not to refrain from recursively processing directories.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b><p class="simpara">This function is
+<em class="emphasis">EXPERIMENTAL</em>. The behaviour of this function, its name, and
+surrounding documentation may change without notice in a future release of PHP.
+This function should be used at your own risk.
+</p></div>
+ </div>
+
+
+ 
+
+ 
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Basic example</b></p>
+    <div class="example-contents"><p>
+     This example demonstrates a basic use-case of this function. To import
+     a directory named new-files into the repository at
+     http://www.example.com/svnroot/incoming/abc, use:
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />svn_import</span><span style="color: #007700">(</span><span style="color: #0000BB">realpath</span><span style="color: #007700">(</span><span style="color: #DD0000">'new-files'</span><span style="color: #007700">),&nbsp;</span><span style="color: #DD0000">'http://www.example.com/svnroot/incoming/abc'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.svn-add.html" class="function" rel="rdfs-seeAlso">svn_add()</a></li>
+    <li class="member"><a href="http://svnbook.red-bean.com/en/1.2/svn.ref.svn.c.import.html" class="link external">&raquo; SVN documentation for svn import</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.svn-fs-youngest-rev.html">svn_fs_youngest_rev</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.svn-log.html">svn_log</a></div>
+ <div class="up"><a href="ref.svn.html">SVN Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

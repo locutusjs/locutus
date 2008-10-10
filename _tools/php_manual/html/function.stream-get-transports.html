@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Retrieve list of registered socket transports</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-get-meta-data.html">stream_get_meta_data</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-get-wrappers.html">stream_get_wrappers</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.stream-get-transports" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stream_get_transports</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">stream_get_transports</span> &mdash; <span class="dc-title">Retrieve list of registered socket transports</span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>stream_get_transports</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="simpara">
+   Returns an indexed array containing the name of all socket transports
+   available on the running system.
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>stream_get_transports()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$xportlist&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_get_transports</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$xportlist</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Output will be similar to the following.
+     Note: there may be more or fewer transports in your version of PHP.
+    </p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array (
+  [0] =&gt; tcp
+  [1] =&gt; udp
+  [2] =&gt; unix
+  [3] =&gt; udg
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+  <p class="para">
+   See also
+   <a href="function.stream-get-filters.html" class="function">stream_get_filters()</a>, and
+   <a href="function.stream-get-wrappers.html" class="function">stream_get_wrappers()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-get-meta-data.html">stream_get_meta_data</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-get-wrappers.html">stream_get_wrappers</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

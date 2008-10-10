@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Create a subscription to a specified topic.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.samconnection-setDebug.html">SAMConnection::setDebug</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.samconnection-unsubscribe.html">SAMConnection->unsubscribe</a></div>
+ <div class="up"><a href="ref.sam.html">SAM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.samconnection-subscribe" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SAMConnection-&gt;subscribe</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SAMConnection-&gt;subscribe</span> &mdash; <span class="dc-title">
+   Create a subscription to a specified topic.
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">SAMConnection</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">string</span> <span class="methodname"><b><b>subscribe</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$targetTopic</tt></span>
+    )</div>
+
+  </div>
+  <p class="para">
+   The &quot;subscribe&quot; method is used to create a new subscription to a specified topic.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">targetTopic</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The identity of the topic (topic://topicname) to subscribe to.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   A subscription identifier that can be used in a subsequent receive call as
+   a selector to obtain any topic data or <b><tt>FALSE</tt></b> if an error occurred. The
+   subscription identifier should be used in the receive call in place of the
+   simple topic name.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Subscribe to a topic</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$subid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">subscribe</span><span style="color: #007700">(</span><span style="color: #DD0000">'topic://A'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$subid</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;The&nbsp;subscribe&nbsp;failed!<br />&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"Subscribe&nbsp;failed&nbsp;($conn-&gt;errno)&nbsp;$conn-&gt;error"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.samconnection-unsubscribe.html" class="xref">SAMConnection->unsubscribe</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.samconnection-setDebug.html">SAMConnection::setDebug</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.samconnection-unsubscribe.html">SAMConnection->unsubscribe</a></div>
+ <div class="up"><a href="ref.sam.html">SAM Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

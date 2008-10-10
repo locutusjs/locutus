@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns a persistent connection to a database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-num-rows.html">db2_num_rows</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-prepare.html">db2_prepare</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.db2-pconnect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">db2_pconnect</h1>
+  <p class="verinfo">(PECL ibm_db2:1.0-1.6.2)</p><p class="refpurpose"><span class="refname">db2_pconnect</span> &mdash; <span class="dc-title">
+   Returns a persistent connection to a database
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>db2_pconnect</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$database</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$username</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$password</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$options</tt></span>
+  ] )</div>
+
+
+
+  <p class="para rdfs-comment">
+   Returns a persistent connection to an IBM DB2 Universal Database, IBM
+   Cloudscape, or Apache Derby database. For more information on persistent
+   connections, refer to <a href="features.persistent-connections.html" class="xref">Persistent Database Connections</a>.
+  </p>
+
+  <p class="para">
+   Calling <a href="function.db2-close.html" class="function">db2_close()</a> on a persistent connection always
+   returns <b><tt>TRUE</tt></b>, but the underlying DB2 client connection remains open and
+   waiting to serve the next matching <b>db2_pconnect()</b>
+   request.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">database</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The database alias in the DB2 client catalog.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">username</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The username with which you are connecting to the database.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">password</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The password with which you are connecting to the database.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An associative array of connection options that affect the behavior
+       of the connection, where valid array keys include:
+       <dl>
+
+        <dt>
+
+         <br /><span class="term"><i><tt class="parameter">autocommit</tt></i>
+</span>
+
+         <dd>
+
+          <p class="para">
+           Passing the <i>DB2_AUTOCOMMIT_ON</i> value turns
+           autocommit on for this connection handle.
+          </p>
+          <p class="para">
+           Passing the <i>DB2_AUTOCOMMIT_OFF</i> value turns
+           autocommit off for this connection handle.
+          </p>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><i><tt class="parameter">DB2_ATTR_CASE</tt></i>
+</span>
+
+         <dd>
+
+          <p class="para">
+           Passing the <i>DB2_CASE_NATURAL</i> value specifies
+           that column names are returned in natural case.
+          </p>
+          <p class="para">
+           Passing the <i>DB2_CASE_LOWER</i> value specifies
+           that column names are returned in lower case.
+          </p>
+          <p class="para">
+           Passing the <i>DB2_CASE_UPPER</i> value specifies
+           that column names are returned in upper case.
+          </p>
+         </dd>
+
+        </dt>
+
+        <dt>
+
+         <span class="term"><i><tt class="parameter">CURSOR</tt></i>
+</span>
+
+         <dd>
+
+          <p class="para">
+           Passing the <i>DB2_FORWARD_ONLY</i> value specifies a
+           forward-only cursor for a statement resource. This is the default
+           cursor type and is supported on all database servers.
+          </p>
+          <p class="para">
+           Passing the <i>DB2_SCROLLABLE</i> value specifies a
+           scrollable cursor for a statement resource. This mode enables
+           random access to rows in a result set, but currently is supported
+           only by IBM DB2 Universal Database.
+          </p>
+         </dd>
+
+        </dt>
+
+       </dl>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a connection handle resource if the connection attempt is
+   successful. <b>db2_pconnect()</b> tries to reuse an existing
+   connection resource that exactly matches the
+   <i><tt class="parameter">database</tt></i>
+, <i><tt class="parameter">username</tt></i>
+, and
+   <i><tt class="parameter">password</tt></i>
+ parameters. If the connection attempt fails,
+   <b>db2_pconnect()</b> returns <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>db2_pconnect()</b> example</b></p>
+    <div class="example-contents"><p>
+     In the following example, the first call to
+     <b>db2_pconnect()</b> returns a new persistent connection
+     resource. The second call to <b>db2_pconnect()</b> returns
+     a persistent connection resource that simply reuses the first persistent
+     connection resource.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$database&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'SAMPLE'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$user&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'db2inst1'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$password&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'ibmdb2'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$pconn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_pconnect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$pconn</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Persistent&nbsp;connection&nbsp;succeeded."</span><span style="color: #007700">;<br />}<br />else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Persistent&nbsp;connection&nbsp;failed."</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$pconn2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_pconnect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$pconn</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Second&nbsp;persistent&nbsp;connection&nbsp;succeeded."</span><span style="color: #007700">;<br />}<br />else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Second&nbsp;persistent&nbsp;connection&nbsp;failed."</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Persistent connection succeeded.
+Second persistent connection succeeded.
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.db2-connect.html" class="function" rel="rdfs-seeAlso">db2_connect()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-num-rows.html">db2_num_rows</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-prepare.html">db2_prepare</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

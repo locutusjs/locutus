@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Prepares Oracle statement for execution</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.oci-num-rows.html">oci_num_rows</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.oci-password-change.html">oci_password_change</a></div>
+ <div class="up"><a href="ref.oci8.html">OCI8 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.oci-parse" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">oci_parse</h1>
+  <p class="verinfo">(PHP 5, PECL oci8:1.1-1.2.4)</p><p class="refpurpose"><span class="refname">oci_parse</span> &mdash; <span class="dc-title">Prepares Oracle statement for execution</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>oci_parse</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Prepares the <i><tt class="parameter">query</tt></i>
+using
+   <i><tt class="parameter">connection</tt></i>
+ and returns the statement identifier,
+   which can be used with <a href="function.oci-bind-by-name.html" class="function">oci_bind_by_name()</a>, 
+   <a href="function.oci-execute.html" class="function">oci_execute()</a> and other functions.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An Oracle connection identifier, returned by 
+       <a href="function.oci-connect.html" class="function">oci_connect()</a> or <a href="function.oci-pconnect.html" class="function">oci_pconnect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">query</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SQL query.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a statement handler on success, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function <em class="emphasis">does not</em> validate 
+    <i><tt class="parameter">query</tt></i>
+. The only way to find out if
+    <i><tt class="parameter">query</tt></i>
+ is valid SQL or PL/SQL statement - is to
+    execute it.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    In PHP versions before 5.0.0 you must use <a href="function.ociparse.html" class="function">ociparse()</a> instead.
+    This name still can be used, it was left as alias of
+    <b>oci_parse()</b> for downwards compatability.
+    This, however, is deprecated and not recommended.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.oci-num-rows.html">oci_num_rows</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.oci-password-change.html">oci_password_change</a></div>
+ <div class="up"><a href="ref.oci8.html">OCI8 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Predefined Variables</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.variables.html">Variables</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.variables.scope.html">Variable scope</a></div>
+ <div class="up"><a href="language.variables.html">Variables</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="language.variables.predefined" class="sect1">
+   <h2 class="title">Predefined Variables</h2>
+   
+   <p class="simpara">
+    PHP provides a large number of predefined variables to any script
+    which it runs. Many of these variables, however, cannot be fully
+    documented as they are dependent upon which server is running, the
+    version and setup of the server, and other factors. Some of these
+    variables will not be available when PHP is run on the 
+    <a href="features.commandline.html" class="link">command line</a>. 
+    For a listing of these variables, please see the section on 
+    <a href="reserved.variables.html" class="link">Reserved Predefined Variables</a>.
+   </p>
+
+   <div class="warning"><b class="warning">Warning</b>
+    <p class="simpara">
+     In PHP 4.2.0 and later, the default value for the PHP directive <a href="ini.core.html#ini.register-globals" class="link">register_globals</a> is 
+     <em class="emphasis">off</em>. This is a major change in PHP.  Having 
+     register_globals <em class="emphasis">off</em> affects the set of predefined 
+     variables available in the global scope.  For example, to get 
+     <var class="varname">DOCUMENT_ROOT</var> you&#039;ll use 
+     <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER['DOCUMENT_ROOT']</a></var> instead of 
+     <var class="varname">$DOCUMENT_ROOT</var>, or <var class="varname"><a href="reserved.variables.get.html" class="classname">$_GET['id']</a></var> from 
+     the URL <i>http://www.example.com/test.php?id=3</i> instead 
+     of <var class="varname">$id</var>, or <var class="varname"><a href="reserved.variables.environment.html" class="classname">$_ENV['HOME']</a></var> instead of 
+     <var class="varname">$HOME</var>.
+    </p>
+    <p class="simpara">
+     For related information on this change, read the configuration entry for 
+     <a href="ini.core.html#ini.register-globals" class="link">register_globals</a>, the security 
+     chapter on <a href="security.globals.html" class="link">Using Register Globals
+     </a>, as well as the PHP <a href="http://www.php.net/releases/4_1_0.php" class="link external">&raquo; 4.1.0
+     </a> and <a href="http://www.php.net/releases/4_2_0.php" class="link external">&raquo; 4.2.0</a> Release 
+     Announcements.
+    </p>
+    <p class="simpara">
+     Using the available PHP Reserved Predefined Variables, like the 
+     <a href="language.variables.superglobals.html" class="link">superglobal arrays</a>, 
+     is preferred.
+    </p>
+   </div>
+
+   <p class="simpara">
+    From version 4.1.0 onward, PHP provides an additional set of predefined arrays
+    containing variables from the web server (if applicable), the
+    environment, and user input. These new arrays are rather special
+    in that they are automatically global--i.e., automatically
+    available in every scope. For this reason, they are often known as
+    &quot;superglobals&quot;. (There is no mechanism in PHP for
+    user-defined superglobals.) The superglobals are listed below;
+    however, for a listing of their contents and further discussion on
+    PHP predefined variables and their natures, please see the section
+    <a href="reserved.variables.html" class="link">Reserved Predefined Variables</a>.  
+    Also, you&#039;ll notice how the older predefined variables 
+    (<var class="varname">$HTTP_*_VARS</var>) still exist.
+
+    As of PHP 5.0.0, the long PHP 
+<a href="language.variables.predefined.html" class="link">predefined variable</a>
+arrays may be disabled with the 
+<a href="ini.core.html#ini.register-long-arrays" class="link">register_long_arrays</a>
+directive.
+   </p>
+   
+   <blockquote><p><b class="note">Note</b>: 
+    <b>Variable variables</b><br />
+    
+     Superglobals cannot be used as 
+     <a href="language.variables.variable.html" class="link">variable variables</a>
+     inside functions or class methods.
+    <br />
+   </p></blockquote>
+
+   <blockquote><p><b class="note">Note</b>: 
+    
+     Even though both the superglobal and HTTP_*_VARS can exist at the same
+     time; they are not identical, so modifying one will not change the other.
+    <br />
+   </p></blockquote>
+
+   <p class="para">
+    If certain variables in <a href="ini.core.html#ini.variables-order" class="link">variables_order</a> are not set, their
+    appropriate PHP predefined arrays are also left empty.
+   </p>
+  </div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="language.variables.html">Variables</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="language.variables.scope.html">Variable scope</a></div>
+ <div class="up"><a href="language.variables.html">Variables</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the path to the current category</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.udm-cat-list.html">udm_cat_list</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.udm-check-charset.html">udm_check_charset</a></div>
+ <div class="up"><a href="ref.mnogosearch.html">mnoGoSearch Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.udm-cat-path" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">udm_cat_path</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5 &lt;= 5.0.5, PECL mnogosearch:1.0.0)</p><p class="refpurpose"><span class="refname">udm_cat_path</span> &mdash; <span class="dc-title">Get the path to the current category</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>udm_cat_path</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$agent</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$category</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns an array describing the path in the categories tree from the tree
+   root to the current one, specified by <i><tt class="parameter">category</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">agent</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A link to Agent, received after call to
+       <a href="function.udm-alloc-agent.html" class="function">udm_alloc_agent()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">category</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The returned array consists of pairs. Elements with even index numbers
+   contain the category paths, odd elements contain the corresponding category
+   names.
+  </p>
+  <p class="para">
+   For example, the call <i>$array=udm_cat_path($agent, &#039;02031D&#039;);</i>
+   may return the following array:
+  <div class="example-contents"><pre>
+<div class="cdata"><pre>
+ $array[0] will contain &#039;&#039;
+ $array[1] will contain &#039;Root&#039;
+ $array[2] will contain &#039;02&#039;
+ $array[3] will contain &#039;Sport&#039;
+ $array[4] will contain &#039;0203&#039;
+ $array[5] will contain &#039;Auto&#039;
+ $array[4] will contain &#039;02031D&#039;
+ $array[5] will contain &#039;Ferrari&#039;
+</pre></div>
+  </pre></div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 
+     Specifying path to the current category in the following format:
+     &#039;&gt; Root &gt; Sport &gt; Auto &gt; Ferrari&#039;
+    </b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$cat_path_arr&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">udm_cat_path</span><span style="color: #007700">(</span><span style="color: #0000BB">$udm_agent</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$cat</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$cat_path&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">;<br />&nbsp;&nbsp;for&nbsp;(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$cat_path_arr</span><span style="color: #007700">);&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">+=</span><span style="color: #0000BB">2</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$path&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$cat_path_arr</span><span style="color: #007700">[</span><span style="color: #0000BB">$i</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$cat_path_arr</span><span style="color: #007700">[</span><span style="color: #0000BB">$i</span><span style="color: #007700">+</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$cat_path&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">"&nbsp;&gt;&nbsp;&lt;a&nbsp;href=\"$_SERVER[PHP_SELF]?cat=$path\"&gt;$name&lt;/a&gt;&nbsp;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.udm-cat-list.html" class="function" rel="rdfs-seeAlso">udm_cat_list()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.udm-cat-list.html">udm_cat_list</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.udm-check-charset.html">udm_check_charset</a></div>
+ <div class="up"><a href="ref.mnogosearch.html">mnoGoSearch Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

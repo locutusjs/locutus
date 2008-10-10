@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Perform an Apache sub-request</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.apache.html">Apache Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.iisfunc.html">IIS</a></div>
+ <div class="up"><a href="ref.apache.html">Apache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.virtual" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">virtual</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">virtual</span> &mdash; <span class="dc-title">Perform an Apache sub-request</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>virtual</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>virtual()</b> is an Apache-specific function which
+   is similar to <i>&lt;!--#include virtual...--&gt;</i> in mod_include.
+   It performs an Apache sub-request.  It is useful for including
+   CGI scripts or .shtml files, or anything else that you would
+   parse through Apache.  Note that for a CGI script, the script
+   must generate valid CGI headers.  At the minimum that means it
+   must generate a Content-type header.
+  </p>
+  <p class="para">
+   To run the sub-request, all buffers are terminated and flushed to the
+   browser, pending headers are sent too.
+  </p>
+  <p class="simpara">This function is only supported when PHP 
+is installed as an Apache module.</p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The file that the virtual command will be performed on.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Performs the virtual command on success, or returns <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.6</td>
+       <td colspan="1" rowspan="1" align="left">
+        This function may be used on PHP files. However, it is typically
+        better to use <b>include()</b> or
+        <b>require()</b> for PHP files.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   See <a href="function.apache-note.html" class="function">apache_note()</a> for an example.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="para">
+    The query string can be passed to the included file but
+    <var class="varname"><a href="reserved.variables.get.html" class="classname">$_GET</a></var> is copied from the parent script and only
+    <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER['QUERY_STRING']</a></var> is filled with the passed
+    query string. The query string may only be passed when using Apache 2.
+    The requested file will not be listed in the Apache access log.
+   </p>
+  </div>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    Environment variables set in the requested file are not visible to the
+    calling script.
+   <br />
+  </p></blockquote>
+  <blockquote><p><b class="note">Note</b>: As of PHP 4.3.3 you can use this function with the
+<a href="ref.nsapi.html" class="link">NSAPI server module</a> in Netscape/iPlanet/SunONE
+webservers, too.<br /></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.apache-note.html" class="function" rel="rdfs-seeAlso">apache_note()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.apache.html">Apache Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.iisfunc.html">IIS</a></div>
+ <div class="up"><a href="ref.apache.html">Apache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

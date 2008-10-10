@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get and/or set the current cache limiter</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-cache-expire.html">session_cache_expire</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-commit.html">session_commit</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.session-cache-limiter" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">session_cache_limiter</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.3, PHP 5)</p><p class="refpurpose"><span class="refname">session_cache_limiter</span> &mdash; <span class="dc-title">Get and/or set the current cache limiter</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>session_cache_limiter</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$cache_limiter</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>session_cache_limiter()</b> returns the name of the
+   current cache limiter. 
+  </p>
+  <p class="para">
+   The cache limiter defines which cache control HTTP headers are sent to
+   the client.  These headers determine the rules by which the page content
+   may be cached by the client and intermediate proxies.  Setting the cache
+   limiter to <i>nocache</i> disallows any client/proxy caching.
+   A value of <i>public</i> permits caching by proxies and the
+   client, whereas <i>private</i> disallows caching by proxies
+   and permits the client to cache the contents.
+  </p>
+  <p class="para">
+   In <i>private</i> mode, the Expire header sent to the client
+   may cause confusion for some browsers, including Mozilla. You can avoid
+   this problem by using <i>private_no_expire</i> mode. The
+   expire header is never sent to the client in this mode.
+  </p>
+  <p class="para">
+   The cache limiter is reset to the default value stored in
+   <a href="session.configuration.html#ini.session.cache-limiter" class="link">session.cache_limiter</a>
+   at request startup time. Thus, you need to call
+   <b>session_cache_limiter()</b> for every
+   request (and before <a href="function.session-start.html" class="function">session_start()</a> is called).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">cache_limiter</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <i><tt class="parameter">cache_limiter</tt></i>
+ is specified, the name of the
+       current cache limiter is changed to the new value.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the name of the current cache limiter. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.2.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The <i>private_no_expire</i> cache limiter was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+ 
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>session_cache_limiter()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;set&nbsp;the&nbsp;cache&nbsp;limiter&nbsp;to&nbsp;'private'&nbsp;*/<br /><br /></span><span style="color: #0000BB">session_cache_limiter</span><span style="color: #007700">(</span><span style="color: #DD0000">'private'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$cache_limiter&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">session_cache_limiter</span><span style="color: #007700">();<br /><br />echo&nbsp;</span><span style="color: #DD0000">"The&nbsp;cache&nbsp;limiter&nbsp;is&nbsp;now&nbsp;set&nbsp;to&nbsp;$cache_limiter&lt;br&nbsp;/&gt;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="session.configuration.html#ini.session.cache-limiter" class="link">session.cache_limiter</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-cache-expire.html">session_cache_expire</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-commit.html">session_commit</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

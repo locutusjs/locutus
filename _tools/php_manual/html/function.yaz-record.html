@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns a record</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.yaz-range.html">yaz_range</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.yaz-scan-result.html">yaz_scan_result</a></div>
+ <div class="up"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.yaz-record" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">yaz_record</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PECL yaz:0.9-1.0.9)</p><p class="refpurpose"><span class="refname">yaz_record</span> &mdash; <span class="dc-title">Returns a record</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>yaz_record</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$id</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$pos</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$type</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   The <b>yaz_record()</b> function inspects a record in the
+   current result set at the position specified by parameter
+   <i><tt class="parameter">pos</tt></i>
+. 
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The connection resource returned by <a href="function.yaz-connect.html" class="function">yaz_connect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pos</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The record position. Records positions in a result set are numbered 1,
+       2, ... $hits where $hits is the count returned by <a href="function.yaz-hits.html" class="function">yaz_hits()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">type</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">type</tt></i>
+ specifies the form of the
+       returned record.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        It is the application which is responsible for actually
+        ensuring that the records are returned from the Z39.50/SRW server
+        in the proper format. The type given only specifies a conversion
+        to take place on the client side (in PHP/YAZ).
+       <br />
+      </p></blockquote>
+      <p class="para">
+       Besides conversion of the transfer record to a string/array, PHP/YAZ
+       it is also possible to perform a character set conversion of the
+       record. Especially for USMARC/MARC21 that is recommended since
+       these are typically returned in the character set MARC-8 that is
+       not supported by browsers, etc. To specify a conversion, add
+       <i>; charset=</i><span class="replaceable">from</span><i>,
+       </i><span class="replaceable">to</span> where
+       <span class="replaceable">from</span> is the original character set 
+       of the record and <span class="replaceable">to</span> is the resulting character
+       set (as seen by PHP).
+      </p>
+      <dl>
+
+       <dt>
+
+        <span class="term"><i>string</i></span>
+
+        <dd>
+
+         <p class="para">
+          The record is returned as a string for simple display.
+          In this mode, all MARC records are converted to a line-by-line format
+          since ISO2709 is hardly readable.
+          XML records and SUTRS are returned in their original format.
+          GRS-1 are returned in a (ugly) line-by-line format.
+         </p>
+         <p class="para">
+          This format is suitable if records are to be displayed in a quick
+          way - for debugging - or because it is not feasible to perform
+          proper display.
+         </p>
+        </dd>
+
+       </dt>
+
+       <dt>
+
+        <span class="term"><i>xml</i></span>
+
+        <dd>
+
+         <p class="para">
+          The record is returned as an XML string if possible.
+          In this mode, all MARC records are converted to 
+          <a href="http://www.loc.gov/standards/marcxml/" class="link external">&raquo; MARCXML</a>.
+          XML records and SUTRS are returned in their original format.
+          GRS-1 is not supported.
+         </p>
+         <p class="para">
+          This format is similar to <i><tt class="parameter">string</tt></i>
+ except that
+          MARC records are converted to MARCXML
+         </p>
+         <p class="para">
+          This format is suitable if records are processed by an XML parser
+          or XSLT processor afterwards.
+         </p>
+        </dd>
+
+       </dt>
+
+       <dt>
+
+        <span class="term"><i>raw</i></span>
+
+        <dd>
+
+         <p class="para">
+          The record is returned as a string in its original form.
+          This type is suitable for MARC, XML and SUTRS. It does not
+          work for GRS-1.
+         </p>
+         <p class="para">
+          MARC records are returned as a ISO2709 string. XML and SUTRS are
+          returned as strings.
+         </p>
+        </dd>
+
+       </dt>
+
+       <dt>
+
+        <span class="term"><i>syntax</i></span>
+
+        <dd>
+
+         <p class="para">
+          The syntax of the record is returned as a string, i.e.
+          <i>USmarc</i>, <i>GRS-1</i>,
+          <i>XML</i>, etc.
+         </p>
+        </dd>
+
+       </dt>
+
+       <dt>
+
+        <span class="term"><i>database</i></span>
+
+        <dd>
+
+         <p class="para">
+          The name of database associated with record at the position
+          is returned as a string.
+         </p>
+        </dd>
+
+       </dt>
+
+       <dt>
+
+        <span class="term"><i>array</i></span>
+
+        <dd>
+
+         <p class="para">
+          The record is returned as an array that reflects the GRS-1
+          structure. This type is suitable for MARC and GRS-1. XML, SUTRS
+          are not supported and if the actual record is XML or SUTRS an
+          empty string will be returned.
+         </p>
+         <p class="para">
+          The array returned consists of a list corresponding to
+          each leaf/internal node of GRS-1. Each list item consists
+          a sub list with first element <em class="emphasis">path</em> and
+          <em class="emphasis">data</em> (if data is available).
+         </p>
+         <p class="para">
+          The path which is a string holds a list of each tree component (of
+          the structured GRS-1 record) from root to leaf. Each component is
+          a tag type, tag value pair of the form
+          <i>(</i><span class="replaceable">type</span><i>,</i>
+          <span class="replaceable">value</span>
+         </p>
+         <p class="para">
+          String tags normally has a corresponding tag type 3.
+          MARC can also be returned as an array (they are converted to
+          GRS-1 internally).
+         </p>
+        </dd>
+
+       </dt>
+
+      </dl>
+
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">    
+   Returns the record at position <i><tt class="parameter">pos</tt></i>
+ or an empty
+   string if no record exists at the given position.
+  </p>
+  <p class="para">
+   If no database record exists at the given position an empty string is 
+   returned.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 Array for GRS-1 record</b></p>
+   <div class="example-contents"><p>
+    Consider this GRS-1 record:
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+(4,52)Robert M. Pirsig
+(4,70)
+      (4,90)
+            (2,7)Transworld Publishers, ltd.
+</pre></div>
+    </pre></div>
+    This record has two nodes at root level. First element at root level is
+    (4,52) [tag type 4, tag value 52], and has data <i>Robert M. 
+    Pirsig</i>. Second element at root level (4,70) has a subtree with
+    a single element (4,90). (4,90) has yet another sub tree (2,7) with data
+    <i>Transworld Publishers, ltd.</i>.
+   </p></div>
+   <div class="example-contents"><p>
+    If this record is present at position $p, then
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$ar&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">yaz_record</span><span style="color: #007700">(</span><span style="color: #0000BB">$id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$p</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"array"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$ar</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    will output:
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; Array
+        (
+            [0] =&gt; (4,52)
+            [1] =&gt; Robert M. Pirsig
+        )
+    [1] =&gt; Array
+        (
+            [0] =&gt; (4,70)
+        )
+    [2] =&gt; Array
+        (
+            [0] =&gt; (4,70)(4,90)
+        )
+    [3] =&gt; Array
+        (
+            [0] =&gt; (4,70)(4,90)(2,7)
+            [1] =&gt; Transworld Publishers, ltd.
+        )
+)      
+</pre></div>
+    </pre></div>
+   </p></div>
+  </div>
+  <div class="example">
+   <p><b>Example #2 Working with MARCXML</b></p>
+   <div class="example-contents"><p>
+    The following PHP snippet returns a MARC21/USMARC record as MARCXML. 
+    The original record is returned in marc-8 (unknown to most XML parsers),
+    so we convert it to UTF-8 (which all XML parsers must support).
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$rec&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">yaz_record</span><span style="color: #007700">(</span><span style="color: #0000BB">$id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$p</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"xml;&nbsp;charset=marc-8,utf-8"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </p></div>
+   <div class="example-contents"><p>
+    The record <i>$rec</i> can be processed with the 
+    <a href="ref.xslt.html" class="link">Sablotron XSLT</a> processor as follows:
+   </p></div>
+   <div class="example-contents"><p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$xslfile&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'display.xsl'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$processor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">xslt_create</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$parms&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'/_xml'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$rec</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">xslt_process</span><span style="color: #007700">(</span><span style="color: #0000BB">$processor</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'arg:/_xml'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$xslfile</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$parms</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">xslt_free</span><span style="color: #007700">(</span><span style="color: #0000BB">$processor</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">preg_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">"'&lt;/?html[^&gt;]*&gt;'"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </p></div>
+   <div class="example-contents"><p>
+    For PHP 5 the <a href="book.xsl.html" class="link">XSL</a> extension must be used
+    instead of Sablotron XSLT.
+   </p></div>
+  </div>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.yaz-range.html">yaz_range</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.yaz-scan-result.html">yaz_scan_result</a></div>
+ <div class="up"><a href="ref.yaz.html">YAZ Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

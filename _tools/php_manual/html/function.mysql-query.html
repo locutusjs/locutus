@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Send a MySQL query</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-ping.html">mysql_ping</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-real-escape-string.html">mysql_real_escape_string</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mysql-query" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysql_query</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PECL mysql:1.0)</p><p class="refpurpose"><span class="refname">mysql_query</span> &mdash; <span class="dc-title">Send a MySQL query</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>mysql_query</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   [, <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>mysql_query()</b> sends an unique query (multiple queries
+   are not supported) to the currently
+   active database on the server that&#039;s associated with the
+   specified <i><tt class="parameter">link_identifier</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">query</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A SQL query
+      </p>
+      <p class="para">
+       The query string should not end with a semicolon.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+link_identifier</tt></i>
+</span>
+<dd>
+<p class="para">The MySQL connection. If the 
+link identifier is not specified, the last link opened by 
+<a href="function.mysql-connect.html" class="function">mysql_connect()</a> is assumed. If no such link is found, it
+will try to create one as if <a href="function.mysql-connect.html" class="function">mysql_connect()</a> was called
+with no arguments. If by chance no connection is found or established, an
+<b><tt>E_WARNING</tt></b> level error is generated.</p></dd>
+
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   For SELECT, SHOW, DESCRIBE, EXPLAIN and other statements returning resultset,
+   <b>mysql_query()</b> 
+   returns a <a href="language.types.resource.html" class="type resource">resource</a> on success, or <b><tt>FALSE</tt></b> on
+   error.
+  </p>
+  <p class="para">
+   For other type of SQL statements, INSERT, UPDATE, DELETE, DROP, etc,
+   <b>mysql_query()</b> returns <b><tt>TRUE</tt></b> on success
+   or <b><tt>FALSE</tt></b> on error.
+  </p>
+  <p class="para">
+   The returned result resource should be passed to
+   <a href="function.mysql-fetch-array.html" class="function">mysql_fetch_array()</a>, and other
+   functions for dealing with result tables, to access the returned data.
+  </p>
+  <p class="para">
+   Use <a href="function.mysql-num-rows.html" class="function">mysql_num_rows()</a> to find out how many rows
+   were returned for a SELECT statement or
+   <a href="function.mysql-affected-rows.html" class="function">mysql_affected_rows()</a> to find out how many
+   rows were affected by a DELETE, INSERT, REPLACE, or UPDATE
+   statement.
+  </p>
+  <p class="para">
+   <b>mysql_query()</b> will also fail and return <b><tt>FALSE</tt></b>
+   if the user does not have permission to access the table(s) referenced by
+   the query.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Invalid Query</b></p>
+    <div class="example-contents"><p>
+     The following query is syntactically invalid, so
+     <b>mysql_query()</b> fails and returns <b><tt>FALSE</tt></b>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT&nbsp;*&nbsp;WHERE&nbsp;1=1'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Invalid&nbsp;query:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mysql_error</span><span style="color: #007700">());<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Valid Query</b></p>
+    <div class="example-contents"><p>
+     The following query is valid, so <b>mysql_query()</b>
+     returns a <a href="language.types.resource.html" class="type resource">resource</a>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;This&nbsp;could&nbsp;be&nbsp;supplied&nbsp;by&nbsp;a&nbsp;user,&nbsp;for&nbsp;example<br /></span><span style="color: #0000BB">$firstname&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'fred'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$lastname&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'fox'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Formulate&nbsp;Query<br />//&nbsp;This&nbsp;is&nbsp;the&nbsp;best&nbsp;way&nbsp;to&nbsp;perform&nbsp;a&nbsp;SQL&nbsp;query<br />//&nbsp;For&nbsp;more&nbsp;examples,&nbsp;see&nbsp;mysql_real_escape_string()<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;firstname,&nbsp;lastname,&nbsp;address,&nbsp;age&nbsp;FROM&nbsp;friends&nbsp;WHERE&nbsp;firstname='%s'&nbsp;AND&nbsp;lastname='%s'"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">mysql_real_escape_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$firstname</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">mysql_real_escape_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$lastname</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;Perform&nbsp;Query<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Check&nbsp;result<br />//&nbsp;This&nbsp;shows&nbsp;the&nbsp;actual&nbsp;query&nbsp;sent&nbsp;to&nbsp;MySQL,&nbsp;and&nbsp;the&nbsp;error.&nbsp;Useful&nbsp;for&nbsp;debugging.<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$message&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Invalid&nbsp;query:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mysql_error</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$message&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">'Whole&nbsp;query:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">$message</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Use&nbsp;result<br />//&nbsp;Attempting&nbsp;to&nbsp;print&nbsp;$result&nbsp;won't&nbsp;allow&nbsp;access&nbsp;to&nbsp;information&nbsp;in&nbsp;the&nbsp;resource<br />//&nbsp;One&nbsp;of&nbsp;the&nbsp;mysql&nbsp;result&nbsp;functions&nbsp;must&nbsp;be&nbsp;used<br />//&nbsp;See&nbsp;also&nbsp;mysql_result(),&nbsp;mysql_fetch_array(),&nbsp;mysql_fetch_row(),&nbsp;etc.<br /></span><span style="color: #007700">while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'firstname'</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'lastname'</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'address'</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'age'</span><span style="color: #007700">];<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Free&nbsp;the&nbsp;resources&nbsp;associated&nbsp;with&nbsp;the&nbsp;result&nbsp;set<br />//&nbsp;This&nbsp;is&nbsp;done&nbsp;automatically&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;script<br /></span><span style="color: #0000BB">mysql_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mysql-connect.html" class="function" rel="rdfs-seeAlso">mysql_connect()</a></li>
+    <li class="member"><a href="function.mysql-error.html" class="function" rel="rdfs-seeAlso">mysql_error()</a></li>
+    <li class="member"><a href="function.mysql-real-escape-string.html" class="function" rel="rdfs-seeAlso">mysql_real_escape_string()</a></li>
+    <li class="member"><a href="function.mysql-result.html" class="function" rel="rdfs-seeAlso">mysql_result()</a></li>
+    <li class="member"><a href="function.mysql-fetch-assoc.html" class="function" rel="rdfs-seeAlso">mysql_fetch_assoc()</a></li>
+    <li class="member"><a href="function.mysql-unbuffered-query.html" class="function" rel="rdfs-seeAlso">mysql_unbuffered_query()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mysql-ping.html">mysql_ping</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mysql-real-escape-string.html">mysql_real_escape_string</a></div>
+ <div class="up"><a href="ref.mysql.html">MySQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

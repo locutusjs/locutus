@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Copy a function to a new function name</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.runkit-function-add.html">runkit_function_add</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.runkit-function-redefine.html">runkit_function_redefine</a></div>
+ <div class="up"><a href="ref.runkit.html">runkit Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.runkit-function-copy" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">runkit_function_copy</h1>
+  <p class="verinfo">(PECL runkit:0.7-0.9)</p><p class="refpurpose"><span class="refname">runkit_function_copy</span> &mdash; <span class="dc-title">
+   Copy a function to a new function name
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>runkit_function_copy</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$funcname</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$targetname</tt></span>
+   )</div>
+
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">funcname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Name of existing function
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">targetname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Name of new function to copy definition to
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>runkit_function_copy()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">original</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"In&nbsp;a&nbsp;function\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">runkit_function_copy</span><span style="color: #007700">(</span><span style="color: #DD0000">'original'</span><span style="color: #007700">,</span><span style="color: #DD0000">'duplicate'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">original</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">duplicate</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+In a function
+In a function
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.runkit-function-add.html" class="function" rel="rdfs-seeAlso">runkit_function_add()</a></li>
+    <li class="member"><a href="function.runkit-function-redefine.html" class="function" rel="rdfs-seeAlso">runkit_function_redefine()</a></li>
+    <li class="member"><a href="function.runkit-function-rename.html" class="function" rel="rdfs-seeAlso">runkit_function_rename()</a></li>
+    <li class="member"><a href="function.runkit-function-remove.html" class="function" rel="rdfs-seeAlso">runkit_function_remove()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.runkit-function-add.html">runkit_function_add</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.runkit-function-redefine.html">runkit_function_redefine</a></div>
+ <div class="up"><a href="ref.runkit.html">runkit Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

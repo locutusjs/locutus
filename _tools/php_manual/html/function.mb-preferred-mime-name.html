@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get MIME charset string</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-parse-str.html">mb_parse_str</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-regex-encoding.html">mb_regex_encoding</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-preferred-mime-name" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_preferred_mime_name</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">mb_preferred_mime_name</span> &mdash; <span class="dc-title">Get MIME charset string</span></p>
+
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>mb_preferred_mime_name</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Get a MIME charset <a href="language.types.string.html" class="type string">string</a> for a specific encoding.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The encoding being checked.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The MIME <i>charset</i> <a href="language.types.string.html" class="type string">string</a> for character encoding
+   <i><tt class="parameter">encoding</tt></i>
+. 
+  </p>
+ </div>
+ 
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>mb_preferred_mime_string()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$outputenc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"sjis-win"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">mb_http_output</span><span style="color: #007700">(</span><span style="color: #0000BB">$outputenc</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ob_start</span><span style="color: #007700">(</span><span style="color: #DD0000">"mb_output_handler"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">"Content-Type:&nbsp;text/html;&nbsp;charset="&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mb_preferred_mime_name</span><span style="color: #007700">(</span><span style="color: #0000BB">$outputenc</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-parse-str.html">mb_parse_str</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-regex-encoding.html">mb_regex_encoding</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

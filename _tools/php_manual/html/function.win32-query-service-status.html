@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Queries the status of a service</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.win32-get-last-control-message.html">win32_get_last_control_message</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.win32-set-service-status.html">win32_set_service_status</a></div>
+ <div class="up"><a href="ref.win32service.html">win32service Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.win32-query-service-status" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">win32_query_service_status</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">win32_query_service_status</span> &mdash; <span class="dc-title">Queries the status of a service</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>win32_query_service_status</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$servicename</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter">$machine</tt></span>
+  ] )</div>
+
+
+  <p class="para rdfs-comment">
+   Queries the current status for a service, returning an array of
+   information.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">servicename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The short name of the service.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">machine</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The optional machine name.  If omitted, the local machine will be used.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>FALSE</tt></b> on failure, otherwise returns an array consisting of the
+   following information:
+  </p>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ServiceType</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The dwServiceType.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">CurrentState</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The dwCurrentState.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ControlsAccepted</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Which service controls are accepted by the service.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">Win32ExitCode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the service exited, the return code from the process.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ServiceSpecificExitCode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the service exited with an error condition, the service specific
+       code that is logged in the event log is visible here.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">CheckPoint</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the service is shutting down, holds the current check point number.
+       This is used by the SCM as a kind of heart-beat to detect a wedged service
+       process.  The value of the check point is best interpreted in
+       conjunction with the WaitHint value.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">WaitHint</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the service is shutting down it will set WaitHint to a checkpoint
+       value that will indicate 100% completion.  This can be used to
+       implement a progress indicator.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ProcessId</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The Windows process identifier.  If 0, the process is not running.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ServiceFlags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The dwServiceFlags.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+
+ </div>
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.win32-get-last-control-message.html">win32_get_last_control_message</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.win32-set-service-status.html">win32_set_service_status</a></div>
+ <div class="up"><a href="ref.win32service.html">win32service Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

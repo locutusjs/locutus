@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Creates an array by using one array for keys and another for its values</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.array-chunk.html">array_chunk</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.array-count-values.html">array_count_values</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.array-combine" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">array_combine</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">array_combine</span> &mdash; <span class="dc-title">Creates an array by using one array for keys and another for its values</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>array_combine</b></b></span>
+    ( <span class="methodparam"><span class="type">array</span> <tt class="parameter">$keys</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$values</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Creates an <a href="language.types.array.html" class="type array">array</a> by using the values from the
+   <i><tt class="parameter">keys</tt></i>
+ array as keys and the values from the
+   <i><tt class="parameter">values</tt></i>
+ array as the corresponding values.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">keys</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Array of keys to be used. Illegal values for key will be
+       converted to <a href="language.types.string.html" class="type string">string</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">values</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Array of values to be used
+      </p>
+     </dd>
+
+    </dt>
+
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the combined <a href="language.types.array.html" class="type array">array</a>, <b><tt>FALSE</tt></b> if the number of elements
+   for each array isn&#039;t equal or if the arrays are empty.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   Throws <b><tt>E_WARNING</tt></b> if <i><tt class="parameter">keys</tt></i>
+ and
+   <i><tt class="parameter">values</tt></i>
+ are either empty or the number of elements
+   does not match.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A simple <b>array_combine()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$a&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'green'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'red'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'yellow'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$b&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'avocado'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'apple'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'banana'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$c&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">array_combine</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$c</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [green]  =&gt; avocado
+    [red]    =&gt; apple
+    [yellow] =&gt; banana
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.array-merge.html" class="function" rel="rdfs-seeAlso">array_merge()</a></li>
+    <li class="member"><a href="function.array-walk.html" class="function" rel="rdfs-seeAlso">array_walk()</a></li>
+    <li class="member"><a href="function.array-values.html" class="function" rel="rdfs-seeAlso">array_values()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.array-chunk.html">array_chunk</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.array-count-values.html">array_count_values</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

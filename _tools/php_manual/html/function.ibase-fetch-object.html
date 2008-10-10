@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get an object from a InterBase database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ibase-fetch-assoc.html">ibase_fetch_assoc</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-fetch-row.html">ibase_fetch_row</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ibase-fetch-object" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ibase_fetch_object</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ibase_fetch_object</span> &mdash; <span class="dc-title">Get an object from a InterBase database</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">object</span> <span class="methodname"><b><b>ibase_fetch_object</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result_id</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$fetch_flag</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Fetches a row as a pseudo-object from a given result identifier.
+  </p>
+  <p class="para">
+   Subsequent calls to <b>ibase_fetch_object()</b>
+   return the next row in the result set.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An InterBase result identifier obtained either by
+       <a href="function.ibase-query.html" class="function">ibase_query()</a> or <a href="function.ibase-execute.html" class="function">ibase_execute()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fetch_flag</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">fetch_flag</tt></i>
+ is a combination of the constants
+       <b><tt>IBASE_TEXT</tt></b> and <b><tt>IBASE_UNIXTIME</tt></b>
+       ORed together. Passing <b><tt>IBASE_TEXT</tt></b> will cause this
+       function to return BLOB contents instead of BLOB ids. Passing
+       <b><tt>IBASE_UNIXTIME</tt></b> will cause this function to return
+       date/time values as Unix timestamps instead of as formatted strings.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an object with the next row information, or <b><tt>FALSE</tt></b> if there are
+   no more rows.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ibase_fetch_object()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dbh&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ibase_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$host</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$username</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;*&nbsp;FROM&nbsp;tblname'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$sth&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ibase_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ibase_fetch_object</span><span style="color: #007700">(</span><span style="color: #0000BB">$sth</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">email&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">ibase_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>   
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ibase-fetch-row.html" class="function" rel="rdfs-seeAlso">ibase_fetch_row()</a></li>
+    <li class="member"><a href="function.ibase-fetch-assoc.html" class="function" rel="rdfs-seeAlso">ibase_fetch_assoc()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ibase-fetch-assoc.html">ibase_fetch_assoc</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-fetch-row.html">ibase_fetch_row</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

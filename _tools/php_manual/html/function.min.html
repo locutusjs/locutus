@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Find lowest value</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.max.html">max</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mt-getrandmax.html">mt_getrandmax</a></div>
+ <div class="up"><a href="ref.math.html">Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.min" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">min</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">min</span> &mdash; <span class="dc-title">Find lowest value</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+   <div class="methodsynopsis dc-description">
+    <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>min</b></b></span>
+     ( <span class="methodparam"><span class="type">array</span> <tt class="parameter">$values</tt></span>
+    )</div>
+
+   <div class="methodsynopsis dc-description">
+    <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>min</b></b></span>
+     ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$value1</tt></span>
+    , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$value2</tt></span>
+    [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$value3...</tt></span>
+   ] )</div>
+
+  <p class="para rdfs-comment">
+   If the first and only parameter is an array, <b>min()</b>
+   returns the lowest value in that array. If at least two parameters are 
+   provided, <b>min()</b> returns the smallest of these values.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    PHP will evaluate a non-numeric <a href="language.types.string.html" class="type string">string</a> as 
+    <i>0</i> if compared to <a href="language.types.integer.html" class="type integer">integer</a>, but still return the string if it&#039;s seen as the
+    numerically lowest value.  If multiple arguments evaluate to
+    <i>0</i>, <b>min()</b> will return the lowest
+    alphanumerical string value if any strings are given, else a numeric
+    <i>0</i> is returned.
+   <br />
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">values</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An array containing the values.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>min()</b> returns the numerically lowest of the
+   parameter values.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Example uses of <b>min()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">min</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">6</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">7</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;1<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">min</span><span style="color: #007700">(array(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//&nbsp;2<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">min</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'hello'</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;0<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">min</span><span style="color: #007700">(</span><span style="color: #DD0000">'hello'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;hello<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">min</span><span style="color: #007700">(</span><span style="color: #DD0000">'hello'</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">1</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;-1<br /><br />//&nbsp;With&nbsp;multiple&nbsp;arrays,&nbsp;min&nbsp;compares&nbsp;from&nbsp;left&nbsp;to&nbsp;right<br />//&nbsp;so&nbsp;in&nbsp;our&nbsp;example:&nbsp;2&nbsp;==&nbsp;2,&nbsp;but&nbsp;4&nbsp;&lt;&nbsp;5<br /></span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">min</span><span style="color: #007700">(array(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">8</span><span style="color: #007700">),&nbsp;array(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//&nbsp;array(2,&nbsp;4,&nbsp;8)<br /><br />//&nbsp;If&nbsp;both&nbsp;an&nbsp;array&nbsp;and&nbsp;non-array&nbsp;are&nbsp;given,&nbsp;the&nbsp;array<br />//&nbsp;is&nbsp;never&nbsp;returned&nbsp;as&nbsp;it's&nbsp;considered&nbsp;the&nbsp;largest<br /></span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">min</span><span style="color: #007700">(</span><span style="color: #DD0000">'string'</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">7</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">42</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;string<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.max.html" class="function" rel="rdfs-seeAlso">max()</a></li>
+    <li class="member"><a href="function.count.html" class="function" rel="rdfs-seeAlso">count()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.max.html">max</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mt-getrandmax.html">mt_getrandmax</a></div>
+ <div class="up"><a href="ref.math.html">Math Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

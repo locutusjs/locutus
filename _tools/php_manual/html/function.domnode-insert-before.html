@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Inserts new node as child</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domnode-has-child-nodes.html">DomNode->has_child_nodes</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domnode-is-blank-node.html">DomNode->is_blank_node</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.domnode-insert-before" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">DomNode-&gt;insert_before</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">DomNode-&gt;insert_before</span> &mdash; <span class="dc-title">
+   Inserts new node as child
+  </span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="class.domelement.html" class="type domelement">domelement</a></span> <span class="methodname"><b><b>DomNode->insert_before</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="class.domelement.html" class="type domelement">domelement</a></span> <tt class="parameter">$newnode</tt></span>
+   , <span class="methodparam"><span class="type"><a href="class.domelement.html" class="type domelement">domelement</a></span> <tt class="parameter">$refnode</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function inserts the new node <i><tt class="parameter">newnode</tt></i>
+ right
+   before the node <i><tt class="parameter">refnode</tt></i>
+. The return value is the 
+   inserted node. If you plan to do further modifications on the appended 
+   child you must use the returned node.
+  </p>
+  <p class="para">
+   (PHP &gt;= 4.3 only) If <i><tt class="parameter">newnode</tt></i>
+ already is part of a 
+   document, it will be first unlinked from its existing context. If 
+   <i><tt class="parameter">refnode</tt></i>
+ is NULL, then <i><tt class="parameter">newnode</tt></i>
+
+   will be inserted at the end of the list of children.  
+  </p>
+  <p class="para">
+   <b>domnode_insert_before()</b> is very similar to
+   <a href="function.domnode-append-child.html" class="function">domnode_append_child()</a> as the following example shows
+   which does the same as the example at
+   <a href="function.domnode-append-child.html" class="function">domnode_append_child()</a>.
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Adding a child</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">include(</span><span style="color: #DD0000">"example.inc"</span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$dom&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">domxml_open_mem</span><span style="color: #007700">(</span><span style="color: #0000BB">$xmlstr</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Error&nbsp;while&nbsp;parsing&nbsp;the&nbsp;document\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;exit;<br />}<br /><br /></span><span style="color: #0000BB">$elements&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dom</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get_elements_by_tagname</span><span style="color: #007700">(</span><span style="color: #DD0000">"informaltable"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$elements</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$element&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$elements</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br /><br /></span><span style="color: #0000BB">$newnode&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$element</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert_before</span><span style="color: #007700">(</span><span style="color: #0000BB">$element</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$element</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$children&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$newnode</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">children</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$children</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]-&gt;</span><span style="color: #0000BB">set_attribute</span><span style="color: #007700">(</span><span style="color: #DD0000">"align"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"left"</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"&lt;pre&gt;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$xmlfile&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dom</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">dump_mem</span><span style="color: #007700">();<br />echo&nbsp;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$xmlfile</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"&lt;/pre&gt;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   See also <a href="function.domnode-append-child.html" class="function">domnode_append_child()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domnode-has-child-nodes.html">DomNode->has_child_nodes</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domnode-is-blank-node.html">DomNode->is_blank_node</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

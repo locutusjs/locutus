@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Reads bytes from a file descriptor</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dio-open.html">dio_open</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dio-seek.html">dio_seek</a></div>
+ <div class="up"><a href="ref.dio.html">Direct IO Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.dio-read" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dio_read</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5 &lt;= 5.0.5)</p><p class="refpurpose"><span class="refname">dio_read</span> &mdash; <span class="dc-title">Reads bytes from a file descriptor</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>dio_read</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$fd</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$len</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   The function <b>dio_read()</b> reads and returns
+   <i><tt class="parameter">len</tt></i>
+ bytes from file with descriptor
+   <i><tt class="parameter">fd</tt></i>
+. 
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fd</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The file descriptor returned by <a href="function.dio-open.html" class="function">dio_open()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">len</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The number of bytes to read. If not specified,
+       <b>dio_read()</b> reads 1K sized block.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The bytes read from <i><tt class="parameter">fd</tt></i>
+.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.dio-write.html" class="function" rel="rdfs-seeAlso">dio_write()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.dio-open.html">dio_open</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.dio-seek.html">dio_seek</a></div>
+ <div class="up"><a href="ref.dio.html">Direct IO Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Encodes data with MIME base64</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.base64-decode.html">base64_decode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.get-headers.html">get_headers</a></div>
+ <div class="up"><a href="ref.url.html">URL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.base64-encode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">base64_encode</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">base64_encode</span> &mdash; <span class="dc-title">Encodes data with MIME base64</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>base64_encode</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Encodes the given <i><tt class="parameter">data</tt></i>
+ with base64.
+  </p>
+  <p class="para">
+   This encoding is designed to make binary data survive transport through
+   transport layers that are not 8-bit clean, such as mail bodies.
+  </p>
+  <p class="para">
+   Base64-encoded data takes about 33% more space than the original
+   data.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The data to encode.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The encoded data, as a string.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>base64_encode()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;an&nbsp;encoded&nbsp;string'</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">base64_encode</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+VGhpcyBpcyBhbiBlbmNvZGVkIHN0cmluZw==
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.base64-decode.html" class="function" rel="rdfs-seeAlso">base64_decode()</a></li>
+    <li class="member"><a href="function.chunk-split.html" class="function" rel="rdfs-seeAlso">chunk_split()</a></li>
+    <li class="member"><a href="function.convert-uuencode.html" class="function" rel="rdfs-seeAlso">convert_uuencode()</a></li>
+    <li class="member"><a href="http://www.faqs.org/rfcs/rfc2045" class="link external">&raquo; RFC 2045</a> section 6.8</li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.base64-decode.html">base64_decode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.get-headers.html">get_headers</a></div>
+ <div class="up"><a href="ref.url.html">URL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

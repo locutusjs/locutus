@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Prepares an SQL statement to be executed</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-pconnect.html">db2_pconnect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-primary-keys.html">db2_primary_keys</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.db2-prepare" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">db2_prepare</h1>
+  <p class="verinfo">(PECL ibm_db2:1.0-1.6.2)</p><p class="refpurpose"><span class="refname">db2_prepare</span> &mdash; <span class="dc-title">
+   Prepares an SQL statement to be executed
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>db2_prepare</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$statement</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$options</tt></span>
+  ] )</div>
+
+
+
+  <p class="para rdfs-comment">
+   <b>db2_prepare()</b> creates a prepared SQL statement which can
+   include 0 or more parameter markers (<i>?</i> characters)
+   representing parameters for input, output, or input/output. You can pass
+   parameters to the prepared statement using
+   <a href="function.db2-bind-param.html" class="function">db2_bind_param()</a>, or for input values only, as an array
+   passed to <a href="function.db2-execute.html" class="function">db2_execute()</a>.
+  </p>
+  <p class="para">
+   There are three main advantages to using prepared statements in your
+   application:
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      <em class="emphasis">Performance</em>: when you prepare a statement, the
+      database server creates an optimized access plan for retrieving data with
+      that statement. Subsequently issuing the prepared statement with
+      <a href="function.db2-execute.html" class="function">db2_execute()</a> enables the statements to reuse that
+      access plan and avoids the overhead of dynamically creating a new access
+      plan for every statement you issue.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <em class="emphasis">Security</em>: when you prepare a statement, you can
+      include parameter markers for input values. When you execute a prepared
+      statement with input values for placeholders, the database server checks
+      each input value to ensure that the type matches the column definition or
+      parameter definition.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <em class="emphasis">Advanced functionality</em>: Parameter markers not only
+      enable you to pass input values to prepared SQL statements, they also
+      enable you to retrieve OUT and INOUT parameters from stored procedures
+      using <a href="function.db2-bind-param.html" class="function">db2_bind_param()</a>.
+     </p>
+    </li>
+   </ul>
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       A valid database connection resource variable as returned from
+       <a href="function.db2-connect.html" class="function">db2_connect()</a> or <a href="function.db2-pconnect.html" class="function">db2_pconnect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">statement</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An SQL statement, optionally containing one or more parameter markers..
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">options</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An associative array containing statement options. You can use this
+       parameter to request a scrollable cursor on database servers that
+       support this functionality.
+       <dl>
+
+        <dt>
+
+         <br /><span class="term"><i><tt class="parameter">cursor</tt></i>
+</span>
+
+         <dd>
+
+          <p class="para">
+           Passing the <i>DB2_FORWARD_ONLY</i> value requests a
+           forward-only cursor for this SQL statement. This is the default
+           type of cursor, and it is supported by all database servers. It is
+           also much faster than a scrollable cursor.
+          </p>
+          <p class="para">
+           Passing the <i>DB2_SCROLLABLE</i> value requests a
+           scrollable cursor for this SQL statement. This type of cursor
+           enables you to fetch rows non-sequentially from the database
+           server. However, it is only supported by DB2 servers, and is much
+           slower than forward-only cursors.
+          </p>
+         </dd>
+
+        </dt>
+
+       </dl>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a statement resource if the SQL statement was successfully parsed and
+   prepared by the database server. Returns <b><tt>FALSE</tt></b> if the database server
+   returned an error. You can determine which error was returned by calling
+   <a href="function.db2-stmt-error.html" class="function">db2_stmt_error()</a> or <a href="function.db2-stmt-errormsg.html" class="function">db2_stmt_errormsg()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Preparing and executing an SQL statement with parameter markers</b></p>
+    <div class="example-contents"><p>
+     The following example prepares an INSERT statement that accepts four
+     parameter markers, then iterates over an array of arrays containing the
+     input values to be passed to <a href="function.db2-execute.html" class="function">db2_execute()</a>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$animals&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'cat'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Pook'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3.2</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'dog'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Peaches'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">12.3</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'horse'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Smarty'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">350.0</span><span style="color: #007700">),<br />);<br /><br /></span><span style="color: #0000BB">$insert&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'INSERT&nbsp;INTO&nbsp;animals&nbsp;(id,&nbsp;breed,&nbsp;name,&nbsp;weight)<br />&nbsp;&nbsp;&nbsp;&nbsp;VALUES&nbsp;(?,&nbsp;?,&nbsp;?,&nbsp;?)'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$insert</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$animals&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$animal</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$animal</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.db2-bind-param.html" class="function" rel="rdfs-seeAlso">db2_bind_param()</a></li>
+    <li class="member"><a href="function.db2-execute.html" class="function" rel="rdfs-seeAlso">db2_execute()</a></li>
+    <li class="member"><a href="function.db2-stmt-error.html" class="function" rel="rdfs-seeAlso">db2_stmt_error()</a></li>
+    <li class="member"><a href="function.db2-stmt-errormsg.html" class="function" rel="rdfs-seeAlso">db2_stmt_errormsg()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.db2-pconnect.html">db2_pconnect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.db2-primary-keys.html">db2_primary_keys</a></div>
+ <div class="up"><a href="ref.ibm-db2.html">IBM DB2 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

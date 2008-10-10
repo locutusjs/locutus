@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Create a new image from a given part of GD2 file or URL</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagecreatefromgd2.html">imagecreatefromgd2</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagecreatefromgd.html">imagecreatefromgd</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagecreatefromgd2part" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imagecreatefromgd2part</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">imagecreatefromgd2part</span> &mdash; <span class="dc-title">Create a new image from a given part of GD2 file or URL</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>imagecreatefromgd2part</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$srcX</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$srcY</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$width</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$height</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Create a new image from a given part of GD2 file or URL.
+  </p>
+  <div class="tip"><b class="tip">Tip</b><p class="simpara">A URL can be used as a
+filename with this function if the <a href="filesystem.configuration.html#ini.allow-url-fopen" class="link">fopen wrappers</a> have been enabled.
+See <a href="function.fopen.html" class="function">fopen()</a> for more details on how to specify
+the filename and <a href="wrappers.html" class="xref">List of Supported Protocols/Wrappers</a> for a list of supported
+URL protocols.</p></div>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Path to the GD2 image.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">srcX</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       x-coordinate of source point.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">srcY</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       y-coordinate of source point.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">width</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Source width.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">height</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Source height.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an image resource identifier on success, <b><tt>FALSE</tt></b> on errors.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>imagecreatefromgd2part()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;For&nbsp;this&nbsp;example&nbsp;we&nbsp;need&nbsp;the&nbsp;image&nbsp;size&nbsp;before<br />//&nbsp;we&nbsp;create&nbsp;the&nbsp;image&nbsp;instance<br /></span><span style="color: #0000BB">$image&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">getimagesize</span><span style="color: #007700">(</span><span style="color: #DD0000">'./test.gd2'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Create&nbsp;the&nbsp;image&nbsp;instance&nbsp;now&nbsp;we&nbsp;got&nbsp;the&nbsp;image&nbsp;<br />//&nbsp;sizes<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatefromgd2part</span><span style="color: #007700">(</span><span style="color: #DD0000">'./test.gd2'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">,&nbsp;(</span><span style="color: #0000BB">$image</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]&nbsp;/&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">)&nbsp;-&nbsp;</span><span style="color: #0000BB">6</span><span style="color: #007700">,&nbsp;(</span><span style="color: #0000BB">$image</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]&nbsp;/&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">)&nbsp;-&nbsp;</span><span style="color: #0000BB">6</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Do&nbsp;an&nbsp;image&nbsp;operation,&nbsp;in&nbsp;this&nbsp;case&nbsp;we&nbsp;emboss&nbsp;the&nbsp;<br />//&nbsp;image&nbsp;if&nbsp;PHP5+<br /></span><span style="color: #007700">if(</span><span style="color: #0000BB">function_exists</span><span style="color: #007700">(</span><span style="color: #DD0000">'imagefilter'</span><span style="color: #007700">))<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">imagefilter</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">IMG_FILTER_EMBOSS</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Save&nbsp;optimized&nbsp;image<br /></span><span style="color: #0000BB">imagegd2</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'./test_emboss.gd2'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function requires GD 2.0.1 or later (2.0.28 or later is recommended).</span></p></blockquote>
+  <div class="warning"><b class="warning">Warning</b><p class="para">Windows versions of PHP
+prior to PHP 4.3.0 do not support access of remote files via this function,
+even if <a href="filesystem.configuration.html#ini.allow-url-fopen" class="link">allow_url_fopen</a> is enabled.
+</p></div>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imagecreatefromgd2.html">imagecreatefromgd2</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagecreatefromgd.html">imagecreatefromgd</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

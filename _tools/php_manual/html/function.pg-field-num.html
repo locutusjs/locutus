@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns the field number of the named field</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-field-name.html">pg_field_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-field-prtlen.html">pg_field_prtlen</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-field-num" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_field_num</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">pg_field_num</span> &mdash; <span class="dc-title">Returns the field number of the named field</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>pg_field_num</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$result</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$field_name</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>pg_field_num()</b> will return the number of the
+   field number that corresponds to the
+   <i><tt class="parameter">field_name</tt></i>
+ in the given PostgreSQL
+   <i><tt class="parameter">result</tt></i>
+ resource.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function used to be called <b>pg_fieldnum()</b>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">result</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL query result resource, returned by <a href="function.pg-query.html" class="function">pg_query()</a>,
+       <a href="function.pg-query-params.html" class="function">pg_query_params()</a> or <a href="function.pg-execute.html" class="function">pg_execute()</a>
+       (among others).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">field_name</tt></i>
+</span>
+
+      <dd>
+
+       <p class="para">
+        The name of the field.
+       </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The field number (numbered from 0), or -1 on error.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Getting information about fields</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$dbconn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=publisher"</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Could&nbsp;not&nbsp;connect"</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbconn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"select&nbsp;author,&nbsp;year,&nbsp;title&nbsp;from&nbsp;authors&nbsp;where&nbsp;author&nbsp;=&nbsp;'Orwell'"</span><span style="color: #007700">);<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Column&nbsp;'title'&nbsp;is&nbsp;field&nbsp;number:&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">pg_field_num</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'title'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Column &#039;title&#039; is field number: 2
+</pre></div>
+    </pre></div>
+   </div> 
+  </p>
+ </div>
+
+  
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.pg-field-name.html" class="function" rel="rdfs-seeAlso">pg_field_name()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-field-name.html">pg_field_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-field-prtlen.html">pg_field_prtlen</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

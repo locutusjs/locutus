@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets access and modification time of file</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.tmpfile.html">tmpfile</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.umask.html">umask</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.touch" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">touch</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">touch</span> &mdash; <span class="dc-title">Sets access and modification time of file</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>touch</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$time</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$atime</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Attempts to set the access and modification times of the file named in the
+   <i><tt class="parameter">filename</tt></i>
+ parameter to the value given in
+   <i><tt class="parameter">time</tt></i>
+. 
+   Note that the access time is always modified, regardless of the number
+   of parameters.
+  </p>
+  <p class="para">
+   If the file does not exist, it will be created. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The name of the file being touched.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">time</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The touch time. If <i><tt class="parameter">time</tt></i>
+ is not supplied, 
+       the current system time is used.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">atime</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If present, the access time of the given filename is set to 
+       the value of <i><tt class="parameter">atime</tt></i>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        It became possible to change the modification time of a directory 
+        under Windows.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>touch()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">touch</span><span style="color: #007700">(</span><span style="color: #0000BB">$FileName</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"$FileName&nbsp;modification&nbsp;time&nbsp;has&nbsp;been&nbsp;changed&nbsp;to&nbsp;present&nbsp;time"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Sorry,&nbsp;could&nbsp;not&nbsp;change&nbsp;modification&nbsp;time&nbsp;of&nbsp;$FileName"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 <b>touch()</b> using the <i><tt class="parameter">time</tt></i>
+ parameter</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;<br />&nbsp;*&nbsp;This&nbsp;is&nbsp;the&nbsp;touch&nbsp;time,&nbsp;we'll&nbsp;set&nbsp;it&nbsp;to&nbsp;one&nbsp;hour&nbsp;<br />&nbsp;*&nbsp;in&nbsp;the&nbsp;past.<br />&nbsp;*/<br /></span><span style="color: #0000BB">$time&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">time</span><span style="color: #007700">()&nbsp;-&nbsp;</span><span style="color: #0000BB">3600</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Touch&nbsp;the&nbsp;file&nbsp;*/<br /></span><span style="color: #007700">if(!</span><span style="color: #0000BB">touch</span><span style="color: #007700">(</span><span style="color: #DD0000">'some_file.txt'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$time</span><span style="color: #007700">))<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Whoops,&nbsp;something&nbsp;went&nbsp;wrong...'</span><span style="color: #007700">;<br />}<br />else<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Touched&nbsp;file&nbsp;with&nbsp;success'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: Note that time resolution may differ 
+from one file system to another.<br /></p></blockquote>
+  <div class="warning"><b class="warning">Warning</b>
+   <p class="para">
+    Prior to PHP 5.3.0 it was not possible to change the modification time 
+    of a directory with this function under Windows.
+   </p>
+  </div>
+ </div>
+
+ 
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.tmpfile.html">tmpfile</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.umask.html">umask</a></div>
+ <div class="up"><a href="ref.filesystem.html">Filesystem Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

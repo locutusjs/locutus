@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Retrieve information about the currently installed GD library</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.image.html">GD Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.getimagesize.html">getimagesize</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.gd-info" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">gd_info</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">gd_info</span> &mdash; <span class="dc-title">Retrieve information about the currently installed GD library</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>gd_info</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets information about the version and capabilities of the installed GD
+   library.
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative array.
+  </p>
+  <p class="para">
+   <table border="5">
+    <caption><b>Elements of array returned by <b>gd_info()</b></b></caption>
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Attribute</th>
+       <th colspan="1">Meaning</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">GD Version</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.string.html" class="type string">string</a> value describing the installed
+        <i>libgd</i> version.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">Freetype Support</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.boolean.html" class="type boolean">boolean</a> value.  <b><tt>TRUE</tt></b>
+        if Freetype Support is installed.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">Freetype Linkage</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.string.html" class="type string">string</a> value describing the way in which
+        Freetype was linked. Expected values are: &#039;with freetype&#039;,
+        &#039;with TTF library&#039;, and &#039;with unknown library&#039;.  This element will
+        only be defined if <i>Freetype Support</i> evaluated to
+        <b><tt>TRUE</tt></b>.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">T1Lib Support</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.boolean.html" class="type boolean">boolean</a> value.  <b><tt>TRUE</tt></b>
+        if <i>T1Lib</i> support is included.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">GIF Read Support</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.boolean.html" class="type boolean">boolean</a> value.  <b><tt>TRUE</tt></b>
+        if support for <em class="emphasis">reading</em> <i>GIF</i>
+        images is included.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">GIF Create Support</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.boolean.html" class="type boolean">boolean</a> value.  <b><tt>TRUE</tt></b>
+        if support for <em class="emphasis">creating</em> <i>GIF</i>
+        images is included.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">JPG Support</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.boolean.html" class="type boolean">boolean</a> value.  <b><tt>TRUE</tt></b>
+        if <i>JPG</i> support is included.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">PNG Support</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.boolean.html" class="type boolean">boolean</a> value.  <b><tt>TRUE</tt></b>
+        if <i>PNG</i> support is included.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">WBMP Support</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.boolean.html" class="type boolean">boolean</a> value.  <b><tt>TRUE</tt></b>
+        if <i>WBMP</i> support is included.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">XBM Support</td>
+       <td colspan="1" rowspan="1" align="left"><a href="language.types.boolean.html" class="type boolean">boolean</a> value.  <b><tt>TRUE</tt></b>
+        if <i>XBM</i> support is included.</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>gd_info()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">gd_info</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+array(9) {
+  [&quot;GD Version&quot;]=&gt;
+  string(24) &quot;bundled (2.0 compatible)&quot;
+  [&quot;FreeType Support&quot;]=&gt;
+  bool(false)
+  [&quot;T1Lib Support&quot;]=&gt;
+  bool(false)
+  [&quot;GIF Read Support&quot;]=&gt;
+  bool(true)
+  [&quot;GIF Create Support&quot;]=&gt;
+  bool(false)
+  [&quot;JPG Support&quot;]=&gt;
+  bool(false)
+  [&quot;PNG Support&quot;]=&gt;
+  bool(true)
+  [&quot;WBMP Support&quot;]=&gt;
+  bool(true)
+  [&quot;XBM Support&quot;]=&gt;
+  bool(false)
+}
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imagepng.html" class="function" rel="rdfs-seeAlso">imagepng()</a></li>
+    <li class="member"><a href="function.imagejpeg.html" class="function" rel="rdfs-seeAlso">imagejpeg()</a></li>
+    <li class="member"><a href="function.imagegif.html" class="function" rel="rdfs-seeAlso">imagegif()</a></li>
+    <li class="member"><a href="function.imagewbmp.html" class="function" rel="rdfs-seeAlso">imagewbmp()</a></li>
+    <li class="member"><a href="function.imagetypes.html" class="function" rel="rdfs-seeAlso">imagetypes()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.image.html">GD Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.getimagesize.html">getimagesize</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

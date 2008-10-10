@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Execute a query on an InterBase database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ibase-prepare.html">ibase_prepare</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-restore.html">ibase_restore</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.ibase-query" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ibase_query</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">ibase_query</span> &mdash; <span class="dc-title">Execute a query on an InterBase database</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>ibase_query</b></b></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$link_identifier</tt></span>
+   ], <span class="methodparam"><span class="type">string</span> <tt class="parameter">$query</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$bind_args</tt></span>
+  ] )</div>
+
+  <p class="simpara">
+   Performs a query on an InterBase database. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">link_identifier</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An InterBase link identifier. If omitted, the last opened link is
+       assumed.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">query</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An InterBase query.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">bind_args</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   If the query raises an error, returns <b><tt>FALSE</tt></b>. If it is successful and
+   there is a (possibly empty) result set (such as with a SELECT query),
+   returns a result identifier. If the query was successful and there were
+   no results, returns <b><tt>TRUE</tt></b>.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    In PHP 5.0.0 and up, this function will return the number of rows
+    affected by the query for INSERT, UPDATE and DELETE statements. In order
+    to retain backward compatibility, it will return <b><tt>TRUE</tt></b> for these
+    statements if the query succeeded without affecting any rows.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   If you get some error like &quot;arithmetic exception, numeric overflow, or
+   string truncation. Cannot transliterate character between character sets&quot;
+   (this occurs when you try use some character with accents) when using this
+   and after <b>ibase_query()</b> you must set the character set
+   (i.e. ISO8859_1 or your current character set).
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>ibase_query()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$host&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'localhost:/path/to/your.gdb'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$dbh&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ibase_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$host</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$username</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;*&nbsp;FROM&nbsp;tblname'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$sth&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ibase_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #0000BB">ibase_errmsg</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ibase-errmsg.html" class="function" rel="rdfs-seeAlso">ibase_errmsg()</a></li>
+    <li class="member"><a href="function.ibase-fetch-row.html" class="function" rel="rdfs-seeAlso">ibase_fetch_row()</a></li>
+    <li class="member"><a href="function.ibase-fetch-object.html" class="function" rel="rdfs-seeAlso">ibase_fetch_object()</a></li>
+    <li class="member"><a href="function.ibase-free-result.html" class="function" rel="rdfs-seeAlso">ibase_free_result()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ibase-prepare.html">ibase_prepare</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.ibase-restore.html">ibase_restore</a></div>
+ <div class="up"><a href="ref.ibase.html">Firebird/InterBase Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

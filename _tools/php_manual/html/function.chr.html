@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Return a specific character</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.chop.html">chop</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.chunk-split.html">chunk_split</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.chr" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">chr</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">chr</span> &mdash; <span class="dc-title">Return a specific character</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>chr</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$ascii</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Returns a one-character string containing the character specified
+   by <i><tt class="parameter">ascii</tt></i>
+.
+  </p>
+  <p class="para">
+   This function complements <a href="function.ord.html" class="function">ord()</a>. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">ascii</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The ascii code.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the specified character.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">6.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        This function now uses codepoint as input.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>chr()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"The&nbsp;string&nbsp;ends&nbsp;in&nbsp;escape:&nbsp;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #0000BB">chr</span><span style="color: #007700">(</span><span style="color: #0000BB">27</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">/*&nbsp;add&nbsp;an&nbsp;escape&nbsp;character&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;$str&nbsp;*/<br /><br />/*&nbsp;Often&nbsp;this&nbsp;is&nbsp;more&nbsp;useful&nbsp;*/<br /><br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"The&nbsp;string&nbsp;ends&nbsp;in&nbsp;escape:&nbsp;%c"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">27</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sprintf.html" class="function" rel="rdfs-seeAlso">sprintf()</a> with a format string of <i>%c</i></li>
+    <li class="member"><a href="function.ord.html" class="function">ord()</a></li>
+    <li class="member">An <a href="http://www.asciitable.com" class="link external">&raquo; ASCII-table</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.chop.html">chop</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.chunk-split.html">chunk_split</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

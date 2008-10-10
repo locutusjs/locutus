@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Register a stream filter implemented as a PHP class derived from php_user_filter</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-filter-prepend.html">stream_filter_prepend</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-filter-remove.html">stream_filter_remove</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.stream-filter-register" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stream_filter_register</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">stream_filter_register</span> &mdash; <span class="dc-title">Register a stream filter implemented as a PHP class derived from <i>php_user_filter</i></span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>stream_filter_register</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filtername</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$classname</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>stream_filter_register()</b> allows you to implement
+   your own filter on any registered stream used with all the other
+   filesystem functions (such as <a href="function.fopen.html" class="function">fopen()</a>,
+   <a href="function.fread.html" class="function">fread()</a> etc.).
+  </p>
+  <p class="para">
+   To implement a filter, you need to define a class as an extension of
+   <i>php_user_filter</i> with a number of member functions
+   as defined below. When performing read/write operations on the stream
+   to which your filter is attached, PHP will pass the data through your
+   filter (and any other filters attached to that stream) so that the
+   data may be modified as desired. You must implement the methods
+   exactly as described below - doing otherwise will lead to undefined
+   behaviour.
+  </p>
+  <p class="para">
+   <b>stream_filter_register()</b> will return <b><tt>FALSE</tt></b> if the
+   <i><tt class="parameter">filtername</tt></i>
+ is already defined.
+  </p>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>filter</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$in</tt></span>
+   , <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$out</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter reference">&$consumed</tt></span>
+   , <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$closing</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This method is called whenever data is read from or written to
+   the attached stream (such as with <a href="function.fread.html" class="function">fread()</a> or <a href="function.fwrite.html" class="function">fwrite()</a>).
+   <i><tt class="parameter">in</tt></i>
+ is a resource pointing to a <i>bucket brigade</i>
+   which contains one or more <i>bucket</i> objects containing data to be filtered.
+   <i><tt class="parameter">out</tt></i>
+ is a resource pointing to a second <i>bucket brigade</i>
+   into which your modified buckets should be placed.
+   <i><tt class="parameter">consumed</tt></i>
+, which must <em class="emphasis">always</em>
+   be declared by reference, should be incremented by the length of the data
+   which your filter reads in and alters.  In most cases this means you will
+   increment <i><tt class="parameter">consumed</tt></i>
+ by $bucket-&gt;datalen for each $bucket.
+   If the stream is in the process of closing (and therefore this is the last pass
+   through the filterchain), the <i><tt class="parameter">closing</tt></i>
+ parameter will be
+   set to <b><tt>TRUE</tt></b>  The  <span class="methodname"><b><b>filter</b></b></span> method must return one of
+   three values upon completion.
+
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Return Value</th>
+       <th colspan="1">Meaning</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><b><tt>PSFS_PASS_ON</tt></b></td>
+       <td colspan="1" rowspan="1" align="left">
+        Filter processed successfully with data available in the
+        <i><tt class="parameter">out</tt></i>
+ <i>bucket brigade</i>.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><b><tt>PSFS_FEED_ME</tt></b></td>
+       <td colspan="1" rowspan="1" align="left">
+        Filter processed successfully, however no data was available to
+        return.  More data is required from the stream or prior filter.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><b><tt>PSFS_ERR_FATAL</tt></b> (default)</td>
+       <td colspan="1" rowspan="1" align="left">
+        The filter experienced an unrecoverable error and cannot continue.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>onCreate</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="simpara">
+   This method is called during instantiation of the filter class
+   object.  If your filter allocates or initializes any other resources
+   (such as a buffer), this is the place to do it.  Your implementation of
+   this method should return <b><tt>FALSE</tt></b> on failure, or <b><tt>TRUE</tt></b> on success.
+  </p>
+  <p class="simpara">
+   When your filter is first instantiated, and
+   <i>yourfilter-&gt;onCreate()</i> is called, a number of properties
+   will be available as shown in the table below.
+  </p>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Property</th>
+       <th colspan="1">Contents</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>FilterClass-&gt;filtername</i></td>
+       <td colspan="1" rowspan="1" align="left">A string containing the name the filter was instantiated with.
+              Filters may be registered under multiple names or under wildcards.
+              Use this property to determine which name was used.</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left"><i>FilterClass-&gt;params</i></td>
+       <td colspan="1" rowspan="1" align="left">The contents of the <i><tt class="parameter">params</tt></i>
+ parameter passed
+              to <a href="function.stream-filter-append.html" class="function">stream_filter_append()</a>
+              or <a href="function.stream-filter-prepend.html" class="function">stream_filter_prepend()</a>.</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>onClose</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This method is called upon filter shutdown (typically, this is also
+   during stream shutdown), and is executed <em class="emphasis">after</em>
+   the <i>flush</i> method is called.  If any resources
+   were allocated or initialzed during <i>onCreate</i>
+   this would be the time to destroy or dispose of them.
+  </p>
+
+  <p class="para">
+   The example below implements a filter named <i>strtoupper</i>
+   on the <i>foo-bar.txt</i> stream which will capitalize
+   all letter characters written to/read from that stream.
+
+   <div class="example">
+    <p><b>Example #1 Filter for capitalizing characters on foo-bar.txt stream</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;Define&nbsp;our&nbsp;filter&nbsp;class&nbsp;*/<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">strtoupper_filter&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">php_user_filter&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">filter</span><span style="color: #007700">(</span><span style="color: #0000BB">$in</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$out</span><span style="color: #007700">,&nbsp;&amp;</span><span style="color: #0000BB">$consumed</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$closing</span><span style="color: #007700">)<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$bucket&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_bucket_make_writeable</span><span style="color: #007700">(</span><span style="color: #0000BB">$in</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$bucket</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">strtoupper</span><span style="color: #007700">(</span><span style="color: #0000BB">$bucket</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$consumed&nbsp;</span><span style="color: #007700">+=&nbsp;</span><span style="color: #0000BB">$bucket</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">datalen</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">stream_bucket_append</span><span style="color: #007700">(</span><span style="color: #0000BB">$out</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$bucket</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">PSFS_PASS_ON</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Register&nbsp;our&nbsp;filter&nbsp;with&nbsp;PHP&nbsp;*/<br /></span><span style="color: #0000BB">stream_filter_register</span><span style="color: #007700">(</span><span style="color: #DD0000">"strtoupper"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"strtoupper_filter"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Failed&nbsp;to&nbsp;register&nbsp;filter"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"foo-bar.txt"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"w"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Attach&nbsp;the&nbsp;registered&nbsp;filter&nbsp;to&nbsp;the&nbsp;stream&nbsp;just&nbsp;opened&nbsp;*/<br /></span><span style="color: #0000BB">stream_filter_append</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"strtoupper"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Line1\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Word&nbsp;-&nbsp;2\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Easy&nbsp;As&nbsp;123\n"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Read&nbsp;the&nbsp;contents&nbsp;back&nbsp;out<br />&nbsp;*/<br /></span><span style="color: #0000BB">readfile</span><span style="color: #007700">(</span><span style="color: #DD0000">"foo-bar.txt"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+LINE1
+WORD - 2
+EASY AS 123
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 Registering a generic filter class to match multiple filter names.</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;Define&nbsp;our&nbsp;filter&nbsp;class&nbsp;*/<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">string_filter&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">php_user_filter&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;var&nbsp;</span><span style="color: #0000BB">$mode</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">filter</span><span style="color: #007700">(</span><span style="color: #0000BB">$in</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$out</span><span style="color: #007700">,&nbsp;&amp;</span><span style="color: #0000BB">$consumed</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$closing</span><span style="color: #007700">)<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$bucket&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_bucket_make_writeable</span><span style="color: #007700">(</span><span style="color: #0000BB">$in</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">mode&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$bucket</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">strtoupper</span><span style="color: #007700">(</span><span style="color: #0000BB">$bucket</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;elseif&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">mode&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$bucket</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">strtolower</span><span style="color: #007700">(</span><span style="color: #0000BB">$bucket</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$consumed&nbsp;</span><span style="color: #007700">+=&nbsp;</span><span style="color: #0000BB">$bucket</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">datalen</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">stream_bucket_append</span><span style="color: #007700">(</span><span style="color: #0000BB">$out</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$bucket</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">PSFS_PASS_ON</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">onCreate</span><span style="color: #007700">()<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">filtername&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #DD0000">'str.toupper'</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">mode&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;elseif&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">filtername&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #DD0000">'str.tolower'</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">mode&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Some&nbsp;other&nbsp;str.*&nbsp;filter&nbsp;was&nbsp;asked&nbsp;for,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;report&nbsp;failure&nbsp;so&nbsp;that&nbsp;PHP&nbsp;will&nbsp;keep&nbsp;looking&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">return&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Register&nbsp;our&nbsp;filter&nbsp;with&nbsp;PHP&nbsp;*/<br /></span><span style="color: #0000BB">stream_filter_register</span><span style="color: #007700">(</span><span style="color: #DD0000">"str.*"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"string_filter"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Failed&nbsp;to&nbsp;register&nbsp;filter"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"foo-bar.txt"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"w"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Attach&nbsp;the&nbsp;registered&nbsp;filter&nbsp;to&nbsp;the&nbsp;stream&nbsp;just&nbsp;opened<br />&nbsp;&nbsp;&nbsp;We&nbsp;could&nbsp;alternately&nbsp;bind&nbsp;to&nbsp;str.tolower&nbsp;here&nbsp;*/<br /></span><span style="color: #0000BB">stream_filter_append</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"str.toupper"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Line1\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Word&nbsp;-&nbsp;2\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Easy&nbsp;As&nbsp;123\n"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Read&nbsp;the&nbsp;contents&nbsp;back&nbsp;out<br />&nbsp;*/<br /></span><span style="color: #0000BB">readfile</span><span style="color: #007700">(</span><span style="color: #DD0000">"foo-bar.txt"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+LINE1
+WORD - 2
+EASY AS 123
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+
+  <p class="simpara">
+   See also
+   <a href="function.stream-wrapper-register.html" class="function">stream_wrapper_register()</a>,
+   <a href="function.stream-filter-prepend.html" class="function">stream_filter_prepend()</a>, and
+   <a href="function.stream-filter-append.html" class="function">stream_filter_append()</a>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.stream-filter-prepend.html">stream_filter_prepend</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.stream-filter-remove.html">stream_filter_remove</a></div>
+ <div class="up"><a href="ref.stream.html">Stream Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

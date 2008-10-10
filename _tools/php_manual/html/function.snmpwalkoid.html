@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Query for a tree of information about a network entity</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.snmp.html">SNMP Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.sockets.html">Sockets</a></div>
+ <div class="up"><a href="ref.snmp.html">SNMP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.snmpwalkoid" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">snmpwalkoid</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">snmpwalkoid</span> &mdash; <span class="dc-title">Query for a tree of information about a network entity
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>snmpwalkoid</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$hostname</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$community</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$object_id</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timeout</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$retries</tt></span>
+  ]] )</div>
+
+
+  <p class="para rdfs-comment">
+   <b>snmpwalkoid()</b> function is used to read all object ids
+   and their respective values from an SNMP agent specified by  
+   <i><tt class="parameter">hostname</tt></i>
+.
+  </p>
+
+  <p class="para">
+   The existence of <b>snmpwalkoid()</b> and
+   <a href="function.snmpwalk.html" class="function">snmpwalk()</a> has historical reasons.  Both
+   functions are provided for backward compatibility.
+   Use <a href="function.snmprealwalk.html" class="function">snmprealwalk()</a> instead.
+  </p> 
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">hostname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The SNMP agent.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">community</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The read community.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">object_id</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If <b><tt>NULL</tt></b>, <i><tt class="parameter">object_id</tt></i>
+ is taken as the root of
+       the SNMP objects tree and all objects under that tree are returned as
+       an array. 
+      </p>
+      <p class="para">
+       If <i><tt class="parameter">object_id</tt></i>
+ is specified, all the SNMP objects
+       below that <i><tt class="parameter">object_id</tt></i>
+ are returned.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">timeout</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">retries</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative array with object ids and their respective
+   object value starting from the <i><tt class="parameter">object_id</tt></i>
+
+   as root or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para"> 
+   <div class="example">
+    <p><b>Example #1 <b>snmpwalkoid()</b> Example</b></p>
+    <div class="example-contents"> 
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">snmpwalkoid</span><span style="color: #007700">(</span><span style="color: #DD0000">"127.0.0.1"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"public"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">);&nbsp;<br />for&nbsp;(</span><span style="color: #0000BB">reset</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">);&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">key</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">);&nbsp;</span><span style="color: #0000BB">next</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"$i:&nbsp;$a[$i]&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p> 
+  <p class="para">
+   Above function call would return all the SNMP objects from the
+   SNMP agent running on localhost. One can step through the values
+   with a loop
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.snmpwalk.html" class="function" rel="rdfs-seeAlso">snmpwalk()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.snmp.html">SNMP Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.sockets.html">Sockets</a></div>
+ <div class="up"><a href="ref.snmp.html">SNMP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

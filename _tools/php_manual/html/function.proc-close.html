@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Close a process opened by proc_open and return the exit code of that process.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.passthru.html">passthru</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.proc-get-status.html">proc_get_status</a></div>
+ <div class="up"><a href="ref.exec.html">Program execution Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.proc-close" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">proc_close</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">proc_close</span> &mdash; <span class="dc-title">Close a process opened by <a href="function.proc-open.html" class="function">proc_open()</a> and return the exit code of that process.</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>proc_close</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$process</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>proc_close()</b> is similar to <a href="function.pclose.html" class="function">pclose()</a>
+   except that it only works on processes opened by
+   <a href="function.proc-open.html" class="function">proc_open()</a>.
+   <b>proc_close()</b> waits for the process to terminate, and
+   returns its exit code.  If you have open pipes to that process, you
+   should <a href="function.fclose.html" class="function">fclose()</a> them prior to calling this function in
+   order to avoid a deadlock - the child process may not be able to exit
+   while the pipes are open.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">process</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <a href="function.proc-open.html" class="function">proc_open()</a> <a href="language.types.resource.html" class="type resource">resource</a> that will
+       be closed.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the termination status of the process that was run.
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.passthru.html">passthru</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.proc-get-status.html">proc_get_status</a></div>
+ <div class="up"><a href="ref.exec.html">Program execution Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

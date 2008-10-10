@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Checks if or where headers have been sent</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.headers-list.html">headers_list</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.inet-ntop.html">inet_ntop</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.headers-sent" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">headers_sent</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">headers_sent</span> &mdash; <span class="dc-title">Checks if or where headers have been sent</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>headers_sent</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter reference">&$file</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter reference">&$line</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Checks if or where headers have been sent.
+  </p>
+  <p class="para">
+   You can&#039;t add any more header lines using the <a href="function.header.html" class="function">header()</a>
+   function once the header block has already been sent. Using this function
+   you can at least prevent getting HTTP header related error messages.
+   Another option is to use <a href="ref.outcontrol.html" class="link">Output Buffering</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">file</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If the optional <i><tt class="parameter">file</tt></i>
+ and
+       <i><tt class="parameter">line</tt></i>
+ parameters are set, 
+       <b>headers_sent()</b> will put the PHP source file name
+       and line number where output started in the <i><tt class="parameter">file</tt></i>
+
+       and <i><tt class="parameter">line</tt></i>
+ variables.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">line</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The line number where the output started.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>headers_sent()</b> will return <b><tt>FALSE</tt></b> if no HTTP headers
+   have already been sent or <b><tt>TRUE</tt></b> otherwise.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The optional <i><tt class="parameter">file</tt></i>
+ and <i><tt class="parameter">line</tt></i>
+
+        parameters were added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Examples using <b>headers_sent()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;If&nbsp;no&nbsp;headers&nbsp;are&nbsp;sent,&nbsp;send&nbsp;one<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">headers_sent</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Location:&nbsp;http://www.example.com/'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;An&nbsp;example&nbsp;using&nbsp;the&nbsp;optional&nbsp;file&nbsp;and&nbsp;line&nbsp;parameters,&nbsp;as&nbsp;of&nbsp;PHP&nbsp;4.3.0<br />//&nbsp;Note&nbsp;that&nbsp;$filename&nbsp;and&nbsp;$linenum&nbsp;are&nbsp;passed&nbsp;in&nbsp;for&nbsp;later&nbsp;use.<br />//&nbsp;Do&nbsp;not&nbsp;assign&nbsp;them&nbsp;values&nbsp;beforehand.<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">headers_sent</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$linenum</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Location:&nbsp;http://www.example.com/'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br /><br /></span><span style="color: #FF8000">//&nbsp;You&nbsp;would&nbsp;most&nbsp;likely&nbsp;trigger&nbsp;an&nbsp;error&nbsp;here.<br /></span><span style="color: #007700">}&nbsp;else&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Headers&nbsp;already&nbsp;sent&nbsp;in&nbsp;$filename&nbsp;on&nbsp;line&nbsp;$linenum\n"&nbsp;</span><span style="color: #007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"Cannot&nbsp;redirect,&nbsp;for&nbsp;now&nbsp;please&nbsp;click&nbsp;this&nbsp;&lt;a&nbsp;"&nbsp;</span><span style="color: #007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"href=\"http://www.example.com\"&gt;link&lt;/a&gt;&nbsp;instead\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.ob-start.html" class="function" rel="rdfs-seeAlso">ob_start()</a></li>
+    <li class="member"><a href="function.trigger-error.html" class="function" rel="rdfs-seeAlso">trigger_error()</a></li>
+    <li class="member"><a href="function.headers-list.html" class="function" rel="rdfs-seeAlso">headers_list()</a></li>
+    <li class="member">
+     <a href="function.header.html" class="function" rel="rdfs-seeAlso">header()</a> for a more detailed discussion of the
+     matters involved.
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.headers-list.html">headers_list</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.inet-ntop.html">inet_ntop</a></div>
+ <div class="up"><a href="ref.network.html">Network Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Opens a SQLite database and returns a SQLiteDatabase object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-exec.html">sqlite_exec</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-fetch-all.html">sqlite_fetch_all</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sqlite-factory" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_factory</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">sqlite_factory</span> &mdash; <span class="dc-title">Opens a SQLite database and returns a SQLiteDatabase object</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type SQLiteDatabase">SQLiteDatabase</span></span> <span class="methodname"><b><b>sqlite_factory</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+   [, <span class="methodparam"><span class="type">string</span> <tt class="parameter reference">&$error_message</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   <b>sqlite_factory()</b> behaves similarly to
+   <a href="function.sqlite-open.html" class="function">sqlite_open()</a> in that it opens an SQLite database or
+   attempts to create it if it does not exist.  However, a
+   <a href="ref.sqlite.html#sqlite.class.sqlitedatabase" class="link">SQLiteDatabase</a> object is
+   returned rather than a resource.  Please see the
+   <a href="function.sqlite-open.html" class="function">sqlite_open()</a> reference page for further usage and caveats.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The filename of the SQLite database.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The mode of the file. Intended to be used to open the database in
+       read-only mode.  Presently, this parameter is ignored by the sqlite
+       library.  The default value for mode is the octal value
+       <i>0666</i> and this is the recommended value.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">error_message</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Passed by reference and is set to hold a descriptive error message
+       explaining why the database could not be opened if there was an error.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a SQLiteDatabase object on success, <b><tt>NULL</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>sqlite_factory()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dbhandle&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlite_factory</span><span style="color: #007700">(</span><span style="color: #DD0000">'sqlitedb'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT&nbsp;user_id,&nbsp;username&nbsp;FROM&nbsp;users'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;functionally&nbsp;equivalent&nbsp;to:&nbsp;*/<br /><br /></span><span style="color: #0000BB">$dbhandle&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SQLiteDatabase</span><span style="color: #007700">(</span><span style="color: #DD0000">'sqlitedb'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT&nbsp;user_id,&nbsp;username&nbsp;FROM&nbsp;users'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.sqlite-open.html" class="function" rel="rdfs-seeAlso">sqlite_open()</a></li>
+    <li class="member"><a href="function.sqlite-popen.html" class="function" rel="rdfs-seeAlso">sqlite_popen()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sqlite-exec.html">sqlite_exec</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sqlite-fetch-all.html">sqlite_fetch_all</a></div>
+ <div class="up"><a href="ref.sqlite.html">SQLite Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

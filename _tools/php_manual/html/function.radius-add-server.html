@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Adds a server</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.radius-acct-open.html">radius_acct_open</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.radius-auth-open.html">radius_auth_open</a></div>
+ <div class="up"><a href="ref.radius.html">Radius Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.radius-add-server" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">radius_add_server</h1>
+  <p class="verinfo">(PECL radius:1.1-1.2.5)</p><p class="refpurpose"><span class="refname">radius_add_server</span> &mdash; <span class="dc-title">Adds a server</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>radius_add_server</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$radius_handle</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$hostname</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$port</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$secret</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$timeout</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$max_tries</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>radius_add_server()</b> may be called multiple times, and it
+   may be used together with <a href="function.radius-config.html" class="function">radius_config()</a>. At most 10
+   servers may be specified. When multiple servers are given, they are tried
+   in round-robin fashion until a valid response is received, or until each
+   server&#039;s <i><tt class="parameter">max_tries</tt></i>
+ limit has been reached.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">radius_handle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">hostname</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">hostname</tt></i>
+ parameter specifies the server host,
+       either as a fully qualified domain name or as a dotted-quad IP address
+       in text form.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">port</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The <i><tt class="parameter">port</tt></i>
+ specifies the UDP port to contact on
+       the server. If port is given as 0, the library looks up the
+       <code class="systemitem systemitem">radius/udp</code>
+ or
+       <code class="systemitem systemitem">radacct/udp</code>
+ service in the
+       network services database, and uses the port found there.  If no entry
+       is found, the library uses the standard Radius ports, 1812 for
+       authentication and 1813 for accounting. 
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">secret</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The shared secret for the server host is passed to the
+       <i><tt class="parameter">secret</tt></i>
+ parameter. The Radius protocol ignores
+       all but the leading 128 bytes of the shared secret.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">timeout</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The timeout for receiving replies from the server is passed to the
+       <i><tt class="parameter">timeout</tt></i>
+ parameter, in units of seconds.  
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">max_tries</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The maximum number of repeated requests to make before giving up is
+       passed into the <i><tt class="parameter">max_tries</tt></i>
+.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>radius_add_server()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">radius_add_server</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'radius.example.com'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1812</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'testing123'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'RadiusError:'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">radius_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">).&nbsp;</span><span style="color: #DD0000">"\n&lt;br&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.radius-config.html" class="function" rel="rdfs-seeAlso">radius_config()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.radius-acct-open.html">radius_acct_open</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.radius-auth-open.html">radius_auth_open</a></div>
+ <div class="up"><a href="ref.radius.html">Radius Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

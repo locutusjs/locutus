@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Write text to the image using fonts using FreeType 2</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imageftbbox.html">imageftbbox</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagegammacorrect.html">imagegammacorrect</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imagefttext" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imagefttext</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">imagefttext</span> &mdash; <span class="dc-title">Write text to the image using fonts using FreeType 2</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>imagefttext</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$image</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$size</tt></span>
+   , <span class="methodparam"><span class="type">float</span> <tt class="parameter">$angle</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$x</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$y</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$color</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$fontfile</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$text</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$extrainfo</tt></span>
+  ] )</div>
+
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><i><tt class="parameter">
+image</tt></i>
+</span>
+<dd>
+<p class="para">An image resource, returned by one of the image creation functions, 
+such as <a href="function.imagecreatetruecolor.html" class="function">imagecreatetruecolor()</a>.</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">size</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The font size to use in points.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">angle</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para"> 
+       The angle in degrees, with 0 degrees being left-to-right reading text.
+       Higher values represent a counter-clockwise rotation. For example, a 
+       value of 90 would result in bottom-to-top reading text.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">x</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The coordinates given by <i><tt class="parameter">x</tt></i>
+ and
+       <i><tt class="parameter">y</tt></i>
+ will define the basepoint of the first
+       character (roughly the lower-left corner of the character). This
+       is different from the <a href="function.imagestring.html" class="function">imagestring()</a>, where
+       <i><tt class="parameter">x</tt></i>
+ and <i><tt class="parameter">y</tt></i>
+ define the
+       upper-left corner of the first character. For example, &quot;top left&quot;
+       is 0, 0.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">y</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The y-ordinate. This sets the position of the fonts baseline, not the
+       very bottom of the character.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">color</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The index of the desired color for the text, see 
+       <a href="function.imagecolorexact.html" class="function">imagecolorexact()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fontfile</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The path to the TrueType font you wish to use.
+      </p>
+      <p class="para">
+       Depending on which version of the GD library PHP is using, <em class="emphasis">when
+       <i><tt class="parameter">fontfile</tt></i>
+ does not begin with a leading
+       <i>/</i> then <i>.ttf</i> will be appended</em>
+       to the filename and the library will attempt to search for that
+       filename along a library-defined font path.
+      </p>
+      <p class="para">
+       When using versions of the GD library lower than 2.0.18, a <i>space</i> character,
+       rather than a semicolon, was used as the &#039;path separator&#039; for different font files.
+       Unintentional use of this feature will result in the warning message:
+       <i>Warning: Could not find/open font</i>. For these affected versions, the
+       only solution is moving the font to a path which does not contain spaces.
+      </p>
+      <p class="para">
+       In many cases where a font resides in the same directory as the script using it
+       the following trick will alleviate any include problems.
+       <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Set&nbsp;the&nbsp;enviroment&nbsp;variable&nbsp;for&nbsp;GD<br /></span><span style="color: #0000BB">putenv</span><span style="color: #007700">(</span><span style="color: #DD0000">'GDFONTPATH='&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">realpath</span><span style="color: #007700">(</span><span style="color: #DD0000">'.'</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;Name&nbsp;the&nbsp;font&nbsp;to&nbsp;be&nbsp;used&nbsp;(note&nbsp;the&nbsp;lack&nbsp;of&nbsp;the&nbsp;.ttf&nbsp;extension)<br /></span><span style="color: #0000BB">$font&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'SomeFont'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+       </div>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">text</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Text to be inserted into image. 
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">extrainfo</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <table border="5">
+       <caption><b>Possible array indexes for <i><tt class="parameter">extrainfo</tt></i>
+</b></caption>
+        <colgroup>
+
+         <thead valign="middle">
+          <tr valign="middle">
+           <th colspan="1">Key</th>
+           <th colspan="1">Type</th>
+           <th colspan="1">Meaning</th>
+          </tr>
+
+         </thead>
+
+         <tbody valign="middle" class="tbody">
+          <tr valign="middle">
+           <td colspan="1" rowspan="1" align="left"><i>linespacing</i></td>
+           <td colspan="1" rowspan="1" align="left"><a href="language.types.float.html" class="type float">float</a></td>
+           <td colspan="1" rowspan="1" align="left">Defines drawing linespacing</td>
+          </tr>
+
+         </tbody>
+        </colgroup>
+
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an array defining the four points of the box, starting in the lower left and moving counter-clockwise:
+   <table class="informaltable">
+    <colgroup>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">0</td>
+       <td colspan="1" rowspan="1" align="left">lower left x-coordinate</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">1</td>
+       <td colspan="1" rowspan="1" align="left">lower left y-coordinate</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">2</td>
+       <td colspan="1" rowspan="1" align="left">lower right x-coordinate</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">3</td>
+       <td colspan="1" rowspan="1" align="left">lower right y-coordinate</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4</td>
+       <td colspan="1" rowspan="1" align="left">upper right x-coordinate</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5</td>
+       <td colspan="1" rowspan="1" align="left">upper right y-coordinate</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">6</td>
+       <td colspan="1" rowspan="1" align="left">upper left x-coordinate</td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">7</td>
+       <td colspan="1" rowspan="1" align="left">upper left y-coordinate</td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>imagefttext()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Create&nbsp;a&nbsp;300x100&nbsp;image<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatetruecolor</span><span style="color: #007700">(</span><span style="color: #0000BB">300</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$red&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0xFF</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x00</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x00</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$black&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x00</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x00</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0x00</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Make&nbsp;the&nbsp;background&nbsp;red<br /></span><span style="color: #0000BB">imagefilledrectangle</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">299</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">99</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$red</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Path&nbsp;to&nbsp;our&nbsp;ttf&nbsp;font&nbsp;file<br /></span><span style="color: #0000BB">$font_file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'./arial.ttf'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Draw&nbsp;the&nbsp;text&nbsp;'PHP&nbsp;Manual'&nbsp;using&nbsp;font&nbsp;size&nbsp;13<br /></span><span style="color: #0000BB">imagefttext</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">13</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">105</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">55</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$black</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$font_file</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PHP&nbsp;Manual'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Output&nbsp;image&nbsp;to&nbsp;the&nbsp;browser<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-Type:&nbsp;image/png'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">imagepng</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function requires GD 2.0.1 or later (2.0.28 or later is recommended).</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is only available if
+PHP is compiled with freetype support (<span class="option">--with-freetype-dir=DIR</span>)
+</span></p></blockquote>
+ </div>
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.5</td>
+       <td colspan="1" rowspan="1" align="left">
+        <i><tt class="parameter">extrainfo</tt></i>
+ was made optional.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imageftbbox.html">imageftbbox</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imagegammacorrect.html">imagegammacorrect</a></div>
+ <div class="up"><a href="ref.image.html">GD Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Split given source into PHP tokens</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.tokenizer.html">Tokenizer Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.token-name.html">token_name</a></div>
+ <div class="up"><a href="ref.tokenizer.html">Tokenizer Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.token-get-all" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">token_get_all</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p><p class="refpurpose"><span class="refname">token_get_all</span> &mdash; <span class="dc-title">Split given source into PHP tokens</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>token_get_all</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$source</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>token_get_all()</b> parses the given <i><tt class="parameter">source</tt></i>
+ 
+   string into PHP language tokens using the Zend engine&#039;s lexical scanner.
+  </p>
+  <p class="para">
+   For a list of parser tokens, see <a href="tokens.html" class="xref">List of Parser Tokens</a>, or use 
+   <a href="function.token-name.html" class="function">token_name()</a> to translate a token value into its string
+   representation.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">source</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The PHP source to parse.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   An array of token identifiers. Each individual token identifier is either
+   a single character (i.e.: <i>;</i>, <i>.</i>, 
+   <i>&gt;</i>, <i>!</i>, etc...),
+   or a three element array containing the token index in element 0, the string
+   content of the original token in element 1 and the line number in element 2.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>token_get_all()</b> examples</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$tokens&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">token_get_all</span><span style="color: #007700">(</span><span style="color: #DD0000">'&lt;?php&nbsp;echo;&nbsp;?&gt;'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">/*&nbsp;=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(T_OPEN_TAG,&nbsp;'&lt;?php'),&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(T_ECHO,&nbsp;'echo'),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';',<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(T_CLOSE_TAG,&nbsp;'?&gt;')&nbsp;);&nbsp;*/<br /><br />/*&nbsp;Note&nbsp;in&nbsp;the&nbsp;following&nbsp;example&nbsp;that&nbsp;the&nbsp;string&nbsp;is&nbsp;parsed&nbsp;as&nbsp;T_INLINE_HTML<br />&nbsp;&nbsp;&nbsp;rather&nbsp;than&nbsp;the&nbsp;otherwise&nbsp;expected&nbsp;T_COMMENT&nbsp;(T_ML_COMMENT&nbsp;in&nbsp;PHP&nbsp;&lt;5).<br />&nbsp;&nbsp;&nbsp;This&nbsp;is&nbsp;because&nbsp;no&nbsp;open/close&nbsp;tags&nbsp;were&nbsp;used&nbsp;in&nbsp;the&nbsp;"code"&nbsp;provided.<br />&nbsp;&nbsp;&nbsp;This&nbsp;would&nbsp;be&nbsp;equivalent&nbsp;to&nbsp;putting&nbsp;a&nbsp;comment&nbsp;outside&nbsp;of&nbsp;&lt;?php&nbsp;?&gt;&nbsp;tags&nbsp;in&nbsp;a&nbsp;normal&nbsp;file.&nbsp;*/<br /></span><span style="color: #0000BB">$tokens&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">token_get_all</span><span style="color: #007700">(</span><span style="color: #DD0000">'/*&nbsp;comment&nbsp;*/'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;=&gt;&nbsp;array(array(T_INLINE_HTML,&nbsp;'/*&nbsp;comment&nbsp;*/'));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.2.2</td>
+       <td colspan="1" rowspan="1" align="left">Line numbers are returned in element 2
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.tokenizer.html">Tokenizer Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.token-name.html">token_name</a></div>
+ <div class="up"><a href="ref.tokenizer.html">Tokenizer Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

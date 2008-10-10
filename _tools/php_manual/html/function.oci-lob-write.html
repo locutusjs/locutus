@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Writes data to the large object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.oci-lob-truncate.html">OCI-Lob->truncate</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.oci-lob-writetemporary.html">OCI-Lob->writeTemporary</a></div>
+ <div class="up"><a href="ref.oci8.html">OCI8 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.oci-lob-write" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">OCI-Lob-&gt;write</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">OCI-Lob-&gt;write</span> &mdash; <span class="dc-title">Writes data to the large object</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="classsynopsis">
+   <div class="ooclass"><b class="classname">OCI-Lob</b></div>
+   <div class="methodsynopsis dc-description">
+    <span class="type">int</span> <span class="methodname"><b><b>write</b></b></span>
+     ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+    [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$length</tt></span>
+   ] )</div>
+
+  </div>
+  <p class="para">
+   Writes data from the parameter <i><tt class="parameter">data</tt></i>
+ into the
+   current position of LOB&#039;s internal pointer.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The data to write in the LOB.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">length</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       If this parameter is given, writing will stop after 
+       <i><tt class="parameter">length</tt></i>
+ bytes have been written or the end of
+       <i><tt class="parameter">data</tt></i>
+ is reached, whichever comes first.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of bytes written or <b><tt>FALSE</tt></b> in case of error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.oci-lob-read.html" class="xref">OCI-Lob->read</a></li> 
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.oci-lob-truncate.html">OCI-Lob->truncate</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.oci-lob-writetemporary.html">OCI-Lob->writeTemporary</a></div>
+ <div class="up"><a href="ref.oci8.html">OCI8 Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

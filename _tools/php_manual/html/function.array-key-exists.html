@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Checks if the given key or index exists in the array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.array-intersect.html">array_intersect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.array-keys.html">array_keys</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.array-key-exists" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">array_key_exists</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.7, PHP 5)</p><p class="refpurpose"><span class="refname">array_key_exists</span> &mdash; <span class="dc-title">Checks if the given key or index exists in the array</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>array_key_exists</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$key</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$search</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>array_key_exists()</b> returns <b><tt>TRUE</tt></b> if the
+   given <i><tt class="parameter">key</tt></i>
+ is set in the array.
+   <i><tt class="parameter">key</tt></i>
+ can be any value possible
+   for an array index.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">key</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Value to check.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">search</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       An array with keys to check.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        This function doesn&#039;t work with objetcs anymore, 
+        <a href="function.property-exists.html" class="function">property_exists()</a> should be used in this case.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>array_key_exists()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$search_array&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'first'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'second'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">array_key_exists</span><span style="color: #007700">(</span><span style="color: #DD0000">'first'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$search_array</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"The&nbsp;'first'&nbsp;element&nbsp;is&nbsp;in&nbsp;the&nbsp;array"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   <span class="simpara">
+    The name of this function is <b>key_exists()</b>
+    in PHP 4.0.6.
+   </span>
+  </p></blockquote>
+  <div class="example">
+   <p><b>Example #2 <b>array_key_exists()</b> vs <a href="function.isset.html" class="function">isset()</a></b></p>
+   <div class="example-contents"><p>
+    <a href="function.isset.html" class="function">isset()</a> does not return <b><tt>TRUE</tt></b> for array keys
+    that correspond to a <b><tt>NULL</tt></b> value, while
+    <b>array_key_exists()</b> does.
+   </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$search_array&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'first'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'second'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;returns&nbsp;false<br /></span><span style="color: #007700">isset(</span><span style="color: #0000BB">$search_array</span><span style="color: #007700">[</span><span style="color: #DD0000">'first'</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">//&nbsp;returns&nbsp;true<br /></span><span style="color: #0000BB">array_key_exists</span><span style="color: #007700">(</span><span style="color: #DD0000">'first'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$search_array</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.isset.html" class="function" rel="rdfs-seeAlso">isset()</a></li>
+    <li class="member"><a href="function.array-keys.html" class="function" rel="rdfs-seeAlso">array_keys()</a></li>
+    <li class="member"><a href="function.in-array.html" class="function" rel="rdfs-seeAlso">in_array()</a></li>
+    <li class="member"><a href="function.property-exists.html" class="function" rel="rdfs-seeAlso">property_exists()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.array-intersect.html">array_intersect</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.array-keys.html">array_keys</a></div>
+ <div class="up"><a href="ref.array.html">Array Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set the base URI for all XSLT transformations</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xslt-process.html">xslt_process</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xslt-set-encoding.html">xslt_set_encoding</a></div>
+ <div class="up"><a href="ref.xslt.html">XSLT Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.xslt-set-base" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xslt_set_base</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5)</p><p class="refpurpose"><span class="refname">xslt_set_base</span> &mdash; <span class="dc-title">Set the base URI for all XSLT transformations</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>xslt_set_base</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$xh</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$uri</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Sets the base URI for all XSLT transformations, the base URI is used
+   with Xpath instructions to resolve document() and other commands which
+   access external resources. It is also used to resolve URIs for the &lt;xsl:include&gt;
+   and &lt;xsl:import&gt; elements.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">xh</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The XSLT processor link identifier, created with
+       <a href="function.xslt-create.html" class="function">xslt_create()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">uri</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The base URI to be used.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        As of PHP 4.3.0, the default base URI is the directory of the executing script.
+        In effect, it is the directory name value of the <b><tt>__FILE__</tt></b>
+        constant. The default base URI is less predictable with older versions.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: Please note that
+<i>file://</i> is needed in front of the path when using Windows.
+<br /></p></blockquote>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xslt-process.html">xslt_process</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xslt-set-encoding.html">xslt_set_encoding</a></div>
+ <div class="up"><a href="ref.xslt.html">XSLT Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

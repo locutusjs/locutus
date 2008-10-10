@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Creates an XML Document object from scratch, without the need to load a document from a file or string.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-xml-createdataobject.html">SDO_DAS_XML::createDataObject</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-xml-loadfile.html">SDO_DAS_XML::loadFile</a></div>
+ <div class="up"><a href="ref.sdo-das-xml.html">SDO DAS XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.sdo-das-xml-createdocument" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SDO_DAS_XML::createDocument</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">SDO_DAS_XML::createDocument</span> &mdash; <span class="dc-title">
+   Creates an XML Document object from scratch, without the need to load a document from a file or string.
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type SDO_DAS_XML_Document">SDO_DAS_XML_Document</span></span> <span class="methodname"><b><b>SDO_DAS_XML::createDocument</b></b></span>
+    ([ <span class="methodparam"><span class="type">string</span> <tt class="parameter">$document_element_name</tt></span>
+  ] )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type SDO_DAS_XML_Document">SDO_DAS_XML_Document</span></span> <span class="methodname"><b><b>SDO_DAS_XML::createDocument</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$document_element_namespace_URI</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$document_element_name</tt></span>
+   [, <span class="methodparam"><span class="type"><span class="type SDO_DataObject">SDO_DataObject</span></span> <tt class="parameter">$dataobject</tt></span>
+  ] )</div>
+
+
+  <p class="para rdfs-comment">
+   Creates an XML Document object. This will contain just one empty root element
+   on which none of the properties will have been set.
+   The purpose of this call is to allow an application to create 
+   an XML document from scratch without the need to load a 
+   document from a file or string. The document that is created 
+   will be as if a document had been loaded that contained just a single
+   empty document element with no attributes set or elements within it.
+  </p>
+  <p class="para">
+   <b>createDocument()</b> 
+   may need to be told what the document element is. 
+   This will not be necessary in simple cases.
+   When there is no ambiguity then no parameter need be passed to the 
+   method.
+   However it is possible to load more than one schema file into the same XML DAS
+   and in this case there may be more than one possible document element defined: 
+   furthermore it is even possible that there are two possible document elements that
+   differ only in the namespace.
+   To cope with these cases it is possible to specify either the document element
+   name, or both the document element name and namespace to the method.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">document_element_name</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       The name of the document element. Only needed if there 
+       is more than one possibility.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">document_element_namespace_URI</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       The namespace part of the document element name. Only needed if there is more
+       than one possible document element with the same name. 
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">dataobject</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an SDO_XML_DAS_Document object on success.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors">
+  <h3 class="title">Errors/Exceptions</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term">
+      <i><tt class="parameter">SDO_UnsupportedOperationException</tt></i>
+
+     </span>
+
+     <dd>
+
+      <p class="para">
+       Thrown if an element name or element name and namespace URI is passed,
+       but not found in the underlying model.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.sdo-das-xml-createdataobject.html">SDO_DAS_XML::createDataObject</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.sdo-das-xml-loadfile.html">SDO_DAS_XML::loadFile</a></div>
+ <div class="up"><a href="ref.sdo-das-xml.html">SDO DAS XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

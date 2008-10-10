@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Looks up a current parameter setting of the server.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-options.html">pg_options</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-pconnect.html">pg_pconnect</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.pg-parameter-status" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_parameter_status</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">pg_parameter_status</span> &mdash; <span class="dc-title">Looks up a current parameter setting of the server.</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>pg_parameter_status</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$connection</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$param_name</tt></span>
+   )</div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>pg_parameter_status</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$param_name</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+    Looks up a current parameter setting of the server.
+  </p>
+  <p class="para">
+    Certain parameter values are reported by the server automatically at 
+    connection startup or whenever their values change. <b>pg_parameter_status()</b> can be 
+    used to interrogate these settings. It returns the current value of a 
+    parameter if known, or <b><tt>FALSE</tt></b> if the parameter is not known.
+  </p>
+  <p class="para">
+    Parameters reported as of PostgreSQL 8.0 include <i>server_version</i>, 
+    <i>server_encoding</i>, <i>client_encoding</i>, 
+    <i>is_superuser</i>, <i>session_authorization</i>, 
+    <i>DateStyle</i>, <i>TimeZone</i>, and <i>integer_datetimes</i>.
+    (<i>server_encoding</i>, <i>TimeZone</i>, and 
+    <i>integer_datetimes</i> were not reported by releases before 8.0.) Note that 
+    <i>server_version</i>, <i>server_encoding</i> and <i>integer_datetimes</i> 
+    cannot change after PostgreSQL startup.
+  </p>
+  <p class="para">
+    PostgreSQL 7.3 or lower servers do not report parameter settings,
+    <b>pg_parameter_status()</b>
+    includes logic to obtain values for <i>server_version</i> and 
+    <i>client_encoding</i>
+    anyway. Applications are encouraged to use <b>pg_parameter_status()</b> rather than ad 
+    hoc code to determine these values.
+  </p>
+  <div class="caution"><b class="caution">Caution</b>
+    <p class="para">
+      On a pre-7.4
+      PostgreSQL server, changing <i>client_encoding</i> via <i>SET</i> after connection startup will 
+      not be reflected by <b>pg_parameter_status()</b>.
+     </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">connection</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       PostgreSQL database connection resource.  When 
+       <i><tt class="parameter">connection</tt></i>
+ is not present, the default connection 
+       is used. The default connection is the last connection made by 
+       <a href="function.pg-connect.html" class="function">pg_connect()</a> or <a href="function.pg-pconnect.html" class="function">pg_pconnect()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">param_name</tt></i>
+</span>
+
+     <dd>
+
+        <p class="para">
+         Possible <i><tt class="parameter">param_name</tt></i>
+ values include <i>server_version</i>, 
+        <i>server_encoding</i>, <i>client_encoding</i>, 
+        <i>is_superuser</i>, <i>session_authorization</i>, 
+        <i>DateStyle</i>, <i>TimeZone</i>, and 
+        <i>integer_datetimes</i>.
+        </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">A <a href="language.types.string.html" class="type string">string</a> containing the value of the parameter, <b><tt>FALSE</tt></b> on failure or invalid
+  <i><tt class="parameter">param_name</tt></i>
+.</p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>pg_parameter_status()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$dbconn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=publisher"</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Could&nbsp;not&nbsp;connect"</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Server&nbsp;encoding:&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">pg_parameter_status</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbconn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"server_encoding"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Server encoding: SQL_ASCII
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.pg-options.html">pg_options</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.pg-pconnect.html">pg_pconnect</a></div>
+ <div class="up"><a href="ref.pgsql.html">PostgreSQL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

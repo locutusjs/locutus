@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Create an anonymous (lambda-style) function</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.call-user-func.html">call_user_func</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.func-get-arg.html">func_get_arg</a></div>
+ <div class="up"><a href="ref.funchand.html">Function handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.create-function" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">create_function</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p><p class="refpurpose"><span class="refname">create_function</span> &mdash; <span class="dc-title">Create an anonymous (lambda-style) function</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>create_function</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$args</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$code</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Creates an anonymous function from the parameters passed, and
+   returns a unique name for it.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   Usually these parameters will be passed as single quote delimited strings.
+   The reason for using single quoted strings, is to protect the variable
+   names from parsing, otherwise, if you use double quotes there will be a
+   need to escape the variable names, e.g. <i>\$avar</i>.
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">args</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The function arguments.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">code</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The function code.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a unique function name as a string, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 
+     Creating an anonymous function with <b>create_function()</b>
+    </b></p>
+    <div class="example-contents"><p>
+     You can use this function, to (for example) create a function from
+     information gathered at run time:
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$newfunc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">create_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'$a,$b'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'return&nbsp;"ln($a)&nbsp;+&nbsp;ln($b)&nbsp;=&nbsp;"&nbsp;.&nbsp;log($a&nbsp;*&nbsp;$b);'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"New&nbsp;anonymous&nbsp;function:&nbsp;$newfunc\n"</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">$newfunc</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">M_E</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">//&nbsp;outputs<br />//&nbsp;New&nbsp;anonymous&nbsp;function:&nbsp;lambda_1<br />//&nbsp;ln(2)&nbsp;+&nbsp;ln(2.718281828459)&nbsp;=&nbsp;1.6931471805599<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Or, perhaps to have general handler function that can apply a set
+   of operations to a list of parameters:
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 
+     Making a general processing function with
+     <b>create_function()</b>
+    </b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">process</span><span style="color: #007700">(</span><span style="color: #0000BB">$var1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$var2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$farr</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$farr&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$f</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$f</span><span style="color: #007700">(</span><span style="color: #0000BB">$var1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$var2</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;create&nbsp;a&nbsp;bunch&nbsp;of&nbsp;math&nbsp;functions<br /></span><span style="color: #0000BB">$f1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'if&nbsp;($a&nbsp;&gt;=0)&nbsp;{return&nbsp;"b*a^2&nbsp;=&nbsp;".$b*sqrt($a);}&nbsp;else&nbsp;{return&nbsp;false;}'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$f2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"return&nbsp;\"min(b^2+a,&nbsp;a^2,b)&nbsp;=&nbsp;\".min(\$a*\$a+\$b,\$b*\$b+\$a);"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$f3&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'if&nbsp;($a&nbsp;&gt;&nbsp;0&nbsp;&amp;&amp;&nbsp;$b&nbsp;!=&nbsp;0)&nbsp;{return&nbsp;"ln(a)/b&nbsp;=&nbsp;".log($a)/$b;&nbsp;}&nbsp;else&nbsp;{&nbsp;return&nbsp;false;&nbsp;}'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$farr&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">create_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'$x,$y'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'return&nbsp;"some&nbsp;trig:&nbsp;".(sin($x)&nbsp;+&nbsp;$x*cos($y));'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">create_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'$x,$y'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'return&nbsp;"a&nbsp;hypotenuse:&nbsp;".sqrt($x*$x&nbsp;+&nbsp;$y*$y);'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">create_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'$a,$b'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$f1</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">create_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'$a,$b'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$f2</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">create_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'$a,$b'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$f3</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"\nUsing&nbsp;the&nbsp;first&nbsp;array&nbsp;of&nbsp;anonymous&nbsp;functions\n"</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #DD0000">"parameters:&nbsp;2.3445,&nbsp;M_PI\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">process</span><span style="color: #007700">(</span><span style="color: #0000BB">2.3445</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">M_PI</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$farr</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;now&nbsp;make&nbsp;a&nbsp;bunch&nbsp;of&nbsp;string&nbsp;processing&nbsp;functions<br /></span><span style="color: #0000BB">$garr&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">create_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'$b,$a'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'if&nbsp;(strncmp($a,&nbsp;$b,&nbsp;3)&nbsp;==&nbsp;0)&nbsp;return&nbsp;"**&nbsp;\"$a\"&nbsp;'</span><span style="color: #007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'and&nbsp;\"$b\"\n**&nbsp;Look&nbsp;the&nbsp;same&nbsp;to&nbsp;me!&nbsp;(looking&nbsp;at&nbsp;the&nbsp;first&nbsp;3&nbsp;chars)";'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">create_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'$a,$b'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">';&nbsp;return&nbsp;"CRCs:&nbsp;"&nbsp;.&nbsp;crc32($a)&nbsp;.&nbsp;"&nbsp;,&nbsp;".crc32(b);'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">create_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'$a,$b'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">';&nbsp;return&nbsp;"similar(a,b)&nbsp;=&nbsp;"&nbsp;.&nbsp;similar_text($a,&nbsp;$b,&nbsp;&amp;$p)&nbsp;.&nbsp;"($p%)";'</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;);<br />echo&nbsp;</span><span style="color: #DD0000">"\nUsing&nbsp;the&nbsp;second&nbsp;array&nbsp;of&nbsp;anonymous&nbsp;functions\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">process</span><span style="color: #007700">(</span><span style="color: #DD0000">"Twas&nbsp;brilling&nbsp;and&nbsp;the&nbsp;slithy&nbsp;toves"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Twas&nbsp;the&nbsp;night"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$garr</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Using the first array of anonymous functions
+parameters: 2.3445, M_PI
+some trig: -1.6291725057799
+a hypotenuse: 3.9199852871011
+b*a^2 = 4.8103313314525
+min(b^2+a, a^2,b) = 8.6382729035898
+ln(a/b) = 0.27122299212594
+
+Using the second array of anonymous functions
+** &quot;Twas the night&quot; and &quot;Twas brilling and the slithy toves&quot;
+** Look the same to me! (looking at the first 3 chars)
+CRCs: -725381282 , 1908338681
+similar(a,b) = 11(45.833333333333%)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+  <p class="para">
+   But perhaps the most common use for of lambda-style (anonymous) functions
+   is to create callback functions, for example when using
+   <a href="function.array-walk.html" class="function">array_walk()</a> or <a href="function.usort.html" class="function">usort()</a>
+  </p>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #3 Using anonymous functions as callback functions</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$av&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"the&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"a&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"that&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"this&nbsp;"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">array_walk</span><span style="color: #007700">(</span><span style="color: #0000BB">$av</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">create_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'&amp;$v,$k'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'$v&nbsp;=&nbsp;$v&nbsp;.&nbsp;"mango";'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$av</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+  [0] =&gt; the mango
+  [1] =&gt; a mango
+  [2] =&gt; that mango
+  [3] =&gt; this mango
+)
+</pre></div>
+    </pre></div>
+    <div class="example-contents"><p>
+     an array of strings ordered from shorter to longer
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$sv&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"small"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"larger"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"a&nbsp;big&nbsp;string"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"it&nbsp;is&nbsp;a&nbsp;string&nbsp;thing"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$sv</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+  [0] =&gt; small
+  [1] =&gt; larger
+  [2] =&gt; a big string
+  [3] =&gt; it is a string thing
+)
+</pre></div>
+    </pre></div>
+    <div class="example-contents"><p>
+     sort it from longer to shorter
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />usort</span><span style="color: #007700">(</span><span style="color: #0000BB">$sv</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">create_function</span><span style="color: #007700">(</span><span style="color: #DD0000">'$a,$b'</span><span style="color: #007700">,</span><span style="color: #DD0000">'return&nbsp;strlen($b)&nbsp;-&nbsp;strlen($a);'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$sv</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+  [0] =&gt; it is a string thing
+  [1] =&gt; a big string
+  [2] =&gt; larger
+  [3] =&gt; small
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.call-user-func.html">call_user_func</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.func-get-arg.html">func_get_arg</a></div>
+ <div class="up"><a href="ref.funchand.html">Function handling Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

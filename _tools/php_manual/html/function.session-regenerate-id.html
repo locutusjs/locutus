@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Update the current session id with a newly generated one</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-name.html">session_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-register.html">session_register</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.session-regenerate-id" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">session_regenerate_id</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.2, PHP 5)</p><p class="refpurpose"><span class="refname">session_regenerate_id</span> &mdash; <span class="dc-title">
+   Update the current session id with a newly generated one
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>session_regenerate_id</b></b></span>
+    ([ <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$delete_old_session</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>session_regenerate_id()</b> will replace the current
+   session id with a new one, and keep the current session information.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">delete_old_session</tt></i>
+</span>
+
+      <dd>
+
+       <p class="para">
+        Whether to delete the old associated session file or not. Defaults to
+        <b><tt>FALSE</tt></b>.
+       </p>
+      </dd>
+
+     </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.3.3</td>
+       <td colspan="1" rowspan="1" align="left">
+        Since then, if session cookies are enabled, use of
+        <b>session_regenerate_id()</b> will also submit a new
+        session cookie with the new session id.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.1.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        Added the <i><tt class="parameter">delete_old_session</tt></i>
+ parameter.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>session_regenerate_id()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />session_start</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$old_sessionid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">session_id</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">session_regenerate_id</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$new_sessionid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">session_id</span><span style="color: #007700">();<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Old&nbsp;Session:&nbsp;$old_sessionid&lt;br&nbsp;/&gt;"</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #DD0000">"New&nbsp;Session:&nbsp;$new_sessionid&lt;br&nbsp;/&gt;"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.session-id.html" class="function" rel="rdfs-seeAlso">session_id()</a></li>
+    <li class="member"><a href="function.session-start.html" class="function" rel="rdfs-seeAlso">session_start()</a></li>
+    <li class="member"><a href="function.session-name.html" class="function" rel="rdfs-seeAlso">session_name()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-name.html">session_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-register.html">session_register</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

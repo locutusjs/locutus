@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Selective dynamic class properties aggregation to an object</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.aggregate-methods.html">aggregate_methods</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.aggregate-properties-by-regexp.html">aggregate_properties_by_regexp</a></div>
+ <div class="up"><a href="ref.objaggregation.html">Object Aggregation Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.aggregate-properties-by-list" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">aggregate_properties_by_list</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0)</p><p class="refpurpose"><span class="refname">aggregate_properties_by_list</span> &mdash; <span class="dc-title">
+   Selective dynamic class properties aggregation to an object
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>aggregate_properties_by_list</b></b></span>
+    ( <span class="methodparam"><span class="type">object</span> <tt class="parameter">$object</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$class_name</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$properties_list</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$exclude</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Aggregates properties from a class to an existing object using a list of
+   property names. 
+  </p>
+  <p class="para">
+   The properties whose names start with an underscore character (_), which
+   are considered private to the aggregated class, are always excluded.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">object</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">class_name</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">properties_list</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">exclude</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The optional parameter <i><tt class="parameter">exclude</tt></i>
+ is used to
+       decide whether the list contains the names of class properties to
+       include in the aggregation (i.e. <i><tt class="parameter">exclude</tt></i>
+ is
+       <b><tt>FALSE</tt></b>, which is the default value), or to exclude from the
+       aggregation (<i><tt class="parameter">exclude</tt></i>
+ is <b><tt>TRUE</tt></b>).
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.aggregate.html" class="function" rel="rdfs-seeAlso">aggregate()</a></li>
+    <li class="member"><a href="function.aggregate-methods.html" class="function" rel="rdfs-seeAlso">aggregate_methods()</a></li>
+    <li class="member"><a href="function.aggregate-methods-by-list.html" class="function" rel="rdfs-seeAlso">aggregate_methods_by_list()</a></li>
+    <li class="member"><a href="function.aggregate-methods-by-regexp.html" class="function" rel="rdfs-seeAlso">aggregate_methods_by_regexp()</a></li>
+    <li class="member"><a href="function.aggregate-properties.html" class="function" rel="rdfs-seeAlso">aggregate_properties()</a></li>
+    <li class="member"><a href="function.aggregate-properties-by-regexp.html" class="function" rel="rdfs-seeAlso">aggregate_properties_by_regexp()</a></li>
+    <li class="member"><a href="function.aggregate-info.html" class="function" rel="rdfs-seeAlso">aggregate_info()</a></li>
+    <li class="member"><a href="function.deaggregate.html" class="function" rel="rdfs-seeAlso">deaggregate()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.aggregate-methods.html">aggregate_methods</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.aggregate-properties-by-regexp.html">aggregate_properties_by_regexp</a></div>
+ <div class="up"><a href="ref.objaggregation.html">Object Aggregation Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

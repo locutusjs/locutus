@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Escape shell metacharacters</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.escapeshellarg.html">escapeshellarg</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.exec.html">exec</a></div>
+ <div class="up"><a href="ref.exec.html">Program execution Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.escapeshellcmd" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">escapeshellcmd</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">escapeshellcmd</span> &mdash; <span class="dc-title">Escape shell metacharacters</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>escapeshellcmd</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$command</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>escapeshellcmd()</b> escapes any characters in a
+   string that might be used to trick a shell command into executing
+   arbitrary commands.  This function should be used to make sure
+   that any data coming from user input is escaped before this data
+   is passed to the <a href="function.exec.html" class="function">exec()</a> or
+   <a href="function.system.html" class="function">system()</a> functions, or to the <a href="language.operators.execution.html" class="link">backtick
+   operator</a>.
+  </p>
+  <p class="para">
+   Following characters are preceded by a backslash:
+   <i>#&amp;;`|*?~&lt;&gt;^()[]{}$\</i>, <i>\x0A</i>
+   and <i>\xFF</i>. <i>&#039;</i> and <i>&quot;</i>
+   are escaped only if they are not paired. In Windows, all these characters
+   plus <i>%</i> are replaced by a space instead.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">command</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The command that will be escaped.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The escaped string.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>escapeshellcmd()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$e&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">escapeshellcmd</span><span style="color: #007700">(</span><span style="color: #0000BB">$userinput</span><span style="color: #007700">);<br />&nbsp;<br /></span><span style="color: #FF8000">//&nbsp;here&nbsp;we&nbsp;don't&nbsp;care&nbsp;if&nbsp;$e&nbsp;has&nbsp;spaces<br /></span><span style="color: #0000BB">system</span><span style="color: #007700">(</span><span style="color: #DD0000">"echo&nbsp;$e"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$f&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">escapeshellcmd</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">);<br />&nbsp;<br /></span><span style="color: #FF8000">//&nbsp;and&nbsp;here&nbsp;we&nbsp;do,&nbsp;so&nbsp;we&nbsp;use&nbsp;quotes<br /></span><span style="color: #0000BB">system</span><span style="color: #007700">(</span><span style="color: #DD0000">"touch&nbsp;\"/tmp/$f\";&nbsp;ls&nbsp;-l&nbsp;\"/tmp/$f\""</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.escapeshellarg.html" class="function" rel="rdfs-seeAlso">escapeshellarg()</a></li>
+    <li class="member"><a href="function.exec.html" class="function" rel="rdfs-seeAlso">exec()</a></li>
+    <li class="member"><a href="function.popen.html" class="function" rel="rdfs-seeAlso">popen()</a></li>
+    <li class="member"><a href="function.system.html" class="function" rel="rdfs-seeAlso">system()</a></li>
+    <li class="member"><a href="language.operators.execution.html" class="link">backtick operator</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.escapeshellarg.html">escapeshellarg</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.exec.html">exec</a></div>
+ <div class="up"><a href="ref.exec.html">Program execution Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

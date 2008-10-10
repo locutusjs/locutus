@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>HTTP throttling</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-send-stream.html">http_send_stream</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-build-str.html">http_build_str</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.http-throttle" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">http_throttle</h1>
+  <p class="verinfo">(PECL pecl_http:0.10.0-1.5.5)</p><p class="refpurpose"><span class="refname">http_throttle</span> &mdash; <span class="dc-title">HTTP throttling</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>http_throttle</b></b></span>
+    ([ <span class="methodparam"><span class="type">float</span> <tt class="parameter">$sec</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$bytes = 40960</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Sets the throttle delay and send buffer size.
+  </p>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function should be used in conjunction with
+   <a href="function.http-send-data.html" class="function">http_send_data()</a>, <a href="function.http-send-file.html" class="function">http_send_file()</a>  and <a href="function.http-send-stream.html" class="function">http_send_stream()</a>.</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">Provides a basic throttling mechanism, which will yield
+   the current process or thread until the entity has been completely sent.</span></p></blockquote>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This may not work as expected with the following SAPI(s): FastCGI.
+   <br />
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">sec</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       seconds to sleep after each chunk sent
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">bytes</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       the chunk size in bytes
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 A <b>http_throttle()</b> example</b></p>
+    <div class="example-contents"><p>
+     Send file with approximately 20 kbyte/s.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;~&nbsp;20&nbsp;kbyte/s<br />#&nbsp;http_throttle(1,&nbsp;20000);<br />#&nbsp;http_throttle(0.5,&nbsp;10000);<br /></span><span style="color: #0000BB">http_throttle</span><span style="color: #007700">(</span><span style="color: #0000BB">0.1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2000</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">http_send_file</span><span style="color: #007700">(</span><span style="color: #DD0000">'document.pdf'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;<br /></span>?&gt;</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.http-send-data.html" class="function" rel="rdfs-seeAlso">http_send_data()</a></li>
+    <li class="member"><a href="function.http-send-file.html" class="function" rel="rdfs-seeAlso">http_send_file()</a></li>
+    <li class="member"><a href="function.http-send-stream.html" class="function" rel="rdfs-seeAlso">http_send_stream()</a></li>
+    <li class="member">the <a href="class.httpresponse.html" class="link">
+<b class="classname">HttpResponse</b></a> class if you are using PHP 5.1.0
+and above</li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.http-send-stream.html">http_send_stream</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-build-str.html">http_build_str</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

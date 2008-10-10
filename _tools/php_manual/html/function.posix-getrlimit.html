@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Return info about system resource limits</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.posix-getpwuid.html">posix_getpwuid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.posix-getsid.html">posix_getsid</a></div>
+ <div class="up"><a href="ref.posix.html">POSIX Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.posix-getrlimit" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">posix_getrlimit</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">posix_getrlimit</span> &mdash; <span class="dc-title">Return info about system resource limits</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>posix_getrlimit</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>posix_getrlimit()</b> returns an <a href="language.types.array.html" class="type array">array</a>
+   of information about the current resource&#039;s soft and hard limits.
+  </p>
+  <p class="para">
+    Each resource has an associated soft and hard limit.  The soft
+    limit is the value that the kernel enforces for the corresponding
+    resource.  The hard limit acts as a ceiling for the soft limit.
+    An unprivileged process may only set its soft limit to a value
+    from 0 to the hard limit, and irreversibly lower its hard limit.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative <a href="language.types.array.html" class="type array">array</a> of elements for each
+   limit that is defined. Each limit has a soft and a hard limit.
+   <table border="5">
+    <caption><b>List of possible limits returned</b></caption>
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Limit name</th>
+       <th colspan="1">Limit description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">core</td>
+       <td colspan="1" rowspan="1" align="left">
+        The maximum size of the core file.  When 0, not core files are
+        created.  When core files are larger than this size, they will
+        be truncated at this size.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">totalmem</td>
+       <td colspan="1" rowspan="1" align="left">
+        The maximum size of the memory of the process, in bytes.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">virtualmem</td>
+       <td colspan="1" rowspan="1" align="left">
+        The maximum size of the virtual memory for the process, in bytes.
+       </td>
+      </tr>
+ 
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">data</td>
+       <td colspan="1" rowspan="1" align="left">
+        The maximum size of the data segment for the process, in bytes.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">stack</td>
+       <td colspan="1" rowspan="1" align="left">
+        The maximum size of the process stack, in bytes.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">rss</td>
+       <td colspan="1" rowspan="1" align="left">
+        The maximum number of virtual pages resident in RAM
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">maxproc</td>
+       <td colspan="1" rowspan="1" align="left">
+        The maximum number of processes that can be created for the
+        real user ID of the calling process.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">memlock</td>
+       <td colspan="1" rowspan="1" align="left">
+        The maximum number of bytes of memory that may be locked into RAM.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">cpu</td>
+       <td colspan="1" rowspan="1" align="left">
+        The amount of time the process is allowed to use the CPU.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">filesize</td>
+       <td colspan="1" rowspan="1" align="left">
+        The maximum size of the data segment for the process, in bytes.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">openfiles</td>
+       <td colspan="1" rowspan="1" align="left">
+        One more than the maximum number of open file descriptors.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Example use of <b>posix_getrlimit()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$limits&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">posix_getrlimit</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$limits</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output 
+something similar to:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Array
+(
+    [soft core] =&gt; 0
+    [hard core] =&gt; unlimited
+    [soft data] =&gt; unlimited
+    [hard data] =&gt; unlimited
+    [soft stack] =&gt; 8388608
+    [hard stack] =&gt; unlimited
+    [soft totalmem] =&gt; unlimited
+    [hard totalmem] =&gt; unlimited
+    [soft rss] =&gt; unlimited
+    [hard rss] =&gt; unlimited
+    [soft maxproc] =&gt; unlimited
+    [hard maxproc] =&gt; unlimited
+    [soft memlock] =&gt; unlimited
+    [hard memlock] =&gt; unlimited
+    [soft cpu] =&gt; unlimited
+    [hard cpu] =&gt; unlimited
+    [soft filesize] =&gt; unlimited
+    [hard filesize] =&gt; unlimited
+    [soft openfiles] =&gt; 1024
+    [hard openfiles] =&gt; 1024
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This is a not POSIX function, but is common on BSD and System V
+    systems. If the system does not support this function, then it
+    will not be included at compile time.  This may be checked with
+    <a href="function.function-exists.html" class="function">function_exists()</a>.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">man page GETRLIMIT(2)</li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.posix-getpwuid.html">posix_getpwuid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.posix-getsid.html">posix_getsid</a></div>
+ <div class="up"><a href="ref.posix.html">POSIX Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

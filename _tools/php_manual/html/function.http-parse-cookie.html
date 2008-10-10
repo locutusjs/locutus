@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Parse HTTP cookie</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ob-inflatehandler.html">ob_inflatehandler</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-parse-headers.html">http_parse_headers</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.http-parse-cookie" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">http_parse_cookie</h1>
+  <p class="verinfo">(PECL pecl_http:0.20.0-1.5.5)</p><p class="refpurpose"><span class="refname">http_parse_cookie</span> &mdash; <span class="dc-title">Parse HTTP cookie</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">object</span> <span class="methodname"><b><b>http_parse_cookie</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$cookie</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$flags</tt></span>
+   [, <span class="methodparam"><span class="type">array</span> <tt class="parameter">$allowed_extras</tt></span>
+  ]] )</div>
+
+  <p class="para rdfs-comment">
+   Parses HTTP cookies like sent in a response into a struct.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">cookie</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       string containing the value of a <i>Set-Cookie</i> response header
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">flags</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       parse flags (<a href="http.constants.html#http.constants.cookie" class="link"><b><tt>HTTP_COOKIE_PARSE_RAW</tt></b></a>)
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">allowed_extras</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       array containing recognized <em class="emphasis">extra</em> keys;
+       by default all unknown keys will be treated as cookie names
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a stdClass object on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ 
+
+
+ 
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Using <b>http_parse_cookie()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">http_parse_cookie</span><span style="color: #007700">(</span><span style="color: #DD0000">"foo=bar;&nbsp;bar=baz;&nbsp;path=/;&nbsp;domain=example.com;&nbsp;comment=;&nbsp;secure"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"comment"</span><span style="color: #007700">)));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+stdClass Object
+(
+  [cookies] =&gt; Array
+  (
+    [foo] =&gt; bar
+    [bar] =&gt; baz
+  )
+
+  [extras] =&gt; Array
+  (
+    [comment] =&gt;
+  )
+
+  [flags] =&gt; 16
+  [expires] =&gt; 0
+  [path] =&gt; /
+  [domain] =&gt; example.com
+)
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.http-parse-headers.html" class="function" rel="rdfs-seeAlso">http_parse_headers()</a></li>
+    <li class="member"><a href="function.http-parse-message.html" class="function" rel="rdfs-seeAlso">http_parse_message()</a></li>
+    <li class="member"><a href="function.http-build-cookie.html" class="function" rel="rdfs-seeAlso">http_build_cookie()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ob-inflatehandler.html">ob_inflatehandler</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-parse-headers.html">http_parse_headers</a></div>
+ <div class="up"><a href="ref.http.html">HTTP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

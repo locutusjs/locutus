@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set the effective UID of the current process</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.posix-setegid.html">posix_setegid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.posix-setgid.html">posix_setgid</a></div>
+ <div class="up"><a href="ref.posix.html">POSIX Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.posix-seteuid" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">posix_seteuid</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5)</p><p class="refpurpose"><span class="refname">posix_seteuid</span> &mdash; <span class="dc-title">Set the effective UID of the current process</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>posix_seteuid</b></b></span>
+    ( <span class="methodparam"><span class="type">int</span> <tt class="parameter">$uid</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Set the real user ID of the current process. This is a privileged
+   function and needs appropriate privileges (usually root) on
+   the system to be able to perform this function.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">uid</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The user id.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.posix-setgid.html" class="function" rel="rdfs-seeAlso">posix_setgid()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.posix-setegid.html">posix_setegid</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.posix-setgid.html">posix_setgid</a></div>
+ <div class="up"><a href="ref.posix.html">POSIX Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

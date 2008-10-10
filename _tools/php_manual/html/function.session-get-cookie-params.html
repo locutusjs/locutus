@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Get the session cookie parameters</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-encode.html">session_encode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-id.html">session_id</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.session-get-cookie-params" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">session_get_cookie_params</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">session_get_cookie_params</span> &mdash; <span class="dc-title">Get the session cookie parameters</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>session_get_cookie_params</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Gets the session cookie parameters.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array with the current session cookie information, the array
+   contains the following items:
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      &quot;lifetime&quot; -  The lifetime of the cookie in seconds.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;path&quot; -  The path where information is stored.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;domain&quot; -  The domain of the cookie.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;secure&quot; -  The cookie should only be sent over secure connections.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      &quot;httponly&quot; - The cookie can only be accessed through the HTTP protocol.
+     </span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.2.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        The &quot;httponly&quot; entry was added in the returned array.
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.4</td>
+       <td colspan="1" rowspan="1" align="left">
+        The &quot;secure&quot; entry was added in the returned array.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="session.configuration.html#ini.session.cookie-lifetime" class="link">session.cookie_lifetime</a></li>
+    <li class="member"><a href="session.configuration.html#ini.session.cookie-path" class="link">session.cookie_path</a></li>
+    <li class="member"><a href="session.configuration.html#ini.session.cookie-domain" class="link">session.cookie_domain</a></li>
+    <li class="member"><a href="session.configuration.html#ini.session.cookie-secure" class="link">session.cookie_secure</a></li>
+    <li class="member"><a href="session.configuration.html#ini.session.cookie-httponly" class="link">session.cookie_httponly</a></li>
+    <li class="member"><a href="session.configuration.html#ini.session.cookie-lifetime" class="link">session.cookie_lifetime</a></li>
+    <li class="member"><a href="function.session-set-cookie-params.html" class="function" rel="rdfs-seeAlso">session_set_cookie_params()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.session-encode.html">session_encode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.session-id.html">session_id</a></div>
+ <div class="up"><a href="ref.session.html">Session Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

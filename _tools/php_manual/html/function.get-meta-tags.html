@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Extracts all meta tag content attributes from a file and returns an array</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.get-headers.html">get_headers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-build-query.html">http_build_query</a></div>
+ <div class="up"><a href="ref.url.html">URL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.get-meta-tags" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">get_meta_tags</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">get_meta_tags</span> &mdash; <span class="dc-title">Extracts all meta tag content attributes from a file and returns an array</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>get_meta_tags</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$use_include_path</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Opens <i><tt class="parameter">filename</tt></i>
+ and parses it line by line for
+   &lt;meta&gt; tags in the file. The parsing stops at
+   <i>&lt;/head&gt;</i>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The path to the HTML file, as a string. This can be a local file or an
+       <acronym title="Uniform Resource Locator">URL</acronym>.
+      </p>
+      <p class="para">
+       <div class="example">
+        <p><b>Example #1 What <b>get_meta_tags()</b> parses</b></p>
+        <div class="example-contents">
+<div class="cdata"><pre>
+&lt;meta name=&quot;author&quot; content=&quot;name&quot;&gt;
+&lt;meta name=&quot;keywords&quot; content=&quot;php documentation&quot;&gt;
+&lt;meta name=&quot;DESCRIPTION&quot; content=&quot;a php manual&quot;&gt;
+&lt;meta name=&quot;geo.position&quot; content=&quot;49.33;-86.59&quot;&gt;
+&lt;/head&gt; &lt;!-- parsing stops here --&gt;
+</pre></div>
+        </div>
+
+       </div>
+       (pay attention to line endings - PHP uses a native function to
+       parse the input, so a Mac file won&#039;t work on Unix).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">use_include_path</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Setting <i><tt class="parameter">use_include_path</tt></i>
+ to <b><tt>TRUE</tt></b> will result
+       in PHP trying to open the file along the standard include path as per
+       the <a href="ini.core.html#ini.include-path" class="link">include_path</a> directive.
+       This is used for local files, not URLs.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an array with all the parsed meta tags.
+  </p>
+  <p class="para">
+   The value of the name property becomes the key, the value of the content
+   property becomes the value of the returned array, so you can easily use
+   standard array functions to traverse it or access single values. 
+   Special characters in the value of the name property are substituted with
+   &#039;_&#039;, the rest is converted to lower case.  If two meta tags have the same
+   name, only the last one is returned.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">4.0.5</td>
+       <td colspan="1" rowspan="1" align="left">
+        Support for unquoted HTML attributes was added.
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 What <b>get_meta_tags()</b> returns</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Assuming&nbsp;the&nbsp;above&nbsp;tags&nbsp;are&nbsp;at&nbsp;www.example.com<br /></span><span style="color: #0000BB">$tags&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">get_meta_tags</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://www.example.com/'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Notice&nbsp;how&nbsp;the&nbsp;keys&nbsp;are&nbsp;all&nbsp;lowercase&nbsp;now,&nbsp;and<br />//&nbsp;how&nbsp;.&nbsp;was&nbsp;replaced&nbsp;by&nbsp;_&nbsp;in&nbsp;the&nbsp;key.<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$tags</span><span style="color: #007700">[</span><span style="color: #DD0000">'author'</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;name<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$tags</span><span style="color: #007700">[</span><span style="color: #DD0000">'keywords'</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;php&nbsp;documentation<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$tags</span><span style="color: #007700">[</span><span style="color: #DD0000">'description'</span><span style="color: #007700">];&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;a&nbsp;php&nbsp;manual<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$tags</span><span style="color: #007700">[</span><span style="color: #DD0000">'geo_position'</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;49.33;-86.59<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.htmlentities.html" class="function" rel="rdfs-seeAlso">htmlentities()</a></li>
+    <li class="member"><a href="function.urlencode.html" class="function" rel="rdfs-seeAlso">urlencode()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.get-headers.html">get_headers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.http-build-query.html">http_build_query</a></div>
+ <div class="up"><a href="ref.url.html">URL Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Writes data to fd with optional truncation at length</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.dio.html">Direct IO Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.dir.html">Directories</a></div>
+ <div class="up"><a href="ref.dio.html">Direct IO Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.dio-write" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dio_write</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5 &lt;= 5.0.5)</p><p class="refpurpose"><span class="refname">dio_write</span> &mdash; <span class="dc-title">
+   Writes data to fd with optional truncation at length 
+  </span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><b><b>dio_write</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$fd</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$len</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   <b>dio_write()</b> writes up to <i><tt class="parameter">len</tt></i>
+ 
+   bytes from <i><tt class="parameter">data</tt></i>
+ to file <i><tt class="parameter">fd</tt></i>
+. 
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">fd</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The file descriptor returned by <a href="function.dio-open.html" class="function">dio_open()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">data</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The written data.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">len</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The length of data to write in bytes. If not specified, the 
+       function writes all the data to the specified file.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the number of bytes written to <i><tt class="parameter">fd</tt></i>
+.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.dio-read.html" class="function" rel="rdfs-seeAlso">dio_read()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="ref.dio.html">Direct IO Functions</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="book.dir.html">Directories</a></div>
+ <div class="up"><a href="ref.dio.html">Direct IO Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

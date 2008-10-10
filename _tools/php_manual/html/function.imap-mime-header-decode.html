@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Decode MIME header elements</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-mailboxmsginfo.html">imap_mailboxmsginfo</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-msgno.html">imap_msgno</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.imap-mime-header-decode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_mime_header_decode</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">imap_mime_header_decode</span> &mdash; <span class="dc-title">Decode MIME header elements</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>imap_mime_header_decode</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$text</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Decodes MIME message header extensions that are non ASCII text (see <a href="http://www.faqs.org/rfcs/rfc2047" class="link external">&raquo; RFC2047</a>).
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">text</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The MIME text
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   The decoded elements are returned in an array of objects, where each
+   object has two properties, <i>charset</i> and 
+   <i>text</i>.
+  </p>
+  <p class="para">
+   If the element hasn&#039;t been encoded, and in other words is in
+   plain US-ASCII, the <i>charset</i> property of that element is
+   set to <i>default</i>.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>imap_mime_header_decode()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$text&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"=?ISO-8859-1?Q?Keld_J=F8rn_Simonsen?=&nbsp;&lt;keld@example.com&gt;"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$elements&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imap_mime_header_decode</span><span style="color: #007700">(</span><span style="color: #0000BB">$text</span><span style="color: #007700">);<br />for&nbsp;(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$elements</span><span style="color: #007700">);&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Charset:&nbsp;{$elements[$i]-&gt;charset}\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Text:&nbsp;{$elements[$i]-&gt;text}\n\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+Charset: ISO-8859-1
+Text: Keld Jørn Simonsen
+
+Charset: default
+Text:  &lt;keld@example.com&gt;
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+  <p class="para">
+   In the above example we would have two elements, whereas the first
+   element had previously been encoded with ISO-8859-1, and the second
+   element would be plain US-ASCII.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.imap-utf8.html" class="function" rel="rdfs-seeAlso">imap_utf8()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.imap-mailboxmsginfo.html">imap_mailboxmsginfo</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.imap-msgno.html">imap_msgno</a></div>
+ <div class="up"><a href="ref.imap.html">IMAP Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

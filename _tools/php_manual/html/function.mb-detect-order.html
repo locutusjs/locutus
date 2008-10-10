@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set/Get character encoding detection order</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-detect-encoding.html">mb_detect_encoding</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-encode-mimeheader.html">mb_encode_mimeheader</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.mb-detect-order" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mb_detect_order</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p><p class="refpurpose"><span class="refname">mb_detect_order</span> &mdash; <span class="dc-title">Set/Get character encoding detection order</span></p>
+
+ </div>
+   
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>mb_detect_order</b></b></span>
+    ([ <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <tt class="parameter">$encoding_list</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Sets the automatic character
+   encoding detection order to <i><tt class="parameter">encoding_list</tt></i>
+.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding_list</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">encoding_list</tt></i>
+ is an <a href="language.types.array.html" class="type array">array</a> or 
+       comma separated list of character encoding. (&quot;auto&quot; is expanded to
+       &quot;ASCII, JIS, UTF-8, EUC-JP, SJIS&quot;)
+      </p>
+      <p class="para">
+       If <i><tt class="parameter">encoding_list</tt></i>
+ is omitted, it returns
+       the current character encoding detection order as array.
+      </p>
+      <p class="para">
+       This setting affects <a href="function.mb-detect-encoding.html" class="function">mb_detect_encoding()</a> and
+       <a href="function.mb-send-mail.html" class="function">mb_send_mail()</a>.
+      </p>
+      <p class="para">
+       <i>mbstring</i> currently implements the following
+       encoding detection filters. If there is an invalid byte sequence
+       for the following encodings, encoding detection will fail.
+      </p>
+      <span class="simpara">
+       <i>UTF-8</i>, <i>UTF-7</i>,
+       <i>ASCII</i>,
+       <i>EUC-JP</i>,<i>SJIS</i>,
+       <i>eucJP-win</i>, <i>SJIS-win</i>,
+       <i>JIS</i>, <i>ISO-2022-JP</i> 
+      </span>
+      <p class="para">
+       For <i>ISO-8859-*</i>, <i>mbstring</i>
+       always detects as <i>ISO-8859-*</i>.
+      </p>
+      <p class="para">
+       For <i>UTF-16</i>, <i>UTF-32</i>,
+       <i>UCS2</i> and <i>UCS4</i>, encoding
+       detection will fail always.
+      </p>
+      <p class="para">
+       <div class="example">
+        <p><b>Example #1 Useless detect order example</b></p>
+        <div class="example-contents">
+<div class="cdata"><pre>
+; Always detect as ISO-8859-1
+detect_order = ISO-8859-1, UTF-8
+
+; Always detect as UTF-8, since ASCII/UTF-7 values are 
+; valid for UTF-8
+detect_order = UTF-8, ASCII, UTF-7
+</pre></div>
+        </div>
+
+       </div>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #2 <b>mb_detect_order()</b> examples</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Set&nbsp;detection&nbsp;order&nbsp;by&nbsp;enumerated&nbsp;list&nbsp;*/<br /></span><span style="color: #0000BB">mb_detect_order</span><span style="color: #007700">(</span><span style="color: #DD0000">"eucjp-win,sjis-win,UTF-8"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Set&nbsp;detection&nbsp;order&nbsp;by&nbsp;array&nbsp;*/<br /></span><span style="color: #0000BB">$ary</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #DD0000">"ASCII"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$ary</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #DD0000">"JIS"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$ary</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #DD0000">"EUC-JP"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">mb_detect_order</span><span style="color: #007700">(</span><span style="color: #0000BB">$ary</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Display&nbsp;current&nbsp;detection&nbsp;order&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">implode</span><span style="color: #007700">(</span><span style="color: #DD0000">",&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mb_detect_order</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.mb-internal-encoding.html" class="function" rel="rdfs-seeAlso">mb_internal_encoding()</a></li>
+    <li class="member"><a href="function.mb-http-input.html" class="function" rel="rdfs-seeAlso">mb_http_input()</a></li>
+    <li class="member"><a href="function.mb-http-output.html" class="function" rel="rdfs-seeAlso">mb_http_output()</a></li>
+    <li class="member"><a href="function.mb-send-mail.html" class="function" rel="rdfs-seeAlso">mb_send_mail()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.mb-detect-encoding.html">mb_detect_encoding</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.mb-encode-mimeheader.html">mb_encode_mimeheader</a></div>
+ <div class="up"><a href="ref.mbstring.html">Multibyte String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

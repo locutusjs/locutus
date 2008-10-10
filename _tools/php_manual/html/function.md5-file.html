@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Calculates the md5 hash of a given file</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ltrim.html">ltrim</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.md5.html">md5</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.md5-file" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">md5_file</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5, PECL hash:1.1-1.3)</p><p class="refpurpose"><span class="refname">md5_file</span> &mdash; <span class="dc-title">Calculates the md5 hash of a given file</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><b><b>md5_file</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   [, <span class="methodparam"><span class="type">bool</span> <tt class="parameter">$raw_output</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Calculates the MD5 hash of the file specified by the
+   <i><tt class="parameter">filename</tt></i>
+ parameter using the
+   <a href="http://www.faqs.org/rfcs/rfc1321" class="link external">&raquo; RSA Data Security, Inc. 
+   MD5 Message-Digest Algorithm</a>, and returns that hash.
+   The hash is a 32-character hexadecimal number.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The filename
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">raw_output</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       When <b><tt>TRUE</tt></b>, returns the digest in raw binary format with a length of
+       16. Defaults to <b><tt>FALSE</tt></b>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a string on success, <b><tt>FALSE</tt></b> otherwise.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog">
+  <h3 class="title">ChangeLog</h3>
+  <p class="para">
+   <table class="informaltable">
+    <colgroup>
+
+     <thead valign="middle">
+      <tr valign="middle">
+       <th colspan="1">Version</th>
+       <th colspan="1">Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody valign="middle" class="tbody">
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.0.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        Added the <i><tt class="parameter">raw_output</tt></i>
+ parameter
+       </td>
+      </tr>
+
+      <tr valign="middle">
+       <td colspan="1" rowspan="1" align="left">5.1.0</td>
+       <td colspan="1" rowspan="1" align="left">
+        Changed the function to use the streams API. It means that you can use
+        it with wrappers, like <i>md5_file(&#039;http://example.com/..&#039;)</i>
+       </td>
+      </tr>
+
+     </tbody>
+    </colgroup>
+
+   </table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 Usage example of <b>md5_file()</b></b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'php-5.3.0alpha2-Win32-VC9-x64.zip'</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #DD0000">'MD5&nbsp;file&nbsp;hash&nbsp;of&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$file&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">':&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">md5_file</span><span style="color: #007700">(</span><span style="color: #0000BB">$file</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.md5.html" class="function" rel="rdfs-seeAlso">md5()</a></li>
+    <li class="member"><a href="function.sha1-file.html" class="function" rel="rdfs-seeAlso">sha1_file()</a></li>
+    <li class="member"><a href="function.crc32.html" class="function" rel="rdfs-seeAlso">crc32()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.ltrim.html">ltrim</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.md5.html">md5</a></div>
+ <div class="up"><a href="ref.strings.html">String Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

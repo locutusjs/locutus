@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Returns record of paradox database</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-put-record.html">px_put_record</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-set-blob-file.html">px_set_blob_file</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.px-retrieve-record" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">px_retrieve_record</h1>
+  <p class="verinfo">(PECL paradox:1.4.0-1.4.1)</p><p class="refpurpose"><span class="refname">px_retrieve_record</span> &mdash; <span class="dc-title">Returns record of paradox database</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>px_retrieve_record</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$pxdoc</tt></span>
+   , <span class="methodparam"><span class="type">int</span> <tt class="parameter">$num</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$mode</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   This function is very similar to <a href="function.px-get-record.html" class="function">px_get_record()</a>
+   but uses internally a different approach to retrieve the data. It
+   relies on pxlib for reading each single field value, which usually
+   results in support for more field types.
+  </p>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    This function is only available if pxlib &gt;= 0.6.0 is used.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pxdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the paradox database
+       as returned by <a href="function.px-new.html" class="function">px_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">num</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The record number is an artificial number counting records in the order
+       as they are stored in the database. The first record has number 0.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The optional <i><tt class="parameter">mode</tt></i>
+ can be
+       <b><tt>PX_KEYTOLOWER</tt></b> or <b><tt>PX_KEYTOUPPER</tt></b>
+       in order to convert the keys into lower or upper case. If
+       <i><tt class="parameter">mode</tt></i>
+ is not passed or is 0, then the key will be
+       exactly like the field name. The element values will contain the field
+       values. NULL values will be retained and are different from 0.0, 0 or
+       the empty string. Fields of type <b><tt>PX_FIELD_TIME</tt></b>
+       will be returned as an integer counting the number of milliseconds
+       starting at midnight. A timestamp is a floating point value also
+       counting milliseconds starting at the beginning of julian calendar.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the <i><tt class="parameter">num</tt></i>
+&#039;th record from the paradox
+   database. The record is returned as an associated array with its keys
+   being the field names.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.px-get-record.html" class="function" rel="rdfs-seeAlso">px_get_record()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-put-record.html">px_put_record</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-set-blob-file.html">px_set_blob_file</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

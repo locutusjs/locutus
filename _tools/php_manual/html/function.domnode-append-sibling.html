@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Adds new sibling to a node</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domnode-append-child.html">DomNode->append_child</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domnode-attributes.html">DomNode->attributes</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.domnode-append-sibling" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">DomNode-&gt;append_sibling</h1>
+  <p class="verinfo">(No version information available, might be only in CVS)</p><p class="refpurpose"><span class="refname">DomNode-&gt;append_sibling</span> &mdash; <span class="dc-title">
+   Adds new sibling to a node
+  </span></p>
+
+ </div>
+ <div class="refsect1 unknown">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="class.domelement.html" class="type domelement">domelement</a></span> <span class="methodname"><b><b>DomNode->append_sibling</b></b></span>
+    ( <span class="methodparam"><span class="type"><a href="class.domelement.html" class="type domelement">domelement</a></span> <tt class="parameter">$newnode</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This functions appends a sibling to an existing node.
+   The child can be created with e.g.
+   <a href="function.domdocument-create-element.html" class="function">domdocument_create_element()</a>,
+   <b>domdocument_create_text()</b> etc. or simply by using any
+   other node.
+  </p>
+  <p class="para">
+   Before a new sibling is added it is first duplicated. Therefore the new
+   child is a completely new copy which can be modified without changing the
+   node which was passed to this function. If the node passed has children
+   itself, they will be duplicated as well, which makes it quite easy to
+   duplicate large parts of an XML document. The return value is the
+   added sibling. If you plan to do further modifications on the added
+   sibling you must use the returned node.
+  </p>
+  <p class="para">
+   This function has been added to provide the behaviour of
+   <a href="function.domnode-append-child.html" class="function">domnode_append_child()</a> as it works till PHP 4.2.
+  </p>
+  <p class="para">
+   See also <b>domnode_append_before()</b>.
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.domnode-append-child.html">DomNode->append_child</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.domnode-attributes.html">DomNode->attributes</a></div>
+ <div class="up"><a href="ref.domxml.html">DOM XML Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

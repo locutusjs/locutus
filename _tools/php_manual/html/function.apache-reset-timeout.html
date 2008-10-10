@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Reset the Apache write timer</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.apache-request-headers.html">apache_request_headers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.apache-response-headers.html">apache_response_headers</a></div>
+ <div class="up"><a href="ref.apache.html">Apache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.apache-reset-timeout" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">apache_reset_timeout</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0)</p><p class="refpurpose"><span class="refname">apache_reset_timeout</span> &mdash; <span class="dc-title">Reset the Apache write timer</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>apache_reset_timeout</b></b></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>apache_reset_timeout()</b> resets the Apache write timer,
+   which defaults to 300 seconds. With <i>set_time_limit(0);
+   ignore_user_abort(true)</i> and periodic
+   <b>apache_reset_timeout()</b> calls, Apache can theoretically
+   run forever.
+  </p>
+  <p class="para">
+   This function requires Apache 1.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>TRUE</tt></b> on success or <b><tt>FALSE</tt></b> on failure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">This function is disabled when PHP is running in <a href="features.safe-mode.html" class="link">safe mode</a>.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.set-time-limit.html" class="function" rel="rdfs-seeAlso">set_time_limit()</a></li>
+    <li class="member"><a href="function.ignore-user-abort.html" class="function" rel="rdfs-seeAlso">ignore_user_abort()</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.apache-request-headers.html">apache_request_headers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.apache-response-headers.html">apache_response_headers</a></div>
+ <div class="up"><a href="ref.apache.html">Apache Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

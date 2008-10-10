@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Open gz-file</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gzinflate.html">gzinflate</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gzpassthru.html">gzpassthru</a></div>
+ <div class="up"><a href="ref.zlib.html">Zlib Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.gzopen" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">gzopen</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">gzopen</span> &mdash; <span class="dc-title">Open gz-file</span></p>
+
+ </div>
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><b><b>gzopen</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$filename</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$mode</tt></span>
+   [, <span class="methodparam"><span class="type">int</span> <tt class="parameter">$use_include_path</tt></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Opens a gzip (.gz) file for reading or writing. 
+  </p>
+  <p class="para">
+   <b>gzopen()</b> can be used to read a file which is
+   not in gzip format; in this case <a href="function.gzread.html" class="function">gzread()</a> will
+   directly read from the file without decompression.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">filename</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The file name.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">mode</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       As in <a href="function.fopen.html" class="function">fopen()</a> (<i>rb</i> or 
+       <i>wb</i>) but can also include a compression level 
+       (<i>wb9</i>) or a strategy: <i>f</i> for
+       filtered data as in <i>wb6f</i>, <i>h</i> for
+       <i>Huffman only compression</i> as in <i>wb1h</i>.
+       (See the description of deflateInit2 in <var class="filename">zlib.h</var> for 
+       more information about the strategy parameter.)
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">use_include_path</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       You can set this optional parameter to <i>1</i>, if you
+       want to search for the file in the <a href="ini.core.html#ini.include-path" class="link">include_path</a> too.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns a file pointer to the file opened, after that, everything you read
+   from this file descriptor will be transparently decompressed and what you 
+   write gets compressed.
+  </p>
+  <p class="para">
+   If the open fails, the function returns <b><tt>FALSE</tt></b>.
+  </p>
+ </div>
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>gzopen()</b> Example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">gzopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"/tmp/file.gz"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"r"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.gzclose.html" class="function" rel="rdfs-seeAlso">gzclose()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.gzinflate.html">gzinflate</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.gzpassthru.html">gzpassthru</a></div>
+ <div class="up"><a href="ref.zlib.html">Zlib Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

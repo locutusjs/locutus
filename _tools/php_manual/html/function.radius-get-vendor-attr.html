@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Extracts a vendor specific attribute</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.radius-get-attr.html">radius_get_attr</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.radius-put-addr.html">radius_put_addr</a></div>
+ <div class="up"><a href="ref.radius.html">Radius Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.radius-get-vendor-attr" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">radius_get_vendor_attr</h1>
+  <p class="verinfo">(PECL radius:1.1-1.2.5)</p><p class="refpurpose"><span class="refname">radius_get_vendor_attr</span> &mdash; <span class="dc-title">Extracts a vendor specific attribute</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><b><b>radius_get_vendor_attr</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$data</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   If <a href="function.radius-get-attr.html" class="function">radius_get_attr()</a> returns
+   <b><tt>RADIUS_VENDOR_SPECIFIC</tt></b>,
+   <b>radius_get_vendor_attr()</b> may be called to determine the
+   vendor.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns an associative array containing the attribute-type, vendor and the
+   data, or <b><tt>FALSE</tt></b> on error.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>radius_get_vendor_attr()</b> example</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">while&nbsp;(</span><span style="color: #0000BB">$resa&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">radius_get_attr</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">))&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!</span><span style="color: #0000BB">is_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$resa</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"Error&nbsp;getting&nbsp;attribute:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;&nbsp;</span><span style="color: #0000BB">radius_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$resa</span><span style="color: #007700">[</span><span style="color: #DD0000">'attr'</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$resa</span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Got&nbsp;Attr:%d&nbsp;%d&nbsp;Bytes&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$attr</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">bin2hex</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$attr&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">RADIUS_VENDOR_SPECIFIC</span><span style="color: #007700">)&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$resv&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">radius_get_vendor_attr</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">is_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$resv</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$vendor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$resv</span><span style="color: #007700">[</span><span style="color: #DD0000">'vendor'</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$attrv&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$resv</span><span style="color: #007700">[</span><span style="color: #DD0000">'attr'</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$datav&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$resv</span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Got&nbsp;Vendor&nbsp;Attr:%d&nbsp;%d&nbsp;Bytes&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$attrv</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">$datav</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">bin2hex</span><span style="color: #007700">(</span><span style="color: #0000BB">$datav</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.radius-get-attr.html" class="function" rel="rdfs-seeAlso">radius_get_attr()</a></li>
+    <li class="member"><a href="function.radius-put-vendor-attr.html" class="function" rel="rdfs-seeAlso">radius_put_vendor_attr()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.radius-get-attr.html">radius_get_attr</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.radius-put-addr.html">radius_put_addr</a></div>
+ <div class="up"><a href="ref.radius.html">Radius Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

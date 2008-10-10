@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Sets the encoding for character fields (deprecated)</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-set-tablename.html">px_set_tablename</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-set-value.html">px_set_value</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.px-set-targetencoding" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">px_set_targetencoding</h1>
+  <p class="verinfo">(PECL paradox:1.0-1.4.1)</p><p class="refpurpose"><span class="refname">px_set_targetencoding</span> &mdash; <span class="dc-title">Sets the encoding for character fields (deprecated)</span></p>
+
+ </div>
+
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><b><b>px_set_targetencoding</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$pxdoc</tt></span>
+   , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$encoding</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Set the encoding for data retrieved from a character field. All character
+   fields will be recoded to the encoding set by this function. If the
+   encoding is not set, the character data will be returned in the DOS code
+   page encoding as specified in the database file. The
+   <i><tt class="parameter">encoding</tt></i>
+ can be any string identifier known to
+   iconv or recode. On Unix systems run <i>iconv -l</i> for
+   a list of available encodings.
+  </p>
+  <p class="para">This function is deprecated and should be replaced by calling
+   <a href="function.px-set-parameter.html" class="function">px_set_parameter()</a>.
+  </p>
+  <p class="para">
+   See also <a href="function.px-get-info.html" class="function">px_get_info()</a> to determine the DOS code page
+   as stored in the database file.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">pxdoc</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       Resource identifier of the paradox database
+       as returned by <a href="function.px-new.html" class="function">px_new()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">encoding</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The encoding for the output. Data which is being read from
+       character fields is recoded into the targetencoding.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns <b><tt>FALSE</tt></b> if the encoding could not be set, e.g. the encoding is
+   unknown, or pxlib does not support recoding at all. In the second case a
+   warning will be issued.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+    <a href="function.px-set-parameter.html" class="function" rel="rdfs-seeAlso">px_set_parameter()</a>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.px-set-tablename.html">px_set_tablename</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.px-set-value.html">px_set_value</a></div>
+ <div class="up"><a href="ref.paradox.html">Paradox Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

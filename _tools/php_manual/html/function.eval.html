@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Evaluate a string as PHP code</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.die.html">die</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.exit.html">exit</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.eval" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">eval</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">eval</span> &mdash; <span class="dc-title">Evaluate a string as PHP code</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><b><b>eval</b></b></span>
+    ( <span class="methodparam"><span class="type">string</span> <tt class="parameter">$code_str</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Evaluates the string given in <i><tt class="parameter">code_str</tt></i>
+ as PHP code.
+   Among other things, this can be useful for storing code in a database text
+   field for later execution. 
+  </p>
+  <p class="para">
+   There are some factors to keep in mind when using
+   <b>eval()</b>. Remember that the string passed must be valid
+   PHP code, including things like terminating statements with a semicolon so
+   the parser doesn&#039;t die on the line after the <b>eval()</b>,
+   and properly escaping things in <i><tt class="parameter">code_str</tt></i>
+. To mix
+   HTML output and PHP code you can use a closing PHP tag to leave PHP mode.
+  </p>
+  <p class="para">
+   Also remember that variables given values under <b>eval()</b>
+   will retain these values in the main script afterwards.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">code_str</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The code string to be evaluated.
+       <i><tt class="parameter">code_str</tt></i>
+ does not have to contain <a href="language.basic-syntax.html#language.basic-syntax.phpmode" class="link">PHP Opening tags</a>.
+      </p>
+      <p class="para">
+       A <i>return</i> statement will immediately terminate the
+       evaluation of the string . 
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   <b>eval()</b> returns <b><tt>NULL</tt></b> unless 
+   <i>return</i> is called in the evaluated code, in which case
+   the value passed to <i>return</i> is returned. If there is a
+   parse error in the evaluated code, <b>eval()</b> returns
+   <b><tt>FALSE</tt></b> and execution of the following code continues normally. It is
+   not possible to catch a parse error in <b>eval()</b>
+   using <a href="function.set-error-handler.html" class="function">set_error_handler()</a>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <p class="para">
+   <div class="example">
+    <p><b>Example #1 <b>eval()</b> example - simple text merge</b></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'cup'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'coffee'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;a&nbsp;$string&nbsp;with&nbsp;my&nbsp;$name&nbsp;in&nbsp;it.'</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />eval(</span><span style="color: #DD0000">"\$str&nbsp;=&nbsp;\"$str\";"</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>The above example will output:</p></div>
+    <div class="example-contents"><pre>
+<div class="cdata"><pre>
+This is a $string with my $name in it.
+This is a cup with my coffee in it.
+</pre></div>
+    </pre></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes">
+  <h3 class="title">Notes</h3>
+
+  <blockquote><p><b class="note">Note</b>: <span class="simpara">Because this is a 
+language construct and not a function, it cannot be called using 
+<a href="functions.variable-functions.html" class="link">variable functions</a></span>
+</p></blockquote>
+
+  <div class="tip"><b class="tip">Tip</b><p class="simpara">As with anything that outputs
+its result directly to the browser, the <a href="ref.outcontrol.html" class="link">output-control functions</a> can be used to capture
+the output of this function, and save it in a
+<a href="language.types.string.html" class="type string">string</a> (for example).</p></div>
+  <blockquote><p><b class="note">Note</b>: 
+   
+    In case of a fatal error in the evaluated code, the whole script exits.
+   <br />
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso">
+  <h3 class="title">See Also</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="function.call-user-func.html" class="function" rel="rdfs-seeAlso">call_user_func()</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.die.html">die</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.exit.html">exit</a></div>
+ <div class="up"><a href="ref.misc.html">Misc. Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

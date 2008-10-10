@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>Set the SAX handlers to be called when the XML document gets processed</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ </head>
+ <body><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xslt-set-sax-handler.html">xslt_set_sax_handler</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xslt-set-scheme-handler.html">xslt_set_scheme_handler</a></div>
+ <div class="up"><a href="ref.xslt.html">XSLT Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.xslt-set-sax-handlers" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xslt_set_sax_handlers</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6)</p><p class="refpurpose"><span class="refname">xslt_set_sax_handlers</span> &mdash; <span class="dc-title">Set the SAX handlers to be called when the XML document gets processed</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><span class="type void">void</span></span> <span class="methodname"><b><b>xslt_set_sax_handlers</b></b></span>
+    ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$processor</tt></span>
+   , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$handlers</tt></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   <b>xslt_set_sax_handlers()</b> registers the SAX
+   <i><tt class="parameter">handlers</tt></i>
+ for the document, given a XSLT
+   <i><tt class="parameter">processor</tt></i>
+ resource.
+  </p>
+  <p class="para">
+   Using <b>xslt_set_sax_handlers()</b> doesn&#039;t look very different than
+   running a SAX parser like <a href="function.xml-parse.html" class="function">xml_parse()</a> on the result of an
+   <a href="function.xslt-process.html" class="function">xslt_process()</a> transformation.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">processor</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       The XSLT processor link identifier, created with
+       <a href="function.xslt-create.html" class="function">xslt_create()</a>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><i><tt class="parameter">handlers</tt></i>
+</span>
+
+     <dd>
+
+      <p class="para">
+       <i><tt class="parameter">handlers</tt></i>
+ should be an array in the following format:
+        <div class="informalexample">
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$handlers&nbsp;</span><span style="color: #007700">=&nbsp;array(<br /><br />&nbsp;&nbsp;</span><span style="color: #DD0000">"document"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"start_doc"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"end_doc"</span><span style="color: #007700">),<br /><br />&nbsp;&nbsp;</span><span style="color: #DD0000">"element"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"start_element"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"end_element"</span><span style="color: #007700">),<br /><br />&nbsp;&nbsp;</span><span style="color: #DD0000">"namespace"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"start_namespace"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"end_namespace"</span><span style="color: #007700">),<br /><br />&nbsp;&nbsp;</span><span style="color: #DD0000">"comment"&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"comment"</span><span style="color: #007700">,<br /><br />&nbsp;&nbsp;</span><span style="color: #DD0000">"pi"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"pi"</span><span style="color: #007700">,<br /><br />&nbsp;&nbsp;</span><span style="color: #DD0000">"character"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"characters"<br /><br /></span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+        </div>
+
+       </div>
+       Where the functions follow the syntax described for the scheme handler
+       functions.
+      </p>
+      <blockquote><p><b class="note">Note</b>: 
+       
+        The given array does not need to contain all of the different sax
+        handler elements (although it can), but it only needs to conform to
+        &quot;handler&quot; =&gt; &quot;function&quot; format described above.
+       <br />
+      </p></blockquote>
+      <p class="para">
+       Each of the individual SAX handler functions are in the format below:
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <p class="para">
+         <div class="methodsynopsis dc-description">
+           <span class="methodname"><b><span class="replaceable">start_doc</span></b></span>
+           ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$processor</tt></span>
+          )</div>
+
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+         <div class="methodsynopsis dc-description">
+           <span class="methodname"><b><span class="replaceable">end_doc</span></b></span>
+           ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$processor</tt></span>
+          )</div>
+
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+         <div class="methodsynopsis dc-description">
+           <span class="methodname"><b><span class="replaceable">start_element</span></b></span>
+           ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$processor</tt></span>
+          , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+          , <span class="methodparam"><span class="type">array</span> <tt class="parameter">$attributes</tt></span>
+          )</div>
+
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+         <div class="methodsynopsis dc-description">
+           <span class="methodname"><b><span class="replaceable">end_element</span></b></span>
+           ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$processor</tt></span>
+          , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$name</tt></span>
+          )</div>
+
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+         <div class="methodsynopsis dc-description">
+           <span class="methodname"><b><span class="replaceable">start_namespace</span></b></span>
+           ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$processor</tt></span>
+          , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$prefix</tt></span>
+          , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$uri</tt></span>
+          )</div>
+
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+         <div class="methodsynopsis dc-description">
+           <span class="methodname"><b><span class="replaceable">end_namespace</span></b></span>
+           ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$processor</tt></span>
+          , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$prefix</tt></span>
+          )</div>
+
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+         <div class="methodsynopsis dc-description">
+           <span class="methodname"><b><span class="replaceable">comment</span></b></span>
+           ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$processor</tt></span>
+          , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$contents</tt></span>
+          )</div>
+
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+         <div class="methodsynopsis dc-description">
+           <span class="methodname"><b><span class="replaceable">pi</span></b></span>
+           ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$processor</tt></span>
+          , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$target</tt></span>
+          , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$contents</tt></span>
+          )</div>
+
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+         <div class="methodsynopsis dc-description">
+           <span class="methodname"><b><span class="replaceable">characters</span></b></span>
+           ( <span class="methodparam"><span class="type">resource</span> <tt class="parameter">$processor</tt></span>
+          , <span class="methodparam"><span class="type">string</span> <tt class="parameter">$contents</tt></span>
+          )</div>
+
+         </p>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   No value is returned.
+  </p>
+ </div>
+
+
+ 
+ <div class="refsect1 examples">
+  <h3 class="title">Examples</h3>
+  <div class="example">
+   <p><b>Example #1 <b>xslt_set_sax_handlers()</b> Example</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;From&nbsp;ohlesbeauxjours&nbsp;at&nbsp;yahoo&nbsp;dot&nbsp;fr<br />//&nbsp;Here's&nbsp;a&nbsp;simple&nbsp;example&nbsp;that&nbsp;applies&nbsp;strtoupper()&nbsp;on<br />//&nbsp;the&nbsp;content&nbsp;of&nbsp;every&nbsp;&lt;auteur&gt;&nbsp;tag&nbsp;and&nbsp;then&nbsp;displays&nbsp;the<br />//&nbsp;resulting&nbsp;XML&nbsp;tree:<br /><br /></span><span style="color: #0000BB">$xml</span><span style="color: #007700">=</span><span style="color: #DD0000">'&lt;?xml&nbsp;version="1.0"?&gt;<br />&lt;books&gt;<br />&nbsp;&lt;book&gt;<br />&nbsp;&nbsp;&lt;title&gt;Mme&nbsp;Bovary&lt;/title&gt;<br />&nbsp;&nbsp;&lt;author&gt;Gustave&nbsp;Flaubert&lt;/author&gt;<br />&nbsp;&lt;/book&gt;<br />&nbsp;&lt;book&gt;<br />&nbsp;&nbsp;&lt;title&gt;Mrs&nbsp;Dalloway&lt;/title&gt;<br />&nbsp;&nbsp;&lt;author&gt;Virginia&nbsp;Woolf&lt;/author&gt;<br />&nbsp;&lt;/book&gt;<br />&lt;/books&gt;'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$xsl</span><span style="color: #007700">=</span><span style="color: #DD0000">'&lt;?xml&nbsp;version="1.0"?&gt;<br />&lt;xsl:stylesheet&nbsp;version="1.0"&nbsp;xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;<br />&lt;xsl:output&nbsp;method="html"&nbsp;encoding="ISO-8859-1"&nbsp;indent="no"&nbsp;omit-xml-declaration="yes"/&gt;<br />&lt;xsl:template&nbsp;match="/"&gt;<br />&nbsp;&lt;xsl:for-each&nbsp;select="books/book"&gt;<br />&nbsp;&nbsp;&lt;livre&gt;<br />&nbsp;&nbsp;&nbsp;&lt;auteur&gt;&lt;xsl:value-of&nbsp;select="author/text()"/&gt;&lt;/auteur&gt;<br />&nbsp;&nbsp;&lt;/livre&gt;<br />&nbsp;&lt;/xsl:for-each&gt;<br />&lt;/xsl:template&gt;<br />&lt;/xsl:stylesheet&gt;'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Handlers&nbsp;:<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">start_document</span><span style="color: #007700">()<br />{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;start&nbsp;reading&nbsp;the&nbsp;document<br /></span><span style="color: #007700">}<br /><br />function&nbsp;</span><span style="color: #0000BB">end_document</span><span style="color: #007700">()<br />{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;end&nbsp;reading&nbsp;the&nbsp;document<br /></span><span style="color: #007700">}<br /><br />function&nbsp;</span><span style="color: #0000BB">start_element</span><span style="color: #007700">(</span><span style="color: #0000BB">$parser</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$name</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$attributes</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;global&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">,</span><span style="color: #0000BB">$tag</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">"&lt;"</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$tag&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$name</span><span style="color: #007700">;<br />}<br /><br />function&nbsp;</span><span style="color: #0000BB">end_element</span><span style="color: #007700">(</span><span style="color: #0000BB">$parser</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$name</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;global&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">"&lt;/"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&gt;"</span><span style="color: #007700">;<br />}<br /><br />function&nbsp;</span><span style="color: #0000BB">characters</span><span style="color: #007700">(</span><span style="color: #0000BB">$parser</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;global&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">,</span><span style="color: #0000BB">$tag</span><span style="color: #007700">;<br />&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$tag&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #DD0000">"auteur"&nbsp;</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">strtoupper</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Transformation&nbsp;:<br /></span><span style="color: #0000BB">$xh&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">xslt_create</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$handlers&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"document"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">"start_document"</span><span style="color: #007700">,</span><span style="color: #DD0000">"end_document"</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"element"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">"start_element"</span><span style="color: #007700">,</span><span style="color: #DD0000">"end_element"</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"character"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"characters"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">xslt_set_sax_handlers</span><span style="color: #007700">(</span><span style="color: #0000BB">$xh</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$handlers</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">xslt_process</span><span style="color: #007700">(</span><span style="color: #0000BB">$xh</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'arg:/_xml'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'arg:/_xsl'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"/_xml"</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">$xml</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"/_xsl"</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">$xsl</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">xslt_free</span><span style="color: #007700">(</span><span style="color: #0000BB">$xh</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">
+   You can also use <a href="function.xslt-set-object.html" class="function">xslt_set_object()</a> if you want to
+   implement your handlers in an object.
+  </p>
+  <div class="example">
+   <p><b>Example #2 Object oriented handler</b></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;This&nbsp;is&nbsp;the&nbsp;object&nbsp;oriented&nbsp;version&nbsp;of&nbsp;the&nbsp;previous&nbsp;example<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">data_sax_handler&nbsp;</span><span style="color: #007700">{<br /><br />&nbsp;&nbsp;var&nbsp;</span><span style="color: #0000BB">$buffer</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$tag</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$attrs</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;var&nbsp;</span><span style="color: #0000BB">$_xh</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">data_sax_handler</span><span style="color: #007700">(</span><span style="color: #0000BB">$xml</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$xsl</span><span style="color: #007700">)<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;our&nbsp;xslt&nbsp;resource<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_xh&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">xslt_create</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">xslt_set_object</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_xs</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;configure&nbsp;sax&nbsp;handlers<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$handlers&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"document"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">'start_document'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'end_document'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"element"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">'start_element'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'end_element'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"character"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'characters'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">xslt_set_sax_handlers</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_xh</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$handlers</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">xslt_process</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_xh</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'arg:/_xml'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'arg:/_xsl'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"/_xml"</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">$xml</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"/_xsl"</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">$xsl</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">xslt_free</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_xh</span><span style="color: #007700">);<br /><br /><br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">start_document</span><span style="color: #007700">()<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;start&nbsp;reading&nbsp;the&nbsp;document<br />&nbsp;&nbsp;</span><span style="color: #007700">}<br /><br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">end_document</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;complete&nbsp;reading&nbsp;the&nbsp;document<br />&nbsp;&nbsp;</span><span style="color: #007700">}<br /><br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">start_element</span><span style="color: #007700">(</span><span style="color: #0000BB">$parser</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$name</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$attributes</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">tag&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$name</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">buffer&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">"&lt;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">attrs&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$attributes</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">end_element</span><span style="color: #007700">(</span><span style="color: #0000BB">$parser</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$name</span><span style="color: #007700">)<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">tag&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">buffer&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">"&lt;/"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">characters</span><span style="color: #007700">(</span><span style="color: #0000BB">$parser</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">)<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">tag&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #DD0000">'auteur'</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">strtoupper</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">buffer&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">get_buffer</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">buffer</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br /><br />}<br /><br /></span><span style="color: #0000BB">$exec&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">data_sax_handler</span><span style="color: #007700">(</span><span style="color: #0000BB">$xml</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$xsl</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>
+    Both examples will output:
+   </p></div>
+   <div class="example-contents"><pre>
+<div class="cdata"><pre>
+&lt;livre&gt;
+   &lt;auteur&gt;GUSTAVE FLAUBERT&lt;/auteur&gt;
+&lt;/livre&gt;
+&lt;livre&gt;
+   &lt;auteur&gt;VIRGINIA WOOLF&lt;/auteur&gt;
+&lt;/livre&gt;
+</pre></div>
+   </pre></div>
+  </div>
+ </div>
+
+
+</div><hr /><div style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.xslt-set-sax-handler.html">xslt_set_sax_handler</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.xslt-set-scheme-handler.html">xslt_set_scheme_handler</a></div>
+ <div class="up"><a href="ref.xslt.html">XSLT Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>
