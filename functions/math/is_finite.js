@@ -32,7 +32,7 @@ function is_finite(val) {
         }
     }
     if (warningType) {
-        throw new Error('Warning: is_infinite() expects parameter 1 to be double, '+warningType+' given');
+        throw new Error('Warning: is_finite() expects parameter 1 to be double, '+warningType+' given');
     }
 
     return true;
