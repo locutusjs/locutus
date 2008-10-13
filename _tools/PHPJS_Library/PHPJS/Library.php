@@ -91,6 +91,7 @@ Class PHPJS_Library {
     protected $_dirRealFunc = false;
     protected $_dirRealRoot = false;
     protected $_dirRealTemp = false;
+    protected $_dirRealTool = false;
     
     protected $_dir = false;
     
@@ -332,8 +333,13 @@ Class PHPJS_Library {
             
             $this->_dirRealRoot = $testPath;
         }
+
+        if (!$this->_dirRealTool) {
+            $this->_dirRealTool = $this->_dirRealRoot."/_tools";
+        }
+        
         if (!$this->_dirRealTemp) {
-            $this->_dirRealTemp = $this->_dirRealRoot."/_tools/_temp";
+            $this->_dirRealTemp = $this->_dirRealTool."/_temp";
         }
         
         foreach (array($this->_dirRealFunc, $this->_dirRealRoot, $this->_dirRealTemp) as $dir) {
