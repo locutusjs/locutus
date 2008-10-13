@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.71
+ * This is version: 1.72
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -19,13 +19,13 @@
  * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Anton Ongson, Arno, Atli Þór, Bayron
  * Guevara, Ben Bryan, Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri
- * Ekin, Cord, David, David James, Dino, DxGx, FGFEmperor, Felix Geisendoerfer
- * (http://www.debuggable.com/felix), Francois, FremyCompany, Gabriel Paderni,
- * Howard Yeend, J A R, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Luke
- * Godfrey, Mateusz "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com),
- * Mick@el, Nathan, Nick Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha
- * (http://www.pedrotainha.com), Peter-Paul Koch
- * (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
+ * Ekin, Christian Doebler, Cord, David, David James, Dino, DxGx, FGFEmperor,
+ * Felix Geisendoerfer (http://www.debuggable.com/felix), Francois,
+ * FremyCompany, Gabriel Paderni, Howard Yeend, J A R, Kirk Strobeck, LH,
+ * Leslie Hoare, Lincoln Ramsay, Luke Godfrey, Mateusz "loonquawl" Zalega,
+ * MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Norman
+ * "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul
+ * Koch (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
  * Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
  * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
  * Steven Levithan (http://blog.stevenlevithan.com), T.Wild, T0bsn, Thiago
@@ -2732,6 +2732,25 @@
             // *     returns 1: false
         
             return (typeof window[constant_name] !== 'undefined');
+        },// }}}
+        
+        // {{{ sleep
+        sleep: function(seconds) {
+            // Delay execution
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sleep/
+            // +       version: 810.1311
+            // +   original by: Christian Doebler
+            // %          note: For study purposes. Current implementation could lock up the user's browser. 
+            // %          note: Consider using setTimeout() instead.
+            // *     example 1: $P.sleep(1);
+            // *     returns 1: 0;
+            
+            seconds *= 1000;
+            var start = new Date().getTime();
+            while (new Date().getTime() < start + seconds);
+            
+            return 0;
         },// }}}
         
         // {{{ ip2long
