@@ -204,7 +204,6 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
     }
     
     public function disCloseQuotes(&$str) {
-        
         $str2 = $str;
         $q = false;
         

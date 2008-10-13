@@ -18,16 +18,39 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
     
     
     
+    /**
+     * Tests if a specified flag is given
+     *
+     * @param integer $flags
+     * @param integer $testFor
+     * 
+     * @return boolean
+     */
     protected function _flagIsEnabled($flags, $testFor) {
         return ($flags & $testFor > 0);
     }
     
+    /**
+     * Constructor
+     *
+     * @param string $dirFunctions Functions directory
+     * @param string $dirCompile   Output directory
+     * 
+     * @return PHPJS_Library_Compiler
+     */
     public function PHPJS_Library_Compiler($dirFunctions, $dirCompile) {
         parent::PHPJS_Library($dirFunctions);
     }
     
-    
-    
+    /**
+     * Returns a compilation of selected functions. Filtered according to the 
+     * combination of flags given.
+     *
+     * @param integer $flags
+     * @param boolean $breakOnError
+     * 
+     * @return string
+     */
     public function compile($flags = 0, $breakOnError=false) {
         $selectedFunctions = $this->getSelection();
         
@@ -49,7 +72,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         
         $compiledTxt = implode("\n", $compiled);
         
-        // First namespace it
+        // Wrap it with namespaced-specific-code
         if ($namespaced) {
             $compiledTxt = $this->_namespace($compiledTxt);
         }
@@ -64,6 +87,14 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         return $compiledTxt;
     }
     
+    /**
+     * Compiles one function, reroutes to Function object
+     *
+     * @param string $funcName
+     * @param boolean $namespaced
+     * 
+     * @return string
+     */
     public function compileFunction($funcName, $namespaced = false) {
         if (($Function = $this->getFunction($funcName)) === false) {
             throw new PHPJS_Exception("Function $funcName does not exst");
@@ -76,6 +107,13 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         return $results; 
     }
     
+    /**
+     * Encloses muliple namespaced functions with a namespace wrapper
+     *
+     * @param string $source
+     * 
+     * @return string
+     */
     protected function _namespace($source) {
         $str1  = "";
         $str1 .= "// {{{ init: \n";
@@ -122,15 +160,37 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         
     }
     
+    /**
+     * Compresses a string using the jsmin technology
+     *
+     * @param string $source
+     * 
+     * @return string
+     */
     protected function _minify($source) {
         return "//MINIFIED\n".$source;
     }
     
+    /**
+     * Compresses a string using the packer technology
+     *
+     * @param string $source
+     * 
+     * @return string
+     */
     protected function _pack($source) {
         return "//PACKED\n".$source;
     }
     
-    protected function _indentBlock($block, $indentation=4 ){
+    /**
+     * Indent a block of code
+     *
+     * @param string  $block
+     * @param integer $indentation
+     * 
+     * @return string
+     */
+    protected function _indentBlock ($block, $indentation=4) {
         $tmp_block = trim($block);
         $tmp_block = str_replace("\r", "", $tmp_block);
         $tmp_block = str_replace("\t", "    ", $tmp_block);

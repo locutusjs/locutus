@@ -1,5 +1,12 @@
 <?php
 Class PHPJS_Function_Compiler extends PHPJS_Function {
+    /**
+     * Returns a function ready for packaging
+     *
+     * @param boolean $namespaced
+     * 
+     * @return string
+     */
     public function compileFunction($namespaced=false) {
         
         $head = implode("\n", $this->getWrapHead());
