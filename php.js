@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.70
+ * This is version: 1.71
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -17,16 +17,16 @@
  * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
- * (http://webreflection.blogspot.com), Anton Ongson, Arno, Bayron Guevara,
- * Ben Bryan, Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri Ekin, Cord,
- * David, David James, Dino, DxGx, FGFEmperor, Felix Geisendoerfer
+ * (http://webreflection.blogspot.com), Anton Ongson, Arno, Atli Þór, Bayron
+ * Guevara, Ben Bryan, Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri
+ * Ekin, Cord, David, David James, Dino, DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), Francois, FremyCompany, Gabriel Paderni,
  * Howard Yeend, J A R, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Luke
  * Godfrey, Mateusz "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com),
  * Mick@el, Nathan, Nick Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha
  * (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
- * Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
+ * Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
  * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
  * Steven Levithan (http://blog.stevenlevithan.com), T.Wild, T0bsn, Thiago
  * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
@@ -2163,7 +2163,7 @@ function is_finite(val) {
     // Finds whether a value is a legal finite number
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_finite/
-    // +       version: 810.1015
+    // +       version: 810.1310
     // +   original by: Onno Marsman
     // *     example 1: is_finite(Infinity);
     // *     returns 1: false
@@ -2172,7 +2172,7 @@ function is_finite(val) {
     // *     example 3: is_finite(0);
     // *     returns 3: true
 
-    var code = 0, warningType = '';
+    var warningType = '';
 
     if (val===Infinity || val===-Infinity) {
         return false;
@@ -2181,19 +2181,9 @@ function is_finite(val) {
     //Some warnings for maximum PHP compatibility
     if (typeof val=='object') {
         warningType = (val instanceof Array ? 'array' : 'object');
-    } else if (typeof val=='string') {
+    } else if (typeof val=='string' && !val.match(/^[\+\-]?\d/)) {
         //simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
-        code = val.charCodeAt(0);
-        if (isNaN(code) || code<48 || code>57) { //first character is not numeric
-            if (code==45 || code==43) { // first character is - or +
-                code = val.charCodeAt(1);
-                if (isNaN(code) || code<48 || code>57) { //second character is not numeric
-                    warningType = 'string';
-                }
-            } else {
-                warningType = 'string';
-            }
-        }
+        warningType = 'string';
     }
     if (warningType) {
         throw new Error('Warning: is_finite() expects parameter 1 to be double, '+warningType+' given');
@@ -2207,7 +2197,7 @@ function is_infinite(val) {
     // Finds whether a value is infinite
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_infinite/
-    // +       version: 810.819
+    // +       version: 810.1310
     // +   original by: Onno Marsman
     // *     example 1: is_infinite(Infinity);
     // *     returns 1: true
@@ -2216,7 +2206,7 @@ function is_infinite(val) {
     // *     example 3: is_infinite(0);
     // *     returns 3: false
 
-    var code = 0, warningType = '';
+    var warningType = '';
 
     if (val===Infinity || val===-Infinity) {
         return true;
@@ -2225,19 +2215,9 @@ function is_infinite(val) {
     //Some warnings for maximum PHP compatibility
     if (typeof val=='object') {
         warningType = (val instanceof Array ? 'array' : 'object');
-    } else if (typeof val=='string') {
+    } else if (typeof val=='string' && !val.match(/^[\+\-]?\d/)) {
         //simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
-        code = val.charCodeAt(0);
-        if (isNaN(code) || code<48 || code>57) { //first character is not numeric
-            if (code==45 || code==43) { // first character is - or +
-                code = val.charCodeAt(1);
-                if (isNaN(code) || code<48 || code>57) { //second character is not numeric
-                    warningType = 'string';
-                }
-            } else {
-                warningType = 'string';
-            }
-        }
+        warningType = 'string';
     }
     if (warningType) {
         throw new Error('Warning: is_infinite() expects parameter 1 to be double, '+warningType+' given');
@@ -2251,14 +2231,15 @@ function is_nan(val) {
     // Finds whether a value is not a number
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_nan/
-    // +       version: 810.1015
+    // +       version: 810.1310
     // +   original by: Onno Marsman
+    // +      input by: Robin
     // *     example 1: is_nan(NaN);
     // *     returns 1: true
     // *     example 2: is_nan(0);
     // *     returns 2: false
 
-    var code = 0, errorType = '';
+    var warningType = '';
 
     if (typeof val=='number' && isNaN(val)) {
         return true;
@@ -2266,23 +2247,13 @@ function is_nan(val) {
 
     //Some errors for maximum PHP compatibility
     if (typeof val=='object') {
-        errorType = (val instanceof Array ? 'array' : 'object');
-    } else if (typeof val=='string') {
+        warningType = (val instanceof Array ? 'array' : 'object');
+    } else if (typeof val=='string' && !val.match(/^[\+\-]?\d/)) {
         //simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
-        code = val.charCodeAt(0);
-        if (isNaN(code) || code<48 || code>57) { //first character is not numeric
-            if (code==45 || code==43) { // first character is - or +
-                code = val.charCodeAt(1);
-                if (isNaN(code) || code<48 || code>57) { //second character is not numeric
-                    errorType = 'string';
-                }
-            } else {
-                errorType = 'string';
-            }
-        }
+        warningType = 'string';
     }
-    if (errorType) {
-        throw new Error('Warning: is_nan() expects parameter 1 to be double, '+errorType+' given');
+    if (warningType) {
+        throw new Error('Warning: is_nan() expects parameter 1 to be double, '+warningType+' given');
     }
 
     return false;
@@ -3677,18 +3648,26 @@ function md5_file ( str_filename ) {
 }// }}}
 
 // {{{ nl2br
-function nl2br( str ) {
+function nl2br (str, is_xhtml) {
     // Inserts HTML line breaks before all newlines in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_nl2br/
-    // +       version: 809.2914
+    // +       version: 810.1311
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Philip Peterson
     // +   improved by: Onno Marsman
+    // +   improved by: Atli Þór
     // *     example 1: nl2br('Kevin\nvan\nZonneveld');
     // *     returns 1: 'Kevin<br />\nvan<br />\nZonneveld'
-
-    return (str + '').replace(/([^>])\n/g, '$1<br />\n');
+    // *     example 2: nl2br("\nOne\nTwo\n\nThree\n", false);
+    // *     returns 2: '<br>\nOne<br>\nTwo<br>\n<br>\nThree<br>\n'
+    
+    breakTag = "<br />";
+    if (typeof is_xhtml == "boolean" || is_xhtml == false) {
+        breakTag = "<br>";
+    }
+    
+    return (str + '').replace(/([^>]?)\n/g, '$1'+ breakTag +'\n');
 }// }}}
 
 // {{{ number_format
