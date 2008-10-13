@@ -31,10 +31,12 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
     public function compile($flags = 0, $breakOnError=false) {
         $selectedFunctions = $this->getSelection();
         
+        $namespaced = ($this->_flagIsEnabled($flags, self::COMPILE_NAMESPACED));
+        
         // Compile each function individually and store in $compiled array
         $compiled = array();
         foreach ($selectedFunctions as $funcName) {
-            if (false === ($x = $this->compileFunction($funcName, $flags))) {
+            if (false === ($x = $this->compileFunction($funcName, $namespaced))) {
                 if ($breakOnError) {
                     return false;
                     break;
@@ -48,7 +50,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         $compiledTxt = implode("\n", $compiled);
         
         // First namespace it
-        if ($this->_flagIsEnabled($flags, self::COMPILE_NAMESPACED)) {
+        if ($namespaced) {
             $compiledTxt = $this->_namespace($compiledTxt);
         }
         
