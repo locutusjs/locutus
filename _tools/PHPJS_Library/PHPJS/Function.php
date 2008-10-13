@@ -224,6 +224,21 @@ Class PHPJS_Function extends SplFileInfo {
         return $this->_categoryName;
     }
     
+    public function getPHPFunctionDescription() {
+        $name = $this->getFunctionName();
+        
+        if (isset($this->PHPJS_Library->phpFunctionsSummary[$name])) {
+            return $this->PHPJS_Library->phpFunctionsSummary[$name]["description"];
+        } else {
+            return "!No description available for ".$name.". @php.js developers: Please update the function summary text file.";
+        }
+    }
+    
+    public function getUrl() {
+        $name = $this->getFunctionName();
+        return PHPJS_Library::PROJECT_FUNCTION_URL.$name;
+    }
+    
     public function getFunctionName() {
         return $this->_functionName;
     }

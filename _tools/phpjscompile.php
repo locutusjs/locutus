@@ -19,9 +19,10 @@ $n = PHPJS_Library_Compiler::COMPILE_NAMESPACED;
 $m = PHPJS_Library_Compiler::COMPILE_MINFIED;
 $p = PHPJS_Library_Compiler::COMPILE_PACKED;
 
-echo $PHPJS_Compiler_Shell->genLicense(1.61);
 
-die();
+
+//echo $PHPJS_Compiler_Shell->genLicense(1.61);
+
 
 echo $PHPJS_Compiler_Shell->compile($p);
 

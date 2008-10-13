@@ -80,6 +80,10 @@ Class PHPJS_Library {
         
     
     const PROJECT_URL = "http://phpjs.org";
+    const PROJECT_FUNCTION_URL = "http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_";
+    
+    
+    public $phpFunctionsSummary = array();
     
     public $Functions = false;
     public $Function  = false;
@@ -342,7 +346,10 @@ Class PHPJS_Library {
             $this->_dirRealTemp = $this->_dirRealTool."/_temp";
         }
         
-        foreach (array($this->_dirRealFunc, $this->_dirRealRoot, $this->_dirRealTemp) as $dir) {
+        ini_set('memory_limit','128M');  
+        set_time_limit(0);
+        
+        foreach (array($this->_dirRealFunc, $this->_dirRealRoot, $this->_dirRealTemp, $this->_dirRealTool) as $dir) {
             if (!is_dir($dir)) {
                 $this->log("Directory not accessible: ".$this->_dirRealTemp, PHPJS_Library::LOG_EMERG);
                 return false;
@@ -398,7 +405,10 @@ Class PHPJS_Library {
         
         if (!$this->index($this->_dirRealFunc)) {
             throw new PHPJS_Exception("Could not index at ".$this->_dir);
+            return false;
         }
+        
+        $this->phpFunctionsSummary = $this->readFuncSummary();
         
         ksort($this->Functions);
         return true;
@@ -449,7 +459,94 @@ Class PHPJS_Library {
         return true;
     }
     
+    public function readFuncSummary($filePathRaw=false) {
+        if ($filePathRaw === false) {
+            $filePathRaw = $this->_dirRealTool."/funcsummary.txt";
+        }
         
+        if (!file_exists($filePathRaw)) {
+            throw new PHPJS_Exception("Could find file: ".$filePathRaw);
+            return false;
+        }
+        
+        $filePathSerialized = str_replace(".txt", ".serialized.txt", $filePathRaw);
+        
+        // Caching of serialized function summary
+        if (!file_exists($filePathSerialized)) {
+            if (false === ($arr = $this->_readRawFuncSummary($filePathRaw))) {
+                throw new PHPJS_Exception("Could read raw summary file: ".$filePathRaw);
+                return false;
+            }
+            
+            if (false === file_put_contents($filePathSerialized, serialize($arr))) {
+                throw new PHPJS_Exception("Could write serialized summary file: ".$filePathSerialized);
+                return false;
+            }
+            
+            return $arr;
+        }
+        
+        $buf = file_get_contents($filePathSerialized);
+        $arr = unserialize($buf);
+        
+        return $arr;
+    }
+    
+    protected function _readRawFuncSummary($filePathRaw=false) {
+        if (false === ($buf = file_get_contents($filePathRaw))) {
+            throw new PHPJS_Exception("Could open file: ".$filePathRaw);
+            return false;
+        }
+        
+        if (false === preg_match_all('/^([a-z_]+) ([^\(]+)\(([^\)]+)\).*$\s+?(.+)$/isUm', $buf, $m)) {
+            throw new PHPJS_Exception("Could match any function summary from file: ".$filePathRaw);
+            return false;
+        }
+        
+        unset($m[0]);
+        
+        $functions = array();
+        foreach ($m[1] as $i=>$type) {
+            $functionName = $m[2][$i];
+            $argumentsTxt = $m[3][$i];
+            $description  = $m[4][$i];
+            
+            $argumentsTxtNew = $argumentsTxt;//str_replace(" [", "", $argumentsTxt);
+            $parts = explode(", ", $argumentsTxtNew);
+            $arguments = array();
+            foreach ($parts as $part) {
+                $required = true;
+                if (substr($part, -1) == "]") {
+                    $part = substr($part, 0, strlen($part) -1);
+                    $required = false;
+                } elseif (substr($part, 1) == "[") {
+                    $part = substr($part, 1, strlen($part));
+                    $required = false;
+                } 
+                
+                $part = trim(str_replace(array("[", "]"), "", $part));
+                $part = trim(str_replace(" | ", "|", $part));
+                
+                $parts2 = explode(" ", $part);
+                if (count($parts2) != 2 ) {
+                    //throw new PHPJS_Exception("Function: '".$functionName."' Part: '".$part."' does not contain two elements");
+                    //return false;
+                }
+                $type = $parts2[0];
+                $var  = $parts2[1];
+                
+                $arguments[$var] = compact('required', 'type');
+            }
+            
+            
+            $functions[$functionName] = compact('arguments', 'description');
+        }
+        
+        
+        return $functions;
+    }
+    
+    
     /**
      * Takes first part of a string based on the delimiter.
      * Returns that part, and mutates the original string to contain
