@@ -38,7 +38,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
      * 
      * @return PHPJS_Library_Compiler
      */
-    public function PHPJS_Library_Compiler($dirFunctions, $dirCompile) {
+    public function PHPJS_Library_Compiler($dirFunctions, $dirCompile=false) {
         parent::PHPJS_Library($dirFunctions);
     }
     
