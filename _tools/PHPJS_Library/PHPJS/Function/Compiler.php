@@ -32,17 +32,22 @@ Class PHPJS_Function_Compiler extends PHPJS_Function {
             foreach($dependencies as $dependency){
                 $real = preg_replace('/([^a-zA-Z0-9_\.])('.$dependency.')([^a-zA-Z0-9_])/s', '$1this.$2$3', $real);
             }
-            
+             
             // Convert recursive function calls to namespaced variants 
             $real = preg_replace('/([^a-zA-Z0-9_\.])('.$name.')([^a-zA-Z0-9_])/s', '$1this.$2$3', $real);
         }
         
+
+        $newDocb  = "";
+        $newDocb .= "    // ". $desc."\n";
+        $newDocb .= "    // \n";
+        $newDocb .= "    // version: ". $vers."\n";
+        $newDocb .= "    // discuss at: ". $furl."\n";
+                        
+        $docb = str_replace("    // http://kevin.vanzonneveld.net", $newDocb, $docb);
+        
         $source  = "";
         $source .= $head."\n";
-        $source .= "    // ". $desc."\n";
-        $source .= "    // \n";
-        $source .= "    // version: ". $vers."\n";
-        $source .= "    // discuss at: ". $furl."\n";
         $source .= $docb."\n";
         $source .= $real."\n";
         $source .= $tail."\n";
