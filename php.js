@@ -1,12 +1,12 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.72
+ * This is version: 1.73
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
  * _argos, Jack, Jonas Raoni Soares Silva (http://www.jsfromhell.com), Legaev
- * Andrey, Ates Goral (http://magnetiq.com), Philip Peterson, Martijn
+ * Andrey, Philip Peterson, Ates Goral (http://magnetiq.com), Martijn
  * Wieringa, Philippe Baumann, Webtoolkit.info (http://www.webtoolkit.info/),
  * Carlos R. L. Rodrigues (http://www.jsfromhell.com), Enrique Gonzalez, Ash
  * Searle (http://hexmen.com/blog/), Erkekjetter, GeekFG
@@ -17,7 +17,7 @@
  * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
- * (http://webreflection.blogspot.com), Anton Ongson, Arno, Atli ﬁÛr, Bayron
+ * (http://webreflection.blogspot.com), Anton Ongson, Arno, Atli √û√≥r, Bayron
  * Guevara, Ben Bryan, Benjamin Lupton, Brad Touesnard, Brett Zamir, Cagri
  * Ekin, Christian Doebler, Cord, David, David James, Dino, DxGx, FGFEmperor,
  * Felix Geisendoerfer (http://www.debuggable.com/felix), Francois,
@@ -2287,6 +2287,22 @@ function log(arg, base) {
     }
 }// }}}
 
+// {{{ log10
+function log10(arg) {
+    // Base-10 logarithm
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_log10/
+    // +       version: 810.1613
+    // +   original by: Philip Peterson
+    // +   improved by: Onno Marsman
+    // *     example 1: log10(10);
+    // *     returns 1: 1
+    // *     example 2: log10(1);
+    // *     returns 2: 0
+
+    return Math.log(arg)/Math.log(10);
+}// }}}
+
 // {{{ max
 function max() {
     // Find highest value
@@ -3671,21 +3687,24 @@ function nl2br (str, is_xhtml) {
     // Inserts HTML line breaks before all newlines in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_nl2br/
-    // +       version: 810.1311
+    // +       version: 810.1417
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Philip Peterson
     // +   improved by: Onno Marsman
-    // +   improved by: Atli ﬁÛr
+    // +   improved by: Atli √û√≥r
+    // +   bugfixed by: Onno Marsman
     // *     example 1: nl2br('Kevin\nvan\nZonneveld');
     // *     returns 1: 'Kevin<br />\nvan<br />\nZonneveld'
     // *     example 2: nl2br("\nOne\nTwo\n\nThree\n", false);
     // *     returns 2: '<br>\nOne<br>\nTwo<br>\n<br>\nThree<br>\n'
-    
-    breakTag = "<br />";
-    if (typeof is_xhtml == "boolean" || is_xhtml == false) {
-        breakTag = "<br>";
+    // *     example 3: nl2br("\nOne\nTwo\n\nThree\n", true);
+    // *     returns 3: '<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n'
+
+    breakTag = '<br />';
+    if (typeof is_xhtml != 'undefined' && !is_xhtml) {
+        breakTag = '<br>';
     }
-    
+
     return (str + '').replace(/([^>]?)\n/g, '$1'+ breakTag +'\n');
 }// }}}
 
