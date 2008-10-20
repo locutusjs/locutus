@@ -11,7 +11,17 @@ function array_count_values( array ) {
     // *     example 3: array_count_values([ true, 4.2, 42, "fubar" ]);
     // *     returns 3: {42:1, "fubar":1}
 
-    var tmp_arr = {}, key = '';
+    var tmp_arr = {}, key = '', t = '';
+    
+    var __getType = function(obj) {
+        // Objects are php associative arrays.
+        var t = typeof obj;
+        t = t.toLowerCase();
+        if (t == "object") {
+            t = "array";
+        }
+        return t;
+    }    
 
     var __countValue = function (value) {
         switch (typeof(value)) {
@@ -27,16 +37,12 @@ function array_count_values( array ) {
                 }
         }
     };
-
-    if (array instanceof Array) {
-        for (key in array) {
-            tmp_arr[key] = __countValue(array[key]); 
-        }
-    } else if (array instanceof Object) {
+    
+    t = __getType(array);
+    if (t == 'array') {
         for ( key in array ) {
             __countValue.call(tmp_arr, array[key]);
         }
-    }
-
+    } 
     return tmp_arr;
 }

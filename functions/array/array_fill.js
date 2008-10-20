@@ -5,11 +5,11 @@ function array_fill( start_index, num, mixed_val ) {
     // *     example 1: array_fill(5, 6, 'banana');
     // *     returns 1: { 5: 'banana', 6: 'banana', 7: 'banana', 8: 'banana', 9: 'banana', 10: 'banana' }
 
-    var key, tmp_arr = new Array();
+    var key, tmp_arr = {};
 
     if ( !isNaN ( start_index ) && !isNaN ( num ) ) {
-        for( key = start_index; key <= num; key++ ) {
-            tmp_arr[key] = mixed_val;
+        for( key = 0; key < num; key++ ) {
+            tmp_arr[(key+start_index)] = mixed_val;
         }
     }
 

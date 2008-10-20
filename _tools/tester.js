@@ -13,39 +13,44 @@ function tester_comparer(result, should) {
         //print('***', str);
     }
     
-    // Determine types
-    resType = _getType(result);
-    shdType = _getType(should); 
+    var useResult = result;
+    var useShould = should;
     
+    // Determine types
+    resType = _getType(useResult);
+    shdType = _getType(useShould); 
+    
+    /*
+    // Number vs string comparison bails out too early
     if (resType != shdType) {
         // Bail out if types don't match
-        _why('types don\'t match');
+        _why('types don\'t match ('+resType+' vs '+shdType+')');
         return false;
     }
+    */
     
     // Iterate & compare arrays 
     if (resType == "array") {
-        
         // Bail out if count doesn't match
-        resCount = tester_count(result, 'COUNT_RECURSIVE');
-        shdCount = tester_count(should, 'COUNT_RECURSIVE');
+        resCount = tester_count(useResult);
+        shdCount = tester_count(useShould);
         if (resCount != shdCount) {
-            _why('count doesn\'t match');
+            _why('count doesn\'t match ('+resCount+' vs '+shdCount+')');
             return false;
         }
         
-        for (key in should) {
+        for (key in useShould) {
             // Rhino has a bug (https://bugzilla.mozilla.org/show_bug.cgi?id=419090)
             // causing us to use an uglier method, element order.
             
-            val = should[key];
-            if (false === (fkey = tester_array_search(val, result))) {
+            val = useShould[key];
+            if (false === (fkey = tester_array_search(val, useResult))) {
                 _why('element doesn\'t exist in test-result');                
                 return false;
             } 
             
             // Clear out
-            result[key] = undefined;
+            useResult[fkey] = null;
             
             /*
             if (typeof(result[key]) == 'undefined') {
@@ -63,8 +68,8 @@ function tester_comparer(result, should) {
     }
     
     // 'Simple' types.
-    if(result != should){
-        _why('simple value doesn\'t match');
+    if(useResult != useShould){
+        _why('simple value doesn\'t match ('+useResult+' vs '+useShould+')');
         return false;
     }
     
@@ -142,7 +147,7 @@ function tester_array_search( needle, haystack, strict ) {
     var strict = !!strict;
 
     for(var key in haystack){
-        if( (strict && haystack[key] === needle) || (!strict && haystack[key] == needle) ){
+        if (tester_comparer(haystack[key]), needle) {
             return key;
         }
     }

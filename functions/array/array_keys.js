@@ -7,8 +7,6 @@ function array_keys( input, search_value, strict ) {
     var tmp_arr = {}, strict = !!strict, include = true, cnt = 0;
     
     for ( key in input ){
-        print(key, input[key]);
-        
         include = true;
         if ( search_value != undefined ) {
             if( strict && input[key] !== search_value ){

@@ -1,4 +1,4 @@
-function html_entity_decode( string ) {
+function html_entity_decode( string, quote_style ) {
     // http://kevin.vanzonneveld.net
     // +   original by: john (http://www.jd-tech.net)
     // +      input by: ger
