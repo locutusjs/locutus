@@ -12,7 +12,10 @@ function get_html_translation_table(table, quote_style) {
     
     var entities = {}, histogram = {}, decimal = 0, symbol = '';
     var constMappingTable = {}, constMappingQuoteStyle = {};
-    var useTable = table, useQuoteStyle = quote_style;
+    var useTable = {}, useQuoteStyle = {};
+    
+    useTable      = (table ? table.toUpperCase() : 'HTML_SPECIALCHARS');
+    useQuoteStyle = (quote_style ? quote_style.toUpperCase() : 'ENT_COMPAT');
     
     // Translate arguments
     constMappingTable[0]      = 'HTML_SPECIALCHARS';
@@ -21,12 +24,12 @@ function get_html_translation_table(table, quote_style) {
     constMappingQuoteStyle[2] = 'ENT_COMPAT';
     constMappingQuoteStyle[3] = 'ENT_QUOTES';
     
-    // Map or Default
-    if (!(useTable = constMappingTable[useTable])) {
-        useTable = 'HTML_SPECIALCHARS' 
+    // Map numbers to strings for compatibilty with PHP constants
+    if (!isNaN(useTable)) {
+        useTable = constMappingTable[useTable];
     }
-    if (!(useQuoteStyle = constMappingQuoteStyle[useQuoteStyle])) {
-        useQuoteStyle = 'ENT_COMPAT'; 
+    if (!isNaN(useQuoteStyle)) {
+        useQuoteStyle = constMappingQuoteStyle[useQuoteStyle];
     }
     
     if (useTable == 'HTML_SPECIALCHARS') {
@@ -136,15 +139,16 @@ function get_html_translation_table(table, quote_style) {
 	    entities['254'] = '&thorn;';
 	    entities['255'] = '&yuml;';
     } else {
+        throw Error("Table: "+useTable+' not supported');
         return false;
     }
     
-    if (useQuoteStyle != 'ENT_QUOTES') {
+    if (useQuoteStyle != 'ENT_NOQUOTES') {
         entities['34'] = '&quot;';
     }
     
     if (useQuoteStyle == 'ENT_QUOTES') {
-        entities['39'] = '&#39;';
+        entities['39'] = '&#039;';
     }
     
     // ascii decimals to real symbols

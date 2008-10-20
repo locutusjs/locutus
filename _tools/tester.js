@@ -67,7 +67,7 @@ function tester_count( mixed_var, mode ) {
     for (key in mixed_var){
         cnt++;
         if( mode==1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor === Object) ){
-            cnt += count(mixed_var[key], 1);
+            cnt += tester_count(mixed_var[key], 1);
         }
     }
 
@@ -129,10 +129,10 @@ function tester_print_r( array, return_val ) {
         var thick_pad = repeat_char(pad_val*(cur_depth+1), pad_char);
         var str = "";
 
-        if (obj instanceof Array || obj instanceof Object) {
+        if (typeof obj == 'array' || typeof obj == 'object') {
             str += "Array\n" + base_pad + "(\n";
             for (var key in obj) {
-                if (obj[key] instanceof Array) {
+                if (typeof obj[key] == 'array' || typeof obj[key] == 'object' ) {
                     str += thick_pad + "["+key+"] => "+formatArray(obj[key], cur_depth+1, pad_val, pad_char);
                 } else {
                     str += thick_pad + "["+key+"] => " + obj[key] + "\n";
