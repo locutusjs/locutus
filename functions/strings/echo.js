@@ -17,9 +17,10 @@ function echo ( ) {
     
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
-        if (document.createTextNode && document.appendChild) {
-            elmt = document.createTextNode(arg);
-            document.appendChild(elmt);
+        if (document.createDocumentFragment && document.createTextNode && document.appendChild) {
+            var docFragment = document.createDocumentFragment();
+            var txt = document.createTextNode(aarg);
+            docFragment.appendChild(txt); 
         } else if (document.write) {
             document.write(arg);
         } else {
