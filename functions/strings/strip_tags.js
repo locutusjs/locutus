@@ -5,7 +5,7 @@ function strip_tags(str, allowed_tags) {
     // +      input by: Pul
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
-    // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
+    // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
     // *     example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>');
     // *     returns 2: '<p>Kevin van Zonneveld</p>'
@@ -17,17 +17,17 @@ function strip_tags(str, allowed_tags) {
     var allowed_keys = {};
 
     var replacer = function(search, replace, str) {
-        var tmp_arr = [];
-        tmp_arr = str.split(search);
-        return tmp_arr.join(replace);
+        return str.split(search).join(replace);
     };
 
     // Build allowes tags associative array
     if (allowed_tags) {
-        allowed_tags  = allowed_tags.replace(/[^a-zA-Z,]+/g, '');;
-        allowed_array = allowed_tags.split(',');
+        //allowed_tags  = allowed_tags.replace(/[^a-zA-Z,]+/g, '');;
+        //allowed_array = allowed_tags.split(',');
+        allowed_array = allowed_tags.match(/<\/?([^>]+)>/gi);
     }
-
+	tester_print_r(allowed_array);
+	
     str += '';
 
     // Match tags
