@@ -1,12 +1,12 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.73
+ * This is version: 1.74
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
- * _argos, Jack, Jonas Raoni Soares Silva (http://www.jsfromhell.com), Legaev
- * Andrey, Philip Peterson, Ates Goral (http://magnetiq.com), Martijn
+ * _argos, Jack, Jonas Raoni Soares Silva (http://www.jsfromhell.com), Philip
+ * Peterson, Legaev Andrey, Ates Goral (http://magnetiq.com), Martijn
  * Wieringa, Philippe Baumann, Webtoolkit.info (http://www.webtoolkit.info/),
  * Carlos R. L. Rodrigues (http://www.jsfromhell.com), Enrique Gonzalez, Ash
  * Searle (http://hexmen.com/blog/), Erkekjetter, GeekFG
@@ -165,7 +165,7 @@ function array_count_values( array ) {
     // Counts all the values of an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_count_values/
-    // +       version: 809.2411
+    // +       version: 810.2018
     // +   original by: Ates Goral (http://magnetiq.com)
     // + namespaced by: Michael White (http://getsprink.com)
     // +      input by: sankai
@@ -177,7 +177,17 @@ function array_count_values( array ) {
     // *     example 3: array_count_values([ true, 4.2, 42, "fubar" ]);
     // *     returns 3: {42:1, "fubar":1}
 
-    var tmp_arr = {}, key = '';
+    var tmp_arr = {}, key = '', t = '';
+    
+    var __getType = function(obj) {
+        // Objects are php associative arrays.
+        var t = typeof obj;
+        t = t.toLowerCase();
+        if (t == "object") {
+            t = "array";
+        }
+        return t;
+    }    
 
     var __countValue = function (value) {
         switch (typeof(value)) {
@@ -193,17 +203,13 @@ function array_count_values( array ) {
                 }
         }
     };
-
-    if (array instanceof Array) {
-        for (key in array) {
-            tmp_arr[key] = __countValue(array[key]); 
-        }
-    } else if (array instanceof Object) {
+    
+    t = __getType(array);
+    if (t == 'array') {
         for ( key in array ) {
             __countValue.call(tmp_arr, array[key]);
         }
-    }
-
+    } 
     return tmp_arr;
 }// }}}
 
@@ -320,17 +326,17 @@ function array_fill( start_index, num, mixed_val ) {
     // Fill an array with values
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_fill/
-    // +       version: 809.522
+    // +       version: 810.2018
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: _argos
     // *     example 1: array_fill(5, 6, 'banana');
     // *     returns 1: { 5: 'banana', 6: 'banana', 7: 'banana', 8: 'banana', 9: 'banana', 10: 'banana' }
 
-    var key, tmp_arr = new Array();
+    var key, tmp_arr = {};
 
     if ( !isNaN ( start_index ) && !isNaN ( num ) ) {
-        for( key = start_index; key <= num; key++ ) {
-            tmp_arr[key] = mixed_val;
+        for( key = 0; key < num; key++ ) {
+            tmp_arr[(key+start_index)] = mixed_val;
         }
     }
 
@@ -380,13 +386,13 @@ function array_keys( input, search_value, strict ) {
     // Return all the keys of an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_keys/
-    // +       version: 809.522
+    // +       version: 810.2018
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
     // *     returns 1: {0: 'firstname', 1: 'surname'}
-
-    var tmp_arr = new Array(), strict = !!strict, include = true, cnt = 0;
-
+    
+    var tmp_arr = {}, strict = !!strict, include = true, cnt = 0;
+    
     for ( key in input ){
         include = true;
         if ( search_value != undefined ) {
@@ -396,13 +402,13 @@ function array_keys( input, search_value, strict ) {
                 include = false;
             }
         }
-
+        
         if( include ) {
             tmp_arr[cnt] = key;
             cnt++;
         }
     }
-
+    
     return tmp_arr;
 }// }}}
 
@@ -691,26 +697,38 @@ function array_unique( array ) {
     // Removes duplicate values from an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_unique/
-    // +       version: 809.522
+    // +       version: 810.2018
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      input by: duncan
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_unique(['Kevin','Kevin','van','Zonneveld','Kevin']);
     // *     returns 1: ['Kevin','van','Zonneveld']
     // *     example 2: array_unique({'a': 'green', 0: 'red', 'b': 'green', 1: 'blue', 2: 'red'});
-    // *     returns 2: {'a': 'Kevin', 0: 'van', 1: 'Zonneveld'}
-
-    var p, i, j, tmp_arr = array;
-    for(i = tmp_arr.length; i;){
-        for(p = --i; p > 0;){
-            if(tmp_arr[i] === tmp_arr[--p]){
-                for(j = p; --p && tmp_arr[i] === tmp_arr[p];);
-                i -= tmp_arr.splice(p + 1, j - p).length;
-            }
+    // *     returns 2: {'a': 'green', 0: 'red', 1: 'blue'}
+    
+    var key = '', tmp_arr1 = {}, tmp_arr2 = {};
+    tmp_arr1 = array;
+    
+	var __array_search = function ( needle, haystack, strict ) {
+	    var strict = !!strict;
+	    for(var fkey in haystack){
+	        if( (strict && haystack[fkey] === needle) || (!strict && haystack[fkey] == needle) ){
+	            return fkey;
+	        }
+	    }
+	    return false;
+	}    
+	
+    for (key in tmp_arr1) {
+        val = tmp_arr1[key];
+        if (false === __array_search(val, tmp_arr2)) {
+            tmp_arr2[key] = val;
         }
+        
+        delete tmp_arr1[key];
     }
-
-    return tmp_arr;
+    
+    return tmp_arr2;
 }// }}}
 
 // {{{ array_unshift
@@ -2982,7 +3000,7 @@ function echo ( ) {
     // Output one or more strings
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_echo/
-    // +       version: 809.522
+    // +       version: 810.2018
     // +   original by: Philip Peterson
     // +   improved by: echo is bad
     // *     example 1: echo('Hello', 'World');
@@ -3000,9 +3018,10 @@ function echo ( ) {
     
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
-        if (document.createTextNode && document.appendChild) {
-            elmt = document.createTextNode(arg);
-            document.appendChild(elmt);
+        if (document.createDocumentFragment && document.createTextNode && document.appendChild) {
+            var docFragment = document.createDocumentFragment();
+            var txt = document.createTextNode(aarg);
+            docFragment.appendChild(txt); 
         } else if (document.write) {
             document.write(arg);
         } else {
@@ -3070,304 +3089,262 @@ function explode( delimiter, string, limit ) {
     }
 }// }}}
 
+// {{{ get_html_translation_table
+function get_html_translation_table(table, quote_style) {
+    // Returns the translation table used by htmlspecialchars() and htmlentities()
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_html_translation_table/
+    // +       version: 810.2018
+    // +   original by: Philip Peterson
+    // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %          note: It has been decided that we're not going to add global
+    // %          note: dependencies to php.js. Meaning the constants are not
+    // %          note: real constants, but strings instead. integers are also supported if someone
+    // %          note: chooses to create the constants themselves.
+    // %          note: Table from http://www.the-art-of-web.com/html/character-codes/
+    // *     example 1: get_html_translation_table('HTML_SPECIALCHARS');
+    // *     returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
+    
+    var entities = {}, histogram = {}, decimal = 0, symbol = '';
+    var constMappingTable = {}, constMappingQuoteStyle = {};
+    var useTable = {}, useQuoteStyle = {};
+    
+    useTable      = (table ? table.toUpperCase() : 'HTML_SPECIALCHARS');
+    useQuoteStyle = (quote_style ? quote_style.toUpperCase() : 'ENT_COMPAT');
+    
+    // Translate arguments
+    constMappingTable[0]      = 'HTML_SPECIALCHARS';
+    constMappingTable[1]      = 'HTML_ENTITIES';
+    constMappingQuoteStyle[0] = 'ENT_NOQUOTES';
+    constMappingQuoteStyle[2] = 'ENT_COMPAT';
+    constMappingQuoteStyle[3] = 'ENT_QUOTES';
+    
+    // Map numbers to strings for compatibilty with PHP constants
+    if (!isNaN(useTable)) {
+        useTable = constMappingTable[useTable];
+    }
+    if (!isNaN(useQuoteStyle)) {
+        useQuoteStyle = constMappingQuoteStyle[useQuoteStyle];
+    }
+    
+    if (useTable == 'HTML_SPECIALCHARS') {
+        // ascii decimals for better compatibility
+        entities['60'] = '&lt;';
+        entities['62'] = '&gt;';
+        entities['38'] = '&amp;';
+    } else if (useTable == 'HTML_ENTITIES') {
+        // ascii decimals for better compatibility
+	    entities['38'] = '&amp;';
+	    entities['60'] = '&lt;';
+	    entities['62'] = '&gt;';
+	    entities['160'] = '&nbsp;';
+	    entities['161'] = '&iexcl;';
+	    entities['162'] = '&cent;';
+	    entities['163'] = '&pound;';
+	    entities['164'] = '&curren;';
+	    entities['165'] = '&yen;';
+	    entities['166'] = '&brvbar;';
+	    entities['167'] = '&sect;';
+	    entities['168'] = '&uml;';
+	    entities['169'] = '&copy;';
+	    entities['170'] = '&ordf;';
+	    entities['171'] = '&laquo;';
+	    entities['172'] = '&not;';
+	    entities['173'] = '&shy;';
+	    entities['174'] = '&reg;';
+	    entities['175'] = '&macr;';
+	    entities['176'] = '&deg;';
+	    entities['177'] = '&plusmn;';
+	    entities['178'] = '&sup2;';
+	    entities['179'] = '&sup3;';
+	    entities['180'] = '&acute;';
+	    entities['181'] = '&micro;';
+	    entities['182'] = '&para;';
+	    entities['183'] = '&middot;';
+	    entities['184'] = '&cedil;';
+	    entities['185'] = '&sup1;';
+	    entities['186'] = '&ordm;';
+	    entities['187'] = '&raquo;';
+	    entities['188'] = '&frac14;';
+	    entities['189'] = '&frac12;';
+	    entities['190'] = '&frac34;';
+	    entities['191'] = '&iquest;';
+	    entities['192'] = '&Agrave;';
+	    entities['193'] = '&Aacute;';
+	    entities['194'] = '&Acirc;';
+	    entities['195'] = '&Atilde;';
+	    entities['196'] = '&Auml;';
+	    entities['197'] = '&Aring;';
+	    entities['198'] = '&AElig;';
+	    entities['199'] = '&Ccedil;';
+	    entities['200'] = '&Egrave;';
+	    entities['201'] = '&Eacute;';
+	    entities['202'] = '&Ecirc;';
+	    entities['203'] = '&Euml;';
+	    entities['204'] = '&Igrave;';
+	    entities['205'] = '&Iacute;';
+	    entities['206'] = '&Icirc;';
+	    entities['207'] = '&Iuml;';
+	    entities['208'] = '&ETH;';
+	    entities['209'] = '&Ntilde;';
+	    entities['210'] = '&Ograve;';
+	    entities['211'] = '&Oacute;';
+	    entities['212'] = '&Ocirc;';
+	    entities['213'] = '&Otilde;';
+	    entities['214'] = '&Ouml;';
+	    entities['215'] = '&times;';
+	    entities['216'] = '&Oslash;';
+	    entities['217'] = '&Ugrave;';
+	    entities['218'] = '&Uacute;';
+	    entities['219'] = '&Ucirc;';
+	    entities['220'] = '&Uuml;';
+	    entities['221'] = '&Yacute;';
+	    entities['222'] = '&THORN;';
+	    entities['223'] = '&szlig;';
+	    entities['224'] = '&agrave;';
+	    entities['225'] = '&aacute;';
+	    entities['226'] = '&acirc;';
+	    entities['227'] = '&atilde;';
+	    entities['228'] = '&auml;';
+	    entities['229'] = '&aring;';
+	    entities['230'] = '&aelig;';
+	    entities['231'] = '&ccedil;';
+	    entities['232'] = '&egrave;';
+	    entities['233'] = '&eacute;';
+	    entities['234'] = '&ecirc;';
+	    entities['235'] = '&euml;';
+	    entities['236'] = '&igrave;';
+	    entities['237'] = '&iacute;';
+	    entities['238'] = '&icirc;';
+	    entities['239'] = '&iuml;';
+	    entities['240'] = '&eth;';
+	    entities['241'] = '&ntilde;';
+	    entities['242'] = '&ograve;';
+	    entities['243'] = '&oacute;';
+	    entities['244'] = '&ocirc;';
+	    entities['245'] = '&otilde;';
+	    entities['246'] = '&ouml;';
+	    entities['247'] = '&divide;';
+	    entities['248'] = '&oslash;';
+	    entities['249'] = '&ugrave;';
+	    entities['250'] = '&uacute;';
+	    entities['251'] = '&ucirc;';
+	    entities['252'] = '&uuml;';
+	    entities['253'] = '&yacute;';
+	    entities['254'] = '&thorn;';
+	    entities['255'] = '&yuml;';
+    } else {
+        throw Error("Table: "+useTable+' not supported');
+        return false;
+    }
+    
+    if (useQuoteStyle != 'ENT_NOQUOTES') {
+        entities['34'] = '&quot;';
+    }
+    
+    if (useQuoteStyle == 'ENT_QUOTES') {
+        entities['39'] = '&#039;';
+    }
+    
+    // ascii decimals to real symbols
+    for (decimal in entities) {
+        symbol = String.fromCharCode(decimal)
+        histogram[symbol] = entities[decimal];
+    }
+    
+    return histogram;
+}// }}}
+
 // {{{ html_entity_decode
-function html_entity_decode( string ) {
+function html_entity_decode( string, quote_style ) {
     // Convert all HTML entities to their applicable characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_html_entity_decode/
-    // +       version: 810.621
+    // +       version: 810.2018
     // +   original by: john (http://www.jd-tech.net)
     // +      input by: ger
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
-    // %          note: table from http://www.the-art-of-web.com/html/character-codes/
+    // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // -    depends on: get_html_translation_table
     // *     example 1: html_entity_decode('Kevin &amp; van Zonneveld');
     // *     returns 1: 'Kevin & van Zonneveld'
 
-    var histogram = {}, histogram_r = {}, code = 0;
-    var entity = chr = '';
-
-    histogram['34'] = 'quot';
-    histogram['38'] = 'amp';
-    histogram['60'] = 'lt';
-    histogram['62'] = 'gt';
-    histogram['160'] = 'nbsp';
-    histogram['161'] = 'iexcl';
-    histogram['162'] = 'cent';
-    histogram['163'] = 'pound';
-    histogram['164'] = 'curren';
-    histogram['165'] = 'yen';
-    histogram['166'] = 'brvbar';
-    histogram['167'] = 'sect';
-    histogram['168'] = 'uml';
-    histogram['169'] = 'copy';
-    histogram['170'] = 'ordf';
-    histogram['171'] = 'laquo';
-    histogram['172'] = 'not';
-    histogram['173'] = 'shy';
-    histogram['174'] = 'reg';
-    histogram['175'] = 'macr';
-    histogram['176'] = 'deg';
-    histogram['177'] = 'plusmn';
-    histogram['178'] = 'sup2';
-    histogram['179'] = 'sup3';
-    histogram['180'] = 'acute';
-    histogram['181'] = 'micro';
-    histogram['182'] = 'para';
-    histogram['183'] = 'middot';
-    histogram['184'] = 'cedil';
-    histogram['185'] = 'sup1';
-    histogram['186'] = 'ordm';
-    histogram['187'] = 'raquo';
-    histogram['188'] = 'frac14';
-    histogram['189'] = 'frac12';
-    histogram['190'] = 'frac34';
-    histogram['191'] = 'iquest';
-    histogram['192'] = 'Agrave';
-    histogram['193'] = 'Aacute';
-    histogram['194'] = 'Acirc';
-    histogram['195'] = 'Atilde';
-    histogram['196'] = 'Auml';
-    histogram['197'] = 'Aring';
-    histogram['198'] = 'AElig';
-    histogram['199'] = 'Ccedil';
-    histogram['200'] = 'Egrave';
-    histogram['201'] = 'Eacute';
-    histogram['202'] = 'Ecirc';
-    histogram['203'] = 'Euml';
-    histogram['204'] = 'Igrave';
-    histogram['205'] = 'Iacute';
-    histogram['206'] = 'Icirc';
-    histogram['207'] = 'Iuml';
-    histogram['208'] = 'ETH';
-    histogram['209'] = 'Ntilde';
-    histogram['210'] = 'Ograve';
-    histogram['211'] = 'Oacute';
-    histogram['212'] = 'Ocirc';
-    histogram['213'] = 'Otilde';
-    histogram['214'] = 'Ouml';
-    histogram['215'] = 'times';
-    histogram['216'] = 'Oslash';
-    histogram['217'] = 'Ugrave';
-    histogram['218'] = 'Uacute';
-    histogram['219'] = 'Ucirc';
-    histogram['220'] = 'Uuml';
-    histogram['221'] = 'Yacute';
-    histogram['222'] = 'THORN';
-    histogram['223'] = 'szlig';
-    histogram['224'] = 'agrave';
-    histogram['225'] = 'aacute';
-    histogram['226'] = 'acirc';
-    histogram['227'] = 'atilde';
-    histogram['228'] = 'auml';
-    histogram['229'] = 'aring';
-    histogram['230'] = 'aelig';
-    histogram['231'] = 'ccedil';
-    histogram['232'] = 'egrave';
-    histogram['233'] = 'eacute';
-    histogram['234'] = 'ecirc';
-    histogram['235'] = 'euml';
-    histogram['236'] = 'igrave';
-    histogram['237'] = 'iacute';
-    histogram['238'] = 'icirc';
-    histogram['239'] = 'iuml';
-    histogram['240'] = 'eth';
-    histogram['241'] = 'ntilde';
-    histogram['242'] = 'ograve';
-    histogram['243'] = 'oacute';
-    histogram['244'] = 'ocirc';
-    histogram['245'] = 'otilde';
-    histogram['246'] = 'ouml';
-    histogram['247'] = 'divide';
-    histogram['248'] = 'oslash';
-    histogram['249'] = 'ugrave';
-    histogram['250'] = 'uacute';
-    histogram['251'] = 'ucirc';
-    histogram['252'] = 'uuml';
-    histogram['253'] = 'yacute';
-    histogram['254'] = 'thorn';
-    histogram['255'] = 'yuml';
-
-    // Reverse table. Cause for maintainability purposes, the histogram is
-    // identical to the one in htmlentities.
-    for (code in histogram) {
-        entity = histogram[code];
-        histogram_r[entity] = code;
+    var histogram = {}, symbol = '', tmp_str = '', i = 0;
+    tmp_str = string.toString();
+    
+    if (false === (histogram = get_html_translation_table('HTML_ENTITIES', quote_style))) {
+        return false;
     }
-
-    return (string+'').replace(/(\&([a-zA-Z]+)\;)/g, function(full, m1, m2){
-        if (m2 in histogram_r) {
-            return String.fromCharCode(histogram_r[m2]);
-        } else {
-            return m2;
-        }
-    });
+    
+    for (symbol in histogram) {
+        entity = histogram[symbol];
+        tmp_str = tmp_str.split(entity).join(symbol);
+    }
+    
+    return tmp_str;
 }// }}}
 
 // {{{ htmlentities
-function htmlentities( string ){
+function htmlentities (string, quote_style) {
     // Convert all applicable characters to HTML entities
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlentities/
-    // +       version: 810.621
+    // +       version: 810.2018
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: nobbler
     // +    tweaked by: Jack
     // +   bugfixed by: Onno Marsman
-    // %          note: table from http://www.the-art-of-web.com/html/character-codes/
+    // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // -    depends on: get_html_translation_table
     // *     example 1: htmlentities('Kevin & van Zonneveld');
     // *     returns 1: 'Kevin &amp; van Zonneveld'
 
-    var histogram = {}, code = 0, tmp_arr = [], i = 0;
-    var stringl = 0;
-
-    histogram['34'] = 'quot';
-    histogram['38'] = 'amp';
-    histogram['60'] = 'lt';
-    histogram['62'] = 'gt';
-    histogram['160'] = 'nbsp';
-    histogram['161'] = 'iexcl';
-    histogram['162'] = 'cent';
-    histogram['163'] = 'pound';
-    histogram['164'] = 'curren';
-    histogram['165'] = 'yen';
-    histogram['166'] = 'brvbar';
-    histogram['167'] = 'sect';
-    histogram['168'] = 'uml';
-    histogram['169'] = 'copy';
-    histogram['170'] = 'ordf';
-    histogram['171'] = 'laquo';
-    histogram['172'] = 'not';
-    histogram['173'] = 'shy';
-    histogram['174'] = 'reg';
-    histogram['175'] = 'macr';
-    histogram['176'] = 'deg';
-    histogram['177'] = 'plusmn';
-    histogram['178'] = 'sup2';
-    histogram['179'] = 'sup3';
-    histogram['180'] = 'acute';
-    histogram['181'] = 'micro';
-    histogram['182'] = 'para';
-    histogram['183'] = 'middot';
-    histogram['184'] = 'cedil';
-    histogram['185'] = 'sup1';
-    histogram['186'] = 'ordm';
-    histogram['187'] = 'raquo';
-    histogram['188'] = 'frac14';
-    histogram['189'] = 'frac12';
-    histogram['190'] = 'frac34';
-    histogram['191'] = 'iquest';
-    histogram['192'] = 'Agrave';
-    histogram['193'] = 'Aacute';
-    histogram['194'] = 'Acirc';
-    histogram['195'] = 'Atilde';
-    histogram['196'] = 'Auml';
-    histogram['197'] = 'Aring';
-    histogram['198'] = 'AElig';
-    histogram['199'] = 'Ccedil';
-    histogram['200'] = 'Egrave';
-    histogram['201'] = 'Eacute';
-    histogram['202'] = 'Ecirc';
-    histogram['203'] = 'Euml';
-    histogram['204'] = 'Igrave';
-    histogram['205'] = 'Iacute';
-    histogram['206'] = 'Icirc';
-    histogram['207'] = 'Iuml';
-    histogram['208'] = 'ETH';
-    histogram['209'] = 'Ntilde';
-    histogram['210'] = 'Ograve';
-    histogram['211'] = 'Oacute';
-    histogram['212'] = 'Ocirc';
-    histogram['213'] = 'Otilde';
-    histogram['214'] = 'Ouml';
-    histogram['215'] = 'times';
-    histogram['216'] = 'Oslash';
-    histogram['217'] = 'Ugrave';
-    histogram['218'] = 'Uacute';
-    histogram['219'] = 'Ucirc';
-    histogram['220'] = 'Uuml';
-    histogram['221'] = 'Yacute';
-    histogram['222'] = 'THORN';
-    histogram['223'] = 'szlig';
-    histogram['224'] = 'agrave';
-    histogram['225'] = 'aacute';
-    histogram['226'] = 'acirc';
-    histogram['227'] = 'atilde';
-    histogram['228'] = 'auml';
-    histogram['229'] = 'aring';
-    histogram['230'] = 'aelig';
-    histogram['231'] = 'ccedil';
-    histogram['232'] = 'egrave';
-    histogram['233'] = 'eacute';
-    histogram['234'] = 'ecirc';
-    histogram['235'] = 'euml';
-    histogram['236'] = 'igrave';
-    histogram['237'] = 'iacute';
-    histogram['238'] = 'icirc';
-    histogram['239'] = 'iuml';
-    histogram['240'] = 'eth';
-    histogram['241'] = 'ntilde';
-    histogram['242'] = 'ograve';
-    histogram['243'] = 'oacute';
-    histogram['244'] = 'ocirc';
-    histogram['245'] = 'otilde';
-    histogram['246'] = 'ouml';
-    histogram['247'] = 'divide';
-    histogram['248'] = 'oslash';
-    histogram['249'] = 'ugrave';
-    histogram['250'] = 'uacute';
-    histogram['251'] = 'ucirc';
-    histogram['252'] = 'uuml';
-    histogram['253'] = 'yacute';
-    histogram['254'] = 'thorn';
-    histogram['255'] = 'yuml';
-
-    string += '';
-    stringl = string.length
-    for (i = 0; i < stringl; ++i) {
-        code = string.charCodeAt(i);
-        if (code in histogram) {
-            tmp_arr[i] = '&'+histogram[code]+';';
-        } else {
-            tmp_arr[i] = string.charAt(i);
-        }
+    var histogram = {}, symbol = '', tmp_str = '', i = 0;
+    tmp_str = string.toString();
+    
+    if (false === (histogram = get_html_translation_table('HTML_ENTITIES', quote_style))) {
+        return false;
     }
-
-    return tmp_arr.join('');
+    
+    for (symbol in histogram) {
+        entity = histogram[symbol];
+        tmp_str = tmp_str.split(symbol).join(entity);
+    }
+    
+    return tmp_str;
 }// }}}
 
 // {{{ htmlspecialchars
-function htmlspecialchars(string, quote_style) {
+function htmlspecialchars (string, quote_style) {
     // Convert special characters to HTML entities
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars/
-    // +       version: 809.522
+    // +       version: 810.2018
     // +   original by: Mirek Slugen
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Nathan
     // +   bugfixed by: Arno
+    // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // -    depends on: get_html_translation_table
     // *     example 1: htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
     // *     returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
+
+    var histogram = {}, symbol = '', tmp_str = '', i = 0;
+    tmp_str = string.toString();
     
-    string = string.toString();
-    
-    // Always encode
-    string = string.replace(/&/g, '&amp;');
-    string = string.replace(/</g, '&lt;');
-    string = string.replace(/>/g, '&gt;');
-    
-    // Encode depending on quote_style
-    if (quote_style == 'ENT_QUOTES') {
-        string = string.replace(/"/g, '&quot;');
-        string = string.replace(/'/g, '&#039;');
-    } else if (quote_style != 'ENT_NOQUOTES') {
-        // All other cases (ENT_COMPAT, default, but not ENT_NOQUOTES)
-        string = string.replace(/"/g, '&quot;');
+    if (false === (histogram = get_html_translation_table('HTML_SPECIALCHARS', quote_style))) {
+        return false;
     }
     
-    return string;
+    for (symbol in histogram) {
+        entity = histogram[symbol];
+        tmp_str = tmp_str.split(symbol).join(entity);
+    }
+    
+    return tmp_str;
 }// }}}
 
 // {{{ htmlspecialchars_decode
@@ -3375,7 +3352,7 @@ function htmlspecialchars_decode(string, quote_style) {
     // Convert special HTML entities back to characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars_decode/
-    // +       version: 809.2912
+    // +       version: 810.2018
     // +   original by: Mirek Slugen
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Mateusz "loonquawl" Zalega
@@ -3384,26 +3361,24 @@ function htmlspecialchars_decode(string, quote_style) {
     // +      input by: Scott Cariss
     // +      input by: Francois
     // +   bugfixed by: Onno Marsman
+    // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // -    depends on: get_html_translation_table
     // *     example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
     // *     returns 1: '<p>this -> &quot;</p>'
+
+    var histogram = {}, symbol = '', tmp_str = '', i = 0;
+    tmp_str = string.toString();
     
-    string = string.toString();
-    
-    // Always encode
-    string = string.replace(/&amp;/g, '&');
-    string = string.replace(/&lt;/g, '<');
-    string = string.replace(/&gt;/g, '>');
-    
-    // Encode depending on quote_style
-    if (quote_style == 'ENT_QUOTES') {
-        string = string.replace(/&quot;/g, '"');
-        string = string.replace(/&#039;/g, '\'');
-    } else if (quote_style != 'ENT_NOQUOTES') {
-        // All other cases (ENT_COMPAT, default, but not ENT_NOQUOTES)
-        string = string.replace(/&quot;/g, '"');
+    if (false === (histogram = get_html_translation_table('HTML_SPECIALCHARS', quote_style))) {
+        return false;
     }
     
-    return string;
+    for (symbol in histogram) {
+        entity = histogram[symbol];
+        tmp_str = tmp_str.split(entity).join(symbol);
+    }
+    
+    return tmp_str;
 }// }}}
 
 // {{{ implode
@@ -5004,11 +4979,11 @@ function substr_count( haystack, needle, offset, length ) {
 }// }}}
 
 // {{{ trim
-function trim( str, charlist ) {
+function trim (str, charlist) {
     // Strip whitespace (or other characters) from the beginning and end of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_trim/
-    // +       version: 810.612
+    // +       version: 810.2018
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: mdsjack (http://www.mdsjack.bo.it)
     // +   improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
@@ -5027,11 +5002,13 @@ function trim( str, charlist ) {
 
     var whitespace, l = 0, i = 0;
     str += '';
-    charlist += '';
     
     if (!charlist) {
-        whitespace = ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000';
+        // default list
+        whitespace = " \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000";
     } else {
+        // preg_quote custom list
+        charlist += '';
         whitespace = charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\$1');
     }
     
