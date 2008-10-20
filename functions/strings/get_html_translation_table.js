@@ -4,48 +4,38 @@ function get_html_translation_table(table, quote_style) {
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %          note: It has been decided that we're not going to add global
     // %          note: dependencies to php.js. Meaning the constants are not
-    // %          note: real constants.
-    // *     example 1: get_html_translation_table('Kevin van Zonneveld');
-    // *     returns 1: 1249991249
+    // %          note: real constants, but strings instead. integers are also supported if someone
+    // %          note: chooses to create the constants themselves.
+    // %          note: Table from http://www.the-art-of-web.com/html/character-codes/
+    // *     example 1: get_html_translation_table('HTML_SPECIALCHARS');
+    // *     returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
     
-    var constMapping = {}, entities = {}, decimal = 0, symbol = '';
+    var entities = {}, histogram = {}, decimal = 0, symbol = '';
+    var constMappingTable = {}, constMappingQuoteStyle = {};
     var useTable = table, useQuoteStyle = quote_style;
-     
+    
     // Translate arguments
-    constMapping['table'][0] = 'HTML_SPECIALCHARS';
-    constMapping['table'][1] = 'HTML_ENTITIES';
-    constMapping['quote_style'][0] = 'ENT_NOQUOTES';
-    constMapping['quote_style'][2] = 'ENT_COMPAT';
-    constMapping['quote_style'][3] = 'ENT_QUOTES';
+    constMappingTable[0]      = 'HTML_SPECIALCHARS';
+    constMappingTable[1]      = 'HTML_ENTITIES';
+    constMappingQuoteStyle[0] = 'ENT_NOQUOTES';
+    constMappingQuoteStyle[2] = 'ENT_COMPAT';
+    constMappingQuoteStyle[3] = 'ENT_QUOTES';
     
-    // Map
-    if (constMapping['table'][useTable]) {
-       useTable = constMapping['table'][useTable]; 
+    // Map or Default
+    if (!(useTable = constMappingTable[useTable])) {
+        useTable = 'HTML_SPECIALCHARS' 
     }
-    if (constMapping['quote_style'][useQuoteStyle]) {
-       useQuoteStyle = constMapping['quote_style'][useQuoteStyle]; 
+    if (!(useQuoteStyle = constMappingQuoteStyle[useQuoteStyle])) {
+        useQuoteStyle = 'ENT_COMPAT'; 
     }
-    
-    // Default
-    if (!useTable) useTable = 'HTML_SPECIALCHARS';
-    if (!useQuoteStyle) useQuoteStyle = 'ENT_COMPAT';
     
     if (useTable == 'HTML_SPECIALCHARS') {
         // ascii decimals for better compatibility
         entities['60'] = '&lt;';
         entities['62'] = '&gt;';
         entities['38'] = '&amp;';
-        
-        if (quote_style != 'ENT_QUOTES') {
-            entities['34'] = '&quot;';
-        }
-        
-        if (quote_style == 'ENT_QUOTES') {
-	        entities['39'] = '&#39;';
-        }
     } else if (useTable == 'HTML_ENTITIES') {
         // ascii decimals for better compatibility
-	    entities['34'] = '&quot;';
 	    entities['38'] = '&amp;';
 	    entities['60'] = '&lt;';
 	    entities['62'] = '&gt;';
@@ -148,7 +138,15 @@ function get_html_translation_table(table, quote_style) {
     } else {
         return false;
     }
-
+    
+    if (useQuoteStyle != 'ENT_QUOTES') {
+        entities['34'] = '&quot;';
+    }
+    
+    if (useQuoteStyle == 'ENT_QUOTES') {
+        entities['39'] = '&#39;';
+    }
+    
     // ascii decimals to real symbols
     for (decimal in entities) {
         symbol = String.fromCharCode(decimal)

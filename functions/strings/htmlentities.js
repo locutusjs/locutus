@@ -1,11 +1,11 @@
-function htmlentities( string ){
+function htmlentities (string, quote_style) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: nobbler
     // +    tweaked by: Jack
     // +   bugfixed by: Onno Marsman
-    // %          note: table from http://www.the-art-of-web.com/html/character-codes/
+    // -    depends on: get_html_translation_table
     // *     example 1: htmlentities('Kevin & van Zonneveld');
     // *     returns 1: 'Kevin &amp; van Zonneveld'
 
@@ -112,17 +112,20 @@ function htmlentities( string ){
     histogram['253'] = 'yacute';
     histogram['254'] = 'thorn';
     histogram['255'] = 'yuml';
-
+    
+    histogram = get_html_translation_table('htmlentities', quote_style);
+    
     string += '';
     stringl = string.length
     for (i = 0; i < stringl; ++i) {
         code = string.charCodeAt(i);
-        if (code in histogram) {
-            tmp_arr[i] = '&'+histogram[code]+';';
+        foundSymbol = string.charAt(i) 
+        if (matchSymbol in histogram) {
+            tmp_arr[i] = histogram[matchSymbol];
         } else {
-            tmp_arr[i] = string.charAt(i);
+            tmp_arr[i] = foundSymbol;
         }
     }
-
+    
     return tmp_arr.join('');
 }

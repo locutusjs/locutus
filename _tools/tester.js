@@ -1,25 +1,77 @@
 function tester_comparer(result, should) {
-    var valid = true;
-
-    if( result === null || result === false || result === undefined ) {
-        if(result != should){
+    var _getType = function(obj) {
+        // Objects are php associative arrays.
+        var t = typeof obj;
+        t = t.toLowerCase();
+        if (t == "object") {
+            t = "array";
+        }
+        return t;
+    }
+    
+    // Determine types
+    resType = _getType(result);
+    shdType = _getType(should); 
+    
+    if (resType != shdType) {
+        // Bail out if types don't match
+        return false;
+    }
+    
+    // Iterate & compare arrays 
+    if (resType == "array") {
+        
+        // Bail out if count doesn't match
+        resCount = tester_count(result, 'COUNT_RECURSIVE');
+        shdCount = tester_count(should, 'COUNT_RECURSIVE');
+        if (resCount != shdCount) {
             return false;
         }
-    } else if( result.constructor === Array || result.constructor === Object ) {
-        for (key in result){
-            // Recurse
-            subres = tester_comparer(result[key], should[key]);
-            if(subres[0] < 1){
-                return subres;
+        
+        for (key in should) {
+            if (typeof(result[key]) == 'undefined') {
+                // Bail out if element doesn't even exist in test-result
+                return false;
+            }
+            if (false == tester_comparer(result[key], should[key])) {
+                return false;
             }
         }
-    } else {
-        if(should != result){
-            return false;
+        // Arrays matched
+        return true;
+    }
+    
+    // 'Simple' types.
+    if(result != should){
+        return false;
+    }
+    
+    // Simple types matched;
+    return true;
+}
+
+function tester_count( mixed_var, mode ) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: _argos
+    // *     example 1: count([[0,0],[0,-4]], 'COUNT_RECURSIVE');
+    // *     returns 1: 6
+    // *     example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
+    // *     returns 2: 6
+
+    var key, cnt = 0;
+
+    if( mode == 'COUNT_RECURSIVE' ) mode = 1;
+    if( mode != 1 ) mode = 0;
+
+    for (key in mixed_var){
+        cnt++;
+        if( mode==1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor === Object) ){
+            cnt += count(mixed_var[key], 1);
         }
     }
 
-    return valid;
+    return cnt;
 }
 
 function tester_trim( str, charlist ) {

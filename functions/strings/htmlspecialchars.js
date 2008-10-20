@@ -4,6 +4,7 @@ function htmlspecialchars(string, quote_style) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Nathan
     // +   bugfixed by: Arno
+    // -    depends on: get_html_translation_table
     // *     example 1: htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
     // *     returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
     
