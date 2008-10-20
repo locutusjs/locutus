@@ -9,12 +9,17 @@ function tester_comparer(result, should) {
         return t;
     }
     
+    var _why = function(str) {
+        //print('***', str);
+    }
+    
     // Determine types
     resType = _getType(result);
     shdType = _getType(should); 
     
     if (resType != shdType) {
         // Bail out if types don't match
+        _why('types don\'t match');
         return false;
     }
     
@@ -25,17 +30,33 @@ function tester_comparer(result, should) {
         resCount = tester_count(result, 'COUNT_RECURSIVE');
         shdCount = tester_count(should, 'COUNT_RECURSIVE');
         if (resCount != shdCount) {
+            _why('count doesn\'t match');
             return false;
         }
         
         for (key in should) {
+            // Rhino has a bug (https://bugzilla.mozilla.org/show_bug.cgi?id=419090)
+            // causing us to use an uglier method, element order.
+            
+            val = should[key];
+            if (false === (fkey = tester_array_search(val, result))) {
+                _why('element doesn\'t exist in test-result');                
+                return false;
+            } 
+            
+            // Clear out
+            result[key] = undefined;
+            
+            /*
             if (typeof(result[key]) == 'undefined') {
                 // Bail out if element doesn't even exist in test-result
+                _why('element doesn\'t exist in test-result');
                 return false;
             }
             if (false == tester_comparer(result[key], should[key])) {
                 return false;
             }
+            */
         }
         // Arrays matched
         return true;
@@ -43,6 +64,7 @@ function tester_comparer(result, should) {
     
     // 'Simple' types.
     if(result != should){
+        _why('simple value doesn\'t match');
         return false;
     }
     
@@ -109,6 +131,23 @@ function tester_trim( str, charlist ) {
         }
     }
     return whitespace.indexOf(str.charAt(0)) === -1 ? str : '';
+}
+
+function tester_array_search( needle, haystack, strict ) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'});
+    // *     returns 1: 'surname'
+
+    var strict = !!strict;
+
+    for(var key in haystack){
+        if( (strict && haystack[key] === needle) || (!strict && haystack[key] == needle) ){
+            return key;
+        }
+    }
+
+    return false;
 }
 
 function tester_print_r( array, return_val ) {
