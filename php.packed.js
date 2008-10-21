@@ -32,8 +32,8 @@
  * Mata (http://thiagomata.blog.com), Tim Wiel, XoraX (http://www.xorax.info),
  * Yannoo, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel
  * paderni, ger, gorthaur, hitwork, jakes, john (http://www.jd-tech.net),
- * johnrembo, kenneth, metjay, nobbler, penutbutterjelly, sankai, sowberry,
- * stensi
+ * johnrembo, kenneth, marc andreu, metjay, nobbler, penutbutterjelly, sankai,
+ * sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
