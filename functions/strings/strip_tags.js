@@ -24,11 +24,8 @@ function strip_tags(str, allowed_tags) {
 
     // Build allowes tags associative array
     if (allowed_tags) {
-        //allowed_tags  = allowed_tags.replace(/[^a-zA-Z,]+/g, '');;
-        //allowed_array = allowed_tags.split(',');
-        allowed_array = allowed_tags.match(/<\/?([^>]+)>/gi);
+        allowed_array = allowed_tags.match(/([a-zA-Z]+)/gi);
     }
-	tester_print_r(allowed_array);
 	
     str += '';
 
