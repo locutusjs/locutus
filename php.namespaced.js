@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.74
+ * This is version: 1.75
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -11,10 +11,10 @@
  * Carlos R. L. Rodrigues (http://www.jsfromhell.com), Enrique Gonzalez, Ash
  * Searle (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
- * marrtins, AJ, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman Gupta,
- * Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen, Nate,
- * Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
- * (http://www.mdsjack.bo.it), Alex, Alexander Ermolaev
+ * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
+ * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen,
+ * Nate, Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
+ * (http://www.mdsjack.bo.it), Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Anton Ongson, Arno, Atli Þór, Bayron
@@ -4422,13 +4422,15 @@
             // Strip HTML and PHP tags from a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-            // +       version: 810.819
+            // +       version: 810.2110
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Luke Godfrey
             // +      input by: Pul
             // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   bugfixed by: Onno Marsman
-            // *     example 1: $P.strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i>,<b>');
+            // +      input by: Alex
+            // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // *     example 1: $P.strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>');
             // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
             // *     example 2: $P.strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>');
             // *     returns 2: '<p>Kevin van Zonneveld</p>'
@@ -4440,17 +4442,14 @@
             var allowed_keys = {};
         
             var replacer = function(search, replace, str) {
-                var tmp_arr = [];
-                tmp_arr = str.split(search);
-                return tmp_arr.join(replace);
+                return str.split(search).join(replace);
             };
         
             // Build allowes tags associative array
             if (allowed_tags) {
-                allowed_tags  = allowed_tags.replace(/[^a-zA-Z,]+/g, '');;
-                allowed_array = allowed_tags.split(',');
+                allowed_array = allowed_tags.match(/([a-zA-Z]+)/gi);
             }
-        
+            
             str += '';
         
             // Match tags
