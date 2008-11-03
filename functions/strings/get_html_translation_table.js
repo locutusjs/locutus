@@ -2,6 +2,7 @@ function get_html_translation_table(table, quote_style) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: noname
     // %          note: It has been decided that we're not going to add global
     // %          note: dependencies to php.js. Meaning the constants are not
     // %          note: real constants, but strings instead. integers are also supported if someone
@@ -34,9 +35,9 @@ function get_html_translation_table(table, quote_style) {
     
     if (useTable == 'HTML_SPECIALCHARS') {
         // ascii decimals for better compatibility
+        entities['38'] = '&amp;';
         entities['60'] = '&lt;';
         entities['62'] = '&gt;';
-        entities['38'] = '&amp;';
     } else if (useTable == 'HTML_ENTITIES') {
         // ascii decimals for better compatibility
 	    entities['38'] = '&amp;';
