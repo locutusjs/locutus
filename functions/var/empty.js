@@ -5,6 +5,7 @@ function empty( mixed_var ) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: LH
     // +   improved by: Onno Marsman
+    // +   improved by: Francesco
     // *     example 1: empty(null);
     // *     returns 1: true
     // *     example 2: empty(undefined);
@@ -27,7 +28,9 @@ function empty( mixed_var ) {
     }
     if (typeof mixed_var == 'object') {
         for (key in mixed_var) {
-            return false;
+            if (typeof mixed_var[key] !== 'function' ) {
+	            return false;
+            }
         }
         return true;
     }
