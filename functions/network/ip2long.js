@@ -1,6 +1,6 @@
 function ip2long ( ip_address ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: _argos
+    // +   original by: Waldo Malqui Silva
     // *     example 1: ip2long( '192.0.34.166' );
     // *     returns 1: 3221234342
     

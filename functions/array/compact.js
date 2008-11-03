@@ -1,6 +1,6 @@
 function compact ( var_names ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: _argos
+    // +   original by: Waldo Malqui Silva
     // +    tweaked by: Jack
     // *     example 1: var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';  
     // *     example 1: compact('var1', 'var2', 'var3');

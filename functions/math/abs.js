@@ -1,6 +1,6 @@
 function abs( mixed_number )  {
     // http://kevin.vanzonneveld.net
-    // +   original by: _argos
+    // +   original by: Waldo Malqui Silva
     // +   improved by: Karol Kowalski
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)

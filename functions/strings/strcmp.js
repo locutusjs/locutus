@@ -1,6 +1,6 @@
 function strcmp ( str1, str2 ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: _argos
+    // +   original by: Waldo Malqui Silva
     // +      input by: Steve Hilder
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: gorthaur

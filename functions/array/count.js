@@ -1,7 +1,7 @@
 function count( mixed_var, mode ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +      input by: _argos
+    // +      input by: Waldo Malqui Silva
     // *     example 1: count([[0,0],[0,-4]], 'COUNT_RECURSIVE');
     // *     returns 1: 6
     // *     example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');

@@ -1,7 +1,7 @@
 function ucwords( str ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-    // +   improved by: _argos
+    // +   improved by: Waldo Malqui Silva
     // +   bugfixed by: Onno Marsman
     // *     example 1: ucwords('kevin van zonneveld');
     // *     returns 1: 'Kevin Van Zonneveld'

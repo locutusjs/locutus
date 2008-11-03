@@ -1,6 +1,6 @@
 function array_product ( input ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: _argos
+    // +   original by: Waldo Malqui Silva
     // *     example 1: array_product([ 2, 4, 6, 8 ]);
     // *     returns 1: 384
 
