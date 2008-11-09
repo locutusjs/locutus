@@ -5,14 +5,18 @@ function array_slice(arr, offst, lgth, preserve_keys) {
     // *     returns 1: {0: 'c', 1: 'd'}
     // *     example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true);
     // *     returns 2: {2: 'c', 3: 'd'}
-    
+
+    if ('callee' in arr && 'length' in arr) {
+        arr = Array.prototype.slice.call(arr);
+    }
+        
 	if (!(arr instanceof Array) || (preserve_keys && offst != 0)) { // Assoc. array as input or if required as output
 		var lgt =0, newAssoc = {};
 		for (var key in arr) {
-			if (key !== 'length') {
+			//if (key !== 'length') {
 				lgt += 1;
 				newAssoc[key] = arr[key];
-			}
+			//}
 		}
 		arr = newAssoc;
 		
@@ -39,7 +43,7 @@ function array_slice(arr, offst, lgth, preserve_keys) {
 		        assoc[key] = arr[key];
 		    }
 		}
-		assoc.length = arrlgth; // Make as array-like object (though length will not be dynamic)
+		//assoc.length = arrlgth; // Make as array-like object (though length will not be dynamic)
 		return assoc;
 	}
 }
