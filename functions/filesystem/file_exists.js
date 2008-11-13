@@ -1,6 +1,6 @@
 function file_exists (url) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Enrique González
+    // +   original by: Enrique Gonzalez
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
     // *     example 1: file_exists('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');

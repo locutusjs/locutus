@@ -1,10 +1,10 @@
 function filesize (url) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Enrique González
+    // +   original by: Enrique Gonzalez
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
     // *     example 1: filesize('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
-    // *     returns 1: '123'
+    // *     returns 1: '3'
 
     var req = null;
     try { req = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {  
@@ -13,7 +13,9 @@ function filesize (url) {
        }  
     }
     if (req == null) throw new Error('XMLHttpRequest not supported');
+    
     req.open ('HEAD',url,false);
     req.send (null);
+    
     return req.getResponseHeader('Content-Length'); 
 }

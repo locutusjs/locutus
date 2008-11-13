@@ -2,6 +2,7 @@ function echo ( ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
     // +   improved by: echo is bad
+    // +   improved by: Nate
     // *     example 1: echo('Hello', 'World');
     // *     returns 1: null
     
@@ -20,7 +21,8 @@ function echo ( ) {
         if (document.createDocumentFragment && document.createTextNode && document.appendChild) {
             var docFragment = document.createDocumentFragment();
             var txt = document.createTextNode(aarg);
-            docFragment.appendChild(txt); 
+            docFragment.appendChild(txt);
+            document.body.appendChild(docFragment);
         } else if (document.write) {
             document.write(arg);
         } else {
