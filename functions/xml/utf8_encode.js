@@ -5,10 +5,12 @@ function utf8_encode ( string ) {
     // +   improved by: sowberry
     // +    tweaked by: Jack
     // +   bugfixed by: Onno Marsman
+    // +   improved by: Yves Sucaet
     // *     example 1: utf8_encode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
-    string = (string+'').replace(/\r\n/g,"\n");
+    string = (string+'').replace(/\r\n/g, "\n");
+    string = (string+'').replace(/\r/g, "\n");
     var utftext = "";
     var start, end;
     var stringl = 0;

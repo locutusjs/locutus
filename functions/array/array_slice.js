@@ -1,14 +1,18 @@
 function array_slice(arr, offst, lgth, preserve_keys) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
+    // -    depends on: is_int
+    // %          note: Relies on is_int because !isNaN accepts floats 
     // *     example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1);
     // *     returns 1: {0: 'c', 1: 'd'}
     // *     example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true);
     // *     returns 2: {2: 'c', 3: 'd'}
 
+    /*
     if ('callee' in arr && 'length' in arr) {
         arr = Array.prototype.slice.call(arr);
     }
+    */
         
 	if (!(arr instanceof Array) || (preserve_keys && offst != 0)) { // Assoc. array as input or if required as output
 		var lgt =0, newAssoc = {};
@@ -37,7 +41,7 @@ function array_slice(arr, offst, lgth, preserve_keys) {
 		       continue;
 		    }
 		    ++arrlgth;
-		    if (!isNaN(key) && !preserve_keys) {
+		    if (is_int(key) && !preserve_keys) {
                 assoc[no_pk_idx++] = arr[key];
 		    } else {
 		        assoc[key] = arr[key];
@@ -46,4 +50,13 @@ function array_slice(arr, offst, lgth, preserve_keys) {
 		//assoc.length = arrlgth; // Make as array-like object (though length will not be dynamic)
 		return assoc;
 	}
+    
+    if (lgth === undefined) {
+        return arr.slice(offst);    
+    } else if (lgth >= 0) {
+        return arr.slice(offst, offst + lgth);
+    } else {
+        return arr.slice(offst, lgth);
+    }
+    
 }
