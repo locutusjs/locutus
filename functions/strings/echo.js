@@ -31,7 +31,7 @@ function echo ( ) {
         arg = argv[i];
         if (document.createDocumentFragment && document.createTextNode && document.appendChild) {
             var docFragment = document.createDocumentFragment();
-            var txt = document.createTextNode(aarg);
+            var txt = document.createTextNode(arg);
             docFragment.appendChild(txt);
             document.body.appendChild(docFragment);
         } else if (document.write) {
