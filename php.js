@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.75
+ * This is version: 1.76
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -1598,9 +1598,11 @@ function file_get_contents( url ) {
     // Reads entire file into a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file_get_contents/
-    // +       version: 809.522
+    // +       version: 810.2114
     // +   original by: Legaev Andrey
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
+    // %        note 1: Mainly here for study purposes. 
+    // %        note 1: To avoid browser blocking issues's concider using jQuery's: $('#divId').load('http://url') instead.
     // *     example 1: file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '123'
 
