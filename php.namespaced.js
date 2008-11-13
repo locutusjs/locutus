@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.77
+ * This is version: 1.78
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -1663,9 +1663,11 @@
             // Reads entire file into an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file/
-            // +       version: 809.522
+            // +       version: 811.1323
             // +   original by: Legaev Andrey
             // %        note 1: This uses: function XmlHttpRequest and cannot retrieve resource from different domain.
+            // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
+            // %        note 1: To avoid browser blocking issues's consider using jQuery's: $('#divId').load('http://url') instead.
             // *     example 1: $P.file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
             // *     returns 1: {0: '123'}
         
@@ -1691,22 +1693,26 @@
             // +       version: 811.1323
             // +   original by: Enrique González
             // %        note 1: This uses: function XmlHttpRequest and cannot retrieve resource from different domain.
-             // %       note 1: Syncronous so may lock up browser, mainly here for study purposes. 
-            // *     example 1: $P.file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
+            // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
+            // *     example 1: $P.file_exists('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
             // *     returns 1: '123'
-        
+            
             var req = null;
-            try { req = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {
-                try { req = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {
-                    try { req = new XMLHttpRequest(); } catch(e) {}
-                }
+            try { req = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {  
+               try { req = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {  
+                   try { req = new XMLHttpRequest(); } catch(e) {}  
+               }  
             }
+            
             if (req == null) throw new Error('XMLHttpRequest not supported');
+            // HEAD Results are usually shorter (faster) than GET
+            req.open ('HEAD',url,false);
+            req.send (null);
+            if (req.status ==200){ 
+                return true;
+            }
             
-            req.open("GET", url, false);
-            req.send(null);
-            
-            return req.responseText;
+            return false;
         },// }}}
         
         // {{{ file_get_contents
@@ -1717,7 +1723,7 @@
             // +       version: 811.1323
             // +   original by: Legaev Andrey
             // %        note 1: This uses: function XmlHttpRequest and cannot retrieve resource from different domain.
-            // %        note 1: Syncronous so may lock up browser, mainly here for study purposes. 
+            // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
             // %        note 1: To avoid browser blocking issues's consider using jQuery's: $('#divId').load('http://url') instead.
             // *     example 1: $P.file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
             // *     returns 1: '123'
@@ -1737,15 +1743,15 @@
         },// }}}
         
         // {{{ filesize
-        file_exists: function (url) {
+        filesize: function (url) {
             // Gets file size
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_filesize/
             // +       version: 811.1323
             // +   original by: Enrique González
             // %        note 1: This uses: function XmlHttpRequest and cannot retrieve resource from different domain.
-            // %        note 1: Syncronous so may lock up browser, mainly here for study purposes. 
-            // *     example 1: $P.file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
+            // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
+            // *     example 1: $P.filesize('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
             // *     returns 1: '123'
         
             var req = null;
