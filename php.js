@@ -1,21 +1,21 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.78
+ * This is version: 1.79
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
  * Waldo Malqui Silva, Jack, Jonas Raoni Soares Silva
  * (http://www.jsfromhell.com), Philip Peterson, Legaev Andrey, Ates Goral
- * (http://magnetiq.com), Martijn Wieringa, Philippe Baumann, Webtoolkit.info
- * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
- * (http://www.jsfromhell.com), Enrique Gonzalez, Ash Searle
+ * (http://magnetiq.com), Martijn Wieringa, Enrique Gonzalez, Philippe
+ * Baumann, Webtoolkit.info (http://www.webtoolkit.info/), Carlos R. L.
+ * Rodrigues (http://www.jsfromhell.com), Nate, Ash Searle
  * (http://hexmen.com/blog/), Erkekjetter, GeekFG
- * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), Nate,
- * d3x, marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com),
- * Aman Gupta, Arpad Ray (mailto:arpad@php.net), Brett Zamir, Enrique
- * González, Karol Kowalski, Mirek Slugen, Sakimori, Thunder.m, Tyler Akins
- * (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), Alexander Ermolaev
+ * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
+ * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
+ * Gupta, Arpad Ray (mailto:arpad@php.net), Brett Zamir, Karol Kowalski, Mirek
+ * Slugen, Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
+ * (http://www.mdsjack.bo.it), Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Andreas, Anton Ongson, Arno, Atli
@@ -1671,8 +1671,8 @@ function file_exists (url) {
     // Checks whether a file or directory exists
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file_exists/
-    // +       version: 811.1323
-    // +   original by: Enrique González
+    // +       version: 811.1400
+    // +   original by: Enrique Gonzalez
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
     // *     example 1: file_exists('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
@@ -1728,12 +1728,12 @@ function filesize (url) {
     // Gets file size
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_filesize/
-    // +       version: 811.1323
-    // +   original by: Enrique González
+    // +       version: 811.1400
+    // +   original by: Enrique Gonzalez
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
     // *     example 1: filesize('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
-    // *     returns 1: '123'
+    // *     returns 1: '3'
 
     var req = null;
     try { req = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {  
@@ -1742,8 +1742,10 @@ function filesize (url) {
        }  
     }
     if (req == null) throw new Error('XMLHttpRequest not supported');
+    
     req.open ('HEAD',url,false);
     req.send (null);
+    
     return req.getResponseHeader('Content-Length'); 
 }// }}}
 
@@ -3135,9 +3137,21 @@ function echo ( ) {
     // Output one or more strings
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_echo/
-    // +       version: 810.2018
+    // +       version: 811.1400
     // +   original by: Philip Peterson
     // +   improved by: echo is bad
+    // +   improved by: Nate
+    // %        note 1: There are a few unsolved issues with this function. Summarizing:
+    // %        note 1: converts all the special characters (e.g. tags) to HTML entities, 
+    // %        note 1: thus reducing the usability of HTML formatting in echo().
+    // %        note 1: 
+    // %        note 1: InnerHTML() is better because it works (and it's fast),   
+    // %        note 1: but using innerHTML on the BODY is very dangerous because
+    // %        note 1: you will break all references to HTMLElements that were done before
+    // %        note 1: 
+    // %        note 1: There's no good place for a package like http://innerdom.sourceforge.net/
+    // %        note 1: inside php.js
+    // %        note 1:
     // *     example 1: echo('Hello', 'World');
     // *     returns 1: null
     
@@ -3156,7 +3170,8 @@ function echo ( ) {
         if (document.createDocumentFragment && document.createTextNode && document.appendChild) {
             var docFragment = document.createDocumentFragment();
             var txt = document.createTextNode(aarg);
-            docFragment.appendChild(txt); 
+            docFragment.appendChild(txt);
+            document.body.appendChild(docFragment);
         } else if (document.write) {
             document.write(arg);
         } else {
