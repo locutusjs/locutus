@@ -17,5 +17,9 @@ function filesize (url) {
     req.open ('HEAD',url,false);
     req.send (null);
     
-    return req.getResponseHeader('Content-Length'); 
+    if (!req.getResponseHeader || !req.getResponseHeader('Content-Length')) {
+        return false;
+    } else {
+	    return req.getResponseHeader('Content-Length'); 
+    }
 }
