@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.79
+ * This is version: 1.80
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -1606,7 +1606,7 @@ function basename(path, suffix) {
     // Returns filename component of path
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_basename/
-    // +       version: 809.522
+    // +       version: 811.1414
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Ash Searle (http://hexmen.com/blog/)
     // +   improved by: Lincoln Ramsay
@@ -1615,9 +1615,11 @@ function basename(path, suffix) {
     // *     returns 1: 'home'
 
     var b = path.replace(/^.*[\/\\]/g, '');
+    
     if (typeof(suffix) == 'string' && b.substr(b.length-suffix.length) == suffix) {
         b = b.substr(0, b.length-suffix.length);
     }
+    
     return b;
 }// }}}
 
@@ -1671,7 +1673,7 @@ function file_exists (url) {
     // Checks whether a file or directory exists
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file_exists/
-    // +       version: 811.1400
+    // +       version: 811.1414
     // +   original by: Enrique Gonzalez
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
@@ -1679,6 +1681,7 @@ function file_exists (url) {
     // *     returns 1: '123'
     
     var req = null;
+    
     try { req = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {  
        try { req = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {  
            try { req = new XMLHttpRequest(); } catch(e) {}  
@@ -1728,7 +1731,7 @@ function filesize (url) {
     // Gets file size
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_filesize/
-    // +       version: 811.1400
+    // +       version: 811.1414
     // +   original by: Enrique Gonzalez
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
@@ -1746,7 +1749,11 @@ function filesize (url) {
     req.open ('HEAD',url,false);
     req.send (null);
     
-    return req.getResponseHeader('Content-Length'); 
+    if (!req.getResponseHeader || !req.getResponseHeader('Content-Length')) {
+        return false;
+    } else {
+	    return req.getResponseHeader('Content-Length'); 
+    }
 }// }}}
 
 // {{{ call_user_func_array
@@ -6118,18 +6125,19 @@ function utf8_encode ( string ) {
     // Encodes an ISO-8859-1 string to UTF-8
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_encode/
-    // +       version: 811.1323
+    // +       version: 811.1414
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: sowberry
     // +    tweaked by: Jack
     // +   bugfixed by: Onno Marsman
     // +   improved by: Yves Sucaet
+    // +   bugfixed by: Onno Marsman
     // *     example 1: utf8_encode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
-    string = (string+'').replace(/\r\n/g, "\n");
-    string = (string+'').replace(/\r/g, "\n");
+    string = (string+'').replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+
     var utftext = "";
     var start, end;
     var stringl = 0;
