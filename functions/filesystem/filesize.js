@@ -6,15 +6,10 @@ function filesize (url) {
     // *     example 1: filesize('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '3'
 
-    var req = null;
-    try { req = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {  
-       try { req = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {  
-           try { req = new XMLHttpRequest(); } catch(e) {}  
-       }  
-    }
-    if (req == null) throw new Error('XMLHttpRequest not supported');
+    var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+    if (!req) throw new Error('XMLHttpRequest not supported');
     
-    req.open ('HEAD',url,false);
+    req.open ('HEAD', url, false);
     req.send (null);
     
     if (!req.getResponseHeader || !req.getResponseHeader('Content-Length')) {
