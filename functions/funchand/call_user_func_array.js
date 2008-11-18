@@ -8,9 +8,12 @@ function call_user_func_array(func, parameters) {
     // *     returns 2: false
 
     if (typeof func == 'string') {
-        if (typeof this[func] == 'function') { func = this[func]; } else {
+        if (typeof this[func] == 'function') { 
+            func = this[func]; 
+        } else {
             func = (new Function(null, 'return ' + func))();
         }
+        
         if (typeof func != 'function') {
             throw new Exception(func + ' is not a valid function');
         }
