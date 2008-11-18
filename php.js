@@ -1752,7 +1752,7 @@ function filesize (url) {
     if (!req.getResponseHeader || !req.getResponseHeader('Content-Length')) {
         return false;
     } else {
-	    return req.getResponseHeader('Content-Length'); 
+        return req.getResponseHeader('Content-Length'); 
     }
 }// }}}
 
