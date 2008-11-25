@@ -1,6 +1,7 @@
 function array_merge() {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
+    // +   bugfixed by: Nate
     // -    depends on: is_int
     // %          note: Relies on is_int because !isNaN accepts floats     
     // *     example 1: arr1 = {"color": "red", 0: 2, 1: 4}
@@ -14,6 +15,7 @@ function array_merge() {
     
     var args = Array.prototype.slice.call(arguments);
     var retObj = {}, k, j = 0, i = 0;
+    var retArr;
     
     for (i=0, retArr=true; i < args.length; i++) {
         if (!(args[i] instanceof Array)) {
@@ -25,6 +27,7 @@ function array_merge() {
     if (retArr) {
         return args;
     }
+    var ct = 0;
     
     for (i=0, ct=0; i < args.length; i++) {
         if (args[i] instanceof Array) {

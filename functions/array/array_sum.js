@@ -1,6 +1,7 @@
 function array_sum( array ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Nate
     // *     example 1: array_sum([4, 9, 182.6]);
     // *     returns 1: 195.6
 
@@ -11,7 +12,7 @@ function array_sum( array ) {
         return null;
     }
 
-    for(var key in array){
+    for(key in array){
         sum += array[key];
     }
 
