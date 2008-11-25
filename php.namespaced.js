@@ -1,20 +1,20 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.80
+ * This is version: 1.81
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
  * Waldo Malqui Silva, Jack, Jonas Raoni Soares Silva
  * (http://www.jsfromhell.com), Philip Peterson, Legaev Andrey, Ates Goral
  * (http://magnetiq.com), Martijn Wieringa, Enrique Gonzalez, Philippe
- * Baumann, Webtoolkit.info (http://www.webtoolkit.info/), Carlos R. L.
- * Rodrigues (http://www.jsfromhell.com), Nate, Ash Searle
- * (http://hexmen.com/blog/), Erkekjetter, GeekFG
+ * Baumann, Brett Zamir, Webtoolkit.info (http://www.webtoolkit.info/), Carlos
+ * R. L. Rodrigues (http://www.jsfromhell.com), Jani Hartikainen, Nate, Ash
+ * Searle (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
- * Gupta, Arpad Ray (mailto:arpad@php.net), Brett Zamir, Karol Kowalski, Mirek
- * Slugen, Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
+ * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen,
+ * Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
  * (http://www.mdsjack.bo.it), Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
@@ -23,14 +23,14 @@
  * Ekin, Christian Doebler, Cord, David, David James, Dino, DxGx, FGFEmperor,
  * Felix Geisendoerfer (http://www.debuggable.com/felix), Francesco, Francois,
  * FremyCompany, Gabriel Paderni, Howard Yeend, J A R, Kirk Strobeck, LH,
- * Leslie Hoare, Lincoln Ramsay, Luke Godfrey, Mateusz "loonquawl" Zalega,
- * MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Norman
- * "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul
- * Koch (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
- * Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
- * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
- * Steven Levithan (http://blog.stevenlevithan.com), T.Wild, T0bsn, Thiago
- * Mata (http://thiagomata.blog.com), Tim Wiel, Tod Gentille, XoraX
+ * Leslie Hoare, Lincoln Ramsay, Luke Godfrey, Marc Palau, Mateusz "loonquawl"
+ * Zalega, MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen,
+ * Norman "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com),
+ * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Pul, Pyerre,
+ * ReverseSyntax, Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon
+ * Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve
+ * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T.Wild, T0bsn,
+ * Thiago Mata (http://thiagomata.blog.com), Tim Wiel, Tod Gentille, XoraX
  * (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil, booeyOH, djmix,
  * dptr1988, duncan, echo is bad, gabriel paderni, ger, gorthaur, hitwork,
  * jakes, john (http://www.jd-tech.net), johnrembo, kenneth, marc andreu,
@@ -363,6 +363,52 @@
             return tmp_arr;
         },// }}}
         
+        // {{{ array_fill_keys
+        array_fill_keys: function (keys, value) {
+            // Fill an array with values, specifying keys
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_fill_keys/
+            // +       version: 811.1812
+            // +   original by: Brett Zamir
+            // *     example 1: $P.keys = ['foo', 5, 10, 'bar']
+            // *     example 1: $P.array_fill_keys(keys, 'banana')
+            // *     returns 1: {"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
+            
+            var i = 0, retObj = {}, k;
+            
+            for (i = 0; i < keys.length; i++) {
+                retObj[keys[i]] = value;
+            }
+            
+            return retObj;
+        },// }}}
+        
+        // {{{ array_filter
+        array_filter: function (arr, func) {
+            // Filters elements of an array using a callback function
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_filter/
+            // +       version: 811.1812
+            // +   original by: Brett Zamir
+            // %        note 1: Takes a as: function an argument, not a function's name
+            // *     example 1: $P.var odd = function (num) {return (num & 1);}; 
+            // *     example 1: $P.array_filter({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}, odd);
+            // *     returns 1: {"a": 1, "c": 3, "e": 5}
+            // *     example 2: $P.var even = function (num) {return (!(num & 1));}
+            // *     example 2: $P.array_filter([6, 7, 8, 9, 10, 11, 12], even);
+            // *     returns 2: {0: 6, 2: 8, 4: 10, 6: 12} 
+            
+            var retObj = {}, k;
+            
+            for (k in arr) {
+                if (func(arr[k])) {
+                    retObj[k] = arr[k];
+                }
+            }
+            
+            return retObj;
+        },// }}}
+        
         // {{{ array_flip
         array_flip: function( trans ) {
             // Exchanges all keys with their associated values in an array
@@ -437,12 +483,12 @@
             // Applies the callback to the elements of the given arrays
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_map/
-            // +       version: 809.522
+            // +       version: 811.1812
             // +   original by: Andrea Giammarchi (http://webreflection.blogspot.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // %        note 1: Takes a as: function an argument, not a function's name
             // *     example 1: $P.array_map( function(a){return (a * a * a)}, [1, 2, 3, 4, 5] );
             // *     returns 1: [ 1, 8, 27, 64, 125 ]
-        
         
             var argc = arguments.length, argv = arguments;
             var j = argv[1].length, i = 0, k = 1, m = 0;
@@ -466,6 +512,57 @@
             }
         
             return tmp_ar;
+        },// }}}
+        
+        // {{{ array_merge
+        array_merge: function() {
+            // Merge one or more arrays
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_merge/
+            // +       version: 811.1812
+            // +   original by: Brett Zamir
+            // -    depends on: is_int
+            // %          note: Relies on is_int because !isNaN accepts floats     
+            // *     example 1: $P.arr1 = {"color": "red", 0: 2, 1: 4}
+            // *     example 1: $P.arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
+            // *     example 1: $P.array_merge(arr1, arr2)
+            // *     returns 1: {"color": "green", 0: 2, 1: 4, 2: "a", 3: "b", "shape": "trapezoid", 4: 4}
+            // *     example 2: $P.arr1 = []
+            // *     example 2: $P.arr2 = {1: "data"}
+            // *     example 2: $P.array_merge(arr1, arr2)
+            // *     returns 2: {1: "data"}
+            
+            var args = Array.prototype.slice.call(arguments);
+            var retObj = {}, k, j = 0, i = 0;
+            
+            for (i=0, retArr=true; i < args.length; i++) {
+                if (!(args[i] instanceof Array)) {
+                    retArr=false;
+                    break;
+                }
+            }
+            
+            if (retArr) {
+                return args;
+            }
+            
+            for (i=0, ct=0; i < args.length; i++) {
+                if (args[i] instanceof Array) {
+                    for (j=0; j < args[i].length; j++) {
+                        retObj[ct++] = args[i][j];
+                    }
+                } else {
+                    for (k in args[i]) {
+                        if (this.is_int(k)) {
+                            retObj[ct++] = args[i][k];
+                        } else {
+                            retObj[k] = args[i][k];
+                        }
+                    }
+                }
+            }
+            
+            return retObj;
         },// }}}
         
         // {{{ array_pad
@@ -601,8 +698,9 @@
             // Iteratively reduce the array to a single value using a callback function
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_reduce/
-            // +       version: 809.522
+            // +       version: 811.1812
             // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
+            // %        note 1: Takes a as: function an argument, not a function's name
             // *     example 1: $P.array_reduce([1, 2, 3, 4, 5], function(v, w){v += w;return v;});
             // *     returns 1: 15
             
@@ -612,7 +710,6 @@
         
             
             for(i = 0; i < lon; i+=2 ) {
-                
                 tmp[0] = a_input[i];
                 if(a_input[(i+1)]){
                     tmp[1] = a_input[(i+1)];
@@ -621,7 +718,6 @@
                 }
                 res+= callback.apply(null, tmp);
                 tmp = new Array();
-                
             }
             
             return res;
@@ -866,21 +962,21 @@
             // Apply a user to: function every member of an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_walk/
-            // +       version: 809.522
+            // +       version: 811.1812
             // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
-            // *     example 1: $P.array_walk ({'a':'b'} ,'void', 'userdata');
+            // *     example 1: $P.array_walk ({'a':'b'}, 'void', 'userdata');
             // *     returns 1: true
-            // *     example 2: $P.array_walk ('a' ,'void', 'userdata');
+            // *     example 2: $P.array_walk ('a', 'void', 'userdata');
             // *     returns 2: false
             
             var key; 
             
-            if (typeof array != 'object'){
+            if (typeof array != 'object') {
                 return false;
             }
             
-            for (key in array){
-                if (typeof (userdata) != 'undefined'){
+            for (key in array) {
+                if (typeof (userdata) != 'undefined') {
                     eval (funcname + '( array [key] , key , userdata  )' );
                 } else {
                     eval (funcname + '(  userdata ) ');
@@ -895,11 +991,11 @@
             // Apply a user recursively: function to every member of an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_walk_recursive/
-            // +       version: 809.522
+            // +       version: 811.1812
             // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
-            // *     example 1: $P.array_walk_recursive ({'a':'b', 'c': {'d' : 'e'}} ,'void', 'userdata');
+            // *     example 1: $P.array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
             // *     returns 1: true
-            // *     example 2: $P.array_walk_recursive ('a' ,'void', 'userdata');
+            // *     example 2: $P.array_walk_recursive ('a', 'void', 'userdata');
             // *     returns 2: false
             
             var key;
@@ -1665,25 +1761,22 @@
             // Reads entire file into an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file/
-            // +       version: 811.1323
+            // +       version: 811.1812
             // +   original by: Legaev Andrey
+            // +      input by: Jani Hartikainen
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // %        note 1: This uses: function XmlHttpRequest and cannot retrieve resource from different domain.
             // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
             // %        note 1: To avoid browser blocking issues's consider using jQuery's: $('#divId').load('http://url') instead.
             // *     example 1: $P.file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
             // *     returns 1: {0: '123'}
         
-            var req = null;
-            try { req = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {
-                try { req = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {
-                    try { req = new XMLHttpRequest(); } catch(e) {}
-                }
-            }
-            if (req == null) throw new Error('XMLHttpRequest not supported');
-        
+            var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+            if (!req) throw new Error('XMLHttpRequest not supported');
+               
             req.open("GET", url, false);
             req.send(null);
-        
+            
             return req.responseText.split('\n');
         },// }}}
         
@@ -1692,24 +1785,20 @@
             // Checks whether a file or directory exists
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file_exists/
-            // +       version: 811.1414
+            // +       version: 811.1812
             // +   original by: Enrique Gonzalez
+            // +      input by: Jani Hartikainen
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // %        note 1: This uses: function XmlHttpRequest and cannot retrieve resource from different domain.
             // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
             // *     example 1: $P.file_exists('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
             // *     returns 1: '123'
             
-            var req = null;
-            
-            try { req = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {  
-               try { req = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {  
-                   try { req = new XMLHttpRequest(); } catch(e) {}  
-               }  
-            }
-            
-            if (req == null) throw new Error('XMLHttpRequest not supported');
+            var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+            if (!req) throw new Error('XMLHttpRequest not supported');
+              
             // HEAD Results are usually shorter (faster) than GET
-            req.open ('HEAD',url,false);
+            req.open ('HEAD', url, false);
             req.send (null);
             if (req.status ==200){ 
                 return true;
@@ -1723,21 +1812,18 @@
             // Reads entire file into a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file_get_contents/
-            // +       version: 811.1323
+            // +       version: 811.1812
             // +   original by: Legaev Andrey
+            // +      input by: Jani Hartikainen
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // %        note 1: This uses: function XmlHttpRequest and cannot retrieve resource from different domain.
             // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
             // %        note 1: To avoid browser blocking issues's consider using jQuery's: $('#divId').load('http://url') instead.
             // *     example 1: $P.file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
             // *     returns 1: '123'
         
-            var req = null;
-            try { req = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {
-                try { req = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {
-                    try { req = new XMLHttpRequest(); } catch(e) {}
-                }
-            }
-            if (req == null) throw new Error('XMLHttpRequest not supported');
+            var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+            if (!req) throw new Error('XMLHttpRequest not supported');
             
             req.open("GET", url, false);
             req.send(null);
@@ -1750,22 +1836,19 @@
             // Gets file size
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_filesize/
-            // +       version: 811.1414
+            // +       version: 811.1812
             // +   original by: Enrique Gonzalez
+            // +      input by: Jani Hartikainen
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // %        note 1: This uses: function XmlHttpRequest and cannot retrieve resource from different domain.
             // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
             // *     example 1: $P.filesize('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
             // *     returns 1: '3'
         
-            var req = null;
-            try { req = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {  
-               try { req = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {  
-                   try { req = new XMLHttpRequest(); } catch(e) {}  
-               }  
-            }
-            if (req == null) throw new Error('XMLHttpRequest not supported');
+            var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+            if (!req) throw new Error('XMLHttpRequest not supported');
             
-            req.open ('HEAD',url,false);
+            req.open ('HEAD', url, false);
             req.send (null);
             
             if (!req.getResponseHeader || !req.getResponseHeader('Content-Length')) {
@@ -1780,7 +1863,7 @@
             // Call a user given: function with an array of parameters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_call_user_func_array/
-            // +       version: 809.522
+            // +       version: 811.1812
             // +   original by: Thiago Mata (http://thiagomata.blog.com)
             // +   revised  by: Jon Hohle
             // *     example 1: $P.call_user_func_array('isNaN', ['a']);
@@ -1789,9 +1872,12 @@
             // *     returns 2: false
         
             if (typeof func == 'string') {
-                if (typeof this[func] == 'function') { func = this[func]; } else {
+                if (typeof this[func] == 'function') { 
+                    func = this[func]; 
+                } else {
                     func = (new Function(null, 'return ' + func))();
                 }
+                
                 if (typeof func != 'function') {
                     throw new Exception(func + ' is not a valid function');
                 }
@@ -4580,7 +4666,7 @@
             // Strip HTML and PHP tags from a string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-            // +       version: 810.2110
+            // +       version: 811.1812
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Luke Godfrey
             // +      input by: Pul
@@ -4588,6 +4674,8 @@
             // +   bugfixed by: Onno Marsman
             // +      input by: Alex
             // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +      input by: Marc Palau
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>');
             // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
             // *     example 2: $P.strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>');
@@ -4597,7 +4685,6 @@
         
             var key = '', tag = '', allowed = false;
             var matches = allowed_array = [];
-            var allowed_keys = {};
         
             var replacer = function(search, replace, str) {
                 return str.split(search).join(replace);
