@@ -1,6 +1,7 @@
 function array_diff_assoc ( array ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: 0m3r
     // *     example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'});
     // *     returns 1: {1: 'van', 2: 'Zonneveld'}
 
@@ -17,7 +18,7 @@ function array_diff_assoc ( array ) {
         for (i = 1; i< argc; i++){
             // find in the compare array
             found = false;
-            if(argv[i][key]){
+            if(argv[i][key] && argv[i][key] == array[key]){
                 found = true;
                 break;
             }
