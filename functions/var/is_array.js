@@ -3,10 +3,12 @@ function is_array( mixed_var ) {
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Legaev Andrey
     // +   bugfixed by: Cord
+    // +   bugfixed by: Manish
+    // %        note 1: In php.js, javascript objects are like php associative arrays 
     // *     example 1: is_array(['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: true
     // *     example 2: is_array('Kevin van Zonneveld');
     // *     returns 2: false
 
-    return ( mixed_var instanceof Array );
+    return (mixed_var instanceof Array || mixed_var instanceof Object);
 }
