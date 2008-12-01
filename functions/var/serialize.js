@@ -2,6 +2,7 @@ function serialize( mixed_value ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Arpad Ray (mailto:arpad@php.net)
     // +   improved by: Dino
+    // +   bugfixed by: Andrej Pavlovic
     // %          note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
     // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
