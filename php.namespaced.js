@@ -1,15 +1,15 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.81
+ * This is version: 1.82
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
  * Waldo Malqui Silva, Jack, Jonas Raoni Soares Silva
  * (http://www.jsfromhell.com), Philip Peterson, Legaev Andrey, Ates Goral
- * (http://magnetiq.com), Martijn Wieringa, Enrique Gonzalez, Philippe
- * Baumann, Brett Zamir, Webtoolkit.info (http://www.webtoolkit.info/), Carlos
- * R. L. Rodrigues (http://www.jsfromhell.com), Jani Hartikainen, Nate, Ash
+ * (http://magnetiq.com), Martijn Wieringa, Brett Zamir, Enrique Gonzalez,
+ * Nate, Philippe Baumann, Webtoolkit.info (http://www.webtoolkit.info/),
+ * Carlos R. L. Rodrigues (http://www.jsfromhell.com), Jani Hartikainen, Ash
  * Searle (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
@@ -23,9 +23,9 @@
  * Ekin, Christian Doebler, Cord, David, David James, Dino, DxGx, FGFEmperor,
  * Felix Geisendoerfer (http://www.debuggable.com/felix), Francesco, Francois,
  * FremyCompany, Gabriel Paderni, Howard Yeend, J A R, Kirk Strobeck, LH,
- * Leslie Hoare, Lincoln Ramsay, Luke Godfrey, Marc Palau, Mateusz "loonquawl"
- * Zalega, MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen,
- * Norman "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com),
+ * Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey, Marc Palau, Mateusz
+ * "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick
+ * Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com),
  * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Pul, Pyerre,
  * ReverseSyntax, Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon
  * Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve
@@ -368,16 +368,17 @@
             // Fill an array with values, specifying keys
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_fill_keys/
-            // +       version: 811.1812
+            // +       version: 811.2517
             // +   original by: Brett Zamir
-            // *     example 1: $P.keys = ['foo', 5, 10, 'bar']
+            // +   bugfixed by: Brett Zamir
+            // *     example 1: $P.keys = {'a': 'foo', 2: 5, 3: 10, 4: 'bar'}
             // *     example 1: $P.array_fill_keys(keys, 'banana')
             // *     returns 1: {"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
             
-            var i = 0, retObj = {}, k;
+            var retObj = {}, key = '';
             
-            for (i = 0; i < keys.length; i++) {
-                retObj[keys[i]] = value;
+            for (key in keys) {
+                retObj[keys[key]] = value;
             }
             
             return retObj;
@@ -519,8 +520,9 @@
             // Merge one or more arrays
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_merge/
-            // +       version: 811.1812
+            // +       version: 811.2517
             // +   original by: Brett Zamir
+            // +   bugfixed by: Nate
             // -    depends on: is_int
             // %          note: Relies on is_int because !isNaN accepts floats     
             // *     example 1: $P.arr1 = {"color": "red", 0: 2, 1: 4}
@@ -534,6 +536,7 @@
             
             var args = Array.prototype.slice.call(arguments);
             var retObj = {}, k, j = 0, i = 0;
+            var retArr;
             
             for (i=0, retArr=true; i < args.length; i++) {
                 if (!(args[i] instanceof Array)) {
@@ -545,6 +548,7 @@
             if (retArr) {
                 return args;
             }
+            var ct = 0;
             
             for (i=0, ct=0; i < args.length; i++) {
                 if (args[i] instanceof Array) {
@@ -856,8 +860,9 @@
             // Calculate the sum of values in an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_sum/
-            // +       version: 809.522
+            // +       version: 811.2517
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   bugfixed by: Nate
             // *     example 1: $P.array_sum([4, 9, 182.6]);
             // *     returns 1: 195.6
         
@@ -868,7 +873,7 @@
                 return null;
             }
         
-            for(var key in array){
+            for(key in array){
                 sum += array[key];
             }
         
@@ -3126,18 +3131,23 @@
             // Convert binary data into hexadecimal representation
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_bin2hex/
-            // +       version: 810.621
+            // +       version: 811.2517
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   bugfixed by: Onno Marsman
+            // +   bugfixed by: Linuxworld
             // *     example 1: $P.bin2hex('Kev');
             // *     returns 1: '4b6576'
+            // *     example 2: $P.bin2hex(String.fromCharCode(0x00));
+            // *     returns 2: '00'
         
-            var i, f = 0, a = [];
+            var v,i, f = 0, a = [];
             s += '';
             f = s.length;
-            for(i = 0; i<f; i++){
-                a[i] = s.charCodeAt(i).toString(16);
+            
+            for (i = 0; i<f; i++) {
+                a[i] = s.charCodeAt(i).toString(16).replace(/^([\da-f])$/,"0$1");
             }
+            
             return a.join('');
         },// }}}
         
