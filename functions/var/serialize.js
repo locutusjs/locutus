@@ -11,6 +11,7 @@ function serialize( mixed_value ) {
 
     var _getType = function( inp ) {
         var type = typeof inp, match;
+        var key;
         if (type == 'object' && !inp) {
             return 'null';
         }
@@ -67,6 +68,7 @@ function serialize( mixed_value ) {
             var count = 0;
             var vals = "";
             var okey;
+            var key;
             for (key in mixed_value) {
                 ktype = _getType(mixed_value[key]);
                 if (ktype == "function" && ktype == "object") { 
