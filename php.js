@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.83
+ * This is version: 1.84
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -14,9 +14,9 @@
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
  * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen,
- * Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
- * (http://www.mdsjack.bo.it), 0m3r, Alexander Ermolaev
- * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
+ * Paulo Ricardo F. Santos, Sakimori, Thunder.m, Tyler Akins
+ * (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), 0m3r, Alexander
+ * Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
@@ -26,8 +26,7 @@
  * Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey,
  * Manish, Marc Palau, Mateusz "loonquawl" Zalega, MeEtc
  * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Norman "zEh"
- * Fuchs, Ozh, Paulo Ricardo F. Santos, Pedro Tainha
- * (http://www.pedrotainha.com), Peter-Paul Koch
+ * Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
  * Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
  * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
@@ -1040,6 +1039,32 @@ function array_walk_recursive (array, funcname, userdata) {
     }
     
     return true;
+}// }}}
+
+// {{{ chunk_split
+function chunk_split(body, chunklen, end) {
+    // Split a string into smaller chunks
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_chunk_split/
+    // +       version: 812.115
+    // +   original by: Paulo Ricardo F. Santos
+    // *     example 1: chunk_split('Hello world!', 1, '*');
+    // *     returns 1: 'H*e*l*l*o* *w*o*r*l*d*!'
+    // *     example 2: chunk_split('Hello world!', 10, '*');
+    // *     returns 2: 'Hello worl*d!'
+    
+    if (chunklen < 1) {
+        return false;
+    }
+
+    var result = '', chunklen = chunklen || 76, end = end || '\r\n';
+
+    while (body.length > chunklen) {
+        result += body.substring(0, chunklen) + end;
+        body = body.substring(chunklen);
+    }
+
+    return result + body + end;
 }// }}}
 
 // {{{ compact
