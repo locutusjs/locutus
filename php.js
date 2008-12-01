@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.82
+ * This is version: 1.83
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -15,26 +15,28 @@
  * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
  * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen,
  * Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
- * (http://www.mdsjack.bo.it), Alexander Ermolaev
+ * (http://www.mdsjack.bo.it), 0m3r, Alexander Ermolaev
  * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
- * (http://webreflection.blogspot.com), Andreas, Anton Ongson, Arno, Atli
- * Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad Touesnard, Cagri
- * Ekin, Christian Doebler, Cord, David, David James, Dino, DxGx, FGFEmperor,
- * Felix Geisendoerfer (http://www.debuggable.com/felix), Francesco, Francois,
- * FremyCompany, Gabriel Paderni, Howard Yeend, J A R, Kirk Strobeck, LH,
- * Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey, Marc Palau, Mateusz
- * "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick
- * Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com),
- * Peter-Paul Koch (http://www.quirksmode.org/js/beat.html), Pul, Pyerre,
- * ReverseSyntax, Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon
- * Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve
- * Hilder, Steven Levithan (http://blog.stevenlevithan.com), T.Wild, T0bsn,
- * Thiago Mata (http://thiagomata.blog.com), Tim Wiel, Tod Gentille, XoraX
- * (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil, booeyOH, djmix,
- * dptr1988, duncan, echo is bad, gabriel paderni, ger, gorthaur, hitwork,
- * jakes, john (http://www.jd-tech.net), johnrembo, kenneth, marc andreu,
- * metjay, nobbler, noname, penutbutterjelly, sankai, sowberry, stensi
+ * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
+ * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
+ * Touesnard, Cagri Ekin, Christian Doebler, Cord, David, David James, Dino,
+ * DxGx, FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
+ * Francesco, Francois, FremyCompany, Gabriel Paderni, Howard Yeend, J A R,
+ * Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey,
+ * Manish, Marc Palau, Mateusz "loonquawl" Zalega, MeEtc
+ * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Norman "zEh"
+ * Fuchs, Ozh, Paulo Ricardo F. Santos, Pedro Tainha
+ * (http://www.pedrotainha.com), Peter-Paul Koch
+ * (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
+ * Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
+ * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
+ * Steven Levithan (http://blog.stevenlevithan.com), Subhasis Deb, T.Wild,
+ * T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, Tod Gentille,
+ * XoraX (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil, booeyOH,
+ * djmix, dptr1988, duncan, echo is bad, gabriel paderni, ger, gorthaur,
+ * hitwork, jakes, john (http://www.jd-tech.net), johnrembo, kenneth, marc
+ * andreu, metjay, nobbler, noname, penutbutterjelly, sankai, sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -256,8 +258,9 @@ function array_diff_assoc ( array ) {
     // Computes the difference of arrays with additional index check
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_diff_assoc/
-    // +       version: 809.522
+    // +       version: 812.114
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: 0m3r
     // *     example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'});
     // *     returns 1: {1: 'van', 2: 'Zonneveld'}
 
@@ -274,7 +277,7 @@ function array_diff_assoc ( array ) {
         for (i = 1; i< argc; i++){
             // find in the compare array
             found = false;
-            if(argv[i][key]){
+            if(argv[i][key] && argv[i][key] == array[key]){
                 found = true;
                 break;
             }
@@ -548,6 +551,40 @@ function array_merge() {
     }
     
     return retObj;
+}// }}}
+
+// {{{ array_merge_recursive
+function array_merge_recursive (arr1, arr2){
+    // Merge two or more arrays recursively
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_merge_recursive/
+    // +       version: 812.114
+    // +   original by: Subhasis Deb
+    // -    depends on: array_merge
+    // *     example 1: arr1 = {'color': {'favourite': 'read'}, 0: 5}
+    // *     example 1: arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
+    // *     example 1: array_merge_recursive(arr1, arr2)
+    // *     returns 1: {'color': {'favorite': {0: 'red', 1: 'green'}, 0: 'blue'}, 1: 5, 1: 10}
+
+    if ((arr1 && (arr1 instanceof Array)) && (arr2 && (arr2 instanceof Array))) {
+        for (var idx in arr2) {
+            arr1.push(arr2[idx]);
+        }
+    } else if ((arr1 && (arr1 instanceof Object)) && (arr2 && (arr2 instanceof Object))) {
+        for (var idx in arr2) {
+            if (idx in arr1) {
+                if (typeof arr1[idx] == 'object' && typeof arr2 == 'object') {
+                    arr1[idx] = array_merge(arr1[idx], arr2[idx]);
+                } else {
+                    arr1[idx] = arr2[idx];
+                }
+            } else {
+                arr1[idx] = arr2[idx];
+            }
+        }
+    }
+    
+    return arr1;
 }// }}}
 
 // {{{ array_pad
@@ -4272,29 +4309,36 @@ function sprintf( ) {
     // Return a formatted string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sprintf/
-    // +       version: 810.1015
+    // +       version: 812.114
     // +   original by: Ash Searle (http://hexmen.com/blog/)
     // + namespaced by: Michael White (http://getsprink.com)
     // +    tweaked by: Jack
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Paulo Ricardo F. Santos
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: sprintf("%01.2f", 123.1);
     // *     returns 1: 123.10
+    // *     example 2: sprintf("[%10s]", 'monkey');
+    // *     returns 2: '[    monkey]'
+    // *     example 3: sprintf("[%'#10s]", 'monkey');
+    // *     returns 3: '[####monkey]'
 
-    var regex = /%%|%(\d+\$)?([-+#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
+    var regex = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
     var a = arguments, i = 0, format = a[i++];
 
     // pad()
     var pad = function(str, len, chr, leftJustify) {
+        if (!chr) chr = ' ';
         var padding = (str.length >= len) ? '' : Array(1 + len - str.length >>> 0).join(chr);
         return leftJustify ? str + padding : padding + str;
     };
 
     // justify()
-    var justify = function(value, prefix, leftJustify, minWidth, zeroPad) {
+    var justify = function(value, prefix, leftJustify, minWidth, zeroPad, customPadChar) {
         var diff = minWidth - value.length;
         if (diff > 0) {
             if (leftJustify || !zeroPad) {
-                value = pad(value, minWidth, ' ', leftJustify);
+                value = pad(value, minWidth, customPadChar, leftJustify);
             } else {
                 value = value.slice(0, prefix.length) + pad('', diff, '0', true) + value.slice(prefix.length);
             }
@@ -4312,11 +4356,11 @@ function sprintf( ) {
     };
 
     // formatString()
-    var formatString = function(value, leftJustify, minWidth, precision, zeroPad) {
+    var formatString = function(value, leftJustify, minWidth, precision, zeroPad, customPadChar) {
         if (precision != null) {
             value = value.slice(0, precision);
         }
-        return justify(value, '', leftJustify, minWidth, zeroPad);
+        return justify(value, '', leftJustify, minWidth, zeroPad, customPadChar);
     };
 
     // finalFormat()
@@ -4324,12 +4368,13 @@ function sprintf( ) {
         if (substring == '%%') return '%';
 
         // parse flags
-        var leftJustify = false, positivePrefix = '', zeroPad = false, prefixBaseX = false;
+        var leftJustify = false, positivePrefix = '', zeroPad = false, prefixBaseX = false, customPadChar = ' ';
         var flagsl = flags.length;
         for (var j = 0; flags && j < flagsl; j++) switch (flags.charAt(j)) {
             case ' ': positivePrefix = ' '; break;
             case '+': positivePrefix = '+'; break;
             case '-': leftJustify = true; break;
+            case "'": customPadChar = flags.charAt(j+1); break;
             case '0': zeroPad = true; break;
             case '#': prefixBaseX = true; break;
         }
@@ -4370,7 +4415,7 @@ function sprintf( ) {
         var value = valueIndex ? a[valueIndex.slice(0, -1)] : a[i++];
 
         switch (type) {
-            case 's': return formatString(String(value), leftJustify, minWidth, precision, zeroPad);
+            case 's': return formatString(String(value), leftJustify, minWidth, precision, zeroPad, customPadChar);
             case 'c': return formatString(String.fromCharCode(+value), leftJustify, minWidth, precision, zeroPad);
             case 'b': return formatBaseX(value, 2, prefixBaseX, leftJustify, minWidth, precision, zeroPad);
             case 'o': return formatBaseX(value, 8, prefixBaseX, leftJustify, minWidth, precision, zeroPad);
@@ -4379,25 +4424,24 @@ function sprintf( ) {
             case 'u': return formatBaseX(value, 10, prefixBaseX, leftJustify, minWidth, precision, zeroPad);
             case 'i':
             case 'd': {
-                        var number = parseInt(+value);
-                        var prefix = number < 0 ? '-' : positivePrefix;
-                        value = prefix + pad(String(Math.abs(number)), precision, '0', false);
-                        return justify(value, prefix, leftJustify, minWidth, zeroPad);
-                    }
+                var number = parseInt(+value);
+                var prefix = number < 0 ? '-' : positivePrefix;
+                value = prefix + pad(String(Math.abs(number)), precision, '0', false);
+                return justify(value, prefix, leftJustify, minWidth, zeroPad);
+            }
             case 'e':
             case 'E':
             case 'f':
             case 'F':
             case 'g':
-            case 'G':
-                        {
-                        var number = +value;
-                        var prefix = number < 0 ? '-' : positivePrefix;
-                        var method = ['toExponential', 'toFixed', 'toPrecision']['efg'.indexOf(type.toLowerCase())];
-                        var textTransform = ['toString', 'toUpperCase']['eEfFgG'.indexOf(type) % 2];
-                        value = prefix + Math.abs(number)[method](precision);
-                        return justify(value, prefix, leftJustify, minWidth, zeroPad)[textTransform]();
-                    }
+            case 'G': {
+                var number = +value;
+                var prefix = number < 0 ? '-' : positivePrefix;
+                var method = ['toExponential', 'toFixed', 'toPrecision']['efg'.indexOf(type.toLowerCase())];
+                var textTransform = ['toString', 'toUpperCase']['eEfFgG'.indexOf(type) % 2];
+                value = prefix + Math.abs(number)[method](precision);
+                return justify(value, prefix, leftJustify, minWidth, zeroPad)[textTransform]();
+            }
             default: return substring;
         }
     };
@@ -5687,16 +5731,18 @@ function is_array( mixed_var ) {
     // Finds whether a variable is an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
-    // +       version: 809.522
+    // +       version: 812.114
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Legaev Andrey
     // +   bugfixed by: Cord
+    // +   bugfixed by: Manish
+    // %        note 1: In php.js, javascript objects are like php associative arrays 
     // *     example 1: is_array(['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: true
     // *     example 2: is_array('Kevin van Zonneveld');
     // *     returns 2: false
 
-    return ( mixed_var instanceof Array );
+    return (mixed_var instanceof Array || mixed_var instanceof Object);
 }// }}}
 
 // {{{ is_bool
@@ -5901,9 +5947,10 @@ function serialize( mixed_value ) {
     // Generates a storable representation of a value
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_serialize/
-    // +       version: 809.2122
+    // +       version: 812.114
     // +   original by: Arpad Ray (mailto:arpad@php.net)
     // +   improved by: Dino
+    // +   bugfixed by: Andrej Pavlovic
     // %          note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
     // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
@@ -5913,6 +5960,7 @@ function serialize( mixed_value ) {
 
     var _getType = function( inp ) {
         var type = typeof inp, match;
+        var key;
         if (type == 'object' && !inp) {
             return 'null';
         }
@@ -5969,6 +6017,7 @@ function serialize( mixed_value ) {
             var count = 0;
             var vals = "";
             var okey;
+            var key;
             for (key in mixed_value) {
                 ktype = _getType(mixed_value[key]);
                 if (ktype == "function" && ktype == "object") { 
