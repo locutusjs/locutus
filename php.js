@@ -1,13 +1,13 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.86
+ * This is version: 1.87
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
  * Waldo Malqui Silva, Jack, Jonas Raoni Soares Silva
  * (http://www.jsfromhell.com), Philip Peterson, Legaev Andrey, Ates Goral
- * (http://magnetiq.com), Martijn Wieringa, Paulo Ricardo F. Santos, Brett
+ * (http://magnetiq.com), Paulo Ricardo F. Santos, Martijn Wieringa, Brett
  * Zamir, Enrique Gonzalez, Nate, Philippe Baumann, Webtoolkit.info
  * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
  * (http://www.jsfromhell.com), Jani Hartikainen, Ash Searle
@@ -1700,6 +1700,55 @@ function date ( format, timestamp ) {
 
         return ret;
     });
+}// }}}
+
+// {{{ getdate
+function getdate(timestamp) {
+    // Get date/time information
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_getdate/
+    // +       version: 812.313
+    // +   original by: Paulo Ricardo F. Santos
+    // *     example 1: getdate(1055901520);
+    // *     returns 1: {'seconds': 40, 'minutes': 58, 'hours': 21, 'mday': 17, 'wday': 2, 'mon': 6, 'year': 2003, 'yday': 167, 'weekday': 'Tuesday', 'month': 'June', '0': 1055901520}
+
+    var _w = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var _m = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var d = (typeof timestamp == 'number') ? new Date(timestamp * 1000) : new Date();
+    var w = d.getDay();
+    var m = d.getMonth();
+    var y = d.getFullYear();
+    var r = {};
+
+    r['seconds'] = d.getSeconds();
+    r['minutes'] = d.getMinutes();
+    r['hours'] = d.getHours();
+    r['mday'] = d.getDate();
+    r['wday'] = w;
+    r['mon'] = m + 1;
+    r['year'] = y;
+    r['yday'] = Math.floor((d - (new Date(y, 0, 1))) / 86400000);
+    r['weekday'] = _w[w];
+    r['month'] = _m[m];
+    r['0'] = parseInt(d.getTime() / 1000);
+
+    return r;
+}// }}}
+
+// {{{ microtime
+function microtime(get_as_float) {
+    // Return current Unix timestamp with microseconds
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_microtime/
+    // +       version: 812.313
+    // +   original by: Paulo Ricardo F. Santos
+    // *     example 1: timeStamp = microtime(true);
+    // *     results 1: timeStamp > 1000000000 && timeStamp < 2000000000
+
+    var now = new Date().getTime() / 1000;
+    var s = parseInt(now);
+
+    return (get_as_float) ? now : (Math.round((now - s) * 1000) / 1000) + ' ' + s;
 }// }}}
 
 // {{{ mktime
@@ -5889,9 +5938,11 @@ function is_int( mixed_var ) {
     // Find whether the type of a variable is integer
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_int/
-    // +       version: 809.522
+    // +       version: 812.313
     // +   original by: Alex
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %        note 1: 1.0 is simplified to 1 before it can be accessed by the is_int function, this makes
+    // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
     // *     example 1: is_int(186.31);
     // *     returns 1: false
     // *     example 2: is_int(12);
