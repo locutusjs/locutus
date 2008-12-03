@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.85
+ * This is version: 1.86
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
@@ -1834,7 +1834,7 @@ function file_exists (url) {
     // Checks whether a file or directory exists
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_file_exists/
-    // +       version: 811.1812
+    // +       version: 812.311
     // +   original by: Enrique Gonzalez
     // +      input by: Jani Hartikainen
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -1847,9 +1847,9 @@ function file_exists (url) {
     if (!req) throw new Error('XMLHttpRequest not supported');
       
     // HEAD Results are usually shorter (faster) than GET
-    req.open ('HEAD', url, false);
-    req.send (null);
-    if (req.status ==200){ 
+    req.open('HEAD', url, false);
+    req.send(null);
+    if (req.status == 200){
         return true;
     }
     
