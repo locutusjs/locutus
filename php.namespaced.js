@@ -1,22 +1,23 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.84
+ * This is version: 1.85
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
  * Waldo Malqui Silva, Jack, Jonas Raoni Soares Silva
  * (http://www.jsfromhell.com), Philip Peterson, Legaev Andrey, Ates Goral
- * (http://magnetiq.com), Martijn Wieringa, Brett Zamir, Enrique Gonzalez,
- * Nate, Philippe Baumann, Webtoolkit.info (http://www.webtoolkit.info/),
- * Carlos R. L. Rodrigues (http://www.jsfromhell.com), Jani Hartikainen, Ash
- * Searle (http://hexmen.com/blog/), Erkekjetter, GeekFG
+ * (http://magnetiq.com), Martijn Wieringa, Paulo Ricardo F. Santos, Brett
+ * Zamir, Enrique Gonzalez, Nate, Philippe Baumann, Webtoolkit.info
+ * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
+ * (http://www.jsfromhell.com), Jani Hartikainen, Ash Searle
+ * (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
  * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen,
- * Paulo Ricardo F. Santos, Sakimori, Thunder.m, Tyler Akins
- * (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), 0m3r, Alexander
- * Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
+ * Sakimori, Thunder.m, Tyler Akins (http://rumkin.com), mdsjack
+ * (http://www.mdsjack.bo.it), 0m3r, Alexander Ermolaev
+ * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
@@ -3049,6 +3050,25 @@
             return (Math.exp(arg) - Math.exp(-arg)) / (Math.exp(arg) + Math.exp(-arg));
         },// }}}
         
+        // {{{ constant
+        constant: function(name) {
+            // Returns the value of a constant
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_constant/
+            // +       version: 812.311
+            // +   original by: Paulo Ricardo F. Santos
+            // *     example 1: $P.constant('IMAGINARY_CONSTANT1');
+            // *     returns 1: null
+        
+            if (window[name] === undefined) {
+                return null;
+            }
+        
+            return window[name];
+        },// }}}
+        
+        // define() is not available in the namespaced version of php.js
+        
         // {{{ defined
         defined: function( constant_name )  {
             // Checks whether a given named constant exists
@@ -3211,6 +3231,20 @@
             }
             
             return a.join('');
+        },// }}}
+        
+        // {{{ chop
+        chop: function ( str, charlist ) {
+            // Alias of rtrim()
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_chop/
+            // +       version: 812.311
+            // +   original by: Paulo Ricardo F. Santos
+            // -    depends on: rtrim
+            // *     example 1: $P.rtrim('    Kevin van Zonneveld    ');
+            // *     returns 1: '    Kevin van Zonneveld'
+        
+            return this.rtrim(str, charlist || null);
         },// }}}
         
         // {{{ chr
@@ -4117,6 +4151,19 @@
             body.appendChild(elmt);
             
             return ret.length;
+        },// }}}
+        
+        // {{{ quotemeta
+        quotemeta: function(str) {
+            // Quote meta characters
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_quotemeta/
+            // +       version: 812.311
+            // +   original by: Paulo Ricardo F. Santos
+            // *     example 1: $P.quotemeta(". + * ? ^ ( $ )");
+            // *     returns 1: '\. \+ \* \? \^ \( \$ \)'
+        
+            return (str+'').replace(/([\.\\\+\*\?\[\^\]\$\(\)])/g, '\\$1');
         },// }}}
         
         // {{{ rtrim
@@ -5548,6 +5595,42 @@
             }
         
             return enc;
+        },// }}}
+        
+        // {{{ get_headers
+        get_headers: function(url, format) {
+            // Fetches all the headers sent by the server in response to a HTTP request
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_headers/
+            // +       version: 812.311
+            // +   original by: Paulo Ricardo F. Santos
+            // %        note 1: This uses: function XmlHttpRequest and cannot retrieve resource from different domain.
+            // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
+            // *     example 1: $P.get_headers('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
+            // *     returns 1: '123'
+            
+            var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+            if (!req) throw new Error('XMLHttpRequest not supported');
+            var tmp, headers, pair, i;
+        
+            req.open('HEAD', url, false);
+            req.send(null);
+        
+        
+            if (req.readyState < 3) {
+                return false;
+            }
+        
+            tmp     = req.getAllResponseHeaders();
+            tmp     = tmp.split('\n');
+            headers = {0 : req.status + ' ' + req.statusText};
+        
+            for (i in tmp) {
+                pair = tmp[i].split(':', 2);
+                headers[(format) ? pair[0] : headers.length] = (pair[1]+'').replace(/^\s+|\s+$/g, '');
+            }
+        
+            return headers;
         },// }}}
         
         // {{{ http_build_query
