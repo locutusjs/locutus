@@ -12,9 +12,9 @@ function file_exists (url) {
     if (!req) throw new Error('XMLHttpRequest not supported');
       
     // HEAD Results are usually shorter (faster) than GET
-    req.open ('HEAD', url, false);
-    req.send (null);
-    if (req.status ==200){ 
+    req.open('HEAD', url, false);
+    req.send(null);
+    if (req.status == 200){
         return true;
     }
     
