@@ -19,7 +19,7 @@ function str_replace(search, replace, subject) {
 
     while (j = 0, i--) {
         if (s[i]) {
-            while (s[i] = s[i].split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f){};
+            while (s[i] = (s[i]+'').split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f){};
         }
     };
 
