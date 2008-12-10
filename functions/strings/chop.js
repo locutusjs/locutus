@@ -5,5 +5,5 @@ function chop ( str, charlist ) {
     // *     example 1: rtrim('    Kevin van Zonneveld    ');
     // *     returns 1: '    Kevin van Zonneveld'
 
-    return rtrim(str, charlist || null);
+    return rtrim(str, charlist);
 }

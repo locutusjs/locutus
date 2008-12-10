@@ -13,7 +13,7 @@ function array_slice(arr, offst, lgth, preserve_keys) {
         arr = Array.prototype.slice.call(arr);
     }
     */
-        
+
 	if (!(arr instanceof Array) || (preserve_keys && offst != 0)) { // Assoc. array as input or if required as output
 		var lgt =0, newAssoc = {};
 		for (var key in arr) {
