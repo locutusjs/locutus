@@ -1,14 +1,14 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.87
+ * This is version: 1.88
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
- * Waldo Malqui Silva, Jack, Jonas Raoni Soares Silva
- * (http://www.jsfromhell.com), Philip Peterson, Legaev Andrey, Ates Goral
- * (http://magnetiq.com), Paulo Ricardo F. Santos, Martijn Wieringa, Brett
- * Zamir, Enrique Gonzalez, Nate, Philippe Baumann, Webtoolkit.info
+ * Paulo Ricardo F. Santos, Waldo Malqui Silva, Jack, Jonas Raoni Soares Silva
+ * (http://www.jsfromhell.com), Philip Peterson, Ates Goral
+ * (http://magnetiq.com), Legaev Andrey, Martijn Wieringa, Brett Zamir,
+ * Enrique Gonzalez, Nate, Philippe Baumann, Webtoolkit.info
  * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
  * (http://www.jsfromhell.com), Jani Hartikainen, Ash Searle
  * (http://hexmen.com/blog/), Erkekjetter, GeekFG
@@ -31,12 +31,13 @@
  * (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
  * Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
  * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
- * Steven Levithan (http://blog.stevenlevithan.com), Subhasis Deb, T.Wild,
- * T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, Tod Gentille,
- * XoraX (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil, booeyOH,
- * djmix, dptr1988, duncan, echo is bad, gabriel paderni, ger, gorthaur,
- * hitwork, jakes, john (http://www.jd-tech.net), johnrembo, kenneth, marc
- * andreu, metjay, nobbler, noname, penutbutterjelly, sankai, sowberry, stensi
+ * Steven Levithan (http://blog.stevenlevithan.com), Subhasis Deb, T. Wild,
+ * T.Wild, T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, Tod
+ * Gentille, XoraX (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil,
+ * booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel paderni, ger,
+ * gorthaur, hitwork, jakes, john (http://www.jd-tech.net), johnrembo,
+ * kenneth, marc andreu, metjay, nobbler, noname, penutbutterjelly, sankai,
+ * sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -811,7 +812,7 @@ function array_slice(arr, offst, lgth, preserve_keys) {
     // Extract a slice of the array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_slice/
-    // +       version: 811.1323
+    // +       version: 812.1017
     // +   original by: Brett Zamir
     // -    depends on: is_int
     // %          note: Relies on is_int because !isNaN accepts floats 
@@ -825,7 +826,7 @@ function array_slice(arr, offst, lgth, preserve_keys) {
         arr = Array.prototype.slice.call(arr);
     }
     */
-        
+
 	if (!(arr instanceof Array) || (preserve_keys && offst != 0)) { // Assoc. array as input or if required as output
 		var lgt =0, newAssoc = {};
 		for (var key in arr) {
@@ -1126,6 +1127,46 @@ function count( mixed_var, mode ) {
     }
 
     return cnt;
+}// }}}
+
+// {{{ each
+function each(arr) {
+    // Return the current key and value pair from an array and advance the array cursor
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_each/
+    // +       version: 812.1017
+    // +   original by: Ates Goral (http://magnetiq.com)
+    // *     example 1: each([42,43]);
+    // *     returns 1: {0: 0, 1: 42, value: 42, key: 0}
+    // *     example 2: each({a: "apple", b: "balloon"});
+    // *     returns 2: {0: "a", 1: "apple", key: "a", value: "apple"}
+
+
+    var k, v;
+
+    if (!(arr instanceof Object) || (arr._keys && !arr._keys.length)) {
+        return false;
+    }
+
+    if (!arr._keys) {
+        arr._keys = [];
+
+        for (k in arr) {
+            if (k != "_keys") {
+                arr._keys.push(k);
+            }
+        }
+    }
+
+    k = arr._keys.shift();
+    v = arr[k];
+
+    return { 
+        0: k,
+        1: v,
+        key: k,
+        value: v
+    };
 }// }}}
 
 // {{{ end
@@ -1934,10 +1975,11 @@ function filesize (url) {
     // Gets file size
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_filesize/
-    // +       version: 811.1812
+    // +       version: 812.1017
     // +   original by: Enrique Gonzalez
     // +      input by: Jani Hartikainen
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: T. Wild
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
     // *     example 1: filesize('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
@@ -1949,8 +1991,18 @@ function filesize (url) {
     req.open ('HEAD', url, false);
     req.send (null);
     
-    if (!req.getResponseHeader || !req.getResponseHeader('Content-Length')) {
-        return false;
+    if (!req.getResponseHeader) {
+        try {
+            throw new Error('No getResponseHeader!');
+        } catch(e){
+            return false;
+        }
+    } else if (!req.getResponseHeader('Content-Length')) {
+        try {
+            throw new Error('No Content-Length!');
+        } catch(e){
+            return false;
+        }
     } else {
         return req.getResponseHeader('Content-Length'); 
     }
@@ -3287,13 +3339,13 @@ function chop ( str, charlist ) {
     // Alias of rtrim()
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_chop/
-    // +       version: 812.311
+    // +       version: 812.1017
     // +   original by: Paulo Ricardo F. Santos
     // -    depends on: rtrim
     // *     example 1: rtrim('    Kevin van Zonneveld    ');
     // *     returns 1: '    Kevin van Zonneveld'
 
-    return rtrim(str, charlist || null);
+    return rtrim(str, charlist);
 }// }}}
 
 // {{{ chr
@@ -4703,7 +4755,7 @@ function str_replace(search, replace, subject) {
     // Replace all occurrences of the search string with the replacement string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_replace/
-    // +       version: 810.819
+    // +       version: 812.1017
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Gabriel Paderni
     // +   improved by: Philip Peterson
@@ -4723,7 +4775,7 @@ function str_replace(search, replace, subject) {
 
     while (j = 0, i--) {
         if (s[i]) {
-            while (s[i] = s[i].split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f){};
+            while (s[i] = (s[i]+'').split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f){};
         }
     };
 
@@ -5651,7 +5703,7 @@ function get_headers(url, format) {
     // Fetches all the headers sent by the server in response to a HTTP request
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_headers/
-    // +       version: 812.311
+    // +       version: 812.1017
     // +   original by: Paulo Ricardo F. Santos
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
@@ -5665,18 +5717,22 @@ function get_headers(url, format) {
     req.open('HEAD', url, false);
     req.send(null);
 
-
     if (req.readyState < 3) {
         return false;
     }
 
-    tmp     = req.getAllResponseHeaders();
-    tmp     = tmp.split('\n');
-    headers = {0 : req.status + ' ' + req.statusText};
+    tmp = req.getAllResponseHeaders();alert(tmp);
+    tmp = tmp.split('\n');
+    tmp = array_filter(tmp, function (value) { return value.substring(1) != ''; });
+    headers = [req.status + ' ' + req.statusText];
 
     for (i in tmp) {
-        pair = tmp[i].split(':', 2);
-        headers[(format) ? pair[0] : headers.length] = (pair[1]+'').replace(/^\s+|\s+$/g, '');
+        if (format) {
+            pair = tmp[i].split(':');
+            headers[pair.splice(0, 1)] = pair.join(':').substring(1);
+        } else {
+            headers[headers.length] = tmp[i];
+        }
     }
 
     return headers;
@@ -5864,6 +5920,55 @@ function floatval(mixed_var) {
     return (parseFloat(mixed_var) || 0);
 }// }}}
 
+// {{{ gettype
+function gettype( mixed_var ) {
+    // Get the type of a variable
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_gettype/
+    // +       version: 812.1017
+    // +   original by: Paulo Ricardo F. Santos
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // -    depends on: is_float
+    // -    depends on: is_array
+    // -    depends on: is_object
+    // %        note 1: lacks resource type
+    // %        note 2: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+    // %        note 21: it different from the PHP implementation. We can't fix this unfortunately.
+    // *     example 1: gettype(1);
+    // *     returns 1: 'integer'
+    // *     example 2: gettype(undefined);
+    // *     returns 2: 'undefined'
+    // *     example 3: gettype({0: 'Kevin van Zonneveld'});
+    // *     returns 3: 'array'
+    // *     example 4: gettype('foo');
+    // *     returns 4: 'string'
+    // *     example 5: gettype({0: function () {return false;}});
+    // *     returns 5: 'array'
+
+    var type;
+
+    switch (type = typeof mixed_var) {
+        case 'undefined':
+        case 'boolean':
+        case 'string':
+            return type;
+            break;
+        case 'number':
+            return (is_float(mixed_var)) ? 'double' : 'integer';
+            break;
+        case 'object':
+        case 'array':
+            if (is_array(mixed_var)) {
+                return 'array';
+            } else if (is_object(mixed_var)) {
+                return 'object';
+            }
+            break;
+    }
+
+    return 'unknown type: ' + type;
+}// }}}
+
 // {{{ intval
 function intval( mixed_var, base ) {
     // Get the integer value of a variable
@@ -5933,15 +6038,46 @@ function is_bool(mixed_var)
     return (typeof mixed_var == 'boolean');
 }// }}}
 
+// {{{ is_double
+function is_double( mixed_var ) {
+    // Alias of is_float()
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_double/
+    // +       version: 812.1017
+    // +   original by: Paulo Ricardo F. Santos
+    //  -   depends on: is_float
+    // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+    // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
+    // *     example 1: is_double(186.31);
+    // *     returns 1: true
+
+    return is_float(mixed_var);
+}// }}}
+
+// {{{ is_float
+function is_float( mixed_var ) {
+    // Finds whether the type of a variable is float
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_float/
+    // +       version: 812.1017
+    // +   original by: Paulo Ricardo F. Santos
+    // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+    // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
+    // *     example 1: is_float(186.31);
+    // *     returns 1: true
+
+    return parseFloat(mixed_var * 1) != parseInt(mixed_var * 1);
+}// }}}
+
 // {{{ is_int
 function is_int( mixed_var ) {
     // Find whether the type of a variable is integer
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_int/
-    // +       version: 812.313
+    // +       version: 812.1017
     // +   original by: Alex
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // %        note 1: 1.0 is simplified to 1 before it can be accessed by the is_int function, this makes
+    // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
     // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
     // *     example 1: is_int(186.31);
     // *     returns 1: false
@@ -5955,6 +6091,40 @@ function is_int( mixed_var ) {
     }
     
     return mixed_var == y && mixed_var.toString() == y.toString(); 
+}// }}}
+
+// {{{ is_integer
+function is_integer( mixed_var ) {
+    // Alias of is_int()
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_integer/
+    // +       version: 812.1017
+    // +   original by: Paulo Ricardo F. Santos
+    //  -   depends on: is_int
+    // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+    // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
+    // *     example 1: is_integer(186.31);
+    // *     returns 1: false
+    // *     example 2: is_integer(12);
+    // *     returns 2: true
+
+    return is_int(mixed_var);
+}// }}}
+
+// {{{ is_long
+function is_long( mixed_var ) {
+    // Alias of is_int()
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_long/
+    // +       version: 812.1017
+    // +   original by: Paulo Ricardo F. Santos
+    //  -   depends on: is_float
+    // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+    // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
+    // *     example 1: is_long(186.31);
+    // *     returns 1: true
+
+    return is_float(mixed_var);
 }// }}}
 
 // {{{ is_null
@@ -6011,6 +6181,21 @@ function is_object( mixed_var ){
     } else {
         return (mixed_var !== null) && (typeof( mixed_var ) == 'object');
     }
+}// }}}
+
+// {{{ is_scalar
+function is_scalar( mixed_var ) {
+    // Finds whether a variable is a scalar
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_scalar/
+    // +       version: 812.1017
+    // +   original by: Paulo Ricardo F. Santos
+    // *     example 1: is_scalar(186.31);
+    // *     returns 1: true
+    // *     example 2: is_scalar({0: 'Kevin van Zonneveld'});
+    // *     returns 2: false
+
+    return /boolean|number|string/.test(typeof mixed_var);
 }// }}}
 
 // {{{ is_string
