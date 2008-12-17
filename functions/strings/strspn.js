@@ -1,6 +1,6 @@
 function strspn(str1, str2){
     // http://kevin.vanzonneveld.net
-    // +   original by: Mokuchan
+    // +   original by: Valentina De Rosa
     // %        note 1: Good start, but still missing the 3rd & 4th argument which came to PHP in version 4.3.0
     // *     example 1: strspn('42 is the answer, what is the question ...', '1234567890');
     // *     returns 1: 2
