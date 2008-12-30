@@ -33,16 +33,23 @@ function get_html_translation_table(table, quote_style) {
         useQuoteStyle = constMappingQuoteStyle[useQuoteStyle];
     }
     
+    if (useQuoteStyle != 'ENT_NOQUOTES') {
+        entities['34'] = '&quot;';
+    }
+
+    if (useQuoteStyle == 'ENT_QUOTES') {
+        entities['39'] = '&#039;';
+    }
+
     if (useTable == 'HTML_SPECIALCHARS') {
         // ascii decimals for better compatibility
-        entities['38'] = '&amp;';
         entities['60'] = '&lt;';
         entities['62'] = '&gt;';
+        entities['38'] = '&amp;';
     } else if (useTable == 'HTML_ENTITIES') {
         // ascii decimals for better compatibility
-	    entities['38'] = '&amp;';
-	    entities['60'] = '&lt;';
-	    entities['62'] = '&gt;';
+	    entities['60']  = '&lt;';
+	    entities['62']  = '&gt;';
 	    entities['160'] = '&nbsp;';
 	    entities['161'] = '&iexcl;';
 	    entities['162'] = '&cent;';
@@ -139,17 +146,10 @@ function get_html_translation_table(table, quote_style) {
 	    entities['253'] = '&yacute;';
 	    entities['254'] = '&thorn;';
 	    entities['255'] = '&yuml;';
+	    entities['38']  = '&amp;';
     } else {
         throw Error("Table: "+useTable+' not supported');
         return false;
-    }
-    
-    if (useQuoteStyle != 'ENT_NOQUOTES') {
-        entities['34'] = '&quot;';
-    }
-    
-    if (useQuoteStyle == 'ENT_QUOTES') {
-        entities['39'] = '&#039;';
     }
     
     // ascii decimals to real symbols

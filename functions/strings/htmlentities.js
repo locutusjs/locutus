@@ -10,7 +10,7 @@ function htmlentities (string, quote_style) {
     // *     example 1: htmlentities('Kevin & van Zonneveld');
     // *     returns 1: 'Kevin &amp; van Zonneveld'
 
-    var histogram = {}, symbol = '', tmp_str = '', i = 0;
+    var histogram = {}, symbol = '', tmp_str = '', entity = '';
     tmp_str = string.toString();
     
     if (false === (histogram = get_html_translation_table('HTML_ENTITIES', quote_style))) {

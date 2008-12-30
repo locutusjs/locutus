@@ -9,7 +9,7 @@ function htmlspecialchars (string, quote_style) {
     // *     example 1: htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
     // *     returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
 
-    var histogram = {}, symbol = '', tmp_str = '', i = 0;
+    var histogram = {}, symbol = '', tmp_str = '', entity = '';
     tmp_str = string.toString();
     
     if (false === (histogram = get_html_translation_table('HTML_SPECIALCHARS', quote_style))) {

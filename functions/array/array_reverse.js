@@ -6,10 +6,11 @@ function array_reverse(array, preserve_keys) {
     // *     returns 1: { 2: ['green', 'red'], 1: 4, 0: 'php'}
 
     var arr_len = array.length, newkey = 0, tmp_arr = {}, key = '';
-
+    preserve_keys = !!preserve_keys;
+    
     for (key in array) {
         newkey = arr_len - key - 1;
-        tmp_arr[(!!preserve_keys) ? key : newkey] = array[newkey];
+        tmp_arr[preserve_keys ? key : newkey] = array[key];
     }
 
     return tmp_arr;
