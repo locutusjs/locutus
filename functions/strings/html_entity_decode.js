@@ -8,7 +8,6 @@ function html_entity_decode( string, quote_style ) {
     // +   improved by: marc andreu
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: get_html_translation_table
-    // -    depends on: array_reverse
     // *     example 1: html_entity_decode('Kevin &amp; van Zonneveld');
     // *     returns 1: 'Kevin & van Zonneveld'
     // *     example 2: html_entity_decode('&amp;lt;');
