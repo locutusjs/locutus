@@ -1,16 +1,17 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.89
+ * This is version: 1.90
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
- * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
- * Paulo Ricardo F. Santos, Waldo Malqui Silva, Jack, Jonas Raoni Soares Silva
- * (http://www.jsfromhell.com), Brett Zamir, Philip Peterson, Ates Goral
- * (http://magnetiq.com), Legaev Andrey, Martijn Wieringa, Enrique Gonzalez,
- * Nate, Philippe Baumann, Webtoolkit.info (http://www.webtoolkit.info/),
- * Carlos R. L. Rodrigues (http://www.jsfromhell.com), Jani Hartikainen, Ash
- * Searle (http://hexmen.com/blog/), Erkekjetter, GeekFG
+ * Portions copyright Onno Marsman, Brett Zamir, Michael White
+ * (http://getsprink.com), Paulo Ricardo F. Santos, Waldo Malqui Silva, Jack,
+ * Jonas Raoni Soares Silva (http://www.jsfromhell.com), Philip Peterson, Ates
+ * Goral (http://magnetiq.com), Legaev Andrey, Martijn Wieringa, Enrique
+ * Gonzalez, Nate, Philippe Baumann, Webtoolkit.info
+ * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
+ * (http://www.jsfromhell.com), Jani Hartikainen, Ash Searle
+ * (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
  * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen,
@@ -20,10 +21,11 @@
  * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
- * Touesnard, Cagri Ekin, Christian Doebler, Cord, David, David James, Dino,
- * DxGx, FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
- * Francesco, Francois, FremyCompany, Gabriel Paderni, Howard Yeend, J A R,
- * Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey,
+ * Touesnard, Cagri Ekin, Caio Ariede (http://caioariede.com), Christian
+ * Doebler, Cord, David, David James, Dino, DxGx, FGFEmperor, Felix
+ * Geisendoerfer (http://www.debuggable.com/felix), Francesco, Francois,
+ * FremyCompany, Gabriel Paderni, Garagoth, Howard Yeend, J A R, Kirk
+ * Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey,
  * Manish, Marc Palau, Mateusz "loonquawl" Zalega, MeEtc
  * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Norman "zEh"
  * Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
@@ -1589,6 +1591,41 @@ function sort( array, sort_flags ) {
     return true;
 }// }}}
 
+// {{{ class_exists
+function class_exists (cls) {
+    // Checks if the class has been defined
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_class_exists/
+    // +       version: 812.3015
+    // +   original by: Brett Zamir
+    // *     example 1: function class_a() {this.meth1 = function() {return true;}};
+    // *     example 1: var instance_a = new class_a();
+    // *     example 1: class_exists('class_a');
+    // *     returns 1: true
+
+    var i;
+    cls = window[cls]; // Note: will prevent inner classes
+
+    if (typeof cls !== 'function') {return false;}
+
+    for (i in cls.prototype) {
+        return true;
+    }
+    for (i in cls) { // If static members exist, then consider a "class"
+        if (i !== 'prototype') {
+            return true;
+        }
+    }
+    if (cls.toSource && cls.toSource().match(/this\./)) { 
+        // Hackish and non-standard but can probably detect if setting
+        // a property (we don't want to test by instantiating as that
+        // may have side-effects)
+        return true;
+    }
+    
+    return false;
+}// }}}
+
 // {{{ get_class
 function get_class(obj) {
     // Returns the name of the class of an object
@@ -1621,6 +1658,61 @@ function get_class(obj) {
     }
 
     return false;
+}// }}}
+
+// {{{ method_exists
+function method_exists (obj, method) {
+    // Checks if the class method exists
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_method_exists/
+    // +       version: 812.3015
+    // +   original by: Brett Zamir
+    // *     example 1: function class_a() {this.meth1 = function() {return true;}};
+    // *     example 1: var instance_a = new class_a();
+    // *     example 1: method_exists(instance_a, 'meth1');
+    // *     returns 1: true
+    // *     example 2: function class_a() {this.meth1 = function() {return true;}};
+    // *     example 2: var instance_a = new class_a();
+    // *     example 2: method_exists(instance_a, 'meth2');
+    // *     returns 2: false
+
+    if (typeof obj === 'string') {
+        return window[obj] && typeof window[obj][method] === 'function'
+    }
+
+    return typeof obj[method] === 'function';
+}// }}}
+
+// {{{ property_exists
+function property_exists (cls, prop) {
+    // Checks if the object or class has a property
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_property_exists/
+    // +       version: 812.3015
+    // +   original by: Brett Zamir
+    // *     example 1: function class_a() {this.prop1 = 'one'};
+    // *     example 1: var instance_a = new class_a();
+    // *     example 1: property_exists(instance_a, 'prop1');
+    // *     returns 1: true
+    // *     example 2: function class_a() {this.prop1 = 'one'};
+    // *     example 2: var instance_a = new class_a();
+    // *     example 2: property_exists(instance_a, 'prop2');
+    // *     returns 2: false
+
+    cls = (typeof cls === 'string') ? window[cls] : cls;
+    
+    if (typeof cls === 'function' && cls.toSource &&
+        cls.toSource().match(new RegExp('this\\.'+prop+'\\s'))
+    ) {
+        // Hackish and non-standard but can probably detect if setting
+        // the property (we don't want to test by instantiating as that
+        // may have side-effects)
+        return true;
+    }
+
+    return (cls[prop] !== undefined && typeof cls[prop] !== 'function')
+        || (cls.prototype !== undefined && cls.prototype[prop] !== undefined && typeof cls.prototype[prop] !== 'function')
+        || (cls.constructor && cls.constructor[prop] !== undefined && typeof cls.constructor[prop] !== 'function');
 }// }}}
 
 // {{{ checkdate
@@ -1940,6 +2032,177 @@ function mktime() {
     return Math.floor(d.getTime()/1000);
 }// }}}
 
+// {{{ strtotime
+function strtotime(str, now) {
+    // Parse about any English textual datetime description into a Unix timestamp
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strtotime/
+    // +       version: 812.3015
+    // +   original by: Caio Ariede (http://caioariede.com)
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %        note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
+    // *     example 1: strtotime('+1 day', 1129633200);
+    // *     returns 1: 1129719600
+    // *     example 2: strtotime('+1 week 2 days 4 hours 2 seconds', 1129633200);
+    // *     returns 2: 1130425202
+    // *     example 3: strtotime('last month', 1129633200);
+    // *     returns 3: 1127041200
+
+    var i, match, s;
+    
+    str = str.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
+    str = str.replace(/[\t\r\n]/g, ''); // unecessary chars
+
+    if (str == 'now') return (new Date()).getTime();
+    else if (!isNaN(parse = Date.parse(str))) return parse/1000;
+    else if (now) now = new Date(now);
+    else now = new Date();
+
+    str = str.toLowerCase();
+
+   var process = function (m) {
+        var ago = (m[2] && m[2] == 'ago');
+        var num = (num = m[0] == 'last' ? -1 : 1) * (ago ? -1 : 1);
+
+        switch (m[0]) {
+            case 'last':
+            case 'next':
+                switch (m[1].substring(0, 3)) {
+                    case 'yea':
+                        now.setFullYear(now.getFullYear() + num);
+                        break;
+                    case 'mon':
+                        now.setMonth(now.getMonth() + num);
+                        break;
+                    case 'wee':
+                        now.setDate(now.getDate() + (num * 7));
+                        break;
+                    case 'day':
+                        now.setDate(now.getDate() + num);
+                        break;
+                    case 'hou':
+                        now.setHours(now.getHours() + num);
+                        break;
+                    case 'min':
+                        now.setMinutes(now.getMinutes() + num);
+                        break;
+                    case 'sec':
+                        now.setSeconds(now.getSeconds() + num);
+                        break;
+                    default:
+                        var day;
+                        if (typeof (day = __is_day[m[1].substring(0, 3)]) != 'undefined') {
+                            var diff = day - now.getDay();
+                            if (diff == 0) {
+                                diff = 7 * num;
+                            } else if (diff > 0) {
+                                if (m[0] == 'last') diff -= 7;
+                            } else {
+                                if (m[0] == 'next') diff += 7;
+                            }
+
+                            now.setDate(now.getDate() + diff);
+                        }
+                }
+
+                break;
+
+            default:
+                if (/\d+/.test(m[0])) {
+                    num *= parseInt(m[0]);
+
+                    switch (m[1].substring(0, 3)) {
+                        case 'yea':
+                            now.setFullYear(now.getFullYear() + num);
+                            break;
+                        case 'mon':
+                            now.setMonth(now.getMonth() + num);
+                            break;
+                        case 'wee':
+                            now.setDate(now.getDate() + (num * 7));
+                            break;
+                        case 'day':
+                            now.setDate(now.getDate() + num);
+                            break;
+                        case 'hou':
+                            now.setHours(now.getHours() + num);
+                            break;
+                        case 'min':
+                            now.setMinutes(now.getMinutes() + num);
+                            break;
+                        case 'sec':
+                            now.setSeconds(now.getSeconds() + num);
+                            break;
+                    }
+                } else {
+                    return false;
+                }
+
+                break;
+        }
+
+        return true;
+    }
+    
+    var __is =
+    {
+        day:
+        {
+            'sun': 0, 'mon': 1, 'tue': 2, 'wed': 3,
+            'thu': 4, 'fri': 5, 'sat': 6
+        },
+        mon:
+        {
+            'jan': 0, 'feb': 1, 'mar': 2, 'may': 3, 'apr': 4,  'jun': 5,
+            'jul': 6, 'aug': 7, 'sep': 8, 'oct': 9, 'nov': 10, 'dec': 11
+        }
+    }
+
+    match = str.match(/^(\d{2,4}-\d{2}-\d{2})(\s\d{1,2}:\d{1,2}(:\d{1,2})?)?$/);
+
+    if (match != null) {
+        if (!match[2]) {
+            match[2] = '00:00:00';
+        } else if (!match[3]) {
+            match[2] += ':00';
+        }
+
+        s = match[1].split(/-/g);
+
+        for (i in __is.mon) {
+            if (__is.mon[i] == s[1] - 1) {
+                s[1] = i;
+            }
+        }
+
+        return strtotime(s[2] + ' ' + s[1] + ' ' + s[0] + ' ' + match[2]);
+    }
+ 
+    var regex = '([+-]?\\d+\\s'
+              + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
+              + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
+              + '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday)'
+              + '|(last|next)\\s'
+              + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
+              + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
+              + '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday))'
+              + '(\\sago)?';
+
+    match = str.match(new RegExp(regex, 'g'));
+
+    if (match == null) {
+        return false;
+    }
+
+    for (i in match) {
+        if (!process(match[i].split(' '))) {
+            return false;
+        }
+    }
+
+    return (now);
+}// }}}
+
 // {{{ time
 function time() {
     // Return current Unix timestamp
@@ -2108,31 +2371,65 @@ function filesize (url) {
     }
 }// }}}
 
+// {{{ call_user_func
+function call_user_func(cb, parameters) {
+    // Call a user function given by the first parameter
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_call_user_func/
+    // +       version: 812.3015
+    // +   original by: Brett Zamir
+    // *     example 1: call_user_func('isNaN', 'a');
+    // *     returns 1: true
+
+    var func;
+ 
+    if (typeof cb == 'string') {
+        if (typeof this[cb] == 'function') {
+            func = this[cb];
+        } else {
+            func = (new Function(null, 'return ' + cb))();
+        }
+    } else if (cb instanceof Array) {
+        func = eval(cb[0]+"['"+cb[1]+"']");
+    }
+    
+    if (typeof func != 'function') {
+        throw new Exception(func + ' is not a valid function');
+    }
+
+    return func.apply(null, Array.prototype.slice.call(parameters, 1));
+}// }}}
+
 // {{{ call_user_func_array
-function call_user_func_array(func, parameters) {
+function call_user_func_array(cb, parameters) {
     // Call a user function given with an array of parameters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_call_user_func_array/
-    // +       version: 811.1812
+    // +       version: 812.3015
     // +   original by: Thiago Mata (http://thiagomata.blog.com)
     // +   revised  by: Jon Hohle
+    // +   improved by: Brett Zamir
     // *     example 1: call_user_func_array('isNaN', ['a']);
     // *     returns 1: true
     // *     example 2: call_user_func_array('isNaN', [1]);
     // *     returns 2: false
 
-    if (typeof func == 'string') {
-        if (typeof this[func] == 'function') { 
-            func = this[func]; 
+    var func;
+
+    if (typeof cb == 'string') {
+        if (typeof this[cb] == 'function') {
+            func = this[cb];
         } else {
-            func = (new Function(null, 'return ' + func))();
+            func = (new Function(null, 'return ' + cb))();
         }
-        
-        if (typeof func != 'function') {
-            throw new Exception(func + ' is not a valid function');
-        }
+    } else if (cb instanceof Array) {
+        func = eval(cb[0]+"['"+cb[1]+"']");
     }
     
+    if (typeof func != 'function') {
+        throw new Exception(func + ' is not a valid function');
+    }
+
     return func.apply(null, parameters);
 }// }}}
 
@@ -2257,20 +2554,32 @@ function get_defined_functions() {
     // Returns an array of all defined functions
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_defined_functions/
-    // +       version: 812.1714
+    // +       version: 812.3015
     // +   original by: Brett Zamir
+    // +   improved by: Brett Zamir
     // %        note 1: Test case 1: If get_defined_functions can find itself in the defined functions, it worked :)
     // *     example 1: function test_in_array(array, p_val) {for(var i = 0, l = array.length; i < l; i++) {if(array[i] == p_val) return true;} return false;}
     // *     example 1: funcs = get_defined_functions();
     // *     example 1: found = test_in_array(funcs, 'get_defined_functions');
     // *     results 1: found == true
 
-    var i = '', arr = [];
+    var i = '', arr = [], already = {};
 
     for (i in window) {
         try {
-            if (typeof window[i] === 'function' && window[i].name) {
-                arr.push(window[i].name);
+            if (typeof window[i] === 'function') {
+                if (!already[i]) {
+                    already[i] = 1;
+                    arr.push(i);
+                }
+            }
+            else if (typeof window[i] === 'object') {
+                for (var j in window[i]) {
+                    if (typeof window[j] === 'function' && window[j] && !already[j]) {
+                        already[j] = 1;
+                        arr.push(j);
+                    }
+                }
             }
         }
         catch (e) {
@@ -5554,21 +5863,27 @@ function strrpos( haystack, needle, offset){
 }// }}}
 
 // {{{ strspn
-function strspn(str1, str2){
+function strspn(str1, str2, start, lgth){
     // Find length of initial segment matching mask
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strspn/
-    // +       version: 812.1712
+    // +       version: 812.3015
     // +   original by: Valentina De Rosa
-    // %        note 1: Good start, but still missing the 3rd & 4th argument which came to PHP in version 4.3.0
+    // +   improved by: Brett Zamir
     // *     example 1: strspn('42 is the answer, what is the question ...', '1234567890');
     // *     returns 1: 2
+    // *     example 2: strspn('foo', 'o', 1, 2);
+    // *     returns 2: 2
 
     var found;
     var stri;
     var strj;
     var j = 0;
     var i = 0;
+
+    start = start ? (start < 0 ? (str1.length+start) : start) : 0;
+    lgth = lgth ? ((lgth < 0) ? (str1.length+lgth-start) : lgth) : str1.length-start;
+    str1 = str1.substr(start, lgth);
 
     for(i = 0; i < str1.length; i++){
         found = 0;
@@ -6168,6 +6483,46 @@ function floatval(mixed_var) {
     return (parseFloat(mixed_var) || 0);
 }// }}}
 
+// {{{ get_defined_vars
+function get_defined_vars() {
+    // Returns an array of all defined variables
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_defined_vars/
+    // +       version: 812.3015
+    // +   original by: Brett Zamir
+    // %        note 1: Test case 1: If get_defined_vars can find itself in the defined vars, it worked :)
+    // *     example 1: function test_in_array(array, p_val) {for(var i = 0, l = array.length; i < l; i++) {if(array[i] == p_val) return true;} return false;}
+    // *     example 1: funcs = get_defined_vars();
+    // *     example 1: found = test_in_array(funcs, 'get_defined_vars');
+    // *     results 1: found == true
+
+    var i = '', arr = [], already = {};
+
+    for (i in window) {
+        try {
+            if (typeof window[i] === 'function') {
+                if (!already[i]) {
+                    already[i] = 1;
+                    arr.push(i);
+                }
+            }
+            else if (typeof window[i] === 'object') {
+                for (var j in window[i]) {
+                    if (typeof window[j] === 'function' && window[j] && !already[j]) {
+                        already[j] = 1;
+                        arr.push(j);
+                    }
+                }
+            }
+        }
+        catch (e) {
+
+        }
+    }
+
+    return arr;
+}// }}}
+
 // {{{ gettype
 function gettype( mixed_var ) {
     // Get the type of a variable
@@ -6555,10 +6910,11 @@ function serialize( mixed_value ) {
     // Generates a storable representation of a value
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_serialize/
-    // +       version: 812.114
+    // +       version: 812.3015
     // +   original by: Arpad Ray (mailto:arpad@php.net)
     // +   improved by: Dino
     // +   bugfixed by: Andrej Pavlovic
+    // +   bugfixed by: Garagoth
     // %          note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
     // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
@@ -6628,7 +6984,7 @@ function serialize( mixed_value ) {
             var key;
             for (key in mixed_value) {
                 ktype = _getType(mixed_value[key]);
-                if (ktype == "function" && ktype == "object") { 
+                if (ktype == "function") { 
                     continue; 
                 }
                 
