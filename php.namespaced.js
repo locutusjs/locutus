@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.92
+ * This is version: 1.93
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -768,24 +768,24 @@
         },// }}}
         
         // {{{ array_reverse
-        array_reverse: function( array, preserve_keys ) {
+        array_reverse: function(array, preserve_keys) {
             // Return an array with elements in reverse order
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_reverse/
-            // +       version: 809.522
+            // +       version: 812.3016
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Karol Kowalski
-            // *     example 1: $P.array_reverse( [ 'php', '4.0', ['green', 'red'] ], true );
+            // *     example 1: $P.array_reverse( [ 'php', '4.0', ['green', 'red'] ], true);
             // *     returns 1: { 2: ['green', 'red'], 1: 4, 0: 'php'}
         
-            var arr_len=array.length, newkey=0, tmp_ar = {};
+            var arr_len = array.length, newkey = 0, tmp_arr = {}, key = '';
         
-            for(var key in array){
-                newkey=arr_len-key-1;
-                tmp_ar[(!!preserve_keys)?newkey:key]=array[newkey];
+            for (key in array) {
+                newkey = arr_len - key - 1;
+                tmp_arr[(!!preserve_keys) ? key : newkey] = array[newkey];
             }
         
-            return tmp_ar;
+            return tmp_arr;
         },// }}}
         
         // {{{ array_search
@@ -4254,8 +4254,8 @@
             // +   bugfixed by: Onno Marsman
             // +   improved by: marc andreu
             // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-            // %        note 1: Has this issue: http://bugs.php.net/bug.php?id=25707, see example 2
             // -    depends on: get_html_translation_table
+            // -    depends on: array_reverse
             // *     example 1: $P.html_entity_decode('Kevin &amp; van Zonneveld');
             // *     returns 1: 'Kevin & van Zonneveld'
             // *     example 2: $P.html_entity_decode('&amp;lt;');
@@ -4267,7 +4267,11 @@
             if (false === (histogram = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {
                 return false;
             }
-            
+        
+            // Reversing the histogram fixes the bug exactly like:
+            // http://bugs.php.net/bug.php?id=25707, see example 2
+            histogram = this.array_reverse(histogram, true);
+        
             for (symbol in histogram) {
                 entity = histogram[symbol];
                 tmp_str = tmp_str.split(entity).join(symbol);
