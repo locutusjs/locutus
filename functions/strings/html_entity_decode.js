@@ -7,8 +7,8 @@ function html_entity_decode( string, quote_style ) {
     // +   bugfixed by: Onno Marsman
     // +   improved by: marc andreu
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // %        note 1: Has this issue: http://bugs.php.net/bug.php?id=25707, see example 2
     // -    depends on: get_html_translation_table
+    // -    depends on: array_reverse
     // *     example 1: html_entity_decode('Kevin &amp; van Zonneveld');
     // *     returns 1: 'Kevin & van Zonneveld'
     // *     example 2: html_entity_decode('&amp;lt;');
@@ -20,7 +20,11 @@ function html_entity_decode( string, quote_style ) {
     if (false === (histogram = get_html_translation_table('HTML_ENTITIES', quote_style))) {
         return false;
     }
-    
+
+    // Reversing the histogram fixes the bug exactly like:
+    // http://bugs.php.net/bug.php?id=25707, see example 2
+    histogram = array_reverse(histogram, true);
+
     for (symbol in histogram) {
         entity = histogram[symbol];
         tmp_str = tmp_str.split(entity).join(symbol);
