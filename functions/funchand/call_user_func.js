@@ -1,8 +1,7 @@
-function call_user_func_array(cb, parameters) {
+function call_user_func(cb, parameters) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Thiago Mata (http://thiagomata.blog.com)
-    // +   revised  by: Jon Hohle
-    // +   improved by: Brett Zamir
+    // +   original by: Brett Zamir
+    // +   improved by: 
     // *     example 1: call_user_func_array('isNaN', ['a']);
     // *     returns 1: true
     // *     example 2: call_user_func_array('isNaN', [1]);
@@ -24,5 +23,5 @@ function call_user_func_array(cb, parameters) {
         throw new Exception(func + ' is not a valid function');
     }
 
-    return func.apply(null, parameters);
+    func.apply(null, Array.prototype.slice.call(parameters, 1));
 }
