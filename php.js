@@ -1,17 +1,16 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.88
+ * This is version: 1.89
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Michael White (http://getsprink.com),
  * Paulo Ricardo F. Santos, Waldo Malqui Silva, Jack, Jonas Raoni Soares Silva
- * (http://www.jsfromhell.com), Philip Peterson, Ates Goral
- * (http://magnetiq.com), Legaev Andrey, Martijn Wieringa, Brett Zamir,
- * Enrique Gonzalez, Nate, Philippe Baumann, Webtoolkit.info
- * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
- * (http://www.jsfromhell.com), Jani Hartikainen, Ash Searle
- * (http://hexmen.com/blog/), Erkekjetter, GeekFG
+ * (http://www.jsfromhell.com), Brett Zamir, Philip Peterson, Ates Goral
+ * (http://magnetiq.com), Legaev Andrey, Martijn Wieringa, Enrique Gonzalez,
+ * Nate, Philippe Baumann, Webtoolkit.info (http://www.webtoolkit.info/),
+ * Carlos R. L. Rodrigues (http://www.jsfromhell.com), Jani Hartikainen, Ash
+ * Searle (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
  * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen,
@@ -33,11 +32,11 @@
  * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
  * Steven Levithan (http://blog.stevenlevithan.com), Subhasis Deb, T. Wild,
  * T.Wild, T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, Tod
- * Gentille, XoraX (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil,
- * booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel paderni, ger,
- * gorthaur, hitwork, jakes, john (http://www.jd-tech.net), johnrembo,
- * kenneth, marc andreu, metjay, nobbler, noname, penutbutterjelly, sankai,
- * sowberry, stensi
+ * Gentille, Valentina De Rosa, XoraX (http://www.xorax.info), Yannoo, Yves
+ * Sucaet, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel
+ * paderni, ger, gorthaur, hitwork, jakes, john (http://www.jd-tech.net),
+ * johnrembo, kenneth, marc andreu, metjay, nobbler, noname, penutbutterjelly,
+ * rezna, sankai, sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -872,6 +871,107 @@ function array_slice(arr, offst, lgth, preserve_keys) {
         return arr.slice(offst, lgth);
     }
     
+}// }}}
+
+// {{{ array_splice
+function array_splice (arr, offst, lgth, replacement) {
+    // Remove a portion of the array and replace it with something else
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_splice/
+    // +       version: 812.1714
+    // +   original by: Brett Zamir
+    // %        note 1: Order does get shifted in associative array input with numeric indices,
+    // %        note 1: since PHP behavior doesn't preserve keys, but I understand order is not reliable anyways
+    // -    depends on: is_int
+    // *     example 1: input = {4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"};
+    // *     example 1: array_splice(input, 2);
+    // *     returns 1: {0: "blue", 'dud': "yellow"}
+    // *     results 1: input == {'abc':"green", 0:"red"}
+    // *     example 2: input = ["red", "green", "blue", "yellow"];
+    // *     example 2: array_splice(input, 3, 0, "purple");
+    // *     returns 2: []
+    // *     results 2: input == ["red", "green", "blue", "purple", "yellow"]
+    // *     example 3: input = ["red", "green", "blue", "yellow"]
+    // *     example 3: array_splice(input, -1, 1, ["black", "maroon"]);
+    // *     returns 3: ["yellow"]
+    // *     results 3: input == ["red", "green", "blue", "black", "maroon"]
+    
+    var checkToUpIndices = function (arr, ct, key) {
+        // Deal with situation, e.g., if encounter index 4 and try to set it to 0, but 0 exists later in loop (need to
+        // increment all subsequent (skipping current key, since we need its value below) until find unused)
+        if (arr[ct] !== undefined) {
+            var tmp = ct;
+            ct += 1;
+            if (ct === key) {
+                ct += 1;
+            }
+            ct = checkToUpIndices(arr, ct, key);
+            arr[ct] = arr[tmp];
+            delete arr[tmp];
+        }
+        return ct;
+    }
+
+    if (replacement && !(typeof replacement === 'object')) {
+        replacement = [replacement];
+    }
+    if (lgth === undefined) {
+        lgth = offst >= 0 ? arr.length - offst : -offst;
+    } else if (lgth < 0) {
+        lgth = (offst >= 0 ? arr.length - offst : -offst)  + lgth;
+    }
+
+    if (!(arr instanceof Array)) {
+        /*if (arr.length !== undefined) { // Deal with array-like objects as input
+        delete arr.length;
+        }*/
+        var lgt = 0, ct = -1, rmvd = [], rmvdObj = {}, repl_ct=-1, int_ct=-1;
+        var returnArr = true, rmvd_ct = 0, rmvd_lgth = 0, key = '';
+        // rmvdObj.length = 0;
+        for (key in arr) { // Can do arr.__count__ in some browsers
+            lgt += 1;
+        }
+        offst = (offst >= 0) ? offst : lgt + offst;
+        for (key in arr) {
+            ct += 1;
+            if (ct < offst) {
+                if (is_int(key)) {
+                    int_ct += 1;
+                    if (parseInt(key, 10) === int_ct) { // Key is already numbered ok, so don't need to change key for value
+                        continue;
+                    }
+                    checkToUpIndices(arr, int_ct, key); // Deal with situation, e.g.,
+                    // if encounter index 4 and try to set it to 0, but 0 exists later in loop
+                    arr[int_ct] = arr[key];
+                    delete arr[key];
+                }
+                continue;
+            }
+            if (returnArr && is_int(key)) {
+                rmvd.push(arr[key]);
+                rmvdObj[rmvd_ct++] = arr[key]; // PHP starts over here too
+            } else {
+                rmvdObj[key] = arr[key];
+                returnArr    = false;
+            }
+            rmvd_lgth += 1;
+            // rmvdObj.length += 1;
+
+            if (replacement && replacement[++repl_ct]) {
+                arr[key] = replacement[repl_ct]
+            } else {
+                delete arr[key];
+            }
+        }
+        // arr.length = lgt - rmvd_lgth + (replacement ? replacement.length : 0); // Make (back) into an array-like object
+        return returnArr ? rmvd : rmvdObj;
+    }
+
+    if (replacement) {
+        replacement.unshift(offst, lgth);
+        return Array.prototype.splice.apply(arr, replacement);
+    }
+    return arr.splice(offst, lgth);
 }// }}}
 
 // {{{ array_sum
@@ -2051,6 +2151,87 @@ function create_function (args, code) {
     return _oFunctionObject;
 }// }}}
 
+// {{{ func_get_arg
+function func_get_arg(num) {
+    // Return an item from the argument list
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_func_get_arg/
+    // +       version: 812.1714
+    // +   original by: Brett Zamir
+    // %        note 1: May not work in all JS implementations
+    // *     example 1: function tmp_a() {return func_get_arg(1);}
+    // *     example 1: tmp_a('a', 'b');
+    // *     returns 1: 'a'
+
+    if (!arguments.callee.caller) {
+        try {
+            throw new Error('Either you are using this in a browser which does not support the "caller" property or you are calling this from a global context');
+            return false;
+        } catch(e){
+            return false;
+        }
+    }
+
+    if (num > arguments.callee.caller.arguments.length - 1) {
+        try {
+            throw new Error('Argument number is greater than the number of arguments actually passed');
+            return false;
+        } catch(e){
+            return false;
+        }
+    }
+
+    return arguments.callee.caller.arguments[num];
+}// }}}
+
+// {{{ func_get_args
+function func_get_args() {
+    // Returns an array comprising a function&#039;s argument list
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_func_get_args/
+    // +       version: 812.1714
+    // +   original by: Brett Zamir
+    // %        note 1: May not work in all JS implementations
+    // *     example 1: function tmp_a() {return func_get_args();}
+    // *     example 1: tmp_a('a', 'b');
+    // *     returns 1: ['a', 'b']
+
+    if (!arguments.callee.caller) {
+        try {
+            throw new Error('Either you are using this in a browser which does not support the "caller" property or you are calling this from a global context');
+            return false;
+        } catch(e){
+            return false;
+        }
+    }
+
+    return Array.prototype.slice.call(arguments.callee.caller.arguments);
+}// }}}
+
+// {{{ func_num_args
+function func_num_args() {
+    // Returns the number of arguments passed to the function
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_func_num_args/
+    // +       version: 812.1714
+    // +   original by: Brett Zamir
+    // %        note 1: May not work in all JS implementations
+    // *     example 1: function tmp_a() {return func_num_args();}
+    // *     example 1: tmp_a('a', 'b');
+    // *     returns 1: 2
+
+    if (!arguments.callee.caller) {
+        try {
+            throw new Error('Either you are using this in a browser which does not support the "caller" property or you are calling this from a global context');
+            return false;
+        } catch(e){
+            return false;
+        }
+    }
+
+    return arguments.callee.caller.arguments.length;
+}// }}}
+
 // {{{ function_exists
 function function_exists( function_name ) {
     // Return TRUE if the given function has been defined
@@ -2069,6 +2250,35 @@ function function_exists( function_name ) {
     } else{
         return (function_name instanceof Function);
     }
+}// }}}
+
+// {{{ get_defined_functions
+function get_defined_functions() {
+    // Returns an array of all defined functions
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_defined_functions/
+    // +       version: 812.1714
+    // +   original by: Brett Zamir
+    // %        note 1: Test case 1: If get_defined_functions can find itself in the defined functions, it worked :)
+    // *     example 1: function test_in_array(array, p_val) {for(var i = 0, l = array.length; i < l; i++) {if(array[i] == p_val) return true;} return false;}
+    // *     example 1: funcs = get_defined_functions();
+    // *     example 1: found = test_in_array(funcs, 'get_defined_functions');
+    // *     results 1: found == true
+
+    var i = '', arr = [];
+
+    for (i in window) {
+        try {
+            if (typeof window[i] === 'function' && window[i].name) {
+                arr.push(window[i].name);
+            }
+        }
+        catch (e) {
+
+        }
+    }
+
+    return arr;
 }// }}}
 
 // {{{ get_included_files
@@ -4991,16 +5201,19 @@ function stripslashes( str ) {
     // Un-quote string quoted with addslashes()
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_stripslashes/
-    // +       version: 810.612
+    // +       version: 812.1714
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Ates Goral (http://magnetiq.com)
     // +      fixed by: Mick@el
     // +   improved by: marrtins
     // +   bugfixed by: Onno Marsman
+    // +   improved by: rezna
     // *     example 1: stripslashes('Kevin\'s code');
     // *     returns 1: "Kevin's code"
+    // *     example 2: stripslashes('Kevin\\\'s code');
+    // *     returns 2: "Kevin\'s code"
 
-    return (str+'').replace('/\0/g', '0').replace('/\(.)/g', '$1');
+    return (str+'').replace(/\0/g, '0').replace(/\\([\\'"])/g, '$1');
 }// }}}
 
 // {{{ stristr
@@ -5338,6 +5551,41 @@ function strrpos( haystack, needle, offset){
 
     var i = (haystack+'').lastIndexOf( needle, offset ); // returns -1
     return i >= 0 ? i : false;
+}// }}}
+
+// {{{ strspn
+function strspn(str1, str2){
+    // Find length of initial segment matching mask
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strspn/
+    // +       version: 812.1712
+    // +   original by: Valentina De Rosa
+    // %        note 1: Good start, but still missing the 3rd & 4th argument which came to PHP in version 4.3.0
+    // *     example 1: strspn('42 is the answer, what is the question ...', '1234567890');
+    // *     returns 1: 2
+
+    var found;
+    var stri;
+    var strj;
+    var j = 0;
+    var i = 0;
+
+    for(i = 0; i < str1.length; i++){
+        found = 0;
+        stri  = str1.substring(i,i+1);
+        for (j = 0; j <= str2.length; j++) {
+            strj = str2.substring(j,j+1);
+            if (stri == strj) {
+                found = 1;
+                break;
+            }
+        }
+        if (found != 1) {
+            return i;
+        }
+    }
+
+    return i;
 }// }}}
 
 // {{{ strstr
@@ -6008,18 +6256,19 @@ function is_array( mixed_var ) {
     // Finds whether a variable is an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
-    // +       version: 812.114
+    // +       version: 812.1713
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Legaev Andrey
     // +   bugfixed by: Cord
     // +   bugfixed by: Manish
+    // +   improved by: Onno Marsman
     // %        note 1: In php.js, javascript objects are like php associative arrays 
     // *     example 1: is_array(['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: true
     // *     example 2: is_array('Kevin van Zonneveld');
     // *     returns 2: false
 
-    return (mixed_var instanceof Array || mixed_var instanceof Object);
+    return (mixed_var instanceof Object);
 }// }}}
 
 // {{{ is_bool
