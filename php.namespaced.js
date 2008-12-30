@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.91
+ * This is version: 1.92
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -4246,7 +4246,7 @@
             // Convert all HTML entities to their applicable characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_html_entity_decode/
-            // +       version: 810.2018
+            // +       version: 812.3016
             // +   original by: john (http://www.jd-tech.net)
             // +      input by: ger
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -4254,9 +4254,12 @@
             // +   bugfixed by: Onno Marsman
             // +   improved by: marc andreu
             // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // %        note 1: Has this issue: http://bugs.php.net/bug.php?id=25707, see example 2
             // -    depends on: get_html_translation_table
             // *     example 1: $P.html_entity_decode('Kevin &amp; van Zonneveld');
             // *     returns 1: 'Kevin & van Zonneveld'
+            // *     example 2: $P.html_entity_decode('&amp;lt;');
+            // *     returns 2: '&lt;'
         
             var histogram = {}, symbol = '', tmp_str = '', i = 0;
             tmp_str = string.toString();

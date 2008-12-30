@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.91
+ * This is version: 1.92
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
