@@ -125,16 +125,17 @@ function strtotime(str, now) {
     if (match != null) {
         if (!match[2]) {
             match[2] = '00:00:00';
-        }
-        else if (!match[3]) {
+        } else if (!match[3]) {
             match[2] += ':00';
         }
 
         s = match[1].split(/-/g);
 
-        for (i in __is.mon)
-            if (__is.mon[i] == s[1] - 1)
+        for (i in __is.mon) {
+            if (__is.mon[i] == s[1] - 1) {
                 s[1] = i;
+            }
+        }
 
         return strtotime(s[2] + ' ' + s[1] + ' ' + s[0] + ' ' + match[2]);
     }
