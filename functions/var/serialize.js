@@ -3,6 +3,7 @@ function serialize( mixed_value ) {
     // +   original by: Arpad Ray (mailto:arpad@php.net)
     // +   improved by: Dino
     // +   bugfixed by: Andrej Pavlovic
+    // +   bugfixed by: Garagoth
     // %          note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
     // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
@@ -72,7 +73,7 @@ function serialize( mixed_value ) {
             var key;
             for (key in mixed_value) {
                 ktype = _getType(mixed_value[key]);
-                if (ktype == "function" && ktype == "object") { 
+                if (ktype == "function") { 
                     continue; 
                 }
                 
