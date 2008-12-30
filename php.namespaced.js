@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.90
+ * This is version: 1.91
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -22,13 +22,14 @@
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
  * Touesnard, Cagri Ekin, Caio Ariede (http://caioariede.com), Christian
- * Doebler, Cord, David, David James, Dino, DxGx, FGFEmperor, Felix
- * Geisendoerfer (http://www.debuggable.com/felix), Francesco, Francois,
- * FremyCompany, Gabriel Paderni, Garagoth, Howard Yeend, J A R, Kirk
- * Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey,
- * Manish, Marc Palau, Mateusz "loonquawl" Zalega, MeEtc
- * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Norman "zEh"
- * Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
+ * Doebler, Cord, David, David James, Dino, Douglas Crockford
+ * (http://javascript.crockford.com), DxGx, FGFEmperor, Felix Geisendoerfer
+ * (http://www.debuggable.com/felix), Francesco, Francois, FremyCompany,
+ * Gabriel Paderni, Garagoth, Howard Yeend, J A R, Kirk Strobeck, LH, Leslie
+ * Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey, Manish, Marc Palau,
+ * Mateusz "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com), Mick@el,
+ * Nathan, Nick Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha
+ * (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
  * Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
  * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
@@ -6528,9 +6529,10 @@
             // Get the type of a variable
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_gettype/
-            // +       version: 812.1017
+            // +       version: 812.3015
             // +   original by: Paulo Ricardo F. Santos
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   improved by: Douglas Crockford (http://javascript.crockford.com)
             // -    depends on: is_float
             // -    depends on: is_array
             // -    depends on: is_object
@@ -6550,12 +6552,24 @@
         
             var type;
         
-            switch (type = typeof mixed_var) {
-                case 'undefined':
-                case 'boolean':
-                case 'string':
-                    return type;
-                    break;
+            var typeOf = function (value) {
+                // From: http://javascript.crockford.com/remedial.html
+                var s = typeof value;
+                if (s === 'object') {
+                    if (value) {
+                        if (typeof value.length === 'number' &&
+                                !(value.propertyIsEnumerable('length')) &&
+                                typeof value.splice === 'function') {
+                            s = 'array';
+                        }
+                    } else {
+                        s = 'null';
+                    }
+                }
+                return s;
+            }
+        
+            switch (type = typeOf(mixed_var)) {
                 case 'number':
                     return (this.is_float(mixed_var)) ? 'double' : 'integer';
                     break;
@@ -6569,7 +6583,7 @@
                     break;
             }
         
-            return 'unknown type: ' + type;
+            return type;
         },// }}}
         
         // {{{ intval
@@ -6577,7 +6591,7 @@
             // Get the integer value of a variable
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_intval/
-            // +       version: 809.522
+            // +       version: 812.3015
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: stensi
             // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -6592,14 +6606,22 @@
         
             var tmp;
         
-            if( typeof( mixed_var ) == 'string' ){
-                tmp = parseInt(mixed_var*1);
+            var type = typeof( mixed_var );
+        
+            if(type == 'boolean'){
+                if (mixed_var == true) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            } else if(type == 'string'){
+                tmp = parseInt(mixed_var * 1);
                 if(isNaN(tmp) || !isFinite(tmp)){
                     return 0;
                 } else{
                     return tmp.toString(base || 10);
                 }
-            } else if( typeof( mixed_var ) == 'number' && isFinite(mixed_var) ){
+            } else if(type == 'number' && isFinite(mixed_var) ){
                 return Math.floor(mixed_var);
             } else{
                 return 0;
@@ -6611,19 +6633,38 @@
             // Finds whether a variable is an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
-            // +       version: 812.1713
+            // +       version: 812.3015
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Legaev Andrey
             // +   bugfixed by: Cord
             // +   bugfixed by: Manish
             // +   improved by: Onno Marsman
-            // %        note 1: In php.js, javascript objects are like php associative arrays 
+            // %        note 1: In php.js, javascript objects are like php associative arrays, thus JavaScript objects will also
+            // %        note 1: return true
             // *     example 1: $P.is_array(['Kevin', 'van', 'Zonneveld']);
             // *     returns 1: true
             // *     example 2: $P.is_array('Kevin van Zonneveld');
             // *     returns 2: false
+            // *     example 3: $P.is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
+            // *     returns 3: true
+            // *     example 4: $P.is_array(tmp_a: function(){this.name = 'Kevin'});
+            // *     returns 4: false
         
-            return (mixed_var instanceof Object);
+            if (!mixed_var) {
+                return false;
+            }
+        
+            if (typeof mixed_var === 'object') {
+                // Uncomment to disable support for associative arrays / objects
+                //
+                //  if (mixed_var.propertyIsEnumerable('length') || typeof mixed_var.length !== 'number') {
+                //      return false;
+                //  }
+        
+                return true;
+            }
+        
+            return false;
         },// }}}
         
         // {{{ is_bool
