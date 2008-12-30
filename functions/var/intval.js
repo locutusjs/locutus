@@ -14,14 +14,22 @@ function intval( mixed_var, base ) {
 
     var tmp;
 
-    if( typeof( mixed_var ) == 'string' ){
-        tmp = parseInt(mixed_var*1);
+    var type = typeof( mixed_var );
+
+    if(type == 'boolean'){
+        if (mixed_var == true) {
+            return 1;
+        } else {
+            return 0;
+        }
+    } else if(type == 'string'){
+        tmp = parseInt(mixed_var * 1);
         if(isNaN(tmp) || !isFinite(tmp)){
             return 0;
         } else{
             return tmp.toString(base || 10);
         }
-    } else if( typeof( mixed_var ) == 'number' && isFinite(mixed_var) ){
+    } else if(type == 'number' && isFinite(mixed_var) ){
         return Math.floor(mixed_var);
     } else{
         return 0;

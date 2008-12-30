@@ -2,6 +2,7 @@ function gettype( mixed_var ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Douglas Crockford (http://javascript.crockford.com)
     // -    depends on: is_float
     // -    depends on: is_array
     // -    depends on: is_object
@@ -21,12 +22,24 @@ function gettype( mixed_var ) {
 
     var type;
 
-    switch (type = typeof mixed_var) {
-        case 'undefined':
-        case 'boolean':
-        case 'string':
-            return type;
-            break;
+    var typeOf = function (value) {
+        // From: http://javascript.crockford.com/remedial.html
+        var s = typeof value;
+        if (s === 'object') {
+            if (value) {
+                if (typeof value.length === 'number' &&
+                        !(value.propertyIsEnumerable('length')) &&
+                        typeof value.splice === 'function') {
+                    s = 'array';
+                }
+            } else {
+                s = 'null';
+            }
+        }
+        return s;
+    }
+
+    switch (type = typeOf(mixed_var)) {
         case 'number':
             return (is_float(mixed_var)) ? 'double' : 'integer';
             break;
@@ -40,5 +53,5 @@ function gettype( mixed_var ) {
             break;
     }
 
-    return 'unknown type: ' + type;
+    return type;
 }
