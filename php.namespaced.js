@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.93
+ * This is version: 1.94
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -772,17 +772,18 @@
             // Return an array with elements in reverse order
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_reverse/
-            // +       version: 812.3016
+            // +       version: 812.3017
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Karol Kowalski
             // *     example 1: $P.array_reverse( [ 'php', '4.0', ['green', 'red'] ], true);
             // *     returns 1: { 2: ['green', 'red'], 1: 4, 0: 'php'}
         
             var arr_len = array.length, newkey = 0, tmp_arr = {}, key = '';
-        
+            preserve_keys = !!preserve_keys;
+            
             for (key in array) {
                 newkey = arr_len - key - 1;
-                tmp_arr[(!!preserve_keys) ? key : newkey] = array[newkey];
+                tmp_arr[preserve_keys ? key : newkey] = array[key];
             }
         
             return tmp_arr;
@@ -4079,7 +4080,7 @@
             // Returns the translation table used by htmlspecialchars() and htmlentities()
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_html_translation_table/
-            // +       version: 811.1314
+            // +       version: 812.3017
             // +   original by: Philip Peterson
             // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   bugfixed by: noname
@@ -4113,16 +4114,23 @@
                 useQuoteStyle = constMappingQuoteStyle[useQuoteStyle];
             }
             
+            if (useQuoteStyle != 'ENT_NOQUOTES') {
+                entities['34'] = '&quot;';
+            }
+        
+            if (useQuoteStyle == 'ENT_QUOTES') {
+                entities['39'] = '&#039;';
+            }
+        
             if (useTable == 'HTML_SPECIALCHARS') {
                 // ascii decimals for better compatibility
-                entities['38'] = '&amp;';
                 entities['60'] = '&lt;';
                 entities['62'] = '&gt;';
+                entities['38'] = '&amp;';
             } else if (useTable == 'HTML_ENTITIES') {
                 // ascii decimals for better compatibility
-                entities['38'] = '&amp;';
-                entities['60'] = '&lt;';
-                entities['62'] = '&gt;';
+                entities['60']  = '&lt;';
+                entities['62']  = '&gt;';
                 entities['160'] = '&nbsp;';
                 entities['161'] = '&iexcl;';
                 entities['162'] = '&cent;';
@@ -4219,17 +4227,10 @@
                 entities['253'] = '&yacute;';
                 entities['254'] = '&thorn;';
                 entities['255'] = '&yuml;';
+                entities['38']  = '&amp;';
             } else {
                 throw Error("Table: "+useTable+' not supported');
                 return false;
-            }
-            
-            if (useQuoteStyle != 'ENT_NOQUOTES') {
-                entities['34'] = '&quot;';
-            }
-            
-            if (useQuoteStyle == 'ENT_QUOTES') {
-                entities['39'] = '&#039;';
             }
             
             // ascii decimals to real symbols
@@ -4246,7 +4247,7 @@
             // Convert all HTML entities to their applicable characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_html_entity_decode/
-            // +       version: 812.3016
+            // +       version: 812.3017
             // +   original by: john (http://www.jd-tech.net)
             // +      input by: ger
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -4261,16 +4262,12 @@
             // *     example 2: $P.html_entity_decode('&amp;lt;');
             // *     returns 2: '&lt;'
         
-            var histogram = {}, symbol = '', tmp_str = '', i = 0;
+            var histogram = {}, symbol = '', tmp_str = '', entity = '';
             tmp_str = string.toString();
             
             if (false === (histogram = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {
                 return false;
             }
-        
-            // Reversing the histogram fixes the bug exactly like:
-            // http://bugs.php.net/bug.php?id=25707, see example 2
-            histogram = this.array_reverse(histogram, true);
         
             for (symbol in histogram) {
                 entity = histogram[symbol];
@@ -4285,7 +4282,7 @@
             // Convert all applicable characters to HTML entities
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlentities/
-            // +       version: 810.2018
+            // +       version: 812.3017
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: nobbler
@@ -4296,7 +4293,7 @@
             // *     example 1: $P.htmlentities('Kevin & van Zonneveld');
             // *     returns 1: 'Kevin &amp; van Zonneveld'
         
-            var histogram = {}, symbol = '', tmp_str = '', i = 0;
+            var histogram = {}, symbol = '', tmp_str = '', entity = '';
             tmp_str = string.toString();
             
             if (false === (histogram = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {
@@ -4316,7 +4313,7 @@
             // Convert special characters to HTML entities
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars/
-            // +       version: 810.2018
+            // +       version: 812.3017
             // +   original by: Mirek Slugen
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   bugfixed by: Nathan
@@ -4326,7 +4323,7 @@
             // *     example 1: $P.htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
             // *     returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
         
-            var histogram = {}, symbol = '', tmp_str = '', i = 0;
+            var histogram = {}, symbol = '', tmp_str = '', entity = '';
             tmp_str = string.toString();
             
             if (false === (histogram = this.get_html_translation_table('HTML_SPECIALCHARS', quote_style))) {
@@ -4346,7 +4343,7 @@
             // Convert special HTML entities back to characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars_decode/
-            // +       version: 810.2018
+            // +       version: 812.3017
             // +   original by: Mirek Slugen
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   bugfixed by: Mateusz "loonquawl" Zalega
@@ -4357,16 +4354,17 @@
             // +   bugfixed by: Onno Marsman
             // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // -    depends on: get_html_translation_table
+            // -    depends on: array_reverse
             // *     example 1: $P.htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
             // *     returns 1: '<p>this -> &quot;</p>'
         
-            var histogram = {}, symbol = '', tmp_str = '', i = 0;
+            var histogram = {}, symbol = '', tmp_str = '', entity = '';
             tmp_str = string.toString();
             
             if (false === (histogram = this.get_html_translation_table('HTML_SPECIALCHARS', quote_style))) {
                 return false;
             }
-            
+        
             for (symbol in histogram) {
                 entity = histogram[symbol];
                 tmp_str = tmp_str.split(entity).join(symbol);
