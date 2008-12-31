@@ -1,4 +1,4 @@
-function die( mixed_var ) {
+function die( status ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
     //  -   depends on: exit
@@ -6,5 +6,5 @@ function die( mixed_var ) {
     // *     example 1: die();
     // *     returns 1: null
 
-    return exit();
+    return exit(status);
 }

@@ -1,9 +1,11 @@
-function exit( mixed_var ) {
+function exit( status ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
     // %        note 1: Should be considered expirimental. Please comment on this function.
     // *     example 1: exit(;
     // *     returns 1: null
+
+    var i;
 
     if (typeof status === 'string') {
         alert(status);
@@ -22,8 +24,9 @@ function exit( mixed_var ) {
         e.stopPropagation();
         // e.preventDefault(); // Stop for the form controls, etc., too?
     }
-    for (var i=0; i < handlers.length; i++) {
+    for (i=0; i < handlers.length; i++) {
         window.addEventListener(handlers[i], stopPropagation, true);
     }
+    
     throw '';
 }
