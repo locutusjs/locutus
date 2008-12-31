@@ -21,7 +21,9 @@ function is_array( mixed_var ) {
     }
 
     if (typeof mixed_var === 'object') {
-        // Uncomment to disable support for associative arrays / objects
+        // Uncomment to enable strict JavsScript-proof type checking
+        // This will disable support for associative arrays / objects, however
+        // Read discussion at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
         //
         //  if (mixed_var.propertyIsEnumerable('length') || typeof mixed_var.length !== 'number') {
         //      return false;
