@@ -1,27 +1,40 @@
-function end ( array ) {
+function end ( arr ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Legaev Andrey
     // +    revised by: J A R
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   restored by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    revised by: Brett Zamir
+    // %        note 1: Uses global: window.php_js to store the array pointer
     // *     example 1: end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
     // *     returns 1: 'Zonneveld'
     // *     example 2: end(['Kevin', 'van', 'Zonneveld']);
     // *     returns 2: 'Zonneveld'
     
-    var last_elm, key;
-    
-    // The native .pop() method didn't not work with objects (associative arrays)
-    // We need that for PHP compatibility
-    
-    if (array.constructor == Array){
-        last_elm = array[(array.length-1)];
-    } else {
-        for (key in array){
-            last_elm = array[key];
-        }
+    if (!window.php_js) window.php_js = {
+        pointers:[]
+    };
+    var pointers = window.php_js.pointers;
+    if (pointers.indexOf(arr) === -1) {
+        pointers.push(arr, 0);
     }
-    
-    return last_elm;
+    var arrpos = pointers.indexOf(arr);
+    if (!(arr instanceof Array)) {
+        var ct = 0;
+        for (var k in arr) {
+            ct++;
+            var val = arr[k];
+        }
+        if (ct === 0) {
+            return false; // Empty
+        }
+        pointers[arrpos+1] = ct - 1;
+        return val;
+    }
+    if (arr.length === 0) {
+        return false;
+    }
+    pointers[arrpos+1] = arr.length - 1;
+    return arr[pointers[arrpos+1]];
 }

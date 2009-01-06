@@ -1,35 +1,60 @@
 function each(arr) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Ates Goral (http://magnetiq.com)
-    // *     example 1: each([42,43]);
-    // *     returns 1: {0: 0, 1: 42, value: 42, key: 0}
-    // *     example 2: each({a: "apple", b: "balloon"});
-    // *     returns 2: {0: "a", 1: "apple", key: "a", value: "apple"}
+    // +   original by: Ates Goral (http://magnetiq.com) 
+    // +    revised by: Brett Zamir
+    // %        note 1: Uses global: window.php_js to store the array pointer
+    // *     example 1: each({a: "apple", b: "balloon"});
+    // *     returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
 
-
-    var k, v;
-
-    if (!(arr instanceof Object) || (arr._keys && !arr._keys.length)) {
+    //  Will return a 4-item object unless a class property 'returnArrayOnly'
+    //  is set to true on this function if want to only receive a two-item
+    //  numerically-indexed array (for the sake of array destructuring in
+    //  JavaScript 1.7+ (similar to list() in PHP, but as PHP does it automatically
+    //  in that context and JavaScript cannot, we needed something to allow that option)
+    //  See https://developer.mozilla.org/en/New_in_JavaScript_1.7#Destructuring_assignment
+    
+    if (!window.php_js) window.php_js = {
+        pointers:[]
+    };
+    var pointers = window.php_js.pointers;
+    if (pointers.indexOf(arr) === -1) {
+        pointers.push(arr, 0);
+    }
+    var arrpos = pointers.indexOf(arr);
+    var cursor = pointers[arrpos+1];
+    if (!(arr instanceof Array)) {
+        var ct = 0;
+        for (var k in arr) {
+            if (ct === cursor) {
+                pointers[arrpos+1] += 1;
+                if (each.returnArrayOnly) {
+                    return [k, arr[k]];
+                } else {
+                    return {
+                        1:arr[k],
+                        value:arr[k],
+                        0:k,
+                        key:k
+                    };
+                }
+            }
+            ct++;
+        }
+        return false; // Empty
+    }
+    if (arr.length === 0 || cursor === arr.length) {
         return false;
     }
-
-    if (!arr._keys) {
-        arr._keys = [];
-
-        for (k in arr) {
-            if (k != "_keys") {
-                arr._keys.push(k);
-            }
-        }
+    pos = cursor;
+    pointers[arrpos+1] += 1;
+    if (each.returnArrayOnly) {
+        return [pos, arr[pos]];
+    } else {
+        return {
+            1:arr[pos],
+            value:arr[pos],
+            0:pos,
+            key:pos
+        };
     }
-
-    k = arr._keys.shift();
-    v = arr[k];
-
-    return { 
-        0: k,
-        1: v,
-        key: k,
-        value: v
-    };
 }
