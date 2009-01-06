@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.94
+ * This is version: 1.95
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -3705,6 +3705,55 @@
             return (typeof window[constant_name] !== 'undefined');
         },// }}}
         
+        // {{{ die
+        die: function( mixed_var ) {
+            // Equivalent to exit()
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_die/
+            // +       version: 812.3112
+            // +   original by: Brett Zamir
+            //  -   depends on: exit
+            // %        note 1: Should be considered expirimental. Please comment on this function.
+            // *     example 1: $P.die();
+            // *     returns 1: null
+        
+            return this.exit();
+        },// }}}
+        
+        // {{{ exit
+        exit: function( mixed_var ) {
+            // Output a message and terminate the current script
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_exit/
+            // +       version: 812.3112
+            // +   original by: Brett Zamir
+            // %        note 1: Should be considered expirimental. Please comment on this function.
+            // *     example 1: $P.exit(;
+            // *     returns 1: null
+        
+            if (typeof status === 'string') {
+                alert(status);
+            }
+        
+            window.addEventListener('error', function (e) {e.preventDefault();e.stopPropagation();}, false);
+        
+            var handlers = [
+                'copy', 'cut', 'paste',
+                'beforeunload', 'blur', 'change', 'click', 'contextmenu', 'dblclick', 'focus', 'keydown', 'keypress', 'keyup', 'mousedown', 'mousemove', 'mouseout', 'mouseover', 'mouseup', 'resize', 'scroll',
+                'DOMNodeInserted', 'DOMNodeRemoved', 'DOMNodeRemovedFromDocument', 'DOMNodeInsertedIntoDocument', 'DOMAttrModified', 'DOMCharacterDataModified', 'DOMElementNameChanged', 'DOMAttributeNameChanged', 'DOMActivate', 'DOMFocusIn', 'DOMFocusOut', 'online', 'offline', 'textInput',
+                'abort', 'close', 'dragdrop', 'load', 'paint', 'reset', 'select', 'submit', 'unload'
+            ];
+            
+            stop: functionPropagation (e) {
+                e.stopPropagation();
+                // e.preventDefault(); // Stop for the form controls, etc., too?
+            }
+            for (var i=0; i < handlers.length; i++) {
+                window.addEventListener(handlers[i], stopPropagation, true);
+            }
+            throw '';
+        },// }}}
+        
         // {{{ sleep
         sleep: function(seconds) {
             // Delay execution
@@ -4247,7 +4296,7 @@
             // Convert all HTML entities to their applicable characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_html_entity_decode/
-            // +       version: 812.3017
+            // +       version: 812.3112
             // +   original by: john (http://www.jd-tech.net)
             // +      input by: ger
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -4256,7 +4305,6 @@
             // +   improved by: marc andreu
             // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // -    depends on: get_html_translation_table
-            // -    depends on: array_reverse
             // *     example 1: $P.html_entity_decode('Kevin &amp; van Zonneveld');
             // *     returns 1: 'Kevin & van Zonneveld'
             // *     example 2: $P.html_entity_decode('&amp;lt;');
@@ -4343,7 +4391,7 @@
             // Convert special HTML entities back to characters
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars_decode/
-            // +       version: 812.3017
+            // +       version: 812.3112
             // +   original by: Mirek Slugen
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   bugfixed by: Mateusz "loonquawl" Zalega
@@ -4354,7 +4402,6 @@
             // +   bugfixed by: Onno Marsman
             // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // -    depends on: get_html_translation_table
-            // -    depends on: array_reverse
             // *     example 1: $P.htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
             // *     returns 1: '<p>this -> &quot;</p>'
         
@@ -6638,7 +6685,7 @@
             // Finds whether a variable is an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
-            // +       version: 812.3015
+            // +       version: 812.3112
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Legaev Andrey
             // +   bugfixed by: Cord
@@ -6660,7 +6707,9 @@
             }
         
             if (typeof mixed_var === 'object') {
-                // Uncomment to disable support for associative arrays / objects
+                // Uncomment to enable strict JavsScript-proof type checking
+                // This will not support PHP associative arrays (JavaScript objects), however
+                // Read discussion at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
                 //
                 //  if (mixed_var.propertyIsEnumerable('length') || typeof mixed_var.length !== 'number') {
                 //      return false;
