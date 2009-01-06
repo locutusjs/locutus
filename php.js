@@ -1,17 +1,16 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.95
+ * This is version: 1.96
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
  * (http://getsprink.com), Paulo Ricardo F. Santos, Waldo Malqui Silva, Jack,
  * Jonas Raoni Soares Silva (http://www.jsfromhell.com), Philip Peterson, Ates
- * Goral (http://magnetiq.com), Legaev Andrey, Martijn Wieringa, Enrique
- * Gonzalez, Nate, Philippe Baumann, Webtoolkit.info
- * (http://www.webtoolkit.info/), Carlos R. L. Rodrigues
- * (http://www.jsfromhell.com), Jani Hartikainen, Ash Searle
- * (http://hexmen.com/blog/), Erkekjetter, GeekFG
+ * Goral (http://magnetiq.com), Legaev Andrey, Martijn Wieringa, Nate, Enrique
+ * Gonzalez, Philippe Baumann, Webtoolkit.info (http://www.webtoolkit.info/),
+ * Carlos R. L. Rodrigues (http://www.jsfromhell.com), Jani Hartikainen, Ash
+ * Searle (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
  * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen,
@@ -21,12 +20,12 @@
  * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
- * Touesnard, Cagri Ekin, Caio Ariede (http://caioariede.com), Christian
- * Doebler, Cord, David, David James, Dino, Douglas Crockford
+ * Touesnard, Bryan Elliott, Cagri Ekin, Caio Ariede (http://caioariede.com),
+ * Christian Doebler, Cord, David, David James, Dino, Douglas Crockford
  * (http://javascript.crockford.com), DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), Francesco, Francois, FremyCompany,
- * Gabriel Paderni, Garagoth, Howard Yeend, J A R, Kirk Strobeck, LH, Leslie
- * Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey, Manish, Marc Palau,
+ * Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, J A R, Kirk Strobeck, LH,
+ * Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey, Manish, Marc Palau,
  * Mateusz "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com), Mick@el,
  * Nathan, Nick Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha
  * (http://www.pedrotainha.com), Peter-Paul Koch
@@ -983,21 +982,26 @@ function array_sum( array ) {
     // Calculate the sum of values in an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_sum/
-    // +       version: 811.2517
+    // +       version: 901.617
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Nate
+    // +   bugfixed by: Gilbert
     // *     example 1: array_sum([4, 9, 182.6]);
     // *     returns 1: 195.6
+    // *     example 2: total = []; index = 0.1; for(y=0; y < 12; y++){total[y] = y + index;}
+    // *     example 2: array_sum(total);
+    // *     returns 2: 67.2
 
-    var key, sum=0;
-
+    var key, sum = 0;
+    
     // input sanitation
-    if( !array || (array.constructor !== Array && array.constructor !== Object) || !array.length ){
+    if (typeof array !== 'object') {
         return null;
     }
-
-    for(key in array){
-        sum += array[key];
+    
+    for (key in array) {
+        //tester_print_r(typeof sum);
+        sum += (array[key] * 1);
     }
 
     return sum;
@@ -1233,76 +1237,148 @@ function count( mixed_var, mode ) {
     return cnt;
 }// }}}
 
+// {{{ current
+function current(arr) {
+    // Return the current element in an array
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_current/
+    // +       version: 901.617
+    // +   original by: Brett Zamir
+    // %        note 1: Uses global: window.php_js to store the array pointer
+    // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
+    // *     example 1: current(transport); 
+    // *     returns 1: 'foot'
+
+    if (!window.php_js) window.php_js = {
+        pointers:[]
+    };
+    var pointers = window.php_js.pointers;
+    if (pointers.indexOf(arr) === -1) {
+        pointers.push(arr, 0);
+    }
+    var arrpos = pointers.indexOf(arr);
+    var cursor = pointers[arrpos+1];
+    if (arr instanceof Array) {
+        return arr[cursor] || false;
+    }
+    var ct = 0;
+    for (var k in arr) {
+        if (ct === cursor) {
+            return arr[k];
+        }
+        ct++;
+    }
+    return false; // Empty
+}// }}}
+
 // {{{ each
 function each(arr) {
     // Return the current key and value pair from an array and advance the array cursor
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_each/
-    // +       version: 812.1017
-    // +   original by: Ates Goral (http://magnetiq.com)
-    // *     example 1: each([42,43]);
-    // *     returns 1: {0: 0, 1: 42, value: 42, key: 0}
-    // *     example 2: each({a: "apple", b: "balloon"});
-    // *     returns 2: {0: "a", 1: "apple", key: "a", value: "apple"}
+    // +       version: 901.617
+    // +   original by: Ates Goral (http://magnetiq.com) 
+    // +    revised by: Brett Zamir
+    // %        note 1: Uses global: window.php_js to store the array pointer
+    // *     example 1: each({a: "apple", b: "balloon"});
+    // *     returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
 
-
-    var k, v;
-
-    if (!(arr instanceof Object) || (arr._keys && !arr._keys.length)) {
+    //  Will return a 4-item object unless a class property 'returnArrayOnly'
+    //  is set to true on this function if want to only receive a two-item
+    //  numerically-indexed array (for the sake of array destructuring in
+    //  JavaScript 1.7+ (similar to list() in PHP, but as PHP does it automatically
+    //  in that context and JavaScript cannot, we needed something to allow that option)
+    //  See https://developer.mozilla.org/en/New_in_JavaScript_1.7#Destructuring_assignment
+    
+    if (!window.php_js) window.php_js = {
+        pointers:[]
+    };
+    var pointers = window.php_js.pointers;
+    if (pointers.indexOf(arr) === -1) {
+        pointers.push(arr, 0);
+    }
+    var arrpos = pointers.indexOf(arr);
+    var cursor = pointers[arrpos+1];
+    if (!(arr instanceof Array)) {
+        var ct = 0;
+        for (var k in arr) {
+            if (ct === cursor) {
+                pointers[arrpos+1] += 1;
+                if (each.returnArrayOnly) {
+                    return [k, arr[k]];
+                } else {
+                    return {
+                        1:arr[k],
+                        value:arr[k],
+                        0:k,
+                        key:k
+                    };
+                }
+            }
+            ct++;
+        }
+        return false; // Empty
+    }
+    if (arr.length === 0 || cursor === arr.length) {
         return false;
     }
-
-    if (!arr._keys) {
-        arr._keys = [];
-
-        for (k in arr) {
-            if (k != "_keys") {
-                arr._keys.push(k);
-            }
-        }
+    pos = cursor;
+    pointers[arrpos+1] += 1;
+    if (each.returnArrayOnly) {
+        return [pos, arr[pos]];
+    } else {
+        return {
+            1:arr[pos],
+            value:arr[pos],
+            0:pos,
+            key:pos
+        };
     }
-
-    k = arr._keys.shift();
-    v = arr[k];
-
-    return { 
-        0: k,
-        1: v,
-        key: k,
-        value: v
-    };
 }// }}}
 
 // {{{ end
-function end ( array ) {
+function end ( arr ) {
     // Set the internal pointer of an array to its last element
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_end/
-    // +       version: 809.1713
+    // +       version: 901.617
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Legaev Andrey
     // +    revised by: J A R
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   restored by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    revised by: Brett Zamir
+    // %        note 1: Uses global: window.php_js to store the array pointer
     // *     example 1: end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
     // *     returns 1: 'Zonneveld'
     // *     example 2: end(['Kevin', 'van', 'Zonneveld']);
     // *     returns 2: 'Zonneveld'
     
-    var last_elm, key;
-    
-    // The native .pop() method didn't not work with objects (associative arrays)
-    // We need that for PHP compatibility
-    
-    if (array.constructor == Array){
-        last_elm = array[(array.length-1)];
-    } else {
-        for (key in array){
-            last_elm = array[key];
-        }
+    if (!window.php_js) window.php_js = {
+        pointers:[]
+    };
+    var pointers = window.php_js.pointers;
+    if (pointers.indexOf(arr) === -1) {
+        pointers.push(arr, 0);
     }
-    
-    return last_elm;
+    var arrpos = pointers.indexOf(arr);
+    if (!(arr instanceof Array)) {
+        var ct = 0;
+        for (var k in arr) {
+            ct++;
+            var val = arr[k];
+        }
+        if (ct === 0) {
+            return false; // Empty
+        }
+        pointers[arrpos+1] = ct - 1;
+        return val;
+    }
+    if (arr.length === 0) {
+        return false;
+    }
+    pointers[arrpos+1] = arr.length - 1;
+    return arr[pointers[arrpos+1]];
 }// }}}
 
 // {{{ in_array
@@ -1325,6 +1401,42 @@ function in_array(needle, haystack, strict) {
     }
 
     return found;
+}// }}}
+
+// {{{ key
+function key(arr) {
+    // Fetch a key from an array
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_key/
+    // +       version: 901.617
+    // +   original by: Brett Zamir
+    // %        note 1: Uses global: window.php_js to store the array pointer
+    // *     example 1: array = {fruit1: 'apple', 'fruit2': 'orange'}
+    // *     example 1: key(array);
+    // *     returns 1: 'fruit1'
+
+    if (!window.php_js) window.php_js = {
+        pointers:[]
+    };
+    var pointers = window.php_js.pointers;
+    if (pointers.indexOf(arr) === -1) {
+        pointers.push(arr, 0);
+    }
+    var cursor = pointers[pointers.indexOf(arr)+1];
+    if (!(arr instanceof Array)) {
+        var ct = 0;
+        for (var k in arr) {
+            if (ct === cursor) {
+                return k;
+            }
+            ct++;
+        }
+        return false; // Empty
+    }
+    if (arr.length === 0) {
+        return false;
+    }
+    return cursor;
 }// }}}
 
 // {{{ krsort
@@ -1425,6 +1537,101 @@ function ksort(array, sort_flags) {
     return true; 
 }// }}}
 
+// {{{ next
+function next (arr) {
+    // Advance the internal array pointer of an array
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_next/
+    // +       version: 901.617
+    // +   original by: Brett Zamir
+    // %        note 1: Uses global: window.php_js to store the array pointer
+    // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
+    // *     example 1: next(transport);
+    // *     example 1: next(transport);
+    // *     returns 1: 'car'
+
+    if (!window.php_js) window.php_js = {
+        pointers:[]
+    };
+    var pointers = window.php_js.pointers;
+    if (pointers.indexOf(arr) === -1) {
+        pointers.push(arr, 0);
+    }
+    var arrpos = pointers.indexOf(arr);
+    var cursor = pointers[arrpos+1];
+    if (!(arr instanceof Array)) {
+        var ct = 0;
+        for (var k in arr) {
+            if (ct === cursor+1) {
+                pointers[arrpos+1] += 1;
+                return arr[k];
+            }
+            ct++;
+        }
+        return false; // End
+    }
+    if (arr.length === 0 || cursor === (arr.length-1)) {
+        return false;
+    }
+    pointers[arrpos+1] += 1;
+    return arr[pointers[arrpos+1]];
+}// }}}
+
+// {{{ pos
+function pos(arr) {
+    // Alias of current()
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_pos/
+    // +       version: 901.617
+    // +   original by: Brett Zamir
+    // %        note 1: Uses global: window.php_js to store the array pointer
+    // -    depends on: current
+    // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
+    // *     example 1: pos(transport);
+    // *     returns 1: 'foot'
+    
+    return current(arr);
+}// }}}
+
+// {{{ prev
+function prev (arr) {
+    // Rewind the internal array pointer
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_prev/
+    // +       version: 901.617
+    // +   original by: Brett Zamir
+    // %        note 1: Uses global: window.php_js to store the array pointer
+    // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
+    // *     example 1: prev(transport);
+    // *     returns 1: false
+
+    if (!window.php_js) window.php_js = {
+        pointers:[]
+    };
+    var pointers = window.php_js.pointers;
+    var arrpos = pointers.indexOf(arr);
+    var cursor = pointers[arrpos+1];
+    if (pointers.indexOf(arr) === -1 || cursor === 0) {
+        return false;
+    }
+    if (!(arr instanceof Array)) {
+        var ct = 0;
+        for (var k in arr) {
+            if (ct === cursor-1) {
+                pointers[arrpos+1] -= 1;
+                return arr[k];
+            }
+            ct++;
+        }
+    // Shouldn't reach here
+    }
+    if (arr.length === 0) {
+        return false;
+    }
+    pointers[arrpos+1] -= 1;
+    return arr[pointers[arrpos+1]];
+}// }}}
+
 // {{{ range
 function range ( low, high, step ) {
     // Create an array containing a range of elements
@@ -1475,28 +1682,42 @@ function range ( low, high, step ) {
 }// }}}
 
 // {{{ reset
-function reset ( array ) {
+function reset ( arr ) {
     // Set the internal pointer of an array to its first element
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_reset/
-    // +       version: 809.522
+    // +       version: 901.617
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Legaev Andrey
+    // +    revised by: Brett Zamir
+    // %        note 1: Uses global: window.php_js to store the array pointer
     // *     example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
-    // *     returns 1: 'Kevin'
-
-    var first_elm, key;
-
-    if (array.constructor == Array){
-        first_elm = array[0];
-    } else {
-        for (key in array){
-            first_elm = array[key];
-            break;
-        }
+    // *     returns 1: 'Kevin' 
+    
+    if (!window.php_js) window.php_js = {
+        pointers:[]
+    };
+    var pointers = window.php_js.pointers;
+    if (pointers.indexOf(arr) === -1) {
+        pointers.push(arr, 0);
     }
-
-    return first_elm;
+    var arrpos = pointers.indexOf(arr);
+    if (!(arr instanceof Array)) {
+        for (var k in arr) {
+            if (pointers.indexOf(arr) === -1) {
+                pointers.push(arr, 0);
+            } else {
+                pointers[arrpos+1] = 0;
+            }
+            return arr[k];
+        }
+        return false; // Empty
+    }
+    if (arr.length === 0) {
+        return false;
+    }
+    pointers[arrpos+1] = 0;
+    return arr[pointers[arrpos+1]];
 }// }}}
 
 // {{{ rsort
@@ -1745,13 +1966,14 @@ function date ( format, timestamp ) {
     // Format a local time/date
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_date/
-    // +       version: 809.522
+    // +       version: 901.617
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: MeEtc (http://yass.meetcweb.com)
     // +   improved by: Brad Touesnard
     // +   improved by: Tim Wiel
+    // +   improved by: Bryan Elliott
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);
@@ -1898,7 +2120,12 @@ function date ( format, timestamp ) {
 
         // Timezone
             //e not supported yet
-            //I not supported yet
+            I: function(){
+                var DST = (new Date(jsdate.getFullYear(),6,1,0,0,0));
+                DST = DST.getHours()-DST.getUTCHours();
+                var ref = jsdate.getHours()-jsdate.getUTCHours();
+                return ref != DST ? 1 : 0;
+            },
             O: function(){
                var t = pad(Math.abs(jsdate.getTimezoneOffset()/60*100), 4);
                if (jsdate.getTimezoneOffset() > 0) t = "-" + t; else t = "+" + t;
@@ -2371,6 +2598,119 @@ function filesize (url) {
     } else {
         return req.getResponseHeader('Content-Length'); 
     }
+}// }}}
+
+// {{{ pathinfo
+function pathinfo (path, options) {
+    // +   original by: Nate
+    // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %        note 1: Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559
+    // %        note 1: The way the bitwise arguments are handled allows for greater flexibility
+    // %        note 1: & compatability. We might even standardize this code and use a similar approach for
+    // %        note 1: other bitwise PHP functions
+    // %        note 2: PHP.JS tries to stay away from a core.js file with global dependencies, because we like
+    // %        note 2: that you can just take a couple of functions.
+    // %        note 2: But by way we implemented this function, you can always declare the PATHINFO_*
+    // %        note 2: constants in your scope, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);
+    // %        note 2: which makes it fully compliant with PHP syntax.
+    // -    depends on: dirname
+    // -    depends on: basename
+    // *     example 1: pathinfo('/www/htdocs/index.html', 1);
+    // *     returns 1: '/www/htdocs'
+    // *     example 2: pathinfo('/www/htdocs/index.html', 'PATHINFO_BASENAME');
+    // *     returns 2: 'index.html'
+    // *     example 3: pathinfo('/www/htdocs/index.html', 'PATHINFO_EXTENSION');
+    // *     returns 3: 'html'
+    // *     example 4: pathinfo('/www/htdocs/index.html', 'PATHINFO_FILENAME');
+    // *     returns 4: 'index'
+    // *     example 5: pathinfo('/www/htdocs/index.html', 2 | 4);
+    // *     returns 5: {basename: 'index.html', extension: 'html'}
+    // *     example 6: pathinfo('/www/htdocs/index.html', 'PATHINFO_ALL');
+    // *     returns 6: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
+    // *     example 7: pathinfo('/www/htdocs/index.html');
+    // *     returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
+
+    // Working vars
+    var key = '', tmp_arr = {}, cnt = 0;
+    var have_basename = false, have_extension = false, have_filename = false;
+    
+    // Init binary arguments
+    var def = {
+        'PATHINFO_DIRNAME': 1,
+        'PATHINFO_BASENAME': 2,
+        'PATHINFO_EXTENSION': 4,
+        'PATHINFO_FILENAME': 8,
+        'PATHINFO_ALL': 0
+    };
+    for (key in def) {
+        def['PATHINFO_ALL'] = def['PATHINFO_ALL'] | def[key];
+    }
+
+    // Input defaulting & sanitation
+    if (!path)    return false;
+    if (!options) options = 'PATHINFO_ALL';
+
+    // Resolve string input to bitwise e.g. 'PATHINFO_DIRNAME' => 1
+    if (def[options]) {
+        options = def[options];
+    }
+
+    // Internal Functions
+    var __getExt = function(path) {
+        var str  = path+'';
+        var dotP = str.lastIndexOf('.')+1;
+        return str.substr(dotP);
+    }
+
+
+    // Gather path infos
+    if ((options & def['PATHINFO_DIRNAME']) == def['PATHINFO_DIRNAME']) {
+        tmp_arr['dirname'] = dirname(path);
+    }
+
+    if ((options & def['PATHINFO_BASENAME']) == def['PATHINFO_BASENAME']) {
+        if (false === have_basename) {
+            have_basename = basename(path);
+        }
+        tmp_arr['basename'] = have_basename;
+    }
+
+    if ((options & def['PATHINFO_EXTENSION']) == def['PATHINFO_EXTENSION']) {
+        if (false === have_basename) {
+            have_basename = basename(path);
+        }
+        if (false === have_extension) {
+            have_extension = __getExt(have_basename);
+        }
+        tmp_arr['extension'] = have_extension;
+    }
+    
+    if ((options & def['PATHINFO_FILENAME']) == def['PATHINFO_FILENAME']) {
+        if (false === have_basename) {
+            have_basename = basename(path);
+        }
+        if (false === have_extension) {
+            have_extension = __getExt(have_basename);
+        }
+        if (false === have_filename) {
+            have_filename  = have_basename.substr(0, (have_basename.length - have_extension.length)-1);
+        }
+
+        tmp_arr['filename'] = have_filename;
+    }
+
+
+    // If array contains only 1 element: return string
+    cnt = 0;
+    for (key in tmp_arr){
+        cnt++;
+    }
+    if (cnt == 1) {
+        return tmp_arr[key];
+    }
+
+    // Return full-blown array
+    return tmp_arr;
 }// }}}
 
 // {{{ call_user_func
@@ -3706,30 +4046,32 @@ function defined( constant_name )  {
 }// }}}
 
 // {{{ die
-function die( mixed_var ) {
+function die( status ) {
     // Equivalent to exit()
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_die/
-    // +       version: 812.3112
+    // +       version: 901.617
     // +   original by: Brett Zamir
     //  -   depends on: exit
     // %        note 1: Should be considered expirimental. Please comment on this function.
     // *     example 1: die();
     // *     returns 1: null
 
-    return exit();
+    return exit(status);
 }// }}}
 
 // {{{ exit
-function exit( mixed_var ) {
+function exit( status ) {
     // Output a message and terminate the current script
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_exit/
-    // +       version: 812.3112
+    // +       version: 901.617
     // +   original by: Brett Zamir
     // %        note 1: Should be considered expirimental. Please comment on this function.
-    // *     example 1: exit(;
+    // *     example 1: exit();
     // *     returns 1: null
+
+    var i;
 
     if (typeof status === 'string') {
         alert(status);
@@ -3748,9 +4090,10 @@ function exit( mixed_var ) {
         e.stopPropagation();
         // e.preventDefault(); // Stop for the form controls, etc., too?
     }
-    for (var i=0; i < handlers.length; i++) {
+    for (i=0; i < handlers.length; i++) {
         window.addEventListener(handlers[i], stopPropagation, true);
     }
+    
     throw '';
 }// }}}
 
