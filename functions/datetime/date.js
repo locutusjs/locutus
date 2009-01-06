@@ -6,6 +6,7 @@ function date ( format, timestamp ) {
     // +   improved by: MeEtc (http://yass.meetcweb.com)
     // +   improved by: Brad Touesnard
     // +   improved by: Tim Wiel
+    // +   improved by: Bryan Elliott
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);
@@ -152,7 +153,12 @@ function date ( format, timestamp ) {
 
         // Timezone
             //e not supported yet
-            //I not supported yet
+            I: function(){
+                var DST = (new Date(jsdate.getFullYear(),6,1,0,0,0));
+                DST = DST.getHours()-DST.getUTCHours();
+                var ref = jsdate.getHours()-jsdate.getUTCHours();
+                return ref != DST ? 1 : 0;
+            },
             O: function(){
                var t = pad(Math.abs(jsdate.getTimezoneOffset()/60*100), 4);
                if (jsdate.getTimezoneOffset() > 0) t = "-" + t; else t = "+" + t;
