@@ -2,7 +2,7 @@ function exit( status ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
     // %        note 1: Should be considered expirimental. Please comment on this function.
-    // *     example 1: exit(;
+    // *     example 1: exit();
     // *     returns 1: null
 
     var i;
