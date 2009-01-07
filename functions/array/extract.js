@@ -79,7 +79,7 @@ function extract (arr, type, prefix) {
             }
         }
         catch (e) { // Just won't increment for problem assignments
-            alert('a')
+            
         }
     }
     return chng;
