@@ -7,10 +7,13 @@ function date ( format, timestamp ) {
     // +   improved by: Brad Touesnard
     // +   improved by: Tim Wiel
     // +   improved by: Bryan Elliott
+    // +   improved by: Brett Zamir
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);
     // *     returns 2: 'September 2, 2003, 2:26 am'
+    // *     example 3: date('Y W o', 1062462400);
+    // *     returns 3: '2003 36 2003'
 
     var a, jsdate=((timestamp) ? new Date(timestamp*1000) : new Date());
     var pad = function(n, c){
@@ -103,7 +106,15 @@ function date ( format, timestamp ) {
                 var y = f.Y();
                 return (!(y & 3) && (y % 1e2 || !(y % 4e2))) ? 1 : 0;
             },
-            //o not supported yet
+            o: function(){
+                if (f.n() === 12 && f.W() === 1) {
+                    return jsdate.getFullYear()+1;
+                }
+                if (f.n() === 1 && f.W() >= 52) {
+                    return jsdate.getFullYear()-1;
+                }
+                return jsdate.getFullYear();
+            },
             Y: function(){
                 return jsdate.getFullYear();
             },
@@ -149,7 +160,9 @@ function date ( format, timestamp ) {
             s: function(){
                 return pad(jsdate.getSeconds(), 2);
             },
-            //u not supported yet
+            u: function(){
+                return pad(jsdate.getMilliseconds()*1000, 6);
+            },
 
         // Timezone
             //e not supported yet
@@ -169,13 +182,18 @@ function date ( format, timestamp ) {
                 return (O.substr(0, 3) + ":" + O.substr(3, 2));
             },
             //T not supported yet
-            //Z not supported yet
+            Z: function(){
+               var t = -jsdate.getTimezoneOffset()*60;
+               return t;
+            },
 
         // Full Date/Time
             c: function(){
                 return f.Y() + "-" + f.m() + "-" + f.d() + "T" + f.h() + ":" + f.i() + ":" + f.s() + f.P();
             },
-            //r not supported yet
+            r: function(){
+                return f.D()+', '+f.d()+' '+f.M()+' '+f.Y()+' '+f.H()+':'+f.i()+':'+f.s()+' '+f.O();
+            },
             U: function(){
                 return Math.round(jsdate.getTime()/1000);
             }
