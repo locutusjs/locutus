@@ -43,11 +43,12 @@ function get_html_translation_table(table, quote_style) {
 
     if (useTable == 'HTML_SPECIALCHARS') {
         // ascii decimals for better compatibility
+        entities['38'] = '&amp;';
         entities['60'] = '&lt;';
         entities['62'] = '&gt;';
-        entities['38'] = '&amp;';
     } else if (useTable == 'HTML_ENTITIES') {
         // ascii decimals for better compatibility
+	    entities['38']  = '&amp;';
 	    entities['60']  = '&lt;';
 	    entities['62']  = '&gt;';
 	    entities['160'] = '&nbsp;';
@@ -146,7 +147,6 @@ function get_html_translation_table(table, quote_style) {
 	    entities['253'] = '&yacute;';
 	    entities['254'] = '&thorn;';
 	    entities['255'] = '&yuml;';
-	    entities['38']  = '&amp;';
     } else {
         throw Error("Table: "+useTable+' not supported');
         return false;
