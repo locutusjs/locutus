@@ -36,7 +36,8 @@ function date ( format, timestamp ) {
                 return pad(f.j(), 2);
             },
             D: function(){
-                t = f.l(); return t.substr(0,3);
+                var t = f.l();
+                return t.substr(0,3);
             },
             j: function(){
                 return jsdate.getDate();
