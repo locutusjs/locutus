@@ -18,7 +18,7 @@ function array_change_key_case( array ) {
     var case_fn, tmp_ar = new Object, argc = arguments.length, argv = arguments, key;
 
     if (array instanceof Array) {
-        return array;
+        return array; 
     }
 
     if (array instanceof Object) {
@@ -27,7 +27,7 @@ function array_change_key_case( array ) {
         } else{
             case_fn = "toUpperCase";
         }
-        for (var key in array) {
+        for (key in array) {
             tmp_ar[key[case_fn]()] = array[key];
         }
         return tmp_ar;
