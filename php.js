@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.96
+ * This is version: 1.97
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -34,11 +34,11 @@
  * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
  * Steven Levithan (http://blog.stevenlevithan.com), Subhasis Deb, T. Wild,
  * T.Wild, T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, Tod
- * Gentille, Valentina De Rosa, XoraX (http://www.xorax.info), Yannoo, Yves
- * Sucaet, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad, gabriel
- * paderni, ger, gorthaur, hitwork, jakes, john (http://www.jd-tech.net),
- * johnrembo, kenneth, marc andreu, metjay, nobbler, noname, penutbutterjelly,
- * rezna, sankai, sowberry, stensi
+ * Gentille, Valentina De Rosa, Victor, XoraX (http://www.xorax.info), Yannoo,
+ * Yves Sucaet, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad,
+ * gabriel paderni, ger, gorthaur, hitwork, jakes, john
+ * (http://www.jd-tech.net), johnrembo, kenneth, marc andreu, metjay, nobbler,
+ * noname, penutbutterjelly, rezna, sankai, sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -1381,6 +1381,97 @@ function end ( arr ) {
     return arr[pointers[arrpos+1]];
 }// }}}
 
+// {{{ extract
+function extract (arr, type, prefix) {
+    // Import variables into the current symbol table from an array
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_extract/
+    // +       version: 901.714
+    // +   original by: Brett Zamir
+    // %        note 1: Only works by extracting into global context (whether called in the global scope or
+    // %        note 1: within a function); also, the EXTR_REFS flag I believe can't be made to work
+    // *     example 1: size = 'large';
+    // *     example 1: var_array = {'color' : 'blue', 'size' : 'medium', 'shape' : 'sphere'};
+    // *     example 1: extract(var_array, 'EXTR_PREFIX_SAME', 'wddx');
+    // *     example 1: color+'-'+size+'-'+shape+'-'+wddx_size;
+    // *     returns 1: 'blue-large-sphere-medium'
+
+    if (arr instanceof Array && (type !== 'EXTR_PREFIX_ALL' && type !== 'EXTR_PREFIX_INVALID')) {
+        return 0;
+    }
+    var chng = 0;
+
+    for (var i in arr) {
+        var validIdent = /^[_a-zA-Z$][\w|$]*$/; // TODO: Refine regexp to allow JS 1.5+ Unicode identifiers
+        var prefixed = prefix+'_'+i;
+        try {
+            switch (type) {
+                case 'EXTR_PREFIX_SAME' || 2:
+                    if (this[i] !== undefined) {
+                        if (prefixed.match(validIdent) != null) {
+                            this[prefixed] = arr[i];
+                            ++chng;
+                        }
+                    }
+                    else {
+                        this[i] = arr[i];
+                        ++chng;
+                    }
+                    break;
+                case 'EXTR_SKIP' || 1:
+                    if (this[i] === undefined) {
+                        this[i] = arr[i];
+                        ++chng;
+                    }
+                    break;
+                case 'EXTR_PREFIX_ALL' || 3:
+                    if (prefixed.match(validIdent) != null) {
+                        this[prefixed] = arr[i];
+                        ++chng;
+                    }
+                    break;
+                case 'EXTR_PREFIX_INVALID' || 4:
+                    if(i.match(validIdent) != null) {
+                        if (prefixed.match(validIdent) != null) {
+                            this[prefixed] = arr[i];
+                            ++chng;
+                        }
+                    }
+                    else {
+                        this[i] = arr[i];
+                        ++chng;
+                    }
+                    break;
+                case 'EXTR_IF_EXISTS' || 6:
+                    if (this[i] !== undefined) {
+                        this[i] = arr[i];
+                        ++chng;
+                    }
+                    break;
+                case 'EXTR_PREFIX_IF_EXISTS' || 5:
+                    if (this[i] !== undefined && prefixed.match(validIdent) != null) {
+                        this[prefixed] = arr[i];
+                        ++chng;
+                    }
+                    break;
+                case 'EXTR_REFS' || 256:
+                    throw 'The EXTR_REFS type will not work in JavaScript';
+                    break;
+                case 'EXTR_OVERWRITE' || 0:
+                // Fall-through
+                default:
+                    this[i] = arr[i];
+                    ++chng;
+                    break;
+            }
+        }
+        catch (e) { // Just won't increment for problem assignments
+            
+        }
+    }
+    return chng;
+}// }}}
+
 // {{{ in_array
 function in_array(needle, haystack, strict) {
     // Checks if a value exists in an array
@@ -1966,7 +2057,7 @@ function date ( format, timestamp ) {
     // Format a local time/date
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_date/
-    // +       version: 901.617
+    // +       version: 901.714
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -1974,10 +2065,13 @@ function date ( format, timestamp ) {
     // +   improved by: Brad Touesnard
     // +   improved by: Tim Wiel
     // +   improved by: Bryan Elliott
+    // +   improved by: Brett Zamir
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);
     // *     returns 2: 'September 2, 2003, 2:26 am'
+    // *     example 3: date('Y W o', 1062462400);
+    // *     returns 3: '2003 36 2003'
 
     var a, jsdate=((timestamp) ? new Date(timestamp*1000) : new Date());
     var pad = function(n, c){
@@ -2000,7 +2094,8 @@ function date ( format, timestamp ) {
                 return pad(f.j(), 2);
             },
             D: function(){
-                t = f.l(); return t.substr(0,3);
+                var t = f.l();
+                return t.substr(0,3);
             },
             j: function(){
                 return jsdate.getDate();
@@ -2070,7 +2165,15 @@ function date ( format, timestamp ) {
                 var y = f.Y();
                 return (!(y & 3) && (y % 1e2 || !(y % 4e2))) ? 1 : 0;
             },
-            //o not supported yet
+            o: function(){
+                if (f.n() === 12 && f.W() === 1) {
+                    return jsdate.getFullYear()+1;
+                }
+                if (f.n() === 1 && f.W() >= 52) {
+                    return jsdate.getFullYear()-1;
+                }
+                return jsdate.getFullYear();
+            },
             Y: function(){
                 return jsdate.getFullYear();
             },
@@ -2116,7 +2219,9 @@ function date ( format, timestamp ) {
             s: function(){
                 return pad(jsdate.getSeconds(), 2);
             },
-            //u not supported yet
+            u: function(){
+                return pad(jsdate.getMilliseconds()*1000, 6);
+            },
 
         // Timezone
             //e not supported yet
@@ -2136,13 +2241,18 @@ function date ( format, timestamp ) {
                 return (O.substr(0, 3) + ":" + O.substr(3, 2));
             },
             //T not supported yet
-            //Z not supported yet
+            Z: function(){
+               var t = -jsdate.getTimezoneOffset()*60;
+               return t;
+            },
 
         // Full Date/Time
             c: function(){
                 return f.Y() + "-" + f.m() + "-" + f.d() + "T" + f.h() + ":" + f.i() + ":" + f.s() + f.P();
             },
-            //r not supported yet
+            r: function(){
+                return f.D()+', '+f.d()+' '+f.M()+' '+f.Y()+' '+f.H()+':'+f.i()+':'+f.s()+' '+f.O();
+            },
             U: function(){
                 return Math.round(jsdate.getTime()/1000);
             }
@@ -4122,21 +4232,20 @@ function ip2long ( ip_address ) {
     // proper address
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ip2long/
-    // +       version: 811.1314
+    // +       version: 901.714
     // +   original by: Waldo Malqui Silva
+    // +   improved by: Victor
     // *     example 1: ip2long( '192.0.34.166' );
     // *     returns 1: 3221234342
     
     var output = false;
- 
-    if ( ip_address.match ( /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/ ) ) {
-      var parts  = ip_address.split ( '.' );
-      var output = 0;
- 
-      output = ( parts [ 0 ] * Math.pow ( 256, 3 ) ) +
-               ( parts [ 1 ] * Math.pow ( 256, 2 ) ) +
-               ( parts [ 2 ] * Math.pow ( 256, 1 ) ) +
-               ( parts [ 3 ] * Math.pow ( 256, 0 ) );
+    var parts = [];
+    if (ip_address.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/)) {
+        parts  = ip_address.split('.');
+        output = ( parts[0] * 16777216 +
+        ( parts[1] * 65536 ) +
+        ( parts[2] * 256 ) +
+        ( parts[3] * 1 ) );
     }
      
     return output;
@@ -4472,7 +4581,7 @@ function get_html_translation_table(table, quote_style) {
     // Returns the translation table used by htmlspecialchars() and htmlentities()
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_html_translation_table/
-    // +       version: 812.3017
+    // +       version: 901.714
     // +   original by: Philip Peterson
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: noname
@@ -4516,11 +4625,12 @@ function get_html_translation_table(table, quote_style) {
 
     if (useTable == 'HTML_SPECIALCHARS') {
         // ascii decimals for better compatibility
+        entities['38'] = '&amp;';
         entities['60'] = '&lt;';
         entities['62'] = '&gt;';
-        entities['38'] = '&amp;';
     } else if (useTable == 'HTML_ENTITIES') {
         // ascii decimals for better compatibility
+	    entities['38']  = '&amp;';
 	    entities['60']  = '&lt;';
 	    entities['62']  = '&gt;';
 	    entities['160'] = '&nbsp;';
@@ -4619,7 +4729,6 @@ function get_html_translation_table(table, quote_style) {
 	    entities['253'] = '&yacute;';
 	    entities['254'] = '&thorn;';
 	    entities['255'] = '&yuml;';
-	    entities['38']  = '&amp;';
     } else {
         throw Error("Table: "+useTable+' not supported');
         return false;
@@ -4639,7 +4748,7 @@ function html_entity_decode( string, quote_style ) {
     // Convert all HTML entities to their applicable characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_html_entity_decode/
-    // +       version: 812.3112
+    // +       version: 901.714
     // +   original by: john (http://www.jd-tech.net)
     // +      input by: ger
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -4659,6 +4768,10 @@ function html_entity_decode( string, quote_style ) {
     if (false === (histogram = get_html_translation_table('HTML_ENTITIES', quote_style))) {
         return false;
     }
+
+    // &amp; must be the last character when decoding!
+    delete(histogram['&']);
+    histogram['&'] = '&amp;';
 
     for (symbol in histogram) {
         entity = histogram[symbol];
@@ -4734,7 +4847,7 @@ function htmlspecialchars_decode(string, quote_style) {
     // Convert special HTML entities back to characters
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_htmlspecialchars_decode/
-    // +       version: 812.3112
+    // +       version: 901.714
     // +   original by: Mirek Slugen
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Mateusz "loonquawl" Zalega
@@ -4754,6 +4867,10 @@ function htmlspecialchars_decode(string, quote_style) {
     if (false === (histogram = get_html_translation_table('HTML_SPECIALCHARS', quote_style))) {
         return false;
     }
+
+    // &amp; must be the last character when decoding!
+    delete(histogram['&']);
+    histogram['&'] = '&amp;';
 
     for (symbol in histogram) {
         entity = histogram[symbol];
