@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.97
+ * This is version: 1.98
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -4279,18 +4279,40 @@
             // Send a cookie
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_setcookie/
-            // +       version: 811.1314
+            // +       version: 901.810
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +   bugfixed by: Andreas
             // +   bugfixed by: Onno Marsman
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // -    depends on: setrawcookie
             // *     example 1: $P.setcookie('author_name', 'Kevin van Zonneveld');
             // *     returns 1: true
         
-            expires instanceof Date ? expires = expires.toGMTString() : typeof(expires) == 'number' && (expires = (new Date(+(new Date) + expires * 1e3)).toGMTString());
-            var r = [name + "=" + encodeURIComponent(value)], s, i;
+            return this.setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure)
+        },// }}}
+        
+        // {{{ setrawcookie
+        setrawcookie: function(name, value, expires, path, domain, secure) {
+            // Send a cookie without urlencoding the cookie value
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_setrawcookie/
+            // +       version: 901.810
+            // +   original by: Brett Zamir
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // *     example 1: $P.setcookie('author_name', 'Kevin van Zonneveld');
+            // *     returns 1: true
+        
+            if (expires instanceof Date) {
+                expires = expires.toGMTString();
+            } else if(typeof(expires) == 'number') {
+                expires = (new Date(+(new Date) + expires * 1e3)).toGMTString();
+            }
+        
+            var r = [name + "=" + value], s, i;
             for(i in s = {expires: expires, path: path, domain: domain}){
                 s[i] && r.push(i + "=" + s[i]);
             }
+            
             return secure && r.push("secure"), document.cookie = r.join(";"), true;
         },// }}}
         
@@ -5833,6 +5855,34 @@
             });
         },// }}}
         
+        // {{{ str_shuffle
+        str_shuffle: function (str) {
+            // Randomly shuffles a string
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_shuffle/
+            // +       version: 901.810
+            // +   original by: Brett Zamir
+            // *     example 1: $P.shuffled = str_shuffle("abcdef");
+            // *     results 1: shuffled.length == 6
+            
+            if (str == undefined) {
+                throw 'Wrong parameter count for this.str_shuffle()';
+            }
+            
+            var getRandomInt = function (max) {
+                return Math.floor(Math.random() * (max + 1));
+            };
+            var newStr = '', rand = 0;
+            
+            while (str.length) {
+                rand = getRandomInt(str.length-1);
+                newStr += str[rand];
+                str = str.substring(0, rand)+str.substr(rand+1);
+            }
+            
+            return newStr;
+        },// }}}
+        
         // {{{ str_split
         str_split: function ( f_string, f_split_length){
             // Convert a string to an array
@@ -6324,6 +6374,30 @@
             return i===-1 ? false : i;
         },// }}}
         
+        // {{{ strrchr
+        strrchr: function (haystack, needle) {
+            // Find the last occurrence of a character in a string
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strrchr/
+            // +       version: 901.810
+            // +   original by: Brett Zamir
+            // *     example 1: $P.strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)
+            // *     returns 1: 'Line 3'
+        
+            var pos = 0;
+        
+            if (typeof needle !== 'string') {
+                needle = String.fromCharCode(parseInt(needle, 10));
+            }
+            needle = needle[0];
+            pos = haystack.lastIndexOf(needle);
+            if (pos === -1) {
+                return false;
+            }
+        
+            return haystack.substr(pos);
+        },// }}}
+        
         // {{{ strrev
         strrev: function( string ){
             // Reverse a string
@@ -6444,6 +6518,40 @@
             }
         },// }}}
         
+        // {{{ strtok
+        strtok: function (str, tokens) {
+            // Tokenize string
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strtok/
+            // +       version: 901.810
+            // +   original by: Brett Zamir
+            // %        note 1: Use tab and newline as tokenizing characters as well
+            // *     example 1: $string = "\t\t\t\nThis is\tan example\nstring\n";
+            // *     example 1: $tok = strtok($string, " \n\t");
+            // *     example 1: $b = '';
+            // *     example 1: $P.while($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
+            // *     example 1: $b
+            // *     returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
+        
+            if (tokens === undefined) {
+                tokens = str;
+                str = this.strtok.leftOver;
+            }
+            if (str.length === 0) {
+                return false;
+            }
+            if (tokens.indexOf(str[0]) !== -1) {
+                return this.strtok(str.substr(1), tokens);
+            }
+            for (var i=0; i < str.length; i++) {
+                if (tokens.indexOf(str[i]) !== -1) {
+                    break;
+                }
+            }
+            this.strtok.leftOver = str.substr(i+1);
+            return str.substring(0, i);
+        },// }}}
+        
         // {{{ strtolower
         strtolower: function( str ) {
             // Make a string lowercase
@@ -6470,6 +6578,39 @@
             // *     returns 1: 'KEVIN VAN ZONNEVELD'
         
             return (str+'').toUpperCase();
+        },// }}}
+        
+        // {{{ strtr
+        strtr: function (str, from, to) {
+            // Translate certain characters
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strtr/
+            // +       version: 901.810
+            // +   original by: Brett Zamir
+            // *     example 1: $trans = {"hello" : "hi", "hi" : "hello"};
+            // *     example 1: $P.strtr("hi all, I said hello", $trans)
+            // *     returns 1: 'hello all, I said hi'
+            // *     example 2: $P.strtr('äaabaåccasdeöoo', 'äåö','aao');
+            // *     returns 2: 'aaabaaccasdeooo'
+        
+            var fr = '', i = 0, lgth = 0;
+        
+            if (typeof from === 'object') {
+                for (fr in from) {
+                    str = str.replace(fr, from[fr]);
+                }
+                return str;
+            }
+            
+            lgth = to.length;
+            if (from.length < to.length) {
+                lgth = from.length;
+            }
+            for (i = 0; i < lgth; i++) {
+                str = str.replace(from[i], to[i]);
+            }
+            
+            return str;
         },// }}}
         
         // {{{ substr
