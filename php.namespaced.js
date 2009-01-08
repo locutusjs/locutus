@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.98
+ * This is version: 1.99
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -36,7 +36,7 @@
  * T.Wild, T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim Wiel, Tod
  * Gentille, Valentina De Rosa, Victor, XoraX (http://www.xorax.info), Yannoo,
  * Yves Sucaet, baris ozdil, booeyOH, djmix, dptr1988, duncan, echo is bad,
- * gabriel paderni, ger, gorthaur, hitwork, jakes, john
+ * ejsanders, gabriel paderni, ger, gorthaur, hitwork, jakes, john
  * (http://www.jd-tech.net), johnrembo, kenneth, marc andreu, metjay, nobbler,
  * noname, penutbutterjelly, rezna, sankai, sowberry, stensi
  * 
@@ -6766,6 +6766,20 @@
             // *     returns 2: 'HELLO WORLD'
         
             return (str+'').replace(/^(.)|\s(.)/g, function ( $1 ) { return $1.toUpperCase ( ); } );
+        },// }}}
+        
+        // {{{ vsprintf
+        vsprintf: function(format, args) {
+            // Return a formatted string
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_vsprintf/
+            // +       version: 901.817
+            // +   original by: ejsanders
+            // -    depends on: sprintf
+            // *     example 1: $P.vsprintf('%04d-%02d-%02d', [1988, 8, 1]);
+            // *     returns 1: '1988-08-01'
+        
+            return this.sprintf.apply(this, [format].concat(args));
         },// }}}
         
         // {{{ wordwrap
