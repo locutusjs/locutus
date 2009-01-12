@@ -8,14 +8,22 @@ function date ( format, timestamp ) {
     // +   improved by: Tim Wiel
     // +   improved by: Bryan Elliott
     // +   improved by: Brett Zamir
+    // +   improved by: David Randall
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);
     // *     returns 2: 'September 2, 2003, 2:26 am'
     // *     example 3: date('Y W o', 1062462400);
     // *     returns 3: '2003 36 2003'
+    // *     example 4: x = date('Y m d', (new Date()).getTime()/1000); // 2009 01 09
+    // *     example 4: (x+'').length == 10
+    // *     returns 4: true
 
-    var a, jsdate=((timestamp) ? new Date(timestamp*1000) : new Date());
+    var a, jsdate=(
+        (typeof(timestamp) == 'undefined') ? new Date() : // Not provided
+        (typeof(timestamp) == 'number') ? new Date(timestamp*1000) : // UNIX timestamp
+        new Date(timestamp) // Javascript Date()
+    );
     var pad = function(n, c){
         if( (n = n + "").length < c ) {
             return new Array(++c - n.length).join("0") + n;
