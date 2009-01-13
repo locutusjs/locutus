@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.00
+ * This is version: 2.01
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -21,14 +21,14 @@
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
  * Touesnard, Bryan Elliott, Cagri Ekin, Caio Ariede (http://caioariede.com),
- * Christian Doebler, Cord, David, David James, Dino, Douglas Crockford
- * (http://javascript.crockford.com), DxGx, FGFEmperor, Felix Geisendoerfer
- * (http://www.debuggable.com/felix), Francesco, Francois, FremyCompany,
- * Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, J A R, Kirk Strobeck, LH,
- * Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey, Manish, Marc Palau,
- * Mateusz "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com), Mick@el,
- * Nathan, Nick Callen, Norman "zEh" Fuchs, Ozh, Pedro Tainha
- * (http://www.pedrotainha.com), Peter-Paul Koch
+ * Christian Doebler, Cord, David, David James, David Randall, Dino, Douglas
+ * Crockford (http://javascript.crockford.com), DxGx, FGFEmperor, Felix
+ * Geisendoerfer (http://www.debuggable.com/felix), Francesco, Francois,
+ * FremyCompany, Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, J A R, Kirk
+ * Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey,
+ * Manish, Marc Palau, Mateusz "loonquawl" Zalega, MeEtc
+ * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Norman "zEh"
+ * Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
  * Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
  * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
@@ -219,112 +219,100 @@ function array_count_values( array ) {
 }// }}}
 
 // {{{ array_diff
-function array_diff (array) {
+function array_diff() {
     // Computes the difference of arrays
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_diff/
-    // +       version: 809.522
+    // +       version: 901.1301
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Sanjoy Roy
+    // +    revised by: Brett Zamir
     // *     example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld']);
     // *     returns 1: ['Kevin']
 
-    var arr_dif = [], i = 1, argc = arguments.length, argv = arguments, key, key_c, found=false, cntr=0;
+    var arr1 = arguments[0], retArr = {};
+    var k1 = '', i = 1, k = '', arr = {};
 
-    // loop through 1st array
-    for ( key in array ){
-        // loop over other arrays
-        for (i = 1; i< argc; i++){
-            // find in the compare array
-            found = false;
-            for (key_c in argv[i]) {
-                if (argv[i][key_c] == array[key]) {
-                    found = true;
-                    break;
+    arr1keys:
+    for (k1 in arr1) {
+        for (i = 1; i < arguments.length; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (arr[k] === arr1[k1]) {
+                    // If it reaches here, it was found in at least one array, so try next value
+                    continue arr1keys; 
                 }
             }
-
-            if(!found){
-                //arr_dif[key] = array[key];
-                arr_dif[cntr] = array[key];
-                cntr++;
-            }
+            retArr[k1] = arr1[k1];
         }
     }
 
-    return arr_dif;
+    return retArr;
 }// }}}
 
 // {{{ array_diff_assoc
-function array_diff_assoc ( array ) {
+function array_diff_assoc() {
     // Computes the difference of arrays with additional index check
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_diff_assoc/
-    // +       version: 812.114
+    // +       version: 901.1301
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: 0m3r
+    // +    revised by: Brett Zamir
     // *     example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'});
     // *     returns 1: {1: 'van', 2: 'Zonneveld'}
 
-    var arr_dif = {}, i = 1, argc = arguments.length, argv = arguments, key, key_c, found=false;
+    var arr1 = arguments[0], retArr = {};
+    var k1 = '', i = 1, k = '', arr = {};
 
-    // input sanitation
-    if( !array || (array.constructor !== Array && array.constructor !== Array && typeof array != 'object' && typeof array != 'array') ){
-        return null;
-    }
-
-    // loop through 1st array
-    for ( key in array ){
-        // loop over other arrays
-        for (i = 1; i< argc; i++){
-            // find in the compare array
-            found = false;
-            if(argv[i][key] && argv[i][key] == array[key]){
-                found = true;
-                break;
+    arr1keys:
+    for (k1 in arr1) {
+        for (i = 1; i < arguments.length; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (arr[k] === arr1[k1] && k === k1) {
+                    // If it reaches here, it was found in at least one array, so try next value
+                    continue arr1keys;
+                }
             }
-
-            if(!found){
-                arr_dif[key] = array[key];
-            }
+            retArr[k1] = arr1[k1];
         }
     }
 
-    return arr_dif;
+    return retArr;
 }// }}}
 
 // {{{ array_diff_key
-function array_diff_key( object ) {
+function array_diff_key() {
     // Computes the difference of arrays using keys for comparison
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_diff_key/
-    // +       version: 809.522
+    // +       version: 901.1301
     // +   original by: Ates Goral (http://magnetiq.com)
-    // *     example 1: array_diff_key({red: 1, green: 2, blue: 3, white: 4});
-    // *     returns 1: {"red":1, "green":2, "blue":3, "white":4}
-    // *     example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5});
+    // +    revised by: Brett Zamir
+    // *     example 1: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5});
+    // *     returns 1: {"green":2, "blue":3, "white":4}
+    // *     example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5});
     // *     returns 2: {"green":2, "blue":3, "white":4}
-    // *     example 3: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {green: 6, blue: 7});
-    // *     returns 3: {"white":4}
-    // *     example 4: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5});
-    // *     returns 4: {"green":2, "blue":3, "white":4}
 
-    var tpm_ar = new Object(), argc = arguments.length, argv = arguments, key, argidx, other;
-
-    for (key in object) {
-        tpm_ar[key] = object[key];
-    }
-    for (argidx = 1; argidx < argc; ++argidx) {
-        other = argv[argidx];
-
-        if (other instanceof Object) {
-            for (key in other) {
-                delete tpm_ar[key];
+    var arr1 = arguments[0], retArr = {};
+    var k1 = '', i = 1, k = '', arr = {};
+ 
+    arr1keys:
+    for (k1 in arr1) {
+        for (i = 1; i < arguments.length; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (k === k1) {
+                    // If it reaches here, it was found in at least one array, so try next value
+                    continue arr1keys;
+                }
             }
+            retArr[k1] = arr1[k1];
         }
     }
 
-    return tpm_ar;
+    return retArr;
 }// }}}
 
 // {{{ array_fill
@@ -413,6 +401,125 @@ function array_flip( trans ) {
     }
 
     return tmp_ar;
+}// }}}
+
+// {{{ array_intersect
+function array_intersect() {
+    // Computes the intersection of arrays
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_intersect/
+    // +       version: 901.1301
+    // +   original by: Brett Zamir
+    // %        note 1: These only output associative arrays (would need to be
+    // %        note 1: all numeric and counting from zero to be numeric)
+    // *     example 1: $array1 = {'a' : 'green', 0:'red', 1: 'blue'};
+    // *     example 1: $array2 = {'b' : 'green', 0:'yellow', 1:'red'};
+    // *     example 1: $array3 = ['green', 'red'];
+    // *     example 1: $result = array_intersect($array1, $array2, $array3);
+    // *     returns 1: {0: 'red', a: 'green'}
+
+    var arr1 = arguments[0], retArr = {};
+    var k1 = '', arr = {}, i = 0, k = '';
+    
+    arr1keys:
+    for (k1 in arr1) {
+        arrs:
+        for (i=1; i < arguments.length; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (arr[k] === arr1[k1]) {
+                    if (i === arguments.length-1) {
+                        retArr[k1] = arr1[k1];
+                    }
+                    // If the innermost loop always leads at least once to an equal value, continue the loop until done
+                    continue arrs;
+                }
+            }
+            // If it reaches here, it wasn't found in at least one array, so try next value
+            continue arr1keys;
+        }
+    }
+
+    return retArr;
+}// }}}
+
+// {{{ array_intersect_assoc
+function array_intersect_assoc() {
+    // Computes the intersection of arrays with additional index check
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_intersect_assoc/
+    // +       version: 901.1301
+    // +   original by: Brett Zamir
+    // %        note 1: These only output associative arrays (would need to be
+    // %        note 1: all numeric and counting from zero to be numeric)
+    // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+    // *     example 1: $array2 = {a: 'green', 0: 'yellow', 1: 'red'}
+    // *     example 1: array_intersect_assoc($array1, $array2)
+    // *     returns 1: {a: 'green'}
+
+
+    var arr1 = arguments[0], retArr = {};
+    var k1 = '', arr = {}, i = 0, k = '';
+
+    arr1keys:
+    for (k1 in arr1) {
+        arrs:
+        for (i=1; i < arguments.length; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (arr[k] === arr1[k1] && k === k1) {
+                    if (i === arguments.length-1) {
+                        retArr[k1] = arr1[k1];
+                    }
+                    // If the innermost loop always leads at least once to an equal value, continue the loop until done
+                    continue arrs;
+                }
+            }
+            // If it reaches here, it wasn't found in at least one array, so try next value
+            continue arr1keys;
+        }
+    }
+
+    return retArr;
+}// }}}
+
+// {{{ array_intersect_key
+function array_intersect_key() {
+    // Computes the intersection of arrays using keys for comparison
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_intersect_key/
+    // +       version: 901.1301
+    // +   original by: Brett Zamir
+    // %        note 1: These only output associative arrays (would need to be
+    // %        note 1: all numeric and counting from zero to be numeric)
+    // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+    // *     example 1: $array2 = {a: 'green', 0: 'yellow', 1: 'red'}
+    // *     example 1: array_intersect_key($array1, $array2)
+    // *     returns 1: {0: 'red', a: 'green'}
+
+    var arr1 = arguments[0], retArr = {};
+    var k1 = '', arr = {}, i = 0, k = '';
+
+    arr1keys:
+    for (k1 in arr1) {
+        arrs:
+        for (i=1; i < arguments.length; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (k === k1) {
+                    if (i === arguments.length-1) {
+                        retArr[k1] = arr1[k1];
+                    }
+                    // If the innermost loop always leads at least once to an equal value, continue the loop until done
+                    continue arrs;
+                }
+            }
+            // If it reaches here, it wasn't found in at least one array, so try next value
+            continue arr1keys;
+        }
+    }
+
+    return retArr;
 }// }}}
 
 // {{{ array_key_exists
@@ -1005,6 +1112,45 @@ function array_sum( array ) {
     }
 
     return sum;
+}// }}}
+
+// {{{ array_uintersect
+function array_uintersect () {
+    // Computes the intersection of arrays, compares data by a callback function
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_uintersect/
+    // +       version: 901.1301
+    // +   original by: Brett Zamir
+    // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+    // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
+    // *     example 1: array_uintersect($array1, $array2, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;});
+    // *     returns 1: {a: 'green', b: 'brown', 0: 'red'}
+
+    var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1];
+    var k1 = '', i = 1, arr = {}, k = '';
+
+    cb = (typeof cb === 'string') ? window[cb] : (cb instanceof Array) ? window[cb[0]][cb[1]] : cb;
+
+    arr1keys:  
+    for (k1 in arr1) {
+        arrs:
+        for (i = 1; i < arguments.length-1; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (cb(arr[k], arr1[k1]) === 0 ) {
+                    if (i === arguments.length-2) {
+                        retArr[k1] = arr1[k1];
+                    }
+                    // If the innermost loop always leads at least once to an equal value, continue the loop until done
+                    continue arrs;
+                }
+            }
+            // If it reaches here, it wasn't found in at least one array, so try next value
+            continue arr1keys;
+        }
+    }
+
+    return retArr;
 }// }}}
 
 // {{{ array_unique
@@ -2057,7 +2203,7 @@ function date ( format, timestamp ) {
     // Format a local time/date
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_date/
-    // +       version: 901.714
+    // +       version: 901.1301
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -2066,14 +2212,22 @@ function date ( format, timestamp ) {
     // +   improved by: Tim Wiel
     // +   improved by: Bryan Elliott
     // +   improved by: Brett Zamir
+    // +   improved by: David Randall
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);
     // *     returns 2: 'September 2, 2003, 2:26 am'
     // *     example 3: date('Y W o', 1062462400);
     // *     returns 3: '2003 36 2003'
+    // *     example 4: x = date('Y m d', (new Date()).getTime()/1000); // 2009 01 09
+    // *     example 4: (x+'').length == 10
+    // *     returns 4: true
 
-    var a, jsdate=((timestamp) ? new Date(timestamp*1000) : new Date());
+    var a, jsdate=(
+        (typeof(timestamp) == 'undefined') ? new Date() : // Not provided
+        (typeof(timestamp) == 'number') ? new Date(timestamp*1000) : // UNIX timestamp
+        new Date(timestamp) // Javascript Date()
+    );
     var pad = function(n, c){
         if( (n = n + "").length < c ) {
             return new Array(++c - n.length).join("0") + n;
@@ -7708,6 +7862,37 @@ function serialize( mixed_value ) {
     }
     if (type != "object" && type != "array") val += ";";
     return val;
+}// }}}
+
+// {{{ strval
+function strval(str) {
+    // Get string value of a variable
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strval/
+    // +       version: 901.1301
+    // +   original by: Brett Zamir
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // %        note 1: Comment out the entire switch if you want JS-like behavior instead of PHP behavior
+    // -    depends on: gettype
+    // *     example 1: strval({red: 1, green: 2, blue: 3, white: 4});
+    // *     returns 1: 'Array'
+
+    var type = '';
+
+    if (str === null) return '';
+
+    type = gettype(str);
+    switch (type) {
+        case 'boolean':
+            if (str === true) return '1';
+            return '';
+        case 'array':
+            return 'Array';
+        case 'object':
+            return 'Object';
+    }
+    
+    return str+''+type;
 }// }}}
 
 // {{{ unserialize
