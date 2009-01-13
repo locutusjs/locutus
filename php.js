@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 1.99
+ * This is version: 2.00
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -82,7 +82,7 @@ function array_change_key_case( array ) {
     // Changes all keys in an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_change_key_case/
-    // +       version: 809.522
+    // +       version: 901.817
     // +   original by: Ates Goral (http://magnetiq.com)
     // +   improved by: marrtins
     // *     example 1: array_change_key_case(42);
@@ -101,7 +101,7 @@ function array_change_key_case( array ) {
     var case_fn, tmp_ar = new Object, argc = arguments.length, argv = arguments, key;
 
     if (array instanceof Array) {
-        return array;
+        return array; 
     }
 
     if (array instanceof Object) {
@@ -110,7 +110,7 @@ function array_change_key_case( array ) {
         } else{
             case_fn = "toUpperCase";
         }
-        for (var key in array) {
+        for (key in array) {
             tmp_ar[key[case_fn]()] = array[key];
         }
         return tmp_ar;
