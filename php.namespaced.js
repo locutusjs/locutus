@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.01
+ * This is version: 2.02
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -5084,6 +5084,21 @@
             return this.implode( glue, pieces );
         },// }}}
         
+        // {{{ lcfirst
+        lcfirst: function( str ) {
+            // Make a string&#039;s first character lowercase
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_lcfirst/
+            // +       version: 901.1301
+            // +   original by: Brett Zamir
+            // *     example 1: $P.lcfirst('Kevin Van Zonneveld');
+            // *     returns 1: 'kevin Van Zonneveld'
+        
+            str += '';
+            var f = str.charAt(0).toLowerCase();
+            return f + str.substr(1);
+        },// }}}
+        
         // {{{ levenshtein
         levenshtein: function( str1, str2 ) {
             // Calculate Levenshtein distance between two strings
@@ -6124,6 +6139,33 @@
             return ( ( str1 == str2 ) ? 0 : ( ( str1 > str2 ) ? 1 : -1 ) );
         },// }}}
         
+        // {{{ strcspn
+        strcspn: function (str, mask, start, length) {
+            // Find length of initial segment not matching mask
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strcspn/
+            // +       version: 901.1301
+            // +   original by: Brett Zamir
+            // *     example 1: $P.strcspn('abcdefg123', '1234567890');
+            // *     returns 1: 7
+            // *     example 2: $P.strcspn('123abc', '1234567890');
+            // *     returns 2: 3
+        
+            start = start ? start : 0;
+            var count = (length && ((start + length) < str.length)) ? start + length : str.length;
+            strct:
+            for (var i=start, lgth=0; i < count; i++) {
+                for (var j=0; j < mask.length; j++) {
+                    if (str[i].indexOf(mask[j]) !== -1) {
+                        continue strct;
+                    }
+                }
+                ++lgth;
+            }
+            
+            return lgth;
+        },// }}}
+        
         // {{{ strip_tags
         strip_tags: function(str, allowed_tags) {
             // Strip HTML and PHP tags from a string
@@ -6894,15 +6936,16 @@
             // Make a string&#039;s first character uppercase
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ucfirst/
-            // +       version: 810.819
+            // +       version: 901.1301
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   bugfixed by: Onno Marsman
+            // +   improved by: Brett Zamir
             // *     example 1: $P.ucfirst('kevin van zonneveld');
             // *     returns 1: 'Kevin van zonneveld'
         
             str += '';
             var f = str.charAt(0).toUpperCase();
-            return f + str.substr(1, str.length-1);
+            return f + str.substr(1);
         },// }}}
         
         // {{{ ucwords
