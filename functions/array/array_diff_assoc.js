@@ -1,33 +1,27 @@
-function array_diff_assoc ( array ) {
+function array_diff_assoc() {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: 0m3r
+    // +    revised by: Brett Zamir
     // *     example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'});
     // *     returns 1: {1: 'van', 2: 'Zonneveld'}
 
-    var arr_dif = {}, i = 1, argc = arguments.length, argv = arguments, key, key_c, found=false;
+    var arr1 = arguments[0], retArr = {};
+    var k1 = '', i = 1, k = '', arr = {};
 
-    // input sanitation
-    if( !array || (array.constructor !== Array && array.constructor !== Array && typeof array != 'object' && typeof array != 'array') ){
-        return null;
-    }
-
-    // loop through 1st array
-    for ( key in array ){
-        // loop over other arrays
-        for (i = 1; i< argc; i++){
-            // find in the compare array
-            found = false;
-            if(argv[i][key] && argv[i][key] == array[key]){
-                found = true;
-                break;
+    arr1keys:
+    for (k1 in arr1) {
+        for (i = 1; i < arguments.length; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (arr[k] === arr1[k1] && k === k1) {
+                    // If it reaches here, it was found in at least one array, so try next value
+                    continue arr1keys;
+                }
             }
-
-            if(!found){
-                arr_dif[key] = array[key];
-            }
+            retArr[k1] = arr1[k1];
         }
     }
 
-    return arr_dif;
+    return retArr;
 }

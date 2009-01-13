@@ -1,32 +1,27 @@
-function array_diff (array) {
+function array_diff() {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Sanjoy Roy
+    // +    revised by: Brett Zamir
     // *     example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld']);
     // *     returns 1: ['Kevin']
 
-    var arr_dif = [], i = 1, argc = arguments.length, argv = arguments, key, key_c, found=false, cntr=0;
+    var arr1 = arguments[0], retArr = {};
+    var k1 = '', i = 1, k = '', arr = {};
 
-    // loop through 1st array
-    for ( key in array ){
-        // loop over other arrays
-        for (i = 1; i< argc; i++){
-            // find in the compare array
-            found = false;
-            for (key_c in argv[i]) {
-                if (argv[i][key_c] == array[key]) {
-                    found = true;
-                    break;
+    arr1keys:
+    for (k1 in arr1) {
+        for (i = 1; i < arguments.length; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (arr[k] === arr1[k1]) {
+                    // If it reaches here, it was found in at least one array, so try next value
+                    continue arr1keys; 
                 }
             }
-
-            if(!found){
-                //arr_dif[key] = array[key];
-                arr_dif[cntr] = array[key];
-                cntr++;
-            }
+            retArr[k1] = arr1[k1];
         }
     }
 
-    return arr_dif;
+    return retArr;
 }
