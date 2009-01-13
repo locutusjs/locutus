@@ -2,6 +2,7 @@ function strval(str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Brett Zamir
     // %        note 1: Comment out the entire switch if you want JS-like behavior instead of PHP behavior
     // -    depends on: gettype
     // *     example 1: strval({red: 1, green: 2, blue: 3, white: 4});
@@ -22,5 +23,5 @@ function strval(str) {
             return 'Object';
     }
     
-    return str+''+type;
+    return str;
 }
