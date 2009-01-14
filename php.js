@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.02
+ * This is version: 2.03
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -315,6 +315,76 @@ function array_diff_key() {
     return retArr;
 }// }}}
 
+// {{{ array_diff_uassoc
+function array_diff_uassoc() {
+    // Computes the difference of arrays with additional index check which is performed
+    // by a user supplied callback function
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_diff_uassoc/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+    // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
+    // *     example 1: array_diff_uassoc($array1, $array2, function(key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
+    // *     returns 1: {b: 'brown', c: 'blue', 0: 'red'}
+
+    var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1];
+    var arr = {}, i = 1, k1 = '', k = '';
+    cb = (typeof cb === 'string') ? window[cb] : (cb instanceof Array) ? window[cb[0]][cb[1]] : cb;
+
+    arr1keys:
+    for (k1 in arr1) {
+        for (i=1; i < arguments.length-1; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (arr[k] === arr1[k1] && cb(k, k1) === 0) {
+                    // If it reaches here, it was found in at least one array, so try next value
+                    continue arr1keys;
+                }
+            }
+            retArr[k1] = arr1[k1];
+        }
+    }
+
+    return retArr;
+}// }}}
+
+// {{{ array_diff_ukey
+function array_diff_ukey() {
+    // Computes the difference of arrays using a callback function on the keys for
+    // comparison
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_diff_ukey/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // *     example 1: $array1 = {blue: 1, red: 2, green: 3, purple: 4}
+    // *     example 1: $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
+    // *     example 1: array_diff_ukey($array1, $array2, function(key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
+    // *     returns 1: {red: 2, purple: 4}
+
+
+    var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1];
+    var arr = {}, i = 1, k1 = '', k = '';
+
+    cb = (typeof cb === 'string') ? window[cb] : (cb instanceof Array) ? window[cb[0]][cb[1]] : cb;
+
+    arr1keys:
+    for (k1 in arr1) {
+        for (i=1; i < arguments.length-1; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (cb(k, k1) === 0) {
+                    // If it reaches here, it was found in at least one array, so try next value
+                    continue arr1keys;
+                }
+            }
+            retArr[k1] = arr1[k1];
+        }
+    }
+
+    return retArr;
+}// }}}
+
 // {{{ array_fill
 function array_fill( start_index, num, mixed_val ) {
     // Fill an array with values
@@ -520,6 +590,87 @@ function array_intersect_key() {
     }
 
     return retArr;
+}// }}}
+
+// {{{ array_intersect_uassoc
+function array_intersect_uassoc () {
+    // Computes the intersection of arrays with additional index check, compares
+    // indexes by a callback function
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_intersect_uassoc/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+    // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
+    // *     example 1: array_intersect_uassoc($array1, $array2, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;});
+    // *     returns 1: {b: 'brown'}
+
+    var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1];
+    var k1 = '', i = 1, arr = {}, k = '';
+
+    cb = (typeof cb === 'string') ? window[cb] : (cb instanceof Array) ? window[cb[0]][cb[1]] : cb;
+
+    arr1keys:
+    for (k1 in arr1) {
+        arrs:
+        for (i = 1; i < arguments.length-1; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (arr[k] === arr1[k1] && cb(k, k1) === 0 ) {
+                    if (i === arguments.length-2) {
+                        retArr[k1] = arr1[k1];
+                    }
+                    // If the innermost loop always leads at least once to an equal value, continue the loop until done
+                    continue arrs;
+                }
+            }
+            // If it reaches here, it wasn't found in at least one array, so try next value
+            continue arr1keys;
+        }
+    }
+
+    return retArr;
+}// }}}
+
+// {{{ array_intersect_ukey
+function array_intersect_ukey  () {
+    // Computes the intersection of arrays using a callback function on the keys for
+    // comparison
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_intersect_ukey/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // *     example 1: $array1 = {blue: 1, red: 2, green: 3, purple: 4}
+    // *     example 1: $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
+    // *     example 1: array_intersect_ukey ($array1, $array2, function(key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
+    // *     returns 1: {blue: 1, green: 3}
+
+    var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1];
+    var k1 = '', i = 1, arr = {}, k = '';
+
+    cb = (typeof cb === 'string') ? window[cb] : (cb instanceof Array) ? window[cb[0]][cb[1]] : cb;
+
+    arr1keys:
+    for (k1 in arr1) {
+        arrs:
+        for (i = 1; i < arguments.length-1; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (cb(k, k1) === 0 ) {
+                    if (i === arguments.length-2) {
+                        retArr[k1] = arr1[k1];
+                    }
+                    // If the innermost loop always leads at least once to an equal value, continue the loop until done
+                    continue arrs;
+                }
+            }
+            // If it reaches here, it wasn't found in at least one array, so try next value
+            continue arr1keys;
+        }
+    }
+
+    return retArr;
+    
 }// }}}
 
 // {{{ array_key_exists
@@ -1114,6 +1265,109 @@ function array_sum( array ) {
     return sum;
 }// }}}
 
+// {{{ array_udiff
+function array_udiff() {
+    // Computes the difference of arrays by using a callback function for data
+    // comparison
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_udiff/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+    // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
+    // *     example 1: array_udiff($array1, $array2, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;});
+    // *     returns 1: {c: 'blue'}
+
+
+    var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1];
+    var arr = '', i = 1, k1 = '', k = '';
+    cb = (typeof cb === 'string') ? window[cb] : (cb instanceof Array) ? window[cb[0]][cb[1]] : cb;
+
+    arr1keys:
+    for (k1 in arr1) {
+        for (i=1; i < arguments.length-1; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (cb(arr[k], arr1[k1]) === 0) {
+                    // If it reaches here, it was found in at least one array, so try next value
+                    continue arr1keys;
+                }
+            }
+            retArr[k1] = arr1[k1];
+        }
+    }
+
+    return retArr;
+}// }}}
+
+// {{{ array_udiff_assoc
+function array_udiff_assoc() {
+    // Computes the difference of arrays with additional index check, compares data by
+    // a callback function
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_udiff_assoc/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // *     example 1: array_udiff_assoc({0: 'kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'}, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;});
+    // *     returns 1: {1: 'van', 2: 'Zonneveld'}
+
+    var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1];
+    var arr = {}, i = 1, k1 = '', k = '';
+    cb = (typeof cb === 'string') ? window[cb] : (cb instanceof Array) ? window[cb[0]][cb[1]] : cb;
+
+    arr1keys:
+    for (k1 in arr1) {
+        for (i=1; i < arguments.length-1; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (cb(arr[k], arr1[k1]) === 0 && k === k1) {
+                    // If it reaches here, it was found in at least one array, so try next value
+                    continue arr1keys;
+                }
+            }
+            retArr[k1] = arr1[k1];
+        }
+    }
+
+    return retArr;
+}// }}}
+
+// {{{ array_udiff_uassoc
+function array_uintersect_uassoc () {
+    // Computes the difference of arrays with additional index check, compares data and
+    // indexes by a callback function
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_udiff_uassoc/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+    // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
+    // *     example 1: array_uintersect_uassoc($array1, $array2, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;}, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;});
+    // *     returns 1: {0: 'red', c: 'blue'}
+
+    var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1], cb0 = arguments[arguments.length-2];
+    var k1 = '', i = 1, k = '', arr = {};
+
+    cb = (typeof cb === 'string') ? window[cb] : (cb instanceof Array) ? window[cb[0]][cb[1]] : cb;
+    cb0 = (typeof cb0 === 'string') ? window[cb0] : (cb0 instanceof Array) ? window[cb0[0]][cb0[1]] : cb0;
+
+    arr1keys:
+    for (k1 in arr1) {
+        for (i=1; i < arguments.length-2; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (cb0(arr[k], arr1[k1]) === 0 && cb(k, k1) === 0) {
+                    // If it reaches here, it was found in at least one array, so try next value
+                    continue arr1keys; 
+                }
+            }
+            retArr[k1] = arr1[k1];
+        }
+    }
+
+    return retArr;
+}// }}}
+
 // {{{ array_uintersect
 function array_uintersect () {
     // Computes the intersection of arrays, compares data by a callback function
@@ -1147,6 +1401,85 @@ function array_uintersect () {
             }
             // If it reaches here, it wasn't found in at least one array, so try next value
             continue arr1keys;
+        }
+    }
+
+    return retArr;
+}// }}}
+
+// {{{ array_uintersect_assoc
+function array_uintersect_assoc () {
+    // Computes the intersection of arrays with additional index check, compares data
+    // by a callback function
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_uintersect_assoc/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+    // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
+    // *     example 1: array_uintersect_assoc($array1, $array2, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;});
+    // *     returns 1: {a: 'green', b: 'brown'}
+
+    var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1];
+    var k1 = '', i = 1, arr = {}, k = '';
+
+    cb = (typeof cb === 'string') ? window[cb] : (cb instanceof Array) ? window[cb[0]][cb[1]] : cb;
+
+    arr1keys:
+    for (k1 in arr1) {
+        arrs:
+        for (i = 1; i < arguments.length-1; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (cb(arr[k], arr1[k1]) === 0 && k === k1) {
+                    if (i === arguments.length-2) {
+                        retArr[k1] = arr1[k1];
+                    }
+                    // If the innermost loop always leads at least once to an equal value, continue the loop until done
+                    continue arrs;
+                }
+            }
+            // If it reaches here, it wasn't found in at least one array, so try next value
+            continue arr1keys;
+        }
+    }
+
+    return retArr;
+}// }}}
+
+// {{{ array_uintersect_uassoc
+function array_uintersect_uassoc () {
+    // Computes the intersection of arrays with additional index check, compares data
+    // and indexes by a callback functions
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_uintersect_uassoc/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+    // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
+    // *     example 1: array_uintersect_uassoc($array1, $array2, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;}, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;});
+    // *     returns 1: {a: 'green', b: 'brown'}
+
+    var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1], cb0 = arguments[arguments.length-2];
+    var k1 = '', i = 1, k = '', arr = {};
+
+    cb = (typeof cb === 'string') ? window[cb] : (cb instanceof Array) ? window[cb[0]][cb[1]] : cb;
+    cb0 = (typeof cb0 === 'string') ? window[cb0] : (cb0 instanceof Array) ? window[cb0[0]][cb0[1]] : cb0;
+
+    arr1keys:
+    for (k1 in arr1) {
+        arrs:
+        for (i = 1; i < arguments.length-2; i++) {
+            arr = arguments[i];
+            for (k in arr) {
+                if (cb0(arr[k], arr1[k1]) === 0 && cb(k, k1) === 0) {
+                    if (i === arguments.length-3) {
+                        retArr[k1] = arr1[k1];
+                    }
+                    continue arrs; // If the innermost loop always leads at least once to an equal value, continue the loop until done
+                }
+            }
+            continue arr1keys; // If it reaches here, it wasn't found in at least one array, so try next value
         }
     }
 
@@ -1292,6 +1625,112 @@ function array_walk_recursive (array, funcname, userdata) {
         } else {
             eval (funcname + '(  userdata ) ');
         }
+    }
+    
+    return true;
+}// }}}
+
+// {{{ arsort
+function arsort(inputArr) {
+    // Sort an array in reverse order and maintain index association
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_arsort/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // %          note: The examples are correct, this is a new way
+    // *     example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
+    // *     example 1: arsort(data);
+    // *     results 1: data == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
+    // *     returns 1: true
+
+    var bubbleSort = function(keyArr, inputArr) {
+        var i = 0, j = 0, tempValue = '', tempKeyVal = '';
+
+        for (i = inputArr.length-2; i >= 0; i--) {
+            for (j=0; j <= i; j++) {
+                if (inputArr[j+1] > inputArr[j]) {
+                    tempValue = inputArr[j];
+                    inputArr[j] = inputArr[j+1];
+                    inputArr[j+1] = tempValue;
+                    tempKeyVal = keyArr[j];
+                    keyArr[j] = keyArr[j+1];
+                    keyArr[j+1] = tempKeyVal;
+                }
+            }
+        }
+    }
+
+    var valArr = [], keyArr=[], k = '', i = 0;
+
+    // Get key and value arrays
+    for (k in inputArr) {
+        valArr.push(inputArr[k]);
+        keyArr.push(k);
+        delete inputArr[k] ;
+    }
+    try {
+        // Sort our new temporary arrays
+        bubbleSort(keyArr, valArr);
+    } catch(e) {
+        return false;
+    }
+
+    // Repopulate the old array
+    for (i = 0; i < valArr.length; i++) {
+        inputArr[keyArr[i]] = valArr[i];
+    }
+
+    return true;
+}// }}}
+
+// {{{ asort
+function asort(inputArr) {
+    // Sort an array and maintain index association
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_asort/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // %          note: The examples are correct, this is a new way
+    // *     example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
+    // *     example 1: asort(data);
+    // *     results 1: data == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
+    // *     returns 1: true
+
+    var bubbleSort = function(keyArr, inputArr) {
+        var i = 0, j = 0, tempValue = '', tempKeyVal = '';
+
+        for (i = inputArr.length-2; i >= 0; i--) {
+            for (j=0; j <= i; j++) {
+                if (inputArr[j+1] < inputArr[j]) {
+                    tempValue = inputArr[j];
+                    inputArr[j] = inputArr[j+1];
+                    inputArr[j+1] = tempValue;
+                    tempKeyVal = keyArr[j];
+                    keyArr[j] = keyArr[j+1];
+                    keyArr[j+1] = tempKeyVal;
+                }
+            }
+        }
+    }
+
+    var valArr = [], keyArr=[], k = '', i = 0;
+
+    // Get key and value arrays
+    for (k in inputArr) { 
+        valArr.push(inputArr[k]);
+        keyArr.push(k);
+        delete inputArr[k] ;
+    }
+    try {
+        // Sort our new temporary arrays
+        bubbleSort(keyArr, valArr); 
+    } catch(e) {
+        return false;
+    }
+
+    // Repopulate the old array
+    for (i = 0; i < valArr.length; i++) {  
+        inputArr[keyArr[i]] = valArr[i];
     }
     
     return true;
@@ -1681,48 +2120,55 @@ function krsort(array, sort_flags) {
     // Sort an array by key in reverse order
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_krsort/
-    // +       version: 809.522
+    // +       version: 901.1411
     // +   original by: GeekFG (http://geekfg.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: krsort({2: 'van', 3: 'Zonneveld', 1: 'Kevin'});
+    // +   improved by: Brett Zamir
+    // %          note: The examples are correct, this is a new way
+    // *     example 1: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'};
+    // *     example 1: krsort(data);
+    // *     results 1: data == {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
     // *     returns 1: true
-    
-    var tmp_arr = {}, values = array, keys = [], key_num = 0, key = '', i = 0; 
-    var sorter = false, array = false;
-    
+
+    var tmp_arr = {}, keys = [], sorter = false, i = 0, key = '';
+
     // For now only SORT_NUMERIC has a custom sorter
     // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
-    // are all handled with the default sorter 
+    // are all handled with the default sorter
     if (sort_flags == 'SORT_NUMERIC') {
         sorter = function (a, b) {
             return(a - b);
         };
     }
-    
+
     // Make a list of key names
-    for (key in values) { 
-        keys[key_num++] = key; 
+    for (key in array) {
+        keys.push(key);
     }
-     
+
     // Sort key names
-    if (sorter !== false) {
-        keys = keys.sort(sorter);
-    } else {
-        keys = keys.sort();
+    try {
+        if (sorter !== false) {
+            keys.sort(sorter);
+        } else {
+            keys.sort();
+        }
+    } catch (e) {
+        return false;
     }
-    
-    // What makes it krsort:
-    keys.reverse();    
-    
-    // Rebuild array with sorted keynames
-    for (i = 0; i < key_num; i++) {
+    keys.reverse();
+
+    // Rebuild array with sorted key names
+    for (i = 0; i < keys.length; i++) {
         key = keys[i];
-        tmp_arr[key] = values[key]; 
-    } 
-    
-    // Overwrite the original array, don't return it, to be complient with the php manual
-    array = tmp_arr;
-    return true; 
+        tmp_arr[key] = array[key];
+        delete array[key];
+    }
+    for (i in tmp_arr) {
+        array[i] = tmp_arr[i]
+    }
+
+    return true;
 }// }}}
 
 // {{{ ksort
@@ -1730,48 +2176,54 @@ function ksort(array, sort_flags) {
     // Sort an array by key
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ksort/
-    // +       version: 810.112
+    // +       version: 901.1411
     // +   original by: GeekFG (http://geekfg.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Brett Zamir
     // %          note: The examples are correct, this is a new way
-    // *     example 1: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}; 
+    // *     example 1: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'};
     // *     example 1: ksort(data);
     // *     results 1: data == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
     // *     returns 1: true
-    
-    var tmp_arr = {}, values = array, keys = [], key_num = 0, key = '', i = 0; 
-    var sorter = false, array = false;
-    
+
+    var tmp_arr = {}, keys = [], sorter = false, i = 0, key = '';
+
     // For now only SORT_NUMERIC has a custom sorter
     // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
-    // are all handled with the default sorter 
+    // are all handled with the default sorter
     if (sort_flags == 'SORT_NUMERIC') {
         sorter = function (a, b) {
             return(a - b);
         };
     }
-    
+
     // Make a list of key names
-    for (key in values) { 
-        keys[key_num++] = key; 
+    for (key in array) {
+        keys.push(key);
     }
-     
+
     // Sort key names
-    if (sorter !== false) {
-        keys = keys.sort(sorter);
-    } else {
-        keys = keys.sort();
+    try {
+        if (sorter !== false) {
+            keys.sort(sorter);
+        } else {
+            keys.sort();
+        }
+    } catch (e) {
+        return false;
     }
-    
-    // Rebuild array with sorted keynames
-    for (i = 0; i < key_num; i++) {
+
+    // Rebuild array with sorted key names
+    for (i = 0; i < keys.length; i++) {
         key = keys[i];
-        tmp_arr[key] = values[key]; 
-    } 
-    
-    // Overwrite the original array, don't return it, to be complient with the php manual
-    array = tmp_arr;
-    return true; 
+        tmp_arr[key] = array[key];
+        delete array[key];
+    }
+    for (i in tmp_arr) {
+        array[i] = tmp_arr[i]
+    }
+
+    return true;
 }// }}}
 
 // {{{ next
@@ -2048,6 +2500,53 @@ function sort( array, sort_flags ) {
         array.sort();
     }
     
+    return true;
+}// }}}
+
+// {{{ uksort
+function uksort(array, sorter) {
+    // Sort an array by keys using a user-defined comparison function
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_uksort/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // %          note: The examples are correct, this is a new way
+    // *     example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
+    // *     example 1: uksort(data, function(key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
+    // *     results 1: data == {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
+    // *     returns 1: true
+
+    if (typeof sorter === 'string') {
+        sorter = window[sorter];
+    }
+
+    var tmp_arr = {}, keys = [], i = 0, key = '';
+
+    // Make a list of key names
+    for (key in array) {
+        keys.push(key);
+    }
+
+    // Sort key names
+    try {
+        if (sorter) {
+            keys.sort(sorter);
+        } else {
+            keys.sort();
+        }
+    } catch (e) {
+        return false;
+    }
+
+    // Rebuild array with sorted key names
+    for (i = 0; i < keys.length; i++) {
+        key = keys[i];
+        tmp_arr[key] = array[key];
+        delete array[key];
+    }
+    for (i in tmp_arr) {
+        array[i] = tmp_arr[i]
+    }
     return true;
 }// }}}
 
@@ -7166,6 +7665,50 @@ function get_headers(url, format) {
     return headers;
 }// }}}
 
+// {{{ get_meta_tags
+function get_meta_tags(file) {
+    // Extracts all meta tag content attributes from a file and returns an array
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_meta_tags/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
+    // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
+    // -    depends on: file_get_contents
+    // *     example 1: get_meta_tags('http://kevin.vanzonneveld.net/pj_test_supportfile_2.htm');
+    // *     returns 1: {description: 'a php manual', author: 'name', keywords: 'php documentation', 'geo_position': '49.33;-86.59'}
+
+    var fulltxt = '';
+
+    if (false) {
+        // Use this for testing instead of the line above:
+        fulltxt = '<meta name="author" content="name">'+
+        '<meta name="keywords" content="php documentation">'+
+        '<meta name="DESCRIPTION" content="a php manual">'+
+        '<meta name="geo.position" content="49.33;-86.59">'+
+        '</head>';
+    } else {
+        fulltxt = file_get_contents(file).match(/^[^]*<\/head>/i);
+    }
+    
+    var patt = /<meta[^>]*?>/gim;
+    var patt1 = /<meta\s+.*?name\s*=\s*(['"]?)(.*?)\1\s+.*?content\s*=\s*(['"]?)(.*?)\3/gim;
+    var patt2 = /<meta\s+.*?content\s*=\s*(['"?])(.*?)\1\s+.*?name\s*=\s*(['"]?)(.*?)\3/gim;
+    var txt, match, name, arr={};
+
+    while ((txt = patt.exec(fulltxt)) != null) {
+        while ((match = patt1.exec(txt)) != null) {
+            name = match[2].replace(/\W/g, '_').toLowerCase();
+            arr[name] = match[4];
+        }
+        while ((match = patt2.exec(txt)) != null) {
+            name = match[4].replace(/\W/g, '_').toLowerCase();
+            arr[name] = match[2];
+        }
+    }
+    return arr;
+}// }}}
+
 // {{{ http_build_query
 function http_build_query( formdata, numeric_prefix, arg_separator ) {
     // Generate URL-encoded query string
@@ -7202,16 +7745,109 @@ function http_build_query( formdata, numeric_prefix, arg_separator ) {
     return tmp_arr.join(arg_separator);
 }// }}}
 
+// {{{ rawurldecode
+function rawurldecode( str ) {
+    // Decode URL-encoded strings
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rawurldecode/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // *     example 1: rawurldecode('Kevin+van+Zonneveld%21');
+    // *     returns 1: 'Kevin+van+Zonneveld!'
+    // *     example 2: rawurldecode('http%3A%2F%2Fkevin.vanzonneveld.net%2F');
+    // *     returns 2: 'http://kevin.vanzonneveld.net/'
+    // *     example 3: rawurldecode('http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a');
+    // *     returns 3: 'http://www.google.nl/search?q=php.js&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a'
+
+    var histogram = {};
+    var ret = str.toString(); 
+
+    var replacer = function(search, replace, str) {
+        var tmp_arr = [];
+        tmp_arr = str.split(search);
+        return tmp_arr.join(replace);
+    };
+
+    // The histogram is identical to the one in urlencode.
+    histogram["'"]   = '%27';
+    histogram['(']   = '%28';
+    histogram[')']   = '%29';
+    histogram['*']   = '%2A';
+    histogram['~']   = '%7E';
+    histogram['!']   = '%21';
+
+    for (replace in histogram) {
+        search = histogram[replace]; // Switch order when decoding
+        ret = replacer(search, replace, ret) // Custom replace. No regexing
+    }
+
+    // End with decodeURIComponent, which most resembles PHP's encoding functions
+    ret = decodeURIComponent(ret);
+
+    return ret;
+}// }}}
+
+// {{{ rawurlencode
+function rawurlencode( str ) {
+    // URL-encode according to RFC 1738
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rawurlencode/
+    // +       version: 901.1411
+    // +   original by: Brett Zamir
+    // *     example 1: rawurlencode('Kevin van Zonneveld!');
+    // *     returns 1: 'Kevin van Zonneveld%21'
+    // *     example 2: rawurlencode('http://kevin.vanzonneveld.net/');
+    // *     returns 2: 'http%3A%2F%2Fkevin.vanzonneveld.net%2F'
+    // *     example 3: rawurlencode('http://www.google.nl/search?q=php.js&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a');
+    // *     returns 3: 'http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a'
+ 
+    var histogram = {}, tmp_arr = [];
+    var ret = str.toString();
+
+    var replacer = function(search, replace, str) {
+        var tmp_arr = [];
+        tmp_arr = str.split(search);
+        return tmp_arr.join(replace);
+    };
+
+    // The histogram is identical to the one in urldecode.
+    histogram["'"]   = '%27';
+    histogram['(']   = '%28';
+    histogram[')']   = '%29';
+    histogram['*']   = '%2A'; 
+    histogram['~']   = '%7E';
+    histogram['!']   = '%21';
+
+    // Begin with encodeURIComponent, which most resembles PHP's encoding functions
+    ret = encodeURIComponent(ret);
+
+    // Restore spaces, converted by encodeURIComponent which is not rawurlencode compatible
+    ret = replacer('%20', ' ', ret); // Custom replace. No regexing
+
+    for (search in histogram) {
+        replace = histogram[search];
+        ret = replacer(search, replace, ret) // Custom replace. No regexing
+    }
+
+    // Uppercase for full PHP compatibility
+    return ret.replace(/(\%([a-z0-9]{2}))/g, function(full, m1, m2) {
+        return "%"+m2.toUpperCase();
+    });
+
+    return ret;
+}// }}}
+
 // {{{ urldecode
 function urldecode( str ) {
     // Decodes URL-encoded string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urldecode/
-    // +       version: 809.1713
+    // +       version: 901.1411
     // +   original by: Philip Peterson
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: AJ
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Brett Zamir
     // %          note: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
     // *     example 1: urldecode('Kevin+van+Zonneveld%21');
     // *     returns 1: 'Kevin van Zonneveld!'
@@ -7220,7 +7856,7 @@ function urldecode( str ) {
     // *     example 3: urldecode('http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a');
     // *     returns 3: 'http://www.google.nl/search?q=php.js&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a'
     
-    var histogram = {}, histogram_r = {}, code = 0, str_tmp = [];
+    var histogram = {};
     var ret = str.toString();
     
     var replacer = function(search, replace, str) {
@@ -7230,9 +7866,14 @@ function urldecode( str ) {
     };
     
     // The histogram is identical to the one in urlencode.
+    histogram["'"]   = '%27';
+    histogram['(']   = '%28';
+    histogram[')']   = '%29';
+    histogram['*']   = '%2A';
+    histogram['~']   = '%7E';
     histogram['!']   = '%21';
     histogram['%20'] = '+';
-    
+
     for (replace in histogram) {
         search = histogram[replace]; // Switch order when decoding
         ret = replacer(search, replace, ret) // Custom replace. No regexing   
@@ -7249,11 +7890,12 @@ function urlencode( str ) {
     // URL-encodes string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_urlencode/
-    // +       version: 809.1713
+    // +       version: 901.1411
     // +   original by: Philip Peterson
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: AJ
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Brett Zamir
     // %          note: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
     // *     example 1: urlencode('Kevin van Zonneveld!');
     // *     returns 1: 'Kevin+van+Zonneveld%21'
@@ -7261,8 +7903,8 @@ function urlencode( str ) {
     // *     returns 2: 'http%3A%2F%2Fkevin.vanzonneveld.net%2F'
     // *     example 3: urlencode('http://www.google.nl/search?q=php.js&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a');
     // *     returns 3: 'http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a'
-                                     
-    var histogram = {}, histogram_r = {}, code = 0, tmp_arr = [];
+                             
+    var histogram = {}, tmp_arr = [];
     var ret = str.toString();
     
     var replacer = function(search, replace, str) {
@@ -7272,6 +7914,11 @@ function urlencode( str ) {
     };
     
     // The histogram is identical to the one in urldecode.
+    histogram["'"]   = '%27';
+    histogram['(']   = '%28';
+    histogram[')']   = '%29';
+    histogram['*']   = '%2A';
+    histogram['~']   = '%7E';
     histogram['!']   = '%21';
     histogram['%20'] = '+';
     
@@ -7912,9 +8559,10 @@ function strval(str) {
     // Get string value of a variable
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strval/
-    // +       version: 901.1301
+    // +       version: 901.1316
     // +   original by: Brett Zamir
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Brett Zamir
     // %        note 1: Comment out the entire switch if you want JS-like behavior instead of PHP behavior
     // -    depends on: gettype
     // *     example 1: strval({red: 1, green: 2, blue: 3, white: 4});
@@ -7935,7 +8583,7 @@ function strval(str) {
             return 'Object';
     }
     
-    return str+''+type;
+    return str;
 }// }}}
 
 // {{{ unserialize
