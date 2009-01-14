@@ -9,7 +9,7 @@ function get_meta_tags(url, format) {
 
     var fulltxt = '';
 
-    if (true) {
+    if (false) {
         // Use this for testing instead of the line above:
         fulltxt = '<meta name="author" content="name">'+
         '<meta name="keywords" content="php documentation">'+
