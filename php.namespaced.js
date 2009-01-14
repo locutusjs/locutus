@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.04
+ * This is version: 2.05
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -1352,16 +1352,16 @@
         },// }}}
         
         // {{{ array_udiff_uassoc
-        array_uintersect_uassoc: function () {
+        array_udiff_uassoc: function () {
             // Computes the difference of arrays with additional index check, compares data and
             // indexes by a callback function
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_udiff_uassoc/
-            // +       version: 901.1411
+            // +       version: 901.1415
             // +   original by: Brett Zamir
             // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
             // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
-            // *     example 1: $P.array_uintersect_uassoc($array1, $array2, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;}, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;});
+            // *     example 1: $P.array_udiff_uassoc($array1, $array2, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;}, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;});
             // *     returns 1: {0: 'red', c: 'blue'}
         
             var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1], cb0 = arguments[arguments.length-2];
@@ -3822,7 +3822,7 @@
             }
         
             // If the text is not JSON parseable, then a SyntaxError is thrown.
-            throw new SyntaxError('JSON.parse');
+            throw new SyntaxError('this.json_decode');
         },// }}}
         
         // {{{ json_encode
