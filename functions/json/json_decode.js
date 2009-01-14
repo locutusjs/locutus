@@ -81,5 +81,5 @@ function json_decode(str_json) {
     }
 
     // If the text is not JSON parseable, then a SyntaxError is thrown.
-    throw new SyntaxError('JSON.parse');
+    throw new SyntaxError('json_decode');
 }
