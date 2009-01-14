@@ -28,7 +28,7 @@ function rawurlencode( str ) {
     // Begin with encodeURIComponent, which most resembles PHP's encoding functions
     ret = encodeURIComponent(ret);
 
-    // Restore spaces
+    // Restore spaces, converted by encodeURIComponent which is not rawurlencode compatible
     ret = replacer('%20', ' ', ret); // Custom replace. No regexing
 
     for (search in histogram) {
