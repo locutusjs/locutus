@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.05
+ * This is version: 2.06
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -24,12 +24,12 @@
  * Christian Doebler, Cord, David, David James, David Randall, Dino, Douglas
  * Crockford (http://javascript.crockford.com), DxGx, FGFEmperor, Felix
  * Geisendoerfer (http://www.debuggable.com/felix), Francesco, Francois,
- * FremyCompany, Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, J A R, Kirk
- * Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey,
- * Manish, Marc Palau, Mateusz "loonquawl" Zalega, MeEtc
+ * FremyCompany, Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam
+ * Singer, J A R, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Linuxworld,
+ * Luke Godfrey, Manish, Marc Palau, Mateusz "loonquawl" Zalega, MeEtc
  * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Norman "zEh"
- * Fuchs, Ozh, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul Koch
- * (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
+ * Fuchs, Ozh, Paul, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul
+ * Koch (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
  * Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
  * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
  * Steven Levithan (http://blog.stevenlevithan.com), Subhasis Deb, T. Wild,
@@ -5058,8 +5058,10 @@
             // Output a message and terminate the current script
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_exit/
-            // +       version: 901.617
+            // +       version: 901.1511
             // +   original by: Brett Zamir
+            // +      input by: Paul
+            // +   bugfixed by: Hyam Singer
             // %        note 1: Should be considered expirimental. Please comment on this function.
             // *     example 1: $P.exit();
             // *     returns 1: null
@@ -5084,7 +5086,7 @@
                 // e.preventDefault(); // Stop for the form controls, etc., too?
             }
             for (i=0; i < handlers.length; i++) {
-                window.addEventListener(handlers[i], stopPropagation, true);
+                window.addEventListener(handlers[i], function (e) {e.stopPropagation();}, true);
             }
             
             throw '';
