@@ -1,6 +1,8 @@
 function exit( status ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
+    // +      input by: Paul
+    // +   bugfixed by: Hyam Singer
     // %        note 1: Should be considered expirimental. Please comment on this function.
     // *     example 1: exit();
     // *     returns 1: null
@@ -25,7 +27,7 @@ function exit( status ) {
         // e.preventDefault(); // Stop for the form controls, etc., too?
     }
     for (i=0; i < handlers.length; i++) {
-        window.addEventListener(handlers[i], stopPropagation, true);
+        window.addEventListener(handlers[i], function (e) {e.stopPropagation();}, true);
     }
     
     throw '';
