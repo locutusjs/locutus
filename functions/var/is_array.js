@@ -16,11 +16,24 @@ function is_array( mixed_var ) {
     // *     example 4: is_array(function tmp_a(){this.name = 'Kevin'});
     // *     returns 4: false
 
+    var key = '';
+
     if (!mixed_var) {
         return false;
     }
 
     if (typeof mixed_var === 'object') {
+
+        if (mixed_var.hasOwnProperty) {
+            for (key in mixed_var) {
+                // Checks whether the object has the specified property
+                // if not, we figure it's not an object in the sense of a php-associative-array.
+                if (false === mixed_var.hasOwnProperty(key)) {
+                    return false;
+                }
+            }
+        }
+
         // Uncomment to enable strict JavsScript-proof type checking
         // This will not support PHP associative arrays (JavaScript objects), however
         // Read discussion at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/

@@ -9,19 +9,28 @@ function mktime() {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: jakes
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Marc Palau
     // *     example 1: mktime(14, 10, 2, 2, 1, 2008);
     // *     returns 1: 1201871402
     // *     example 2: mktime(0, 0, 0, 0, 1, 2008);
     // *     returns 2: 1196463600
+    // *     example 3: make = mktime();
+    // *     example 3: td = new Date();
+    // *     example 3: real = Math.floor(td.getTime()/1000);
+    // *     example 3: diff = (real - make);
+    // *     results 3: diff < 5
     
     var no, ma = 0, mb = 0, i = 0, d = new Date(), argv = arguments, argc = argv.length;
-    d.setHours(0,0,0); d.setDate(1); d.setMonth(1); d.setYear(1972);
+
+    if (argc > 0){
+        d.setHours(0,0,0); d.setDate(1); d.setMonth(1); d.setYear(1972);
+    }
  
     var dateManip = {
         0: function(tt){ return d.setHours(tt); },
         1: function(tt){ return d.setMinutes(tt); },
-        2: function(tt){ set = d.setSeconds(tt); mb = d.getDate() - 1; return set; },
-        3: function(tt){ set = d.setMonth(parseInt(tt)-1); ma = d.getFullYear() - 1972; return set; },
+        2: function(tt){ var set = d.setSeconds(tt); mb = d.getDate() - 1; return set; },
+        3: function(tt){ var set = d.setMonth(parseInt(tt)-1); ma = d.getFullYear() - 1972; return set; },
         4: function(tt){ return d.setDate(tt+mb); },
         5: function(tt){ return d.setYear(tt+ma); }
     };
