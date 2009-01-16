@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.07
+ * This is version: 2.08
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -13,24 +13,25 @@
  * Searle (http://hexmen.com/blog/), Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
- * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Mirek Slugen,
- * Public Domain (http://www.json.org/json2.js), Sakimori, Thunder.m, Tyler
- * Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), 0m3r,
+ * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Marc Palau, Mirek
+ * Slugen, Public Domain (http://www.json.org/json2.js), Sakimori, Thunder.m,
+ * Tyler Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), 0m3r,
  * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
  * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
  * Touesnard, Bryan Elliott, Cagri Ekin, Caio Ariede (http://caioariede.com),
- * Christian Doebler, Cord, David, David James, David Randall, Dino, Douglas
- * Crockford (http://javascript.crockford.com), DxGx, FGFEmperor, Felix
- * Geisendoerfer (http://www.debuggable.com/felix), Francesco, Francois,
- * FremyCompany, Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam Singer
+ * Christian Doebler, Cord, David, David James, David Randall, Der Simon
+ * (http://innerdom.sourceforge.net/), Dino, Douglas Crockford
+ * (http://javascript.crockford.com), DxGx, FGFEmperor, Felix Geisendoerfer
+ * (http://www.debuggable.com/felix), Francesco, Francois, FremyCompany,
+ * Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam Singer
  * (http://www.impact-computing.com/), J A R, Kirk Strobeck, LH, Leslie Hoare,
- * Lincoln Ramsay, Linuxworld, Luke Godfrey, Manish, Marc Palau, Mateusz
- * "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick
- * Callen, Norman "zEh" Fuchs, Ozh, Paul, Pedro Tainha
- * (http://www.pedrotainha.com), Peter-Paul Koch
- * (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
+ * Lincoln Ramsay, Linuxworld, Luke Godfrey, Luke Smith
+ * (http://lucassmith.name), Manish, Mateusz "loonquawl" Zalega, MeEtc
+ * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Norman "zEh"
+ * Fuchs, Ozh, Paul, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul
+ * Koch (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
  * Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
  * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
  * Steven Levithan (http://blog.stevenlevithan.com), Subhasis Deb, T. Wild,
@@ -2412,35 +2413,48 @@ function reset ( arr ) {
 }// }}}
 
 // {{{ rsort
-function rsort( array, sort_flags ) {
+function rsort (inputArr, sort_flags) {
     // Sort an array in reverse order
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rsort/
-    // +       version: 809.522
+    // +       version: 901.1623
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    revised by: Brett Zamir
     // *     example 1: rsort(['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: true
+    // *     example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
+    // *     example 2: rsort(fruits);
+    // *     returns 2: true
+    // *     results 2: fruits == {0: 'orange', 1: 'lemon', 2: 'banana', 3: 'apple'}
+
+    var valArr = [], keyArr=[];
+    var k = '', i = 0;
     
+    for (k in inputArr) { // Get key and value arrays
+        valArr.push(inputArr[k]);
+        delete inputArr[k] ;
+    }
+
     var sorter = false;
-    
+
     // For now only SORT_NUMERIC has a custom sorter
     // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
-    // are all handled with the default sorter 
-    if (sort_flags == 'SORT_NUMERIC') {
+    // are all handled with the default sorter
+    if (sort_flags === 'SORT_NUMERIC') {
         sorter = function (a, b) {
             return(a - b);
         };
     }
-    
     if (sorter !== false) {
-        array.sort(sorter);
+        valArr.sort(sorter);
     } else {
-        array.sort();
+        valArr.sort();
+        valArr.reverse();
     }
-    
-    // What makes it rsort:
-    array.reverse();
-    
+
+    for (i = 0; i < valArr.length; i++) { // Repopulate the old array
+        inputArr[i] = valArr[i];
+    }
     return true;
 }// }}}
 
@@ -2476,30 +2490,99 @@ function sizeof ( mixed_var, mode ) {
 }// }}}
 
 // {{{ sort
-function sort( array, sort_flags ) {
+function sort (inputArr, sort_flags) {
     // Sort an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sort/
-    // +       version: 809.522
+    // +       version: 901.1623
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    revised by: Brett Zamir
     // *     example 1: sort(['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: true
+    // *     example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
+    // *     example 2: sort(fruits);
+    // *     returns 2: true
+    // *     results 2: fruits == {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
+
+    var valArr = [], keyArr=[];
+    var k = '', i = 0;
     
+    for (k in inputArr) { // Get key and value arrays
+        valArr.push(inputArr[k]);
+        delete inputArr[k] ;
+    }
+
     var sorter = false;
-    
+
     // For now only SORT_NUMERIC has a custom sorter
     // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
-    // are all handled with the default sorter 
-    if (sort_flags == 'SORT_NUMERIC') {
+    // are all handled with the default sorter
+    if (sort_flags === 'SORT_NUMERIC') {
         sorter = function (a, b) {
             return(a - b);
         };
     }
-    
     if (sorter !== false) {
-        array.sort(sorter);
+        valArr.sort(sorter);
     } else {
-        array.sort();
+        valArr.sort();
+    }
+
+    for (i = 0; i < valArr.length; i++) { // Repopulate the old array
+        inputArr[i] = valArr[i];
+    }
+    return true;
+}// }}}
+
+// {{{ uasort
+function uasort (inputArr, sorter) {
+    // Sort an array with a user-defined comparison function and maintain index
+    // association
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_uasort/
+    // +       version: 901.1623
+    // +   original by: Brett Zamir
+    // *     example 1: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
+    // *     example 1: uasort(fruits, function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;});
+    // *     results 1: fruits == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
+
+    if (typeof sorter === 'string') {
+        sorter = this[sorter];
+    } else if (sorter instanceof Array) {
+        sorter = this[sorter[0]][sorter[1]];
+    }
+    
+    var valArr = [], keyArr=[], tempKeyVal, tempValue, ret;
+    var k = '', i = 0;
+
+    var sorterNew = function (keyArr, valArr) {
+        for (var i=valArr.length-2; i >=0; i--) {
+            for (var j=0; j <= i; j++) {
+                ret = sorter(valArr[j+1], valArr[j]);
+                if (ret < 0) {
+                    tempValue = valArr[j];
+                    valArr[j] = valArr[j+1];
+                    valArr[j+1] = tempValue;
+                    tempKeyVal = keyArr[j];
+                    keyArr[j] = keyArr[j+1];
+                    keyArr[j+1] = tempKeyVal;
+                }
+            }
+        }
+    }
+
+    for (k in inputArr) { // Get key and value arrays
+        valArr.push(inputArr[k]);
+        keyArr.push(k);
+        delete inputArr[k] ;
+    }
+    try {
+        sorterNew(keyArr, valArr); // Sort our new temporary arrays
+    } catch(e) {
+        return false;
+    }
+    for (i = 0; i < valArr.length; i++) { // Repopulate the old array
+        inputArr[keyArr[i]] = valArr[i];
     }
     
     return true;
@@ -2549,6 +2632,41 @@ function uksort(array, sorter) {
     for (i in tmp_arr) {
         array[i] = tmp_arr[i]
     }
+    return true;
+}// }}}
+
+// {{{ usort
+function usort (inputArr, sorter) {
+    // Sort an array by values using a user-defined comparison function
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_usort/
+    // +       version: 901.1623
+    // +   original by: Brett Zamir
+    // *     example 1: stuff = {d: '3', a: '1', b: '11', c: '4'};
+    // *     example 1: usort(stuff, function (a, b) {return(a-b);});
+    // *     results 1: stuff = {0: '1', 1: '3', 2: '4', 3: '11'};
+
+    var valArr = [], keyArr=[];
+    var k = '', i = 0;
+
+    if (typeof sorter === 'string') {
+        sorter = this[sorter];
+    } else if (sorter instanceof Array) {
+        sorter = this[sorter[0]][sorter[1]];
+    }
+    for (k in inputArr) { // Get key and value arrays
+        valArr.push(inputArr[k]);
+        delete inputArr[k] ;
+    }
+    try {
+        valArr.sort(sorter);
+    } catch (e) {
+        return false;
+    }
+    for (i = 0; i < valArr.length; i++) { // Repopulate the old array
+        inputArr[i] = valArr[i];
+    }
+
     return true;
 }// }}}
 
@@ -2983,7 +3101,7 @@ function mktime() {
     // Get Unix timestamp for a date
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_mktime/
-    // +       version: 809.522
+    // +       version: 901.1623
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: baris ozdil
     // +      input by: gabriel paderni 
@@ -2993,19 +3111,28 @@ function mktime() {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: jakes
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Marc Palau
     // *     example 1: mktime(14, 10, 2, 2, 1, 2008);
     // *     returns 1: 1201871402
     // *     example 2: mktime(0, 0, 0, 0, 1, 2008);
     // *     returns 2: 1196463600
+    // *     example 3: make = mktime();
+    // *     example 3: td = new Date();
+    // *     example 3: real = Math.floor(td.getTime()/1000);
+    // *     example 3: diff = (real - make);
+    // *     results 3: diff < 5
     
     var no, ma = 0, mb = 0, i = 0, d = new Date(), argv = arguments, argc = argv.length;
-    d.setHours(0,0,0); d.setDate(1); d.setMonth(1); d.setYear(1972);
+
+    if (argc > 0){
+        d.setHours(0,0,0); d.setDate(1); d.setMonth(1); d.setYear(1972);
+    }
  
     var dateManip = {
         0: function(tt){ return d.setHours(tt); },
         1: function(tt){ return d.setMinutes(tt); },
-        2: function(tt){ set = d.setSeconds(tt); mb = d.getDate() - 1; return set; },
-        3: function(tt){ set = d.setMonth(parseInt(tt)-1); ma = d.getFullYear() - 1972; return set; },
+        2: function(tt){ var set = d.setSeconds(tt); mb = d.getDate() - 1; return set; },
+        3: function(tt){ var set = d.setMonth(parseInt(tt)-1); ma = d.getFullYear() - 1972; return set; },
         4: function(tt){ return d.setDate(tt+mb); },
         5: function(tt){ return d.setYear(tt+ma); }
     };
@@ -5383,10 +5510,12 @@ function echo ( ) {
     // Output one or more strings
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_echo/
-    // +       version: 811.1400
+    // +       version: 901.1623
     // +   original by: Philip Peterson
     // +   improved by: echo is bad
     // +   improved by: Nate
+    // +    revised by: Der Simon (http://innerdom.sourceforge.net/)
+    // +   improved by: Brett Zamir
     // %        note 1: There are a few unsolved issues with this function. Summarizing:
     // %        note 1: converts all the special characters (e.g. tags) to HTML entities, 
     // %        note 1: thus reducing the usability of HTML formatting in echo().
@@ -5402,22 +5531,125 @@ function echo ( ) {
     // *     returns 1: null
     
     var arg = '', argc = arguments.length, argv = arguments, i = 0;
-    var bodies = [], body, elmt;
-    
-    // .shift() does not work to get first item in bodies
-    bodies = document.getElementsByTagName("body");
-    if (!bodies || ! bodies[0]) {
-        return false;
+
+    var stringToDOM = function (q){
+        var d=document;
+        function r(a){
+            return a.replace(/\r/g,' ').replace(/\n/g,' ');
+        }
+        function s(a){
+            return a.replace(/&amp;/g,'&').replace(/&gt;/g,'>').replace(/&lt;/g,'<').replace(/&nbsp;/g,' ').replace(/&quot;/g,'"');
+        }
+        function t(a){
+            return a.replace(/ /g,'');
+        }
+        function u(a){
+            var b,c,e,f,g,h,i;
+            b=d.createDocumentFragment();
+            c=a.indexOf(' ');
+            if(c===-1){
+                b.appendChild(d.createElement(a.toLowerCase()))
+            }
+            else{
+                i=t(a.substring(0,c)).toLowerCase();
+                a=a.substr(c+1);
+                b.appendChild(d.createElement(i));
+                while(a.length){
+                    e=a.indexOf('=');
+                    if(e>=0){
+                        f=t(a.substring(0,e)).toLowerCase();
+                        g=a.indexOf('"');
+                        a=a.substr(g+1);
+                        g=a.indexOf('"');
+                        h=s(a.substring(0,g));
+                        a=a.substr(g+2);
+                        b.lastChild.setAttribute(f,h)
+                    }else{
+                        break
+                    }
+                }
+            }
+            return b
+        }
+        function v(a,b,c){
+            var e,f;
+            e=b;
+            c=c.toLowerCase();
+            f=e.indexOf('</'+c+'>');
+            a=a.concat(e.substring(0,f));
+            e=e.substr(f);
+            while(a.indexOf('<'+c)!=-1){
+                a=a.substr(a.indexOf('<'+c));
+                a=a.substr(a.indexOf('>')+1);
+                e=e.substr(e.indexOf('>')+1);
+                f=e.indexOf('</'+c+'>');
+                a=a.concat(e.substring(0,f));
+                e=e.substr(f)
+            }
+            return b.length-e.length
+        }
+        function w(a){
+            var b,c,e,f,g,h,i,j,k,l,m,n,o,p,q;
+            b=d.createDocumentFragment();
+            while(a&&a.length){
+                c=a.indexOf('<');
+                if(c===-1){
+                    a=s(a);
+                    b.appendChild(d.createTextNode(a));
+                    a=null
+                }
+                else if(c){
+                    q=s(a.substring(0,c));
+                    b.appendChild(d.createTextNode(q));
+                    a=a.substr(c)
+                }
+                else{
+                    e=a.indexOf('<!--');
+                    if(!e){
+                        f=a.indexOf('-->');
+                        g=a.substring(4,f);
+                        g=s(g);
+                        b.appendChild(d.createComment(g));
+                        a=a.substr(f+3)
+                    }
+                    else{
+                        h=a.indexOf('>');
+                        if(a.substring(h-1,h)==='/'){
+                            i=a.indexOf('/>');
+                            j=a.substring(1,i);
+                            b.appendChild(u(j));
+                            a=a.substr(i+2)
+                        }
+                        else{
+                            k=a.indexOf('>');
+                            l=a.substring(1,k);
+                            m=d.createDocumentFragment();
+                            m.appendChild(u(l));
+                            a=a.substr(k+1);
+                            n=a.substring(0,a.indexOf('</'));
+                            a=a.substr(a.indexOf('</'));
+                            if(n.indexOf('<')!=-1){
+                                o=m.lastChild.nodeName;
+                                p=v(n,a,o);
+                                n=n.concat(a.substring(0,p));
+                                a=a.substr(p)
+                            }
+                            a=a.substr(a.indexOf('>')+1);
+                            m.lastChild.appendChild(w(n));
+                            b.appendChild(m)
+                        }
+                    }
+                }
+            }
+            return b
+        }
+        return w(q)
     }
-    body   = bodies[0];
-    
+
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
         if (document.createDocumentFragment && document.createTextNode && document.appendChild) {
-            var docFragment = document.createDocumentFragment();
-            var txt = document.createTextNode(arg);
-            docFragment.appendChild(txt);
-            document.body.appendChild(docFragment);
+            stringToDOM(arg);
         } else if (document.write) {
             document.write(arg);
         } else {
@@ -6111,7 +6343,7 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     // Format a number with grouped thousands
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_number_format/
-    // +       version: 809.2411
+    // +       version: 901.1623
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +     bugfix by: Michael White (http://getsprink.com)
@@ -6119,15 +6351,34 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     // +     bugfix by: Allan Jensen (http://www.winternet.no)
     // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +     bugfix by: Howard Yeend
-    // *     example 1: number_format(1234.5678, 2, '.', '');
-    // *     returns 1: 1234.57     
+    // +    revised by: Luke Smith (http://lucassmith.name)
+    // *     example 1: number_format(1234.56);
+    // *     returns 1: '1,235'
+    // *     example 2: number_format(1234.56, 2, ',', ' ');
+    // *     returns 2: '1 234,56'
+    // *     example 3: number_format(1234.5678, 2, '.', '');
+    // *     returns 3: '1234.57'
 
-    var n = number, c = isNaN(decimals = Math.abs(decimals)) ? 2 : decimals;
-    var d = dec_point == undefined ? "." : dec_point;
-    var t = thousands_sep == undefined ? "," : thousands_sep, s = n < 0 ? "-" : "";
-    var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
-    
-    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+    var n = number, prec = decimals, dec = dec_point, sep = thousands_sep;
+    n = !isFinite(+n) ? 0 : +n;
+    prec = !isFinite(+prec) ? 0 : Math.abs(prec);
+    sep = sep == undefined ? ',' : sep;
+
+    var s = n.toFixed(prec),
+        abs = Math.abs(n).toFixed(prec),
+        _, i;
+
+    if (abs > 1000) {
+        _ = abs.split(/\D/);
+        i = _[0].length % 3 || 3;
+
+        _[0] = s.slice(0,i + (n < 0)) +
+              _[0].slice(i).replace(/(\d{3})/g, sep+'$1');
+
+        s = _.join(dec || '.');
+    }
+
+    return s;
 }// }}}
 
 // {{{ ord
@@ -8418,7 +8669,7 @@ function is_array( mixed_var ) {
     // Finds whether a variable is an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
-    // +       version: 812.3112
+    // +       version: 901.1623
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Legaev Andrey
     // +   bugfixed by: Cord
@@ -8435,11 +8686,24 @@ function is_array( mixed_var ) {
     // *     example 4: is_array(function tmp_a(){this.name = 'Kevin'});
     // *     returns 4: false
 
+    var key = '';
+
     if (!mixed_var) {
         return false;
     }
 
     if (typeof mixed_var === 'object') {
+
+        if (mixed_var.hasOwnProperty) {
+            for (key in mixed_var) {
+                // Checks whether the object has the specified property
+                // if not, we figure it's not an object in the sense of a php-associative-array.
+                if (false === mixed_var.hasOwnProperty(key)) {
+                    return false;
+                }
+            }
+        }
+
         // Uncomment to enable strict JavsScript-proof type checking
         // This will not support PHP associative arrays (JavaScript objects), however
         // Read discussion at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
