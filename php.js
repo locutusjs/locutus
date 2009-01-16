@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.06
+ * This is version: 2.07
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -24,12 +24,13 @@
  * Christian Doebler, Cord, David, David James, David Randall, Dino, Douglas
  * Crockford (http://javascript.crockford.com), DxGx, FGFEmperor, Felix
  * Geisendoerfer (http://www.debuggable.com/felix), Francesco, Francois,
- * FremyCompany, Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam
- * Singer, J A R, Kirk Strobeck, LH, Leslie Hoare, Lincoln Ramsay, Linuxworld,
- * Luke Godfrey, Manish, Marc Palau, Mateusz "loonquawl" Zalega, MeEtc
- * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Norman "zEh"
- * Fuchs, Ozh, Paul, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul
- * Koch (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
+ * FremyCompany, Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam Singer
+ * (http://www.impact-computing.com/), J A R, Kirk Strobeck, LH, Leslie Hoare,
+ * Lincoln Ramsay, Linuxworld, Luke Godfrey, Manish, Marc Palau, Mateusz
+ * "loonquawl" Zalega, MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick
+ * Callen, Norman "zEh" Fuchs, Ozh, Paul, Pedro Tainha
+ * (http://www.pedrotainha.com), Peter-Paul Koch
+ * (http://www.quirksmode.org/js/beat.html), Pul, Pyerre, ReverseSyntax,
  * Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon Willison
  * (http://simonwillison.net), Slawomir Kaniecki, Steve Clay, Steve Hilder,
  * Steven Levithan (http://blog.stevenlevithan.com), Subhasis Deb, T. Wild,
@@ -1688,9 +1689,10 @@ function asort(inputArr) {
     // Sort an array and maintain index association
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_asort/
-    // +       version: 901.1411
+    // +       version: 901.1520
     // +   original by: Brett Zamir
     // %          note: The examples are correct, this is a new way
+    // %          note: Credits to: http://javascript.internet.com/math-related/bubble-sort.html 
     // *     example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
     // *     example 1: asort(data);
     // *     results 1: data == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
@@ -1700,18 +1702,18 @@ function asort(inputArr) {
         var i = 0, j = 0, tempValue = '', tempKeyVal = '';
 
         for (i = inputArr.length-2; i >= 0; i--) {
-            for (j=0; j <= i; j++) {
+            for (j = 0; j <= i; j++) {
                 if (inputArr[j+1] < inputArr[j]) {
-                    tempValue = inputArr[j];
-                    inputArr[j] = inputArr[j+1];
+                    tempValue     = inputArr[j];
+                    inputArr[j]   = inputArr[j+1];
                     inputArr[j+1] = tempValue;
-                    tempKeyVal = keyArr[j];
-                    keyArr[j] = keyArr[j+1];
-                    keyArr[j+1] = tempKeyVal;
+                    tempKeyVal    = keyArr[j];
+                    keyArr[j]     = keyArr[j+1];
+                    keyArr[j+1]   = tempKeyVal;
                 }
             }
         }
-    }
+    };
 
     var valArr = [], keyArr=[], k = '', i = 0;
 
@@ -5058,10 +5060,10 @@ function exit( status ) {
     // Output a message and terminate the current script
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_exit/
-    // +       version: 901.1511
+    // +       version: 901.1520
     // +   original by: Brett Zamir
     // +      input by: Paul
-    // +   bugfixed by: Hyam Singer
+    // +   bugfixed by: Hyam Singer (http://www.impact-computing.com/)
     // %        note 1: Should be considered expirimental. Please comment on this function.
     // *     example 1: exit();
     // *     returns 1: null
@@ -7048,16 +7050,56 @@ function strlen (string) {
     // Get string length
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strlen/
-    // +       version: 810.616
+    // +       version: 901.1520
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Sakimori
     // +      input by: Kirk Strobeck
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
+    // +    revised by: Brett Zamir
+    // %        note 1: May look like overkill, but in order to be truly faithful to handling all Unicode
+    // %        note 1: characters and to this function in PHP which does not count the number of bytes
+    // %        note 1: but counts the number of characters, something like this is really necessary.
     // *     example 1: strlen('Kevin van Zonneveld');
     // *     returns 1: 19
+    // *     example 2: strlen('A\ud87e\udc04Z');
+    // *     returns 2: 3
 
-    return (string+'').length;
+    var str = string+'';
+    var i = 0, chr = '', lgth = 0;
+
+    var getWholeChar = function (str, i) {
+        var code = str.charCodeAt(i);
+        var next = '', prev = '';
+        if (0xD800 <= code && code <= 0xDBFF) { // High surrogate(could change last hex to 0xDB7F to treat high private surrogates as single characters)
+            if (str.length <= (i+1))  {
+                throw 'High surrogate without following low surrogate';
+            }
+            next = str.charCodeAt(i+1);
+            if (0xDC00 > next || next > 0xDFFF) {
+                throw 'High surrogate without following low surrogate';
+            }
+            return str[i]+str[i+1];
+        } else if (0xDC00 <= code && code <= 0xDFFF) { // Low surrogate
+            if (i === 0) {
+                throw 'Low surrogate without preceding high surrogate';
+            }
+            prev = str.charCodeAt(i-1);
+            if (0xD800 > prev || prev > 0xDBFF) { //(could change last hex to 0xDB7F to treat high private surrogates as single characters)
+                throw 'Low surrogate without preceding high surrogate';
+            }
+            return false; // We can pass over low surrogates now as the second component in a pair which we have already processed
+        }
+        return str[i];
+    };
+
+    for (i=0, lgth=0; i < str.length; i++) {
+        if ((chr = getWholeChar(str, i)) === false) {
+            continue;
+        } // Adapt this line at the top of any loop, passing in the whole string and the current iteration and returning a variable to represent the individual character; purpose is to treat the first part of a surrogate pair as the whole character and then ignore the second part
+        lgth++;
+    }
+    return lgth;
 }// }}}
 
 // {{{ strnatcmp
