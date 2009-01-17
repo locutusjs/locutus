@@ -9,15 +9,27 @@ function ksort(array, sort_flags) {
     // *     results 1: data == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
     // *     returns 1: true
 
-    var tmp_arr = {}, keys = [], sorter = false, i = 0, key = '';
+    var tmp_arr={}, keys=[], sorter, i, key;
 
-    // For now only SORT_NUMERIC has a custom sorter
-    // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
-    // are all handled with the default sorter
-    if (sort_flags == 'SORT_NUMERIC') {
-        sorter = function (a, b) {
-            return(a - b);
-        };
+    switch (sort_flags) {
+        case 'SORT_STRING': // compare items as strings
+        case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+            throw 'Not implemented yet';
+        case 'SORT_NUMERIC': // compare items numerically
+            sorter = function (a, b) {
+                return(a - b);
+            };
+            break;
+        case 'SORT_REGULAR': // compare items normally (don't change types)
+        default:
+            sorter = function (a, b) {
+                if (a > b)
+                    return 1;
+                if (a < b)
+                    return -1;
+                return 0;
+            };
+            break;
     }
 
     // Make a list of key names
@@ -25,16 +37,7 @@ function ksort(array, sort_flags) {
         keys.push(key);
     }
 
-    // Sort key names
-    try {
-        if (sorter !== false) {
-            keys.sort(sorter);
-        } else {
-            keys.sort();
-        }
-    } catch (e) {
-        return false;
-    }
+    keys.sort(sorter);
 
     // Rebuild array with sorted key names
     for (i = 0; i < keys.length; i++) {
