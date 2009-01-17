@@ -138,13 +138,11 @@ function echo ( ) {
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
         if (document.createDocumentFragment && document.createTextNode && document.appendChild) {
-            stringToDOM(arg);
+            document.body.appendChild(stringToDOM(arg));
         } else if (document.write) {
             document.write(arg);
         } else {
             print(arg);
         }
     }
-    
-    return null;
 }

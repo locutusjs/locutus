@@ -2,6 +2,9 @@ function rsort (inputArr, sort_flags) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Brett Zamir
+    // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
+    // %        note 1: integrated into all of these functions by adapting the code at
+    // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
     // *     example 1: rsort(['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: true
     // *     example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
@@ -10,29 +13,34 @@ function rsort (inputArr, sort_flags) {
     // *     results 2: fruits == {0: 'orange', 1: 'lemon', 2: 'banana', 3: 'apple'}
 
     var valArr = [], keyArr=[];
-    var k = '', i = 0;
+    var k = '', i = 0, sorter = false;
     
     for (k in inputArr) { // Get key and value arrays
         valArr.push(inputArr[k]);
         delete inputArr[k] ;
     }
 
-    var sorter = false;
-
-    // For now only SORT_NUMERIC has a custom sorter
-    // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
-    // are all handled with the default sorter
-    if (sort_flags === 'SORT_NUMERIC') {
-        sorter = function (a, b) {
-            return(a - b);
-        };
+    switch (sort_flags) {
+        case 'SORT_STRING': // compare items as strings
+        case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+            throw 'Not implemented yet';
+        case 'SORT_NUMERIC': // compare items numerically
+            sorter = function (a, b) {
+                return(b - a);
+            };
+            break;
+        case 'SORT_REGULAR': // compare items normally (don't change types)
+        default:
+            sorter = function (a, b) {
+                if (a < b)
+                    return 1;
+                if (a > b)
+                    return -1;
+                return 0;
+            };
+            break;
     }
-    if (sorter !== false) {
-        valArr.sort(sorter);
-    } else {
-        valArr.sort();
-        valArr.reverse();
-    }
+    valArr.sort(sorter);
 
     for (i = 0; i < valArr.length; i++) { // Repopulate the old array
         inputArr[i] = valArr[i];
