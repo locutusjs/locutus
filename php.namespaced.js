@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.08
+ * This is version: 2.09
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -1652,24 +1652,51 @@
         },// }}}
         
         // {{{ arsort
-        arsort: function(inputArr) {
+        arsort: function(inputArr, sort_flags) {
             // Sort an array in reverse order and maintain index association
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_arsort/
-            // +       version: 901.1411
+            // +       version: 901.1714
             // +   original by: Brett Zamir
-            // %          note: The examples are correct, this is a new way
+            // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
+            // %        note 1: integrated into all of these s: function by adapting the code at
+            // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
+            // %        note 2: The examples are correct, this is a new way
+            // %        note 2: Credits to: http://javascript.internet.com/math-related/bubble-sort.html
             // *     example 1: $P.data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
-            // *     example 1: $P.arsort(data);
+            // *     example 1: $P.asort(data);
             // *     results 1: data == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
             // *     returns 1: true
         
-            var bubbleSort = function(keyArr, inputArr) {
-                var i = 0, j = 0, tempValue = '', tempKeyVal = '';
+            var valArr=[], keyArr=[], k, i, ret, sorter;
         
+            switch (sort_flags) {
+                case 'SORT_STRING': // compare items as strings
+                case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
+                    throw 'Not implemented yet';
+                case 'SORT_NUMERIC': // compare items numerically
+                    sorter = function (a, b) {
+                        return(a - b);
+                    };
+                    break;
+                case 'SORT_REGULAR': // compare items normally (don't change types)
+                default:
+                    sorter = function (a, b) {
+                        if (a > b)
+                            return 1;
+                        if (a < b)
+                            return -1;
+                        return 0;
+                    };
+                    break;
+            }
+        
+            var bubbleSort = function(keyArr, inputArr) {
+                var i, j, tempValue, tempKeyVal;
                 for (i = inputArr.length-2; i >= 0; i--) {
-                    for (j=0; j <= i; j++) {
-                        if (inputArr[j+1] > inputArr[j]) {
+                    for (j = 0; j <= i; j++) {
+                        ret = sorter(inputArr[j+1], inputArr[j]);
+                        if (ret > 0) {
                             tempValue = inputArr[j];
                             inputArr[j] = inputArr[j+1];
                             inputArr[j+1] = tempValue;
@@ -1679,9 +1706,7 @@
                         }
                     }
                 }
-            }
-        
-            var valArr = [], keyArr=[], k = '', i = 0;
+            };
         
             // Get key and value arrays
             for (k in inputArr) {
@@ -1705,56 +1730,80 @@
         },// }}}
         
         // {{{ asort
-        asort: function(inputArr) {
+        asort: function(inputArr, sort_flags) {
             // Sort an array and maintain index association
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_asort/
-            // +       version: 901.1520
+            // +       version: 901.1714
             // +   original by: Brett Zamir
-            // %          note: The examples are correct, this is a new way
-            // %          note: Credits to: http://javascript.internet.com/math-related/bubble-sort.html 
+            // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
+            // %        note 1: integrated into all of these s: function by adapting the code at
+            // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
+            // %        note 2: The examples are correct, this is a new way
+            // %        note 2: Credits to: http://javascript.internet.com/math-related/bubble-sort.html
             // *     example 1: $P.data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
             // *     example 1: $P.asort(data);
             // *     results 1: data == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
             // *     returns 1: true
         
-            var bubbleSort = function(keyArr, inputArr) {
-                var i = 0, j = 0, tempValue = '', tempKeyVal = '';
+            var valArr=[], keyArr=[], k, i, ret, sorter;
         
+            switch (sort_flags) {
+                case 'SORT_STRING': // compare items as strings
+                case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
+                    throw 'Not implemented yet';
+                case 'SORT_NUMERIC': // compare items numerically
+                    sorter = function (a, b) {
+                        return(a - b);
+                    };
+                    break;
+                case 'SORT_REGULAR': // compare items normally (don't change types)
+                default:
+                    sorter = function (a, b) {
+                        if (a > b)
+                            return 1;
+                        if (a < b)
+                            return -1;
+                        return 0;
+                    };
+                    break;
+            }
+        
+            var bubbleSort = function(keyArr, inputArr) {
+                var i, j, tempValue, tempKeyVal;
                 for (i = inputArr.length-2; i >= 0; i--) {
                     for (j = 0; j <= i; j++) {
-                        if (inputArr[j+1] < inputArr[j]) {
-                            tempValue     = inputArr[j];
-                            inputArr[j]   = inputArr[j+1];
+                        ret = sorter(inputArr[j+1], inputArr[j]);
+                        if (ret < 0) {
+                            tempValue = inputArr[j];
+                            inputArr[j] = inputArr[j+1];
                             inputArr[j+1] = tempValue;
-                            tempKeyVal    = keyArr[j];
-                            keyArr[j]     = keyArr[j+1];
-                            keyArr[j+1]   = tempKeyVal;
+                            tempKeyVal = keyArr[j];
+                            keyArr[j] = keyArr[j+1];
+                            keyArr[j+1] = tempKeyVal;
                         }
                     }
                 }
             };
         
-            var valArr = [], keyArr=[], k = '', i = 0;
-        
             // Get key and value arrays
-            for (k in inputArr) { 
+            for (k in inputArr) {
                 valArr.push(inputArr[k]);
                 keyArr.push(k);
                 delete inputArr[k] ;
             }
             try {
                 // Sort our new temporary arrays
-                bubbleSort(keyArr, valArr); 
+                bubbleSort(keyArr, valArr);
             } catch(e) {
                 return false;
             }
         
             // Repopulate the old array
-            for (i = 0; i < valArr.length; i++) {  
+            for (i = 0; i < valArr.length; i++) {
                 inputArr[keyArr[i]] = valArr[i];
             }
-            
+        
             return true;
         },// }}}
         
@@ -2142,7 +2191,7 @@
             // Sort an array by key in reverse order
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_krsort/
-            // +       version: 901.1411
+            // +       version: 901.1714
             // +   original by: GeekFG (http://geekfg.blogspot.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Brett Zamir
@@ -2152,15 +2201,27 @@
             // *     results 1: data == {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
             // *     returns 1: true
         
-            var tmp_arr = {}, keys = [], sorter = false, i = 0, key = '';
+            var tmp_arr={}, keys=[], sorter, i, key;
         
-            // For now only SORT_NUMERIC has a custom sorter
-            // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
-            // are all handled with the default sorter
-            if (sort_flags == 'SORT_NUMERIC') {
-                sorter = function (a, b) {
-                    return(a - b);
-                };
+            switch (sort_flags) {
+                case 'SORT_STRING': // compare items as strings
+                case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+                    throw 'Not implemented yet';
+                case 'SORT_NUMERIC': // compare items numerically
+                    sorter = function (a, b) {
+                        return(b - a);
+                    };
+                    break;
+                case 'SORT_REGULAR': // compare items normally (don't change types)
+                default:
+                    sorter = function (a, b) {
+                        if (a < b)
+                            return 1;
+                        if (a > b)
+                            return -1;
+                        return 0;
+                    };
+                    break;
             }
         
             // Make a list of key names
@@ -2168,17 +2229,7 @@
                 keys.push(key);
             }
         
-            // Sort key names
-            try {
-                if (sorter !== false) {
-                    keys.sort(sorter);
-                } else {
-                    keys.sort();
-                }
-            } catch (e) {
-                return false;
-            }
-            keys.reverse();
+            keys.sort(sorter);
         
             // Rebuild array with sorted key names
             for (i = 0; i < keys.length; i++) {
@@ -2198,7 +2249,7 @@
             // Sort an array by key
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_ksort/
-            // +       version: 901.1411
+            // +       version: 901.1714
             // +   original by: GeekFG (http://geekfg.blogspot.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: Brett Zamir
@@ -2208,15 +2259,27 @@
             // *     results 1: data == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
             // *     returns 1: true
         
-            var tmp_arr = {}, keys = [], sorter = false, i = 0, key = '';
+            var tmp_arr={}, keys=[], sorter, i, key;
         
-            // For now only SORT_NUMERIC has a custom sorter
-            // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
-            // are all handled with the default sorter
-            if (sort_flags == 'SORT_NUMERIC') {
-                sorter = function (a, b) {
-                    return(a - b);
-                };
+            switch (sort_flags) {
+                case 'SORT_STRING': // compare items as strings
+                case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+                    throw 'Not implemented yet';
+                case 'SORT_NUMERIC': // compare items numerically
+                    sorter = function (a, b) {
+                        return(a - b);
+                    };
+                    break;
+                case 'SORT_REGULAR': // compare items normally (don't change types)
+                default:
+                    sorter = function (a, b) {
+                        if (a > b)
+                            return 1;
+                        if (a < b)
+                            return -1;
+                        return 0;
+                    };
+                    break;
             }
         
             // Make a list of key names
@@ -2224,16 +2287,7 @@
                 keys.push(key);
             }
         
-            // Sort key names
-            try {
-                if (sorter !== false) {
-                    keys.sort(sorter);
-                } else {
-                    keys.sort();
-                }
-            } catch (e) {
-                return false;
-            }
+            keys.sort(sorter);
         
             // Rebuild array with sorted key names
             for (i = 0; i < keys.length; i++) {
@@ -2436,9 +2490,12 @@
             // Sort an array in reverse order
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_rsort/
-            // +       version: 901.1623
+            // +       version: 901.1714
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +    revised by: Brett Zamir
+            // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
+            // %        note 1: integrated into all of these s: function by adapting the code at
+            // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
             // *     example 1: $P.rsort(['Kevin', 'van', 'Zonneveld']);
             // *     returns 1: true
             // *     example 2: $P.fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
@@ -2447,29 +2504,34 @@
             // *     results 2: fruits == {0: 'orange', 1: 'lemon', 2: 'banana', 3: 'apple'}
         
             var valArr = [], keyArr=[];
-            var k = '', i = 0;
+            var k = '', i = 0, sorter = false;
             
             for (k in inputArr) { // Get key and value arrays
                 valArr.push(inputArr[k]);
                 delete inputArr[k] ;
             }
         
-            var sorter = false;
-        
-            // For now only SORT_NUMERIC has a custom sorter
-            // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
-            // are all handled with the default sorter
-            if (sort_flags === 'SORT_NUMERIC') {
-                sorter = function (a, b) {
-                    return(a - b);
-                };
+            switch (sort_flags) {
+                case 'SORT_STRING': // compare items as strings
+                case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+                    throw 'Not implemented yet';
+                case 'SORT_NUMERIC': // compare items numerically
+                    sorter = function (a, b) {
+                        return(b - a);
+                    };
+                    break;
+                case 'SORT_REGULAR': // compare items normally (don't change types)
+                default:
+                    sorter = function (a, b) {
+                        if (a < b)
+                            return 1;
+                        if (a > b)
+                            return -1;
+                        return 0;
+                    };
+                    break;
             }
-            if (sorter !== false) {
-                valArr.sort(sorter);
-            } else {
-                valArr.sort();
-                valArr.reverse();
-            }
+            valArr.sort(sorter);
         
             for (i = 0; i < valArr.length; i++) { // Repopulate the old array
                 inputArr[i] = valArr[i];
@@ -2513,9 +2575,12 @@
             // Sort an array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sort/
-            // +       version: 901.1623
+            // +       version: 901.1714
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +    revised by: Brett Zamir
+            // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
+            // %        note 1: integrated into all of these s: function by adapting the code at
+            // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
             // *     example 1: $P.sort(['Kevin', 'van', 'Zonneveld']);
             // *     returns 1: true
             // *     example 2: $P.fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
@@ -2524,28 +2589,34 @@
             // *     results 2: fruits == {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
         
             var valArr = [], keyArr=[];
-            var k = '', i = 0;
+            var k = '', i = 0, sorter = false;
             
             for (k in inputArr) { // Get key and value arrays
                 valArr.push(inputArr[k]);
                 delete inputArr[k] ;
             }
         
-            var sorter = false;
-        
-            // For now only SORT_NUMERIC has a custom sorter
-            // and SORT_REGULAR, SORT_STRING, and SORT_LOCALE_STRING
-            // are all handled with the default sorter
-            if (sort_flags === 'SORT_NUMERIC') {
-                sorter = function (a, b) {
-                    return(a - b);
-                };
+            switch (sort_flags) {
+                case 'SORT_STRING': // compare items as strings
+                case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+                    throw 'Not implemented yet';
+                case 'SORT_NUMERIC': // compare items numerically
+                    sorter = function (a, b) {
+                        return(a - b);
+                    };
+                    break;
+                case 'SORT_REGULAR': // compare items normally (don't change types)
+                default:
+                    sorter = function (a, b) {
+                        if (a > b)
+                            return 1;
+                        if (a < b)
+                            return -1;
+                        return 0;
+                    };
+                    break;
             }
-            if (sorter !== false) {
-                valArr.sort(sorter);
-            } else {
-                valArr.sort();
-            }
+            valArr.sort(sorter);
         
             for (i = 0; i < valArr.length; i++) { // Repopulate the old array
                 inputArr[i] = valArr[i];
@@ -5510,7 +5581,7 @@
             // Output one or more strings
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_echo/
-            // +       version: 901.1623
+            // +       version: 901.1714
             // +   original by: Philip Peterson
             // +   improved by: echo is bad
             // +   improved by: Nate
@@ -5649,15 +5720,13 @@
             for (i = 0; i < argc; i++ ) {
                 arg = argv[i];
                 if (document.createDocumentFragment && document.createTextNode && document.appendChild) {
-                    stringToDOM(arg);
+                    document.body.appendChild(stringToDOM(arg));
                 } else if (document.write) {
                     document.write(arg);
                 } else {
                     print(arg);
                 }
             }
-            
-            return null;
         },// }}}
         
         // {{{ explode
