@@ -1,6 +1,7 @@
 function asort(inputArr, sort_flags) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
+    // +   improved by: Brett Zamir
     // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
     // %        note 1: integrated into all of these functions by adapting the code at
     // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
