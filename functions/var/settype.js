@@ -3,8 +3,8 @@ function settype (vr, type) {
     // +   original by: Waldo Malqui Silva
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Brett Zamir
-    // +        note 1: Credits to Crockford also
-    // +        note 2: only works on global variables, and "vr" must be passed in as a string
+    // %        note 1: Credits to Crockford also
+    // %        note 2: only works on global variables, and "vr" must be passed in as a string
     // *     example 1: foo = '5bar';
     // *     example 1: settype(foo, 'integer');
     // *     results 1: foo == 5
