@@ -19,6 +19,12 @@ function mktime() {
     // *     example 3: real = Math.floor(td.getTime()/1000);
     // *     example 3: diff = (real - make);
     // *     results 3: diff < 5
+    // *     example 4: mktime(0, 0, 0, 13, 1, 1997)
+    // *     returns 4: 883609200
+    // *     example 5: mktime(0, 0, 0, 1, 1, 1998)
+    // *     returns 5: 883609200
+    // *     example 6: mktime(0, 0, 0, 1, 1, 98)
+    // *     returns 6: 883609200
     
     var no, ma = 0, mb = 0, i = 0, d = new Date(), argv = arguments, argc = argv.length;
 
