@@ -1,6 +1,7 @@
 function natsort(inputArr) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
+    // +   improved by: Brett Zamir
     // -    depends on: strnatcmp
     // *     example 1: $array1 = {a:"img12.png", b:"img10.png", c:"img2.png", d:"img1.png"};
     // *     example 1: natcasesort($array1);

@@ -22,26 +22,25 @@ function echo ( ) {
     var arg = '', argc = arguments.length, argv = arguments, i = 0;
 
     var stringToDOM = function (q){
-        var d=document;
-        function r(a){
+        var d = document;
+        var r = function(a){
             return a.replace(/\r/g,' ').replace(/\n/g,' ');
-        }
-        function s(a){
+        };
+        var s = function(a){
             return a.replace(/&amp;/g,'&').replace(/&gt;/g,'>').replace(/&lt;/g,'<').replace(/&nbsp;/g,' ').replace(/&quot;/g,'"');
-        }
-        function t(a){
+        };
+        var t = function(a){
             return a.replace(/ /g,'');
-        }
-        function u(a){
+        };
+        var u = function(a){
             var b,c,e,f,g,h,i;
             b=d.createDocumentFragment();
             c=a.indexOf(' ');
-            if(c===-1){
+            if (c === -1) {
                 b.appendChild(d.createElement(a.toLowerCase()))
-            }
-            else{
-                i=t(a.substring(0,c)).toLowerCase();
-                a=a.substr(c+1);
+            } else {
+                i = t(a.substring(0,c)).toLowerCase();
+                a = a.substr(c+1);
                 b.appendChild(d.createElement(i));
                 while(a.length){
                     e=a.indexOf('=');
@@ -60,7 +59,7 @@ function echo ( ) {
             }
             return b
         }
-        function v(a,b,c){
+        var v = function(a,b,c){
             var e,f;
             e=b;
             c=c.toLowerCase();
@@ -76,8 +75,8 @@ function echo ( ) {
                 e=e.substr(f)
             }
             return b.length-e.length
-        }
-        function w(a){
+        };
+        var w = function(a){
             var b,c,e,f,g,h,i,j,k,l,m,n,o,p,q;
             b=d.createDocumentFragment();
             while(a&&a.length){
@@ -86,13 +85,11 @@ function echo ( ) {
                     a=s(a);
                     b.appendChild(d.createTextNode(a));
                     a=null
-                }
-                else if(c){
+                } else if(c){
                     q=s(a.substring(0,c));
                     b.appendChild(d.createTextNode(q));
                     a=a.substr(c)
-                }
-                else{
+                } else{
                     e=a.indexOf('<!--');
                     if(!e){
                         f=a.indexOf('-->');
@@ -100,16 +97,14 @@ function echo ( ) {
                         g=s(g);
                         b.appendChild(d.createComment(g));
                         a=a.substr(f+3)
-                    }
-                    else{
+                    } else{
                         h=a.indexOf('>');
                         if(a.substring(h-1,h)==='/'){
                             i=a.indexOf('/>');
                             j=a.substring(1,i);
                             b.appendChild(u(j));
                             a=a.substr(i+2)
-                        }
-                        else{
+                        } else{
                             k=a.indexOf('>');
                             l=a.substring(1,k);
                             m=d.createDocumentFragment();
@@ -131,13 +126,18 @@ function echo ( ) {
                 }
             }
             return b
-        }
+        };
         return w(q)
     }
 
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
         if (document.createDocumentFragment && document.createTextNode && document.appendChild) {
+            if (document.body) {
+                document.body.appendChild(stringToDOM(arg));
+            } else {
+                document.documentElement.appendChild(stringToDOM(arg));
+            }
             document.body.appendChild(stringToDOM(arg));
         } else if (document.write) {
             document.write(arg);
