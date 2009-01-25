@@ -1,7 +1,7 @@
 function json_encode(mixed_val) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Public Domain (http://www.json.org/json2.js)
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      original by: Public Domain (http://www.json.org/json2.js)
+    // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: json_encode(['e', {pluribus: 'unum'}]);
     // *     returns 1: '[\n    "e",\n    {\n    "pluribus": "unum"\n}\n]'
 

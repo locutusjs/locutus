@@ -9,9 +9,9 @@ function settype (vr, type) {
     // *     example 1: settype(foo, 'integer');
     // *     results 1: foo == 5
     // *     returns 1: true
-    // *     example 2: bar = true;
-    // *     example 2: settype(bar, 'string');
-    // *     results 2: bar == '1'
+    // *     example 2: foo = true;
+    // *     example 2: settype(foo, 'string');
+    // *     results 2: foo == '1'
     // *     returns 2: true
 
     var is_array = function (arr) {
@@ -19,7 +19,8 @@ function settype (vr, type) {
                     !(arr.propertyIsEnumerable('length')) &&
                     typeof arr.splice === 'function';
     };
-    var v = this[vr], mtch, i, obj;
+    var v, mtch, i, obj;
+    v = this[vr] ? this[vr] : vr;
     
     try {
         switch(type) {
@@ -28,7 +29,7 @@ function settype (vr, type) {
                 else if (v === '0') {this[vr]=false;}
                 else if (typeof v === 'object' && !is_array(v)) {
                     var lgth = false;
-                    for (var i in v) {
+                    for (i in v) {
                         lgth = true;
                     }
                     this[vr]=lgth;
@@ -46,6 +47,7 @@ function settype (vr, type) {
                 else if (v === false || v === null) {this[vr]=0;}
                 else if (is_array(v) && v.length === 0) {this[vr]=0;}
                 else if (typeof v === 'object') {this[vr]=1;}
+
                 break;
             case 'float':
                 if (typeof v === 'string') {
