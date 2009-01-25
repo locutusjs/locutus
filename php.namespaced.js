@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.11
+ * This is version: 2.12
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -14,10 +14,11 @@
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
  * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Marc Palau, Mirek
- * Slugen, Public Domain (http://www.json.org/json2.js), Sakimori, Thunder.m,
- * Tyler Akins (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), 0m3r,
- * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
- * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
+ * Slugen, Public Domain (http://www.json.org/json2.js), Sakimori, Steven
+ * Levithan (http://blog.stevenlevithan.com), Thunder.m, Tyler Akins
+ * (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), 0m3r, Alexander
+ * Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
+ * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
  * Touesnard, Bryan Elliott, Cagri Ekin, Caio Ariede (http://caioariede.com),
@@ -29,20 +30,19 @@
  * (http://www.impact-computing.com/), J A R, Kirk Strobeck, Kristof Coomans
  * (SCK-CEN (Belgian Nucleair Research Centre)), LH, Leslie Hoare, Lincoln
  * Ramsay, Linuxworld, Luke Godfrey, Luke Smith (http://lucassmith.name),
- * Manish, Martin Pool, Mateusz "loonquawl" Zalega, MeEtc
+ * Manish, Martin Pool, Mateusz "loonquawl" Zalega, Matt Bradley, MeEtc
  * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Norman "zEh"
  * Fuchs, Ozh, Paul, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul
  * Koch (http://www.quirksmode.org/js/beat.html), Pierre-Luc Paour, Pul,
  * Pyerre, ReverseSyntax, Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss,
  * Simon Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay,
- * Steve Hilder, Steven Levithan (http://blog.stevenlevithan.com), Subhasis
- * Deb, T. Wild, T.Wild, T0bsn, Thiago Mata (http://thiagomata.blog.com), Tim
- * Wiel, Tod Gentille, Valentina De Rosa, Victor, XoraX
- * (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil, booeyOH, djmix,
- * dptr1988, duncan, echo is bad, ejsanders, gabriel paderni, ger, gorthaur,
- * hitwork, jakes, john (http://www.jd-tech.net), johnrembo, kenneth, marc
- * andreu, metjay, nobbler, noname, penutbutterjelly, rezna, sankai, sowberry,
- * stensi
+ * Steve Hilder, Subhasis Deb, T. Wild, T.Wild, T0bsn, Thiago Mata
+ * (http://thiagomata.blog.com), Tim Wiel, Tod Gentille, Valentina De Rosa,
+ * Victor, XoraX (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil,
+ * booeyOH, djmix, dptr1988, duncan, echo is bad, ejsanders, gabriel paderni,
+ * ger, gorthaur, hitwork, jakes, john (http://www.jd-tech.net), johnrembo,
+ * kenneth, marc andreu, metjay, nobbler, noname, penutbutterjelly, rezna,
+ * sankai, sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -5391,13 +5391,22 @@
             // Checks whether a given named constant exists
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_defined/
-            // +       version: 811.1314
+            // +       version: 901.2514
             // +   original by: Waldo Malqui Silva
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +    revised by: Brett Zamir
             // *     example 1: $P.defined('IMAGINARY_CONSTANT1');
             // *     returns 1: false
         
-            return (typeof window[constant_name] !== 'undefined');
+            var tmp = window[constant];
+            
+            window[constant] = window[constant] ? 'changed'+window[constant].toString() : 'changed';
+            var returnval = window[constant] === tmp;
+            if (!returnval) { // Reset
+                window[constant] = tmp;
+            }
+        
+            return returnval;
         },// }}}
         
         // {{{ die
@@ -5454,22 +5463,46 @@
             throw '';
         },// }}}
         
+        // {{{ php_strip_whitespace
+        php_strip_whitespace: function (file) {
+            // Return source with stripped comments and whitespace
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_php_strip_whitespace/
+            // +       version: 901.2514
+            // +   original by: Brett Zamir
+            // %        note 1: This uses: function XmlHttpRequest and cannot retrieve resource from different domain.
+            // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
+            // %        note 1: To avoid browser blocking issues's consider using jQuery's: $('#divId').load('http://url') instead.
+            // -    depends on: file_get_contents
+            // *     example 1: $P.php_strip_whitespace('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
+            // *     returns 1: '123'
+        
+            try {
+                var str = this.file_get_contents(file);
+            } catch (e) {
+                return '';
+            }
+            // Strip comments (both styles), reduce non-newline whitespace to one, reduce multiple
+            // newlines (preceded by any whitespace) to a newline, remove WS at beginning of line,
+            // and at end of line
+            return str.replace(/\/\/.*?\n/g, '').replace(/\/\*[^]*?\*\//g, '').replace(/[ \f\r\t\v\u00A0\u2028\u2029]+/g, ' ').replace(/\s*\n+/g, '\n').replace(/^\s+/gm, '').replace(/\s*$/gm, '');
+        },// }}}
+        
         // {{{ sleep
         sleep: function(seconds) {
             // Delay execution
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sleep/
-            // +       version: 810.1311
+            // +       version: 901.2514
             // +   original by: Christian Doebler
+            // +   bugfixed by: Brett Zamir
             // %          note: For study purposes. Current implementation could lock up the user's browser. 
             // %          note: Consider using setTimeout() instead.
             // *     example 1: $P.sleep(1);
             // *     returns 1: 0
             
-            seconds *= 1000;
             var start = new Date().getTime();
-            while (new Date().getTime() < start + seconds);
-            
+            while (new Date() < start + seconds*1000);
             return 0;
         },// }}}
         
@@ -8623,6 +8656,82 @@
             return tmp_arr.join(arg_separator);
         },// }}}
         
+        // {{{ parse_url
+        parse_url: function (str, component) {
+            // Parse a URL and return its components
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_parse_url/
+            // +       version: 901.2514
+            // +      original by: Steven Levithan (http://blog.stevenlevithan.com)
+            // + reimplemented by: Brett Zamir
+            // %          note: Based on http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+            // %          note: blog post at http://blog.stevenlevithan.com/archives/parseuri
+            // %          note: demo at http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+            // %          note: Does not replace invaild characters with '_' as in PHP, nor does it return false with
+            // %          note: a seriously malformed URL.
+            // %          note: Besides name: function, is the same as parseUri besides the commented out portion
+            // %          note: and the additional section following, as well as our allowing an extra slash after
+            // %          note: the scheme/protocol (to allow file:/// as in PHP)
+            // *     example 1: $P.parse_url('http://username:password@hostname/path?arg=value#anchor');
+            // *     returns 1: {scheme: 'http', host: 'hostname', user: 'username', pass: 'password', path: '/path', query: 'arg=value', fragment: 'anchor'}
+        
+            var  o   = {
+                strictMode: false,
+                key: ["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"],
+                q:   {
+                    name:   "queryKey",
+                    parser: /(?:^|&)([^&=]*)=?([^&]*)/g
+                },
+                parser: {
+                    strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
+                    loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/\/?)?((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/ // Added one optional slash to post-protocol to catch file:/// (should restrict this)
+                }
+            };
+            
+            var m   = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
+            uri = {},
+            i   = 14;
+            while (i--) uri[o.key[i]] = m[i] || "";
+            // Uncomment the following to use the original more detailed (non-PHP) script
+            /*
+                uri[o.q.name] = {};
+                uri[o.key[12]].replace(o.q.parser, function ($0, $1, $2) {
+                if ($1) uri[o.q.name][$1] = $2;
+                });
+                return uri;
+            */
+        
+            switch (component) {
+                case 'PHP_URL_SCHEME':
+                    return uri.protocol;
+                case 'PHP_URL_HOST':
+                    return uri.host;
+                case 'PHP_URL_PORT':
+                    return uri.port;
+                case 'PHP_URL_USER':
+                    return uri.user;
+                case 'PHP_URL_PASS':
+                    return uri.password;
+                case 'PHP_URL_PATH':
+                    return uri.path;
+                case 'PHP_URL_QUERY':
+                    return uri.query;
+                case 'PHP_URL_FRAGMENT':
+                    return uri.anchor;
+                default:
+                    var retArr = {};
+                    if (uri.protocol !== '') retArr.scheme=uri.protocol;
+                    if (uri.host !== '') retArr.host=uri.host;
+                    if (uri.port !== '') retArr.port=uri.port;
+                    if (uri.user !== '') retArr.user=uri.user;
+                    if (uri.password !== '') retArr.pass=uri.password;
+                    if (uri.path !== '') retArr.path=uri.path;
+                    if (uri.query !== '') retArr.query=uri.query;
+                    if (uri.anchor !== '') retArr.fragment=uri.anchor;
+                    return retArr;
+            }
+        },// }}}
+        
         // {{{ rawurldecode
         rawurldecode: function( str ) {
             // Decode URL-encoded strings
@@ -9123,23 +9232,31 @@
             // Find whether the type of a variable is integer
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_int/
-            // +       version: 812.1017
+            // +       version: 901.2514
             // +   original by: Alex
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +    revised by: Matt Bradley
+            // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
             // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
-            // *     example 1: $P.is_int(186.31);
-            // *     returns 1: false
-            // *     example 2: $P.is_int(12);
-            // *     returns 2: true
+            // *     example 1: $P.is_int(23)
+            // *     returns 1: true
+            // *     example 2: $P.is_int('23')
+            // *     returns 2: false
+            // *     example 3: $P.is_int(23.5)
+            // *     returns 3: false
+            // *     example 4: $P.is_int(true)
+            // *     returns 4: false
         
-            var y = parseInt(mixed_var * 1);
-            
-            if (isNaN(y)) {
+            if (typeof mixed_var !== 'number') {
+                return false;
+            }
+        
+            if (parseFloat(mixed_var) != parseInt(mixed_var)) {
                 return false;
             }
             
-            return mixed_var == y && mixed_var.toString() == y.toString(); 
+            return true;
         },// }}}
         
         // {{{ is_integer
