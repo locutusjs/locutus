@@ -6,7 +6,10 @@
 //echo mktime(0, 0, 0, 1, 1, 1998)."\n";
 
 
-echo mktime(0, 0, 0, 0, 1, 2008)."\n";
+echo strnatcasecmp("10", "1")."\n";
+echo strnatcasecmp(10, 1)."\n";
+echo strnatcasecmp('1', '10')."\n";
 //$x = get_html_translation_table(HTML_ENTITIES);
 //print_r($x);
 ?>
+echo strnatcasecmp(10, 1)."\n";

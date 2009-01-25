@@ -7,6 +7,7 @@ function asort(inputArr, sort_flags) {
     // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
     // %        note 2: The examples are correct, this is a new way
     // %        note 2: Credits to: http://javascript.internet.com/math-related/bubble-sort.html
+    // -    depends on: strnatcmp
     // *     example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
     // *     example 1: asort(data);
     // *     results 1: data == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
@@ -16,8 +17,15 @@ function asort(inputArr, sort_flags) {
 
     switch (sort_flags) {
         case 'SORT_STRING': // compare items as strings
+            sorter = function (a, b) {
+                return strnatcmp(a, b);
+            };
+            break;
         case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
-            throw 'Not implemented yet';
+            sorter = function (a, b) {
+                return(a.localeCompare(b));
+            };
+            break;
         case 'SORT_NUMERIC': // compare items numerically
             sorter = function (a, b) {
                 return(a - b);

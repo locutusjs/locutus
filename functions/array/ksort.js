@@ -13,8 +13,15 @@ function ksort(array, sort_flags) {
 
     switch (sort_flags) {
         case 'SORT_STRING': // compare items as strings
+            sorter = function (a, b) {
+                return strnatcmp(a, b);
+            };
+            break;
         case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
-            throw 'Not implemented yet';
+            sorter = function (a, b) {
+                return(a.localeCompare(b));
+            };
+            break;
         case 'SORT_NUMERIC': // compare items numerically
             sorter = function (a, b) {
                 return(a - b);
