@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.09
+ * This is version: 2.10
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -1639,6 +1639,7 @@ function arsort(inputArr, sort_flags) {
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_arsort/
     // +       version: 901.1714
     // +   original by: Brett Zamir
+    // +   improved by: Brett Zamir
     // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
     // %        note 1: integrated into all of these functions by adapting the code at
     // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
@@ -1717,6 +1718,7 @@ function asort(inputArr, sort_flags) {
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_asort/
     // +       version: 901.1714
     // +   original by: Brett Zamir
+    // +   improved by: Brett Zamir
     // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
     // %        note 1: integrated into all of these functions by adapting the code at
     // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
@@ -2559,6 +2561,7 @@ function sort (inputArr, sort_flags) {
     // +       version: 901.1714
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Brett Zamir
+    // +   improved by: Brett Zamir
     // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
     // %        note 1: integrated into all of these functions by adapting the code at
     // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
@@ -2611,8 +2614,9 @@ function uasort (inputArr, sorter) {
     // association
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_uasort/
-    // +       version: 901.1623
+    // +       version: 901.1714
     // +   original by: Brett Zamir
+    // +   improved by: Brett Zamir
     // *     example 1: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
     // *     example 1: uasort(fruits, function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;});
     // *     results 1: fruits == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}

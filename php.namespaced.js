@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.09
+ * This is version: 2.10
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Onno Marsman, Brett Zamir, Michael White
@@ -1658,6 +1658,7 @@
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_arsort/
             // +       version: 901.1714
             // +   original by: Brett Zamir
+            // +   improved by: Brett Zamir
             // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
             // %        note 1: integrated into all of these s: function by adapting the code at
             // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
@@ -1736,6 +1737,7 @@
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_asort/
             // +       version: 901.1714
             // +   original by: Brett Zamir
+            // +   improved by: Brett Zamir
             // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
             // %        note 1: integrated into all of these s: function by adapting the code at
             // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
@@ -2578,6 +2580,7 @@
             // +       version: 901.1714
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +    revised by: Brett Zamir
+            // +   improved by: Brett Zamir
             // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
             // %        note 1: integrated into all of these s: function by adapting the code at
             // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
@@ -2630,8 +2633,9 @@
             // association
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_uasort/
-            // +       version: 901.1623
+            // +       version: 901.1714
             // +   original by: Brett Zamir
+            // +   improved by: Brett Zamir
             // *     example 1: $P.fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
             // *     example 1: $P.uasort(fruits, function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;});
             // *     results 1: fruits == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
