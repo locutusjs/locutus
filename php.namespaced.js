@@ -1,10 +1,10 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.12
+ * This is version: 2.13
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
- * Portions copyright Onno Marsman, Brett Zamir, Michael White
+ * Portions copyright Brett Zamir, Onno Marsman, Michael White
  * (http://getsprink.com), Paulo Ricardo F. Santos, Waldo Malqui Silva, Jack,
  * Jonas Raoni Soares Silva (http://www.jsfromhell.com), Philip Peterson, Ates
  * Goral (http://magnetiq.com), Legaev Andrey, Martijn Wieringa, Nate, Enrique
@@ -22,11 +22,11 @@
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
  * Touesnard, Bryan Elliott, Cagri Ekin, Caio Ariede (http://caioariede.com),
- * Christian Doebler, Cord, David, David James, David Randall, Der Simon
- * (http://innerdom.sourceforge.net/), Dino, Douglas Crockford
- * (http://javascript.crockford.com), DxGx, FGFEmperor, Felix Geisendoerfer
- * (http://www.debuggable.com/felix), Francesco, Francois, FremyCompany,
- * Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam Singer
+ * Christian Doebler, Cord, Credits to Crockford also, David, David James,
+ * David Randall, Der Simon (http://innerdom.sourceforge.net/), Dino, Douglas
+ * Crockford (http://javascript.crockford.com), DxGx, FGFEmperor, Felix
+ * Geisendoerfer (http://www.debuggable.com/felix), Francesco, Francois,
+ * FremyCompany, Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam Singer
  * (http://www.impact-computing.com/), J A R, Kirk Strobeck, Kristof Coomans
  * (SCK-CEN (Belgian Nucleair Research Centre)), LH, Leslie Hoare, Lincoln
  * Ramsay, Linuxworld, Luke Godfrey, Luke Smith (http://lucassmith.name),
@@ -41,7 +41,8 @@
  * Victor, XoraX (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil,
  * booeyOH, djmix, dptr1988, duncan, echo is bad, ejsanders, gabriel paderni,
  * ger, gorthaur, hitwork, jakes, john (http://www.jd-tech.net), johnrembo,
- * kenneth, marc andreu, metjay, nobbler, noname, penutbutterjelly, rezna,
+ * kenneth, marc andreu, metjay, nobbler, noname, only works on global
+ * variables, and "vr" must be passed in as a string, penutbutterjelly, rezna,
  * sankai, sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
@@ -8925,6 +8926,22 @@
             return ret;
         },// }}}
         
+        // {{{ doubleval
+        doubleval: function( mixed_var ) {
+            // Alias of floatval()
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_doubleval/
+            // +       version: 901.2515
+            // +   original by: Brett Zamir
+            //  -   depends on: floatval
+            // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+            // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
+            // *     example 1: $P.doubleval(186);
+            // *     returns 1: 186.00
+        
+            return this.floatval(mixed_var);
+        },// }}}
+        
         // {{{ empty
         empty: function( mixed_var ) {
             // Determine whether a variable is empty
@@ -9349,6 +9366,22 @@
             }
         },// }}}
         
+        // {{{ is_real
+        is_real: function( mixed_var ) {
+            // Alias of is_float()
+            // 
+            // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_real/
+            // +       version: 901.2515
+            // +   original by: Brett Zamir
+            //  -   depends on: is_float
+            // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+            // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
+            // *     example 1: $P.is_double(186.31);
+            // *     returns 1: true
+        
+            return this.is_float(mixed_var);
+        },// }}}
+        
         // {{{ is_scalar
         is_scalar: function( mixed_var ) {
             // Finds whether a variable is a scalar
@@ -9560,6 +9593,98 @@
             }
             if (type != "object" && type != "array") val += ";";
             return val;
+        },// }}}
+        
+        // {{{ settype
+        settype: function (vr, type) {
+           // http://kevin.vanzonneveld.net
+            // +   original by: Waldo Malqui Silva
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +    revised by: Brett Zamir
+            // +        note 1: Credits to Crockford also
+            // +        note 2: only works on global variables, and "vr" must be passed in as a string
+            // *     example 1: $P.foo = '5bar';
+            // *     example 1: $P.settype(foo, 'integer');
+            // *     results 1: foo == 5
+            // *     returns 1: true
+            // *     example 2: $P.bar = true;
+            // *     example 2: $P.settype(bar, 'string');
+            // *     results 2: bar == '1'
+            // *     returns 2: true
+        
+            var is_array = function (arr) {
+                return typeof arr === 'object' && typeof arr.length === 'number' &&
+                            !(arr.propertyIsEnumerable('length')) &&
+                            typeof arr.splice === 'function';
+            };
+            var v = this[vr], mtch, i, obj;
+            
+            try {
+                switch(type) {
+                    case 'boolean':
+                        if (is_array(v) && v.length === 0) {this[vr]=false;}
+                        else if (v === '0') {this[vr]=false;}
+                        else if (typeof v === 'object' && !is_array(v)) {
+                            var lgth = false;
+                            for (var i in v) {
+                                lgth = true;
+                            }
+                            this[vr]=lgth;
+                        }
+                        else {this[vr] = !!v;}
+                        break;
+                    case 'integer':
+                        if (typeof v === 'number') {this[vr]=parseInt(v, 10);}
+                        else if (typeof v === 'string') {
+                            mtch = v.match(/^([+-]?)(\d+)/);
+                            if (!mtch) {this[vr]=0;}
+                            else {this[vr]=parseInt(v, 10);}
+                        }
+                        else if (v === true) {this[vr]=1;}
+                        else if (v === false || v === null) {this[vr]=0;}
+                        else if (is_array(v) && v.length === 0) {this[vr]=0;}
+                        else if (typeof v === 'object') {this[vr]=1;}
+                        break;
+                    case 'float':
+                        if (typeof v === 'string') {
+                            mtch = v.match(/^([+-]?)(\d+(\.\d+)?|\.\d+)([eE][+-]?\d+)?/);
+                            if (!mtch) {this[vr]=0;}
+                            else {this[vr]=parseFloat(v, 10);}
+                        }
+                        else if (v === true) {this[vr]=1;}
+                        else if (v === false || v === null) {this[vr]=0;}
+                        else if (is_array(v) && v.length === 0) {this[vr]=0;}
+                        else if (typeof v === 'object') {this[vr]=1;}
+                        break;
+                    case 'string':
+                        if (v === null || v === false) {this[vr]='';}
+                        else if (is_array(v)) {this[vr]='Array';}
+                        else if (typeof v === 'object') {this[vr]='Object';}
+                        else if (v === true) {this[vr]='1';}
+                        else {this[vr] += '';} // numbers (and s: function?)
+                        break;
+                    case 'array':
+                        if (v === null) {this[vr] = [];}
+                        else if (typeof v !== 'object') {this[vr] = [v];}
+                        break;
+                    case 'object':
+                        if (v === null) {this[vr]={};}
+                        else if (is_array(v)) {
+                            for (i = 0, obj={}; i < v.length; i++) {
+                                obj[i] = v;
+                            }
+                            this[vr] = obj;
+                        }
+                        else if (typeof v !== 'object') {this[vr]={scalar:v};}
+                        break;
+                    case 'null':
+                        delete this[vr];
+                        break;
+                }
+                return true;
+            } catch (e) {
+                return false;
+            }
         },// }}}
         
         // {{{ strval
