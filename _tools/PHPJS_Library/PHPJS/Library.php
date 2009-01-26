@@ -236,7 +236,7 @@ Class PHPJS_Library {
         $copyright .= " * More info at: %s\n";
         $copyright .= " * \n";
         $copyright .= " * This is version: %s\n";
-        $copyright .= " * php.js is copyright 2008 Kevin van Zonneveld.\n";
+        $copyright .= " * php.js is copyright ".date('Y')." Kevin van Zonneveld.\n";
         $copyright .= " * \n";
         $copyright .= " * %s\n";
         $copyright .= " * \n";
