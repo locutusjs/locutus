@@ -83,8 +83,10 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         } elseif ($this->_flagIsEnabled($flags, self::COMPILE_PACKED)) {
             $compiledTxt = $this->_pack($compiledTxt);
         }
-        
-        return $compiledTxt;
+
+        $version = 'unknown';
+
+        return genLicense($version)."\n".$compiledTxt;
     }
     
     /**

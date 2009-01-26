@@ -80,7 +80,7 @@ Class PHPJS_Library {
         
     
     const PROJECT_URL = "http://phpjs.org";
-    const PROJECT_FUNCTION_URL = "http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_";
+    const PROJECT_FUNCTION_URL = "http://phpjs.org/functions/";
     
     
     public $phpFunctionsSummary = array();
