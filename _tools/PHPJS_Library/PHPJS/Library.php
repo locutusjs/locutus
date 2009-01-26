@@ -128,7 +128,7 @@ Class PHPJS_Library {
                 }
                 
                 if ($type == "function" || $type === false) {
-                    $addSelection[] = $funcName;
+                    $addSelection[] = $functionName;
                 } elseif (strtolower($type) == "from") {
                     $record = false;
                     foreach ($this->Functions as $funcName=>$Function) {
