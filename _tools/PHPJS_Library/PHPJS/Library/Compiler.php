@@ -86,7 +86,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
 
         $version = 'unknown';
 
-        return genLicense($version)."\n".$compiledTxt;
+        return $this->genLicense($version)."\n".$compiledTxt;
     }
     
     /**
