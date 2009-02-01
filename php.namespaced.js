@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.13
+ * This is version: 2.14
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Brett Zamir, Onno Marsman, Michael White
@@ -22,11 +22,11 @@
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
  * Touesnard, Bryan Elliott, Cagri Ekin, Caio Ariede (http://caioariede.com),
- * Christian Doebler, Cord, Credits to Crockford also, David, David James,
- * David Randall, Der Simon (http://innerdom.sourceforge.net/), Dino, Douglas
- * Crockford (http://javascript.crockford.com), DxGx, FGFEmperor, Felix
- * Geisendoerfer (http://www.debuggable.com/felix), Francesco, Francois,
- * FremyCompany, Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam Singer
+ * Christian Doebler, Cord, David, David James, David Randall, Der Simon
+ * (http://innerdom.sourceforge.net/), Dino, Douglas Crockford
+ * (http://javascript.crockford.com), DxGx, FGFEmperor, Felix Geisendoerfer
+ * (http://www.debuggable.com/felix), Francesco, Francois, FremyCompany,
+ * Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam Singer
  * (http://www.impact-computing.com/), J A R, Kirk Strobeck, Kristof Coomans
  * (SCK-CEN (Belgian Nucleair Research Centre)), LH, Leslie Hoare, Lincoln
  * Ramsay, Linuxworld, Luke Godfrey, Luke Smith (http://lucassmith.name),
@@ -41,8 +41,7 @@
  * Victor, XoraX (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil,
  * booeyOH, djmix, dptr1988, duncan, echo is bad, ejsanders, gabriel paderni,
  * ger, gorthaur, hitwork, jakes, john (http://www.jd-tech.net), johnrembo,
- * kenneth, marc andreu, metjay, nobbler, noname, only works on global
- * variables, and "vr" must be passed in as a string, penutbutterjelly, rezna,
+ * kenneth, marc andreu, metjay, nobbler, noname, penutbutterjelly, rezna,
  * sankai, sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
@@ -4103,9 +4102,9 @@
             // Decodes a JSON string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_json_decode/
-            // +       version: 901.1415
-            // +   original by: Public Domain (http://www.json.org/json2.js)
-            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +       version: 901.2515
+            // +      original by: Public Domain (http://www.json.org/json2.js)
+            // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.json_decode('[\n    "e",\n    {\n    "pluribus": "unum"\n}\n]');
             // *     returns 1: ['e', {pluribus: 'unum'}]
         
@@ -4193,9 +4192,9 @@
             // Returns the JSON representation of a value
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_json_encode/
-            // +       version: 901.1415
-            // +   original by: Public Domain (http://www.json.org/json2.js)
-            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +       version: 901.2515
+            // +      original by: Public Domain (http://www.json.org/json2.js)
+            // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.json_encode(['e', {pluribus: 'unum'}]);
             // *     returns 1: '[\n    "e",\n    {\n    "pluribus": "unum"\n}\n]'
         
@@ -9601,15 +9600,15 @@
             // +   original by: Waldo Malqui Silva
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +    revised by: Brett Zamir
-            // +        note 1: Credits to Crockford also
-            // +        note 2: only works on global variables, and "vr" must be passed in as a string
+            // %        note 1: Credits to Crockford also
+            // %        note 2: only works on global variables, and "vr" must be passed in as a string
             // *     example 1: $P.foo = '5bar';
             // *     example 1: $P.settype(foo, 'integer');
             // *     results 1: foo == 5
             // *     returns 1: true
-            // *     example 2: $P.bar = true;
-            // *     example 2: $P.settype(bar, 'string');
-            // *     results 2: bar == '1'
+            // *     example 2: $P.foo = true;
+            // *     example 2: $P.settype(foo, 'string');
+            // *     results 2: foo == '1'
             // *     returns 2: true
         
             var is_array = function (arr) {
@@ -9617,7 +9616,8 @@
                             !(arr.propertyIsEnumerable('length')) &&
                             typeof arr.splice === 'function';
             };
-            var v = this[vr], mtch, i, obj;
+            var v, mtch, i, obj;
+            v = this[vr] ? this[vr] : vr;
             
             try {
                 switch(type) {
@@ -9626,7 +9626,7 @@
                         else if (v === '0') {this[vr]=false;}
                         else if (typeof v === 'object' && !is_array(v)) {
                             var lgth = false;
-                            for (var i in v) {
+                            for (i in v) {
                                 lgth = true;
                             }
                             this[vr]=lgth;
@@ -9644,6 +9644,7 @@
                         else if (v === false || v === null) {this[vr]=0;}
                         else if (is_array(v) && v.length === 0) {this[vr]=0;}
                         else if (typeof v === 'object') {this[vr]=1;}
+        
                         break;
                     case 'float':
                         if (typeof v === 'string') {
