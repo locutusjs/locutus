@@ -7,7 +7,7 @@ function bcadd(left_operand,right_operand, scale) {
 
     left_operand  = left_operand.toString();
     right_operand = right_operand.toString();
-    
+     
     // BC Math Support functions
     var bc_trimzeros = function(ba) {
         if (ba.search(/\./i) == -1) {
