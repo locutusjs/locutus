@@ -1,15 +1,17 @@
-function printf( ) {
+function vprintf(format, args) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ash Searle (http://hexmen.com/blog/)
     // +   improved by: Michael White (http://getsprink.com)
-    // +   improved by: Brett Zamir
+    // + reimplemented by: Brett Zamir
     // -    depends on: sprintf
     // *     example 1: printf("%01.2f", 123.1);
     // *     returns 1: 6
 
     var body, elmt;
     var ret = '';
-    
+
+    // .shift() does not work to get first item in bodies
+
     var HTMLNS = 'http://www.w3.org/1999/xhtml';
     body = document.getElementsByTagNameNS ?
       (document.getElementsByTagNameNS(HTMLNS, 'body')[0] ?
@@ -20,11 +22,11 @@ function printf( ) {
     if (!body) {
         return false;
     }
-    
-    ret = sprintf.apply(this, arguments);
+
+    ret = sprintf.apply(this, [format].concat(args));
 
     elmt = document.createTextNode(ret);
     body.appendChild(elmt);
-    
+
     return ret.length;
 }
