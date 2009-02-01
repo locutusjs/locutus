@@ -1,23 +1,24 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.14
+ * This is version: 2.15
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Brett Zamir, Onno Marsman, Michael White
- * (http://getsprink.com), Paulo Ricardo F. Santos, Waldo Malqui Silva, Jack,
+ * (http://getsprink.com), Waldo Malqui Silva, Paulo Ricardo F. Santos, Jack,
  * Jonas Raoni Soares Silva (http://www.jsfromhell.com), Philip Peterson, Ates
  * Goral (http://magnetiq.com), Legaev Andrey, Martijn Wieringa, Nate, Enrique
  * Gonzalez, Philippe Baumann, Webtoolkit.info (http://www.webtoolkit.info/),
- * Carlos R. L. Rodrigues (http://www.jsfromhell.com), Jani Hartikainen, Ash
- * Searle (http://hexmen.com/blog/), Erkekjetter, GeekFG
+ * Ash Searle (http://hexmen.com/blog/), Carlos R. L. Rodrigues
+ * (http://www.jsfromhell.com), Jani Hartikainen, Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
  * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Marc Palau, Mirek
- * Slugen, Public Domain (http://www.json.org/json2.js), Sakimori, Steven
- * Levithan (http://blog.stevenlevithan.com), Thunder.m, Tyler Akins
- * (http://rumkin.com), mdsjack (http://www.mdsjack.bo.it), 0m3r, Alexander
- * Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
+ * Slugen, Public Domain (http://www.json.org/json2.js), Sakimori, Steve
+ * Hilder, Steven Levithan (http://blog.stevenlevithan.com), Thunder.m, Tyler
+ * Akins (http://rumkin.com), gorthaur, mdsjack (http://www.mdsjack.bo.it),
+ * 0m3r, Alexander Ermolaev
+ * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
  * (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
@@ -36,13 +37,13 @@
  * Koch (http://www.quirksmode.org/js/beat.html), Pierre-Luc Paour, Pul,
  * Pyerre, ReverseSyntax, Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss,
  * Simon Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay,
- * Steve Hilder, Subhasis Deb, T. Wild, T.Wild, T0bsn, Thiago Mata
+ * Subhasis Deb, T. Wild, T.Wild, T0bsn, Thiago Mata
  * (http://thiagomata.blog.com), Tim Wiel, Tod Gentille, Valentina De Rosa,
  * Victor, XoraX (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil,
  * booeyOH, djmix, dptr1988, duncan, echo is bad, ejsanders, gabriel paderni,
- * ger, gorthaur, hitwork, jakes, john (http://www.jd-tech.net), johnrembo,
- * kenneth, marc andreu, metjay, nobbler, noname, penutbutterjelly, rezna,
- * sankai, sowberry, stensi
+ * ger, hitwork, jakes, john (http://www.jd-tech.net), johnrembo, kenneth,
+ * marc andreu, metjay, nobbler, noname, penutbutterjelly, rezna, sankai,
+ * sowberry, stensi
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -5506,6 +5507,61 @@ function sleep(seconds) {
     return 0;
 }// }}}
 
+// {{{ time_nanosleep
+function time_nanosleep(seconds, nanosecs) {
+    // Delay for a number of seconds and nanoseconds
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_time_nanosleep/
+    // +       version: 902.122
+    // +   original by: Brett Zamir
+    // %        note 1: For study purposes. Current implementation could lock up the user's browser.
+    // %        note 1: Consider using setTimeout() instead.
+    // %        note 2: Note that the following function's argument, contrary to the reference to
+    // %        note 2: nanoseconds, does not start being significant until 1,000,000 nanoseconds (milliseconds),
+    // %        note 2: since that is the smallest unit handled by JavaScript's Date function.
+    // *     example 1: time_nanosleep(1, 2000000000); // delays for 3 seconds
+    // *     returns 1: true
+
+    var start = new Date().getTime();
+    while (new Date() < (start + seconds*1000+nanosecs/1000000));
+    return true;
+}// }}}
+
+// {{{ time_sleep_until
+function time_sleep_until(timestamp) {
+    // Make the script sleep until the specified time
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_time_sleep_until/
+    // +       version: 902.122
+    // +   original by: Brett Zamir
+    // %          note: For study purposes. Current implementation could lock up the user's browser.
+    // %          note: Consider using setTimeout() instead.
+    // *     example 1: time_sleep_until(1233146501) // delays until the time indicated by the given timestamp is reached
+    // *     returns 1: true
+
+    while (new Date() < timestamp*1000);
+    return true;
+}// }}}
+
+// {{{ usleep
+function usleep(microseconds) {
+    // #!#!#!#!# usleep::$descr1 does not contain valid 'usleep' at line 260
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_usleep/
+    // +       version: 902.122
+    // // +   original by: Brett Zamir
+    // %        note 1: For study purposes. Current implementation could lock up the user's browser.
+    // %        note 1: Consider using setTimeout() instead.
+    // %        note 2: Note that this function's argument, contrary to the PHP name, does not
+    // %        note 2: start being significant until 1,000 microseconds (1 millisecond)
+    // *     example 1: usleep(2000000); // delays for 2 seconds
+    // *     returns 1: true
+
+    var start = new Date().getTime();
+    while (new Date() < (start + microseconds/1000));
+    return true;
+}// }}}
+
 // {{{ ip2long
 function ip2long ( ip_address ) {
     // Converts a string containing an (IPv4) Internet Protocol dotted address into a
@@ -6699,23 +6755,27 @@ function printf( ) {
     // Output a formatted string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_printf/
-    // +       version: 809.2411
+    // +       version: 902.122
     // +   original by: Ash Searle (http://hexmen.com/blog/)
     // +   improved by: Michael White (http://getsprink.com)
+    // +   improved by: Brett Zamir
     // -    depends on: sprintf
     // *     example 1: printf("%01.2f", 123.1);
     // *     returns 1: 6
 
-    var bodies = [], body, elmt;
+    var body, elmt;
     var ret = '';
     
-    // .shift() does not work to get first item in bodies
-    bodies = document.getElementsByTagName("body");
-    if (!bodies || ! bodies[0]) {
+    var HTMLNS = 'http://www.w3.org/1999/xhtml';
+    body = document.getElementsByTagNameNS ?
+      (document.getElementsByTagNameNS(HTMLNS, 'body')[0] ?
+        document.getElementsByTagNameNS(HTMLNS, 'body')[0] :
+        document.documentElement.lastChild) :
+      document.getElementsByTagName('body')[0];
+
+    if (!body) {
         return false;
     }
-    body   = bodies[0];
-    
     
     ret = sprintf.apply(this, arguments);
 
@@ -7917,6 +7977,28 @@ function strncasecmp (str1, str2, len) {
     return 0;
 }// }}}
 
+// {{{ strncmp
+function strncmp ( str1, str2, lgth ) {
+    // Binary safe string comparison of the first n characters
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strncmp/
+    // +       version: 902.122
+    // +      original by: Waldo Malqui Silva
+    // +         input by: Steve Hilder
+    // +      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +       revised by: gorthaur
+    // + reimplemented by: Brett Zamir
+    // *     example 1: strncmp('aaa', 'aab', 2);
+    // *     returns 1: 0
+    // *     example 2: strncmp('aaa', 'aab', 3 );
+    // *     returns 2: -1
+
+    var s1 = (str1+'').substr(0, lgth);
+    var s2 = (str2+'').substr(0, lgth);
+    
+    return ( ( s1 == s2 ) ? 0 : ( ( s1 > s2 ) ? 1 : -1 ) );
+}// }}}
+
 // {{{ strpbrk
 function strpbrk( haystack, char_list ) {
     // Search a string for any of a set of characters
@@ -8373,6 +8455,43 @@ function ucwords( str ) {
     // *     returns 2: 'HELLO WORLD'
 
     return (str+'').replace(/^(.)|\s(.)/g, function ( $1 ) { return $1.toUpperCase ( ); } );
+}// }}}
+
+// {{{ vprintf
+function vprintf(format, args) {
+    // Output a formatted string
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_vprintf/
+    // +       version: 902.122
+    // +   original by: Ash Searle (http://hexmen.com/blog/)
+    // +   improved by: Michael White (http://getsprink.com)
+    // + reimplemented by: Brett Zamir
+    // -    depends on: sprintf
+    // *     example 1: printf("%01.2f", 123.1);
+    // *     returns 1: 6
+
+    var body, elmt;
+    var ret = '';
+
+    // .shift() does not work to get first item in bodies
+
+    var HTMLNS = 'http://www.w3.org/1999/xhtml';
+    body = document.getElementsByTagNameNS ?
+      (document.getElementsByTagNameNS(HTMLNS, 'body')[0] ?
+        document.getElementsByTagNameNS(HTMLNS, 'body')[0] :
+        document.documentElement.lastChild) :
+      document.getElementsByTagName('body')[0];
+
+    if (!body) {
+        return false;
+    }
+
+    ret = sprintf.apply(this, [format].concat(args));
+
+    elmt = document.createTextNode(ret);
+    body.appendChild(elmt);
+
+    return ret.length;
 }// }}}
 
 // {{{ vsprintf
