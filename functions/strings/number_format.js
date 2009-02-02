@@ -8,12 +8,15 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +     bugfix by: Howard Yeend
     // +    revised by: Luke Smith (http://lucassmith.name)
+    // +     bugfix by: Diogo Resende
     // *     example 1: number_format(1234.56);
     // *     returns 1: '1,235'
     // *     example 2: number_format(1234.56, 2, ',', ' ');
     // *     returns 2: '1 234,56'
     // *     example 3: number_format(1234.5678, 2, '.', '');
     // *     returns 3: '1234.57'
+    // *     example 4: number_format(67, 2, ',', '.');
+    // *     returns 4: '67,00'
 
     var n = number, prec = decimals, dec = dec_point, sep = thousands_sep;
     n = !isFinite(+n) ? 0 : +n;
@@ -32,6 +35,8 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
               _[0].slice(i).replace(/(\d{3})/g, sep+'$1');
 
         s = _.join(dec || '.');
+    } else {
+        s = abs.replace('.', dec_point);
     }
 
     return s;
