@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.15
+ * This is version: 2.16
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Brett Zamir, Onno Marsman, Michael White
@@ -28,15 +28,16 @@
  * (http://javascript.crockford.com), DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), Francesco, Francois, FremyCompany,
  * Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam Singer
- * (http://www.impact-computing.com/), J A R, Kirk Strobeck, Kristof Coomans
- * (SCK-CEN (Belgian Nucleair Research Centre)), LH, Leslie Hoare, Lincoln
- * Ramsay, Linuxworld, Luke Godfrey, Luke Smith (http://lucassmith.name),
- * Manish, Martin Pool, Mateusz "loonquawl" Zalega, Matt Bradley, MeEtc
- * (http://yass.meetcweb.com), Mick@el, Nathan, Nick Callen, Norman "zEh"
- * Fuchs, Ozh, Paul, Pedro Tainha (http://www.pedrotainha.com), Peter-Paul
- * Koch (http://www.quirksmode.org/js/beat.html), Pierre-Luc Paour, Pul,
- * Pyerre, ReverseSyntax, Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss,
- * Simon Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay,
+ * (http://www.impact-computing.com/), J A R, Jalal Berrami, Kirk Strobeck,
+ * Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre)), LH, Leslie
+ * Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey, Luke Smith
+ * (http://lucassmith.name), Manish, Martin Pool, Mateusz "loonquawl" Zalega,
+ * Matt Bradley, MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick
+ * Callen, Norman "zEh" Fuchs, Ozh, Paul, Pedro Tainha
+ * (http://www.pedrotainha.com), Peter-Paul Koch
+ * (http://www.quirksmode.org/js/beat.html), Pierre-Luc Paour, Pul, Pyerre,
+ * ReverseSyntax, Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon
+ * Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay,
  * Subhasis Deb, T. Wild, T.Wild, T0bsn, Thiago Mata
  * (http://thiagomata.blog.com), Tim Wiel, Tod Gentille, Valentina De Rosa,
  * Victor, XoraX (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil,
@@ -2669,17 +2670,30 @@ function rsort (inputArr, sort_flags) {
 }// }}}
 
 // {{{ shuffle
-function shuffle( array ) {
+function shuffle( inputArr ) {
     // Shuffle an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_shuffle/
-    // +       version: 809.522
+    // +       version: 902.123
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: shuffle(['Kevin', 'van', 'Zonneveld']);
+    // +    revised by: Brett Zamir
+    // *     example 1: shuffle({5:'a', 2:'3', 3:'c', 4:5, 'q':5});
     // *     returns 1: true
+
+    var valArr = [];
+    var k = '', i = 0;
+
+    for (k in inputArr) { // Get key and value arrays
+        valArr.push(inputArr[k]);
+        delete inputArr[k] ;
+    }
+    valArr.sort(function() {return 0.5 - Math.random();});
+
+    for (i = 0; i < valArr.length; i++) { // Repopulate the old array
+        inputArr[i] = valArr[i];
+    }
     
-    array.sort(function() {return 0.5 - Math.random();});
     return true;
 }// }}}
 
@@ -2965,6 +2979,120 @@ function get_class(obj) {
     }
 
     return false;
+}// }}}
+
+// {{{ get_class_methods
+function get_class_methods (name) {
+    // Gets the class methods&#039; names
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_class_methods/
+    // +       version: 902.123
+    // +   original by: Brett Zamir
+    // *     example 1: function Myclass () {this.privMethod = function(){}}
+    // *     example 1: Myclass.classMethod = function () {}
+    // *     example 1: Myclass.prototype.myfunc1 = function () {return(true);};
+    // *     example 1: Myclass.prototype.myfunc2 = function () {return(true);}
+    // *     example 1: get_class_methods('MyClass')
+    // *     returns 1: {}
+
+    var constructor, retArr={}, method = '';
+
+    if (typeof name === 'function') {
+        constructor = name;
+    } else if (typeof name === 'string') {
+        constructor = window[name];
+    } else if (typeof name === 'object') {
+        constructor = name;
+        for (method in constructor.constructor) { // Get class methods of object's constructor
+            if (typeof constructor.constructor[method] === 'function') {
+                retArr[method] = constructor.constructor[method];
+            }
+        }
+        // return retArr; // Uncomment to behave as "class" is usually defined in JavaScript convention (and see comment below)
+    }
+    for (method in constructor) {
+        if (typeof constructor[method] === 'function') {
+            retArr[method] = constructor[method];
+        }
+    }
+     // Comment out this block to behave as "class" is usually defined in JavaScript convention (and see comment above)
+    for (method in constructor.prototype) {
+        if (typeof constructor.prototype[method] === 'function') {
+            retArr[method] = constructor.prototype[method];
+        }
+    }
+    
+    return retArr;
+}// }}}
+
+// {{{ get_class_vars
+function get_class_vars (name) {
+    // Get the default properties of the class
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_class_vars/
+    // +       version: 902.123
+    // +   original by: Brett Zamir
+    // *     example 1: function Myclass(){privMethod = function(){};}
+    // *     example 1: Myclass.classMethod = function () {}
+    // *     example 1: Myclass.prototype.myfunc1 = function () {return(true);};
+    // *     example 1: Myclass.prototype.myfunc2 = function () {return(true);}
+    // *     example 1: get_class_vars('MyClass')
+    // *     returns 1: {}
+
+    
+    var constructor, retArr={}, prop = '';
+    
+    if (typeof name === 'function') {
+        constructor = name;
+    } else if (typeof name === 'string') {
+        constructor = window[name];
+    }
+    
+    for (prop in constructor) {
+        if (typeof constructor[prop] !== 'function' && prop !== 'prototype') {
+            retArr[prop] = constructor[prop];
+        }
+    }
+     // Comment out this block to behave as "class" is usually defined in JavaScript convention
+    if (constructor.prototype) {
+        for (prop in constructor.prototype) {
+            if (typeof constructor.prototype[prop] !== 'function') {
+                retArr[prop] = constructor.prototype[prop];
+            }
+        }
+    }
+    
+    return retArr;
+}// }}}
+
+// {{{ get_object_vars
+function get_object_vars (obj) {
+    // Gets the properties of the given object
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_object_vars/
+    // +       version: 902.123
+    // +   original by: Brett Zamir
+    // *     example 1: function Myclass () {this.privMethod = function(){}}
+    // *     example 1: Myclass.classMethod = function () {}
+    // *     example 1: Myclass.prototype.myfunc1 = function () {return(true);};
+    // *     example 1: Myclass.prototype.myfunc2 = function () {return(true);}
+    // *     example 1: get_object_vars('MyClass')
+    // *     returns 1: {}
+
+    var retArr = {}, prop = '';
+
+    for (prop in obj) {
+        if (typeof obj[prop] !== 'function' && prop !== 'prototype') {
+            retArr[prop] = obj[prop];
+        }
+    }
+    for (prop in obj.prototype) {
+        if (typeof obj.prototype[prop] !== 'function') {
+            retArr[prop] = obj.prototype[prop];
+        }
+    }
+    
+    return retArr;
 }// }}}
 
 // {{{ method_exists
@@ -9217,6 +9345,35 @@ function gettype( mixed_var ) {
     }
 
     return type;
+}// }}}
+
+// {{{ import_request_variables
+function import_request_variables (types, prefix) {
+    // Import GET/POST/Cookie variables into the global scope
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_import_request_variables/
+    // +       version: 902.123
+    // +      original by: Jalal Berrami
+    // + reimplemented by: Brett Zamir
+    // *        example 1: document.cookie = 'snack=yummy';
+    // *        example 1: import_request_variables('gc', 'pr_');
+    // *        results 1: pr_snack == 'yummy'
+
+    var i = 0, current = '', url = '', vars = '';
+    prefix = prefix || '';
+
+    if (/g/i.test(types)) { // GET
+        for(i = 0, url = window.location.href, vars = url.substring(url.lastIndexOf("?") + 1, url.length).split("&"); i < vars.length;i++){
+            current = vars[i].split("=");
+            window[prefix+current[0]] = current[1] || null;
+        }
+    }
+    if (/c/i.test(types)) { // COOKIE
+        for(i = 0, vars = document.cookie.split("&"); i < vars.length;i++){
+            current = vars[i].split("=");
+            window[prefix+current[0]] = current[1].split(";")[0] || null;
+        }
+    }
 }// }}}
 
 // {{{ intval
