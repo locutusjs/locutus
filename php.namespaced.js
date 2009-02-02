@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.16
+ * This is version: 2.17
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Brett Zamir, Onno Marsman, Michael White
@@ -908,17 +908,35 @@
             // Pop the element off the end of array
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_pop/
-            // +       version: 809.522
+            // +       version: 902.210
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // *     example 1: $P.array_pop([0,1,2]);
             // *     returns 1: 2
+            // *     example 2: $P.data = {firstName: 'Kevin', surName: 'van Zonneveld'};
+            // *     example 2: $P.lastElem = array_pop(data);
+            // *     returns 2: 'van Zonneveld'
+            // *     results 2: data == {firstName: 'Kevin'}
         
-            // done popping, are we?
-            if( !array.length ){
-                return null;
+            var key = '', cnt = 0;
+        
+            if (array.hasOwnProperty('length')) {
+                // Indexed
+                if( !array.length ){
+                    // Done popping, are we?
+                    return null;
+                }
+                return array.pop();
+            } else {
+                // Associative
+                for (key in array) {
+                    cnt++;
+                }
+                if (cnt) {
+                    return array[key];
+                    delete(array[key]);
+                }
             }
-        
-            return array.pop();
         },// }}}
         
         // {{{ array_product
@@ -5660,9 +5678,10 @@
             // Make the script sleep until the specified time
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_time_sleep_until/
-            // +       version: 902.122
+            // +       version: 902.210
             // +   original by: Brett Zamir
             // %          note: For study purposes. Current implementation could lock up the user's browser.
+            // %          note: Expects a timestamp in seconds, so DO NOT pass in a JavaScript timestamp which are in milliseconds (e.g., new Date()) or otherwise the will: function lock up the browser 1000 times longer than probably intended.
             // %          note: Consider using setTimeout() instead.
             // *     example 1: $P.time_sleep_until(1233146501) // delays until the time indicated by the given timestamp is reached
             // *     returns 1: true
