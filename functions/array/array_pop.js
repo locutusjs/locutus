@@ -1,13 +1,31 @@
 function array_pop( array ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_pop([0,1,2]);
     // *     returns 1: 2
+    // *     example 2: data = {firstName: 'Kevin', surName: 'van Zonneveld'};
+    // *     example 2: lastElem = array_pop(data);
+    // *     returns 2: 'van Zonneveld'
+    // *     results 2: data == {firstName: 'Kevin'}
 
-    // done popping, are we?
-    if( !array.length ){
-        return null;
+    var key = '', cnt = 0;
+
+    if (array.hasOwnProperty('length')) {
+        // Indexed
+        if( !array.length ){
+            // Done popping, are we?
+            return null;
+        }
+        return array.pop();
+    } else {
+        // Associative
+        for (key in array) {
+            cnt++;
+        }
+        if (cnt) {
+            return array[key];
+            delete(array[key]);
+        }
     }
-
-    return array.pop();
 }
