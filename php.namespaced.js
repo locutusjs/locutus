@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.17
+ * This is version: 2.18
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Brett Zamir, Onno Marsman, Michael White
@@ -24,7 +24,7 @@
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
  * Touesnard, Bryan Elliott, Cagri Ekin, Caio Ariede (http://caioariede.com),
  * Christian Doebler, Cord, David, David James, David Randall, Der Simon
- * (http://innerdom.sourceforge.net/), Dino, Douglas Crockford
+ * (http://innerdom.sourceforge.net/), Dino, Diogo Resende, Douglas Crockford
  * (http://javascript.crockford.com), DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), Francesco, Francois, FremyCompany,
  * Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam Singer
@@ -44,7 +44,7 @@
  * booeyOH, djmix, dptr1988, duncan, echo is bad, ejsanders, gabriel paderni,
  * ger, hitwork, jakes, john (http://www.jd-tech.net), johnrembo, kenneth,
  * marc andreu, metjay, nobbler, noname, penutbutterjelly, rezna, sankai,
- * sowberry, stensi
+ * sowberry, stensi, taith
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -6810,7 +6810,7 @@
             // Format a number with grouped thousands
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_number_format/
-            // +       version: 901.1623
+            // +       version: 902.223
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +     bugfix by: Michael White (http://getsprink.com)
@@ -6819,12 +6819,15 @@
             // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +     bugfix by: Howard Yeend
             // +    revised by: Luke Smith (http://lucassmith.name)
+            // +     bugfix by: Diogo Resende
             // *     example 1: $P.number_format(1234.56);
             // *     returns 1: '1,235'
             // *     example 2: $P.number_format(1234.56, 2, ',', ' ');
             // *     returns 2: '1 234,56'
             // *     example 3: $P.number_format(1234.5678, 2, '.', '');
             // *     returns 3: '1234.57'
+            // *     example 4: $P.number_format(67, 2, ',', '.');
+            // *     returns 4: '67,00'
         
             var n = number, prec = decimals, dec = dec_point, sep = thousands_sep;
             n = !isFinite(+n) ? 0 : +n;
@@ -6843,6 +6846,8 @@
                       _[0].slice(i).replace(/(\d{3})/g, sep+'$1');
         
                 s = _.join(dec || '.');
+            } else {
+                s = abs.replace('.', dec_point);
             }
         
             return s;
@@ -9624,9 +9629,10 @@
             // Finds whether a variable is a number or a numeric string
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_numeric/
-            // +       version: 809.522
+            // +       version: 902.223
             // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +   improved by: David
+            // +   improved by: taith
             // *     example 1: $P.is_numeric(186.31);
             // *     returns 1: true
             // *     example 2: $P.is_numeric('Kevin van Zonneveld');
@@ -9634,7 +9640,7 @@
             // *     example 3: $P.is_numeric('+186.31e2');
             // *     returns 3: true
         
-            return !isNaN( mixed_var );
+            return !isNaN(mixed_var * 1);
         },// }}}
         
         // {{{ is_object
