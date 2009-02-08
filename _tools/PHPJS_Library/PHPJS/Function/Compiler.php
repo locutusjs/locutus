@@ -42,7 +42,7 @@ Class PHPJS_Function_Compiler extends PHPJS_Function {
         $newDocb .= "    // ". $desc."\n";
         $newDocb .= "    // \n";
         $newDocb .= "    // version: ". $vers."\n";
-        $newDocb .= "    // discuss at: ". $furl."\n";
+        $newDocb .= "    // discuss at: ". $furl."";
                         
         $docb = str_replace("    // http://kevin.vanzonneveld.net", $newDocb, $docb);
         
