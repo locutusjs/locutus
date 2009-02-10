@@ -35,7 +35,7 @@ Class PHPJS_DocBlock {
     }
     
     public function PHPJS_DocBlock($docBlock) {
-        $this->_docBlock = implode("\n", $docBlock);
+        $this->_docBlock = implode("\n", str_replace("\r", "", $docBlock));
         $this->parseDocBlock();
     }
     
