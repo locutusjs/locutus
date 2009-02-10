@@ -1,15 +1,17 @@
 function get_declared_classes() {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
-    //  -   depends on: class_exists
+    // -    depends on: class_exists
     // *     example 1: function A (z) {this.z=z} // Assign 'this' in constructor, making it class-like
     // *     example 1: function B () {}
     // *     example 1: B.c = function () {}; // Add a static method, making it class-like
     // *     example 1: function C () {}
     // *     example 1: C.prototype.z = function () {}; // Add to prototype, making it behave as a "class"
-    // *     results 1: alert(get_declared_classes()); // [C, B, A]
+    // *     example 1: get_declared_classes()
+    // *     returns 1: [C, B, A]
 
     var i = '', arr = [], already = {};
+    var j = '';
 
     for (i in window) {
         try {
@@ -18,17 +20,15 @@ function get_declared_classes() {
                     already[i] = 1;
                     arr.push(i);
                 }
-            }
-            else if (typeof window[i] === 'object') {
-                for (var j in window[i]) {
+            } else if (typeof window[i] === 'object') {
+                for (j in window[i]) {
                     if (typeof window[j] === 'function' && window[j] && !already[j] && class_exists(j)) {
                         already[j] = 1;
                         arr.push(j);
                     }
                 }
             }
-        }
-        catch (e) {
+        } catch (e) {
 
         }
     }

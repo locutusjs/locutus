@@ -6,7 +6,7 @@ function class_exists (cls) {
     // *     example 1: class_exists('class_a');
     // *     returns 1: true
 
-    var i;
+    var i = '';
     cls = window[cls]; // Note: will prevent inner classes
 
     if (typeof cls !== 'function') {return false;}
