@@ -27,7 +27,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
      * @return boolean
      */
     protected function _flagIsEnabled($flags, $testFor) {
-        return ($flags & $testFor > 0);
+        return (($flags & $testFor > 0));
     }
     
     /**
@@ -53,7 +53,8 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
      */
     public function compile($flags = 0, $version = 'unknown', $breakOnError=false) {
         $selectedFunctions = $this->getSelection();
-        
+
+
         $namespaced = ($this->_flagIsEnabled($flags, self::COMPILE_NAMESPACED));
         
         // Compile each function individually and store in $compiled array
@@ -69,7 +70,6 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
             }
         }
 
-        
         $compiledTxt = implode("\n", $compiled);
         
         // Wrap it with namespaced-specific-code
@@ -79,9 +79,9 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         
         // Compression? And how?
         if ($this->_flagIsEnabled($flags, self::COMPILE_MINFIED)) {
-            $compiledTxt = "//minified\n". PHPJS_Pack::pack('minified', $compiledTxt);
+            $compiledTxt = PHPJS_Pack::pack('minified', $compiledTxt);
         } elseif ($this->_flagIsEnabled($flags, self::COMPILE_PACKED)) {
-            $compiledTxt = "//packed\n".PHPJS_Pack::pack('packed', $compiledTxt);
+            $compiledTxt = PHPJS_Pack::pack('packed', $compiledTxt);
         }
 
         return $this->genLicense($version)."\n".$compiledTxt;

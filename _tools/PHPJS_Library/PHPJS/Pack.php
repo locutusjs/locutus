@@ -10,12 +10,12 @@ class PHPJS_Pack {
             case 'packed':
                 require_once dirname(__FILE__).'/Pack/class.JavaScriptPacker.php';
                 $packer = new JavaScriptPacker($code, 'Normal', true, false);
-                return "//packed\n".$packer->pack();
+                return $packer->pack();
 
                 break;
             case 'minified':
                 require_once dirname(__FILE__).'/Pack/jsmin.php';
-                return "//minified\n".JSMin::minify($code);
+                return JSMin::minify($code);
 
                 break;
             case 'none':
