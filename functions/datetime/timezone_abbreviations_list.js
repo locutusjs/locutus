@@ -3,7 +3,9 @@ function timezone_abbreviations_list() {
     // +   original by: Brett Zamir
     // +      input by: ChaosNo1
     // %        note 1: Based on list returned by PHP 5.2.6 (Windows)
-    // %        note 2: We build the timezones as a private static variable (and then return a function which returns this variable) to avoid recreating the object upon each call to this function
+    // %        note 2: We build the timezones as a private static variable (and then return
+    // %        note 2: a function which returns this variable) to avoid recreating the object
+    // %        note 2: upon each call to this function
     // *     example 1: list = timezone_abbreviations_list();
     // *     results 1: list.acst[0].timezone_id == 'America/Porto_Acre'
     // *     returns 1: true
