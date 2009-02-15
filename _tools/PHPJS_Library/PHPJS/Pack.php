@@ -18,7 +18,8 @@ class PHPJS_Pack {
                 
                 break;
             case 'minified':
-                $total_code_min = JSMin::minify($total_code);
+                require_once dirname(__FILE__).'/Pack/jsmin.php';
+                return JSMin::minify($code);
 
                 break;
             default:
