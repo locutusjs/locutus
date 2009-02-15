@@ -2,6 +2,7 @@ function strtotime(str, now) {
     // http://kevin.vanzonneveld.net
     // +   original by: Caio Ariede (http://caioariede.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: David
     // %        note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
     // *     example 1: strtotime('+1 day', 1129633200);
     // *     returns 1: 1129719600
@@ -9,20 +10,28 @@ function strtotime(str, now) {
     // *     returns 2: 1130425202
     // *     example 3: strtotime('last month', 1129633200);
     // *     returns 3: 1127041200
+    // *     example 4: strtotime('2009-05-04 08:30:00');
+    // *     returns 4: 1241418600
 
-    var i, match, s;
-    
-    str = str.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
-    str = str.replace(/[\t\r\n]/g, ''); // unecessary chars
+    var i, match, s, strTmp = '', parse = '';
 
-    if (str == 'now') return (new Date()).getTime();
-    else if (!isNaN(parse = Date.parse(str))) return parse/1000;
-    else if (now) now = new Date(now);
-    else now = new Date();
+    strTmp = str;
+    strTmp = strTmp.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
+    strTmp = strTmp.replace(/[\t\r\n]/g, ''); // unecessary chars
 
-    str = str.toLowerCase();
+    if (strTmp == 'now') {
+        return (new Date()).getTime();
+    } else if (!isNaN(parse = Date.parse(strTmp))) {
+        return parse/1000;
+    } else if (now) {
+        now = new Date(now);
+    } else {
+        now = new Date();
+    }
 
-   var process = function (m) {
+    strTmp = strTmp.toLowerCase();
+
+    var process = function (m) {
         var ago = (m[2] && m[2] == 'ago');
         var num = (num = m[0] == 'last' ? -1 : 1) * (ago ? -1 : 1);
 
@@ -110,17 +119,32 @@ function strtotime(str, now) {
     {
         day:
         {
-            'sun': 0, 'mon': 1, 'tue': 2, 'wed': 3,
-            'thu': 4, 'fri': 5, 'sat': 6
+            'sun': 0,
+            'mon': 1,
+            'tue': 2,
+            'wed': 3,
+            'thu': 4, 
+            'fri': 5,
+            'sat': 6
         },
         mon:
         {
-            'jan': 0, 'feb': 1, 'mar': 2, 'may': 3, 'apr': 4,  'jun': 5,
-            'jul': 6, 'aug': 7, 'sep': 8, 'oct': 9, 'nov': 10, 'dec': 11
+            'jan': 0,
+            'feb': 1,
+            'mar': 2,
+            'may': 3,
+            'apr': 4,
+            'jun': 5,
+            'jul': 6,
+            'aug': 7,
+            'sep': 8,
+            'oct': 9,
+            'nov': 10,
+            'dec': 11
         }
     }
 
-    match = str.match(/^(\d{2,4}-\d{2}-\d{2})(\s\d{1,2}:\d{1,2}(:\d{1,2})?)?$/);
+    match = strTmp.match(/^(\d{2,4}-\d{2}-\d{2})(\s\d{1,2}:\d{1,2}(:\d{1,2})?)?$/);
 
     if (match != null) {
         if (!match[2]) {
@@ -141,16 +165,16 @@ function strtotime(str, now) {
     }
  
     var regex = '([+-]?\\d+\\s'
-              + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
-              + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
-              + '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday)'
-              + '|(last|next)\\s'
-              + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
-              + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
-              + '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday))'
-              + '(\\sago)?';
+    + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
+    + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
+    + '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday)'
+    + '|(last|next)\\s'
+    + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
+    + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
+    + '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday))'
+    + '(\\sago)?';
 
-    match = str.match(new RegExp(regex, 'g'));
+    match = strTmp.match(new RegExp(regex, 'g'));
 
     if (match == null) {
         return false;
