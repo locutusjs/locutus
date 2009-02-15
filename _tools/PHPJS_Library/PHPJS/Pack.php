@@ -10,17 +10,17 @@ class PHPJS_Pack {
             case 'packed':
                 require_once dirname(__FILE__).'/Pack/class.JavaScriptPacker.php';
                 $packer = new JavaScriptPacker($code, 'Normal', true, false);
-                return $packer->pack();
+                return "//packed\n".$packer->pack();
+
+                break;
+            case 'minified':
+                require_once dirname(__FILE__).'/Pack/jsmin.php';
+                return "//minified\n".JSMin::minify($code);
 
                 break;
             case 'none':
                 return $code;
                 
-                break;
-            case 'minified':
-                require_once dirname(__FILE__).'/Pack/jsmin.php';
-                return JSMin::minify($code);
-
                 break;
             default:
                 throw new PHPJS_Exception("No such packer: '".$compression."'");

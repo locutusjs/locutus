@@ -79,9 +79,9 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         
         // Compression? And how?
         if ($this->_flagIsEnabled($flags, self::COMPILE_MINFIED)) {
-            $compiledTxt = PHPJS_Pack::pack('minified', $compiledTxt);
+            $compiledTxt = "//minified\n". PHPJS_Pack::pack('minified', $compiledTxt);
         } elseif ($this->_flagIsEnabled($flags, self::COMPILE_PACKED)) {
-            $compiledTxt = PHPJS_Pack::pack('packed', $compiledTxt);
+            $compiledTxt = "//packed\n".PHPJS_Pack::pack('packed', $compiledTxt);
         }
 
         return $this->genLicense($version)."\n".$compiledTxt;
