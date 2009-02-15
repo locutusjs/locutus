@@ -51,7 +51,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
      * 
      * @return string
      */
-    public function compile($flags = 0, $breakOnError=false) {
+    public function compile($flags = 0, $version = 'unknown', $breakOnError=false) {
         $selectedFunctions = $this->getSelection();
         
         $namespaced = ($this->_flagIsEnabled($flags, self::COMPILE_NAMESPACED));
@@ -79,12 +79,10 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         
         // Compression? And how?
         if ($this->_flagIsEnabled($flags, self::COMPILE_MINFIED)) {
-            $compiledTxt = $this->_minify($compiledTxt);
+            $compiledTxt = PHPJS_Pack::pack('minified', $compiledTxt);
         } elseif ($this->_flagIsEnabled($flags, self::COMPILE_PACKED)) {
-            $compiledTxt = $this->_pack($compiledTxt);
+            $compiledTxt = PHPJS_Pack::pack('packed', $compiledTxt);
         }
-
-        $version = 'unknown';
 
         return $this->genLicense($version)."\n".$compiledTxt;
     }
@@ -160,28 +158,6 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
                 
         return "//NAMESPACED\n".$source;
         
-    }
-    
-    /**
-     * Compresses a string using the jsmin technology
-     *
-     * @param string $source
-     * 
-     * @return string
-     */
-    protected function _minify($source) {
-        return "//MINIFIED\n".$source;
-    }
-    
-    /**
-     * Compresses a string using the packer technology
-     *
-     * @param string $source
-     * 
-     * @return string
-     */
-    protected function _pack($source) {
-        return "//PACKED\n".$source;
     }
     
     /**
