@@ -3,7 +3,9 @@ function base64_encode( data ) {
     // +   original by: Tyler Akins (http://rumkin.com)
     // +   improved by: Bayron Guevara
     // +   improved by: Thunder.m
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)        
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Pellentesque Malesuada
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: utf8_encode
     // *     example 1: base64_encode('Kevin van Zonneveld');
     // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
@@ -16,7 +18,12 @@ function base64_encode( data ) {
         
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var o1, o2, o3, h1, h2, h3, h4, bits, i = ac = 0, enc="", tmp_arr = [];
-    data = utf8_encode(data);
+
+    if (!data) {
+        return data;
+    }
+
+    data = utf8_encode(data+'');
     
     do { // pack three octets into four hexets
         o1 = data.charCodeAt(i++);
