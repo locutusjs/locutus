@@ -3,6 +3,7 @@ function get_html_translation_table(table, quote_style) {
     // +   original by: Philip Peterson
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: noname
+    // +   bugfixed by: Alex
     // %          note: It has been decided that we're not going to add global
     // %          note: dependencies to php.js. Meaning the constants are not
     // %          note: real constants, but strings instead. integers are also supported if someone
