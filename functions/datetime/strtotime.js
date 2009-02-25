@@ -3,6 +3,7 @@ function strtotime(str, now) {
     // +   original by: Caio Ariede (http://caioariede.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: David
+    // +   improved by: Caio Ariede (http://caioariede.com)
     // %        note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
     // *     example 1: strtotime('+1 day', 1129633200);
     // *     returns 1: 1129719600
@@ -114,7 +115,7 @@ function strtotime(str, now) {
 
         return true;
     }
-    
+
     var __is =
     {
         day:
@@ -123,7 +124,7 @@ function strtotime(str, now) {
             'mon': 1,
             'tue': 2,
             'wed': 3,
-            'thu': 4, 
+            'thu': 4,
             'fri': 5,
             'sat': 6
         },
@@ -132,8 +133,8 @@ function strtotime(str, now) {
             'jan': 0,
             'feb': 1,
             'mar': 2,
-            'may': 3,
-            'apr': 4,
+            'apr': 3,
+            'may': 4,
             'jun': 5,
             'jul': 6,
             'aug': 7,
@@ -163,7 +164,7 @@ function strtotime(str, now) {
 
         return strtotime(s[2] + ' ' + s[1] + ' ' + s[0] + ' ' + match[2]);
     }
- 
+
     var regex = '([+-]?\\d+\\s'
     + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
     + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
