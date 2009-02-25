@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.19
+ * This is version: 2.20
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Brett Zamir, Onno Marsman, Michael White
@@ -13,8 +13,8 @@
  * (http://www.jsfromhell.com), Jani Hartikainen, Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
- * Gupta, Arpad Ray (mailto:arpad@php.net), Karol Kowalski, Marc Palau, Mirek
- * Slugen, Public Domain (http://www.json.org/json2.js), Sakimori, Steve
+ * Gupta, Arpad Ray (mailto:arpad@php.net), David, Karol Kowalski, Marc Palau,
+ * Mirek Slugen, Public Domain (http://www.json.org/json2.js), Sakimori, Steve
  * Hilder, Steven Levithan (http://blog.stevenlevithan.com), Thunder.m, Tyler
  * Akins (http://rumkin.com), gorthaur, mdsjack (http://www.mdsjack.bo.it),
  * 0m3r, Alexander Ermolaev
@@ -23,7 +23,7 @@
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
  * Touesnard, Bryan Elliott, Cagri Ekin, Caio Ariede (http://caioariede.com),
- * Christian Doebler, Cord, David, David James, David Randall, Der Simon
+ * ChaosNo1, Christian Doebler, Cord, David James, David Randall, Der Simon
  * (http://innerdom.sourceforge.net/), Dino, Diogo Resende, Douglas Crockford
  * (http://javascript.crockford.com), DxGx, FGFEmperor, Felix Geisendoerfer
  * (http://www.debuggable.com/felix), Francesco, Francois, FremyCompany,
@@ -36,15 +36,15 @@
  * Callen, Norman "zEh" Fuchs, Ozh, Paul, Pedro Tainha
  * (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Pierre-Luc Paour, Pul, Pyerre,
- * ReverseSyntax, Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon
+ * ReverseSyntax, Rival, Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon
  * Willison (http://simonwillison.net), Slawomir Kaniecki, Steve Clay,
  * Subhasis Deb, T. Wild, T.Wild, T0bsn, Thiago Mata
  * (http://thiagomata.blog.com), Tim Wiel, Tod Gentille, Valentina De Rosa,
  * Victor, XoraX (http://www.xorax.info), Yannoo, Yves Sucaet, baris ozdil,
- * booeyOH, djmix, dptr1988, duncan, echo is bad, ejsanders, gabriel paderni,
- * ger, hitwork, jakes, john (http://www.jd-tech.net), johnrembo, kenneth,
- * marc andreu, metjay, nobbler, noname, penutbutterjelly, rezna, sankai,
- * sowberry, stensi, taith
+ * booeyOH, class_exists, djmix, dptr1988, duncan, echo is bad, ejsanders,
+ * gabriel paderni, ger, hitwork, jakes, john (http://www.jd-tech.net),
+ * johnrembo, kenneth, marc andreu, metjay, nobbler, noname, penutbutterjelly,
+ * rezna, sankai, sowberry, stensi, taith
  * 
  * Dual licensed under the MIT (MIT-LICENSE.txt)
  * and GPL (GPL-LICENSE.txt) licenses.
@@ -2954,14 +2954,14 @@
             // Checks if the class has been defined
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_class_exists/
-            // +       version: 812.3015
+            // +       version: 902.1022
             // +   original by: Brett Zamir
             // *     example 1: $P.class_a: function() {this.meth1 = function() {return true;}};
             // *     example 1: $P.var instance_a = new class_a();
             // *     example 1: $P.class_exists('class_a');
             // *     returns 1: true
         
-            var i;
+            var i = '';
             cls = window[cls]; // Note: will prevent inner classes
         
             if (typeof cls !== 'function') {return false;}
@@ -3107,36 +3107,36 @@
             // Returns an array with the name of the defined classes
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_declared_classes/
-            // +       version: 902.821
+            // +       version: 902.1022
             // +   original by: Brett Zamir
-            //  -   depends on: class_exists
+            // +    depends on: class_exists
             // *     example 1: $P.function A (z) {this.z=z} // Assign 'this' in constructor, making it class-like
             // *     example 1: $P.function B () {}
             // *     example 1: B.c = function () {}; // Add a static method, making it class-like
             // *     example 1: $P.function C () {}
             // *     example 1: C.prototype.z = function () {}; // Add to prototype, making it behave as a "class"
-            // *     results 1: alert(get_declared_classes()); // [C, B, A]
+            // *     example 1: $P.get_declared_classes()
+            // *     returns 1: [C, B, A]
         
             var i = '', arr = [], already = {};
+            var j = '';
         
             for (i in window) {
                 try {
                     if (typeof window[i] === 'function') {
-                        if (!already[i] && this.class_exists(i)) {
+                        if (!already[i] && class_exists(i)) {
                             already[i] = 1;
                             arr.push(i);
                         }
-                    }
-                    else if (typeof window[i] === 'object') {
-                        for (var j in window[i]) {
-                            if (typeof window[j] === 'function' && window[j] && !already[j] && this.class_exists(j)) {
+                    } else if (typeof window[i] === 'object') {
+                        for (j in window[i]) {
+                            if (typeof window[j] === 'function' && window[j] && !already[j] && class_exists(j)) {
                                 already[j] = 1;
                                 arr.push(j);
                             }
                         }
                     }
-                }
-                catch (e) {
+                } catch (e) {
         
                 }
             }
@@ -3599,9 +3599,10 @@
             // Parse about any English textual datetime description into a Unix timestamp
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strtotime/
-            // +       version: 812.3015
+            // +       version: 902.1612
             // +   original by: Caio Ariede (http://caioariede.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+            // +      input by: David
             // %        note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
             // *     example 1: $P.strtotime('+1 day', 1129633200);
             // *     returns 1: 1129719600
@@ -3609,20 +3610,28 @@
             // *     returns 2: 1130425202
             // *     example 3: $P.strtotime('last month', 1129633200);
             // *     returns 3: 1127041200
+            // *     example 4: $P.strtotime('2009-05-04 08:30:00');
+            // *     returns 4: 1241418600
         
-            var i, match, s;
-            
-            str = str.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
-            str = str.replace(/[\t\r\n]/g, ''); // unecessary chars
+            var i, match, s, strTmp = '', parse = '';
         
-            if (str == 'now') return (new Date()).getTime();
-            else if (!isNaN(parse = Date.parse(str))) return parse/1000;
-            else if (now) now = new Date(now);
-            else now = new Date();
+            strTmp = str;
+            strTmp = strTmp.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
+            strTmp = strTmp.replace(/[\t\r\n]/g, ''); // unecessary chars
         
-            str = str.toLowerCase();
+            if (strTmp == 'now') {
+                return (new Date()).getTime();
+            } else if (!isNaN(parse = Date.parse(strTmp))) {
+                return parse/1000;
+            } else if (now) {
+                now = new Date(now);
+            } else {
+                now = new Date();
+            }
         
-           var process = function (m) {
+            strTmp = strTmp.toLowerCase();
+        
+            var process = function (m) {
                 var ago = (m[2] && m[2] == 'ago');
                 var num = (num = m[0] == 'last' ? -1 : 1) * (ago ? -1 : 1);
         
@@ -3710,17 +3719,32 @@
             {
                 day:
                 {
-                    'sun': 0, 'mon': 1, 'tue': 2, 'wed': 3,
-                    'thu': 4, 'fri': 5, 'sat': 6
+                    'sun': 0,
+                    'mon': 1,
+                    'tue': 2,
+                    'wed': 3,
+                    'thu': 4, 
+                    'fri': 5,
+                    'sat': 6
                 },
                 mon:
                 {
-                    'jan': 0, 'feb': 1, 'mar': 2, 'may': 3, 'apr': 4,  'jun': 5,
-                    'jul': 6, 'aug': 7, 'sep': 8, 'oct': 9, 'nov': 10, 'dec': 11
+                    'jan': 0,
+                    'feb': 1,
+                    'mar': 2,
+                    'may': 3,
+                    'apr': 4,
+                    'jun': 5,
+                    'jul': 6,
+                    'aug': 7,
+                    'sep': 8,
+                    'oct': 9,
+                    'nov': 10,
+                    'dec': 11
                 }
             }
         
-            match = str.match(/^(\d{2,4}-\d{2}-\d{2})(\s\d{1,2}:\d{1,2}(:\d{1,2})?)?$/);
+            match = strTmp.match(/^(\d{2,4}-\d{2}-\d{2})(\s\d{1,2}:\d{1,2}(:\d{1,2})?)?$/);
         
             if (match != null) {
                 if (!match[2]) {
@@ -3741,16 +3765,16 @@
             }
          
             var regex = '([+-]?\\d+\\s'
-                      + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
-                      + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
-                      + '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday)'
-                      + '|(last|next)\\s'
-                      + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
-                      + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
-                      + '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday))'
-                      + '(\\sago)?';
+            + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
+            + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
+            + '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday)'
+            + '|(last|next)\\s'
+            + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
+            + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
+            + '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday))'
+            + '(\\sago)?';
         
-            match = str.match(new RegExp(regex, 'g'));
+            match = strTmp.match(new RegExp(regex, 'g'));
         
             if (match == null) {
                 return false;
@@ -3781,31 +3805,35 @@
         },// }}}
         
         // {{{ timezone_abbreviations_list
-        var timezone_abbreviations_list = function () {
+        timezone_abbreviations_list: function() {
             // Alias of  DateTimeZone::listAbbreviations
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_timezone_abbreviations_list/
-            // +       version: 902.821
+            // +       version: 902.1612
             // +   original by: Brett Zamir
+            // +      input by: ChaosNo1
             // %        note 1: Based on list returned by PHP 5.2.6 (Windows)
-            // %        note 2: We build the timezones as a private static variable (and then return a which: function returns this variable) to avoid recreating the object upon each call to this function
-            // *     example 1: $P.var list = timezone_abbreviations_list();
-            // *     example 1: $P.alert(  list.acst[0].timezone_id  ); // 'America/Porto_Acre'
+            // %        note 2: We build the timezones as a private static variable (and then return
+            // %        note 2: a which: function returns this variable) to avoid recreating the object
+            // %        note 2: upon each call to this function
+            // *     example 1: $P.list = timezone_abbreviations_list();
+            // *     results 1: list.acst[0].timezone_id == 'America/Porto_Acre'
+            // *     returns 1: true
         
             var timezone_abbreviations = {
               'acst' :
               [
                 {'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Porto_Acre',
+                  'timezone_id' : 'America/Porto_Acre'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Eirunepe',
+                  'timezone_id' : 'America/Eirunepe'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Rio_Branco',
+                  'timezone_id' : 'America/Rio_Branco'
                 },{
                   'dst' : true,
                   'offset' : -14400,
@@ -3816,15 +3844,15 @@
               [
                 {'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Porto_Acre',
+                  'timezone_id' : 'America/Porto_Acre'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Eirunepe',
+                  'timezone_id' : 'America/Eirunepe'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Rio_Branco',
+                  'timezone_id' : 'America/Rio_Branco'
                 },{
                   'dst' : false,
                   'offset' : -18000,
@@ -3835,7 +3863,7 @@
               [
                 {'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Goose_Bay',
+                  'timezone_id' : 'America/Goose_Bay'
                 },{
                   'dst' : true,
                   'offset' : -7200,
@@ -3846,47 +3874,47 @@
               [
                 {'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Halifax',
+                  'timezone_id' : 'America/Halifax'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Barbados',
+                  'timezone_id' : 'America/Barbados'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Blanc-Sablon',
+                  'timezone_id' : 'America/Blanc-Sablon'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Glace_Bay',
+                  'timezone_id' : 'America/Glace_Bay'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Goose_Bay',
+                  'timezone_id' : 'America/Goose_Bay'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Martinique',
+                  'timezone_id' : 'America/Martinique'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Moncton',
+                  'timezone_id' : 'America/Moncton'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Pangnirtung',
+                  'timezone_id' : 'America/Pangnirtung'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Thule',
+                  'timezone_id' : 'America/Thule'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'Atlantic/Bermuda',
+                  'timezone_id' : 'Atlantic/Bermuda'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'Canada/Atlantic',
+                  'timezone_id' : 'Canada/Atlantic'
                 },{
                   'dst' : true,
                   'offset' : 14400,
@@ -3904,7 +3932,7 @@
               [
                 {'dst' : true,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Anchorage',
+                  'timezone_id' : 'America/Anchorage'
                 },{
                   'dst' : true,
                   'offset' : -32400,
@@ -3915,19 +3943,19 @@
               [
                 {'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Anchorage',
+                  'timezone_id' : 'America/Anchorage'
                 },{
                   'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Adak',
+                  'timezone_id' : 'America/Adak'
                 },{
                   'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Atka',
+                  'timezone_id' : 'America/Atka'
                 },{
                   'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : 'US/Alaska',
+                  'timezone_id' : 'US/Alaska'
                 },{
                   'dst' : false,
                   'offset' : -36000,
@@ -3938,19 +3966,19 @@
               [
                 {'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Anchorage',
+                  'timezone_id' : 'America/Anchorage'
                 },{
                   'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Juneau',
+                  'timezone_id' : 'America/Juneau'
                 },{
                   'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Nome',
+                  'timezone_id' : 'America/Nome'
                 },{
                   'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Yakutat',
+                  'timezone_id' : 'America/Yakutat'
                 },{
                   'dst' : true,
                   'offset' : -28800,
@@ -3961,19 +3989,19 @@
               [
                 {'dst' : false,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Anchorage',
+                  'timezone_id' : 'America/Anchorage'
                 },{
                   'dst' : false,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Juneau',
+                  'timezone_id' : 'America/Juneau'
                 },{
                   'dst' : false,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Nome',
+                  'timezone_id' : 'America/Nome'
                 },{
                   'dst' : false,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Yakutat',
+                  'timezone_id' : 'America/Yakutat'
                 },{
                   'dst' : false,
                   'offset' : -32400,
@@ -3991,11 +4019,11 @@
               [
                 {'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Aqtobe',
+                  'timezone_id' : 'Asia/Aqtobe'
                 },{
                   'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Aqtobe',
+                  'timezone_id' : 'Asia/Aqtobe'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -4013,7 +4041,7 @@
               [
                 {'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Almaty',
+                  'timezone_id' : 'Asia/Almaty'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -4024,31 +4052,31 @@
               [
                 {'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Yerevan',
+                  'timezone_id' : 'Asia/Yerevan'
                 },{
                   'dst' : true,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Yerevan',
+                  'timezone_id' : 'Asia/Yerevan'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Boa_Vista',
+                  'timezone_id' : 'America/Boa_Vista'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Campo_Grande',
+                  'timezone_id' : 'America/Campo_Grande'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Cuiaba',
+                  'timezone_id' : 'America/Cuiaba'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Manaus',
+                  'timezone_id' : 'America/Manaus'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Porto_Velho',
+                  'timezone_id' : 'America/Porto_Velho'
                 },{
                   'dst' : true,
                   'offset' : -10800,
@@ -4059,35 +4087,35 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Yerevan',
+                  'timezone_id' : 'Asia/Yerevan'
                 },{
                   'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Yerevan',
+                  'timezone_id' : 'Asia/Yerevan'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Boa_Vista',
+                  'timezone_id' : 'America/Boa_Vista'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Campo_Grande',
+                  'timezone_id' : 'America/Campo_Grande'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Cuiaba',
+                  'timezone_id' : 'America/Cuiaba'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Manaus',
+                  'timezone_id' : 'America/Manaus'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Porto_Velho',
+                  'timezone_id' : 'America/Porto_Velho'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'Brazil/West',
+                  'timezone_id' : 'Brazil/West'
                 },{
                   'dst' : false,
                   'offset' : 1172,
@@ -4098,11 +4126,11 @@
               [
                 {'dst' : true,
                   'offset' : 43200,
-                  'timezone_id' : 'Asia/Anadyr',
+                  'timezone_id' : 'Asia/Anadyr'
                 },{
                   'dst' : true,
                   'offset' : 46800,
-                  'timezone_id' : 'Asia/Anadyr',
+                  'timezone_id' : 'Asia/Anadyr'
                 },{
                   'dst' : true,
                   'offset' : 50400,
@@ -4113,11 +4141,11 @@
               [
                 {'dst' : false,
                   'offset' : 39600,
-                  'timezone_id' : 'Asia/Anadyr',
+                  'timezone_id' : 'Asia/Anadyr'
                 },{
                   'dst' : false,
                   'offset' : 43200,
-                  'timezone_id' : 'Asia/Anadyr',
+                  'timezone_id' : 'Asia/Anadyr'
                 },{
                   'dst' : false,
                   'offset' : 46800,
@@ -4128,7 +4156,7 @@
               [
                 {'dst' : false,
                   'offset' : -16200,
-                  'timezone_id' : 'America/Curacao',
+                  'timezone_id' : 'America/Curacao'
                 },{
                   'dst' : false,
                   'offset' : -16200,
@@ -4139,27 +4167,27 @@
               [
                 {'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Halifax',
+                  'timezone_id' : 'America/Halifax'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Blanc-Sablon',
+                  'timezone_id' : 'America/Blanc-Sablon'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Glace_Bay',
+                  'timezone_id' : 'America/Glace_Bay'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Moncton',
+                  'timezone_id' : 'America/Moncton'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Pangnirtung',
+                  'timezone_id' : 'America/Pangnirtung'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Puerto_Rico',
+                  'timezone_id' : 'America/Puerto_Rico'
                 },{
                   'dst' : true,
                   'offset' : -10800,
@@ -4170,11 +4198,11 @@
               [
                 {'dst' : true,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Aqtau',
+                  'timezone_id' : 'Asia/Aqtau'
                 },{
                   'dst' : true,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Aqtau',
+                  'timezone_id' : 'Asia/Aqtau'
                 },{
                   'dst' : true,
                   'offset' : 21600,
@@ -4185,11 +4213,11 @@
               [
                 {'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Aqtau',
+                  'timezone_id' : 'Asia/Aqtau'
                 },{
                   'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Aqtau',
+                  'timezone_id' : 'Asia/Aqtau'
                 },{
                   'dst' : false,
                   'offset' : 18000,
@@ -4200,143 +4228,143 @@
               [
                 {'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Buenos_Aires',
+                  'timezone_id' : 'America/Buenos_Aires'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Buenos_Aires',
+                  'timezone_id' : 'America/Buenos_Aires'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Buenos_Aires',
+                  'timezone_id' : 'America/Argentina/Buenos_Aires'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Catamarca',
+                  'timezone_id' : 'America/Argentina/Catamarca'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/ComodRivadavia',
+                  'timezone_id' : 'America/Argentina/ComodRivadavia'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Cordoba',
+                  'timezone_id' : 'America/Argentina/Cordoba'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Jujuy',
+                  'timezone_id' : 'America/Argentina/Jujuy'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/La_Rioja',
+                  'timezone_id' : 'America/Argentina/La_Rioja'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Mendoza',
+                  'timezone_id' : 'America/Argentina/Mendoza'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Rio_Gallegos',
+                  'timezone_id' : 'America/Argentina/Rio_Gallegos'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/San_Juan',
+                  'timezone_id' : 'America/Argentina/San_Juan'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Tucuman',
+                  'timezone_id' : 'America/Argentina/Tucuman'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Ushuaia',
+                  'timezone_id' : 'America/Argentina/Ushuaia'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Catamarca',
+                  'timezone_id' : 'America/Catamarca'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Cordoba',
+                  'timezone_id' : 'America/Cordoba'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Jujuy',
+                  'timezone_id' : 'America/Jujuy'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Mendoza',
+                  'timezone_id' : 'America/Mendoza'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Rosario',
+                  'timezone_id' : 'America/Rosario'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'Antarctica/Palmer',
+                  'timezone_id' : 'Antarctica/Palmer'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Argentina/Buenos_Aires',
+                  'timezone_id' : 'America/Argentina/Buenos_Aires'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Argentina/Catamarca',
+                  'timezone_id' : 'America/Argentina/Catamarca'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Argentina/ComodRivadavia',
+                  'timezone_id' : 'America/Argentina/ComodRivadavia'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Argentina/Cordoba',
+                  'timezone_id' : 'America/Argentina/Cordoba'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Argentina/Jujuy',
+                  'timezone_id' : 'America/Argentina/Jujuy'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Argentina/La_Rioja',
+                  'timezone_id' : 'America/Argentina/La_Rioja'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Argentina/Mendoza',
+                  'timezone_id' : 'America/Argentina/Mendoza'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Argentina/Rio_Gallegos',
+                  'timezone_id' : 'America/Argentina/Rio_Gallegos'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Argentina/San_Juan',
+                  'timezone_id' : 'America/Argentina/San_Juan'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Argentina/Tucuman',
+                  'timezone_id' : 'America/Argentina/Tucuman'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Argentina/Ushuaia',
+                  'timezone_id' : 'America/Argentina/Ushuaia'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Catamarca',
+                  'timezone_id' : 'America/Catamarca'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Cordoba',
+                  'timezone_id' : 'America/Cordoba'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Jujuy',
+                  'timezone_id' : 'America/Jujuy'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Mendoza',
+                  'timezone_id' : 'America/Mendoza'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Rosario',
+                  'timezone_id' : 'America/Rosario'
                 },{
                   'dst' : true,
                   'offset' : -7200,
@@ -4347,143 +4375,143 @@
               [
                 {'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Buenos_Aires',
+                  'timezone_id' : 'America/Buenos_Aires'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Buenos_Aires',
+                  'timezone_id' : 'America/Buenos_Aires'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Buenos_Aires',
+                  'timezone_id' : 'America/Argentina/Buenos_Aires'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Catamarca',
+                  'timezone_id' : 'America/Argentina/Catamarca'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/ComodRivadavia',
+                  'timezone_id' : 'America/Argentina/ComodRivadavia'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Cordoba',
+                  'timezone_id' : 'America/Argentina/Cordoba'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Jujuy',
+                  'timezone_id' : 'America/Argentina/Jujuy'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/La_Rioja',
+                  'timezone_id' : 'America/Argentina/La_Rioja'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Mendoza',
+                  'timezone_id' : 'America/Argentina/Mendoza'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Rio_Gallegos',
+                  'timezone_id' : 'America/Argentina/Rio_Gallegos'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/San_Juan',
+                  'timezone_id' : 'America/Argentina/San_Juan'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Tucuman',
+                  'timezone_id' : 'America/Argentina/Tucuman'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Ushuaia',
+                  'timezone_id' : 'America/Argentina/Ushuaia'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Catamarca',
+                  'timezone_id' : 'America/Catamarca'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Cordoba',
+                  'timezone_id' : 'America/Cordoba'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Jujuy',
+                  'timezone_id' : 'America/Jujuy'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Mendoza',
+                  'timezone_id' : 'America/Mendoza'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Rosario',
+                  'timezone_id' : 'America/Rosario'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'Antarctica/Palmer',
+                  'timezone_id' : 'Antarctica/Palmer'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Buenos_Aires',
+                  'timezone_id' : 'America/Argentina/Buenos_Aires'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Catamarca',
+                  'timezone_id' : 'America/Argentina/Catamarca'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/ComodRivadavia',
+                  'timezone_id' : 'America/Argentina/ComodRivadavia'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Cordoba',
+                  'timezone_id' : 'America/Argentina/Cordoba'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Jujuy',
+                  'timezone_id' : 'America/Argentina/Jujuy'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/La_Rioja',
+                  'timezone_id' : 'America/Argentina/La_Rioja'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Mendoza',
+                  'timezone_id' : 'America/Argentina/Mendoza'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Rio_Gallegos',
+                  'timezone_id' : 'America/Argentina/Rio_Gallegos'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/San_Juan',
+                  'timezone_id' : 'America/Argentina/San_Juan'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Tucuman',
+                  'timezone_id' : 'America/Argentina/Tucuman'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Ushuaia',
+                  'timezone_id' : 'America/Argentina/Ushuaia'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Catamarca',
+                  'timezone_id' : 'America/Catamarca'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Cordoba',
+                  'timezone_id' : 'America/Cordoba'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Jujuy',
+                  'timezone_id' : 'America/Jujuy'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Mendoza',
+                  'timezone_id' : 'America/Mendoza'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Rosario',
+                  'timezone_id' : 'America/Rosario'
                 },{
                   'dst' : false,
                   'offset' : -14400,
@@ -4494,15 +4522,15 @@
               [
                 {'dst' : true,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Ashkhabad',
+                  'timezone_id' : 'Asia/Ashkhabad'
                 },{
                   'dst' : true,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Ashkhabad',
+                  'timezone_id' : 'Asia/Ashkhabad'
                 },{
                   'dst' : true,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Ashgabat',
+                  'timezone_id' : 'Asia/Ashgabat'
                 },{
                   'dst' : true,
                   'offset' : 21600,
@@ -4513,15 +4541,15 @@
               [
                 {'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Ashkhabad',
+                  'timezone_id' : 'Asia/Ashkhabad'
                 },{
                   'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Ashkhabad',
+                  'timezone_id' : 'Asia/Ashkhabad'
                 },{
                   'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Ashgabat',
+                  'timezone_id' : 'Asia/Ashgabat'
                 },{
                   'dst' : false,
                   'offset' : 18000,
@@ -4532,139 +4560,139 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Riyadh',
+                  'timezone_id' : 'Asia/Riyadh'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Anguilla',
+                  'timezone_id' : 'America/Anguilla'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Antigua',
+                  'timezone_id' : 'America/Antigua'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Aruba',
+                  'timezone_id' : 'America/Aruba'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Barbados',
+                  'timezone_id' : 'America/Barbados'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Blanc-Sablon',
+                  'timezone_id' : 'America/Blanc-Sablon'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Curacao',
+                  'timezone_id' : 'America/Curacao'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Dominica',
+                  'timezone_id' : 'America/Dominica'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Glace_Bay',
+                  'timezone_id' : 'America/Glace_Bay'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Goose_Bay',
+                  'timezone_id' : 'America/Goose_Bay'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Grenada',
+                  'timezone_id' : 'America/Grenada'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Guadeloupe',
+                  'timezone_id' : 'America/Guadeloupe'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Halifax',
+                  'timezone_id' : 'America/Halifax'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Martinique',
+                  'timezone_id' : 'America/Martinique'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Miquelon',
+                  'timezone_id' : 'America/Miquelon'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Moncton',
+                  'timezone_id' : 'America/Moncton'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Montserrat',
+                  'timezone_id' : 'America/Montserrat'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Pangnirtung',
+                  'timezone_id' : 'America/Pangnirtung'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Port_of_Spain',
+                  'timezone_id' : 'America/Port_of_Spain'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Puerto_Rico',
+                  'timezone_id' : 'America/Puerto_Rico'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Santo_Domingo',
+                  'timezone_id' : 'America/Santo_Domingo'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/St_Kitts',
+                  'timezone_id' : 'America/St_Kitts'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/St_Lucia',
+                  'timezone_id' : 'America/St_Lucia'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/St_Thomas',
+                  'timezone_id' : 'America/St_Thomas'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/St_Vincent',
+                  'timezone_id' : 'America/St_Vincent'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Thule',
+                  'timezone_id' : 'America/Thule'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Tortola',
+                  'timezone_id' : 'America/Tortola'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Virgin',
+                  'timezone_id' : 'America/Virgin'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'Atlantic/Bermuda',
+                  'timezone_id' : 'Atlantic/Bermuda'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'Canada/Atlantic',
+                  'timezone_id' : 'Canada/Atlantic'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Aden',
+                  'timezone_id' : 'Asia/Aden'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Baghdad',
+                  'timezone_id' : 'Asia/Baghdad'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Bahrain',
+                  'timezone_id' : 'Asia/Bahrain'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Kuwait',
+                  'timezone_id' : 'Asia/Kuwait'
                 },{
                   'dst' : false,
                   'offset' : 10800,
@@ -4675,27 +4703,27 @@
               [
                 {'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Halifax',
+                  'timezone_id' : 'America/Halifax'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Blanc-Sablon',
+                  'timezone_id' : 'America/Blanc-Sablon'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Glace_Bay',
+                  'timezone_id' : 'America/Glace_Bay'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Moncton',
+                  'timezone_id' : 'America/Moncton'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Pangnirtung',
+                  'timezone_id' : 'America/Pangnirtung'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Puerto_Rico',
+                  'timezone_id' : 'America/Puerto_Rico'
                 },{
                   'dst' : true,
                   'offset' : -10800,
@@ -4713,7 +4741,7 @@
               [
                 {'dst' : true,
                   'offset' : -3600,
-                  'timezone_id' : 'Atlantic/Azores',
+                  'timezone_id' : 'Atlantic/Azores'
                 },{
                   'dst' : true,
                   'offset' : 0,
@@ -4724,7 +4752,7 @@
               [
                 {'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Atlantic/Azores',
+                  'timezone_id' : 'Atlantic/Azores'
                 },{
                   'dst' : false,
                   'offset' : -7200,
@@ -4735,7 +4763,7 @@
               [
                 {'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Baku',
+                  'timezone_id' : 'Asia/Baku'
                 },{
                   'dst' : true,
                   'offset' : 18000,
@@ -4746,7 +4774,7 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Baku',
+                  'timezone_id' : 'Asia/Baku'
                 },{
                   'dst' : false,
                   'offset' : 14400,
@@ -4757,7 +4785,7 @@
               [
                 {'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Baku',
+                  'timezone_id' : 'Asia/Baku'
                 },{
                   'dst' : true,
                   'offset' : 18000,
@@ -4768,7 +4796,7 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Baku',
+                  'timezone_id' : 'Asia/Baku'
                 },{
                   'dst' : false,
                   'offset' : 14400,
@@ -4779,31 +4807,31 @@
               [
                 {'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/London',
+                  'timezone_id' : 'Europe/London'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Belfast',
+                  'timezone_id' : 'Europe/Belfast'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Gibraltar',
+                  'timezone_id' : 'Europe/Gibraltar'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Guernsey',
+                  'timezone_id' : 'Europe/Guernsey'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Isle_of_Man',
+                  'timezone_id' : 'Europe/Isle_of_Man'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Jersey',
+                  'timezone_id' : 'Europe/Jersey'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'GB',
+                  'timezone_id' : 'GB'
                 },{
                   'dst' : true,
                   'offset' : 7200,
@@ -4814,23 +4842,23 @@
               [
                 {'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Adak',
+                  'timezone_id' : 'America/Adak'
                 },{
                   'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Atka',
+                  'timezone_id' : 'America/Atka'
                 },{
                   'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Nome',
+                  'timezone_id' : 'America/Nome'
                 },{
                   'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'US/Aleutian',
+                  'timezone_id' : 'US/Aleutian'
                 },{
                   'dst' : false,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Dacca',
+                  'timezone_id' : 'Asia/Dacca'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -4841,11 +4869,11 @@
               [
                 {'dst' : false,
                   'offset' : 9000,
-                  'timezone_id' : 'Africa/Mogadishu',
+                  'timezone_id' : 'Africa/Mogadishu'
                 },{
                   'dst' : false,
                   'offset' : 9000,
-                  'timezone_id' : 'Africa/Kampala',
+                  'timezone_id' : 'Africa/Kampala'
                 },{
                   'dst' : false,
                   'offset' : 9000,
@@ -4856,11 +4884,11 @@
               [
                 {'dst' : false,
                   'offset' : 9885,
-                  'timezone_id' : 'Africa/Nairobi',
+                  'timezone_id' : 'Africa/Nairobi'
                 },{
                   'dst' : false,
                   'offset' : 9885,
-                  'timezone_id' : 'Africa/Dar_es_Salaam',
+                  'timezone_id' : 'Africa/Dar_es_Salaam'
                 },{
                   'dst' : false,
                   'offset' : 9885,
@@ -4871,15 +4899,15 @@
               [
                 {'dst' : false,
                   'offset' : -14308,
-                  'timezone_id' : 'America/Barbados',
+                  'timezone_id' : 'America/Barbados'
                 },{
                   'dst' : false,
                   'offset' : -3996,
-                  'timezone_id' : 'Africa/Banjul',
+                  'timezone_id' : 'Africa/Banjul'
                 },{
                   'dst' : false,
                   'offset' : 6264,
-                  'timezone_id' : 'Europe/Tiraspol',
+                  'timezone_id' : 'Europe/Tiraspol'
                 },{
                   'dst' : false,
                   'offset' : 6264,
@@ -4890,7 +4918,7 @@
               [
                 {'dst' : false,
                   'offset' : 27000,
-                  'timezone_id' : 'Asia/Brunei',
+                  'timezone_id' : 'Asia/Brunei'
                 },{
                   'dst' : false,
                   'offset' : 28800,
@@ -4908,7 +4936,7 @@
               [
                 {'dst' : false,
                   'offset' : 27000,
-                  'timezone_id' : 'Asia/Kuching',
+                  'timezone_id' : 'Asia/Kuching'
                 },{
                   'dst' : false,
                   'offset' : 28800,
@@ -4933,31 +4961,31 @@
               [
                 {'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Sao_Paulo',
+                  'timezone_id' : 'America/Sao_Paulo'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Araguaina',
+                  'timezone_id' : 'America/Araguaina'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Bahia',
+                  'timezone_id' : 'America/Bahia'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Belem',
+                  'timezone_id' : 'America/Belem'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Fortaleza',
+                  'timezone_id' : 'America/Fortaleza'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Maceio',
+                  'timezone_id' : 'America/Maceio'
                 },{
                   'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Recife',
+                  'timezone_id' : 'America/Recife'
                 },{
                   'dst' : true,
                   'offset' : -7200,
@@ -4968,31 +4996,31 @@
               [
                 {'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Sao_Paulo',
+                  'timezone_id' : 'America/Sao_Paulo'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Araguaina',
+                  'timezone_id' : 'America/Araguaina'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Bahia',
+                  'timezone_id' : 'America/Bahia'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Belem',
+                  'timezone_id' : 'America/Belem'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Fortaleza',
+                  'timezone_id' : 'America/Fortaleza'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Maceio',
+                  'timezone_id' : 'America/Maceio'
                 },{
                   'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Recife',
+                  'timezone_id' : 'America/Recife'
                 },{
                   'dst' : false,
                   'offset' : -10800,
@@ -5003,99 +5031,99 @@
               [
                 {'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/London',
+                  'timezone_id' : 'Europe/London'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/London',
+                  'timezone_id' : 'Europe/London'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'America/Adak',
+                  'timezone_id' : 'America/Adak'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'America/Atka',
+                  'timezone_id' : 'America/Atka'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'America/Nome',
+                  'timezone_id' : 'America/Nome'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'Pacific/Midway',
+                  'timezone_id' : 'Pacific/Midway'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'Pacific/Pago_Pago',
+                  'timezone_id' : 'Pacific/Pago_Pago'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'Pacific/Samoa',
+                  'timezone_id' : 'Pacific/Samoa'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'US/Aleutian',
+                  'timezone_id' : 'US/Aleutian'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'US/Samoa',
+                  'timezone_id' : 'US/Samoa'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Belfast',
+                  'timezone_id' : 'Europe/Belfast'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Guernsey',
+                  'timezone_id' : 'Europe/Guernsey'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Isle_of_Man',
+                  'timezone_id' : 'Europe/Isle_of_Man'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Jersey',
+                  'timezone_id' : 'Europe/Jersey'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'GB',
+                  'timezone_id' : 'GB'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'GB-Eire',
+                  'timezone_id' : 'GB-Eire'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Eire',
+                  'timezone_id' : 'Eire'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Belfast',
+                  'timezone_id' : 'Europe/Belfast'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Dublin',
+                  'timezone_id' : 'Europe/Dublin'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Gibraltar',
+                  'timezone_id' : 'Europe/Gibraltar'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Guernsey',
+                  'timezone_id' : 'Europe/Guernsey'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Isle_of_Man',
+                  'timezone_id' : 'Europe/Isle_of_Man'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Jersey',
+                  'timezone_id' : 'Europe/Jersey'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'GB',
+                  'timezone_id' : 'GB'
                 },{
                   'dst' : true,
                   'offset' : 3600,
@@ -5106,7 +5134,7 @@
               [
                 {'dst' : false,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Thimbu',
+                  'timezone_id' : 'Asia/Thimbu'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -5117,15 +5145,15 @@
               [
                 {'dst' : false,
                   'offset' : 23400,
-                  'timezone_id' : 'Asia/Calcutta',
+                  'timezone_id' : 'Asia/Calcutta'
                 },{
                   'dst' : false,
                   'offset' : 23400,
-                  'timezone_id' : 'Asia/Dacca',
+                  'timezone_id' : 'Asia/Dacca'
                 },{
                   'dst' : false,
                   'offset' : 23400,
-                  'timezone_id' : 'Asia/Dhaka',
+                  'timezone_id' : 'Asia/Dhaka'
                 },{
                   'dst' : false,
                   'offset' : 23400,
@@ -5143,7 +5171,7 @@
               [
                 {'dst' : true,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Anchorage',
+                  'timezone_id' : 'America/Anchorage'
                 },{
                   'dst' : true,
                   'offset' : -32400,
@@ -5154,11 +5182,11 @@
               [
                 {'dst' : false,
                   'offset' : 34200,
-                  'timezone_id' : 'Australia/Adelaide',
+                  'timezone_id' : 'Australia/Adelaide'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Gaborone',
+                  'timezone_id' : 'Africa/Gaborone'
                 },{
                   'dst' : true,
                   'offset' : 10800,
@@ -5169,39 +5197,39 @@
               [
                 {'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Anchorage',
+                  'timezone_id' : 'America/Anchorage'
                 },{
                   'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : 'US/Alaska',
+                  'timezone_id' : 'US/Alaska'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Khartoum',
+                  'timezone_id' : 'Africa/Khartoum'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Blantyre',
+                  'timezone_id' : 'Africa/Blantyre'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Gaborone',
+                  'timezone_id' : 'Africa/Gaborone'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Harare',
+                  'timezone_id' : 'Africa/Harare'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Kigali',
+                  'timezone_id' : 'Africa/Kigali'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Lusaka',
+                  'timezone_id' : 'Africa/Lusaka'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Maputo',
+                  'timezone_id' : 'Africa/Maputo'
                 },{
                   'dst' : false,
                   'offset' : 7200,
@@ -5212,7 +5240,7 @@
               [
                 {'dst' : true,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Anchorage',
+                  'timezone_id' : 'America/Anchorage'
                 },{
                   'dst' : true,
                   'offset' : -32400,
@@ -5230,211 +5258,211 @@
               [
                 {'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Chicago',
+                  'timezone_id' : 'America/Chicago'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Havana',
+                  'timezone_id' : 'America/Havana'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'Cuba',
+                  'timezone_id' : 'Cuba'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Atikokan',
+                  'timezone_id' : 'America/Atikokan'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Belize',
+                  'timezone_id' : 'America/Belize'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Cambridge_Bay',
+                  'timezone_id' : 'America/Cambridge_Bay'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Cancun',
+                  'timezone_id' : 'America/Cancun'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Chihuahua',
+                  'timezone_id' : 'America/Chihuahua'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Coral_Harbour',
+                  'timezone_id' : 'America/Coral_Harbour'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Costa_Rica',
+                  'timezone_id' : 'America/Costa_Rica'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/El_Salvador',
+                  'timezone_id' : 'America/El_Salvador'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Fort_Wayne',
+                  'timezone_id' : 'America/Fort_Wayne'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Guatemala',
+                  'timezone_id' : 'America/Guatemala'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Indianapolis',
+                  'timezone_id' : 'America/Indiana/Indianapolis'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Knox',
+                  'timezone_id' : 'America/Indiana/Knox'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Marengo',
+                  'timezone_id' : 'America/Indiana/Marengo'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Petersburg',
+                  'timezone_id' : 'America/Indiana/Petersburg'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Vevay',
+                  'timezone_id' : 'America/Indiana/Vevay'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Vincennes',
+                  'timezone_id' : 'America/Indiana/Vincennes'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Winamac',
+                  'timezone_id' : 'America/Indiana/Winamac'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indianapolis',
+                  'timezone_id' : 'America/Indianapolis'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Iqaluit',
+                  'timezone_id' : 'America/Iqaluit'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Kentucky/Louisville',
+                  'timezone_id' : 'America/Kentucky/Louisville'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Kentucky/Monticello',
+                  'timezone_id' : 'America/Kentucky/Monticello'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Knox_IN',
+                  'timezone_id' : 'America/Knox_IN'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Louisville',
+                  'timezone_id' : 'America/Louisville'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Managua',
+                  'timezone_id' : 'America/Managua'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Menominee',
+                  'timezone_id' : 'America/Menominee'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Merida',
+                  'timezone_id' : 'America/Merida'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Mexico_City',
+                  'timezone_id' : 'America/Mexico_City'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Monterrey',
+                  'timezone_id' : 'America/Monterrey'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/North_Dakota/Center',
+                  'timezone_id' : 'America/North_Dakota/Center'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/North_Dakota/New_Salem',
+                  'timezone_id' : 'America/North_Dakota/New_Salem'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Pangnirtung',
+                  'timezone_id' : 'America/Pangnirtung'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Rainy_River',
+                  'timezone_id' : 'America/Rainy_River'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Rankin_Inlet',
+                  'timezone_id' : 'America/Rankin_Inlet'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Tegucigalpa',
+                  'timezone_id' : 'America/Tegucigalpa'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Winnipeg',
+                  'timezone_id' : 'America/Winnipeg'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'Canada/Central',
+                  'timezone_id' : 'Canada/Central'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'CST6CDT',
+                  'timezone_id' : 'CST6CDT'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'Mexico/General',
+                  'timezone_id' : 'Mexico/General'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'US/Central',
+                  'timezone_id' : 'US/Central'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'US/East-Indiana',
+                  'timezone_id' : 'US/East-Indiana'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'US/Indiana-Starke',
+                  'timezone_id' : 'US/Indiana-Starke'
                 },{
                   'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Shanghai',
+                  'timezone_id' : 'Asia/Shanghai'
                 },{
                   'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Chongqing',
+                  'timezone_id' : 'Asia/Chongqing'
                 },{
                   'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Chungking',
+                  'timezone_id' : 'Asia/Chungking'
                 },{
                   'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Harbin',
+                  'timezone_id' : 'Asia/Harbin'
                 },{
                   'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Kashgar',
+                  'timezone_id' : 'Asia/Kashgar'
                 },{
                   'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Taipei',
+                  'timezone_id' : 'Asia/Taipei'
                 },{
                   'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Urumqi',
+                  'timezone_id' : 'Asia/Urumqi'
                 },{
                   'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'PRC',
+                  'timezone_id' : 'PRC'
                 },{
                   'dst' : true,
                   'offset' : 32400,
@@ -5445,7 +5473,7 @@
               [
                 {'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Berlin',
+                  'timezone_id' : 'Europe/Berlin'
                 },{
                   'dst' : true,
                   'offset' : 10800,
@@ -5456,223 +5484,223 @@
               [
                 {'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Berlin',
+                  'timezone_id' : 'Europe/Berlin'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Kaliningrad',
+                  'timezone_id' : 'Europe/Kaliningrad'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Algiers',
+                  'timezone_id' : 'Africa/Algiers'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Ceuta',
+                  'timezone_id' : 'Africa/Ceuta'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Tripoli',
+                  'timezone_id' : 'Africa/Tripoli'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Tunis',
+                  'timezone_id' : 'Africa/Tunis'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Arctic/Longyearbyen',
+                  'timezone_id' : 'Arctic/Longyearbyen'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Atlantic/Jan_Mayen',
+                  'timezone_id' : 'Atlantic/Jan_Mayen'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'CET',
+                  'timezone_id' : 'CET'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Amsterdam',
+                  'timezone_id' : 'Europe/Amsterdam'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Andorra',
+                  'timezone_id' : 'Europe/Andorra'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Athens',
+                  'timezone_id' : 'Europe/Athens'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Belgrade',
+                  'timezone_id' : 'Europe/Belgrade'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Bratislava',
+                  'timezone_id' : 'Europe/Bratislava'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Brussels',
+                  'timezone_id' : 'Europe/Brussels'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Budapest',
+                  'timezone_id' : 'Europe/Budapest'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Chisinau',
+                  'timezone_id' : 'Europe/Chisinau'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Copenhagen',
+                  'timezone_id' : 'Europe/Copenhagen'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Gibraltar',
+                  'timezone_id' : 'Europe/Gibraltar'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Kaliningrad',
+                  'timezone_id' : 'Europe/Kaliningrad'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Kiev',
+                  'timezone_id' : 'Europe/Kiev'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Lisbon',
+                  'timezone_id' : 'Europe/Lisbon'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Ljubljana',
+                  'timezone_id' : 'Europe/Ljubljana'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Luxembourg',
+                  'timezone_id' : 'Europe/Luxembourg'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Madrid',
+                  'timezone_id' : 'Europe/Madrid'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Malta',
+                  'timezone_id' : 'Europe/Malta'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Minsk',
+                  'timezone_id' : 'Europe/Minsk'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Monaco',
+                  'timezone_id' : 'Europe/Monaco'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Oslo',
+                  'timezone_id' : 'Europe/Oslo'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Paris',
+                  'timezone_id' : 'Europe/Paris'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Podgorica',
+                  'timezone_id' : 'Europe/Podgorica'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Prague',
+                  'timezone_id' : 'Europe/Prague'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Riga',
+                  'timezone_id' : 'Europe/Riga'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Rome',
+                  'timezone_id' : 'Europe/Rome'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/San_Marino',
+                  'timezone_id' : 'Europe/San_Marino'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Sarajevo',
+                  'timezone_id' : 'Europe/Sarajevo'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Simferopol',
+                  'timezone_id' : 'Europe/Simferopol'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Skopje',
+                  'timezone_id' : 'Europe/Skopje'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Sofia',
+                  'timezone_id' : 'Europe/Sofia'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Stockholm',
+                  'timezone_id' : 'Europe/Stockholm'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Tallinn',
+                  'timezone_id' : 'Europe/Tallinn'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Tirane',
+                  'timezone_id' : 'Europe/Tirane'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Tiraspol',
+                  'timezone_id' : 'Europe/Tiraspol'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Uzhgorod',
+                  'timezone_id' : 'Europe/Uzhgorod'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Vaduz',
+                  'timezone_id' : 'Europe/Vaduz'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Vatican',
+                  'timezone_id' : 'Europe/Vatican'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Vienna',
+                  'timezone_id' : 'Europe/Vienna'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Vilnius',
+                  'timezone_id' : 'Europe/Vilnius'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Warsaw',
+                  'timezone_id' : 'Europe/Warsaw'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Zagreb',
+                  'timezone_id' : 'Europe/Zagreb'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Zaporozhye',
+                  'timezone_id' : 'Europe/Zaporozhye'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Zurich',
+                  'timezone_id' : 'Europe/Zurich'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Libya',
+                  'timezone_id' : 'Libya'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Poland',
+                  'timezone_id' : 'Poland'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Portugal',
+                  'timezone_id' : 'Portugal'
                 },{
                   'dst' : true,
                   'offset' : 7200,
@@ -5683,227 +5711,227 @@
               [
                 {'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Berlin',
+                  'timezone_id' : 'Europe/Berlin'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Algiers',
+                  'timezone_id' : 'Africa/Algiers'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Casablanca',
+                  'timezone_id' : 'Africa/Casablanca'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Ceuta',
+                  'timezone_id' : 'Africa/Ceuta'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Tripoli',
+                  'timezone_id' : 'Africa/Tripoli'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Tunis',
+                  'timezone_id' : 'Africa/Tunis'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Arctic/Longyearbyen',
+                  'timezone_id' : 'Arctic/Longyearbyen'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Atlantic/Jan_Mayen',
+                  'timezone_id' : 'Atlantic/Jan_Mayen'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'CET',
+                  'timezone_id' : 'CET'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Amsterdam',
+                  'timezone_id' : 'Europe/Amsterdam'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Andorra',
+                  'timezone_id' : 'Europe/Andorra'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Athens',
+                  'timezone_id' : 'Europe/Athens'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Belgrade',
+                  'timezone_id' : 'Europe/Belgrade'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Bratislava',
+                  'timezone_id' : 'Europe/Bratislava'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Brussels',
+                  'timezone_id' : 'Europe/Brussels'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Budapest',
+                  'timezone_id' : 'Europe/Budapest'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Chisinau',
+                  'timezone_id' : 'Europe/Chisinau'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Copenhagen',
+                  'timezone_id' : 'Europe/Copenhagen'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Gibraltar',
+                  'timezone_id' : 'Europe/Gibraltar'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Kaliningrad',
+                  'timezone_id' : 'Europe/Kaliningrad'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Kiev',
+                  'timezone_id' : 'Europe/Kiev'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Lisbon',
+                  'timezone_id' : 'Europe/Lisbon'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Ljubljana',
+                  'timezone_id' : 'Europe/Ljubljana'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Luxembourg',
+                  'timezone_id' : 'Europe/Luxembourg'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Madrid',
+                  'timezone_id' : 'Europe/Madrid'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Malta',
+                  'timezone_id' : 'Europe/Malta'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Minsk',
+                  'timezone_id' : 'Europe/Minsk'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Monaco',
+                  'timezone_id' : 'Europe/Monaco'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Oslo',
+                  'timezone_id' : 'Europe/Oslo'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Paris',
+                  'timezone_id' : 'Europe/Paris'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Podgorica',
+                  'timezone_id' : 'Europe/Podgorica'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Prague',
+                  'timezone_id' : 'Europe/Prague'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Riga',
+                  'timezone_id' : 'Europe/Riga'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Rome',
+                  'timezone_id' : 'Europe/Rome'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/San_Marino',
+                  'timezone_id' : 'Europe/San_Marino'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Sarajevo',
+                  'timezone_id' : 'Europe/Sarajevo'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Simferopol',
+                  'timezone_id' : 'Europe/Simferopol'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Skopje',
+                  'timezone_id' : 'Europe/Skopje'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Sofia',
+                  'timezone_id' : 'Europe/Sofia'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Stockholm',
+                  'timezone_id' : 'Europe/Stockholm'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Tallinn',
+                  'timezone_id' : 'Europe/Tallinn'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Tirane',
+                  'timezone_id' : 'Europe/Tirane'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Tiraspol',
+                  'timezone_id' : 'Europe/Tiraspol'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Uzhgorod',
+                  'timezone_id' : 'Europe/Uzhgorod'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Vaduz',
+                  'timezone_id' : 'Europe/Vaduz'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Vatican',
+                  'timezone_id' : 'Europe/Vatican'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Vienna',
+                  'timezone_id' : 'Europe/Vienna'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Vilnius',
+                  'timezone_id' : 'Europe/Vilnius'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Warsaw',
+                  'timezone_id' : 'Europe/Warsaw'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Zagreb',
+                  'timezone_id' : 'Europe/Zagreb'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Zaporozhye',
+                  'timezone_id' : 'Europe/Zaporozhye'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Zurich',
+                  'timezone_id' : 'Europe/Zurich'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Libya',
+                  'timezone_id' : 'Libya'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Poland',
+                  'timezone_id' : 'Poland'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Portugal',
+                  'timezone_id' : 'Portugal'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'WET',
+                  'timezone_id' : 'WET'
                 },{
                   'dst' : false,
                   'offset' : 7200,
@@ -5928,7 +5956,7 @@
               [
                 {'dst' : true,
                   'offset' : 49500,
-                  'timezone_id' : 'Pacific/Chatham',
+                  'timezone_id' : 'Pacific/Chatham'
                 },{
                   'dst' : true,
                   'offset' : 49500,
@@ -5939,7 +5967,7 @@
               [
                 {'dst' : false,
                   'offset' : 45900,
-                  'timezone_id' : 'Pacific/Chatham',
+                  'timezone_id' : 'Pacific/Chatham'
                 },{
                   'dst' : false,
                   'offset' : 45900,
@@ -5950,7 +5978,7 @@
               [
                 {'dst' : false,
                   'offset' : 30600,
-                  'timezone_id' : 'Asia/Harbin',
+                  'timezone_id' : 'Asia/Harbin'
                 },{
                   'dst' : false,
                   'offset' : 32400,
@@ -5982,15 +6010,15 @@
               [
                 {'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Dili',
+                  'timezone_id' : 'Asia/Dili'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Makassar',
+                  'timezone_id' : 'Asia/Makassar'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Pontianak',
+                  'timezone_id' : 'Asia/Pontianak'
                 },{
                   'dst' : false,
                   'offset' : 28800,
@@ -6022,19 +6050,19 @@
               [
                 {'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Santiago',
+                  'timezone_id' : 'America/Santiago'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Santiago',
+                  'timezone_id' : 'America/Santiago'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'Antarctica/Palmer',
+                  'timezone_id' : 'Antarctica/Palmer'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'Chile/Continental',
+                  'timezone_id' : 'Chile/Continental'
                 },{
                   'dst' : true,
                   'offset' : -14400,
@@ -6045,19 +6073,19 @@
               [
                 {'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Santiago',
+                  'timezone_id' : 'America/Santiago'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Santiago',
+                  'timezone_id' : 'America/Santiago'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'Antarctica/Palmer',
+                  'timezone_id' : 'Antarctica/Palmer'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'Chile/Continental',
+                  'timezone_id' : 'Chile/Continental'
                 },{
                   'dst' : false,
                   'offset' : -18000,
@@ -6082,99 +6110,99 @@
               [
                 {'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Chicago',
+                  'timezone_id' : 'America/Chicago'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Atikokan',
+                  'timezone_id' : 'America/Atikokan'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Coral_Harbour',
+                  'timezone_id' : 'America/Coral_Harbour'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Fort_Wayne',
+                  'timezone_id' : 'America/Fort_Wayne'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Indianapolis',
+                  'timezone_id' : 'America/Indiana/Indianapolis'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Knox',
+                  'timezone_id' : 'America/Indiana/Knox'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Marengo',
+                  'timezone_id' : 'America/Indiana/Marengo'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Petersburg',
+                  'timezone_id' : 'America/Indiana/Petersburg'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Vevay',
+                  'timezone_id' : 'America/Indiana/Vevay'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Vincennes',
+                  'timezone_id' : 'America/Indiana/Vincennes'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Winamac',
+                  'timezone_id' : 'America/Indiana/Winamac'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indianapolis',
+                  'timezone_id' : 'America/Indianapolis'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Kentucky/Louisville',
+                  'timezone_id' : 'America/Kentucky/Louisville'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Kentucky/Monticello',
+                  'timezone_id' : 'America/Kentucky/Monticello'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Knox_IN',
+                  'timezone_id' : 'America/Knox_IN'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Louisville',
+                  'timezone_id' : 'America/Louisville'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Menominee',
+                  'timezone_id' : 'America/Menominee'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Rainy_River',
+                  'timezone_id' : 'America/Rainy_River'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Rankin_Inlet',
+                  'timezone_id' : 'America/Rankin_Inlet'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Winnipeg',
+                  'timezone_id' : 'America/Winnipeg'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'Canada/Central',
+                  'timezone_id' : 'Canada/Central'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'CST6CDT',
+                  'timezone_id' : 'CST6CDT'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'US/Central',
+                  'timezone_id' : 'US/Central'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'US/East-Indiana',
+                  'timezone_id' : 'US/East-Indiana'
                 },{
                   'dst' : true,
                   'offset' : -18000,
@@ -6185,307 +6213,307 @@
               [
                 {'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Chicago',
+                  'timezone_id' : 'America/Chicago'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Havana',
+                  'timezone_id' : 'America/Havana'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'Cuba',
+                  'timezone_id' : 'Cuba'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Atikokan',
+                  'timezone_id' : 'America/Atikokan'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Belize',
+                  'timezone_id' : 'America/Belize'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Cambridge_Bay',
+                  'timezone_id' : 'America/Cambridge_Bay'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Cancun',
+                  'timezone_id' : 'America/Cancun'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Chihuahua',
+                  'timezone_id' : 'America/Chihuahua'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Coral_Harbour',
+                  'timezone_id' : 'America/Coral_Harbour'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Costa_Rica',
+                  'timezone_id' : 'America/Costa_Rica'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Detroit',
+                  'timezone_id' : 'America/Detroit'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/El_Salvador',
+                  'timezone_id' : 'America/El_Salvador'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Fort_Wayne',
+                  'timezone_id' : 'America/Fort_Wayne'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Guatemala',
+                  'timezone_id' : 'America/Guatemala'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Hermosillo',
+                  'timezone_id' : 'America/Hermosillo'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Indiana/Indianapolis',
+                  'timezone_id' : 'America/Indiana/Indianapolis'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Indiana/Knox',
+                  'timezone_id' : 'America/Indiana/Knox'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Indiana/Marengo',
+                  'timezone_id' : 'America/Indiana/Marengo'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Indiana/Petersburg',
+                  'timezone_id' : 'America/Indiana/Petersburg'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Indiana/Vevay',
+                  'timezone_id' : 'America/Indiana/Vevay'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Indiana/Vincennes',
+                  'timezone_id' : 'America/Indiana/Vincennes'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Indiana/Winamac',
+                  'timezone_id' : 'America/Indiana/Winamac'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Indianapolis',
+                  'timezone_id' : 'America/Indianapolis'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Iqaluit',
+                  'timezone_id' : 'America/Iqaluit'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Kentucky/Louisville',
+                  'timezone_id' : 'America/Kentucky/Louisville'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Kentucky/Monticello',
+                  'timezone_id' : 'America/Kentucky/Monticello'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Knox_IN',
+                  'timezone_id' : 'America/Knox_IN'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Louisville',
+                  'timezone_id' : 'America/Louisville'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Managua',
+                  'timezone_id' : 'America/Managua'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Mazatlan',
+                  'timezone_id' : 'America/Mazatlan'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Menominee',
+                  'timezone_id' : 'America/Menominee'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Merida',
+                  'timezone_id' : 'America/Merida'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Mexico_City',
+                  'timezone_id' : 'America/Mexico_City'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Monterrey',
+                  'timezone_id' : 'America/Monterrey'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/North_Dakota/Center',
+                  'timezone_id' : 'America/North_Dakota/Center'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/North_Dakota/New_Salem',
+                  'timezone_id' : 'America/North_Dakota/New_Salem'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Pangnirtung',
+                  'timezone_id' : 'America/Pangnirtung'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Rainy_River',
+                  'timezone_id' : 'America/Rainy_River'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Rankin_Inlet',
+                  'timezone_id' : 'America/Rankin_Inlet'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Regina',
+                  'timezone_id' : 'America/Regina'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Swift_Current',
+                  'timezone_id' : 'America/Swift_Current'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Tegucigalpa',
+                  'timezone_id' : 'America/Tegucigalpa'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Winnipeg',
+                  'timezone_id' : 'America/Winnipeg'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'Canada/Central',
+                  'timezone_id' : 'Canada/Central'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'Canada/East-Saskatchewan',
+                  'timezone_id' : 'Canada/East-Saskatchewan'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'Canada/Saskatchewan',
+                  'timezone_id' : 'Canada/Saskatchewan'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'CST6CDT',
+                  'timezone_id' : 'CST6CDT'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'Mexico/BajaSur',
+                  'timezone_id' : 'Mexico/BajaSur'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'Mexico/General',
+                  'timezone_id' : 'Mexico/General'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'US/Central',
+                  'timezone_id' : 'US/Central'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'US/East-Indiana',
+                  'timezone_id' : 'US/East-Indiana'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'US/Indiana-Starke',
+                  'timezone_id' : 'US/Indiana-Starke'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'US/Michigan',
+                  'timezone_id' : 'US/Michigan'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Chongqing',
+                  'timezone_id' : 'Asia/Chongqing'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Chungking',
+                  'timezone_id' : 'Asia/Chungking'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Harbin',
+                  'timezone_id' : 'Asia/Harbin'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Kashgar',
+                  'timezone_id' : 'Asia/Kashgar'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Macao',
+                  'timezone_id' : 'Asia/Macao'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Macau',
+                  'timezone_id' : 'Asia/Macau'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Shanghai',
+                  'timezone_id' : 'Asia/Shanghai'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Taipei',
+                  'timezone_id' : 'Asia/Taipei'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Urumqi',
+                  'timezone_id' : 'Asia/Urumqi'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'PRC',
+                  'timezone_id' : 'PRC'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'ROC',
+                  'timezone_id' : 'ROC'
                 },{
                   'dst' : false,
                   'offset' : 34200,
-                  'timezone_id' : 'Asia/Jayapura',
+                  'timezone_id' : 'Asia/Jayapura'
                 },{
                   'dst' : false,
                   'offset' : 34200,
-                  'timezone_id' : 'Australia/Adelaide',
+                  'timezone_id' : 'Australia/Adelaide'
                 },{
                   'dst' : false,
                   'offset' : 34200,
-                  'timezone_id' : 'Australia/Broken_Hill',
+                  'timezone_id' : 'Australia/Broken_Hill'
                 },{
                   'dst' : false,
                   'offset' : 34200,
-                  'timezone_id' : 'Australia/Darwin',
+                  'timezone_id' : 'Australia/Darwin'
                 },{
                   'dst' : false,
                   'offset' : 34200,
-                  'timezone_id' : 'Australia/North',
+                  'timezone_id' : 'Australia/North'
                 },{
                   'dst' : false,
                   'offset' : 34200,
-                  'timezone_id' : 'Australia/South',
+                  'timezone_id' : 'Australia/South'
                 },{
                   'dst' : false,
                   'offset' : 34200,
-                  'timezone_id' : 'Australia/Yancowinna',
+                  'timezone_id' : 'Australia/Yancowinna'
                 },{
                   'dst' : true,
                   'offset' : 37800,
-                  'timezone_id' : 'Australia/Adelaide',
+                  'timezone_id' : 'Australia/Adelaide'
                 },{
                   'dst' : true,
                   'offset' : 37800,
-                  'timezone_id' : 'Australia/Broken_Hill',
+                  'timezone_id' : 'Australia/Broken_Hill'
                 },{
                   'dst' : true,
                   'offset' : 37800,
-                  'timezone_id' : 'Australia/Darwin',
+                  'timezone_id' : 'Australia/Darwin'
                 },{
                   'dst' : true,
                   'offset' : 37800,
-                  'timezone_id' : 'Australia/North',
+                  'timezone_id' : 'Australia/North'
                 },{
                   'dst' : true,
                   'offset' : 37800,
-                  'timezone_id' : 'Australia/South',
+                  'timezone_id' : 'Australia/South'
                 },{
                   'dst' : true,
                   'offset' : 37800,
@@ -6503,7 +6531,7 @@
               [
                 {'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Atlantic/Cape_Verde',
+                  'timezone_id' : 'Atlantic/Cape_Verde'
                 },{
                   'dst' : false,
                   'offset' : -7200,
@@ -6514,7 +6542,7 @@
               [
                 {'dst' : false,
                   'offset' : 31500,
-                  'timezone_id' : 'Australia/Eucla',
+                  'timezone_id' : 'Australia/Eucla'
                 },{
                   'dst' : true,
                   'offset' : 35100,
@@ -6525,107 +6553,107 @@
               [
                 {'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Chicago',
+                  'timezone_id' : 'America/Chicago'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Atikokan',
+                  'timezone_id' : 'America/Atikokan'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Coral_Harbour',
+                  'timezone_id' : 'America/Coral_Harbour'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Fort_Wayne',
+                  'timezone_id' : 'America/Fort_Wayne'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Indianapolis',
+                  'timezone_id' : 'America/Indiana/Indianapolis'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Knox',
+                  'timezone_id' : 'America/Indiana/Knox'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Marengo',
+                  'timezone_id' : 'America/Indiana/Marengo'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Petersburg',
+                  'timezone_id' : 'America/Indiana/Petersburg'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Vevay',
+                  'timezone_id' : 'America/Indiana/Vevay'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Vincennes',
+                  'timezone_id' : 'America/Indiana/Vincennes'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Winamac',
+                  'timezone_id' : 'America/Indiana/Winamac'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indianapolis',
+                  'timezone_id' : 'America/Indianapolis'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Kentucky/Louisville',
+                  'timezone_id' : 'America/Kentucky/Louisville'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Kentucky/Monticello',
+                  'timezone_id' : 'America/Kentucky/Monticello'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Knox_IN',
+                  'timezone_id' : 'America/Knox_IN'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Louisville',
+                  'timezone_id' : 'America/Louisville'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Menominee',
+                  'timezone_id' : 'America/Menominee'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Mexico_City',
+                  'timezone_id' : 'America/Mexico_City'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Rainy_River',
+                  'timezone_id' : 'America/Rainy_River'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Rankin_Inlet',
+                  'timezone_id' : 'America/Rankin_Inlet'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Winnipeg',
+                  'timezone_id' : 'America/Winnipeg'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'Canada/Central',
+                  'timezone_id' : 'Canada/Central'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'CST6CDT',
+                  'timezone_id' : 'CST6CDT'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'Mexico/General',
+                  'timezone_id' : 'Mexico/General'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'US/Central',
+                  'timezone_id' : 'US/Central'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'US/East-Indiana',
+                  'timezone_id' : 'US/East-Indiana'
                 },{
                   'dst' : true,
                   'offset' : -18000,
@@ -6636,7 +6664,7 @@
               [
                 {'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Pacific/Guam',
+                  'timezone_id' : 'Pacific/Guam'
                 },{
                   'dst' : false,
                   'offset' : 36000,
@@ -6647,7 +6675,7 @@
               [
                 {'dst' : false,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Dacca',
+                  'timezone_id' : 'Asia/Dacca'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -6672,7 +6700,7 @@
               [
                 {'dst' : true,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Dushanbe',
+                  'timezone_id' : 'Asia/Dushanbe'
                 },{
                   'dst' : true,
                   'offset' : 25200,
@@ -6683,7 +6711,7 @@
               [
                 {'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Dushanbe',
+                  'timezone_id' : 'Asia/Dushanbe'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -6694,15 +6722,15 @@
               [
                 {'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'Chile/EasterIsland',
+                  'timezone_id' : 'Chile/EasterIsland'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Chile/EasterIsland',
+                  'timezone_id' : 'Chile/EasterIsland'
                 },{
                   'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'Pacific/Easter',
+                  'timezone_id' : 'Pacific/Easter'
                 },{
                   'dst' : true,
                   'offset' : -21600,
@@ -6713,19 +6741,19 @@
               [
                 {'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'Chile/EasterIsland',
+                  'timezone_id' : 'Chile/EasterIsland'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'Chile/EasterIsland',
+                  'timezone_id' : 'Chile/EasterIsland'
                 },{
                   'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : 'Pacific/Easter',
+                  'timezone_id' : 'Pacific/Easter'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'Pacific/Easter',
+                  'timezone_id' : 'Pacific/Easter'
                 },{
                   'dst' : true,
                   'offset' : 14400,
@@ -6736,47 +6764,47 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Khartoum',
+                  'timezone_id' : 'Africa/Khartoum'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Addis_Ababa',
+                  'timezone_id' : 'Africa/Addis_Ababa'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Asmara',
+                  'timezone_id' : 'Africa/Asmara'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Asmera',
+                  'timezone_id' : 'Africa/Asmera'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Dar_es_Salaam',
+                  'timezone_id' : 'Africa/Dar_es_Salaam'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Djibouti',
+                  'timezone_id' : 'Africa/Djibouti'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Kampala',
+                  'timezone_id' : 'Africa/Kampala'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Mogadishu',
+                  'timezone_id' : 'Africa/Mogadishu'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Nairobi',
+                  'timezone_id' : 'Africa/Nairobi'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Indian/Antananarivo',
+                  'timezone_id' : 'Indian/Antananarivo'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Indian/Comoro',
+                  'timezone_id' : 'Indian/Comoro'
                 },{
                   'dst' : false,
                   'offset' : 10800,
@@ -6787,7 +6815,7 @@
               [
                 {'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Guayaquil',
+                  'timezone_id' : 'America/Guayaquil'
                 },{
                   'dst' : false,
                   'offset' : -18000,
@@ -6805,123 +6833,123 @@
               [
                 {'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/New_York',
+                  'timezone_id' : 'America/New_York'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Cancun',
+                  'timezone_id' : 'America/Cancun'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Detroit',
+                  'timezone_id' : 'America/Detroit'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Fort_Wayne',
+                  'timezone_id' : 'America/Fort_Wayne'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Grand_Turk',
+                  'timezone_id' : 'America/Grand_Turk'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Indiana/Indianapolis',
+                  'timezone_id' : 'America/Indiana/Indianapolis'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Indiana/Marengo',
+                  'timezone_id' : 'America/Indiana/Marengo'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Indiana/Vevay',
+                  'timezone_id' : 'America/Indiana/Vevay'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Indiana/Vincennes',
+                  'timezone_id' : 'America/Indiana/Vincennes'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Indiana/Winamac',
+                  'timezone_id' : 'America/Indiana/Winamac'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Indianapolis',
+                  'timezone_id' : 'America/Indianapolis'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Iqaluit',
+                  'timezone_id' : 'America/Iqaluit'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Jamaica',
+                  'timezone_id' : 'America/Jamaica'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Kentucky/Louisville',
+                  'timezone_id' : 'America/Kentucky/Louisville'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Kentucky/Monticello',
+                  'timezone_id' : 'America/Kentucky/Monticello'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Louisville',
+                  'timezone_id' : 'America/Louisville'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Montreal',
+                  'timezone_id' : 'America/Montreal'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Nassau',
+                  'timezone_id' : 'America/Nassau'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Nipigon',
+                  'timezone_id' : 'America/Nipigon'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Pangnirtung',
+                  'timezone_id' : 'America/Pangnirtung'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Port-au-Prince',
+                  'timezone_id' : 'America/Port-au-Prince'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Santo_Domingo',
+                  'timezone_id' : 'America/Santo_Domingo'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Thunder_Bay',
+                  'timezone_id' : 'America/Thunder_Bay'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Toronto',
+                  'timezone_id' : 'America/Toronto'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'Canada/Eastern',
+                  'timezone_id' : 'Canada/Eastern'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'EST',
+                  'timezone_id' : 'EST'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'EST5EDT',
+                  'timezone_id' : 'EST5EDT'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'Jamaica',
+                  'timezone_id' : 'Jamaica'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'US/East-Indiana',
+                  'timezone_id' : 'US/East-Indiana'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'US/Eastern',
+                  'timezone_id' : 'US/Eastern'
                 },{
                   'dst' : true,
                   'offset' : -14400,
@@ -6932,127 +6960,127 @@
               [
                 {'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Helsinki',
+                  'timezone_id' : 'Europe/Helsinki'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Cairo',
+                  'timezone_id' : 'Africa/Cairo'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Amman',
+                  'timezone_id' : 'Asia/Amman'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Beirut',
+                  'timezone_id' : 'Asia/Beirut'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Damascus',
+                  'timezone_id' : 'Asia/Damascus'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Gaza',
+                  'timezone_id' : 'Asia/Gaza'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Istanbul',
+                  'timezone_id' : 'Asia/Istanbul'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Nicosia',
+                  'timezone_id' : 'Asia/Nicosia'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'EET',
+                  'timezone_id' : 'EET'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Egypt',
+                  'timezone_id' : 'Egypt'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Athens',
+                  'timezone_id' : 'Europe/Athens'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Bucharest',
+                  'timezone_id' : 'Europe/Bucharest'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Chisinau',
+                  'timezone_id' : 'Europe/Chisinau'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Istanbul',
+                  'timezone_id' : 'Europe/Istanbul'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Kaliningrad',
+                  'timezone_id' : 'Europe/Kaliningrad'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Kiev',
+                  'timezone_id' : 'Europe/Kiev'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Mariehamn',
+                  'timezone_id' : 'Europe/Mariehamn'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Minsk',
+                  'timezone_id' : 'Europe/Minsk'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Moscow',
+                  'timezone_id' : 'Europe/Moscow'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Nicosia',
+                  'timezone_id' : 'Europe/Nicosia'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Riga',
+                  'timezone_id' : 'Europe/Riga'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Simferopol',
+                  'timezone_id' : 'Europe/Simferopol'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Sofia',
+                  'timezone_id' : 'Europe/Sofia'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Tallinn',
+                  'timezone_id' : 'Europe/Tallinn'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Tiraspol',
+                  'timezone_id' : 'Europe/Tiraspol'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Uzhgorod',
+                  'timezone_id' : 'Europe/Uzhgorod'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Vilnius',
+                  'timezone_id' : 'Europe/Vilnius'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Warsaw',
+                  'timezone_id' : 'Europe/Warsaw'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Zaporozhye',
+                  'timezone_id' : 'Europe/Zaporozhye'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Poland',
+                  'timezone_id' : 'Poland'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Turkey',
+                  'timezone_id' : 'Turkey'
                 },{
                   'dst' : true,
                   'offset' : 10800,
@@ -7063,139 +7091,139 @@
               [
                 {'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Helsinki',
+                  'timezone_id' : 'Europe/Helsinki'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Gaza',
+                  'timezone_id' : 'Asia/Gaza'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Cairo',
+                  'timezone_id' : 'Africa/Cairo'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Tripoli',
+                  'timezone_id' : 'Africa/Tripoli'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Asia/Amman',
+                  'timezone_id' : 'Asia/Amman'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Asia/Beirut',
+                  'timezone_id' : 'Asia/Beirut'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Asia/Damascus',
+                  'timezone_id' : 'Asia/Damascus'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Asia/Gaza',
+                  'timezone_id' : 'Asia/Gaza'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Asia/Istanbul',
+                  'timezone_id' : 'Asia/Istanbul'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Asia/Nicosia',
+                  'timezone_id' : 'Asia/Nicosia'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'EET',
+                  'timezone_id' : 'EET'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Egypt',
+                  'timezone_id' : 'Egypt'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Athens',
+                  'timezone_id' : 'Europe/Athens'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Bucharest',
+                  'timezone_id' : 'Europe/Bucharest'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Chisinau',
+                  'timezone_id' : 'Europe/Chisinau'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Istanbul',
+                  'timezone_id' : 'Europe/Istanbul'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Kaliningrad',
+                  'timezone_id' : 'Europe/Kaliningrad'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Kiev',
+                  'timezone_id' : 'Europe/Kiev'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Mariehamn',
+                  'timezone_id' : 'Europe/Mariehamn'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Minsk',
+                  'timezone_id' : 'Europe/Minsk'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Moscow',
+                  'timezone_id' : 'Europe/Moscow'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Nicosia',
+                  'timezone_id' : 'Europe/Nicosia'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Riga',
+                  'timezone_id' : 'Europe/Riga'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Simferopol',
+                  'timezone_id' : 'Europe/Simferopol'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Sofia',
+                  'timezone_id' : 'Europe/Sofia'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Tallinn',
+                  'timezone_id' : 'Europe/Tallinn'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Tiraspol',
+                  'timezone_id' : 'Europe/Tiraspol'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Uzhgorod',
+                  'timezone_id' : 'Europe/Uzhgorod'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Vilnius',
+                  'timezone_id' : 'Europe/Vilnius'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Warsaw',
+                  'timezone_id' : 'Europe/Warsaw'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Zaporozhye',
+                  'timezone_id' : 'Europe/Zaporozhye'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Libya',
+                  'timezone_id' : 'Libya'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Poland',
+                  'timezone_id' : 'Poland'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Turkey',
+                  'timezone_id' : 'Turkey'
                 },{
                   'dst' : false,
                   'offset' : 7200,
@@ -7234,47 +7262,47 @@
               [
                 {'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/New_York',
+                  'timezone_id' : 'America/New_York'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Detroit',
+                  'timezone_id' : 'America/Detroit'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Iqaluit',
+                  'timezone_id' : 'America/Iqaluit'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Montreal',
+                  'timezone_id' : 'America/Montreal'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Nipigon',
+                  'timezone_id' : 'America/Nipigon'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Thunder_Bay',
+                  'timezone_id' : 'America/Thunder_Bay'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Toronto',
+                  'timezone_id' : 'America/Toronto'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'Canada/Eastern',
+                  'timezone_id' : 'Canada/Eastern'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'EST',
+                  'timezone_id' : 'EST'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'EST5EDT',
+                  'timezone_id' : 'EST5EDT'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'US/Eastern',
+                  'timezone_id' : 'US/Eastern'
                 },{
                   'dst' : true,
                   'offset' : -14400,
@@ -7285,283 +7313,283 @@
               [
                 {'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/New_York',
+                  'timezone_id' : 'America/New_York'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Antigua',
+                  'timezone_id' : 'America/Antigua'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Atikokan',
+                  'timezone_id' : 'America/Atikokan'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Cambridge_Bay',
+                  'timezone_id' : 'America/Cambridge_Bay'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Cancun',
+                  'timezone_id' : 'America/Cancun'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Cayman',
+                  'timezone_id' : 'America/Cayman'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Chicago',
+                  'timezone_id' : 'America/Chicago'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Coral_Harbour',
+                  'timezone_id' : 'America/Coral_Harbour'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Detroit',
+                  'timezone_id' : 'America/Detroit'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Fort_Wayne',
+                  'timezone_id' : 'America/Fort_Wayne'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Grand_Turk',
+                  'timezone_id' : 'America/Grand_Turk'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Indianapolis',
+                  'timezone_id' : 'America/Indiana/Indianapolis'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Knox',
+                  'timezone_id' : 'America/Indiana/Knox'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Marengo',
+                  'timezone_id' : 'America/Indiana/Marengo'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Petersburg',
+                  'timezone_id' : 'America/Indiana/Petersburg'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Vevay',
+                  'timezone_id' : 'America/Indiana/Vevay'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Vincennes',
+                  'timezone_id' : 'America/Indiana/Vincennes'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indiana/Winamac',
+                  'timezone_id' : 'America/Indiana/Winamac'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Indianapolis',
+                  'timezone_id' : 'America/Indianapolis'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Iqaluit',
+                  'timezone_id' : 'America/Iqaluit'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Jamaica',
+                  'timezone_id' : 'America/Jamaica'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Kentucky/Louisville',
+                  'timezone_id' : 'America/Kentucky/Louisville'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Kentucky/Monticello',
+                  'timezone_id' : 'America/Kentucky/Monticello'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Knox_IN',
+                  'timezone_id' : 'America/Knox_IN'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Louisville',
+                  'timezone_id' : 'America/Louisville'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Managua',
+                  'timezone_id' : 'America/Managua'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Menominee',
+                  'timezone_id' : 'America/Menominee'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Merida',
+                  'timezone_id' : 'America/Merida'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Montreal',
+                  'timezone_id' : 'America/Montreal'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Nassau',
+                  'timezone_id' : 'America/Nassau'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Nipigon',
+                  'timezone_id' : 'America/Nipigon'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Panama',
+                  'timezone_id' : 'America/Panama'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Pangnirtung',
+                  'timezone_id' : 'America/Pangnirtung'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Port-au-Prince',
+                  'timezone_id' : 'America/Port-au-Prince'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Rankin_Inlet',
+                  'timezone_id' : 'America/Rankin_Inlet'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Santo_Domingo',
+                  'timezone_id' : 'America/Santo_Domingo'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Thunder_Bay',
+                  'timezone_id' : 'America/Thunder_Bay'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Toronto',
+                  'timezone_id' : 'America/Toronto'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'Canada/Eastern',
+                  'timezone_id' : 'Canada/Eastern'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'EST',
+                  'timezone_id' : 'EST'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'EST5EDT',
+                  'timezone_id' : 'EST5EDT'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'Jamaica',
+                  'timezone_id' : 'Jamaica'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'US/Central',
+                  'timezone_id' : 'US/Central'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'US/East-Indiana',
+                  'timezone_id' : 'US/East-Indiana'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'US/Eastern',
+                  'timezone_id' : 'US/Eastern'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'US/Indiana-Starke',
+                  'timezone_id' : 'US/Indiana-Starke'
                 },{
                   'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : 'US/Michigan',
+                  'timezone_id' : 'US/Michigan'
                 },{
                   'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Australia/ACT',
+                  'timezone_id' : 'Australia/ACT'
                 },{
                   'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Australia/Brisbane',
+                  'timezone_id' : 'Australia/Brisbane'
                 },{
                   'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Australia/Canberra',
+                  'timezone_id' : 'Australia/Canberra'
                 },{
                   'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Australia/Currie',
+                  'timezone_id' : 'Australia/Currie'
                 },{
                   'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Australia/Hobart',
+                  'timezone_id' : 'Australia/Hobart'
                 },{
                   'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Australia/Lindeman',
+                  'timezone_id' : 'Australia/Lindeman'
                 },{
                   'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Australia/Melbourne',
+                  'timezone_id' : 'Australia/Melbourne'
                 },{
                   'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Australia/NSW',
+                  'timezone_id' : 'Australia/NSW'
                 },{
                   'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Australia/Queensland',
+                  'timezone_id' : 'Australia/Queensland'
                 },{
                   'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Australia/Sydney',
+                  'timezone_id' : 'Australia/Sydney'
                 },{
                   'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Australia/Tasmania',
+                  'timezone_id' : 'Australia/Tasmania'
                 },{
                   'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Australia/Victoria',
+                  'timezone_id' : 'Australia/Victoria'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/Melbourne',
+                  'timezone_id' : 'Australia/Melbourne'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/ACT',
+                  'timezone_id' : 'Australia/ACT'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/Brisbane',
+                  'timezone_id' : 'Australia/Brisbane'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/Canberra',
+                  'timezone_id' : 'Australia/Canberra'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/Currie',
+                  'timezone_id' : 'Australia/Currie'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/Hobart',
+                  'timezone_id' : 'Australia/Hobart'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/Lindeman',
+                  'timezone_id' : 'Australia/Lindeman'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/NSW',
+                  'timezone_id' : 'Australia/NSW'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/Queensland',
+                  'timezone_id' : 'Australia/Queensland'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/Sydney',
+                  'timezone_id' : 'Australia/Sydney'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/Tasmania',
+                  'timezone_id' : 'Australia/Tasmania'
                 },{
                   'dst' : true,
                   'offset' : 39600,
@@ -7572,47 +7600,47 @@
               [
                 {'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/New_York',
+                  'timezone_id' : 'America/New_York'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Detroit',
+                  'timezone_id' : 'America/Detroit'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Iqaluit',
+                  'timezone_id' : 'America/Iqaluit'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Montreal',
+                  'timezone_id' : 'America/Montreal'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Nipigon',
+                  'timezone_id' : 'America/Nipigon'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Thunder_Bay',
+                  'timezone_id' : 'America/Thunder_Bay'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Toronto',
+                  'timezone_id' : 'America/Toronto'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'Canada/Eastern',
+                  'timezone_id' : 'Canada/Eastern'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'EST',
+                  'timezone_id' : 'EST'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'EST5EDT',
+                  'timezone_id' : 'EST5EDT'
                 },{
                   'dst' : true,
                   'offset' : -14400,
-                  'timezone_id' : 'US/Eastern',
+                  'timezone_id' : 'US/Eastern'
                 },{
                   'dst' : true,
                   'offset' : -14400,
@@ -7637,7 +7665,7 @@
               [
                 {'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'Atlantic/Stanley',
+                  'timezone_id' : 'Atlantic/Stanley'
                 },{
                   'dst' : true,
                   'offset' : -7200,
@@ -7648,7 +7676,7 @@
               [
                 {'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'Atlantic/Stanley',
+                  'timezone_id' : 'Atlantic/Stanley'
                 },{
                   'dst' : false,
                   'offset' : -14400,
@@ -7659,7 +7687,7 @@
               [
                 {'dst' : true,
                   'offset' : -3600,
-                  'timezone_id' : 'America/Noronha',
+                  'timezone_id' : 'America/Noronha'
                 },{
                   'dst' : true,
                   'offset' : -3600,
@@ -7670,7 +7698,7 @@
               [
                 {'dst' : false,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Noronha',
+                  'timezone_id' : 'America/Noronha'
                 },{
                   'dst' : false,
                   'offset' : -7200,
@@ -7681,7 +7709,7 @@
               [
                 {'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Aqtau',
+                  'timezone_id' : 'Asia/Aqtau'
                 },{
                   'dst' : false,
                   'offset' : 18000,
@@ -7692,7 +7720,7 @@
               [
                 {'dst' : true,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Bishkek',
+                  'timezone_id' : 'Asia/Bishkek'
                 },{
                   'dst' : true,
                   'offset' : 25200,
@@ -7703,7 +7731,7 @@
               [
                 {'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Bishkek',
+                  'timezone_id' : 'Asia/Bishkek'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -7735,7 +7763,7 @@
               [
                 {'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Tbilisi',
+                  'timezone_id' : 'Asia/Tbilisi'
                 },{
                   'dst' : true,
                   'offset' : 18000,
@@ -7746,7 +7774,7 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Tbilisi',
+                  'timezone_id' : 'Asia/Tbilisi'
                 },{
                   'dst' : false,
                   'offset' : 14400,
@@ -7757,7 +7785,7 @@
               [
                 {'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Cayenne',
+                  'timezone_id' : 'America/Cayenne'
                 },{
                   'dst' : false,
                   'offset' : -14400,
@@ -7775,119 +7803,119 @@
               [
                 {'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Abidjan',
+                  'timezone_id' : 'Africa/Abidjan'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Accra',
+                  'timezone_id' : 'Africa/Accra'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Bamako',
+                  'timezone_id' : 'Africa/Bamako'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Banjul',
+                  'timezone_id' : 'Africa/Banjul'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Bissau',
+                  'timezone_id' : 'Africa/Bissau'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Conakry',
+                  'timezone_id' : 'Africa/Conakry'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Dakar',
+                  'timezone_id' : 'Africa/Dakar'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Freetown',
+                  'timezone_id' : 'Africa/Freetown'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Malabo',
+                  'timezone_id' : 'Africa/Malabo'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Monrovia',
+                  'timezone_id' : 'Africa/Monrovia'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Niamey',
+                  'timezone_id' : 'Africa/Niamey'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Nouakchott',
+                  'timezone_id' : 'Africa/Nouakchott'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Ouagadougou',
+                  'timezone_id' : 'Africa/Ouagadougou'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Porto-Novo',
+                  'timezone_id' : 'Africa/Porto-Novo'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Sao_Tome',
+                  'timezone_id' : 'Africa/Sao_Tome'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Timbuktu',
+                  'timezone_id' : 'Africa/Timbuktu'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'America/Danmarkshavn',
+                  'timezone_id' : 'America/Danmarkshavn'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Atlantic/Reykjavik',
+                  'timezone_id' : 'Atlantic/Reykjavik'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Atlantic/St_Helena',
+                  'timezone_id' : 'Atlantic/St_Helena'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Eire',
+                  'timezone_id' : 'Eire'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/Belfast',
+                  'timezone_id' : 'Europe/Belfast'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/Dublin',
+                  'timezone_id' : 'Europe/Dublin'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/Gibraltar',
+                  'timezone_id' : 'Europe/Gibraltar'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/Guernsey',
+                  'timezone_id' : 'Europe/Guernsey'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/Isle_of_Man',
+                  'timezone_id' : 'Europe/Isle_of_Man'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/Jersey',
+                  'timezone_id' : 'Europe/Jersey'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/London',
+                  'timezone_id' : 'Europe/London'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'GB',
+                  'timezone_id' : 'GB'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'GB-Eire',
+                  'timezone_id' : 'GB-Eire'
                 },{
                   'dst' : false,
                   'offset' : 0,
@@ -7898,15 +7926,15 @@
               [
                 {'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Dubai',
+                  'timezone_id' : 'Asia/Dubai'
                 },{
                   'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Bahrain',
+                  'timezone_id' : 'Asia/Bahrain'
                 },{
                   'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Muscat',
+                  'timezone_id' : 'Asia/Muscat'
                 },{
                   'dst' : false,
                   'offset' : 14400,
@@ -7917,11 +7945,11 @@
               [
                 {'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Guyana',
+                  'timezone_id' : 'America/Guyana'
                 },{
                   'dst' : false,
                   'offset' : -13500,
-                  'timezone_id' : 'America/Guyana',
+                  'timezone_id' : 'America/Guyana'
                 },{
                   'dst' : false,
                   'offset' : -14400,
@@ -7932,11 +7960,11 @@
               [
                 {'dst' : true,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Adak',
+                  'timezone_id' : 'America/Adak'
                 },{
                   'dst' : true,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Atka',
+                  'timezone_id' : 'America/Atka'
                 },{
                   'dst' : true,
                   'offset' : -32400,
@@ -7947,11 +7975,11 @@
               [
                 {'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Adak',
+                  'timezone_id' : 'America/Adak'
                 },{
                   'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Atka',
+                  'timezone_id' : 'America/Atka'
                 },{
                   'dst' : false,
                   'offset' : -36000,
@@ -7962,11 +7990,11 @@
               [
                 {'dst' : true,
                   'offset' : -34200,
-                  'timezone_id' : 'Pacific/Honolulu',
+                  'timezone_id' : 'Pacific/Honolulu'
                 },{
                   'dst' : true,
                   'offset' : -34200,
-                  'timezone_id' : 'HST',
+                  'timezone_id' : 'HST'
                 },{
                   'dst' : true,
                   'offset' : -34200,
@@ -7977,7 +8005,7 @@
               [
                 {'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Hong_Kong',
+                  'timezone_id' : 'Asia/Hong_Kong'
                 },{
                   'dst' : true,
                   'offset' : 32400,
@@ -7988,7 +8016,7 @@
               [
                 {'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Hong_Kong',
+                  'timezone_id' : 'Asia/Hong_Kong'
                 },{
                   'dst' : false,
                   'offset' : 28800,
@@ -8006,7 +8034,7 @@
               [
                 {'dst' : false,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Hovd',
+                  'timezone_id' : 'Asia/Hovd'
                 },{
                   'dst' : false,
                   'offset' : 25200,
@@ -8017,11 +8045,11 @@
               [
                 {'dst' : true,
                   'offset' : -34200,
-                  'timezone_id' : 'Pacific/Honolulu',
+                  'timezone_id' : 'Pacific/Honolulu'
                 },{
                   'dst' : true,
                   'offset' : -34200,
-                  'timezone_id' : 'HST',
+                  'timezone_id' : 'HST'
                 },{
                   'dst' : true,
                   'offset' : -34200,
@@ -8032,23 +8060,23 @@
               [
                 {'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : 'Pacific/Honolulu',
+                  'timezone_id' : 'Pacific/Honolulu'
                 },{
                   'dst' : false,
                   'offset' : -37800,
-                  'timezone_id' : 'Pacific/Honolulu',
+                  'timezone_id' : 'Pacific/Honolulu'
                 },{
                   'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : 'HST',
+                  'timezone_id' : 'HST'
                 },{
                   'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : 'US/Hawaii',
+                  'timezone_id' : 'US/Hawaii'
                 },{
                   'dst' : false,
                   'offset' : -37800,
-                  'timezone_id' : 'HST',
+                  'timezone_id' : 'HST'
                 },{
                   'dst' : false,
                   'offset' : -37800,
@@ -8059,11 +8087,11 @@
               [
                 {'dst' : true,
                   'offset' : -34200,
-                  'timezone_id' : 'Pacific/Honolulu',
+                  'timezone_id' : 'Pacific/Honolulu'
                 },{
                   'dst' : true,
                   'offset' : -34200,
-                  'timezone_id' : 'HST',
+                  'timezone_id' : 'HST'
                 },{
                   'dst' : true,
                   'offset' : -34200,
@@ -8074,27 +8102,27 @@
               [
                 {'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Bangkok',
+                  'timezone_id' : 'Asia/Bangkok'
                 },{
                   'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Phnom_Penh',
+                  'timezone_id' : 'Asia/Phnom_Penh'
                 },{
                   'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Saigon',
+                  'timezone_id' : 'Asia/Saigon'
                 },{
                   'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Vientiane',
+                  'timezone_id' : 'Asia/Vientiane'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Phnom_Penh',
+                  'timezone_id' : 'Asia/Phnom_Penh'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Saigon',
+                  'timezone_id' : 'Asia/Saigon'
                 },{
                   'dst' : false,
                   'offset' : 28800,
@@ -8105,11 +8133,11 @@
               [
                 {'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Jerusalem',
+                  'timezone_id' : 'Asia/Jerusalem'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Tel_Aviv',
+                  'timezone_id' : 'Asia/Tel_Aviv'
                 },{
                   'dst' : true,
                   'offset' : 14400,
@@ -8120,15 +8148,15 @@
               [
                 {'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Jerusalem',
+                  'timezone_id' : 'Asia/Jerusalem'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Gaza',
+                  'timezone_id' : 'Asia/Gaza'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Tel_Aviv',
+                  'timezone_id' : 'Asia/Tel_Aviv'
                 },{
                   'dst' : true,
                   'offset' : 10800,
@@ -8146,7 +8174,7 @@
               [
                 {'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Indian/Chagos',
+                  'timezone_id' : 'Indian/Chagos'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -8157,15 +8185,15 @@
               [
                 {'dst' : true,
                   'offset' : 16200,
-                  'timezone_id' : 'Asia/Tehran',
+                  'timezone_id' : 'Asia/Tehran'
                 },{
                   'dst' : true,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Tehran',
+                  'timezone_id' : 'Asia/Tehran'
                 },{
                   'dst' : true,
                   'offset' : 16200,
-                  'timezone_id' : 'Iran',
+                  'timezone_id' : 'Iran'
                 },{
                   'dst' : true,
                   'offset' : 18000,
@@ -8176,7 +8204,7 @@
               [
                 {'dst' : true,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Irkutsk',
+                  'timezone_id' : 'Asia/Irkutsk'
                 },{
                   'dst' : true,
                   'offset' : 32400,
@@ -8187,7 +8215,7 @@
               [
                 {'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Irkutsk',
+                  'timezone_id' : 'Asia/Irkutsk'
                 },{
                   'dst' : false,
                   'offset' : 28800,
@@ -8198,15 +8226,15 @@
               [
                 {'dst' : false,
                   'offset' : 12600,
-                  'timezone_id' : 'Asia/Tehran',
+                  'timezone_id' : 'Asia/Tehran'
                 },{
                   'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Tehran',
+                  'timezone_id' : 'Asia/Tehran'
                 },{
                   'dst' : false,
                   'offset' : 12600,
-                  'timezone_id' : 'Iran',
+                  'timezone_id' : 'Iran'
                 },{
                   'dst' : false,
                   'offset' : 14400,
@@ -8217,7 +8245,7 @@
               [
                 {'dst' : true,
                   'offset' : 0,
-                  'timezone_id' : 'Atlantic/Reykjavik',
+                  'timezone_id' : 'Atlantic/Reykjavik'
                 },{
                   'dst' : true,
                   'offset' : 0,
@@ -8228,91 +8256,91 @@
               [
                 {'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Asia/Jerusalem',
+                  'timezone_id' : 'Asia/Jerusalem'
                 },{
                   'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Atlantic/Reykjavik',
+                  'timezone_id' : 'Atlantic/Reykjavik'
                 },{
                   'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Iceland',
+                  'timezone_id' : 'Iceland'
                 },{
                   'dst' : false,
                   'offset' : 19800,
-                  'timezone_id' : 'Asia/Calcutta',
+                  'timezone_id' : 'Asia/Calcutta'
                 },{
                   'dst' : false,
                   'offset' : 19800,
-                  'timezone_id' : 'Asia/Colombo',
+                  'timezone_id' : 'Asia/Colombo'
                 },{
                   'dst' : false,
                   'offset' : 19800,
-                  'timezone_id' : 'Asia/Dacca',
+                  'timezone_id' : 'Asia/Dacca'
                 },{
                   'dst' : false,
                   'offset' : 19800,
-                  'timezone_id' : 'Asia/Dhaka',
+                  'timezone_id' : 'Asia/Dhaka'
                 },{
                   'dst' : false,
                   'offset' : 19800,
-                  'timezone_id' : 'Asia/Karachi',
+                  'timezone_id' : 'Asia/Karachi'
                 },{
                   'dst' : false,
                   'offset' : 19800,
-                  'timezone_id' : 'Asia/Katmandu',
+                  'timezone_id' : 'Asia/Katmandu'
                 },{
                   'dst' : false,
                   'offset' : 19800,
-                  'timezone_id' : 'Asia/Thimbu',
+                  'timezone_id' : 'Asia/Thimbu'
                 },{
                   'dst' : false,
                   'offset' : 19800,
-                  'timezone_id' : 'Asia/Thimphu',
+                  'timezone_id' : 'Asia/Thimphu'
                 },{
                   'dst' : true,
                   'offset' : 2079,
-                  'timezone_id' : 'Eire',
+                  'timezone_id' : 'Eire'
                 },{
                   'dst' : true,
                   'offset' : 2079,
-                  'timezone_id' : 'Europe/Dublin',
+                  'timezone_id' : 'Europe/Dublin'
                 },{
                   'dst' : true,
                   'offset' : 23400,
-                  'timezone_id' : 'Asia/Calcutta',
+                  'timezone_id' : 'Asia/Calcutta'
                 },{
                   'dst' : true,
                   'offset' : 23400,
-                  'timezone_id' : 'Asia/Colombo',
+                  'timezone_id' : 'Asia/Colombo'
                 },{
                   'dst' : true,
                   'offset' : 23400,
-                  'timezone_id' : 'Asia/Karachi',
+                  'timezone_id' : 'Asia/Karachi'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Eire',
+                  'timezone_id' : 'Eire'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Dublin',
+                  'timezone_id' : 'Europe/Dublin'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Eire',
+                  'timezone_id' : 'Eire'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Dublin',
+                  'timezone_id' : 'Europe/Dublin'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Asia/Gaza',
+                  'timezone_id' : 'Asia/Gaza'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Asia/Tel_Aviv',
+                  'timezone_id' : 'Asia/Tel_Aviv'
                 },{
                   'dst' : false,
                   'offset' : 7200,
@@ -8330,7 +8358,7 @@
               [
                 {'dst' : true,
                   'offset' : 36000,
-                  'timezone_id' : 'Asia/Tokyo',
+                  'timezone_id' : 'Asia/Tokyo'
                 },{
                   'dst' : true,
                   'offset' : 36000,
@@ -8341,59 +8369,59 @@
               [
                 {'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Tokyo',
+                  'timezone_id' : 'Asia/Tokyo'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Dili',
+                  'timezone_id' : 'Asia/Dili'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Jakarta',
+                  'timezone_id' : 'Asia/Jakarta'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Kuala_Lumpur',
+                  'timezone_id' : 'Asia/Kuala_Lumpur'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Kuching',
+                  'timezone_id' : 'Asia/Kuching'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Makassar',
+                  'timezone_id' : 'Asia/Makassar'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Manila',
+                  'timezone_id' : 'Asia/Manila'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Pontianak',
+                  'timezone_id' : 'Asia/Pontianak'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Rangoon',
+                  'timezone_id' : 'Asia/Rangoon'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Sakhalin',
+                  'timezone_id' : 'Asia/Sakhalin'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Singapore',
+                  'timezone_id' : 'Asia/Singapore'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Ujung_Pandang',
+                  'timezone_id' : 'Asia/Ujung_Pandang'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Japan',
+                  'timezone_id' : 'Japan'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Pacific/Nauru',
+                  'timezone_id' : 'Pacific/Nauru'
                 },{
                   'dst' : false,
                   'offset' : 32400,
@@ -8411,7 +8439,7 @@
               [
                 {'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Kashgar',
+                  'timezone_id' : 'Asia/Kashgar'
                 },{
                   'dst' : false,
                   'offset' : 19800,
@@ -8422,15 +8450,15 @@
               [
                 {'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Seoul',
+                  'timezone_id' : 'Asia/Seoul'
                 },{
                   'dst' : true,
                   'offset' : 36000,
-                  'timezone_id' : 'Asia/Seoul',
+                  'timezone_id' : 'Asia/Seoul'
                 },{
                   'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'ROK',
+                  'timezone_id' : 'ROK'
                 },{
                   'dst' : true,
                   'offset' : 36000,
@@ -8448,7 +8476,7 @@
               [
                 {'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Bishkek',
+                  'timezone_id' : 'Asia/Bishkek'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -8466,11 +8494,11 @@
               [
                 {'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Qyzylorda',
+                  'timezone_id' : 'Asia/Qyzylorda'
                 },{
                   'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Qyzylorda',
+                  'timezone_id' : 'Asia/Qyzylorda'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -8488,7 +8516,7 @@
               [
                 {'dst' : false,
                   'offset' : 39600,
-                  'timezone_id' : 'Pacific/Kosrae',
+                  'timezone_id' : 'Pacific/Kosrae'
                 },{
                   'dst' : false,
                   'offset' : 43200,
@@ -8499,7 +8527,7 @@
               [
                 {'dst' : true,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Krasnoyarsk',
+                  'timezone_id' : 'Asia/Krasnoyarsk'
                 },{
                   'dst' : true,
                   'offset' : 28800,
@@ -8510,7 +8538,7 @@
               [
                 {'dst' : false,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Krasnoyarsk',
+                  'timezone_id' : 'Asia/Krasnoyarsk'
                 },{
                   'dst' : false,
                   'offset' : 25200,
@@ -8521,35 +8549,35 @@
               [
                 {'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Seoul',
+                  'timezone_id' : 'Asia/Seoul'
                 },{
                   'dst' : false,
                   'offset' : 30600,
-                  'timezone_id' : 'Asia/Seoul',
+                  'timezone_id' : 'Asia/Seoul'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Seoul',
+                  'timezone_id' : 'Asia/Seoul'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Pyongyang',
+                  'timezone_id' : 'Asia/Pyongyang'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'ROK',
+                  'timezone_id' : 'ROK'
                 },{
                   'dst' : false,
                   'offset' : 30600,
-                  'timezone_id' : 'Asia/Pyongyang',
+                  'timezone_id' : 'Asia/Pyongyang'
                 },{
                   'dst' : false,
                   'offset' : 30600,
-                  'timezone_id' : 'ROK',
+                  'timezone_id' : 'ROK'
                 },{
                   'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Pyongyang',
+                  'timezone_id' : 'Asia/Pyongyang'
                 },{
                   'dst' : false,
                   'offset' : 32400,
@@ -8560,11 +8588,11 @@
               [
                 {'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Samara',
+                  'timezone_id' : 'Europe/Samara'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Samara',
+                  'timezone_id' : 'Europe/Samara'
                 },{
                   'dst' : true,
                   'offset' : 18000,
@@ -8575,7 +8603,7 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Samara',
+                  'timezone_id' : 'Europe/Samara'
                 },{
                   'dst' : false,
                   'offset' : 14400,
@@ -8586,7 +8614,7 @@
               [
                 {'dst' : false,
                   'offset' : -43200,
-                  'timezone_id' : 'Pacific/Kwajalein',
+                  'timezone_id' : 'Pacific/Kwajalein'
                 },{
                   'dst' : false,
                   'offset' : -43200,
@@ -8597,23 +8625,23 @@
               [
                 {'dst' : false,
                   'offset' : 37800,
-                  'timezone_id' : 'Australia/Lord_Howe',
+                  'timezone_id' : 'Australia/Lord_Howe'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/Lord_Howe',
+                  'timezone_id' : 'Australia/Lord_Howe'
                 },{
                   'dst' : true,
                   'offset' : 41400,
-                  'timezone_id' : 'Australia/Lord_Howe',
+                  'timezone_id' : 'Australia/Lord_Howe'
                 },{
                   'dst' : false,
                   'offset' : 37800,
-                  'timezone_id' : 'Australia/LHI',
+                  'timezone_id' : 'Australia/LHI'
                 },{
                   'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Australia/LHI',
+                  'timezone_id' : 'Australia/LHI'
                 },{
                   'dst' : true,
                   'offset' : 41400,
@@ -8624,7 +8652,7 @@
               [
                 {'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : 'Pacific/Kiritimati',
+                  'timezone_id' : 'Pacific/Kiritimati'
                 },{
                   'dst' : false,
                   'offset' : 50400,
@@ -8635,7 +8663,7 @@
               [
                 {'dst' : false,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Colombo',
+                  'timezone_id' : 'Asia/Colombo'
                 },{
                   'dst' : false,
                   'offset' : 23400,
@@ -8646,7 +8674,7 @@
               [
                 {'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Chongqing',
+                  'timezone_id' : 'Asia/Chongqing'
                 },{
                   'dst' : false,
                   'offset' : 25200,
@@ -8692,7 +8720,7 @@
               [
                 {'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Asia/Magadan',
+                  'timezone_id' : 'Asia/Magadan'
                 },{
                   'dst' : true,
                   'offset' : 43200,
@@ -8703,7 +8731,7 @@
               [
                 {'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Asia/Magadan',
+                  'timezone_id' : 'Asia/Magadan'
                 },{
                   'dst' : false,
                   'offset' : 39600,
@@ -8714,11 +8742,11 @@
               [
                 {'dst' : true,
                   'offset' : 26400,
-                  'timezone_id' : 'Asia/Singapore',
+                  'timezone_id' : 'Asia/Singapore'
                 },{
                   'dst' : true,
                   'offset' : 26400,
-                  'timezone_id' : 'Asia/Kuala_Lumpur',
+                  'timezone_id' : 'Asia/Kuala_Lumpur'
                 },{
                   'dst' : true,
                   'offset' : 26400,
@@ -8729,35 +8757,35 @@
               [
                 {'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Singapore',
+                  'timezone_id' : 'Asia/Singapore'
                 },{
                   'dst' : false,
                   'offset' : 26400,
-                  'timezone_id' : 'Asia/Singapore',
+                  'timezone_id' : 'Asia/Singapore'
                 },{
                   'dst' : false,
                   'offset' : 27000,
-                  'timezone_id' : 'Asia/Singapore',
+                  'timezone_id' : 'Asia/Singapore'
                 },{
                   'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Kuala_Lumpur',
+                  'timezone_id' : 'Asia/Kuala_Lumpur'
                 },{
                   'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Singapore',
+                  'timezone_id' : 'Singapore'
                 },{
                   'dst' : false,
                   'offset' : 26400,
-                  'timezone_id' : 'Asia/Kuala_Lumpur',
+                  'timezone_id' : 'Asia/Kuala_Lumpur'
                 },{
                   'dst' : false,
                   'offset' : 26400,
-                  'timezone_id' : 'Singapore',
+                  'timezone_id' : 'Singapore'
                 },{
                   'dst' : false,
                   'offset' : 27000,
-                  'timezone_id' : 'Asia/Kuala_Lumpur',
+                  'timezone_id' : 'Asia/Kuala_Lumpur'
                 },{
                   'dst' : false,
                   'offset' : 27000,
@@ -8782,7 +8810,7 @@
               [
                 {'dst' : true,
                   'offset' : -18000,
-                  'timezone_id' : 'America/Cambridge_Bay',
+                  'timezone_id' : 'America/Cambridge_Bay'
                 },{
                   'dst' : true,
                   'offset' : -18000,
@@ -8793,7 +8821,7 @@
               [
                 {'dst' : true,
                   'offset' : 16248,
-                  'timezone_id' : 'Europe/Moscow',
+                  'timezone_id' : 'Europe/Moscow'
                 },{
                   'dst' : true,
                   'offset' : 16248,
@@ -8804,95 +8832,95 @@
               [
                 {'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Denver',
+                  'timezone_id' : 'America/Denver'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Boise',
+                  'timezone_id' : 'America/Boise'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Cambridge_Bay',
+                  'timezone_id' : 'America/Cambridge_Bay'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Chihuahua',
+                  'timezone_id' : 'America/Chihuahua'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Edmonton',
+                  'timezone_id' : 'America/Edmonton'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Hermosillo',
+                  'timezone_id' : 'America/Hermosillo'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Inuvik',
+                  'timezone_id' : 'America/Inuvik'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Mazatlan',
+                  'timezone_id' : 'America/Mazatlan'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/North_Dakota/Center',
+                  'timezone_id' : 'America/North_Dakota/Center'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/North_Dakota/New_Salem',
+                  'timezone_id' : 'America/North_Dakota/New_Salem'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Phoenix',
+                  'timezone_id' : 'America/Phoenix'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Regina',
+                  'timezone_id' : 'America/Regina'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Shiprock',
+                  'timezone_id' : 'America/Shiprock'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Swift_Current',
+                  'timezone_id' : 'America/Swift_Current'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Yellowknife',
+                  'timezone_id' : 'America/Yellowknife'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Canada/East-Saskatchewan',
+                  'timezone_id' : 'Canada/East-Saskatchewan'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Canada/Mountain',
+                  'timezone_id' : 'Canada/Mountain'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Canada/Saskatchewan',
+                  'timezone_id' : 'Canada/Saskatchewan'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Mexico/BajaSur',
+                  'timezone_id' : 'Mexico/BajaSur'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'MST',
+                  'timezone_id' : 'MST'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'MST7MDT',
+                  'timezone_id' : 'MST7MDT'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Navajo',
+                  'timezone_id' : 'Navajo'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'US/Arizona',
+                  'timezone_id' : 'US/Arizona'
                 },{
                   'dst' : true,
                   'offset' : -21600,
@@ -8917,11 +8945,11 @@
               [
                 {'dst' : false,
                   'offset' : 43200,
-                  'timezone_id' : 'Pacific/Kwajalein',
+                  'timezone_id' : 'Pacific/Kwajalein'
                 },{
                   'dst' : false,
                   'offset' : 43200,
-                  'timezone_id' : 'Kwajalein',
+                  'timezone_id' : 'Kwajalein'
                 },{
                   'dst' : false,
                   'offset' : 43200,
@@ -8932,19 +8960,19 @@
               [
                 {'dst' : false,
                   'offset' : 9048,
-                  'timezone_id' : 'Europe/Moscow',
+                  'timezone_id' : 'Europe/Moscow'
                 },{
                   'dst' : false,
                   'offset' : 23400,
-                  'timezone_id' : 'Asia/Rangoon',
+                  'timezone_id' : 'Asia/Rangoon'
                 },{
                   'dst' : false,
                   'offset' : 28656,
-                  'timezone_id' : 'Asia/Makassar',
+                  'timezone_id' : 'Asia/Makassar'
                 },{
                   'dst' : false,
                   'offset' : 28656,
-                  'timezone_id' : 'Asia/Ujung_Pandang',
+                  'timezone_id' : 'Asia/Ujung_Pandang'
                 },{
                   'dst' : false,
                   'offset' : 9048,
@@ -8955,7 +8983,7 @@
               [
                 {'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Macao',
+                  'timezone_id' : 'Asia/Macao'
                 },{
                   'dst' : true,
                   'offset' : 32400,
@@ -8966,7 +8994,7 @@
               [
                 {'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Macao',
+                  'timezone_id' : 'Asia/Macao'
                 },{
                   'dst' : false,
                   'offset' : 28800,
@@ -8977,71 +9005,71 @@
               [
                 {'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Denver',
+                  'timezone_id' : 'America/Denver'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Boise',
+                  'timezone_id' : 'America/Boise'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Cambridge_Bay',
+                  'timezone_id' : 'America/Cambridge_Bay'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Edmonton',
+                  'timezone_id' : 'America/Edmonton'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/North_Dakota/Center',
+                  'timezone_id' : 'America/North_Dakota/Center'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/North_Dakota/New_Salem',
+                  'timezone_id' : 'America/North_Dakota/New_Salem'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Regina',
+                  'timezone_id' : 'America/Regina'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Shiprock',
+                  'timezone_id' : 'America/Shiprock'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Swift_Current',
+                  'timezone_id' : 'America/Swift_Current'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Yellowknife',
+                  'timezone_id' : 'America/Yellowknife'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Canada/East-Saskatchewan',
+                  'timezone_id' : 'Canada/East-Saskatchewan'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Canada/Mountain',
+                  'timezone_id' : 'Canada/Mountain'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Canada/Saskatchewan',
+                  'timezone_id' : 'Canada/Saskatchewan'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'MST',
+                  'timezone_id' : 'MST'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'MST7MDT',
+                  'timezone_id' : 'MST7MDT'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Navajo',
+                  'timezone_id' : 'Navajo'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'US/Mountain',
+                  'timezone_id' : 'US/Mountain'
                 },{
                   'dst' : false,
                   'offset' : 36000,
@@ -9052,59 +9080,59 @@
               [
                 {'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Moscow',
+                  'timezone_id' : 'Europe/Moscow'
                 },{
                   'dst' : true,
                   'offset' : 18000,
-                  'timezone_id' : 'Europe/Moscow',
+                  'timezone_id' : 'Europe/Moscow'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Chisinau',
+                  'timezone_id' : 'Europe/Chisinau'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Kaliningrad',
+                  'timezone_id' : 'Europe/Kaliningrad'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Kiev',
+                  'timezone_id' : 'Europe/Kiev'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Minsk',
+                  'timezone_id' : 'Europe/Minsk'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Riga',
+                  'timezone_id' : 'Europe/Riga'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Simferopol',
+                  'timezone_id' : 'Europe/Simferopol'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Tallinn',
+                  'timezone_id' : 'Europe/Tallinn'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Tiraspol',
+                  'timezone_id' : 'Europe/Tiraspol'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Uzhgorod',
+                  'timezone_id' : 'Europe/Uzhgorod'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Vilnius',
+                  'timezone_id' : 'Europe/Vilnius'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Zaporozhye',
+                  'timezone_id' : 'Europe/Zaporozhye'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'W-SU',
+                  'timezone_id' : 'W-SU'
                 },{
                   'dst' : true,
                   'offset' : 18000,
@@ -9115,51 +9143,51 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Moscow',
+                  'timezone_id' : 'Europe/Moscow'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Chisinau',
+                  'timezone_id' : 'Europe/Chisinau'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Kaliningrad',
+                  'timezone_id' : 'Europe/Kaliningrad'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Kiev',
+                  'timezone_id' : 'Europe/Kiev'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Minsk',
+                  'timezone_id' : 'Europe/Minsk'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Riga',
+                  'timezone_id' : 'Europe/Riga'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Simferopol',
+                  'timezone_id' : 'Europe/Simferopol'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Tallinn',
+                  'timezone_id' : 'Europe/Tallinn'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Tiraspol',
+                  'timezone_id' : 'Europe/Tiraspol'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Uzhgorod',
+                  'timezone_id' : 'Europe/Uzhgorod'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Vilnius',
+                  'timezone_id' : 'Europe/Vilnius'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Zaporozhye',
+                  'timezone_id' : 'Europe/Zaporozhye'
                 },{
                   'dst' : false,
                   'offset' : 10800,
@@ -9170,127 +9198,127 @@
               [
                 {'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Denver',
+                  'timezone_id' : 'America/Denver'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Boise',
+                  'timezone_id' : 'America/Boise'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Cambridge_Bay',
+                  'timezone_id' : 'America/Cambridge_Bay'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Chihuahua',
+                  'timezone_id' : 'America/Chihuahua'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Dawson_Creek',
+                  'timezone_id' : 'America/Dawson_Creek'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Edmonton',
+                  'timezone_id' : 'America/Edmonton'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Ensenada',
+                  'timezone_id' : 'America/Ensenada'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Hermosillo',
+                  'timezone_id' : 'America/Hermosillo'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Inuvik',
+                  'timezone_id' : 'America/Inuvik'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Mazatlan',
+                  'timezone_id' : 'America/Mazatlan'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Mexico_City',
+                  'timezone_id' : 'America/Mexico_City'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/North_Dakota/Center',
+                  'timezone_id' : 'America/North_Dakota/Center'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/North_Dakota/New_Salem',
+                  'timezone_id' : 'America/North_Dakota/New_Salem'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Phoenix',
+                  'timezone_id' : 'America/Phoenix'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Regina',
+                  'timezone_id' : 'America/Regina'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Shiprock',
+                  'timezone_id' : 'America/Shiprock'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Swift_Current',
+                  'timezone_id' : 'America/Swift_Current'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Tijuana',
+                  'timezone_id' : 'America/Tijuana'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Yellowknife',
+                  'timezone_id' : 'America/Yellowknife'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'Canada/East-Saskatchewan',
+                  'timezone_id' : 'Canada/East-Saskatchewan'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'Canada/Mountain',
+                  'timezone_id' : 'Canada/Mountain'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'Canada/Saskatchewan',
+                  'timezone_id' : 'Canada/Saskatchewan'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'Mexico/BajaNorte',
+                  'timezone_id' : 'Mexico/BajaNorte'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'Mexico/BajaSur',
+                  'timezone_id' : 'Mexico/BajaSur'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'Mexico/General',
+                  'timezone_id' : 'Mexico/General'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'MST',
+                  'timezone_id' : 'MST'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'MST7MDT',
+                  'timezone_id' : 'MST7MDT'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'Navajo',
+                  'timezone_id' : 'Navajo'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'US/Arizona',
+                  'timezone_id' : 'US/Arizona'
                 },{
                   'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : 'US/Mountain',
+                  'timezone_id' : 'US/Mountain'
                 },{
                   'dst' : true,
                   'offset' : 12648,
-                  'timezone_id' : 'Europe/Moscow',
+                  'timezone_id' : 'Europe/Moscow'
                 },{
                   'dst' : true,
                   'offset' : 12648,
@@ -9315,75 +9343,75 @@
               [
                 {'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Denver',
+                  'timezone_id' : 'America/Denver'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Boise',
+                  'timezone_id' : 'America/Boise'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Cambridge_Bay',
+                  'timezone_id' : 'America/Cambridge_Bay'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Edmonton',
+                  'timezone_id' : 'America/Edmonton'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/North_Dakota/Center',
+                  'timezone_id' : 'America/North_Dakota/Center'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/North_Dakota/New_Salem',
+                  'timezone_id' : 'America/North_Dakota/New_Salem'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Phoenix',
+                  'timezone_id' : 'America/Phoenix'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Regina',
+                  'timezone_id' : 'America/Regina'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Shiprock',
+                  'timezone_id' : 'America/Shiprock'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Swift_Current',
+                  'timezone_id' : 'America/Swift_Current'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'America/Yellowknife',
+                  'timezone_id' : 'America/Yellowknife'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Canada/East-Saskatchewan',
+                  'timezone_id' : 'Canada/East-Saskatchewan'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Canada/Mountain',
+                  'timezone_id' : 'Canada/Mountain'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Canada/Saskatchewan',
+                  'timezone_id' : 'Canada/Saskatchewan'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'MST',
+                  'timezone_id' : 'MST'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'MST7MDT',
+                  'timezone_id' : 'MST7MDT'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'Navajo',
+                  'timezone_id' : 'Navajo'
                 },{
                   'dst' : true,
                   'offset' : -21600,
-                  'timezone_id' : 'US/Arizona',
+                  'timezone_id' : 'US/Arizona'
                 },{
                   'dst' : true,
                   'offset' : -21600,
@@ -9394,7 +9422,7 @@
               [
                 {'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Kuala_Lumpur',
+                  'timezone_id' : 'Asia/Kuala_Lumpur'
                 },{
                   'dst' : false,
                   'offset' : 28800,
@@ -9419,7 +9447,7 @@
               [
                 {'dst' : true,
                   'offset' : -5400,
-                  'timezone_id' : 'America/St_Johns',
+                  'timezone_id' : 'America/St_Johns'
                 },{
                   'dst' : true,
                   'offset' : -5400,
@@ -9430,27 +9458,27 @@
               [
                 {'dst' : true,
                   'offset' : -9000,
-                  'timezone_id' : 'America/St_Johns',
+                  'timezone_id' : 'America/St_Johns'
                 },{
                   'dst' : true,
                   'offset' : -9052,
-                  'timezone_id' : 'America/St_Johns',
+                  'timezone_id' : 'America/St_Johns'
                 },{
                   'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'Pacific/Midway',
+                  'timezone_id' : 'Pacific/Midway'
                 },{
                   'dst' : true,
                   'offset' : -9000,
-                  'timezone_id' : 'America/Goose_Bay',
+                  'timezone_id' : 'America/Goose_Bay'
                 },{
                   'dst' : true,
                   'offset' : -9000,
-                  'timezone_id' : 'Canada/Newfoundland',
+                  'timezone_id' : 'Canada/Newfoundland'
                 },{
                   'dst' : true,
                   'offset' : -9052,
-                  'timezone_id' : 'America/Goose_Bay',
+                  'timezone_id' : 'America/Goose_Bay'
                 },{
                   'dst' : true,
                   'offset' : -9052,
@@ -9489,7 +9517,7 @@
               [
                 {'dst' : true,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Novosibirsk',
+                  'timezone_id' : 'Asia/Novosibirsk'
                 },{
                   'dst' : true,
                   'offset' : 28800,
@@ -9500,7 +9528,7 @@
               [
                 {'dst' : false,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Novosibirsk',
+                  'timezone_id' : 'Asia/Novosibirsk'
                 },{
                   'dst' : false,
                   'offset' : 25200,
@@ -9511,31 +9539,31 @@
               [
                 {'dst' : true,
                   'offset' : -9000,
-                  'timezone_id' : 'America/St_Johns',
+                  'timezone_id' : 'America/St_Johns'
                 },{
                   'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Adak',
+                  'timezone_id' : 'America/Adak'
                 },{
                   'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Atka',
+                  'timezone_id' : 'America/Atka'
                 },{
                   'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Nome',
+                  'timezone_id' : 'America/Nome'
                 },{
                   'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'US/Aleutian',
+                  'timezone_id' : 'US/Aleutian'
                 },{
                   'dst' : true,
                   'offset' : -9000,
-                  'timezone_id' : 'America/Goose_Bay',
+                  'timezone_id' : 'America/Goose_Bay'
                 },{
                   'dst' : true,
                   'offset' : -9000,
-                  'timezone_id' : 'Canada/Newfoundland',
+                  'timezone_id' : 'Canada/Newfoundland'
                 },{
                   'dst' : false,
                   'offset' : 20700,
@@ -9546,7 +9574,7 @@
               [
                 {'dst' : false,
                   'offset' : 41400,
-                  'timezone_id' : 'Pacific/Nauru',
+                  'timezone_id' : 'Pacific/Nauru'
                 },{
                   'dst' : false,
                   'offset' : 43200,
@@ -9557,59 +9585,59 @@
               [
                 {'dst' : false,
                   'offset' : -12600,
-                  'timezone_id' : 'America/St_Johns',
+                  'timezone_id' : 'America/St_Johns'
                 },{
                   'dst' : false,
                   'offset' : -12652,
-                  'timezone_id' : 'America/St_Johns',
+                  'timezone_id' : 'America/St_Johns'
                 },{
                   'dst' : false,
                   'offset' : -12600,
-                  'timezone_id' : 'America/Goose_Bay',
+                  'timezone_id' : 'America/Goose_Bay'
                 },{
                   'dst' : false,
                   'offset' : -12600,
-                  'timezone_id' : 'Canada/Newfoundland',
+                  'timezone_id' : 'Canada/Newfoundland'
                 },{
                   'dst' : false,
                   'offset' : -12652,
-                  'timezone_id' : 'America/Goose_Bay',
+                  'timezone_id' : 'America/Goose_Bay'
                 },{
                   'dst' : false,
                   'offset' : -12652,
-                  'timezone_id' : 'Canada/Newfoundland',
+                  'timezone_id' : 'Canada/Newfoundland'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'America/Adak',
+                  'timezone_id' : 'America/Adak'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'America/Atka',
+                  'timezone_id' : 'America/Atka'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'America/Nome',
+                  'timezone_id' : 'America/Nome'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'Pacific/Midway',
+                  'timezone_id' : 'Pacific/Midway'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'Pacific/Pago_Pago',
+                  'timezone_id' : 'Pacific/Pago_Pago'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'Pacific/Samoa',
+                  'timezone_id' : 'Pacific/Samoa'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'US/Aleutian',
+                  'timezone_id' : 'US/Aleutian'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'US/Samoa',
+                  'timezone_id' : 'US/Samoa'
                 },{
                   'dst' : true,
                   'offset' : 4772,
@@ -9620,7 +9648,7 @@
               [
                 {'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'Pacific/Niue',
+                  'timezone_id' : 'Pacific/Niue'
                 },{
                   'dst' : false,
                   'offset' : -41400,
@@ -9631,27 +9659,27 @@
               [
                 {'dst' : true,
                   'offset' : -9000,
-                  'timezone_id' : 'America/St_Johns',
+                  'timezone_id' : 'America/St_Johns'
                 },{
                   'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Adak',
+                  'timezone_id' : 'America/Adak'
                 },{
                   'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Atka',
+                  'timezone_id' : 'America/Atka'
                 },{
                   'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'America/Nome',
+                  'timezone_id' : 'America/Nome'
                 },{
                   'dst' : true,
                   'offset' : -36000,
-                  'timezone_id' : 'US/Aleutian',
+                  'timezone_id' : 'US/Aleutian'
                 },{
                   'dst' : true,
                   'offset' : -9000,
-                  'timezone_id' : 'America/Goose_Bay',
+                  'timezone_id' : 'America/Goose_Bay'
                 },{
                   'dst' : true,
                   'offset' : -9000,
@@ -9662,15 +9690,15 @@
               [
                 {'dst' : true,
                   'offset' : 46800,
-                  'timezone_id' : 'Pacific/Auckland',
+                  'timezone_id' : 'Pacific/Auckland'
                 },{
                   'dst' : true,
                   'offset' : 46800,
-                  'timezone_id' : 'Antarctica/McMurdo',
+                  'timezone_id' : 'Antarctica/McMurdo'
                 },{
                   'dst' : true,
                   'offset' : 46800,
-                  'timezone_id' : 'Antarctica/South_Pole',
+                  'timezone_id' : 'Antarctica/South_Pole'
                 },{
                   'dst' : true,
                   'offset' : 46800,
@@ -9681,7 +9709,7 @@
               [
                 {'dst' : false,
                   'offset' : 41400,
-                  'timezone_id' : 'Pacific/Auckland',
+                  'timezone_id' : 'Pacific/Auckland'
                 },{
                   'dst' : false,
                   'offset' : 41400,
@@ -9692,31 +9720,31 @@
               [
                 {'dst' : false,
                   'offset' : 43200,
-                  'timezone_id' : 'Pacific/Auckland',
+                  'timezone_id' : 'Pacific/Auckland'
                 },{
                   'dst' : true,
                   'offset' : 43200,
-                  'timezone_id' : 'Pacific/Auckland',
+                  'timezone_id' : 'Pacific/Auckland'
                 },{
                   'dst' : true,
                   'offset' : 45000,
-                  'timezone_id' : 'Pacific/Auckland',
+                  'timezone_id' : 'Pacific/Auckland'
                 },{
                   'dst' : false,
                   'offset' : 43200,
-                  'timezone_id' : 'Antarctica/McMurdo',
+                  'timezone_id' : 'Antarctica/McMurdo'
                 },{
                   'dst' : false,
                   'offset' : 43200,
-                  'timezone_id' : 'Antarctica/South_Pole',
+                  'timezone_id' : 'Antarctica/South_Pole'
                 },{
                   'dst' : false,
                   'offset' : 43200,
-                  'timezone_id' : 'NZ',
+                  'timezone_id' : 'NZ'
                 },{
                   'dst' : true,
                   'offset' : 43200,
-                  'timezone_id' : 'NZ',
+                  'timezone_id' : 'NZ'
                 },{
                   'dst' : true,
                   'offset' : 45000,
@@ -9727,7 +9755,7 @@
               [
                 {'dst' : true,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Omsk',
+                  'timezone_id' : 'Asia/Omsk'
                 },{
                   'dst' : true,
                   'offset' : 25200,
@@ -9738,7 +9766,7 @@
               [
                 {'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Omsk',
+                  'timezone_id' : 'Asia/Omsk'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -9756,7 +9784,7 @@
               [
                 {'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Oral',
+                  'timezone_id' : 'Asia/Oral'
                 },{
                   'dst' : false,
                   'offset' : 18000,
@@ -9774,63 +9802,63 @@
               [
                 {'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Los_Angeles',
+                  'timezone_id' : 'America/Los_Angeles'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Boise',
+                  'timezone_id' : 'America/Boise'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Dawson',
+                  'timezone_id' : 'America/Dawson'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Dawson_Creek',
+                  'timezone_id' : 'America/Dawson_Creek'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Ensenada',
+                  'timezone_id' : 'America/Ensenada'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Inuvik',
+                  'timezone_id' : 'America/Inuvik'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Juneau',
+                  'timezone_id' : 'America/Juneau'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Tijuana',
+                  'timezone_id' : 'America/Tijuana'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Vancouver',
+                  'timezone_id' : 'America/Vancouver'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Whitehorse',
+                  'timezone_id' : 'America/Whitehorse'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'Canada/Pacific',
+                  'timezone_id' : 'Canada/Pacific'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'Canada/Yukon',
+                  'timezone_id' : 'Canada/Yukon'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'Mexico/BajaNorte',
+                  'timezone_id' : 'Mexico/BajaNorte'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'PST8PDT',
+                  'timezone_id' : 'PST8PDT'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'US/Pacific',
+                  'timezone_id' : 'US/Pacific'
                 },{
                   'dst' : true,
                   'offset' : -25200,
@@ -9848,7 +9876,7 @@
               [
                 {'dst' : true,
                   'offset' : 43200,
-                  'timezone_id' : 'Asia/Kamchatka',
+                  'timezone_id' : 'Asia/Kamchatka'
                 },{
                   'dst' : true,
                   'offset' : 46800,
@@ -9859,7 +9887,7 @@
               [
                 {'dst' : false,
                   'offset' : 39600,
-                  'timezone_id' : 'Asia/Kamchatka',
+                  'timezone_id' : 'Asia/Kamchatka'
                 },{
                   'dst' : false,
                   'offset' : 43200,
@@ -9877,7 +9905,7 @@
               [
                 {'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'Pacific/Enderbury',
+                  'timezone_id' : 'Pacific/Enderbury'
                 },{
                   'dst' : false,
                   'offset' : 46800,
@@ -9930,15 +9958,15 @@
               [
                 {'dst' : false,
                   'offset' : -13236,
-                  'timezone_id' : 'America/Paramaribo',
+                  'timezone_id' : 'America/Paramaribo'
                 },{
                   'dst' : false,
                   'offset' : -13252,
-                  'timezone_id' : 'America/Paramaribo',
+                  'timezone_id' : 'America/Paramaribo'
                 },{
                   'dst' : false,
                   'offset' : 26240,
-                  'timezone_id' : 'Asia/Pontianak',
+                  'timezone_id' : 'Asia/Pontianak'
                 },{
                   'dst' : false,
                   'offset' : 36000,
@@ -9949,47 +9977,47 @@
               [
                 {'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Los_Angeles',
+                  'timezone_id' : 'America/Los_Angeles'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Dawson_Creek',
+                  'timezone_id' : 'America/Dawson_Creek'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Ensenada',
+                  'timezone_id' : 'America/Ensenada'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Inuvik',
+                  'timezone_id' : 'America/Inuvik'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Juneau',
+                  'timezone_id' : 'America/Juneau'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Tijuana',
+                  'timezone_id' : 'America/Tijuana'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Vancouver',
+                  'timezone_id' : 'America/Vancouver'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'Canada/Pacific',
+                  'timezone_id' : 'Canada/Pacific'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'Mexico/BajaNorte',
+                  'timezone_id' : 'Mexico/BajaNorte'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'PST8PDT',
+                  'timezone_id' : 'PST8PDT'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'US/Pacific',
+                  'timezone_id' : 'US/Pacific'
                 },{
                   'dst' : true,
                   'offset' : -25200,
@@ -10000,79 +10028,79 @@
               [
                 {'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Los_Angeles',
+                  'timezone_id' : 'America/Los_Angeles'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Boise',
+                  'timezone_id' : 'America/Boise'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Dawson',
+                  'timezone_id' : 'America/Dawson'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Dawson_Creek',
+                  'timezone_id' : 'America/Dawson_Creek'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Ensenada',
+                  'timezone_id' : 'America/Ensenada'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Hermosillo',
+                  'timezone_id' : 'America/Hermosillo'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Inuvik',
+                  'timezone_id' : 'America/Inuvik'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Juneau',
+                  'timezone_id' : 'America/Juneau'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Mazatlan',
+                  'timezone_id' : 'America/Mazatlan'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Tijuana',
+                  'timezone_id' : 'America/Tijuana'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Vancouver',
+                  'timezone_id' : 'America/Vancouver'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Whitehorse',
+                  'timezone_id' : 'America/Whitehorse'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'Canada/Pacific',
+                  'timezone_id' : 'Canada/Pacific'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'Canada/Yukon',
+                  'timezone_id' : 'Canada/Yukon'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'Mexico/BajaNorte',
+                  'timezone_id' : 'Mexico/BajaNorte'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'Mexico/BajaSur',
+                  'timezone_id' : 'Mexico/BajaSur'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'Pacific/Pitcairn',
+                  'timezone_id' : 'Pacific/Pitcairn'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'PST8PDT',
+                  'timezone_id' : 'PST8PDT'
                 },{
                   'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : 'US/Pacific',
+                  'timezone_id' : 'US/Pacific'
                 },{
                   'dst' : false,
                   'offset' : -28800,
@@ -10083,47 +10111,47 @@
               [
                 {'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Los_Angeles',
+                  'timezone_id' : 'America/Los_Angeles'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Dawson_Creek',
+                  'timezone_id' : 'America/Dawson_Creek'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Ensenada',
+                  'timezone_id' : 'America/Ensenada'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Inuvik',
+                  'timezone_id' : 'America/Inuvik'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Juneau',
+                  'timezone_id' : 'America/Juneau'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Tijuana',
+                  'timezone_id' : 'America/Tijuana'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Vancouver',
+                  'timezone_id' : 'America/Vancouver'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'Canada/Pacific',
+                  'timezone_id' : 'Canada/Pacific'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'Mexico/BajaNorte',
+                  'timezone_id' : 'Mexico/BajaNorte'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'PST8PDT',
+                  'timezone_id' : 'PST8PDT'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'US/Pacific',
+                  'timezone_id' : 'US/Pacific'
                 },{
                   'dst' : true,
                   'offset' : -25200,
@@ -10141,7 +10169,7 @@
               [
                 {'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Asuncion',
+                  'timezone_id' : 'America/Asuncion'
                 },{
                   'dst' : false,
                   'offset' : -14400,
@@ -10159,7 +10187,7 @@
               [
                 {'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Qyzylorda',
+                  'timezone_id' : 'Asia/Qyzylorda'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -10191,7 +10219,7 @@
               [
                 {'dst' : true,
                   'offset' : 39600,
-                  'timezone_id' : 'Asia/Sakhalin',
+                  'timezone_id' : 'Asia/Sakhalin'
                 },{
                   'dst' : true,
                   'offset' : 43200,
@@ -10202,7 +10230,7 @@
               [
                 {'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : 'Asia/Sakhalin',
+                  'timezone_id' : 'Asia/Sakhalin'
                 },{
                   'dst' : false,
                   'offset' : 39600,
@@ -10213,7 +10241,7 @@
               [
                 {'dst' : true,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Samarkand',
+                  'timezone_id' : 'Asia/Samarkand'
                 },{
                   'dst' : true,
                   'offset' : 18000,
@@ -10224,31 +10252,31 @@
               [
                 {'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Samarkand',
+                  'timezone_id' : 'Asia/Samarkand'
                 },{
                   'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Samarkand',
+                  'timezone_id' : 'Asia/Samarkand'
                 },{
                   'dst' : false,
                   'offset' : -41400,
-                  'timezone_id' : 'Pacific/Apia',
+                  'timezone_id' : 'Pacific/Apia'
                 },{
                   'dst' : false,
                   'offset' : -41400,
-                  'timezone_id' : 'Pacific/Pago_Pago',
+                  'timezone_id' : 'Pacific/Pago_Pago'
                 },{
                   'dst' : false,
                   'offset' : -41400,
-                  'timezone_id' : 'Pacific/Samoa',
+                  'timezone_id' : 'Pacific/Samoa'
                 },{
                   'dst' : false,
                   'offset' : -41400,
-                  'timezone_id' : 'US/Samoa',
+                  'timezone_id' : 'US/Samoa'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Samara',
+                  'timezone_id' : 'Europe/Samara'
                 },{
                   'dst' : false,
                   'offset' : 14400,
@@ -10259,27 +10287,27 @@
               [
                 {'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Johannesburg',
+                  'timezone_id' : 'Africa/Johannesburg'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Johannesburg',
+                  'timezone_id' : 'Africa/Johannesburg'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Maseru',
+                  'timezone_id' : 'Africa/Maseru'
                 },{
                   'dst' : true,
                   'offset' : 10800,
-                  'timezone_id' : 'Africa/Windhoek',
+                  'timezone_id' : 'Africa/Windhoek'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Maseru',
+                  'timezone_id' : 'Africa/Maseru'
                 },{
                   'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Mbabane',
+                  'timezone_id' : 'Africa/Mbabane'
                 },{
                   'dst' : false,
                   'offset' : 7200,
@@ -10304,15 +10332,15 @@
               [
                 {'dst' : false,
                   'offset' : 27000,
-                  'timezone_id' : 'Asia/Singapore',
+                  'timezone_id' : 'Asia/Singapore'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Singapore',
+                  'timezone_id' : 'Asia/Singapore'
                 },{
                   'dst' : false,
                   'offset' : 27000,
-                  'timezone_id' : 'Singapore',
+                  'timezone_id' : 'Singapore'
                 },{
                   'dst' : false,
                   'offset' : 28800,
@@ -10330,7 +10358,7 @@
               [
                 {'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Aqtau',
+                  'timezone_id' : 'Asia/Aqtau'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -10341,7 +10369,7 @@
               [
                 {'dst' : true,
                   'offset' : -1200,
-                  'timezone_id' : 'Africa/Freetown',
+                  'timezone_id' : 'Africa/Freetown'
                 },{
                   'dst' : true,
                   'offset' : 3600,
@@ -10352,19 +10380,19 @@
               [
                 {'dst' : false,
                   'offset' : 25580,
-                  'timezone_id' : 'Asia/Saigon',
+                  'timezone_id' : 'Asia/Saigon'
                 },{
                   'dst' : false,
                   'offset' : -16966,
-                  'timezone_id' : 'America/Santiago',
+                  'timezone_id' : 'America/Santiago'
                 },{
                   'dst' : false,
                   'offset' : -16966,
-                  'timezone_id' : 'Chile/Continental',
+                  'timezone_id' : 'Chile/Continental'
                 },{
                   'dst' : false,
                   'offset' : 25580,
-                  'timezone_id' : 'Asia/Phnom_Penh',
+                  'timezone_id' : 'Asia/Phnom_Penh'
                 },{
                   'dst' : false,
                   'offset' : 25580,
@@ -10375,7 +10403,7 @@
               [
                 {'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Paramaribo',
+                  'timezone_id' : 'America/Paramaribo'
                 },{
                   'dst' : false,
                   'offset' : -12600,
@@ -10386,15 +10414,15 @@
               [
                 {'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'Pacific/Samoa',
+                  'timezone_id' : 'Pacific/Samoa'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'Pacific/Midway',
+                  'timezone_id' : 'Pacific/Midway'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'Pacific/Pago_Pago',
+                  'timezone_id' : 'Pacific/Pago_Pago'
                 },{
                   'dst' : false,
                   'offset' : -39600,
@@ -10405,7 +10433,7 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Volgograd',
+                  'timezone_id' : 'Europe/Volgograd'
                 },{
                   'dst' : false,
                   'offset' : 14400,
@@ -10416,7 +10444,7 @@
               [
                 {'dst' : true,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Yekaterinburg',
+                  'timezone_id' : 'Asia/Yekaterinburg'
                 },{
                   'dst' : true,
                   'offset' : 21600,
@@ -10427,7 +10455,7 @@
               [
                 {'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Yekaterinburg',
+                  'timezone_id' : 'Asia/Yekaterinburg'
                 },{
                   'dst' : false,
                   'offset' : 18000,
@@ -10452,11 +10480,11 @@
               [
                 {'dst' : true,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Samarkand',
+                  'timezone_id' : 'Asia/Samarkand'
                 },{
                   'dst' : true,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Tashkent',
+                  'timezone_id' : 'Asia/Tashkent'
                 },{
                   'dst' : true,
                   'offset' : 25200,
@@ -10467,11 +10495,11 @@
               [
                 {'dst' : false,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Samarkand',
+                  'timezone_id' : 'Asia/Samarkand'
                 },{
                   'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Tashkent',
+                  'timezone_id' : 'Asia/Tashkent'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -10482,7 +10510,7 @@
               [
                 {'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Tbilisi',
+                  'timezone_id' : 'Asia/Tbilisi'
                 },{
                   'dst' : true,
                   'offset' : 18000,
@@ -10493,7 +10521,7 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Tbilisi',
+                  'timezone_id' : 'Asia/Tbilisi'
                 },{
                   'dst' : false,
                   'offset' : 14400,
@@ -10518,7 +10546,7 @@
               [
                 {'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Dili',
+                  'timezone_id' : 'Asia/Dili'
                 },{
                   'dst' : false,
                   'offset' : 32400,
@@ -10529,27 +10557,27 @@
               [
                 {'dst' : false,
                   'offset' : 12344,
-                  'timezone_id' : 'Asia/Tehran',
+                  'timezone_id' : 'Asia/Tehran'
                 },{
                   'dst' : false,
                   'offset' : 12344,
-                  'timezone_id' : 'Iran',
+                  'timezone_id' : 'Iran'
                 },{
                   'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Ashgabat',
+                  'timezone_id' : 'Asia/Ashgabat'
                 },{
                   'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Ashkhabad',
+                  'timezone_id' : 'Asia/Ashkhabad'
                 },{
                   'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Ashgabat',
+                  'timezone_id' : 'Asia/Ashgabat'
                 },{
                   'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Ashkhabad',
+                  'timezone_id' : 'Asia/Ashkhabad'
                 },{
                   'dst' : false,
                   'offset' : 5940,
@@ -10574,11 +10602,11 @@
               [
                 {'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Istanbul',
+                  'timezone_id' : 'Europe/Istanbul'
                 },{
                   'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Istanbul',
+                  'timezone_id' : 'Asia/Istanbul'
                 },{
                   'dst' : true,
                   'offset' : 14400,
@@ -10589,11 +10617,11 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Istanbul',
+                  'timezone_id' : 'Europe/Istanbul'
                 },{
                   'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Istanbul',
+                  'timezone_id' : 'Asia/Istanbul'
                 },{
                   'dst' : false,
                   'offset' : 10800,
@@ -10611,7 +10639,7 @@
               [
                 {'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Ulaanbaatar',
+                  'timezone_id' : 'Asia/Ulaanbaatar'
                 },{
                   'dst' : true,
                   'offset' : 32400,
@@ -10622,23 +10650,23 @@
               [
                 {'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Ulaanbaatar',
+                  'timezone_id' : 'Asia/Ulaanbaatar'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Ulaanbaatar',
+                  'timezone_id' : 'Asia/Ulaanbaatar'
                 },{
                   'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Choibalsan',
+                  'timezone_id' : 'Asia/Choibalsan'
                 },{
                   'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Ulan_Bator',
+                  'timezone_id' : 'Asia/Ulan_Bator'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Choibalsan',
+                  'timezone_id' : 'Asia/Choibalsan'
                 },{
                   'dst' : false,
                   'offset' : 28800,
@@ -10649,7 +10677,7 @@
               [
                 {'dst' : true,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Oral',
+                  'timezone_id' : 'Asia/Oral'
                 },{
                   'dst' : true,
                   'offset' : 21600,
@@ -10660,11 +10688,11 @@
               [
                 {'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Oral',
+                  'timezone_id' : 'Asia/Oral'
                 },{
                   'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Oral',
+                  'timezone_id' : 'Asia/Oral'
                 },{
                   'dst' : false,
                   'offset' : 21600,
@@ -10682,7 +10710,7 @@
               [
                 {'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Montevideo',
+                  'timezone_id' : 'America/Montevideo'
                 },{
                   'dst' : true,
                   'offset' : -9000,
@@ -10700,7 +10728,7 @@
               [
                 {'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Montevideo',
+                  'timezone_id' : 'America/Montevideo'
                 },{
                   'dst' : false,
                   'offset' : -12600,
@@ -10711,7 +10739,7 @@
               [
                 {'dst' : true,
                   'offset' : 21600,
-                  'timezone_id' : 'Asia/Samarkand',
+                  'timezone_id' : 'Asia/Samarkand'
                 },{
                   'dst' : true,
                   'offset' : 21600,
@@ -10722,7 +10750,7 @@
               [
                 {'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : 'Asia/Samarkand',
+                  'timezone_id' : 'Asia/Samarkand'
                 },{
                   'dst' : false,
                   'offset' : 18000,
@@ -10733,7 +10761,7 @@
               [
                 {'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Caracas',
+                  'timezone_id' : 'America/Caracas'
                 },{
                   'dst' : false,
                   'offset' : -16200,
@@ -10751,7 +10779,7 @@
               [
                 {'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Vladivostok',
+                  'timezone_id' : 'Asia/Vladivostok'
                 },{
                   'dst' : true,
                   'offset' : 39600,
@@ -10762,7 +10790,7 @@
               [
                 {'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Vladivostok',
+                  'timezone_id' : 'Asia/Vladivostok'
                 },{
                   'dst' : false,
                   'offset' : 36000,
@@ -10773,7 +10801,7 @@
               [
                 {'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Europe/Volgograd',
+                  'timezone_id' : 'Europe/Volgograd'
                 },{
                   'dst' : true,
                   'offset' : 18000,
@@ -10784,7 +10812,7 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Europe/Volgograd',
+                  'timezone_id' : 'Europe/Volgograd'
                 },{
                   'dst' : false,
                   'offset' : 14400,
@@ -10816,15 +10844,15 @@
               [
                 {'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Mendoza',
+                  'timezone_id' : 'America/Mendoza'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Jujuy',
+                  'timezone_id' : 'America/Argentina/Jujuy'
                 },{
                   'dst' : true,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Argentina/Mendoza',
+                  'timezone_id' : 'America/Argentina/Mendoza'
                 },{
                   'dst' : true,
                   'offset' : -10800,
@@ -10835,59 +10863,59 @@
               [
                 {'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Mendoza',
+                  'timezone_id' : 'America/Mendoza'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Catamarca',
+                  'timezone_id' : 'America/Argentina/Catamarca'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/ComodRivadavia',
+                  'timezone_id' : 'America/Argentina/ComodRivadavia'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Cordoba',
+                  'timezone_id' : 'America/Argentina/Cordoba'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Jujuy',
+                  'timezone_id' : 'America/Argentina/Jujuy'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/La_Rioja',
+                  'timezone_id' : 'America/Argentina/La_Rioja'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Mendoza',
+                  'timezone_id' : 'America/Argentina/Mendoza'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Rio_Gallegos',
+                  'timezone_id' : 'America/Argentina/Rio_Gallegos'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/San_Juan',
+                  'timezone_id' : 'America/Argentina/San_Juan'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Tucuman',
+                  'timezone_id' : 'America/Argentina/Tucuman'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Argentina/Ushuaia',
+                  'timezone_id' : 'America/Argentina/Ushuaia'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Catamarca',
+                  'timezone_id' : 'America/Catamarca'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Cordoba',
+                  'timezone_id' : 'America/Cordoba'
                 },{
                   'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : 'America/Jujuy',
+                  'timezone_id' : 'America/Jujuy'
                 },{
                   'dst' : false,
                   'offset' : -14400,
@@ -10898,7 +10926,7 @@
               [
                 {'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Africa/Windhoek',
+                  'timezone_id' : 'Africa/Windhoek'
                 },{
                   'dst' : true,
                   'offset' : 7200,
@@ -10909,87 +10937,87 @@
               [
                 {'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Africa/Dakar',
+                  'timezone_id' : 'Africa/Dakar'
                 },{
                   'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Africa/Bamako',
+                  'timezone_id' : 'Africa/Bamako'
                 },{
                   'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Africa/Banjul',
+                  'timezone_id' : 'Africa/Banjul'
                 },{
                   'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Africa/Bissau',
+                  'timezone_id' : 'Africa/Bissau'
                 },{
                   'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Africa/Conakry',
+                  'timezone_id' : 'Africa/Conakry'
                 },{
                   'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Africa/El_Aaiun',
+                  'timezone_id' : 'Africa/El_Aaiun'
                 },{
                   'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Africa/Freetown',
+                  'timezone_id' : 'Africa/Freetown'
                 },{
                   'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Africa/Niamey',
+                  'timezone_id' : 'Africa/Niamey'
                 },{
                   'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Africa/Nouakchott',
+                  'timezone_id' : 'Africa/Nouakchott'
                 },{
                   'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : 'Africa/Timbuktu',
+                  'timezone_id' : 'Africa/Timbuktu'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Freetown',
+                  'timezone_id' : 'Africa/Freetown'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Brazzaville',
+                  'timezone_id' : 'Africa/Brazzaville'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Bangui',
+                  'timezone_id' : 'Africa/Bangui'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Douala',
+                  'timezone_id' : 'Africa/Douala'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Lagos',
+                  'timezone_id' : 'Africa/Lagos'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Libreville',
+                  'timezone_id' : 'Africa/Libreville'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Luanda',
+                  'timezone_id' : 'Africa/Luanda'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Malabo',
+                  'timezone_id' : 'Africa/Malabo'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Ndjamena',
+                  'timezone_id' : 'Africa/Ndjamena'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Niamey',
+                  'timezone_id' : 'Africa/Niamey'
                 },{
                   'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Porto-Novo',
+                  'timezone_id' : 'Africa/Porto-Novo'
                 },{
                   'dst' : false,
                   'offset' : 3600,
@@ -11000,23 +11028,23 @@
               [
                 {'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Lisbon',
+                  'timezone_id' : 'Europe/Lisbon'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Madrid',
+                  'timezone_id' : 'Europe/Madrid'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Monaco',
+                  'timezone_id' : 'Europe/Monaco'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Europe/Paris',
+                  'timezone_id' : 'Europe/Paris'
                 },{
                   'dst' : true,
                   'offset' : 7200,
-                  'timezone_id' : 'Portugal',
+                  'timezone_id' : 'Portugal'
                 },{
                   'dst' : true,
                   'offset' : 7200,
@@ -11027,63 +11055,63 @@
               [
                 {'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Paris',
+                  'timezone_id' : 'Europe/Paris'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Algiers',
+                  'timezone_id' : 'Africa/Algiers'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Casablanca',
+                  'timezone_id' : 'Africa/Casablanca'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Africa/Ceuta',
+                  'timezone_id' : 'Africa/Ceuta'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Atlantic/Canary',
+                  'timezone_id' : 'Atlantic/Canary'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Atlantic/Faeroe',
+                  'timezone_id' : 'Atlantic/Faeroe'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Atlantic/Faroe',
+                  'timezone_id' : 'Atlantic/Faroe'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Atlantic/Madeira',
+                  'timezone_id' : 'Atlantic/Madeira'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Brussels',
+                  'timezone_id' : 'Europe/Brussels'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Lisbon',
+                  'timezone_id' : 'Europe/Lisbon'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Luxembourg',
+                  'timezone_id' : 'Europe/Luxembourg'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Madrid',
+                  'timezone_id' : 'Europe/Madrid'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Europe/Monaco',
+                  'timezone_id' : 'Europe/Monaco'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'Portugal',
+                  'timezone_id' : 'Portugal'
                 },{
                   'dst' : true,
                   'offset' : 3600,
-                  'timezone_id' : 'WET',
+                  'timezone_id' : 'WET'
                 },{
                   'dst' : true,
                   'offset' : 7200,
@@ -11094,71 +11122,71 @@
               [
                 {'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/Paris',
+                  'timezone_id' : 'Europe/Paris'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Algiers',
+                  'timezone_id' : 'Africa/Algiers'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Casablanca',
+                  'timezone_id' : 'Africa/Casablanca'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/Ceuta',
+                  'timezone_id' : 'Africa/Ceuta'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Africa/El_Aaiun',
+                  'timezone_id' : 'Africa/El_Aaiun'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Atlantic/Azores',
+                  'timezone_id' : 'Atlantic/Azores'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Atlantic/Canary',
+                  'timezone_id' : 'Atlantic/Canary'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Atlantic/Faeroe',
+                  'timezone_id' : 'Atlantic/Faeroe'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Atlantic/Faroe',
+                  'timezone_id' : 'Atlantic/Faroe'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Atlantic/Madeira',
+                  'timezone_id' : 'Atlantic/Madeira'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/Brussels',
+                  'timezone_id' : 'Europe/Brussels'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/Lisbon',
+                  'timezone_id' : 'Europe/Lisbon'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/Luxembourg',
+                  'timezone_id' : 'Europe/Luxembourg'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/Madrid',
+                  'timezone_id' : 'Europe/Madrid'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Europe/Monaco',
+                  'timezone_id' : 'Europe/Monaco'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Portugal',
+                  'timezone_id' : 'Portugal'
                 },{
                   'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'WET',
+                  'timezone_id' : 'WET'
                 },{
                   'dst' : false,
                   'offset' : 3600,
@@ -11169,7 +11197,7 @@
               [
                 {'dst' : true,
                   'offset' : -7200,
-                  'timezone_id' : 'America/Godthab',
+                  'timezone_id' : 'America/Godthab'
                 },{
                   'dst' : true,
                   'offset' : -7200,
@@ -11180,7 +11208,7 @@
               [
                 {'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : 'America/Godthab',
+                  'timezone_id' : 'America/Godthab'
                 },{
                   'dst' : false,
                   'offset' : -10800,
@@ -11191,23 +11219,23 @@
               [
                 {'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Jakarta',
+                  'timezone_id' : 'Asia/Jakarta'
                 },{
                   'dst' : false,
                   'offset' : 27000,
-                  'timezone_id' : 'Asia/Jakarta',
+                  'timezone_id' : 'Asia/Jakarta'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Jakarta',
+                  'timezone_id' : 'Asia/Jakarta'
                 },{
                   'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : 'Asia/Pontianak',
+                  'timezone_id' : 'Asia/Pontianak'
                 },{
                   'dst' : false,
                   'offset' : 27000,
-                  'timezone_id' : 'Asia/Pontianak',
+                  'timezone_id' : 'Asia/Pontianak'
                 },{
                   'dst' : false,
                   'offset' : 28800,
@@ -11218,23 +11246,23 @@
               [
                 {'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Australia/Perth',
+                  'timezone_id' : 'Australia/Perth'
                 },{
                   'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Australia/Perth',
+                  'timezone_id' : 'Australia/Perth'
                 },{
                   'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : 'Pacific/Apia',
+                  'timezone_id' : 'Pacific/Apia'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Antarctica/Casey',
+                  'timezone_id' : 'Antarctica/Casey'
                 },{
                   'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Australia/West',
+                  'timezone_id' : 'Australia/West'
                 },{
                   'dst' : true,
                   'offset' : 32400,
@@ -11245,7 +11273,7 @@
               [
                 {'dst' : true,
                   'offset' : 32400,
-                  'timezone_id' : 'Asia/Yakutsk',
+                  'timezone_id' : 'Asia/Yakutsk'
                 },{
                   'dst' : true,
                   'offset' : 36000,
@@ -11256,7 +11284,7 @@
               [
                 {'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : 'Asia/Yakutsk',
+                  'timezone_id' : 'Asia/Yakutsk'
                 },{
                   'dst' : false,
                   'offset' : 32400,
@@ -11267,11 +11295,11 @@
               [
                 {'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Dawson',
+                  'timezone_id' : 'America/Dawson'
                 },{
                   'dst' : true,
                   'offset' : -25200,
-                  'timezone_id' : 'America/Whitehorse',
+                  'timezone_id' : 'America/Whitehorse'
                 },{
                   'dst' : true,
                   'offset' : -25200,
@@ -11282,15 +11310,15 @@
               [
                 {'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Dawson',
+                  'timezone_id' : 'America/Dawson'
                 },{
                   'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Whitehorse',
+                  'timezone_id' : 'America/Whitehorse'
                 },{
                   'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Yakutat',
+                  'timezone_id' : 'America/Yakutat'
                 },{
                   'dst' : true,
                   'offset' : -28800,
@@ -11315,7 +11343,7 @@
               [
                 {'dst' : true,
                   'offset' : 14400,
-                  'timezone_id' : 'Asia/Yerevan',
+                  'timezone_id' : 'Asia/Yerevan'
                 },{
                   'dst' : true,
                   'offset' : 18000,
@@ -11326,7 +11354,7 @@
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : 'Asia/Yerevan',
+                  'timezone_id' : 'Asia/Yerevan'
                 },{
                   'dst' : false,
                   'offset' : 14400,
@@ -11337,15 +11365,15 @@
               [
                 {'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Dawson',
+                  'timezone_id' : 'America/Dawson'
                 },{
                   'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Whitehorse',
+                  'timezone_id' : 'America/Whitehorse'
                 },{
                   'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Yakutat',
+                  'timezone_id' : 'America/Yakutat'
                 },{
                   'dst' : true,
                   'offset' : -28800,
@@ -11356,31 +11384,31 @@
               [
                 {'dst' : false,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Anchorage',
+                  'timezone_id' : 'America/Anchorage'
                 },{
                   'dst' : false,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Dawson',
+                  'timezone_id' : 'America/Dawson'
                 },{
                   'dst' : false,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Juneau',
+                  'timezone_id' : 'America/Juneau'
                 },{
                   'dst' : false,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Nome',
+                  'timezone_id' : 'America/Nome'
                 },{
                   'dst' : false,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Whitehorse',
+                  'timezone_id' : 'America/Whitehorse'
                 },{
                   'dst' : false,
                   'offset' : -32400,
-                  'timezone_id' : 'America/Yakutat',
+                  'timezone_id' : 'America/Yakutat'
                 },{
                   'dst' : false,
                   'offset' : -32400,
-                  'timezone_id' : 'Canada/Yukon',
+                  'timezone_id' : 'Canada/Yukon'
                 },{
                   'dst' : false,
                   'offset' : -32400,
@@ -11391,15 +11419,15 @@
               [
                 {'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Dawson',
+                  'timezone_id' : 'America/Dawson'
                 },{
                   'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Whitehorse',
+                  'timezone_id' : 'America/Whitehorse'
                 },{
                   'dst' : true,
                   'offset' : -28800,
-                  'timezone_id' : 'America/Yakutat',
+                  'timezone_id' : 'America/Yakutat'
                 },{
                   'dst' : true,
                   'offset' : -28800,
@@ -11410,133 +11438,133 @@
               [
                 {'dst' : false,
                   'offset' : 3600,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'b' :
               [
                 {'dst' : false,
                   'offset' : 7200,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'c' :
               [
                 {'dst' : false,
                   'offset' : 10800,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'd' :
               [
                 {'dst' : false,
                   'offset' : 14400,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'e' :
               [
                 {'dst' : false,
                   'offset' : 18000,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'f' :
               [
                 {'dst' : false,
                   'offset' : 21600,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'g' :
               [
                 {'dst' : false,
                   'offset' : 25200,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'h' :
               [
                 {'dst' : false,
                   'offset' : 28800,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'i' :
               [
                 {'dst' : false,
                   'offset' : 32400,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'k' :
               [
                 {'dst' : false,
                   'offset' : 36000,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'l' :
               [
                 {'dst' : false,
                   'offset' : 39600,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'm' :
               [
                 {'dst' : false,
                   'offset' : 43200,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'n' :
               [
                 {'dst' : false,
                   'offset' : -3600,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'o' :
               [
                 {'dst' : false,
                   'offset' : -7200,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'p' :
               [
                 {'dst' : false,
                   'offset' : -10800,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'q' :
               [
                 {'dst' : false,
                   'offset' : -14400,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'r' :
               [
                 {'dst' : false,
                   'offset' : -18000,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               's' :
               [
                 {'dst' : false,
                   'offset' : -21600,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               't' :
               [
                 {'dst' : false,
                   'offset' : -25200,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'utc' :
@@ -11550,42 +11578,42 @@
               [
                 {'dst' : false,
                   'offset' : -28800,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'v' :
               [
                 {'dst' : false,
                   'offset' : -32400,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'w' :
               [
                 {'dst' : false,
                   'offset' : -36000,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'x' :
               [
                 {'dst' : false,
                   'offset' : -39600,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'y' :
               [
                 {'dst' : false,
                   'offset' : -43200,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ],
               'zzz' :
               [
                 {'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : 'Antarctica/Davis',
+                  'timezone_id' : 'Antarctica/Davis'
                 },{
                   'dst' : false,
                   'offset' : 0,
@@ -11596,16 +11624,13 @@
               [
                 {'dst' : false,
                   'offset' : 0,
-                  'timezone_id' : null,
+                  'timezone_id' : null
                 },
               ]
             };
         
-            return function (){
-                return timezone_abbreviations;
-            };
-        
-        }();,// }}}
+            return timezone_abbreviations;
+        },// }}}
         
         // {{{ basename
         basename: function(path, suffix) {
@@ -14679,7 +14704,7 @@
             // Format a number with grouped thousands
             // 
             // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_number_format/
-            // +       version: 902.223
+            // +       version: 902.1612
             // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
             // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
             // +     bugfix by: Michael White (http://getsprink.com)
@@ -14689,6 +14714,8 @@
             // +     bugfix by: Howard Yeend
             // +    revised by: Luke Smith (http://lucassmith.name)
             // +     bugfix by: Diogo Resende
+            // +     bugfix by: Rival
+            // %        note 1: For 1000.55 result with precision 1 in FF/Opera is 1,000.5, but in IE is 1,000.6
             // *     example 1: $P.number_format(1234.56);
             // *     returns 1: '1,235'
             // *     example 2: $P.number_format(1234.56, 2, ',', ' ');
@@ -14697,26 +14724,32 @@
             // *     returns 3: '1234.57'
             // *     example 4: $P.number_format(67, 2, ',', '.');
             // *     returns 4: '67,00'
+            // *     example 5: $P.number_format(1000);
+            // *     returns 5: '1,000'
+            // *     example 6: $P.number_format(67.311, 2);
+            // *     returns 6: '67.31'
         
-            var n = number, prec = decimals, dec = dec_point, sep = thousands_sep;
+            var n = number, prec = decimals;
             n = !isFinite(+n) ? 0 : +n;
             prec = !isFinite(+prec) ? 0 : Math.abs(prec);
-            sep = sep == undefined ? ',' : sep;
+            var sep = (typeof thousands_sep == "undefined") ? ',' : thousands_sep;
+            var dec = (typeof dec_point == "undefined") ? '.' : dec_point;
         
-            var s = n.toFixed(prec),
-                abs = Math.abs(n).toFixed(prec),
-                _, i;
+            var s = (prec > 0) ? n.toFixed(prec) : Math.round(n).toFixed(prec); //fix for IE parseFloat(0.55).toFixed(0) = 0;
         
-            if (abs > 1000) {
+            var abs = Math.abs(n).toFixed(prec);
+            var _, i;
+        
+            if (abs >= 1000) {
                 _ = abs.split(/\D/);
                 i = _[0].length % 3 || 3;
         
                 _[0] = s.slice(0,i + (n < 0)) +
                       _[0].slice(i).replace(/(\d{3})/g, sep+'$1');
         
-                s = _.join(dec || '.');
+                s = _.join(dec);
             } else {
-                s = abs.replace('.', dec_point);
+                s = s.replace('.', dec);
             }
         
             return s;
