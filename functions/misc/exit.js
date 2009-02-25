@@ -3,6 +3,8 @@ function exit( status ) {
     // +   original by: Brett Zamir
     // +      input by: Paul
     // +   bugfixed by: Hyam Singer (http://www.impact-computing.com/)
+    // +   improved by: Philip Peterson
+    // +   bugfixed by: Brett Zamir
     // %        note 1: Should be considered expirimental. Please comment on this function.
     // *     example 1: exit();
     // *     returns 1: null
@@ -27,7 +29,11 @@ function exit( status ) {
         // e.preventDefault(); // Stop for the form controls, etc., too?
     }
     for (i=0; i < handlers.length; i++) {
-        window.addEventListener(handlers[i], function (e) {e.stopPropagation();}, true);
+        window.addEventListener(handlers[i], function (e) {stopPropagation(e);}, true);
+    }
+
+    if (window.stop) {
+        window.stop();
     }
     
     throw '';
