@@ -1,6 +1,8 @@
-function chunk_split(body, chunklen, end) {
+function chunk_split(body, argChunklen, argEnd) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: chunk_split('Hello world!', 1, '*');
     // *     returns 1: 'H*e*l*l*o* *w*o*r*l*d*!*'
     // *     example 2: chunk_split('Hello world!', 10, '*');
@@ -10,7 +12,7 @@ function chunk_split(body, chunklen, end) {
         return false;
     }
 
-    var result = '', chunklen = chunklen || 76, end = end || '\r\n';
+    var result = '', chunklen = argChunklen || 76, end = argEnd || '\r\n';
 
     while (body.length > chunklen) {
         result += body.substring(0, chunklen) + end;

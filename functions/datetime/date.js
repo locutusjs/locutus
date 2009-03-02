@@ -10,7 +10,7 @@ function date ( format, timestamp ) {
     // +   improved by: Brett Zamir
     // +   improved by: David Randall
     // +      input by: Brett Zamir
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);

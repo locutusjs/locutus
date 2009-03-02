@@ -7,7 +7,7 @@ function str_ireplace ( search, replace, subject ) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
     // +      input by: Brett Zamir
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: str_ireplace('l', 'l', 'HeLLo');
     // *     returns 1: 'Hello'
 

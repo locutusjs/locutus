@@ -2,6 +2,8 @@ function array_pop( array ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_pop([0,1,2]);
     // *     returns 1: 2
     // *     example 2: data = {firstName: 'Kevin', surName: 'van Zonneveld'};
@@ -24,8 +26,10 @@ function array_pop( array ) {
             cnt++;
         }
         if (cnt) {
-            return array[key];
             delete(array[key]);
+            return array[key];
+        } else {
+            return null;
         }
     }
 }

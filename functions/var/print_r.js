@@ -2,6 +2,8 @@ function print_r( array, return_val ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Michael White (http://getsprink.com)
     // +   improved by: Ben Bryan
+    // +      input by: Brett Zamir
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: print_r(1, true);
     // *     returns 1: 1
     
@@ -39,7 +41,7 @@ function print_r( array, return_val ) {
         var str = "";
         for(var i=0; i < len; i++) { 
             str += pad_char; 
-        };
+        }
         return str;
     };
     output = formatArray(array, 0, pad_val, pad_char);

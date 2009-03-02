@@ -8,7 +8,8 @@ function bin2hex(s){
     // *     example 2: bin2hex(String.fromCharCode(0x00));
     // *     returns 2: '00'
 
-    var v,i, f = 0, a = [];
+    var i, f = 0, a = [];
+    
     s += '';
     f = s.length;
     

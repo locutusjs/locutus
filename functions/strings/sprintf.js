@@ -6,6 +6,8 @@ function sprintf( ) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Paulo Ricardo F. Santos
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: sprintf("%01.2f", 123.1);
     // *     returns 1: 123.10
     // *     example 2: sprintf("[%10s]", 'monkey');
@@ -53,8 +55,14 @@ function sprintf( ) {
         return justify(value, '', leftJustify, minWidth, zeroPad, customPadChar);
     };
 
-    // finalFormat()
+    // doFormat()
     var doFormat = function(substring, valueIndex, flags, minWidth, _, precision, type) {
+        var number;
+        var prefix;
+        var method;
+        var textTransform;
+        var value;
+
         if (substring == '%%') return '%';
 
         // parse flags
@@ -102,7 +110,7 @@ function sprintf( ) {
         }
 
         // grab value using valueIndex if required?
-        var value = valueIndex ? a[valueIndex.slice(0, -1)] : a[i++];
+        value = valueIndex ? a[valueIndex.slice(0, -1)] : a[i++];
 
         switch (type) {
             case 's': return formatString(String(value), leftJustify, minWidth, precision, zeroPad, customPadChar);
@@ -114,8 +122,8 @@ function sprintf( ) {
             case 'u': return formatBaseX(value, 10, prefixBaseX, leftJustify, minWidth, precision, zeroPad);
             case 'i':
             case 'd': {
-                var number = parseInt(+value);
-                var prefix = number < 0 ? '-' : positivePrefix;
+                number = parseInt(+value);
+                prefix = number < 0 ? '-' : positivePrefix;
                 value = prefix + pad(String(Math.abs(number)), precision, '0', false);
                 return justify(value, prefix, leftJustify, minWidth, zeroPad);
             }
@@ -125,10 +133,10 @@ function sprintf( ) {
             case 'F':
             case 'g':
             case 'G': {
-                var number = +value;
-                var prefix = number < 0 ? '-' : positivePrefix;
-                var method = ['toExponential', 'toFixed', 'toPrecision']['efg'.indexOf(type.toLowerCase())];
-                var textTransform = ['toString', 'toUpperCase']['eEfFgG'.indexOf(type) % 2];
+                number = +value;
+                prefix = number < 0 ? '-' : positivePrefix;
+                method = ['toExponential', 'toFixed', 'toPrecision']['efg'.indexOf(type.toLowerCase())];
+                textTransform = ['toString', 'toUpperCase']['eEfFgG'.indexOf(type) % 2];
                 value = prefix + Math.abs(number)[method](precision);
                 return justify(value, prefix, leftJustify, minWidth, zeroPad)[textTransform]();
             }

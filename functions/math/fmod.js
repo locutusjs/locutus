@@ -1,6 +1,8 @@
 function fmod(x, y) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: fmod(5.7, 1.3);
     // *     returns 1: 0.5
     
@@ -19,10 +21,10 @@ function fmod(x, y) {
     
     if (p < -100 || p > 20) {
         // toFixed will give an out of bound error so we fix it like this:
-        var l = Math.round(Math.log(tmp2)/Math.log(10));
-        var l2 = Math.pow(10, l);
+        l  = Math.round(Math.log(tmp2)/Math.log(10));
+        l2 = Math.pow(10, l);
         
-        return (tmp2/l2).toFixed(l-p)*l2;
+        return (tmp2 / l2).toFixed(l-p)*l2;
     } else {
         return parseFloat(tmp2.toFixed(-p));
     }

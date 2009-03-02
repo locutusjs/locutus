@@ -5,7 +5,7 @@ function soundex(str) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
     // +      input by: Brett Zamir
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: soundex('Kevin');
     // *     returns 1: 'K150'
     // *     example 2: soundex('Ellery');
@@ -14,8 +14,15 @@ function soundex(str) {
     // *     returns 3: 'E460'
 
     var s = '';
-    var i, j, l, r, p = isNaN(p) ? 4 : p > 10 ? 10 : p < 4 ? 4 : p;
-    var m = {BFPV: 1, CGJKQSXZ: 2, DT: 3, L: 4, MN: 5, R: 6};
+    var i, j, l, p = isNaN(p) ? 4 : p > 10 ? 10 : p < 4 ? 4 : p;
+    var m = {
+        BFPV: 1,
+        CGJKQSXZ: 2,
+        DT: 3,
+        L: 4,
+        MN: 5, 
+        R: 6
+    };
     var r = (s = (str+'').toUpperCase().replace(/[^A-Z]/g, "").split("")).splice(0, 1);
     var sl = 0;
 

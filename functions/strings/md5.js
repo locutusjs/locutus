@@ -4,6 +4,8 @@ function md5 ( str ) {
     // + namespaced by: Michael White (http://getsprink.com)
     // +    tweaked by: Jack
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: utf8_encode
     // *     example 1: md5('Kevin van Zonneveld');
     // *     returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'

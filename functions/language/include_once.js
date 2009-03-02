@@ -3,6 +3,8 @@ function include_once( filename ) {
     // +   original by: Legaev Andrey
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Michael White (http://getsprink.com)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: include
     // *     example 1: include_once('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: true
@@ -19,4 +21,5 @@ function include_once( filename ) {
     } else{
         return true;
     }
+    return false;
 }
