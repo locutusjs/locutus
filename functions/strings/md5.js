@@ -8,6 +8,8 @@ function md5 ( str ) {
     // *     example 1: md5('Kevin van Zonneveld');
     // *     returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
 
+    var xl;
+
     var RotateLeft = function(lValue, iShiftBits) {
         return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
     };

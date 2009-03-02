@@ -9,6 +9,8 @@ function date ( format, timestamp ) {
     // +   improved by: Bryan Elliott
     // +   improved by: Brett Zamir
     // +   improved by: David Randall
+    // +      input by: Brett Zamir
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);
@@ -31,6 +33,7 @@ function date ( format, timestamp ) {
             return n;
         }
     };
+    var ret = '';
     var txt_weekdays = ["Sunday","Monday","Tuesday","Wednesday",
         "Thursday","Friday","Saturday"];
     var txt_ordin = {1:"st",2:"nd",3:"rd",21:"st",22:"nd",23:"rd",31:"st"};
@@ -92,6 +95,7 @@ function date ( format, timestamp ) {
                 return pad(f.n(), 2);
             },
             M: function(){
+                var t;
                 t = f.F(); return t.substr(0,3);
             },
             n: function(){

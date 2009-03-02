@@ -6,6 +6,8 @@ function md5_file ( str_filename ) {
     // *     example 1: md5_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '202cb962ac59075b964b07152d234b70'
 
+    var buf = '';
+
     buf = file_get_contents(str_filename);
     
     if (!buf) {

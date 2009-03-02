@@ -22,6 +22,8 @@ function each(arr) {
     }
     var arrpos = pointers.indexOf(arr);
     var cursor = pointers[arrpos+1];
+    var pos = 0;
+
     if (!(arr instanceof Array)) {
         var ct = 0;
         for (var k in arr) {

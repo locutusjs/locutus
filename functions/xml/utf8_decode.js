@@ -6,13 +6,15 @@ function utf8_decode ( str_data ) {
     // +   improved by: Norman "zEh" Fuchs
     // +   bugfixed by: hitwork
     // +   bugfixed by: Onno Marsman
+    // +      input by: Brett Zamir
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: utf8_decode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
-    var tmp_arr = [], i = ac = c1 = c2 = c3 = 0;
-
+    var tmp_arr = [], i = 0, ac = 0, c1 = 0, c2 = 0, c3 = 0;
+    
     str_data += '';
-
+    
     while ( i < str_data.length ) {
         c1 = str_data.charCodeAt(i);
         if (c1 < 128) {

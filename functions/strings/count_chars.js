@@ -3,12 +3,15 @@ function count_chars( str, mode ) {
     // +   original by: Ates Goral (http://magnetiq.com)
     // +    tweaked by: Jack
     // +   bugfixed by: Onno Marsman
+    // +      input by: Brett Zamir
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: count_chars("Hello World!", 1);
     // *     returns 1: "Hd e!lWor"
 
     var histogram = new Object(), tmp_arr = new Array();
-    var key, i, code, mode, strl = 0;
+    var key, i, code, strl = 0;
     var argc = arguments.length;
+    var mode_even = 0;
 
     if (argc == 1) {
         mode = 0;
