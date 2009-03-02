@@ -30,8 +30,7 @@ function define(name, value) {
         define = function (name, value){
             if (document.createElementNS) {
                 script = document.createElementNS('http://www.w3.org/1999/xhtml', 'script');
-            }
-            else {
+            } else {
                 script = document.createElement('script');
             }
             script.type = 'text/javascript';
@@ -39,8 +38,7 @@ function define(name, value) {
             document.documentElement.appendChild(script);
             document.documentElement.removeChild(script);
         }
-    }
-    catch (e){
+    } catch (e){
         replace = function (value) {
             var replace = {
                 "\x0A":"\\n",
