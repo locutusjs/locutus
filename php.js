@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.20
+ * This is version: 2.21
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Brett Zamir, Onno Marsman, Michael White
@@ -10,30 +10,29 @@
  * Goral (http://magnetiq.com), Legaev Andrey, Martijn Wieringa, Nate, Enrique
  * Gonzalez, Philippe Baumann, Webtoolkit.info (http://www.webtoolkit.info/),
  * Ash Searle (http://hexmen.com/blog/), Carlos R. L. Rodrigues
- * (http://www.jsfromhell.com), Jani Hartikainen, Erkekjetter, GeekFG
+ * (http://www.jsfromhell.com), Jani Hartikainen, Alex, Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
- * marrtins, AJ, Alex, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman
- * Gupta, Arpad Ray (mailto:arpad@php.net), David, Karol Kowalski, Marc Palau,
- * Mirek Slugen, Public Domain (http://www.json.org/json2.js), Sakimori, Steve
- * Hilder, Steven Levithan (http://blog.stevenlevithan.com), Thunder.m, Tyler
- * Akins (http://rumkin.com), gorthaur, mdsjack (http://www.mdsjack.bo.it),
- * 0m3r, Alexander Ermolaev
- * (http://snippets.dzone.com/user/AlexanderErmolaev), Allan Jensen
- * (http://www.winternet.no), Andrea Giammarchi
+ * marrtins, AJ, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman Gupta,
+ * Arpad Ray (mailto:arpad@php.net), Caio Ariede (http://caioariede.com),
+ * David, Karol Kowalski, Marc Palau, Mirek Slugen, Pellentesque Malesuada,
+ * Public Domain (http://www.json.org/json2.js), Sakimori, Steve Hilder,
+ * Steven Levithan (http://blog.stevenlevithan.com), Thunder.m, Tyler Akins
+ * (http://rumkin.com), gorthaur, mdsjack (http://www.mdsjack.bo.it), 0m3r,
+ * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
+ * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
  * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
- * Touesnard, Bryan Elliott, Cagri Ekin, Caio Ariede (http://caioariede.com),
- * ChaosNo1, Christian Doebler, Cord, David James, David Randall, Der Simon
- * (http://innerdom.sourceforge.net/), Dino, Diogo Resende, Douglas Crockford
- * (http://javascript.crockford.com), DxGx, FGFEmperor, Felix Geisendoerfer
- * (http://www.debuggable.com/felix), Francesco, Francois, FremyCompany,
- * Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam Singer
- * (http://www.impact-computing.com/), J A R, Jalal Berrami, Kirk Strobeck,
- * Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre)), LH, Leslie
- * Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey, Luke Smith
- * (http://lucassmith.name), Manish, Martin Pool, Mateusz "loonquawl" Zalega,
- * Matt Bradley, MeEtc (http://yass.meetcweb.com), Mick@el, Nathan, Nick
- * Callen, Norman "zEh" Fuchs, Ozh, Paul, Pedro Tainha
+ * Touesnard, Bryan Elliott, Cagri Ekin, ChaosNo1, Christian Doebler, Cord,
+ * David James, David Randall, Der Simon (http://innerdom.sourceforge.net/),
+ * Dino, Diogo Resende, Douglas Crockford (http://javascript.crockford.com),
+ * DxGx, FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
+ * Francesco, Francois, FremyCompany, Gabriel Paderni, Garagoth, Gilbert,
+ * Howard Yeend, Hyam Singer (http://www.impact-computing.com/), J A R, Jalal
+ * Berrami, Kirk Strobeck, Kristof Coomans (SCK-CEN (Belgian Nucleair Research
+ * Centre)), LH, Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey, Luke
+ * Smith (http://lucassmith.name), Manish, Marco, Martin Pool, Mateusz
+ * "loonquawl" Zalega, Matt Bradley, MeEtc (http://yass.meetcweb.com),
+ * Mick@el, Nathan, Nick Callen, Norman "zEh" Fuchs, Ozh, Paul, Pedro Tainha
  * (http://www.pedrotainha.com), Peter-Paul Koch
  * (http://www.quirksmode.org/js/beat.html), Pierre-Luc Paour, Pul, Pyerre,
  * ReverseSyntax, Rival, Robin, Sanjoy Roy, Saulo Vallory, Scott Cariss, Simon
@@ -3580,10 +3579,11 @@ function strtotime(str, now) {
     // Parse about any English textual datetime description into a Unix timestamp
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strtotime/
-    // +       version: 902.1612
+    // +       version: 902.2516
     // +   original by: Caio Ariede (http://caioariede.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: David
+    // +   improved by: Caio Ariede (http://caioariede.com)
     // %        note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
     // *     example 1: strtotime('+1 day', 1129633200);
     // *     returns 1: 1129719600
@@ -3695,7 +3695,7 @@ function strtotime(str, now) {
 
         return true;
     }
-    
+
     var __is =
     {
         day:
@@ -3704,7 +3704,7 @@ function strtotime(str, now) {
             'mon': 1,
             'tue': 2,
             'wed': 3,
-            'thu': 4, 
+            'thu': 4,
             'fri': 5,
             'sat': 6
         },
@@ -3713,8 +3713,8 @@ function strtotime(str, now) {
             'jan': 0,
             'feb': 1,
             'mar': 2,
-            'may': 3,
-            'apr': 4,
+            'apr': 3,
+            'may': 4,
             'jun': 5,
             'jul': 6,
             'aug': 7,
@@ -3744,7 +3744,7 @@ function strtotime(str, now) {
 
         return strtotime(s[2] + ' ' + s[1] + ' ' + s[0] + ' ' + match[2]);
     }
- 
+
     var regex = '([+-]?\\d+\\s'
     + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
     + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
@@ -13470,10 +13470,12 @@ function exit( status ) {
     // Output a message and terminate the current script
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_exit/
-    // +       version: 901.1520
+    // +       version: 902.2516
     // +   original by: Brett Zamir
     // +      input by: Paul
     // +   bugfixed by: Hyam Singer (http://www.impact-computing.com/)
+    // +   improved by: Philip Peterson
+    // +   bugfixed by: Brett Zamir
     // %        note 1: Should be considered expirimental. Please comment on this function.
     // *     example 1: exit();
     // *     returns 1: null
@@ -13498,7 +13500,11 @@ function exit( status ) {
         // e.preventDefault(); // Stop for the form controls, etc., too?
     }
     for (i=0; i < handlers.length; i++) {
-        window.addEventListener(handlers[i], function (e) {e.stopPropagation();}, true);
+        window.addEventListener(handlers[i], function (e) {stopPropagation(e);}, true);
+    }
+
+    if (window.stop) {
+        window.stop();
     }
     
     throw '';
@@ -14083,10 +14089,12 @@ function get_html_translation_table(table, quote_style) {
     // Returns the translation table used by htmlspecialchars() and htmlentities()
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_get_html_translation_table/
-    // +       version: 901.714
+    // +       version: 902.2516
     // +   original by: Philip Peterson
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: noname
+    // +   bugfixed by: Alex
+    // +   bugfixed by: Marco
     // %          note: It has been decided that we're not going to add global
     // %          note: dependencies to php.js. Meaning the constants are not
     // %          note: real constants, but strings instead. integers are also supported if someone
@@ -14238,7 +14246,7 @@ function get_html_translation_table(table, quote_style) {
     
     // ascii decimals to real symbols
     for (decimal in entities) {
-        symbol = String.fromCharCode(decimal)
+        symbol = String.fromCharCode(decimal);
         histogram[symbol] = entities[decimal];
     }
     
@@ -16607,12 +16615,14 @@ function base64_decode( data ) {
     // Decodes data encoded with MIME base64
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_decode/
-    // +       version: 810.819
+    // +       version: 902.2516
     // +   original by: Tyler Akins (http://rumkin.com)
     // +   improved by: Thunder.m
     // +      input by: Aman Gupta
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
+    // +   bugfixed by: Pellentesque Malesuada
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: utf8_decode
     // *     example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
     // *     returns 1: 'Kevin van Zonneveld'
@@ -16625,6 +16635,10 @@ function base64_decode( data ) {
 
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var o1, o2, o3, h1, h2, h3, h4, bits, i = ac = 0, dec = "", tmp_arr = [];
+
+    if (!data) {
+        return data;
+    }
 
     data += '';
 
@@ -16660,11 +16674,13 @@ function base64_encode( data ) {
     // Encodes data with MIME base64
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_encode/
-    // +       version: 809.522
+    // +       version: 902.2516
     // +   original by: Tyler Akins (http://rumkin.com)
     // +   improved by: Bayron Guevara
     // +   improved by: Thunder.m
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)        
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Pellentesque Malesuada
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: utf8_encode
     // *     example 1: base64_encode('Kevin van Zonneveld');
     // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
@@ -16677,7 +16693,12 @@ function base64_encode( data ) {
         
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var o1, o2, o3, h1, h2, h3, h4, bits, i = ac = 0, enc="", tmp_arr = [];
-    data = utf8_encode(data);
+
+    if (!data) {
+        return data;
+    }
+
+    data = utf8_encode(data+'');
     
     do { // pack three octets into four hexets
         o1 = data.charCodeAt(i++);
