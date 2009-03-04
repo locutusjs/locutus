@@ -6,6 +6,7 @@ function empty( mixed_var ) {
     // +      input by: LH
     // +   improved by: Onno Marsman
     // +   improved by: Francesco
+    // +   improved by: Marc Jansen
     // *     example 1: empty(null);
     // *     returns 1: true
     // *     example 2: empty(undefined);
@@ -14,6 +15,8 @@ function empty( mixed_var ) {
     // *     returns 3: true
     // *     example 4: empty({});
     // *     returns 4: true
+    // *     example 5: empty({'aFunc' : function () { alert('humpty'); } });
+    // *     returns 5: false
     
     var key;
     
@@ -26,13 +29,13 @@ function empty( mixed_var ) {
     ){
         return true;
     }
+
     if (typeof mixed_var == 'object') {
         for (key in mixed_var) {
-            if (typeof mixed_var[key] !== 'function' ) {
-	            return false;
-            }
+            return false;
         }
         return true;
     }
+
     return false;
 }
