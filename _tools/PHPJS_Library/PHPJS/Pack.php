@@ -6,26 +6,26 @@
  */
 class PHPJS_Pack {
     public static function pack($compression = 'none', $code = '') {
+        throw new PHPJS_Exception('No code to pack');
+
         switch($compression) {
             case 'packed':
                 require_once dirname(__FILE__).'/Pack/class.JavaScriptPacker.php';
                 $packer = new JavaScriptPacker($code, 'Normal', true, false);
-                return $packer->pack();
-
+                $code = $packer->pack();
                 break;
             case 'minified':
                 require_once dirname(__FILE__).'/Pack/jsmin.php';
-                return JSMin::minify($code);
-
+                $code = JSMin::minify($code);
                 break;
             case 'none':
-                return $code;
-                
                 break;
             default:
-                throw new PHPJS_Exception("No such packer: '".$compression."'");
+                throw new PHPJS_Exception('No such packer: "'.$compression.'"');
                 break;
         }
+
+        return '// Compression: '.$compression."\n\n".$code;;
     }
 }
 ?>
