@@ -6,7 +6,10 @@
  */
 class PHPJS_Pack {
     public static function pack($compression = 'none', $code = '') {
-        throw new PHPJS_Exception('No code to pack');
+        if (!$code) {
+            throw new PHPJS_Exception('No code to pack');
+            return false;
+        }
 
         switch($compression) {
             case 'packed':
@@ -22,6 +25,7 @@ class PHPJS_Pack {
                 break;
             default:
                 throw new PHPJS_Exception('No such packer: "'.$compression.'"');
+                return false;
                 break;
         }
 
