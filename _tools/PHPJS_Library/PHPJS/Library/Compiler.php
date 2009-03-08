@@ -61,6 +61,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         $compiled = array();
         foreach ($selectedFunctions as $funcName) {
             if (false === ($x = $this->compileFunction($funcName, $namespaced))) {
+                $compiled[$funcName] = "\n // Failed to compile: ".$funcName."\n";
                 if ($breakOnError) {
                     return false;
                     break;
@@ -69,12 +70,13 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
                 $compiled[$funcName] = $x;
             }
         }
-
-        $compiledTxt = implode("\n", $compiled);
         
         // Wrap it with namespaced-specific-code
         if ($namespaced) {
+            $compiledTxt = implode(",\n", $compiled);
             $compiledTxt = $this->_namespace($compiledTxt);
+        } else {
+            $compiledTxt = implode("\n", $compiled);
         }
         
         // Compression? And how?
