@@ -1,7 +1,7 @@
 /* 
  * More info at: http://kevin.vanzonneveld.net/techblog/article/phpjs_licensing/
  * 
- * This is version: 2.21
+ * This is version: 2.22
  * php.js is copyright 2008 Kevin van Zonneveld.
  * 
  * Portions copyright Brett Zamir, Onno Marsman, Michael White
@@ -13,24 +13,25 @@
  * (http://www.jsfromhell.com), Jani Hartikainen, Alex, Erkekjetter, GeekFG
  * (http://geekfg.blogspot.com), Johnny Mast (http://www.phpvrouwen.nl), d3x,
  * marrtins, AJ, Alfonso Jimenez (http://www.alfonsojimenez.com), Aman Gupta,
- * Arpad Ray (mailto:arpad@php.net), Caio Ariede (http://caioariede.com),
- * David, Karol Kowalski, Marc Palau, Mirek Slugen, Pellentesque Malesuada,
- * Public Domain (http://www.json.org/json2.js), Sakimori, Steve Hilder,
- * Steven Levithan (http://blog.stevenlevithan.com), Thunder.m, Tyler Akins
+ * Andrea Giammarchi (http://webreflection.blogspot.com), Arpad Ray
+ * (mailto:arpad@php.net), Caio Ariede (http://caioariede.com), David, Karol
+ * Kowalski, Marc Palau, Mirek Slugen, Pellentesque Malesuada, Public Domain
+ * (http://www.json.org/json2.js), Sakimori, Steve Hilder, Steven Levithan
+ * (http://blog.stevenlevithan.com), Thunder.m, Tyler Akins
  * (http://rumkin.com), gorthaur, mdsjack (http://www.mdsjack.bo.it), 0m3r,
  * Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev),
- * Allan Jensen (http://www.winternet.no), Andrea Giammarchi
- * (http://webreflection.blogspot.com), Andreas, Andrej Pavlovic, Anton
+ * Allan Jensen (http://www.winternet.no), Andreas, Andrej Pavlovic, Anton
  * Ongson, Arno, Atli Þór, Bayron Guevara, Ben Bryan, Benjamin Lupton, Brad
  * Touesnard, Bryan Elliott, Cagri Ekin, ChaosNo1, Christian Doebler, Cord,
  * David James, David Randall, Der Simon (http://innerdom.sourceforge.net/),
  * Dino, Diogo Resende, Douglas Crockford (http://javascript.crockford.com),
- * DxGx, FGFEmperor, Felix Geisendoerfer (http://www.debuggable.com/felix),
- * Francesco, Francois, FremyCompany, Gabriel Paderni, Garagoth, Gilbert,
- * Howard Yeend, Hyam Singer (http://www.impact-computing.com/), J A R, Jalal
- * Berrami, Kirk Strobeck, Kristof Coomans (SCK-CEN (Belgian Nucleair Research
- * Centre)), LH, Leslie Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey, Luke
- * Smith (http://lucassmith.name), Manish, Marco, Martin Pool, Mateusz
+ * DxGx, Eric Nagel, FGFEmperor, Felix Geisendoerfer
+ * (http://www.debuggable.com/felix), Francesco, Francois, FremyCompany,
+ * Gabriel Paderni, Garagoth, Gilbert, Howard Yeend, Hyam Singer
+ * (http://www.impact-computing.com/), J A R, Jalal Berrami, Kirk Strobeck,
+ * Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre)), LH, Leslie
+ * Hoare, Lincoln Ramsay, Linuxworld, Luke Godfrey, Luke Smith
+ * (http://lucassmith.name), Manish, Marc Jansen, Marco, Martin Pool, Mateusz
  * "loonquawl" Zalega, Matt Bradley, MeEtc (http://yass.meetcweb.com),
  * Mick@el, Nathan, Nick Callen, Norman "zEh" Fuchs, Ozh, Paul, Pedro Tainha
  * (http://www.pedrotainha.com), Peter-Paul Koch
@@ -698,20 +699,23 @@ function array_key_exists ( key, search ) {
 }// }}}
 
 // {{{ array_keys
-function array_keys( input, search_value, strict ) {
+function array_keys( input, search_value, argStrict ) {
     // Return all the keys of an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_keys/
-    // +       version: 810.2018
+    // +       version: 903.421
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
     // *     returns 1: {0: 'firstname', 1: 'surname'}
     
-    var tmp_arr = {}, strict = !!strict, include = true, cnt = 0;
+    var tmp_arr = {}, strict = !!argStrict, include = true, cnt = 0;
+    var key = '';
     
-    for ( key in input ){
+    for (key in input) {
         include = true;
-        if ( search_value != undefined ) {
+        if (search_value != undefined) {
             if( strict && input[key] !== search_value ){
                 include = false;
             } else if( input[key] != search_value ){
@@ -719,7 +723,7 @@ function array_keys( input, search_value, strict ) {
             }
         }
         
-        if( include ) {
+        if (include) {
             tmp_arr[cnt] = key;
             cnt++;
         }
@@ -823,20 +827,24 @@ function array_merge_recursive (arr1, arr2){
     // Merge two or more arrays recursively
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_merge_recursive/
-    // +       version: 812.114
+    // +       version: 903.421
     // +   original by: Subhasis Deb
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: array_merge
     // *     example 1: arr1 = {'color': {'favourite': 'read'}, 0: 5}
     // *     example 1: arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
     // *     example 1: array_merge_recursive(arr1, arr2)
     // *     returns 1: {'color': {'favorite': {0: 'red', 1: 'green'}, 0: 'blue'}, 1: 5, 1: 10}
 
+    var idx = '';
+
     if ((arr1 && (arr1 instanceof Array)) && (arr2 && (arr2 instanceof Array))) {
-        for (var idx in arr2) {
+        for (idx in arr2) {
             arr1.push(arr2[idx]);
         }
     } else if ((arr1 && (arr1 instanceof Object)) && (arr2 && (arr2 instanceof Object))) {
-        for (var idx in arr2) {
+        for (idx in arr2) {
             if (idx in arr1) {
                 if (typeof arr1[idx] == 'object' && typeof arr2 == 'object') {
                     arr1[idx] = array_merge(arr1[idx], arr2[idx]);
@@ -888,9 +896,11 @@ function array_pop( array ) {
     // Pop the element off the end of array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_pop/
-    // +       version: 902.210
+    // +       version: 903.421
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_pop([0,1,2]);
     // *     returns 1: 2
     // *     example 2: data = {firstName: 'Kevin', surName: 'van Zonneveld'};
@@ -913,8 +923,10 @@ function array_pop( array ) {
             cnt++;
         }
         if (cnt) {
-            return array[key];
             delete(array[key]);
+            return array[key];
+        } else {
+            return null;
         }
     }
 }// }}}
@@ -1051,19 +1063,22 @@ function array_reverse(array, preserve_keys) {
 }// }}}
 
 // {{{ array_search
-function array_search( needle, haystack, strict ) {
+function array_search( needle, haystack, argStrict ) {
     // Searches the array for a given value and returns the corresponding key if
     // successful
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_search/
-    // +       version: 809.522
+    // +       version: 903.421
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'});
     // *     returns 1: 'surname'
 
-    var strict = !!strict;
+    var strict = !!argStrict;
+    var key = '';
 
-    for(var key in haystack){
+    for(key in haystack){
         if( (strict && haystack[key] === needle) || (!strict && haystack[key] == needle) ){
             return key;
         }
@@ -1095,9 +1110,11 @@ function array_slice(arr, offst, lgth, preserve_keys) {
     // Extract a slice of the array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_slice/
-    // +       version: 812.1017
+    // +       version: 903.421
     // +   original by: Brett Zamir
     // -    depends on: is_int
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %          note: Relies on is_int because !isNaN accepts floats 
     // *     example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1);
     // *     returns 1: {0: 'c', 1: 'd'}
@@ -1109,43 +1126,45 @@ function array_slice(arr, offst, lgth, preserve_keys) {
         arr = Array.prototype.slice.call(arr);
     }
     */
+   
+    var key = '';
 
-	if (!(arr instanceof Array) || (preserve_keys && offst != 0)) { // Assoc. array as input or if required as output
-		var lgt =0, newAssoc = {};
-		for (var key in arr) {
-			//if (key !== 'length') {
-				lgt += 1;
-				newAssoc[key] = arr[key];
-			//}
-		}
-		arr = newAssoc;
+    if (!(arr instanceof Array) || (preserve_keys && offst != 0)) { // Assoc. array as input or if required as output
+        var lgt =0, newAssoc = {};
+        for (key in arr) {
+            //if (key !== 'length') {
+            lgt += 1;
+            newAssoc[key] = arr[key];
+            //}
+        }
+        arr = newAssoc;
 		
-		offst = (offst < 0) ? lgt + offst : offst;
-		lgth  = lgth == undefined ? lgt : (lgth < 0) ? lgt + lgth - offst : lgth;
+        offst = (offst < 0) ? lgt + offst : offst;
+        lgth  = lgth == undefined ? lgt : (lgth < 0) ? lgt + lgth - offst : lgth;
 		
-		var assoc = {};
-		var start = false, it=-1, arrlgth=0, no_pk_idx=0;
-		for (var key in arr) {
-		    ++it;
-		    if (arrlgth >= lgth) {
-		      break;
-		    }
-		    if (it == offst){
-		      start = true;
-		    }
-		    if (!start) {
-		       continue;
-		    }
-		    ++arrlgth;
-		    if (is_int(key) && !preserve_keys) {
+        var assoc = {};
+        var start = false, it=-1, arrlgth=0, no_pk_idx=0;
+        for (key in arr) {
+            ++it;
+            if (arrlgth >= lgth) {
+                break;
+            }
+            if (it == offst){
+                start = true;
+            }
+            if (!start) {
+                continue;
+            }
+            ++arrlgth;
+            if (is_int(key) && !preserve_keys) {
                 assoc[no_pk_idx++] = arr[key];
-		    } else {
-		        assoc[key] = arr[key];
-		    }
-		}
-		//assoc.length = arrlgth; // Make as array-like object (though length will not be dynamic)
-		return assoc;
-	}
+            } else {
+                assoc[key] = arr[key];
+            }
+        }
+        //assoc.length = arrlgth; // Make as array-like object (though length will not be dynamic)
+        return assoc;
+    }
     
     if (lgth === undefined) {
         return arr.slice(offst);    
@@ -1154,7 +1173,6 @@ function array_slice(arr, offst, lgth, preserve_keys) {
     } else {
         return arr.slice(offst, lgth);
     }
-    
 }// }}}
 
 // {{{ array_splice
@@ -1514,11 +1532,13 @@ function array_unique( array ) {
     // Removes duplicate values from an array
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_array_unique/
-    // +       version: 811.1314
+    // +       version: 903.421
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      input by: duncan
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Nate
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_unique(['Kevin','Kevin','van','Zonneveld','Kevin']);
     // *     returns 1: ['Kevin','van','Zonneveld']
     // *     example 2: array_unique({'a': 'green', 0: 'red', 'b': 'green', 1: 'blue', 2: 'red'});
@@ -1528,16 +1548,16 @@ function array_unique( array ) {
     var val = '';
     tmp_arr1 = array;
     
-	var __array_search = function (needle, haystack, strict) {
+    var __array_search = function (needle, haystack, argStrict) {
         var fkey = '';
-	    var strict = !!strict;
-	    for (fkey in haystack) {
-	        if ((strict && haystack[fkey] === needle) || (!strict && haystack[fkey] == needle) ) {
-	            return fkey;
-	        }
-	    }
-	    return false;
-	}    
+        var strict = !!argStrict;
+        for (fkey in haystack) {
+            if ((strict && haystack[fkey] === needle) || (!strict && haystack[fkey] == needle) ) {
+                return fkey;
+            }
+        }
+        return false;
+    }
 	
     for (key in tmp_arr1) {
         val = tmp_arr1[key];
@@ -1827,12 +1847,14 @@ function asort(inputArr, sort_flags) {
 }// }}}
 
 // {{{ chunk_split
-function chunk_split(body, chunklen, end) {
+function chunk_split(body, argChunklen, argEnd) {
     // Split a string into smaller chunks
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_chunk_split/
-    // +       version: 812.115
+    // +       version: 903.421
     // +   original by: Paulo Ricardo F. Santos
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: chunk_split('Hello world!', 1, '*');
     // *     returns 1: 'H*e*l*l*o* *w*o*r*l*d*!*'
     // *     example 2: chunk_split('Hello world!', 10, '*');
@@ -1842,7 +1864,7 @@ function chunk_split(body, chunklen, end) {
         return false;
     }
 
-    var result = '', chunklen = chunklen || 76, end = end || '\r\n';
+    var result = '', chunklen = argChunklen || 76, end = argEnd || '\r\n';
 
     while (body.length > chunklen) {
         result += body.substring(0, chunklen) + end;
@@ -1853,34 +1875,38 @@ function chunk_split(body, chunklen, end) {
 }// }}}
 
 // {{{ compact
-function compact ( var_names ) {
+function compact ( ) {
     // Create array containing variables and their values
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_compact/
-    // +       version: 811.1314
+    // +       version: 903.421
     // +   original by: Waldo Malqui Silva
     // +    tweaked by: Jack
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';  
     // *     example 1: compact('var1', 'var2', 'var3');
     // *     returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}    
+    
+    var Matrix = {};
+    var key_value;
 
-    var Index = 0, Matrix = {};
     var process = function ( value ) {
         var i = 0, l = value.length, key_value = '';
-        for (i = 0; i < l; i++ ) {
-            var key_value = value [ i ];
-            if ( key_value instanceof Array ) {
+        for (i = 0; i < l; i++) {
+            key_value = value [ i ];
+            if (key_value instanceof Array) {
                 process ( key_value );
             } else {
-                if ( typeof window [ key_value ] !== 'undefined' ) {
-                    Matrix [ key_value ] = window [ key_value ];
+                if (typeof window[key_value] !== 'undefined') {
+                    Matrix[key_value] = window[key_value];
                 }
             }
         }
         return true;
     };
-
-    process ( arguments );
+    
+    process(arguments);
     return Matrix;
 }// }}}
 
@@ -1951,7 +1977,7 @@ function each(arr) {
     // Return the current key and value pair from an array and advance the array cursor
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_each/
-    // +       version: 901.617
+    // +       version: 903.421
     // +   original by: Ates Goral (http://magnetiq.com) 
     // +    revised by: Brett Zamir
     // %        note 1: Uses global: window.php_js to store the array pointer
@@ -1974,6 +2000,8 @@ function each(arr) {
     }
     var arrpos = pointers.indexOf(arr);
     var cursor = pointers[arrpos+1];
+    var pos = 0;
+
     if (!(arr instanceof Array)) {
         var ct = 0;
         for (var k in arr) {
@@ -3237,7 +3265,7 @@ function date ( format, timestamp ) {
     // Format a local time/date
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_date/
-    // +       version: 901.1301
+    // +       version: 903.421
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -3247,6 +3275,8 @@ function date ( format, timestamp ) {
     // +   improved by: Bryan Elliott
     // +   improved by: Brett Zamir
     // +   improved by: David Randall
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);
@@ -3269,6 +3299,7 @@ function date ( format, timestamp ) {
             return n;
         }
     };
+    var ret = '';
     var txt_weekdays = ["Sunday","Monday","Tuesday","Wednesday",
         "Thursday","Friday","Saturday"];
     var txt_ordin = {1:"st",2:"nd",3:"rd",21:"st",22:"nd",23:"rd",31:"st"};
@@ -3330,6 +3361,7 @@ function date ( format, timestamp ) {
                 return pad(f.n(), 2);
             },
             M: function(){
+                var t;
                 t = f.F(); return t.substr(0,3);
             },
             n: function(){
@@ -11613,6 +11645,629 @@ function timezone_abbreviations_list() {
     return timezone_abbreviations;
 }// }}}
 
+// {{{ timezone_identifiers_list
+function timezone_identifiers_list (what, country) {
+    // Alias of  DateTimeZone::listIdentifiers
+    // 
+    // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_timezone_identifiers_list/
+    // +       version: 903.421
+    // +   original by: Brett Zamir
+    // %        note 1: Object argument shown in one place, but not in another
+    // %        note 1: (not implemented in PHP yet?)
+    // %        note 2: For countries, see
+    // %        note 2: http://www.iso.org/iso/english_country_names_and_code_elements
+    // *     example 1: timezone_identifiers_list('Hello World');
+    // *     returns 1: 1
+
+    var i = 0, new_what = '', returnArr = [], continents = [], codes = [],
+
+    identifiers = [
+        'Africa/Abidjan',
+        'Africa/Accra',
+        'Africa/Addis_Ababa',
+        'Africa/Algiers',
+        'Africa/Asmara',
+        'Africa/Asmera',
+        'Africa/Bamako',
+        'Africa/Bangui',
+        'Africa/Banjul',
+        'Africa/Bissau',
+        'Africa/Blantyre',
+        'Africa/Brazzaville',
+        'Africa/Bujumbura',
+        'Africa/Cairo',
+        'Africa/Casablanca',
+        'Africa/Ceuta',
+        'Africa/Conakry',
+        'Africa/Dakar',
+        'Africa/Dar_es_Salaam',
+        'Africa/Djibouti',
+        'Africa/Douala',
+        'Africa/El_Aaiun',
+        'Africa/Freetown',
+        'Africa/Gaborone',
+        'Africa/Harare',
+        'Africa/Johannesburg',
+        'Africa/Kampala',
+        'Africa/Khartoum',
+        'Africa/Kigali',
+        'Africa/Kinshasa',
+        'Africa/Lagos',
+        'Africa/Libreville',
+        'Africa/Lome',
+        'Africa/Luanda',
+        'Africa/Lubumbashi',
+        'Africa/Lusaka',
+        'Africa/Malabo',
+        'Africa/Maputo',
+        'Africa/Maseru',
+        'Africa/Mbabane',
+        'Africa/Mogadishu',
+        'Africa/Monrovia',
+        'Africa/Nairobi',
+        'Africa/Ndjamena',
+        'Africa/Niamey',
+        'Africa/Nouakchott',
+        'Africa/Ouagadougou',
+        'Africa/Porto-Novo',
+        'Africa/Sao_Tome',
+        'Africa/Timbuktu',
+        'Africa/Tripoli',
+        'Africa/Tunis',
+        'Africa/Windhoek',
+        'America/Adak',
+        'America/Anchorage',
+        'America/Anguilla',
+        'America/Antigua',
+        'America/Araguaina',
+        'America/Argentina/Buenos_Aires',
+        'America/Argentina/Catamarca',
+        'America/Argentina/ComodRivadavia',
+        'America/Argentina/Cordoba',
+        'America/Argentina/Jujuy',
+        'America/Argentina/La_Rioja',
+        'America/Argentina/Mendoza',
+        'America/Argentina/Rio_Gallegos',
+        'America/Argentina/San_Juan',
+        'America/Argentina/San_Luis',
+        'America/Argentina/Tucuman',
+        'America/Argentina/Ushuaia',
+        'America/Aruba',
+        'America/Asuncion',
+        'America/Atikokan',
+        'America/Atka',
+        'America/Bahia',
+        'America/Barbados',
+        'America/Belem',
+        'America/Belize',
+        'America/Blanc-Sablon',
+        'America/Boa_Vista',
+        'America/Bogota',
+        'America/Boise',
+        'America/Buenos_Aires',
+        'America/Cambridge_Bay',
+        'America/Campo_Grande',
+        'America/Cancun',
+        'America/Caracas',
+        'America/Catamarca',
+        'America/Cayenne',
+        'America/Cayman',
+        'America/Chicago',
+        'America/Chihuahua',
+        'America/Coral_Harbour',
+        'America/Cordoba',
+        'America/Costa_Rica',
+        'America/Cuiaba',
+        'America/Curacao',
+        'America/Danmarkshavn',
+        'America/Dawson',
+        'America/Dawson_Creek',
+        'America/Denver',
+        'America/Detroit',
+        'America/Dominica',
+        'America/Edmonton',
+        'America/Eirunepe',
+        'America/El_Salvador',
+        'America/Ensenada',
+        'America/Fort_Wayne',
+        'America/Fortaleza',
+        'America/Glace_Bay',
+        'America/Godthab',
+        'America/Goose_Bay',
+        'America/Grand_Turk',
+        'America/Grenada',
+        'America/Guadeloupe',
+        'America/Guatemala',
+        'America/Guayaquil',
+        'America/Guyana',
+        'America/Halifax',
+        'America/Havana',
+        'America/Hermosillo',
+        'America/Indiana/Indianapolis',
+        'America/Indiana/Knox',
+        'America/Indiana/Marengo',
+        'America/Indiana/Petersburg',
+        'America/Indiana/Tell_City',
+        'America/Indiana/Vevay',
+        'America/Indiana/Vincennes',
+        'America/Indiana/Winamac',
+        'America/Indianapolis',
+        'America/Inuvik',
+        'America/Iqaluit',
+        'America/Jamaica',
+        'America/Jujuy',
+        'America/Juneau',
+        'America/Kentucky/Louisville',
+        'America/Kentucky/Monticello',
+        'America/Knox_IN',
+        'America/La_Paz',
+        'America/Lima',
+        'America/Los_Angeles',
+        'America/Louisville',
+        'America/Maceio',
+        'America/Managua',
+        'America/Manaus',
+        'America/Marigot',
+        'America/Martinique',
+        'America/Mazatlan',
+        'America/Mendoza',
+        'America/Menominee',
+        'America/Merida',
+        'America/Mexico_City',
+        'America/Miquelon',
+        'America/Moncton',
+        'America/Monterrey',
+        'America/Montevideo',
+        'America/Montreal',
+        'America/Montserrat',
+        'America/Nassau',
+        'America/New_York',
+        'America/Nipigon',
+        'America/Nome',
+        'America/Noronha',
+        'America/North_Dakota/Center',
+        'America/North_Dakota/New_Salem',
+        'America/Panama',
+        'America/Pangnirtung',
+        'America/Paramaribo',
+        'America/Phoenix',
+        'America/Port-au-Prince',
+        'America/Port_of_Spain',
+        'America/Porto_Acre',
+        'America/Porto_Velho',
+        'America/Puerto_Rico',
+        'America/Rainy_River',
+        'America/Rankin_Inlet',
+        'America/Recife',
+        'America/Regina',
+        'America/Resolute',
+        'America/Rio_Branco',
+        'America/Rosario',
+        'America/Santiago',
+        'America/Santo_Domingo',
+        'America/Sao_Paulo',
+        'America/Scoresbysund',
+        'America/Shiprock',
+        'America/St_Barthelemy',
+        'America/St_Johns',
+        'America/St_Kitts',
+        'America/St_Lucia',
+        'America/St_Thomas',
+        'America/St_Vincent',
+        'America/Swift_Current',
+        'America/Tegucigalpa',
+        'America/Thule',
+        'America/Thunder_Bay',
+        'America/Tijuana',
+        'America/Toronto',
+        'America/Tortola',
+        'America/Vancouver',
+        'America/Virgin',
+        'America/Whitehorse',
+        'America/Winnipeg',
+        'America/Yakutat',
+        'America/Yellowknife',
+        'Antarctica/Casey',
+        'Antarctica/Davis',
+        'Antarctica/DumontDUrville',
+        'Antarctica/Mawson',
+        'Antarctica/McMurdo',
+        'Antarctica/Palmer',
+        'Antarctica/Rothera',
+        'Antarctica/South_Pole',
+        'Antarctica/Syowa',
+        'Antarctica/Vostok',
+        'Arctic/Longyearbyen',
+        'Asia/Aden',
+        'Asia/Almaty',
+        'Asia/Amman',
+        'Asia/Anadyr',
+        'Asia/Aqtau',
+        'Asia/Aqtobe',
+        'Asia/Ashgabat',
+        'Asia/Ashkhabad',
+        'Asia/Baghdad',
+        'Asia/Bahrain',
+        'Asia/Baku',
+        'Asia/Bangkok',
+        'Asia/Beirut',
+        'Asia/Bishkek',
+        'Asia/Brunei',
+        'Asia/Calcutta',
+        'Asia/Choibalsan',
+        'Asia/Chongqing',
+        'Asia/Chungking',
+        'Asia/Colombo',
+        'Asia/Dacca',
+        'Asia/Damascus',
+        'Asia/Dhaka',
+        'Asia/Dili',
+        'Asia/Dubai',
+        'Asia/Dushanbe',
+        'Asia/Gaza',
+        'Asia/Harbin',
+        'Asia/Ho_Chi_Minh',
+        'Asia/Hong_Kong',
+        'Asia/Hovd',
+        'Asia/Irkutsk',
+        'Asia/Istanbul',
+        'Asia/Jakarta',
+        'Asia/Jayapura',
+        'Asia/Jerusalem',
+        'Asia/Kabul',
+        'Asia/Kamchatka',
+        'Asia/Karachi',
+        'Asia/Kashgar',
+        'Asia/Katmandu',
+        'Asia/Kolkata',
+        'Asia/Krasnoyarsk',
+        'Asia/Kuala_Lumpur',
+        'Asia/Kuching',
+        'Asia/Kuwait',
+        'Asia/Macao',
+        'Asia/Macau',
+        'Asia/Magadan',
+        'Asia/Makassar',
+        'Asia/Manila',
+        'Asia/Muscat',
+        'Asia/Nicosia',
+        'Asia/Novosibirsk',
+        'Asia/Omsk',
+        'Asia/Oral',
+        'Asia/Phnom_Penh',
+        'Asia/Pontianak',
+        'Asia/Pyongyang',
+        'Asia/Qatar',
+        'Asia/Qyzylorda',
+        'Asia/Rangoon',
+        'Asia/Riyadh',
+        'Asia/Saigon',
+        'Asia/Sakhalin',
+        'Asia/Samarkand',
+        'Asia/Seoul',
+        'Asia/Shanghai',
+        'Asia/Singapore',
+        'Asia/Taipei',
+        'Asia/Tashkent',
+        'Asia/Tbilisi',
+        'Asia/Tehran',
+        'Asia/Tel_Aviv',
+        'Asia/Thimbu',
+        'Asia/Thimphu',
+        'Asia/Tokyo',
+        'Asia/Ujung_Pandang',
+        'Asia/Ulaanbaatar',
+        'Asia/Ulan_Bator',
+        'Asia/Urumqi',
+        'Asia/Vientiane',
+        'Asia/Vladivostok',
+        'Asia/Yakutsk',
+        'Asia/Yekaterinburg',
+        'Asia/Yerevan',
+        'Atlantic/Azores',
+        'Atlantic/Bermuda',
+        'Atlantic/Canary',
+        'Atlantic/Cape_Verde',
+        'Atlantic/Faeroe',
+        'Atlantic/Faroe',
+        'Atlantic/Jan_Mayen',
+        'Atlantic/Madeira',
+        'Atlantic/Reykjavik',
+        'Atlantic/South_Georgia',
+        'Atlantic/St_Helena',
+        'Atlantic/Stanley',
+        'Australia/ACT',
+        'Australia/Adelaide',
+        'Australia/Brisbane',
+        'Australia/Broken_Hill',
+        'Australia/Canberra',
+        'Australia/Currie',
+        'Australia/Darwin',
+        'Australia/Eucla',
+        'Australia/Hobart',
+        'Australia/LHI',
+        'Australia/Lindeman',
+        'Australia/Lord_Howe',
+        'Australia/Melbourne',
+        'Australia/North',
+        'Australia/NSW',
+        'Australia/Perth',
+        'Australia/Queensland',
+        'Australia/South',
+        'Australia/Sydney',
+        'Australia/Tasmania',
+        'Australia/Victoria',
+        'Australia/West',
+        'Australia/Yancowinna',
+        'Brazil/Acre',
+        'Brazil/DeNoronha',
+        'Brazil/East',
+        'Brazil/West',
+        'Canada/Atlantic',
+        'Canada/Central',
+        'Canada/East-Saskatchewan',
+        'Canada/Eastern',
+        'Canada/Mountain',
+        'Canada/Newfoundland',
+        'Canada/Pacific',
+        'Canada/Saskatchewan',
+        'Canada/Yukon',
+        'CET',
+        'Chile/Continental',
+        'Chile/EasterIsland',
+        'CST6CDT',
+        'Cuba',
+        'EET',
+        'Egypt',
+        'Eire',
+        'EST',
+        'EST5EDT',
+        'Etc/GMT',
+        'Etc/GMT+0',
+        'Etc/GMT+1',
+        'Etc/GMT+10',
+        'Etc/GMT+11',
+        'Etc/GMT+12',
+        'Etc/GMT+2',
+        'Etc/GMT+3',
+        'Etc/GMT+4',
+        'Etc/GMT+5',
+        'Etc/GMT+6',
+        'Etc/GMT+7',
+        'Etc/GMT+8',
+        'Etc/GMT+9',
+        'Etc/GMT-0',
+        'Etc/GMT-1',
+        'Etc/GMT-10',
+        'Etc/GMT-11',
+        'Etc/GMT-12',
+        'Etc/GMT-13',
+        'Etc/GMT-14',
+        'Etc/GMT-2',
+        'Etc/GMT-3',
+        'Etc/GMT-4',
+        'Etc/GMT-5',
+        'Etc/GMT-6',
+        'Etc/GMT-7',
+        'Etc/GMT-8',
+        'Etc/GMT-9',
+        'Etc/GMT0',
+        'Etc/Greenwich',
+        'Etc/UCT',
+        'Etc/Universal',
+        'Etc/UTC',
+        'Etc/Zulu',
+        'Europe/Amsterdam',
+        'Europe/Andorra',
+        'Europe/Athens',
+        'Europe/Belfast',
+        'Europe/Belgrade',
+        'Europe/Berlin',
+        'Europe/Bratislava',
+        'Europe/Brussels',
+        'Europe/Bucharest',
+        'Europe/Budapest',
+        'Europe/Chisinau',
+        'Europe/Copenhagen',
+        'Europe/Dublin',
+        'Europe/Gibraltar',
+        'Europe/Guernsey',
+        'Europe/Helsinki',
+        'Europe/Isle_of_Man',
+        'Europe/Istanbul',
+        'Europe/Jersey',
+        'Europe/Kaliningrad',
+        'Europe/Kiev',
+        'Europe/Lisbon',
+        'Europe/Ljubljana',
+        'Europe/London',
+        'Europe/Luxembourg',
+        'Europe/Madrid',
+        'Europe/Malta',
+        'Europe/Mariehamn',
+        'Europe/Minsk',
+        'Europe/Monaco',
+        'Europe/Moscow',
+        'Europe/Nicosia',
+        'Europe/Oslo',
+        'Europe/Paris',
+        'Europe/Podgorica',
+        'Europe/Prague',
+        'Europe/Riga',
+        'Europe/Rome',
+        'Europe/Samara',
+        'Europe/San_Marino',
+        'Europe/Sarajevo',
+        'Europe/Simferopol',
+        'Europe/Skopje',
+        'Europe/Sofia',
+        'Europe/Stockholm',
+        'Europe/Tallinn',
+        'Europe/Tirane',
+        'Europe/Tiraspol',
+        'Europe/Uzhgorod',
+        'Europe/Vaduz',
+        'Europe/Vatican',
+        'Europe/Vienna',
+        'Europe/Vilnius',
+        'Europe/Volgograd',
+        'Europe/Warsaw',
+        'Europe/Zagreb',
+        'Europe/Zaporozhye',
+        'Europe/Zurich',
+        'Factory',
+        'GB',
+        'GB-Eire',
+        'GMT',
+        'GMT+0',
+        'GMT-0',
+        'GMT0',
+        'Greenwich',
+        'Hongkong',
+        'HST',
+        'Iceland',
+        'Indian/Antananarivo',
+        'Indian/Chagos',
+        'Indian/Christmas',
+        'Indian/Cocos',
+        'Indian/Comoro',
+        'Indian/Kerguelen',
+        'Indian/Mahe',
+        'Indian/Maldives',
+        'Indian/Mauritius',
+        'Indian/Mayotte',
+        'Indian/Reunion',
+        'Iran',
+        'Israel',
+        'Jamaica',
+        'Japan',
+        'Kwajalein',
+        'Libya',
+        'MET',
+        'Mexico/BajaNorte',
+        'Mexico/BajaSur',
+        'Mexico/General',
+        'MST',
+        'MST7MDT',
+        'Navajo',
+        'NZ',
+        'NZ-CHAT',
+        'Pacific/Apia',
+        'Pacific/Auckland',
+        'Pacific/Chatham',
+        'Pacific/Easter',
+        'Pacific/Efate',
+        'Pacific/Enderbury',
+        'Pacific/Fakaofo',
+        'Pacific/Fiji',
+        'Pacific/Funafuti',
+        'Pacific/Galapagos',
+        'Pacific/Gambier',
+        'Pacific/Guadalcanal',
+        'Pacific/Guam',
+        'Pacific/Honolulu',
+        'Pacific/Johnston',
+        'Pacific/Kiritimati',
+        'Pacific/Kosrae',
+        'Pacific/Kwajalein',
+        'Pacific/Majuro',
+        'Pacific/Marquesas',
+        'Pacific/Midway',
+        'Pacific/Nauru',
+        'Pacific/Niue',
+        'Pacific/Norfolk',
+        'Pacific/Noumea',
+        'Pacific/Pago_Pago',
+        'Pacific/Palau',
+        'Pacific/Pitcairn',
+        'Pacific/Ponape',
+        'Pacific/Port_Moresby',
+        'Pacific/Rarotonga',
+        'Pacific/Saipan',
+        'Pacific/Samoa',
+        'Pacific/Tahiti',
+        'Pacific/Tarawa',
+        'Pacific/Tongatapu',
+        'Pacific/Truk',
+        'Pacific/Wake',
+        'Pacific/Wallis',
+        'Pacific/Yap',
+        'Poland',
+        'Portugal',
+        'PRC',
+        'PST8PDT',
+        'ROC',
+        'ROK',
+        'Singapore',
+        'Turkey',
+        'UCT',
+        'Universal',
+        'US/Alaska',
+        'US/Aleutian',
+        'US/Arizona',
+        'US/Central',
+        'US/East-Indiana',
+        'US/Eastern',
+        'US/Hawaii',
+        'US/Indiana-Starke',
+        'US/Michigan',
+        'US/Mountain',
+        'US/Pacific',
+        'US/Pacific-New',
+        'US/Samoa',
+        'UTC',
+        'W-SU',
+        'WET',
+        'Zulu'
+    ];
+
+    continents = [
+        'AFRICA',
+        'AMERICA',
+        'ANTARCTICA',
+        'ARCTIC',
+        'ASIA',
+        'ATLANTIC',
+        'AUSTRALIA',
+        'EUROPE',
+        'INDIAN',
+        'PACIFIC'
+    ];
+    codes = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512];
+
+    if (what) {
+        if (codes.indexOf(what) !== -1 || continents.indexOf(what) !== -1) {
+            if (what && what === parseInt(what, 10)+'') {
+                // what is an integer
+                new_what = continents[codes.indexOf(what)];
+            }
+            if (what) {
+                new_what = what[0]+what.slice(1).toLowerCase();
+            }
+
+            for (i=0; i < identifiers.length; i++) {
+                if (identifiers[i].indexOf(new_what+'/') !== -1) {
+                    returnArr.push(identifiers[i]);
+                }
+            }
+            // Assumed implementation
+            return returnArr;
+        } else if (what === 'UTC' || what === 1024) {
+            throw 'Unknown implementation';
+        } else if (what === 'ALL_WITH_BC' || what === 4095) {
+            // All with backwards-compatibility
+            throw 'Unknown implementation';
+        } else if (what === 'PER_COUNTRY' || what === 4096) {
+            // Presumably use 'country' argument to limit choices, but where is the country list?
+            throw 'Unknown implementation';
+        } else if (what === 'ALL' || what === 2047) {
+            return identifiers;
+        }
+    }
+
+    return identifiers;
+}// }}}
+
 // {{{ basename
 function basename(path, suffix) {
     // Returns filename component of path
@@ -12358,21 +13013,23 @@ function include( filename ) {
     // The include() statement includes and evaluates the specified file.
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_include/
-    // +       version: 809.2411
+    // +       version: 903.421
     // +   original by: mdsjack (http://www.mdsjack.bo.it)
     // +   improved by: Legaev Andrey
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Michael White (http://getsprink.com)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
     // %        note 2: The included file does not come available until a second script block, so typically use this in the header.
     // *     example 1: include('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: 1
 
-    var js = document.createElement('script');
+    var js = document.createElementNS ? document.createElementNS('http://www.w3.org/1999/xhtml', 'script') : document.createElement('script');
     js.setAttribute('type', 'text/javascript');
     js.setAttribute('src', filename);
     js.setAttribute('defer', 'defer');
-    document.getElementsByTagName('HEAD')[0].appendChild(js);
+    document.getElementsByTagNameNS ? document.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(js) : document.getElementsByTagName('head')[0].appendChild(js);
 
     // save include state for reference by include_once
     var cur_file = {};
@@ -12398,10 +13055,12 @@ function include_once( filename ) {
     // will be included just once.
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_include_once/
-    // +       version: 809.2411
+    // +       version: 903.421
     // +   original by: Legaev Andrey
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Michael White (http://getsprink.com)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: include
     // *     example 1: include_once('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: true
@@ -12418,6 +13077,7 @@ function include_once( filename ) {
     } else{
         return true;
     }
+    return false;
 }// }}}
 
 // {{{ require
@@ -12425,16 +13085,18 @@ function require( filename ) {
     // The require() statement includes and evaluates the specific file.
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_require/
-    // +       version: 809.2411
+    // +       version: 903.421
     // +   original by: Michael White (http://getsprink.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
     // -    depends on: file_get_contents
     // *     example 1: require('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: 2
 
     var js_code = file_get_contents(filename);
-    var script_block = document.createElement('script');
+    var script_block = document.createElementNS ? document.createElementNS('http://www.w3.org/1999/xhtml', 'script') : document.createElement('script');
     script_block.type = 'text/javascript';
     var client_pc = navigator.userAgent.toLowerCase();
     if((client_pc.indexOf("msie") != -1) && (client_pc.indexOf("opera") == -1)) {
@@ -12442,9 +13104,9 @@ function require( filename ) {
     } else {
         script_block.appendChild(document.createTextNode(js_code));
     }
-
-    if(typeof(script_block) != "undefined") {
-        document.getElementsByTagName("head")[0].appendChild(script_block);
+    
+    if (typeof(script_block) != "undefined") {
+        document.getElementsByTagNameNS ? document.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(script_block) : document.getElementsByTagName('head')[0].appendChild(script_block);
 
         // save include state for reference by include_once and require_once()
         var cur_file = {};
@@ -12455,11 +13117,13 @@ function require( filename ) {
 
         if (!window.php_js.includes[filename]) {
             window.php_js.includes[filename] = 1;
+            return 1;
         } else {
             // Use += 1 because ++ waits until AFTER the original value is returned to increment the value.
             return window.php_js.includes[filename] += 1;
         }
     }
+    return 0;
 }// }}}
 
 // {{{ require_once
@@ -12471,8 +13135,10 @@ function require_once(filename) {
     // require() for more information on how this statement works.
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_require_once/
-    // +       version: 809.2411
+    // +       version: 903.421
     // +   original by: Michael White (http://getsprink.com)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: require
     // *     example 1: require_once('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: true
@@ -12490,6 +13156,7 @@ function require_once(filename) {
     } else {
         return true;
     }
+    return false;
 }// }}}
 
 // {{{ abs
@@ -12756,8 +13423,10 @@ function fmod(x, y) {
     // Returns the floating point remainder (modulo) of the division  of the arguments
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_fmod/
-    // +       version: 810.612
+    // +       version: 903.421
     // +   original by: Onno Marsman
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: fmod(5.7, 1.3);
     // *     returns 1: 0.5
     
@@ -12776,10 +13445,10 @@ function fmod(x, y) {
     
     if (p < -100 || p > 20) {
         // toFixed will give an out of bound error so we fix it like this:
-        var l = Math.round(Math.log(tmp2)/Math.log(10));
-        var l2 = Math.pow(10, l);
+        l  = Math.round(Math.log(tmp2)/Math.log(10));
+        l2 = Math.pow(10, l);
         
-        return (tmp2/l2).toFixed(l-p)*l2;
+        return (tmp2 / l2).toFixed(l-p)*l2;
     } else {
         return parseFloat(tmp2.toFixed(-p));
     }
@@ -13415,16 +14084,64 @@ function define(name, value) {
     // Defines a named constant
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_define/
-    // +       version: 812.311
+    // +       version: 903.421
     // +   original by: Paulo Ricardo F. Santos
+    // +    revised by: Brett Zamir
     // *     example 1: define('IMAGINARY_CONSTANT1', 'imaginary_value1');
-    // *     returns 1: true
+    // *     results 1: IMAGINARY_CONSTANT1 == 'imaginary_value1'
     
-    if (/boolean|number|null|string/.test(typeof value) !== true) {
-        return false;
-    }
-    
-    return (window[name] = value) !== undefined;
+    var define, replace, script;
+    var toString = function (name, value) {
+        return 'const ' + name + '=' + (
+            /^(null|true|false|(\+|\-)?\d+(\.\d+)?)$/.test(value = String(value)) ? value : '"' + replace(value) + '"'
+            );
+    };
+    try {
+        eval('const e=1');
+        replace = function (value){
+            var replace = {
+                "\x08":"b",
+                "\x0A":"\\n",
+                "\x0B":"v",
+                "\x0C":"f",
+                "\x0D":"\\r",
+                '"':'"',
+                "\\":"\\"
+            };
+            return value.replace(/\x08|[\x0A-\x0D]|"|\\/g, function(value){
+                return "\\"+replace[value]
+                });
+        };
+        define = function (name, value){
+            if (document.createElementNS) {
+                script = document.createElementNS('http://www.w3.org/1999/xhtml', 'script');
+            } else {
+                script = document.createElement('script');
+            }
+            script.type = 'text/javascript';
+            script.appendChild(document.createTextNode(toString(name, value)));
+            document.documentElement.appendChild(script);
+            document.documentElement.removeChild(script);
+        }
+    } catch (e){
+        replace = function (value) {
+            var replace = {
+                "\x0A":"\\n",
+                "\x0D":"\\r"
+            };
+            return value.replace(/"/g, '""').replace(/\n|\r/g, function(value){
+                return replace[value]
+                });
+        };
+        define = this.execScript ?
+        function (name, value){
+            execScript(toString(name, value), 'VBScript');
+        }:
+        function (name, value){
+            eval(toString(name, value).substring(6));
+        };
+    };
+    define(name, value);
 }// }}}
 
 // {{{ defined
@@ -13741,7 +14458,7 @@ function bin2hex(s){
     // Convert binary data into hexadecimal representation
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_bin2hex/
-    // +       version: 811.2517
+    // +       version: 903.421
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
     // +   bugfixed by: Linuxworld
@@ -13750,7 +14467,8 @@ function bin2hex(s){
     // *     example 2: bin2hex(String.fromCharCode(0x00));
     // *     returns 2: '00'
 
-    var v,i, f = 0, a = [];
+    var i, f = 0, a = [];
+    
     s += '';
     f = s.length;
     
@@ -13793,16 +14511,19 @@ function count_chars( str, mode ) {
     // Return information about characters used in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_count_chars/
-    // +       version: 810.621
+    // +       version: 903.421
     // +   original by: Ates Goral (http://magnetiq.com)
     // +    tweaked by: Jack
     // +   bugfixed by: Onno Marsman
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: count_chars("Hello World!", 1);
     // *     returns 1: "Hd e!lWor"
 
     var histogram = new Object(), tmp_arr = new Array();
-    var key, i, code, mode, strl = 0;
+    var key, i, code, strl = 0;
     var argc = arguments.length;
+    var mode_even = 0;
 
     if (argc == 1) {
         mode = 0;
@@ -14434,26 +15155,52 @@ function lcfirst( str ) {
 }// }}}
 
 // {{{ levenshtein
-function levenshtein( str1, str2 ) {
+function levenshtein (a, b){
     // Calculate Levenshtein distance between two strings
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_levenshtein/
-    // +       version: 810.621
-    // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
-    // +   bugfixed by: Onno Marsman
-    // *     example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
-    // *     returns 1: 3
-
-    var s, l = (s = (str1+'').split("")).length, t = (str2 = (str2+'').split("")).length, i, j, m, n;
-    if(!(l || t)) return Math.max(l, t);
-    for(var a = [], i = l + 1; i; a[--i] = [i]);
-    for(i = t + 1; a[0][--i] = i;);
-    for(i = -1, m = s.length; ++i < m;){
-        for(j = -1, n = str2.length; ++j < n;){
-            a[(i *= 1) + 1][(j *= 1) + 1] = Math.min(a[i][j + 1] + 1, a[i + 1][j] + 1, a[i][j] + (s[i] != str2[j]));
-        }
+    // +       version: 903.421
+    // +      original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+    // +      bugfixed by: Onno Marsman
+    // +       revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
+    // + reimplemented by: Brett Zamir
+    // *        example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
+    // *        returns 1: 3
+    
+    var split=false, min=Math.min, len1=0, len2=0, I=0, i=0, d=[], c='', j=0, J=0;
+    try{
+        ('0')[0];
+    } catch(i){
+        split=true;
     }
-    return a[l][t];
+    if (a == b) {
+        return 0;
+    }
+    if (!a.length || !b.length) {
+        return b.length || a.length;
+    }
+    if (split){
+        a = a.split('');b = b.split('');
+    }
+    len1 = a.length + 1;
+    len2 = b.length + 1;
+    d = [[0]];
+    while (++i < len2) {
+        d[0][i] = i;
+    }
+    i = 0;
+    while (++i < len1) {
+        J = j = 0;
+        c = a[I];
+        d[i] = [i];
+        while (++j < len2) {
+            d[i][j] = min(d[I][j] + 1, d[i][J] + 1, d[I][J] + (c != b[J]));
+            ++J;
+        }
+        ++I;
+    }
+    
+    return d[len1 - 1][len2 - 1];
 }// }}}
 
 // {{{ ltrim
@@ -14479,14 +15226,18 @@ function md5 ( str ) {
     // Calculate the md5 hash of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_md5/
-    // +       version: 810.112
+    // +       version: 903.421
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // + namespaced by: Michael White (http://getsprink.com)
     // +    tweaked by: Jack
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: utf8_encode
     // *     example 1: md5('Kevin van Zonneveld');
     // *     returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
+
+    var xl;
 
     var RotateLeft = function(lValue, iShiftBits) {
         return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
@@ -14665,12 +15416,16 @@ function md5_file ( str_filename ) {
     // Calculates the md5 hash of a given file
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_md5_file/
-    // +       version: 809.522
+    // +       version: 903.421
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: file_get_contents
     // -    depends on: md5
     // *     example 1: md5_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '202cb962ac59075b964b07152d234b70'
+
+    var buf = '';
 
     buf = file_get_contents(str_filename);
     
@@ -14686,18 +15441,22 @@ function nl2br (str, is_xhtml) {
     // Inserts HTML line breaks before all newlines in a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_nl2br/
-    // +       version: 810.1417
+    // +       version: 903.421
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Philip Peterson
     // +   improved by: Onno Marsman
     // +   improved by: Atli Þór
     // +   bugfixed by: Onno Marsman
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: nl2br('Kevin\nvan\nZonneveld');
     // *     returns 1: 'Kevin<br />\nvan<br />\nZonneveld'
     // *     example 2: nl2br("\nOne\nTwo\n\nThree\n", false);
     // *     returns 2: '<br>\nOne<br>\nTwo<br>\n<br>\nThree<br>\n'
     // *     example 3: nl2br("\nOne\nTwo\n\nThree\n", true);
     // *     returns 3: '<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n'
+
+    var breakTag = '';
 
     breakTag = '<br />';
     if (typeof is_xhtml != 'undefined' && !is_xhtml) {
@@ -14782,33 +15541,30 @@ function parse_str(str, array){
     // Parses the string into variables
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_parse_str/
-    // +       version: 810.621
+    // +       version: 903.421
     // +   original by: Cagri Ekin
     // +   improved by: Michael White (http://getsprink.com)
     // +    tweaked by: Jack
     // +   bugfixed by: Onno Marsman
-    // *     example 1: parse_str('first=foo&second=bar');
-    // *     returns 1: { first: 'foo', second: 'bar' }
-    // *     example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.');
-    // *     returns 2: { str_a: "Jack and Jill didn't see the well." }
+    // %        note 1: Currently does not put variables in local scope.
+    // %        note 1: So use of second argument is required.
+    // *     example 1: var arr = {};
+    // *     example 1: parse_str('first=foo&second=bar', arr);
+    // *     results 1: arr == { first: 'foo', second: 'bar' }
+    // *     example 2: var arr = {};
+    // *     example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr);
+    // *     results 2: arr == { str_a: "Jack and Jill didn't see the well." }
 
     var glue1 = '=';
     var glue2 = '&';
 
     var array2 = (str+'').split(glue2);
-    var array3 = [];
     var array2l = 0, tmp = '', x = 0;
 
     array2l = array2.length;
     for (x = 0; x<array2l; x++) {
         tmp = array2[x].split(glue1);
-        array3[unescape(tmp[0])] = unescape(tmp[1]).replace(/[+]/g, ' ');
-    }
-
-    if (array) {
-        array = array3;
-    } else {
-        return array3;
+        array[unescape(tmp[0])] = unescape(tmp[1]).replace(/[+]/g, ' ');
     }
 }// }}}
 
@@ -14883,9 +15639,11 @@ function sha1 ( str ) {
     // Calculate the sha1 hash of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sha1/
-    // +       version: 810.112
+    // +       version: 903.421
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // + namespaced by: Michael White (http://getsprink.com)
+    // +      input by: Brett Zamir
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: utf8_encode
     // *     example 1: sha1('Kevin van Zonneveld');
     // *     returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
@@ -15017,7 +15775,7 @@ function sha1 ( str ) {
         H4 = (H4 + E) & 0x0ffffffff;
     }
 
-    var temp = cvt_hex(H0) + cvt_hex(H1) + cvt_hex(H2) + cvt_hex(H3) + cvt_hex(H4);
+    temp = cvt_hex(H0) + cvt_hex(H1) + cvt_hex(H2) + cvt_hex(H3) + cvt_hex(H4);
     return temp.toLowerCase();
 }// }}}
 
@@ -15042,11 +15800,13 @@ function soundex(str) {
     // Calculate the soundex key of a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_soundex/
-    // +       version: 810.621
+    // +       version: 903.421
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +    tweaked by: Jack
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: soundex('Kevin');
     // *     returns 1: 'K150'
     // *     example 2: soundex('Ellery');
@@ -15054,8 +15814,16 @@ function soundex(str) {
     // *     example 3: soundex('Euler');
     // *     returns 3: 'E460'
 
-    var i, j, l, r, p = isNaN(p) ? 4 : p > 10 ? 10 : p < 4 ? 4 : p;
-    var m = {BFPV: 1, CGJKQSXZ: 2, DT: 3, L: 4, MN: 5, R: 6};
+    var s = '';
+    var i, j, l, p = isNaN(p) ? 4 : p > 10 ? 10 : p < 4 ? 4 : p;
+    var m = {
+        BFPV: 1,
+        CGJKQSXZ: 2,
+        DT: 3,
+        L: 4,
+        MN: 5, 
+        R: 6
+    };
     var r = (s = (str+'').toUpperCase().replace(/[^A-Z]/g, "").split("")).splice(0, 1);
     var sl = 0;
 
@@ -15090,12 +15858,14 @@ function sprintf( ) {
     // Return a formatted string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_sprintf/
-    // +       version: 812.114
+    // +       version: 903.421
     // +   original by: Ash Searle (http://hexmen.com/blog/)
     // + namespaced by: Michael White (http://getsprink.com)
     // +    tweaked by: Jack
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Paulo Ricardo F. Santos
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: sprintf("%01.2f", 123.1);
     // *     returns 1: 123.10
@@ -15144,8 +15914,14 @@ function sprintf( ) {
         return justify(value, '', leftJustify, minWidth, zeroPad, customPadChar);
     };
 
-    // finalFormat()
+    // doFormat()
     var doFormat = function(substring, valueIndex, flags, minWidth, _, precision, type) {
+        var number;
+        var prefix;
+        var method;
+        var textTransform;
+        var value;
+
         if (substring == '%%') return '%';
 
         // parse flags
@@ -15193,7 +15969,7 @@ function sprintf( ) {
         }
 
         // grab value using valueIndex if required?
-        var value = valueIndex ? a[valueIndex.slice(0, -1)] : a[i++];
+        value = valueIndex ? a[valueIndex.slice(0, -1)] : a[i++];
 
         switch (type) {
             case 's': return formatString(String(value), leftJustify, minWidth, precision, zeroPad, customPadChar);
@@ -15205,8 +15981,8 @@ function sprintf( ) {
             case 'u': return formatBaseX(value, 10, prefixBaseX, leftJustify, minWidth, precision, zeroPad);
             case 'i':
             case 'd': {
-                var number = parseInt(+value);
-                var prefix = number < 0 ? '-' : positivePrefix;
+                number = parseInt(+value);
+                prefix = number < 0 ? '-' : positivePrefix;
                 value = prefix + pad(String(Math.abs(number)), precision, '0', false);
                 return justify(value, prefix, leftJustify, minWidth, zeroPad);
             }
@@ -15216,10 +15992,10 @@ function sprintf( ) {
             case 'F':
             case 'g':
             case 'G': {
-                var number = +value;
-                var prefix = number < 0 ? '-' : positivePrefix;
-                var method = ['toExponential', 'toFixed', 'toPrecision']['efg'.indexOf(type.toLowerCase())];
-                var textTransform = ['toString', 'toUpperCase']['eEfFgG'.indexOf(type) % 2];
+                number = +value;
+                prefix = number < 0 ? '-' : positivePrefix;
+                method = ['toExponential', 'toFixed', 'toPrecision']['efg'.indexOf(type.toLowerCase())];
+                textTransform = ['toString', 'toUpperCase']['eEfFgG'.indexOf(type) % 2];
                 value = prefix + Math.abs(number)[method](precision);
                 return justify(value, prefix, leftJustify, minWidth, zeroPad)[textTransform]();
             }
@@ -15235,18 +16011,21 @@ function str_ireplace ( search, replace, subject ) {
     // Case-insensitive version of str_replace().
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_ireplace/
-    // +       version: 810.621
+    // +       version: 903.421
     // +   original by: Martijn Wieringa
     // +      input by: penutbutterjelly
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    tweaked by: Jack
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: str_ireplace('l', 'l', 'HeLLo');
     // *     returns 1: 'Hello'
 
     var i, k = '';
     var searchl = 0;
+    var reg;
 
     search += '';
     searchl = search.length;
@@ -15348,7 +16127,7 @@ function str_replace(search, replace, subject) {
     // Replace all occurrences of the search string with the replacement string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_str_replace/
-    // +       version: 812.1017
+    // +       version: 903.421
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Gabriel Paderni
     // +   improved by: Philip Peterson
@@ -15358,19 +16137,25 @@ function str_replace(search, replace, subject) {
     // +      input by: Onno Marsman
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    tweaked by: Onno Marsman
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: str_replace(' ', '.', 'Kevin van Zonneveld');
     // *     returns 1: 'Kevin.van.Zonneveld'
     // *     example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
     // *     returns 2: 'hemmo, mars'
 
-    var f = search, r = replace, s = subject;
-    var ra = r instanceof Array, sa = s instanceof Array, f = [].concat(f), r = [].concat(r), i = (s = [].concat(s)).length;
-
+    var s = subject;
+    var ra = r instanceof Array, sa = s instanceof Array;
+    var f = [].concat(search);
+    var r = [].concat(replace);
+    var i = (s = [].concat(s)).length;
+    var j = 0;
+    
     while (j = 0, i--) {
         if (s[i]) {
             while (s[i] = (s[i]+'').split(f[j]).join(ra ? r[j] || "" : r[0]), ++j in f){};
         }
-    };
+    }
 
     return sa ? s : s[0];
 }// }}}
@@ -15541,7 +16326,7 @@ function strip_tags(str, allowed_tags) {
     // Strip HTML and PHP tags from a string
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_strip_tags/
-    // +       version: 811.1812
+    // +       version: 903.421
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Luke Godfrey
     // +      input by: Pul
@@ -15551,6 +16336,9 @@ function strip_tags(str, allowed_tags) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Marc Palau
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Eric Nagel
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
     // *     example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>');
@@ -15558,8 +16346,13 @@ function strip_tags(str, allowed_tags) {
     // *     example 3: strip_tags("<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>", "<a>");
     // *     returns 3: '<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>'
 
-    var key = '', tag = '', allowed = false;
-    var matches = allowed_array = [];
+    var key = '', allowed = false;
+    var matches = [];
+    var allowed_array = [];
+    var allowed_tag = '';
+    var i = 0;
+    var k = '';
+    var html = '';
 
     var replacer = function(search, replace, str) {
         return str.split(search).join(replace);
@@ -16615,7 +17408,7 @@ function base64_decode( data ) {
     // Decodes data encoded with MIME base64
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_base64_decode/
-    // +       version: 902.2516
+    // +       version: 903.421
     // +   original by: Tyler Akins (http://rumkin.com)
     // +   improved by: Thunder.m
     // +      input by: Aman Gupta
@@ -16623,6 +17416,8 @@ function base64_decode( data ) {
     // +   bugfixed by: Onno Marsman
     // +   bugfixed by: Pellentesque Malesuada
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: utf8_decode
     // *     example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
     // *     returns 1: 'Kevin van Zonneveld'
@@ -16634,7 +17429,7 @@ function base64_decode( data ) {
     //}
 
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    var o1, o2, o3, h1, h2, h3, h4, bits, i = ac = 0, dec = "", tmp_arr = [];
+    var o1, o2, o3, h1, h2, h3, h4, bits, i = 0, ac = 0, dec = "", tmp_arr = [];
 
     if (!data) {
         return data;
@@ -17140,13 +17935,14 @@ function empty( mixed_var ) {
     // Determine whether a variable is empty
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_empty/
-    // +       version: 811.1314
+    // +       version: 903.421
     // +   original by: Philippe Baumann
     // +      input by: Onno Marsman
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: LH
     // +   improved by: Onno Marsman
     // +   improved by: Francesco
+    // +   improved by: Marc Jansen
     // *     example 1: empty(null);
     // *     returns 1: true
     // *     example 2: empty(undefined);
@@ -17155,6 +17951,8 @@ function empty( mixed_var ) {
     // *     returns 3: true
     // *     example 4: empty({});
     // *     returns 4: true
+    // *     example 5: empty({'aFunc' : function () { alert('humpty'); } });
+    // *     returns 5: false
     
     var key;
     
@@ -17167,14 +17965,14 @@ function empty( mixed_var ) {
     ){
         return true;
     }
+
     if (typeof mixed_var == 'object') {
         for (key in mixed_var) {
-            if (typeof mixed_var[key] !== 'function' ) {
-	            return false;
-            }
+            return false;
         }
         return true;
     }
+
     return false;
 }// }}}
 
@@ -17711,9 +18509,11 @@ function print_r( array, return_val ) {
     // Prints human-readable information about a variable
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_print_r/
-    // +       version: 809.2411
+    // +       version: 903.421
     // +   original by: Michael White (http://getsprink.com)
     // +   improved by: Ben Bryan
+    // +      input by: Brett Zamir
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: print_r(1, true);
     // *     returns 1: 1
     
@@ -17751,7 +18551,7 @@ function print_r( array, return_val ) {
         var str = "";
         for(var i=0; i < len; i++) { 
             str += pad_char; 
-        };
+        }
         return str;
     };
     output = formatArray(array, 0, pad_val, pad_char);
@@ -17990,12 +18790,14 @@ function unserialize(data){
     // Creates a PHP value from a stored representation
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_unserialize/
-    // +       version: 809.2122
+    // +       version: 903.421
     // +     original by: Arpad Ray (mailto:arpad@php.net)
     // +     improved by: Pedro Tainha (http://www.pedrotainha.com)
     // +     bugfixed by: dptr1988
     // +      revised by: d3x
     // +     improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %            note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %            note: Aiming for PHP-compatibility, we have to translate objects to arrays 
     // *       example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
@@ -18008,8 +18810,8 @@ function unserialize(data){
         var buf = [];
         var chr = data.slice(offset, offset + 1);
         var i = 2;
-        while(chr != stopchr){
-            if((i+offset) > data.length){
+        while (chr != stopchr) {
+            if ((i+offset) > data.length) {
                 error('Error', 'Invalid');
             }
             buf.push(chr);
@@ -18019,6 +18821,8 @@ function unserialize(data){
         return [buf.length, buf.join('')];
     };
     var read_chrs = function (data, offset, length){
+        var buf;
+        
         buf = [];
         for(var i = 0;i < length;i++){
             var chr = data.slice(offset + (i - 1),offset + i);
@@ -18027,60 +18831,65 @@ function unserialize(data){
         return [buf.length, buf.join('')];
     };
     var _unserialize = function (data, offset){
+        var readdata;
+        var readData;
+        var chrs = 0;
+        var ccount;
+        var stringlength;
+        var keyandchrs;
+        var keys;
+
         if(!offset) offset = 0;
-        var buf = [];
         var dtype = (data.slice(offset, offset + 1)).toLowerCase();
         
         var dataoffset = offset + 2;
         var typeconvert = new Function('x', 'return x');
-        var chrs = 0;
-        var datalength = 0;
         
         switch(dtype){
             case "i":
                 typeconvert = new Function('x', 'return parseInt(x)');
-                var readData = read_until(data, dataoffset, ';');
-                var chrs = readData[0];
-                var readdata = readData[1];
+                readData = read_until(data, dataoffset, ';');
+                chrs = readData[0];
+                readdata = readData[1];
                 dataoffset += chrs + 1;
             break;
             case "b":
                 typeconvert = new Function('x', 'return (parseInt(x) == 1)');
-                var readData = read_until(data, dataoffset, ';');
-                var chrs = readData[0];
-                var readdata = readData[1];
+                readData = read_until(data, dataoffset, ';');
+                chrs = readData[0];
+                readdata = readData[1];
                 dataoffset += chrs + 1;
             break;
             case "d":
                 typeconvert = new Function('x', 'return parseFloat(x)');
-                var readData = read_until(data, dataoffset, ';');
-                var chrs = readData[0];
-                var readdata = readData[1];
+                readData = read_until(data, dataoffset, ';');
+                chrs = readData[0];
+                readdata = readData[1];
                 dataoffset += chrs + 1;
             break;
             case "n":
                 readdata = null;
             break;
             case "s":
-                var ccount = read_until(data, dataoffset, ':');
-                var chrs = ccount[0];
-                var stringlength = ccount[1];
+                ccount = read_until(data, dataoffset, ':');
+                chrs = ccount[0];
+                stringlength = ccount[1];
                 dataoffset += chrs + 2;
                 
-                var readData = read_chrs(data, dataoffset+1, parseInt(stringlength));
-                var chrs = readData[0];
-                var readdata = readData[1];
+                readData = read_chrs(data, dataoffset+1, parseInt(stringlength));
+                chrs = readData[0];
+                readdata = readData[1];
                 dataoffset += chrs + 2;
                 if(chrs != parseInt(stringlength) && chrs != readdata.length){
                     error('SyntaxError', 'String length mismatch');
                 }
             break;
             case "a":
-                var readdata = {};
+                readdata = {};
                 
-                var keyandchrs = read_until(data, dataoffset, ':');
-                var chrs = keyandchrs[0];
-                var keys = keyandchrs[1];
+                keyandchrs = read_until(data, dataoffset, ':');
+                chrs = keyandchrs[0];
+                keys = keyandchrs[1];
                 dataoffset += chrs + 2;
                 
                 for(var i = 0;i < parseInt(keys);i++){
@@ -18181,20 +18990,22 @@ function utf8_decode ( str_data ) {
     // ISO-8859-1
     // 
     // +    discuss at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_utf8_decode/
-    // +       version: 810.621
+    // +       version: 903.421
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // +      input by: Aman Gupta
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Norman "zEh" Fuchs
     // +   bugfixed by: hitwork
     // +   bugfixed by: Onno Marsman
+    // +      input by: Brett Zamir
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: utf8_decode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
-    var tmp_arr = [], i = ac = c1 = c2 = c3 = 0;
-
+    var tmp_arr = [], i = 0, ac = 0, c1 = 0, c2 = 0, c3 = 0;
+    
     str_data += '';
-
+    
     while ( i < str_data.length ) {
         c1 = str_data.charCodeAt(i);
         if (c1 < 128) {
