@@ -26,6 +26,13 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
         // Load actual function source
         $testCode .= "// Main source we want to test".$n;
         $testCode .= "load('".$this->getRealPath()."');".$n;
+        $testCode .= "while(true) {".$n;
+        $testCode .= $t."if (tester_function_exists('".$this->getFunctionName()."')) {".$n;
+        $testCode .= $t.$t."break;".$n;
+        $testCode .= $t."}".$n;
+        $testCode .= $t."print('".$this->getFunctionName()." does not exist yet');".$n;
+        $testCode .= $t."tester_sleep(1);".$n;
+        $testCode .= "}".$n;
         $testCode .= "".$n;
         $testCode .= "window.location = '".$this->PHPJS_Library->getDirRealRoot()."/_tools/tester.htm"."';".$n;
         $testCode .= "window.onload = function(){".$n;

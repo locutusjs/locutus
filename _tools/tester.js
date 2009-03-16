@@ -12,13 +12,17 @@ function tester_comparer(result, should) {
     var _why = function(str) {
         //print('***', str);
     }
+
+    var key = '';
+    var fkey = '';
+    var val;
     
     var useResult = result;
     var useShould = should;
     
     // Determine types
-    resType = _getType(useResult);
-    shdType = _getType(useShould); 
+    var resType = _getType(useResult);
+    var shdType = _getType(useShould);
     
     /*
     // Number vs string comparison bails out too early
@@ -32,8 +36,8 @@ function tester_comparer(result, should) {
     // Iterate & compare arrays 
     if (resType == "array") {
         // Bail out if count doesn't match
-        resCount = tester_count(useResult);
-        shdCount = tester_count(useShould);
+        var resCount = tester_count(useResult);
+        var shdCount = tester_count(useShould);
         if (resCount != shdCount) {
             _why('count doesn\'t match ('+resCount+' vs '+shdCount+')');
             return false;
@@ -99,6 +103,36 @@ function tester_count( mixed_var, mode ) {
     }
 
     return cnt;
+}
+
+function tester_function_exists( function_name ) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Steve Clay
+    // +   improved by: Legaev Andrey
+    // *     example 1: function_exists('isFinite');
+    // *     returns 1: true
+
+
+    if (typeof function_name == 'string'){
+        return (typeof window[function_name] == 'function');
+    } else{
+        return (function_name instanceof Function);
+    }
+}
+
+function tester_sleep(seconds) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Christian Doebler
+    // +   bugfixed by: Brett Zamir
+    // %          note: For study purposes. Current implementation could lock up the user's browser.
+    // %          note: Consider using setTimeout() instead.
+    // *     example 1: sleep(1);
+    // *     returns 1: 0
+
+    var start = new Date().getTime();
+    while (new Date() < start + seconds*1000);
+    return 0;
 }
 
 function tester_trim( str, charlist ) {
