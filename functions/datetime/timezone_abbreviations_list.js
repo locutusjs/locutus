@@ -3,7 +3,7 @@ function timezone_abbreviations_list() {
     // +   original by: Brett Zamir
     // +      input by: ChaosNo1
     // %        note 1: Based on list returned by PHP 5.2.6 (Windows)
-    // *     example 1: timezone_abbreviations_list()
+    // *     example 1: var list = timezone_abbreviations_list()
     // *     example 1: list['acst'][0].timezone_id
     // *     returns 1: 'America/Porto_Acre'
     
