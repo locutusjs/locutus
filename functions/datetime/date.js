@@ -195,7 +195,7 @@ function date ( format, timestamp ) {
                         }
                     }
                 }
-                return ''; // Couldn't find
+                return 'UTC';
             },
             I: function(){
                 var DST = (new Date(jsdate.getFullYear(),6,1,0,0,0));
@@ -221,7 +221,7 @@ function date ( format, timestamp ) {
                     for (abbr in tal) {
                         for (i=0; i < tal[abbr].length; i++) {
                             if (tal[abbr][i].timezone_id === window.php_js.default_timezone) {
-                                return abbr;
+                                return abbr.toUpperCase();
                             }
                         }
                     }
@@ -229,11 +229,11 @@ function date ( format, timestamp ) {
                 for (abbr in tal) {
                     for (i=0; i < tal[abbr].length; i++) {
                         if (tal[abbr][i].offset === -jsdate.getTimezoneOffset()*60) {
-                            return abbr;
+                            return abbr.toUpperCase();
                         }
                     }
                 }
-                return ''; // Couldn't find
+                return 'UTC';
             },
             Z: function(){
                var t = -jsdate.getTimezoneOffset()*60;
