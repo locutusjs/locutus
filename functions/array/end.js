@@ -12,9 +12,8 @@ function end ( arr ) {
     // *     example 2: end(['Kevin', 'van', 'Zonneveld']);
     // *     returns 2: 'Zonneveld'
     
-    if (!window.php_js) window.php_js = {
-        pointers:[]
-    };
+    if (!window.php_js) window.php_js = {};
+    if (!window.php_js.pointers) window.php_js.pointers = [];
     var pointers = window.php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);

@@ -7,9 +7,8 @@ function next (arr) {
     // *     example 1: next(transport);
     // *     returns 1: 'car'
 
-    if (!window.php_js) window.php_js = {
-        pointers:[]
-    };
+    if (!window.php_js) window.php_js = {};
+    if (!window.php_js.pointers) window.php_js.pointers = [];
     var pointers = window.php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);

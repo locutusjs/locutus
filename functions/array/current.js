@@ -6,9 +6,8 @@ function current(arr) {
     // *     example 1: current(transport); 
     // *     returns 1: 'foot'
 
-    if (!window.php_js) window.php_js = {
-        pointers:[]
-    };
+    if (!window.php_js) window.php_js = {};
+    if (!window.php_js.pointers) window.php_js.pointers = [];
     var pointers = window.php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);
