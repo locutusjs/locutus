@@ -27,9 +27,21 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
      * @return boolean
      */
     protected function _flagIsEnabled($flags, $testFor) {
-        return (($flags & $testFor > 0));
+        return ($flags & (int)$testFor)?true:false;
     }
     
+    /**
+     * Public interface to flag enabled
+     *
+     * @param integer $flags
+     * @param integer $testFor
+     * 
+     * @return boolean
+     */
+    public function isFlagEnabled($flags, $testFor) {
+        return $this->_flagIsEnabled($flags, $testFor);
+    }
+
     /**
      * Constructor
      *
