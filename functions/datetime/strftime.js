@@ -4,7 +4,7 @@ function strftime (fmt, timestamp) {
     // + reimplemented by: Brett Zamir
     // -       depends on: setlocale
     // *        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
-    // *        results 1: 'Thursday'
+    // *        returns 1: 'Tuesday'
 
     // BEGIN REDUNDANT
     if (!window.php_js) {
