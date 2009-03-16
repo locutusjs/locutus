@@ -7629,133 +7629,133 @@ function timezone_abbreviations_list() {
         {'dst' : false,
           'offset' : 3600,
           'timezone_id' : null
-        },
+        }
       ],
       'b' :
       [
         {'dst' : false,
           'offset' : 7200,
           'timezone_id' : null
-        },
+        }
       ],
       'c' :
       [
         {'dst' : false,
           'offset' : 10800,
           'timezone_id' : null
-        },
+        }
       ],
       'd' :
       [
         {'dst' : false,
           'offset' : 14400,
           'timezone_id' : null
-        },
+        }
       ],
       'e' :
       [
         {'dst' : false,
           'offset' : 18000,
           'timezone_id' : null
-        },
+        }
       ],
       'f' :
       [
         {'dst' : false,
           'offset' : 21600,
           'timezone_id' : null
-        },
+        }
       ],
       'g' :
       [
         {'dst' : false,
           'offset' : 25200,
           'timezone_id' : null
-        },
+        }
       ],
       'h' :
       [
         {'dst' : false,
           'offset' : 28800,
           'timezone_id' : null
-        },
+        }
       ],
       'i' :
       [
         {'dst' : false,
           'offset' : 32400,
           'timezone_id' : null
-        },
+        }
       ],
       'k' :
       [
         {'dst' : false,
           'offset' : 36000,
           'timezone_id' : null
-        },
+        }
       ],
       'l' :
       [
         {'dst' : false,
           'offset' : 39600,
           'timezone_id' : null
-        },
+        }
       ],
       'm' :
       [
         {'dst' : false,
           'offset' : 43200,
           'timezone_id' : null
-        },
+        }
       ],
       'n' :
       [
         {'dst' : false,
           'offset' : -3600,
           'timezone_id' : null
-        },
+        }
       ],
       'o' :
       [
         {'dst' : false,
           'offset' : -7200,
           'timezone_id' : null
-        },
+        }
       ],
       'p' :
       [
         {'dst' : false,
           'offset' : -10800,
           'timezone_id' : null
-        },
+        }
       ],
       'q' :
       [
         {'dst' : false,
           'offset' : -14400,
           'timezone_id' : null
-        },
+        }
       ],
       'r' :
       [
         {'dst' : false,
           'offset' : -18000,
           'timezone_id' : null
-        },
+        }
       ],
       's' :
       [
         {'dst' : false,
           'offset' : -21600,
           'timezone_id' : null
-        },
+        }
       ],
       't' :
       [
         {'dst' : false,
           'offset' : -25200,
           'timezone_id' : null
-        },
+        }
       ],
       'utc' :
       [
@@ -7769,35 +7769,35 @@ function timezone_abbreviations_list() {
         {'dst' : false,
           'offset' : -28800,
           'timezone_id' : null
-        },
+        }
       ],
       'v' :
       [
         {'dst' : false,
           'offset' : -32400,
           'timezone_id' : null
-        },
+        }
       ],
       'w' :
       [
         {'dst' : false,
           'offset' : -36000,
           'timezone_id' : null
-        },
+        }
       ],
       'x' :
       [
         {'dst' : false,
           'offset' : -39600,
           'timezone_id' : null
-        },
+        }
       ],
       'y' :
       [
         {'dst' : false,
           'offset' : -43200,
           'timezone_id' : null
-        },
+        }
       ],
       'zzz' :
       [
@@ -7815,7 +7815,7 @@ function timezone_abbreviations_list() {
         {'dst' : false,
           'offset' : 0,
           'timezone_id' : null
-        },
+        }
       ]
     };
 
