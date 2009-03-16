@@ -1,9 +1,10 @@
 function define(name, value) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Paulo Ricardo F. Santos
-    // +    revised by: Brett Zamir
-    // *     example 1: define('IMAGINARY_CONSTANT1', 'imaginary_value1');
-    // *     results 1: IMAGINARY_CONSTANT1 == 'imaginary_value1'
+    // +      original by: Paulo Ricardo F. Santos
+    // +       revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
+    // + reimplemented by: Brett Zamir
+    // *        example 1: define('IMAGINARY_CONSTANT1', 'imaginary_value1');
+    // *        results 1: IMAGINARY_CONSTANT1 == 'imaginary_value1'
     
     var define, replace, script;
     var toString = function (name, value) {
@@ -55,6 +56,6 @@ function define(name, value) {
         function (name, value){
             eval(toString(name, value).substring(6));
         };
-    };
+    }
     define(name, value);
 }
