@@ -15,6 +15,7 @@ function var_export(mixed_expression, bool_return) {
     var iret = "";
     var cnt = 0;
     var x = [];
+    var key = '', i = 0;
     
     var __getType = function( inp ) {
         var type = typeof inp, match;

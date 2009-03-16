@@ -1,4 +1,4 @@
-function strncasecmp (str1, str2, len) {
+function strncasecmp (argStr1, argStr2, len) {
     // http://kevin.vanzonneveld.net
     // +   original by: Saulo Vallory
     // +      input by: Nate
@@ -15,9 +15,9 @@ function strncasecmp (str1, str2, len) {
     // *     example 5: strncasecmp('Version 12.15', 'Version 12.9', 20);
     // *     returns 5: -8
 
-    var diff;
-    str1 = (str1+'').toLowerCase().substr(0,len);
-    str2 = (str2+'').toLowerCase().substr(0,len);
+    var diff, i = 0;
+    var str1 = (argStr1+'').toLowerCase().substr(0,len);
+    var str2 = (argStr2+'').toLowerCase().substr(0,len);
 
     if(str1.length !== str2.length) {
         if(str1.length < str2.length) {

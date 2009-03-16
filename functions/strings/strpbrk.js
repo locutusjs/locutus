@@ -11,6 +11,7 @@ function strpbrk( haystack, char_list ) {
     var lon_search = char_list.length;
     var ret = false;
     var stack = '';
+    var i = 0, j = 0;
 
     if (lon >= lon_search) {
         if (lon == lon_search) {
@@ -39,5 +40,6 @@ function strpbrk( haystack, char_list ) {
             }
         }
     }
+    
     return ret;
 }

@@ -3,8 +3,8 @@ function strftime (fmt, timestamp) {
     // +      original by: Blues (http://tech.bluesmoon.info/)
     // + reimplemented by: Brett Zamir
     // -       depends on: setlocale
-    // *         example 1: strftime('%A', 1062462400); // Return value will depend on date and locale
-    // *         results 1: 'Thursday'
+    // *        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
+    // *        results 1: 'Thursday'
 
     // BEGIN REDUNDANT
     if (!window.php_js) {
@@ -14,7 +14,7 @@ function strftime (fmt, timestamp) {
     // END REDUNDANT
 
     // BEGIN STATIC
-    setlocale('LC_ALL', 0); // ensure setup up localization variables takes place
+    setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     var _xPad = function (x, pad, r) {
         if (typeof r === 'undefined') {
             r=10;
@@ -151,7 +151,7 @@ function strftime (fmt, timestamp) {
         F: '%y-%m-%d',
         h: '%b',
         n: '\n',
-        r: '%I:%M:%S %p',
+        r: 'locale',
         R: '%H:%M',
         t: '\t',
         T: '%H:%M:%S',

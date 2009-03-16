@@ -5,6 +5,7 @@ function array_values( input ) {
     // *     returns 1: {0: 'Kevin', 1: 'van Zonneveld'}
 
     var tmp_arr = new Array(), cnt = 0;
+    var key = '';
 
     for ( key in input ){
         tmp_arr[cnt] = input[key];
