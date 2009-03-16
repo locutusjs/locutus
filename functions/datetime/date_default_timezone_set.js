@@ -1,10 +1,12 @@
 function date_default_timezone_set (tz) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
+    // -    depends on: timezone_abbreviations_list
     // *     example 1: date_default_timezone_set('unknown');
     // *     returns 1: 'unknown';
 
     var tal = {}, abbr = '', i = 0;
+
 	if (!window.php_js) {
 		window.php_js={};
 	}

@@ -1,10 +1,11 @@
 function date_default_timezone_get () {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
+    // -    depends on: timezone_abbreviations_list
     // *     example 1: date_default_timezone_get();
     // *     returns 1: 'unknown';
 
-    var tal = {}, abbr = '', i = 0;
+    var tal = {}, abbr = '', i = 0, today = new Date();
 
 	if (window.php_js && window.php_js.default_timezone) {
 		return window.php_js.default_timezone;
