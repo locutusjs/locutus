@@ -11,6 +11,8 @@ function date ( format, timestamp ) {
     // +   improved by: David Randall
     // +      input by: Brett Zamir
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Brett Zamir
+    // -    depends on: timezone_abbreviations_list()
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);
@@ -21,7 +23,7 @@ function date ( format, timestamp ) {
     // *     example 4: (x+'').length == 10
     // *     returns 4: true
 
-    var a, jsdate=(
+    var a, tal=[], jsdate=(
         (typeof(timestamp) == 'undefined') ? new Date() : // Not provided
         (typeof(timestamp) == 'number') ? new Date(timestamp*1000) : // UNIX timestamp
         new Date(timestamp) // Javascript Date()
@@ -178,7 +180,23 @@ function date ( format, timestamp ) {
             },
 
         // Timezone
-            //e not supported yet
+            e: function () {
+                var abbr='', i=0;
+                if (window.php_js && window.php_js.default_timezone) {
+                    return window.php_js.default_timezone;
+                }
+                if (!tal.length) {
+                    tal = timezone_abbreviations_list();
+                }
+                for (abbr in tal) {
+                    for (i=0; i < tal[abbr].length; i++) {
+                        if (tal[abbr][i].offset === -jsdate.getTimezoneOffset()*60) {
+                            return tal[abbr][i].timezone_id;
+                        }
+                    }
+                }
+                return ''; // Couldn't find
+            },
             I: function(){
                 var DST = (new Date(jsdate.getFullYear(),6,1,0,0,0));
                 DST = DST.getHours()-DST.getUTCHours();
@@ -194,7 +212,29 @@ function date ( format, timestamp ) {
                 var O = f.O();
                 return (O.substr(0, 3) + ":" + O.substr(3, 2));
             },
-            //T not supported yet
+            T: function () {
+                var abbr='', i=0;
+                if (!tal.length) {
+                    tal = timezone_abbreviations_list();
+                }
+                if (window.php_js && window.php_js.default_timezone) {
+                    for (abbr in tal) {
+                        for (i=0; i < tal[abbr].length; i++) {
+                            if (tal[abbr][i].timezone_id === window.php_js.default_timezone) {
+                                return abbr;
+                            }
+                        }
+                    }
+                }
+                for (abbr in tal) {
+                    for (i=0; i < tal[abbr].length; i++) {
+                        if (tal[abbr][i].offset === -jsdate.getTimezoneOffset()*60) {
+                            return abbr;
+                        }
+                    }
+                }
+                return ''; // Couldn't find
+            },
             Z: function(){
                var t = -jsdate.getTimezoneOffset()*60;
                return t;

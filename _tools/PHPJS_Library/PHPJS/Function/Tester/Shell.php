@@ -176,7 +176,7 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
         
         $testPath  = $this->getTesterPath();
         $rhinoPath = $this->PHPJS_Library->getFleRealRhino();
-        
+
         if (!file_exists($rhinoPath)) {
             throw new PHPJS_Exception("Rhino not found at: ".$rhinoPath);
             return false;
@@ -190,6 +190,7 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
         $cmd = $rhinoPath." ".$testPath;
         list($success, $output) = $this->_execute($cmd);
         if (!$success) {
+            throw new PHPJS_Exception("Error while executing ".$cmd.": ".print_r($output, true));
             return false;
         } 
         
@@ -207,7 +208,7 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
         mark();
         exec($cmd, $o, $r);
         mark();
-        if ($r) {
+        if ($r !== 0) {
             return array(false, $o);
         }
         return array(true, $o);

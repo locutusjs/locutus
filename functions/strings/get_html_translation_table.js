@@ -5,6 +5,7 @@ function get_html_translation_table(table, quote_style) {
     // +   bugfixed by: noname
     // +   bugfixed by: Alex
     // +   bugfixed by: Marco
+    // +   bugfixed by: madipta
     // %          note: It has been decided that we're not going to add global
     // %          note: dependencies to php.js. Meaning the constants are not
     // %          note: real constants, but strings instead. integers are also supported if someone
@@ -34,23 +35,27 @@ function get_html_translation_table(table, quote_style) {
     if (!isNaN(useQuoteStyle)) {
         useQuoteStyle = constMappingQuoteStyle[useQuoteStyle];
     }
-    
-    if (useQuoteStyle != 'ENT_NOQUOTES') {
-        entities['34'] = '&quot;';
-    }
-
-    if (useQuoteStyle == 'ENT_QUOTES') {
-        entities['39'] = '&#039;';
-    }
 
     if (useTable == 'HTML_SPECIALCHARS') {
         // ascii decimals for better compatibility
         entities['38'] = '&amp;';
+        if (useQuoteStyle != 'ENT_NOQUOTES') {
+            entities['34'] = '&quot;';
+        }
+        if (useQuoteStyle == 'ENT_QUOTES') {
+            entities['39'] = '&#039;';
+        }
         entities['60'] = '&lt;';
         entities['62'] = '&gt;';
     } else if (useTable == 'HTML_ENTITIES') {
         // ascii decimals for better compatibility
 	    entities['38']  = '&amp;';
+        if (useQuoteStyle != 'ENT_NOQUOTES') {
+            entities['34'] = '&quot;';
+        }
+        if (useQuoteStyle == 'ENT_QUOTES') {
+            entities['39'] = '&#039;';
+        }
 	    entities['60']  = '&lt;';
 	    entities['62']  = '&gt;';
 	    entities['160'] = '&nbsp;';

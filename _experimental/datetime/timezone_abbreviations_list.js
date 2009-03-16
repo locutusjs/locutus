@@ -6,10 +6,10 @@ function timezone_abbreviations_list() {
     // %        note 2: We build the timezones as a private static variable (and then return
     // %        note 2: a function which returns this variable) to avoid recreating the object
     // %        note 2: upon each call to this function
-    // *     example 1: list = timezone_abbreviations_list();
-    // *     results 1: list.acst[0].timezone_id == 'America/Porto_Acre'
-    // *     returns 1: true
-
+    // *     example 1: list = timezone_abbreviations_list()
+    // *     example 1: list['acst'][0].timezone_id
+    // *     returns 1: 'America/Porto_Acre'
+    
     var timezone_abbreviations = {
       'acst' :
       [
