@@ -1,6 +1,8 @@
 function connection_aborted() {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
+    // %        note 1: Really should be defined as a closure to avoid re-adding
+    // %        note 1: event listeners (could also remove each time)
     // *     example 1: connection_aborted();
     // *     returns 1: 0
 
@@ -17,4 +19,5 @@ function connection_aborted() {
     }, false);
    
     return retVal;
+    // return function () {return retVal;} 
 }

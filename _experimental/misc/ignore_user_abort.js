@@ -7,6 +7,8 @@ function ignore_user_abort() {
    // %        note 1: clicking "stop" as the page is loading
    // %        note 2: While this code presumably should work, at least in Firefox, it
    // %        note 2: does not (perhaps due to a bug in Firefox)
+   // %        note 3: This function should be defined as a closure, with "();" after the last
+   // %        note 3: brace and defined as var ignore_user_abort = function () { ...
    // *     example 1: ignore_user_abort(true);
    // *     returns 1: 0
 
