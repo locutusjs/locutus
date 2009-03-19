@@ -157,6 +157,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         $str4 .= "}\n";
 
         $str4 .= "\n";
+        $str4 .= "var php_js = {};\n";
         $str4 .= "PHP_JS.prototype = {\n";
         $str4 .= $this->_indentBlock($str1, 4)."\n";
         $str4 .= "}; // End PHP_JS prototype \n";
