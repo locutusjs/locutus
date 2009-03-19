@@ -7,12 +7,17 @@ function levenshtein (a, b){
     // *        example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
     // *        returns 1: 3
     
-    var split=false, min=Math.min, len1=0, len2=0, I=0, i=0, d=[], c='', j=0, J=0;
+    var min=Math.min, len1=0, len2=0, I=0, i=0, d=[], c='', j=0, J=0;
+
+    // BEGIN STATIC
+    var split = false;
     try{
-        ('0')[0];
+        split=!('0')[0];
     } catch(i){
-        split=true;
+        split=true; // Earlier IE may not support access by string index
     }
+    // END STATIC
+    
     if (a == b) {
         return 0;
     }
