@@ -6,15 +6,15 @@ function end ( arr ) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   restored by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Brett Zamir
-    // %        note 1: Uses global: window.php_js to store the array pointer
+    // %        note 1: Uses global: php_js to store the array pointer
     // *     example 1: end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
     // *     returns 1: 'Zonneveld'
     // *     example 2: end(['Kevin', 'van', 'Zonneveld']);
     // *     returns 2: 'Zonneveld'
     
-    if (!window.php_js) window.php_js = {};
-    if (!window.php_js.pointers) window.php_js.pointers = [];
-    var pointers = window.php_js.pointers;
+    if (!php_js) php_js = {};
+    if (!php_js.pointers) php_js.pointers = [];
+    var pointers = php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);
     }

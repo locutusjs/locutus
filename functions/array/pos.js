@@ -1,7 +1,7 @@
 function pos(arr) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
-    // %        note 1: Uses global: window.php_js to store the array pointer
+    // %        note 1: Uses global: php_js to store the array pointer
     // -    depends on: current
     // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
     // *     example 1: pos(transport);

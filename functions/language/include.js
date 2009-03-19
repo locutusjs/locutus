@@ -8,6 +8,7 @@ function include( filename ) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
     // %        note 2: The included file does not come available until a second script block, so typically use this in the header.
+    // %        note 3: Uses global: php_js to keep track of included files
     // *     example 1: include('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: 1
 
@@ -21,13 +22,13 @@ function include( filename ) {
     var cur_file = {};
     cur_file[window.location.href] = 1;
 
-    if (!window.php_js) window.php_js = {};
-    if (!window.php_js.includes) window.php_js.includes = cur_file;
-    if (!window.php_js.includes[filename]) {
-        window.php_js.includes[filename] = 1;
+    if (!php_js) php_js = {};
+    if (!php_js.includes) php_js.includes = cur_file;
+    if (!php_js.includes[filename]) {
+        php_js.includes[filename] = 1;
     } else {
-        window.php_js.includes[filename]++;
+        php_js.includes[filename]++;
     }
 
-    return window.php_js.includes[filename];
+    return php_js.includes[filename];
 }

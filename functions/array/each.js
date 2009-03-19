@@ -2,7 +2,7 @@ function each(arr) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com) 
     // +    revised by: Brett Zamir
-    // %        note 1: Uses global: window.php_js to store the array pointer
+    // %        note 1: Uses global: php_js to store the array pointer
     // *     example 1: each({a: "apple", b: "balloon"});
     // *     returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
 
@@ -13,9 +13,9 @@ function each(arr) {
     //  in that context and JavaScript cannot, we needed something to allow that option)
     //  See https://developer.mozilla.org/en/New_in_JavaScript_1.7#Destructuring_assignment
     
-    if (!window.php_js) window.php_js = {};
-    if (!window.php_js.pointers) window.php_js.pointers = [];
-    var pointers = window.php_js.pointers;
+    if (!php_js) php_js = {};
+    if (!php_js.pointers) php_js.pointers = [];
+    var pointers = php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);
     }

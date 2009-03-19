@@ -13,6 +13,7 @@ function date ( format, timestamp ) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Brett Zamir
     // -    depends on: timezone_abbreviations_list()
+    // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);
@@ -182,8 +183,8 @@ function date ( format, timestamp ) {
         // Timezone
             e: function () {
                 var abbr='', i=0;
-                if (window.php_js && window.php_js.default_timezone) {
-                    return window.php_js.default_timezone;
+                if (php_js && php_js.default_timezone) {
+                    return php_js.default_timezone;
                 }
                 if (!tal.length) {
                     tal = timezone_abbreviations_list();
@@ -217,10 +218,10 @@ function date ( format, timestamp ) {
                 if (!tal.length) {
                     tal = timezone_abbreviations_list();
                 }
-                if (window.php_js && window.php_js.default_timezone) {
+                if (php_js && php_js.default_timezone) {
                     for (abbr in tal) {
                         for (i=0; i < tal[abbr].length; i++) {
-                            if (tal[abbr][i].timezone_id === window.php_js.default_timezone) {
+                            if (tal[abbr][i].timezone_id === php_js.default_timezone) {
                                 return abbr.toUpperCase();
                             }
                         }

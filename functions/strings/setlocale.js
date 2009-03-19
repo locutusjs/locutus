@@ -4,16 +4,17 @@ function setlocale (category, locale) {
 	// +   improved by: Blues at http://hacks.bluesmoon.info/strftime/strftime.js
 	// +   improved by: YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html
 	// -    depends on: getenv
-	// %          note: Is extensible, but currently only implements locales en,
-    // %          note: en-US, en-GB, en-AU, and only for LC_TIME
+	// %          note 1: Is extensible, but currently only implements locales en,
+    // %          note 1: en-US, en-GB, en-AU, fr, and fr-CA and only for LC_TIME
+    // %          note 2: Uses global: php_js to store locale info
 	// *     example 1: setlocale('LC_ALL', 'en-US');
 	// *     returns 1: 'en-US'
 
 	var categ='', cats = [], i=0;
 
 	// BEGIN REDUNDANT
-	if (!window.php_js) {window.php_js = {};}
-	var phpjs = window.php_js;
+	if (!php_js) {php_js = {};}
+	var phpjs = php_js;
 	// END REDUNDANT
 
 	// BEGIN STATIC
@@ -104,7 +105,7 @@ function setlocale (category, locale) {
 		locale = getenv(category) || getenv('LANG');
 	} else if (locale instanceof Array) {
 		for (i=0; i < locale.length; i++) {
-			if (!(locale[i] in window.php_js.locales)) {
+			if (!(locale[i] in php_js.locales)) {
 				if (i === locale.length-1) {
 					return false; // none found
 				}
@@ -118,25 +119,25 @@ function setlocale (category, locale) {
 	// Just get the locale
 	if (locale === '0' || locale === 0) {
 		if (category === 'LC_ALL') {
-			for (categ in window.php_js.localeCategories) {
-				cats.push(categ+'='+window.php_js.localeCategories[categ]);
+			for (categ in php_js.localeCategories) {
+				cats.push(categ+'='+php_js.localeCategories[categ]);
 			}
 			return cats.join(';');
 		}
-		return window.php_js.localeCategories[category];
+		return php_js.localeCategories[category];
 	}
 
-	if (!(locale in window.php_js.locales)) {
+	if (!(locale in php_js.locales)) {
 		return false; // Locale not found
 	}
 
 	// Set and get locale
 	if (category === 'LC_ALL') {
-		for (categ in window.php_js.localeCategories) {
-			window.php_js.localeCategories[categ] = locale;
+		for (categ in php_js.localeCategories) {
+			php_js.localeCategories[categ] = locale;
 		}
 	} else {
-		window.php_js.localeCategories[category] = locale;
+		php_js.localeCategories[category] = locale;
 	}
 	return locale;
 }

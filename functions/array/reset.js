@@ -3,13 +3,13 @@ function reset ( arr ) {
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Legaev Andrey
     // +    revised by: Brett Zamir
-    // %        note 1: Uses global: window.php_js to store the array pointer
+    // %        note 1: Uses global: php_js to store the array pointer
     // *     example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
     // *     returns 1: 'Kevin' 
     
-    if (!window.php_js) window.php_js = {};
-    if (!window.php_js.pointers) window.php_js.pointers = [];
-    var pointers = window.php_js.pointers;
+    if (!php_js) php_js = {};
+    if (!php_js.pointers) php_js.pointers = [];
+    var pointers = php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);
     }

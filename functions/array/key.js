@@ -1,15 +1,15 @@
 function key(arr) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir
-    // %        note 1: Uses global: window.php_js to store the array pointer
+    // %        note 1: Uses global: php_js to store the array pointer
     // *     example 1: array = {fruit1: 'apple', 'fruit2': 'orange'}
     // *     example 1: key(array);
     // *     returns 1: 'fruit1'
 
-    if (!window.php_js) window.php_js = {
+    if (!php_js) php_js = {
         pointers:[]
     };
-    var pointers = window.php_js.pointers;
+    var pointers = php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);
     }

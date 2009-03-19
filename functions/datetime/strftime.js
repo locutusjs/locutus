@@ -3,14 +3,15 @@ function strftime (fmt, timestamp) {
     // +      original by: Blues (http://tech.bluesmoon.info/)
     // + reimplemented by: Brett Zamir
     // -       depends on: setlocale
+    // %        note 1: Uses global: php_js to store locale info
     // *        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
     // *        returns 1: 'Tuesday'
 
     // BEGIN REDUNDANT
-    if (!window.php_js) {
-        window.php_js = {};
+    if (!php_js) {
+        php_js = {};
     }
-    var phpjs = window.php_js;
+    var phpjs = php_js;
     // END REDUNDANT
 
     // BEGIN STATIC
