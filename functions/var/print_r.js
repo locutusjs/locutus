@@ -3,7 +3,9 @@ function print_r( array, return_val ) {
     // +   original by: Michael White (http://getsprink.com)
     // +   improved by: Ben Bryan
     // +      input by: Brett Zamir
+    // +      improved by: Brett Zamir
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // -    depends on: echo
     // *     example 1: print_r(1, true);
     // *     returns 1: 1
     
@@ -47,7 +49,18 @@ function print_r( array, return_val ) {
     output = formatArray(array, 0, pad_val, pad_char);
 
     if (return_val !== true) {
-        document.write("<pre>" + output + "</pre>");
+        if (document.body) {
+            echo(output);
+        }
+        else {
+            try {
+                XULDocument; // We're in XUL, so appending as plain text won't work
+                echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">'+output+'</pre>');
+            }
+            catch(e) {
+                echo(output); // Outputting as plain text may work in some plain XML
+            }
+        }
         return true;
     } else {
         return output;
