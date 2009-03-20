@@ -134,7 +134,7 @@ function echo ( ) {
             if (document.body) {
                 document.body.appendChild(stringToDOM(arg));
             } else {
-                document.documentElement.appendChild(stringToDOM(arg)); // Some environments might just need plain text
+                document.documentElement.appendChild(stringToDOM(arg));
             }
         } else if (document.write) {
             document.write(arg);
