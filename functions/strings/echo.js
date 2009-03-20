@@ -136,7 +136,6 @@ function echo ( ) {
             } else {
                 document.documentElement.appendChild(stringToDOM(arg));
             }
-            document.body.appendChild(stringToDOM(arg));
         } else if (document.write) {
             document.write(arg);
         } else {
