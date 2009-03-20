@@ -134,7 +134,13 @@ function echo ( ) {
             if (document.body) {
                 document.body.appendChild(stringToDOM(arg));
             } else {
-                document.documentElement.appendChild(stringToDOM(arg));
+                try {
+                    XULDocument; // Using XUL
+                    document.documentElement.appendChild(stringToDOM('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">'+arg+'</pre>'));
+                }
+                catch (e) {
+                    document.documentElement.appendChild(stringToDOM(arg)); // Some environments might just need plain text
+                }
             }
         } else if (document.write) {
             document.write(arg);
