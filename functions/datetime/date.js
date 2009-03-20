@@ -12,7 +12,7 @@ function date ( format, timestamp ) {
     // +      input by: Brett Zamir
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Brett Zamir
-    // -    depends on: timezone_abbreviations_list()
+    // -    depends on: timezone_abbreviations_list
     // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
