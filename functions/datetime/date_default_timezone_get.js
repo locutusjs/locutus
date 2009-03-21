@@ -4,7 +4,7 @@ function date_default_timezone_get () {
     // -    depends on: timezone_abbreviations_list
     // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date_default_timezone_get();
-    // *     returns 1: 'unknown';
+    // *     returns 1: 'unknown'
 
     var tal = {}, abbr = '', i = 0, today = new Date();
 
