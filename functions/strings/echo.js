@@ -15,7 +15,7 @@ function echo ( ) {
     // %        note 2: but using innerHTML on the BODY is very dangerous because
     // %        note 2: you will break all references to HTMLElements that were done before
     // *     example 1: echo('Hello', 'World');
-    // *     returns 1: null
+    // *     returns 1: undefined
     
     var arg = '', argc = arguments.length, argv = arguments, i = 0;
 
