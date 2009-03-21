@@ -8,9 +8,18 @@ function date_default_timezone_get () {
 
     var tal = {}, abbr = '', i = 0, today = new Date();
 
-	if (this.php_js && this.php_js.default_timezone) {
-		return this.php_js.default_timezone;
-	}
+	if (this.php_js) {
+        if (this.php_js.default_timezone) { // set by date_default_timezone_set
+            return this.php_js.default_timezone;
+        }
+        if (this.php_js.ENV && this.php_js.ENV['TZ']) { // getenv
+            return this.php_js.ENV['TZ'];
+        }
+        if (this.php_js.ini && this.php_js.ini['date.timezone']) { // e.g., if set by init_set()
+            return this.php_js.ini['date.timezone'];
+        }
+    }
+    // Get from system
 	tal = timezone_abbreviations_list();
 	for (abbr in tal) {
 		for (i=0; i < tal[abbr].length; i++) {
