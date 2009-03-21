@@ -53,7 +53,7 @@ function sha1 ( str ) {
     str = utf8_encode(str);
     var str_len = str.length;
 
-    var word_array = new Array();
+    var word_array = [];
     for( i=0; i<str_len-3; i+=4 ) {
         j = str.charCodeAt(i)<<24 | str.charCodeAt(i+1)<<16 |
         str.charCodeAt(i+2)<<8 | str.charCodeAt(i+3);

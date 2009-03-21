@@ -22,7 +22,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
     }
 
     var __strnatcmp_split = function( f_string ) {
-        var result = new Array();
+        var result = [];
         var buffer = '';
         var chr = '';
         var i = 0, f_stringl = 0;

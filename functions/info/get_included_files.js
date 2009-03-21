@@ -6,12 +6,12 @@ function get_included_files() {
 
     var cur_file = {};
     cur_file[window.location.href] = 1;
-    if(!this.__php_js) this.__php_js = {};
-    if(!this.__php_js.includes) this.__php_js.includes = cur_file;
+    if(!php_js) php_js = {};
+    if(!php_js.includes) php_js.includes = cur_file;
 
-    var includes = new Array();
+    var includes = [];
     var i = 0;
-    for(var key in this.__php_js.includes){
+    for(var key in php_js.includes){
         includes[i] = key;
         i++;
     }

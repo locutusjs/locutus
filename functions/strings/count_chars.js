@@ -8,7 +8,7 @@ function count_chars( str, mode ) {
     // *     example 1: count_chars("Hello World!", 1);
     // *     returns 1: "Hd e!lWor"
 
-    var histogram = new Object(), tmp_arr = new Array();
+    var histogram = {}, tmp_arr = [];
     var key, i, code, strl = 0;
     var argc = arguments.length;
     var mode_even = 0;
