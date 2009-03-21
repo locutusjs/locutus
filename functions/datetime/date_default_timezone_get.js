@@ -15,8 +15,8 @@ function date_default_timezone_get () {
         if (this.php_js.ENV && this.php_js.ENV['TZ']) { // getenv
             return this.php_js.ENV['TZ'];
         }
-        if (this.php_js.ini && this.php_js.ini['date.timezone']) { // e.g., if set by init_set()
-            return this.php_js.ini['date.timezone'];
+        if (this.php_js.ini && this.php_js.ini['date.timezone']) { // e.g., if set by ini_set()
+            return this.php_js.ini['date.timezone']['local_value'] ? this.php_js.ini['date.timezone']['local_value'] : this.php_js.ini['date.timezone']['global_value'];
         }
     }
     // Get from system
