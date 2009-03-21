@@ -22,13 +22,13 @@ function include( filename ) {
     var cur_file = {};
     cur_file[window.location.href] = 1;
 
-    if (!php_js) php_js = {};
-    if (!php_js.includes) php_js.includes = cur_file;
-    if (!php_js.includes[filename]) {
-        php_js.includes[filename] = 1;
+    if (!this.php_js) this.php_js = {};
+    if (!this.php_js.includes) this.php_js.includes = cur_file;
+    if (!this.php_js.includes[filename]) {
+        this.php_js.includes[filename] = 1;
     } else {
-        php_js.includes[filename]++;
+        this.php_js.includes[filename]++;
     }
 
-    return php_js.includes[filename];
+    return this.php_js.includes[filename];
 }

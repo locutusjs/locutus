@@ -183,8 +183,8 @@ function date ( format, timestamp ) {
         // Timezone
             e: function () {
                 var abbr='', i=0;
-                if (php_js && php_js.default_timezone) {
-                    return php_js.default_timezone;
+                if (this.php_js && this.php_js.default_timezone) {
+                    return this.php_js.default_timezone;
                 }
                 if (!tal.length) {
                     tal = timezone_abbreviations_list();
@@ -218,10 +218,10 @@ function date ( format, timestamp ) {
                 if (!tal.length) {
                     tal = timezone_abbreviations_list();
                 }
-                if (php_js && php_js.default_timezone) {
+                if (this.php_js && this.php_js.default_timezone) {
                     for (abbr in tal) {
                         for (i=0; i < tal[abbr].length; i++) {
-                            if (tal[abbr][i].timezone_id === php_js.default_timezone) {
+                            if (tal[abbr][i].timezone_id === this.php_js.default_timezone) {
                                 return abbr.toUpperCase();
                             }
                         }

@@ -8,10 +8,10 @@ function strftime (fmt, timestamp) {
     // *        returns 1: 'Tuesday'
 
     // BEGIN REDUNDANT
-    if (!php_js) {
-        php_js = {};
+    if (!this.php_js) {
+        this.php_js = {};
     }
-    var phpjs = php_js;
+    var phpjs = this.php_js;
     // END REDUNDANT
 
     // BEGIN STATIC

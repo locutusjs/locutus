@@ -27,15 +27,15 @@ function require( filename ) {
         var cur_file = {};
         cur_file[window.location.href] = 1;
 
-        if (!php_js) php_js = {};
-        if (!php_js.includes) php_js.includes = cur_file;
+        if (!this.php_js) this.php_js = {};
+        if (!this.php_js.includes) this.php_js.includes = cur_file;
 
-        if (!php_js.includes[filename]) {
-            php_js.includes[filename] = 1;
+        if (!this.php_js.includes[filename]) {
+            this.php_js.includes[filename] = 1;
             return 1;
         } else {
             // Use += 1 because ++ waits until AFTER the original value is returned to increment the value.
-            return php_js.includes[filename] += 1;
+            return this.php_js.includes[filename] += 1;
         }
     }
     return 0;

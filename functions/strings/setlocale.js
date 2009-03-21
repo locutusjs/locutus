@@ -13,8 +13,8 @@ function setlocale (category, locale) {
 	var categ='', cats = [], i=0;
 
 	// BEGIN REDUNDANT
-	if (!php_js) {php_js = {};}
-	var phpjs = php_js;
+	if (!this.php_js) {this.php_js = {};}
+	var phpjs = this.php_js;
 	// END REDUNDANT
 
 	// BEGIN STATIC
@@ -105,7 +105,7 @@ function setlocale (category, locale) {
 		locale = getenv(category) || getenv('LANG');
 	} else if (locale instanceof Array) {
 		for (i=0; i < locale.length; i++) {
-			if (!(locale[i] in php_js.locales)) {
+			if (!(locale[i] in this.php_js.locales)) {
 				if (i === locale.length-1) {
 					return false; // none found
 				}
@@ -119,25 +119,25 @@ function setlocale (category, locale) {
 	// Just get the locale
 	if (locale === '0' || locale === 0) {
 		if (category === 'LC_ALL') {
-			for (categ in php_js.localeCategories) {
-				cats.push(categ+'='+php_js.localeCategories[categ]);
+			for (categ in this.php_js.localeCategories) {
+				cats.push(categ+'='+this.php_js.localeCategories[categ]);
 			}
 			return cats.join(';');
 		}
-		return php_js.localeCategories[category];
+		return this.php_js.localeCategories[category];
 	}
 
-	if (!(locale in php_js.locales)) {
+	if (!(locale in this.php_js.locales)) {
 		return false; // Locale not found
 	}
 
 	// Set and get locale
 	if (category === 'LC_ALL') {
-		for (categ in php_js.localeCategories) {
-			php_js.localeCategories[categ] = locale;
+		for (categ in this.php_js.localeCategories) {
+			this.php_js.localeCategories[categ] = locale;
 		}
 	} else {
-		php_js.localeCategories[category] = locale;
+		this.php_js.localeCategories[category] = locale;
 	}
 	return locale;
 }

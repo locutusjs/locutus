@@ -8,15 +8,15 @@ function date_default_timezone_set (tz) {
 
     var tal = {}, abbr = '', i = 0;
 
-	if (!php_js) {
-		php_js={};
+	if (!this.php_js) {
+		this.php_js={};
 	}
 	// PHP verifies that the timezone is valid
 	tal = timezone_abbreviations_list();
 	for (abbr in tal) {
 		for (i=0; i < tal[abbr].length; i++) {
 			if (tal[abbr][i].timezone_id === tz) {
-				php_js.default_timezone = tz;
+				this.php_js.default_timezone = tz;
 				return true;
 			}
 		}

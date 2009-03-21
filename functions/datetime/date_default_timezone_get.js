@@ -8,8 +8,8 @@ function date_default_timezone_get () {
 
     var tal = {}, abbr = '', i = 0, today = new Date();
 
-	if (php_js && php_js.default_timezone) {
-		return php_js.default_timezone;
+	if (this.php_js && this.php_js.default_timezone) {
+		return this.php_js.default_timezone;
 	}
 	tal = timezone_abbreviations_list();
 	for (abbr in tal) {
