@@ -1,6 +1,9 @@
 #!/usr/bin/php -q
 <?php
 
+echo hexdec('9c4cb8');
+die();
+
 //echo mktime(0, 0, 0, 12, 32, 1997)."\n";
 //echo mktime(0, 0, 0, 13, 1, 1997)."\n";
 //echo mktime(0, 0, 0, 1, 1, 1998)."\n";
