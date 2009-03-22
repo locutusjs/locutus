@@ -1,4 +1,5 @@
 function pathinfo (path, options) {
+    // http://kevin.vanzonneveld.net
     // +   original by: Nate
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %        note 1: Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559
