@@ -12,12 +12,16 @@ function strip_tags(str, allowed_tags) {
     // +      input by: Brett Zamir
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Eric Nagel
+    // +      input by: Bobby Drake
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
     // *     example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>');
     // *     returns 2: '<p>Kevin van Zonneveld</p>'
     // *     example 3: strip_tags("<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>", "<a>");
     // *     returns 3: '<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>'
+    // *     example 4: strip_tags('1 < 5 5 > 1');
+    // *     returns 4: '1 < 5 5 > 1'
 
     var key = '', allowed = false;
     var matches = [];
@@ -39,7 +43,7 @@ function strip_tags(str, allowed_tags) {
     str += '';
 
     // Match tags
-    matches = str.match(/(<\/?[^>]+>)/gi);
+    matches = str.match(/(<\/?[\S][^>]*>)/gi);
 
     // Go through all HTML tags
     for (key in matches) {
