@@ -40,7 +40,7 @@ function bcmod(left_operand, modulus) {
         return CompoundString;
     }
     var bc_is_equal = function(op1, op2) {
-        var r = false;
+        var c=0, r = false;
         if (op1.length == op2.length) {
             r = true;
             for (c = 0; c < op1.length; c++) {
@@ -194,6 +194,7 @@ function bcmod(left_operand, modulus) {
         return Result;
     }
     var bc_divide_operation = function(right_operand, left_operand) {
+        var TempMultiplier = "";
         // Declare variables
         var Quotient = '';
         var Remainder = '';
@@ -247,11 +248,11 @@ function bcmod(left_operand, modulus) {
                 var right_operandMultiplier = '';
                 if (left_operand.search(/\./) == (-1)) left_operandMultiplier = ''; else {
                     left_operandMultiplier = RegExp.rightContext
-                    };
+                    }
                 if (right_operand.search(/\./) == (-1)) right_operandMultiplier = ''; else {
                     right_operandMultiplier = RegExp.rightContext
-                    };
-                var TempMultiplier = Math.max(left_operandMultiplier.length,right_operandMultiplier.length)+'';
+                    }
+                TempMultiplier = Math.max(left_operandMultiplier.length,right_operandMultiplier.length)+'';
                 TempMultiplier = '1' + bc_makestr('0',TempMultiplier+''); // Build the Multiplier
                 left_operand=bcmul(left_operand,TempMultiplier,10); // Perform the Big Multiplication
                 right_operand=bcmul(right_operand,TempMultiplier,10); // Perform the Big Multiplication
@@ -263,7 +264,7 @@ function bcmod(left_operand, modulus) {
             var Newright_operand = right_operand;
             var Pointer = '';
             var right_operandMultiplierSubstring = '';
-            var TempMultiplier = '';
+            TempMultiplier = '';
             var HashCounter;
             while ((bc_is_greater_than(Newright_operand,left_operand) == true) || (bc_is_equal(Newright_operand,left_operand) == true)) {
                 Pointer = 1;

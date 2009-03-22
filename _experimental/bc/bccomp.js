@@ -35,7 +35,7 @@ function bccomp(left_operand, right_operand, scale) {
         return CompoundString;
     }
     var bc_is_equal = function(op1, op2) {
-        var r = "FALSE";
+        var c=0, r = "FALSE";
         if (op1.length == op2.length) {
             r = "TRUE";
             for (c = 0; c < op1.length; c++) {
@@ -58,7 +58,7 @@ function bccomp(left_operand, right_operand, scale) {
         var sp = "";
         var tp = "0";
         for (var c = Multiplicand.length-1; c > (-1); c--) {
-            var tp = (Multiplicand.charAt(c) * SingleDigitMultiplier) + parseInt(car);
+            tp = (Multiplicand.charAt(c) * SingleDigitMultiplier) + parseInt(car);
             if (tp < 10) {
                 tp = "0" + tp
             }
@@ -189,6 +189,7 @@ function bccomp(left_operand, right_operand, scale) {
         return Result;
     }
     var bc_divide_operation = function(right_operand, left_operand) {
+        var TempMultiplier = "";
         // Declare variables
         var Quotient = "";
         var Remainder = "";
@@ -242,11 +243,11 @@ function bccomp(left_operand, right_operand, scale) {
                 var right_operandMultiplier = "";
                 if (left_operand.search(/\./) == (-1)) left_operandMultiplier = ""; else {
                     left_operandMultiplier = RegExp.rightContext
-                    };
+                    }
                 if (right_operand.search(/\./) == (-1)) right_operandMultiplier = ""; else {
                     right_operandMultiplier = RegExp.rightContext
-                    };
-                var TempMultiplier = Math.max(left_operandMultiplier.length,right_operandMultiplier.length)+"";
+                    }
+                TempMultiplier = Math.max(left_operandMultiplier.length,right_operandMultiplier.length)+"";
                 TempMultiplier = "1" + bc_makestr("0",TempMultiplier+""); // Build the Multiplier
                 left_operand=bcmul(left_operand,TempMultiplier,10); // Perform the Big Multiplication
                 right_operand=bcmul(right_operand,TempMultiplier,10); // Perform the Big Multiplication
@@ -258,7 +259,7 @@ function bccomp(left_operand, right_operand, scale) {
             var Newright_operand = right_operand;
             var Pointer = "";
             var right_operandMultiplierSubstring = "";
-            var TempMultiplier = "";
+            TempMultiplier = "";
             var HashCounter;
             while ((bc_is_greater_than(Newright_operand,left_operand) == "TRUE") || (bc_is_equal(Newright_operand,left_operand) == "TRUE")) {
                 Pointer = 1;
