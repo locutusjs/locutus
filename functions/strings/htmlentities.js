@@ -9,6 +9,8 @@ function htmlentities (string, quote_style) {
     // -    depends on: get_html_translation_table
     // *     example 1: htmlentities('Kevin & van Zonneveld');
     // *     returns 1: 'Kevin &amp; van Zonneveld'
+    // *     example 2: htmlentities("foo'bar","ENT_QUOTES");
+    // *     returns 2: 'foo&#039;bar'
 
     var histogram = {}, symbol = '', tmp_str = '', entity = '';
     tmp_str = string.toString();
