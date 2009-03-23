@@ -29,25 +29,30 @@ function setlocale (category, locale) {
 	if (!phpjs.locales) {
 		// Can add to the locales
 		phpjs.locales = {};
-		phpjs.locales.en = {};
-		phpjs.locales.en['LC_TIME'] = {
-			a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-			A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-			b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-			B: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-			c: '%a %d %b %Y %T %Z',
-			p: ['AM', 'PM'],
-			P: ['am', 'pm'],
-			r: '%I:%M:%S %p',
-			x: '%d/%m/%y',
-			X: '%T'
-		};
+		phpjs.locales.en = {
+            'LC_TIME' : {
+                a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                B: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                c: '%a %d %b %Y %T %Z',
+                p: ['AM', 'PM'],
+                P: ['am', 'pm'],
+                r: '%I:%M:%S %p',
+                x: '%d/%m/%y',
+                X: '%T'
+            }
+        };
 		phpjs.locales['en-US'] = _copy(phpjs.locales.en);
-		phpjs.locales['en-US']['LC_TIME'].c = '%a %d %b %Y %r %Z';
-		phpjs.locales['en-US']['LC_TIME'].x = '%D';
-		phpjs.locales['en-US']['LC_TIME'].X = '%r';
+		phpjs.locales['en-US']['LC_TIME'] = {
+            c : '%a %d %b %Y %r %Z',
+            x : '%D',
+            X : '%r'
+        };
 		phpjs.locales['en-GB'] = _copy(phpjs.locales.en);
-		phpjs.locales['en-GB']['LC_TIME'].r = '%l:%M:%S %P %Z';
+		phpjs.locales['en-GB']['LC_TIME'] = {
+            r : '%l:%M:%S %P %Z'
+        };
 		phpjs.locales['en-AU'] = _copy(phpjs.locales['en-GB']);
 		phpjs.locales['fr'] ={};
 		phpjs.locales['fr']['LC_TIME'] = {
@@ -61,9 +66,10 @@ function setlocale (category, locale) {
 			x: '%d.%m.%Y',
 			X: '%T'
 		};
-		phpjs.locales['fr']['LC_TIME'].x = phpjs.locales['en']['LC_TIME'].x; // Only need one here
 		phpjs.locales['fr-CA'] = _copy(phpjs.locales['fr']);
-		phpjs.locales['fr-CA']['LC_TIME'].x = '%Y-%m-%d';
+		phpjs.locales['fr-CA']['LC_TIME'] = {
+            x : '%Y-%m-%d'
+        };
 	}
 	if (!phpjs.locale) {
 		phpjs.locale = 'en-US';
