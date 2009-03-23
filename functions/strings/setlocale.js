@@ -5,7 +5,7 @@ function setlocale (category, locale) {
 	// +   improved by: YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html
 	// -    depends on: getenv
 	// %          note 1: Is extensible, but currently only implements locales en,
-    // %          note 1: en-US, en-GB, en-AU, fr, and fr-CA and only for LC_TIME
+    // %          note 1: en-US, en-GB, en-AU, fr, and fr-CA for LC_TIME only, and C for LC_CTYPE
     // %          note 2: Uses global: php_js to store locale info
 	// *     example 1: setlocale('LC_ALL', 'en-US');
 	// *     returns 1: 'en-US'
@@ -29,7 +29,21 @@ function setlocale (category, locale) {
 	if (!phpjs.locales) {
 		// Can add to the locales
 		phpjs.locales = {};
+        
 		phpjs.locales.en = {
+            'LC_CTYPE' : {
+                an: /^[A-Za-z\d]+$/g,
+                al: /^[A-Za-z]+$/g,
+                ct: /^[\u0000-\u001F\u007F]+$/g,
+                dg: /^[\d]+$/g,
+                gr: /^[\u0021-\u007E]+$/g,
+                lw: /^[a-z]+$/g,
+                pr: /^[\u0020-\u007E]+$/g,
+                pu: /^[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+$/g,
+                sp: /^[\f\n\r\t\v ]+$/g,
+                up: /^[A-Z]+$/g,
+                xd: /^[A-Fa-f\d]+$/g
+            },
             'LC_TIME' : {
                 a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                 A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -54,6 +68,8 @@ function setlocale (category, locale) {
             r : '%l:%M:%S %P %Z'
         };
 		phpjs.locales['en-AU'] = _copy(phpjs.locales['en-GB']);
+        phpjs.locales.C = _copy(phpjs.locales.en); // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
+
 		phpjs.locales['fr'] ={};
 		phpjs.locales['fr']['LC_TIME'] = {
 			a: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
