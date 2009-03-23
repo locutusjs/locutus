@@ -1,0 +1,4 @@
+
+function ob_clean () {
+	
+}
