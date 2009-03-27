@@ -6,7 +6,7 @@ function timezone_abbreviations_list() {
     // *     example 1: var list = timezone_abbreviations_list()
     // *     example 1: list['acst'][0].timezone_id
     // *     returns 1: 'America/Porto_Acre'
-    
+     
     var timezone_abbreviations = {
       'acst' :
       [
