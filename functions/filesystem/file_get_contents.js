@@ -9,6 +9,8 @@ function file_get_contents( url ) {
     // *     example 1: file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '123'
 
+    // Note: could also be made to optionally add to global $http_response_header as per http://cn2.php.net/manual/en/reserved.variables.httpresponseheader.php
+
     var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
     if (!req) throw new Error('XMLHttpRequest not supported');
     
