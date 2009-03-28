@@ -1,5 +1,10 @@
 function ob_get_status (full_status) {
-    var i=0, retObj = {}, obs={}, retArr=[];
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir
+    // *     example 1: ob_get_status(true);
+    // *     returns 1: [{chunk_size:4096, name:myCallback, del:true, type:1,status:0}]
+
+    var i=0, retObj = {}, obs={}, retArr=[], name = '';
     if (!this.php_js || !this.php_js.obs || !this.php_js.obs.length) {
         if (this.php_js.ini && this.php_js.ini['output_buffering'] &&
                 (typeof this.php_js.ini['output_buffering'].local_value !== 'string' ||
@@ -20,10 +25,8 @@ function ob_get_status (full_status) {
 	if (full_status) {
         for (i=0; i < this.php_js.obs.length; i++) {
             obs = this.php_js.obs[i];
-            // Fix: When exactly do type and status vary (see also below for non-full-status) and how to set size/block_size?
-            // type: PHP_OUTPUT_HANDLER_INTERNAL (0) or PHP_OUTPUT_HANDLER_USER (1)
-            // status: PHP_OUTPUT_HANDLER_START (0), PHP_OUTPUT_HANDLER_CONT (1) or PHP_OUTPUT_HANDLER_END (2)
-            retObj = {chunk_size:obs.chunk_size, name:obs.callback, del:obs.erase, type:1,status:0};
+            name = obs.callback && obs.callback.name ? (obs.callback.name === 'URLRewriter' ? 'URL-Rewriter' : obs.callback.name) : undefined;
+            retObj = {chunk_size:obs.chunk_size, name:name, del:obs.erase, type:obs.type,status:obs.status};
             if (obs.size) {
                 retObj.size = obs.size;
             }
@@ -35,6 +38,7 @@ function ob_get_status (full_status) {
 		return retArr;
 	}
     obs = this.php_js.obs[this.php_js.obs.length-1];
-    retObj = {level:this.php_js.obs.length, name:obs.callback, del:obs.erase, type:1,status:0};
+    name = obs.callback.name;
+    retObj = {level:this.php_js.obs.length, name:name, del:obs.erase, type:obs.type,status:obs.status};
     return retObj;
 }
