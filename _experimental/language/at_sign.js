@@ -7,5 +7,6 @@ function at_sign(cb) {  // Could also name as "at", "error_suppressor", etc.
         return cb.apply(null, Array.prototype.slice.call(arguments, 1));
     }
     catch(e){
+        $php_errormsg = e.message || e; // Can assign to this global, as in PHP
     }
  }
