@@ -15,6 +15,8 @@ function ob_start (output_callback, chunk_size, erase) {
 			return false;
 		}
 	}
+    // Fix: Need to add the following (for ob_get_status)?:   size: 40960, block_size:10240
 	this.php_js.obs.push({erase:erase, chunk_size:chunk_size, callback:output_callback, buffer:''});
+
 	return true;
 }
