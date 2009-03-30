@@ -12,7 +12,6 @@ function date ( format, timestamp ) {
     // +      input by: Brett Zamir
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Brett Zamir
-    // -    depends on: timezone_abbreviations_list
     // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
@@ -182,20 +181,20 @@ function date ( format, timestamp ) {
 
         // Timezone
             e: function () {
-                var abbr='', i=0;
-                if (this.php_js && this.php_js.default_timezone) {
-                    return this.php_js.default_timezone;
-                }
-                if (!tal.length) {
-                    tal = timezone_abbreviations_list();
-                }
-                for (abbr in tal) {
-                    for (i=0; i < tal[abbr].length; i++) {
-                        if (tal[abbr][i].offset === -jsdate.getTimezoneOffset()*60) {
-                            return tal[abbr][i].timezone_id;
-                        }
-                    }
-                }
+//                var abbr='', i=0;
+//                if (this.php_js && this.php_js.default_timezone) {
+//                    return this.php_js.default_timezone;
+//                }
+//                if (!tal.length) {
+//                    tal = timezone_abbreviations_list();
+//                }
+//                for (abbr in tal) {
+//                    for (i=0; i < tal[abbr].length; i++) {
+//                        if (tal[abbr][i].offset === -jsdate.getTimezoneOffset()*60) {
+//                            return tal[abbr][i].timezone_id;
+//                        }
+//                    }
+//                }
                 return 'UTC';
             },
             I: function(){
@@ -214,26 +213,26 @@ function date ( format, timestamp ) {
                 return (O.substr(0, 3) + ":" + O.substr(3, 2));
             },
             T: function () {
-                var abbr='', i=0;
-                if (!tal.length) {
-                    tal = timezone_abbreviations_list();
-                }
-                if (this.php_js && this.php_js.default_timezone) {
-                    for (abbr in tal) {
-                        for (i=0; i < tal[abbr].length; i++) {
-                            if (tal[abbr][i].timezone_id === this.php_js.default_timezone) {
-                                return abbr.toUpperCase();
-                            }
-                        }
-                    }
-                }
-                for (abbr in tal) {
-                    for (i=0; i < tal[abbr].length; i++) {
-                        if (tal[abbr][i].offset === -jsdate.getTimezoneOffset()*60) {
-                            return abbr.toUpperCase();
-                        }
-                    }
-                }
+//                var abbr='', i=0;
+//                if (!tal.length) {
+//                    tal = timezone_abbreviations_list();
+//                }
+//                if (this.php_js && this.php_js.default_timezone) {
+//                    for (abbr in tal) {
+//                        for (i=0; i < tal[abbr].length; i++) {
+//                            if (tal[abbr][i].timezone_id === this.php_js.default_timezone) {
+//                                return abbr.toUpperCase();
+//                            }
+//                        }
+//                    }
+//                }
+//                for (abbr in tal) {
+//                    for (i=0; i < tal[abbr].length; i++) {
+//                        if (tal[abbr][i].offset === -jsdate.getTimezoneOffset()*60) {
+//                            return abbr.toUpperCase();
+//                        }
+//                    }
+//                }
                 return 'UTC';
             },
             Z: function(){
