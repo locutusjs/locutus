@@ -324,7 +324,7 @@ Class PHPJS_Library {
             $found    = false;
             for ($i = 0; $i < 6; $i++) {
                 $testPath = realpath($testPath."/..");
-                if (file_exists($testPath."/php.js")) {
+                if (file_exists($testPath."/functions")) {
                     // Found
                     $found = true;
                     break;
