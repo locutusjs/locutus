@@ -346,7 +346,7 @@ Class PHPJS_Library {
             $this->_dirRealTemp = $this->_dirRealTool."/_temp";
         }
         
-        ini_set('memory_limit','128M');  
+        ini_set('memory_limit','256M');
         set_time_limit(0);
         
         foreach (array($this->_dirRealFunc, $this->_dirRealRoot, $this->_dirRealTemp, $this->_dirRealTool) as $dir) {
