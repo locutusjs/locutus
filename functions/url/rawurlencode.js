@@ -1,6 +1,6 @@
 function rawurlencode( str ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: rawurlencode('Kevin van Zonneveld!');
     // *     returns 1: 'Kevin van Zonneveld%21'
     // *     example 2: rawurlencode('http://kevin.vanzonneveld.net/');

@@ -1,7 +1,7 @@
 function parse_url (str, component) {
     // http://kevin.vanzonneveld.net
     // +      original by: Steven Levithan (http://blog.stevenlevithan.com)
-    // + reimplemented by: Brett Zamir
+    // + reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
     // %          note: Based on http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
     // %          note: blog post at http://blog.stevenlevithan.com/archives/parseuri
     // %          note: demo at http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js

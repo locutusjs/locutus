@@ -1,6 +1,6 @@
 function array_merge() {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Nate
     // -    depends on: is_int
     // %          note: Relies on is_int because !isNaN accepts floats     

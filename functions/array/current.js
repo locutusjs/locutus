@@ -1,6 +1,6 @@
 function current(arr) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: Uses global: php_js to store the array pointer
     // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
     // *     example 1: current(transport); 

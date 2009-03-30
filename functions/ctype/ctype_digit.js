@@ -1,6 +1,6 @@
 function ctype_digit (text) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // -    depends on: setlocale
     // *     example 1: ctype_digit('150');
     // *     returns 1: true

@@ -1,6 +1,6 @@
 function ini_get_all(extension, details) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: The ini values must be set by ini_set or manually within an ini file
     // %        note 1: Store each ini with PHP name and with the values global_value, local_value, and access; be sure to set the same value at the beginning for global and local value
     // %        note 1: If you define an ini file, which sets this.php_js.ini values (window.php_js.ini if you are using the non-namespaced version), be sure to also set php_js.ini_loaded_file 

@@ -7,11 +7,11 @@ function date ( format, timestamp ) {
     // +   improved by: Brad Touesnard
     // +   improved by: Tim Wiel
     // +   improved by: Bryan Elliott
-    // +   improved by: Brett Zamir
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // +   improved by: David Randall
-    // +      input by: Brett Zamir
+    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Brett Zamir
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'

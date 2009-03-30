@@ -1,7 +1,7 @@
 function array_diff_key() {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com)
-    // +    revised by: Brett Zamir
+    // +    revised by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5});
     // *     returns 1: {"green":2, "blue":3, "white":4}
     // *     example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5});

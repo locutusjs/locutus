@@ -3,7 +3,7 @@ function count_chars( str, mode ) {
     // +   original by: Ates Goral (http://magnetiq.com)
     // +    tweaked by: Jack
     // +   bugfixed by: Onno Marsman
-    // +      input by: Brett Zamir
+    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: count_chars("Hello World!", 1);
     // *     returns 1: "Hd e!lWor"

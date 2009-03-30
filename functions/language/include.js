@@ -4,7 +4,7 @@ function include( filename ) {
     // +   improved by: Legaev Andrey
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Michael White (http://getsprink.com)
-    // +      input by: Brett Zamir
+    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
     // %        note 2: The included file does not come available until a second script block, so typically use this in the header.

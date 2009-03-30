@@ -6,7 +6,7 @@ function utf8_decode ( str_data ) {
     // +   improved by: Norman "zEh" Fuchs
     // +   bugfixed by: hitwork
     // +   bugfixed by: Onno Marsman
-    // +      input by: Brett Zamir
+    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: utf8_decode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'

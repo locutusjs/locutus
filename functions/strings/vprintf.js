@@ -2,7 +2,7 @@ function vprintf(format, args) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ash Searle (http://hexmen.com/blog/)
     // +   improved by: Michael White (http://getsprink.com)
-    // + reimplemented by: Brett Zamir
+    // + reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
     // -    depends on: sprintf
     // *     example 1: printf("%01.2f", 123.1);
     // *     returns 1: 6

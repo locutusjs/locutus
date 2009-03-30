@@ -1,6 +1,6 @@
 function phpversion () {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: We are using this to get the JavaScript version (since this is JavaScript and we can't get the PHP version anyways)
     // %        note 2: The return value will depend on your client's JavaScript version
     // %        note 3: Uses global: php_js to store environment info

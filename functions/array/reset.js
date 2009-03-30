@@ -2,7 +2,7 @@ function reset ( arr ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Legaev Andrey
-    // +    revised by: Brett Zamir
+    // +    revised by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: Uses global: php_js to store the array pointer
     // *     example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
     // *     returns 1: 'Kevin' 

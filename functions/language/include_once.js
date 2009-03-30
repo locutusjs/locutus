@@ -3,7 +3,7 @@ function include_once( filename ) {
     // +   original by: Legaev Andrey
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Michael White (http://getsprink.com)
-    // +      input by: Brett Zamir
+    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: include
     // %        note 1: Uses global: php_js to keep track of included files

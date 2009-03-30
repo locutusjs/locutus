@@ -1,6 +1,6 @@
 function strtr (str, from, to) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // +      input by: uestla
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: $trans = {"hello" : "hi", "hi" : "hello"};

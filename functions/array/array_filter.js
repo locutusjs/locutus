@@ -1,6 +1,6 @@
 function array_filter (arr, func) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: Takes a function as an argument, not a function's name
     // *     example 1: var odd = function (num) {return (num & 1);}; 
     // *     example 1: array_filter({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}, odd);

@@ -1,7 +1,7 @@
 function strftime (fmt, timestamp) {
     // http://kevin.vanzonneveld.net
     // +      original by: Blues (http://tech.bluesmoon.info/)
-    // + reimplemented by: Brett Zamir
+    // + reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
     // -       depends on: setlocale
     // %        note 1: Uses global: php_js to store locale info
     // *        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale

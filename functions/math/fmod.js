@@ -1,7 +1,7 @@
 function fmod(x, y) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
-    // +      input by: Brett Zamir
+    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: fmod(5.7, 1.3);
     // *     returns 1: 0.5

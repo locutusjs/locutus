@@ -1,6 +1,6 @@
 function get_object_vars (obj) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: function Myclass () {this.privMethod = function(){}}
     // *     example 1: Myclass.classMethod = function () {}
     // *     example 1: Myclass.prototype.myfunc1 = function () {return(true);};

@@ -3,7 +3,7 @@ function levenshtein (a, b){
     // +      original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      bugfixed by: Onno Marsman
     // +       revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
-    // + reimplemented by: Brett Zamir
+    // + reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
     // *        example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
     // *        returns 1: 3
     

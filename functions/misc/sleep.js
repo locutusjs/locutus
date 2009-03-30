@@ -1,7 +1,7 @@
 function sleep(seconds) {
     // http://kevin.vanzonneveld.net
     // +   original by: Christian Doebler
-    // +   bugfixed by: Brett Zamir
+    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
     // %          note: For study purposes. Current implementation could lock up the user's browser. 
     // %          note: Consider using setTimeout() instead.
     // *     example 1: sleep(1);

@@ -1,7 +1,7 @@
 function strspn(str1, str2, start, lgth){
     // http://kevin.vanzonneveld.net
     // +   original by: Valentina De Rosa
-    // +   improved by: Brett Zamir
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: strspn('42 is the answer, what is the question ...', '1234567890');
     // *     returns 1: 2
     // *     example 2: strspn('foo', 'o', 1, 2);

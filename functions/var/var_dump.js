@@ -1,6 +1,6 @@
 function var_dump() {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // -    depends on: echo
     // *     example 1: var_dump(1);
     // *     returns 1: 'int(1)'

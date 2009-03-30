@@ -1,7 +1,7 @@
 function natcasesort(inputArr) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
-    // +   improved by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // -    depends on: strnatcasecmp
     // *     example 1: $array1 = {0:'IMG0.png', 1:'img12.png', 2:'img10.png', 3:'img2.png', 4:'img1.png', 5:'IMG3.png'};
     // *     example 1: natcasesort($array1);

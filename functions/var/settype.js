@@ -2,7 +2,7 @@ function settype (vr, type) {
    // http://kevin.vanzonneveld.net
     // +   original by: Waldo Malqui Silva
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +    revised by: Brett Zamir
+    // +    revised by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: Credits to Crockford also
     // %        note 2: only works on global variables, and "vr" must be passed in as a string
     // *     example 1: foo = '5bar';

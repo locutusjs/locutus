@@ -2,7 +2,7 @@ function define(name, value) {
     // http://kevin.vanzonneveld.net
     // +      original by: Paulo Ricardo F. Santos
     // +       revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
-    // + reimplemented by: Brett Zamir
+    // + reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
     // *        example 1: define('IMAGINARY_CONSTANT1', 'imaginary_value1');
     // *        results 1: IMAGINARY_CONSTANT1 == 'imaginary_value1'
     

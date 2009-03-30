@@ -1,6 +1,6 @@
 function func_get_arg(num) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: May not work in all JS implementations
     // *     example 1: function tmp_a() {return func_get_arg(1);}
     // *     example 1: tmp_a('a', 'b');

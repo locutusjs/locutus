@@ -5,7 +5,7 @@ function strlen (string) {
     // +      input by: Kirk Strobeck
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
-    // +    revised by: Brett Zamir
+    // +    revised by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: May look like overkill, but in order to be truly faithful to handling all Unicode
     // %        note 1: characters and to this function in PHP which does not count the number of bytes
     // %        note 1: but counts the number of characters, something like this is really necessary.

@@ -1,6 +1,6 @@
 function strrchr (haystack, needle) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)
     // *     returns 1: 'Line 3'
 

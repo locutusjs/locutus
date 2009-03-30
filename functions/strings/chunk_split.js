@@ -1,7 +1,7 @@
 function chunk_split(body, argChunklen, argEnd) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
-    // +      input by: Brett Zamir
+    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: chunk_split('Hello world!', 1, '*');
     // *     returns 1: 'H*e*l*l*o* *w*o*r*l*d*!*'

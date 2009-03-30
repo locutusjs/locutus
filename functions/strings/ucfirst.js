@@ -2,7 +2,7 @@ function ucfirst( str ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
-    // +   improved by: Brett Zamir
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: ucfirst('kevin van zonneveld');
     // *     returns 1: 'Kevin van zonneveld'
 

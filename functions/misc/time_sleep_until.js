@@ -1,6 +1,6 @@
 function time_sleep_until(timestamp) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // %          note: For study purposes. Current implementation could lock up the user's browser.
     // %          note: Expects a timestamp in seconds, so DO NOT pass in a JavaScript timestamp which are in milliseconds (e.g., new Date()) or otherwise the function will lock up the browser 1000 times longer than probably intended.
     // %          note: Consider using setTimeout() instead.

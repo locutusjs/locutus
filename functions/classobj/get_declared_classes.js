@@ -1,6 +1,6 @@
 function get_declared_classes() {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // +    depends on: class_exists
     // *     example 1: function A (z) {this.z=z} // Assign 'this' in constructor, making it class-like
     // *     example 1: function B () {}

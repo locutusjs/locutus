@@ -1,7 +1,7 @@
 function import_request_variables (types, prefix) {
     // http://kevin.vanzonneveld.net
     // +      original by: Jalal Berrami
-    // + reimplemented by: Brett Zamir
+    // + reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
     // *        example 1: document.cookie = 'snack=yummy';
     // *        example 1: import_request_variables('gc', 'pr_');
     // *        results 1: pr_snack == 'yummy'

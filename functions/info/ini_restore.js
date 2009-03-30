@@ -1,6 +1,6 @@
 function ini_restore (varname) {
 	// http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: ini_restore('date.timezone');
     // *     returns 1: 'America/Chicago'
 	if (this.php_js && this.php_js.ini) {

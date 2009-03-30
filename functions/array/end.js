@@ -5,7 +5,7 @@ function end ( arr ) {
     // +    revised by: J A R
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   restored by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +    revised by: Brett Zamir
+    // +    revised by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: Uses global: php_js to store the array pointer
     // *     example 1: end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
     // *     returns 1: 'Zonneveld'

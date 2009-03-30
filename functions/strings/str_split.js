@@ -1,7 +1,7 @@
 function str_split ( f_string, f_split_length){
     // http://kevin.vanzonneveld.net
     // +     original by: Martijn Wieringa
-    // +     improved by: Brett Zamir
+    // +     improved by: Brett Zamir (http://brettz9.blogspot.com)
     // +     bugfixed by: Onno Marsman
     // *         example 1: str_split('Hello Friend', 3);
     // *         returns 1: ['Hel', 'lo ', 'Fri', 'end']

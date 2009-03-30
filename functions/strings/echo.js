@@ -4,7 +4,7 @@ function echo ( ) {
     // +   improved by: echo is bad
     // +   improved by: Nate
     // +    revised by: Der Simon (http://innerdom.sourceforge.net/)
-    // +   improved by: Brett Zamir
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: The function still has issues with outputting certain kinds of XML, such as
     // %        note 1: attributes defined with apostrophes, or creating namespaced XML, etc.
     // %        note 1: We might solve this by building on http://code.google.com/p/jssaxparser

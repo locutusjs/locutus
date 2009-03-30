@@ -1,6 +1,6 @@
 function timezone_identifiers_list (what, country) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: Object argument shown in one place, but not in another
     // %        note 1: (not implemented in PHP yet?)
     // %        note 2: For countries, see

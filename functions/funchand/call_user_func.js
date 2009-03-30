@@ -1,6 +1,6 @@
 function call_user_func(cb, parameters) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: call_user_func('isNaN', 'a');
     // *     returns 1: true
 

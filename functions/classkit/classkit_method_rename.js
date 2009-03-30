@@ -1,6 +1,6 @@
 function classkit_method_rename (classname, methodname, newname) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: classkit_method_rename('someClass', 'someMethod', 'newMethod');
     // *     returns 1: true
     

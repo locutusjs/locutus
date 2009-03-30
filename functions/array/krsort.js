@@ -2,7 +2,7 @@ function krsort(array, sort_flags) {
     // http://kevin.vanzonneveld.net
     // +   original by: GeekFG (http://geekfg.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Brett Zamir
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // %          note: The examples are correct, this is a new way
     // *     example 1: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'};
     // *     example 1: krsort(data);
