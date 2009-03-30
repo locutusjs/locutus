@@ -6,6 +6,13 @@ load('/home/kevin/workspace/plutonia-phpjs/_tools/tester.js');
 
 // Main source we want to test
 load('/home/kevin/workspace/plutonia-phpjs/functions/array/array_map.js');
+while(true) {
+    if (tester_function_exists('array_map')) {
+        break;
+    }
+    print('array_map does not exist yet');
+    tester_sleep(1);
+}
 
 window.location = '/home/kevin/workspace/plutonia-phpjs/_tools/tester.htm';
 window.onload = function(){
