@@ -64,6 +64,12 @@ function setlocale (category, locale) {
                 mon_decimal_point : '.',
                 mon_thousands_sep : ',',
                 mon_grouping : [3]
+                p_cs_precedes : 1,
+                p_sep_by_space : 0,
+                n_cs_precedes : 1,
+                n_sep_by_space : 0,
+                p_sign_posn : 3,
+                n_sign_posn : 0,
             },
             'LC_NUMERIC' : { // Based on Windows "english" (English_United States.1252) locale
                 decimal_point : '.',
@@ -72,12 +78,6 @@ function setlocale (category, locale) {
                 negative_sign : '-',
                 int_frac_digits : 2,
                 frac_digits : 2,
-                p_cs_precedes : 1,
-                p_sep_by_space : 0,
-                n_cs_precedes : 1,
-                n_sep_by_space : 0,
-                p_sign_posn : 3,
-                n_sign_posn : 0,
                 grouping : [3]
             }
         };
@@ -99,6 +99,12 @@ function setlocale (category, locale) {
             mon_decimal_point : '',
             mon_thousands_sep : '',
             mon_grouping : []
+            p_cs_precedes : 127,
+            p_sep_by_space : 127,
+            n_cs_precedes : 127,
+            n_sep_by_space : 127,
+            p_sign_posn : 127,
+            n_sign_posn : 127,
         };
         phpjs.locales.C['LC_NUMERIC'] = {
             decimal_point : '.',
@@ -107,12 +113,6 @@ function setlocale (category, locale) {
             negative_sign : '',
             int_frac_digits : 127,
             frac_digits : 127,
-            p_cs_precedes : 127,
-            p_sep_by_space : 127,
-            n_cs_precedes : 127,
-            n_sep_by_space : 127,
-            p_sign_posn : 127,
-            n_sign_posn : 127,
             grouping : []
         };
 
