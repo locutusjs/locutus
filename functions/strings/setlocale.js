@@ -104,7 +104,7 @@ function setlocale (category, locale) {
             n_cs_precedes : 127,
             n_sep_by_space : 127,
             p_sign_posn : 127,
-            n_sign_posn : 127,
+            n_sign_posn : 127
         };
         phpjs.locales.C['LC_NUMERIC'] = {
             decimal_point : '.',
