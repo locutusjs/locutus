@@ -1,14 +1,14 @@
 function setlocale (category, locale) {
 	// http://kevin.vanzonneveld.net
 	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// +   improved by: Blues at http://hacks.bluesmoon.info/strftime/strftime.js
-	// +   improved by: YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html
+	// +   derived from: Blues at http://hacks.bluesmoon.info/strftime/strftime.js
+	// +   derived from: YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html
 	// -    depends on: getenv
 	// %          note 1: Is extensible, but currently only implements locales en,
-    // %          note 1: en-US, en-GB, en-AU, fr, and fr-CA for LC_TIME only, and C for LC_CTYPE
+    // %          note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE; C and en for LC_MONETARY/LC_NUMERIC
     // %          note 2: Uses global: php_js to store locale info
-	// *     example 1: setlocale('LC_ALL', 'en-US');
-	// *     returns 1: 'en-US'
+	// *     example 1: setlocale('LC_ALL', 'en_US');
+	// *     returns 1: 'en_US'
 
 	var categ='', cats = [], i=0;
 
@@ -55,20 +55,66 @@ function setlocale (category, locale) {
                 r: '%I:%M:%S %p',
                 x: '%d/%m/%y',
                 X: '%T'
+            },
+             // Assuming distinction between numeric and monetary is thus:
+             // See below for C locale
+            'LC_MONETARY' : { // Based on Windows "english" (English_United States.1252) locale
+                int_curr_symbol : 'USD',
+                currency_symbol : '$',
+                mon_decimal_point : '.',
+                mon_thousands_sep : ',',
+                mon_grouping : [3]
+            },
+            'LC_NUMERIC' : { // Based on Windows "english" (English_United States.1252) locale
+                decimal_point : '.',
+                thousands_sep : ',',
+                positive_sign : '',
+                negative_sign : '-',
+                int_frac_digits : 2,
+                frac_digits : 2,
+                p_cs_precedes : 1,
+                p_sep_by_space : 0,
+                n_cs_precedes : 1,
+                n_sep_by_space : 0,
+                p_sign_posn : 3,
+                n_sign_posn : 0,
+                grouping : [3]
             }
         };
-		phpjs.locales['en-US'] = _copy(phpjs.locales.en);
-		phpjs.locales['en-US']['LC_TIME'] = {
+		phpjs.locales['en_US'] = _copy(phpjs.locales.en);
+		phpjs.locales['en_US']['LC_TIME'] = {
             c : '%a %d %b %Y %r %Z',
             x : '%D',
             X : '%r'
         };
-		phpjs.locales['en-GB'] = _copy(phpjs.locales.en);
-		phpjs.locales['en-GB']['LC_TIME'] = {
+		phpjs.locales['en_GB'] = _copy(phpjs.locales.en);
+		phpjs.locales['en_GB']['LC_TIME'] = {
             r : '%l:%M:%S %P %Z'
         };
-		phpjs.locales['en-AU'] = _copy(phpjs.locales['en-GB']);
+		phpjs.locales['en_AU'] = _copy(phpjs.locales['en_GB']);
         phpjs.locales.C = _copy(phpjs.locales.en); // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
+        phpjs.locales.C['LC_MONETARY'] = {
+            int_curr_symbol : '',
+            currency_symbol : '',
+            mon_decimal_point : '',
+            mon_thousands_sep : '',
+            mon_grouping : []
+        };
+        phpjs.locales.C['LC_NUMERIC'] = {
+            decimal_point : '.',
+            thousands_sep : '',
+            positive_sign : '',
+            negative_sign : '',
+            int_frac_digits : 127,
+            frac_digits : 127,
+            p_cs_precedes : 127,
+            p_sep_by_space : 127,
+            n_cs_precedes : 127,
+            n_sep_by_space : 127,
+            p_sign_posn : 127,
+            n_sign_posn : 127,
+            grouping : []
+        };
 
 		phpjs.locales['fr'] ={};
 		phpjs.locales['fr']['LC_TIME'] = {
@@ -82,13 +128,13 @@ function setlocale (category, locale) {
 			x: '%d.%m.%Y',
 			X: '%T'
 		};
-		phpjs.locales['fr-CA'] = _copy(phpjs.locales['fr']);
-		phpjs.locales['fr-CA']['LC_TIME'] = {
+		phpjs.locales['fr_CA'] = _copy(phpjs.locales['fr']);
+		phpjs.locales['fr_CA']['LC_TIME'] = {
             x : '%Y-%m-%d'
         };
 	}
 	if (!phpjs.locale) {
-		phpjs.locale = 'en-US';
+		phpjs.locale = 'en_US';
 		var NS_XHTML = 'http://www.w3.org/1999/xhtml';
 		var NS_XML = 'http://www.w3.org/XML/1998/namespace';
 		if (document.getElementsByTagNameNS &&
@@ -103,11 +149,12 @@ function setlocale (category, locale) {
 			phpjs.locale = document.getElementsByTagName('html')[0].lang;
 		}
 	}
+    phpjs.locale = phpjs.locale.replace('-', '_'); // PHP-style
 
 	// Fix locale if declared locale hasn't been defined
 	if(!(phpjs.locale in phpjs.locales)) {
-		if(phpjs.locale.replace(/-[a-zA-Z]+$/, '') in phpjs.locales) {
-			phpjs.locale = phpjs.locale.replace(/-[a-zA-Z]+$/, '');
+		if(phpjs.locale.replace(/_[a-zA-Z]+$/, '') in phpjs.locales) {
+			phpjs.locale = phpjs.locale.replace(/_[a-zA-Z]+$/, '');
 		}
 	}
 
