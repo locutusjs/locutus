@@ -5,7 +5,7 @@ function urlencode( str ) {
     // +      input by: AJ
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
-    // %          note: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
+    // %          note 1: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
     // *     example 1: urlencode('Kevin van Zonneveld!');
     // *     returns 1: 'Kevin+van+Zonneveld%21'
     // *     example 2: urlencode('http://kevin.vanzonneveld.net/');

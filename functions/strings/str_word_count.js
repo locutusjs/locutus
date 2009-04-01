@@ -2,6 +2,8 @@ function str_word_count(str, format, charlist) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ole Vrijenhoek
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
+    // %          note 1: Original author stated that "charlist parameter works correct but the last word in the given string will not be counted", but seems to work
     // *     example 1: str_word_count('Hello fri3nd, youre   looking          good today!', 1, 'àáãç3');
     // *     returns 1: ['Hello', 'fri3nd', 'youre', 'looking', 'good', 'today']
 
@@ -11,7 +13,7 @@ function str_word_count(str, format, charlist) {
     var i = 0;
     var c = '';
     var wArr = [], wC = 0;
-    var assArr = [], aC = 0, reg = "";
+    var assArr = {}, aC = 0, reg = "";
     
     if (charlist) {
         for(i = 0; i<=charlist.length - 1; i++) {
@@ -26,7 +28,7 @@ function str_word_count(str, format, charlist) {
 
     for (i = 0; i <= l-1; i++) {
         c = str.charCodeAt(i);
-        if ((c<91&&c>64)||(c<123&&c>96)||c == 45||c == 39||reg.test(c)) {
+        if ((c<91&&c>64)||(c<123&&c>96)||c == 45||c == 39||(reg && reg.test(c))) {
             if(tmpStr == "" && format == 2) {
                 aC = i;
             }
@@ -51,4 +53,5 @@ function str_word_count(str, format, charlist) {
     } else if (format == 2) {
         return assArr;
     }
+    throw 'You have supplied an incorrect format';
 }
