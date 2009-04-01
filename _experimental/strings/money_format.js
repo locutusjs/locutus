@@ -13,8 +13,8 @@ function money_format (format, number) {
 	
 	var regex = /%((=.|[+^(!-])*?)(\d*?)(#(\d+))?(\.(\d+))?([in])/g; // 1: flags, 3: width, 5: left, 7: right, 8: conversion
 	
-	var monetary = this.phpjs.locales[this.phpjs.locale]['LC_MONETARY'];
-	var numeric = this.phpjs.locales[this.phpjs.locale]['LC_NUMERIC'];
+	var monetary = this.phpjs.locales[this.php_js.localeCategories['LC_MONETARY']]['LC_MONETARY'];
+	var numeric = this.phpjs.locales[this.php_js.localeCategories['LC_NUMERIC']]['LC_NUMERIC'];
 	
 	var doReplace = function (n0, flags, n2, width, n4, left, n6, right, conversion) {
 		var repl = '';

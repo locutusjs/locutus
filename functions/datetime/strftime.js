@@ -26,7 +26,7 @@ function strftime (fmt, timestamp) {
         return x.toString();
     };
 
-    var locale = phpjs.locale;
+    var locale = phpjs.localeCategories['LC_TIME'];
     var locales = phpjs.locales;
 
     var _formats = {
