@@ -31,7 +31,8 @@ function setlocale (category, locale) {
 		phpjs.locales = {};
         
 		phpjs.locales.en = {
-            'LC_CTYPE' : {
+            'LC_COLLATE' : '', // Need to add something here for strcoll (and modify it too), perhaps a sorter function
+            'LC_CTYPE' : { // Need to change any of these for English as opposed to C?
                 an: /^[A-Za-z\d]+$/g,
                 al: /^[A-Za-z]+$/g,
                 ct: /^[\u0000-\u001F\u007F]+$/g,
@@ -42,19 +43,27 @@ function setlocale (category, locale) {
                 pu: /^[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+$/g,
                 sp: /^[\f\n\r\t\v ]+$/g,
                 up: /^[A-Z]+$/g,
-                xd: /^[A-Fa-f\d]+$/g
+                xd: /^[A-Fa-f\d]+$/g,
+                CODESET : 'UTF-8'
             },
-            'LC_TIME' : {
-                a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-                b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                B: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                c: '%a %d %b %Y %T %Z',
-                p: ['AM', 'PM'],
-                P: ['am', 'pm'],
-                r: '%I:%M:%S %p',
-                x: '%d/%m/%y',
-                X: '%T'
+            'LC_TIME' : { // Comments include nl_langinfo() constant equivalents and any changes from Blues' implementation
+                a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], // ABDAY_
+                A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], // DAY_
+                b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], // ABMON_
+                B: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], // MON_
+                c: '%a %d %b %Y %r %Z', // D_T_FMT // changed %T to %r per results
+                p: ['AM', 'PM'], // AM_STR/PM_STR
+                P: ['am', 'pm'], // Not available in nl_langinfo()
+                r: '%I:%M:%S %p', // T_FMT_AMPM (Fixed for all locales)
+                x: '%m/%d/%Y', // D_FMT // switched order of %m and %d; changed %y to %Y (C uses %y)
+                X: '%r', // T_FMT // changed from %T to %r  (%T is default for C, not English US)
+                // Following are from nl_langinfo() or http://www.cptec.inpe.br/sx4/sx4man2/g1ab02e/strftime.4.html
+                alt_digits : '', // e.g., ordinal
+                ERA : '',
+                ERA_YEAR : '',
+                ERA_D_T_FMT : '',
+                ERA_D_FMT : '',
+                ERA_T_FMT : ''
             },
              // Assuming distinction between numeric and monetary is thus:
              // See below for C locale
@@ -64,6 +73,10 @@ function setlocale (category, locale) {
                 mon_decimal_point : '.',
                 mon_thousands_sep : ',',
                 mon_grouping : [3],
+                positive_sign : '',
+                negative_sign : '-',
+                int_frac_digits : 2, // Fractional digits only for money defaults?
+                frac_digits : 2,
                 p_cs_precedes : 1,
                 p_sep_by_space : 0,
                 n_cs_precedes : 1,
@@ -74,11 +87,13 @@ function setlocale (category, locale) {
             'LC_NUMERIC' : { // Based on Windows "english" (English_United States.1252) locale
                 decimal_point : '.',
                 thousands_sep : ',',
-                positive_sign : '',
-                negative_sign : '-',
-                int_frac_digits : 2,
-                frac_digits : 2,
                 grouping : [3]
+            },
+            'LC_MESSAGES' : {
+                YESEXPR : '^[yY].*',
+                NOEXPR : '^[nN].*',
+                YESSTR : '',
+                NOSTR : ''
             }
         };
 		phpjs.locales['en_US'] = _copy(phpjs.locales.en);
@@ -93,6 +108,7 @@ function setlocale (category, locale) {
         };
 		phpjs.locales['en_AU'] = _copy(phpjs.locales['en_GB']);
         phpjs.locales.C = _copy(phpjs.locales.en); // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
+        phpjs.locales.C['LC_CTYPE'].CODESET = 'ANSI_X3.4-1968';
         phpjs.locales.C['LC_MONETARY'] = {
             int_curr_symbol : '',
             currency_symbol : '',
@@ -104,30 +120,34 @@ function setlocale (category, locale) {
             n_cs_precedes : 127,
             n_sep_by_space : 127,
             p_sign_posn : 127,
-            n_sign_posn : 127
+            n_sign_posn : 127,
+            positive_sign : '',
+            negative_sign : '',
+            int_frac_digits : 127,
+            frac_digits : 127
         };
         phpjs.locales.C['LC_NUMERIC'] = {
             decimal_point : '.',
             thousands_sep : '',
-            positive_sign : '',
-            negative_sign : '',
-            int_frac_digits : 127,
-            frac_digits : 127,
             grouping : []
         };
+        phpjs.locales.C['LC_TIME'].c = '%a %b %e %H:%M:%S %Y'; // D_T_FMT
+        phpjs.locales.C['LC_TIME'].x = '%m/%d/%y'; // D_FMT
+        phpjs.locales.C['LC_TIME'].X = '%H:%M:%S'; // T_FMT
+        phpjs.locales.C['LC_MESSAGES'].YESEXPR = '^[yY]';
+        phpjs.locales.C['LC_MESSAGES'].NOEXPR = '^[nN]';
 
-		phpjs.locales['fr'] ={};
-		phpjs.locales['fr']['LC_TIME'] = {
-			a: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
-			A: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
-			b: ['jan', 'fév', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoû', 'sep', 'oct', 'nov', 'déc'],
-			B: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
-			c: '%a %d %b %Y %T %Z',
-			p: ['', ''],
-			P: ['', ''],
-			x: '%d.%m.%Y',
-			X: '%T'
-		};
+		phpjs.locales['fr'] =_copy(phpjs.locales.en);
+		phpjs.locales['fr']['LC_TIME'].a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'];
+        phpjs.locales['fr']['LC_TIME'].A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+        phpjs.locales['fr']['LC_TIME'].b = ['jan', 'fév', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoû', 'sep', 'oct', 'nov', 'déc'];
+        phpjs.locales['fr']['LC_TIME'].B = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+        phpjs.locales['fr']['LC_TIME'].c = '%a %d %b %Y %T %Z';
+        phpjs.locales['fr']['LC_TIME'].p = ['', ''];
+        phpjs.locales['fr']['LC_TIME'].P = ['', ''];
+        phpjs.locales['fr']['LC_TIME'].x = '%d.%m.%Y';
+        phpjs.locales['fr']['LC_TIME'].X = '%T';
+        
 		phpjs.locales['fr_CA'] = _copy(phpjs.locales['fr']);
 		phpjs.locales['fr_CA']['LC_TIME'] = {
             x : '%Y-%m-%d'
