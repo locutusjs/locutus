@@ -1,5 +1,9 @@
 function assert_options (what, value) {
-
+	// http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // *     example 1: assert_options('ASSERT_CALLBACK');
+    // *     returns 1: null
+    
 	// BEGIN REDUNDANT
 	if (!this.php_js) {
 		this.php_js = {};

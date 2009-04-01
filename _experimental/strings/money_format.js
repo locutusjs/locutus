@@ -1,6 +1,6 @@
 function money_format (format, number) {
 	// http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // -    depends on: setlocale
     // *     example 1: money_format('%i', 1234.56);
     // *     returns 1: 'USD 1,234.56'

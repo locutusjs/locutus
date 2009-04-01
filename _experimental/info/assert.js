@@ -1,4 +1,11 @@
 function assert (assertion) {
+	// http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // *     example 1: assert('unassigned === true');
+    // *     returns 1:
+
+    // Fix: add complete example and return value
+
 	var result = assertion, callback, retVal;
 	
 	// BEGIN REDUNDANT
