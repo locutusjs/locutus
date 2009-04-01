@@ -1,6 +1,6 @@
 function date_create (time, timezone) {var __ = Relator.$();
 	// http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // Incomplete
 
 	// Begin static

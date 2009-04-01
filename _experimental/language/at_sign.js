@@ -1,6 +1,6 @@
 function at_sign(cb) {  // Could also name as "at", "error_suppressor", etc.
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: at_sign(someFunctionThatMayThrowErrors);
     // *     returns 1: true
     try {

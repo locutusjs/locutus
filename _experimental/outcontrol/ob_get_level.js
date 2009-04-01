@@ -1,6 +1,6 @@
 function ob_get_level () {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: ob_get_level();
     // *     returns 1: 1
 

@@ -1,10 +1,10 @@
 function date_default_timezone_set (tz) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // -    depends on: timezone_abbreviations_list
     // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date_default_timezone_set('unknown');
-    // *     returns 1: 'unknown';
+    // *     returns 1: 'unknown'
 
     var tal = {}, abbr = '', i = 0;
 

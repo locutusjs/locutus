@@ -1,6 +1,6 @@
 function call_user_method_array(method, obj, params) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: Deprecated in PHP
     // *     example 1: call_user_method_array('alert', 'window', ['Hello!']);
     // *     returns 1: 'Hello!'

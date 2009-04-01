@@ -1,6 +1,6 @@
 function strcoll (str1, str2) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: strcoll('a', 'b');
     // *     returns 1: -1
 	

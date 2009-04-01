@@ -1,6 +1,6 @@
 function ob_get_length () {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: ob_get_length();
     // *     returns 1: 155
 

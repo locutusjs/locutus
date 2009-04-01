@@ -1,6 +1,6 @@
 function call_user_method(method, obj) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: Deprecated in PHP
     // *     example 1: call_user_method('alert', 'window', 'Hello!');
     // *     returns 1: 'Hello!'

@@ -1,7 +1,7 @@
 function phpcredits(flag) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
-    // +   improved by: Brett Zamir
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // -    depends on: echo
     // *     example 1: phpcredits();
     // *     returns 1: true

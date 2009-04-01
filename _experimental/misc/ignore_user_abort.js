@@ -1,6 +1,6 @@
 function ignore_user_abort() {
    // http://kevin.vanzonneveld.net
-   // +   original by: Brett Zamir
+   // +   original by: Brett Zamir (http://brettz9.blogspot.com)
    // %        note 1: We cannot get the exact PHP meaning of abort, since 'abort', per the
    // %        note 1: DOM, is for aborting resource loading (interpreted by Explorer as
    // %        note 1: image loading), and 'unload' will not catch script abortions caused by

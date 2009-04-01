@@ -1,6 +1,6 @@
 function timezone_open(timezone) {  var __ = Relator.$();
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // +   improved by: Andrea Giammarchi
     // -    depends on: timezone_abbreviations_list(), timezone_identifiers_list(), timezone_transitions_get()
     // %        note 1: Creates a DateTimeZone() object as in PHP, but we really need to implement DateTime() and possibly fix some methods here
