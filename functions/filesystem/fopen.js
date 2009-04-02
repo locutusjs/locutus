@@ -58,6 +58,7 @@ function fopen (filename, mode, use_include_path, context) {
     this.php_js.resourceIdCounter++;
 
     function PHPJS_Resource (type, id) { // Can reuse the following for other resources, just changing the instantiation
+        // See http://php.net/manual/en/resource.php for types
         this.type = type;
         this.id = id;
     }
