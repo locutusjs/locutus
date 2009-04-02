@@ -13,6 +13,10 @@ function file_get_contents( url ) {
 
     var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
     if (!req) throw new Error('XMLHttpRequest not supported');
+
+    if (!/^http/.test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
+        url = window.location.href + '/' +url;
+    }
     
     req.open("GET", url, false);
     req.send(null);

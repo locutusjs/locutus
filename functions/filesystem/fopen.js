@@ -8,6 +8,9 @@ function fopen (filename, mode, use_include_path, context) {
     var file_get_contents = function ( url ) {
         var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
         if (!req) throw new Error('XMLHttpRequest not supported');
+        if (!/^http/.test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
+            url = window.location.href + '/' +url;
+        }
         req.open("GET", url, false);
         req.send(null);
         return req.responseText;
