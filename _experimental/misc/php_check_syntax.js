@@ -1,0 +1,25 @@
+function php_check_syntax (filename, error_message) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+	// -    depends on: ob_start
+	// -    depends on: file_get_contents
+	// -    depends on: ob_end_clean
+	// %          note 1: error_message, if used, must be a string referring to a global variable name
+    // *     example 1: var myErr = '';
+    // *     example 1: php_check_syntax('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'myErr');
+    // *     returns 1: false
+
+    // Should not output contents, but will evaluate, as per PHP
+    ob_start();
+    try {
+        eval(file_get_contents(filename));
+    }
+    catch (e) {
+        if (error_message) {
+            window[error_message] = e.message;
+        }
+        return false;
+    }
+    ob_end_clean();
+    return true;
+}
