@@ -27,14 +27,13 @@ function fopen (filename, mode, use_include_path, context) {
     for (var i=0; i < mode.length; i++) { // Have to deal with other flags if ever allow
         switch(mode[i]) {
             case 'r':
+                if (mode[i+1] === '+') {
+                    throw 'Writing is not implemented';
+                }
                 break;
-            case 'r+':
-            case 'w':
-            case 'w+':
-            case 'a':
-            case 'a+':
-            case 'x':
-            case 'x+':
+            case 'w': // or 'w+'
+            case 'a': // or 'a+'
+            case 'x':// or 'x+'
                 throw 'Writing is not implemented';
             case 'b':
             case 't':
