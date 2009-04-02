@@ -1,0 +1,16 @@
+function fclose (handle) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // *     example 1: var handle = fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
+    // *     example 1: fclose(handle);
+    // *     returns 1: true
+
+    try {
+        delete this.php_js.resourceDataPointer[handle.id];
+        delete this.php_js.resourceData[handle.id]; // Free up memory
+        return true;
+    }
+    catch(e) {
+        return false;
+    }
+}
