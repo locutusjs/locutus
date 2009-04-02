@@ -1,4 +1,4 @@
-function ignore_user_abort() {
+function ignore_user_abort (setting) {
    // http://kevin.vanzonneveld.net
    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
    // %        note 1: We cannot get the exact PHP meaning of abort, since 'abort', per the
@@ -7,25 +7,34 @@ function ignore_user_abort() {
    // %        note 1: clicking "stop" as the page is loading
    // %        note 2: While this code presumably should work, at least in Firefox, it
    // %        note 2: does not (perhaps due to a bug in Firefox)
-   // %        note 3: This function should be defined as a closure, with "();" after the last
-   // %        note 3: brace and defined as var ignore_user_abort = function () { ...
    // *     example 1: ignore_user_abort(true);
    // *     returns 1: 0
 
-   var prev_setting = 0;
+   if (!this.php_js) {
+       this.php_js = {};
+   }
+   if (!this.php_js.ignoreUserAbort) {
+       this.php_js.ignoreUserAbort = 0;
+   }
 
-   return function (setting) {
-       var old_prev_setting = prev_setting;
-       
-       if (setting) {
-           window.addEventListener('unload', function(e){e.preventDefault();e.stopPropagation();}, false);
-           window.addEventListener('abort', function(e){e.preventDefault();e.stopPropagation();}, false);
-           window.addEventListener('stop', function(e){e.preventDefault();e.stopPropagation();}, false);
-           prev_setting = 1;
-           return old_prev_setting;
-       }
-       prev_setting = 0;
+   var old_prev_setting = this.php_js.ignoreUserAbort;
 
+   if (setting) {
+        if (!this.php_js.ignoreAbort) {
+            this.php_js.ignoreAbort = true;
+        }
+       window.onunload = function(e){e.preventDefault();e.stopPropagation();};
+       window.onabort = function(e){e.preventDefault();e.stopPropagation();};
+       window.onstop = function(e){e.preventDefault();e.stopPropagation();};
+       this.php_js.ignoreUserAbort = 1;
        return old_prev_setting;
-   };
+   }
+   else if (setting === false) {
+        if (!this.php_js.ignoreAbort) {
+            this.php_js.ignoreAbort = false;
+        }
+   }
+   this.php_js.ignoreUserAbort = 0;
+
+   return old_prev_setting;
 }
