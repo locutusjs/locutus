@@ -1,9 +1,14 @@
 function timezone_open(timezone) {  var __ = Relator.$();
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-    // +   improved by: Andrea Giammarchi
-    // -    depends on: timezone_abbreviations_list(), timezone_identifiers_list(), timezone_transitions_get()
+    // +   derived from: Andrea Giammarchi
+    // -    depends on: timezone_abbreviations_list()
+    // -    depends on: timezone_identifiers_list()
+    // -    depends on: timezone_transitions_get()
     // %        note 1: Creates a DateTimeZone() object as in PHP, but we really need to implement DateTime() and possibly fix some methods here
+    // *     example 1: timezone_open('Europe/Prague'); // Can't convert to string in PHP; returns the DTZ object
+    // *     returns 1: {}
+
 
 	// BEGIN STATIC
 	if (!window.php_js) {
