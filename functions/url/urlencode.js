@@ -5,6 +5,7 @@ function urlencode( str ) {
     // +      input by: AJ
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %          note 1: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
     // *     example 1: urlencode('Kevin van Zonneveld!');
     // *     returns 1: 'Kevin+van+Zonneveld%21'
@@ -14,7 +15,7 @@ function urlencode( str ) {
     // *     returns 3: 'http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a'
                              
     var histogram = {}, tmp_arr = [];
-    var ret = str.toString();
+    var ret = (str+'').toString();
     
     var replacer = function(search, replace, str) {
         var tmp_arr = [];
