@@ -1,5 +1,11 @@
 function preg_match(regex, input, result) {
-	var i;
+    // http://kevin.vanzonneveld.net
+    // +   original by: Francis Lewis
+    // *     example 1: result = [];
+    // *     example 1: preg_match(/(\w+)\W([\W\w]+)/, 'this is some text', result);
+    // *     results 1: result[1] == 'this'
+
+    var i;
 	var array = {};
 
 	// store the result in the first indice of the array
