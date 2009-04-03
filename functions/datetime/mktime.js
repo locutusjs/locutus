@@ -2,7 +2,7 @@ function mktime() {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: baris ozdil
-    // +      input by: gabriel paderni 
+    // +      input by: gabriel paderni
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: FGFEmperor
     // +      input by: Yannoo
@@ -10,6 +10,7 @@ function mktime() {
     // +      input by: jakes
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Marc Palau
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: mktime(14, 10, 2, 2, 1, 2008);
     // *     returns 1: 1201871402
     // *     example 2: mktime(0, 0, 0, 0, 1, 2008);
@@ -25,22 +26,27 @@ function mktime() {
     // *     returns 5: 883609200
     // *     example 6: mktime(0, 0, 0, 1, 1, 98)
     // *     returns 6: 883609200
-    
-    var no, ma = 0, mb = 0, i = 0, d = new Date(), argv = arguments, argc = argv.length;
 
-    if (argc > 0){
-        d.setHours(0,0,0); d.setDate(1); d.setMonth(1); d.setYear(1972);
-    }
- 
+    var no=0, i = 0, ma=0, mb=0, d = new Date(), dn = new Date(), argv = arguments, argc = argv.length;
+
     var dateManip = {
         0: function(tt){ return d.setHours(tt); },
         1: function(tt){ return d.setMinutes(tt); },
-        2: function(tt){ var set = d.setSeconds(tt); mb = d.getDate() - 1; return set; },
-        3: function(tt){ var set = d.setMonth(parseInt(tt)-1); ma = d.getFullYear() - 1972; return set; },
-        4: function(tt){ return d.setDate(tt+mb); },
-        5: function(tt){ return d.setYear(tt+ma); }
+        2: function(tt){ var set = d.setSeconds(tt); mb = d.getDate() - dn.getDate(); return set;},
+        3: function(tt){ var set = d.setMonth(parseInt(tt)-1); ma = d.getFullYear() - dn.getFullYear(); return set;},
+        4: function(tt){ return d.setDate(tt+mb);},
+        5: function(tt){
+            if (tt >= 0 && tt <= 69) {
+                tt += 2000;
+            }
+            else if (tt >= 70 && tt <= 100) {
+                tt += 1900;
+            }
+            return d.setFullYear(tt+ma);
+        }
+        // 7th argument (for DST) is deprecated
     };
-    
+
     for( i = 0; i < argc; i++ ){
         no = parseInt(argv[i]*1);
         if (isNaN(no)) {
@@ -53,6 +59,30 @@ function mktime() {
             }
         }
     }
+    for (i = argc; i < 6; i++) {
+        switch(i) {
+            case 0:
+                no = dn.getHours();
+                break;
+            case 1:
+                no = dn.getMinutes();
+                break;
+            case 2:
+                no = dn.getSeconds();
+                break;
+            case 3:
+                no = dn.getMonth()+1;
+                break;
+            case 4:
+                no = dn.getDate();
+                break;
+            case 5:
+                no = dn.getFullYear();
+                break;
+        }
+        dateManip[i](no);
+    }
 
     return Math.floor(d.getTime()/1000);
 }
+
