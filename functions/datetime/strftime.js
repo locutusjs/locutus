@@ -144,7 +144,9 @@ function strftime (fmt, timestamp) {
     // END STATIC
 
 
-    var _date = timestamp ? new Date(timestamp*1000) : new Date();
+    var _date = ((typeof(timestamp) == 'undefined') ? new Date() : // Not provided
+        (typeof(timestamp) == 'number') ? new Date(timestamp*1000) : // UNIX timestamp
+        new Date(timestamp)); // Date() object
 
     var _aggregates = {
         c: 'locale',
