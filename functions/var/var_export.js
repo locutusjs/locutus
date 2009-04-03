@@ -2,6 +2,7 @@ function var_export(mixed_expression, bool_return) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
     // +   improved by: johnrembo
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // -    depends on: echo
     // *     example 1: var_export(null);
     // *     returns 1: null
@@ -18,9 +19,12 @@ function var_export(mixed_expression, bool_return) {
     var key = '', i = 0;
     
     var __getType = function( inp ) {
-        var type = typeof inp, match;
+        var match, type = typeof inp;
+        if (type == 'object' && inp.constructor && inp.constructor === 'PHPJS_Resource') {
+            return 'resource';
+        }
         if (type == 'object' && !inp) {
-            return 'null';
+            return 'null'; // Should this be just null?
         }
         if (type == "object") {
             if (!inp.constructor) {
@@ -50,6 +54,9 @@ function var_export(mixed_expression, bool_return) {
         }
         iret = x.join(',\n  ');
         retstr = "array (\n  "+iret+"\n)";
+    }
+    else if (type === 'resource') {
+        retstr = 'NULL'; // Resources treated as null for var_export
     } else {
         retstr = (!isNaN( mixed_expression )) ? mixed_expression : "'" + mixed_expression.replace('/(["\'\])/g', "\\$1").replace('/\0/g', "\\0") + "'";
     }

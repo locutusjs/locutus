@@ -46,6 +46,9 @@ function var_dump() {
         var val='';
 
         if (typeof obj === 'object' && obj !== null) {
+            if (obj.constructor === 'PHPJS_Resource') {
+                return obj.var_dump();
+            }
             lgth = 0;
             for (p in obj) {
                 lgth++;
