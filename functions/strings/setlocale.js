@@ -97,15 +97,13 @@ function setlocale (category, locale) {
             }
         };
 		phpjs.locales['en_US'] = _copy(phpjs.locales.en);
-		phpjs.locales['en_US']['LC_TIME'] = {
-            c : '%a %d %b %Y %r %Z',
-            x : '%D',
-            X : '%r'
-        };
+		phpjs.locales['en_US']['LC_TIME'].c = '%a %d %b %Y %r %Z';
+        phpjs.locales['en_US']['LC_TIME'].x = '%D';
+        phpjs.locales['en_US']['LC_TIME'].X = '%r';
+
 		phpjs.locales['en_GB'] = _copy(phpjs.locales.en);
-		phpjs.locales['en_GB']['LC_TIME'] = {
-            r : '%l:%M:%S %P %Z'
-        };
+		phpjs.locales['en_GB']['LC_TIME'].r =  '%l:%M:%S %P %Z';
+        
 		phpjs.locales['en_AU'] = _copy(phpjs.locales['en_GB']);
         phpjs.locales.C = _copy(phpjs.locales.en); // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
         phpjs.locales.C['LC_CTYPE'].CODESET = 'ANSI_X3.4-1968';
@@ -149,9 +147,8 @@ function setlocale (category, locale) {
         phpjs.locales['fr']['LC_TIME'].X = '%T';
         
 		phpjs.locales['fr_CA'] = _copy(phpjs.locales['fr']);
-		phpjs.locales['fr_CA']['LC_TIME'] = {
-            x : '%Y-%m-%d'
-        };
+		phpjs.locales['fr_CA']['LC_TIME'].x = '%Y-%m-%d';
+        
 	}
 	if (!phpjs.locale) {
 		phpjs.locale = 'en_US';
