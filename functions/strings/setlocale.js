@@ -49,7 +49,10 @@ function setlocale (category, locale) {
                 sp: /^[\f\n\r\t\v ]+$/g,
                 up: /^[A-Z]+$/g,
                 xd: /^[A-Fa-f\d]+$/g,
-                CODESET : 'UTF-8'
+                CODESET : 'UTF-8',
+                 // Used by sql_regcase
+                lower : 'abcdefghijklmnopqrstuvwxyz',
+                upper : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
             },
             'LC_TIME' : { // Comments include nl_langinfo() constant equivalents and any changes from Blues' implementation
                 a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], // ABDAY_
