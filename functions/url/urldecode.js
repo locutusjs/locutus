@@ -5,6 +5,9 @@ function urldecode( str ) {
     // +      input by: AJ
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +      input by: travc
+    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %          note 1: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
     // *     example 1: urldecode('Kevin+van+Zonneveld%21');
     // *     returns 1: 'Kevin van Zonneveld!'
@@ -30,6 +33,38 @@ function urldecode( str ) {
     histogram['~']   = '%7E';
     histogram['!']   = '%21';
     histogram['%20'] = '+';
+    histogram['\u20AC'] = '%80';
+    histogram['\u0081'] = '%81';
+    histogram['\u201A'] = '%82';
+    histogram['\u0192'] = '%83';
+    histogram['\u201E'] = '%84';
+    histogram['\u2026'] = '%85';
+    histogram['\u2020'] = '%86';
+    histogram['\u2021'] = '%87';
+    histogram['\u02C6'] = '%88';
+    histogram['\u2030'] = '%89';
+    histogram['\u0160'] = '%8A';
+    histogram['\u2039'] = '%8B';
+    histogram['\u0152'] = '%8C';
+    histogram['\u008D'] = '%8D';
+    histogram['\u017D'] = '%8E';
+    histogram['\u008F'] = '%8F';
+    histogram['\u0090'] = '%90';
+    histogram['\u2018'] = '%91';
+    histogram['\u2019'] = '%92';
+    histogram['\u201C'] = '%93';
+    histogram['\u201D'] = '%94';
+    histogram['\u2022'] = '%95';
+    histogram['\u2013'] = '%96';
+    histogram['\u2014'] = '%97';
+    histogram['\u02DC'] = '%98';
+    histogram['\u2122'] = '%99';
+    histogram['\u0161'] = '%9A';
+    histogram['\u203A'] = '%9B';
+    histogram['\u0153'] = '%9C';
+    histogram['\u009D'] = '%9D';
+    histogram['\u017E'] = '%9E';
+    histogram['\u0178'] = '%9F';
 
     for (replace in histogram) {
         search = histogram[replace]; // Switch order when decoding
