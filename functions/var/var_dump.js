@@ -46,7 +46,7 @@ function var_dump() {
         var val='';
 
         if (typeof obj === 'object' && obj !== null) {
-            if (obj.constructor === 'PHPJS_Resource') {
+            if (obj.constructor && obj.constructor.name === 'PHPJS_Resource') {
                 return obj.var_dump();
             }
             lgth = 0;

@@ -20,7 +20,7 @@ function print_r( array, return_val ) {
         var thick_pad = repeat_char(pad_val*(cur_depth+1), pad_char);
         var str = "";
 
-        if (typeof obj === 'object' && obj !== null && obj.constructor !== 'PHPJS_Resource') {
+        if (typeof obj === 'object' && obj !== null && obj.constructor && obj.constructor.name !== 'PHPJS_Resource') {
             str += "Array\n" + base_pad + "(\n";
             for (var key in obj) {
                 if (obj[key] instanceof Array) {

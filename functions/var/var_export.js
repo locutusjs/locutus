@@ -20,7 +20,7 @@ function var_export(mixed_expression, bool_return) {
     
     var __getType = function( inp ) {
         var match, type = typeof inp;
-        if (type == 'object' && inp.constructor && inp.constructor === 'PHPJS_Resource') {
+        if (type == 'object' && inp.constructor && inp.constructor.name === 'PHPJS_Resource') {
             return 'resource';
         }
         if (type == 'object' && !inp) {

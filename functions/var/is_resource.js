@@ -4,7 +4,7 @@ function is_resource (handle) {
     // *     example 1: is_resource('a');
     // *     returns 1: false
 
-    if (!handle || typeof handle !== 'object' || handle.constructor !== 'PHPJS_Resource') {
+    if (!handle || typeof handle !== 'object' || !handle.constructor || handle.constructor.name !== 'PHPJS_Resource') {
         return false;
     }
 
