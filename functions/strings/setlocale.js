@@ -18,10 +18,15 @@ function setlocale (category, locale) {
 	// END REDUNDANT
 
 	// BEGIN STATIC
-	var _copy = function (orig) {
+	var _copy = function _copy (orig) {
 		var newObj = {};
 		for (var i in orig) {
-			newObj[i] = orig[i];
+            if (typeof orig[i] === 'object') {
+                newObj[i] = _copy(orig[i]);
+            }
+            else {
+                newObj[i] = orig[i];
+            }
 		}
 		return newObj;
 	};
