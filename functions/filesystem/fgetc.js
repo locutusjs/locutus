@@ -1,7 +1,7 @@
 function fgetc (handle) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-    // *     example 1: fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
+    // *     example 1: fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
     // *     example 1: fgetc(handle);
     // *     returns 1: '1'
 
