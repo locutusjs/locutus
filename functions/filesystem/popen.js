@@ -1,7 +1,7 @@
-function fopen (filename, mode, use_include_path, context) {
+function popen (filename, mode, use_include_path, context) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-    // *     example 1: fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
+    // *     example 1: popen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
     // *     returns 1: 'Resource id #1'
 
     var resource={}, i=0;
@@ -19,7 +19,7 @@ function fopen (filename, mode, use_include_path, context) {
     }
     // END file inclusion
 
-    if (use_include_path === 1 || use_include_path === '1' || use_include_path === true) { 
+    if (use_include_path === 1 || use_include_path === '1' || use_include_path === true) {
         // Not implemented yet: Search for file in include path too
     }
     if (context) {
@@ -80,7 +80,7 @@ function fopen (filename, mode, use_include_path, context) {
     this.php_js.resourceData[this.php_js.resourceIdCounter] = file_get_contents(filename);
     this.php_js.resourceDataPointer[this.php_js.resourceIdCounter] = 0;
 
-    resource = new PHPJS_Resource('stream', this.php_js.resourceIdCounter, 'fopen');
+    resource = new PHPJS_Resource('stream', this.php_js.resourceIdCounter, 'popen');
     resource.mode = mode; // Add file-specific attributes
 
     return resource; // may be 'file' instead of 'stream' type on some systems

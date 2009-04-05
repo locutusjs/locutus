@@ -1,14 +1,14 @@
-function fclose (handle) {
+function pclose (handle) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-    // *     example 1: var handle = fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
-    // *     example 1: fclose(handle);
+    // *     example 1: var handle = popen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
+    // *     example 1: pclose(handle);
     // *     returns 1: true
 
-    if (!handle || handle.opener !== 'fopen') {
+    if (!handle || handle.opener !== 'popen') {
         return false;
     }
-    
+
     try {
         delete this.php_js.resourceDataPointer[handle.id];
         delete this.php_js.resourceData[handle.id]; // Free up memory
