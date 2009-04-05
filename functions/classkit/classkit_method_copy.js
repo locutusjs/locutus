@@ -11,6 +11,7 @@ function classkit_method_copy (dClass, dMethod, sClass, sMethod) {
 	classkit_method_copy('A', 'b', 'C', 'd');
 	A.b(); // 'inside d'
 	*/
+    sMethod = sMethod || dMethod;
 	
 	if (typeof dClass === 'string') {
 		dClass = window[dClass];
