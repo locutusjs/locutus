@@ -4,6 +4,8 @@ function fopen (filename, mode, use_include_path, context) {
     // *     example 1: fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
     // *     returns 1: 'Resource id #1'
 
+    var resource={}, i=0;
+
     // BEGIN file inclusion: file_get_contents
     var file_get_contents = function ( url ) {
         var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
@@ -24,7 +26,7 @@ function fopen (filename, mode, use_include_path, context) {
         // Not implemented yet, but could be useful to modify nature of HTTP request, etc.
     }
 
-    for (var i=0; i < mode.length; i++) { // Have to deal with other flags if ever allow
+    for (i=0; i < mode.length; i++) { // Have to deal with other flags if ever allow
         switch(mode[i]) {
             case 'r':
                 if (!mode[i+1] || mode[i+1] !== '+') {
@@ -77,5 +79,8 @@ function fopen (filename, mode, use_include_path, context) {
     this.php_js.resourceData[this.php_js.resourceIdCounter] = file_get_contents(filename);
     this.php_js.resourceDataPointer[this.php_js.resourceIdCounter] = 0;
 
-    return new PHPJS_Resource('stream', this.php_js.resourceIdCounter); // may be 'file' instead of 'stream' type on some systems
+    resource = new PHPJS_Resource('stream', this.php_js.resourceIdCounter);
+    resource.mode = mode; // Add file-specific attributes
+
+    return resource; // may be 'file' instead of 'stream' type on some systems
 }

@@ -24,6 +24,6 @@ function fgets (handle, length) {
 
     length = (length === undefined || fullline.length < length) ? fullline.length : Math.floor(length/2) || 1; // two bytes per character (or surrogate), but ensure at least one
 
-    this.php_js.resourceDataPointer[handle.id] += length;
+    this.php_js.resourceDataPointer[handle.id] += length-1;
     return this.php_js.resourceData[handle.id].substr(start, length);
 }

@@ -25,6 +25,6 @@ function fgetcsv (handle, length, delimiter, enclosure, escape) {
 
     length = (length === undefined || fullline.length < length) ? fullline.length : Math.floor(length/2) || 1; // two bytes per character (or surrogate), but ensure at least one
 
-    this.php_js.resourceDataPointer[handle.id] += length;
+    this.php_js.resourceDataPointer[handle.id] += length; // Leaves the pointer one higher apparently than in fgets/fgetss
     return str_getcsv(this.php_js.resourceData[handle.id].substr(start, length), delimiter, enclosure, escape);
 }
