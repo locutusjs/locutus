@@ -24,10 +24,5 @@ function substr_replace (str, replace, start, length) {
     if (length < 0) {
         length = length + str.length - start;
     }
-    for (i=start; i < start+length; i++) { //
-        if (replace[j] !== undefined) {
-            outStr += replace[j++];
-        }
-    }
-    return str.slice(0, start)+outStr+replace.slice(j)+str.slice(i);
+    return str.slice(0, start)+replace.substr(0, length)+replace.slice(length)+str.slice(start+length);
 }
