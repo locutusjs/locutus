@@ -10,6 +10,6 @@ function runkit_function_rename (funcname, newname) {
         return false;
     }
     window[newname] = window[funcname];
-    delete window[funcname];
+    window[funcname] = undefined;
     return true;
 }

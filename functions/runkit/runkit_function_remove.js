@@ -11,7 +11,7 @@ function runkit_function_remove (funcname) {
     }
 
     try {
-        delete window[funcname];
+        window[funcname] = undefined;
         return true;
     }
     catch (e) {
