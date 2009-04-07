@@ -18,7 +18,7 @@ function localtime (timestamp, is_assoc) {
     var yday = Math.ceil((t - jan1) / 86400000)-1;
 
     // Calculate Daylight Saving Time
-    var jan1 = new Date(t.getFullYear(), 0, 1, 0, 0, 0, 0);  // jan 1st
+    jan1 = new Date(t.getFullYear(), 0, 1, 0, 0, 0, 0);  // jan 1st
     var june1 = new Date(t.getFullYear(), 6, 1, 0, 0, 0, 0); // june 1st
     var temp = jan1.toUTCString();
     var jan2 = new Date(temp.slice(0, temp.lastIndexOf(' ')-1));

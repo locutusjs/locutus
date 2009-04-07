@@ -29,7 +29,7 @@ function rawurldecode( str ) {
     histogram['*']   = '%2A';
     histogram['~']   = '%7E';
     histogram['!']   = '%21';
-s
+
 
     for (replace in histogram) {
         search = histogram[replace]; // Switch order when decoding

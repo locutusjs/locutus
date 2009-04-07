@@ -35,7 +35,7 @@ function ini_get_all(extension, details) {
 		return ini; // {global_value: '', local_value: '', access: ''};
 	}
 	
-	for (var key in ini) {
+	for (key in ini) {
 		noDetails[key] = ini[key].local_value;
 	}
 	return noDetails;
