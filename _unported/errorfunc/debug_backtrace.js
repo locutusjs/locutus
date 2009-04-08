@@ -1,0 +1,3 @@
+function debug_backtrace () {
+    
+}
