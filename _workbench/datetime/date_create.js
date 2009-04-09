@@ -1,6 +1,10 @@
 function date_create (time, timezone) {var __ = Relator.$();
 	// http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+	// *     example 1: var tzo = timezone_open('Asia/Hong_Kong');
+	// *     example 1: date_create('now', tzo);
+	// *     returns 1: {}
+    
     // Incomplete
 
 	// Begin static
@@ -50,7 +54,8 @@ function date_create (time, timezone) {var __ = Relator.$();
 	}
 	// End static
 
-	// Returned by DateTime.diff()
+
+	// Returned by DateTime.diff()  (cf. date_interval_create_from_date_string())
 	function DateInterval (interval_spec) { // string
 	}
 	DateInterval.prototype = {
