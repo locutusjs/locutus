@@ -6,10 +6,10 @@ function pathinfo (path, options) {
     // %        note 1: The way the bitwise arguments are handled allows for greater flexibility
     // %        note 1: & compatability. We might even standardize this code and use a similar approach for
     // %        note 1: other bitwise PHP functions
-    // %        note 2: PHP.JS tries to stay away from a core.js file with global dependencies, because we like
-    // %        note 2: that you can just take a couple of functions.
-    // %        note 2: But by way we implemented this function, you can always declare the PATHINFO_*
-    // %        note 2: constants in your scope, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);
+    // %        note 2: PHP.JS tries very hard to stay away from a core.js file with global dependencies, because we like
+    // %        note 2: that you can just take a couple of functions and be on your way.
+    // %        note 2: But by way we implemented this function, if you want you can still declare the PATHINFO_*
+    // %        note 2: yourself, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);
     // %        note 2: which makes it fully compliant with PHP syntax.
     // -    depends on: dirname
     // -    depends on: basename
@@ -32,7 +32,8 @@ function pathinfo (path, options) {
     var key = '', tmp_arr = {}, cnt = 0;
     var have_basename = false, have_extension = false, have_filename = false;
     
-    // Init binary arguments
+    // Initialize binary arguments. Both the string & integer (constant) input is
+    // allowed
     var def = {
         'PATHINFO_DIRNAME': 1,
         'PATHINFO_BASENAME': 2,
@@ -40,6 +41,7 @@ function pathinfo (path, options) {
         'PATHINFO_FILENAME': 8,
         'PATHINFO_ALL': 0
     };
+    // PATHINFO_ALL sums up all previously defined PATHINFOs
     for (key in def) {
         def['PATHINFO_ALL'] = def['PATHINFO_ALL'] | def[key];
     }
@@ -48,7 +50,7 @@ function pathinfo (path, options) {
     if (!path)    return false;
     if (!options) options = 'PATHINFO_ALL';
 
-    // Resolve string input to bitwise e.g. 'PATHINFO_DIRNAME' => 1
+    // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
     if (def[options]) {
         options = def[options];
     }
