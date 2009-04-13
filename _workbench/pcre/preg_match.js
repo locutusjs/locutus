@@ -8,21 +8,20 @@ function preg_match(pattern, subject, matches, flags, offset) {
 
     // UNFINISHED
 
-    var i, flag='', array = [], regexpFlags='', subPatternNames=[];
+    var i=0, lastDelimPos=-1, flag='', patternPart='', flagPart='', array = [], regexpFlags='', subPatternNames=[];
 
     if (typeof pattern === 'string') {
-        /* // Potentially useful configuration
-        if (/a-zA-Z/.test(pattern[0]) || pattern.length === 1) { // The user is probably not using letters for delimiters (not recommended, but could be convenient for non-flagged expressions)
+        if (pattern === '') {
+            // Handle how?
+        }
+
+        lastDelimPos = pattern.lastIndexOf(pattern[0]);
+        if (lastDelimPos === 0) { // convenience to allow raw string without delimiters  // || a-zA-Z/.test(pattern[0]) || pattern.length === 1) { // The user is probably not using letters for delimiters (not recommended, but could be convenient for non-flagged expressions)
             pattern = new RegExp(pattern);
         }
         else {
-        */
-            var lastDelimPos = pattern.lastIndexOf(pattern[0]);
-            if (lastDelimPos === 0) {
-                throw 'Improperly formed regular expression passed to '+arguments.callee.name;
-            }
-            var patternPart = pattern.slice(1, lastDelimPos);
-            var flagPart = pattern.slice(lastDelimPos+1);
+            patternPart = pattern.slice(1, lastDelimPos);
+            flagPart = pattern.slice(lastDelimPos+1);
             // Fix: Need to study http://php.net/manual/en/regexp.reference.php more thoroughly
             for (i=0; i < flagPart.length; i++) {
                 flag = flagPart[i];
@@ -51,13 +50,18 @@ function preg_match(pattern, subject, matches, flags, offset) {
                         throw 'Unrecognized flag "'+flag+'" passed to '+arguments.callee.name;
                 }
             }
-            patternPart = patternPart.replace(/\(\?<(.*?)>(.*?)\)/g, function (namedSubpattern, name, pattern) {
-                subPatternNames.push(name);
-                return '('+pattern+')';
-            });
-            pattern = new RegExp(patternPart, regexpFlags);
-        // }
+        }
     }
+    else {
+        patternPart = pattern.source; // Allow JavaScript type expressions to take advantage of named subpatterns, so temporarily convert to string
+    }
+
+    patternPart = patternPart.replace(/\(\?<(.*?)>(.*?)\)/g, function (namedSubpattern, name, pattern) {
+        subPatternNames.push(name);
+        return '('+pattern+')';
+    });
+    pattern = new RegExp(patternPart, regexpFlags);
+
 
     // store the matches in the first index of the array
     array[0] = pattern.exec(subject);
