@@ -6,6 +6,8 @@ function preg_match(pattern, subject, matches, flags, offset) {
     // *     example 1: preg_match(/(\w+)\W([\W\w]+)/, 'this is some text', matches);
     // *     matches 1: matches[1] == 'this'
 
+    // UNFINISHED
+
     var i, flag='', array = [], regexpFlags='', subPatternNames=[];
 
     if (typeof pattern === 'string') {
