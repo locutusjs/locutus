@@ -26,12 +26,13 @@ function preg_match(pattern, subject, matches, flags, offset) {
             for (i=0; i < flagPart.length; i++) {
                 flag = flagPart[i];
                 switch(flag) {
-                    case 'e': // used in preg_replace only but ignored elsewhere; "does normal substitution of backreferences in the replacement string, evaluates it as PHP code, and uses the result for replacing the search string". "Single quotes, double quotes, backslashes and NULL chars will be escaped by backslashes in substituted backreferences."
-                        break;
                     case 'g': // We don't use this in preg_match, but it's presumably not an error
                     case 'm':
                     case 'i':
                         regexpFlags += flag;
+                        break;
+                    case 'e': // used in preg_replace only but ignored elsewhere; "does normal substitution of backreferences in the replacement string, evaluates it as PHP code, and uses the result for replacing the search string". "Single quotes, double quotes, backslashes and NULL chars will be escaped by backslashes in substituted backreferences."
+                        // Safely ignorable
                         break;
                     case 's': // "dot metacharacter in the pattern matches all characters, including newlines. Without it, newlines are excluded... A negative class such as [^a] always matches a newline character"
                     case 'x': // "whitespace data characters in the pattern are totally ignored except when escaped or inside a character class, and characters between an unescaped # outside a character class and the next newline character, inclusive, are also ignored"; "Whitespace characters may never appear within special character sequences in a pattern"
@@ -63,8 +64,8 @@ function preg_match(pattern, subject, matches, flags, offset) {
         subPatternNames.push(name);
         return '('+pattern+')';
     });
-    pattern = new RegExp(patternPart, regexpFlags);
 
+    pattern = new RegExp(patternPart, regexpFlags);
 
     // store the matches in the first index of the array
     array[0] = pattern.exec(subject);
@@ -74,7 +75,7 @@ function preg_match(pattern, subject, matches, flags, offset) {
     }
 
     // If the user passed in a RegExp object or literal, we will probably need to reflect on
-    //   its source, ignoreCase, global, and multiline properties to form a new expression,
+    //   its source, ignoreCase, global, and multiline properties to form a new expression (as above?),
     //   and use lastIndex
     if (offset) {
         // Not implemented
