@@ -54,6 +54,9 @@ function preg_match(pattern, subject, matches, flags, offset) {
     }
     else {
         patternPart = pattern.source; // Allow JavaScript type expressions to take advantage of named subpatterns, so temporarily convert to string
+        regexpFlags += pattern.global ? 'g' : '';
+        regexpFlags += pattern.ignoreCase ? 'i' : '';
+        regexpFlags += pattern.multiline ? 'm' : '';
     }
 
     patternPart = patternPart.replace(/\(\?<(.*?)>(.*?)\)/g, function (namedSubpattern, name, pattern) {
