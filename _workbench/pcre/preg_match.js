@@ -6,10 +6,14 @@ function preg_match(pattern, subject, matches, flags, offset) {
     // *     example 1: preg_match(/(\w+)\W([\W\w]+)/, 'this is some text', matches);
     // *     matches 1: matches[1] == 'this'
     // *     returns 1: 1
-    
+
     // UNFINISHED
 
     var i=0, lastDelimPos=-1, flag='', patternPart='', flagPart='', array = [], regexpFlags='', subPatternNames=[];
+
+    var join = function (arr) {
+        return '(?:'+arr.join('|')+')';
+    };
 
     if (typeof pattern === 'string') {
         if (pattern === '') {
@@ -24,7 +28,7 @@ function preg_match(pattern, subject, matches, flags, offset) {
             patternPart = pattern.slice(1, lastDelimPos);
             flagPart = pattern.slice(lastDelimPos+1);
             // Fix: Need to study http://php.net/manual/en/regexp.reference.php more thoroughly
-            // e.g., internal options i, m, s, x, U, X, J; conditional subpatterns?, comments, recursive subpatterns, 
+            // e.g., internal options i, m, s, x, U, X, J; conditional subpatterns?, comments, recursive subpatterns,
             for (i=0; i < flagPart.length; i++) {
                 flag = flagPart[i];
                 switch(flag) {
@@ -46,16 +50,92 @@ function preg_match(pattern, subject, matches, flags, offset) {
                         throw 'The passed flag "'+flag+'" is presently unsupported in '+arguments.callee.name;
                     case 'X': // "additional functionality of PCRE that is incompatible with Perl. Any backslash in a pattern that is followed by a letter that has no special meaning causes an error, thus reserving these combinations for future expansion"; not in use in PHP presently
 throw 'X flag is unimplemented at present';
-                        if (/\/([^\\^$.[\]|()?*+{}aefnrt\ddDhHsSvVwWbBAZzGCcxkgpPX])/.test(patternPart)) { // can be 1-3 \d together after backslash (as one unit)
+                        if (/\/([^\\^$.[\]|()?*+{}aefnrtdDhHsSvVwWbBAZzGCcxkgpPX\d])/.test(patternPart)) { // can be 1-3 \d together after backslash (as one unit)
                             // \C = single byte (useful in 'u'/UTF8 mode)
-                            // CcxpPXkg are all special uses; 
+                            // CcxpPXkg are all special uses;
                             //c. (any character after 'c' for control character)
                             // x[a-fA-F\d][a-fA-F\d] (hex)
                             // "Back references to the named subpatterns can be achieved by (?P=name) or, since PHP 5.2.4, also by \k<name>, \k'name', \k{name} or \g{name}"
                             // Unicode classes (with u flag only)
-                                // p[] | P[] (case insensitive does not affect)
+                                // p{} | P{} (case insensitive does not affect)
                                 // [CLMNPSZ]
                                 // C|Cc|Cf|Cn|Co|Cs|L|Ll|Lm|Lo|Lt|Lu|M|Mc|Me|Mn|N|Nd|Nl|No|P|Pc|Pd|Pe|Pf|Pi|Po|Ps|S|Sc|Sk|Sm|So|Z|Zl|Zp|Zs
+
+                                 // Other, Control
+                                // Cc = '[\u0000-\u001f\u007f-\u009f]';
+                                // Other, Format
+                                // Cf = '(?:[\u00ad\u0600-\u0603\u06dd\u070f\u17b4-\u17b5\u200b-\u200f\u202a-\u202e\u2060-\u2064\u206a-\u206f\ufeff\ufff9-\ufffb]|[\ud834][\udd73-\udd7a]|[\udb40][\udc01\udc20-\udc58]'); /* latter surrogates represent 1d173-1d17a, e0001, e0020-e0058 */
+                                // Other, Unassigned
+// Cn = TO-DO;
+                                // Other, Private use
+                                // Co = '(?:[\ue000-\uf8ff]|[\udb80-\udbbe][\udc00-\udfff]|[\udbff][\udc00-\udffd]|[\udbc0-\udbfe][\udc00-\udfff]|[\udbff][\udc00-\udffd])';  // f0000-ffffd, 100000-10fffd
+                                // Other, Surrogate
+                                // Cs = '[\ud800-\udb7f\udb80-\udbff\udc00-\udfff]';
+
+// Need to finish Cn (above) and Ll-Sm here below
+                                // Letter, Lower case
+                                // Ll = '[]';
+                                // Letter, Modifier
+                                // Lm =
+                                // Letter, Other
+                                // Lo =
+                                // Letter, Title case
+                                // Lt =
+                                // Letter, Upper case
+                                // Lu =
+                                // Mark, Spacing
+                                // Mc =
+                                // Mark, Enclosing
+                                // Me =
+                                // Mark, Non-spacing
+                                // Mn =
+                                // Number, Decimal
+                                // Nd =
+                                // Number, letter
+                                // Nl =
+                                // Number, Other
+                                // No =
+                                // Punctuation, Connector
+                                // Pc =
+                                // Punctuation, Dash
+                                // Pd =
+                                // Punctuation, Close
+                                // Pe =
+                                // Punctuation, Final
+                                // Pf =
+                                // Punctuation, Initial
+                                // Pi =
+                                // Punctuation, Other
+                                // Po =
+                                // Punctuation, Open
+                                // Ps =
+                                // Symbol, Currency
+                                // Sc =
+                                // Symbol, Modifier
+                                // Sk =
+                                // Symbol, Mathematical
+                                // Sm =
+
+
+                                // Symbol, Other
+                                // So = '(?:[\u00a6\u00a7\u00a9\u00ae\u00b0\u00b6\u0482\u060e\u060f\u06e9\u06fd\u06fe\u07f6\u09fa\u0b70\u0bf3-\u0bf8\u0bfa\u0c7f\u0cf1\u0cf2\u0d79\u0f01-\u0f03\u0f13-\u0f17\u0f1a-\u0f1f\u0f34\u0f36\u0f38\u0fbe-\u0fc5\u0fc7-\u0fcc\u0fce\u0fcf\u109e\u109f\u1360\u1390-\u1399\u1940\u19e0-\u19ff\u1b61-\u1b6a\u1b74-\u1b7c\u2100\u2101\u2103-\u2106\u2108\u2109\u2114\u2116-\u2118\u211e-\u2123\u2125\u2127\u2129\u212e\u213a\u213b\u214a\u214c\u214d\u214f\u2195-\u2199\u219c-\u219f\u21a1\u21a2\u21a4\u21a5\u21a7-\u21ad\u21af-\u21cd\u21d0\u21d1\u21d3\u21d5-\u21f3\u2300-\u2307\u230c-\u231f\u2322-\u2328\u232b-\u237b\u237d-\u239a\u23b4-\u23db\u23e2-\u23e7\u2400-\u2426\u2440-\u244a\u249c-\u24e9\u2500-\u25b6\u25b8-\u25c0\u25c2-\u25f7\u2600-\u266e\u2670-\u269d\u26a0-\u26bc\u26c0-\u26c3\u2701-\u2704\u2706-\u2709\u270c-\u2727\u2729-\u274b\u274d\u274f-\u2752\u2756\u2758-\u275e\u2761-\u2767\u2794\u2798-\u27af\u27b1-\u27be\u2800-\u28ff\u2b00-\u2b2f\u2b45\u2b46\u2b50-\u2b54\u2ce5-\u2cea\u2e80-\u2e99\u2e9b-\u2ef3\u2f00-\u2fd5\u2ff0-\u2ffb\u3004\u3012\u3013\u3020\u3036\u3037\u303e\u303f\u3190\u3191\u3196-\u319f\u31c0-\u31e3\u3200-\u321e\u322a-\u3243\u3250\u3260-\u327f\u328a-\u32b0\u32c0-\u32fe\u3300-\u33ff\u4dc0-\u4dff\ua490-\ua4c6\ua828-\ua82b\ufdfd\uffe4\uffe8\uffed\uffee\ufffc\ufffd]|(?:\ud800[\udd02\udd37-\udd3f\udd79-\udd89\udd90-\udd9b\uddd0-\uddfc])|(?:\ud834[\udc00-\udcf5\udd00-\udd26\udd29-\udd64\udd6a-\udd6c\udd83-\udd84\udd8c-\udda9\uddae-\udddd\ude00-\ude41\ude45\udf00-\udf56])|(?:\ud83c[\udc00-\udc2b\udc30-\udc93]))'; // 10102, 10137-1013f, 10179-10189, 10190-1019b, 101d0-101fc, 1d000-1d0f5, 1d100-1d126, 1d129-1d164, 1d16a-1d16c, 1d183-1d184, 1d18c-1d1a9, 1d1ae-1d1dd, 1d200-1d241, 1d245, 1d300-1d356, 1f000-1f02b, 1f030-1f093
+                                // Separator, Line
+                                // Zl = '[\u2028]';
+                                // Separator, Paragraph
+                                // Zp = '[\u2029]';
+                                // Separator, Space
+                                // Zs = '[\u0020\u00a0\u1680\u180e\u2000-\u200a\u202f\u205f\u3000]';
+
+                                // Form broader groups
+                                // C = join([Cc, Cf, Cn, Co, Cs]);
+                                // L = join([Ll, Lm, Lo, Lt, Lu]);
+                                // M = join([Mc, Me, Mn]);
+                                // N = join([Nd, Nl, No]);
+                                // P = join([Pc, Pd, Pe, Pf, Pi, Po, Ps]);
+                                // S = join([Sc, Sk, Sm, So]);
+                                // Z = join([Zl, Zp, Zs]);
+                                
+
                                 // \X = (?>\PM\pM*)
                                 // "Extended properties such as "Greek" or "InMusicalSymbols" are not supported by PCRE."
                             throw 'You are in "X" (PCRE_EXTRA) mode, using a reserved and presently unused escape sequence in '+arguments.callee.name;
