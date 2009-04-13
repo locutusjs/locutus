@@ -5,7 +5,8 @@ function preg_match(pattern, subject, matches, flags, offset) {
     // *     example 1: matches = [];
     // *     example 1: preg_match(/(\w+)\W([\W\w]+)/, 'this is some text', matches);
     // *     matches 1: matches[1] == 'this'
-
+    // *     returns 1: 1
+    
     // UNFINISHED
 
     var i=0, lastDelimPos=-1, flag='', patternPart='', flagPart='', array = [], regexpFlags='', subPatternNames=[];
@@ -23,6 +24,7 @@ function preg_match(pattern, subject, matches, flags, offset) {
             patternPart = pattern.slice(1, lastDelimPos);
             flagPart = pattern.slice(lastDelimPos+1);
             // Fix: Need to study http://php.net/manual/en/regexp.reference.php more thoroughly
+            // e.g., internal options i, m, s, x, U, X, J; conditional subpatterns?, comments, recursive subpatterns, 
             for (i=0; i < flagPart.length; i++) {
                 flag = flagPart[i];
                 switch(flag) {
@@ -39,10 +41,26 @@ function preg_match(pattern, subject, matches, flags, offset) {
                     case 'A': // pattern is "constrained to match only at the start of the string which is being searched"
                     case 'D': // "a dollar metacharacter in the pattern matches only at the end of the subject string" (ignored if 'm' set)
                     case 'U': // "makes not greedy by default, but become greedy if followed by "?""
-                    case 'X': // "additional functionality of PCRE that is incompatible with Perl. Any backslash in a pattern that is followed by a letter that has no special meaning causes an error, thus reserving these combinations for future expansion"; not in use in PHP presently
                     case 'J': // "changes the local PCRE_DUPNAMES option. Allow duplicate names for subpatterns"
                     case 'u': // "turns on additional functionality of PCRE that is incompatible with Perl. Pattern strings are treated as UTF-8."
                         throw 'The passed flag "'+flag+'" is presently unsupported in '+arguments.callee.name;
+                    case 'X': // "additional functionality of PCRE that is incompatible with Perl. Any backslash in a pattern that is followed by a letter that has no special meaning causes an error, thus reserving these combinations for future expansion"; not in use in PHP presently
+throw 'X flag is unimplemented at present';
+                        if (/\/([^\\^$.[\]|()?*+{}aefnrt\ddDhHsSvVwWbBAZzGCcxkgpPX])/.test(patternPart)) { // can be 1-3 \d together after backslash (as one unit)
+                            // \C = single byte (useful in 'u'/UTF8 mode)
+                            // CcxpPXkg are all special uses; 
+                            //c. (any character after 'c' for control character)
+                            // x[a-fA-F\d][a-fA-F\d] (hex)
+                            // "Back references to the named subpatterns can be achieved by (?P=name) or, since PHP 5.2.4, also by \k<name>, \k'name', \k{name} or \g{name}"
+                            // Unicode classes (with u flag only)
+                                // p[] | P[] (case insensitive does not affect)
+                                // [CLMNPSZ]
+                                // C|Cc|Cf|Cn|Co|Cs|L|Ll|Lm|Lo|Lt|Lu|M|Mc|Me|Mn|N|Nd|Nl|No|P|Pc|Pd|Pe|Pf|Pi|Po|Ps|S|Sc|Sk|Sm|So|Z|Zl|Zp|Zs
+                                // \X = (?>\PM\pM*)
+                                // "Extended properties such as "Greek" or "InMusicalSymbols" are not supported by PCRE."
+                            throw 'You are in "X" (PCRE_EXTRA) mode, using a reserved and presently unused escape sequence in '+arguments.callee.name;
+                        }
+                        break;
                     case 'S': // spends "more time analyzing pattern in order to speed up the time taken for matching" (for subsequent matches)
                         throw 'The passed flag "'+flag+'" to '+arguments.callee.name+' cannot be implemented in JavaScript'; // Could possibly optimize inefficient expressions, however
                     case 'y':
