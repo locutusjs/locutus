@@ -6,6 +6,8 @@ function array_unique( array ) {
     // +   bugfixed by: Nate
     // +      input by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Michael Grier
+	// %          note 1: the second argument, sort_flags is not implemented
     // *     example 1: array_unique(['Kevin','Kevin','van','Zonneveld','Kevin']);
     // *     returns 1: ['Kevin','van','Zonneveld']
     // *     example 2: array_unique({'a': 'green', 0: 'red', 'b': 'green', 1: 'blue', 2: 'red'});
@@ -15,11 +17,10 @@ function array_unique( array ) {
     var val = '';
     tmp_arr1 = array;
     
-    var __array_search = function (needle, haystack, argStrict) {
+    var __array_search = function (needle, haystack) {
         var fkey = '';
-        var strict = !!argStrict;
         for (fkey in haystack) {
-            if ((strict && haystack[fkey] === needle) || (!strict && haystack[fkey] == needle) ) {
+            if ((haystack[fkey] + '') === (needle + '')) {
                 return fkey;
             }
         }
