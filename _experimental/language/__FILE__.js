@@ -11,8 +11,13 @@ function __DIR__() {
     // %        note 3: If the function thinks it is in the original HTML
     // %        note 3: document then the URL stored in window.location.href
     // %        note 3: is used. There might be a better choice for this.
+    // %        note 4: I just upgraded to Safari 4 beta today and I found
+    // %        note 4: that the method I used to get the current script tag
+    // %        note 4: does not work for Safari 4.
+    // %        note 4: In my local code I swapped out that part for Prototype's
+    // %        note 4: $$('script') and everything worked fine again.
     // *     example 1: __FILE__();
     // *     returns 1: ''
 
-	return $P.dirname(__FILE__());
+	return dirname(__FILE__());
 }
