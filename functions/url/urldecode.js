@@ -8,6 +8,7 @@ function urldecode( str ) {
     // +      input by: travc
     // +      input by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Lars Fischer
     // %          note 1: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
     // *     example 1: urldecode('Kevin+van+Zonneveld%21');
     // *     returns 1: 'Kevin van Zonneveld!'
@@ -33,6 +34,13 @@ function urldecode( str ) {
     histogram['~']   = '%7E';
     histogram['!']   = '%21';
     histogram['%20'] = '+';
+    histogram['\u00DC'] = '%DC';
+    histogram['\u00FC'] = '%FC';
+    histogram['\u00C4'] = '%D4';
+    histogram['\u00E4'] = '%E4';
+    histogram['\u00D6'] = '%D6';
+    histogram['\u00F6'] = '%F6';
+    histogram['\u00DF'] = '%DF'; 
     histogram['\u20AC'] = '%80';
     histogram['\u0081'] = '%81';
     histogram['\u201A'] = '%82';
