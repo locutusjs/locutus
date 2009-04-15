@@ -12,6 +12,8 @@ function date ( format, timestamp ) {
     // +      input by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   derived from: gettimeofday
     // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
@@ -34,6 +36,31 @@ function date ( format, timestamp ) {
         } else {
             return n;
         }
+    };
+    var _dst = function (t) {
+        // Calculate Daylight Saving Time (derived from gettimeofday() code)
+        var dst=0;
+        var jan1 = new Date(t.getFullYear(), 0, 1, 0, 0, 0, 0);  // jan 1st
+        var june1 = new Date(t.getFullYear(), 6, 1, 0, 0, 0, 0); // june 1st
+        var temp = jan1.toUTCString();
+        var jan2 = new Date(temp.slice(0, temp.lastIndexOf(' ')-1));
+        temp = june1.toUTCString();
+        var june2 = new Date(temp.slice(0, temp.lastIndexOf(' ')-1));
+        var std_time_offset = (jan1 - jan2) / (1000 * 60 * 60);
+        var daylight_time_offset = (june1 - june2) / (1000 * 60 * 60);
+
+        if (std_time_offset === daylight_time_offset) {
+            dst = 0; // daylight savings time is NOT observed
+        }
+        else {
+            // positive is southern, negative is northern hemisphere
+            var hemisphere = std_time_offset - daylight_time_offset;
+            if (hemisphere >= 0) {
+                std_time_offset = daylight_time_offset;
+            }
+            dst = 1; // daylight savings time is observed
+        }
+        return dst;
     };
     var ret = '';
     var txt_weekdays = ["Sunday","Monday","Tuesday","Wednesday",
@@ -78,15 +105,12 @@ function date ( format, timestamp ) {
 
                 if(b <= 2 && ((jsdate.getDay() || 7) - 1) <= 2 - b){
                     return 1;
-                } else{
-
-                    if(a <= 2 && nd >= 4 && a >= (6 - nd)){
-                        nd2 = new Date(jsdate.getFullYear() - 1 + "/12/31");
-                        return date("W", Math.round(nd2.getTime()/1000));
-                    } else{
-                        return (1 + (nd <= 3 ? ((a + nd) / 7) : (a - (7 - nd)) / 7) >> 0);
-                    }
+                } 
+                if(a <= 2 && nd >= 4 && a >= (6 - nd)){
+                    nd2 = new Date(jsdate.getFullYear() - 1 + "/12/31");
+                    return date("W", Math.round(nd2.getTime()/1000));
                 }
+                return (1 + (nd <= 3 ? ((a + nd) / 7) : (a - (7 - nd)) / 7) >> 0);
             },
 
         // Month
@@ -97,8 +121,8 @@ function date ( format, timestamp ) {
                 return pad(f.n(), 2);
             },
             M: function(){
-                var t;
-                t = f.F(); return t.substr(0,3);
+                var t = f.F();
+                return t.substr(0,3);
             },
             n: function(){
                 return jsdate.getMonth() + 1;
@@ -107,13 +131,11 @@ function date ( format, timestamp ) {
                 var n;
                 if( (n = jsdate.getMonth() + 1) == 2 ){
                     return 28 + f.L();
-                } else{
-                    if( n & 1 && n < 8 || !(n & 1) && n > 7 ){
-                        return 31;
-                    } else{
-                        return 30;
-                    }
                 }
+                if( n & 1 && n < 8 || !(n & 1) && n > 7 ){
+                    return 31;
+                }
+                return 30;
             },
 
         // Year
@@ -181,27 +203,25 @@ function date ( format, timestamp ) {
 
         // Timezone
             e: function () {
-//                var abbr='', i=0;
-//                if (this.php_js && this.php_js.default_timezone) {
-//                    return this.php_js.default_timezone;
-//                }
-//                if (!tal.length) {
-//                    tal = timezone_abbreviations_list();
-//                }
-//                for (abbr in tal) {
-//                    for (i=0; i < tal[abbr].length; i++) {
-//                        if (tal[abbr][i].offset === -jsdate.getTimezoneOffset()*60) {
-//                            return tal[abbr][i].timezone_id;
-//                        }
-//                    }
-//                }
+/*                var abbr='', i=0;
+                if (this.php_js && this.php_js.default_timezone) {
+                    return this.php_js.default_timezone;
+                }
+                if (!tal.length) {
+                    tal = timezone_abbreviations_list();
+                }
+                for (abbr in tal) {
+                    for (i=0; i < tal[abbr].length; i++) {
+                        if (tal[abbr][i].offset === -jsdate.getTimezoneOffset()*60) {
+                            return tal[abbr][i].timezone_id;
+                        }
+                    }
+                }
+*/
                 return 'UTC';
             },
             I: function(){
-                var DST = (new Date(jsdate.getFullYear(),6,1,0,0,0));
-                DST = DST.getHours()-DST.getUTCHours();
-                var ref = jsdate.getHours()-jsdate.getUTCHours();
-                return ref != DST ? 1 : 0;
+                return _dst(jsdate);
             },
             O: function(){
                var t = pad(Math.abs(jsdate.getTimezoneOffset()/60*100), 4);
@@ -213,31 +233,31 @@ function date ( format, timestamp ) {
                 return (O.substr(0, 3) + ":" + O.substr(3, 2));
             },
             T: function () {
-//                var abbr='', i=0;
-//                if (!tal.length) {
-//                    tal = timezone_abbreviations_list();
-//                }
-//                if (this.php_js && this.php_js.default_timezone) {
-//                    for (abbr in tal) {
-//                        for (i=0; i < tal[abbr].length; i++) {
-//                            if (tal[abbr][i].timezone_id === this.php_js.default_timezone) {
-//                                return abbr.toUpperCase();
-//                            }
-//                        }
-//                    }
-//                }
-//                for (abbr in tal) {
-//                    for (i=0; i < tal[abbr].length; i++) {
-//                        if (tal[abbr][i].offset === -jsdate.getTimezoneOffset()*60) {
-//                            return abbr.toUpperCase();
-//                        }
-//                    }
-//                }
+/*                var abbr='', i=0;
+                if (!tal.length) {
+                    tal = timezone_abbreviations_list();
+                }
+                if (this.php_js && this.php_js.default_timezone) {
+                    for (abbr in tal) {
+                        for (i=0; i < tal[abbr].length; i++) {
+                            if (tal[abbr][i].timezone_id === this.php_js.default_timezone) {
+                                return abbr.toUpperCase();
+                            }
+                        }
+                    }
+                }
+                for (abbr in tal) {
+                    for (i=0; i < tal[abbr].length; i++) {
+                        if (tal[abbr][i].offset === -jsdate.getTimezoneOffset()*60) {
+                            return abbr.toUpperCase();
+                        }
+                    }
+                }
+*/
                 return 'UTC';
             },
             Z: function(){
-               var t = -jsdate.getTimezoneOffset()*60;
-               return t;
+               return -jsdate.getTimezoneOffset()*60;
             },
 
         // Full Date/Time
@@ -263,7 +283,6 @@ function date ( format, timestamp ) {
             // nothing special
             ret = s;
         }
-
         return ret;
     });
 }
