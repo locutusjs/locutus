@@ -24,7 +24,7 @@ function strtotime(str, now) {
     if (strTmp == 'now') {
         return (new Date()).getTime()/1000; // Return seconds, not milli-seconds
     } else if (!isNaN(parse = Date.parse(strTmp))) {
-        return parse/1000;
+        return (parse/1000);
     } else if (now) {
         now = new Date(now*1000); // Accept PHP-style seconds
     } else {
@@ -161,7 +161,7 @@ function strtotime(str, now) {
                 s[1] = i;
             }
         }
-        return strtotime(s[2] + ' ' + s[1] + ' ' + s[0] + ' ' + match[3])+match[5]/1000;
+        return strtotime(s[2] + ' ' + s[1] + ' ' + s[0] + ' ' + match[3])+(match[5] ? match[5]/1000 : '');
     }
 
     var regex = '([+-]?\\d+\\s'
@@ -175,7 +175,6 @@ function strtotime(str, now) {
     + '(\\sago)?';
 
     match = strTmp.match(new RegExp(regex, 'g'));
-
     if (match == null) {
         return false;
     }
