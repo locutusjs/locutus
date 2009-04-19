@@ -1,6 +1,12 @@
 #!/usr/bin/php -q
 <?php
 
+
+$ser = serialize("a \n b");
+var_dump($ser);
+
+die();
+
 echo hexdec('9c4cb8');
 die();
 

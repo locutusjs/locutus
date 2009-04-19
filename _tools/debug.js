@@ -12,6 +12,9 @@ load('../functions/var/intval.js');
 load('../functions/var/is_array.js');
 load('../functions/var/is_object.js');
 load('../functions/array/array_combine.js');
+load('../functions/var/serialize.js');
+load('../functions/var/var_dump.js');
+load('../functions/strings/echo.js');
 
 
 window.location = './tester.htm';
@@ -21,24 +24,17 @@ window.onload = function(){
         return tester_print_r(a, r);
     }
 
-    print('Debug started');
-    print();
+    //print('Debug started');
     /*
      * Debug here, then:
      *   rhino debug.js
      *   
     */
+    var $ser;
 
-    var combined;
-    var keys = ['0', '1', '2'];
-    var vals = ['a', 'b', 'c'];
-
-    combined = array_combine(keys, vals);
-    if (is_array(combined)) {
-        print_r(combined);
-    }
+    $ser = serialize("a \n b");
+    var_dump($ser);
 
     
-    print();
-    print('Debug finished');
+    //print('Debug finished');
 }
