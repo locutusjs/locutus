@@ -1,1 +1,1 @@
-// We are probably not going to port this. Discuss at http://phpjs.org/contribute/add
+// We are probably not going to port this. Discuss at http://phpjs.org/contributions/add
