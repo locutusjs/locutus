@@ -4,7 +4,8 @@ function strtotime(str, now) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: David
     // +   improved by: Caio Ariede (http://caioariede.com)
-   // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Wagner B. Soares
     // %        note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
     // *     example 1: strtotime('+1 day', 1129633200);
     // *     returns 1: 1129719600
@@ -64,7 +65,7 @@ function strtotime(str, now) {
                         break;
                     default:
                         var day;
-                        if (typeof (day = __is_day[m[1].substring(0, 3)]) != 'undefined') {
+                        if (typeof (day = __is.day[m[1].substring(0, 3)]) != 'undefined') {
                             var diff = day - now.getDay();
                             if (diff == 0) {
                                 diff = 7 * num;
@@ -73,11 +74,9 @@ function strtotime(str, now) {
                             } else {
                                 if (m[0] == 'next') diff += 7;
                             }
-
                             now.setDate(now.getDate() + diff);
                         }
                 }
-
                 break;
 
             default:
@@ -110,10 +109,8 @@ function strtotime(str, now) {
                 } else {
                     return false;
                 }
-
                 break;
         }
-
         return true;
     };
 
@@ -146,12 +143,12 @@ function strtotime(str, now) {
         }
     };
 
-    match = strTmp.match(/^(\d{2,4}-\d{2}-\d{2})(\s(\d{1,2}:\d{1,2}(:\d{1,2}))?(?:\.(\d+))?)?$/);
+    match = strTmp.match(/^(\d{2,4}-\d{2}-\d{2})(?:\s(\d{1,2}:\d{2}(:\d{2})?)?(?:\.(\d+))?)?$/);
     if (match != null) {
-        if (!match[3]) {
-            match[3] = '00:00:00';
-        } else if (!match[4]) {
-            match[3] += ':00';
+        if (!match[2]) {
+            match[2] = '00:00:00';
+        } else if (!match[3]) {
+            match[2] += ':00';
         }
 
         s = match[1].split(/-/g);
@@ -161,7 +158,10 @@ function strtotime(str, now) {
                 s[1] = i;
             }
         }
-        return strtotime(s[2] + ' ' + s[1] + ' ' + s[0] + ' ' + match[3])+(match[5] ? match[5]/1000 : '');
+        s[0] = parseInt(s[0], 10);
+
+        s[0] = (s[0] >= 0 && s[0] <= 69) ? '20'+(s[0] < 10 ? '0'+s[0] : s[0]+'') : (s[0] >= 70 && s[0] <= 99) ? '19'+s[0] : s[0]+'';
+        return parseInt(this.strtotime(s[2] + ' ' + s[1] + ' ' + s[0] + ' ' + match[2])+(match[4] ? match[4]/1000 : ''), 10);
     }
 
     var regex = '([+-]?\\d+\\s'
