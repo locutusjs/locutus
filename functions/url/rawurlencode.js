@@ -4,8 +4,10 @@ function rawurlencode( str ) {
     // +      input by: travc
     // +      input by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Michael Grier
+    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: rawurlencode('Kevin van Zonneveld!');
-    // *     returns 1: 'Kevin van Zonneveld%21'
+    // *     returns 1: 'Kevin%20van%20Zonneveld%21'
     // *     example 2: rawurlencode('http://kevin.vanzonneveld.net/');
     // *     returns 2: 'http%3A%2F%2Fkevin.vanzonneveld.net%2F'
     // *     example 3: rawurlencode('http://www.google.nl/search?q=php.js&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a');
@@ -63,9 +65,6 @@ function rawurlencode( str ) {
 
     // Begin with encodeURIComponent, which most resembles PHP's encoding functions
     ret = encodeURIComponent(ret);
-
-    // Restore spaces, converted by encodeURIComponent which is not rawurlencode compatible
-    ret = replacer('%20', ' ', ret); // Custom replace. No regexing
 
     for (search in histogram) {
         replace = histogram[search];
