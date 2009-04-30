@@ -6,11 +6,12 @@ function get_html_translation_table(table, quote_style) {
     // +   bugfixed by: Alex
     // +   bugfixed by: Marco
     // +   bugfixed by: madipta
+    // +   improved by: KELAN
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // %          note: It has been decided that we're not going to add global
     // %          note: dependencies to php.js. Meaning the constants are not
     // %          note: real constants, but strings instead. integers are also supported if someone
     // %          note: chooses to create the constants themselves.
-    // %          note: Table from http://www.the-art-of-web.com/html/character-codes/
     // *     example 1: get_html_translation_table('HTML_SPECIALCHARS');
     // *     returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
     
@@ -18,46 +19,32 @@ function get_html_translation_table(table, quote_style) {
     var constMappingTable = {}, constMappingQuoteStyle = {};
     var useTable = {}, useQuoteStyle = {};
     
-    useTable      = (table ? table.toUpperCase() : 'HTML_SPECIALCHARS');
-    useQuoteStyle = (quote_style ? quote_style.toUpperCase() : 'ENT_COMPAT');
-    
     // Translate arguments
     constMappingTable[0]      = 'HTML_SPECIALCHARS';
     constMappingTable[1]      = 'HTML_ENTITIES';
     constMappingQuoteStyle[0] = 'ENT_NOQUOTES';
     constMappingQuoteStyle[2] = 'ENT_COMPAT';
     constMappingQuoteStyle[3] = 'ENT_QUOTES';
-    
-    // Map numbers to strings for compatibilty with PHP constants
-    if (!isNaN(useTable)) {
-        useTable = constMappingTable[useTable];
-    }
-    if (!isNaN(useQuoteStyle)) {
-        useQuoteStyle = constMappingQuoteStyle[useQuoteStyle];
+
+    useTable 	  = !isNaN(table) ? constMappingTable[table] : table ? table.toUpperCase() : 'HTML_SPECIALCHARS';
+    useQuoteStyle = !isNaN(quote_style) ? constMappingQuoteStyle[quote_style] : quote_style ? quote_style.toUpperCase() : 'ENT_COMPAT';
+
+    if (useTable !== 'HTML_SPECIALCHARS' && useTable !== 'HTML_ENTITIES') {
+        throw Error("Table: "+useTable+' not supported');
     }
 
-    if (useTable == 'HTML_SPECIALCHARS') {
-        // ascii decimals for better compatibility
-        entities['38'] = '&amp;';
-        if (useQuoteStyle != 'ENT_NOQUOTES') {
-            entities['34'] = '&quot;';
-        }
-        if (useQuoteStyle == 'ENT_QUOTES') {
-            entities['39'] = '&#039;';
-        }
-        entities['60'] = '&lt;';
-        entities['62'] = '&gt;';
-    } else if (useTable == 'HTML_ENTITIES') {
-        // ascii decimals for better compatibility
-	    entities['38']  = '&amp;';
-        if (useQuoteStyle != 'ENT_NOQUOTES') {
-            entities['34'] = '&quot;';
-        }
-        if (useQuoteStyle == 'ENT_QUOTES') {
-            entities['39'] = '&#039;';
-        }
-	    entities['60']  = '&lt;';
-	    entities['62']  = '&gt;';
+    // ascii decimals for better compatibility
+    entities['38'] = '&amp;';
+    if (useQuoteStyle !== 'ENT_NOQUOTES') {
+        entities['34'] = '&quot;';
+    }
+    if (useQuoteStyle === 'ENT_QUOTES') {
+        entities['39'] = '&#039;';
+    }
+    entities['60'] = '&lt;';
+    entities['62'] = '&gt;';
+
+    if (useTable === 'HTML_ENTITIES') {
 	    entities['160'] = '&nbsp;';
 	    entities['161'] = '&iexcl;';
 	    entities['162'] = '&cent;';
@@ -154,9 +141,6 @@ function get_html_translation_table(table, quote_style) {
 	    entities['253'] = '&yacute;';
 	    entities['254'] = '&thorn;';
 	    entities['255'] = '&yuml;';
-    } else {
-        throw Error("Table: "+useTable+' not supported');
-        return false;
     }
     
     // ascii decimals to real symbols
