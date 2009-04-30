@@ -5,10 +5,11 @@ function echo ( ) {
     // +   improved by: Nate
     // +    revised by: Der Simon (http://innerdom.sourceforge.net/)
     // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Eugene Bulkin (http://doubleaw.com/)
     // %        note 1: The function still has issues with outputting certain kinds of XML, such as
     // %        note 1: attributes defined with apostrophes, or creating namespaced XML, etc.
-    // %        note 1: We might solve this by building on http://code.google.com/p/jssaxparser
-    // %        note 1: and using that, but it would be even larger; if browsers start to support
+    // %        note 1: We might at some point solve this by building on http://code.google.com/p/jssaxparser
+    // %        note 1: and using that, though it would be even larger; if browsers start to support
     // %        note 1: DOM Level 3 Load and Save (parsing/serializing), we wouldn't need any
     // %        note 1: such long code (even most of the code below).
     // %        note 2: InnerHTML() is better because it works (and it's fast),
@@ -56,7 +57,7 @@ function echo ( ) {
                 }
             }
             return b;
-        }
+        };
         var v = function(a,b,c){
             var e,f;
             e=b;
@@ -126,7 +127,7 @@ function echo ( ) {
             return b;
         };
         return w(q);
-    }
+    };
 
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
