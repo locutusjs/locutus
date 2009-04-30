@@ -52,7 +52,7 @@ function echo ( ) {
                         a=a.substr(g+2);
                         b.lastChild.setAttribute(f,h);
                     }else{
-                        break
+                        break;
                     }
                 }
             }

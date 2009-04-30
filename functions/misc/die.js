@@ -6,5 +6,5 @@ function die( status ) {
     // *     example 1: die();
     // *     returns 1: null
 
-    return exit(status);
+    return this.exit(status);
 }

@@ -7,5 +7,5 @@ function doubleval( mixed_var ) {
     // *     example 1: doubleval(186);
     // *     returns 1: 186.00
 
-    return floatval(mixed_var);
+    return this.floatval(mixed_var);
 }

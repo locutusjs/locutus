@@ -25,8 +25,8 @@ function define(name, value) {
                 "\\":"\\"
             };
             return value.replace(/\x08|[\x0A-\x0D]|"|\\/g, function(value){
-                return "\\"+replace[value]
-                });
+                return "\\"+replace[value];
+            });
         };
         define = function (name, value){
             if (document.createElementNS) {
@@ -38,7 +38,7 @@ function define(name, value) {
             script.appendChild(document.createTextNode(toString(name, value)));
             document.documentElement.appendChild(script);
             document.documentElement.removeChild(script);
-        }
+        };
     } catch (e){
         replace = function (value) {
             var replace = {
@@ -46,8 +46,8 @@ function define(name, value) {
                 "\x0D":"\\r"
             };
             return value.replace(/"/g, '""').replace(/\n|\r/g, function(value){
-                return replace[value]
-                });
+                return replace[value];
+            });
         };
         define = this.execScript ?
         function (name, value){
