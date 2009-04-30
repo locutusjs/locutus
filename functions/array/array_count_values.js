@@ -21,7 +21,7 @@ function array_count_values( array ) {
             t = "array";
         }
         return t;
-    }    
+    };
 
     var __countValue = function (value) {
         switch (typeof(value)) {

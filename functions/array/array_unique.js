@@ -25,7 +25,7 @@ function array_unique( array ) {
             }
         }
         return false;
-    }
+    };
 	
     for (key in tmp_arr1) {
         val = tmp_arr1[key];

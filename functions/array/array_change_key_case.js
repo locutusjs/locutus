@@ -15,14 +15,14 @@ function array_change_key_case( array ) {
     // *     example 6: array_change_key_case({ FuBaR: 42 }, 2);
     // *     returns 6: {"FUBAR": 42}
 
-    var case_fn, tmp_ar = new Object, argc = arguments.length, argv = arguments, key;
+    var case_fn, tmp_ar = {}, argc = arguments.length, argv = arguments, key;
 
     if (array instanceof Array) {
         return array; 
     }
 
     if (array instanceof Object) {
-        if( argc == 1 || argv[1] == 'CASE_LOWER' || argv[1] == 0 ){
+        if( argc === 1 || argv[1] === 'CASE_LOWER' || argv[1] === 0 ){
             case_fn = "toLowerCase";
         } else{
             case_fn = "toUpperCase";

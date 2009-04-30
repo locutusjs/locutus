@@ -16,7 +16,7 @@ function aggregate_info (obj) {
         return false; // Is this what is returned?
     }
 
-    idx = this.php_js.aggregateKeys.indexOf(obj)
+    idx = this.php_js.aggregateKeys.indexOf(obj);
     if (idx === -1) {
         return false;
     }

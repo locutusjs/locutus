@@ -10,5 +10,5 @@ function ctype_alpha (text) {
     // BEGIN STATIC
     setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     // END STATIC
-    return this.php_js.locales[this.php_js.localeCategories['LC_CTYPE']]['LC_CTYPE'].al.test(text);
+    return this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.al.test(text);
 }

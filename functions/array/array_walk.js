@@ -13,10 +13,10 @@ function array_walk (array, funcname, userdata) {
     }
     
     for (key in array) {
-        if (typeof (userdata) != 'undefined') {
-            eval (funcname + '( array [key] , key , userdata  )' );
+        if (typeof(userdata) != 'undefined') {
+            eval(funcname + '( array [key] , key , userdata  )' );
         } else {
-            eval (funcname + '(  userdata ) ');
+            eval(funcname + '(  userdata ) ');
         }
     }
     

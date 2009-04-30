@@ -31,7 +31,7 @@ function array_splice (arr, offst, lgth, replacement) {
             delete arr[tmp];
         }
         return ct;
-    }
+    };
 
     if (replacement && !(typeof replacement === 'object')) {
         replacement = [replacement];
@@ -79,7 +79,7 @@ function array_splice (arr, offst, lgth, replacement) {
             // rmvdObj.length += 1;
 
             if (replacement && replacement[++repl_ct]) {
-                arr[key] = replacement[repl_ct]
+                arr[key] = replacement[repl_ct];
             } else {
                 delete arr[key];
             }

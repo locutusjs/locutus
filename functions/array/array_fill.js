@@ -7,7 +7,7 @@ function array_fill( start_index, num, mixed_val ) {
 
     var key, tmp_arr = {};
 
-    if ( !isNaN ( start_index ) && !isNaN ( num ) ) {
+    if ( !isNaN( start_index ) && !isNaN( num ) ) {
         for( key = 0; key < num; key++ ) {
             tmp_arr[(key+start_index)] = mixed_val;
         }

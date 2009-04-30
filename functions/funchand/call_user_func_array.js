@@ -21,7 +21,7 @@ function call_user_func_array(cb, parameters) {
     }
     
     if (typeof func != 'function') {
-        throw new Exception(func + ' is not a valid function');
+        throw new Error(func + ' is not a valid function');
     }
 
     return func.apply(null, parameters);

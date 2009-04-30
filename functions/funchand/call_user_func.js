@@ -17,7 +17,7 @@ function call_user_func(cb, parameters) {
     }
     
     if (typeof func != 'function') {
-        throw new Exception(func + ' is not a valid function');
+        throw new Error(func + ' is not a valid function');
     }
 
     return func.apply(null, Array.prototype.slice.call(parameters, 1));
