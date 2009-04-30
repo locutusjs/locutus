@@ -21,7 +21,7 @@ function property_exists (cls, prop) {
         return true;
     }
 
-    return (cls[prop] !== undefined && typeof cls[prop] !== 'function')
-        || (cls.prototype !== undefined && cls.prototype[prop] !== undefined && typeof cls.prototype[prop] !== 'function')
-        || (cls.constructor && cls.constructor[prop] !== undefined && typeof cls.constructor[prop] !== 'function');
+    return (cls[prop] !== undefined && typeof cls[prop] !== 'function') ||
+        (cls.prototype !== undefined && cls.prototype[prop] !== undefined && typeof cls.prototype[prop] !== 'function') ||
+        (cls.constructor && cls.constructor[prop] !== undefined && typeof cls.constructor[prop] !== 'function');
 }

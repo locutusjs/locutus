@@ -77,7 +77,7 @@ function serialize( mixed_value ) {
                     continue; 
                 }
                 
-                okey = (key.match(/^[0-9]+$/) ? parseInt(key) : key);
+                okey = (key.match(/^[0-9]+$/) ? parseInt(key, 10) : key);
                 vals += serialize(okey) +
                         serialize(mixed_value[key]);
                 count++;
@@ -85,6 +85,8 @@ function serialize( mixed_value ) {
             val += ":" + count + ":{" + vals + "}";
             break;
     }
-    if (type != "object" && type != "array") val += ";";
+    if (type != "object" && type != "array") {
+	    val += ";";
+	}
     return val;
 }

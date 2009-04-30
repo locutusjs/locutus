@@ -21,7 +21,7 @@ function printf( ) {
         return false;
     }
     
-    ret = sprintf.apply(this, arguments);
+    ret = this.sprintf.apply(this, arguments);
 
     elmt = document.createTextNode(ret);
     body.appendChild(elmt);

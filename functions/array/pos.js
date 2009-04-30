@@ -7,5 +7,5 @@ function pos(arr) {
     // *     example 1: pos(transport);
     // *     returns 1: 'foot'
     
-    return current(arr);
+    return this.current(arr);
 }

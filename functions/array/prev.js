@@ -6,8 +6,12 @@ function prev (arr) {
     // *     example 1: prev(transport);
     // *     returns 1: false
 
-    if (!this.php_js) this.php_js = {};
-    if (!this.php_js.pointers) this.php_js.pointers = [];
+    if (!this.php_js) {
+        this.php_js = {};
+    }
+    if (!this.php_js.pointers) {
+        this.php_js.pointers = [];
+    }
     var pointers = this.php_js.pointers;
     var arrpos = pointers.indexOf(arr);
     var cursor = pointers[arrpos+1];

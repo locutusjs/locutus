@@ -9,14 +9,16 @@ function popen (filename, mode, use_include_path, context) {
     // BEGIN file inclusion: file_get_contents
     var file_get_contents = function ( url ) {
         var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
-        if (!req) throw new Error('XMLHttpRequest not supported');
+        if (!req) {
+		    throw new Error('XMLHttpRequest not supported');
+		}
         if (!/^http/.test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
             url = window.location.href + '/' +url;
         }
         req.open("GET", url, false);
         req.send(null);
         return req.responseText;
-    }
+    };
     // END file inclusion
 
     if (use_include_path === 1 || use_include_path === '1' || use_include_path === true) {
@@ -41,7 +43,6 @@ function popen (filename, mode, use_include_path, context) {
                 throw 'Windows-only modes are not supported';
             default:
                 throw 'Unrecognized file mode passed to '+arguments.caller.name+'()';
-                break;
         }
     }
 

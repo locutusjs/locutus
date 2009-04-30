@@ -18,7 +18,7 @@ function urlencode( str ) {
     // *     example 3: urlencode('http://www.google.nl/search?q=php.js&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a');
     // *     returns 3: 'http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a'
                              
-    var histogram = {}, tmp_arr = [];
+    var histogram = {}, tmp_arr = [], unicodeStr='', hexEscStr='';
     var ret = (str+'').toString();
     
     var replacer = function(search, replace, str) {
@@ -77,10 +77,10 @@ function urlencode( str ) {
     
     // Begin with encodeURIComponent, which most resembles PHP's encoding functions
     ret = encodeURIComponent(ret);
-    
-    for (search in histogram) {
-        replace = histogram[search];
-        ret = replacer(search, replace, ret) // Custom replace. No regexing
+
+    for (unicodeStr in histogram) {
+        hexEscStr = histogram[unicodeStr];
+        ret = replacer(unicodeStr, hexEscStr, ret); // Custom replace. No regexing
     }
     
     // Uppercase for full PHP compatibility

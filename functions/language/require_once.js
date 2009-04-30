@@ -12,8 +12,12 @@ function require_once(filename) {
     cur_file[window.location.href] = 1;
 
     // save include state for reference by include_once and require_once()
-    if (!this.php_js) this.php_js = {};
-    if (!this.php_js.includes) this.php_js.includes = cur_file;
+    if (!this.php_js) {
+	    this.php_js = {};
+	}
+    if (!this.php_js.includes) {
+	    this.php_js.includes = cur_file;
+	}
     if (!this.php_js.includes[filename]) {
         if (require(filename)) {
             return true;

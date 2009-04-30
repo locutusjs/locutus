@@ -13,8 +13,7 @@ function rawurldecode( str ) {
     // *     example 4: rawurldecode('-22%97bc%2Fbc');
     // *     returns 4: '-22—bc/bc'
 
-    var histogram = {};
-    var ret = str.toString(); 
+    var histogram = {}, ret = str.toString(), unicodeStr='', hexEscStr='';
 
     var replacer = function(search, replace, str) {
         var tmp_arr = [];
@@ -31,9 +30,9 @@ function rawurldecode( str ) {
     histogram['!']   = '%21';
 
 
-    for (replace in histogram) {
-        search = histogram[replace]; // Switch order when decoding
-        ret = replacer(search, replace, ret) // Custom replace. No regexing
+    for (unicodeStr in histogram) {
+        hexEscStr = histogram[unicodeStr]; // Switch order when decoding
+        ret = replacer(hexEscStr, unicodeStr, ret); // Custom replace. No regexing
     }
 
     // End with decodeURIComponent, which most resembles PHP's encoding functions

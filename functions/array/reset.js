@@ -7,8 +7,12 @@ function reset ( arr ) {
     // *     example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
     // *     returns 1: 'Kevin' 
     
-    if (!this.php_js) this.php_js = {};
-    if (!this.php_js.pointers) this.php_js.pointers = [];
+    if (!this.php_js) {
+        this.php_js = {};
+    }
+    if (!this.php_js.pointers) {
+        this.php_js.pointers = [];
+    }
     var pointers = this.php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);

@@ -9,7 +9,7 @@ function php_strip_whitespace (file) {
     // *     returns 1: '123'
 
     try {
-        var str = file_get_contents(file);
+        var str = this.file_get_contents(file);
     } catch (e) {
         return '';
     }

@@ -15,27 +15,27 @@ function range ( low, high, step ) {
     var walker = step || 1;
     var chars  = false;
 
-    if ( !isNaN ( low ) && !isNaN ( high ) ) {
+    if ( !isNaN( low ) && !isNaN( high ) ) {
         inival = low;
         endval = high;
-    } else if ( isNaN ( low ) && isNaN ( high ) ) {
+    } else if ( isNaN( low ) && isNaN( high ) ) {
         chars = true;
-        inival = low.charCodeAt ( 0 );
-        endval = high.charCodeAt ( 0 );
+        inival = low.charCodeAt( 0 );
+        endval = high.charCodeAt( 0 );
     } else {
-        inival = ( isNaN ( low ) ? 0 : low );
-        endval = ( isNaN ( high ) ? 0 : high );
+        inival = ( isNaN( low ) ? 0 : low );
+        endval = ( isNaN( high ) ? 0 : high );
     }
 
     plus = ( ( inival > endval ) ? false : true );
     if ( plus ) {
         while ( inival <= endval ) {
-            matrix.push ( ( ( chars ) ? String.fromCharCode ( inival ) : inival ) );
+            matrix.push( ( ( chars ) ? String.fromCharCode( inival ) : inival ) );
             inival += walker;
         }
     } else {
         while ( inival >= endval ) {
-            matrix.push ( ( ( chars ) ? String.fromCharCode ( inival ) : inival ) );
+            matrix.push( ( ( chars ) ? String.fromCharCode( inival ) : inival ) );
             inival -= walker;
         }
     }

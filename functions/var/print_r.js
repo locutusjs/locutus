@@ -11,6 +11,14 @@ function print_r( array, return_val ) {
     
     var output = "", pad_char = " ", pad_val = 4;
 
+    var repeat_char = function (len, pad_char) {
+        var str = "";
+        for(var i=0; i < len; i++) {
+            str += pad_char;
+        }
+        return str;
+    };
+
     var formatArray = function (obj, cur_depth, pad_val, pad_char) {
         if (cur_depth > 0) {
             cur_depth++;
@@ -39,26 +47,19 @@ function print_r( array, return_val ) {
         return str;
     };
 
-    var repeat_char = function (len, pad_char) {
-        var str = "";
-        for(var i=0; i < len; i++) { 
-            str += pad_char; 
-        }
-        return str;
-    };
     output = formatArray(array, 0, pad_val, pad_char);
 
     if (return_val !== true) {
         if (document.body) {
-            echo(output);
+            this.echo(output);
         }
         else {
             try {
                 XULDocument; // We're in XUL, so appending as plain text won't work
-                echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">'+output+'</pre>');
+                this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">'+output+'</pre>');
             }
             catch(e) {
-                echo(output); // Outputting as plain text may work in some plain XML
+                this.echo(output); // Outputting as plain text may work in some plain XML
             }
         }
         return true;

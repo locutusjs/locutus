@@ -10,7 +10,7 @@ function require( filename ) {
     // *     example 1: require('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: 2
 
-    var js_code = file_get_contents(filename);
+    var js_code = this.file_get_contents(filename);
     var script_block = document.createElementNS ? document.createElementNS('http://www.w3.org/1999/xhtml', 'script') : document.createElement('script');
     script_block.type = 'text/javascript';
     var client_pc = navigator.userAgent.toLowerCase();
@@ -27,15 +27,18 @@ function require( filename ) {
         var cur_file = {};
         cur_file[window.location.href] = 1;
 
-        if (!this.php_js) this.php_js = {};
-        if (!this.php_js.includes) this.php_js.includes = cur_file;
+        if (!this.php_js) {
+            this.php_js = {};
+        }
+        if (!this.php_js.includes) {
+            this.php_js.includes = cur_file;
+        }
 
         if (!this.php_js.includes[filename]) {
             this.php_js.includes[filename] = 1;
             return 1;
         } else {
-            // Use += 1 because ++ waits until AFTER the original value is returned to increment the value.
-            return this.php_js.includes[filename] += 1;
+            return ++this.php_js.includes[filename];
         }
     }
     return 0;

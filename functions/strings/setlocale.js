@@ -9,7 +9,6 @@ function setlocale (category, locale) {
     // %          note 2: Uses global: php_js to store locale info
 	// *     example 1: setlocale('LC_ALL', 'en_US');
 	// *     returns 1: 'en_US'
-
 	var categ='', cats = [], i=0;
 
 	// BEGIN REDUNDANT
@@ -34,7 +33,7 @@ function setlocale (category, locale) {
 	if (!phpjs.locales) {
 		// Can add to the locales
 		phpjs.locales = {};
-        
+
 		phpjs.locales.en = {
             'LC_COLLATE' : '', // Need to add something here for strcoll (and modify it too), perhaps a sorter function
             'LC_CTYPE' : { // Need to change any of these for English as opposed to C?
@@ -104,18 +103,18 @@ function setlocale (category, locale) {
                 NOSTR : ''
             }
         };
-		phpjs.locales['en_US'] = _copy(phpjs.locales.en);
-		phpjs.locales['en_US']['LC_TIME'].c = '%a %d %b %Y %r %Z';
-        phpjs.locales['en_US']['LC_TIME'].x = '%D';
-        phpjs.locales['en_US']['LC_TIME'].X = '%r';
+		phpjs.locales.en_US = _copy(phpjs.locales.en);
+		phpjs.locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z';
+        phpjs.locales.en_US.LC_TIME.x = '%D';
+        phpjs.locales.en_US.LC_TIME.X = '%r';
 
-		phpjs.locales['en_GB'] = _copy(phpjs.locales.en);
-		phpjs.locales['en_GB']['LC_TIME'].r =  '%l:%M:%S %P %Z';
-        
-		phpjs.locales['en_AU'] = _copy(phpjs.locales['en_GB']);
+		phpjs.locales.en_GB = _copy(phpjs.locales.en);
+		phpjs.locales.en_GB.LC_TIME.r =  '%l:%M:%S %P %Z';
+
+		phpjs.locales.en_AU = _copy(phpjs.locales.en_GB);
         phpjs.locales.C = _copy(phpjs.locales.en); // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
-        phpjs.locales.C['LC_CTYPE'].CODESET = 'ANSI_X3.4-1968';
-        phpjs.locales.C['LC_MONETARY'] = {
+        phpjs.locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968';
+        phpjs.locales.C.LC_MONETARY = {
             int_curr_symbol : '',
             currency_symbol : '',
             mon_decimal_point : '',
@@ -132,31 +131,31 @@ function setlocale (category, locale) {
             int_frac_digits : 127,
             frac_digits : 127
         };
-        phpjs.locales.C['LC_NUMERIC'] = {
+        phpjs.locales.C.LC_NUMERIC = {
             decimal_point : '.',
             thousands_sep : '',
             grouping : []
         };
-        phpjs.locales.C['LC_TIME'].c = '%a %b %e %H:%M:%S %Y'; // D_T_FMT
-        phpjs.locales.C['LC_TIME'].x = '%m/%d/%y'; // D_FMT
-        phpjs.locales.C['LC_TIME'].X = '%H:%M:%S'; // T_FMT
-        phpjs.locales.C['LC_MESSAGES'].YESEXPR = '^[yY]';
-        phpjs.locales.C['LC_MESSAGES'].NOEXPR = '^[nN]';
+        phpjs.locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y'; // D_T_FMT
+        phpjs.locales.C.LC_TIME.x = '%m/%d/%y'; // D_FMT
+        phpjs.locales.C.LC_TIME.X = '%H:%M:%S'; // T_FMT
+        phpjs.locales.C.LC_MESSAGES.YESEXPR = '^[yY]';
+        phpjs.locales.C.LC_MESSAGES.NOEXPR = '^[nN]';
 
-		phpjs.locales['fr'] =_copy(phpjs.locales.en);
-		phpjs.locales['fr']['LC_TIME'].a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'];
-        phpjs.locales['fr']['LC_TIME'].A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
-        phpjs.locales['fr']['LC_TIME'].b = ['jan', 'fév', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoû', 'sep', 'oct', 'nov', 'déc'];
-        phpjs.locales['fr']['LC_TIME'].B = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
-        phpjs.locales['fr']['LC_TIME'].c = '%a %d %b %Y %T %Z';
-        phpjs.locales['fr']['LC_TIME'].p = ['', ''];
-        phpjs.locales['fr']['LC_TIME'].P = ['', ''];
-        phpjs.locales['fr']['LC_TIME'].x = '%d.%m.%Y';
-        phpjs.locales['fr']['LC_TIME'].X = '%T';
-        
-		phpjs.locales['fr_CA'] = _copy(phpjs.locales['fr']);
-		phpjs.locales['fr_CA']['LC_TIME'].x = '%Y-%m-%d';
-        
+		phpjs.locales.fr =_copy(phpjs.locales.en);
+		phpjs.locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'];
+        phpjs.locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+        phpjs.locales.fr.LC_TIME.b = ['jan', 'fÃ©v', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoÃ»', 'sep', 'oct', 'nov', 'dÃ©c'];
+        phpjs.locales.fr.LC_TIME.B = ['janvier', 'fÃ©vrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aoÃ»t', 'septembre', 'octobre', 'novembre', 'dÃ©cembre'];
+        phpjs.locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z';
+        phpjs.locales.fr.LC_TIME.p = ['', ''];
+        phpjs.locales.fr.LC_TIME.P = ['', ''];
+        phpjs.locales.fr.LC_TIME.x = '%d.%m.%Y';
+        phpjs.locales.fr.LC_TIME.X = '%T';
+
+		phpjs.locales.fr_CA = _copy(phpjs.locales.fr);
+		phpjs.locales.fr_CA.LC_TIME.x = '%Y-%m-%d';
+
 	}
 	if (!phpjs.locale) {
 		phpjs.locale = 'en_US';
@@ -168,7 +167,7 @@ function setlocale (category, locale) {
 					document.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')) {
 				phpjs.locale = document.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang');
 			} else if(document.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) { // XHTML 1.0 only
-				phpjs.locale = document.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang
+				phpjs.locale = document.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang;
 			}
 		} else if(document.getElementsByTagName('html')[0] && document.getElementsByTagName('html')[0].lang) {
 			phpjs.locale = document.getElementsByTagName('html')[0].lang;
@@ -196,7 +195,7 @@ function setlocale (category, locale) {
 	// END STATIC
 
 	if (locale === null || locale === '') {
-		locale = getenv(category) || getenv('LANG');
+		locale = this.getenv(category) || this.getenv('LANG');
 	} else if (locale instanceof Array) {
 		for (i=0; i < locale.length; i++) {
 			if (!(locale[i] in this.php_js.locales)) {
