@@ -3,12 +3,11 @@ function gettype( mixed_var ) {
     // +   original by: Paulo Ricardo F. Santos
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Douglas Crockford (http://javascript.crockford.com)
+    // +   input by: KELAN
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // -    depends on: is_float
-    // -    depends on: is_array
-    // -    depends on: is_object
-    // %        note 1: lacks resource type
-    // %        note 2: 1.0 is simplified to 1 before it can be accessed by the function, this makes
-    // %        note 21: it different from the PHP implementation. We can't fix this unfortunately.
+    // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+    // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
     // *     example 1: gettype(1);
     // *     returns 1: 'integer'
     // *     example 2: gettype(undefined);
@@ -20,38 +19,32 @@ function gettype( mixed_var ) {
     // *     example 5: gettype({0: function () {return false;}});
     // *     returns 5: 'array'
 
-    var type;
-
-    var typeOf = function (value) {
-        // From: http://javascript.crockford.com/remedial.html
-        var s = typeof value;
-        if (s === 'object') {
-            if (value) {
-                if (typeof value.length === 'number' &&
-                        !(value.propertyIsEnumerable('length')) &&
-                        typeof value.splice === 'function') {
-                    s = 'array';
+    var s = typeof mixed_var, name;
+    if (s === 'object') {
+        if (mixed_var !== null) { // From: http://javascript.crockford.com/remedial.html
+            if (typeof mixed_var.length === 'number' &&
+                    !(mixed_var.propertyIsEnumerable('length')) &&
+                    typeof mixed_var.splice === 'function') {
+                s = 'array';
+            }
+            else if (mixed_var.constructor && mixed_var.constructor.name) {
+                name = mixed_var.constructor.name;
+                if (name === 'Date') {
+                    s = 'date'; // not in PHP
                 }
-            } else {
-                s = 'null';
+                else if (name === 'RegExp') {
+                    s = 'regexp'; // not in PHP
+                }
+                else if (name === 'PHPJS_Resource') { // Check against our own resource constructor
+                    s = 'resource';
+                }
             }
+        } else {
+            s = 'null';
         }
-        return s;
     }
-
-    switch (type = typeOf(mixed_var)) {
-        case 'number':
-            return (is_float(mixed_var)) ? 'double' : 'integer';
-            break;
-        case 'object':
-        case 'array':
-            if (is_array(mixed_var)) {
-                return 'array';
-            } else if (is_object(mixed_var)) {
-                return 'object';
-            }
-            break;
+    else if (s === 'number') {
+        s = (is_float(mixed_var)) ? 'double' : 'integer';
     }
-
-    return type;
+    return s;
 }
