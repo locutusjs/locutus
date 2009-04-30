@@ -8,5 +8,5 @@ function gmstrftime (format, timestamp) {
         (typeof(timestamp) == 'number') ? new Date(timestamp*1000) : // UNIX timestamp
         new Date(timestamp));
     timestamp = Date.parse(dt.toUTCString().slice(0, -4))/1000;
-    return strftime(format, timestamp);
+    return this.strftime(format, timestamp);
 }

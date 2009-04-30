@@ -17,7 +17,7 @@ function get_meta_tags(file) {
         '<meta name="geo.position" content="49.33;-86.59">'+
         '</head>';
     } else {
-        fulltxt = file_get_contents(file).match(/^[^]*<\/head>/i);
+        fulltxt = this.file_get_contents(file).match(/^[^]*<\/head>/i);
     }
     
     var patt = /<meta[^>]*?>/gim;
@@ -25,12 +25,12 @@ function get_meta_tags(file) {
     var patt2 = /<meta\s+.*?content\s*=\s*(['"?])(.*?)\1\s+.*?name\s*=\s*(['"]?)(.*?)\3/gim;
     var txt, match, name, arr={};
 
-    while ((txt = patt.exec(fulltxt)) != null) {
-        while ((match = patt1.exec(txt)) != null) {
+    while ((txt = patt.exec(fulltxt)) !== null) {
+        while ((match = patt1.exec(txt)) !== null) {
             name = match[2].replace(/\W/g, '_').toLowerCase();
             arr[name] = match[4];
         }
-        while ((match = patt2.exec(txt)) != null) {
+        while ((match = patt2.exec(txt)) !== null) {
             name = match[4].replace(/\W/g, '_').toLowerCase();
             arr[name] = match[2];
         }

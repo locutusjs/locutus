@@ -16,13 +16,13 @@ function get_declared_classes() {
     for (i in window) {
         try {
             if (typeof window[i] === 'function') {
-                if (!already[i] && class_exists(i)) {
+                if (!already[i] && this.class_exists(i)) {
                     already[i] = 1;
                     arr.push(i);
                 }
             } else if (typeof window[i] === 'object') {
                 for (j in window[i]) {
-                    if (typeof window[j] === 'function' && window[j] && !already[j] && class_exists(j)) {
+                    if (typeof window[j] === 'function' && window[j] && !already[j] && this.class_exists(j)) {
                         already[j] = 1;
                         arr.push(j);
                     }

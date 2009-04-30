@@ -44,7 +44,7 @@ function gettype( mixed_var ) {
         }
     }
     else if (s === 'number') {
-        s = (is_float(mixed_var)) ? 'double' : 'integer';
+        s = this.is_float(mixed_var) ? 'double' : 'integer';
     }
     return s;
 }

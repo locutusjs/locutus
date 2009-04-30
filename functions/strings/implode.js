@@ -5,5 +5,5 @@ function implode( glue, pieces ) {
     // *     example 1: implode(' ', ['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: 'Kevin van Zonneveld'
 
-    return ( ( pieces instanceof Array ) ? pieces.join ( glue ) : pieces );
+    return ( ( pieces instanceof Array ) ? pieces.join( glue ) : pieces );
 }

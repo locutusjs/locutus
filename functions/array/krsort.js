@@ -9,12 +9,12 @@ function krsort(array, sort_flags) {
     // *     results 1: data == {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
     // *     returns 1: true
 
-    var tmp_arr={}, keys=[], sorter, i, key;
+    var tmp_arr={}, keys=[], sorter, i, key, that=this;
 
     switch (sort_flags) {
         case 'SORT_STRING': // compare items as strings
             sorter = function (a, b) {
-                return strnatcmp(b, a);
+                return that.strnatcmp(b, a);
             };
             break;
         case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
@@ -30,10 +30,12 @@ function krsort(array, sort_flags) {
         case 'SORT_REGULAR': // compare items normally (don't change types)
         default:
             sorter = function (a, b) {
-                if (a < b)
+                if (a < b) {
                     return 1;
-                if (a > b)
+				}
+                if (a > b) {
                     return -1;
+				}
                 return 0;
             };
             break;
@@ -53,7 +55,7 @@ function krsort(array, sort_flags) {
         delete array[key];
     }
     for (i in tmp_arr) {
-        array[i] = tmp_arr[i]
+        array[i] = tmp_arr[i];
     }
 
     return true;

@@ -7,7 +7,9 @@ function get_headers(url, format) {
     // *     returns 1: '123'
     
     var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
-    if (!req) throw new Error('XMLHttpRequest not supported');
+    if (!req) {
+        throw new Error('XMLHttpRequest not supported');
+    }
     var tmp, headers, pair, i;
 
     req.open('HEAD', url, false);

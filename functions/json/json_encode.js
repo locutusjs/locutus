@@ -37,7 +37,7 @@ function json_encode(mixed_val) {
             '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
         }) + '"' :
         '"' + string + '"';
-    }
+    };
 
     var str = function(key, holder) {
         var gap = '';

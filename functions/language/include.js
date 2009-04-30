@@ -22,8 +22,12 @@ function include( filename ) {
     var cur_file = {};
     cur_file[window.location.href] = 1;
 
-    if (!this.php_js) this.php_js = {};
-    if (!this.php_js.includes) this.php_js.includes = cur_file;
+    if (!this.php_js) {
+        this.php_js = {};
+    }
+    if (!this.php_js.includes) {
+        this.php_js.includes = cur_file;
+    }
     if (!this.php_js.includes[filename]) {
         this.php_js.includes[filename] = 1;
     } else {

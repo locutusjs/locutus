@@ -19,7 +19,7 @@ function is_int( mixed_var ) {
         return false;
     }
 
-    if (parseFloat(mixed_var) != parseInt(mixed_var)) {
+    if (parseFloat(mixed_var) != parseInt(mixed_var, 10)) {
         return false;
     }
     

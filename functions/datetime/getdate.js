@@ -22,7 +22,7 @@ function getdate(timestamp) {
     r['yday'] = Math.floor((d - (new Date(y, 0, 1))) / 86400000);
     r['weekday'] = _w[w];
     r['month'] = _m[m];
-    r['0'] = parseInt(d.getTime() / 1000);
+    r['0'] = parseInt(d.getTime() / 1000, 10);
 
     return r;
 }

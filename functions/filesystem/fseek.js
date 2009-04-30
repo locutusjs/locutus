@@ -23,7 +23,6 @@ function fseek (handle, offset, whence) {
             break;
         default:
             throw 'Unrecognized whence value for fseek()';
-            break;
     }
     return 0;
 }

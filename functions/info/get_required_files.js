@@ -4,5 +4,5 @@ function get_required_files () {
     // -    depends on: get_included_files
     // *     example 1: get_required_files();
     // *     returns 1: ['http://kevin.vanzonneveld.net/pj_tester.php']
-    return get_included_files();
+    return this.get_included_files();
 }

@@ -9,9 +9,9 @@ function fmod(x, y) {
     var tmp, tmp2, p = 0, pY = 0, l = 0.0, l2 = 0.0;
     
     tmp = x.toExponential().match(/^.\.?(.*)e(.+)$/);
-    p = parseInt(tmp[2])-(tmp[1]+'').length;
+    p = parseInt(tmp[2], 10)-(tmp[1]+'').length;
     tmp = y.toExponential().match(/^.\.?(.*)e(.+)$/);
-    pY = parseInt(tmp[2])-(tmp[1]+'').length;
+    pY = parseInt(tmp[2], 10)-(tmp[1]+'').length;
     
     if (pY > p) {
         p = pY;

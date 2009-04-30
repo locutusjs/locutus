@@ -6,9 +6,12 @@ function key(arr) {
     // *     example 1: key(array);
     // *     returns 1: 'fruit1'
 
-    if (!this.php_js) this.php_js = {
-        pointers:[]
-    };
+    if (!this.php_js) {
+        this.php_js = {};
+    }
+    if (!this.php_js.pointers) {
+        this.php_js.pointers = [];
+    }
     var pointers = this.php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);

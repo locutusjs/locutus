@@ -11,7 +11,7 @@ function gmmktime() {
         0: function(tt){ return d.setUTCHours(tt); },
         1: function(tt){ return d.setUTCMinutes(tt); },
         2: function(tt){ var set = d.setUTCSeconds(tt); mb = d.getUTCDate() - dn.getUTCDate(); return set;},
-        3: function(tt){ var set = d.setUTCMonth(parseInt(tt)-1); ma = d.getUTCFullYear() - dn.getUTCFullYear(); return set;},
+        3: function(tt){ var set = d.setUTCMonth(parseInt(tt, 10)-1); ma = d.getUTCFullYear() - dn.getUTCFullYear(); return set;},
         4: function(tt){ return d.setUTCDate(tt+mb);},
         5: function(tt){
             if (tt >= 0 && tt <= 69) {
@@ -26,7 +26,7 @@ function gmmktime() {
     };
 
     for( i = 0; i < argc; i++ ){
-        no = parseInt(argv[i]*1);
+        no = parseInt(argv[i]*1, 10);
         if (isNaN(no)) {
             return false;
         } else {

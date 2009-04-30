@@ -18,12 +18,12 @@ function is_unicode (vr) {
         singleLowSurrogate = new RegExp('^'+lowSurrogate+'$'),
         singleHighSurrogate = new RegExp('^'+highSurrogate+'$');
 
-    while ((arr = highSurrogateBeforeAny.exec(vr)) != null) {
+    while ((arr = highSurrogateBeforeAny.exec(vr)) !== null) {
         if (!arr[1] || !arr[1].match(singleLowSurrogate)) { // If high not followed by low surrogate
             return false;
         }
     }
-    while ((arr = lowSurrogateAfterAny.exec(vr)) != null) {
+    while ((arr = lowSurrogateAfterAny.exec(vr)) !== null) {
         if (!arr[1] || !arr[1].match(singleHighSurrogate)) { // If low not preceded by high surrogate
             return false;
         }

@@ -7,8 +7,12 @@ function get_included_files() {
 
     var cur_file = {};
     cur_file[window.location.href] = 1;
-    if(!this.php_js) this.php_js = {};
-    if(!this.php_js.includes) this.php_js.includes = cur_file;
+    if(!this.php_js) {
+        this.php_js = {};
+    }
+    if(!this.php_js.includes) {
+        this.php_js.includes = cur_file;
+    }
 
     var includes = [];
     var i = 0;

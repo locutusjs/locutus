@@ -10,7 +10,7 @@ function md5_file ( str_filename ) {
 
     var buf = '';
 
-    buf = file_get_contents(str_filename);
+    buf = this.file_get_contents(str_filename);
     
     if (!buf) {
         return false;

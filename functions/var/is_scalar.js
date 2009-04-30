@@ -6,5 +6,5 @@ function is_scalar( mixed_var ) {
     // *     example 2: is_scalar({0: 'Kevin van Zonneveld'});
     // *     returns 2: false
 
-    return /boolean|number|string/.test(typeof mixed_var);
+    return (/boolean|number|string/).test(typeof mixed_var);
 }

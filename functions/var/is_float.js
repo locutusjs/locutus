@@ -6,5 +6,5 @@ function is_float( mixed_var ) {
     // *     example 1: is_float(186.31);
     // *     returns 1: true
 
-    return parseFloat(mixed_var * 1) != parseInt(mixed_var * 1);
+    return parseFloat(mixed_var * 1) != parseInt(mixed_var * 1, 10);
 }

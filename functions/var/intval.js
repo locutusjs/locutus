@@ -23,7 +23,7 @@ function intval( mixed_var, base ) {
             return 0;
         }
     } else if(type == 'string'){
-        tmp = parseInt(mixed_var * 1);
+        tmp = parseInt(mixed_var * 1, 10);
         if(isNaN(tmp) || !isFinite(tmp)){
             return 0;
         } else{

@@ -34,7 +34,7 @@ function json_decode(str_json) {
             }
         }
         return reviver.call(holder, key, value);
-    }
+    };
 
     // Parsing happens in four stages. In the first stage, we replace certain
     // Unicode characters with escape sequences. JavaScript handles many characters

@@ -4,5 +4,5 @@ function ini_alter (varname, newvalue) {
     // -    depends on: ini_set
     // *     example 1: ini_alter('date.timezone', 'America/Chicago');
     // *     returns 1: 'Asia/Hong_Kong'
-	return ini_set(varname, newvalue);
+	return this.ini_set(varname, newvalue);
 }
