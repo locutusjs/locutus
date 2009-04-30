@@ -8,18 +8,17 @@ function compact ( ) {
     // *     example 1: compact('var1', 'var2', 'var3');
     // *     returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}    
     
-    var Matrix = {};
-    var key_value;
+    var matrix = {};
 
     var process = function ( value ) {
         var i = 0, l = value.length, key_value = '';
         for (i = 0; i < l; i++) {
             key_value = value [ i ];
             if (key_value instanceof Array) {
-                process ( key_value );
+                process( key_value );
             } else {
                 if (typeof window[key_value] !== 'undefined') {
-                    Matrix[key_value] = window[key_value];
+                    matrix[key_value] = window[key_value];
                 }
             }
         }
@@ -27,5 +26,5 @@ function compact ( ) {
     };
     
     process(arguments);
-    return Matrix;
+    return matrix;
 }

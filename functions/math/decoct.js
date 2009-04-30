@@ -7,5 +7,5 @@ function decoct(number) {
     // *     example 2: decoct(264); 
     // *     returns 2: '410'
     
-    return parseInt(number).toString(8);
+    return parseInt(number, 10).toString(8);
 }

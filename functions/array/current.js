@@ -6,8 +6,12 @@ function current(arr) {
     // *     example 1: current(transport); 
     // *     returns 1: 'foot'
 
-    if (!this.php_js) this.php_js = {};
-    if (!this.php_js.pointers) this.php_js.pointers = [];
+    if (!this.php_js) {
+        this.php_js = {};
+    }
+    if (!this.php_js.pointers) {
+        this.php_js.pointers = [];
+    }
     var pointers = this.php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);

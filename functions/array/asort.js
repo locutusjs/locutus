@@ -34,10 +34,12 @@ function asort(inputArr, sort_flags) {
         case 'SORT_REGULAR': // compare items normally (don't change types)
         default:
             sorter = function (a, b) {
-                if (a > b)
+                if (a > b) {
                     return 1;
-                if (a < b)
+                }
+                if (a < b) {
                     return -1;
+                }
                 return 0;
             };
             break;
@@ -64,7 +66,7 @@ function asort(inputArr, sort_flags) {
     for (k in inputArr) {
         valArr.push(inputArr[k]);
         keyArr.push(k);
-        delete inputArr[k] ;
+        delete inputArr[k];
     }
     try {
         // Sort our new temporary arrays

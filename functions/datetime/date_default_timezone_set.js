@@ -12,7 +12,7 @@ function date_default_timezone_set (tz) {
 		this.php_js={};
 	}
 	// PHP verifies that the timezone is valid
-	tal = timezone_abbreviations_list();
+	tal = this.timezone_abbreviations_list();
 	for (abbr in tal) {
 		for (i=0; i < tal[abbr].length; i++) {
 			if (tal[abbr][i].timezone_id === tz) {

@@ -9,7 +9,7 @@ function aggregate_methods_by_regexp (obj, class_name, regexp, exclude) {
 	// *     example 1: aggregate_methods_by_regexp(b, 'A', /^meth/, false);
 	// *     returns 1: undefined
 
-    var p = '', i=0, test=false, record={}, pos=-1;
+    var p = '', test=false, record={}, pos=-1;
 
     if (typeof regexp === 'string') { // If passing the regular expression as a string, note that this behavior may change in the future as we seek to implement PHP-style regexp (e.g., delimiteres and modifier flags within the string)
         regexp = eval(regexp);

@@ -25,11 +25,11 @@ function date ( format, timestamp ) {
     // *     example 4: (x+'').length == 10
     // *     returns 4: true
 
-    var a, tal=[], jsdate=(
+    var jsdate=(
         (typeof(timestamp) == 'undefined') ? new Date() : // Not provided
         (typeof(timestamp) == 'number') ? new Date(timestamp*1000) : // UNIX timestamp
         new Date(timestamp) // Javascript Date()
-    );
+    ); // , tal=[]
     var pad = function(n, c){
         if( (n = n + "").length < c ) {
             return new Array(++c - n.length).join("0") + n;
@@ -173,10 +173,18 @@ function date ( format, timestamp ) {
                                  (jsdate.getMinutes() * 60) +
                                   jsdate.getSeconds() + off;
                 var beat = Math.floor(theSeconds/86.4);
-                if (beat > 1000) beat -= 1000;
-                if (beat < 0) beat += 1000;
-                if ((String(beat)).length == 1) beat = "00"+beat;
-                if ((String(beat)).length == 2) beat = "0"+beat;
+                if (beat > 1000) {
+                    beat -= 1000;
+                }
+                if (beat < 0) {
+                    beat += 1000;
+                }
+                if ((String(beat)).length == 1) {
+                    beat = "00"+beat;
+                }
+                if ((String(beat)).length == 2) {
+                    beat = "0"+beat;
+                }
                 return beat;
             },
             g: function(){
@@ -225,7 +233,7 @@ function date ( format, timestamp ) {
             },
             O: function(){
                var t = pad(Math.abs(jsdate.getTimezoneOffset()/60*100), 4);
-               if (jsdate.getTimezoneOffset() > 0) t = "-" + t; else t = "+" + t;
+               t = (jsdate.getTimezoneOffset() > 0) ? "-"+t : "+"+t;
                return t;
             },
             P: function(){

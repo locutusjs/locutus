@@ -9,5 +9,5 @@ function decbin(number) {
     // *     example 3: decbin('26');
     // *     returns 3: '11010'
     
-    return parseInt(number).toString(2);
+    return parseInt(number, 10).toString(2);
 }

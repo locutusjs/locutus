@@ -15,7 +15,7 @@ function deaggregate (obj, class_name) {
         return;
     }
 
-    idx = this.php_js.aggregateKeys.indexOf(obj)
+    idx = this.php_js.aggregateKeys.indexOf(obj);
     if (idx === -1) {
         return;
     }

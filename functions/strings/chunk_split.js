@@ -8,11 +8,11 @@ function chunk_split(body, argChunklen, argEnd) {
     // *     example 2: chunk_split('Hello world!', 10, '*');
     // *     returns 2: 'Hello worl*d!*'
     
+    var result = '', chunklen = argChunklen || 76, end = argEnd || '\r\n';
+
     if (chunklen < 1) {
         return false;
     }
-
-    var result = '', chunklen = argChunklen || 76, end = argEnd || '\r\n';
 
     while (body.length > chunklen) {
         result += body.substring(0, chunklen) + end;

@@ -7,5 +7,5 @@ function dechex(number) {
     // *     example 2: dechex(47);
     // *     returns 2: '2f'
     
-    return parseInt(number).toString(16);
+    return parseInt(number, 10).toString(16);
 }
