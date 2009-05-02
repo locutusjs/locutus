@@ -2,6 +2,7 @@ function import_request_variables (types, prefix) {
     // http://kevin.vanzonneveld.net
     // +      original by: Jalal Berrami
     // + reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
+    // + improved by: Brett Zamir (http://brettz9.blogspot.com)
     // *        example 1: document.cookie = 'snack=yummy';
     // *        example 1: import_request_variables('gc', 'pr_');
     // *        results 1: pr_snack == 'yummy'
@@ -12,7 +13,17 @@ function import_request_variables (types, prefix) {
     if (/g/i.test(types)) { // GET
         for(i = 0, url = window.location.href, vars = url.substring(url.lastIndexOf("?") + 1, url.length).split("&"); i < vars.length;i++){
             current = vars[i].split("=");
-            window[prefix+current[0]] = current[1] || null;
+            var arrayBracketPos = current[0].indexOf('[');
+            if (arrayBracketPos !== -1) {
+                var arrName = current[0].substring(0, arrayBracketPos);
+                if (!window[prefix+arrName]) {
+                    window[prefix+arrName] = [];
+                }
+                window[prefix+arrName].push(current[1] || null);
+            }
+            else {
+                window[prefix+current[0]] = current[1] || null;
+            }
         }
     }
     if (/c/i.test(types)) { // COOKIE
