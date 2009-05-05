@@ -20,7 +20,7 @@ function str_replace(search, replace, subject, count) {
     // *     example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
     // *     returns 2: 'hemmo, mars'
 
-    var i = 0, j = 0, temp = '', repl = '', sl=0, fl=0,
+    var i = 0, j = 0, temp = '', repl = '', sl = 0, fl = 0,
             f = [].concat(search),
             r = [].concat(replace),
             s = subject,
