@@ -20,7 +20,7 @@ function str_replace(search, replace, subject, count) {
     // *     example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
     // *     returns 2: 'hemmo, mars'
 
-    var i = 0, j = 0, temp = '', repl = '',
+    var i = 0, j = 0, temp = '', repl = '', sl=0, fl=0,
             f = [].concat(search),
             r = [].concat(replace),
             s = subject,
@@ -30,11 +30,11 @@ function str_replace(search, replace, subject, count) {
         window[count] = 0;
     }
 
-    for (i=s.length-1; i >= 0; i--) {
+    for (i=0, sl=s.length; i < sl; i--) {
         if (s[i] === '') {
             continue;
         }
-        for (j=0; j < f.length; j++) {
+        for (j=0, f.length=0; j < fl; j++) {
             temp = s[i]+'';
             repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
             s[i] = (temp).split(f[j]).join(repl);
