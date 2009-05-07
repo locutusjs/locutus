@@ -13,6 +13,7 @@ function str_replace(search, replace, subject, count) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   input by: Oleg Eremeev
     // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Oleg Eremeev
 	// %          note 1: The count parameter must be passed as a string in order
     // %          note 1:  to find a global variable in which the result will be given
     // *     example 1: str_replace(' ', '.', 'Kevin van Zonneveld');
@@ -30,11 +31,11 @@ function str_replace(search, replace, subject, count) {
         window[count] = 0;
     }
 
-    for (i=0, sl=s.length; i < sl; i--) {
+    for (i=0, sl=s.length; i < sl; i++) {
         if (s[i] === '') {
             continue;
         }
-        for (j=0, f.length=0; j < fl; j++) {
+        for (j=0, fl=f.length; j < fl; j++) {
             temp = s[i]+'';
             repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
             s[i] = (temp).split(f[j]).join(repl);
