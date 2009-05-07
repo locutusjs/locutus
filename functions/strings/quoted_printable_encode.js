@@ -1,6 +1,7 @@
 function quoted_printable_encode(str) {
     // +   original by: Theriault
 	// +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+	// +   improved by: Theriault
     // *     example 1: quoted_printable_encode('a=b=c');
     // *     returns 1: 'a=3Db=3Dc'
     // *     example 2: quoted_printable_encode('abc   \r\n123   \r\n');
@@ -17,18 +18,12 @@ function quoted_printable_encode(str) {
     // RFC 2045: 6.7.5: The Quoted-Printable encoding REQUIRES that encoded lines be no more than 76 characters long. If longer lines are to be encoded with the Quoted-Printable encoding, "soft" line breaks must be used.
     // PHP breaks lines greater than 76 characters; as does this function.
     var hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'],
-    RFC2045Encode1IN = /[^!-<>-~]/gm,
+    RFC2045Encode1IN = / \r\n|\r\n|[^!-<>-~ ]/gm,
     RFC2045Encode1OUT = function (sMatch) {
+        // Encode space before CRLF sequence to prevent spaces from being stripped
         // Keep hard line breaks intact; CRLF sequences
-        if (sMatch === '\r' && RegExp.rightContext.charCodeAt(0) === 10) {
-            return sMatch;
-        }
-        if (sMatch === '\n' && RegExp.leftContext.charCodeAt(RegExp.leftContext.length - 1) === 13) {
-            return sMatch;
-        }
-        // Keep spaces intact unless preceeded by a CRLF sequence
-        if (sMatch === ' ' && RegExp.rightContext.substr(0, 2) !== '\r\n') {
-            return ' ';
+        if (sMatch.length > 1) {
+            return sMatch.replace(' ', '=20');
         }
         // Encode matching character
         var chr = sMatch.charCodeAt(0);
@@ -38,11 +33,12 @@ function quoted_printable_encode(str) {
     // However, if the last line/string was exactly 76 characters, then a softline would not be needed. PHP currently softbreaks anyway; so this function replicates PHP.
     RFC2045Encode2IN = /.{1,72}(?!\r\n)[^=]{0,3}/g,
     RFC2045Encode2OUT = function (sMatch) {
-        if (sMatch.substr(sMatch.length - 1) === '\n' || RegExp.rightContext.length === 0) {
+        if (sMatch.substr(sMatch.length - 2) === '\r\n') {
             return sMatch;
         }
         return sMatch + '=\r\n';
     };
-
-    return str.replace(RFC2045Encode1IN, RFC2045Encode1OUT).replace(RFC2045Encode2IN, RFC2045Encode2OUT);
+    str = str.replace(RFC2045Encode1IN, RFC2045Encode1OUT).replace(RFC2045Encode2IN, RFC2045Encode2OUT);
+    // Strip last softline break
+    return str.substr(0, str.length - 3);
 }

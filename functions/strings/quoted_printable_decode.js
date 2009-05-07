@@ -4,6 +4,7 @@ function quoted_printable_decode(str) {
 	// +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
     // +   reimplemented by: Theriault
 	// +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+	// +   bugfixed by: Theriault
     // *     example 1: quoted_printable_decode('a=3Db=3Dc');
     // *     returns 1: 'a=b=c'
     // *     example 2: quoted_printable_decode('abc  =20\r\n123  =20\r\n');
@@ -15,8 +16,10 @@ function quoted_printable_decode(str) {
 
     // Removes softline breaks
     var RFC2045Decode1 = /=\r\n/gm,
-    // Decodes all equal signs followed by two capital hex digits
-    RFC2045Decode2IN = /=([0-9A-F][0-9A-F])/gm,
+    // Decodes all equal signs followed by two hex digits
+    RFC2045Decode2IN = /=([0-9A-F]{2})/gim, // the RFC states against decoding lower case encodings, but following apparent PHP behavior
+    // RFC2045Decode2IN = /=([0-9A-F]{2})/gm,
+
     RFC2045Decode2OUT = function (sMatch, sHex) {
         return String.fromCharCode(parseInt(sHex, 16));
     };
