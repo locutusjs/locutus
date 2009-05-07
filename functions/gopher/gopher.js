@@ -1,5 +1,5 @@
 function gopher_parsedir (dirent) {
-	var linePattern = /^(.)(.*?)\t(.*?)\t(.*?)\t(.*?)\u000d\u000a/m;
+	var linePattern = /^(.)(.*?)\t(.*?)\t(.*?)\t(.*?)\u000d\u000a$/;
 	var line = dirent.match(linePattern);
 	if (line === null) {
 		return {type:-1, data: dirent};
