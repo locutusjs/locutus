@@ -5,7 +5,7 @@ function var_dump() {
     // *     example 1: var_dump(1);
     // *     returns 1: 'int(1)'
 
-    var output = "", pad_char = " ", pad_val = 4, p='', lgth=0, i=0;
+    var output = "", pad_char = " ", pad_val = 4, lgth = 0, i = 0, d = document;
 
     var repeat_char = function (len, pad_char) {
         var str = "";
@@ -43,6 +43,7 @@ function var_dump() {
     };
 
     var formatArray = function (obj, cur_depth, pad_val, pad_char) {
+        var someProp = '';
         if (cur_depth > 0) {
             cur_depth++;
         }
@@ -57,7 +58,7 @@ function var_dump() {
                 return obj.var_dump();
             }
             lgth = 0;
-            for (p in obj) {
+            for (someProp in obj) {
                 lgth++;
             }
             str += "array("+lgth+") {\n";
@@ -81,12 +82,12 @@ function var_dump() {
         output += '\n'+formatArray(arguments[i], 0, pad_val, pad_char);
     }
 
-    if (document.body) {
+    if (d.body) {
         this.echo(output);
     }
     else {
         try {
-            XULDocument; // We're in XUL, so appending as plain text won't work
+            d = XULDocument; // We're in XUL, so appending as plain text won't work
             this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">'+output+'</pre>');
         }
         catch(e) {

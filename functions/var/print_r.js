@@ -9,7 +9,7 @@ function print_r( array, return_val ) {
     // *     example 1: print_r(1, true);
     // *     returns 1: 1
     
-    var output = "", pad_char = " ", pad_val = 4;
+    var output = "", pad_char = " ", pad_val = 4, d = document;
 
     var repeat_char = function (len, pad_char) {
         var str = "";
@@ -38,7 +38,7 @@ function print_r( array, return_val ) {
                 }
             }
             str += base_pad + ")\n";
-        } else if(obj == null || obj == undefined) {
+        } else if(obj === null || obj === undefined) {
             str = '';
         } else { // for our "resource" class
             str = obj.toString();
@@ -50,12 +50,12 @@ function print_r( array, return_val ) {
     output = formatArray(array, 0, pad_val, pad_char);
 
     if (return_val !== true) {
-        if (document.body) {
+        if (d.body) {
             this.echo(output);
         }
         else {
             try {
-                XULDocument; // We're in XUL, so appending as plain text won't work
+                d = XULDocument; // We're in XUL, so appending as plain text won't work; trigger an error out of XUL
                 this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">'+output+'</pre>');
             }
             catch(e) {

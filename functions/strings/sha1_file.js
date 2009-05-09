@@ -6,6 +6,6 @@ function sha1_file ( str_filename ) {
     // *     example 1: sha1_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '40bd001563085fc35165329ea1ff5c5ecbdbbeef'
 
-    var buf = file_get_contents(str_filename);
+    var buf = this.file_get_contents(str_filename);
     return sha1(buf);
 }

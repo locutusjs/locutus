@@ -29,7 +29,7 @@ function utf8_encode ( string ) {
         } else {
             enc = String.fromCharCode((c1 >> 12) | 224) + String.fromCharCode(((c1 >> 6) & 63) | 128) + String.fromCharCode((c1 & 63) | 128);
         }
-        if (enc != null) {
+        if (enc !== null) {
             if (end > start) {
                 utftext += string.substring(start, end);
             }

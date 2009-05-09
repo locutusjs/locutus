@@ -25,7 +25,7 @@ function trim (str, charlist) {
     } else {
         // preg_quote custom list
         charlist += '';
-        whitespace = charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\$1');
+        whitespace = charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '$1');
     }
     
     l = str.length;

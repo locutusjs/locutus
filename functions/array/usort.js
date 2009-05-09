@@ -5,7 +5,7 @@ function usort (inputArr, sorter) {
     // *     example 1: usort(stuff, function (a, b) {return(a-b);});
     // *     results 1: stuff = {0: '1', 1: '3', 2: '4', 3: '11'};
 
-    var valArr = [], keyArr=[];
+    var valArr = [];
     var k = '', i = 0;
 
     if (typeof sorter === 'string') {

@@ -14,17 +14,17 @@ function sort (inputArr, sort_flags) {
     // *     results 2: fruits == {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
 
     var valArr = [], keyArr=[];
-    var k = '', i = 0, sorter = false;
+    var k = '', i = 0, sorter = false, that = this;
     
     for (k in inputArr) { // Get key and value arrays
         valArr.push(inputArr[k]);
-        delete inputArr[k] ;
+        delete inputArr[k];
     }
 
     switch (sort_flags) {
         case 'SORT_STRING': // compare items as strings
             sorter = function (a, b) {
-                return strnatcmp(a, b);
+                return that.strnatcmp(a, b);
             };
             break;
         case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
@@ -40,10 +40,12 @@ function sort (inputArr, sort_flags) {
         case 'SORT_REGULAR': // compare items normally (don't change types)
         default:
             sorter = function (a, b) {
-                if (a > b)
+                if (a > b) {
                     return 1;
-                if (a < b)
+                }
+                if (a < b) {
                     return -1;
+                }
                 return 0;
             };
             break;

@@ -19,7 +19,7 @@ function require_once(filename) {
 	    this.php_js.includes = cur_file;
 	}
     if (!this.php_js.includes[filename]) {
-        if (require(filename)) {
+        if (this.require(filename)) {
             return true;
         }
     } else {

@@ -22,7 +22,8 @@ function serialize( mixed_value ) {
                 return 'object';
             }
             var cons = inp.constructor.toString();
-            if (match = cons.match(/(\w+)\(/)) {
+            match = cons.match(/(\w+)\(/);
+            if (match) {
                 cons = match[1].toLowerCase();
             }
             var types = ["boolean", "number", "string", "array"];

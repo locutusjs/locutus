@@ -8,6 +8,6 @@ function sleep(seconds) {
     // *     returns 1: 0
     
     var start = new Date().getTime();
-    while (new Date() < start + seconds*1000);
+    while (new Date() < start + seconds*1000) {}
     return 0;
 }

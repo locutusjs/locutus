@@ -39,7 +39,7 @@ function settype (vr, type) {
             case 'integer':
                 if (typeof v === 'number') {this[vr]=parseInt(v, 10);}
                 else if (typeof v === 'string') {
-                    mtch = v.match(/^([+-]?)(\d+)/);
+                    mtch = v.match(/^([+\-]?)(\d+)/);
                     if (!mtch) {this[vr]=0;}
                     else {this[vr]=parseInt(v, 10);}
                 }
@@ -51,7 +51,7 @@ function settype (vr, type) {
                 break;
             case 'float':
                 if (typeof v === 'string') {
-                    mtch = v.match(/^([+-]?)(\d+(\.\d+)?|\.\d+)([eE][+-]?\d+)?/);
+                    mtch = v.match(/^([+\-]?)(\d+(\.\d+)?|\.\d+)([eE][+\-]?\d+)?/);
                     if (!mtch) {this[vr]=0;}
                     else {this[vr]=parseFloat(v, 10);}
                 }

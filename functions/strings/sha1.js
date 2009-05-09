@@ -13,7 +13,7 @@ function sha1 ( str ) {
         return t4;
     };
 
-    var lsb_hex = function(val) {
+    /*var lsb_hex = function(val) { // Not in use; needed?
         var str="";
         var i;
         var vh;
@@ -25,7 +25,7 @@ function sha1 ( str ) {
             str += vh.toString(16) + vl.toString(16);
         }
         return str;
-    };
+    };*/
 
     var cvt_hex = function(val) {
         var str="";
@@ -50,7 +50,7 @@ function sha1 ( str ) {
     var A, B, C, D, E;
     var temp;
 
-    str = utf8_encode(str);
+    str = this.utf8_encode(str);
     var str_len = str.length;
 
     var word_array = [];
@@ -77,14 +77,15 @@ function sha1 ( str ) {
 
     word_array.push( i );
 
-    while( (word_array.length % 16) != 14 ) word_array.push( 0 );
+    while( (word_array.length % 16) != 14 ) {word_array.push( 0 );}
 
     word_array.push( str_len>>>29 );
     word_array.push( (str_len<<3)&0x0ffffffff );
 
     for ( blockstart=0; blockstart<word_array.length; blockstart+=16 ) {
-        for( i=0; i<16; i++ ) W[i] = word_array[blockstart+i];
-        for( i=16; i<=79; i++ ) W[i] = rotate_left(W[i-3] ^ W[i-8] ^ W[i-14] ^ W[i-16], 1);
+        for( i=0; i<16; i++ ) {W[i] = word_array[blockstart+i];}
+        for( i=16; i<=79; i++ ) {W[i] = rotate_left(W[i-3] ^ W[i-8] ^ W[i-14] ^ W[i-16], 1);}
+
 
         A = H0;
         B = H1;

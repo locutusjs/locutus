@@ -59,21 +59,21 @@ function unserialize(data){
 
         switch(dtype){
             case 'i':
-                typeconvert = new Function('x', 'return parseInt(x)');
+                typeconvert = function (x) {return parseInt(x, 10);};
                 readData = read_until(data, dataoffset, ';');
                 chrs = readData[0];
                 readdata = readData[1];
                 dataoffset += chrs + 1;
             break;
             case 'b':
-                typeconvert = new Function('x', 'return (parseInt(x) == 1)');
+                typeconvert = function (x) {return parseInt(x, 10) == 1;};
                 readData = read_until(data, dataoffset, ';');
                 chrs = readData[0];
                 readdata = readData[1];
                 dataoffset += chrs + 1;
             break;
             case 'd':
-                typeconvert = new Function('x', 'return parseFloat(x)');
+                typeconvert = function (x) {return parseFloat(x);};
                 readData = read_until(data, dataoffset, ';');
                 chrs = readData[0];
                 readdata = readData[1];

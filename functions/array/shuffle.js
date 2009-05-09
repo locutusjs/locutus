@@ -11,7 +11,7 @@ function shuffle( inputArr ) {
 
     for (k in inputArr) { // Get key and value arrays
         valArr.push(inputArr[k]);
-        delete inputArr[k] ;
+        delete inputArr[k];
     }
     valArr.sort(function() {return 0.5 - Math.random();});
 
