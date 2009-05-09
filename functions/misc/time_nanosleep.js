@@ -10,6 +10,6 @@ function time_nanosleep(seconds, nanosecs) {
     // *     returns 1: true
 
     var start = new Date().getTime();
-    while (new Date() < (start + seconds*1000+nanosecs/1000000));
+    while (new Date() < (start + seconds*1000+nanosecs/1000000)) {}
     return true;
 }

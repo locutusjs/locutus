@@ -15,7 +15,7 @@ function usort (inputArr, sorter) {
     }
     for (k in inputArr) { // Get key and value arrays
         valArr.push(inputArr[k]);
-        delete inputArr[k] ;
+        delete inputArr[k];
     }
     try {
         valArr.sort(sorter);

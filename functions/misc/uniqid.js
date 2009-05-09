@@ -13,13 +13,13 @@ function uniqid() {
     if (!this.php_js) {
         this.php_js = {};
     }
-    
-    if (!this.php_js['uniqid']) {
-        var date = new Date;
-        this.php_js['uniqid'] = date.getTime()/1000;
+
+    if (!this.php_js.uniqid) {
+        var date = new Date();
+        this.php_js.uniqid = date.getTime()/1000;
     }
 
-    this.php_js['uniqid']++;
+    this.php_js.uniqid++;
 
-	return dechex(this.php_js['uniqid'])+dechex('10243256');
+	return this.dechex(this.php_js.uniqid)+this.dechex('10243256');
 }

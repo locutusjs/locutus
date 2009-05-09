@@ -62,7 +62,7 @@ function var_export(mixed_expression, bool_return) {
     }
     
     if(bool_return != true) {
-        echo(retstr);
+        this.echo(retstr);
         return null;
     } else {
         return retstr;

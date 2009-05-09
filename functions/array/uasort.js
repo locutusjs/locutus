@@ -29,12 +29,12 @@ function uasort (inputArr, sorter) {
                 }
             }
         }
-    }
+    };
 
     for (k in inputArr) { // Get key and value arrays
         valArr.push(inputArr[k]);
         keyArr.push(k);
-        delete inputArr[k] ;
+        delete inputArr[k];
     }
     try {
         sorterNew(keyArr, valArr); // Sort our new temporary arrays

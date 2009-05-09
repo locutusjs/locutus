@@ -7,6 +7,13 @@ function var_dump() {
 
     var output = "", pad_char = " ", pad_val = 4, p='', lgth=0, i=0;
 
+    var repeat_char = function (len, pad_char) {
+        var str = "";
+        for(var i=0; i < len; i++) {
+            str += pad_char;
+        }
+        return str;
+    };
     var getScalarVal = function (val) {
         var ret = '';
         if (val === null) {
@@ -19,7 +26,7 @@ function var_dump() {
             ret = 'string('+val.length+') "'+val+'"';
         }
         else if (typeof val === 'number') {
-            if (parseFloat(val) == parseInt(val)) {
+            if (parseFloat(val) == parseInt(val, 10)) {
                 ret = 'int('+val+')';
             }
             else {
@@ -69,29 +76,21 @@ function var_dump() {
         return str;
     };
 
-    var repeat_char = function (len, pad_char) {
-        var str = "";
-        for(var i=0; i < len; i++) {
-            str += pad_char;
-        }
-        return str;
-    };
-
     output = formatArray(arguments[0], 0, pad_val, pad_char);
     for (i=1; i < arguments.length; i++) {
         output += '\n'+formatArray(arguments[i], 0, pad_val, pad_char);
     }
 
     if (document.body) {
-        echo(output);
+        this.echo(output);
     }
     else {
         try {
             XULDocument; // We're in XUL, so appending as plain text won't work
-            echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">'+output+'</pre>');
+            this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">'+output+'</pre>');
         }
         catch(e) {
-            echo(output); // Outputting as plain text may work in some plain XML
+            this.echo(output); // Outputting as plain text may work in some plain XML
         }
     }
 }

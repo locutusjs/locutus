@@ -9,6 +9,6 @@ function usleep(microseconds) {
     // *     returns 1: true
 
     var start = new Date().getTime();
-    while (new Date() < (start + microseconds/1000));
+    while (new Date() < (start + microseconds/1000)) {}
     return true;
 }

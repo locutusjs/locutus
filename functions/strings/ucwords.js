@@ -8,5 +8,5 @@ function ucwords( str ) {
     // *     example 2: ucwords('HELLO WORLD');
     // *     returns 2: 'HELLO WORLD'
 
-    return (str+'').replace(/^(.)|\s(.)/g, function ( $1 ) { return $1.toUpperCase ( ); } );
+    return (str+'').replace(/^(.)|\s(.)/g, function ( $1 ) { return $1.toUpperCase( ); } );
 }

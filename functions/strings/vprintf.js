@@ -23,7 +23,7 @@ function vprintf(format, args) {
         return false;
     }
 
-    ret = sprintf.apply(this, [format].concat(args));
+    ret = this.sprintf.apply(this, [format].concat(args));
 
     elmt = document.createTextNode(ret);
     body.appendChild(elmt);
