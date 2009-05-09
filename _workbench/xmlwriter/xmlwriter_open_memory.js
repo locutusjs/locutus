@@ -4,6 +4,8 @@ function xmlwriter_open_memory () {
 	// *     example 1: xmlwriter_open_memory();
 	// *     returns 1: true
 
+    // Note: see echo for the type of Sax2 or the like which we want to be able to parse from strings
+
    // Create unique resource id
     if (!this.php_js.resourceIdCounter) {
         this.php_js.resourceIdCounter = 0;
