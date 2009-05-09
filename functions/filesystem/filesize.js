@@ -10,10 +10,10 @@ function filesize (url) {
     // *     returns 1: '3'
 
     var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
-    if (!req) throw new Error('XMLHttpRequest not supported');
+    if (!req) {throw new Error('XMLHttpRequest not supported');}
     
-    req.open ('HEAD', url, false);
-    req.send (null);
+    req.open('HEAD', url, false);
+    req.send(null);
     
     if (!req.getResponseHeader) {
         try {

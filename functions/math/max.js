@@ -85,15 +85,15 @@ function max() {
         }
     } //function _compare
     
-    if (argc == 0) {
+    if (argc === 0) {
         throw new Error('At least one value should be passed to max()');
-    } else if (argc == 1) {
-        if (typeof argv[0]=='object') {
+    } else if (argc === 1) {
+        if (typeof argv[0] === 'object') {
             ar = _obj2Array(argv[0]);
         } else {
             throw new Error('Wrong parameter count for max()');
         }
-        if (ar.length == 0) {
+        if (ar.length === 0) {
             throw new Error('Array must contain at least one element for max()');
         }
     } else {

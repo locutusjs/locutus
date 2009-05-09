@@ -1,12 +1,15 @@
 function define(name, value) {
-    // http://kevin.vanzonneveld.net
+    // Define a new constant
+    //
+    // version: 903.3016
+    // discuss at: http://phpjs.org/functions/define
     // +      original by: Paulo Ricardo F. Santos
     // +       revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
     // + reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
     // *        example 1: define('IMAGINARY_CONSTANT1', 'imaginary_value1');
     // *        results 1: IMAGINARY_CONSTANT1 == 'imaginary_value1'
-    
-    var define, replace, script;
+
+    var defn, replace, script, that = this;
     var toString = function (name, value) {
         return 'const ' + name + '=' + (
             /^(null|true|false|(\+|\-)?\d+(\.\d+)?)$/.test(value = String(value)) ? value : '"' + replace(value) + '"'
@@ -26,9 +29,9 @@ function define(name, value) {
             };
             return value.replace(/\x08|[\x0A-\x0D]|"|\\/g, function(value){
                 return "\\"+replace[value];
-            });
+			});
         };
-        define = function (name, value){
+        defn = function (name, value){
             if (document.createElementNS) {
                 script = document.createElementNS('http://www.w3.org/1999/xhtml', 'script');
             } else {
@@ -49,13 +52,13 @@ function define(name, value) {
                 return replace[value];
             });
         };
-        define = this.execScript ?
-        function (name, value){
-            execScript(toString(name, value), 'VBScript');
-        }:
-        function (name, value){
-            eval(toString(name, value).substring(6));
-        };
+        defn = (this.execScript ?
+            function (name, value){
+                that.execScript(toString(name, value), 'VBScript');
+            }:
+            function (name, value){
+                eval(toString(name, value).substring(6));
+            });
     }
-    define(name, value);
+    defn(name, value);
 }

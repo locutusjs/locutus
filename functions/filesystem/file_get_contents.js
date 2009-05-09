@@ -13,7 +13,7 @@ function file_get_contents( url ) {
     // Note: could also be made to optionally add to global $http_response_header as per http://php.net/manual/en/reserved.variables.httpresponseheader.php
 
     var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
-    if (!req) throw new Error('XMLHttpRequest not supported');
+    if (!req) {throw new Error('XMLHttpRequest not supported');}
 
     if (!/^http/.test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
         url = window.location.href + '/' +url;

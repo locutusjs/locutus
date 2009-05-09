@@ -30,7 +30,7 @@ function natsort(inputArr) {
     for (k in inputArr) {
         valArr.push(inputArr[k]);
         keyArr.push(k);
-        delete inputArr[k] ;
+        delete inputArr[k];
     }
     try {
         // Sort our new temporary arrays

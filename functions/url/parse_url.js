@@ -58,14 +58,14 @@ function parse_url (str, component) {
             return uri.anchor;
         default:
             var retArr = {};
-            if (uri.protocol !== '') retArr.scheme=uri.protocol;
-            if (uri.host !== '') retArr.host=uri.host;
-            if (uri.port !== '') retArr.port=uri.port;
-            if (uri.user !== '') retArr.user=uri.user;
-            if (uri.password !== '') retArr.pass=uri.password;
-            if (uri.path !== '') retArr.path=uri.path;
-            if (uri.query !== '') retArr.query=uri.query;
-            if (uri.anchor !== '') retArr.fragment=uri.anchor;
+            if (uri.protocol !== '') {retArr.scheme=uri.protocol;}
+            if (uri.host !== '') {retArr.host=uri.host;}
+            if (uri.port !== '') {retArr.port=uri.port;}
+            if (uri.user !== '') {retArr.user=uri.user;}
+            if (uri.password !== '') {retArr.pass=uri.password;}
+            if (uri.path !== '') {retArr.path=uri.path;}
+            if (uri.query !== '') {retArr.query=uri.query;}
+            if (uri.anchor !== '') {retArr.fragment=uri.anchor;}
             return retArr;
     }
 }

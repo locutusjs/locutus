@@ -21,7 +21,7 @@ function extract (arr, type, prefix) {
             switch (type) {
                 case 'EXTR_PREFIX_SAME' || 2:
                     if (this[i] !== undefined) {
-                        if (prefixed.match(validIdent) != null) {
+                        if (prefixed.match(validIdent) !== null) {
                             this[prefixed] = arr[i];
                             ++chng;
                         }
@@ -38,14 +38,14 @@ function extract (arr, type, prefix) {
                     }
                     break;
                 case 'EXTR_PREFIX_ALL' || 3:
-                    if (prefixed.match(validIdent) != null) {
+                    if (prefixed.match(validIdent) !== null) {
                         this[prefixed] = arr[i];
                         ++chng;
                     }
                     break;
                 case 'EXTR_PREFIX_INVALID' || 4:
                     if(i.match(validIdent) != null) {
-                        if (prefixed.match(validIdent) != null) {
+                        if (prefixed.match(validIdent) !== null) {
                             this[prefixed] = arr[i];
                             ++chng;
                         }
@@ -62,14 +62,13 @@ function extract (arr, type, prefix) {
                     }
                     break;
                 case 'EXTR_PREFIX_IF_EXISTS' || 5:
-                    if (this[i] !== undefined && prefixed.match(validIdent) != null) {
+                    if (this[i] !== undefined && prefixed.match(validIdent) !== null) {
                         this[prefixed] = arr[i];
                         ++chng;
                     }
                     break;
                 case 'EXTR_REFS' || 256:
                     throw 'The EXTR_REFS type will not work in JavaScript';
-                    break;
                 case 'EXTR_OVERWRITE' || 0:
                 // Fall-through
                 default:

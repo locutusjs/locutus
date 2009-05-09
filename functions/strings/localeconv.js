@@ -8,15 +8,15 @@ function localeconv () {
     var arr = {}, prop='';
 
     // BEGIN STATIC
-    setlocale('LC_ALL', 0); // ensure setup of localization variables takes place, if not already
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place, if not already
     // END STATIC
 
     // Make copies
-    for (prop in this.php_js.locales[this.php_js.localeCategories['LC_NUMERIC']]['LC_NUMERIC']) {
-        arr[prop] = this.php_js.locales[this.php_js.localeCategories['LC_NUMERIC']]['LC_NUMERIC'][prop];
+    for (prop in this.php_js.locales[this.php_js.localeCategories.LC_NUMERIC].LC_NUMERIC) {
+        arr[prop] = this.php_js.locales[this.php_js.localeCategories.LC_NUMERIC].LC_NUMERIC[prop];
     }
-    for (prop in this.php_js.locales[this.php_js.localeCategories['LC_MONETARY']]['LC_MONETARY']) {
-        arr[prop] = this.php_js.locales[this.php_js.localeCategories['LC_MONETARY']]['LC_MONETARY'][prop];
+    for (prop in this.php_js.locales[this.php_js.localeCategories.LC_MONETARY].LC_MONETARY) {
+        arr[prop] = this.php_js.locales[this.php_js.localeCategories.LC_MONETARY].LC_MONETARY[prop];
     }
     
     return arr;

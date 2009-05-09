@@ -10,7 +10,7 @@ function file( url ) {
     // *     returns 1: {0: '123'}
 
     var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
-    if (!req) throw new Error('XMLHttpRequest not supported');
+    if (!req) {throw new Error('XMLHttpRequest not supported');}
        
     req.open("GET", url, false);
     req.send(null);

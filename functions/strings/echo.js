@@ -22,9 +22,6 @@ function echo ( ) {
 
     var stringToDOM = function (q){
         var d = document;
-        var r = function(a){
-            return a.replace(/\r/g,' ').replace(/\n/g,' ');
-        };
         var s = function(a){
             return a.replace(/&amp;/g,'&').replace(/&gt;/g,'>').replace(/&lt;/g,'<').replace(/&nbsp;/g,' ').replace(/&quot;/g,'"');
         };

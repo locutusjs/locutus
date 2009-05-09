@@ -9,7 +9,7 @@ function file_exists (url) {
     // *     returns 1: '123'
     
     var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
-    if (!req) throw new Error('XMLHttpRequest not supported');
+    if (!req) {throw new Error('XMLHttpRequest not supported');}
       
     // HEAD Results are usually shorter (faster) than GET
     req.open('HEAD', url, false);

@@ -6,8 +6,9 @@ function expm1 (x) {
     // *     returns 1: 1.0000000000000007e-15
     var ret=0, n = 50; // degree of precision
     var factorial = function factorial (n) {
-       if ((n == 0) || (n == 1))
-          return 1;
+       if ((n === 0) || (n === 1)) {
+           return 1;
+       }
        else {
           var result = (n * factorial(n-1) );
           return result;

@@ -31,7 +31,7 @@ function pathinfo (path, options) {
     // Working vars
     var key = '', tmp_arr = {}, cnt = 0;
     var have_basename = false, have_extension = false, have_filename = false;
-    
+
     // Initialize binary arguments. Both the string & integer (constant) input is
     // allowed
     var def = {
@@ -43,12 +43,12 @@ function pathinfo (path, options) {
     };
     // PATHINFO_ALL sums up all previously defined PATHINFOs
     for (key in def) {
-        def['PATHINFO_ALL'] = def['PATHINFO_ALL'] | def[key];
+        def.PATHINFO_ALL = def.PATHINFO_ALL | def[key];
     }
 
     // Input defaulting & sanitation
-    if (!path)    return false;
-    if (!options) options = 'PATHINFO_ALL';
+    if (!path) {return false;}
+    if (!options) {options = 'PATHINFO_ALL';}
 
     // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
     if (def[options]) {
@@ -60,34 +60,34 @@ function pathinfo (path, options) {
         var str  = path+'';
         var dotP = str.lastIndexOf('.')+1;
         return str.substr(dotP);
-    }
+    };
 
 
     // Gather path infos
-    if ((options & def['PATHINFO_DIRNAME']) == def['PATHINFO_DIRNAME']) {
-        tmp_arr['dirname'] = dirname(path);
+    if ((options & def.PATHINFO_DIRNAME) == def.PATHINFO_DIRNAME) {
+        tmp_arr.dirname = this.dirname(path);
     }
 
-    if ((options & def['PATHINFO_BASENAME']) == def['PATHINFO_BASENAME']) {
+    if ((options & def.PATHINFO_BASENAME) == def.PATHINFO_BASENAME) {
         if (false === have_basename) {
-            have_basename = basename(path);
+            have_basename = this.basename(path);
         }
-        tmp_arr['basename'] = have_basename;
+        tmp_arr.basename = have_basename;
     }
 
-    if ((options & def['PATHINFO_EXTENSION']) == def['PATHINFO_EXTENSION']) {
+    if ((options & def.PATHINFO_EXTENSION) == def.PATHINFO_EXTENSION) {
         if (false === have_basename) {
-            have_basename = basename(path);
+            have_basename = this.basename(path);
         }
         if (false === have_extension) {
             have_extension = __getExt(have_basename);
         }
-        tmp_arr['extension'] = have_extension;
+        tmp_arr.extension = have_extension;
     }
-    
-    if ((options & def['PATHINFO_FILENAME']) == def['PATHINFO_FILENAME']) {
+
+    if ((options & def.PATHINFO_FILENAME) == def.PATHINFO_FILENAME) {
         if (false === have_basename) {
-            have_basename = basename(path);
+            have_basename = this.basename(path);
         }
         if (false === have_extension) {
             have_extension = __getExt(have_basename);
@@ -96,7 +96,7 @@ function pathinfo (path, options) {
             have_filename  = have_basename.substr(0, (have_basename.length - have_extension.length)-1);
         }
 
-        tmp_arr['filename'] = have_filename;
+        tmp_arr.filename = have_filename;
     }
 
 
