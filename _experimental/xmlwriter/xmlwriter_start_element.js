@@ -1,9 +1,9 @@
-function xmlwriter_write_dtd_element (xmlwriter, name, content) {
+function xmlwriter_start_element (xmlwriter, name) {
 	// http://kevin.vanzonneveld.net
 	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
 	// *     example 1: var xmlwriter = xmlwriter_open_memory();
-	// *     example 1: xmlwriter_write_dtd_element(name, content);
+	// *     example 1: xmlwriter_start_element(xmlwriter, 'myElement');
 	// *     returns 1: true
-
-    xmlwriter.writeDTDElement(name, content);
+    
+    return xmlwriter.startElement(name);
 }

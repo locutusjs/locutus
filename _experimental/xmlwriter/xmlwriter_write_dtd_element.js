@@ -1,9 +1,9 @@
-function xmlwriter_start_pi (xmlwriter, target) {
+function xmlwriter_write_dtd_element (xmlwriter, name, content) {
 	// http://kevin.vanzonneveld.net
 	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
 	// *     example 1: var xmlwriter = xmlwriter_open_memory();
-	// *     example 1: xmlwriter_start_pi(xmlwriter, target);
+	// *     example 1: xmlwriter_write_dtd_element('title', '(#PCDATA)');
 	// *     returns 1: true
-    
-    return xmlwriter.startPI(target);
+
+    xmlwriter.writeDTDElement(name, content);
 }
