@@ -7,13 +7,13 @@ function natcasesort(inputArr) {
     // *     example 1: natcasesort($array1);
     // *     returns 1: {0: 'IMG0.png', 4: 'img1.png', 3: 'img2.png', 5: 'IMG3.png', 2: 'img10.png', 1: 'img12.png'}
 
-    var valArr=[], keyArr=[], k, i, ret;
+    var valArr=[], keyArr=[], k, i, ret, that = this;
 
     var bubbleSort = function(keyArr, inputArr) {
         var i, j, tempValue, tempKeyVal;
         for (i = inputArr.length-2; i >= 0; i--) {
             for (j = 0; j <= i; j++) {
-                ret = strnatcasecmp(inputArr[j+1], inputArr[j]);
+                ret = that.strnatcasecmp(inputArr[j+1], inputArr[j]);
                 if (ret < 0) {
                     tempValue = inputArr[j];
                     inputArr[j] = inputArr[j+1];
@@ -30,7 +30,7 @@ function natcasesort(inputArr) {
     for (k in inputArr) {
         valArr.push(inputArr[k]);
         keyArr.push(k);
-        delete inputArr[k] ;
+        delete inputArr[k];
     }
     try {
         // Sort our new temporary arrays

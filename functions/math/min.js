@@ -30,7 +30,7 @@ function min() {
             }
             return ar;
         }
-    } //function _obj2Array
+    }; //function _obj2Array
     
     var _compare = function(current, next) {
         var i = 0, n = 0, tmp = 0;
@@ -83,7 +83,7 @@ function min() {
                return (next>current ? 1 : -1);
             }
         }
-    } //function _compare
+    }; //function _compare
     
     if (argc === 0) {
         throw new Error('At least one value should be passed to min()');

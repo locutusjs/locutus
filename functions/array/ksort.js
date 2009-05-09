@@ -55,7 +55,7 @@ function ksort(array, sort_flags) {
         delete array[key];
     }
     for (i in tmp_arr) {
-        array[i] = tmp_arr[i]
+        array[i] = tmp_arr[i];
     }
 
     return true;
