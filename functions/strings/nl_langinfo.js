@@ -43,10 +43,10 @@ function nl_langinfo (item) {
 				return loc.LC_TIME[item];
 		}
 		loc = this.php_js.locales[this.php_js.localeCategories.LC_MONETARY];
+        if (item === 'CRNCYSTR') {
+            item = 'CURRENCY_SYMBOL'; // alias
+        }
 		switch(item) {
-			case 'CRNCYSTR':
-				item = 'CURRENCY_SYMBOL'; // alias
-				 // Fall-through
 			case 'INT_CURR_SYMBOL': // all fall-throughs
 			case 'CURRENCY_SYMBOL':
 			case 'MON_DECIMAL_POINT':
@@ -85,9 +85,8 @@ function nl_langinfo (item) {
 				return loc.LC_MESSAGES[item];
 		}
 		loc = this.php_js.locales[this.php_js.localeCategories.LC_CTYPE];
-		switch(item) {
-			case 'CODESET':
-				return loc.LC_CTYPE[item];
+		if (item === 'CODESET') {
+            return loc.LC_CTYPE[item];
 		}
 		return false;
 	}

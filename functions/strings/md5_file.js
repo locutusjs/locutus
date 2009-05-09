@@ -16,5 +16,5 @@ function md5_file ( str_filename ) {
         return false;
     }
     
-    return md5(buf);
+    return this.md5(buf);
 }

@@ -5,5 +5,5 @@ function split( delimiter, string ) {
     // *     example 1: split(' ', 'Kevin van Zonneveld');
     // *     returns 1: {0: 'Kevin', 1: 'van', 2: 'Zonneveld'}
 
-    return explode( delimiter, string );
+    return this.explode( delimiter, string );
 }

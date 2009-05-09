@@ -13,7 +13,7 @@ function levenshtein (a, b){
     var split = false;
     try{
         split=!('0')[0];
-    } catch(i){
+    } catch(e){
         split=true; // Earlier IE may not support access by string index
     }
     // END STATIC

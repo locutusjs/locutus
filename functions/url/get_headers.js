@@ -19,9 +19,9 @@ function get_headers(url, format) {
         return false;
     }
 
-    tmp = req.getAllResponseHeaders();alert(tmp);
+    tmp = req.getAllResponseHeaders();
     tmp = tmp.split('\n');
-    tmp = this.array_filter(tmp, function (value) { return value.substring(1) != ''; });
+    tmp = this.array_filter(tmp, function (value) { return value.substring(1) !== ''; });
     headers = [req.status + ' ' + req.statusText];
 
     for (i in tmp) {

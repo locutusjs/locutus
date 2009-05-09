@@ -17,25 +17,6 @@ function json_decode(str_json) {
     var j;
     var text = str_json;
 
-    var walk = function(holder, key) {
-        // The walk method is used to recursively walk the resulting structure so
-        // that modifications can be made.
-        var k, v, value = holder[key];
-        if (value && typeof value === 'object') {
-            for (k in value) {
-                if (Object.hasOwnProperty.call(value, k)) {
-                    v = walk(value, k);
-                    if (v !== undefined) {
-                        value[k] = v;
-                    } else {
-                        delete value[k];
-                    }
-                }
-            }
-        }
-        return reviver.call(holder, key, value);
-    };
-
     // Parsing happens in four stages. In the first stage, we replace certain
     // Unicode characters with escape sequences. JavaScript handles many characters
     // incorrectly, either silently deleting them, or treating them as line endings.
@@ -71,13 +52,7 @@ function json_decode(str_json) {
 
         j = eval('(' + text + ')');
 
-        // In the optional fourth stage, we recursively walk the new structure, passing
-        // each name/value pair to a reviver function for possible transformation.
-
-        return typeof reviver === 'function' ?
-        walk({
-            '': j
-        }, '') : j;
+        return j;
     }
 
     // If the text is not JSON parseable, then a SyntaxError is thrown.

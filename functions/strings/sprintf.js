@@ -20,7 +20,7 @@ function sprintf( ) {
 
     // pad()
     var pad = function(str, len, chr, leftJustify) {
-        if (!chr) chr = ' ';
+        if (!chr) {chr = ' ';}
         var padding = (str.length >= len) ? '' : Array(1 + len - str.length >>> 0).join(chr);
         return leftJustify ? str + padding : padding + str;
     };
@@ -63,7 +63,7 @@ function sprintf( ) {
         var textTransform;
         var value;
 
-        if (substring == '%%') return '%';
+        if (substring == '%%') {return '%';}
 
         // parse flags
         var leftJustify = false, positivePrefix = '', zeroPad = false, prefixBaseX = false, customPadChar = ' ';
