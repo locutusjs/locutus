@@ -29,7 +29,7 @@ function parse_url (str, component) {
     var m   = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
     uri = {},
     i   = 14;
-    while (i--) uri[o.key[i]] = m[i] || "";
+    while (i--) {uri[o.key[i]] = m[i] || "";}
     // Uncomment the following to use the original more detailed (non-PHP) script
     /*
         uri[o.q.name] = {};

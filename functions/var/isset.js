@@ -8,13 +8,13 @@ function isset(  ) {
     // *     example 2: isset( 'Kevin van Zonneveld' );
     // *     returns 2: true
     
-    var a=arguments; var l=a.length; var i=0;
+    var a=arguments, l=a.length, i=0;
     
-    if (l==0) { 
+    if (l===0) {
         throw new Error('Empty isset'); 
     }
     
-    while (i!=l) {
+    while (i!==l) {
         if (typeof(a[i])=='undefined' || a[i]===null) { 
             return false; 
         } else { 
