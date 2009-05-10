@@ -25,7 +25,7 @@ function assert_options (what, value) {
         case 'ASSERT_WARNING':
             ini = 'assert.warning';
             dflt = 1;
-            throw 'There are no warnings for us to throw in JavaScript for assert_options()';
+            throw 'We have not yet implemented warnings for us to throw in JavaScript (assert_options())';
             break;
         case 'ASSERT_BAIL':
             ini = 'assert.bail';

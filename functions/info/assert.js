@@ -32,7 +32,7 @@ function assert (assertion) {
                 return 1;
             case 'assert.warning': // Don't need this now
                 //return 1;
-                throw 'There are no warnings for us to throw in JavaScript for assert_options()';
+                throw 'We have not yet implemented warnings in JavaScript (assert())';
             case 'assert.bail':
                 return 0;
             case 'assert.quiet_eval':
