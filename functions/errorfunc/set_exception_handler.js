@@ -25,9 +25,18 @@ function set_exception_handler (callback) {
             // These four are supposed to be protected (extendable, but not public)
             this.message = message || 'Unknown exception';
             this.code = code || 0; // user defined exception code
-            // Fix: Just putting something here for the next two (not PHP-style)... Can over-ride if overriding, however
+            // Fix: Just putting something here for the next two (not PHP-style)... Can over-ride if extending, however;
+            //    in Mozilla, error objects (e.g., if you're in a catch block), have these properties which might be used to
+            //    add to the object after instantiation (or during instantiation if extending the exception): fileName,
+            //    lineNumber, stack
+            //  Note that for the trace, however, in Mozilla the stack property is a string, and getTrace() needs the items
+            //    parsed as an array; this might be doable by setting the exception object's trace property to
+            //    "e.stack.split('\n');" if 'e' is a JavaScript exception
+            // Also, if extending, be sure to add back the constructor, especially since it is relied upon in the
+            //    default __toString()/toString()
             this.file = window.href.location; // source filename of exception
             this.line = 0; // source line of exception
+            this.name = 'Error';  // To fit the JavaScript Error interface, user could also add a custom name property.
             that.php_js.exception_handler(this);
         };
         window.Exception.prototype = {
@@ -47,13 +56,22 @@ function set_exception_handler (callback) {
             },
             getTrace : function () { // an array of the backtrace()
                 // Todo: add trace for Mozilla, etc.
+                return this.trace; // should be an array (especialy so that getTraceAsString() works properly)
             },
             getTraceAsString : function () { // formatted string of trace
                 // Todo: add trace for Mozilla, etc.
+                return this.trace.toString();
             },
             // Overrideable
             __toString : function () { // formatted string for display
-                return this.message;
+                return this.toString(); // We implement on toString() to implement JavaScript Error interface
+            },
+            // For JavaScript interface/behavior:
+            toString : function () {
+                // PHP-style
+                return "exception '"+this.constructor.name+"' with message '"+this.getMessage()+"' in "+
+                                this.getFile()+":"+this.getLine()+"\nStack trace:\n"+this.getTraceAsString();
+                // return this.name+': '+this.message; // this works also, but in JavaScript-style
             }
         };
     }
