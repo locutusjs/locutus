@@ -26,21 +26,21 @@ function strftime (fmt, timestamp) {
         return x.toString();
     };
 
-    var locale = phpjs.localeCategories['LC_TIME'];
+    var locale = phpjs.localeCategories.LC_TIME;
     var locales = phpjs.locales;
 
     var _formats = {
         a: function(d) {
-            return locales[locale]['LC_TIME'].a[d.getDay()];
+            return locales[locale].LC_TIME.a[d.getDay()];
         },
         A: function(d) {
-            return locales[locale]['LC_TIME'].A[d.getDay()];
+            return locales[locale].LC_TIME.A[d.getDay()];
         },
         b: function(d) {
-            return locales[locale]['LC_TIME'].b[d.getMonth()];
+            return locales[locale].LC_TIME.b[d.getMonth()];
         },
         B: function(d) {
-            return locales[locale]['LC_TIME'].B[d.getMonth()];
+            return locales[locale].LC_TIME.B[d.getMonth()];
         },
         C: function(d) {
             return _xPad(parseInt(d.getFullYear()/100, 10), 0);
@@ -82,10 +82,10 @@ function strftime (fmt, timestamp) {
         },
         M: ['getMinutes', '0'],
         p: function(d) {
-            return locales[locale]['LC_TIME'].p[d.getHours() >= 12 ? 1 : 0 ];
+            return locales[locale].LC_TIME.p[d.getHours() >= 12 ? 1 : 0 ];
         },
         P: function(d) {
-            return locales[locale]['LC_TIME'].P[d.getHours() >= 12 ? 1 : 0 ];
+            return locales[locale].LC_TIME.P[d.getHours() >= 12 ? 1 : 0 ];
         },
         s: function(d) {
             return Date.parse(d)/1000;
@@ -170,7 +170,7 @@ function strftime (fmt, timestamp) {
         fmt = fmt.replace(/%([cDFhnrRtTxXzZ])/g, function(m0, m1)
         {
             var f = _aggregates[m1];
-            return (f === 'locale' ? locales[locale]['LC_TIME'][m1] : f);
+            return (f === 'locale' ? locales[locale].LC_TIME[m1] : f);
         });
     }
 
