@@ -22,7 +22,27 @@ function is_array( mixed_var ) {
         return false;
     }
 
+    // BEGIN REDUNDANT
+    if (!this.php_js) {
+        this.php_js = {};
+    }
+    if (!this.php_js.ini) {
+        this.php_js.ini = {};
+    }
+    // END REDUNDANT
+
     if (typeof mixed_var === 'object') {
+
+        if (this.php_js.ini['phpjs.objectsAsArrays'] &&  // Strict checking for being a JavaScript array (only check this way if call ini_set('phpjs.objectsAsArrays', 0) to disallow objects as arrays)
+            (
+            (this.php_js.ini.objectsAsArrays.local_value.toLowerCase &&
+                    this.php_js.ini.objectsAsArrays.local_value.toLowerCase() === 'off') ||
+                parseInt(this.php_js.ini.objectsAsArrays.local_value, 10) === 0)
+            ) {
+            return mixed_var.hasOwnProperty('length') && // Not non-enumerable because of being on parent class
+                            !mixed_var.propertyIsEnumerable('length') && // Since is own property, if not enumerable, it must be a built-in function
+                                mixed_var.constructor.name !== 'String'; // exclude String()
+        }
 
         if (mixed_var.hasOwnProperty) {
             for (key in mixed_var) {
@@ -34,14 +54,7 @@ function is_array( mixed_var ) {
             }
         }
 
-        // Uncomment to enable strict JavsScript-proof type checking
-        // This will not support PHP associative arrays (JavaScript objects), however
         // Read discussion at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
-        //
-        //  if (mixed_var.propertyIsEnumerable('length') || typeof mixed_var.length !== 'number') {
-        //      return false;
-        //  }
-
         return true;
     }
 
