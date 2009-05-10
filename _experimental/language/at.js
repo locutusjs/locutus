@@ -5,6 +5,8 @@ function at(cb) {  // Could also name as "at_sign", "silence", "error_suppressor
 	// %          note 2: Also implements the "scream" extension to undo the effect of at(); can do "ini_set('scream.enabled', true);"
     // *     example 1: at(someFunctionThatMayThrowErrors);
     // *     returns 1: undefined
+
+    // Perhaps could be configured to return the appropriate value in case of errors (no doubt it would usually be 'false')
     
     try {
         return cb.apply(null, Array.prototype.slice.call(arguments, 1));

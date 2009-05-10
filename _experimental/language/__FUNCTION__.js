@@ -1,0 +1,11 @@
+function __FUNCTION__() {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // %        note 1: Not a function in PHP, so in experimental
+    // %        note 2: This function depends on the non-standard caller property of Function instances
+    // *     example 1: function myFunc () {return __FUNCTION__();}
+    // *     example 1: myFunc();
+    // *     returns 1: 'myFunc'
+
+    return arguments.callee.caller && arguments.callee.caller.name;
+}
