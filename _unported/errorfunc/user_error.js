@@ -1,3 +1,0 @@
-function user_error () {
-    
-}
