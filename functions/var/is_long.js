@@ -7,5 +7,5 @@ function is_long( mixed_var ) {
     // *     example 1: is_long(186.31);
     // *     returns 1: true
 
-    return is_float(mixed_var);
+    return this.is_float(mixed_var);
 }

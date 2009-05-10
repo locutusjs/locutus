@@ -9,5 +9,5 @@ function is_integer( mixed_var ) {
     // *     example 2: is_integer(12);
     // *     returns 2: true
 
-    return is_int(mixed_var);
+    return this.is_int(mixed_var);
 }

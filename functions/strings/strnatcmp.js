@@ -87,7 +87,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
             if (isNaN(array2[i])) {
                 text = true;
 
-                if ((r = strcmp(array1[i], array2[i])) != 0) {
+                if ((r = this.strcmp(array1[i], array2[i])) != 0) {
                     return r;
                 }
             } else if (text){
@@ -107,7 +107,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
                     return r;
                 }
             } else {
-                if ((r = strcmp(array1[i].toString(), array2[i].toString())) != 0) {
+                if ((r = this.strcmp(array1[i].toString(), array2[i].toString())) != 0) {
                     return r;
                 }
             }

@@ -7,5 +7,5 @@ function sha1_file ( str_filename ) {
     // *     returns 1: '40bd001563085fc35165329ea1ff5c5ecbdbbeef'
 
     var buf = this.file_get_contents(str_filename);
-    return sha1(buf);
+    return this.sha1(buf);
 }

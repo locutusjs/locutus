@@ -24,7 +24,7 @@ function rand( min, max ) {
 	var rand_seed, ctx, PHP_RAND_MAX=2147483647; // 0x7fffffff
 
 	if (!this.php_js || this.php_js.rand_seed === undefined) {
-		srand();
+		this.srand();
 	}
 	rand_seed = this.php_js.rand_seed;
 

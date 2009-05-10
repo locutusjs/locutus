@@ -7,5 +7,5 @@ function strchr ( haystack, needle, bool ) {
     // *     example 2: strchr('Kevin van Zonneveld', 'van', true);
     // *     returns 2: 'Kevin '
  
-    return strstr( haystack, needle, bool );
+    return this.strstr( haystack, needle, bool );
 }

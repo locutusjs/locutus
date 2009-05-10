@@ -15,7 +15,7 @@ function htmlentities (string, quote_style) {
     var histogram = {}, symbol = '', tmp_str = '', entity = '';
     tmp_str = string.toString();
     
-    if (false === (histogram = get_html_translation_table('HTML_ENTITIES', quote_style))) {
+    if (false === (histogram = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {
         return false;
     }
     

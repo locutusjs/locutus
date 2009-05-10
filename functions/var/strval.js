@@ -12,7 +12,7 @@ function strval(str) {
 
     if (str === null) return '';
 
-    type = gettype(str);
+    type = this.gettype(str);
     switch (type) {
         case 'boolean':
             if (str === true) return '1';

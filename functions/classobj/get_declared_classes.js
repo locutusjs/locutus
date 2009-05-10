@@ -10,8 +10,7 @@ function get_declared_classes() {
     // *     example 1: get_declared_classes()
     // *     returns 1: [C, B, A]
 
-    var i = '', arr = [], already = {};
-    var j = '';
+    var i = '', j = '', arr = [], already = {};
 
     for (i in window) {
         try {

@@ -15,7 +15,7 @@ function strftime (fmt, timestamp) {
     // END REDUNDANT
 
     // BEGIN STATIC
-    setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     var _xPad = function (x, pad, r) {
         if (typeof r === 'undefined') {
             r=10;
