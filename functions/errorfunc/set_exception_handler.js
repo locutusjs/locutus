@@ -64,14 +64,14 @@ function set_exception_handler (callback) {
             },
             // Overrideable
             __toString : function () { // formatted string for display
-                return this.toString(); // We implement on toString() to implement JavaScript Error interface
-            },
-            // For JavaScript interface/behavior:
-            toString : function () {
                 // PHP-style
                 return "exception '"+this.constructor.name+"' with message '"+this.getMessage()+"' in "+
                                 this.getFile()+":"+this.getLine()+"\nStack trace:\n"+this.getTraceAsString();
                 // return this.name+': '+this.message; // this works also, but in JavaScript-style
+            },
+            // For JavaScript interface/behavior:
+            toString : function () {
+                return this.__toString(); // We implement on toString() to implement JavaScript Error interface
             }
         };
     }
