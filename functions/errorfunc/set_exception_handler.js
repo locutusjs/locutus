@@ -31,7 +31,7 @@ function set_exception_handler (callback) {
             //    lineNumber, stack
             //  Note that for the trace, however, in Mozilla the stack property is a string, and getTrace() needs the items
             //    parsed as an array; this might be doable by setting the exception object's trace property to
-            //    "e.stack.split('\n');" if 'e' is a JavaScript exception
+            //    "e.stack.replace(/\n$/, '').split('\n');" if 'e' is a JavaScript exception
             // Also, if extending, be sure to add back the constructor, especially since it is relied upon in the
             //    default __toString()/toString()
             this.file = window.href.location; // source filename of exception
