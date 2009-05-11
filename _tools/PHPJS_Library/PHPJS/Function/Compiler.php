@@ -30,11 +30,11 @@ Class PHPJS_Function_Compiler extends PHPJS_Function {
             
             // Convert dependency function calls to namespaced variants 
             foreach($dependencies as $dependency){
-                $real = preg_replace('/([^a-zA-Z0-9_\.])('.$dependency.')([^a-zA-Z0-9_])/s', '$1this.$2$3', $real);
+                #$real = preg_replace('/([^a-zA-Z0-9_\.])('.$dependency.')([^a-zA-Z0-9_])/s', '$1this.$2$3', $real);
             }
              
             // Convert recursive function calls to namespaced variants 
-            $real = preg_replace('/([^a-zA-Z0-9_\.])('.$name.')([^a-zA-Z0-9_])/s', '$1this.$2$3', $real);
+            #$real = preg_replace('/([^a-zA-Z0-9_\.])('.$name.')([^a-zA-Z0-9_])/s', '$1this.$2$3', $real);
         }
         
 
