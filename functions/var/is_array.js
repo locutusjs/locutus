@@ -35,9 +35,9 @@ function is_array( mixed_var ) {
 
         if (this.php_js.ini['phpjs.objectsAsArrays'] &&  // Strict checking for being a JavaScript array (only check this way if call ini_set('phpjs.objectsAsArrays', 0) to disallow objects as arrays)
             (
-            (this.php_js.ini.objectsAsArrays.local_value.toLowerCase &&
-                    this.php_js.ini.objectsAsArrays.local_value.toLowerCase() === 'off') ||
-                parseInt(this.php_js.ini.objectsAsArrays.local_value, 10) === 0)
+            (this.php_js.ini['phpjs.objectsAsArrays'].local_value.toLowerCase &&
+                    this.php_js.ini['phpjs.objectsAsArrays'].local_value.toLowerCase() === 'off') ||
+                parseInt(this.php_js.ini['phpjs.objectsAsArrays'].local_value, 10) === 0)
             ) {
             return mixed_var.hasOwnProperty('length') && // Not non-enumerable because of being on parent class
                             !mixed_var.propertyIsEnumerable('length') && // Since is own property, if not enumerable, it must be a built-in function
