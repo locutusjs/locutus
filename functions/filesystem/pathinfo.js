@@ -29,30 +29,37 @@ function pathinfo (path, options) {
     // *     returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
     // Working vars
-    var key = '', tmp_arr = {}, cnt = 0;
+    var opt = '', optName='', tmp_arr = {}, cnt = 0, i=0, opts=0;
     var have_basename = false, have_extension = false, have_filename = false;
-
-    // Initialize binary arguments. Both the string & integer (constant) input is
-    // allowed
-    var def = {
-        'PATHINFO_DIRNAME': 1,
-        'PATHINFO_BASENAME': 2,
-        'PATHINFO_EXTENSION': 4,
-        'PATHINFO_FILENAME': 8,
-        'PATHINFO_ALL': 0
-    };
-    // PATHINFO_ALL sums up all previously defined PATHINFOs
-    for (key in def) {
-        def.PATHINFO_ALL = def.PATHINFO_ALL | def[key];
-    }
 
     // Input defaulting & sanitation
     if (!path) {return false;}
     if (!options) {options = 'PATHINFO_ALL';}
 
-    // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
-    if (def[options]) {
-        options = def[options];
+    // Initialize binary arguments. Both the string & integer (constant) input is
+    // allowed
+    var OPTS = {
+        'PATHINFO_DIRNAME': 1,
+        'PATHINFO_BASENAME': 2,
+        'PATHINFO_EXTENSION': 4,
+        'PATHINFO_FILENAME': 8,
+        'PATHINFO_ALL': 0 // Not part of PHP
+    };
+    // PATHINFO_ALL sums up all previously defined PATHINFOs (could just pre-calculate)
+    for (optName in OPTS) {
+        OPTS.PATHINFO_ALL = OPTS.PATHINFO_ALL | OPTS[optName];
+    }
+    if (typeof options === 'number') {
+        opts = options;
+    }
+    else { // Allow for a single string or an array of string flags
+        options = [].concat(options);
+        for (i=0; i < options.length; i++) {
+            // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
+            if (OPTS[options[i]]) {
+                opts = opts | OPTS[options[i]];
+            }
+        }
     }
 
     // Internal Functions
@@ -64,18 +71,18 @@ function pathinfo (path, options) {
 
 
     // Gather path infos
-    if ((options & def.PATHINFO_DIRNAME) == def.PATHINFO_DIRNAME) {
+    if ((opts & OPTS.PATHINFO_DIRNAME) == OPTS.PATHINFO_DIRNAME) {
         tmp_arr.dirname = this.dirname(path);
     }
 
-    if ((options & def.PATHINFO_BASENAME) == def.PATHINFO_BASENAME) {
+    if ((opts & OPTS.PATHINFO_BASENAME) == OPTS.PATHINFO_BASENAME) {
         if (false === have_basename) {
             have_basename = this.basename(path);
         }
         tmp_arr.basename = have_basename;
     }
 
-    if ((options & def.PATHINFO_EXTENSION) == def.PATHINFO_EXTENSION) {
+    if ((opts & OPTS.PATHINFO_EXTENSION) == OPTS.PATHINFO_EXTENSION) {
         if (false === have_basename) {
             have_basename = this.basename(path);
         }
@@ -85,7 +92,7 @@ function pathinfo (path, options) {
         tmp_arr.extension = have_extension;
     }
 
-    if ((options & def.PATHINFO_FILENAME) == def.PATHINFO_FILENAME) {
+    if ((opts & OPTS.PATHINFO_FILENAME) == OPTS.PATHINFO_FILENAME) {
         if (false === have_basename) {
             have_basename = this.basename(path);
         }
@@ -102,11 +109,11 @@ function pathinfo (path, options) {
 
     // If array contains only 1 element: return string
     cnt = 0;
-    for (key in tmp_arr){
+    for (opt in tmp_arr){
         cnt++;
     }
     if (cnt == 1) {
-        return tmp_arr[key];
+        return tmp_arr[opt];
     }
 
     // Return full-blown array
