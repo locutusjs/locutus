@@ -1,6 +1,7 @@
 function get_headers(url, format) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
+	// -    depends on: array_filter
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
     // *     example 1: get_headers('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
