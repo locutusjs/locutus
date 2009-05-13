@@ -43,7 +43,7 @@ function pathinfo (path, options) {
         'PATHINFO_BASENAME': 2,
         'PATHINFO_EXTENSION': 4,
         'PATHINFO_FILENAME': 8,
-        'PATHINFO_ALL': 0 // Not part of PHP
+        'PATHINFO_ALL': 0
     };
     // PATHINFO_ALL sums up all previously defined PATHINFOs (could just pre-calculate)
     for (optName in OPTS) {
