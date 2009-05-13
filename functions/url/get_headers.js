@@ -1,12 +1,11 @@
 function get_headers(url, format) {
-    // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
-	// -    depends on: array_filter
+    // +    bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
     // *     example 1: get_headers('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '123'
-    
+
     var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
     if (!req) {
         throw new Error('XMLHttpRequest not supported');
@@ -23,7 +22,7 @@ function get_headers(url, format) {
     tmp = req.getAllResponseHeaders();
     tmp = tmp.split('\n');
     tmp = this.array_filter(tmp, function (value) { return value.substring(1) !== ''; });
-    headers = [req.status + ' ' + req.statusText];
+    headers = format ? {} : [];
 
     for (i in tmp) {
         if (format) {
