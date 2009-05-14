@@ -9,17 +9,20 @@ function get_defined_constants (categorize ) {
     // %        note 3: uses the extensions!
     // %        note 4: If you do ini_set('phpjs.get_defined_constants.setConstants', 'this') then call this function,
     // %        note 4: it will set the PHP constants as globals for you on the "this" object. In the namespaced version, this
-    // %        note 4: means the constants will be attached directly to the $P object: e.g., $P.PREG_OFFSET_CAPTURE
+    // %        note 4: means the "constants" will be attached directly to the $P object: e.g., $P.PREG_OFFSET_CAPTURE
     // %        note 4: In the non-namespaced version, this will act like the setting mentioned in note 6
-    // %        note 5: If you do ini_set('phpjs.get_defined_constants.setConstants', 'thisExt') then call this function,
-    // %        note 5: it will set the PHP constants as globals for you, but will first create a namespace on your object 
-    // %        note 5: for each extension. For example, $P.pcre.PREG_OFFSET_CAPTURE
-    // %        note 5: For the non-namespaced version, this will be created on window: alert(pcre.PREG_OFFSET_CAPTURE);
-    // %        note 6: If you do ini_set('phpjs.get_defined_constants.setConstants', true) then call this function,
-    // %        note 7: it will set the PHP constants as globals for you. For example, you can just do: alert(PREG_OFFSET_CAPTURE);
-    // %        note 8: Note that our functions might not have been designed yet to handle PHP-style constants if at all, as
-    // %        note 8: some of our extensions rely simply on the constant name being passed in to the function as a
-    // %        note 8:  string to work as a flag
+    // %        note 4: If you do ini_set('phpjs.get_defined_constants.setConstants', 'thisExt') then call this function,
+    // %        note 4: it will set the PHP constants for you, but will first create a namespace on your object
+    // %        note 4: for each extension to which the "constants" will be added. For example, $P.pcre.PREG_OFFSET_CAPTURE
+    // %        note 4: For the non-namespaced version, this will be created on window: alert(pcre.PREG_OFFSET_CAPTURE);
+    // %        note 4: If you do ini_set('phpjs.get_defined_constants.setConstants', true) then call this function,
+    // %        note 4: it will set the PHP constants as window globals for you, even if you are using the PHP.JS namespaced
+    // %        note 4: version. For example, you can just do: alert(PREG_OFFSET_CAPTURE); . Only the constants set directly
+    // %        note 4: at the level of window globals, will actually be immutable constants.
+    // %        note 5: Note that our functions might not have been designed yet to handle PHP-style constants if at all, as
+    // %        note 5: some of our extensions rely simply on the constant name being passed in to the function as a
+    // %        note 5:  string to work as a flag
+    // -    depends on: define
     // *     example 1: var cnsts = get_defined_constants();
     // *     example 1: cnsts.E_NOTICE;
     // *     returns 1: 8
@@ -360,12 +363,19 @@ function get_defined_constants (categorize ) {
                     if (!win[ext]) {
                         win[ext] = {};
                     }
-                    win[ext][cnst] = constObj[ext][cnst]; // Might change 'window' here to this[ext][cnst].
+                    // These will not be real constants!
+                    win[ext][cnst] = constObj[ext][cnst];
                 }
             }
             else {
                 for (cnst in constObj[ext]) {
-                    win[cnst] = constObj[ext][cnst]; // Might change 'window' here to this[ext][cnst].
+                    if (this === window) { // Take advantage of fact, in this case we can make real constants
+                        this.define(cnst, constObj[ext][cnst]);
+                    }
+                    else {
+                        // These will not be real constants!
+                        win[cnst] = constObj[ext][cnst];
+                    }
                 }
             }
         }
@@ -377,7 +387,7 @@ function get_defined_constants (categorize ) {
 
     for (ext in constObj) {
         for (cnst in constObj[ext]) {
-            flatConstObj[cnst] = constObj[ext][cnst]; // Might change 'window' here to this[ext][cnst].
+            flatConstObj[cnst] = constObj[ext][cnst];
         }
     }
     return flatConstObj;
