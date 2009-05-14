@@ -14,7 +14,7 @@ function get_defined_constants (categorize ) {
     // *     example 2: cnsts.internal.E_NOTICE;
     // *     returns 2: 8
 
-    var ext = '', cnst = '', constObj = {}, flatConstObj = {};
+    var ext = '', cnst = '', constObj = {}, flatConstObj = {}, win;
 
     constObj = {
       'internal' : {
@@ -330,9 +330,10 @@ function get_defined_constants (categorize ) {
     if (this.php_js && this.php_js.ini && this.php_js.ini['phpjs.get_defined_constants.setConstants']
             && this.php_js.ini['phpjs.get_defined_constants.setConstants'].local_value) {
         // Allow us to set a configuration to let this function set global constants
+        win = this.php_js.ini['phpjs.get_defined_constants.setConstants'].local_value === 'this' ? this : window;
         for (ext in constObj) {
             for (cnst in constObj[ext]) {
-                window[cnst] = constObj[ext][cnst]; // Might change 'window' here to this[ext][cnst].
+                win[cnst] = constObj[ext][cnst]; // Might change 'window' here to this[ext][cnst].
             }
         }
     }
