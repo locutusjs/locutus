@@ -7,6 +7,16 @@ function get_defined_constants (categorize ) {
     // %        note 3: We used a PHP script to auto-convert these, so we can simply reuse it to add more below if we
     // %        note 3: implement more extensions needing constants, assuming we have a PHP set-up which
     // %        note 3: uses the extensions!
+    // %        note 4: If you do ini_set('phpjs.get_defined_constants.setConstants', 'this') then call this function,
+    // %        note 4: it will set the PHP constants as globals for you on the "this" object. In the namespaced version, this
+    // %        note 4: means the constants will be attached directly to the $P object: e.g., $P.PREG_OFFSET_CAPTURE
+    // %        note 4: In the non-namespaced version, this will act like the setting mentioned in note 6
+    // %        note 5: If you do ini_set('phpjs.get_defined_constants.setConstants', 'thisExt') then call this function,
+    // %        note 5: it will set the PHP constants as globals for you, but will first create a namespace on your object 
+    // %        note 5: for each extension. For example, $P.pcre.PREG_OFFSET_CAPTURE
+    // %        note 5: For the non-namespaced version, this will be created on window: alert(pcre.PREG_OFFSET_CAPTURE);
+    // %        note 6: If you do ini_set('phpjs.get_defined_constants.setConstants', true) then call this function,
+    // %        note 7: it will set the PHP constants as globals for you. For example, you can just do: alert(PREG_OFFSET_CAPTURE);
     // *     example 1: var cnsts = get_defined_constants();
     // *     example 1: cnsts.E_NOTICE;
     // *     returns 1: 8
