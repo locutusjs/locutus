@@ -17,6 +17,9 @@ function get_defined_constants (categorize ) {
     // %        note 5: For the non-namespaced version, this will be created on window: alert(pcre.PREG_OFFSET_CAPTURE);
     // %        note 6: If you do ini_set('phpjs.get_defined_constants.setConstants', true) then call this function,
     // %        note 7: it will set the PHP constants as globals for you. For example, you can just do: alert(PREG_OFFSET_CAPTURE);
+    // %        note 8: Note that our functions might not have been designed yet to handle PHP-style constants if at all, as
+    // %        note 8: some of our extensions rely simply on the constant name being passed in to the function as a
+    // %        note 8:  string to work as a flag
     // *     example 1: var cnsts = get_defined_constants();
     // *     example 1: cnsts.E_NOTICE;
     // *     returns 1: 8
