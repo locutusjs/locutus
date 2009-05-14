@@ -12,6 +12,8 @@ function file_get_contents( url ) {
 
     // Note: could also be made to optionally add to global $http_response_header as per http://php.net/manual/en/reserved.variables.httpresponseheader.php
 
+    var tmp, headers = [], newTmp = [], k=0, i=0;
+    var func = function (value) { return value.substring(1) !== ''; };
     var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
     if (!req) {throw new Error('XMLHttpRequest not supported');}
 
@@ -21,6 +23,19 @@ function file_get_contents( url ) {
     
     req.open("GET", url, false);
     req.send(null);
+
+    tmp = req.getAllResponseHeaders();
+    tmp = tmp.split('\n');
+    for (k=0; k < tmp.length; k++) {
+        if (func(tmp[k])) {
+            newTmp.push(tmp[k]);
+        }
+    }
+    tmp = newTmp;
+    for (i=0; i < tmp.length; i++) {
+        headers[i] = tmp[i];
+    }
+    this.$http_response_header = headers; // see http://php.net/manual/en/reserved.variables.httpresponseheader.php
     
     return req.responseText;
 }
