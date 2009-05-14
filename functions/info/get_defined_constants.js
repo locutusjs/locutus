@@ -14,7 +14,7 @@ function get_defined_constants (categorize ) {
     // *     example 2: cnsts.internal.E_NOTICE;
     // *     returns 2: 8
 
-    var ext = '', cnst = '', constObj = {}, flatConstObj = {}, win;
+    var ext = '', cnst = '', constObj = {}, flatConstObj = {}, win, thisExt = false;
 
     constObj = {
       'internal' : {
@@ -327,13 +327,33 @@ function get_defined_constants (categorize ) {
       }
     };
 
-    if (this.php_js && this.php_js.ini && this.php_js.ini['phpjs.get_defined_constants.setConstants']
-            && this.php_js.ini['phpjs.get_defined_constants.setConstants'].local_value) {
+    if (this.php_js && this.php_js.ini && this.php_js.ini['phpjs.get_defined_constants.setConstants'] &&
+            this.php_js.ini['phpjs.get_defined_constants.setConstants'].local_value) {
         // Allow us to set a configuration to let this function set global constants
-        win = this.php_js.ini['phpjs.get_defined_constants.setConstants'].local_value === 'this' ? this : window;
+        if (this.php_js.ini['phpjs.get_defined_constants.setConstants'].local_value === 'this') {
+            win = this;
+        }
+        else if (this.php_js.ini['phpjs.get_defined_constants.setConstants'].local_value === 'thisExt') {
+            win = this;
+            thisExt = true;
+        }
+        else {
+            win = window;
+        }
+        
         for (ext in constObj) {
-            for (cnst in constObj[ext]) {
-                win[cnst] = constObj[ext][cnst]; // Might change 'window' here to this[ext][cnst].
+            if (thisExt) { // Allows namespacing constants (e.g,. this.pcre.PREG_OFFSET_CAPTURE)
+                for (cnst in constObj[ext]) {
+                    if (!win[ext]) {
+                        win[ext] = {};
+                    }
+                    win[ext][cnst] = constObj[ext][cnst]; // Might change 'window' here to this[ext][cnst].
+                }
+            }
+            else {
+                for (cnst in constObj[ext]) {
+                    win[cnst] = constObj[ext][cnst]; // Might change 'window' here to this[ext][cnst].
+                }
             }
         }
     }
