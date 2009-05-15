@@ -5,7 +5,7 @@ function classkit_method_remove (classname, methodname) {
     // *     returns 1: true
     
     if (typeof classname === 'string') {
-        classname = window[classname];
+        classname = this.window[classname];
     }
     delete classname.prototype[methodname]; // Delete any on prototype
     // delete classname[methodname]; // Delete any as static class method

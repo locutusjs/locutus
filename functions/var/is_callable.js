@@ -14,7 +14,7 @@ function is_callable (v, syntax_only, callable_name) {
     // *     example 3: alert(myVar); // 'SomeClass::someMethod'
     var name='', obj={}, method='';
     if (typeof v === 'string') {
-        obj = window;
+        obj = this.window;
         method = v;
         name = v;
     }
@@ -28,7 +28,7 @@ function is_callable (v, syntax_only, callable_name) {
     }
     if (syntax_only || typeof obj[method] === 'function') {
         if (callable_name) {
-        window[callable_name] = name;
+            this.window[callable_name] = name;
         }
         return true;
     }

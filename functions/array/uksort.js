@@ -8,7 +8,7 @@ function uksort(array, sorter) {
     // *     returns 1: true
 
     if (typeof sorter === 'string') {
-        sorter = window[sorter];
+        sorter = this.window[sorter];
     }
 
     var tmp_arr = {}, keys = [], i = 0, key = '';

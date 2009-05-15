@@ -4,16 +4,16 @@ function fopen (filename, mode, use_include_path, context) {
     // *     example 1: fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
     // *     returns 1: 'Resource id #1'
 
-    var resource={}, i=0;
+    var resource={}, i=0, that = this;
 
     // BEGIN file inclusion: file_get_contents
     var file_get_contents = function ( url ) {
-        var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+        var req = that.window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
         if (!req) {
             throw new Error('XMLHttpRequest not supported');
         }
         if (!/^http/.test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
-            url = window.location.href + '/' +url;
+            url = that.window.location.href + '/' +url;
         }
         req.open("GET", url, false);
         req.send(null);

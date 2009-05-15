@@ -354,7 +354,7 @@ function get_defined_constants (categorize ) {
             thisExt = true;
         }
         else {
-            win = window;
+            win = this.window;
         }
         
         for (ext in constObj) {
@@ -369,7 +369,7 @@ function get_defined_constants (categorize ) {
             }
             else {
                 for (cnst in constObj[ext]) {
-                    if (this === window) { // Take advantage of fact, in this case we can make real constants
+                    if (this === this.window) { // Take advantage of fact, in this case we can make real constants
                         this.define(cnst, constObj[ext][cnst]);
                     }
                     else {

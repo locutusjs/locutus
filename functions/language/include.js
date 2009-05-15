@@ -20,7 +20,7 @@ function include( filename ) {
 
     // save include state for reference by include_once
     var cur_file = {};
-    cur_file[window.location.href] = 1;
+    cur_file[this.window.location.href] = 1;
 
     if (!this.php_js) {
         this.php_js = {};

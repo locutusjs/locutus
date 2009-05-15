@@ -12,16 +12,16 @@ function get_declared_classes() {
 
     var i = '', j = '', arr = [], already = {};
 
-    for (i in window) {
+    for (i in this.window) {
         try {
-            if (typeof window[i] === 'function') {
+            if (typeof this.window[i] === 'function') {
                 if (!already[i] && this.class_exists(i)) {
                     already[i] = 1;
                     arr.push(i);
                 }
-            } else if (typeof window[i] === 'object') {
-                for (j in window[i]) {
-                    if (typeof window[j] === 'function' && window[j] && !already[j] && this.class_exists(j)) {
+            } else if (typeof this.window[i] === 'object') {
+                for (j in this.window[i]) {
+                    if (typeof this.window[j] === 'function' && this.window[j] && !already[j] && this.class_exists(j)) {
                         already[j] = 1;
                         arr.push(j);
                     }

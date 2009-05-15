@@ -14,7 +14,7 @@ function get_class_vars (name) {
     if (typeof name === 'function') {
         constructor = name;
     } else if (typeof name === 'string') {
-        constructor = window[name];
+        constructor = this.window[name];
     }
     
     for (prop in constructor) {

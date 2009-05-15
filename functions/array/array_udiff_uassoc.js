@@ -9,8 +9,8 @@ function array_udiff_uassoc () {
     var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1], cb0 = arguments[arguments.length-2];
     var k1 = '', i = 1, k = '', arr = {};
 
-    cb = (typeof cb === 'string') ? window[cb] : (cb instanceof Array) ? window[cb[0]][cb[1]] : cb;
-    cb0 = (typeof cb0 === 'string') ? window[cb0] : (cb0 instanceof Array) ? window[cb0[0]][cb0[1]] : cb0;
+    cb = (typeof cb === 'string') ? this.window[cb] : (cb instanceof Array) ? this.window[cb[0]][cb[1]] : cb;
+    cb0 = (typeof cb0 === 'string') ? this.window[cb0] : (cb0 instanceof Array) ? this.window[cb0[0]][cb0[1]] : cb0;
 
     arr1keys:
     for (k1 in arr1) {

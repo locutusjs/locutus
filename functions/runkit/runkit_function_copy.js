@@ -6,9 +6,9 @@ function runkit_function_copy (funcname, targetname) {
     // *     example 1: runkit_function_copy('plus', 'add');
     // *     returns 1: true
 
-    if (typeof window[funcname] !== 'function' || window[targetname] !== undefined) { //  (presumably disallow overwriting existing variables)
+    if (typeof this.window[funcname] !== 'function' || this.window[targetname] !== undefined) { //  (presumably disallow overwriting existing variables)
         return false;
     }
-    window[targetname] = window[funcname];
+    this.window[targetname] = this.window[funcname];
     return true;
 }

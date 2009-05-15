@@ -21,7 +21,7 @@ function runkit_method_redefine (classname, methodname, args, code, flags) {
 	argmnts = args.split(/,\s*/);
 
 	if (typeof classname === 'string') {
-		classname = window[classname];
+		classname = this.window[classname];
 	}
 
     if (classname.name !== 'PHP_JS' ||  // By default, don't allow overriding of PHP functions

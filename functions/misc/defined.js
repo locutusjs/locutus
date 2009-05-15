@@ -9,12 +9,12 @@ function defined( constant_name )  {
     // *     example 1: defined('IMAGINARY_CONSTANT1');
     // *     returns 1: false
 
-    var tmp = window[constant_name];
+    var tmp = this.window[constant_name];
     
-    window[constant_name] = window[constant_name] ? 'changed'+window[constant_name].toString() : 'changed';
-    var returnval = window[constant_name] === tmp;
+    this.window[constant_name] = this.window[constant_name] ? 'changed'+this.window[constant_name].toString() : 'changed';
+    var returnval = this.window[constant_name] === tmp;
     if (!returnval) { // Reset
-        window[constant_name] = tmp;
+        this.window[constant_name] = tmp;
     }
 
     return returnval;

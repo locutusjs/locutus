@@ -6,7 +6,7 @@ function get_headers(url, format) {
     // *     example 1: get_headers('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm')[0];
     // *     returns 1: 'Date: Wed, 13 May 2009 23:53:11 GMT'
 
-    var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+    var req = this.window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
     if (!req) {
         throw new Error('XMLHttpRequest not supported');
     }

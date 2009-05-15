@@ -17,7 +17,7 @@ function get_class(obj) {
 
     if (obj instanceof Object && !(obj instanceof Array) && 
         !(obj instanceof Function) && obj.constructor &&
-        obj != window) {
+        obj != this.window) {
         var arr = obj.constructor.toString().match(/function\s*(\w+)/);
 
         if (arr && arr.length == 2) {

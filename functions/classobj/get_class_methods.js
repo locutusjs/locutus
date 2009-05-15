@@ -13,7 +13,7 @@ function get_class_methods (name) {
     if (typeof name === 'function') {
         constructor = name;
     } else if (typeof name === 'string') {
-        constructor = window[name];
+        constructor = this.window[name];
     } else if (typeof name === 'object') {
         constructor = name;
         for (method in constructor.constructor) { // Get class methods of object's constructor

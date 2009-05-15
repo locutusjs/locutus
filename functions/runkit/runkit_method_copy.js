@@ -14,10 +14,10 @@ function runkit_method_copy (dClass, dMethod, sClass, sMethod) {
     sMethod = sMethod || dMethod;
 
 	if (typeof dClass === 'string') {
-		dClass = window[dClass];
+		dClass = this.window[dClass];
 	}
 	if (typeof sClass === 'string') {
-		sClass = window[sClass];
+		sClass = this.window[sClass];
 	}
 
 	//dClass[dMethod] = sClass[sMethod]; // Copy from static to static method (as per PHP example)

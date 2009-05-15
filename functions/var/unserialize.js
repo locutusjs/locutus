@@ -17,7 +17,7 @@ function unserialize(data){
     // *       example 2: unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}');
     // *       returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
 
-    var error = function (type, msg, filename, line){throw new window[type](msg, filename, line);};
+    var error = function (type, msg, filename, line){throw new this.window[type](msg, filename, line);};
     var read_until = function (data, offset, stopchr){
         var buf = [];
         var chr = data.slice(offset, offset + 1);

@@ -9,7 +9,7 @@ function require_once(filename) {
     // *     returns 1: true
 
     var cur_file = {};
-    cur_file[window.location.href] = 1;
+    cur_file[this.window.location.href] = 1;
 
     // save include state for reference by include_once and require_once()
     if (!this.php_js) {

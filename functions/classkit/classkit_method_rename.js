@@ -5,7 +5,7 @@ function classkit_method_rename (classname, methodname, newname) {
     // *     returns 1: true
     
 	if (typeof classname === 'string') {
-		classname = window[classname];
+		classname = this.window[classname];
 	}
 	
 	/*

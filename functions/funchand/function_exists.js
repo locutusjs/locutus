@@ -8,7 +8,7 @@ function function_exists( function_name ) {
 
 
     if (typeof function_name == 'string'){
-        return (typeof window[function_name] == 'function');
+        return (typeof this.window[function_name] == 'function');
     } else{
         return (function_name instanceof Function);
     }

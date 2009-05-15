@@ -6,12 +6,12 @@ function runkit_function_redefine (funcname, arglist, code) {
     // *     example 1: runkit_function_redefine('add', 'a, b', "return (a + b);");
     // *     returns 1: true
 
-    if (window[funcname] === undefined) { // Requires existing function?
+    if (this.window[funcname] === undefined) { // Requires existing function?
         return false;
     }
 
     try {
-        window[funcname] = Function.apply(null, arglist.split(',').concat(code));
+        this.window[funcname] = Function.apply(null, arglist.split(',').concat(code));
         return true;
     }
     catch (e) {

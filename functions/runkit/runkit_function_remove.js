@@ -6,12 +6,12 @@ function runkit_function_remove (funcname) {
     // *     example 1: runkit_function_remove('add');
     // *     returns 1: true
 
-    if (window[funcname] === undefined) { // Requires existing function?
+    if (this.window[funcname] === undefined) { // Requires existing function?
         return false;
     }
 
     try {
-        window[funcname] = undefined;
+        this.window[funcname] = undefined;
         return true;
     }
     catch (e) {

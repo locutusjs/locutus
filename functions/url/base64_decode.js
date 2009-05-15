@@ -15,7 +15,7 @@ function base64_decode( data ) {
 
     // mozilla has this native
     // - but breaks in 2.0.0.12!
-    //if (typeof window['btoa'] == 'function') {
+    //if (typeof this.window['btoa'] == 'function') {
     //    return btoa(data);
     //}
 

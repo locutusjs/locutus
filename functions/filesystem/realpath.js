@@ -8,7 +8,7 @@ function realpath(path) {
     
     var p = 0, arr = [];
     /* Save the root, if not given */
-    var r = window.location.href;
+    var r = this.window.location.href;
     /* Avoid input failures */
     path = (path + '').replace('\\', '/');
     /* Check if there's a port in path (like 'http://') */

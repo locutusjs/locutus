@@ -25,7 +25,7 @@ function parse_str(str, array){
 
 	if(!array)
 	{
-		array = window;
+		array = this.window;
 	}
 
 	for(i = 0; i < array2.length; i++)

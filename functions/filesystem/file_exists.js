@@ -8,7 +8,7 @@ function file_exists (url) {
     // *     example 1: file_exists('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '123'
     
-    var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+    var req = this.window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
     if (!req) {throw new Error('XMLHttpRequest not supported');}
       
     // HEAD Results are usually shorter (faster) than GET

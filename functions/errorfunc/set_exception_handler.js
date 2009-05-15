@@ -6,7 +6,7 @@ function set_exception_handler (callback) {
 
     var that = this, oldHandlerName = '';
     if (typeof callback === 'string') {
-        callback = window[callback];
+        callback = this.window[callback];
     }
     if (!this.php_js) {this.php_js = {};}
     // For return
@@ -20,8 +20,8 @@ function set_exception_handler (callback) {
     this.php_js.exception_handler = callback;
 
     // Make available a global Exception class
-    if (!window.Exception) {
-        window.Exception = function (message, code) {
+    if (!this.window.Exception) {
+        this.window.Exception = function (message, code) {
             // These four are supposed to be protected (extendable, but not public)
             this.message = message || 'Unknown exception';
             this.code = code || 0; // user defined exception code
@@ -34,13 +34,13 @@ function set_exception_handler (callback) {
             //    "e.stack.replace(/\n$/, '').split('\n');" if 'e' is a JavaScript exception
             // Also, if extending, be sure to add back the constructor, especially since it is relied upon in the
             //    default __toString()/toString()
-            this.file = window.href.location; // source filename of exception
+            this.file = this.window.href.location; // source filename of exception
             this.line = 0; // source line of exception
             this.name = 'Error';  // To fit the JavaScript Error interface, user could also add a custom name property.
             that.php_js.exception_handler(this);
         };
-        window.Exception.prototype = {
-            constructor: window.Exception,
+        this.window.Exception.prototype = {
+            constructor: this.window.Exception,
             // FINAL (not suppoesd to extend the following 6 methods)
             getMessage : function () { // message of exception
                 return this.message;

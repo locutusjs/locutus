@@ -12,7 +12,7 @@ function aggregate_methods_by_list (obj, class_name, properties_list, exclude) {
     var p = '', i=0, record={}, pos=-1;
 
     if (typeof class_name === 'string') { // PHP behavior
-        class_name = window[class_name];
+        class_name = this.window[class_name];
     }
 
     // BEGIN REDUNDANT

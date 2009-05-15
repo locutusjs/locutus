@@ -11,7 +11,7 @@ function include_once( filename ) {
     // *     returns 1: true
 
     var cur_file = {};
-    cur_file[window.location.href] = 1;
+    cur_file[this.window.location.href] = 1;
 
     if (!this.php_js) {
         this.php_js = {};

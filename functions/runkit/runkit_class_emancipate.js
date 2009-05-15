@@ -10,12 +10,12 @@ function runkit_class_emancipate (classname) {
     // *     example 1: runkit_class_emancipate('B');
     // *     returns 1: true
 
-    if (typeof window[classname] !== 'function') {
+    if (typeof this.window[classname] !== 'function') {
         return false;
     }
 
-    for (var p in window[classname].prototype) {
-        delete window[classname].prototype[p];
+    for (var p in this.window[classname].prototype) {
+        delete this.window[classname].prototype[p];
     }
     return true;
 }

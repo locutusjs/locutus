@@ -7,7 +7,7 @@ function class_exists (cls) {
     // *     returns 1: true
 
     var i = '';
-    cls = window[cls]; // Note: will prevent inner classes
+    cls = this.window[cls]; // Note: will prevent inner classes
 
     if (typeof cls !== 'function') {return false;}
 

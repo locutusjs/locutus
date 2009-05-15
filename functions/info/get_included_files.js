@@ -6,7 +6,7 @@ function get_included_files() {
     // *     returns 1: ['http://kevin.vanzonneveld.net/pj_tester.php']
 
     var cur_file = {};
-    cur_file[window.location.href] = 1;
+    cur_file[this.window.location.href] = 1;
     if(!this.php_js) {
         this.php_js = {};
     }

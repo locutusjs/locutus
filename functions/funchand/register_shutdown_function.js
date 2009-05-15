@@ -6,7 +6,7 @@ function register_shutdown_function (cb) {
     var args=[];
 
     args = Array.prototype.slice.call(arguments, 1);
-    window.addEventListener('unload', function () {
+    this.window.addEventListener('unload', function () {
         cb.apply(null, args);
     }, false);
 }

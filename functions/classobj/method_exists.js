@@ -11,7 +11,7 @@ function method_exists (obj, method) {
     // *     returns 2: false
 
     if (typeof obj === 'string') {
-        return window[obj] && typeof window[obj][method] === 'function';
+        return this.window[obj] && typeof this.window[obj][method] === 'function';
     }
 
     return typeof obj[method] === 'function';

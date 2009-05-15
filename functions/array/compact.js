@@ -8,7 +8,7 @@ function compact ( ) {
     // *     example 1: compact('var1', 'var2', 'var3');
     // *     returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}    
     
-    var matrix = {};
+    var matrix = {}, that = this;
 
     var process = function ( value ) {
         var i = 0, l = value.length, key_value = '';
@@ -17,8 +17,8 @@ function compact ( ) {
             if (key_value instanceof Array) {
                 process( key_value );
             } else {
-                if (typeof window[key_value] !== 'undefined') {
-                    matrix[key_value] = window[key_value];
+                if (typeof that.window[key_value] !== 'undefined') {
+                    matrix[key_value] = that.window[key_value];
                 }
             }
         }

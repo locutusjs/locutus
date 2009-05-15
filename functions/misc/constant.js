@@ -3,10 +3,18 @@ function constant(name) {
     // +   original by: Paulo Ricardo F. Santos
     // *     example 1: constant('IMAGINARY_CONSTANT1');
     // *     returns 1: null
+	
+	var clssPos = 0, clssCnst = null;
+	if ((clssPos = name.indexOf('::')) !== -1) {
+		clssCnst = name.slice(clssPos+2);
+		name = name.slice(0, clssPos);
+	}
 
-    if (window[name] === undefined) {
+    if (this.window[name] === undefined) {
         return null;
     }
-
-    return window[name];
+	if (clssCnst) {
+		return this.window[name][clssCnst];
+	}
+    return this.window[name];
 }

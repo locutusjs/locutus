@@ -9,7 +9,7 @@ function filesize (url) {
     // *     example 1: filesize('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '3'
 
-    var req = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+    var req = this.window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
     if (!req) {throw new Error('XMLHttpRequest not supported');}
     
     req.open('HEAD', url, false);

@@ -5,7 +5,7 @@ function runkit_method_remove (classname, methodname) {
     // *     returns 1: true
 
     if (typeof classname === 'string') {
-        classname = window[classname];
+        classname = this.window[classname];
     }
     if (classname.name !== 'PHP_JS' ||  // By default, don't allow overriding of PHP functions
         (this.php_js && this.php_js.ini && this.php_js.ini['runkit.internal_override'] &&

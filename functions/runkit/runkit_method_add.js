@@ -20,7 +20,7 @@ function runkit_method_add (classname, methodname, args, code, flags) {
 	argmnts = args.split(/,\s*/);
 
 	if (typeof classname === 'string') {
-		classname = window[classname];
+		classname = this.window[classname];
 	}
 
 // Could use the following to add as a static method to the class

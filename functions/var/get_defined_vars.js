@@ -9,17 +9,17 @@ function get_defined_vars() {
 
     var i = '', arr = [], already = {};
 
-    for (i in window) {
+    for (i in this.window) {
         try {
-            if (typeof window[i] === 'function') {
+            if (typeof this.window[i] === 'function') {
                 if (!already[i]) {
                     already[i] = 1;
                     arr.push(i);
                 }
             }
-            else if (typeof window[i] === 'object') {
-                for (var j in window[i]) {
-                    if (typeof window[j] === 'function' && window[j] && !already[j]) {
+            else if (typeof this.window[i] === 'object') {
+                for (var j in this.window[i]) {
+                    if (typeof this.window[j] === 'function' && this.window[j] && !already[j]) {
                         already[j] = 1;
                         arr.push(j);
                     }

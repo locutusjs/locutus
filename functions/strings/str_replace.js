@@ -28,7 +28,7 @@ function str_replace(search, replace, subject, count) {
             ra = r instanceof Array, sa = s instanceof Array;
     s = [].concat(s);
     if (count) {
-        window[count] = 0;
+        this.window[count] = 0;
     }
 
     for (i=0, sl=s.length; i < sl; i++) {
@@ -40,7 +40,7 @@ function str_replace(search, replace, subject, count) {
             repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
             s[i] = (temp).split(f[j]).join(repl);
             if (count && s[i] !== temp) {
-                window[count] += (temp.length-s[i].length)/f[j].length;}
+                this.window[count] += (temp.length-s[i].length)/f[j].length;}
         }
     }
     return sa ? s : s[0];

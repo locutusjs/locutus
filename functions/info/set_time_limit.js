@@ -7,7 +7,7 @@ function set_time_limit(seconds) {
         this.php_js = {};
     }
 
-    window.setTimeout(function () {
+    this.window.setTimeout(function () {
         if (!this.php_js.timeoutStatus) {
             this.php_js.timeoutStatus = true;
         }

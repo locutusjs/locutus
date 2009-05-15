@@ -8,16 +8,16 @@ function runkit_class_adopt (classname, parentname) {
     // *     example 1: runkit_class_adopt('B', 'A');
     // *     returns 1: true
 
-    if (typeof window[classname] !== 'function' || typeof window[parentname] !== 'function') {
+    if (typeof this.window[classname] !== 'function' || typeof this.window[parentname] !== 'function') {
         return false;
     }
 
     // Classical style of inheritance
-    window[classname].prototype = new window[parentname]; // Has side effects by calling the constructor!
+    this.window[classname].prototype = new this.window[parentname]; // Has side effects by calling the constructor!
 
 /*
     // Prototypal completely by reference
-    window[classname].prototype = parentname.prototype; // By mutual reference!
+    this.window[classname].prototype = parentname.prototype; // By mutual reference!
 */
 
 /*
@@ -33,10 +33,10 @@ function runkit_class_adopt (classname, parentname) {
             }
         }
     };
-    _copy(window[classname].prototype, window[parentname].prototype);
+    _copy(this.window[classname].prototype, this.window[parentname].prototype);
 */
 
     // Put original constructor property back
-    window[classname].constructor = window[classname];
+    this.window[classname].constructor = this.window[classname];
     return true;
 }

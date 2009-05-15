@@ -10,7 +10,7 @@ function property_exists (cls, prop) {
     // *     example 2: property_exists(instance_a, 'prop2');
     // *     returns 2: false
 
-    cls = (typeof cls === 'string') ? window[cls] : cls;
+    cls = (typeof cls === 'string') ? this.window[cls] : cls;
     
     if (typeof cls === 'function' && cls.toSource &&
         cls.toSource().match(new RegExp('this\\.'+prop+'\\s'))

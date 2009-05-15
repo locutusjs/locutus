@@ -22,7 +22,7 @@ function deaggregate (obj, class_name) {
 
     if (class_name) {
         if (typeof class_name === 'string') { // PHP behavior
-            class_name = window[class_name];
+            class_name = this.window[class_name];
         }
         pos = this.php_js.aggregateClasses[idx].indexOf(class_name.name);
         if (pos !== -1) {

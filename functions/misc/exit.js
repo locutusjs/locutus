@@ -15,7 +15,7 @@ function exit( status ) {
         alert(status);
     }
 
-    window.addEventListener('error', function (e) {e.preventDefault();e.stopPropagation();}, false);
+    this.window.addEventListener('error', function (e) {e.preventDefault();e.stopPropagation();}, false);
 
     var handlers = [
         'copy', 'cut', 'paste',
@@ -29,11 +29,11 @@ function exit( status ) {
         // e.preventDefault(); // Stop for the form controls, etc., too?
     }
     for (i=0; i < handlers.length; i++) {
-        window.addEventListener(handlers[i], function (e) {stopPropagation(e);}, true);
+        this.window.addEventListener(handlers[i], function (e) {stopPropagation(e);}, true);
     }
 
-    if (window.stop) {
-        window.stop();
+    if (this.window.stop) {
+        this.window.stop();
     }
     
     throw '';

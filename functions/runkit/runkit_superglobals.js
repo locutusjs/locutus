@@ -9,7 +9,7 @@ function runkit_superglobals () {
     var superglobal = {}, p='', arr=[];
     var superglobals = ['$_GET', '$_POST', '$_REQUEST', '$_COOKIE', '$_SESSION', '$_SERVER', '$_ENV', '$_FILES'];
     for (var i=0; i < superglobals.length; i++) {
-        superglobal = window[superglobals[i]];
+        superglobal = this.window[superglobals[i]];
         for (p in superglobal) {
             arr.push(superglobal[p]);
         }

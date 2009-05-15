@@ -65,10 +65,10 @@ function assert (assertion) {
         }
         callback = getOption('assert.callback');
         if (typeof callback === 'string') {
-            callback = window[callback];
+            callback = this.window[callback];
         }
         // Not perfect for file location (might also use __FILE__()) or line number
-        callback(window.location.href, err && err.lineNumber, (typeof assertion === 'string' ? assertion : '')); // From the docs, what does this mean?: "the third argument will contain the expression that failed (if any - literal values such as 1 or "two" will not be passed via this argument)"
+        callback(this.window.location.href, err && err.lineNumber, (typeof assertion === 'string' ? assertion : '')); // From the docs, what does this mean?: "the third argument will contain the expression that failed (if any - literal values such as 1 or "two" will not be passed via this argument)"
     }
     return retVal;
 }

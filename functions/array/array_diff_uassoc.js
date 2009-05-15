@@ -8,7 +8,7 @@ function array_diff_uassoc() {
 
     var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1];
     var arr = {}, i = 1, k1 = '', k = '';
-    cb = (typeof cb === 'string') ? window[cb] : (cb instanceof Array) ? window[cb[0]][cb[1]] : cb;
+    cb = (typeof cb === 'string') ? this.window[cb] : (cb instanceof Array) ? this.window[cb[0]][cb[1]] : cb;
 
     arr1keys:
     for (k1 in arr1) {

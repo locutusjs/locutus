@@ -12,7 +12,7 @@ function base64_encode( data ) {
 
     // mozilla has this native
     // - but breaks in 2.0.0.12!
-    //if (typeof window['atob'] == 'function') {
+    //if (typeof this.window['atob'] == 'function') {
     //    return atob(data);
     //}
         

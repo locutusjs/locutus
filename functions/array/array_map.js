@@ -22,7 +22,7 @@ function array_map( callback ) {
 
         if( callback ){
             if (typeof callback === 'string') {
-                callback = window[callback];
+                callback = this.window[callback];
             }
             tmp_ar[i++] = callback.apply(null, tmp);
         } else{

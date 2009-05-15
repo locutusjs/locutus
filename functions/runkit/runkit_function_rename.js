@@ -6,10 +6,10 @@ function runkit_function_rename (funcname, newname) {
     // *     example 1: runkit_function_rename('plus', 'add');
     // *     returns 1: true
 
-    if (typeof window[newname] !== 'function' || window[funcname] !== undefined) { //  (presumably disallow overwriting existing variables)
+    if (typeof this.window[newname] !== 'function' || this.window[funcname] !== undefined) { //  (presumably disallow overwriting existing variables)
         return false;
     }
-    window[newname] = window[funcname];
-    window[funcname] = undefined;
+    this.window[newname] = this.window[funcname];
+    this.window[funcname] = undefined;
     return true;
 }
