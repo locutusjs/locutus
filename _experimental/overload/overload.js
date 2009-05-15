@@ -13,7 +13,7 @@ function overload (class_name) {
     // *     example 1: A.c(5, 6); // static: c::5,6
     // *     returns 1: undefined
 
-    var clss = typeof class_name === 'string' ? window[class_name] : class_name; // allow as class constructor as well as string reference to global
+    var clss = typeof class_name === 'string' ? this.window[class_name] : class_name; // allow as class constructor as well as string reference to global
 
     // Mozilla only
     clss.prototype.__noSuchMethod__ = function (method_name, args) {

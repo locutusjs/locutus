@@ -17,7 +17,7 @@ function php_check_syntax (filename, error_message) {
     }
     catch (e) {
         if (error_message) {
-            window[error_message] = e.message;
+            this.window[error_message] = e.message;
         }
         return false;
     }

@@ -24,9 +24,9 @@ function ignore_user_abort (setting) {
             this.php_js.ignoreAbort = true;
         }
         // Fix: Shouldn't override register_shutdown_function() though
-       window.onunload = function(e){e.preventDefault();e.stopPropagation();};
-       window.onabort = function(e){e.preventDefault();e.stopPropagation();};
-       window.onstop = function(e){e.preventDefault();e.stopPropagation();};
+       this.window.onunload = function(e){e.preventDefault();e.stopPropagation();};
+       this.window.onabort = function(e){e.preventDefault();e.stopPropagation();};
+       this.window.onstop = function(e){e.preventDefault();e.stopPropagation();};
        this.php_js.ignoreUserAbort = 1;
        return old_prev_setting;
    }

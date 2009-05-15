@@ -19,8 +19,8 @@ function ob_start (output_callback, chunk_size, erase) {
             internalType = true;
             output_callback = function URLRewriter () {}; // No callbacks?
         }
-		if (typeof window[output_callback] === 'function') {
-			output_callback = window[output_callback]; // callback expressed as a string (PHP-style)
+		if (typeof this.window[output_callback] === 'function') {
+			output_callback = this.window[output_callback]; // callback expressed as a string (PHP-style)
 		}
 		else {
 			return false;

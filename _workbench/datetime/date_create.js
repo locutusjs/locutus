@@ -7,12 +7,12 @@ function date_create (time, timezone) {var __ = Relator.$();
     
     // Incomplete
 
-	// Begin static
-	if (!window.php_js) {
-		window.php_js = {};
+	// BEGIN STATIC
+	if (!this.php_js) {
+		this.php_js = {};
 	}
-	if (!window.php_js.Relator) {
-		window.php_js.Relator = function () {// Used this functional class for giving privacy to the class we are creating
+	if (!this.php_js.Relator) {
+		this.php_js.Relator = function () {// Used this functional class for giving privacy to the class we are creating
 			// Code adapted from http://www.devpro.it/code/192.html
 			// Relator explained at http://webreflection.blogspot.com/2008/07/javascript-relator-object-aka.html
 			// Its use as privacy technique described at http://webreflection.blogspot.com/2008/10/new-relator-object-plus-unshared.html
@@ -52,7 +52,7 @@ function date_create (time, timezone) {var __ = Relator.$();
 			return Relator();
 		}();
 	}
-	// End static
+	// END STATIC
 
 
 	// Returned by DateTime.diff()  (cf. date_interval_create_from_date_string())

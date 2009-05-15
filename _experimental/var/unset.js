@@ -7,10 +7,10 @@ function unset () {
 	
 	// Must pass in a STRING to indicate the variable, not the variable itself (whether or not that evaluates to a string)
 	// Works only on globals
-	var i=0, arg = '', win='', winRef=/^window[.[]/, arr=[], accessor='', bracket=/\[['"]?(\d+)['"]?\]$/;
+	var i=0, arg = '', win='', winRef=/^(?:this)?window[.[]/, arr=[], accessor='', bracket=/\[['"]?(\d+)['"]?\]$/;
 	for (i=0; i < arguments.length; i++) {
 		arg = arguments[i];
-		win = winRef.test(arg) ? '' : 'window.';
+		win = winRef.test(arg) ? '' : 'this.window.';
 		if (bracket.test(arg)) {
 			accessor = arg.match(bracket)[1];
 			arr = eval(win+arg.replace(bracket, ''));

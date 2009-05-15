@@ -11,11 +11,11 @@ function timezone_open(timezone) {  var __ = Relator.$();
 
 
 	// BEGIN STATIC
-	if (!window.php_js) {
-		window.php_js = {};
+	if (!this.php_js) {
+		this.php_js = {};
 	}
-	if (!window.php_js.Relator) {
-		window.php_js.Relator = function () {// Used this functional class for giving privacy to the class we are creating
+	if (!this.php_js.Relator) {
+		this.php_js.Relator = function () {// Used this functional class for giving privacy to the class we are creating
 			// Code adapted from http://www.devpro.it/code/192.html
 			// Relator explained at http://webreflection.blogspot.com/2008/07/javascript-relator-object-aka.html
 			// Its use as privacy technique described at http://webreflection.blogspot.com/2008/10/new-relator-object-plus-unshared.html
