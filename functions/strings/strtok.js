@@ -9,21 +9,25 @@ function strtok (str, tokens) {
     // *     example 1: $b
     // *     returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
+    if (!this.php_js) {
+        this.php_js = {};
+    }
+
     if (tokens === undefined) {
         tokens = str;
-        str = strtok.leftOver;
+        str = this.php_js.strtokleftOver;
     }
     if (str.length === 0) {
         return false;
     }
     if (tokens.indexOf(str[0]) !== -1) {
-        return strtok(str.substr(1), tokens);
+        return this.strtok(str.substr(1), tokens);
     }
     for (var i=0; i < str.length; i++) {
         if (tokens.indexOf(str[i]) !== -1) {
             break;
         }
     }
-    strtok.leftOver = str.substr(i+1);
+    this.php_js.strtokleftOver = str.substr(i+1);
     return str.substring(0, i);
 }
