@@ -12,13 +12,15 @@ function file_get_contents( url ) {
 
     // Note: could also be made to optionally add to global $http_response_header as per http://php.net/manual/en/reserved.variables.httpresponseheader.php
 
-    var tmp, headers = [], newTmp = [], k=0, i=0;
+    var tmp, headers = [], newTmp = [], k=0, i=0, href = '', pathPos = -1;
     var func = function (value) { return value.substring(1) !== ''; };
     var req = this.window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
     if (!req) {throw new Error('XMLHttpRequest not supported');}
 
-    if (!/^http/.test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
-        url = this.window.location.href + '/' +url;
+    if (!/^https?:/.test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
+        href = this.window.location.href;
+        pathPos = url.indexOf('/') === 0 ? href.indexOf('/', 8)-1 : href.lastIndexOf('/');
+        url = href.slice(0, pathPos+1)+url;
     }
     
     req.open("GET", url, false);
