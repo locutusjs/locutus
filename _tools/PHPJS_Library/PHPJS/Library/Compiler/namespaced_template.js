@@ -29,5 +29,3 @@
     // window object, you could instantiate in code which did have
     // access to "window" like this: var $P = PHP_JS({window:window});
 }());
-// Kevin, I moved invocation parentheses inside the other parentheses for
-// the sake of jslint; otherwise, no difference
