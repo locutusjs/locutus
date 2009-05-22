@@ -7,29 +7,29 @@ function import_request_variables (types, prefix) {
     // *        example 1: import_request_variables('gc', 'pr_');
     // *        results 1: pr_snack == 'yummy'
 
-    var i = 0, current = '', url = '', vars = '', arrayBracketPos = -1, arrName='';
+    var i = 0, current = '', url = '', vars = '', arrayBracketPos = -1, arrName='', win = this.window;
     prefix = prefix || '';
 
     if (/g/i.test(types)) { // GET
-        for(i = 0, url = this.window.location.href, vars = url.substring(url.lastIndexOf("?") + 1, url.length).split("&"); i < vars.length;i++){
+        for(i = 0, url = win.location.href, vars = url.substring(url.lastIndexOf("?") + 1, url.length).split("&"); i < vars.length;i++){
             current = vars[i].split("=");
             arrayBracketPos = current[0].indexOf('[');
             if (arrayBracketPos !== -1) {
                 arrName = current[0].substring(0, arrayBracketPos);
-                if (!this.window[prefix+arrName]) {
-                    this.window[prefix+arrName] = [];
+                if (!win[prefix+arrName]) {
+                    win[prefix+arrName] = [];
                 }
-                this.window[prefix+arrName].push(current[1] || null);
+                win[prefix+arrName].push(current[1] || null);
             }
             else {
-                this.window[prefix+current[0]] = current[1] || null;
+                win[prefix+current[0]] = current[1] || null;
             }
         }
     }
     if (/c/i.test(types)) { // COOKIE
-        for(i = 0, vars = this.window.document.cookie.split("&"); i < vars.length;i++){
+        for(i = 0, vars = win.document.cookie.split("&"); i < vars.length;i++){
             current = vars[i].split("=");
-            this.window[prefix+current[0]] = current[1].split(";")[0] || null;
+            win[prefix+current[0]] = current[1].split(";")[0] || null;
         }
     }
 }
