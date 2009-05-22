@@ -16,8 +16,6 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
      */
     const COMPILE_MINFIED = 4;    
     
-    
-    
     /**
      * Tests if a specified flag is given
      *
@@ -111,7 +109,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
      */
     public function compileFunction($funcName, $namespaced = false) {
         if (($Function = $this->getFunction($funcName)) === false) {
-            throw new PHPJS_Exception("Function $funcName does not exst");
+            throw new PHPJS_Exception("Function $funcName does not exist");
             return false;
         }
         
@@ -129,50 +127,56 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
      * @return string
      */
     protected function _namespace($source) {
-        $str1  = "";
-        $str1 .= "// {{{ init: \n";
-        $str1 .= "init: function() {\n";
-        $str1 .= "    // Makes autoloading system works properly.\n";
-        $str1 .= "    // \n";
-        $str1 .= "    // %        note 1: Not a real PHP.JS function, necessary for namespaced version, though.\n";
-        $str1 .= "\n";
-        $str1 .= "},// }}}\n";
-        $str1 .= $source;
-
-        $str2  = "";
-        $str2 .= "if(window == this || !this.init){\n";
-        $str2 .= "    return new PHP_JS();\n";
-        $str2 .= "}else{\n";
-        $str2 .= "    return this.init();\n";
-        $str2 .= "}\n";
-
-        $str3  = "var PHP_JS = function() {\n";
-        $str3 .= $this->_indentBlock($str2, 4)."\n";
-        $str3 .= "};\n";
-        $str3 .= "";
-
-        $str4  = "";
-        $str4 .= "if(typeof(PHP_JS) == \"undefined\"){\n";
-        $str4 .= $this->_indentBlock($str3, 4)."\n";
-        $str4 .= "}\n";
-
-        $str4 .= "\n";
-        $str4 .= "var php_js = {};\n";
-        $str4 .= "PHP_JS.prototype = {\n";
-        $str4 .= $this->_indentBlock($str1, 4)."\n";
-        $str4 .= "}; // End PHP_JS prototype \n";
-        $str4 .= "\n";
-        $str4 .= "window.\$P = PHP_JS();\n";
-
-        $str5  = "";
-        $str5 .= "(function() {\n";
-        $str5 .= $this->_indentBlock($str4, 4)."\n";
-        $str5 .= "})();\n";
-
-        $source = $str5;
-                
-        return "//NAMESPACED\n".$source;
+//        $str1  = "";
+//        $str1 .= "// {{{ init: \n";
+//        $str1 .= "init: function() {\n";
+//        $str1 .= "    // Makes autoloading system works properly.\n";
+//        $str1 .= "    // \n";
+//        $str1 .= "    // %        note 1: Not a real PHP.JS function, necessary for namespaced version, though.\n";
+//        $str1 .= "\n";
+//        $str1 .= "},// }}}\n";
+//        $str1 .= $source;
+//
+//        $str2  = "";
+//        $str2 .= "if(window == this || !this.init){\n";
+//        $str2 .= "    return new PHP_JS();\n";
+//        $str2 .= "}else{\n";
+//        $str2 .= "    return this.init();\n";
+//        $str2 .= "}\n";
+//
+//        $str3  = "var PHP_JS = function() {\n";
+//        $str3 .= $this->_indentBlock($str2, 4)."\n";
+//        $str3 .= "};\n";
+//        $str3 .= "";
+//
+//        $str4  = "";
+//        $str4 .= "if(typeof(PHP_JS) == \"undefined\"){\n";
+//        $str4 .= $this->_indentBlock($str3, 4)."\n";
+//        $str4 .= "}\n";
+//
+//        $str4 .= "\n";
+//        $str4 .= "var php_js = {};\n";
+//        $str4 .= "PHP_JS.prototype = {\n";
+//        $str4 .= $this->_indentBlock($str1, 4)."\n";
+//        $str4 .= "}; // End PHP_JS prototype \n";
+//        $str4 .= "\n";
+//        $str4 .= "window.\$P = PHP_JS();\n";
+//
+//        $str5  = "";
+//        $str5 .= "(function() {\n";
+//        $str5 .= $this->_indentBlock($str4, 4)."\n";
+//        $str5 .= "})();\n";
+//
+//        $source = $str5;
         
+        $namespaceTemplate = dirname(__FILE__).'/Compiler/namespaced_template.js';
+        
+        if (!file_exists($namespaceTemplate)) {
+            throw new PHPJS_Exception("namespaceTemplate ".$namespaceTemplate." does not exist");
+            return false;
+        }
+        
+        return str_replace('//#FUNCTIONS_HERE#', $this->_indentBlock($source, 8), file_get_contents($this->namespaceTemplate));
     }
     
     /**
