@@ -8,16 +8,16 @@ function vprintf(format, args) {
     // *     returns 1: 6
 
     var body, elmt;
-    var ret = '';
+    var ret = '', d = this.window.document;
 
     // .shift() does not work to get first item in bodies
 
     var HTMLNS = 'http://www.w3.org/1999/xhtml';
-    body = document.getElementsByTagNameNS ?
-      (document.getElementsByTagNameNS(HTMLNS, 'body')[0] ?
-        document.getElementsByTagNameNS(HTMLNS, 'body')[0] :
-        document.documentElement.lastChild) :
-      document.getElementsByTagName('body')[0];
+    body = d.getElementsByTagNameNS ?
+      (d.getElementsByTagNameNS(HTMLNS, 'body')[0] ?
+        d.getElementsByTagNameNS(HTMLNS, 'body')[0] :
+        d.documentElement.lastChild) :
+      d.getElementsByTagName('body')[0];
 
     if (!body) {
         return false;
@@ -25,7 +25,7 @@ function vprintf(format, args) {
 
     ret = this.sprintf.apply(this, [format].concat(args));
 
-    elmt = document.createTextNode(ret);
+    elmt = d.createTextNode(ret);
     body.appendChild(elmt);
 
     return ret.length;

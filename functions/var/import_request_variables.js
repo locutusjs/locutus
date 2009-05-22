@@ -27,7 +27,7 @@ function import_request_variables (types, prefix) {
         }
     }
     if (/c/i.test(types)) { // COOKIE
-        for(i = 0, vars = document.cookie.split("&"); i < vars.length;i++){
+        for(i = 0, vars = this.window.document.cookie.split("&"); i < vars.length;i++){
             current = vars[i].split("=");
             this.window[prefix+current[0]] = current[1].split(";")[0] || null;
         }

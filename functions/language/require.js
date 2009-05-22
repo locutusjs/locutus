@@ -10,18 +10,19 @@ function require( filename ) {
     // *     example 1: require('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: 2
 
+    var d = this.window.document;
     var js_code = this.file_get_contents(filename);
-    var script_block = document.createElementNS ? document.createElementNS('http://www.w3.org/1999/xhtml', 'script') : document.createElement('script');
+    var script_block = d.createElementNS ? d.createElementNS('http://www.w3.org/1999/xhtml', 'script') : d.createElement('script');
     script_block.type = 'text/javascript';
     var client_pc = navigator.userAgent.toLowerCase();
     if((client_pc.indexOf("msie") != -1) && (client_pc.indexOf("opera") == -1)) {
         script_block.text = js_code;
     } else {
-        script_block.appendChild(document.createTextNode(js_code));
+        script_block.appendChild(d.createTextNode(js_code));
     }
     
     if (typeof(script_block) != "undefined") {
-        document.getElementsByTagNameNS ? document.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(script_block) : document.getElementsByTagName('head')[0].appendChild(script_block);
+        d.getElementsByTagNameNS ? d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(script_block) : d.getElementsByTagName('head')[0].appendChild(script_block);
 
         // save include state for reference by include_once and require_once()
         var cur_file = {};

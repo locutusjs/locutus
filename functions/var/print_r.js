@@ -9,7 +9,7 @@ function print_r( array, return_val ) {
     // *     example 1: print_r(1, true);
     // *     returns 1: 1
     
-    var output = "", pad_char = " ", pad_val = 4, d = document;
+    var output = "", pad_char = " ", pad_val = 4, d = this.window.document;
 
     var repeat_char = function (len, pad_char) {
         var str = "";

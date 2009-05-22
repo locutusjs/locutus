@@ -7,7 +7,7 @@ function phpversion () {
     // *     example 1: phpversion();
     // *     returns 1: '1.8'
 
-	var xhtml=true, s={}, firstScript={}, d = document,
+	var xhtml=true, s={}, firstScript={}, d = this.window.document,
             c = 'createElement', cn = 'createElementNS', xn = 'http://www.w3.org/1999/xhtml',
             g = 'getElementsByTagName', gn = 'getElementsByTagNameNS';
 

@@ -9,7 +9,7 @@ function define(name, value) {
     // *        example 1: define('IMAGINARY_CONSTANT1', 'imaginary_value1');
     // *        results 1: IMAGINARY_CONSTANT1 == 'imaginary_value1'
 
-    var defn, replace, script, that = this;
+    var defn, replace, script, that = this, d = this.window.document;
     var toString = function (name, value) {
         return 'const ' + name + '=' + (
             /^(null|true|false|(\+|\-)?\d+(\.\d+)?)$/.test(value = String(value)) ? value : '"' + replace(value) + '"'
@@ -32,15 +32,15 @@ function define(name, value) {
 			});
         };
         defn = function (name, value){
-            if (document.createElementNS) {
-                script = document.createElementNS('http://www.w3.org/1999/xhtml', 'script');
+            if (d.createElementNS) {
+                script = d.createElementNS('http://www.w3.org/1999/xhtml', 'script');
             } else {
-                script = document.createElement('script');
+                script = d.createElement('script');
             }
             script.type = 'text/javascript';
-            script.appendChild(document.createTextNode(toString(name, value)));
-            document.documentElement.appendChild(script);
-            document.documentElement.removeChild(script);
+            script.appendChild(d.createTextNode(toString(name, value)));
+            d.documentElement.appendChild(script);
+            d.documentElement.removeChild(script);
         };
     } catch (e){
         replace = function (value) {

@@ -12,11 +12,12 @@ function include( filename ) {
     // *     example 1: include('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: 1
 
-    var js = document.createElementNS ? document.createElementNS('http://www.w3.org/1999/xhtml', 'script') : document.createElement('script');
+    var d = this.window.document;
+    var js = d.createElementNS ? d.createElementNS('http://www.w3.org/1999/xhtml', 'script') : d.createElement('script');
     js.setAttribute('type', 'text/javascript');
     js.setAttribute('src', filename);
     js.setAttribute('defer', 'defer');
-    document.getElementsByTagNameNS ? document.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(js) : document.getElementsByTagName('head')[0].appendChild(js);
+    d.getElementsByTagNameNS ? d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(js) : d.getElementsByTagName('head')[0].appendChild(js);
 
     // save include state for reference by include_once
     var cur_file = {};

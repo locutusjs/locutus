@@ -18,5 +18,5 @@ function setrawcookie(name, value, expires, path, domain, secure) {
         s[i] && r.push(i + "=" + s[i]);
     }
     
-    return secure && r.push("secure"), document.cookie = r.join(";"), true;
+    return secure && r.push("secure"), this.window.document.cookie = r.join(";"), true;
 }

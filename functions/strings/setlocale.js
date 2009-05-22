@@ -9,7 +9,7 @@ function setlocale (category, locale) {
     // %          note 2: Uses global: php_js to store locale info
 	// *     example 1: setlocale('LC_ALL', 'en_US');
 	// *     returns 1: 'en_US'
-	var categ='', cats = [], i=0;
+	var categ='', cats = [], i = 0, d = this.window.document;
 
 	// BEGIN REDUNDANT
 	if (!this.php_js) {this.php_js = {};}
@@ -161,16 +161,16 @@ function setlocale (category, locale) {
 		phpjs.locale = 'en_US';
 		var NS_XHTML = 'http://www.w3.org/1999/xhtml';
 		var NS_XML = 'http://www.w3.org/XML/1998/namespace';
-		if (document.getElementsByTagNameNS &&
-				document.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
-			if (document.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS &&
-					document.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')) {
-				phpjs.locale = document.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang');
-			} else if(document.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) { // XHTML 1.0 only
-				phpjs.locale = document.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang;
+		if (d.getElementsByTagNameNS &&
+				d.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
+			if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS &&
+					d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')) {
+				phpjs.locale = d.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang');
+			} else if(d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) { // XHTML 1.0 only
+				phpjs.locale = d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang;
 			}
-		} else if(document.getElementsByTagName('html')[0] && document.getElementsByTagName('html')[0].lang) {
-			phpjs.locale = document.getElementsByTagName('html')[0].lang;
+		} else if(d.getElementsByTagName('html')[0] && d.getElementsByTagName('html')[0].lang) {
+			phpjs.locale = d.getElementsByTagName('html')[0].lang;
 		}
 	}
     phpjs.locale = phpjs.locale.replace('-', '_'); // PHP-style

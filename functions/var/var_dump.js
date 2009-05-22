@@ -5,7 +5,7 @@ function var_dump() {
     // *     example 1: var_dump(1);
     // *     returns 1: 'int(1)'
 
-    var output = "", pad_char = " ", pad_val = 4, lgth = 0, i = 0, d = document;
+    var output = "", pad_char = " ", pad_val = 4, lgth = 0, i = 0, d = this.window.document;
 
     var repeat_char = function (len, pad_char) {
         var str = "";

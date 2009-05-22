@@ -19,9 +19,9 @@ function echo ( ) {
     // *     returns 1: undefined
     
     var arg = '', argc = arguments.length, argv = arguments, i = 0;
-
+	var d = this.window.document;
+	
     var stringToDOM = function (q){
-        var d = document;
         var s = function(a){
             return a.replace(/&amp;/g,'&').replace(/&gt;/g,'>').replace(/&lt;/g,'<').replace(/&nbsp;/g,' ').replace(/&quot;/g,'"');
         };
@@ -128,14 +128,14 @@ function echo ( ) {
 
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
-        if (document.createDocumentFragment && document.createTextNode && document.appendChild) {
-            if (document.body) {
-                document.body.appendChild(stringToDOM(arg));
+        if (d.createDocumentFragment && d.createTextNode && d.appendChild) {
+            if (d.body) {
+                d.body.appendChild(stringToDOM(arg));
             } else {
-                document.documentElement.appendChild(stringToDOM(arg));
+                d.documentElement.appendChild(stringToDOM(arg));
             }
-        } else if (document.write) {
-            document.write(arg);
+        } else if (d.write) {
+            d.write(arg);
         } else {
             print(arg);
         }
