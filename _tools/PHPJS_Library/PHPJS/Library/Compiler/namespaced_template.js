@@ -33,6 +33,7 @@
     var php_js_shared = {};
 
     PHP_JS.prototype = {
+        constructor: PHP_JS,
 //#FUNCTIONS_HERE#
     }; // end PHP_JS.prototype
 
