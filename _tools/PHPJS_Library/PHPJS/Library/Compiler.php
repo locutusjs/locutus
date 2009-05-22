@@ -176,7 +176,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
             return false;
         }
         
-        return str_replace('//#FUNCTIONS_HERE#', $this->_indentBlock($source, 8), file_get_contents($this->namespaceTemplate));
+        return str_replace('//#FUNCTIONS_HERE#', $this->_indentBlock($source, 8), file_get_contents($namespaceTemplate));
     }
     
     /**
