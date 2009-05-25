@@ -46,7 +46,7 @@ function fopen (filename, mode, use_include_path, context) {
         }
     }
 
-    // BEGIN STATIC
+    // BEGIN REDUNDANT
     if (!this.php_js) {
         this.php_js = {};
     }
@@ -59,7 +59,6 @@ function fopen (filename, mode, use_include_path, context) {
     if (!this.php_js.resourceDataPointer) {
         this.php_js.resourceDataPointer = {};
     }
-    this.php_js.resourceIdCounter++;
 
     function PHPJS_Resource (type, id, opener) { // Can reuse the following for other resources, just changing the instantiation
         // See http://php.net/manual/en/resource.php for types
@@ -76,8 +75,9 @@ function fopen (filename, mode, use_include_path, context) {
     PHPJS_Resource.prototype.var_dump = function () {
         return 'resource('+this.id+') of type ('+this.type+')';
     };
-    // END STATIC
+    // END REDUNDANT
 
+    this.php_js.resourceIdCounter++;
     this.php_js.resourceData[this.php_js.resourceIdCounter] = file_get_contents(filename);
     this.php_js.resourceDataPointer[this.php_js.resourceIdCounter] = 0;
 
