@@ -36,7 +36,7 @@ function array_merge() {
             }
         } else {
             for (k in args[i]) {
-                if (is_int(k)) {
+                if (this.is_int(k)) {
                     retObj[ct++] = args[i][k];
                 } else {
                     retObj[k] = args[i][k];

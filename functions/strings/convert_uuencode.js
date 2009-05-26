@@ -15,7 +15,7 @@ function convert_uuencode(str){
 
     if(!str || str=="") {
         return chr(0);
-    } else if(!is_scalar(str)) {
+    } else if(!this.is_scalar(str)) {
         return false;
     }
 
@@ -64,7 +64,8 @@ function convert_uuencode(str){
             }
             a += 6;
         }
-        a = 0, tmp2 = "";
+        a = 0;
+        tmp2 = "";
         encoded += "\n";
     }
 

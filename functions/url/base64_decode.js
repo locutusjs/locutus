@@ -50,7 +50,7 @@ function base64_decode( data ) {
     } while (i < data.length);
 
     dec = tmp_arr.join('');
-    dec = utf8_decode(dec);
+    dec = this.utf8_decode(dec);
 
     return dec;
 }

@@ -26,7 +26,6 @@ function assert_options (what, value) {
             ini = 'assert.warning';
             dflt = 1;
             throw 'We have not yet implemented warnings for us to throw in JavaScript (assert_options())';
-            break;
         case 'ASSERT_BAIL':
             ini = 'assert.bail';
             dflt = 0;
@@ -41,7 +40,6 @@ function assert_options (what, value) {
             break;
         default:
             throw 'Improper type for assert_options()';
-            break;
     }
     // I presume this is to be the most recent value, instead of the default value
     var originalValue = this.php_js.assert_values[ini] || (this.php_js.ini[ini] && this.php_js.ini[ini].local_value) || dflt;

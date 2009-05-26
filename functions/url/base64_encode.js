@@ -23,7 +23,7 @@ function base64_encode( data ) {
         return data;
     }
 
-    data = utf8_encode(data+'');
+    data = this.utf8_encode(data+'');
     
     do { // pack three octets into four hexets
         o1 = data.charCodeAt(i++);

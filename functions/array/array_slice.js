@@ -45,7 +45,7 @@ function array_slice(arr, offst, lgth, preserve_keys) {
                 continue;
             }
             ++arrlgth;
-            if (is_int(key) && !preserve_keys) {
+            if (this.is_int(key) && !preserve_keys) {
                 assoc[no_pk_idx++] = arr[key];
             } else {
                 assoc[key] = arr[key];

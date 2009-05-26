@@ -56,7 +56,7 @@ function array_splice (arr, offst, lgth, replacement) {
         for (key in arr) {
             ct += 1;
             if (ct < offst) {
-                if (is_int(key)) {
+                if (this.is_int(key)) {
                     int_ct += 1;
                     if (parseInt(key, 10) === int_ct) { // Key is already numbered ok, so don't need to change key for value
                         continue;
@@ -68,7 +68,7 @@ function array_splice (arr, offst, lgth, replacement) {
                 }
                 continue;
             }
-            if (returnArr && is_int(key)) {
+            if (returnArr && this.is_int(key)) {
                 rmvd.push(arr[key]);
                 rmvdObj[rmvd_ct++] = arr[key]; // PHP starts over here too
             } else {

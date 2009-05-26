@@ -12,12 +12,12 @@ function arsort(inputArr, sort_flags) {
     // *     results 1: data == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
     // *     returns 1: true
 
-    var valArr=[], keyArr=[], k, i, ret, sorter;
+    var valArr=[], keyArr=[], k, i, ret, sorter, that = this;
 
     switch (sort_flags) {
         case 'SORT_STRING': // compare items as strings
             sorter = function (a, b) {
-                return strnatcmp(b, a);
+                return that.strnatcmp(b, a);
             };
             break;
         case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
