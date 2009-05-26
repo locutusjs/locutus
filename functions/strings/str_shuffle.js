@@ -15,7 +15,7 @@ function str_shuffle (str) {
     
     while (str.length) {
         rand = getRandomInt(str.length-1);
-        newStr += str[rand];
+        newStr += str.charAt(rand);
         str = str.substring(0, rand)+str.substr(rand+1);
     }
     

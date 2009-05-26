@@ -12,11 +12,11 @@ function sql_regcase (str) {
     lower = this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.lower;
 
     for (i=0; i < str.length; i++) {
-        if (((pos = upper.indexOf(str[i])) !== -1) || ((pos = lower.indexOf(str[i])) !== -1)) {
+        if (((pos = upper.indexOf(str.charAt(i))) !== -1) || ((pos = lower.indexOf(str.charAt(i))) !== -1)) {
             retStr += '['+upper[pos]+lower[pos]+']';
         }
         else {
-            retStr += str[i];
+            retStr += str.charAt(i);
         }
     }
     return retStr;

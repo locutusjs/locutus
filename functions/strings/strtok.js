@@ -20,11 +20,11 @@ function strtok (str, tokens) {
     if (str.length === 0) {
         return false;
     }
-    if (tokens.indexOf(str[0]) !== -1) {
+    if (tokens.indexOf(str.charAt(0)) !== -1) {
         return this.strtok(str.substr(1), tokens);
     }
     for (var i=0; i < str.length; i++) {
-        if (tokens.indexOf(str[i]) !== -1) {
+        if (tokens.indexOf(str.charAt(i)) !== -1) {
             break;
         }
     }

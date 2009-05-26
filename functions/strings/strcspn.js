@@ -11,7 +11,7 @@ function strcspn (str, mask, start, length) {
     strct:
     for (var i=start, lgth=0; i < count; i++) {
         for (var j=0; j < mask.length; j++) {
-            if (str[i].indexOf(mask[j]) !== -1) {
+            if (str.charAt(i).indexOf(mask[j]) !== -1) {
                 continue strct;
             }
         }

@@ -28,7 +28,7 @@ function strlen (string) {
             if (0xDC00 > next || next > 0xDFFF) {
                 throw 'High surrogate without following low surrogate';
             }
-            return str[i]+str[i+1];
+            return str.charAt(i)+str.charAt(i+1);
         } else if (0xDC00 <= code && code <= 0xDFFF) { // Low surrogate
             if (i === 0) {
                 throw 'Low surrogate without preceding high surrogate';
@@ -39,7 +39,7 @@ function strlen (string) {
             }
             return false; // We can pass over low surrogates now as the second component in a pair which we have already processed
         }
-        return str[i];
+        return str.charAt(i);
     };
 
     for (i=0, lgth=0; i < str.length; i++) {
