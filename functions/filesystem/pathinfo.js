@@ -72,18 +72,18 @@ function pathinfo (path, options) {
 
 
     // Gather path infos
-    if ((opts & OPTS.PATHINFO_DIRNAME) == OPTS.PATHINFO_DIRNAME) {
+    if (opts & OPTS.PATHINFO_DIRNAME) {
         tmp_arr.dirname = this.dirname(path);
     }
 
-    if ((opts & OPTS.PATHINFO_BASENAME) == OPTS.PATHINFO_BASENAME) {
+    if (opts & OPTS.PATHINFO_BASENAME) {
         if (false === have_basename) {
             have_basename = this.basename(path);
         }
         tmp_arr.basename = have_basename;
     }
 
-    if ((opts & OPTS.PATHINFO_EXTENSION) == OPTS.PATHINFO_EXTENSION) {
+    if (opts & OPTS.PATHINFO_EXTENSION) {
         if (false === have_basename) {
             have_basename = this.basename(path);
         }
@@ -93,7 +93,7 @@ function pathinfo (path, options) {
         tmp_arr.extension = have_extension;
     }
 
-    if ((opts & OPTS.PATHINFO_FILENAME) == OPTS.PATHINFO_FILENAME) {
+    if (opts & OPTS.PATHINFO_FILENAME) {
         if (false === have_basename) {
             have_basename = this.basename(path);
         }
