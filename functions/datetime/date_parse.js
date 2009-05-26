@@ -13,7 +13,7 @@ function date_parse (date) {
     var errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
 
     try {
-        var ts = strtotime(date);
+        var ts = this.strtotime(date);
     }
     finally {
         if (!ts) {

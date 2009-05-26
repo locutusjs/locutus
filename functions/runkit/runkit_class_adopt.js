@@ -13,7 +13,7 @@ function runkit_class_adopt (classname, parentname) {
     }
 
     // Classical style of inheritance
-    this.window[classname].prototype = new this.window[parentname]; // Has side effects by calling the constructor!
+    this.window[classname].prototype = new this.window[parentname](); // Has side effects by calling the constructor!
 
 /*
     // Prototypal completely by reference

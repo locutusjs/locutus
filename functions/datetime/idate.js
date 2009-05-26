@@ -60,10 +60,10 @@ function idate (format, timestamp) {
                              (date.getMinutes() * 60) +
                               date.getSeconds() + off;
             var beat = Math.floor(theSeconds/86.4);
-            if (beat > 1000) beat -= 1000;
-            if (beat < 0) beat += 1000;
-            if ((String(beat)).length == 1) beat = '00'+beat;
-            if ((String(beat)).length == 2) beat = '0'+beat;
+            if (beat > 1000) {beat -= 1000;}
+            if (beat < 0) {beat += 1000;}
+            if ((String(beat)).length == 1) {beat = '00'+beat;}
+            if ((String(beat)).length == 2) {beat = '0'+beat;}
             return beat;
         case 'd':
             return date.getDate();

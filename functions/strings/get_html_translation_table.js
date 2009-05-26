@@ -30,7 +30,7 @@ function get_html_translation_table(table, quote_style) {
     useQuoteStyle = !isNaN(quote_style) ? constMappingQuoteStyle[quote_style] : quote_style ? quote_style.toUpperCase() : 'ENT_COMPAT';
 
     if (useTable !== 'HTML_SPECIALCHARS' && useTable !== 'HTML_ENTITIES') {
-        throw Error("Table: "+useTable+' not supported');
+        throw new Error("Table: "+useTable+' not supported');
         // return false;
     }
 

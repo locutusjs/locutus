@@ -12,16 +12,16 @@ function getdate(timestamp) {
     var y = d.getFullYear();
     var r = {};
 
-    r['seconds'] = d.getSeconds();
-    r['minutes'] = d.getMinutes();
-    r['hours'] = d.getHours();
-    r['mday'] = d.getDate();
-    r['wday'] = w;
-    r['mon'] = m + 1;
-    r['year'] = y;
-    r['yday'] = Math.floor((d - (new Date(y, 0, 1))) / 86400000);
-    r['weekday'] = _w[w];
-    r['month'] = _m[m];
+    r.seconds = d.getSeconds();
+    r.minutes = d.getMinutes();
+    r.hours = d.getHours();
+    r.mday = d.getDate();
+    r.wday = w;
+    r.mon = m + 1;
+    r.year = y;
+    r.yday = Math.floor((d - (new Date(y, 0, 1))) / 86400000);
+    r.weekday = _w[w];
+    r.month = _m[m];
     r['0'] = parseInt(d.getTime() / 1000, 10);
 
     return r;
