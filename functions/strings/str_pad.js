@@ -12,7 +12,7 @@ function str_pad( input, pad_length, pad_string, pad_type ) {
     var str_pad_repeater = function(s, len) {
         var collect = '', i;
 
-        while(collect.length < len) collect += s;
+        while(collect.length < len) {collect += s;}
         collect = collect.substr(0,len);
 
         return collect;

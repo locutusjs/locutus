@@ -34,6 +34,35 @@ function strtotime(str, now) {
 
     strTmp = strTmp.toLowerCase();
 
+    var __is =
+    {
+        day:
+        {
+            'sun': 0,
+            'mon': 1,
+            'tue': 2,
+            'wed': 3,
+            'thu': 4,
+            'fri': 5,
+            'sat': 6
+        },
+        mon:
+        {
+            'jan': 0,
+            'feb': 1,
+            'mar': 2,
+            'apr': 3,
+            'may': 4,
+            'jun': 5,
+            'jul': 6,
+            'aug': 7,
+            'sep': 8,
+            'oct': 9,
+            'nov': 10,
+            'dec': 11
+        }
+    };
+
     var process = function (m) {
         var ago = (m[2] && m[2] == 'ago');
         var num = (num = m[0] == 'last' ? -1 : 1) * (ago ? -1 : 1);
@@ -70,9 +99,9 @@ function strtotime(str, now) {
                             if (diff == 0) {
                                 diff = 7 * num;
                             } else if (diff > 0) {
-                                if (m[0] == 'last') diff -= 7;
+                                if (m[0] == 'last') {diff -= 7;}
                             } else {
-                                if (m[0] == 'next') diff += 7;
+                                if (m[0] == 'next') {diff += 7;}
                             }
                             now.setDate(now.getDate() + diff);
                         }
@@ -81,7 +110,7 @@ function strtotime(str, now) {
 
             default:
                 if (/\d+/.test(m[0])) {
-                    num *= parseInt(m[0]);
+                    num *= parseInt(m[0], 10);
 
                     switch (m[1].substring(0, 3)) {
                         case 'yea':
@@ -114,35 +143,6 @@ function strtotime(str, now) {
         return true;
     };
 
-    var __is =
-    {
-        day:
-        {
-            'sun': 0,
-            'mon': 1,
-            'tue': 2,
-            'wed': 3,
-            'thu': 4,
-            'fri': 5,
-            'sat': 6
-        },
-        mon:
-        {
-            'jan': 0,
-            'feb': 1,
-            'mar': 2,
-            'apr': 3,
-            'may': 4,
-            'jun': 5,
-            'jul': 6,
-            'aug': 7,
-            'sep': 8,
-            'oct': 9,
-            'nov': 10,
-            'dec': 11
-        }
-    };
-
     match = strTmp.match(/^(\d{2,4}-\d{2}-\d{2})(?:\s(\d{1,2}:\d{2}(:\d{2})?)?(?:\.(\d+))?)?$/);
     if (match != null) {
         if (!match[2]) {
@@ -164,15 +164,15 @@ function strtotime(str, now) {
         return parseInt(this.strtotime(s[2] + ' ' + s[1] + ' ' + s[0] + ' ' + match[2])+(match[4] ? match[4]/1000 : ''), 10);
     }
 
-    var regex = '([+-]?\\d+\\s'
-    + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
-    + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
-    + '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday)'
-    + '|(last|next)\\s'
-    + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'
-    + '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'
-    + '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday))'
-    + '(\\sago)?';
+    var regex = '([+-]?\\d+\\s'+
+        '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'+
+        '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'+
+        '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday)'+
+        '|(last|next)\\s'+
+        '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'+
+        '|sun\.?|sunday|mon\.?|monday|tue\.?|tuesday|wed\.?|wednesday'+
+        '|thu\.?|thursday|fri\.?|friday|sat\.?|saturday))'+
+        '(\\sago)?';
 
     match = strTmp.match(new RegExp(regex, 'g'));
     if (match == null) {

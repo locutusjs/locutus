@@ -9,18 +9,17 @@ function strnatcasecmp(str1, str2) {
     // *     returns 1: 1
     // *     example 1: strnatcasecmp('1', '10');
     // *     returns 1: -1
-
-    a = (str1+'').toLowerCase();
-    b = (str2+'').toLowerCase();
+    var a = (str1+'').toLowerCase();
+    var b = (str2+'').toLowerCase();
 
     var isWhitespaceChar = function(a) {
         return a.charCodeAt(0) <= 32;
-    }
+    };
 
     var isDigitChar = function (a) {
         var charCode = a.charCodeAt(0);
         return ( charCode >= 48  && charCode <= 57 );
-    }
+    };
 
     var compareRight = function(a,b) {
         var bias = 0;
@@ -38,8 +37,8 @@ function strnatcasecmp(str1, str2) {
             ca = a.charAt(ia);
             cb = b.charAt(ib);
 
-            if (!isDigitChar(ca)
-                && !isDigitChar(cb)) {
+            if (!isDigitChar(ca) &&
+                !isDigitChar(cb)) {
                 return bias;
             } else if (!isDigitChar(ca)) {
                 return -1;
@@ -50,13 +49,14 @@ function strnatcasecmp(str1, str2) {
                     bias = -1;
                 }
             } else if (ca > cb) {
-                if (bias == 0)
+                if (bias == 0) {
                     bias = +1;
+                }
             } else if (ca == 0 && cb == 0) {
                 return bias;
             }
         }
-    }
+    };
 
     var ia = 0, ib = 0;
     var nza = 0, nzb = 0;

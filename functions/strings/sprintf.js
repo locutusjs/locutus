@@ -124,7 +124,7 @@ function sprintf( ) {
             case 'u': return formatBaseX(value, 10, prefixBaseX, leftJustify, minWidth, precision, zeroPad);
             case 'i':
             case 'd':
-                number = parseInt(+value);
+                number = parseInt(+value, 10);
                 prefix = number < 0 ? '-' : positivePrefix;
                 value = prefix + pad(String(Math.abs(number)), precision, '0', false);
                 return justify(value, prefix, leftJustify, minWidth, zeroPad);

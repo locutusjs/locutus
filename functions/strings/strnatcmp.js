@@ -17,6 +17,8 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
     // *     example 5: strnatcmp('Version 12.15', 'Version 12.9', true);
     // *     returns 5: 6
 
+    var i = 0;
+
     if (f_version == undefined) {
         f_version = false;
     }
@@ -48,7 +50,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
             } else {
                 if (text == false) {
                     if (buffer.length > 0) {
-                        result[result.length] = parseInt(buffer);
+                        result[result.length] = parseInt(buffer, 10);
                         buffer = '';
                     }
                     text = true;
@@ -61,7 +63,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
             if (text) {
                 result[result.length] = buffer;
             } else {
-                result[result.length] = parseInt(buffer);
+                result[result.length] = parseInt(buffer, 10);
             }
         }
 

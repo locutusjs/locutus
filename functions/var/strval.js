@@ -10,12 +10,12 @@ function strval(str) {
 
     var type = '';
 
-    if (str === null) return '';
+    if (str === null) {return '';}
 
     type = this.gettype(str);
     switch (type) {
         case 'boolean':
-            if (str === true) return '1';
+            if (str === true) {return '1';}
             return '';
         case 'array':
             return 'Array';

@@ -13,8 +13,8 @@ function substr_count( haystack, needle, offset, length ) {
 
     haystack += '';
     needle += '';
-    if(isNaN(offset)) offset = 0;
-    if(isNaN(length)) length = 0;
+    if(isNaN(offset)) {offset = 0;}
+    if(isNaN(length)) {length = 0;}
     offset--;
 
     while( (offset = haystack.indexOf(needle, offset+1)) != -1 ){
