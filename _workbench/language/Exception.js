@@ -1,3 +1,8 @@
+var that = this;
+if (!this.php_js) {
+    this.php_js = {};
+}
+
 function Exception (message, code, previous) { // string, int, Exception (all arguments optional)
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
@@ -17,15 +22,18 @@ function Exception (message, code, previous) { // string, int, Exception (all ar
     
     this.message = message; // protected string
     this.code = code; // protected int
+    this.string = 'Exception'; // private string; Internal Exception name
 
     // UNFINISHED
     /*
     this.previous = previous; // "previous" is not a recognized property, but we'll use it; reconcile with trace array?
-    this.string = 'Exception'; // private string; Internal Exception name
     this.trace; // private array; The stack trace
     this.file; // protected string; The filename where the exception was thrown
     this.line; // protected int; The line where the exception was thrown
     */
+   // For JavaScript:
+    this.name = 'Exception';
+    that.php_js.exception_handler(this);
 }
 Exception.prototype = {
     constructor : Exception,
@@ -35,7 +43,12 @@ Exception.prototype = {
     },
     // PUBLIC METHODS
     __toString : function () { // returns string
-        return 'exception '+this.string+' in '+this.file+':'+this.line+'\nStack trace:\n'+this.getTraceAsString();
+        return "exception '"+this.string+"' with message '"+this.getMessage()+"' in "+
+                                this.getFile()+":"+this.getLine()+"\nStack trace:\n"+this.getTraceAsString();
+    },
+    // For JavaScript interface/behavior:
+    toString : function () {
+        return this.__toString(); // We implement on toString() to implement JavaScript Error interface
     },
     // FINAL PUBLIC METHODS
     getMessage : function () { // returns string

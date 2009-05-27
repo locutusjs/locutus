@@ -1,3 +1,0 @@
-function trigger_error () {
-    
-}

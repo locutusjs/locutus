@@ -20,11 +20,12 @@ function at(cb) {  // Could also name as "at_sign", "silence", "error_suppressor
             this.php_js.ini = {};
         }
         // END REDUNDANT
+        this.php_js.last_error = {message:e.message, file:e.fileName, line:e.lineNumber, type:e.type || 1};
         if (this.php_js.ini.track_errors &&
             (
-                this.php_js.ini.track_errors.local_value.toString().toLowerCase &&
-                (this.php_js.ini.track_errors.local_value.toString().toLowerCase() === 'on' ||
-                this.php_js.ini.track_errors.local_value.toString().toLowerCase() === 'true') ||
+                (this.php_js.ini.track_errors.local_value.toString().toLowerCase &&
+                    (this.php_js.ini.track_errors.local_value.toString().toLowerCase() === 'on' ||
+                    this.php_js.ini.track_errors.local_value.toString().toLowerCase() === 'true')) ||
                 parseInt(this.php_js.ini.track_errors.local_value, 10) === 1
             )
         ) {
