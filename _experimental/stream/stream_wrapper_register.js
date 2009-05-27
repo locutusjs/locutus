@@ -28,7 +28,7 @@ function stream_wrapper_register (protocol, classname, flags) {
     }
     if (!flags) {flags = 0;}
     var OPTS = {
-        STREAM_IS_URL : 1,
+        STREAM_IS_URL : 1
     };
     if (typeof options === 'number') {
         opts = flags;
