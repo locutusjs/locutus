@@ -3,30 +3,60 @@ function strtr (str, from, to) {
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // +      input by: uestla
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: $trans = {"hello" : "hi", "hi" : "hello"};
-    // *     example 1: strtr("hi all, I said hello", $trans)
+    // +      input by: Alan C
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: $trans = {'hello' : 'hi', 'hi' : 'hello'};
+    // *     example 1: strtr('hi all, I said hello', $trans)
     // *     returns 1: 'hello all, I said hi'
     // *     example 2: strtr('äaabaåccasdeöoo', 'äåö','aao');
     // *     returns 2: 'aaabaaccasdeooo'
-    // *     example 3: strtr('ääääääää', 'ä','a');
+    // *     example 3: strtr('ääääääää', 'ä', 'a');
     // *     returns 3: 'aaaaaaaa'
+    // *     example 4: strtr('http', 'pthxyz','xyzpth');
+    // *     returns 4: 'zyyx'
+    // *     example 5: strtr('zyyx', 'pthxyz','xyzpth');
+    // *     returns 5: 'http'
 
-    var fr = '', i = 0, lgth = 0;
+    var fr = '', i = 0, j = 0, lenStr = 0, lenFrom = 0;
+    var tmpFrom = [];
+    var tmpTo   = [];
+    var ret = '';
+    var match = false;
 
+    // Received replace_pairs?
+    // Convert to normal from->to chars
     if (typeof from === 'object') {
         for (fr in from) {
-            str = str.replace(fr, from[fr]);
+            tmpFrom.push(fr);
+            tmpTo.push(from[fr]);
         }
-        return str;
+
+        from = tmpFrom;
+        to   = tmpTo;
     }
     
-    lgth = to.length;
-    if (from.length < to.length) {
-        lgth = from.length;
+    // Walk through subject and replace chars when needed
+    lenStr  = str.length;
+    lenFrom = from.length;
+    for (i = 0; i < lenStr; i++) {
+        match = false;
+        for (j = 0; j < lenFrom; j++) {
+            if (str.substr(i, from[j].length) == from[j]) {
+                match = true;
+
+                // Fast forward
+                i = (i + from[j].length)-1;
+                
+                break;
+            }
+        }
+        
+        if (false !== match) {
+            ret += to[j];
+        } else {
+            ret += str[i];
+        }
     }
-    for (i = 0; i < lgth; i++) {
-        str = str.replace(from[i], to[i], 'g');
-    }
-    
-    return str;
+
+    return ret;
 }
