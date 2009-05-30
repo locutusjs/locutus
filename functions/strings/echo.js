@@ -6,124 +6,68 @@ function echo ( ) {
     // +    revised by: Der Simon (http://innerdom.sourceforge.net/)
     // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Eugene Bulkin (http://doubleaw.com/)
-    // %        note 1: The function still has issues with outputting certain kinds of XML, such as
-    // %        note 1: attributes defined with apostrophes, or creating namespaced XML, etc.
-    // %        note 1: We might at some point solve this by building on http://code.google.com/p/jssaxparser
-    // %        note 1: and using that, though it would be even larger; if browsers start to support
-    // %        note 1: DOM Level 3 Load and Save (parsing/serializing), we wouldn't need any
-    // %        note 1: such long code (even most of the code below).
-    // %        note 2: InnerHTML() is better because it works (and it's fast),
-    // %        note 2: but using innerHTML on the BODY is very dangerous because
-    // %        note 2: you will break all references to HTMLElements that were done before
+    // +   input by: JB
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // %        note 1: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),
+    // %        note 1: we wouldn't need any such long code (even most of the code below). See
+    // %        note 1: link below for a cross-browser implementation in JavaScript. HTML5 might
+    // %        note 1: possibly support DOMParser, but that is not presently a standard.
+    // %        note 2: Although innerHTML is widely used and may become standard as of HTML5, it is also not ideal for
+    // %        note 2: use with a temporary holder before appending to the DOM (as is our last resort below),
+    // %        note 2: since it may not work in an XML context
+    // %        note 3: Using innerHTML to directly add to the BODY is very dangerous because it will
+    // %        note 3: break all pre-existing references to HTMLElements.
     // *     example 1: echo('Hello', 'World');
     // *     returns 1: undefined
     
     var arg = '', argc = arguments.length, argv = arguments, i = 0;
 	var d = this.window.document;
 	
-    var stringToDOM = function (q){
-        var s = function(a){
-            return a.replace(/&amp;/g,'&').replace(/&gt;/g,'>').replace(/&lt;/g,'<').replace(/&nbsp;/g,' ').replace(/&quot;/g,'"');
-        };
-        var t = function(a){
-            return a.replace(/ /g,'');
-        };
-        var u = function(a){
-            var b,c,e,f,g,h,i;
-            b=d.createDocumentFragment();
-            c=a.indexOf(' ');
-            if (c === -1) {
-                b.appendChild(d.createElement(a.toLowerCase()));
-            } else {
-                i = t(a.substring(0,c)).toLowerCase();
-                a = a.substr(c+1);
-                b.appendChild(d.createElement(i));
-                while(a.length){
-                    e=a.indexOf('=');
-                    if(e>=0){
-                        f=t(a.substring(0,e)).toLowerCase();
-                        g=a.indexOf('"');
-                        a=a.substr(g+1);
-                        g=a.indexOf('"');
-                        h=s(a.substring(0,g));
-                        a=a.substr(g+2);
-                        b.lastChild.setAttribute(f,h);
-                    }else{
-                        break;
-                    }
-                }
+    var stringToDOM = function (q) {
+        if (window.DOMImplementationLS &&
+            window.DOMImplementationLS.createLSInput && 
+            window.DOMImplementationLS.createLSParser) { // Follows the DOM 3 Load and Save standard, but not
+            // implemented in browsers at present; HTML5 is to standardize on innerHTML, but not for XML (though
+            // possibly will also standardize with DOMParser); in the meantime, to ensure fullest browser support, could
+            // attach http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.js (see http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.xhtml for a simple test file)
+            var lsInput = DOMImplementationLS.createLSInput();
+            lsInput.stringData = q;
+            var lsParser = DOMImplementationLS.createLSParser(1, null); // synchronous, no schema type
+            return lsParser.parse(lsInput);
+        }
+        else if (window.DOMParser) {
+            return new DOMParser().parseFromString(q, 'text/xml').documentElement;
+        }
+        else if (window.ActiveXObject) {
+            var d = new ActiveXObject('MSXML2.DOMDocument');
+             d.loadXML(q);
+             return d;
+        }
+        /*else if (window.XMLHttpRequest) { // Supposed to work in older Safari
+            var req = new window.XMLHttpRequest;
+            req.open('GET', 'data:application/xml;charset=utf-8,'+encodeURIComponent(q), false);
+            if (req.overrideMimeType) {
+                req.overrideMimeType('application/xml');
             }
-            return b;
-        };
-        var v = function(a,b,c){
-            var e,f;
-            e=b;
-            c=c.toLowerCase();
-            f=e.indexOf('</'+c+'>');
-            a=a.concat(e.substring(0,f));
-            e=e.substr(f);
-            while(a.indexOf('<'+c)!=-1){
-                a=a.substr(a.indexOf('<'+c));
-                a=a.substr(a.indexOf('>')+1);
-                e=e.substr(e.indexOf('>')+1);
-                f=e.indexOf('</'+c+'>');
-                a=a.concat(e.substring(0,f));
-                e=e.substr(f);
+            req.send(null);
+            return req.responseXML;
+        }*/
+        else if (document.createDocumentFragment) { // Document fragment did not work with innerHTML, so we create a temporary element holder
+            var holder;
+            if (document.createElementNS) {
+                holder = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
             }
-            return b.length-e.length;
-        };
-        var w = function(a){
-            var b,c,e,f,g,h,i,j,k,l,m,n,o,p,q;
-            b=d.createDocumentFragment();
-            while(a&&a.length){
-                c=a.indexOf('<');
-                if(c===-1){
-                    a=s(a);
-                    b.appendChild(d.createTextNode(a));
-                    a=null;
-                } else if(c){
-                    q=s(a.substring(0,c));
-                    b.appendChild(d.createTextNode(q));
-                    a=a.substr(c);
-                } else{
-                    e=a.indexOf('<!--');
-                    if(!e){
-                        f=a.indexOf('-->');
-                        g=a.substring(4,f);
-                        g=s(g);
-                        b.appendChild(d.createComment(g));
-                        a=a.substr(f+3);
-                    } else{
-                        h=a.indexOf('>');
-                        if(a.substring(h-1,h)==='/'){
-                            i=a.indexOf('/>');
-                            j=a.substring(1,i);
-                            b.appendChild(u(j));
-                            a=a.substr(i+2);
-                        } else{
-                            k=a.indexOf('>');
-                            l=a.substring(1,k);
-                            m=d.createDocumentFragment();
-                            m.appendChild(u(l));
-                            a=a.substr(k+1);
-                            n=a.substring(0,a.indexOf('</'));
-                            a=a.substr(a.indexOf('</'));
-                            if(n.indexOf('<')!=-1){
-                                o=m.lastChild.nodeName;
-                                p=v(n,a,o);
-                                n=n.concat(a.substring(0,p));
-                                a=a.substr(p);
-                            }
-                            a=a.substr(a.indexOf('>')+1);
-                            m.lastChild.appendChild(w(n));
-                            b.appendChild(m);
-                        }
-                    }
-                }
+            else {
+                holder = document.createElement('div'); // Document fragment did not work with innerHTML
             }
-            return b;
-        };
-        return w(q);
+            holder.innerHTML = q;
+            var df = document.createDocumentFragment();
+            while (holder.firstChild) {
+                df.appendChild(holder.firstChild);
+            }
+            return df;
+        }
+        throw 'Your browser does not support DOM parsing as required by echo()';
     };
 
     for (i = 0; i < argc; i++ ) {
@@ -136,8 +80,8 @@ function echo ( ) {
             }
         } else if (d.write) {
             d.write(arg);
-        } else {
+        }/* else { // This could recurse if we ever add print!
             print(arg);
-        }
+        }*/
     }
 }
