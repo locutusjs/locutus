@@ -22,12 +22,13 @@ function echo ( ) {
     // *     returns 1: undefined
     
     var arg = '', argc = arguments.length, argv = arguments, i = 0;
-	var d = this.window.document;
+    var win = this.window;
+	var d = win.document;
 	
-    var stringToDOM = function (q) {
-        if (window.DOMImplementationLS &&
-            window.DOMImplementationLS.createLSInput && 
-            window.DOMImplementationLS.createLSParser) { // Follows the DOM 3 Load and Save standard, but not
+    var stringToDOM = function (q, parent) {
+        if (win.DOMImplementationLS &&
+            win.DOMImplementationLS.createLSInput &&
+            win.DOMImplementationLS.createLSParser) { // Follows the DOM 3 Load and Save standard, but not
             // implemented in browsers at present; HTML5 is to standardize on innerHTML, but not for XML (though
             // possibly will also standardize with DOMParser); in the meantime, to ensure fullest browser support, could
             // attach http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.js (see http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.xhtml for a simple test file)
@@ -36,16 +37,16 @@ function echo ( ) {
             var lsParser = DOMImplementationLS.createLSParser(1, null); // synchronous, no schema type
             return lsParser.parse(lsInput);
         }
-        else if (window.DOMParser) {
+        else if (win.DOMParser) {
             return new DOMParser().parseFromString(q, 'text/xml').documentElement;
         }
-        else if (window.ActiveXObject) {
+        else if (win.ActiveXObject) {
             var d = new ActiveXObject('MSXML2.DOMDocument');
              d.loadXML(q);
              return d;
         }
-        /*else if (window.XMLHttpRequest) { // Supposed to work in older Safari
-            var req = new window.XMLHttpRequest;
+        /*else if (win.XMLHttpRequest) { // Supposed to work in older Safari
+            var req = new win.XMLHttpRequest;
             req.open('GET', 'data:application/xml;charset=utf-8,'+encodeURIComponent(q), false);
             if (req.overrideMimeType) {
                 req.overrideMimeType('application/xml');
@@ -53,31 +54,30 @@ function echo ( ) {
             req.send(null);
             return req.responseXML;
         }*/
-        else if (document.createDocumentFragment) { // Document fragment did not work with innerHTML, so we create a temporary element holder
+        else { // Document fragment did not work with innerHTML, so we create a temporary element holder
             var holder;
-            if (document.createElementNS) {
-                holder = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
+            if (d.createElementNS) {
+                holder = d.createElementNS('http://www.w3.org/1999/xhtml', 'div');
             }
             else {
-                holder = document.createElement('div'); // Document fragment did not work with innerHTML
+                holder = d.createElement('div'); // Document fragment did not work with innerHTML
             }
             holder.innerHTML = q;
-            var df = document.createDocumentFragment();
+
             while (holder.firstChild) {
-                df.appendChild(holder.firstChild);
+                parent.appendChild(holder.firstChild);
             }
-            return df;
         }
-        throw 'Your browser does not support DOM parsing as required by echo()';
+        // throw 'Your browser does not support DOM parsing as required by echo()';
     };
 
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
-        if (d.createDocumentFragment && d.createTextNode && d.appendChild) {
+        if (d.appendChild) {
             if (d.body) {
-                d.body.appendChild(stringToDOM(arg));
+                d.body.appendChild(stringToDOM(arg, d.body));
             } else {
-                d.documentElement.appendChild(stringToDOM(arg));
+                d.documentElement.appendChild(stringToDOM(arg, d.documentElement));
             }
         } else if (d.write) {
             d.write(arg);
