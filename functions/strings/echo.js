@@ -17,7 +17,8 @@ function echo ( ) {
     // %        note 2: since it may not work in an XML context
     // %        note 3: Using innerHTML to directly add to the BODY is very dangerous because it will
     // %        note 3: break all pre-existing references to HTMLElements.
-    // *     example 1: echo('Hello', 'World');
+    // %        note 4: Must use well-formed XML/XHTML, including use of the XHTML namespace.
+    // *     example 1: echo('<div xmlns="http://www.w3.org/1999/xhtml"><p>abc</p><p>abc</p></div>');
     // *     returns 1: undefined
     
     var arg = '', argc = arguments.length, argv = arguments, i = 0;
