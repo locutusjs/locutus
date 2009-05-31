@@ -1,7 +1,7 @@
 function fgetss (handle, length, allowable_tags) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// -    depends on: strip_tags
+    // -    depends on: strip_tags
     // *     example 1: fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
     // *     example 1: fgetss(handle, 4096, 'a');
     // *     returns 1: ''

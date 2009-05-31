@@ -8,7 +8,7 @@ function date_default_timezone_get () {
 
     var tal = {}, abbr = '', i = 0, today = new Date();
 
-	if (this.php_js) {
+    if (this.php_js) {
         if (this.php_js.default_timezone) { // set by date_default_timezone_set
             return this.php_js.default_timezone;
         }
@@ -20,13 +20,13 @@ function date_default_timezone_get () {
         }
     }
     // Get from system
-	tal = this.timezone_abbreviations_list();
-	for (abbr in tal) {
-		for (i=0; i < tal[abbr].length; i++) {
-			if (tal[abbr][i].offset === -today.getTimezoneOffset()*60) {
-				return tal[abbr][i].timezone_id;
-			}
-		}
-	}
-	return 'UTC';
+    tal = this.timezone_abbreviations_list();
+    for (abbr in tal) {
+        for (i=0; i < tal[abbr].length; i++) {
+            if (tal[abbr][i].offset === -today.getTimezoneOffset()*60) {
+                return tal[abbr][i].timezone_id;
+            }
+        }
+    }
+    return 'UTC';
 }

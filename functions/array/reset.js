@@ -7,10 +7,10 @@ function reset ( arr ) {
     // *     example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
     // *     returns 1: 'Kevin' 
     
-	// BEGIN REDUNDANT
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
-	// END REDUNDANT
+    // END REDUNDANT
     var pointers = this.php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);

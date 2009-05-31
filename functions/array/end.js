@@ -12,10 +12,10 @@ function end ( arr ) {
     // *     example 2: end(['Kevin', 'van', 'Zonneveld']);
     // *     returns 2: 'Zonneveld'
     
-	// BEGIN REDUNDANT
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
-	// END REDUNDANT
+    // END REDUNDANT
     var pointers = this.php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);

@@ -1,7 +1,7 @@
 function get_included_files() {
     // http://kevin.vanzonneveld.net
     // +   original by: Michael White (http://getsprink.com)
-	// %        note 1: Uses global: php_js to keep track of included files
+    // %        note 1: Uses global: php_js to keep track of included files
     // *     example 1: get_included_files();
     // *     returns 1: ['http://kevin.vanzonneveld.net/pj_tester.php']
 

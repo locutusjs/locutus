@@ -4,7 +4,7 @@ function set_time_limit(seconds) {
     // *     example 1: set_time_limit(4);
     // *     returns 1: undefined
 
-	// BEGIN REDUNDANT
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     // END REDUNDANT
 

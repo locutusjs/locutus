@@ -7,9 +7,9 @@ function strftime (fmt, timestamp) {
     // *        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
     // *        returns 1: 'Tuesday'
 
-	// BEGIN REDUNDANT
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
-	// END REDUNDANT
+    // END REDUNDANT
     var phpjs = this.php_js;
 
     // BEGIN STATIC

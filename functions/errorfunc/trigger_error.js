@@ -43,7 +43,7 @@ function trigger_error (error_msg, error_type) {
         E_RECOVERABLE_ERROR:4096, // Catchable fatal error. It indicates that a probably dangerous error occured, but did not leave the Engine in an unstable state. If the error is not caught by a user defined handle (see also set_error_handler()), the application aborts as it was an E_ERROR.
         E_DEPRECATED:8192, // Run-time notices. Enable this to receive warnings about code that will not work in future versions.
         E_USER_DEPRECATED:16384, // User-generated warning message. This is like an E_DEPRECATED, except it is generated in PHP code by using the PHP function trigger_error().
-        E_ALL:30719 // All errors and warnings, as supported, except of level E_STRICT in PHP < 6. 	in:32767, // PHP 6, in:30719, // PHP 5.3.x, in:6143, // PHP 5.2.x, previously:2047, //
+        E_ALL:30719 // All errors and warnings, as supported, except of level E_STRICT in PHP < 6.     in:32767, // PHP 6, in:30719, // PHP 5.3.x, in:6143, // PHP 5.2.x, previously:2047, //
     };
     if (typeof error_type === 'number') {
         type = error_type;
@@ -57,10 +57,10 @@ function trigger_error (error_msg, error_type) {
             }
         }
     }
-	// BEGIN REDUNDANT
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
-	this.php_js.ini = this.php_js.ini || {};
-	// END REDUNDANT
+    this.php_js.ini = this.php_js.ini || {};
+    // END REDUNDANT
     if (type & TYPES.E_USER_ERROR || 
         type & TYPES.E_ERROR ||
         type & TYPES.E_CORE_ERROR ||

@@ -27,10 +27,10 @@ function array_slice(arr, offst, lgth, preserve_keys) {
             //}
         }
         arr = newAssoc;
-		
+
         offst = (offst < 0) ? lgt + offst : offst;
         lgth  = lgth == undefined ? lgt : (lgth < 0) ? lgt + lgth - offst : lgth;
-		
+
         var assoc = {};
         var start = false, it=-1, arrlgth=0, no_pk_idx=0;
         for (key in arr) {

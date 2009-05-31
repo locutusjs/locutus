@@ -13,10 +13,10 @@ function each(arr) {
     //  in that context and JavaScript cannot, we needed something to allow that option)
     //  See https://developer.mozilla.org/en/New_in_JavaScript_1.7#Destructuring_assignment
     
-	// BEGIN REDUNDANT
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
-	// END REDUNDANT
+    // END REDUNDANT
     var pointers = this.php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);

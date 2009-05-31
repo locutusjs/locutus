@@ -7,10 +7,10 @@ function next (arr) {
     // *     example 1: next(transport);
     // *     returns 1: 'car'
 
-	// BEGIN REDUNDANT
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
-	// END REDUNDANT
+    // END REDUNDANT
     var pointers = this.php_js.pointers;
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);

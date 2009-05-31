@@ -8,5 +8,5 @@ function classkit_import (file) {
     // *     example 1: classkit_import('http://example.com/somefile.js');
     // *     returns 1: undefined
     
-	eval(this.file_get_contents(file));
+    eval(this.file_get_contents(file));
 }

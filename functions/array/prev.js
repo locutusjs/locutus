@@ -6,10 +6,10 @@ function prev (arr) {
     // *     example 1: prev(transport);
     // *     returns 1: false
 
-	// BEGIN REDUNDANT
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
-	// END REDUNDANT
+    // END REDUNDANT
     var pointers = this.php_js.pointers;
     var arrpos = pointers.indexOf(arr);
     var cursor = pointers[arrpos+1];

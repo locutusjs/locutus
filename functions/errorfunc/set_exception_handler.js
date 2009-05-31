@@ -1,16 +1,16 @@
 function set_exception_handler (callback) {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: set_exception_handler(function (exceptionObj) {alert(exceptionObj.getMessage());});
-	// *     returns 1: null
+    // *     returns 1: null
 
     var that = this, oldHandlerName = '';
     if (typeof callback === 'string') {
         callback = this.window[callback];
     }
-	// BEGIN REDUNDANT
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
-	// END REDUNDANT
+    // END REDUNDANT
     // For return
     oldHandlerName = this.php_js.exception_handler ? this.php_js.exception_handler.name : null;
 

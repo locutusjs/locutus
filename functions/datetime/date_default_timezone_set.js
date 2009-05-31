@@ -8,18 +8,18 @@ function date_default_timezone_set (tz) {
 
     var tal = {}, abbr = '', i = 0;
 
-	// BEGIN REDUNDANT
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
-	// END REDUNDANT
-	// PHP verifies that the timezone is valid
-	tal = this.timezone_abbreviations_list();
-	for (abbr in tal) {
-		for (i=0; i < tal[abbr].length; i++) {
-			if (tal[abbr][i].timezone_id === tz) {
-				this.php_js.default_timezone = tz;
-				return true;
-			}
-		}
-	}
-	return false;
+    // END REDUNDANT
+    // PHP verifies that the timezone is valid
+    tal = this.timezone_abbreviations_list();
+    for (abbr in tal) {
+        for (i=0; i < tal[abbr].length; i++) {
+            if (tal[abbr][i].timezone_id === tz) {
+                this.php_js.default_timezone = tz;
+                return true;
+            }
+        }
+    }
+    return false;
 }

@@ -1,8 +1,8 @@
 function restore_exception_handler () {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: restore_exception_handler();
-	// *     returns 1: true
+    // *     returns 1: true
     
     // Fix: Docs suggest can revert to built-in function; where/how is it set? in ini somewhere?
 

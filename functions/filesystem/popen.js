@@ -10,8 +10,8 @@ function popen (filename, mode, use_include_path, context) {
     var file_get_contents = function ( url ) {
         var req = that.window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
         if (!req) {
-		    throw new Error('XMLHttpRequest not supported');
-		}
+            throw new Error('XMLHttpRequest not supported');
+        }
         if (!/^http/.test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
             url = that.window.location.href + '/' +url;
         }
@@ -46,13 +46,13 @@ function popen (filename, mode, use_include_path, context) {
         }
     }
 
-	// BEGIN REDUNDANT
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.resourceData = this.php_js.resourceData || {};
-	this.php_js.resourceDataPointer = this.php_js.resourceDataPointer || {};
-	this.php_js.resourceIdCounter = this.php_js.resourceIdCounter || 0;
+    this.php_js.resourceDataPointer = this.php_js.resourceDataPointer || {};
+    this.php_js.resourceIdCounter = this.php_js.resourceIdCounter || 0;
     // END REDUNDANT
-	
+    
     this.php_js.resourceIdCounter++;
 
     function PHPJS_Resource (type, id, opener) { // Can reuse the following for other resources, just changing the instantiation

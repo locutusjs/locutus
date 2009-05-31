@@ -8,33 +8,33 @@ function ini_get_all(extension, details) {
     // %        note 1: same directory) for the sake of php_ini_scanned_files().
     // *     example 1: ini_get_all('date', false);
     // *     returns 1: {'date.default_latitude':"31.7667", 'date.default_longitude':"35.2333", 'date.sunrise_zenith':"90.583333", 'date.sunset_zenith':"90.583333", date.timezone:""}
-	
-	var key='', ini={}, noDetails={}, extPattern;
-	// BEGIN REDUNDANT
+
+    var key='', ini={}, noDetails={}, extPattern;
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
-	this.php_js.ini = this.php_js.ini || {};
+    this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
-	
-	if (extension) {
-		extPattern = new RegExp('^'+extension+'\\.');
-		for (key in this.php_js.ini) {
-			if (extPattern.test(key)) {
-				ini[key] = this.php_js.ini[key];
-			}
-		}
-	}
-	else {
-		for (key in this.php_js.ini) {
-			ini[key] = this.php_js.ini[key];
-		}
-	}
-	
-	if (details !== false) { // default is true
-		return ini; // {global_value: '', local_value: '', access: ''};
-	}
-	
-	for (key in ini) {
-		noDetails[key] = ini[key].local_value;
-	}
-	return noDetails;
+
+    if (extension) {
+        extPattern = new RegExp('^'+extension+'\\.');
+        for (key in this.php_js.ini) {
+            if (extPattern.test(key)) {
+                ini[key] = this.php_js.ini[key];
+            }
+        }
+    }
+    else {
+        for (key in this.php_js.ini) {
+            ini[key] = this.php_js.ini[key];
+        }
+    }
+
+    if (details !== false) { // default is true
+        return ini; // {global_value: '', local_value: '', access: ''};
+    }
+
+    for (key in ini) {
+        noDetails[key] = ini[key].local_value;
+    }
+    return noDetails;
 }

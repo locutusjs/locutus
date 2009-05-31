@@ -7,7 +7,7 @@ function array_unique( array ) {
     // +      input by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Michael Grier
-	// %          note 1: the second argument, sort_flags is not implemented
+    // %          note 1: the second argument, sort_flags is not implemented
     // *     example 1: array_unique(['Kevin','Kevin','van','Zonneveld','Kevin']);
     // *     returns 1: ['Kevin','van','Zonneveld']
     // *     example 2: array_unique({'a': 'green', 0: 'red', 'b': 'green', 1: 'blue', 2: 'red'});
@@ -26,7 +26,7 @@ function array_unique( array ) {
         }
         return false;
     };
-	
+
     for (key in tmp_arr1) {
         val = tmp_arr1[key];
         if (false === __array_search(val, tmp_arr2)) {
