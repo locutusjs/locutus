@@ -93,7 +93,7 @@ function file_get_contents( url, flags, context, offset, maxLen ) {
         }
         // We should probably change to an || "or", in order to have binary as the default (as it is in PHP), but this method might not be well-supported; check for its existence instead or will this be to much trouble?
         if (flagNames & OPTS.PHP_FILE_BINARY && !(flagNames & OPTS.PHP_FILE_TEXT)) { // These flags shouldn't be together
-            req.sendAsBinary(); // In Firefox, only available FF3+
+            req.sendAsBinary(content); // In Firefox, only available FF3+
         }
         else {
             req.send(content);
