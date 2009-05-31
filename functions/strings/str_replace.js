@@ -14,7 +14,7 @@ function str_replace(search, replace, subject, count) {
     // +   input by: Oleg Eremeev
     // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // +   bugfixed by: Oleg Eremeev
-	// %          note 1: The count parameter must be passed as a string in order
+    // %          note 1: The count parameter must be passed as a string in order
     // %          note 1:  to find a global variable in which the result will be given
     // *     example 1: str_replace(' ', '.', 'Kevin van Zonneveld');
     // *     returns 1: 'Kevin.van.Zonneveld'

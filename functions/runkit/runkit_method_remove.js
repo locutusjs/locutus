@@ -18,6 +18,6 @@ function runkit_method_remove (classname, methodname) {
         delete classname.prototype[methodname]; // Delete any on prototype
         return true;
     }
-	// delete classname[methodname]; // Delete any as static class method
+    // delete classname[methodname]; // Delete any as static class method
     return false;
 }

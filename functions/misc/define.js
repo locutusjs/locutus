@@ -29,7 +29,7 @@ function define(name, value) {
             };
             return value.replace(/\x08|[\x0A-\x0D]|"|\\/g, function(value){
                 return "\\"+replace[value];
-			});
+            });
         };
         defn = function (name, value){
             if (d.createElementNS) {

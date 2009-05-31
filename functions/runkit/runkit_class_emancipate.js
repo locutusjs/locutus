@@ -1,8 +1,8 @@
 function runkit_class_emancipate (classname) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// %          note 1: Function can only obtain classes from the global context
-	// %          note 2: We have to delete all items on the prototype
+    // %          note 1: Function can only obtain classes from the global context
+    // %          note 2: We have to delete all items on the prototype
     // *     example 1: function A () {}
     // *     example 1: A.prototype.methodA = function () {};
     // *     example 1: function B () {}

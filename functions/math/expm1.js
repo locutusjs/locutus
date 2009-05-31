@@ -1,7 +1,7 @@
 function expm1 (x) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// %          note 1: Precision 'n' can be adjusted as desired
+    // %          note 1: Precision 'n' can be adjusted as desired
     // *     example 1: expm1(1e-15);
     // *     returns 1: 1.0000000000000007e-15
     var ret=0, n = 50; // degree of precision

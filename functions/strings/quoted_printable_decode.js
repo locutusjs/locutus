@@ -1,10 +1,10 @@
 function quoted_printable_decode(str) {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Ole Vrijenhoek
-	// +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
+    // http://kevin.vanzonneveld.net
+    // +   original by: Ole Vrijenhoek
+    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
     // +   reimplemented by: Theriault
-	// +   improved by: Brett Zamir (http://brettz9.blogspot.com)
-	// +   bugfixed by: Theriault
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Theriault
     // *     example 1: quoted_printable_decode('a=3Db=3Dc');
     // *     returns 1: 'a=b=c'
     // *     example 2: quoted_printable_decode('abc  =20\r\n123  =20\r\n');

@@ -4,18 +4,18 @@ function constant(name) {
     // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: constant('IMAGINARY_CONSTANT1');
     // *     returns 1: null
-	
-	var clssPos = 0, clssCnst = null;
-	if ((clssPos = name.indexOf('::')) !== -1) {
-		clssCnst = name.slice(clssPos+2);
-		name = name.slice(0, clssPos);
-	}
+
+    var clssPos = 0, clssCnst = null;
+    if ((clssPos = name.indexOf('::')) !== -1) {
+        clssCnst = name.slice(clssPos+2);
+        name = name.slice(0, clssPos);
+    }
 
     if (this.window[name] === undefined) {
         return null;
     }
-	if (clssCnst) {
-		return this.window[name][clssCnst];
-	}
+    if (clssCnst) {
+        return this.window[name][clssCnst];
+    }
     return this.window[name];
 }

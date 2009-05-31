@@ -1,8 +1,8 @@
 function runkit_superglobals () {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// %          note 1: You must manually define the superglobals to be able to use them.
-	// %          note 2: Another alternative (though you can't reflect on them with this function) is to use import_request_variables()
+    // %          note 1: You must manually define the superglobals to be able to use them.
+    // %          note 2: Another alternative (though you can't reflect on them with this function) is to use import_request_variables()
     // *     example 1: runkit_superglobals();
     // *     returns 1: []
 

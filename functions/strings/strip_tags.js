@@ -39,7 +39,7 @@ function strip_tags(str, allowed_tags) {
     if (allowed_tags) {
         allowed_array = allowed_tags.match(/([a-zA-Z]+)/gi);
     }
-	
+
     str += '';
 
     // Match tags

@@ -1,14 +1,14 @@
 function aggregate_info (obj) {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// -    depends on: aggregate_info
-	// *     example 1: var A = function () {};
-	// *     example 1: A.prop = 5;
-	// *     example 1: A.prototype.someMethod = function () {};
-	// *     example 1: var b = {};
-	// *     example 1: aggregate(b, 'A');
-	// *     example 1: aggregate_info(b);
-	// *     returns 1: {'A':{methods:['someMethod'], properties:['prop']}}
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // -    depends on: aggregate_info
+    // *     example 1: var A = function () {};
+    // *     example 1: A.prop = 5;
+    // *     example 1: A.prototype.someMethod = function () {};
+    // *     example 1: var b = {};
+    // *     example 1: aggregate(b, 'A');
+    // *     example 1: aggregate_info(b);
+    // *     returns 1: {'A':{methods:['someMethod'], properties:['prop']}}
 
     var idx=-1, p='', infoObj={}, retObj={}, i=0, name='';
 

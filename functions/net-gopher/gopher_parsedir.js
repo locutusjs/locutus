@@ -1,9 +1,9 @@
 function gopher_parsedir (dirent) {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// *     example 1: var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a');
-	// *     example 1: entry.title;
-	// *     returns 1: 'All about my gopher site.'
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // *     example 1: var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a');
+    // *     example 1: entry.title;
+    // *     returns 1: 'All about my gopher site.'
 
     /* Types
     * 0 = plain text file
@@ -22,8 +22,8 @@ function gopher_parsedir (dirent) {
     * s = Audio file format, primarily a WAV file
     */
 
-	var entryPattern = /^(.)(.*?)\t(.*?)\t(.*?)\t(.*?)\u000d\u000a$/;
-	var entry = dirent.match(entryPattern);
+    var entryPattern = /^(.)(.*?)\t(.*?)\t(.*?)\t(.*?)\u000d\u000a$/;
+    var entry = dirent.match(entryPattern);
 
     if (entry === null) {
         throw 'Could not parse the directory entry';
@@ -59,5 +59,5 @@ function gopher_parsedir (dirent) {
         default:
             return {type:-1, data: dirent}; // GOPHER_UNKNOWN
     }
-	return {type:type, title:entry[2], path:entry[3], host:entry[4], port:entry[5]};
+    return {type:type, title:entry[2], path:entry[3], host:entry[4], port:entry[5]};
 }

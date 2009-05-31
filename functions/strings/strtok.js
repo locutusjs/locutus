@@ -9,8 +9,8 @@ function strtok (str, tokens) {
     // *     example 1: $b
     // *     returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
-	// BEGIN REDUNDANT
-	this.php_js = this.php_js || {};
+    // BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
     // END REDUNDANT
 
     if (tokens === undefined) {

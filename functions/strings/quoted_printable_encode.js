@@ -1,7 +1,7 @@
 function quoted_printable_encode(str) {
     // +   original by: Theriault
-	// +   improved by: Brett Zamir (http://brettz9.blogspot.com)
-	// +   improved by: Theriault
+    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Theriault
     // *     example 1: quoted_printable_encode('a=b=c');
     // *     returns 1: 'a=3Db=3Dc'
     // *     example 2: quoted_printable_encode('abc   \r\n123   \r\n');

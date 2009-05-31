@@ -1,13 +1,13 @@
 function aggregate (obj, class_name) {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// %          note 1: We can't copy privileged functions or instance properties, as those require instantiation (with potential side-effects when called)
-	// %          note 1: We've chosen not to assign to or create a prototype object on the destination object even if the original object had the methods on its prototype
-	// *     example 1: var A = function () {};
-	// *     example 1: A.prototype.method = function () {};
-	// *     example 1: var b = {};
-	// *     example 1: aggregate(b, 'A');
-	// *     returns 1: undefined
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // %          note 1: We can't copy privileged functions or instance properties, as those require instantiation (with potential side-effects when called)
+    // %          note 1: We've chosen not to assign to or create a prototype object on the destination object even if the original object had the methods on its prototype
+    // *     example 1: var A = function () {};
+    // *     example 1: A.prototype.method = function () {};
+    // *     example 1: var b = {};
+    // *     example 1: aggregate(b, 'A');
+    // *     returns 1: undefined
 
    var p = '', record={}, pos=-1;
 
@@ -15,11 +15,11 @@ function aggregate (obj, class_name) {
        class_name = this.window[class_name];
    }
 
-	// BEGIN REDUNDANT
-	this.php_js = this.php_js || {};
-	this.php_js.aggregateKeys = this.php_js.aggregateKeys || [];
-	this.php_js.aggregateRecords = this.php_js.aggregateRecords || []; // Needed to allow deaggregate() and aggregate_info()
-	this.php_js.aggregateClasses = this.php_js.aggregateClasses || [];
+    // BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    this.php_js.aggregateKeys = this.php_js.aggregateKeys || [];
+    this.php_js.aggregateRecords = this.php_js.aggregateRecords || []; // Needed to allow deaggregate() and aggregate_info()
+    this.php_js.aggregateClasses = this.php_js.aggregateClasses || [];
     // END REDUNDANT
     this.php_js.aggregateClasses.push(class_name.name);
 

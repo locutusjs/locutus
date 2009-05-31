@@ -31,7 +31,7 @@ function require( filename ) {
         // BEGIN REDUNDANT
         this.php_js = this.php_js || {};
         // END REDUNDANT
-        
+
         if (!this.php_js.includes) {
             this.php_js.includes = cur_file;
         }

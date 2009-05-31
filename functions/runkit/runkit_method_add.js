@@ -7,26 +7,26 @@ function runkit_method_add (classname, methodname, args, code, flags) {
 
     var func, argmnts = [];
 
-	switch (flags) {
-		case 'RUNKIT_ACC_PROTECTED':
-			throw 'Protected not supported';
-		case 'RUNKIT_ACC_PRIVATE':
-			throw 'Private not supported';
-		case 'RUNKIT_ACC_PUBLIC':
-			default:
-				break;
-	}
+    switch (flags) {
+        case 'RUNKIT_ACC_PROTECTED':
+            throw 'Protected not supported';
+        case 'RUNKIT_ACC_PRIVATE':
+            throw 'Private not supported';
+        case 'RUNKIT_ACC_PUBLIC':
+            default:
+                break;
+    }
 
-	argmnts = args.split(/,\s*/);
+    argmnts = args.split(/,\s*/);
 
-	if (typeof classname === 'string') {
-		classname = this.window[classname];
-	}
+    if (typeof classname === 'string') {
+        classname = this.window[classname];
+    }
 
 // Could use the following to add as a static method to the class
-//	    func = Function.apply(null, argmnts.concat(code));
+//        func = Function.apply(null, argmnts.concat(code));
 //            classname[methodname] = func;
-	func = Function.apply(null, argmnts.concat(code));
-	classname.prototype[methodname] = func;
+    func = Function.apply(null, argmnts.concat(code));
+    classname.prototype[methodname] = func;
     return true;
 }

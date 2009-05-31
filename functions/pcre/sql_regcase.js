@@ -1,9 +1,9 @@
 function sql_regcase (str) {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// -    depends on: setlocale
-	// *     example 1: sql_regcase('Foo - bar.');
-	// *     returns 1: '[Ff][Oo][Oo] - [Bb][Aa][Rr].'
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // -    depends on: setlocale
+    // *     example 1: sql_regcase('Foo - bar.');
+    // *     returns 1: '[Ff][Oo][Oo] - [Bb][Aa][Rr].'
 
     this.setlocale('LC_ALL', 0);
     var i=0, upper = '', lower='', pos=0, retStr='';

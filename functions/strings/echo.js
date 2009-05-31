@@ -23,8 +23,8 @@ function echo ( ) {
     
     var arg = '', argc = arguments.length, argv = arguments, i = 0;
     var win = this.window;
-	var d = win.document;
-	
+    var d = win.document;
+
     var stringToDOM = function (q, parent) {
         if (win.DOMImplementationLS &&
             win.DOMImplementationLS.createLSInput &&

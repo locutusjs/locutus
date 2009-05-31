@@ -26,9 +26,9 @@ function is_array( mixed_var ) {
         return false;
     }
 
-	// BEGIN REDUNDANT
-	this.php_js = this.php_js || {};
-	this.php_js.ini = this.php_js.ini || {};
+    // BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
 
     if (typeof mixed_var === 'object') {

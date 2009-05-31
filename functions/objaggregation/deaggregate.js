@@ -1,13 +1,13 @@
 function deaggregate (obj, class_name) {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// *     example 1: var A = function () {};
-	// *     example 1: A.prop = 5;
-	// *     example 1: A.prototype.someMethod = function () {};
-	// *     example 1: var b = {};
-	// *     example 1: aggregate(b, 'A');
-	// *     example 1: deaggregate(b, 'A');
-	// *     returns 1: undefined
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // *     example 1: var A = function () {};
+    // *     example 1: A.prop = 5;
+    // *     example 1: A.prototype.someMethod = function () {};
+    // *     example 1: var b = {};
+    // *     example 1: aggregate(b, 'A');
+    // *     example 1: deaggregate(b, 'A');
+    // *     returns 1: undefined
 
     var p='', idx=-1, pos=-1, i=0;
 

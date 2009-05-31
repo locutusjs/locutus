@@ -14,5 +14,5 @@ function runkit_import (file, flags) {
         throw 'Flags not supported for runkit_import';
     }
 
-	eval(this.file_get_contents(file));
+    eval(this.file_get_contents(file));
 }
