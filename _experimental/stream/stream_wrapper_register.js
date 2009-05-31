@@ -1,18 +1,18 @@
 function stream_wrapper_register (protocol, classname, flags) {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // %          note 1: In addition to accepting a global classname, we'll also allow a class constructor to be passed in
-	// *     example 1: function VariableStream () {}
-	// *     example 1: VariableStream.prototype = {stream_open: function () {}, stream_read : function () {}, stream_write : function () {}, stream_tell : function () {}, stream_eof : function () {}, stream_seek : function () {}};
-	// *     example 1: stream_wrapper_register('var', 'VariableStream');
-	// *     returns 1: true
+    // *     example 1: function VariableStream () {}
+    // *     example 1: VariableStream.prototype = {stream_open: function () {}, stream_read : function () {}, stream_write : function () {}, stream_tell : function () {}, stream_eof : function () {}, stream_seek : function () {}};
+    // *     example 1: stream_wrapper_register('var', 'VariableStream');
+    // *     returns 1: true
 
     var opts = 0, i = 0;
 
-	// BEGIN REDUNDANT
-	this.php_js = this.php_js || {};
-	this.php_js.stream_wrappers = this.php_js.stream_wrappers || {};
-	// END REDUNDANT
+    // BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    this.php_js.stream_wrappers = this.php_js.stream_wrappers || {};
+    // END REDUNDANT
 
     if (this.php_js.stream_wrappers[protocol]) {
         return false; // must call stream_wrapper_unregister() before trying to assign

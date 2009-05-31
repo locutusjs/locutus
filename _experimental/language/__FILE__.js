@@ -10,8 +10,8 @@ function __FILE__() {
     // %        note 3: is used. There might be a better choice for this.
     // *     example 1: __FILE__();
     // *     returns 1: 'http://example.com/myfile.js'
-	
-	var d = this.window.document;
+
+    var d = this.window.document;
 
     var t = d.getElementsByTagName('script');
     if (!t || t.length === 0) {

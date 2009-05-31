@@ -1,8 +1,8 @@
 function convert_cyr_string (str, from, to) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// %          note 1: Converts to Unicode string with character code equivalent to the same number as in the target character set
-	// %          note 2: This function may be completely useless in JavaScript, but was done as a learning exercise
+    // %          note 1: Converts to Unicode string with character code equivalent to the same number as in the target character set
+    // %          note 2: This function may be completely useless in JavaScript, but was done as a learning exercise
     // *     example 1: convert_cyr_string('\u00d6', 'k', 'w').charCodeAt(0) === 230;
     // *     returns 1: true
 
@@ -143,56 +143,56 @@ _cyr_mac = [
 143,159,144,145,146,147,134,130,156,155,135,152,157,153,151,154,
 ];
 
-	var from_table = null, to_table = null, tmp, i=0, retStr = '';
+    var from_table = null, to_table = null, tmp, i=0, retStr = '';
 
-	switch (from.toUpperCase()) {
-		case 'W':
-			from_table = _cyr_win1251;
-			break;
-		case 'A':
-		case 'D':
-			from_table = _cyr_cp866;
-			break;
-		case 'I':
-			from_table = _cyr_iso88595;
-			break;
-		case 'M':
-			from_table = _cyr_mac;
-			break;
-		case 'K':
-			break;
-		default:
-			throw 'Unknown source charset: '+from; // warning
-			break;
-	}
+    switch (from.toUpperCase()) {
+        case 'W':
+            from_table = _cyr_win1251;
+            break;
+        case 'A':
+        case 'D':
+            from_table = _cyr_cp866;
+            break;
+        case 'I':
+            from_table = _cyr_iso88595;
+            break;
+        case 'M':
+            from_table = _cyr_mac;
+            break;
+        case 'K':
+            break;
+        default:
+            throw 'Unknown source charset: '+from; // warning
+            break;
+    }
 
-	switch (to.toUpperCase()) {
-		case 'W':
-			to_table = _cyr_win1251;
-			break;
-		case 'A':
-		case 'D':
-			to_table = _cyr_cp866;
-			break;
-		case 'I':
-			to_table = _cyr_iso88595;
-			break;
-		case 'M':
-			to_table = _cyr_mac;
-			break;
-		case 'K':
-			break;
-		default:
-			throw 'Unknown destination charset: '+ to; // fix: make a warning
-	}
+    switch (to.toUpperCase()) {
+        case 'W':
+            to_table = _cyr_win1251;
+            break;
+        case 'A':
+        case 'D':
+            to_table = _cyr_cp866;
+            break;
+        case 'I':
+            to_table = _cyr_iso88595;
+            break;
+        case 'M':
+            to_table = _cyr_mac;
+            break;
+        case 'K':
+            break;
+        default:
+            throw 'Unknown destination charset: '+ to; // fix: make a warning
+    }
 
-	if (!str) {
-		return str;
-	}
+    if (!str) {
+        return str;
+    }
 
-	for( i = 0; i < str.length; i++) {
-		tmp = (from_table === null)? str.charAt(i) : String.fromCharCode(from_table[ str.charAt(i).charCodeAt(0) ]);
-		retStr += (to_table === null) ? tmp : String.fromCharCode(to_table[tmp.charCodeAt(0)+256]);
-	}
-	return retStr;
+    for( i = 0; i < str.length; i++) {
+        tmp = (from_table === null)? str.charAt(i) : String.fromCharCode(from_table[ str.charAt(i).charCodeAt(0) ]);
+        retStr += (to_table === null) ? tmp : String.fromCharCode(to_table[tmp.charCodeAt(0)+256]);
+    }
+    return retStr;
 }

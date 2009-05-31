@@ -9,7 +9,7 @@ function ob_get_flush () {
         return false;
     }
     buffer = this.php_js.obs[this.php_js.obs.length-1].buffer;
-	echo(buffer);
+    this.echo(buffer);
     this.php_js.obs.pop();
     return buffer;
 }

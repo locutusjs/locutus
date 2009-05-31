@@ -1,10 +1,10 @@
 function php_user_filter () {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // %          note 1: To be extended on class refererenced in second argument of stream_filter_register()
-	// *     example 1: var f = new php_user_filter();
-	// *     example 1: f.filtername;
-	// *     returns 1: ''
+    // *     example 1: var f = new php_user_filter();
+    // *     example 1: f.filtername;
+    // *     returns 1: ''
 
     this.filtername = '';
     this.params = '';

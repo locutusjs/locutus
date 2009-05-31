@@ -1,8 +1,8 @@
 function at(cb) {  // Could also name as "at_sign", "silence", "error_suppressor", etc.
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// %          note 1: Allows assignment to $php_errormsg global (http://php.net/manual/en/reserved.variables.phperrormsg.php)
-	// %          note 2: Also implements the "scream" extension to undo the effect of at(); can do "ini_set('scream.enabled', true);"
+    // %          note 1: Allows assignment to $php_errormsg global (http://php.net/manual/en/reserved.variables.phperrormsg.php)
+    // %          note 2: Also implements the "scream" extension to undo the effect of at(); can do "ini_set('scream.enabled', true);"
     // *     example 1: at(someFunctionThatMayThrowErrors);
     // *     returns 1: undefined
 
@@ -12,10 +12,10 @@ function at(cb) {  // Could also name as "at_sign", "silence", "error_suppressor
         return cb.apply(null, Array.prototype.slice.call(arguments, 1));
     }
     catch(e){
-		// BEGIN REDUNDANT
-		this.php_js = this.php_js || {};
-		this.php_js.ini = this.php_js.ini || {};
-		// END REDUNDANT
+        // BEGIN REDUNDANT
+        this.php_js = this.php_js || {};
+        this.php_js.ini = this.php_js.ini || {};
+        // END REDUNDANT
         this.php_js.last_error = {message:e.message, file:e.fileName, line:e.lineNumber, type:e.type || 1};
         if (this.php_js.ini.track_errors &&
             (

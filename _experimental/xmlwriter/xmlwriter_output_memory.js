@@ -1,9 +1,9 @@
 function xmlwriter_output_memory (xmlwriter, flush) {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: var xmlwriter = xmlwriter_open_memory();
-	// *     example 1: xmlwriter_output_memory(xmlwriter, false);
-	// *     returns 1: "<root>Here's the buffer...</root>"
+    // *     example 1: xmlwriter_output_memory(xmlwriter, false);
+    // *     returns 1: "<root>Here's the buffer...</root>"
 
     return xmlwriter.outputMemory(flush);
 }

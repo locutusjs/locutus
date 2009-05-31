@@ -19,10 +19,10 @@ function ob_get_status (full_status) {
                 retObj.level = 1;
                 return retObj;
             }
-		}
+        }
         return retArr;
     }
-	if (full_status) {
+    if (full_status) {
         for (i=0; i < this.php_js.obs.length; i++) {
             obs = this.php_js.obs[i];
             name = obs.callback && obs.callback.name ? (obs.callback.name === 'URLRewriter' ? 'URL-Rewriter' : obs.callback.name) : undefined;
@@ -35,8 +35,8 @@ function ob_get_status (full_status) {
             }
             retArr.push(retObj);
         }
-		return retArr;
-	}
+        return retArr;
+    }
     obs = this.php_js.obs[this.php_js.obs.length-1];
     name = obs.callback.name;
     retObj = {level:this.php_js.obs.length, name:name, del:obs.erase, type:obs.type,status:obs.status};

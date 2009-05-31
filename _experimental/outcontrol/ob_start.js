@@ -6,22 +6,22 @@ function ob_start (output_callback, chunk_size, erase) {
     
     var bufferObj = {}, internalType = false;
 
-	// BEGIN REDUNDANT
-	this.php_js = this.php_js || {};
-	this.php_js.obs = this.php_js.obs || []; // Array for nestable buffers
-	// END REDUNDANT
-	if (typeof output_callback === 'string') {
+    // BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    this.php_js.obs = this.php_js.obs || []; // Array for nestable buffers
+    // END REDUNDANT
+    if (typeof output_callback === 'string') {
         if (output_callback === 'URL-Rewriter') { // Any others?
             internalType = true;
             output_callback = function URLRewriter () {}; // No callbacks?
         }
-		if (typeof this.window[output_callback] === 'function') {
-			output_callback = this.window[output_callback]; // callback expressed as a string (PHP-style)
-		}
-		else {
-			return false;
-		}
-	}
+        if (typeof this.window[output_callback] === 'function') {
+            output_callback = this.window[output_callback]; // callback expressed as a string (PHP-style)
+        }
+        else {
+            return false;
+        }
+    }
     bufferObj = {erase:erase, chunk_size:chunk_size, callback:output_callback, type:1,status:0, buffer:''};
 
     // Fix: When else do type and status vary (see also below for non-full-status)
@@ -32,7 +32,7 @@ function ob_start (output_callback, chunk_size, erase) {
         bufferObj.type = 0;
     }
 
-	this.php_js.obs.push(bufferObj);
+    this.php_js.obs.push(bufferObj);
  
-	return true;
+    return true;
 }

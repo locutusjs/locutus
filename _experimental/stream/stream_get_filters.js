@@ -1,8 +1,8 @@
 function stream_get_filters () {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// *     example 1: stream_get_filters();
-	// *     returns 1: ['string.rot13', 'string.toupper']
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // *     example 1: stream_get_filters();
+    // *     returns 1: ['string.rot13', 'string.toupper']
 
     // Fix: Built-in filters to implement (see http://php.net/manual/en/filters.php ); as with get_defined_constants(), allow first-time getting to set
     // string.rot13 (str_rot13()), string.toupper (strtoupper()), string.tolower (strtolower()),
@@ -14,10 +14,10 @@ function stream_get_filters () {
 
     var filter_name = '', retArr = [];
 
-	// BEGIN REDUNDANT
-	this.php_js = this.php_js || {};
-	this.php_js.stream_filters = this.php_js.stream_filters || {};
-	// END REDUNDANT
+    // BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    this.php_js.stream_filters = this.php_js.stream_filters || {};
+    // END REDUNDANT
     
     for (filter_name in this.php_js.stream_filters) {
         retArr.push(filter_name);
