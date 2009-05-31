@@ -30,7 +30,7 @@ function pathinfo (path, options) {
     // *     returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
     // Working vars
-    var opt = '', optName='', tmp_arr = {}, cnt = 0, i=0, opts=0;
+    var opt = '', optName='', tmp_arr = {}, cnt = 0, i=0, options=0;
     var have_basename = false, have_extension = false, have_filename = false;
 
     // Input defaulting & sanitation
@@ -50,15 +50,12 @@ function pathinfo (path, options) {
     for (optName in OPTS) {
         OPTS.PATHINFO_ALL = OPTS.PATHINFO_ALL | OPTS[optName];
     }
-    if (typeof options === 'number') {
-        opts = options;
-    }
-    else { // Allow for a single string or an array of string flags
+    if (typeof options !== 'number') { // Allow for a single string or an array of string flags
         options = [].concat(options);
         for (i=0; i < options.length; i++) {
             // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
             if (OPTS[options[i]]) {
-                opts = opts | OPTS[options[i]];
+                options = options | OPTS[options[i]];
             }
         }
     }
@@ -72,18 +69,18 @@ function pathinfo (path, options) {
 
 
     // Gather path infos
-    if (opts & OPTS.PATHINFO_DIRNAME) {
+    if (options & OPTS.PATHINFO_DIRNAME) {
         tmp_arr.dirname = this.dirname(path);
     }
 
-    if (opts & OPTS.PATHINFO_BASENAME) {
+    if (options & OPTS.PATHINFO_BASENAME) {
         if (false === have_basename) {
             have_basename = this.basename(path);
         }
         tmp_arr.basename = have_basename;
     }
 
-    if (opts & OPTS.PATHINFO_EXTENSION) {
+    if (options & OPTS.PATHINFO_EXTENSION) {
         if (false === have_basename) {
             have_basename = this.basename(path);
         }
@@ -93,7 +90,7 @@ function pathinfo (path, options) {
         tmp_arr.extension = have_extension;
     }
 
-    if (opts & OPTS.PATHINFO_FILENAME) {
+    if (options & OPTS.PATHINFO_FILENAME) {
         if (false === have_basename) {
             have_basename = this.basename(path);
         }
