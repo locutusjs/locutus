@@ -1,6 +1,6 @@
 function localtime (timestamp, is_assoc) {
     // http://kevin.vanzonneveld.net
-    // + original by: Brett Zamir (http://brettz9.blogspot.com)
+    // + original by: Brett Zamir (http://brett-zamir.me)
     // +      derived from: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
     // +         parts by: Breaking Par Consulting Inc (http://www.breakingpar.com/bkp/home.nsf/0/87256B280015193F87256CFB006C45F7)
     // *     example 1: localtime();

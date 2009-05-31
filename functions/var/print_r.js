@@ -2,8 +2,8 @@ function print_r( array, return_val ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Michael White (http://getsprink.com)
     // +   improved by: Ben Bryan
-    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
-    // +      improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +      input by: Brett Zamir (http://brett-zamir.me)
+    // +      improved by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: echo
     // *     example 1: print_r(1, true);

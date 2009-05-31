@@ -5,7 +5,7 @@ function parse_str(str, array){
     // +    tweaked by: Jack
     // +   bugfixed by: Onno Marsman
     // +   reimplemented by: stag019
-    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: stag019
     // -    depends on: urldecode
     // %        note 1: When no argument is specified, will put variables in global scope.

@@ -4,9 +4,9 @@ function urldecode( str ) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: AJ
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +      input by: travc
-    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
+    // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Lars Fischer
     // %          note 1: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/

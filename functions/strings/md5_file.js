@@ -1,7 +1,7 @@
 function md5_file ( str_filename ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
+    // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: file_get_contents
     // -    depends on: md5

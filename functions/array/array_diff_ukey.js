@@ -1,6 +1,6 @@
 function array_diff_ukey() {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: $array1 = {blue: 1, red: 2, green: 3, purple: 4}
     // *     example 1: $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
     // *     example 1: array_diff_ukey($array1, $array2, function(key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });

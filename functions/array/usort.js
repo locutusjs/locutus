@@ -1,6 +1,6 @@
 function usort (inputArr, sorter) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: stuff = {d: '3', a: '1', b: '11', c: '4'};
     // *     example 1: usort(stuff, function (a, b) {return(a-b);});
     // *     results 1: stuff = {0: '1', 1: '3', 2: '4', 3: '11'};

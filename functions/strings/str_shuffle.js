@@ -1,6 +1,6 @@
 function str_shuffle (str) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: shuffled = str_shuffle("abcdef");
     // *     results 1: shuffled.length == 6
     

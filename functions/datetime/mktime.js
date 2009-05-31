@@ -10,7 +10,7 @@ function mktime() {
     // +      input by: jakes
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Marc Palau
-    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: mktime(14, 10, 2, 2, 1, 2008);
     // *     returns 1: 1201871402
     // *     example 2: mktime(0, 0, 0, 0, 1, 2008);

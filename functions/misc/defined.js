@@ -2,7 +2,7 @@ function defined( constant_name )  {
     // http://kevin.vanzonneveld.net
     // +   original by: Waldo Malqui Silva
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +    revised by: Brett Zamir (http://brettz9.blogspot.com)
+    // +    revised by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: Because this function can (albeit only temporarily) overwrite a global variable,
     // %          note 1: it is not thread-safe (normally not a concern for JavaScript, but would be if used
     // %          note 1: in a threaded environment, e.g., DOM worker threads)

@@ -1,6 +1,6 @@
 function set_include_path (new_include_path) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: Should influence require(), include(), fopen(), file(), readfile() and file_get_contents()
     // %          note 1: Paths could conceivably allow multiple paths (separated by semicolon and allowing ".", etc.), by
     // %          note 1: checking first for valid HTTP header at targeted address

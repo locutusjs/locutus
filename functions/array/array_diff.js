@@ -2,7 +2,7 @@ function array_diff() {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Sanjoy Roy
-    // +    revised by: Brett Zamir (http://brettz9.blogspot.com)
+    // +    revised by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld']);
     // *     returns 1: ['Kevin']
 

@@ -1,8 +1,8 @@
 function strval(str) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Comment out the entire switch if you want JS-like behavior instead of PHP behavior
     // -    depends on: gettype
     // *     example 1: strval({red: 1, green: 2, blue: 3, white: 4});

@@ -2,7 +2,7 @@ function pathinfo (path, options) {
     // http://kevin.vanzonneveld.net
     // +   original by: Nate
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +    improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +    improved by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559
     // %        note 1: The way the bitwise arguments are handled allows for greater flexibility
     // %        note 1: & compatability. We might even standardize this code and use a similar approach for

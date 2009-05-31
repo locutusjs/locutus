@@ -1,7 +1,7 @@
 function array_merge_recursive (arr1, arr2){
     // http://kevin.vanzonneveld.net
     // +   original by: Subhasis Deb
-    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
+    // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: array_merge
     // *     example 1: arr1 = {'color': {'favourite': 'read'}, 0: 5}

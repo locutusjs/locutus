@@ -1,6 +1,6 @@
 function strtr (str, from, to) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // +      input by: uestla
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Alan C

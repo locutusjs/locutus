@@ -1,6 +1,6 @@
 function preg_grep (pattern, input, flags) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: If pass pattern as string, must escape backslashes, even for single quotes
     // %          note 2: The regular expression itself must be expressed JavaScript style
     // %          note 3: It is not recommended to submit the pattern as a string, as we may implement

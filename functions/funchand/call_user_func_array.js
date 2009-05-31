@@ -2,7 +2,7 @@ function call_user_func_array(cb, parameters) {
     // http://kevin.vanzonneveld.net
     // +   original by: Thiago Mata (http://thiagomata.blog.com)
     // +   revised  by: Jon Hohle
-    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: call_user_func_array('isNaN', ['a']);
     // *     returns 1: true
     // *     example 2: call_user_func_array('isNaN', [1]);

@@ -1,6 +1,6 @@
 function deaggregate (obj, class_name) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: var A = function () {};
     // *     example 1: A.prop = 5;
     // *     example 1: A.prototype.someMethod = function () {};

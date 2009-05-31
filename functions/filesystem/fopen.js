@@ -1,6 +1,6 @@
 function fopen (filename, mode, use_include_path, context) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
     // *     returns 1: 'Resource id #1'
 

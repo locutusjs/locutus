@@ -1,6 +1,6 @@
 function ctype_upper (text) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: setlocale
     // *     example 1: ctype_upper('AZ');
     // *     returns 1: true

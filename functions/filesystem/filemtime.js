@@ -1,6 +1,6 @@
 function filemtime(file) {
     // +   original by: Ole Vrijenhoek (http://www.nervous.nl/)
-    // +    bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
+    // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: get_headers
     // %        note 1:  Looks for Last-Modified in response header.
     // *     example 1: filemtime('http://www.un.org');

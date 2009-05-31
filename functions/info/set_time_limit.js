@@ -1,6 +1,6 @@
 function set_time_limit(seconds) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: set_time_limit(4);
     // *     returns 1: undefined
 

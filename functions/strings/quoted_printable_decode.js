@@ -1,9 +1,9 @@
 function quoted_printable_decode(str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ole Vrijenhoek
-    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   reimplemented by: Theriault
-    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Theriault
     // *     example 1: quoted_printable_decode('a=3Db=3Dc');
     // *     returns 1: 'a=b=c'

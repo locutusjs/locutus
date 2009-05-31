@@ -4,7 +4,7 @@ function gettype( mixed_var ) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Douglas Crockford (http://javascript.crockford.com)
     // +   input by: KELAN
-    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: is_float
     // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
     // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.

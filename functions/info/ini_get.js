@@ -1,6 +1,6 @@
 function ini_get (varname) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: The ini values must be set by ini_set or manually within an ini file
     // *     example 1: ini_get('date.timezone');
     // *     returns 1: 'Asia/Hong_Kong'

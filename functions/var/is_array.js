@@ -5,8 +5,8 @@ function is_array( mixed_var ) {
     // +   bugfixed by: Cord
     // +   bugfixed by: Manish
     // +   improved by: Onno Marsman
-    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
-    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: In php.js, javascript objects are like php associative arrays, thus JavaScript objects will also
     // %        note 1: return true  in this function (except for objects which inherit properties, being thus used as objects),
     // %        note 1: unless you do ini_set('phpjs.objectsAsArrays', true), in which case only genuine JavaScript arrays

@@ -1,6 +1,6 @@
 function runkit_function_copy (funcname, targetname) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: Function can only be copied to and from the global context
     // *     example 1: function plus (a, b) { return (a + b); }
     // *     example 1: runkit_function_copy('plus', 'add');

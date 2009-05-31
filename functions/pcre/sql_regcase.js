@@ -1,6 +1,6 @@
 function sql_regcase (str) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: setlocale
     // *     example 1: sql_regcase('Foo - bar.');
     // *     returns 1: '[Ff][Oo][Oo] - [Bb][Aa][Rr].'

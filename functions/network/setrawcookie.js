@@ -1,6 +1,6 @@
 function setrawcookie(name, value, expires, path, domain, secure) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   derived from: setcookie
     // *     example 1: setcookie('author_name', 'Kevin van Zonneveld');

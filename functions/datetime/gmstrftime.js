@@ -1,6 +1,6 @@
 function gmstrftime (format, timestamp) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: strftime
     // *     example 1: gmstrftime("%A", 1062462400);
     // *     returns 1: 'Tuesday'

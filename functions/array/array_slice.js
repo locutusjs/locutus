@@ -1,8 +1,8 @@
 function array_slice(arr, offst, lgth, preserve_keys) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: is_int
-    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
+    // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %          note: Relies on is_int because !isNaN accepts floats 
     // *     example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1);

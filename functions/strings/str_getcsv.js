@@ -1,6 +1,6 @@
 function str_getcsv ( input, delimiter, enclosure, escape ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: str_getcsv('"abc", "def", "ghi"');
     // *     returns 1: ['abc', 'def', 'ghi']
 

@@ -1,6 +1,6 @@
 function stream_is_local (stream_or_url) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: stream_is_local('/etc');
     // *     returns 1: true
 

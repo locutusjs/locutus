@@ -1,6 +1,6 @@
 function uksort(array, sorter) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %          note: The examples are correct, this is a new way
     // *     example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
     // *     example 1: uksort(data, function(key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });

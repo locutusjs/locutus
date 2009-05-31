@@ -5,7 +5,7 @@
         // discuss at: http://phpjs.org/functions/var_export
         // +   original by: Philip Peterson
         // +   improved by: johnrembo
-        // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+        // +   improved by: Brett Zamir (http://brett-zamir.me)
         // -    depends on: echo
         // *     example 1: var_export(null);
         // *     returns 1: null

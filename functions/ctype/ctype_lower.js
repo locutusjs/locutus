@@ -1,6 +1,6 @@
 function ctype_lower (text) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: setlocale
     // *     example 1: ctype_lower('abc');
     // *     returns 1: true

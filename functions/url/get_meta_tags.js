@@ -1,6 +1,6 @@
 function get_meta_tags(file) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
     // -    depends on: file_get_contents

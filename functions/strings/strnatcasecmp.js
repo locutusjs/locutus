@@ -3,7 +3,7 @@ function strnatcasecmp(str1, str2) {
     // +      original by: Martin Pool
     // + reimplemented by: Pierre-Luc Paour
     // + reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
-    // + reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
+    // + reimplemented by: Brett Zamir (http://brett-zamir.me)
     // +      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: strnatcasecmp(10, 1);
     // *     returns 1: 1

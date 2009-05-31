@@ -5,7 +5,7 @@ function define(name, value) {
     // discuss at: http://phpjs.org/functions/define
     // +      original by: Paulo Ricardo F. Santos
     // +       revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
-    // + reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
+    // + reimplemented by: Brett Zamir (http://brett-zamir.me)
     // *        example 1: define('IMAGINARY_CONSTANT1', 'imaginary_value1');
     // *        results 1: IMAGINARY_CONSTANT1 == 'imaginary_value1'
 

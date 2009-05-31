@@ -1,8 +1,8 @@
 function import_request_variables (types, prefix) {
     // http://kevin.vanzonneveld.net
     // +      original by: Jalal Berrami
-    // + reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
-    // + improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // + reimplemented by: Brett Zamir (http://brett-zamir.me)
+    // + improved by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: IMPORTANT: You must sanitize user variables passed in via URL in JavaScript as in PHP,
     // %          note 1: especially if you want to use any of these variables in an eval()-like function (not recommended)!
     // *        example 1: document.cookie = 'snack=yummy';

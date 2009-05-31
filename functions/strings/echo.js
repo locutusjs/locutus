@@ -4,10 +4,10 @@ function echo ( ) {
     // +   improved by: echo is bad
     // +   improved by: Nate
     // +    revised by: Der Simon (http://innerdom.sourceforge.net/)
-    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Eugene Bulkin (http://doubleaw.com/)
     // +   input by: JB
-    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),
     // %        note 1: we wouldn't need any such long code (even most of the code below). See
     // %        note 1: link below for a cross-browser implementation in JavaScript. HTML5 might

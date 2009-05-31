@@ -9,10 +9,10 @@ function str_replace(search, replace, subject, count) {
     // +      input by: Onno Marsman
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    tweaked by: Onno Marsman
-    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
+    // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   input by: Oleg Eremeev
-    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Oleg Eremeev
     // %          note 1: The count parameter must be passed as a string in order
     // %          note 1:  to find a global variable in which the result will be given

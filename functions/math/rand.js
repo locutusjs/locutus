@@ -18,7 +18,7 @@ function rand( min, max ) {
     /*
     // See note above for an explanation of the following alternative code
     
-    // +   reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   reimplemented by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: srand
     // %          note 1: This is a very possibly imperfect adaptation from the PHP source code
     var rand_seed, ctx, PHP_RAND_MAX=2147483647; // 0x7fffffff

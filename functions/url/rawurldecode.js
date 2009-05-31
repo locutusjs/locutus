@@ -1,8 +1,8 @@
 function rawurldecode( str ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // +      input by: travc
-    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
+    // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: rawurldecode('Kevin+van+Zonneveld%21');
     // *     returns 1: 'Kevin+van+Zonneveld!'

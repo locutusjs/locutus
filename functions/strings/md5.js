@@ -4,7 +4,7 @@ function md5 ( str ) {
     // + namespaced by: Michael White (http://getsprink.com)
     // +    tweaked by: Jack
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
+    // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // -    depends on: utf8_encode
     // *     example 1: md5('Kevin van Zonneveld');

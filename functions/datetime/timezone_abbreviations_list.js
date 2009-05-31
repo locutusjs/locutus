@@ -1,6 +1,6 @@
 function timezone_abbreviations_list() {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // +      input by: ChaosNo1
     // %        note 1: Based on list returned by PHP 5.2.6 (Windows)
     // *     example 1: var list = timezone_abbreviations_list()

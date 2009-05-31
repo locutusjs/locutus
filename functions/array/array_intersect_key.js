@@ -1,6 +1,6 @@
 function array_intersect_key() {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: These only output associative arrays (would need to be
     // %        note 1: all numeric and counting from zero to be numeric)
     // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}

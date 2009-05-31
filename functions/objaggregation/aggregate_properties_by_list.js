@@ -1,6 +1,6 @@
 function aggregate_properties_by_list (obj, class_name, properties_list, exclude) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: We can't copy instance properties, as those require instantiation (with potential side-effects when called)
     // %          note 1: We've chosen not to assign to or create a prototype object on the destination object even if the original object had the properties on its prototype
     // *     example 1: var A = function () {};

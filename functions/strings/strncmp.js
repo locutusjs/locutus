@@ -4,7 +4,7 @@ function strncmp ( str1, str2, lgth ) {
     // +         input by: Steve Hilder
     // +      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +       revised by: gorthaur
-    // + reimplemented by: Brett Zamir (http://brettz9.blogspot.com)
+    // + reimplemented by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: strncmp('aaa', 'aab', 2);
     // *     returns 1: 0
     // *     example 2: strncmp('aaa', 'aab', 3 );

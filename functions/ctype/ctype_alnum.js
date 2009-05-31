@@ -1,6 +1,6 @@
 function ctype_alnum (text) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: setlocale
     // *     example 1: ctype_alnum('AbC12');
     // *     returns 1: true

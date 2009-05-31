@@ -1,6 +1,6 @@
 function key(arr) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Uses global: php_js to store the array pointer
     // *     example 1: array = {fruit1: 'apple', 'fruit2': 'orange'}
     // *     example 1: key(array);

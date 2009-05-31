@@ -6,7 +6,7 @@ function sprintf( ) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Paulo Ricardo F. Santos
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
+    // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: sprintf("%01.2f", 123.1);
     // *     returns 1: 123.10

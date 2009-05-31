@@ -1,6 +1,6 @@
 function method_exists (obj, method) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: function class_a() {this.meth1 = function() {return true;}};
     // *     example 1: var instance_a = new class_a();
     // *     example 1: method_exists(instance_a, 'meth1');

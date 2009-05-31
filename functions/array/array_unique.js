@@ -4,7 +4,7 @@ function array_unique( array ) {
     // +      input by: duncan
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Nate
-    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
+    // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Michael Grier
     // %          note 1: the second argument, sort_flags is not implemented

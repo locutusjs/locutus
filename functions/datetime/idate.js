@@ -1,6 +1,6 @@
 function idate (format, timestamp) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   derived from: date
     // +   derived from: gettimeofday
     // *     example 1: idate('y');

@@ -3,7 +3,7 @@ function convert_uuencode(str){
     // +   original by: Ole Vrijenhoek
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   reimplemented by: Ole Vrijenhoek
-    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: is_scalar
     // *     example 1: convert_uuencode("test\ntext text\r\n");
     // *     returns 1: '0=&5S=`IT97AT('1E>'0-"@``'

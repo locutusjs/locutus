@@ -1,11 +1,11 @@
 function rawurlencode( str ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // +      input by: travc
-    // +      input by: Brett Zamir (http://brettz9.blogspot.com)
+    // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Michael Grier
-    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: rawurlencode('Kevin van Zonneveld!');
     // *     returns 1: 'Kevin%20van%20Zonneveld%21'
     // *     example 2: rawurlencode('http://kevin.vanzonneveld.net/');

@@ -1,6 +1,6 @@
 function nl_langinfo (item) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: setlocale
     // *     example 1: nl_langinfo('DAY_1');
     // *     returns 1: 'Sunday'

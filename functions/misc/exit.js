@@ -1,10 +1,10 @@
 function exit( status ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // +      input by: Paul
     // +   bugfixed by: Hyam Singer (http://www.impact-computing.com/)
     // +   improved by: Philip Peterson
-    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Should be considered expirimental. Please comment on this function.
     // *     example 1: exit();
     // *     returns 1: null

@@ -2,7 +2,7 @@ function array_map( callback ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Andrea Giammarchi (http://webreflection.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Takes a function as an argument, not a function's name
     // %        note 2: If the callback is a string, it can only work if the function name is in the global context
     // *     example 1: array_map( function(a){return (a * a * a)}, [1, 2, 3, 4, 5] );

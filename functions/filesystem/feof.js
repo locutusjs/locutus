@@ -1,6 +1,6 @@
 function feof (handle) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: var handle = fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
     // *     example 1: fread(handle, 1);
     // *     example 1: feof(handle);

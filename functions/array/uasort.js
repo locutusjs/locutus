@@ -1,7 +1,7 @@
 function uasort (inputArr, sorter) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-    // +   improved by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
     // *     example 1: uasort(fruits, function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;});
     // *     results 1: fruits == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}

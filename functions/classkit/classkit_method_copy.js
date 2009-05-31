@@ -1,6 +1,6 @@
 function classkit_method_copy (dClass, dMethod, sClass, sMethod) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: classkit_method_copy('newClass', 'newMethod', 'someClass', 'someMethod');
     // *     returns 1: true
     

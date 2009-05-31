@@ -2,7 +2,7 @@ function str_word_count(str, format, charlist) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ole Vrijenhoek
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: Original author stated that "charlist parameter works correct but the last word in the given string will not be counted", but seems to work
     // *     example 1: str_word_count('Hello fri3nd, youre   looking          good today!', 1, 'àáãç3');
     // *     returns 1: ['Hello', 'fri3nd', 'youre', 'looking', 'good', 'today']

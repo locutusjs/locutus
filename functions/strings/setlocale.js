@@ -1,6 +1,6 @@
 function setlocale (category, locale) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   derived from: Blues at http://hacks.bluesmoon.info/strftime/strftime.js
     // +   derived from: YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html
     // -    depends on: getenv

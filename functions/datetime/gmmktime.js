@@ -1,6 +1,6 @@
 function gmmktime() {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   derived from: mktime
     // *     example 1: gmmktime(14, 10, 2, 2, 1, 2008);
     // *     returns 1: 1201875002
