@@ -1,7 +1,7 @@
 function version_compare(version1, version2, operator) {
     // http://kevin.vanzonneveld.net
-    // +      original by: Philippe Jausions (PEAR PHP_Compat package)
-    // +      original by: Aidan Lister (PEAR PHP_Compat package)
+    // +      original by: Philippe Jausions (http://pear.php.net/user/jausions)
+    // +      original by: Aidan Lister (http://aidanlister.com/)
     // + reimplemented by: Kankrelune (http://www.webfaktory.info/)
     // *        example 1: version_compare('8.2.5rc', '8.2.5a');
     // *        returns 1: 1
