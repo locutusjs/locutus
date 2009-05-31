@@ -10,9 +10,9 @@ function uniqid() {
     // *     example 1: uniqid(); // delays for 2 seconds
     // *     returns 1: '49c6ad2705df7'
     
-	// BEGIN REDUNDANT
-	this.php_js = this.php_js || {};
-	// END REDUNDANT
+    // BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    // END REDUNDANT
 
     if (!this.php_js.uniqid) {
         var date = new Date();
@@ -21,7 +21,7 @@ function uniqid() {
 
     this.php_js.uniqid++;
 
-	return this.dechex(this.php_js.uniqid)+this.dechex('10243256');
+    return this.dechex(this.php_js.uniqid)+this.dechex('10243256');
 }
 
 // Replacement function below still needs some work, currently if you run it 3 times it returns
