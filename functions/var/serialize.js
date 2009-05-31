@@ -4,6 +4,7 @@ function serialize( mixed_value ) {
     // +   improved by: Dino
     // +   bugfixed by: Andrej Pavlovic
     // +   bugfixed by: Garagoth
+    // +      input by: DtTvB (http://dt.in.th/2008-09-16.string-length-in-bytes.html)
     // +   bugfixed by: Russell Walker
     // %          note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
