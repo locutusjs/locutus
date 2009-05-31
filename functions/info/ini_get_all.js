@@ -10,12 +10,10 @@ function ini_get_all(extension, details) {
     // *     returns 1: {'date.default_latitude':"31.7667", 'date.default_longitude':"35.2333", 'date.sunrise_zenith':"90.583333", 'date.sunset_zenith':"90.583333", date.timezone:""}
 	
 	var key='', ini={}, noDetails={}, extPattern;
-	if (!this.php_js) {
-		this.php_js = {};
-	}
-	if (!this.php_js.ini) {
-		this.php_js.ini = {};
-	}
+	// BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+	this.php_js.ini = this.php_js.ini || {};
+    // END REDUNDANT
 	
 	if (extension) {
 		extPattern = new RegExp('^'+extension+'\\.');

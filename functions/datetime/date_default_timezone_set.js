@@ -8,9 +8,9 @@ function date_default_timezone_set (tz) {
 
     var tal = {}, abbr = '', i = 0;
 
-	if (!this.php_js) {
-		this.php_js={};
-	}
+	// BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+	// END REDUNDANT
 	// PHP verifies that the timezone is valid
 	tal = this.timezone_abbreviations_list();
 	for (abbr in tal) {

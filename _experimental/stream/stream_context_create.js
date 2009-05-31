@@ -11,14 +11,10 @@ function stream_context_create (options, params) {
     options = options || {};
     // params.notification is only property currently in PHP for params
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.resourceIdCounter) {
-        this.php_js.resourceIdCounter = 0;
-    }
-    
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
+	this.php_js.resourceIdCounter = this.php_js.resourceIdCounter || 0;
+	
     function PHPJS_Resource (type, id, opener) { // Can reuse the following for other resources, just changing the instantiation
         // See http://php.net/manual/en/resource.php for types
         this.type = type;

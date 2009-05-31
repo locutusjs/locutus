@@ -9,14 +9,10 @@ function stream_wrapper_register (protocol, classname, flags) {
 
     var opts = 0, i = 0;
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.stream_wrappers) {
-        this.php_js.stream_wrappers = {};
-    }
-    // END REDUNDANT
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
+	this.php_js.stream_wrappers = this.php_js.stream_wrappers || {};
+	// END REDUNDANT
 
     if (this.php_js.stream_wrappers[protocol]) {
         return false; // must call stream_wrapper_unregister() before trying to assign

@@ -10,12 +10,10 @@ function ignore_user_abort (setting) {
    // *     example 1: ignore_user_abort(true);
    // *     returns 1: 0
 
-   if (!this.php_js) {
-       this.php_js = {};
-   }
-   if (!this.php_js.ignoreUserAbort) {
-       this.php_js.ignoreUserAbort = 0;
-   }
+    // BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    this.php_js.ignoreUserAbort = this.php_js.ignoreUserAbort || 0
+    // END REDUNDANT
 
    var old_prev_setting = this.php_js.ignoreUserAbort;
 

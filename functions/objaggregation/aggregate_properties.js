@@ -15,19 +15,11 @@ function aggregate_properties (obj, class_name) {
         class_name = this.window[class_name];
     }
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.aggregateKeys) {
-        this.php_js.aggregateKeys = [];
-    }
-    if (!this.php_js.aggregateRecords) { // Needed to allow deaggregate() and aggregate_info()
-        this.php_js.aggregateRecords = [];
-    }
-    if (!this.php_js.aggregateClasses) {
-        this.php_js.aggregateClasses = [];
-    }
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
+	this.php_js.aggregateKeys = this.php_js.aggregateKeys || [];
+	this.php_js.aggregateRecords = this.php_js.aggregateRecords || []; // Needed to allow deaggregate() and aggregate_info()
+	this.php_js.aggregateClasses = this.php_js.aggregateClasses || [];
     // END REDUNDANT
     this.php_js.aggregateClasses.push(class_name.name);
 

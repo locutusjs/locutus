@@ -7,12 +7,10 @@ function strftime (fmt, timestamp) {
     // *        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
     // *        returns 1: 'Tuesday'
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
+	// BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+	// END REDUNDANT
     var phpjs = this.php_js;
-    // END REDUNDANT
 
     // BEGIN STATIC
     this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place

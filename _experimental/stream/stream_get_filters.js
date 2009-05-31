@@ -14,14 +14,10 @@ function stream_get_filters () {
 
     var filter_name = '', retArr = [];
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.stream_filters) {
-        this.php_js.stream_filters = {};
-    }
-    // END REDUNDANT
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
+	this.php_js.stream_filters = this.php_js.stream_filters || {};
+	// END REDUNDANT
     
     for (filter_name in this.php_js.stream_filters) {
         retArr.push(filter_name);

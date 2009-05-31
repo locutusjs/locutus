@@ -4,17 +4,11 @@ function stream_wrapper_unregister (protocol) {
 	// *     example 1: stream_wrapper_unregister('var');
 	// *     returns 1: true
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.stream_wrappers) {
-        this.php_js.stream_wrappers = {};
-    }
-    if (!this.php_js.default_stream_wrappers) {
-        this.php_js.default_stream_wrappers = {};
-    }
-    // END REDUNDANT
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
+	this.php_js.stream_wrappers = this.php_js.stream_wrappers || {};
+	this.php_js.default_stream_wrappers = this.php_js.default_stream_wrappers || {};
+	// END REDUNDANT
 
     if (this.php_js.stream_wrappers[protocol]) {
         delete this.php_js.stream_wrappers[protocol]; // in case there is a user-registered one

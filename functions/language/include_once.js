@@ -13,13 +13,13 @@ function include_once( filename ) {
     var cur_file = {};
     cur_file[this.window.location.href] = 1;
 
-    if (!this.php_js) {
-        this.php_js = {};
+	// BEGIN REDUNDANT
+    php_js_shared = php_js_shared || {}; // We use a non-namespaced global here since we wish to share across all instances
+    // END REDUNDANT
+    if (!php_js_shared.includes) {
+        php_js_shared.includes = cur_file;
     }
-    if (!this.php_js.includes) {
-        this.php_js.includes = cur_file;
-    }
-    if (!this.php_js.includes[filename]) {
+    if (!php_js_shared.includes[filename]) {
         if(this.include(filename)){
             return true;
         }

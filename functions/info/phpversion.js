@@ -11,9 +11,9 @@ function phpversion () {
             c = 'createElement', cn = 'createElementNS', xn = 'http://www.w3.org/1999/xhtml',
             g = 'getElementsByTagName', gn = 'getElementsByTagNameNS';
 
-	if (!this.php_js) {
-		this.php_js = {};
-	}
+	// BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    // END REDUNDANT
 
 	var getVersion = function (app) {
         var att='', minVers=0, versionString='', temp_jsversion=undefined;

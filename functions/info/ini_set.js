@@ -5,15 +5,12 @@ function ini_set (varname, newvalue) {
     // *     example 1: ini_set('date.timezone', 'America/Chicago');
     // *     returns 1: 'Asia/Hong_Kong'
 	var oldval = '';
-	if (!this.php_js) {
-		this.php_js = {};
-	}
-	if (!this.php_js.ini) {
-		this.php_js.ini = {};
-	}
-	if (!this.php_js.ini[varname]) {
-		this.php_js.ini[varname] = {};
-	}
+	// BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+	this.php_js.ini = this.php_js.ini || {};
+    // END REDUNDANT
+	
+	this.php_js.ini[varname] = this.php_js.ini[varname] || {};
 	oldval = this.php_js.ini[varname].local_value;
 	this.php_js.ini[varname].local_value = newvalue;
 	return oldval;

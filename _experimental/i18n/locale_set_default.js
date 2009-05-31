@@ -8,10 +8,8 @@ function locale_set_default (name) {
     // *     example 1: locale_set_default('pt_PT');
 	// *     returns 1: true
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
     // END REDUNDANT
     this.php_js.i18nLocale = name;
     return true;

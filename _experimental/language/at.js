@@ -12,14 +12,10 @@ function at(cb) {  // Could also name as "at_sign", "silence", "error_suppressor
         return cb.apply(null, Array.prototype.slice.call(arguments, 1));
     }
     catch(e){
-        // BEGIN REDUNDANT
-        if (!this.php_js) {
-            this.php_js = {};
-        }
-        if (!this.php_js.ini) {
-            this.php_js.ini = {};
-        }
-        // END REDUNDANT
+		// BEGIN REDUNDANT
+		this.php_js = this.php_js || {};
+		this.php_js.ini = this.php_js.ini || {};
+		// END REDUNDANT
         this.php_js.last_error = {message:e.message, file:e.fileName, line:e.lineNumber, type:e.type || 1};
         if (this.php_js.ini.track_errors &&
             (

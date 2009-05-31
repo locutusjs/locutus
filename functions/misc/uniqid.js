@@ -10,9 +10,9 @@ function uniqid() {
     // *     example 1: uniqid(); // delays for 2 seconds
     // *     returns 1: '49c6ad2705df7'
     
-    if (!this.php_js) {
-        this.php_js = {};
-    }
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
+	// END REDUNDANT
 
     if (!this.php_js.uniqid) {
         var date = new Date();

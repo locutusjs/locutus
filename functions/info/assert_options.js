@@ -4,16 +4,10 @@ function assert_options (what, value) {
     // *     example 1: assert_options('ASSERT_CALLBACK');
     // *     returns 1: null
     
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.assert_values) {
-        this.php_js.assert_values = {};
-    }
-    if (!this.php_js.ini) {
-        this.php_js.ini = {};
-    }
+	// BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+	this.php_js.ini = this.php_js.ini || {};
+	this.php_js.assert_values = this.php_js.assert_values || {};
     // END REDUNDANT
 
     var ini, dflt;

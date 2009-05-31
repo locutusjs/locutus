@@ -12,9 +12,10 @@ function srand (seed) {
 
     var s1, s2;
 
-	if (!this.php_js) { // php_srand
-		this.php_js = {};
-	}
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
+	// END REDUNDANT
+	// php_srand
 	var lcg_seed = function () {
 		try {
 			var tv = gettimeofday();

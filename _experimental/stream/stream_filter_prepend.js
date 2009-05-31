@@ -35,13 +35,10 @@ function stream_filter_prepend (stream, filtername, read_write, params) {
     }
     stream.filters.unshift([filtername, opts, params]);
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.resourceIdCounter) {
-        this.php_js.resourceIdCounter = 0;
-    }
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
+	this.php_js.resourceIdCounter = this.php_js.resourceIdCounter || 0;
+	
     function PHPJS_Resource (type, id, opener) { // Can reuse the following for other resources, just changing the instantiation
         // See http://php.net/manual/en/resource.php for types
         this.type = type;

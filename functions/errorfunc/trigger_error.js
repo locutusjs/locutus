@@ -57,14 +57,10 @@ function trigger_error (error_msg, error_type) {
             }
         }
     }
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.ini) {
-        this.php_js.ini = {};
-    }
-    // END REDUNDANT
+	// BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+	this.php_js.ini = this.php_js.ini || {};
+	// END REDUNDANT
     if (type & TYPES.E_USER_ERROR || 
         type & TYPES.E_ERROR ||
         type & TYPES.E_CORE_ERROR ||

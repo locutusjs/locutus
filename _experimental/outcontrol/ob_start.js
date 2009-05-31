@@ -7,12 +7,8 @@ function ob_start (output_callback, chunk_size, erase) {
     var bufferObj = {}, internalType = false;
 
 	// BEGIN REDUNDANT
-	if (!this.php_js) {
-		this.php_js = {};
-	}
-	if (!this.php_js.obs) {
-		this.php_js.obs = []; // Array for nestable buffers
-	}
+	this.php_js = this.php_js || {};
+	this.php_js.obs = this.php_js.obs || []; // Array for nestable buffers
 	// END REDUNDANT
 	if (typeof output_callback === 'string') {
         if (output_callback === 'URL-Rewriter') { // Any others?

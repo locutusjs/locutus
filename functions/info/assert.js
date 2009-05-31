@@ -8,16 +8,10 @@ function assert (assertion) {
 
     var result = false, callback, retVal, err=undefined;
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.assert_values) {
-        this.php_js.assert_values = {};
-    }
-    if (!this.php_js.ini) {
-        this.php_js.ini = {};
-    }
+	// BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+	this.php_js.ini = this.php_js.ini || {};
+	this.php_js.assert_values = this.php_js.assert_values || {};
     // END REDUNDANT
 
     var getOption = function (value) {

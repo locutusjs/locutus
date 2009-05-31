@@ -12,9 +12,9 @@ function setlocale (category, locale) {
 	var categ='', cats = [], i = 0, d = this.window.document;
 
 	// BEGIN REDUNDANT
-	if (!this.php_js) {this.php_js = {};}
+	this.php_js = this.php_js || {};
+    // END REDUNDANT
 	var phpjs = this.php_js;
-	// END REDUNDANT
 
 	// BEGIN STATIC
 	var _copy = function _copy (orig) {

@@ -6,15 +6,11 @@ function stream_filter_register (filtername, classname) {
 	// *     example 1: stream_filter_register('strtoupper', 'strtoupper_filter');
 	// *     returns 1: true
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.stream_filters) {
-        this.php_js.stream_filters = {};
-    }
-    // END REDUNDANT
-
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
+	this.php_js.stream_filters = this.php_js.stream_filters || {};
+	// END REDUNDANT
+    
     if (typeof classname === 'string') {
         var win = window; // make configurable by custom phpjs ini later
         classname = win[classname];

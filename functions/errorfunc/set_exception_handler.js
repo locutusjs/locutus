@@ -8,7 +8,9 @@ function set_exception_handler (callback) {
     if (typeof callback === 'string') {
         callback = this.window[callback];
     }
-    if (!this.php_js) {this.php_js = {};}
+	// BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+	// END REDUNDANT
     // For return
     oldHandlerName = this.php_js.exception_handler ? this.php_js.exception_handler.name : null;
 

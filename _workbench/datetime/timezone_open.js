@@ -10,10 +10,8 @@ function timezone_open(timezone) {  var __ = Relator.$();
     // *     returns 1: {}
 
 
-	// BEGIN STATIC
-	if (!this.php_js) {
-		this.php_js = {};
-	}
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
 	if (!this.php_js.Relator) {
 		this.php_js.Relator = function () {// Used this functional class for giving privacy to the class we are creating
 			// Code adapted from http://www.devpro.it/code/192.html
@@ -55,7 +53,7 @@ function timezone_open(timezone) {  var __ = Relator.$();
 			return Relator();
 		}();
 	}
-	// END STATIC
+	// END REDUNDANT
 
 	function DateTimeZone ($timezone) {var _ = __.constructor(this);
 		_.timezone = $timezone;

@@ -46,19 +46,12 @@ function fopen (filename, mode, use_include_path, context) {
         }
     }
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.resourceData) {
-        this.php_js.resourceData = {};
-    }
-    if (!this.php_js.resourceIdCounter) {
-        this.php_js.resourceIdCounter = 0;
-    }
-    if (!this.php_js.resourceDataPointer) {
-        this.php_js.resourceDataPointer = {};
-    }
+	// BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    this.php_js.resourceData = this.php_js.resourceData || {};
+	this.php_js.resourceDataPointer = this.php_js.resourceDataPointer || {};
+	this.php_js.resourceIdCounter = this.php_js.resourceIdCounter || 0;
+    // END REDUNDANT
 
     function PHPJS_Resource (type, id, opener) { // Can reuse the following for other resources, just changing the instantiation
         // See http://php.net/manual/en/resource.php for types

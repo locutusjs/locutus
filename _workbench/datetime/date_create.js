@@ -7,10 +7,8 @@ function date_create (time, timezone) {var __ = Relator.$();
     
     // Incomplete
 
-	// BEGIN STATIC
-	if (!this.php_js) {
-		this.php_js = {};
-	}
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
 	if (!this.php_js.Relator) {
 		this.php_js.Relator = function () {// Used this functional class for giving privacy to the class we are creating
 			// Code adapted from http://www.devpro.it/code/192.html
@@ -52,7 +50,7 @@ function date_create (time, timezone) {var __ = Relator.$();
 			return Relator();
 		}();
 	}
-	// END STATIC
+	// END REDUNDANT
 
 
 	// Returned by DateTime.diff()  (cf. date_interval_create_from_date_string())

@@ -1,7 +1,5 @@
 var that = this;
-if (!this.php_js) {
-    this.php_js = {};
-}
+this.php_js = this.php_js || {};
 
 function Exception (message, code, previous) { // string, int, Exception (all arguments optional)
     // http://kevin.vanzonneveld.net

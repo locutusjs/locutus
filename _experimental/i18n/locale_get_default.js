@@ -8,10 +8,8 @@ function locale_get_default () {
     // *     example 1: locale_get_default();
 	// *     returns 1: 'en_US_POSIX'
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
     // END REDUNDANT
     return this.php_js.i18nLocale || 'en_US_POSIX';
 }

@@ -7,12 +7,10 @@ function set_include_path (new_include_path) {
 	// *     example 1: set_include_path('/php_js');
 	// *     returns 1: '/old_incl_path'
 
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.ini) {
-        this.php_js.ini = {};
-    }
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
+	this.php_js.ini = this.php_js.ini || {};
+    // END REDUNDANT
     var old_path = this.php_js.ini.include_path && this.php_js.ini.include_path.local_value;
     if (!old_path) {
         this.php_js.ini.include_path = {global_value:new_include_path, local_value:new_include_path};

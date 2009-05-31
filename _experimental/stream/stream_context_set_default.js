@@ -7,11 +7,9 @@ function stream_context_set_default (options) {
 	// *     example 1: get_resource_type(context);
 	// *     returns 1: 'stream-context'
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    // END REDUNDANT
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
+	// END REDUNDANT
     if (!this.php_js.default_streams_context) {
         this.php_js.default_streams_context = this.stream_context_create(options);
     }

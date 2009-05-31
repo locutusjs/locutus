@@ -3,9 +3,10 @@ function set_time_limit(seconds) {
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
     // *     example 1: set_time_limit(4);
     // *     returns 1: undefined
-    if (!this.php_js) {
-        this.php_js = {};
-    }
+
+	// BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    // END REDUNDANT
 
     this.window.setTimeout(function () {
         if (!this.php_js.timeoutStatus) {

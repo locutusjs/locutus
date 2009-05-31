@@ -12,13 +12,14 @@ function require_once(filename) {
     cur_file[this.window.location.href] = 1;
 
     // save include state for reference by include_once and require_once()
-    if (!this.php_js) {
-	    this.php_js = {};
+	// BEGIN REDUNDANT
+    php_js_shared = php_js_shared || {}; // We use a non-namespaced global here since we wish to share across all instances
+    // END REDUNDANT
+
+    if (!php_js_shared.includes) {
+	    php_js_shared.includes = cur_file;
 	}
-    if (!this.php_js.includes) {
-	    this.php_js.includes = cur_file;
-	}
-    if (!this.php_js.includes[filename]) {
+    if (!php_js_shared.includes[filename]) {
         if (this.require(filename)) {
             return true;
         }

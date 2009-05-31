@@ -6,17 +6,11 @@ function stream_get_wrappers () {
 
     var p = '', retArr = [];
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.stream_wrappers) {
-        this.php_js.stream_wrappers = {};
-    }
-    if (!this.php_js.default_stream_wrappers) {
-        this.php_js.default_stream_wrappers = {};
-    }
-    // END REDUNDANT
+	// BEGIN REDUNDANT
+	this.php_js = this.php_js || {};
+	this.php_js.stream_wrappers = this.php_js.stream_wrappers || {};
+	this.php_js.default_stream_wrappers = this.php_js.default_stream_wrappers || {};
+	// END REDUNDANT
 
     for (p in this.php_js.default_stream_wrappers) {
         retArr.push(p);
