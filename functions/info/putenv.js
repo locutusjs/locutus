@@ -6,9 +6,9 @@ function putenv (setting) {
     // %        note 2: Uses global: php_js to store environment info
     // *     example 1: putenv('LC_ALL=en-US');
     // *     results 1: true
-	// BEGIN REDUNDANT
+    // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
-	this.php_js.ENV = this.php_js.ENV || {};
+    this.php_js.ENV = this.php_js.ENV || {};
     // END REDUNDANT
     var pos = setting.indexOf('=');
     this.php_js.ENV[setting.slice(0,pos)] = setting.slice(pos+1);
