@@ -1,8 +1,8 @@
 function xmlwriter_open_memory () {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// *     example 1: xmlwriter_open_memory();
-	// *     returns 1: true
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // *     example 1: xmlwriter_open_memory();
+    // *     returns 1: true
 
     // Note: see echo for the type of Sax2 or the like which we want to be able to parse from strings
 

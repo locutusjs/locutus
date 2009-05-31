@@ -1,11 +1,11 @@
 function date_parse_from_format (format, dateArg) {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// -    depends on: strtotime
-	// -    depends on: date
-	// -    depends on: date_parse
-	// *     example 1: date_parse_from_format('j.n.Y H:iP', '6.1.2009 13:00+01:00');
-	// *     returns 1: {year : 2006, month: 12, day: 12, hour: 10, minute: 0, second: 0, fraction: 0.5, warning_count: 0, warnings: [], error_count: 0, errors: [], is_localtime: false, zone_type: 1, zone: -60, is_dst:false}
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // -    depends on: strtotime
+    // -    depends on: date
+    // -    depends on: date_parse
+    // *     example 1: date_parse_from_format('j.n.Y H:iP', '6.1.2009 13:00+01:00');
+    // *     returns 1: {year : 2006, month: 12, day: 12, hour: 10, minute: 0, second: 0, fraction: 0.5, warning_count: 0, warnings: [], error_count: 0, errors: [], is_localtime: false, zone_type: 1, zone: -60, is_dst:false}
 
     var newtime=0, retObj={};
 

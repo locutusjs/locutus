@@ -1,12 +1,12 @@
 function debug_backtrace (provide_object) {
-	// http://kevin.vanzonneveld.net
+    // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// %          note 1: Mozilla only
-	// %          note 2: Since "function" is a reserved word in JavaScript (even as a property), you must use
+    // %          note 1: Mozilla only
+    // %          note 2: Since "function" is a reserved word in JavaScript (even as a property), you must use
     // %          note 2:   the ['function'] notation to get the returned object's arrays' "function" property name
-	// *     example 1: function test () {var b = debug_backtrace();return b[0]['function'];}
-	// *     example 1: test();
-	// *     returns 1: 'test'
+    // *     example 1: function test () {var b = debug_backtrace();return b[0]['function'];}
+    // *     example 1: test();
+    // *     returns 1: 'test'
 
     var funcName, line, file, fileLine = '', lastColonPos = -1,
             className, object, type,

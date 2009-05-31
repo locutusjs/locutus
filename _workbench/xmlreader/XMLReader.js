@@ -1,8 +1,8 @@
 function XMLReader () {
-	// http://kevin.vanzonneveld.net
-	// +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// *     example 1: var xr = new XMLReader();
-	// *     returns 1: {}
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // *     example 1: var xr = new XMLReader();
+    // *     returns 1: {}
 
     // Fix: Add and inherit from PHPJS_Resource
 

@@ -4,9 +4,9 @@ this.php_js = this.php_js || {};
 function Exception (message, code, previous) { // string, int, Exception (all arguments optional)
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brettz9.blogspot.com)
-	// *     example 1: var e = new Exception('some exception');
-	// *     example 1: e.getMessage();
-	// *     returns 1: 'some exception'
+    // *     example 1: var e = new Exception('some exception');
+    // *     example 1: e.getMessage();
+    // *     returns 1: 'some exception'
 
     if (!message) {
         message = '';
