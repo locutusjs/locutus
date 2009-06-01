@@ -10,6 +10,6 @@ function fpassthru (handle) {
     }
 
     var chrs = this.php_js.resourceData[handle.id].slice(this.php_js.resourceDataPointer[handle.id]);
-    echo(chrs);
+    this.echo(chrs);
     return chrs;
 }

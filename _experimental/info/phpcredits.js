@@ -65,7 +65,7 @@ nM2lcUlc+ozqM7v44Zdt3CiN/wel+5Gy/cSN+gAAAABJRU5ErkJggg==";
     }
 
     try {
-        echo('<b>PHP.JS Credits</b><br /><br />'+
+        this.echo('<b>PHP.JS Credits</b><br /><br />'+
             'Created by Kevin van Zonneveld.<br />'+
             'Contributors:'+
             '<img src="data:image/png;base64,'+xxgold+'" style="vertical-align:middle"><img src="data:image/png;base64,'+xxgold+'" style="vertical-align:middle"> <b>Two Gold Stars:</b> Onno Marsman (84)'+

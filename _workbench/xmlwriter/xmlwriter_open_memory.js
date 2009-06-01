@@ -4,6 +4,8 @@ function xmlwriter_open_memory () {
     // *     example 1: xmlwriter_open_memory();
     // *     returns 1: true
 
+    var that = this;
+    
     // Note: see echo for the type of Sax2 or the like which we want to be able to parse from strings
 
    // Create unique resource id
@@ -82,7 +84,7 @@ function xmlwriter_open_memory () {
     };
     XMLWriter.prototype.flush = function (empty) {
         var buffer = this.buffer;
-        echo(buffer);
+        that.echo(buffer);
         if (empty) {
             this.buffer = '';
         }
@@ -100,7 +102,7 @@ function xmlwriter_open_memory () {
     };
     XMLWriter.prototype.outputMemory = function (flush) {
         if (flush) {
-            echo(this.buffer);
+            that.echo(this.buffer);
             this.buffer = ''; // Todo: Should the buffer be cleared?
         }
         return this.buffer;

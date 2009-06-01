@@ -6,6 +6,6 @@ function print (arg) {
     // *     example 1: print('Hello World');
     // *     returns 1: 1
 
-    echo(arg);
+    this.echo(arg);
     return 1;
 }
