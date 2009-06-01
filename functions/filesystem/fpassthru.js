@@ -11,5 +11,6 @@ function fpassthru (handle) {
 
     var chrs = this.php_js.resourceData[handle.id].slice(this.php_js.resourceDataPointer[handle.id]);
     this.echo(chrs);
+    this.php_js.resourceDataPointer[handle.id] = this.php_js.resourceData[handle.id].length; // Place pointer at end
     return chrs;
 }
