@@ -1,6 +1,6 @@
 function convert_cyr_string (str, from, to) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: Converts to Unicode string with character code equivalent to the same number as in the target character set
     // %          note 2: This function may be completely useless in JavaScript, but was done as a learning exercise
     // *     example 1: convert_cyr_string('\u00d6', 'k', 'w').charCodeAt(0) === 230;

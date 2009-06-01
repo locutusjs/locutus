@@ -1,6 +1,6 @@
 function date_create (time, timezone) {var __ = Relator.$();
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: var tzo = timezone_open('Asia/Hong_Kong');
     // *     example 1: date_create('now', tzo);
     // *     returns 1: {}

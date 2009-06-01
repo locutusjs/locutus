@@ -1,6 +1,6 @@
 function print (arg) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: Implemented correctly, but causes a problem for the phpjs.org compiler
     // -    depends on: echo
     // *     example 1: print('Hello World');

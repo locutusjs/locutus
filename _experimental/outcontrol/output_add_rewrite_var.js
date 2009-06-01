@@ -1,6 +1,6 @@
 function output_add_rewrite_var (name, value) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: output_add_rewrite_var('var', 'value');
     // *     returns 1: true
 

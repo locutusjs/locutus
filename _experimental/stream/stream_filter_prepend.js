@@ -1,6 +1,6 @@
 function stream_filter_prepend (stream, filtername, read_write, params) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: var fp = fopen('test.txt', 'w+');
     // *     example 1: stream_filter_prepend(fp, 'string.rot13', 'STREAM_FILTER_WRITE');
     // *     returns 1: 'Resource id #1'

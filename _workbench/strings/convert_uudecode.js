@@ -1,7 +1,7 @@
 function convert_uudecode(str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ole Vrijenhoek
-    // +   bugfixed by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: is_scalar
     // *     example 1: convert_uudecode('+22!L;W9E(%!(4\"$`\n`');
     // *     returns 1: 'I love PHP'

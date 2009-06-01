@@ -1,6 +1,6 @@
 function ob_start (output_callback, chunk_size, erase) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: ob_start('someCallback', 4096, true);
     // *     returns 1: true
     

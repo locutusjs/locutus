@@ -1,6 +1,6 @@
 function ob_list_handlers () {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: ob_list_handlers();
     // *     returns 1: ['default output handler', 'myOwnHandler']
 

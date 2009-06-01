@@ -1,6 +1,6 @@
 function php_check_syntax (filename, error_message) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: ob_start
     // -    depends on: file_get_contents
     // -    depends on: ob_end_clean

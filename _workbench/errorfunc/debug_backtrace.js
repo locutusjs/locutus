@@ -1,6 +1,6 @@
 function debug_backtrace (provide_object) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: Mozilla only
     // %          note 2: Since "function" is a reserved word in JavaScript (even as a property), you must use
     // %          note 2:   the ['function'] notation to get the returned object's arrays' "function" property name

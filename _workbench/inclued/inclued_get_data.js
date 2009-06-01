@@ -1,6 +1,6 @@
 function inclued_get_data () {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: inclued_get_data(); // for "include 'x.js';" called in /temp/z.js:
     // *     returns 1: {includes: [{operation: 'include', op_type: 2,filename: 'x.js',opened_path: '/tmp/x.js',fromfile: '/tmp/z.js', fromline: 2}]}
 

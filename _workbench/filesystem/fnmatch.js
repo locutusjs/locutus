@@ -1,6 +1,6 @@
 function fnmatch (pattern, string, flags) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: fnmatch('*gr[ae]y', 'gray');
     // *     returns 1: true
 

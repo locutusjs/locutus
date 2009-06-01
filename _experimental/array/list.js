@@ -1,6 +1,6 @@
 function list () {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Only works in global context and deviates (by necessity) from
     // %        note 1: PHP version by adding the array (which in PHP is an rvalue
     // %        note 1: separate from the list() lvalue) as the last argument

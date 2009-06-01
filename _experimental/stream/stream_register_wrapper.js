@@ -1,6 +1,6 @@
 function stream_register_wrapper (protocol, classname, flags) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: stream_wrapper_register
     // %          note 1: In addition to accepting a global classname, we'll also allow a class constructor to be passed in
     // *     example 1: function VariableStream () {}

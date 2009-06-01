@@ -1,6 +1,6 @@
 function timezone_open(timezone) {  var __ = Relator.$();
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brettz9.blogspot.com)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   derived from: Andrea Giammarchi
     // -    depends on: timezone_abbreviations_list()
     // -    depends on: timezone_identifiers_list()
