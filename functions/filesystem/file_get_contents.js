@@ -3,11 +3,15 @@ function file_get_contents( url, flags, context, offset, maxLen ) {
     // +   original by: Legaev Andrey
     // +      input by: Jani Hartikainen
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
-    // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
-    // %        note 1: To avoid browser blocking issues's consider using jQuery's: $('#divId').load('http://url') instead.
-    // %        note 2: The context argument is only implemented for http, and only partially (see below for
-    // %        note 2: "Presently unimplemented HTTP context options")
+    // %        note 2: Synchronous by default (as in PHP) so may lock up browser. Can
+    // %        note 2: get async by setting a custom "phpjs.async" property to true on the context params and
+    // %        note 2: "notification" for an optional callback (with responseText, etc. available via 'this').
+    // %        note 3: or instead consider using jQuery's: $('#divId').load('http://url') instead.
+    // %        note 4: The context argument is only implemented for http, and only partially (see below for
+    // %        note 4: "Presently unimplemented HTTP context options"); also the arguments passed to
+    // %        note 4: notification are incomplete
     // *     example 1: file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '123'
 
@@ -39,7 +43,7 @@ function file_get_contents( url, flags, context, offset, maxLen ) {
             }
         }
     }
-    
+
     if ((flagNames & OPTS.PHP_FILE_USE_INCLUDE_PATH) && this.php_js.ini.include_path &&
             this.php_js.ini.include_path.local_value) {
         var slash = this.php_js.ini.include_path.local_value.indexOf('/') !== -1 ? '/' : '\\';
@@ -60,7 +64,74 @@ function file_get_contents( url, flags, context, offset, maxLen ) {
 
         var method = http_stream ? http_options.method : 'GET';
 
-        req.open(method, url, false);
+        var async = !!(context.stream_params && context.stream_params['phpjs.async']);
+        req.open(method, url, async);
+        if (async) {
+            var notification = context.stream_params.notification;
+            if (typeof notification === 'function') {
+                req.onreadystatechange = function (aEvt) { // aEvt has stopPropagation(), preventDefault(); see https://developer.mozilla.org/en/NsIDOMEvent
+
+// Other XMLHttpRequest properties: multipart, responseXML, status, statusText, upload, withCredentials; overrideMimeType()
+/*
+PHP Constants:
+STREAM_NOTIFY_RESOLVE   1  	 A remote address required for this stream has been resolved, or the resolution failed. See severity  for an indication of which happened.
+STREAM_NOTIFY_CONNECT   2 	A connection with an external resource has been established.
+STREAM_NOTIFY_AUTH_REQUIRED 3 	Additional authorization is required to access the specified resource. Typical issued with severity level of STREAM_NOTIFY_SEVERITY_ERR.
+STREAM_NOTIFY_MIME_TYPE_IS  4 	The mime-type of resource has been identified, refer to message for a description of the discovered type.
+STREAM_NOTIFY_FILE_SIZE_IS  5 	The size of the resource has been discovered.
+STREAM_NOTIFY_REDIRECTED    6 	The external resource has redirected the stream to an alternate location. Refer to message .
+STREAM_NOTIFY_PROGRESS  7 	Indicates current progress of the stream transfer in bytes_transferred and possibly bytes_max as well.
+STREAM_NOTIFY_COMPLETED 8 	There is no more data available on the stream.
+STREAM_NOTIFY_FAILURE   9 	A generic error occurred on the stream, consult message and message_code for details.
+STREAM_NOTIFY_AUTH_RESULT   10 	Authorization has been completed (with or without success).
+
+STREAM_NOTIFY_SEVERITY_INFO 0 	Normal, non-error related, notification.
+STREAM_NOTIFY_SEVERITY_WARN 1 	Non critical error condition. Processing may continue.
+STREAM_NOTIFY_SEVERITY_ERR  2 	A critical error occurred. Processing cannot continue.
+*/
+
+                    var objContext = {}; // properties are not available in PHP, but offered on notification via 'this' for convenience
+                    objContext.responseText = req.responseText;
+                    objContext.responseXML = req.responseXML;
+                    objContext.status = req.status;
+                    objContext.statusText = req.statusText;
+                    objContext.readyState = req.readyState;
+                    
+                    // notification args: notification_code, severity, message, message_code, bytes_transferred, bytes_max (all int's except string 'message')
+                    // Need to add message, etc.
+                    var bytes_transferred;
+                    switch(req.readyState) {
+                        case 0: // 	UNINITIALIZED 	open() has not been called yet.
+                            notification.call(objContext, 0, 0, '', 0, 0, 0);
+                            break;
+                        case 1: // 	LOADING 	send() has not been called yet.
+                            notification.call(objContext, 0, 0, '', 0, 0, 0);
+                            break;
+                        case 2: // 	LOADED 	send() has been called, and headers and status are available.
+                            notification.call(objContext, 0, 0, '', 0, 0, 0);
+                            break;
+                        case 3: // 	INTERACTIVE 	Downloading; responseText holds partial data.
+                            bytes_transferred = Math.floor(req.responseText.length/2); // Two characters for each byte
+                            notification.call(objContext, 7, 0, '', 0, bytes_transferred, 0);
+                            break;
+                        case 4: // 	COMPLETED 	The operation is complete.
+                            if (req.status >= 200 && req.status < 400) {
+                                bytes_transferred = Math.floor(req.responseText.length/2); // Two characters for each byte
+                                notification.call(objContext, 8, 0, '', req.status, bytes_transferred, 0);
+                            }
+                            else if (req.status === 403) { // Fix: This one is Finished except for message
+                                notification.call(objContext, 9, 2, '', req.status, 0, 0);
+                            }
+                            else {
+                                // errors?
+                            }
+                            break;
+                        default:
+                            throw 'Unrecognized ready state for file_get_contents()';
+                    }
+                }
+            }
+        }
 
         if (http_stream) {
             var sendHeaders = http_options.header && http_options.header.split(/\r?\n/);
