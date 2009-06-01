@@ -6,12 +6,14 @@ function file_get_contents( url, flags, context, offset, maxLen ) {
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 2: Synchronous by default (as in PHP) so may lock up browser. Can
-    // %        note 2: get async by setting a custom "phpjs.async" property to true on the context params and
-    // %        note 2: "notification" for an optional callback (with responseText, etc. available via 'this').
-    // %        note 3: or instead consider using jQuery's: $('#divId').load('http://url') instead.
-    // %        note 4: The context argument is only implemented for http, and only partially (see below for
-    // %        note 4: "Presently unimplemented HTTP context options"); also the arguments passed to
-    // %        note 4: notification are incomplete
+    // %        note 2: get async by setting a custom "phpjs.async" property to true and "notification" for an
+    // %        note 2: optional callback (both as context params, with responseText, and other JS-specific
+    // %        note 2: request properties available via 'this'). Note that file_get_contents() will not return the text 
+    // %        note 2: in such a case (use this.responseText within the callback). Or, consider using
+    // %        note 2: jQuery's: $('#divId').load('http://url') instead.
+    // %        note 3: The context argument is only implemented for http, and only partially (see below for
+    // %        note 3: "Presently unimplemented HTTP context options"); also the arguments passed to
+    // %        note 3: notification are incomplete
     // *     example 1: file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '123'
 
@@ -96,6 +98,7 @@ STREAM_NOTIFY_SEVERITY_ERR  2 	A critical error occurred. Processing cannot cont
                     objContext.status = req.status;
                     objContext.statusText = req.statusText;
                     objContext.readyState = req.readyState;
+                    objContext.evt = aEvt;
                     
                     // notification args: notification_code, severity, message, message_code, bytes_transferred, bytes_max (all int's except string 'message')
                     // Need to add message, etc.
@@ -119,11 +122,11 @@ STREAM_NOTIFY_SEVERITY_ERR  2 	A critical error occurred. Processing cannot cont
                                 bytes_transferred = Math.floor(req.responseText.length/2); // Two characters for each byte
                                 notification.call(objContext, 8, 0, '', req.status, bytes_transferred, 0);
                             }
-                            else if (req.status === 403) { // Fix: This one is Finished except for message
-                                notification.call(objContext, 9, 2, '', req.status, 0, 0);
+                            else if (req.status === 403) { // Fix: These two are finished except for message
+                                notification.call(objContext, 10, 2, '', req.status, 0, 0);
                             }
-                            else {
-                                // errors?
+                            else { // Errors
+                                notification.call(objContext, 9, 2, '', req.status, 0, 0);
                             }
                             break;
                         default:
