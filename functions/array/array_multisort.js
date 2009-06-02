@@ -128,7 +128,7 @@ function array_multisort(arr) {
             }
         } else if (typeof arguments[j] === 'string') {
             var lFlag = sortFlag.pop();
-            if (typeof flags[arguments[j]] === 'undefined' || (((flags[arguments[j]] >>> 4) & (lFlag >>> 4)) > 0)) {
+            if (typeof flags[arguments[j]] === 'undefined' || ((((flags[arguments[j]]) >>> 4) & (lFlag >>> 4)) > 0)) { // Keep extra parentheses around latter flags check to avoid minimization leading to CDATA closer
                 return false;
             }
             sortFlag.push(lFlag + flags[arguments[j]]);
