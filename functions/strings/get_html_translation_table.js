@@ -34,17 +34,6 @@ function get_html_translation_table(table, quote_style) {
         // return false;
     }
 
-    // ascii decimals for better compatibility
-    entities['38'] = '&amp;';
-    if (useQuoteStyle !== 'ENT_NOQUOTES') {
-        entities['34'] = '&quot;';
-    }
-    if (useQuoteStyle === 'ENT_QUOTES') {
-        entities['39'] = '&#039;';
-    }
-    entities['60'] = '&lt;';
-    entities['62'] = '&gt;';
-
     if (useTable === 'HTML_ENTITIES') {
         entities['160'] = '&nbsp;';
         entities['161'] = '&iexcl;';
@@ -143,7 +132,19 @@ function get_html_translation_table(table, quote_style) {
         entities['254'] = '&thorn;';
         entities['255'] = '&yuml;';
     }
-    
+
+    if (useQuoteStyle !== 'ENT_NOQUOTES') {
+        entities['34'] = '&quot;';
+    }
+    if (useQuoteStyle === 'ENT_QUOTES') {
+        entities['39'] = '&#39;';
+    }
+    entities['60'] = '&lt;';
+    entities['62'] = '&gt;';
+
+    // ascii decimals for better compatibility
+    entities['38'] = '&amp;';
+
     // ascii decimals to real symbols
     for (decimal in entities) {
         symbol = String.fromCharCode(decimal);

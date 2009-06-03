@@ -20,14 +20,11 @@ function htmlspecialchars_decode(string, quote_style) {
         return false;
     }
 
-    // &amp; must be the last character when decoding!
-    delete(histogram['&']);
-    histogram['&'] = '&amp;';
-
     for (symbol in histogram) {
         entity = histogram[symbol];
         tmp_str = tmp_str.split(entity).join(symbol);
     }
+    tmp_str = tmp_str.split('&#039;').join("'");
     
     return tmp_str;
 }

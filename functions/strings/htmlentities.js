@@ -18,7 +18,7 @@ function htmlentities (string, quote_style) {
     if (false === (histogram = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {
         return false;
     }
-    
+    histogram["'"] = '&#039;';
     for (symbol in histogram) {
         entity = histogram[symbol];
         tmp_str = tmp_str.split(symbol).join(entity);
