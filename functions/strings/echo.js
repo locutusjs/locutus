@@ -94,7 +94,7 @@
         else {
             return d.createTextNode(node.nodeValue);
         }
-    }
+    };
 
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
