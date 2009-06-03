@@ -6,6 +6,7 @@ function htmlentities (string, quote_style) {
     // +    tweaked by: Jack
     // +   bugfixed by: Onno Marsman
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: get_html_translation_table
     // *     example 1: htmlentities('Kevin & van Zonneveld');
     // *     returns 1: 'Kevin &amp; van Zonneveld'

@@ -8,6 +8,7 @@ function get_html_translation_table(table, quote_style) {
     // +   bugfixed by: madipta
     // +   improved by: KELAN
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %          note: It has been decided that we're not going to add global
     // %          note: dependencies to php.js. Meaning the constants are not
     // %          note: real constants, but strings instead. integers are also supported if someone

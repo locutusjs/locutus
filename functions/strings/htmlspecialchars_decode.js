@@ -9,6 +9,7 @@ function htmlspecialchars_decode(string, quote_style) {
     // +      input by: Francois
     // +   bugfixed by: Onno Marsman
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: get_html_translation_table
     // *     example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
     // *     returns 1: '<p>this -> &quot;</p>'

@@ -7,6 +7,7 @@ function html_entity_decode( string, quote_style ) {
     // +   bugfixed by: Onno Marsman
     // +   improved by: marc andreu
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: get_html_translation_table
     // *     example 1: html_entity_decode('Kevin &amp; van Zonneveld');
     // *     returns 1: 'Kevin & van Zonneveld'
