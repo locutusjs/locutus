@@ -1,4 +1,4 @@
-function echo ( ) {
+    function echo ( ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
     // +   improved by: echo is bad
@@ -17,15 +17,16 @@ function echo ( ) {
     // %        note 2: since it may not work in an XML context
     // %        note 3: Using innerHTML to directly add to the BODY is very dangerous because it will
     // %        note 3: break all pre-existing references to HTMLElements.
-    // %        note 4: Must use well-formed XML/XHTML, including use of the XHTML namespace.
-    // *     example 1: echo('<div xmlns="http://www.w3.org/1999/xhtml"><p>abc</p><p>abc</p></div>');
+    // *     example 1: echo('<div><p>abc</p><p>abc</p></div>');
     // *     returns 1: undefined
-    
+
     var arg = '', argc = arguments.length, argv = arguments, i = 0;
     var win = this.window;
     var d = win.document;
 
-    var stringToDOM = function (q, parent) {
+    var holder;
+
+    var stringToDOM = function (str, parent) {
         if (win.DOMImplementationLS &&
             win.DOMImplementationLS.createLSInput &&
             win.DOMImplementationLS.createLSParser) { // Follows the DOM 3 Load and Save standard, but not
@@ -33,21 +34,23 @@ function echo ( ) {
             // possibly will also standardize with DOMParser); in the meantime, to ensure fullest browser support, could
             // attach http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.js (see http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.xhtml for a simple test file)
             var lsInput = DOMImplementationLS.createLSInput();
-            lsInput.stringData = q;
+            // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
+            lsInput.stringData = '<div xmlns="http://www.w3.org/1999/xhtml">'+str+'</div>';
             var lsParser = DOMImplementationLS.createLSParser(1, null); // synchronous, no schema type
-            return lsParser.parse(lsInput);
+            return lsParser.parse(lsInput).firstChild;
         }
         else if (win.DOMParser) {
-            return new DOMParser().parseFromString(q, 'text/xml').documentElement;
+            // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
+            return new DOMParser().parseFromString('<div xmlns="http://www.w3.org/1999/xhtml">'+str+'</div>', 'text/xml').documentElement.firstChild;
         }
-        else if (win.ActiveXObject) {
+        else if (win.ActiveXObject) { // We don't bother with a holder in Explorer as it doesn't support namespaces
             var d = new ActiveXObject('MSXML2.DOMDocument');
-             d.loadXML(q);
-             return d;
+            d.loadXML(str);
+            return d.documentElement;
         }
         /*else if (win.XMLHttpRequest) { // Supposed to work in older Safari
             var req = new win.XMLHttpRequest;
-            req.open('GET', 'data:application/xml;charset=utf-8,'+encodeURIComponent(q), false);
+            req.open('GET', 'data:application/xml;charset=utf-8,'+encodeURIComponent(str), false);
             if (req.overrideMimeType) {
                 req.overrideMimeType('application/xml');
             }
@@ -55,27 +58,57 @@ function echo ( ) {
             return req.responseXML;
         }*/
         else { // Document fragment did not work with innerHTML, so we create a temporary element holder
-            var holder;
-            if (d.createElementNS) {
+            // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
+            if (d.createElementNS && (d.contentType && d.contentType !== 'text/html')) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways)
                 holder = d.createElementNS('http://www.w3.org/1999/xhtml', 'div');
             }
             else {
                 holder = d.createElement('div'); // Document fragment did not work with innerHTML
             }
-            holder.innerHTML = q;
-
+            holder.innerHTML = str;
             while (holder.firstChild) {
                 parent.appendChild(holder.firstChild);
             }
+            return false;
         }
         // throw 'Your browser does not support DOM parsing as required by echo()';
     };
+
+
+    var ieFix = function (node) {
+        if (node.nodeType === 1) {
+            var newNode = d.createElement(node.nodeName);
+            var i, len;
+            if (node.attributes && node.attributes.length > 0) {
+                for (i = 0, len = node.attributes.length; i < len; i++) {
+                    newNode.setAttribute(node.attributes[i].nodeName, node.getAttribute(node.attributes[i].nodeName));
+                }
+            }
+            if (node.childNodes && node.childNodes.length > 0) {
+                for (i = 0, len = node.childNodes.length; i < len; i++) {
+                    newNode.appendChild(ieFix(node.childNodes[i]));
+                }
+            }
+            return newNode;
+        }
+        else {
+            return d.createTextNode(node.nodeValue);
+        }
+    }
 
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
         if (d.appendChild) {
             if (d.body) {
-                d.body.appendChild(stringToDOM(arg, d.body));
+                if (win.navigator.appName == 'Microsoft Internet Explorer') { // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
+                    d.body.appendChild(ieFix(stringToDOM(arg)));
+                }
+                else {
+                    var unappendedLeft = stringToDOM(arg, d.body).cloneNode(true);
+                    if (unappendedLeft) {
+                        d.body.appendChild(unappendedLeft);
+                    }
+                }
             } else {
                 d.documentElement.appendChild(stringToDOM(arg, d.documentElement));
             }
