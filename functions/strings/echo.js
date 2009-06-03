@@ -106,7 +106,7 @@
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
         if (this.php_js && this.php_js.ini && this.php_js.ini['phpjs.echo_embedded_vars']) {
-            arg = arg.replace(/\{\$(.*?)\}/g, function (s, m1) {
+            arg = arg.replace(/\{\$(.*?)\}/g, function (s, m1) { // We will assume embedded variables do not have dollar sign; to add a dollar sign, you must use {$$var}
                 return eval(m1);
             });
         }
