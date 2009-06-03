@@ -5,7 +5,7 @@ function stripslashes( str ) {
     // +   improved by: marrtins
     // +   bugfixed by: Onno Marsman
     // +   improved by: rezna
-    // +   input by: Rick
+    // +   input by: Rick Waldron
     // +   reimplemented by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: stripslashes('Kevin\'s code');
     // *     returns 1: "Kevin's code"
