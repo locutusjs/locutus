@@ -11,17 +11,16 @@ function stripslashes( str ) {
     // *     returns 1: "Kevin's code"
     // *     example 2: stripslashes('Kevin\\\'s code');
     // *     returns 2: "Kevin\'s code"
-    str = (str+'').replace(/\\(.?)/g, function (s, n1) {
+    return (str+'').replace(/\\(.?)/g, function (s, n1) {
         switch(n1) {
-            case '\\': // reduce to single backslash
+            case '\\':
                 return '\\';
-            case '0': // preserve for replace below
-                return '\\0';
-            case '': // backslash at end of input
+            case '0':
+                return '\0';
+            case '':
                 return '';
-            default: // reduce to character without backslash
+            default:
                 return n1;
         }
     });
-    return str.replace(/\\0/g, '\0');
 }
