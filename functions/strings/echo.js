@@ -23,10 +23,17 @@
     var arg = '', argc = arguments.length, argv = arguments, i = 0;
     var win = this.window;
     var d = win.document;
+    var ns_xhtml = 'http://www.w3.org/1999/xhtml';
+    var ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
 
     var holder;
 
-    var stringToDOM = function (str, parent) {
+    var stringToDOM = function (str, parent, ns, container) {
+        var extraNSs = '';
+        if (ns === ns_xul) {
+            extraNSs = ' xmlns:html="'+ns_xhtml+'"';
+        }
+        var stringContainer = '<'+container+' xmlns="'+ns+'"'+extraNSs+'>'+str+'</'+container+'>';
         if (win.DOMImplementationLS &&
             win.DOMImplementationLS.createLSInput &&
             win.DOMImplementationLS.createLSParser) { // Follows the DOM 3 Load and Save standard, but not
@@ -35,13 +42,13 @@
             // attach http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.js (see http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.xhtml for a simple test file)
             var lsInput = DOMImplementationLS.createLSInput();
             // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
-            lsInput.stringData = '<div xmlns="http://www.w3.org/1999/xhtml">'+str+'</div>';
+            lsInput.stringData = stringContainer;
             var lsParser = DOMImplementationLS.createLSParser(1, null); // synchronous, no schema type
             return lsParser.parse(lsInput).firstChild;
         }
         else if (win.DOMParser) {
             // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
-            return new DOMParser().parseFromString('<div xmlns="http://www.w3.org/1999/xhtml">'+str+'</div>', 'text/xml').documentElement.firstChild;
+            return new DOMParser().parseFromString(stringContainer, 'text/xml').documentElement.firstChild;
         }
         else if (win.ActiveXObject) { // We don't bother with a holder in Explorer as it doesn't support namespaces
             var d = new ActiveXObject('MSXML2.DOMDocument');
@@ -60,10 +67,10 @@
         else { // Document fragment did not work with innerHTML, so we create a temporary element holder
             // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
             if (d.createElementNS && (d.contentType && d.contentType !== 'text/html')) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways)
-                holder = d.createElementNS('http://www.w3.org/1999/xhtml', 'div');
+                holder = d.createElementNS(ns, container);
             }
             else {
-                holder = d.createElement('div'); // Document fragment did not work with innerHTML
+                holder = d.createElement(container); // Document fragment did not work with innerHTML
             }
             holder.innerHTML = str;
             while (holder.firstChild) {
@@ -98,19 +105,24 @@
 
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
+        if (this.php_js && this.php_js.ini && this.php_js.ini['phpjs.echo_embedded_vars']) {
+            arg = arg.replace(/\{\$(.*?)\}/g, function (s, m1) {
+                return eval(m1);
+            });
+        }
         if (d.appendChild) {
             if (d.body) {
                 if (win.navigator.appName == 'Microsoft Internet Explorer') { // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
                     d.body.appendChild(ieFix(stringToDOM(arg)));
                 }
                 else {
-                    var unappendedLeft = stringToDOM(arg, d.body).cloneNode(true);
+                    var unappendedLeft = stringToDOM(arg, d.body, ns_xhtml, 'div').cloneNode(true); // We will not actually append the div tag (just using for providing XHTML namespace by default)
                     if (unappendedLeft) {
                         d.body.appendChild(unappendedLeft);
                     }
                 }
             } else {
-                d.documentElement.appendChild(stringToDOM(arg, d.documentElement));
+                d.documentElement.appendChild(stringToDOM(arg, d.documentElement, ns_xul, 'description')); // We will not actually append the description tag (just using for providing XUL namespace by default)
             }
         } else if (d.write) {
             d.write(arg);
