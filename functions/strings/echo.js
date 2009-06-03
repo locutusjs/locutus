@@ -106,8 +106,15 @@
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
         if (this.php_js && this.php_js.ini && this.php_js.ini['phpjs.echo_embedded_vars']) {
-            arg = arg.replace(/\{\$(.*?)\}/g, function (s, m1) { // We will assume embedded variables do not have dollar sign; to add a dollar sign, you must use {$$var}
-                return eval(m1);
+            arg = arg.replace(/(.?)\{\$(.*?)\}/g, function (s, m1, m2) { 
+                // We assume for now that embedded variables do not have dollar sign; to add a dollar sign, you currently must use {$$var} (We might change this, however.)
+                // Doesn't cover all cases yet: see http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
+                if (m1 !== '\\') {
+                    return m1+eval(m2);
+                }
+                else {
+                    return s;
+                }
             });
         }
         if (d.appendChild) {
