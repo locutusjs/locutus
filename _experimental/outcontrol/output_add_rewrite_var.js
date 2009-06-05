@@ -2,6 +2,7 @@ function output_add_rewrite_var (name, value) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: ob_list_handlers
+    // -    depends on: ob_start
     // *     example 1: output_add_rewrite_var('var', 'value');
     // *     returns 1: true
 
@@ -16,7 +17,7 @@ function output_add_rewrite_var (name, value) {
         }
     }
     if (startAgain) {
-        ob_start('URL-Rewriter', 0, true);
+        this.ob_start('URL-Rewriter', 0, true);
     }
 
     if (!this.php_js.obs[this.php_js.obs.length-1].vars) {
