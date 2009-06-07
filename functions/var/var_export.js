@@ -14,22 +14,26 @@
         // *     example 3: data = 'Kevin';
         // *     example 3: var_export(data, true);
         // *     returns 3: "'Kevin'"
-        var retstr = "";
-        var iret = "";
-        var cnt = 0;
-        var x = [];
-        var i = 0;
+        var retstr = '',
+            iret = '',
+            cnt = 0,
+            x = [],
+            i = 0,
+            funcParts = [];
 
         var __getType = function( inp ) {
             var i = 0;
             var match, type = typeof inp;
-            if (type == 'object' && inp.constructor && inp.constructor.name === 'PHPJS_Resource') {
+            if (type === 'object' && inp.constructor && inp.constructor.name === 'PHPJS_Resource') {
                 return 'resource';
             }
-            if (type == 'object' && !inp) {
+            if (type === 'function') {
+                return 'function';
+            }
+            if (type === 'object' && !inp) {
                 return 'null'; // Should this be just null?
             }
-            if (type == "object") {
+            if (type === "object") {
                 if (!inp.constructor) {
                     return 'object';
                 }
@@ -40,7 +44,7 @@
                 }
                 var types = ["boolean", "number", "string", "array"];
                 for (i=0; i < types.length; i++) {
-                    if (cons == types[i]) {
+                    if (cons === types[i]) {
                         type = types[i];
                         break;
                     }
@@ -52,12 +56,22 @@
 
         if( type === null) {
             retstr = "NULL";
-        } else if(type == 'array' || type == 'object') {
+        } else if(type === 'array' || type === 'object') {
             for(i in mixed_expression) {
                 x[cnt++] = this.var_export(i,true)+" => "+this.var_export(mixed_expression[i], true);
             }
             iret = x.join(',\n  ');
             retstr = "array (\n  "+iret+"\n)";
+        }
+        else if (type === 'function') {
+            funcParts = mixed_expression.toString().match(/function .*?\((.*?)\) \{([^]*)\}/);
+
+            // For lambda functions, var_export() outputs such as the following:  '\000lambda_1'
+            // Since it will probably not be a common use to expect this (unhelpful) form, we'll use another PHP-exportable
+            // construct, create_function() (though dollar signs must be on the variables in JavaScript); if using instead
+            // in JavaScript and you are using the namespaced version, note that create_function() will not be available
+            // as a global
+            retstr = "create_function ('"+funcParts[1]+"', '"+funcParts[2].replace(new RegExp("'", 'g'), "\\'")+"')";
         }
         else if (type === 'resource') {
             retstr = 'NULL'; // Resources treated as null for var_export
