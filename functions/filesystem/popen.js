@@ -5,6 +5,13 @@ function popen (filename, mode, use_include_path, context) {
     // *     returns 1: 'Resource id #1'
 
     var resource={}, i=0, that = this;
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
 
     // BEGIN file inclusion: file_get_contents
     var file_get_contents = function ( url ) {
@@ -42,7 +49,7 @@ function popen (filename, mode, use_include_path, context) {
             case 't':
                 throw 'Windows-only modes are not supported';
             default:
-                throw 'Unrecognized file mode passed to '+arguments.caller.name+'()';
+                throw 'Unrecognized file mode passed to '+getFuncName(arguments.caller)+'()';
         }
     }
 

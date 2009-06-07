@@ -5,8 +5,15 @@ function fseek (handle, offset, whence) {
     // *     example 1: fseek(h, 100);
     // *     returns 1: 0
 
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
     if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer ||
-            !handle || !handle.constructor || handle.constructor.name !== 'PHPJS_Resource') {
+            !handle || !handle.constructor || getFuncName(handle.constructor) !== 'PHPJS_Resource') {
         return -1;
     }
 

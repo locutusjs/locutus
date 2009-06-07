@@ -7,5 +7,5 @@ function __FUNCTION__() {
     // *     example 1: myFunc();
     // *     returns 1: 'myFunc'
 
-    return arguments.callee.caller && arguments.callee.caller.name;
+    return arguments.callee.caller && getFuncName(arguments.callee.caller);
 }

@@ -7,6 +7,13 @@ function runkit_method_redefine (classname, methodname, args, code, flags) {
     // In JavaScript, this is identical to runkit_method_add
 
     var argmnts = [], func;
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
 
     switch (flags) {
         case 'RUNKIT_ACC_PROTECTED':
@@ -24,7 +31,7 @@ function runkit_method_redefine (classname, methodname, args, code, flags) {
         classname = this.window[classname];
     }
 
-    if (classname.name !== 'PHP_JS' ||  // By default, don't allow overriding of PHP functions
+    if (getFuncName(classname) !== 'PHP_JS' ||  // By default, don't allow overriding of PHP functions
         (this.php_js && this.php_js.ini && this.php_js.ini['runkit.internal_override'] &&
         (this.php_js.ini['runkit.internal_override'].local_value === true ||
             this.php_js.ini['runkit.internal_override'].local_value === 1 ||

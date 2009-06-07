@@ -16,6 +16,14 @@ function debug_backtrace (provide_object) {
             backtraceArray=[], olderArgs=arguments,
             stackItem='',
             lastAtPos = -1, firstParenthPos = -1;
+    var getFuncName = function (fn) {
+        var name=(/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
+
 
     // (void 0) is undefined in argument list
     try {
@@ -48,7 +56,7 @@ function debug_backtrace (provide_object) {
             olderArgs = olderArgs.callee.caller.arguments;
             args = Array.prototype.slice.call(olderArgs);
             olderFunc = olderFunc ? olderFunc.caller : arguments.callee.caller;
-            funcName = olderFunc.name;
+            funcName = getFuncName(olderFunc);
         }
         className = ''; // Not supported
         type = ''; // Special '->' and '::' values not supported for method or static methods

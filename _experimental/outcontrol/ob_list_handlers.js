@@ -4,7 +4,15 @@ function ob_list_handlers () {
     // *     example 1: ob_list_handlers();
     // *     returns 1: ['default output handler', 'myOwnHandler']
 
-    var i=0, arr=[], name='', cbname=this.php_js.obs[i].callback.name;
+    var i=0, arr=[], name='';
+    var getFuncName = function (fn) {
+        var name=(/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
+    var cbname=getFuncName(this.php_js.obs[i].callback);
     
     if (!this.php_js || !this.php_js.obs || !this.php_js.obs.length) {
         if (this.php_js.ini && this.php_js.ini['output_buffering'] && (typeof this.php_js.ini['output_buffering'].local_value !== 'string' || this.php_js.ini['output_buffering'].local_value.toLowerCase() !== 'off')) {

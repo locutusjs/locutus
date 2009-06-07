@@ -24,6 +24,13 @@ function aggregate_properties_by_regexp (obj, class_name, regexp, exclude) {
     this.php_js.aggregateKeys = this.php_js.aggregateKeys || [];
     this.php_js.aggregateRecords = this.php_js.aggregateRecords || []; // Needed to allow deaggregate() and aggregate_info()
     this.php_js.aggregateClasses = this.php_js.aggregateClasses || [];
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
     // END REDUNDANT
 
     for (p in class_name) {
@@ -49,11 +56,11 @@ function aggregate_properties_by_regexp (obj, class_name, regexp, exclude) {
     pos = this.php_js.aggregateKeys.indexOf(obj);
     if (pos !== -1) {
         this.php_js.aggregateRecords[pos].push(record);
-        this.php_js.aggregateClasses[pos].push(class_name.name);
+        this.php_js.aggregateClasses[pos].push(getFuncName(class_name));
     } else {
         this.php_js.aggregateKeys.push(obj);
         this.php_js.aggregateRecords.push([record]);
         this.php_js.aggregateClasses[0] = [];
-        this.php_js.aggregateClasses[0].push(class_name.name);
+        this.php_js.aggregateClasses[0].push(getFuncName(class_name));
     }
 }

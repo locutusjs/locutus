@@ -6,8 +6,15 @@ function rewind (handle) {
     // *     example 1: rewind(h);
     // *     returns 1: true
 
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
     if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer ||
-            !handle || !handle.constructor || handle.constructor.name !== 'PHPJS_Resource') {
+            !handle || !handle.constructor || getFuncName(handle.constructor) !== 'PHPJS_Resource') {
         return false;
     }
     this.php_js.resourceDataPointer[handle.id] = 0;

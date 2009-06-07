@@ -10,6 +10,13 @@ function aggregate (obj, class_name) {
     // *     returns 1: undefined
 
    var p = '', record={}, pos=-1;
+   var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
 
    if (typeof class_name === 'string') { // PHP behavior
        class_name = this.window[class_name];
@@ -21,7 +28,7 @@ function aggregate (obj, class_name) {
     this.php_js.aggregateRecords = this.php_js.aggregateRecords || []; // Needed to allow deaggregate() and aggregate_info()
     this.php_js.aggregateClasses = this.php_js.aggregateClasses || [];
     // END REDUNDANT
-    this.php_js.aggregateClasses.push(class_name.name);
+    this.php_js.aggregateClasses.push(getFuncName(class_name));
 
     for (p in class_name) {
         if (!(p in obj) && p !== 'prototype' && p[0] !== '_') { // Static (non-private) class methods and properties
@@ -38,11 +45,11 @@ function aggregate (obj, class_name) {
     pos = this.php_js.aggregateKeys.indexOf(obj);
     if (pos !== -1) {
         this.php_js.aggregateRecords[pos].push(record);
-        this.php_js.aggregateClasses[pos].push(class_name.name);
+        this.php_js.aggregateClasses[pos].push(getFuncName(class_name));
     } else {
         this.php_js.aggregateKeys.push(obj);
         this.php_js.aggregateRecords.push([record]);
         this.php_js.aggregateClasses[0] = [];
-        this.php_js.aggregateClasses[0].push(class_name.name);
+        this.php_js.aggregateClasses[0].push(getFuncName(class_name));
     }
 }

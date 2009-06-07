@@ -20,11 +20,18 @@
             x = [],
             i = 0,
             funcParts = [];
+        var getFuncName = function (fn) {
+            var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+            if(!name) {
+                return '(Anonymous)';
+            }
+            return name[1];
+        };
 
         var __getType = function( inp ) {
             var i = 0;
             var match, type = typeof inp;
-            if (type === 'object' && inp.constructor && inp.constructor.name === 'PHPJS_Resource') {
+            if (type === 'object' && inp.constructor && getFuncName(inp.constructor) === 'PHPJS_Resource') {
                 return 'resource';
             }
             if (type === 'function') {

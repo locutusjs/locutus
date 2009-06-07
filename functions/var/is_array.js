@@ -21,6 +21,13 @@ function is_array( mixed_var ) {
     // *     returns 4: false
 
     var key = '';
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
 
     if (!mixed_var) {
         return false;
@@ -41,7 +48,7 @@ function is_array( mixed_var ) {
             ) {
             return mixed_var.hasOwnProperty('length') && // Not non-enumerable because of being on parent class
                             !mixed_var.propertyIsEnumerable('length') && // Since is own property, if not enumerable, it must be a built-in function
-                                mixed_var.constructor.name !== 'String'; // exclude String()
+                                getFuncName(mixed_var.constructor) !== 'String'; // exclude String()
         }
 
         if (mixed_var.hasOwnProperty) {

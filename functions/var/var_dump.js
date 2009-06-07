@@ -6,6 +6,13 @@ function var_dump() {
     // *     returns 1: 'int(1)'
 
     var output = "", pad_char = " ", pad_val = 4, lgth = 0, i = 0, d = this.window.document;
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
 
     var repeat_char = function (len, pad_char) {
         var str = "";
@@ -54,7 +61,7 @@ function var_dump() {
         var val='';
 
         if (typeof obj === 'object' && obj !== null) {
-            if (obj.constructor && obj.constructor.name === 'PHPJS_Resource') {
+            if (obj.constructor && getFuncName(obj.constructor) === 'PHPJS_Resource') {
                 return obj.var_dump();
             }
             lgth = 0;

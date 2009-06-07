@@ -13,6 +13,13 @@ function preg_match(pattern, subject, matches, flags, offset) {
     // Also need to look at/integrate with Michael Grier's http://mgrier.com/te5t/preg_match_all.js ; http://mgrier.com/te5t/testpma.html ; http://mgrier.com/te5t/testpma.php
 
     var i=0, lastDelimPos=-1, flag='', patternPart='', flagPart='', array = [], regexpFlags='', subPatternNames=[];
+    var getFuncName = function (fn) {
+        var name=(/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
 
     var join = function (arr) {
         return '(?:'+arr.join('|')+')';
@@ -50,7 +57,7 @@ function preg_match(pattern, subject, matches, flags, offset) {
                     case 'U': // "makes not greedy by default, but become greedy if followed by "?""
                     case 'J': // "changes the local PCRE_DUPNAMES option. Allow duplicate names for subpatterns"
                     case 'u': // "turns on additional functionality of PCRE that is incompatible with Perl. Pattern strings are treated as UTF-8."
-                        throw 'The passed flag "'+flag+'" is presently unsupported in '+arguments.callee.name;
+                        throw 'The passed flag "'+flag+'" is presently unsupported in '+getFuncName(arguments.callee);
                     case 'X': // "additional functionality of PCRE that is incompatible with Perl. Any backslash in a pattern that is followed by a letter that has no special meaning causes an error, thus reserving these combinations for future expansion"; not in use in PHP presently
 throw 'X flag is unimplemented at present';
                         if (/\/([^\\^$.[\]|()?*+{}aefnrtdDhHsSvVwWbBAZzGCcxkgpPX\d])/.test(patternPart)) { // can be 1-3 \d together after backslash (as one unit)
@@ -144,15 +151,15 @@ throw 'X flag is unimplemented at present';
 
                                 // \X = (?>\PM\pM*)
                                 // "Extended properties such as "Greek" or "InMusicalSymbols" are not supported by PCRE."
-                            throw 'You are in "X" (PCRE_EXTRA) mode, using a reserved and presently unused escape sequence in '+arguments.callee.name;
+                            throw 'You are in "X" (PCRE_EXTRA) mode, using a reserved and presently unused escape sequence in '+getFuncName(arguments.callee);
                         }
                         break;
                     case 'S': // spends "more time analyzing pattern in order to speed up the time taken for matching" (for subsequent matches)
-                        throw 'The passed flag "'+flag+'" to '+arguments.callee.name+' cannot be implemented in JavaScript'; // Could possibly optimize inefficient expressions, however
+                        throw 'The passed flag "'+flag+'" to '+getFuncName(arguments.callee)+' cannot be implemented in JavaScript'; // Could possibly optimize inefficient expressions, however
                     case 'y':
-                        throw 'Flag "y" is a non-cross-browser, non-PHP flag, not supported in '+arguments.callee.name;
+                        throw 'Flag "y" is a non-cross-browser, non-PHP flag, not supported in '+getFuncName(arguments.callee);
                     default:
-                        throw 'Unrecognized flag "'+flag+'" passed to '+arguments.callee.name;
+                        throw 'Unrecognized flag "'+flag+'" passed to '+getFuncName(arguments.callee);
                 }
             }
         }

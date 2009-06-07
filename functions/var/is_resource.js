@@ -5,5 +5,12 @@ function is_resource (handle) {
     // *     example 1: is_resource('a');
     // *     returns 1: false
 
-    return !(!handle || typeof handle !== 'object' || !handle.constructor || handle.constructor.name !== 'PHPJS_Resource');
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
+    return !(!handle || typeof handle !== 'object' || !handle.constructor || getFuncName(handle.constructor) !== 'PHPJS_Resource');
 }

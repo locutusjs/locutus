@@ -20,6 +20,13 @@ function gettype( mixed_var ) {
     // *     returns 5: 'array'
 
     var s = typeof mixed_var, name;
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
     if (s === 'object') {
         if (mixed_var !== null) { // From: http://javascript.crockford.com/remedial.html
             if (typeof mixed_var.length === 'number' &&
@@ -27,8 +34,8 @@ function gettype( mixed_var ) {
                     typeof mixed_var.splice === 'function') {
                 s = 'array';
             }
-            else if (mixed_var.constructor && mixed_var.constructor.name) {
-                name = mixed_var.constructor.name;
+            else if (mixed_var.constructor && getFuncName(mixed_var.constructor)) {
+                name = getFuncName(mixed_var.constructor);
                 if (name === 'Date') {
                     s = 'date'; // not in PHP
                 }

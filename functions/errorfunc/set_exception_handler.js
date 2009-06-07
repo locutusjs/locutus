@@ -5,6 +5,13 @@ function set_exception_handler (callback) {
     // *     returns 1: null
 
     var that = this, oldHandlerName = '';
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
     if (typeof callback === 'string') {
         callback = this.window[callback];
     }
@@ -12,7 +19,7 @@ function set_exception_handler (callback) {
     this.php_js = this.php_js || {};
     // END REDUNDANT
     // For return
-    oldHandlerName = this.php_js.exception_handler ? this.php_js.exception_handler.name : null;
+    oldHandlerName = this.php_js.exception_handler ? getFuncName(this.php_js.exception_handler) : null;
 
     if (this.php_js.exception_handler) { // Fix: Any potential built-in ones (e.g., via ini) to fall back on, as the PHP manual suggests?
         this.php_js.previous_exception_handler = this.php_js.exception_handler; // usable by restore_exception_handler()

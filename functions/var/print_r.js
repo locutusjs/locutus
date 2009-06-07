@@ -10,6 +10,13 @@ function print_r( array, return_val ) {
     // *     returns 1: 1
     
     var output = "", pad_char = " ", pad_val = 4, d = this.window.document;
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
 
     var repeat_char = function (len, pad_char) {
         var str = "";
@@ -28,7 +35,7 @@ function print_r( array, return_val ) {
         var thick_pad = repeat_char(pad_val*(cur_depth+1), pad_char);
         var str = "";
 
-        if (typeof obj === 'object' && obj !== null && obj.constructor && obj.constructor.name !== 'PHPJS_Resource') {
+        if (typeof obj === 'object' && obj !== null && obj.constructor && getFuncName(obj.constructor) !== 'PHPJS_Resource') {
             str += "Array\n" + base_pad + "(\n";
             for (var key in obj) {
                 if (obj[key] instanceof Array) {
