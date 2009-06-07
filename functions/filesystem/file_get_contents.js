@@ -1,14 +1,19 @@
 function file_get_contents( url, flags, context, offset, maxLen ) {
-    // http://kevin.vanzonneveld.net
+    // Read the entire file into a string
+    //
+    // version: 906.111
+    // discuss at: http://phpjs.org/functions/file_get_contents
     // +   original by: Legaev Andrey
     // +      input by: Jani Hartikainen
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   input by: Raphael (Ao) RUDLER
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 2: Synchronous by default (as in PHP) so may lock up browser. Can
     // %        note 2: get async by setting a custom "phpjs.async" property to true and "notification" for an
     // %        note 2: optional callback (both as context params, with responseText, and other JS-specific
-    // %        note 2: request properties available via 'this'). Note that file_get_contents() will not return the text 
+    // %        note 2: request properties available via 'this'). Note that file_get_contents() will not return the text
     // %        note 2: in such a case (use this.responseText within the callback). Or, consider using
     // %        note 2: jQuery's: $('#divId').load('http://url') instead.
     // %        note 3: The context argument is only implemented for http, and only partially (see below for
@@ -16,7 +21,6 @@ function file_get_contents( url, flags, context, offset, maxLen ) {
     // %        note 3: notification are incomplete
     // *     example 1: file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '123'
-
     // Note: could also be made to optionally add to global $http_response_header as per http://php.net/manual/en/reserved.variables.httpresponseheader.php
 
     var tmp, headers = [], newTmp = [], k=0, i=0, href = '', pathPos = -1, flagNames = '', content = null;
@@ -45,28 +49,28 @@ function file_get_contents( url, flags, context, offset, maxLen ) {
             }
         }
     }
-
     if ((flagNames & OPTS.PHP_FILE_USE_INCLUDE_PATH) && this.php_js.ini.include_path &&
             this.php_js.ini.include_path.local_value) {
         var slash = this.php_js.ini.include_path.local_value.indexOf('/') !== -1 ? '/' : '\\';
         url = this.php_js.ini.include_path.local_value+slash+url;
     }
-    else if (!/^https?:/.test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
+    else if (!/^(https?|file):/.test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
         href = this.window.location.href;
         pathPos = url.indexOf('/') === 0 ? href.indexOf('/', 8)-1 : href.lastIndexOf('/');
         url = href.slice(0, pathPos+1)+url;
     }
 
-    var http_options = context.stream_options && context.stream_options.http;
-    var http_stream = !!http_options;
+    if (context) {
+        var http_options = context.stream_options && context.stream_options.http;
+        var http_stream = !!http_options;
+    }
 
     if (!context || http_stream) {
         var req = this.window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest();
         if (!req) {throw new Error('XMLHttpRequest not supported');}
 
         var method = http_stream ? http_options.method : 'GET';
-
-        var async = !!(context.stream_params && context.stream_params['phpjs.async']);
+        var async = !!(context && context.stream_params && context.stream_params['phpjs.async']);
         req.open(method, url, async);
         if (async) {
             var notification = context.stream_params.notification;
@@ -99,7 +103,7 @@ STREAM_NOTIFY_SEVERITY_ERR  2 	A critical error occurred. Processing cannot cont
                     objContext.statusText = req.statusText;
                     objContext.readyState = req.readyState;
                     objContext.evt = aEvt;
-                    
+
                     // notification args: notification_code, severity, message, message_code, bytes_transferred, bytes_max (all int's except string 'message')
                     // Need to add message, etc.
                     var bytes_transferred;
@@ -174,17 +178,19 @@ STREAM_NOTIFY_SEVERITY_ERR  2 	A critical error occurred. Processing cannot cont
         }
 
         tmp = req.getAllResponseHeaders();
-        tmp = tmp.split('\n');
-        for (k=0; k < tmp.length; k++) {
-            if (func(tmp[k])) {
-                newTmp.push(tmp[k]);
+        if (tmp) {
+            tmp = tmp.split('\n');
+            for (k=0; k < tmp.length; k++) {
+                if (func(tmp[k])) {
+                    newTmp.push(tmp[k]);
+                }
             }
+            tmp = newTmp;
+            for (i=0; i < tmp.length; i++) {
+                headers[i] = tmp[i];
+            }
+            this.$http_response_header = headers; // see http://php.net/manual/en/reserved.variables.httpresponseheader.php
         }
-        tmp = newTmp;
-        for (i=0; i < tmp.length; i++) {
-            headers[i] = tmp[i];
-        }
-        this.$http_response_header = headers; // see http://php.net/manual/en/reserved.variables.httpresponseheader.php
 
         if (offset || maxLen) {
             if (maxLen) {
