@@ -19,7 +19,7 @@ function get_meta_tags(file) {
         '<meta name="geo.position" content="49.33;-86.59">'+
         '</head>';
     } else {
-        fulltxt = this.file_get_contents(file).match(/^[^\uFFFF]*<\/head>/i); // We have to disallow some character, so we choose a Unicode non-character
+        fulltxt = this.file_get_contents(file).match(/^[\s\S]*<\/head>/i); // We have to disallow some character, so we choose a Unicode non-character
     }
 
     var patt = /<meta[^>]*?>/gim;
