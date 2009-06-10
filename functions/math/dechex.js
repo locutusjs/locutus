@@ -7,6 +7,8 @@ function dechex(number) {
     // *     returns 1: 'a'
     // *     example 2: dechex(47);
     // *     returns 2: '2f'
+    // *     example 3: dechex(-1415723993);
+    // *     returns 3: 'ab9dc427'
     if (number < 0) {
        return (0xFFFFFFFF+number+1).toString(16);
     }
