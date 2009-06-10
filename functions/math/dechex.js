@@ -7,8 +7,8 @@ function dechex(number) {
     // *     returns 1: 'a'
     // *     example 2: dechex(47);
     // *     returns 2: '2f'
-	if (number < 0)	{
-	   return (0xFFFFFFFF+number+1).toString(16);
-	}
+    if (number < 0) {
+       return (0xFFFFFFFF+number+1).toString(16);
+    }
     return parseInt(number, 10).toString(16);
 }
