@@ -2,7 +2,8 @@ function dechex(number) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philippe Baumann
     // +   bugfixed by: Onno Marsman
-    // +   improved by: pilus
+    // +   improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
+    // +   input by: pilus
     // *     example 1: dechex(10);
     // *     returns 1: 'a'
     // *     example 2: dechex(47);

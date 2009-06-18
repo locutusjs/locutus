@@ -13,6 +13,8 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     // +     input by: Kheang Hok Chin (http://www.distantia.ca/)
     // +     improved by: davook
     // +     improved by: Brett Zamir (http://brett-zamir.me)
+    // +     input by: Jay Klehr
+    // +     improved by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: number_format(1234.56);
     // *     returns 1: '1,235'
     // *     example 2: number_format(1234.56, 2, ',', ' ');
@@ -31,7 +33,20 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     // *     returns 8: '67.000,00000'
     // *     example 9: number_format(0.9, 0);
     // *     returns 9: '1'
-    var n = number, prec = decimals;
+    // *     example 10: number_format('1.20', 2);
+    // *     returns 10: '1.20'
+    // *     example 11: number_format('1.20', 4)
+    // *     returns 11: '1.2000'
+    // *     example 12: number_format('1.2000', 3)
+    // *     returns 12: '1.200'
+
+    var n = number, prec = decimals, addBack0s = '', zeroes = null;
+    if (typeof n === 'string' && decimals && n.indexOf('.') !== -1 && (/0+$/).test(n)) {
+        zeroes = n.match(/\.\d+?(0+)$/);
+        var decLgth = zeroes[0].length-1;
+        var zeroLgth = zeroes[1].length;
+    }
+
     var toFixedFix = function (n,prec) {
         var k = Math.pow(10,prec);
         return (Math.round(n*k)/k).toString();
@@ -57,8 +72,15 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     } else {
         s = s.replace('.', dec);
     }
+
     if (s.indexOf(dec) === -1 && prec > 1) {
         s += dec+new Array(prec).join(0)+'0';
+    } else if (zeroes) {
+        addBack0s = (prec > (decLgth-zeroLgth)) ? // .1200000 (7-5 = 2)  .4450 (4-1=3)
+                                    zeroes[1].substr(0, prec-(decLgth-zeroLgth)) : ''; // Need to add back those zeroes which will be dropped when converted to number, unless larger decimals arg will handle extending, or smaller decimals arg will truncate
+        if (prec > decLgth) {
+            addBack0s += new Array(prec-decLgth).join(0)+'0';
+        }
     }
-    return s;
+    return s+addBack0s;
 }
