@@ -83,19 +83,23 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         
         // Wrap it with namespaced-specific-code
         if ($namespaced) {
-            $compiledTxt = implode(",\n", $compiled);
+            $compiledTxt = join(",\n", $compiled);
             $compiledTxt = $this->_namespace($compiledTxt);
         } else {
-            $compiledTxt = implode("\n", $compiled);
+            $compiledTxt = join("\n", $compiled);
         }
-        
+
         // Compression? And how?
         if ($this->_flagIsEnabled($flags, self::COMPILE_MINFIED)) {
             $compiledTxt = PHPJS_Pack::pack('minified', $compiledTxt);
         } elseif ($this->_flagIsEnabled($flags, self::COMPILE_PACKED)) {
             $compiledTxt = PHPJS_Pack::pack('packed', $compiledTxt);
         }
-
+        
+        // Hack to circumvent Jsmin 'bug':
+        // http://phpjs.org/pages/home#comment_53169
+        $compiledTxt = str_replace(']]>', ']] >', $compiledTxt);
+        
         return $this->genLicense($version)."\n".$compiledTxt;
     }
     
@@ -127,48 +131,6 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
      * @return string
      */
     protected function _namespace($source) {
-//        $str1  = "";
-//        $str1 .= "// {{{ init: \n";
-//        $str1 .= "init: function() {\n";
-//        $str1 .= "    // Makes autoloading system works properly.\n";
-//        $str1 .= "    // \n";
-//        $str1 .= "    // %        note 1: Not a real PHP.JS function, necessary for namespaced version, though.\n";
-//        $str1 .= "\n";
-//        $str1 .= "},// }}}\n";
-//        $str1 .= $source;
-//
-//        $str2  = "";
-//        $str2 .= "if(window == this || !this.init){\n";
-//        $str2 .= "    return new PHP_JS();\n";
-//        $str2 .= "}else{\n";
-//        $str2 .= "    return this.init();\n";
-//        $str2 .= "}\n";
-//
-//        $str3  = "var PHP_JS = function() {\n";
-//        $str3 .= $this->_indentBlock($str2, 4)."\n";
-//        $str3 .= "};\n";
-//        $str3 .= "";
-//
-//        $str4  = "";
-//        $str4 .= "if(typeof(PHP_JS) == \"undefined\"){\n";
-//        $str4 .= $this->_indentBlock($str3, 4)."\n";
-//        $str4 .= "}\n";
-//
-//        $str4 .= "\n";
-//        $str4 .= "var php_js = {};\n";
-//        $str4 .= "PHP_JS.prototype = {\n";
-//        $str4 .= $this->_indentBlock($str1, 4)."\n";
-//        $str4 .= "}; // End PHP_JS prototype \n";
-//        $str4 .= "\n";
-//        $str4 .= "window.\$P = PHP_JS();\n";
-//
-//        $str5  = "";
-//        $str5 .= "(function() {\n";
-//        $str5 .= $this->_indentBlock($str4, 4)."\n";
-//        $str5 .= "})();\n";
-//
-//        $source = $str5;
-        
         $namespaceTemplate = dirname(__FILE__).'/Compiler/namespaced_template.js';
         
         if (!file_exists($namespaceTemplate)) {
@@ -176,8 +138,8 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
             return false;
         }
         
-        $source = file_get_contents($namespaceTemplate);
-        $source = str_replace('//#FUNCTIONS_HERE#', $this->_indentBlock($source, 8), $source);
+        $template = file_get_contents($namespaceTemplate);
+        $source = str_replace('//#FUNCTIONS_HERE#', $this->_indentBlock($source, 8), $template);
         $source = preg_replace('@// BEGIN REDUNDANT(.+)// END REDUNDANT@smU', '', $source);
 
         return $source;
@@ -195,11 +157,12 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         $tmp_block = trim($block);
         $tmp_block = str_replace("\r", "", $tmp_block);
         $tmp_block = str_replace("\t", "    ", $tmp_block);
-        $lines = explode("\n", $tmp_block);
+        $lines     = explode("\n", $tmp_block);
+        $indent    = str_repeat(" ", $indentation);
         foreach($lines as $k=>$line){
-            $lines[$k] = str_repeat(" ", $indentation). $line;
+            $lines[$k] = $indent . $line;
         }
-        return implode("\n", $lines);
+        return join("\n", $lines);
     }    
 }
 ?>
