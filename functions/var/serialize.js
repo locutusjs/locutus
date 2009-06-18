@@ -5,7 +5,7 @@ function serialize( mixed_value ) {
     // +   bugfixed by: Andrej Pavlovic
     // +   bugfixed by: Garagoth
     // +      input by: DtTvB (http://dt.in.th/2008-09-16.string-length-in-bytes.html)
-    // +   bugfixed by: Russell Walker
+    // +   bugfixed by: Russell Walker (http://www.nbill.co.uk/)
     // %          note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
     // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
@@ -45,9 +45,6 @@ function serialize( mixed_value ) {
         case "function": 
             val = ""; 
             break;
-        case "undefined":
-            val = "N";
-            break;
         case "boolean":
             val = "b:" + (mixed_value ? "1" : "0");
             break;
@@ -86,6 +83,10 @@ function serialize( mixed_value ) {
                 count++;
             }
             val += ":" + count + ":{" + vals + "}";
+            break;
+        case "undefined": // Fall-through
+        default: // if the JS object has a property which contains a null value, the string cannot be unserialized by PHP
+            val = "N";
             break;
     }
     if (type != "object" && type != "array") {
