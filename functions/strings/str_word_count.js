@@ -7,9 +7,8 @@ function str_word_count(str, format, charlist) {
     // *     example 1: str_word_count('Hello fri3nd, youre   looking          good today!', 1, 'àáãç3');
     // *     returns 1: ['Hello', 'fri3nd', 'youre', 'looking', 'good', 'today']
 
-    // A word is valid when it contains a-z A-Z ' -
-    // Ole Vrijenhoek
-    var l = str.length; var tmpStr = "";
+    // A word is valid when it contains a-z A-Z ' - Ole Vrijenhoek
+    var l = str.length, tmpStr = "";
     var i = 0;
     var c = '';
     var wArr = [], wC = 0;
@@ -33,16 +32,14 @@ function str_word_count(str, format, charlist) {
                 aC = i;
             }
             tmpStr = tmpStr + String.fromCharCode(c);
-        } else {
-            if(tmpStr != "") {
-                if (format != 2) {
-                    wArr[wArr.length] = tmpStr;
-                } else {
-                    assArr[aC] = tmpStr;
-                }
-                tmpStr = "";
-                wC++;
+        } else if(tmpStr != "") {
+            if (format != 2) {
+                wArr[wArr.length] = tmpStr;
+            } else {
+                assArr[aC] = tmpStr;
             }
+            tmpStr = "";
+            wC++;
         }
     }
     
