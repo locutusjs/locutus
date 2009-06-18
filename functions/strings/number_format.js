@@ -1,5 +1,8 @@
 function number_format( number, decimals, dec_point, thousands_sep ) {
-    // http://kevin.vanzonneveld.net
+    // Formats a number with grouped thousands
+    //
+    // version: 906.1806
+    // discuss at: http://phpjs.org/functions/number_format
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +     bugfix by: Michael White (http://getsprink.com)
@@ -15,6 +18,8 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     // +     improved by: Brett Zamir (http://brett-zamir.me)
     // +     input by: Jay Klehr
     // +     improved by: Brett Zamir (http://brett-zamir.me)
+    // +     input by: Amir Habibi (http://www.residence-mixte.com/)
+    // +     bugfix by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: number_format(1234.56);
     // *     returns 1: '1,235'
     // *     example 2: number_format(1234.56, 2, ',', ' ');
@@ -35,17 +40,11 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     // *     returns 9: '1'
     // *     example 10: number_format('1.20', 2);
     // *     returns 10: '1.20'
-    // *     example 11: number_format('1.20', 4)
+    // *     example 11: number_format('1.20', 4);
     // *     returns 11: '1.2000'
-    // *     example 12: number_format('1.2000', 3)
+    // *     example 12: number_format('1.2000', 3);
     // *     returns 12: '1.200'
-
-    var n = number, prec = decimals, addBack0s = '', zeroes = null;
-    if (typeof n === 'string' && decimals && n.indexOf('.') !== -1 && (/0+$/).test(n)) {
-        zeroes = n.match(/\.\d+?(0+)$/);
-        var decLgth = zeroes[0].length-1;
-        var zeroLgth = zeroes[1].length;
-    }
+    var n = number, prec = decimals;
 
     var toFixedFix = function (n,prec) {
         var k = Math.pow(10,prec);
@@ -73,14 +72,12 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
         s = s.replace('.', dec);
     }
 
-    if (s.indexOf(dec) === -1 && prec > 1) {
-        s += dec+new Array(prec).join(0)+'0';
-    } else if (zeroes) {
-        addBack0s = (prec > (decLgth-zeroLgth)) ? // .1200000 (7-5 = 2)  .4450 (4-1=3)
-                                    zeroes[1].substr(0, prec-(decLgth-zeroLgth)) : ''; // Need to add back those zeroes which will be dropped when converted to number, unless larger decimals arg will handle extending, or smaller decimals arg will truncate
-        if (prec > decLgth) {
-            addBack0s += new Array(prec-decLgth).join(0)+'0';
-        }
+    var decPos = s.indexOf(dec);
+    if (prec >= 1 && decPos !== -1 && (s.length-decPos-1) < prec) {
+        s += new Array(prec-(s.length-decPos-1)).join(0)+'0';
     }
-    return s+addBack0s;
+    else if (prec >= 1 && decPos === -1) {
+        s += dec+new Array(prec).join(0)+'0';
+    }
+    return s;
 }
