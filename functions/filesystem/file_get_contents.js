@@ -9,7 +9,7 @@ function file_get_contents( url, flags, context, offset, maxLen ) {
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   input by: Raphael (Ao) RUDLER
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-    // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
+    // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain without modifications.
     // %        note 2: Synchronous by default (as in PHP) so may lock up browser. Can
     // %        note 2: get async by setting a custom "phpjs.async" property to true and "notification" for an
     // %        note 2: optional callback (both as context params, with responseText, and other JS-specific
@@ -23,7 +23,7 @@ function file_get_contents( url, flags, context, offset, maxLen ) {
     // *     returns 1: '123'
     // Note: could also be made to optionally add to global $http_response_header as per http://php.net/manual/en/reserved.variables.httpresponseheader.php
 
-    var tmp, headers = [], newTmp = [], k=0, i=0, href = '', pathPos = -1, flagNames = '', content = null;
+    var tmp, headers = [], newTmp = [], k=0, i=0, href = '', pathPos = -1, flagNames = '', content = null, http_stream = false;
     var func = function (value) { return value.substring(1) !== ''; };
 
     // BEGIN REDUNDANT
@@ -62,7 +62,7 @@ function file_get_contents( url, flags, context, offset, maxLen ) {
 
     if (context) {
         var http_options = context.stream_options && context.stream_options.http;
-        var http_stream = !!http_options;
+        http_stream = !!http_options;
     }
 
     if (!context || http_stream) {
