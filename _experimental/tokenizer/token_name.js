@@ -1,4 +1,8 @@
 function token_name (token) {
+    // +   original by: Brett Zamir (http://brett-zamir.me)
+    // *     example 1: token_name(258);
+    // *     returns 1: 'T_REQUIRE_ONCE'
+
     var tokens = {
         258: 'T_REQUIRE_ONCE',
         259: 'T_REQUIRE',
