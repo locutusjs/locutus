@@ -14,5 +14,5 @@ function checkdate( month, day, year ) {
     var myDate = new Date();
     myDate.setFullYear( year, (month - 1), day );
 
-    return ((myDate.getMonth()+1) == month && day<32); 
+    return month >= 1 && month <= 12 && year >= 1 && year <= 32767 && ((myDate.getMonth()+1) == month && day<32);
 }
