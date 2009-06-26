@@ -4,6 +4,8 @@ function metaphone(word){
     // %        note 1: The second argument, "phones" (max phonemes) is not implemented
     // *     example 1: metaphone('Gnu');
     // *     returns 1: 'n'
+    // *     example 1: metaphone('Why');
+    // *     returns 1: ''
     
     var wordlength = word.length,
         x = 0, tempchar = "",
