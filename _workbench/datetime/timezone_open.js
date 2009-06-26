@@ -9,7 +9,7 @@ function timezone_open(timezone) {  var __ = Relator.$();
     // *     example 1: timezone_open('Europe/Prague'); // Can't convert to string in PHP; returns the DTZ object
     // *     returns 1: {}
 
-
+    var that = this;
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     if (!this.php_js.Relator) {
@@ -70,9 +70,9 @@ function timezone_open(timezone) {  var __ = Relator.$();
         getOffset : function (datetime) { // DateTime
             return datetime.getOffset(); // Fix: how to use rules of this object?
         },
-        getTransitions : function (begin, end) {return timezone_transitions_get(this, begin, end);},
-        listAbbreviations : function () {return timezone_abbreviations_list();},
-        listIdentifiers : function (what, country) {return timezone_identifiers_list(what, country);}
+        getTransitions : function (begin, end) {return that.timezone_transitions_get(this, begin, end);},
+        listAbbreviations : function () {return that.timezone_abbreviations_list();},
+        listIdentifiers : function (what, country) {return that.timezone_identifiers_list(what, country);}
     };
     DateTimeZone.AFRICA = 1;
     DateTimeZone.AMERICA = 2;

@@ -6,6 +6,7 @@ function date_create (time, timezone) {var __ = Relator.$();
     // *     returns 1: {}
     
     // Incomplete
+    var that = this;
 
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
@@ -65,7 +66,8 @@ function date_create (time, timezone) {var __ = Relator.$();
     DateInterval.createFromDateString = function (time){ // string (date string with relative parts)
         return new DateInterval(time); // time argument ok ????
     };
-    
+
+    // Redefine DateTimeZone here for use below (see timezone_open())
     
     function DateTime (time, timezone) {var _ = __.constructor(this);
         // Depends on strtotime() and optionally accepts DateTimeZone object
@@ -89,9 +91,9 @@ function date_create (time, timezone) {var __ = Relator.$();
         format : function (/*string*/ format) {return '';},
         getOffset : function () {return 0;},
         getTimestamp : function () {var _ = __.method(this);
-            return strtotime(_.time+' +'+$timezone_offset+' hours');
+            return that.strtotime(_.time+' +'+$timezone_offset+' hours');
         },
-        getTimezone : function () {return new DateTimeZone(_.timezone);},
+        getTimezone : function () {var _ = __.method(this);return new DateTimeZone(_.timezone);},
         modify : function (/*string */ modify) {return this;},
         setDate : function (/*int*/ year, /*int*/ month , /*int*/ day) {return this;},
         setISODate : function (/*int*/ year, /*int*/ week, /*optional int*/ day) {return this;},
