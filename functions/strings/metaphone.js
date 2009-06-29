@@ -4,7 +4,7 @@ function metaphone(word, phones){
     // *     example 1: metaphone('Gnu');
     // *     returns 1: 'N'
 
-    // As far as use of the String() constructor, author says "I vaguely remember something about Internet Explorer 6 giving me errors unless it was done that way"
+    // As far as use of the String() constructor, the author recalls IE 6 giving errors otherwise
     
 	var wordlength = word.length,
         x = 0, tempchar = "",
