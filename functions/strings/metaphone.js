@@ -156,6 +156,7 @@ function metaphone(word, phones){
 		}
 	}
 
+    phones = parseInt(phones, 10);
     if (metaword.length > phones) {
         return metaword.substr(0, phones).toUpperCase();
     }
