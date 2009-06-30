@@ -2,6 +2,7 @@ function ord( string ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: ord('K');
     // *     returns 1: 75
     // *     example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
