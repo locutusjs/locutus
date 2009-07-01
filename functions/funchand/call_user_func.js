@@ -20,5 +20,5 @@ function call_user_func(cb, parameters) {
         throw new Error(func + ' is not a valid function');
     }
 
-    return func.apply(null, Array.prototype.slice.call(parameters, 1));
+    return func.apply(null, Array.prototype.slice.call(arguments, 1));
 }
