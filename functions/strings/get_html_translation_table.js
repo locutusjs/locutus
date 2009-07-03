@@ -8,7 +8,9 @@ function get_html_translation_table(table, quote_style) {
     // +   bugfixed by: madipta
     // +   improved by: KELAN
     // +   improved by: Brett Zamir (http://brett-zamir.me)
-    // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +      input by: Frank Forte
+    // +   bugfixed by: T.Wild
     // %          note: It has been decided that we're not going to add global
     // %          note: dependencies to php.js. Meaning the constants are not
     // %          note: real constants, but strings instead. integers are also supported if someone
@@ -35,6 +37,7 @@ function get_html_translation_table(table, quote_style) {
         // return false;
     }
 
+    entities['38'] = '&amp;';
     if (useTable === 'HTML_ENTITIES') {
         entities['160'] = '&nbsp;';
         entities['161'] = '&iexcl;';
@@ -143,8 +146,6 @@ function get_html_translation_table(table, quote_style) {
     entities['60'] = '&lt;';
     entities['62'] = '&gt;';
 
-    // ascii decimals for better compatibility
-    entities['38'] = '&amp;';
 
     // ascii decimals to real symbols
     for (decimal in entities) {
