@@ -1,15 +1,14 @@
 function unserialize(data){
-    // Takes a string representation of variable and recreates it
-    //
-    // version: 903.3016
-    // discuss at: http://phpjs.org/functions/unserialize
+    // http://kevin.vanzonneveld.net
     // +     original by: Arpad Ray (mailto:arpad@php.net)
     // +     improved by: Pedro Tainha (http://www.pedrotainha.com)
     // +     bugfixed by: dptr1988
     // +      revised by: d3x
     // +     improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +      input by: Brett Zamir (http://brett-zamir.me)
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +        input by: Brett Zamir (http://brett-zamir.me)
+    // +     improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +     improved by: Chris
+    // +     improved by: James
     // %            note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %            note: Aiming for PHP-compatibility, we have to translate objects to arrays
     // *       example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
@@ -66,7 +65,7 @@ function unserialize(data){
                 dataoffset += chrs + 1;
             break;
             case 'b':
-                typeconvert = function (x) {return parseInt(x, 10) == 1;};
+                typeconvert = function (x) {return parseInt(x, 10) != 0;};
                 readData = read_until(data, dataoffset, ';');
                 chrs = readData[0];
                 readdata = readData[1];
@@ -126,5 +125,6 @@ function unserialize(data){
         }
         return [dtype, dataoffset - offset, typeconvert(readdata)];
     };
-    return _unserialize(data, 0)[2];
+    
+    return _unserialize((data+''), 0)[2];
 }
