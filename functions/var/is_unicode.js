@@ -10,7 +10,7 @@ function is_unicode (vr) {
 
     // If surrogates occur outside of high-low pairs, then this is not Unicode
     var arr=[],
-        any='([^])',
+        any='([\s\S])',
         highSurrogate='[\uD800-\uDBFF]',
         lowSurrogate='[\uDC00-\uDFFF]',
         highSurrogateBeforeAny = new RegExp(highSurrogate+any, 'g'),

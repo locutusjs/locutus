@@ -16,5 +16,5 @@ function php_strip_whitespace (file) {
     // Strip comments (both styles), reduce non-newline whitespace to one, reduce multiple
     // newlines (preceded by any whitespace) to a newline, remove WS at beginning of line,
     // and at end of line
-    return str.replace(/\/\/.*?\n/g, '').replace(/\/\*[^]*?\*\//g, '').replace(/[ \f\r\t\v\u00A0\u2028\u2029]+/g, ' ').replace(/\s*\n+/g, '\n').replace(/^\s+/gm, '').replace(/\s*$/gm, '');
+    return str.replace(/\/\/.*?\n/g, '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/[ \f\r\t\v\u00A0\u2028\u2029]+/g, ' ').replace(/\s*\n+/g, '\n').replace(/^\s+/gm, '').replace(/\s*$/gm, '');
 }

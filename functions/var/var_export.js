@@ -6,6 +6,8 @@
         // +   original by: Philip Peterson
         // +   improved by: johnrembo
         // +   improved by: Brett Zamir (http://brett-zamir.me)
+        // +   input by: Brian Tafoya (http://www.premasolutions.com/)
+        // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
         // -    depends on: echo
         // *     example 1: var_export(null);
         // *     returns 1: null
@@ -71,7 +73,7 @@
             retstr = "array (\n  "+iret+"\n)";
         }
         else if (type === 'function') {
-            funcParts = mixed_expression.toString().match(/function .*?\((.*?)\) \{([^]*)\}/);
+            funcParts = mixed_expression.toString().match(/function .*?\((.*?)\) \{([\s\S]*)\}/);
 
             // For lambda functions, var_export() outputs such as the following:  '\000lambda_1'
             // Since it will probably not be a common use to expect this (unhelpful) form, we'll use another PHP-exportable
