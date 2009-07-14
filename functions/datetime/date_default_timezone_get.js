@@ -6,7 +6,7 @@ function date_default_timezone_get () {
     // *     example 1: date_default_timezone_get();
     // *     returns 1: 'unknown'
 
-    var tal = {}, abbr = '', i = 0, today = new Date();
+    var tal = {}, abbr = '', i = 0, curr_offset = -(new Date()).getTimezoneOffset()*60;
 
     if (this.php_js) {
         if (this.php_js.default_timezone) { // set by date_default_timezone_set
@@ -23,7 +23,7 @@ function date_default_timezone_get () {
     tal = this.timezone_abbreviations_list();
     for (abbr in tal) {
         for (i=0; i < tal[abbr].length; i++) {
-            if (tal[abbr][i].offset === -today.getTimezoneOffset()*60) {
+            if (tal[abbr][i].offset === curr_offset) {
                 return tal[abbr][i].timezone_id;
             }
         }
