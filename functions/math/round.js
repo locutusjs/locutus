@@ -2,6 +2,7 @@ function round (val, precision, mode) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
     // +    revised by: Onno Marsman
+    // +      input by: Greenseed
     // +    revised by: T.Wild
     // %        note 1: Great work. Ideas for improvement:
     // %        note 1:  - code more compliant with developer guidelines
