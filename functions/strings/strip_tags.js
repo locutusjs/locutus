@@ -14,6 +14,7 @@ function strip_tags(str, allowed_tags) {
     // +   bugfixed by: Eric Nagel
     // +      input by: Bobby Drake
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Tomasz Wesolowski
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
     // *     example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>');
@@ -37,7 +38,7 @@ function strip_tags(str, allowed_tags) {
 
     // Build allowes tags associative array
     if (allowed_tags) {
-        allowed_array = allowed_tags.match(/([a-zA-Z]+)/gi);
+        allowed_array = allowed_tags.match(/([a-zA-Z0-9]+)/gi);
     }
 
     str += '';

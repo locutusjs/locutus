@@ -1,97 +1,96 @@
-    function var_export(mixed_expression, bool_return) {
-        // Outputs or returns a string representation of a variable
-        //
-        // version: 904.610
-        // discuss at: http://phpjs.org/functions/var_export
-        // +   original by: Philip Peterson
-        // +   improved by: johnrembo
-        // +   improved by: Brett Zamir (http://brett-zamir.me)
-        // +   input by: Brian Tafoya (http://www.premasolutions.com/)
-        // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-        // -    depends on: echo
-        // *     example 1: var_export(null);
-        // *     returns 1: null
-        // *     example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);
-        // *     returns 2: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld'\n)"
-        // *     example 3: data = 'Kevin';
-        // *     example 3: var_export(data, true);
-        // *     returns 3: "'Kevin'"
-        var retstr = '',
-            iret = '',
-            cnt = 0,
-            x = [],
-            i = 0,
-            funcParts = [];
-        var getFuncName = function (fn) {
-            var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-            if(!name) {
-                return '(Anonymous)';
-            }
-            return name[1];
-        };
+function var_export(mixed_expression, bool_return) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Philip Peterson
+    // +   improved by: johnrembo
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   input by: Brian Tafoya (http://www.premasolutions.com/)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // -    depends on: echo
+    // *     example 1: var_export(null);
+    // *     returns 1: null
+    // *     example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);
+    // *     returns 2: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld'\n)"
+    // *     example 3: data = 'Kevin';
+    // *     example 3: var_export(data, true);
+    // *     returns 3: "'Kevin'"
+    
+    var retstr = '',
+        iret = '',
+        cnt = 0,
+        x = [],
+        i = 0,
+        funcParts = [];
+        
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if(!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
 
-        var __getType = function( inp ) {
-            var i = 0;
-            var match, type = typeof inp;
-            if (type === 'object' && inp.constructor && getFuncName(inp.constructor) === 'PHPJS_Resource') {
-                return 'resource';
+    var __getType = function( inp ) {
+        var i = 0;
+        var match, type = typeof inp;
+        if (type === 'object' && inp.constructor && getFuncName(inp.constructor) === 'PHPJS_Resource') {
+            return 'resource';
+        }
+        if (type === 'function') {
+            return 'function';
+        }
+        if (type === 'object' && !inp) {
+            return 'null'; // Should this be just null?
+        }
+        if (type === "object") {
+            if (!inp.constructor) {
+                return 'object';
             }
-            if (type === 'function') {
-                return 'function';
+            var cons = inp.constructor.toString();
+            match = cons.match(/(\w+)\(/);
+            if (match) {
+                cons = match[1].toLowerCase();
             }
-            if (type === 'object' && !inp) {
-                return 'null'; // Should this be just null?
-            }
-            if (type === "object") {
-                if (!inp.constructor) {
-                    return 'object';
-                }
-                var cons = inp.constructor.toString();
-                match = cons.match(/(\w+)\(/);
-                if (match) {
-                    cons = match[1].toLowerCase();
-                }
-                var types = ["boolean", "number", "string", "array"];
-                for (i=0; i < types.length; i++) {
-                    if (cons === types[i]) {
-                        type = types[i];
-                        break;
-                    }
+            var types = ["boolean", "number", "string", "array"];
+            for (i=0; i < types.length; i++) {
+                if (cons === types[i]) {
+                    type = types[i];
+                    break;
                 }
             }
-            return type;
-        };
-        var type = __getType(mixed_expression);
+        }
+        return type;
+    };
+    var type = __getType(mixed_expression);
 
-        if( type === null) {
-            retstr = "NULL";
-        } else if(type === 'array' || type === 'object') {
-            for(i in mixed_expression) {
-                x[cnt++] = this.var_export(i,true)+" => "+this.var_export(mixed_expression[i], true);
-            }
-            iret = x.join(',\n  ');
-            retstr = "array (\n  "+iret+"\n)";
+    if( type === null) {
+        retstr = "NULL";
+    } else if(type === 'array' || type === 'object') {
+        for(i in mixed_expression) {
+            x[cnt++] = this.var_export(i,true)+" => "+this.var_export(mixed_expression[i], true);
         }
-        else if (type === 'function') {
-            funcParts = mixed_expression.toString().match(/function .*?\((.*?)\) \{([\s\S]*)\}/);
-
-            // For lambda functions, var_export() outputs such as the following:  '\000lambda_1'
-            // Since it will probably not be a common use to expect this (unhelpful) form, we'll use another PHP-exportable
-            // construct, create_function() (though dollar signs must be on the variables in JavaScript); if using instead
-            // in JavaScript and you are using the namespaced version, note that create_function() will not be available
-            // as a global
-            retstr = "create_function ('"+funcParts[1]+"', '"+funcParts[2].replace(new RegExp("'", 'g'), "\\'")+"')";
-        }
-        else if (type === 'resource') {
-            retstr = 'NULL'; // Resources treated as null for var_export
-        } else {
-            retstr = (!isNaN( mixed_expression )) ? mixed_expression : "'" + mixed_expression.replace(/(["'])/g, "\\$1").replace(/\0/g, "\\0") + "'";
-        }
-
-        if(bool_return !== true) {
-            this.echo(retstr);
-            return null;
-        } else {
-            return retstr;
-        }
+        iret = x.join(',\n  ');
+        retstr = "array (\n  "+iret+"\n)";
     }
+    else if (type === 'function') {
+        funcParts = mixed_expression.toString().match(/function .*?\((.*?)\) \{([\s\S]*)\}/);
+
+        // For lambda functions, var_export() outputs such as the following:  '\000lambda_1'
+        // Since it will probably not be a common use to expect this (unhelpful) form, we'll use another PHP-exportable
+        // construct, create_function() (though dollar signs must be on the variables in JavaScript); if using instead
+        // in JavaScript and you are using the namespaced version, note that create_function() will not be available
+        // as a global
+        retstr = "create_function ('"+funcParts[1]+"', '"+funcParts[2].replace(new RegExp("'", 'g'), "\\'")+"')";
+    }
+    else if (type === 'resource') {
+        retstr = 'NULL'; // Resources treated as null for var_export
+    } else {
+        retstr = (!isNaN( mixed_expression )) ? mixed_expression : "'" + mixed_expression.replace(/(["'])/g, "\\$1").replace(/\0/g, "\\0") + "'";
+    }
+
+    if(bool_return !== true) {
+        this.echo(retstr);
+        return null;
+    } else {
+        return retstr;
+    }
+}
