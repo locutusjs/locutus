@@ -8,6 +8,7 @@ function setlocale (category, locale) {
     // %          note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
     // %          note 1: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
     // %          note 2: Uses global: php_js to store locale info
+    // %          note 3: Consider using http://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
     // *     example 1: setlocale('LC_ALL', 'en_US');
     // *     returns 1: 'en_US'
     var categ='', cats = [], i = 0, d = this.window.document;
@@ -37,7 +38,7 @@ function setlocale (category, locale) {
 
         phpjs.locales.en = {
             'LC_COLLATE' :  // For strcoll
-                function ( str1, str2 ) { // This one taken from strcmp, but can differ for other locales
+                function ( str1, str2 ) { // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
                     return ( str1 == str2 ) ? 0 : ( ( str1 > str2 ) ? 1 : -1 );
                 }
             ,

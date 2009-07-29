@@ -4,6 +4,7 @@ function ksort(array, sort_flags) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // %          note: The examples are correct, this is a new way
+    // -    depends on: i18n_loc_get_default
     // *     example 1: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'};
     // *     example 1: ksort(data);
     // *     results 1: data == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
@@ -18,9 +19,8 @@ function ksort(array, sort_flags) {
             };
             break;
         case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
-            sorter = function (a, b) {
-                return(a.localeCompare(b));
-            };
+            var loc = this.i18n_loc_get_default();
+            sorter = this.php_js.i18nLocales[loc].sorting;
             break;
         case 'SORT_NUMERIC': // compare items numerically
             sorter = function (a, b) {

@@ -11,7 +11,7 @@ function fscanf (handle, format) {
 
     var mixed; // Could be an array or an integer
 
-    mixed = sscanf.apply(this, [fgets(handle), format].concat(Array.prototype.slice.call(arguments, 2)));
+    mixed = this.sscanf.apply(this, [fgets(handle), format].concat(Array.prototype.slice.call(arguments, 2)));
 
     return mixed;
 }

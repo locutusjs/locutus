@@ -6,6 +6,7 @@ function sort (inputArr, sort_flags) {
     // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
     // %        note 1: integrated into all of these functions by adapting the code at
     // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
+    // -    depends on: i18n_loc_get_default
     // *     example 1: sort(['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: true
     // *     example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
@@ -28,9 +29,8 @@ function sort (inputArr, sort_flags) {
             };
             break;
         case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
-            sorter = function (a, b) {
-                return(a.localeCompare(b));
-            };
+            var loc = this.i18n_loc_get_default();
+            sorter = this.php_js.i18nLocales[loc].sorting;
             break;
         case 'SORT_NUMERIC': // compare items numerically
             sorter = function (a, b) {
