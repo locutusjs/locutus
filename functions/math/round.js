@@ -15,136 +15,222 @@ function round (val, precision, mode) {
     // *     returns 2: 4
     // *     example 3: round(2.835,2);
     // *     returns 3: 2.84
-    
-    var V = val.toString(),integer,decimal,reint = false,decp,d1,d2,pow=0; //Define variables.
 
+    /* Declare Variables
+     * retVal  - temporay holder of the value to be returned
+     * V       - String representation of val
+
+     * integer - Integer portion of val
+     * decimal - decimal portion of val
+     * decp    - characterindex of . [decimal point] inV
+     * negative- was val a negative value?
+     *
+     * _round_half_oe - Rounding function for ROUND_HALF_ODD and ROUND_HALF_EVEN
+
+     * _round_half_ud - Rounding function for ROUND_HALF_UP and ROUND_HALF_DOWN
+     * _round_half    - Primary function for round half rounding modes
+     */
+    var retVal=0,v='',integer='',decimal='',decp=0,negative=false;
+    var _round_half_oe = function(dtR,dtLa,even){
+        if(even === true){
+            if(dtLa == 50){
+                if((dtR % 2) === 1){
+                    if(dtLa >= 5){
+                        dtR+=1;
+                    }else{
+                        dtR-=1;
+                    }
+                }
+            }else if(dtLa >= 5){
+                dtR+=1;
+            }
+        }else{
+            if(dtLa == 5){
+                if((dtR % 2) === 0){
+                    if(dtLa >= 5){
+                        dtR+=1;
+                    }else{
+                        dtR-=1;
+                    }
+                }
+            }else if(dtLa >= 5){
+                dtR+=1;
+            }
+        }
+
+        return dtR;
+    };
+    var _round_half_ud = function(dtR,dtLa,up){
+        if(up === true){
+            if(dtLa>=5){
+                dtR+=1;
+            }
+        }else{
+            if(dtLa>5){
+                dtR+=1;
+            }
+        }
+        return dtR;
+    };
+    var _round_half = function(val,decplaces,mode){
+    /*Declare variables
+         *V       - string representation of Val
+         *Vlen    - The length of V - used only when rounding intgerers
+
+         *VlenDif - The difference between the lengths of the original V
+         *          and the V after being truncated
+         *decp    - character in index of . [decimal place] in V
+         *integer - Integr protion of Val
+         *decimal - Decimal portion of Val
+         *DigitToRound - The digit to round
+
+         *DigitToLookAt- The digit to comapre when rounding
+         *
+         *round - A function to do the rounding
+         */
+        var v = val.toString(),vlen=0,vlenDif=0;
+        var decp = v.indexOf('.');
+
+        var digitToRound = 0,digitToLookAt = 0;
+        var integer='',decimal='';
+        var round = null,bool=false;
+        switch(mode){
+            case 'up':
+                bool = true;
+                // Fall-through
+            case 'down':
+                round = _round_half_ud;
+                break;
+            case 'even':
+                bool = true;
+            case 'odd':
+                round = _round_half_oe;
+                break;
+        }
+        if (decplaces < 0){ //Int round
+            vlen=v.length;
+
+            decplaces = vlen + decplaces;
+            digitToLookAt = Number(v.charAt(decplaces));
+            digitToRound  = Number(v.charAt(decplaces-1));
+            digitToRound  = round(digitToRound,digitToLookAt,bool);
+            v = v.slice(0,decplaces-1);
+            vlenDif = vlen-v.length-1;
+
+            if (digitToRound == 10){
+                v = String(Number(v)+1)+"0";
+            }else{
+                v+=digitToRound;
+            }
+
+            v = Number(v)*(Math.pow(10,vlenDif));
+        }else if(decplaces > 0){
+            integer=v.slice(0,decp);
+            decimal=v.slice(decp+1);
+            digitToLookAt = Number(decimal.charAt(decplaces));
+
+            digitToRound  = Number(decimal.charAt(decplaces-1));
+            digitToRound  = round(digitToRound,digitToLookAt,bool);
+            decimal=decimal.slice(0,decplaces-1);
+            if(digitToRound==10){
+                v=Number(integer+'.'+decimal)+(1*(Math.pow(10,(0-decimal.length))));
+            }else{
+                v=Number(integer+'.'+decimal+digitToRound);
+            }
+        }else{
+            integer=v.slice(0,decp);
+            decimal=v.slice(decp+1);
+            digitToLookAt = Number(decimal.charAt(decplaces));
+
+            digitToRound  = Number(integer.charAt(integer.length-1));
+            digitToRound  = round(digitToRound,digitToLookAt,bool);
+            decimal='0';
+            integer = integer.slice(0,integer.length-1);
+            if(digitToRound==10){
+                v=Number(integer)+1;
+            }else{
+                v=Number(integer+digitToRound);
+            }
+        }
+        return v;
+    };
+
+
+    //precision optional - defaults 0
     if (typeof precision == 'undefined') {
         precision = 0;
     }
-    decp = V.indexOf('.'); //Find index of decimal place
+    //mode optional - defaults round half up
+    if (typeof mode == 'undefined') {
+        mode = 'PHP_ROUND_HALF_UP';
+    }
 
-    if (decp == -1) { //If there is no decimal place we are most likely dealing with an integer
-        /*---ROUNDING AN INTEGER---
-         * If the precision is 0 then we don't need to round
-         * otherwise turn the integer into a decimal E.G
-         * 100 becomes 0.1
-         * 2143 becomes 0.2143
-         * take the modulus of the precision and then round the decimal
-         * we turn it back into an intgeger at the end
+    if (val < 0){ //Remember if val is negative
+        negative = true;
+    }else{
+        negative = false;
+    }
+
+    v = Math.abs(val).toString(); //Take a string representation of val
+    decp = v.indexOf('.');        //And locate the decimal point
+    if ((decp == -1) && (precision >=0)){
+   /* If there is no deciaml point and the precision is greater than 0
+         * there is no need to round, return val
          */
-        if (precision === 0) {
+        return val;
+    }else{
+        if (decp == -1){
+            //There are no decimals so intger=V and decimal=0
+            integer = v;
+            decimal = '0';
+        }else{
+            //Otherwise we have to split the decimals from the integer
+            integer = v.slice(0,decp);
+            if(precision >= 0){
+                //If the precision is greater than 0 then split the decimals from the integer
+                //We truncate the decimals to a number of places equal to the precision requested+1
+                decimal = v.substr(decp+1,precision+1);
+            }else{
+                //If the precision is less than 0 ignore the decimals - set to 0
+                decimal = '0';
+            }
+        }
+        if ((precision > 0) && (precision >= decimal.length)){
+            /*If the precision requested is more decimal places than already exist
+            * there is no need to round - return val
+            */
             return val;
-        } else {
-            pow = V.length; //Rember how many powers of ten we need to turn the decimal back to an integer
-            V = '0.'+V;
-            precision = Math.abs(precision);
-            reint = true; //Remeber to change it back
-            decp = 1;
-        }
-    } else if(precision < 0) {
-        /*
-         * Deling with decimal already, but still want to round an intgeger
-         * So truncate V and then do the same as above.
-         */
-        integer = V.slice(0,decp);
-        pow = integer.length;
-        V = '0.'+integer;
-        precision = Math.abs(precision);
-        reint = true;
-        decp = 1;
-    }
-
-    /*
-     * Split the integer and decimal parts of the number
-     */
-    integer = V.slice(0,decp);
-    decimal = V.slice(decp+1);
-
-    /** d1 = decimal before the subject decimal **/
-
-    if (decimal.length <= precision) {
-        //If the precision is less or equal to the number of decimals then we don't need to round
-        return val;
-    } else if(precision === 0) {
-        /**
-         * Special handling of precision = 0
-         * In this case the number before the subject decimal is the last digit of integer
-         * not part of the `decimal` variable
-         */
-        d1 = Number(integer.charAt(integer.length-1));
-        integer = integer.slice(0,integer.length-1);//Remove the last digit of integer
-    } else {
-        d1 = Number(decimal.charAt(precision-1));
-    }
-
-    /** d2 = the subject decimal **/
-    d2 = Number(decimal.charAt(precision));
-    decimal = decimal.slice(0,precision-1); //remove last digit of decimal
-
-    if (mode=='ROUND_CEILING') {
-        if (val > 0) {
-            mode = 'PHP_ROUND_UP';
-        } else {
-            mode = 'PHP_ROUND_DOWN';
-        }
-    } else if (mode == 'ROUND_FLOOR') {
-        if (val > 0) {
-            mode = 'PHP_ROUND_DOWN';
-        } else {
-            mode = 'PHP_ROUND_UP';
-        }
-    }
-
-    switch (mode) {
-        case 'PHP_ROUND_UP': //Always round up
-            d1+=1;
-            break;
-        case 'PHP_ROUND_HALF_DOWN': //If subject decimal is more than 5 then round up
-            if (d2 > 5){
-                d1+=1;
-            }
-            break;
-        default: //If the subject decimal is 5 or more, then round up
-            //ROUND_HALF_UP
-            if (d2 >= 5){
-                d1+=1;
-            }
-            break;
-    }
-
-    if (precision === 0) {
-        /*
-         * Again, special handling for precision 0
-         * if the round has made a value of 10, then add 1 to the integer and set d1 to 0
-         * this works because of the way I concatinate them
-         */
-        if (d1 == 10){
-            integer+=1;
-            d1 = '0';
-        }
-        val=Number(integer+d1);
-    } else {
-        if (d1 == 10) {
-            /*
-             * intger = 1
-             * decimal = 0.555
-             * Number(integr+'.'+decimal) = 1.555
-             * (0-decimal.length) = -3
-             * 1*(10^-3) = 0.001
-             * Number(integr+'.'+decimal)+0.001 = 1.556
+        }else if ((precision < 0) && (Math.abs(precision) >= integer.length)){
+           /*If the precison is less than 0, and is greater than than the
+             *number of digits in integer, return 0 - mimics PHP
              */
-            val = Number(integer+'.'+decimal)+(1*(Math.pow(10,(0-decimal.length))));
-        } else {
-            /*
-             * otherwsie just re-concatinate the numbers
-             */
-            val = Number(integer+'.'+decimal+d1);
+            return 0;
         }
+        val = Number(integer+'.'+decimal); // After sanitizing recreate val
     }
 
-    if (reint) {
-        return val*Math.pow(10,pow);
-    } else {
-        return val;
+    //Call approriate function based on passed mode, fall through for integer constants
+    switch (mode){
+        case 0:
+        case 'PHP_ROUND_HALF_UP':
+            retVal = _round_half(val,precision,'up');
+            break;
+        case 1:
+        case 'PHP_ROUND_HALF_DOWN':
+            retVal = _round_half(val, precision,'down');
+            break;
+        case 2:
+        case 'PHP_ROUND_HALF_EVEN':
+            retVal = _round_half(val,precision,'even');
+            break;
+        case 3:
+        case 'PHP_ROUND_HALF_ODD':
+            retVal = _round_half(val,precision,'odd');
+            break;
+    }
+    if(negative){
+        return 0-retVal;
+    }else{
+        return retVal;
     }
 }
