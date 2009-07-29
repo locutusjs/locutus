@@ -5,7 +5,8 @@ function setlocale (category, locale) {
     // +   derived from: YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html
     // -    depends on: getenv
     // %          note 1: Is extensible, but currently only implements locales en,
-    // %          note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE; C and en for LC_MONETARY/LC_NUMERIC
+    // %          note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
+    // %          note 1: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
     // %          note 2: Uses global: php_js to store locale info
     // *     example 1: setlocale('LC_ALL', 'en_US');
     // *     returns 1: 'en_US'
@@ -35,7 +36,11 @@ function setlocale (category, locale) {
         phpjs.locales = {};
 
         phpjs.locales.en = {
-            'LC_COLLATE' : '', // Need to add something here for strcoll (and modify it too), perhaps a sorter function
+            'LC_COLLATE' :  // For strcoll
+                function ( str1, str2 ) { // This one taken from strcmp, but can differ for other locales
+                    return ( str1 == str2 ) ? 0 : ( ( str1 > str2 ) ? 1 : -1 );
+                }
+            ,
             'LC_CTYPE' : { // Need to change any of these for English as opposed to C?
                 an: /^[A-Za-z\d]+$/g,
                 al: /^[A-Za-z]+$/g,
