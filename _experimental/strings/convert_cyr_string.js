@@ -190,7 +190,7 @@ _cyr_mac = [
         return str;
     }
 
-    for( i = 0; i < str.length; i++) {
+    for (i = 0; i < str.length; i++) {
         tmp = (from_table === null)? str.charAt(i) : String.fromCharCode(from_table[ str.charAt(i).charCodeAt(0) ]);
         retStr += (to_table === null) ? tmp : String.fromCharCode(to_table[tmp.charCodeAt(0)+256]);
     }

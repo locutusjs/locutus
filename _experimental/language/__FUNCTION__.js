@@ -7,5 +7,12 @@ function __FUNCTION__() {
     // *     example 1: myFunc();
     // *     returns 1: 'myFunc'
 
+    var getFuncName = function (fn) {
+        var name=(/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if (!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
     return arguments.callee.caller && getFuncName(arguments.callee.caller);
 }

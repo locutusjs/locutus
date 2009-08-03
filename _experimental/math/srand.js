@@ -10,7 +10,7 @@ function srand (seed) {
     // *     example 2: srand();
     // *     returns 2: undefined
 
-    var s1, s2;
+    var s1, s2, that = this;
 
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
@@ -18,7 +18,7 @@ function srand (seed) {
     // php_srand
     var lcg_seed = function () {
         try {
-            var tv = gettimeofday();
+            var tv = that.gettimeofday();
             s1 = tv.sec ^ (~tv.usec);
         }
         catch (e) {
@@ -50,5 +50,5 @@ function srand (seed) {
         return z * 4.656613e-10;
     };
     this.php_js.rand_seed = seed ||
-        (parseInt(time() * Math.random(), 10) ^ parseInt(1000000.0 * php_combined_lcg(), 10)); // php_rand.h: GENERATE_SEED(); using Math.random() instead of getpid
+        (parseInt(this.time() * Math.random(), 10) ^ parseInt(1000000.0 * php_combined_lcg(), 10)); // php_rand.h: GENERATE_SEED(); using Math.random() instead of getpid
 }

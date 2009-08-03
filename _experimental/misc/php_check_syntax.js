@@ -11,7 +11,7 @@ function php_check_syntax (filename, error_message) {
     // *     returns 1: false
 
     // Should not output contents, but will evaluate, as per PHP
-    ob_start();
+    this.ob_start();
     try {
         eval(file_get_contents(filename));
     }
@@ -21,6 +21,6 @@ function php_check_syntax (filename, error_message) {
         }
         return false;
     }
-    ob_end_clean();
+    this.ob_end_clean();
     return true;
 }

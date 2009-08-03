@@ -18,5 +18,5 @@ function __DIR__() {
     // *     example 1: __DIR__();
     // *     returns 1: '/myDir'
 
-    return dirname(__FILE__());
+    return this.dirname(__FILE__());
 }

@@ -11,17 +11,17 @@ function connection_aborted() {
 
     // These functions should really be set automatically (added with addEventListener once), but for now this function can be used as a trigger to set these checks up
     var that = this;
-    this.window.onabort = function(e){
+    this.window.onabort = function (e){
         if (!that.php_js.ignoreAbort) {
             that.php_js.abortStatus = 1;
         }
     };
-    this.window.onunload = function(e){
+    this.window.onunload = function (e){
         if (!that.php_js.ignoreAbort) {
             that.php_js.abortStatus = 1;
         }
     };
-    this.window.onstop = function(e){
+    this.window.onstop = function (e){
         if (!that.php_js.ignoreAbort) {
             that.php_js.abortStatus = 1;
         }

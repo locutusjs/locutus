@@ -7,7 +7,7 @@ function ob_list_handlers () {
     var i=0, arr=[], name='';
     var getFuncName = function (fn) {
         var name=(/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if(!name) {
+        if (!name) {
             return '(Anonymous)';
         }
         return name[1];

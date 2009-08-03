@@ -12,7 +12,7 @@ function timezone_name_from_abbr (abbr, gmtOffset, isdst) {
         gmtOffset = -1;
     }
     
-    var tal = timezone_abbreviations_list();
+    var tal = this.timezone_abbreviations_list();
     if (abbr && tal[abbr.toLowerCase()]) {
         arr = tal[abbr.toLowerCase()];
         if (gmtOffset !== -1) {

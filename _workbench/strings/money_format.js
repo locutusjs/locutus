@@ -9,7 +9,7 @@ function money_format (format, number) {
         return null;
     }
     
-    setlocale('LC_ALL', 0); // Ensure the locale data we need is set up
+    this.setlocale('LC_ALL', 0); // Ensure the locale data we need is set up
     
     var regex = /%((=.|[+^(!-])*?)(\d*?)(#(\d+))?(\.(\d+))?([in])/g; // 1: flags, 3: width, 5: left, 7: right, 8: conversion
     

@@ -106,7 +106,7 @@ function sscanf (str, format) {
             else {
                 width = 0;
             }
-            switch(format.charAt(i+1)) {
+            switch (format.charAt(i+1)) {
                 case 'h': // Treats subsequent as short or unsigned short int
                 case 'l': // Treats subsequent as long int, unsigned long; or as double instead of float or wchar_t instead of char
                 case 'L':

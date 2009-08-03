@@ -7,7 +7,9 @@ function ob_end_flush () {
     if (!this.php_js || !this.php_js.obs || !this.php_js.obs.length) {
         return false;
     }
-    this.echo(this.php_js.obs[this.php_js.obs.length-1].buffer);
+    var contents = this.php_js.obs[this.php_js.obs.length-1].buffer;
     this.php_js.obs.pop();
+    this.echo(contents);
+
     return true;
 }

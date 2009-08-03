@@ -3,5 +3,5 @@ function date_format (obj, format) {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: date() (and an object passed in which was created by the DateTime class--e.g., date_create)
     // Note: finished but basically useless until date_create() is implemented
-    return date(format, obj.getTimestamp());
+    return this.date(format, obj.getTimestamp());
 }
