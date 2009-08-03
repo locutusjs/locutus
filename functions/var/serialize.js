@@ -6,6 +6,7 @@ function serialize( mixed_value ) {
     // +   bugfixed by: Garagoth
     // +      input by: DtTvB (http://dt.in.th/2008-09-16.string-length-in-bytes.html)
     // +   bugfixed by: Russell Walker (http://www.nbill.co.uk/)
+    // +   bugfixed by: Jamie Beck (http://www.terabit.ca/)
     // %          note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
     // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
@@ -63,7 +64,7 @@ function serialize( mixed_value ) {
                 if (objname == undefined) {
                     return;
                 }
-                objname[1] = serialize(objname[1]);
+                objname[1] = this.serialize(objname[1]);
                 val = "O" + objname[1].substring(1, objname[1].length - 1);
             }
             */
@@ -78,8 +79,8 @@ function serialize( mixed_value ) {
                 }
                 
                 okey = (key.match(/^[0-9]+$/) ? parseInt(key, 10) : key);
-                vals += serialize(okey) +
-                        serialize(mixed_value[key]);
+                vals += this.serialize(okey) +
+                        this.serialize(mixed_value[key]);
                 count++;
             }
             val += ":" + count + ":{" + vals + "}";
