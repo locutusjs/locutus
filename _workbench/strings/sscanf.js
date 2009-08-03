@@ -24,7 +24,7 @@ function sscanf (str, format) {
         }
     };
     var processChar = function (format, i) {
-        switch(format.charAt(i+1)) {
+        switch (format.charAt(i+1)) {
             // See http://www.uwm.edu/cgi-bin/IMT/wwwman?topic=scanf%283%29&msection= for detailed explanations
             // UNDOCUMENTED AT PHP SITE (a few others below)
             case 'n':

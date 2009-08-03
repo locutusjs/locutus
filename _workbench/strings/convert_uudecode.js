@@ -1,4 +1,4 @@
-function convert_uudecode(str) {
+function convert_uudecode (str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ole Vrijenhoek
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
@@ -10,15 +10,15 @@ function convert_uudecode(str) {
 // Not working perfectly
 
     // shortcut
-    var chr = function(c) {
+    var chr = function (c) {
         return String.fromCharCode(c);
     };
 
-    if(!str || str=="") {
+    if (!str || str=="") {
         return chr(0);
-    } else if(!this.is_scalar(str)) {
+    } else if (!this.is_scalar(str)) {
         return false;
-    } else if(str.length < 8) {
+    } else if (str.length < 8) {
         return false;
     }
 
@@ -35,7 +35,7 @@ function convert_uudecode(str) {
         for (j in bytes) {
             tmp1 = bytes[j].charCodeAt(0)-32;
             tmp1 = tmp1.toString(2);
-            while(tmp1.length < 6) {
+            while (tmp1.length < 6) {
                 tmp1 = "0" + tmp1;
             }
             tmp2 += tmp1

@@ -37,7 +37,7 @@ function date_parse_from_format (format, dateArg) {
 
     try {
         newtime = 0; // fix: needs to use format, dateArg to return a time
-        retObj = date_parse(newtime);
+        retObj = this.date_parse(newtime);
     }
     catch (e) {
         return false; // Presumably returns false, as with date_parse()

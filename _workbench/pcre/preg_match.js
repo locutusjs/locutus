@@ -41,7 +41,7 @@ function preg_match(pattern, subject, matches, flags, offset) {
             // e.g., internal options i, m, s, x, U, X, J; conditional subpatterns?, comments, recursive subpatterns,
             for (i=0; i < flagPart.length; i++) {
                 flag = flagPart[i];
-                switch(flag) {
+                switch (flag) {
                     case 'g': // We don't use this in preg_match, but it's presumably not an error
                     case 'm':
                     case 'i':
