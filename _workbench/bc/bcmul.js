@@ -1,15 +1,16 @@
-function bcmul(left_operand, right_operand, scale) {
+function bcmul (left_operand, right_operand, scale) {
     // http://kevin.vanzonneveld.net
     // +   original by: Lance
     // -    depends on: bcadd
+    // -    depends on: bcsub
     // *     example 1: bcmul(4, 2);
     // *     returns 1: 0
-
+    var that = this;
     left_operand = left_operand.toString();
     right_operand = right_operand.toString();
 
     // BC Math Support functions
-    var bc_trimzeros = function(ba) {
+    var bc_trimzeros = function (ba) {
         if (ba.search(/\./i) == -1) {
             ba = ba + ".0";
         }
@@ -27,15 +28,15 @@ function bcmul(left_operand, right_operand, scale) {
         }
         return ba;
     }
-    var bc_makestr = function(sym, mul) {
+    var bc_makestr = function (sym, mul) {
         var CompoundString="";
         while (bc_is_equal(mul,"0") == "FALSE") {
             CompoundString = CompoundString + sym;
-            mul = bcsub(mul,"1", 10);
+            mul = that.bcsub(mul,"1", 10);
         }
         return CompoundString;
     }
-    var bc_is_equal = function(op1, op2) {
+    var bc_is_equal = function (op1, op2) {
         var c=0, r = "FALSE";
         if (op1.length == op2.length) {
             r = "TRUE";
@@ -47,14 +48,14 @@ function bcmul(left_operand, right_operand, scale) {
         }
         return r;
     }
-    var bc_trunc = function(number, scale) {
+    var bc_trunc = function (number, scale) {
         var x=number.split('.');
         if (x.length == 1) return number;
         if (scale == 0) return x[0];
         x = x[0] + '.' + x[1].substr(0, scale);
         return x;
     }
-    var bc_sp = function(Multiplicand, SingleDigitMultiplier) {
+    var bc_sp = function (Multiplicand, SingleDigitMultiplier) {
         var car = "0";
         var sp = "";
         var tp = "0";
@@ -71,7 +72,7 @@ function bcmul(left_operand, right_operand, scale) {
         }
         return sp;
     }
-    var bc_is_less_than = function(op1,op2) {
+    var bc_is_less_than = function (op1,op2) {
         var Result = "";
         if (op1.charAt(0) == "-" && op2.charAt(0) !="-") {
             Result = "TRUE"
@@ -130,7 +131,7 @@ function bcmul(left_operand, right_operand, scale) {
         }
         return Result;
     }
-    var bc_is_greater_than = function(op1,op2) {
+    var bc_is_greater_than = function (op1,op2) {
         var Result = "";
         if (op1.charAt(0) == "-" && op2.charAt(0) !="-") {
             Result = "FALSE"
@@ -189,7 +190,7 @@ function bcmul(left_operand, right_operand, scale) {
         }
         return Result;
     }
-    var bc_divide_operation = function(right_operand, left_operand) {
+    var bc_divide_operation = function (right_operand, left_operand) {
         var TempMultiplier = "", NumberOfZeroes;
         // Declare variables
         var Quotient = "";
@@ -254,7 +255,7 @@ function bcmul(left_operand, right_operand, scale) {
                 right_operand=bcmul(right_operand,TempMultiplier,10); // Perform the Big Multiplication
             }
             for (counterDiv = 0; counterDiv < 10; counterDiv++) {
-                DivHashTable[counterDiv] = bcmul(left_operand,(counterDiv + ''), 10); // the "+''" converts counterDiv to a string
+                DivHashTable[counterDiv] = that.bcmul(left_operand,(counterDiv + ''), 10); // the "+''" converts counterDiv to a string
             }
             var CurrentAnswer = "";
             var Newright_operand = right_operand;
@@ -273,18 +274,18 @@ function bcmul(left_operand, right_operand, scale) {
                     HashCounter-- ;
                 }
                 TempMultiplier = HashCounter+"" + bc_makestr("0",Newright_operand.length-right_operandMultiplierSubstring.length+"");
-                CurrentAnswer = bcadd(CurrentAnswer,TempMultiplier,10);
-                Newright_operand = bcsub(Newright_operand,bcmul(left_operand,TempMultiplier,10),10);
+                CurrentAnswer = that.bcadd(CurrentAnswer,TempMultiplier,10);
+                Newright_operand = that.bcsub(Newright_operand,bcmul(left_operand,TempMultiplier,10),10);
             }
             Quotient = CurrentAnswer;
-            Remainder = bcsub(Oldright_operand,bcmul(Oldleft_operand,Quotient,10),10);
+            Remainder = that.bcsub(Oldright_operand,bcmul(Oldleft_operand,Quotient,10),10);
         }
         return {
             div: (QuotientSign + Quotient),
             mod: Remainder
         };
     }
-    var bc_ss = function(Arg) {
+    var bc_ss = function (Arg) {
         if (Arg.charAt(0)=="-") {
             Arg = Arg.substring(1,Arg.length);
         } else {
@@ -330,10 +331,10 @@ function bcmul(left_operand, right_operand, scale) {
         ds = 0;
         var dsleft_operand = left_operand.length-(left_operand.indexOf(".")+1);
         var dsright_operand = right_operand.length-(right_operand.indexOf(".")+1);
-        if(dsleft_operand == left_operand.length) {
+        if (dsleft_operand == left_operand.length) {
             dsleft_operand = 0;
         }
-        if(dsright_operand == right_operand.length) {
+        if (dsright_operand == right_operand.length) {
             dsright_operand = 0;
         }
         ds = dsright_operand + dsleft_operand;
@@ -342,7 +343,7 @@ function bcmul(left_operand, right_operand, scale) {
         p = "0";
         for (var counter = right_operand.length-1; counter > -1; counter--) {
             NumberOfZeroes = bc_makestr("0",right_operand.length - counter - 1+"");
-            p = bcadd(p,(bc_sp(left_operand,right_operand.charAt(counter)) + NumberOfZeroes), 10);
+            p = this.bcadd(p,(bc_sp(left_operand,right_operand.charAt(counter)) + NumberOfZeroes), 10);
         }
         if (ds > p.length) {
             p = "0." + bc_makestr("0",ds - p.length + "") + p;

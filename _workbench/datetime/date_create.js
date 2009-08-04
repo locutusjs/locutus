@@ -94,7 +94,7 @@ function date_create (time, timezone) {var __ = Relator.$();
         getTimestamp : function () {var _ = __.method(this);
             return that.strtotime(_.time+' +'+$timezone_offset+' hours');
         },
-        getTimezone : function () {var _ = __.method(this);return new DateTimeZone(_.timezone);},
+        getTimezone : function () {var _ = __.method(this);return that.timezone_open(_.timezone);},
         modify : function (/*string */ modify) {return this;},
         setDate : function (/*int*/ year, /*int*/ month , /*int*/ day) {return this;},
         setISODate : function (/*int*/ year, /*int*/ week, /*optional int*/ day) {return this;},

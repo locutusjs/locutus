@@ -1,4 +1,4 @@
-function bcadd(left_operand,right_operand, scale) {
+function bcadd (left_operand,right_operand, scale) {
     // http://kevin.vanzonneveld.net
     // +   original by: Lance
     // -    depends on: bcsub
@@ -286,7 +286,7 @@ function bcadd(left_operand,right_operand, scale) {
             mod: Remainder
         };
     }
-    var bc_ss = function(Arg) {
+    var bc_ss = function (Arg) {
         if (Arg.charAt(0)=="-") {
             Arg = Arg.substring(1,Arg.length);
         } else {

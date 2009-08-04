@@ -1,4 +1,4 @@
-function timezone_open(timezone) {  var __ = Relator.$();
+function timezone_open (timezone) {  var __ = Relator.$();
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   derived from: Andrea Giammarchi

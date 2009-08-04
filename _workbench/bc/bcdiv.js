@@ -1,4 +1,4 @@
-function bcdiv(left_operand, right_operand, scale) {
+function bcdiv (left_operand, right_operand, scale) {
     // http://kevin.vanzonneveld.net
     // +   original by: Lance
     // %        note 1: TODO: Write proper bcdiv function :(
@@ -6,5 +6,5 @@ function bcdiv(left_operand, right_operand, scale) {
     // *     returns 1: 0
     
     return parseFloat(left_operand) / parseFloat(right_operand);
-    //return bcmul(left_operand, (1/right_operand), scale);
+    //return this.bcmul(left_operand, (1/right_operand), scale);
 } 

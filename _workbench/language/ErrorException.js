@@ -39,7 +39,7 @@ function ErrorException (message, code, severity, filename, lineno) {
     this.name = 'ErrorException';
     that.php_js.exception_handler(this);
 }
-ErrorException.prototype = new Exception();
+ErrorException.prototype = new this.Exception();
 ErrorException.prototype.constructor = ErrorException;
 ErrorException.prototype.getSeverity = function () { // Final method
     return this.severity;
