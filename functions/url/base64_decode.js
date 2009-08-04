@@ -1,4 +1,4 @@
-function base64_decode( data ) {
+function base64_decode (data) {
     // http://kevin.vanzonneveld.net
     // +   original by: Tyler Akins (http://rumkin.com)
     // +   improved by: Thunder.m

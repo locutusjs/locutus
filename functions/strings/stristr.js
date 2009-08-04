@@ -1,4 +1,4 @@
-function stristr( haystack, needle, bool ) {
+function stristr (haystack, needle, bool) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfxied by: Onno Marsman
@@ -11,10 +11,10 @@ function stristr( haystack, needle, bool ) {
 
     haystack += '';
     pos = haystack.toLowerCase().indexOf( (needle+'').toLowerCase() );
-    if( pos == -1 ){
+    if (pos == -1){
         return false;
     } else{
-        if( bool ){
+        if (bool) {
             return haystack.substr( 0, pos );
         } else{
             return haystack.slice( pos );

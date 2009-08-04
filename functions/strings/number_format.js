@@ -1,4 +1,4 @@
-function number_format( number, decimals, dec_point, thousands_sep ) {
+function number_format (number, decimals, dec_point, thousands_sep) {
     // Formats a number with grouped thousands
     //
     // version: 906.1806

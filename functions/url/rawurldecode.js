@@ -1,4 +1,4 @@
-function rawurldecode( str ) {
+function rawurldecode (str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +      input by: travc
@@ -16,7 +16,7 @@ function rawurldecode( str ) {
 
     var hash_map = {}, ret = str.toString(), unicodeStr='', hexEscStr='';
 
-    var replacer = function(search, replace, str) {
+    var replacer = function (search, replace, str) {
         var tmp_arr = [];
         tmp_arr = str.split(search);
         return tmp_arr.join(replace);

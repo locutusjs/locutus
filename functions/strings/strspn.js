@@ -1,4 +1,4 @@
-function strspn(str1, str2, start, lgth){
+function strspn (str1, str2, start, lgth) {
     // http://kevin.vanzonneveld.net
     // +   original by: Valentina De Rosa
     // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -17,7 +17,7 @@ function strspn(str1, str2, start, lgth){
     lgth = lgth ? ((lgth < 0) ? (str1.length+lgth-start) : lgth) : str1.length-start;
     str1 = str1.substr(start, lgth);
 
-    for(i = 0; i < str1.length; i++){
+    for (i = 0; i < str1.length; i++){
         found = 0;
         stri  = str1.substring(i,i+1);
         for (j = 0; j <= str2.length; j++) {

@@ -1,4 +1,4 @@
-function ord( string ) {
+function ord (string) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman

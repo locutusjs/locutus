@@ -18,7 +18,7 @@ function import_request_variables (types, prefix) {
     }
 
     if (/g/i.test(types)) { // GET
-        for(i = 0, url = win.location.href, vars = url.substring(url.lastIndexOf("?") + 1, url.length).split("&"); i < vars.length; i++){
+        for (i = 0, url = win.location.href, vars = url.substring(url.lastIndexOf("?") + 1, url.length).split("&"); i < vars.length; i++){
             current = vars[i].split("=");
             current[1] = decodeURIComponent(current[1]);
             arrayBracketPos = current[0].indexOf('[');
@@ -37,7 +37,7 @@ function import_request_variables (types, prefix) {
         }
     }
     if (/c/i.test(types)) { // COOKIE
-        for(i = 0, vars = win.document.cookie.split("&"); i < vars.length;i++){
+        for (i = 0, vars = win.document.cookie.split("&"); i < vars.length;i++){
             current = vars[i].split("=");
             targetObj[prefix+current[0]] = current[1].split(";")[0] || null;
         }

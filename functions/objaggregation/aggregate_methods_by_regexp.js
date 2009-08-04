@@ -12,7 +12,7 @@ function aggregate_methods_by_regexp (obj, class_name, regexp, exclude) {
     var p = '', test=false, record={}, pos=-1;
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if(!name) {
+        if (!name) {
             return '(Anonymous)';
         }
         return name[1];
@@ -33,7 +33,7 @@ function aggregate_methods_by_regexp (obj, class_name, regexp, exclude) {
     this.php_js.aggregateClasses = this.php_js.aggregateClasses || [];
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if(!name) {
+        if (!name) {
             return '(Anonymous)';
         }
         return name[1];

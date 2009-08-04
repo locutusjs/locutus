@@ -1,4 +1,4 @@
-function var_dump() {
+function var_dump () {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: echo
@@ -8,7 +8,7 @@ function var_dump() {
     var output = "", pad_char = " ", pad_val = 4, lgth = 0, i = 0, d = this.window.document;
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if(!name) {
+        if (!name) {
             return '(Anonymous)';
         }
         return name[1];
@@ -16,7 +16,7 @@ function var_dump() {
 
     var repeat_char = function (len, pad_char) {
         var str = "";
-        for(var i=0; i < len; i++) {
+        for (var i=0; i < len; i++) {
             str += pad_char;
         }
         return str;
@@ -97,7 +97,7 @@ function var_dump() {
             d = XULDocument; // We're in XUL, so appending as plain text won't work
             this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">'+output+'</pre>');
         }
-        catch(e) {
+        catch (e) {
             this.echo(output); // Outputting as plain text may work in some plain XML
         }
     }

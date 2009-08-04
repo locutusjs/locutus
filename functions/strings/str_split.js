@@ -11,9 +11,9 @@ function str_split ( f_string, f_split_length){
     if (f_split_length == undefined) {
         f_split_length = 1;
     }
-    if(f_split_length > 0){
+    if (f_split_length > 0) {
         var result = [];
-        while(f_string.length > f_split_length) {
+        while (f_string.length > f_split_length) {
             result[result.length] = f_string.substring(0, f_split_length);
             f_string = f_string.substring(f_split_length);
         }

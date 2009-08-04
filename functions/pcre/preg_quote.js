@@ -1,4 +1,4 @@
-function preg_quote( str ) {
+function preg_quote (str) {
     // http://kevin.vanzonneveld.net
     // +   original by: booeyOH
     // +   improved by: Ates Goral (http://magnetiq.com)

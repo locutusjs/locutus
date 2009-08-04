@@ -1,4 +1,4 @@
-function sprintf( ) {
+function sprintf ( ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ash Searle (http://hexmen.com/blog/)
     // + namespaced by: Michael White (http://getsprink.com)
@@ -19,14 +19,14 @@ function sprintf( ) {
     var a = arguments, i = 0, format = a[i++];
 
     // pad()
-    var pad = function(str, len, chr, leftJustify) {
+    var pad = function (str, len, chr, leftJustify) {
         if (!chr) {chr = ' ';}
         var padding = (str.length >= len) ? '' : Array(1 + len - str.length >>> 0).join(chr);
         return leftJustify ? str + padding : padding + str;
     };
 
     // justify()
-    var justify = function(value, prefix, leftJustify, minWidth, zeroPad, customPadChar) {
+    var justify = function (value, prefix, leftJustify, minWidth, zeroPad, customPadChar) {
         var diff = minWidth - value.length;
         if (diff > 0) {
             if (leftJustify || !zeroPad) {
@@ -39,7 +39,7 @@ function sprintf( ) {
     };
 
     // formatBaseX()
-    var formatBaseX = function(value, base, prefix, leftJustify, minWidth, precision, zeroPad) {
+    var formatBaseX = function (value, base, prefix, leftJustify, minWidth, precision, zeroPad) {
         // Note: casts negative numbers to positive ones
         var number = value >>> 0;
         prefix = prefix && number && {'2': '0b', '8': '0', '16': '0x'}[base] || '';
@@ -48,7 +48,7 @@ function sprintf( ) {
     };
 
     // formatString()
-    var formatString = function(value, leftJustify, minWidth, precision, zeroPad, customPadChar) {
+    var formatString = function (value, leftJustify, minWidth, precision, zeroPad, customPadChar) {
         if (precision != null) {
             value = value.slice(0, precision);
         }
@@ -56,7 +56,7 @@ function sprintf( ) {
     };
 
     // doFormat()
-    var doFormat = function(substring, valueIndex, flags, minWidth, _, precision, type) {
+    var doFormat = function (substring, valueIndex, flags, minWidth, _, precision, type) {
         var number;
         var prefix;
         var method;

@@ -8,10 +8,10 @@ function strcasecmp (f_string1, f_string2){
     var string1 = (f_string1+'').toLowerCase();
     var string2 = (f_string2+'').toLowerCase();
 
-    if(string1 > string2) {
+    if (string1 > string2) {
       return 1;
     }
-    else if(string1 == string2) {
+    else if (string1 == string2) {
       return 0;
     }
 

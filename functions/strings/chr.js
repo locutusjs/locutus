@@ -1,4 +1,4 @@
-function chr( codePt ) {
+function chr (codePt) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Brett Zamir (http://brett-zamir.me)

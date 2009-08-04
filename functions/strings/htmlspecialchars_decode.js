@@ -1,4 +1,4 @@
-function htmlspecialchars_decode(string, quote_style) {
+function htmlspecialchars_decode (string, quote_style) {
     // http://kevin.vanzonneveld.net
     // +   original by: Mirek Slugen
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

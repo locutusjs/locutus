@@ -1,4 +1,4 @@
-function substr( f_string, f_start, f_length ) {
+function substr (f_string, f_start, f_length) {
     // http://kevin.vanzonneveld.net
     // +     original by: Martijn Wieringa
     // +     bugfixed by: T.Wild
@@ -10,19 +10,19 @@ function substr( f_string, f_start, f_length ) {
 
     f_string += '';
 
-    if(f_start < 0) {
+    if (f_start < 0) {
         f_start += f_string.length;
     }
 
-    if(f_length == undefined) {
+    if (f_length == undefined) {
         f_length = f_string.length;
-    } else if(f_length < 0){
+    } else if (f_length < 0){
         f_length += f_string.length;
     } else {
         f_length += f_start;
     }
 
-    if(f_length < f_start) {
+    if (f_length < f_start) {
         f_length = f_start;
     }
 

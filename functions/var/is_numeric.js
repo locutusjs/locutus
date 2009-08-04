@@ -1,4 +1,4 @@
-function is_numeric( mixed_var ) {
+function is_numeric (mixed_var) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: David

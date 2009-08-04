@@ -1,4 +1,4 @@
-function explode( delimiter, string, limit ) {
+function explode (delimiter, string, limit) {
     // http://kevin.vanzonneveld.net
     // +     original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +     improved by: kenneth

@@ -75,7 +75,7 @@ nM2lcUlc+ozqM7v44Zdt3CiN/wel+5Gy/cSN+gAAAABJRU5ErkJggg==";
             '<b>Other Contributors:</b> Sanjoy Roy (1), kenneth (1), Slawomir Kaniecki (1), Saulo Vallory (1), metjay (1), Scott Cariss (1), Simon Willison (1), penutbutterjelly (1), Pul (1), sowberry (1), stensi (1), Pyerre (1), ReverseSyntax (1), johnrembo (1), Robin (1), sankai (1), nobbler (1), Steve Clay (1), XoraX (1), echo is bad (1), Peter-Paul Koch (1), gabriel paderni (1), Yannoo (1), duncan (1), booeyOH (1), dptr1988 (1), baris ozdil (1), ger (1), Tim Wiel (1), Steven Levithan (1), Steve Hilder (1), jakes (1), john (1), hitwork (1), T.Wild (1), gorthaur (1), Thiago Mata (1), T0bsn (1), djmix (1), MeEtc (1), Atli &THORN;&oacute;r (1), Bayron Guevara (1), Ben Bryan (1), Benjamin Lupton (1), Christian Doebler (1), Cagri Ekin (1), Brett Zamir (1), Brad Touesnard (1), Andrea Giammarchi (1), Allan Jensen (1), Alexander Ermolaev (1), Alex (1), Anton Ongson (1), Arno (1), Cord (1), David James (1), Luke Godfrey (1), Lincoln Ramsay (1), Leslie Hoare (1), LH (1), Mateusz "loonquawl" Zalega (1), Mick@el (1), Ozh (1), Norman "zEh" Fuchs (1), Nick Callen (1), Nathan (1), Kirk Strobeck (1), Jon Hohle (1), FGFEmperor (1), DxGx (1), Dino (1), David (1), Felix Geisendoerfer (1), Francois (1), J A R (1), Howard Yeend (1), Gabriel Paderni (1), FremyCompany (1), Pedro Tainha (1)'
             );
         return true;
-    } catch(e) {
+    } catch (e) {
         return false;
     }
 }

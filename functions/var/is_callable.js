@@ -8,14 +8,14 @@ function is_callable (v, syntax_only, callable_name) {
     // *     example 2: is_callable('bogusFunction', true);
     // *     returns 2:true // gives true because does not do strict checking
     // *     example 3: function SomeClass () {}
-    // *     example 3: SomeClass.prototype.someMethod = function(){};
+    // *     example 3: SomeClass.prototype.someMethod = function (){};
     // *     example 3: var testObj = new SomeClass();
     // *     example 3: is_callable([testObj, 'someMethod'], true, 'myVar');
     // *     example 3: alert(myVar); // 'SomeClass::someMethod'
     var name='', obj={}, method='';
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if(!name) {
+        if (!name) {
             return '(Anonymous)';
         }
         return name[1];

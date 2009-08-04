@@ -14,7 +14,7 @@ function crc32 ( str ) {
     var y = 0;
 
     crc = crc ^ (-1);
-    for( var i = 0, iTop = str.length; i < iTop; i++ ) {
+    for (var i = 0, iTop = str.length; i < iTop; i++) {
         y = ( crc ^ str.charCodeAt( i ) ) & 0xFF;
         x = "0x" + table.substr( y * 9, 8 );
         crc = ( crc >>> 8 ) ^ x;

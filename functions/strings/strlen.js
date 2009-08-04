@@ -20,7 +20,7 @@ function strlen (string) {
     var getWholeChar = function (str, i) {
         var code = str.charCodeAt(i);
         var next = '', prev = '';
-        if (0xD800 <= code && code <= 0xDBFF) { // High surrogate(could change last hex to 0xDB7F to treat high private surrogates as single characters)
+        if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
             if (str.length <= (i+1))  {
                 throw 'High surrogate without following low surrogate';
             }

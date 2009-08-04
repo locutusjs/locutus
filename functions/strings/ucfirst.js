@@ -1,4 +1,4 @@
-function ucfirst( str ) {
+function ucfirst (str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman

@@ -172,18 +172,18 @@ function setlocale (category, locale) {
             if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS &&
                     d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')) {
                 phpjs.locale = d.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang');
-            } else if(d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) { // XHTML 1.0 only
+            } else if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) { // XHTML 1.0 only
                 phpjs.locale = d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang;
             }
-        } else if(d.getElementsByTagName('html')[0] && d.getElementsByTagName('html')[0].lang) {
+        } else if (d.getElementsByTagName('html')[0] && d.getElementsByTagName('html')[0].lang) {
             phpjs.locale = d.getElementsByTagName('html')[0].lang;
         }
     }
     phpjs.locale = phpjs.locale.replace('-', '_'); // PHP-style
 
     // Fix locale if declared locale hasn't been defined
-    if(!(phpjs.locale in phpjs.locales)) {
-        if(phpjs.locale.replace(/_[a-zA-Z]+$/, '') in phpjs.locales) {
+    if (!(phpjs.locale in phpjs.locales)) {
+        if (phpjs.locale.replace(/_[a-zA-Z]+$/, '') in phpjs.locales) {
             phpjs.locale = phpjs.locale.replace(/_[a-zA-Z]+$/, '');
         }
     }

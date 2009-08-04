@@ -1,4 +1,4 @@
-function get_defined_vars() {
+function get_defined_vars () {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Test case 1: If get_defined_vars can find itself in the defined vars, it worked :)

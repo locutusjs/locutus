@@ -1,4 +1,4 @@
-function strnatcasecmp(str1, str2) {
+function strnatcasecmp (str1, str2) {
     // http://kevin.vanzonneveld.net
     // +      original by: Martin Pool
     // + reimplemented by: Pierre-Luc Paour
@@ -12,7 +12,7 @@ function strnatcasecmp(str1, str2) {
     var a = (str1+'').toLowerCase();
     var b = (str2+'').toLowerCase();
 
-    var isWhitespaceChar = function(a) {
+    var isWhitespaceChar = function (a) {
         return a.charCodeAt(0) <= 32;
     };
 
@@ -21,7 +21,7 @@ function strnatcasecmp(str1, str2) {
         return ( charCode >= 48  && charCode <= 57 );
     };
 
-    var compareRight = function(a,b) {
+    var compareRight = function (a,b) {
         var bias = 0;
         var ia = 0;
         var ib = 0;
@@ -71,7 +71,7 @@ function strnatcasecmp(str1, str2) {
         cb = b.charAt(ib);
 
         // skip over leading spaces or zeros
-        while ( isWhitespaceChar( ca ) || ca =='0' ) {
+        while (isWhitespaceChar( ca ) || ca =='0') {
             if (ca == '0') {
                 nza++;
             } else {
@@ -82,7 +82,7 @@ function strnatcasecmp(str1, str2) {
             ca = a.charAt(++ia);
         }
 
-        while ( isWhitespaceChar( cb ) || cb == '0') {
+        while (isWhitespaceChar( cb ) || cb == '0') {
             if (cb == '0') {
                 nzb++;
             } else {

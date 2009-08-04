@@ -1,4 +1,4 @@
-function strpos( haystack, needle, offset){
+function strpos (haystack, needle, offset) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Onno Marsman    

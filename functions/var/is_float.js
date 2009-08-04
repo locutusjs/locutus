@@ -1,4 +1,4 @@
-function is_float( mixed_var ) {
+function is_float (mixed_var) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
     // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes

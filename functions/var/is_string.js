@@ -1,4 +1,4 @@
-function is_string( mixed_var ){
+function is_string (mixed_var){
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: is_string('23');

@@ -1,4 +1,4 @@
-function doubleval( mixed_var ) {
+function doubleval (mixed_var) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     //  -   depends on: floatval

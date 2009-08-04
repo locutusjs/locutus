@@ -1,4 +1,4 @@
-function isset(  ) {
+function isset () {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: FremyCompany

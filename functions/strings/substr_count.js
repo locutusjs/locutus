@@ -1,4 +1,4 @@
-function substr_count( haystack, needle, offset, length ) {
+function substr_count (haystack, needle, offset, length) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Onno Marsman
@@ -13,12 +13,12 @@ function substr_count( haystack, needle, offset, length ) {
 
     haystack += '';
     needle += '';
-    if(isNaN(offset)) {offset = 0;}
-    if(isNaN(length)) {length = 0;}
+    if (isNaN(offset)) {offset = 0;}
+    if (isNaN(length)) {length = 0;}
     offset--;
 
-    while( (offset = haystack.indexOf(needle, offset+1)) != -1 ){
-        if(length > 0 && (offset+needle.length) > length){
+    while ((offset = haystack.indexOf(needle, offset+1)) != -1){
+        if (length > 0 && (offset+needle.length) > length){
             return false;
         } else{
             cnt++;

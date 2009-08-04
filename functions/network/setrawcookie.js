@@ -1,4 +1,4 @@
-function setrawcookie(name, value, expires, path, domain, secure) {
+function setrawcookie (name, value, expires, path, domain, secure) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -8,13 +8,13 @@ function setrawcookie(name, value, expires, path, domain, secure) {
 
     if (expires instanceof Date) {
         expires = expires.toGMTString();
-    } else if(typeof(expires) == 'number') {
+    } else if (typeof(expires) == 'number') {
         expires = (new Date(+(new Date()) + expires * 1e3)).toGMTString();
     }
 
     var r = [name + "=" + value], s={}, i='';
     s = {expires: expires, path: path, domain: domain};
-    for(i in s){
+    for (i in s){
         s[i] && r.push(i + "=" + s[i]);
     }
     

@@ -1,4 +1,4 @@
-function empty( mixed_var ) {
+function empty (mixed_var) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philippe Baumann
     // +      input by: Onno Marsman

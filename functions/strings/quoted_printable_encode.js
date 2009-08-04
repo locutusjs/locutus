@@ -1,4 +1,4 @@
-function quoted_printable_encode(str) {
+function quoted_printable_encode (str) {
     // +   original by: Theriault
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Theriault

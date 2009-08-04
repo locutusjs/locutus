@@ -1,4 +1,4 @@
-function var_export(mixed_expression, bool_return) {
+function var_export (mixed_expression, bool_return) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
     // +   improved by: johnrembo
@@ -23,13 +23,13 @@ function var_export(mixed_expression, bool_return) {
         
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if(!name) {
+        if (!name) {
             return '(Anonymous)';
         }
         return name[1];
     };
 
-    var __getType = function( inp ) {
+    var __getType = function (inp) {
         var i = 0;
         var match, type = typeof inp;
         if (type === 'object' && inp.constructor && getFuncName(inp.constructor) === 'PHPJS_Resource') {
@@ -62,10 +62,10 @@ function var_export(mixed_expression, bool_return) {
     };
     var type = __getType(mixed_expression);
 
-    if( type === null) {
+    if (type === null) {
         retstr = "NULL";
-    } else if(type === 'array' || type === 'object') {
-        for(i in mixed_expression) {
+    } else if (type === 'array' || type === 'object') {
+        for (i in mixed_expression) {
             x[cnt++] = this.var_export(i,true)+" => "+this.var_export(mixed_expression[i], true);
         }
         iret = x.join(',\n  ');
@@ -87,7 +87,7 @@ function var_export(mixed_expression, bool_return) {
         retstr = (!isNaN( mixed_expression )) ? mixed_expression : "'" + mixed_expression.replace(/(["'])/g, "\\$1").replace(/\0/g, "\\0") + "'";
     }
 
-    if(bool_return !== true) {
+    if (bool_return !== true) {
         this.echo(retstr);
         return null;
     } else {

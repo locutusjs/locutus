@@ -1,4 +1,4 @@
-function print_r( array, return_val ) {
+function print_r (array, return_val) {
     // http://kevin.vanzonneveld.net
     // +   original by: Michael White (http://getsprink.com)
     // +   improved by: Ben Bryan
@@ -12,7 +12,7 @@ function print_r( array, return_val ) {
     var output = "", pad_char = " ", pad_val = 4, d = this.window.document;
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if(!name) {
+        if (!name) {
             return '(Anonymous)';
         }
         return name[1];
@@ -20,7 +20,7 @@ function print_r( array, return_val ) {
 
     var repeat_char = function (len, pad_char) {
         var str = "";
-        for(var i=0; i < len; i++) {
+        for (var i=0; i < len; i++) {
             str += pad_char;
         }
         return str;
@@ -45,7 +45,7 @@ function print_r( array, return_val ) {
                 }
             }
             str += base_pad + ")\n";
-        } else if(obj === null || obj === undefined) {
+        } else if (obj === null || obj === undefined) {
             str = '';
         } else { // for our "resource" class
             str = obj.toString();
@@ -65,7 +65,7 @@ function print_r( array, return_val ) {
                 d = XULDocument; // We're in XUL, so appending as plain text won't work; trigger an error out of XUL
                 this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">'+output+'</pre>');
             }
-            catch(e) {
+            catch (e) {
                 this.echo(output); // Outputting as plain text may work in some plain XML
             }
         }

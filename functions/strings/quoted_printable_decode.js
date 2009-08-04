@@ -1,4 +1,4 @@
-function quoted_printable_decode(str) {
+function quoted_printable_decode (str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ole Vrijenhoek
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

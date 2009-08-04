@@ -1,4 +1,4 @@
-function count_chars( str, mode ) {
+function count_chars (str, mode) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com)
     // +    tweaked by: Jack

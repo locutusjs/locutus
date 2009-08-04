@@ -29,7 +29,7 @@ function debug_backtrace (provide_object) {
     try {
         throw new Error();
     }
-    catch(e) {
+    catch (e) {
       var stackArr = e.stack.replace(/\n$/, '').split('\n').slice(2);
     }
     // a()@file:///C:/Users/Brett/Desktop/PHP_JS/debug_backtrace.xul:7,@file:///C:/Users/Brett/Desktop/PHP_JS/debug_backtrace.xul:16

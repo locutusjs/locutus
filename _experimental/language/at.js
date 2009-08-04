@@ -11,7 +11,7 @@ function at(cb) {  // Could also name as "at_sign", "silence", "error_suppressor
     try {
         return cb.apply(null, Array.prototype.slice.call(arguments, 1));
     }
-    catch(e){
+    catch (e){
         // BEGIN REDUNDANT
         this.php_js = this.php_js || {};
         this.php_js.ini = this.php_js.ini || {};

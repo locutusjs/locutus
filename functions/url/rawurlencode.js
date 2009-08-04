@@ -1,4 +1,4 @@
-function rawurlencode( str ) {
+function rawurlencode (str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +      input by: travc
@@ -17,7 +17,7 @@ function rawurlencode( str ) {
     var hash_map = {}, unicodeStr='', hexEscStr='';
     var ret = str.toString();
 
-    var replacer = function(search, replace, str) {
+    var replacer = function (search, replace, str) {
         var tmp_arr = [];
         tmp_arr = str.split(search);
         return tmp_arr.join(replace);
@@ -73,7 +73,7 @@ function rawurlencode( str ) {
     }
 
     // Uppercase for full PHP compatibility
-    return ret.replace(/(\%([a-z0-9]{2}))/g, function(full, m1, m2) {
+    return ret.replace(/(\%([a-z0-9]{2}))/g, function (full, m1, m2) {
         return "%"+m2.toUpperCase();
     });
 }

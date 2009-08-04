@@ -1,4 +1,4 @@
-function serialize( mixed_value ) {
+function serialize (mixed_value) {
     // http://kevin.vanzonneveld.net
     // +   original by: Arpad Ray (mailto:arpad@php.net)
     // +   improved by: Dino
@@ -14,7 +14,7 @@ function serialize( mixed_value ) {
     // *     example 2: serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'});
     // *     returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
 
-    var _getType = function( inp ) {
+    var _getType = function (inp) {
         var type = typeof inp, match;
         var key;
         if (type == 'object' && !inp) {

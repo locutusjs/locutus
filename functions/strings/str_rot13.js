@@ -1,4 +1,4 @@
-function str_rot13( str ) {
+function str_rot13 (str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +   improved by: Ates Goral (http://magnetiq.com)

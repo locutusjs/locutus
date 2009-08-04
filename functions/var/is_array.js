@@ -1,4 +1,4 @@
-function is_array( mixed_var ) {
+function is_array (mixed_var) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Legaev Andrey
@@ -23,7 +23,7 @@ function is_array( mixed_var ) {
     var key = '';
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if(!name) {
+        if (!name) {
             return '(Anonymous)';
         }
         return name[1];

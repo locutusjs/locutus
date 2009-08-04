@@ -1,4 +1,4 @@
-function vprintf(format, args) {
+function vprintf (format, args) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ash Searle (http://hexmen.com/blog/)
     // +   improved by: Michael White (http://getsprink.com)

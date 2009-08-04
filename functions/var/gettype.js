@@ -1,4 +1,4 @@
-function gettype( mixed_var ) {
+function gettype (mixed_var) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -22,7 +22,7 @@ function gettype( mixed_var ) {
     var s = typeof mixed_var, name;
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if(!name) {
+        if (!name) {
             return '(Anonymous)';
         }
         return name[1];

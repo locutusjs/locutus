@@ -1,4 +1,4 @@
-function strip_tags(str, allowed_tags) {
+function strip_tags (str, allowed_tags) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Luke Godfrey
@@ -32,7 +32,7 @@ function strip_tags(str, allowed_tags) {
     var k = '';
     var html = '';
 
-    var replacer = function(search, replace, str) {
+    var replacer = function (search, replace, str) {
         return str.split(search).join(replace);
     };
 

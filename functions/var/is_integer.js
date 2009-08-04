@@ -1,4 +1,4 @@
-function is_integer( mixed_var ) {
+function is_integer (mixed_var) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
     //  -   depends on: is_int

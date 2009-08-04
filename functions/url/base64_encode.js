@@ -1,4 +1,4 @@
-function base64_encode( data ) {
+function base64_encode (data) {
     // http://kevin.vanzonneveld.net
     // +   original by: Tyler Akins (http://rumkin.com)
     // +   improved by: Bayron Guevara
@@ -43,7 +43,7 @@ function base64_encode( data ) {
     
     enc = tmp_arr.join('');
     
-    switch( data.length % 3 ){
+    switch (data.length % 3) {
         case 1:
             enc = enc.slice(0, -2) + '==';
         break;

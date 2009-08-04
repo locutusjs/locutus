@@ -21,7 +21,7 @@ function nl_langinfo (item) {
         return loc.LC_TIME.B[parseInt(item.replace(/^MON_/, ''), 10)-1];
     }
     else {
-        switch(item) {
+        switch (item) {
             // More LC_TIME
             case 'AM_STR':
                 return loc.LC_TIME.p[0];
@@ -46,7 +46,7 @@ function nl_langinfo (item) {
         if (item === 'CRNCYSTR') {
             item = 'CURRENCY_SYMBOL'; // alias
         }
-        switch(item) {
+        switch (item) {
             case 'INT_CURR_SYMBOL': // all fall-throughs
             case 'CURRENCY_SYMBOL':
             case 'MON_DECIMAL_POINT':
@@ -66,7 +66,7 @@ function nl_langinfo (item) {
                 return loc.LC_MONETARY[item.toLowerCase()];
         }
         loc = this.php_js.locales[this.php_js.localeCategories.LC_NUMERIC];
-        switch(item) {
+        switch (item) {
             case 'RADIXCHAR': // Fall-through
             case 'DECIMAL_POINT':
                 return loc.LC_NUMERIC[item.toLowerCase()];
@@ -77,7 +77,7 @@ function nl_langinfo (item) {
                 return loc.LC_NUMERIC[item.toLowerCase()];
         }
         loc = this.php_js.locales[this.php_js.localeCategories.LC_MESSAGES];
-        switch(item) {
+        switch (item) {
             case 'YESEXPR': // all fall-throughs
             case 'NOEXPR':
             case 'YESSTR':

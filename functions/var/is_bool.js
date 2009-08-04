@@ -1,4 +1,4 @@
-function is_bool(mixed_var)
+function is_bool (mixed_var)
 {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
@@ -7,5 +7,5 @@ function is_bool(mixed_var)
     // *     example 2: is_bool(0);
     // *     returns 2: false
 
-    return (typeof mixed_var == 'boolean');
+    return (typeof mixed_var === 'boolean');
 }

@@ -1,4 +1,4 @@
-function chunk_split(body, argChunklen, argEnd) {
+function chunk_split (body, argChunklen, argEnd) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
     // +      input by: Brett Zamir (http://brett-zamir.me)

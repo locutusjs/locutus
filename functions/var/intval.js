@@ -1,4 +1,4 @@
-function intval( mixed_var, base ) {
+function intval (mixed_var, base) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: stensi
@@ -16,20 +16,20 @@ function intval( mixed_var, base ) {
 
     var type = typeof( mixed_var );
 
-    if(type == 'boolean'){
+    if (type == 'boolean'){
         if (mixed_var == true) {
             return 1;
         } else {
             return 0;
         }
-    } else if(type == 'string'){
+    } else if (type == 'string'){
         tmp = parseInt(mixed_var * 1, 10);
-        if(isNaN(tmp) || !isFinite(tmp)){
+        if (isNaN(tmp) || !isFinite(tmp)){
             return 0;
         } else{
             return tmp.toString(base || 10);
         }
-    } else if(type == 'number' && isFinite(mixed_var) ){
+    } else if (type == 'number' && isFinite(mixed_var) ){
         return Math.floor(mixed_var);
     } else{
         return 0;

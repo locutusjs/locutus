@@ -10,5 +10,5 @@ function aggregation_info (obj) {
     // *     example 1: aggregation_info(b);
     // *     returns 1: {'A':{methods:['someMethod'], properties:['prop']}}
     
-    return aggregate_info(obj);
+    return this.aggregate_info(obj);
 }

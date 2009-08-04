@@ -1,4 +1,4 @@
-function strtoupper( str ) {
+function strtoupper (str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Onno Marsman

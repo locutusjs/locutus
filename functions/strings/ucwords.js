@@ -1,4 +1,4 @@
-function ucwords( str ) {
+function ucwords (str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +   improved by: Waldo Malqui Silva

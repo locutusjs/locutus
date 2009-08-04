@@ -1,4 +1,4 @@
-function soundex(str) {
+function soundex (str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +    tweaked by: Jack

@@ -1,4 +1,4 @@
-function is_scalar( mixed_var ) {
+function is_scalar (mixed_var) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
     // *     example 1: is_scalar(186.31);

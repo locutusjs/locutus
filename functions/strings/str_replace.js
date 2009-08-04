@@ -1,4 +1,4 @@
-function str_replace(search, replace, subject, count) {
+function str_replace (search, replace, subject, count) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Gabriel Paderni

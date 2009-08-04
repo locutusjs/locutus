@@ -1,4 +1,4 @@
-function addslashes( str ) {
+function addslashes (str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Ates Goral (http://magnetiq.com)

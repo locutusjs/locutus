@@ -1,4 +1,4 @@
-function get_meta_tags(file) {
+function get_meta_tags (file) {
     // Extracts all meta tag content attributes from a file and returns an array
     //
     // version: 905.3122

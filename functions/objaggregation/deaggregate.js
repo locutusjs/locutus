@@ -12,7 +12,7 @@ function deaggregate (obj, class_name) {
     var p='', idx=-1, pos=-1, i=0;
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if(!name) {
+        if (!name) {
             return '(Anonymous)';
         }
         return name[1];

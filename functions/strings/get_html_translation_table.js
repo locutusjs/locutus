@@ -1,4 +1,4 @@
-function get_html_translation_table(table, quote_style) {
+function get_html_translation_table (table, quote_style) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

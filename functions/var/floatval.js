@@ -1,4 +1,4 @@
-function floatval(mixed_var) {
+function floatval (mixed_var) {
     // +   original by: Michael White (http://getsprink.com)
     // %        note 1: The native parseFloat() method of JavaScript returns NaN when it encounters a string before an int or float value.
     // *     example 1: floatval('150.03_page-section');

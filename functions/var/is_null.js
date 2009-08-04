@@ -1,4 +1,4 @@
-function is_null( mixed_var ){
+function is_null (mixed_var) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: is_null('23');

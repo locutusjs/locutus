@@ -1,4 +1,4 @@
-function urldecode( str ) {
+function urldecode (str) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -20,7 +20,7 @@ function urldecode( str ) {
     
     var hash_map = {}, ret = str.toString(), unicodeStr='', hexEscStr='';
     
-    var replacer = function(search, replace, str) {
+    var replacer = function (search, replace, str) {
         var tmp_arr = [];
         tmp_arr = str.split(search);
         return tmp_arr.join(replace);

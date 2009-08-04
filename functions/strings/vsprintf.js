@@ -1,4 +1,4 @@
-function vsprintf(format, args) {
+function vsprintf (format, args) {
     // http://kevin.vanzonneveld.net
     // +   original by: ejsanders
     // -    depends on: sprintf

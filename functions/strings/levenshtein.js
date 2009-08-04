@@ -1,4 +1,4 @@
-function levenshtein(s1,s2){
+function levenshtein (s1, s2) {
       // http://kevin.vanzonneveld.net
       // +            original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
       // +            bugfixed by: Onno Marsman
@@ -25,7 +25,7 @@ function levenshtein(s1,s2){
     var split = false;
     try{
         split=!('0')[0];
-    } catch(e){
+    } catch (e){
         split=true; // Earlier IE may not support access by string index
     }
     // END STATIC

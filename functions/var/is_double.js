@@ -1,4 +1,4 @@
-function is_double( mixed_var ) {
+function is_double (mixed_var) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
     //  -   depends on: is_float

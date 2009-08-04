@@ -23,7 +23,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
         f_version = false;
     }
 
-    var __strnatcmp_split = function( f_string ) {
+    var __strnatcmp_split = function ( f_string ) {
         var result = [];
         var buffer = '';
         var chr = '';
@@ -36,7 +36,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
             chr = f_string.substring(i, i + 1);
             if (chr.match(/[0-9]/)) {
                 if (text) {
-                    if(buffer.length > 0){
+                    if (buffer.length > 0){
                         result[result.length] = buffer;
                         buffer = '';
                     }
@@ -98,13 +98,13 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
                 return -1;
             }
         } else if (isNaN(array2[i])) {
-            if(text) {
+            if (text) {
                 return -1;
             } else{
                 return 1;
             }
         } else {
-            if(text || f_version){
+            if (text || f_version){
                 if ((r = (array1[i] - array2[i])) != 0) {
                     return r;
                 }

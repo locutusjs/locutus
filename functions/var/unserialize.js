@@ -1,4 +1,4 @@
-function unserialize(data){
+function unserialize (data) {
     // http://kevin.vanzonneveld.net
     // +     original by: Arpad Ray (mailto:arpad@php.net)
     // +     improved by: Pedro Tainha (http://www.pedrotainha.com)
@@ -35,7 +35,7 @@ function unserialize(data){
         var buf;
 
         buf = [];
-        for(var i = 0;i < length;i++){
+        for (var i = 0;i < length;i++){
             var chr = data.slice(offset + (i - 1),offset + i);
             buf.push(chr);
         }
@@ -50,13 +50,13 @@ function unserialize(data){
         var keyandchrs;
         var keys;
 
-        if(!offset) {offset = 0;}
+        if (!offset) {offset = 0;}
         var dtype = (data.slice(offset, offset + 1)).toLowerCase();
 
         var dataoffset = offset + 2;
         var typeconvert = new Function('x', 'return x');
 
-        switch(dtype){
+        switch (dtype){
             case 'i':
                 typeconvert = function (x) {return parseInt(x, 10);};
                 readData = read_until(data, dataoffset, ';');
@@ -91,7 +91,7 @@ function unserialize(data){
                 chrs = readData[0];
                 readdata = readData[1];
                 dataoffset += chrs + 2;
-                if(chrs != parseInt(stringlength, 10) && chrs != readdata.length){
+                if (chrs != parseInt(stringlength, 10) && chrs != readdata.length){
                     error('SyntaxError', 'String length mismatch');
                 }
             break;
@@ -103,7 +103,7 @@ function unserialize(data){
                 keys = keyandchrs[1];
                 dataoffset += chrs + 2;
 
-                for(var i = 0;i < parseInt(keys, 10);i++){
+                for (var i = 0; i < parseInt(keys, 10); i++){
                     var kprops = _unserialize(data, dataoffset);
                     var kchrs = kprops[1];
                     var key = kprops[2];

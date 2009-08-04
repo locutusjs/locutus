@@ -1,4 +1,4 @@
-function http_build_query( formdata, numeric_prefix, arg_separator ) {
+function http_build_query (formdata, numeric_prefix, arg_separator) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Legaev Andrey
@@ -22,12 +22,12 @@ function http_build_query( formdata, numeric_prefix, arg_separator ) {
         }
         if (typeof(val) == "array" || typeof(val) == "object") {
             for (k in val) {
-                if(val[k] !== null) {
+                if (val[k] !== null) {
                     tmp.push(_http_build_query_helper(key + "[" + k + "]", val[k], arg_separator));
                 }
             }
             return tmp.join(arg_separator);
-        } else if(typeof(val) != "function") {
+        } else if (typeof(val) != "function") {
             return this.urlencode(key) + "=" + this.urlencode(val);
         }
     };

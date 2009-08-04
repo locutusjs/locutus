@@ -23,7 +23,7 @@ function settype (vr, type) {
     v = this[vr] ? this[vr] : vr;
     
     try {
-        switch(type) {
+        switch (type) {
             case 'boolean':
                 if (is_array(v) && v.length === 0) {this[vr]=false;}
                 else if (v === '0') {this[vr]=false;}

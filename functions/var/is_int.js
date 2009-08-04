@@ -1,4 +1,4 @@
-function is_int( mixed_var ) {
+function is_int (mixed_var) {
     // http://kevin.vanzonneveld.net
     // +   original by: Alex
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

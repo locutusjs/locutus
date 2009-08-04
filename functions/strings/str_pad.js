@@ -1,4 +1,4 @@
-function str_pad( input, pad_length, pad_string, pad_type ) {
+function str_pad (input, pad_length, pad_string, pad_type) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // + namespaced by: Michael White (http://getsprink.com)
@@ -9,10 +9,10 @@ function str_pad( input, pad_length, pad_string, pad_type ) {
 
     var half = '', pad_to_go;
 
-    var str_pad_repeater = function(s, len) {
+    var str_pad_repeater = function (s, len) {
         var collect = '', i;
 
-        while(collect.length < len) {collect += s;}
+        while (collect.length < len) {collect += s;}
         collect = collect.substr(0,len);
 
         return collect;

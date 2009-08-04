@@ -1,4 +1,4 @@
-function str_word_count(str, format, charlist) {
+function str_word_count (str, format, charlist) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ole Vrijenhoek
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -15,7 +15,7 @@ function str_word_count(str, format, charlist) {
     var assArr = {}, aC = 0, reg = "";
     
     if (charlist) {
-        for(i = 0; i<=charlist.length - 1; i++) {
+        for (i = 0; i<=charlist.length - 1; i++) {
             if (i != charlist.length - 1) {
                 reg = reg + charlist.charCodeAt(i) + "|";
             } else {
@@ -28,11 +28,11 @@ function str_word_count(str, format, charlist) {
     for (i = 0; i <= l-1; i++) {
         c = str.charCodeAt(i);
         if ((c<91&&c>64)||(c<123&&c>96)||c == 45||c == 39||(reg && reg.test(c))) {
-            if(tmpStr == "" && format == 2) {
+            if (tmpStr == "" && format == 2) {
                 aC = i;
             }
             tmpStr = tmpStr + String.fromCharCode(c);
-        } else if(tmpStr != "") {
+        } else if (tmpStr != "") {
             if (format != 2) {
                 wArr[wArr.length] = tmpStr;
             } else {
