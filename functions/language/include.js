@@ -1,4 +1,4 @@
-function include( filename ) {
+function include (filename) {
     // http://kevin.vanzonneveld.net
     // +   original by: mdsjack (http://www.mdsjack.bo.it)
     // +   improved by: Legaev Andrey

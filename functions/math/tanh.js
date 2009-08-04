@@ -1,4 +1,4 @@
-function tanh(arg) {
+function tanh (arg) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: tanh(5.4251848798444815);

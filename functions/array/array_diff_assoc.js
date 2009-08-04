@@ -1,4 +1,4 @@
-function array_diff_assoc() {
+function array_diff_assoc () {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: 0m3r

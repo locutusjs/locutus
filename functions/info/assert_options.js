@@ -11,7 +11,7 @@ function assert_options (what, value) {
     // END REDUNDANT
 
     var ini, dflt;
-    switch(what) {
+    switch (what) {
         case 'ASSERT_ACTIVE':
             ini = 'assert.active';
             dflt = 1;

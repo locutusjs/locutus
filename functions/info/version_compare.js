@@ -1,4 +1,4 @@
-function version_compare(version1, version2, operator) {
+function version_compare (version1, version2, operator) {
     // http://kevin.vanzonneveld.net
     // +      original by: Philippe Jausions (http://pear.php.net/user/jausions)
     // +      original by: Aidan Lister (http://aidanlister.com/)
@@ -25,7 +25,7 @@ function version_compare(version1, version2, operator) {
     var v1, v2, compare = 0, i = 0, x = 0;
     var i1, i2;
 
-    var parseVersionString = function(v) {
+    var parseVersionString = function (v) {
         v = v.replace(/(^\s*)|(\s*$)/g, "").replace(/[-|_|+]/g,'.').replace(/([^0-9\.]+)/g,'.$1.');
         v = v.replace(/\.\.*/g,'.').toLowerCase().split('.');
         while (!v[0]) {
@@ -63,9 +63,9 @@ function version_compare(version1, version2, operator) {
         i2      = v2[i];
 
         if (!isNaN(i1) && !isNaN(i2)) {
-            if(parseInt(i1, 10) < parseInt(i2, 10)) {
+            if (parseInt(i1, 10) < parseInt(i2, 10)) {
                 compare = -1;
-            } else if(parseInt(i1, 10) > parseInt(i2, 10)){
+            } else if (parseInt(i1, 10) > parseInt(i2, 10)){
                 compare = 1;
             }
             break;
@@ -84,9 +84,9 @@ function version_compare(version1, version2, operator) {
         }
 
         if (versions[i1] && versions[i2]) {
-            if(versions[i1] < versions[i2])
+            if (versions[i1] < versions[i2])
                 compare = -1;
-            else if(versions[i1] > versions[i2])
+            else if (versions[i1] > versions[i2])
                 compare = 1;
         } else if (versions[i1]) {
             compare = 1;

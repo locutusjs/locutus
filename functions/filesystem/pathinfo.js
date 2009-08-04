@@ -61,7 +61,7 @@ function pathinfo (path, options) {
     }
 
     // Internal Functions
-    var __getExt = function(path) {
+    var __getExt = function (path) {
         var str  = path+'';
         var dotP = str.lastIndexOf('.')+1;
         return str.substr(dotP);

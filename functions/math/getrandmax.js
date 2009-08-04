@@ -1,4 +1,4 @@
-function getrandmax()
+function getrandmax ()
 {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman

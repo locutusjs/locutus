@@ -1,4 +1,4 @@
-function max() {
+function max () {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // +    revised by: Onno Marsman
@@ -20,7 +20,7 @@ function max() {
     var ar, retVal, i = 0, n = 0;
     var argv = arguments, argc = argv.length;
 
-    var _obj2Array = function(obj) {
+    var _obj2Array = function (obj) {
         if (obj instanceof Array) {
             return obj;
         } else {
@@ -32,7 +32,7 @@ function max() {
         }
     }; //function _obj2Array
     
-    var _compare = function(current, next) {
+    var _compare = function (current, next) {
         var i = 0, n = 0, tmp = 0;
         var nl = 0, cl = 0;
         

@@ -31,48 +31,48 @@ function round (val, precision, mode) {
      * _round_half    - Primary function for round half rounding modes
      */
     var retVal=0,v='',integer='',decimal='',decp=0,negative=false;
-    var _round_half_oe = function(dtR,dtLa,even){
-        if(even === true){
-            if(dtLa == 50){
-                if((dtR % 2) === 1){
-                    if(dtLa >= 5){
+    var _round_half_oe = function (dtR,dtLa,even){
+        if (even === true) {
+            if (dtLa == 50) {
+                if ((dtR % 2) === 1) {
+                    if (dtLa >= 5) {
                         dtR+=1;
-                    }else{
+                    } else {
                         dtR-=1;
                     }
                 }
-            }else if(dtLa >= 5){
+            }else if (dtLa >= 5) {
                 dtR+=1;
             }
         }else{
-            if(dtLa == 5){
-                if((dtR % 2) === 0){
-                    if(dtLa >= 5){
+            if (dtLa == 5) {
+                if ((dtR % 2) === 0) {
+                    if (dtLa >= 5) {
                         dtR+=1;
                     }else{
                         dtR-=1;
                     }
                 }
-            }else if(dtLa >= 5){
+            }else if (dtLa >= 5) {
                 dtR+=1;
             }
         }
 
         return dtR;
     };
-    var _round_half_ud = function(dtR,dtLa,up){
-        if(up === true){
-            if(dtLa>=5){
+    var _round_half_ud = function (dtR,dtLa,up) {
+        if (up === true) {
+            if (dtLa>=5) {
                 dtR+=1;
             }
         }else{
-            if(dtLa>5){
+            if (dtLa>5) {
                 dtR+=1;
             }
         }
         return dtR;
     };
-    var _round_half = function(val,decplaces,mode){
+    var _round_half = function (val,decplaces,mode){
     /*Declare variables
          *V       - string representation of Val
          *Vlen    - The length of V - used only when rounding intgerers
@@ -94,7 +94,7 @@ function round (val, precision, mode) {
         var digitToRound = 0,digitToLookAt = 0;
         var integer='',decimal='';
         var round = null,bool=false;
-        switch(mode){
+        switch (mode) {
             case 'up':
                 bool = true;
                 // Fall-through
@@ -124,7 +124,7 @@ function round (val, precision, mode) {
             }
 
             v = Number(v)*(Math.pow(10,vlenDif));
-        }else if(decplaces > 0){
+        }else if (decplaces > 0){
             integer=v.slice(0,decp);
             decimal=v.slice(decp+1);
             digitToLookAt = Number(decimal.charAt(decplaces));
@@ -132,7 +132,7 @@ function round (val, precision, mode) {
             digitToRound  = Number(decimal.charAt(decplaces-1));
             digitToRound  = round(digitToRound,digitToLookAt,bool);
             decimal=decimal.slice(0,decplaces-1);
-            if(digitToRound==10){
+            if (digitToRound==10){
                 v=Number(integer+'.'+decimal)+(1*(Math.pow(10,(0-decimal.length))));
             }else{
                 v=Number(integer+'.'+decimal+digitToRound);
@@ -146,7 +146,7 @@ function round (val, precision, mode) {
             digitToRound  = round(digitToRound,digitToLookAt,bool);
             decimal='0';
             integer = integer.slice(0,integer.length-1);
-            if(digitToRound==10){
+            if (digitToRound==10){
                 v=Number(integer)+1;
             }else{
                 v=Number(integer+digitToRound);
@@ -186,7 +186,7 @@ function round (val, precision, mode) {
         }else{
             //Otherwise we have to split the decimals from the integer
             integer = v.slice(0,decp);
-            if(precision >= 0){
+            if (precision >= 0){
                 //If the precision is greater than 0 then split the decimals from the integer
                 //We truncate the decimals to a number of places equal to the precision requested+1
                 decimal = v.substr(decp+1,precision+1);
@@ -228,7 +228,7 @@ function round (val, precision, mode) {
             retVal = _round_half(val,precision,'odd');
             break;
     }
-    if(negative){
+    if (negative){
         return 0-retVal;
     }else{
         return retVal;

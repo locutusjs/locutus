@@ -1,4 +1,4 @@
-function getdate(timestamp) {
+function getdate (timestamp) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
     // *     example 1: getdate(1055901520);

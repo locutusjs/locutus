@@ -82,7 +82,7 @@ function trigger_error (error_msg, error_type) {
     }
 
     if (display_errors(type)) {
-        switch(type) {
+        switch (type) {
             case TYPES.E_USER_WARNING:
             case TYPES.E_WARNING:
             case TYPES.E_CORE_WARNING:

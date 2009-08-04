@@ -1,4 +1,4 @@
-function array_slice(arr, offst, lgth, preserve_keys) {
+function array_slice (arr, offst, lgth, preserve_keys) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: is_int

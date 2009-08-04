@@ -14,7 +14,7 @@ function pclose (handle) {
         delete this.php_js.resourceData[handle.id]; // Free up memory
         return true;
     }
-    catch(e) {
+    catch (e) {
         return false;
     }
 }

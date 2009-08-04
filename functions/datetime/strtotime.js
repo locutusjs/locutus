@@ -1,4 +1,4 @@
-function strtotime(str, now) {
+function strtotime (str, now) {
     // http://kevin.vanzonneveld.net
     // +   original by: Caio Ariede (http://caioariede.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

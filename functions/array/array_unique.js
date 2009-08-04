@@ -1,4 +1,4 @@
-function array_unique( array ) {
+function array_unique (array) {
     // http://kevin.vanzonneveld.net
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      input by: duncan

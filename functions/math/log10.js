@@ -1,4 +1,4 @@
-function log10(arg) {
+function log10 (arg) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
     // +   improved by: Onno Marsman

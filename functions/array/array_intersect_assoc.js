@@ -1,4 +1,4 @@
-function array_intersect_assoc() {
+function array_intersect_assoc () {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: These only output associative arrays (would need to be

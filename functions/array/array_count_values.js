@@ -1,4 +1,4 @@
-function array_count_values( array ) {
+function array_count_values (array) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com)
     // + namespaced by: Michael White (http://getsprink.com)
@@ -13,7 +13,7 @@ function array_count_values( array ) {
 
     var tmp_arr = {}, key = '', t = '';
     
-    var __getType = function(obj) {
+    var __getType = function (obj) {
         // Objects are php associative arrays.
         var t = typeof obj;
         t = t.toLowerCase();

@@ -1,4 +1,4 @@
-function asin(arg) {
+function asin (arg) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: asin(0.3);

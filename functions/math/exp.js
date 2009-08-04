@@ -1,4 +1,4 @@
-function exp(arg) {
+function exp (arg) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: exp(0.3);

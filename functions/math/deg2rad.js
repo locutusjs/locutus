@@ -1,4 +1,4 @@
-function deg2rad(angle) {
+function deg2rad (angle) {
     // http://kevin.vanzonneveld.net
     // +   original by: Enrique Gonzalez
     // *     example 1: deg2rad(45);

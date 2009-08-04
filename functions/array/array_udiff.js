@@ -1,9 +1,9 @@
-function array_udiff() {
+function array_udiff () {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
     // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
-    // *     example 1: array_udiff($array1, $array2, function(f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if(string1 > string2) return 1; if(string1 == string2) return 0; return -1;});
+    // *     example 1: array_udiff($array1, $array2, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 == string2) return 0; return -1;});
     // *     returns 1: {c: 'blue'}
 
     var arr1 = arguments[0], retArr = {}, cb = arguments[arguments.length-1];

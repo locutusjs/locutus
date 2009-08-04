@@ -1,9 +1,9 @@
-function get_defined_functions() {
+function get_defined_functions () {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Test case 1: If get_defined_functions can find itself in the defined functions, it worked :)
-    // *     example 1: function test_in_array(array, p_val) {for(var i = 0, l = array.length; i < l; i++) {if(array[i] == p_val) return true;} return false;}
+    // *     example 1: function test_in_array (array, p_val) {for(var i = 0, l = array.length; i < l; i++) {if(array[i] == p_val) return true;} return false;}
     // *     example 1: funcs = get_defined_functions();
     // *     example 1: found = test_in_array(funcs, 'get_defined_functions');
     // *     results 1: found == true

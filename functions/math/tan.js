@@ -1,4 +1,4 @@
-function tan(arg) {
+function tan (arg) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: tan(8723321.4);

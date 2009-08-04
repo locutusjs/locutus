@@ -18,13 +18,13 @@ function filesize (url) {
     if (!req.getResponseHeader) {
         try {
             throw new Error('No getResponseHeader!');
-        } catch(e){
+        } catch (e){
             return false;
         }
     } else if (!req.getResponseHeader('Content-Length')) {
         try {
             throw new Error('No Content-Length!');
-        } catch(e){
+        } catch (e2){
             return false;
         }
     } else {

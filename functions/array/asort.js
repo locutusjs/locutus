@@ -1,4 +1,4 @@
-function asort(inputArr, sort_flags) {
+function asort (inputArr, sort_flags) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -28,7 +28,7 @@ function asort(inputArr, sort_flags) {
             break;
         case 'SORT_NUMERIC': // compare items numerically
             sorter = function (a, b) {
-                return(a - b);
+                return (a - b);
             };
             break;
         case 'SORT_REGULAR': // compare items normally (don't change types)
@@ -45,7 +45,7 @@ function asort(inputArr, sort_flags) {
             break;
     }
 
-    var bubbleSort = function(keyArr, inputArr) {
+    var bubbleSort = function (keyArr, inputArr) {
         var i, j, tempValue, tempKeyVal;
         for (i = inputArr.length-2; i >= 0; i--) {
             for (j = 0; j <= i; j++) {
@@ -71,7 +71,7 @@ function asort(inputArr, sort_flags) {
     try {
         // Sort our new temporary arrays
         bubbleSort(keyArr, valArr);
-    } catch(e) {
+    } catch (e) {
         return false;
     }
 

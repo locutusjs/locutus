@@ -1,4 +1,4 @@
-function abs( mixed_number )  {
+function abs (mixed_number)  {
     // http://kevin.vanzonneveld.net
     // +   original by: Waldo Malqui Silva
     // +   improved by: Karol Kowalski

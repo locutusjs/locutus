@@ -7,7 +7,7 @@ function localtime (timestamp, is_assoc) {
     // *     returns 1: [50,28,0,14,2,109,6,73,0]
 
     if (timestamp === undefined) {
-        timestamp = Math.round(new Date().getTime()/1000); // time()
+        timestamp = Math.round(new Date().getTime()/1000); // this.time()
     } else if (timestamp instanceof Date) {
         timestamp = timestamp/1000; // Let it work with JavaScript data objects without the need for conversion
     }

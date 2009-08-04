@@ -1,4 +1,4 @@
-function atanh(arg) {
+function atanh (arg) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: atanh(0.3);

@@ -1,4 +1,4 @@
-function hexdec(hex_string) {
+function hexdec (hex_string) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philippe Baumann
     // *     example 1: hexdec('that');

@@ -1,4 +1,4 @@
-function json_encode(mixed_val) {
+function json_encode (mixed_val) {
     // http://kevin.vanzonneveld.net
     // +      original by: Public Domain (http://www.json.org/json2.js)
     // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -42,7 +42,7 @@ function json_encode(mixed_val) {
         '"' + string + '"';
     };
 
-    var str = function(key, holder) {
+    var str = function (key, holder) {
         var gap = '';
         var indent = '    ';
         var i = 0;          // The loop counter.

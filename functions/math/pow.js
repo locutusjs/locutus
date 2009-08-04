@@ -1,4 +1,4 @@
-function pow(base, exp) {
+function pow (base, exp) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: pow(8723321.4, 7);

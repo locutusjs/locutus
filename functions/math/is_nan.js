@@ -1,4 +1,4 @@
-function is_nan(val) {
+function is_nan (val) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // +      input by: Robin

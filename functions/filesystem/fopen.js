@@ -1,13 +1,14 @@
 function fopen (filename, mode, use_include_path, context) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
+    // -    depends on: file_get_contents
     // *     example 1: fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
     // *     returns 1: 'Resource id #1'
 
     var resource={}, i=0, that = this;
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if(!name) {
+        if (!name) {
             return '(Anonymous)';
         }
         return name[1];
@@ -19,7 +20,7 @@ function fopen (filename, mode, use_include_path, context) {
         if (!req) {
             throw new Error('XMLHttpRequest not supported');
         }
-        if (!/^http/.test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
+        if (!(/^http/).test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
             url = that.window.location.href + '/' +url;
         }
         req.open("GET", url, false);
@@ -39,7 +40,7 @@ function fopen (filename, mode, use_include_path, context) {
         if (mode[i] === 'r' && (!mode[i+1] || mode[i+1] !== '+')) {
             continue;
         }
-        switch(mode[i]) {
+        switch (mode[i]) {
             case 'r': // must have '+' now
             case 'w': // or 'w+'
             case 'a': // or 'a+'
@@ -78,7 +79,7 @@ function fopen (filename, mode, use_include_path, context) {
     // END REDUNDANT
 
     this.php_js.resourceIdCounter++;
-    this.php_js.resourceData[this.php_js.resourceIdCounter] = file_get_contents(filename);
+    this.php_js.resourceData[this.php_js.resourceIdCounter] = this.file_get_contents(filename);
     this.php_js.resourceDataPointer[this.php_js.resourceIdCounter] = 0;
 
     resource = new PHPJS_Resource('stream', this.php_js.resourceIdCounter, 'fopen');

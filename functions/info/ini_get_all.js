@@ -1,4 +1,4 @@
-function ini_get_all(extension, details) {
+function ini_get_all (extension, details) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: The ini values must be set by ini_set or manually within an ini file

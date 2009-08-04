@@ -1,4 +1,4 @@
-function decbin(number) {
+function decbin (number) {
     // http://kevin.vanzonneveld.net
     // +   original by: Enrique Gonzalez
     // +   bugfixed by: Onno Marsman

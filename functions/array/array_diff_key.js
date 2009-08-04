@@ -1,4 +1,4 @@
-function array_diff_key() {
+function array_diff_key () {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com)
     // +    revised by: Brett Zamir (http://brett-zamir.me)

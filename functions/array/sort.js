@@ -34,7 +34,7 @@ function sort (inputArr, sort_flags) {
             break;
         case 'SORT_NUMERIC': // compare items numerically
             sorter = function (a, b) {
-                return(a - b);
+                return (a - b);
             };
             break;
         case 'SORT_REGULAR': // compare items normally (don't change types)

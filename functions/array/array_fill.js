@@ -1,4 +1,4 @@
-function array_fill( start_index, num, mixed_val ) {
+function array_fill (start_index, num, mixed_val) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Waldo Malqui Silva
@@ -8,7 +8,7 @@ function array_fill( start_index, num, mixed_val ) {
     var key, tmp_arr = {};
 
     if ( !isNaN( start_index ) && !isNaN( num ) ) {
-        for( key = 0; key < num; key++ ) {
+        for (key = 0; key < num; key++) {
             tmp_arr[(key+start_index)] = mixed_val;
         }
     }

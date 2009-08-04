@@ -1,4 +1,4 @@
-function fmod(x, y) {
+function fmod (x, y) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // +      input by: Brett Zamir (http://brett-zamir.me)

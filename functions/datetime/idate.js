@@ -52,7 +52,7 @@ function idate (format, timestamp) {
         return dst;
     };
 
-    switch(format) {
+    switch (format) {
         case 'B':
             // peter paul koch:
             var off = (date.getTimezoneOffset() + 60)*60;
@@ -83,10 +83,10 @@ function idate (format, timestamp) {
             return date.getSeconds();
         case 't':
             var n;
-            if( (n = date.getMonth()+1) === 2 ){
+            if ((n = date.getMonth()+1) === 2){
                 return 28 + _L(date);
             }
-            if( n & 1 && n < 8 || !(n & 1) && n > 7 ){
+            if (n & 1 && n < 8 || !(n & 1) && n > 7){
                 return 31;
             }
             return 30;
@@ -98,12 +98,12 @@ function idate (format, timestamp) {
             var a = _z(date), b = 364 + _L(date) - a;
             var nd2, nd = (new Date(date.getFullYear() + '/1/1').getDay() || 7) - 1;
 
-            if(b <= 2 && ((date.getDay() || 7) - 1) <= 2 - b){
+            if (b <= 2 && ((date.getDay() || 7) - 1) <= 2 - b){
                 return 1;
             }
-            if(a <= 2 && nd >= 4 && a >= (6 - nd)){
+            if (a <= 2 && nd >= 4 && a >= (6 - nd)){
                 nd2 = new Date(date.getFullYear() - 1 + '/12/31');
-                return idate('W', Math.round(nd2.getTime()/1000));
+                return this.idate('W', Math.round(nd2.getTime()/1000));
             }
             return (1 + (nd <= 3 ? ((a + nd) / 7) : (a - (7 - nd)) / 7) >> 0);
         case 'y':

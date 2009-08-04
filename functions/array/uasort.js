@@ -38,7 +38,7 @@ function uasort (inputArr, sorter) {
     }
     try {
         sorterNew(keyArr, valArr); // Sort our new temporary arrays
-    } catch(e) {
+    } catch (e) {
         return false;
     }
     for (i = 0; i < valArr.length; i++) { // Repopulate the old array

@@ -49,7 +49,7 @@ function extract (arr, type, prefix) {
                     }
                     break;
                 case 'EXTR_PREFIX_INVALID' || 4:
-                    if(i.match(validIdent) !== null) {
+                    if (i.match(validIdent) !== null) {
                         if (prefixed.match(validIdent) !== null) {
                             targetObj[prefixed] = arr[i];
                             ++chng;

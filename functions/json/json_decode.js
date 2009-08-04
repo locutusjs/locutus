@@ -1,4 +1,4 @@
-function json_decode(str_json) {
+function json_decode (str_json) {
     // http://kevin.vanzonneveld.net
     // +      original by: Public Domain (http://www.json.org/json2.js)
     // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -46,7 +46,7 @@ function json_decode(str_json) {
     // open brackets that follow a colon or comma or that begin the text. Finally,
     // we look to see that the remaining characters are only whitespace or ']' or
     // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
-    if (/^[\],:{}\s]*$/.
+    if ((/^[\],:{}\s]*$/).
         test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@').
             replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
             replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {

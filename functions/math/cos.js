@@ -1,4 +1,4 @@
-function cos(arg) {
+function cos (arg) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: cos(8723321.4);

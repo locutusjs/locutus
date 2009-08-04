@@ -1,4 +1,4 @@
-function function_exists( function_name ) {
+function function_exists (function_name) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Steve Clay

@@ -1,4 +1,4 @@
-function array_flip( trans ) {
+function array_flip (trans) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_flip( {a: 1, b: 1, c: 2} );
@@ -6,7 +6,7 @@ function array_flip( trans ) {
 
     var key, tmp_ar = {};
 
-    for( key in trans ) {
+    for (key in trans) {
         tmp_ar[trans[key]] = key;
     }
 

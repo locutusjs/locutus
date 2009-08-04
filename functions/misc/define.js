@@ -1,4 +1,4 @@
-function define(name, value) {
+function define (name, value) {
     // Define a new constant
     //
     // version: 903.3016
@@ -27,7 +27,7 @@ function define(name, value) {
                 '"':'"',
                 "\\":"\\"
             };
-            return value.replace(/\x08|[\x0A-\x0D]|"|\\/g, function(value){
+            return value.replace(/\x08|[\x0A-\x0D]|"|\\/g, function (value){
                 return "\\"+replace[value];
             });
         };
@@ -48,7 +48,7 @@ function define(name, value) {
                 "\x0A":"\\n",
                 "\x0D":"\\r"
             };
-            return value.replace(/"/g, '""').replace(/\n|\r/g, function(value){
+            return value.replace(/"/g, '""').replace(/\n|\r/g, function (value){
                 return replace[value];
             });
         };

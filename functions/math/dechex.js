@@ -1,4 +1,4 @@
-function dechex(number) {
+function dechex (number) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philippe Baumann
     // +   bugfixed by: Onno Marsman

@@ -1,4 +1,4 @@
-function krsort(array, sort_flags) {
+function krsort (array, sort_flags) {
     // http://kevin.vanzonneveld.net
     // +   original by: GeekFG (http://geekfg.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -24,7 +24,7 @@ function krsort(array, sort_flags) {
             break;
         case 'SORT_NUMERIC': // compare items numerically
             sorter = function (a, b) {
-                return(b - a);
+                return (b - a);
             };
             break;
         case 'SORT_REGULAR': // compare items normally (don't change types)

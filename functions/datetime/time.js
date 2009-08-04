@@ -1,4 +1,4 @@
-function time() {
+function time () {
     // http://kevin.vanzonneveld.net
     // +   original by: GeekFG (http://geekfg.blogspot.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

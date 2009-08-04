@@ -18,7 +18,7 @@ function strftime (fmt, timestamp) {
         if (typeof r === 'undefined') {
             r=10;
         }
-        for( ; parseInt(x, 10)<r && r>1; r/=10) {
+        for ( ; parseInt(x, 10)<r && r>1; r/=10) {
             x = pad.toString() + x;
         }
         return x.toString();
@@ -28,45 +28,45 @@ function strftime (fmt, timestamp) {
     var locales = phpjs.locales;
 
     var _formats = {
-        a: function(d) {
+        a: function (d) {
             return locales[locale].LC_TIME.a[d.getDay()];
         },
-        A: function(d) {
+        A: function (d) {
             return locales[locale].LC_TIME.A[d.getDay()];
         },
-        b: function(d) {
+        b: function (d) {
             return locales[locale].LC_TIME.b[d.getMonth()];
         },
-        B: function(d) {
+        B: function (d) {
             return locales[locale].LC_TIME.B[d.getMonth()];
         },
-        C: function(d) {
+        C: function (d) {
             return _xPad(parseInt(d.getFullYear()/100, 10), 0);
         },
         d: ['getDate', '0'],
         e: ['getDate', ' '],
-        g: function(d) {
+        g: function (d) {
             return _xPad(parseInt(this.G(d)/100, 10), 0);
         },
-        G: function(d) {
+        G: function (d) {
             var y = d.getFullYear();
             var V = parseInt(_formats.V(d), 10);
             var W = parseInt(_formats.W(d), 10);
 
-            if(W > V) {
+            if (W > V) {
                 y++;
             }
-            else if(W===0 && V>=52) {
+            else if (W === 0 && V >= 52) {
                 y--;
             }
 
             return y;
         },
         H: ['getHours', '0'],
-        I: function(d) {
+        I: function (d) {
             var I=d.getHours()%12; return _xPad(I===0?12:I, 0);
         },
-        j: function(d) {
+        j: function (d) {
             var ms = d - new Date('' + d.getFullYear() + '/1/1 GMT');
             ms += d.getTimezoneOffset()*60000;
             var doy = parseInt(ms/60000/60/24, 10)+1;
@@ -75,30 +75,30 @@ function strftime (fmt, timestamp) {
         l: function (d) {
             var l=d.getHours()%12; return _xPad(l===0?12:l, ' ');
         },
-        m: function(d) {
+        m: function (d) {
             return _xPad(d.getMonth()+1, 0);
         },
         M: ['getMinutes', '0'],
-        p: function(d) {
+        p: function (d) {
             return locales[locale].LC_TIME.p[d.getHours() >= 12 ? 1 : 0 ];
         },
-        P: function(d) {
+        P: function (d) {
             return locales[locale].LC_TIME.P[d.getHours() >= 12 ? 1 : 0 ];
         },
-        s: function(d) {
+        s: function (d) {
             return Date.parse(d)/1000;
         },
         S: ['getSeconds', '0'],
-        u: function(d) {
+        u: function (d) {
             var dow = d.getDay(); return ( (dow===0) ? 7 : dow );
         },
-        U: function(d) {
+        U: function (d) {
             var doy = parseInt(_formats.j(d), 10);
             var rdow = 6-d.getDay();
             var woy = parseInt((doy+rdow)/7, 10);
             return _xPad(woy, 0);
         },
-        V: function(d) {
+        V: function (d) {
             var woy = parseInt(_formats.W(d), 10);
             var dow1_1 = (new Date('' + d.getFullYear() + '/1/1')).getDay();
             // First week is 01 and not 00 as in the case of %U and %W,
@@ -107,35 +107,35 @@ function strftime (fmt, timestamp) {
             // We also need to subtract 1 if the day 1 of the year is
             // Friday-Sunday, so the resulting equation becomes:
             var idow = woy + (dow1_1 > 4 || dow1_1 <= 1 ? 0 : 1);
-            if(idow === 53 && (new Date('' + d.getFullYear() + '/12/31')).getDay() < 4) {
+            if (idow === 53 && (new Date('' + d.getFullYear() + '/12/31')).getDay() < 4) {
                 idow = 1;
             }
-            else if(idow === 0) {
+            else if (idow === 0) {
                 idow = _formats.V(new Date('' + (d.getFullYear()-1) + '/12/31'));
             }
             return _xPad(idow, 0);
         },
         w: 'getDay',
-        W: function(d) {
+        W: function (d) {
             var doy = parseInt(_formats.j(d), 10);
             var rdow = 7-_formats.u(d);
             var woy = parseInt((doy+rdow)/7, 10);
             return _xPad(woy, 0, 10);
         },
-        y: function(d) {
+        y: function (d) {
             return _xPad(d.getFullYear()%100, 0);
         },
         Y: 'getFullYear',
-        z: function(d) {
+        z: function (d) {
             var o = d.getTimezoneOffset();
             var H = _xPad(parseInt(Math.abs(o/60), 10), 0);
             var M = _xPad(o%60, 0);
             return (o>0?'-':'+') + H + M;
         },
-        Z: function(d) {
+        Z: function (d) {
             return d.toString().replace(/^.*\(([^)]+)\)$/, '$1');
         },
-        '%': function(d) {
+        '%': function (d) {
             return '%';
         }
     };
@@ -165,7 +165,7 @@ function strftime (fmt, timestamp) {
 
     // First replace aggregates
     while (fmt.match(/%[cDFhnrRtTxXzZ]/)) {
-        fmt = fmt.replace(/%([cDFhnrRtTxXzZ])/g, function(m0, m1)
+        fmt = fmt.replace(/%([cDFhnrRtTxXzZ])/g, function (m0, m1)
         {
             var f = _aggregates[m1];
             return (f === 'locale' ? locales[locale].LC_TIME[m1] : f);
@@ -173,7 +173,7 @@ function strftime (fmt, timestamp) {
     }
 
     // Now replace formats - we need a closure so that the date object gets passed through
-    var str = fmt.replace(/%([aAbBCdegGHIjlmMpPsSuUVwWyY%])/g, function(m0, m1) {
+    var str = fmt.replace(/%([aAbBCdegGHIjlmMpPsSuUVwWyY%])/g, function (m0, m1) {
         var f = _formats[m1];
         if (typeof f === 'string') {
             return _date[f]();

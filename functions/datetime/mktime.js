@@ -1,4 +1,4 @@
-function mktime() {
+function mktime () {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: baris ozdil
@@ -30,12 +30,12 @@ function mktime() {
     var no=0, i = 0, ma=0, mb=0, d = new Date(), dn = new Date(), argv = arguments, argc = argv.length;
 
     var dateManip = {
-        0: function(tt){ return d.setHours(tt); },
-        1: function(tt){ return d.setMinutes(tt); },
-        2: function(tt){ var set = d.setSeconds(tt); mb = d.getDate() - dn.getDate(); return set;},
-        3: function(tt){ var set = d.setMonth(parseInt(tt, 10)-1); ma = d.getFullYear() - dn.getFullYear(); return set;},
-        4: function(tt){ return d.setDate(tt+mb);},
-        5: function(tt){
+        0: function (tt){ return d.setHours(tt); },
+        1: function (tt){ return d.setMinutes(tt); },
+        2: function (tt){ var set = d.setSeconds(tt); mb = d.getDate() - dn.getDate(); return set;},
+        3: function (tt){ var set = d.setMonth(parseInt(tt, 10)-1); ma = d.getFullYear() - dn.getFullYear(); return set;},
+        4: function (tt){ return d.setDate(tt+mb);},
+        5: function (tt){
             if (tt >= 0 && tt <= 69) {
                 tt += 2000;
             }
@@ -47,20 +47,20 @@ function mktime() {
         // 7th argument (for DST) is deprecated
     };
 
-    for( i = 0; i < argc; i++ ){
+    for (i = 0; i < argc; i++){
         no = parseInt(argv[i]*1, 10);
         if (isNaN(no)) {
             return false;
         } else {
             // arg is number, let's manipulate date object
-            if(!dateManip[i](no)){
+            if (!dateManip[i](no)){
                 // failed
                 return false;
             }
         }
     }
     for (i = argc; i < 6; i++) {
-        switch(i) {
+        switch (i) {
             case 0:
                 no = dn.getHours();
                 break;

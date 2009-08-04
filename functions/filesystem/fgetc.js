@@ -23,7 +23,7 @@ function fgetc (handle) {
     var nextChr = this.php_js.resourceData[handle.id].substr(start+1, 1);
     var prevChr = start === 0 ? false : this.php_js.resourceData[handle.id].substr(start-1, 1);
     var code = chr.charCodeAt(0);
-    if (0xD800 <= code && code <= 0xDBFF) { // High surrogate(could change last hex to 0xDB7F to treat high private surrogates as single characters)
+    if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
         if (!nextChr)  {
             throw 'High surrogate without following low surrogate (fgetc)';
         }

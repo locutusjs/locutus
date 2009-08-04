@@ -1,4 +1,4 @@
-function forward_static_call_array(cb, parameters) {
+function forward_static_call_array (cb, parameters) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: No real relevance to late static binding here; might also use call_user_func_array()

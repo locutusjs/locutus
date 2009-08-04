@@ -1,4 +1,4 @@
-function include_once( filename ) {
+function include_once (filename) {
     // http://kevin.vanzonneveld.net
     // +   original by: Legaev Andrey
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -20,7 +20,7 @@ function include_once( filename ) {
         php_js_shared.includes = cur_file;
     }
     if (!php_js_shared.includes[filename]) {
-        if(this.include(filename)){
+        if (this.include(filename)){
             return true;
         }
     } else{

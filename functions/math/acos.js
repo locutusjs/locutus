@@ -1,4 +1,4 @@
-function acos(arg) {
+function acos (arg) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: acos(0.3);

@@ -1,4 +1,4 @@
-function natcasesort(inputArr) {
+function natcasesort (inputArr) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -9,7 +9,7 @@ function natcasesort(inputArr) {
 
     var valArr=[], keyArr=[], k, i, ret, that = this;
 
-    var bubbleSort = function(keyArr, inputArr) {
+    var bubbleSort = function (keyArr, inputArr) {
         var i, j, tempValue, tempKeyVal;
         for (i = inputArr.length-2; i >= 0; i--) {
             for (j = 0; j <= i; j++) {
@@ -35,7 +35,7 @@ function natcasesort(inputArr) {
     try {
         // Sort our new temporary arrays
         bubbleSort(keyArr, valArr);
-    } catch(e) {
+    } catch (e) {
         return false;
     }
 

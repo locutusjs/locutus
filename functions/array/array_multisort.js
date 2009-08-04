@@ -1,4 +1,4 @@
-function array_multisort(arr) {
+function array_multisort (arr) {
     // +   original by: Theriault
     // *     example 1: array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6]);
     // *     returns 1: true

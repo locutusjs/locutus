@@ -1,4 +1,4 @@
-function array_merge() {
+function array_merge () {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Nate

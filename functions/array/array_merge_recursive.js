@@ -19,7 +19,7 @@ function array_merge_recursive (arr1, arr2){
         for (idx in arr2) {
             if (idx in arr1) {
                 if (typeof arr1[idx] == 'object' && typeof arr2 == 'object') {
-                    arr1[idx] = array_merge(arr1[idx], arr2[idx]);
+                    arr1[idx] = this.array_merge(arr1[idx], arr2[idx]);
                 } else {
                     arr1[idx] = arr2[idx];
                 }

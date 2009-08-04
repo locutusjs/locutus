@@ -1,4 +1,4 @@
-function func_get_arg(num) {
+function func_get_arg (num) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: May not work in all JS implementations
@@ -10,7 +10,7 @@ function func_get_arg(num) {
         try {
             throw new Error('Either you are using this in a browser which does not support the "caller" property or you are calling this from a global context');
             //return false;
-        } catch(e){
+        } catch (e){
             return false;
         }
     }
@@ -19,7 +19,7 @@ function func_get_arg(num) {
         try {
             throw new Error('Argument number is greater than the number of arguments actually passed');
             //return false;
-        } catch(e){
+        } catch (e2){
             return false;
         }
     }

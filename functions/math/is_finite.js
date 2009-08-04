@@ -1,4 +1,4 @@
-function is_finite(val) {
+function is_finite (val) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: is_finite(Infinity);

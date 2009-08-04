@@ -1,4 +1,4 @@
-function hypot(x, y) {
+function hypot (x, y) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: hypot(3, 4);

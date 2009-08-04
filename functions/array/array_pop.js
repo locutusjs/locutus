@@ -1,4 +1,4 @@
-function array_pop( array ) {
+function array_pop (array) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -15,7 +15,7 @@ function array_pop( array ) {
 
     if (array.hasOwnProperty('length')) {
         // Indexed
-        if( !array.length ){
+        if (!array.length){
             // Done popping, are we?
             return null;
         }

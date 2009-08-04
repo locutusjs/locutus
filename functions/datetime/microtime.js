@@ -1,4 +1,4 @@
-function microtime(get_as_float) {
+function microtime (get_as_float) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
     // *     example 1: timeStamp = microtime(true);

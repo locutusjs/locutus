@@ -1,4 +1,4 @@
-function checkdate( month, day, year ) {
+function checkdate (month, day, year) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Pyerre

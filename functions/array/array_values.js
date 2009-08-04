@@ -1,4 +1,4 @@
-function array_values( input ) {
+function array_values (input) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );

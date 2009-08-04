@@ -1,4 +1,4 @@
-function rand( min, max ) {
+function rand (min, max) {
     // http://kevin.vanzonneveld.net
     // +   original by: Leslie Hoare
     // +   bugfixed by: Onno Marsman

@@ -1,4 +1,4 @@
-function file_get_contents( url, flags, context, offset, maxLen ) {
+function file_get_contents (url, flags, context, offset, maxLen) {
     // Read the entire file into a string
     //
     // version: 906.111
@@ -80,20 +80,20 @@ function file_get_contents( url, flags, context, offset, maxLen ) {
 // Other XMLHttpRequest properties: multipart, responseXML, status, statusText, upload, withCredentials; overrideMimeType()
 /*
 PHP Constants:
-STREAM_NOTIFY_RESOLVE   1  	 A remote address required for this stream has been resolved, or the resolution failed. See severity  for an indication of which happened.
-STREAM_NOTIFY_CONNECT   2 	A connection with an external resource has been established.
-STREAM_NOTIFY_AUTH_REQUIRED 3 	Additional authorization is required to access the specified resource. Typical issued with severity level of STREAM_NOTIFY_SEVERITY_ERR.
-STREAM_NOTIFY_MIME_TYPE_IS  4 	The mime-type of resource has been identified, refer to message for a description of the discovered type.
-STREAM_NOTIFY_FILE_SIZE_IS  5 	The size of the resource has been discovered.
-STREAM_NOTIFY_REDIRECTED    6 	The external resource has redirected the stream to an alternate location. Refer to message .
-STREAM_NOTIFY_PROGRESS  7 	Indicates current progress of the stream transfer in bytes_transferred and possibly bytes_max as well.
-STREAM_NOTIFY_COMPLETED 8 	There is no more data available on the stream.
-STREAM_NOTIFY_FAILURE   9 	A generic error occurred on the stream, consult message and message_code for details.
-STREAM_NOTIFY_AUTH_RESULT   10 	Authorization has been completed (with or without success).
+STREAM_NOTIFY_RESOLVE   1       A remote address required for this stream has been resolved, or the resolution failed. See severity  for an indication of which happened.
+STREAM_NOTIFY_CONNECT   2     A connection with an external resource has been established.
+STREAM_NOTIFY_AUTH_REQUIRED 3     Additional authorization is required to access the specified resource. Typical issued with severity level of STREAM_NOTIFY_SEVERITY_ERR.
+STREAM_NOTIFY_MIME_TYPE_IS  4     The mime-type of resource has been identified, refer to message for a description of the discovered type.
+STREAM_NOTIFY_FILE_SIZE_IS  5     The size of the resource has been discovered.
+STREAM_NOTIFY_REDIRECTED    6     The external resource has redirected the stream to an alternate location. Refer to message .
+STREAM_NOTIFY_PROGRESS  7     Indicates current progress of the stream transfer in bytes_transferred and possibly bytes_max as well.
+STREAM_NOTIFY_COMPLETED 8     There is no more data available on the stream.
+STREAM_NOTIFY_FAILURE   9     A generic error occurred on the stream, consult message and message_code for details.
+STREAM_NOTIFY_AUTH_RESULT   10     Authorization has been completed (with or without success).
 
-STREAM_NOTIFY_SEVERITY_INFO 0 	Normal, non-error related, notification.
-STREAM_NOTIFY_SEVERITY_WARN 1 	Non critical error condition. Processing may continue.
-STREAM_NOTIFY_SEVERITY_ERR  2 	A critical error occurred. Processing cannot continue.
+STREAM_NOTIFY_SEVERITY_INFO 0     Normal, non-error related, notification.
+STREAM_NOTIFY_SEVERITY_WARN 1     Non critical error condition. Processing may continue.
+STREAM_NOTIFY_SEVERITY_ERR  2     A critical error occurred. Processing cannot continue.
 */
 
                     var objContext = {}; // properties are not available in PHP, but offered on notification via 'this' for convenience
@@ -107,21 +107,21 @@ STREAM_NOTIFY_SEVERITY_ERR  2 	A critical error occurred. Processing cannot cont
                     // notification args: notification_code, severity, message, message_code, bytes_transferred, bytes_max (all int's except string 'message')
                     // Need to add message, etc.
                     var bytes_transferred;
-                    switch(req.readyState) {
-                        case 0: // 	UNINITIALIZED 	open() has not been called yet.
+                    switch (req.readyState) {
+                        case 0: //     UNINITIALIZED     open() has not been called yet.
                             notification.call(objContext, 0, 0, '', 0, 0, 0);
                             break;
-                        case 1: // 	LOADING 	send() has not been called yet.
+                        case 1: //     LOADING     send() has not been called yet.
                             notification.call(objContext, 0, 0, '', 0, 0, 0);
                             break;
-                        case 2: // 	LOADED 	send() has been called, and headers and status are available.
+                        case 2: //     LOADED     send() has been called, and headers and status are available.
                             notification.call(objContext, 0, 0, '', 0, 0, 0);
                             break;
-                        case 3: // 	INTERACTIVE 	Downloading; responseText holds partial data.
+                        case 3: //     INTERACTIVE     Downloading; responseText holds partial data.
                             bytes_transferred = Math.floor(req.responseText.length/2); // Two characters for each byte
                             notification.call(objContext, 7, 0, '', 0, bytes_transferred, 0);
                             break;
-                        case 4: // 	COMPLETED 	The operation is complete.
+                        case 4: //     COMPLETED     The operation is complete.
                             if (req.status >= 200 && req.status < 400) {
                                 bytes_transferred = Math.floor(req.responseText.length/2); // Two characters for each byte
                                 notification.call(objContext, 8, 0, '', req.status, bytes_transferred, 0);

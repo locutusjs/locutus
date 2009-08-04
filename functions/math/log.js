@@ -1,4 +1,4 @@
-function log(arg, base) {
+function log (arg, base) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: log(8723321.4, 7);

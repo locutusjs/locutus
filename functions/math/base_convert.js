@@ -1,4 +1,4 @@
-function base_convert(number, frombase, tobase) {
+function base_convert (number, frombase, tobase) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philippe Baumann
     // *     example 1: base_convert('A37334', 16, 2);

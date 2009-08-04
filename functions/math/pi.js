@@ -1,4 +1,4 @@
-function pi() {
+function pi () {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: pi(8723321.4);

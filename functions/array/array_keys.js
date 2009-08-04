@@ -1,4 +1,4 @@
-function array_keys( input, search_value, argStrict ) {
+function array_keys (input, search_value, argStrict) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Brett Zamir (http://brett-zamir.me)
@@ -12,9 +12,9 @@ function array_keys( input, search_value, argStrict ) {
     for (key in input) {
         include = true;
         if (search_value != undefined) {
-            if( strict && input[key] !== search_value ){
+            if (strict && input[key] !== search_value){
                 include = false;
-            } else if( input[key] != search_value ){
+            } else if (input[key] != search_value){
                 include = false;
             }
         }

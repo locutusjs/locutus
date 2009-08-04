@@ -7,7 +7,7 @@ function fseek (handle, offset, whence) {
 
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if(!name) {
+        if (!name) {
             return '(Anonymous)';
         }
         return name[1];
@@ -17,7 +17,7 @@ function fseek (handle, offset, whence) {
         return -1;
     }
 
-    switch(whence) {
+    switch (whence) {
         case undefined: // fall-through
         case 'SEEK_SET':
             this.php_js.resourceDataPointer[handle.id] = offset/2+1;

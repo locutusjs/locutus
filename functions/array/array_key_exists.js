@@ -6,7 +6,7 @@ function array_key_exists ( key, search ) {
     // *     returns 1: true
 
     // input sanitation
-    if( !search || (search.constructor !== Array && search.constructor !== Object) ){
+    if (!search || (search.constructor !== Array && search.constructor !== Object)){
         return false;
     }
 

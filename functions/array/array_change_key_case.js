@@ -1,4 +1,4 @@
-function array_change_key_case( array ) {
+function array_change_key_case (array) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com)
     // +   improved by: marrtins
@@ -22,7 +22,7 @@ function array_change_key_case( array ) {
     }
 
     if (array instanceof Object) {
-        if( argc === 1 || argv[1] === 'CASE_LOWER' || argv[1] === 0 ){
+        if (argc === 1 || argv[1] === 'CASE_LOWER' || argv[1] === 0){
             case_fn = "toLowerCase";
         } else{
             case_fn = "toUpperCase";

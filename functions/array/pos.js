@@ -1,4 +1,4 @@
-function pos(arr) {
+function pos (arr) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Uses global: php_js to store the array pointer

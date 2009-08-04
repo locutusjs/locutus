@@ -1,4 +1,4 @@
-function shuffle( inputArr ) {
+function shuffle (inputArr) {
     // http://kevin.vanzonneveld.net
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

@@ -1,4 +1,4 @@
-function sleep(seconds) {
+function sleep (seconds) {
     // http://kevin.vanzonneveld.net
     // +   original by: Christian Doebler
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

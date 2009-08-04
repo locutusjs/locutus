@@ -25,13 +25,14 @@ function date ( format, timestamp ) {
     // *     example 4: (x+'').length == 10
     // *     returns 4: true
 
+    var that = this;
     var jsdate=(
         (typeof(timestamp) == 'undefined') ? new Date() : // Not provided
         (typeof(timestamp) == 'number') ? new Date(timestamp*1000) : // UNIX timestamp
         new Date(timestamp) // Javascript Date()
     ); // , tal=[]
-    var pad = function(n, c){
-        if( (n = n + "").length < c ) {
+    var pad = function (n, c){
+        if ( (n = n + "").length < c ) {
             return new Array(++c - n.length).join("0") + n;
         } else {
             return n;
@@ -72,78 +73,78 @@ function date ( format, timestamp ) {
 
     var f = {
         // Day
-            d: function(){
+            d: function (){
                 return pad(f.j(), 2);
             },
-            D: function(){
+            D: function (){
                 var t = f.l();
                 return t.substr(0,3);
             },
-            j: function(){
+            j: function (){
                 return jsdate.getDate();
             },
-            l: function(){
+            l: function (){
                 return txt_weekdays[f.w()];
             },
-            N: function(){
+            N: function (){
                 return f.w() + 1;
             },
-            S: function(){
+            S: function (){
                 return txt_ordin[f.j()] ? txt_ordin[f.j()] : 'th';
             },
-            w: function(){
+            w: function (){
                 return jsdate.getDay();
             },
-            z: function(){
+            z: function (){
                 return (jsdate - new Date(jsdate.getFullYear() + "/1/1")) / 864e5 >> 0;
             },
 
         // Week
-            W: function(){
+            W: function (){
                 var a = f.z(), b = 364 + f.L() - a;
                 var nd2, nd = (new Date(jsdate.getFullYear() + "/1/1").getDay() || 7) - 1;
 
-                if(b <= 2 && ((jsdate.getDay() || 7) - 1) <= 2 - b){
+                if (b <= 2 && ((jsdate.getDay() || 7) - 1) <= 2 - b){
                     return 1;
                 } 
-                if(a <= 2 && nd >= 4 && a >= (6 - nd)){
+                if (a <= 2 && nd >= 4 && a >= (6 - nd)){
                     nd2 = new Date(jsdate.getFullYear() - 1 + "/12/31");
-                    return date("W", Math.round(nd2.getTime()/1000));
+                    return that.date("W", Math.round(nd2.getTime()/1000));
                 }
                 return (1 + (nd <= 3 ? ((a + nd) / 7) : (a - (7 - nd)) / 7) >> 0);
             },
 
         // Month
-            F: function(){
+            F: function (){
                 return txt_months[f.n()];
             },
-            m: function(){
+            m: function (){
                 return pad(f.n(), 2);
             },
-            M: function(){
+            M: function (){
                 var t = f.F();
                 return t.substr(0,3);
             },
-            n: function(){
+            n: function (){
                 return jsdate.getMonth() + 1;
             },
-            t: function(){
+            t: function (){
                 var n;
-                if( (n = jsdate.getMonth() + 1) == 2 ){
+                if ( (n = jsdate.getMonth() + 1) == 2 ){
                     return 28 + f.L();
                 }
-                if( n & 1 && n < 8 || !(n & 1) && n > 7 ){
+                if ( n & 1 && n < 8 || !(n & 1) && n > 7 ){
                     return 31;
                 }
                 return 30;
             },
 
         // Year
-            L: function(){
+            L: function (){
                 var y = f.Y();
                 return (!(y & 3) && (y % 1e2 || !(y % 4e2))) ? 1 : 0;
             },
-            o: function(){
+            o: function (){
                 if (f.n() === 12 && f.W() === 1) {
                     return jsdate.getFullYear()+1;
                 }
@@ -152,21 +153,21 @@ function date ( format, timestamp ) {
                 }
                 return jsdate.getFullYear();
             },
-            Y: function(){
+            Y: function (){
                 return jsdate.getFullYear();
             },
-            y: function(){
+            y: function (){
                 return (jsdate.getFullYear() + "").slice(2);
             },
 
         // Time
-            a: function(){
+            a: function (){
                 return jsdate.getHours() > 11 ? "pm" : "am";
             },
-            A: function(){
+            A: function (){
                 return f.a().toUpperCase();
             },
-            B: function(){
+            B: function (){
                 // peter paul koch:
                 var off = (jsdate.getTimezoneOffset() + 60)*60;
                 var theSeconds = (jsdate.getHours() * 3600) +
@@ -187,25 +188,25 @@ function date ( format, timestamp ) {
                 }
                 return beat;
             },
-            g: function(){
+            g: function (){
                 return jsdate.getHours() % 12 || 12;
             },
-            G: function(){
+            G: function (){
                 return jsdate.getHours();
             },
-            h: function(){
+            h: function (){
                 return pad(f.g(), 2);
             },
-            H: function(){
+            H: function (){
                 return pad(jsdate.getHours(), 2);
             },
-            i: function(){
+            i: function (){
                 return pad(jsdate.getMinutes(), 2);
             },
-            s: function(){
+            s: function (){
                 return pad(jsdate.getSeconds(), 2);
             },
-            u: function(){
+            u: function (){
                 return pad(jsdate.getMilliseconds()*1000, 6);
             },
 
@@ -216,7 +217,7 @@ function date ( format, timestamp ) {
                     return this.php_js.default_timezone;
                 }
                 if (!tal.length) {
-                    tal = timezone_abbreviations_list();
+                    tal = this.timezone_abbreviations_list();
                 }
                 for (abbr in tal) {
                     for (i=0; i < tal[abbr].length; i++) {
@@ -228,22 +229,22 @@ function date ( format, timestamp ) {
 */
                 return 'UTC';
             },
-            I: function(){
+            I: function (){
                 return _dst(jsdate);
             },
-            O: function(){
+            O: function (){
                var t = pad(Math.abs(jsdate.getTimezoneOffset()/60*100), 4);
                t = (jsdate.getTimezoneOffset() > 0) ? "-"+t : "+"+t;
                return t;
             },
-            P: function(){
+            P: function (){
                 var O = f.O();
                 return (O.substr(0, 3) + ":" + O.substr(3, 2));
             },
             T: function () {
 /*                var abbr='', i=0;
                 if (!tal.length) {
-                    tal = timezone_abbreviations_list();
+                    tal = that.timezone_abbreviations_list();
                 }
                 if (this.php_js && this.php_js.default_timezone) {
                     for (abbr in tal) {
@@ -264,30 +265,30 @@ function date ( format, timestamp ) {
 */
                 return 'UTC';
             },
-            Z: function(){
+            Z: function (){
                return -jsdate.getTimezoneOffset()*60;
             },
 
         // Full Date/Time
-            c: function(){
+            c: function (){
                 return f.Y() + "-" + f.m() + "-" + f.d() + "T" + f.h() + ":" + f.i() + ":" + f.s() + f.P();
             },
-            r: function(){
+            r: function (){
                 return f.D()+', '+f.d()+' '+f.M()+' '+f.Y()+' '+f.H()+':'+f.i()+':'+f.s()+' '+f.O();
             },
-            U: function(){
+            U: function (){
                 return Math.round(jsdate.getTime()/1000);
             }
     };
 
-    return format.replace(/[\\]?([a-zA-Z])/g, function(t, s){
-        if( t!=s ){
+    return format.replace(/[\\]?([a-zA-Z])/g, function (t, s){
+        if ( t!=s ){
             // escaped
             ret = s;
-        } else if( f[s] ){
+        } else if (f[s]){
             // a date function exists
             ret = f[s]();
-        } else{
+        } else {
             // nothing special
             ret = s;
         }

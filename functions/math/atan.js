@@ -1,4 +1,4 @@
-function atan(arg) {
+function atan (arg) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: atan(8723321.4);

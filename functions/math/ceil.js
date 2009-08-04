@@ -1,4 +1,4 @@
-function ceil(value) {
+function ceil (value) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: ceil(8723321.4);

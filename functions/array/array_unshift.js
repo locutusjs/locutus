@@ -1,4 +1,4 @@
-function array_unshift( array ) {
+function array_unshift (array) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Martijn Wieringa

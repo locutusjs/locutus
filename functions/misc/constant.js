@@ -1,4 +1,4 @@
-function constant(name) {
+function constant (name) {
     // http://kevin.vanzonneveld.net
     // +   original by: Paulo Ricardo F. Santos
     // +   improved by: Brett Zamir (http://brett-zamir.me)

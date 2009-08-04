@@ -1,4 +1,4 @@
-function floor(value) {
+function floor (value) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: floor(8723321.4);

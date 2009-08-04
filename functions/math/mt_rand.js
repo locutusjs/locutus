@@ -1,4 +1,4 @@
-function mt_rand( min, max ) {
+function mt_rand (min, max) {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: mt_rand(1, 1);

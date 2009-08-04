@@ -1,4 +1,4 @@
-function each(arr) {
+function each (arr) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com) 
     // +    revised by: Brett Zamir (http://brett-zamir.me)

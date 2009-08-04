@@ -1,4 +1,4 @@
-function array_diff() {
+function array_diff () {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Sanjoy Roy

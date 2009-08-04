@@ -1,4 +1,4 @@
-function in_array(needle, haystack, argStrict) {
+function in_array (needle, haystack, argStrict) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: vlado houba

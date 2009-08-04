@@ -1,4 +1,4 @@
-function array_reverse(array, preserve_keys) {
+function array_reverse (array, preserve_keys) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Karol Kowalski

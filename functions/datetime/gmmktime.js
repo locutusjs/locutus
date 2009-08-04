@@ -1,4 +1,4 @@
-function gmmktime() {
+function gmmktime () {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   derived from: mktime
@@ -8,12 +8,12 @@ function gmmktime() {
     var no=0, i = 0, ma=0, mb=0, d = new Date(), dn = new Date(), argv = arguments, argc = argv.length;
 
     var dateManip = {
-        0: function(tt){ return d.setUTCHours(tt); },
-        1: function(tt){ return d.setUTCMinutes(tt); },
-        2: function(tt){ var set = d.setUTCSeconds(tt); mb = d.getUTCDate() - dn.getUTCDate(); return set;},
-        3: function(tt){ var set = d.setUTCMonth(parseInt(tt, 10)-1); ma = d.getUTCFullYear() - dn.getUTCFullYear(); return set;},
-        4: function(tt){ return d.setUTCDate(tt+mb);},
-        5: function(tt){
+        0: function (tt){ return d.setUTCHours(tt); },
+        1: function (tt){ return d.setUTCMinutes(tt); },
+        2: function (tt){ var set = d.setUTCSeconds(tt); mb = d.getUTCDate() - dn.getUTCDate(); return set;},
+        3: function (tt){ var set = d.setUTCMonth(parseInt(tt, 10)-1); ma = d.getUTCFullYear() - dn.getUTCFullYear(); return set;},
+        4: function (tt){ return d.setUTCDate(tt+mb);},
+        5: function (tt){
             if (tt >= 0 && tt <= 69) {
                 tt += 2000;
             }
@@ -25,20 +25,20 @@ function gmmktime() {
         // 7th argument (for DST) is deprecated
     };
 
-    for( i = 0; i < argc; i++ ){
+    for (i = 0; i < argc; i++){
         no = parseInt(argv[i]*1, 10);
         if (isNaN(no)) {
             return false;
         } else {
             // arg is number, let's manipulate date object
-            if(!dateManip[i](no)){
+            if (!dateManip[i](no)){
                 // failed
                 return false;
             }
         }
     }
     for (i = argc; i < 6; i++) {
-        switch(i) {
+        switch (i) {
             case 0:
                 no = dn.getUTCHours();
                 break;

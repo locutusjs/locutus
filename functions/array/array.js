@@ -1,4 +1,4 @@
-function array( ) {
+function array () {
     // http://kevin.vanzonneveld.net
     // +   original by: d3x
     // *     example 1: array('Kevin', 'van', 'Zonneveld');

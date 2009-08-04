@@ -21,7 +21,7 @@ function assert (assertion) {
         if (this.php_js.ini[value]) {
             return this.php_js.ini[value].local_value;
         }
-        switch(value) {
+        switch (value) {
             case 'assert.active':
                 return 1;
             case 'assert.warning': // Don't need this now
@@ -45,7 +45,7 @@ function assert (assertion) {
     try { // Less overhead to use string when assertion checking is off, allows message of exact code to callback
         result = typeof assertion === 'string' ? eval(assertion) : assertion;
     }
-    catch(e) {
+    catch (e) {
         if (!getOption('assert.quiet_eval')) {
             throw e;
         }
