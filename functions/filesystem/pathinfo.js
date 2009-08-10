@@ -30,7 +30,7 @@ function pathinfo (path, options) {
     // *     returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
     // Working vars
-    var opt = '', optName='', tmp_arr = {}, cnt = 0, i=0, options=0;
+    var opt = '', optName='', tmp_arr = {}, cnt = 0, i=0;
     var have_basename = false, have_extension = false, have_filename = false;
 
     // Input defaulting & sanitation
