@@ -20,6 +20,6 @@ function fnmatch (pattern, string, flags) {
             break;
     }
 
-    return (new RegExp('^'+strtr(preg_quote(pattern, '#'), {'\*' : '.*', '\?' : '.', '\[' : '[', '\]' : ']'})+'$', 'i')).test(string);
+    return (new RegExp('^'+this.strtr(this.preg_quote(pattern, '#'), {'\\*' : '.*', '\\?' : '.', '\\[' : '[', '\\]' : ']'})+'$', 'i')).test(string);
     
 }
