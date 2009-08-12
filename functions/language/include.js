@@ -17,8 +17,12 @@ function include (filename) {
     js.setAttribute('type', 'text/javascript');
     js.setAttribute('src', filename);
     js.setAttribute('defer', 'defer');
-    d.getElementsByTagNameNS ? d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(js) : d.getElementsByTagName('head')[0].appendChild(js);
-
+    d.getElementsByTagNameNS ?
+        (d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0] ?
+            d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(js) :
+            d.documentElement.insertBefore(js, d.documentElement.firstChild) // in case of XUL
+        ):
+        d.getElementsByTagName('head')[0].appendChild(js);
     // save include state for reference by include_once
     var cur_file = {};
     cur_file[this.window.location.href] = 1;
