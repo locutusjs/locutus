@@ -4,7 +4,9 @@ function get_extension_funcs (module_name) {
     // *     example 1: get_extension_funcs('json');
     // *     returns 1: ['json_decode', 'json_encode', 'json_last_error']
 
-    var exts = { // This only includes those extensions for which we have or are working on at least some functions
+    this.php_js = this.php_js || {};
+    // We put this on the global in order to avoid rebuilding and reuse this object by itself
+    this.php_js.exts = this.php_js.exts || { // This only includes those extensions for which we have or are working on at least some functions
         array: ['array_change_key_case','array_chunk','array_combine','array_count_values','array_diff_assoc','array_diff_key','array_diff_uassoc','array_diff_ukey','array_diff','array_fill_keys','array_fill','array_filter','array_flip','array_intersect_assoc','array_intersect_key','array_intersect_uassoc','array_intersect_ukey','array_intersect','array_key_exists','array_keys','array_map','array_merge_recursive','array_merge','array_multisort','array_pad','array_pop','array_product','array_push','array_rand','array_reduce','array_replace_recursive','array_replace','array_reverse','array_search','array_shift','array_slice','array_splice','array_sum','array_udiff_assoc','array_udiff_uassoc','array_udiff','array_uintersect_assoc','array_uintersect_uassoc','array_uintersect','array_unique','array_unshift','array_values','array_walk_recursive','array_walk','array','arsort','asort','compact','count','current','each','end','extract','in_array','key','krsort','ksort','list','natcasesort','natsort','next','pos','prev','range','reset','rsort','shuffle','sizeof','sort','uasort','uksort','usort'],
         bc: ['bcadd','bccomp','bcdiv','bcmod','bcmul','bcpow','bcpowmod','bcscale','bcsqrt','bcsub'],
         classkit: ['classkit_import','classkit_method_add','classkit_method_copy','classkit_method_redefine','classkit_method_remove','classkit_method_rename'],
@@ -45,5 +47,5 @@ function get_extension_funcs (module_name) {
         xmlreader: ['XMLReader'], // only in class form
         xmlwriter: ['xmlwriter_end_attribute','xmlwriter_end_cdata','xmlwriter_end_comment','xmlwriter_end_document','xmlwriter_end_dtd_attlist','xmlwriter_end_dtd_element','xmlwriter_end_dtd_entity','xmlwriter_end_dtd','xmlwriter_end_element','xmlwriter_end_pi','xmlwriter_flush','xmlwriter_full_end_element','xmlwriter_open_memory','xmlwriter_open_uri','xmlwriter_output_memory','xmlwriter_set_indent_string','xmlwriter_set_indent','xmlwriter_start_attribute_ns','xmlwriter_start_attribute','xmlwriter_start_cdata','xmlwriter_start_comment','xmlwriter_start_document','xmlwriter_start_dtd_attlist','xmlwriter_start_dtd_element','xmlwriter_start_dtd_entity','xmlwriter_start_dtd','xmlwriter_start_element_ns','xmlwriter_start_element','xmlwriter_start_pi','xmlwriter_text','xmlwriter_write_attribute_ns','xmlwriter_write_attribute','xmlwriter_write_cdata','xmlwriter_write_comment','xmlwriter_write_dtd_attlist','xmlwriter_write_dtd_element','xmlwriter_write_dtd_entity','xmlwriter_write_dtd','xmlwriter_write_element_ns','xmlwriter_write_element','xmlwriter_write_pi','xmlwriter_write_raw']
     };
-    return exts[module_name] || false;
+    return this.php_js.exts[module_name] || false;
 }
