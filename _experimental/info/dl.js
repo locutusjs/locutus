@@ -49,9 +49,12 @@ function dl (library) {
     subdirs = _ini_get('phpjs.extension_dir_subdirs');
     skipErrors = _ini_get('phpjs.dl_skip_errors');
 
-
+    // This option will load all files available in the extension_dir(s) as individual files; depending on the
+    //  number of directories to check and the functions in the extension (or files in the directory), this could take
+    //  quite a while (e.g., with individual string functions); this option should really just be used for local
+    //  experimentation (e.g., with SVN files) on smaller sets of files
     if (_ini_get('phpjs.extensions_individual_files')) {
-        if (_ini_get('phpjs.extensions_detect_files')) { // This option will load all files in the extension_dir(s)
+        if (_ini_get('phpjs.extensions_detect_files')) {
             // We might not want to depend on get_extension_funcs(), since that is for all possible functions in the
             //  extension and all must be present
 //            sep = navigator.platform.indexOf('Win') !== -1 ? '\\' : '/'; // Here it may be in native form // We don't use so can be file URL and used in a local script tag
@@ -69,7 +72,11 @@ function dl (library) {
                 var file = URL.QueryInterface(Components.interfaces.nsIFileURL).file;
 //*/
 
-                var entries = file.directoryEntries;
+                try {
+                    var entries = file.directoryEntries;
+                } catch (e) {
+                    continue;
+                }
                 while(entries.hasMoreElements()) {
                     var entry = entries.getNext();
                     entry.QueryInterface(Components.interfaces.nsIFile);
