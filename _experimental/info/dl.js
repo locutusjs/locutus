@@ -131,10 +131,13 @@ function dl (library) {
         }
         // Allow some checking to see if file exists, and if not, check other ext_dir indexes
         for (i=0; i < ext_dir.length && !ret; i++) { // Stop after success
-            basepath = subdirs ? ext_dir[i]+sep+library+sep : ext_dir[i]+sep;
+            basepath = subdirs && !_ini_get('phpjs.dl_allow_individual_funcs') ? ext_dir[i]+sep+library+sep : ext_dir[i]+sep;
             // ret = !!this.include(basepath+library+jsext);
             // We use eval() since include() as currently implemented may still be loading the file asynchonously
             try {
+                if (library.slice(-3) === jsext) {
+                    library = library.slice(0, -3);
+                }
                 ret = _fgc(basepath+library+jsext);
             } catch(e) {
                 if (!skipErrors) {
