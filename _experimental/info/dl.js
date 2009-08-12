@@ -140,6 +140,20 @@ function dl (library) {
                 }
                 ret = _fgc(basepath+library+jsext);
             } catch(e) {
+                this.get_extension_funcs(); // Doesn't need to exist as we're just setting up the global below
+                for (var ext in this.php_js.exts) {
+                    if (this.php_js.exts[ext].indexOf(library) !== -1) {
+                        try {
+                            ret = _fgc(basepath+ext+sep+library+jsext);
+                            return ret;
+                        }
+                        catch(e) {
+                            if (!skipErrors) {
+                                return false;
+                            }
+                        }
+                    }
+                }
                 if (!skipErrors) {
                     return false;
                 }
