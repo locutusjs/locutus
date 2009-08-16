@@ -13,7 +13,10 @@ function date ( format, timestamp ) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
-    // +   derived from: gettimeofday
+    // +  derived from: gettimeofday
+    // +      input by: majak
+    // +   bugfixed by: majak
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
@@ -24,7 +27,9 @@ function date ( format, timestamp ) {
     // *     example 4: x = date('Y m d', (new Date()).getTime()/1000); // 2009 01 09
     // *     example 4: (x+'').length == 10
     // *     returns 4: true
-
+    // *     example 5: date('W', 1104534000);
+    // *     returns 5: '53'
+    
     var that = this;
     var jsdate=(
         (typeof(timestamp) == 'undefined') ? new Date() : // Not provided
@@ -52,8 +57,7 @@ function date ( format, timestamp ) {
 
         if (std_time_offset === daylight_time_offset) {
             dst = 0; // daylight savings time is NOT observed
-        }
-        else {
+        } else {
             // positive is southern, negative is northern hemisphere
             var hemisphere = std_time_offset - daylight_time_offset;
             if (hemisphere >= 0) {
@@ -64,9 +68,9 @@ function date ( format, timestamp ) {
         return dst;
     };
     var ret = '';
-    var txt_weekdays = ["Sunday","Monday","Tuesday","Wednesday",
-        "Thursday","Friday","Saturday"];
-    var txt_ordin = {1:"st",2:"nd",3:"rd",21:"st",22:"nd",23:"rd",31:"st"};
+    var txt_weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday",
+        "Thursday", "Friday", "Saturday"];
+    var txt_ordin = {1: "st", 2: "nd", 3: "rd", 21: "st", 22: "nd", 23: "rd", 31: "st"};
     var txt_months =  ["", "January", "February", "March", "April",
         "May", "June", "July", "August", "September", "October", "November",
         "December"];
@@ -87,7 +91,8 @@ function date ( format, timestamp ) {
                 return txt_weekdays[f.w()];
             },
             N: function (){
-                return f.w() + 1;
+                //return f.w() + 1;
+                return f.w() ? f.w() : 7;
             },
             S: function (){
                 return txt_ordin[f.j()] ? txt_ordin[f.j()] : 'th';
@@ -101,6 +106,7 @@ function date ( format, timestamp ) {
 
         // Week
             W: function (){
+
                 var a = f.z(), b = 364 + f.L() - a;
                 var nd2, nd = (new Date(jsdate.getFullYear() + "/1/1").getDay() || 7) - 1;
 
@@ -111,7 +117,10 @@ function date ( format, timestamp ) {
                     nd2 = new Date(jsdate.getFullYear() - 1 + "/12/31");
                     return that.date("W", Math.round(nd2.getTime()/1000));
                 }
-                return (1 + (nd <= 3 ? ((a + nd) / 7) : (a - (7 - nd)) / 7) >> 0);
+                
+                var w = (1 + (nd <= 3 ? ((a + nd) / 7) : (a - (7 - nd)) / 7) >> 0);
+
+                return (w ? w : 53);
             },
 
         // Month
