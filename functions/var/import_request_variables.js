@@ -12,12 +12,17 @@ function import_request_variables (types, prefix) {
     var i = 0, current = '', url = '', vars = '', arrayBracketPos = -1, arrName='', win = this.window, targetObj = this.window;
     prefix = prefix || '';
 
-    if (this.php_js && this.php_js.ini && this.php_js.ini['phpjs.requestVarsObj'] &&
-        this.php_js.ini['phpjs.requestVarsObj'].local_value) { // Allow designated object to be used instead of window
-        targetObj = this.php_js.ini['phpjs.requestVarsObj'].local_value;
-    }
+    var that = this;
+    var _ini_get = function (ini) {
+        if (that.php_js && that.php_js.ini && that.php_js.ini[ini] &&
+            that.php_js.ini[ini].local_value) { // Allow designated object to be used instead of window
+            return that.php_js.ini[ini].local_value;
+        }
+        return false;
+    };
 
     if (/g/i.test(types)) { // GET
+        targetObj = _ini_get('phpjs.getVarsObj') || _ini_get('phpjs.requestVarsObj') || targetObj;
         for (i = 0, url = win.location.href, vars = url.substring(url.lastIndexOf("?") + 1, url.length).split("&"); i < vars.length; i++){
             current = vars[i].split("=");
             current[1] = decodeURIComponent(current[1]);
@@ -37,6 +42,7 @@ function import_request_variables (types, prefix) {
         }
     }
     if (/c/i.test(types)) { // COOKIE
+        targetObj = _ini_get('phpjs.cookieVarsObj') || _ini_get('phpjs.requestVarsObj') || targetObj;
         for (i = 0, vars = win.document.cookie.split("&"); i < vars.length;i++){
             current = vars[i].split("=");
             targetObj[prefix+current[0]] = current[1].split(";")[0] || null;
