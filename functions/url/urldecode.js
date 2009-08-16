@@ -10,7 +10,8 @@ function urldecode (str) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Lars Fischer
     // +      input by: Ratheous
-    // %          note 1: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
+    // +   improved by: Orlando
+    // %        note 1: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
     // *     example 1: urldecode('Kevin+van+Zonneveld%21');
     // *     returns 1: 'Kevin van Zonneveld!'
     // *     example 2: urldecode('http%3A%2F%2Fkevin.vanzonneveld.net%2F');
@@ -73,6 +74,9 @@ function urldecode (str) {
     hash_map['\u009D'] = '%9D';
     hash_map['\u017E'] = '%9E';
     hash_map['\u0178'] = '%9F';
+    hash_map['\u00C6'] = '%C3%86';
+    hash_map['\u00D8'] = '%C3%98';
+    hash_map['\u00C5'] = '%C3%85';
 
     for (unicodeStr in hash_map) {
         hexEscStr = hash_map[unicodeStr]; // Switch order when decoding

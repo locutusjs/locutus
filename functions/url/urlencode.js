@@ -10,8 +10,9 @@ function urlencode (str) {
     // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Lars Fischer
+    // +   improved by: Orlando
     // +      input by: Ratheous
-    // %          note 1: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
+    // %        note 1: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
     // *     example 1: urlencode('Kevin van Zonneveld!');
     // *     returns 1: 'Kevin+van+Zonneveld%21'
     // *     example 2: urlencode('http://kevin.vanzonneveld.net/');
@@ -75,6 +76,9 @@ function urlencode (str) {
     hash_map['\u009D'] = '%9D';
     hash_map['\u017E'] = '%9E';
     hash_map['\u0178'] = '%9F';
+    hash_map['\u00C6'] = '%C3%86';
+    hash_map['\u00D8'] = '%C3%98';
+    hash_map['\u00C5'] = '%C3%85';
     
     // Begin with encodeURIComponent, which most resembles PHP's encoding functions
     ret = encodeURIComponent(ret);
