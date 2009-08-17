@@ -9,7 +9,7 @@ function import_request_variables (types, prefix) {
     // *        example 1: import_request_variables('gc', 'pr_');
     // *        results 1: pr_snack == 'yummy'
 
-    var i = 0, current = '', url = '', vars = '', arrayBracketPos = -1, arrName='', win = this.window, targetObj = this.window;
+    var i = 0, current = '', url = '', vars = '', arrayBracketPos = -1, arrName='', win = this.window, requestObj = this.window, getObj = false, cookieObj = false;
     prefix = prefix || '';
 
     var that = this;
@@ -21,8 +21,9 @@ function import_request_variables (types, prefix) {
         return false;
     };
 
+    requestObj = _ini_get('phpjs.requestVarsObj') || requestObj;
     if (/g/i.test(types)) { // GET
-        targetObj = _ini_get('phpjs.getVarsObj') || _ini_get('phpjs.requestVarsObj') || targetObj;
+        getObj = _ini_get('phpjs.getVarsObj') || getObj;
         for (i = 0, url = win.location.href, vars = url.substring(url.lastIndexOf("?") + 1, url.length).split("&"); i < vars.length; i++){
             current = vars[i].split("=");
             current[1] = decodeURIComponent(current[1]);
@@ -30,22 +31,34 @@ function import_request_variables (types, prefix) {
             if (arrayBracketPos !== -1) {
                 arrName = current[0].substring(0, arrayBracketPos);
                 arrName = decodeURIComponent(arrName);
-                if (!targetObj[prefix+arrName]) {
-                    targetObj[prefix+arrName] = [];
+                if (!requestObj[prefix+arrName]) {
+                    requestObj[prefix+arrName] = [];
                 }
-                targetObj[prefix+arrName].push(current[1] || null);
+                requestObj[prefix+arrName].push(current[1] || null);
+                if (getObj) {
+                    if (!getObj[prefix+arrName]) {
+                        getObj[prefix+arrName] = [];
+                    }
+                    getObj[prefix+arrName].push(current[1] || null);
+                }
             }
             else {
                 current[0] = decodeURIComponent(current[0]);
-                targetObj[prefix+current[0]] = current[1] || null;
+                requestObj[prefix+current[0]] = current[1] || null;
+                if (getObj) {
+                    getObj[prefix+current[0]] = current[1] || null;
+                }
             }
         }
     }
     if (/c/i.test(types)) { // COOKIE
-        targetObj = _ini_get('phpjs.cookieVarsObj') || _ini_get('phpjs.requestVarsObj') || targetObj;
+        cookieObj = _ini_get('phpjs.cookieVarsObj') || cookieObj;
         for (i = 0, vars = win.document.cookie.split("&"); i < vars.length;i++){
             current = vars[i].split("=");
-            targetObj[prefix+current[0]] = current[1].split(";")[0] || null;
+            requestObj[prefix+current[0]] = current[1].split(";")[0] || null;
+            if (cookieObj) {
+                cookieObj[prefix+current[0]] = current[1].split(";")[0] || null;
+            }
         }
     }
 }
