@@ -93,12 +93,6 @@ function dl (library) {
                     try {
                         ret = _fgc(funcs[i]);
                     } catch(e) {
-                        if (!skipErrors) {
-                            return false;
-                        }
-                    }
-                    if (!ret && !skipErrors) {
-                        return false; // Normally fail on a single individual file not being accessible
                     }
                 }
             }
@@ -113,10 +107,8 @@ function dl (library) {
                     //ret = !!this.include(basepath+funcs[i]+jsext);
                     try {
                         ret = _fgc(basepath+funcs[i]+jsext);
-                    } catch(e) {
-                        if (!skipErrors) {
-                            return false;
-                        }
+                    }
+                    catch(e) {
                     }
                 }
                 if (!ret) {
@@ -147,17 +139,14 @@ function dl (library) {
                             ret = _fgc(basepath+ext+sep+library+jsext);
                             return ret;
                         }
-                        catch(e) {
-                            if (!skipErrors) {
-                                return false;
-                            }
+                        catch(e) { // Even with skipErrors off, we allow it to get errors in some of the extension directories
                         }
                     }
                 }
-                if (!skipErrors) {
-                    return false;
-                }
             }
+        }
+        if (!skipErrors) {
+            return false;
         }
         return ret;
     }
