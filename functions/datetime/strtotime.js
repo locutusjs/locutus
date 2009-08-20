@@ -6,6 +6,7 @@ function strtotime (str, now) {
     // +   improved by: Caio Ariede (http://caioariede.com)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Wagner B. Soares
+    // +   bugfixed by: Artur Tchernychev
     // %        note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
     // *     example 1: strtotime('+1 day', 1129633200);
     // *     returns 1: 1129719600
@@ -15,7 +16,7 @@ function strtotime (str, now) {
     // *     returns 3: 1127041200
     // *     example 4: strtotime('2009-05-04 08:30:00');
     // *     returns 4: 1241418600
-
+ 
     var i, match, s, strTmp = '', parse = '';
 
     strTmp = str;
@@ -179,7 +180,7 @@ function strtotime (str, now) {
         return false;
     }
 
-    for (i in match) {
+    for (i = 0; i < match.length; i++) {
         if (!process(match[i].split(' '))) {
             return false;
         }
