@@ -19,7 +19,8 @@ function str_pad (input, pad_length, pad_string, pad_type) {
     };
 
     input += '';
-
+    pad_string = pad_string !== undefined ? pad_string : ' ';
+    
     if (pad_type != 'STR_PAD_LEFT' && pad_type != 'STR_PAD_RIGHT' && pad_type != 'STR_PAD_BOTH') { pad_type = 'STR_PAD_RIGHT'; }
     if ((pad_to_go = pad_length - input.length) > 0) {
         if (pad_type == 'STR_PAD_LEFT') { input = str_pad_repeater(pad_string, pad_to_go) + input; }
