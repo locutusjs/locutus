@@ -85,22 +85,22 @@ function setlocale (category, locale) {
                 currency_symbol : '$',
                 mon_decimal_point : '.',
                 mon_thousands_sep : ',',
-                mon_grouping : [3],
+                mon_grouping : [3], // use mon_thousands_sep; "" for no grouping; additional array members indicate successive group lengths after first group (e.g., if to be 1,23,456, could be [3, 2])
                 positive_sign : '',
                 negative_sign : '-',
                 int_frac_digits : 2, // Fractional digits only for money defaults?
                 frac_digits : 2,
-                p_cs_precedes : 1,
-                p_sep_by_space : 0,
-                n_cs_precedes : 1,
-                n_sep_by_space : 0,
-                p_sign_posn : 3,
-                n_sign_posn : 0
+                p_cs_precedes : 1, // positive currency symbol follows value = 0; precedes value = 1
+                p_sep_by_space : 0, // 0: no space between curr. symbol and value; 1: space sep. them unless symb. and sign are adjacent then space sep. them from value; 2: space sep. sign and value unless symb. and sign are adjacent then space separates
+                n_cs_precedes : 1, // see p_cs_precedes
+                n_sep_by_space : 0, // see p_sep_by_space
+                p_sign_posn : 3, // 0: parentheses surround quantity and curr. symbol; 1: sign precedes them; 2: sign follows them; 3: sign immed. precedes curr. symbol; 4: sign immed. succeeds curr. symbol
+                n_sign_posn : 0 // see p_sign_posn
             },
             'LC_NUMERIC' : { // Based on Windows "english" (English_United States.1252) locale
                 decimal_point : '.',
                 thousands_sep : ',',
-                grouping : [3]
+                grouping : [3] // see mon_grouping, but for non-monetary values (use thousands_sep)
             },
             'LC_MESSAGES' : {
                 YESEXPR : '^[yY].*',
