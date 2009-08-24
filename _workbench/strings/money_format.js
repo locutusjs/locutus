@@ -93,18 +93,32 @@ function money_format (format, number) {
             symbol = conversion === 'i' ? monetary.int_curr_symbol : monetary.currency_symbol; // 'i' vs. 'n' ('USD' vs. '$')
         }
         var sign_posn = neg ? monetary.n_sign_posn : monetary.p_sign_posn;
+
+        // 0: no space between curr. symbol and value
+        // 1: space sep. them unless symb. and sign are adjacent then space sep. them from value
+        // 2: space sep. sign and value unless symb. and sign are adjacent then space separates
         var sep_by_space = neg ? monetary.n_sep_by_space : monetary.p_sep_by_space;
+
         // p_cs_precedes, n_cs_precedes // positive currency symbol follows value = 0; precedes value = 1
         var cs_precedes = neg ? monetary.n_cs_precedes : monetary.p_cs_precedes;
 
-// Unfinished from here:
-// 1) add symbol and sign, padding with spaces as necessary for width
-// symbol/value/sign
-
+        // Assemble symbol/value/sign and possible space as appropriate
         if (flags.indexOf('(') !== -1) { // flag: parenth. for negative
-            // Fix: unclear on whether and how sep_by_space, sign_pos, or cs_precedes have an impact here (as they do below)
+            // Fix: unclear on whether and how sep_by_space, sign_posn, or cs_precedes have
+            // an impact here (as they do below), but assuming for now behaves as sign_posn 0 as
+            // far as localized sep_by_space and sign_posn behavior
             if (number < 0) {
-                repl = '('+repl+')';
+                repl = '(' + 
+                        (cs_precedes ?
+                                symbol + (sep_by_space === 1 ? ' ' : ''):
+                                ''
+                        ) +
+                        value +
+                        (!cs_precedes ?
+                                (sep_by_space === 1 ? ' ' : '') + symbol:
+                                ''
+                        ) +
+                ')';
             }
         }
         else { // '+' is default
@@ -112,20 +126,7 @@ function money_format (format, number) {
             var neg_sign = monetary.negative_sign; // '-'
             var sign = number >= 0 ? (pos_sign) : (neg_sign);
 
-            // Integrate this in cases below
-            switch (sep_by_space) {
-                case 0: // 0: no space between curr. symbol and value
-                    break;
-                case 1: // 1: space sep. them unless symb. and sign are adjacent then space sep. them from value
-                    symbolAndValue =
-                    valueAndCS = sign_posn < 2 ?
-                                                    cs_precedes ? symbol+' '+value : value+' '+symbol :
-                                                    cs_precedes ? symbol+value : value+symbol;
-                    break;
-                case 2: // 2: space sep. sign and value unless symb. and sign are adjacent then space separates
-                    break;
-            }
-            var valueAndCS = '', symbolAndValue = '', symbolAndSign = '';
+            var valueAndCS = '';
             switch(sign_posn) {
                 // 0: parentheses surround value and curr. symbol;
                 // 1: sign precedes them;
@@ -133,34 +134,47 @@ function money_format (format, number) {
                 // 3: sign immed. precedes curr. symbol; (but may be space between)
                 // 4: sign immed. succeeds curr. symbol; (but may be space between)
                 case 0:
-                    valueAndCS = cs_precedes ? symbol+value : value+symbol;
+                    valueAndCS = cs_precedes ?
+                                    symbol + (sep_by_space === 1 ? ' ' : '') + value :
+                                    value + (sep_by_space === 1 ? ' ' : '') + symbol;
                     repl = '('+valueAndCS+')';
                     break;
                 case 1:
-                    valueAndCS = cs_precedes ? symbol+value : value+symbol;
-                    repl = sign+valueAndCS;
+                    valueAndCS = cs_precedes ? 
+                                    symbol+(sep_by_space === 1 ? ' ' : '')+value :
+                                    value+(sep_by_space === 1 ? ' ' : '')+symbol;
+                    repl = sign+(sep_by_space === 2 ? ' ' : '')+valueAndCS;
                     break;
                 case 2:
-                    valueAndCS = cs_precedes ? symbol+value : value+symbol;
-                    repl = valueAndCS+sign;
+                    valueAndCS = cs_precedes ?
+                                    symbol+(sep_by_space === 1 ? ' ' : '')+value :
+                                    value+(sep_by_space === 1 ? ' ' : '')+symbol;
+                    repl = valueAndCS+(sep_by_space === 2 ? ' ' : '')+sign;
                     break;
                 case 3:
-                    repl = cs_precedes ? sign+symbol+value : value+sign+symbol;
+                    repl = cs_precedes ? 
+                                    sign+(sep_by_space === 2 ? ' ' : '')+symbol+(sep_by_space === 1 ? ' ' : '')+value :
+                                    value+(sep_by_space === 1 ? ' ' : '')+sign+(sep_by_space === 2 ? ' ' : '')+symbol;
                     break;
                 case 4:
-                    repl = cs_precedes ? symbol+sign+value : value+symbol+sign;
+                    repl = cs_precedes ?
+                                    symbol+(sep_by_space === 2 ? ' ' : '')+sign+(sep_by_space === 1 ? ' ' : '')+value :
+                                    value+(sep_by_space === 1 ? ' ' : '')+symbol+(sep_by_space === 2 ? ' ' : '')+sign;
                     break;
             }
         }
 
 
-        // How does p_sep_by_space affect the count if there is a space? Included in count presumably?
+// Unfinished from here:
+// 1) padding with spaces as necessary for width and for pos/neg alignment
+
+        // Fix: How does p_sep_by_space affect the count if there is a space? Included in count presumably?
         if (flags.indexOf('-') !== -1) { // left-justified (pad to right)
-            /**
-            width
-            //*/
+            
+            //width
         }
         else { // right-justified
+            
             // same as above but other direction
         }
         return repl;
