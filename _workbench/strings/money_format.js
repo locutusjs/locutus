@@ -14,7 +14,7 @@ function money_format (format, number) {
     var monetary = this.php_js.locales[this.php_js.localeCategories['LC_MONETARY']]['LC_MONETARY'];
 
     var doReplace = function (n0, flags, n2, width, n4, left, n6, right, conversion) {
-        var repl = '';
+        var value='', repl = '';
         if (conversion === '%') { // Percent does not seem to be allowed with intervening content
             return '%';
         }
@@ -22,6 +22,7 @@ function money_format (format, number) {
         var showCurrSymbol = !flags || flags.indexOf('!') === -1; // flag: ! (suppress currency symbol)
         width = width || 0; // field width: w (minimum field width)
 
+        var neg = number < 0;
         number = number+''; // Convert to string
         var decpos = number.indexOf('.');
         var integer = decpos !== -1 ? number.slice(0, decpos) : number; // Get integer portion
@@ -65,7 +66,7 @@ function money_format (format, number) {
 
         // left, right
         if (right === '0') { // No decimal or fractional digits
-            repl = integer;
+            value = integer;
         }
         else {
             var dec_pt = monetary.mon_decimal_point; // '.'
@@ -84,21 +85,24 @@ function money_format (format, number) {
             else if (right > fraction.length) {
                 fraction += new Array(right - fraction.length + 1).join('0'); // pad with 0's
             }
-            repl = integer+dec_pt+fraction;
+            value = integer+dec_pt+fraction;
         }
-
-// Unfinished from here:
-// 1) add symbol and sign, padding with spaces as necessary for width
-
-// p_cs_precedes, n_cs_precedes, p_sep_by_space, n_sep_by_space, p_sign_posn, n_sign_posn
-// symbol/value/sign
 
         var symbol = '';
         if (showCurrSymbol) {
             symbol = conversion === 'i' ? monetary.int_curr_symbol : monetary.currency_symbol; // 'i' vs. 'n' ('USD' vs. '$')
         }
-        
+        var sign_posn = neg ? monetary.n_sign_posn : monetary.p_sign_posn;
+        var sep_by_space = neg ? monetary.n_sep_by_space : monetary.p_sep_by_space;
+        // p_cs_precedes, n_cs_precedes // positive currency symbol follows value = 0; precedes value = 1
+        var cs_precedes = neg ? monetary.n_cs_precedes : monetary.p_cs_precedes;
+
+// Unfinished from here:
+// 1) add symbol and sign, padding with spaces as necessary for width
+// symbol/value/sign
+
         if (flags.indexOf('(') !== -1) { // flag: parenth. for negative
+            // Fix: unclear on whether and how sep_by_space, sign_pos, or cs_precedes have an impact here (as they do below)
             if (number < 0) {
                 repl = '('+repl+')';
             }
@@ -106,8 +110,51 @@ function money_format (format, number) {
         else { // '+' is default
             var pos_sign = monetary.positive_sign; // ''
             var neg_sign = monetary.negative_sign; // '-'
-            repl = number >= 0 ? (pos_sign)+repl : (neg_sign)+repl;
+            var sign = number >= 0 ? (pos_sign) : (neg_sign);
+
+            var valueAndCS = '', symbolAndValue = '', symbolAndSign = '';
+            switch (sep_by_space) {
+                case 0: // 0: no space between curr. symbol and value
+                    switch(sign_posn) {
+                        // 0: parentheses surround value and curr. symbol;
+                        // 1: sign precedes them;
+                        // 2: sign follows them;
+                        // 3: sign immed. precedes curr. symbol; (but may be space between)
+                        // 4: sign immed. succeeds curr. symbol; (but may be space between)
+                        case 0:
+                            valueAndCS = cs_precedes ? symbol+value : value+symbol;
+                            repl = '('+valueAndCS+')';
+                            break;
+                        case 1:
+                            valueAndCS = cs_precedes ? symbol+value : value+symbol;
+                            repl = sign+valueAndCS;
+                            break;
+                        case 2:
+                            valueAndCS = cs_precedes ? symbol+value : value+symbol;
+                            repl = valueAndCS+sign;
+                            break;
+                        case 3:
+                            repl = cs_precedes ? sign+symbol+value : value+sign+symbol;
+                            break;
+                        case 4:
+                            repl = cs_precedes ? symbol+sign+value : value+symbol+sign;
+                            break;
+                    }
+                    break;
+                case 1: // 1: space sep. them unless symb. and sign are adjacent then space sep. them from value
+                    symbolAndValue =
+                    valueAndCS = sign_posn < 2 ?
+                                                    cs_precedes ? symbol+' '+value : value+' '+symbol :
+                                                    cs_precedes ? symbol+value : value+symbol;
+
+                    break;
+                case 2: // 2: space sep. sign and value unless symb. and sign are adjacent then space separates
+
+                    break;
+            }
+
         }
+
 
         // How does p_sep_by_space affect the count if there is a space? Included in count presumably?
         if (flags.indexOf('-') !== -1) { // left-justified (pad to right)
