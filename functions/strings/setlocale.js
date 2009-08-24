@@ -113,6 +113,13 @@ function setlocale (category, locale) {
         phpjs.locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z';
         phpjs.locales.en_US.LC_TIME.x = '%D';
         phpjs.locales.en_US.LC_TIME.X = '%r';
+        // The following are based on *nix settings
+        phpjs.locales.en_US.LC_MONETARY.int_curr_symbol = 'USD ';
+        phpjs.locales.en_US.LC_MONETARY.p_sign_posn = 1;
+        phpjs.locales.en_US.LC_MONETARY.n_sign_posn = 1;
+        phpjs.locales.en_US.LC_MONETARY.mon_grouping = [3, 3];
+        phpjs.locales.en_US.LC_NUMERIC.thousands_sep = '';
+        phpjs.locales.en_US.LC_NUMERIC.grouping = [];
 
         phpjs.locales.en_GB = _copy(phpjs.locales.en);
         phpjs.locales.en_GB.LC_TIME.r =  '%l:%M:%S %P %Z';

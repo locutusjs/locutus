@@ -2,8 +2,35 @@ function money_format (format, number) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: setlocale
+    // %          note 1: This depends on setlocale having the appropriate locale (these examples use 'en_US')
     // *     example 1: money_format('%i', 1234.56);
     // *     returns 1: 'USD 1,234.56'
+    // *     example 2: money_format('%14#8.2n', 1234.5678);
+    // *     returns 2: ' $     1,234.57'
+    // *     example 3: money_format('%14#8.2n', -1234.5678);
+    // *     returns 3: '-$     1,234.57'
+    // *     example 4: money_format('%(14#8.2n', 1234.5678);
+    // *     returns 4: ' $     1,234.57 '
+    // *     example 5: money_format('%(14#8.2n', -1234.5678);
+    // *     returns 5: '($     1,234.57)'
+    // *     example 6: money_format('%=014#8.2n', 1234.5678);
+    // *     returns 6: ' $000001,234.57'
+    // *     example 7: money_format('%=014#8.2n', -1234.5678);
+    // *     returns 7: '-$000001,234.57'
+    // *     example 8: money_format('%=*14#8.2n', 1234.5678);
+    // *     returns 8: ' $*****1,234.57'
+    // *     example 9: money_format('%=*14#8.2n', -1234.5678);
+    // *     returns 9: '-$*****1,234.57'
+    // *     example 10: money_format('%=*^14#8.2n', 1234.5678);
+    // *     returns 10: '  $****1234.57'
+    // *     example 11: money_format('%=*^14#8.2n', -1234.5678);
+    // *     returns 11: ' -$****1234.57'
+    // *     example 12: money_format('%=*!14#8.2n', 1234.5678);
+    // *     returns 12: ' *****1,234.57'
+    // *     example 13: money_format('%=*!14#8.2n', -1234.5678);
+    // *     returns 13: '-*****1,234.57'
+
+    // Helpful info at http://ftp.gnu.org/pub/pub/old-gnu/Manuals/glibc-2.2.3/html_chapter/libc_7.html and http://publib.boulder.ibm.com/infocenter/zos/v1r10/index.jsp?topic=/com.ibm.zos.r10.bpxbd00/strfmp.htm
 
     if (typeof number !== 'number') {
         return null;
@@ -20,10 +47,12 @@ function money_format (format, number) {
         }
         var fill = flags && /=./.test(flags) ? flags.match(/=(.)/)[1] : ' '; // flag: =f (numeric fill)
         var showCurrSymbol = !flags || flags.indexOf('!') === -1; // flag: ! (suppress currency symbol)
-        width = width || 0; // field width: w (minimum field width)
+        width = parseInt(width, 10) || 0; // field width: w (minimum field width)
 
         var neg = number < 0;
         number = number+''; // Convert to string
+        number = neg ? number.slice(1) : number; // We don't want negative symbol represented here yet
+
         var decpos = number.indexOf('.');
         var integer = decpos !== -1 ? number.slice(0, decpos) : number; // Get integer portion
         var fraction = decpos !== -1 ? number.slice(decpos+1) : ''; // Get decimal portion
@@ -34,13 +63,15 @@ function money_format (format, number) {
             return integerArr.join('');
         };
 
+        var init_lgth = integer.length;
+        left = parseInt(left, 10);
+        var filler = init_lgth < left;
+        if (filler) {
+            var fillnum = left-init_lgth;
+            integer = new Array(fillnum+1).join(fill)+integer;
+        }
+
         if (flags.indexOf('^') === -1) { // flag: ^ (disable grouping characters (of locale))
-            var init_lgth = integer.length;
-            var filler = init_lgth < left;
-            if (filler) {
-                var fillnum = left-init_lgth;
-                integer = new Array(fillnum+1).join(fill)+integer;
-            }
             // use grouping characters
             var thous_sep = monetary.mon_thousands_sep; // ','
             var mon_grouping = monetary.mon_grouping; // [3] (every 3 digits in U.S.A. locale)
@@ -80,7 +111,7 @@ function money_format (format, number) {
                 dec_pt = '';
             }
             else if (right < fraction.length) {
-                fraction = Math.round(parseInt(fraction.slice(0, right)+'.'+fraction.substr(right, 1), 10))+'';
+                fraction = Math.round(parseFloat(fraction.slice(0, right)+'.'+fraction.substr(right, 1), 10))+'';
             }
             else if (right > fraction.length) {
                 fraction += new Array(right - fraction.length + 1).join('0'); // pad with 0's
@@ -107,9 +138,7 @@ function money_format (format, number) {
             // Fix: unclear on whether and how sep_by_space, sign_posn, or cs_precedes have
             // an impact here (as they do below), but assuming for now behaves as sign_posn 0 as
             // far as localized sep_by_space and sign_posn behavior
-            if (number < 0) {
-                repl = '(' + 
-                        (cs_precedes ?
+            repl = (cs_precedes ?
                                 symbol + (sep_by_space === 1 ? ' ' : ''):
                                 ''
                         ) +
@@ -117,14 +146,23 @@ function money_format (format, number) {
                         (!cs_precedes ?
                                 (sep_by_space === 1 ? ' ' : '') + symbol:
                                 ''
-                        ) +
-                ')';
+                        );
+            if (neg) {
+                repl = '(' + repl + ')';
+            }
+            else {
+                repl = ' ' + repl + ' ';
             }
         }
         else { // '+' is default
             var pos_sign = monetary.positive_sign; // ''
             var neg_sign = monetary.negative_sign; // '-'
-            var sign = number >= 0 ? (pos_sign) : (neg_sign);
+            var sign = neg ? (neg_sign) : (pos_sign);
+            var otherSign = neg ? (pos_sign) : (neg_sign);
+            var signPadding = '';
+            if (sign_posn) { // has a sign
+                signPadding = new Array(otherSign.length - sign.length + 1).join(' ');
+            }
 
             var valueAndCS = '';
             switch(sign_posn) {
@@ -143,39 +181,37 @@ function money_format (format, number) {
                     valueAndCS = cs_precedes ? 
                                     symbol+(sep_by_space === 1 ? ' ' : '')+value :
                                     value+(sep_by_space === 1 ? ' ' : '')+symbol;
-                    repl = sign+(sep_by_space === 2 ? ' ' : '')+valueAndCS;
+                    repl = signPadding+sign+(sep_by_space === 2 ? ' ' : '')+valueAndCS;
                     break;
                 case 2:
                     valueAndCS = cs_precedes ?
                                     symbol+(sep_by_space === 1 ? ' ' : '')+value :
                                     value+(sep_by_space === 1 ? ' ' : '')+symbol;
-                    repl = valueAndCS+(sep_by_space === 2 ? ' ' : '')+sign;
+                    repl = valueAndCS+(sep_by_space === 2 ? ' ' : '')+sign+signPadding;
                     break;
                 case 3:
                     repl = cs_precedes ? 
-                                    sign+(sep_by_space === 2 ? ' ' : '')+symbol+(sep_by_space === 1 ? ' ' : '')+value :
-                                    value+(sep_by_space === 1 ? ' ' : '')+sign+(sep_by_space === 2 ? ' ' : '')+symbol;
+                                    signPadding+sign+(sep_by_space === 2 ? ' ' : '')+symbol+(sep_by_space === 1 ? ' ' : '')+value :
+                                    value+(sep_by_space === 1 ? ' ' : '')+sign+signPadding+(sep_by_space === 2 ? ' ' : '')+symbol;
                     break;
                 case 4:
                     repl = cs_precedes ?
-                                    symbol+(sep_by_space === 2 ? ' ' : '')+sign+(sep_by_space === 1 ? ' ' : '')+value :
-                                    value+(sep_by_space === 1 ? ' ' : '')+symbol+(sep_by_space === 2 ? ' ' : '')+sign;
+                                    symbol+(sep_by_space === 2 ? ' ' : '')+signPadding+sign+(sep_by_space === 1 ? ' ' : '')+value :
+                                    value+(sep_by_space === 1 ? ' ' : '')+symbol+(sep_by_space === 2 ? ' ' : '')+sign+signPadding;
                     break;
             }
         }
 
-
-// Unfinished from here:
-// 1) padding with spaces as necessary for width and for pos/neg alignment
-
-        // Fix: How does p_sep_by_space affect the count if there is a space? Included in count presumably?
-        if (flags.indexOf('-') !== -1) { // left-justified (pad to right)
-            
-            //width
-        }
-        else { // right-justified
-            
-            // same as above but other direction
+        var padding = width-repl.length;
+        if (padding > 0) {
+            padding = new Array(padding+1).join(' ');
+            // Fix: How does p_sep_by_space affect the count if there is a space? Included in count presumably?
+            if (flags.indexOf('-') !== -1) { // left-justified (pad to right)
+                repl += padding;
+            }
+            else { // right-justified (pad to left)
+                repl = padding + repl;
+            }
         }
         return repl;
     };
