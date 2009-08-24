@@ -112,47 +112,45 @@ function money_format (format, number) {
             var neg_sign = monetary.negative_sign; // '-'
             var sign = number >= 0 ? (pos_sign) : (neg_sign);
 
-            var valueAndCS = '', symbolAndValue = '', symbolAndSign = '';
+            // Integrate this in cases below
             switch (sep_by_space) {
                 case 0: // 0: no space between curr. symbol and value
-                    switch(sign_posn) {
-                        // 0: parentheses surround value and curr. symbol;
-                        // 1: sign precedes them;
-                        // 2: sign follows them;
-                        // 3: sign immed. precedes curr. symbol; (but may be space between)
-                        // 4: sign immed. succeeds curr. symbol; (but may be space between)
-                        case 0:
-                            valueAndCS = cs_precedes ? symbol+value : value+symbol;
-                            repl = '('+valueAndCS+')';
-                            break;
-                        case 1:
-                            valueAndCS = cs_precedes ? symbol+value : value+symbol;
-                            repl = sign+valueAndCS;
-                            break;
-                        case 2:
-                            valueAndCS = cs_precedes ? symbol+value : value+symbol;
-                            repl = valueAndCS+sign;
-                            break;
-                        case 3:
-                            repl = cs_precedes ? sign+symbol+value : value+sign+symbol;
-                            break;
-                        case 4:
-                            repl = cs_precedes ? symbol+sign+value : value+symbol+sign;
-                            break;
-                    }
                     break;
                 case 1: // 1: space sep. them unless symb. and sign are adjacent then space sep. them from value
                     symbolAndValue =
                     valueAndCS = sign_posn < 2 ?
                                                     cs_precedes ? symbol+' '+value : value+' '+symbol :
                                                     cs_precedes ? symbol+value : value+symbol;
-
                     break;
                 case 2: // 2: space sep. sign and value unless symb. and sign are adjacent then space separates
-
                     break;
             }
-
+            var valueAndCS = '', symbolAndValue = '', symbolAndSign = '';
+            switch(sign_posn) {
+                // 0: parentheses surround value and curr. symbol;
+                // 1: sign precedes them;
+                // 2: sign follows them;
+                // 3: sign immed. precedes curr. symbol; (but may be space between)
+                // 4: sign immed. succeeds curr. symbol; (but may be space between)
+                case 0:
+                    valueAndCS = cs_precedes ? symbol+value : value+symbol;
+                    repl = '('+valueAndCS+')';
+                    break;
+                case 1:
+                    valueAndCS = cs_precedes ? symbol+value : value+symbol;
+                    repl = sign+valueAndCS;
+                    break;
+                case 2:
+                    valueAndCS = cs_precedes ? symbol+value : value+symbol;
+                    repl = valueAndCS+sign;
+                    break;
+                case 3:
+                    repl = cs_precedes ? sign+symbol+value : value+sign+symbol;
+                    break;
+                case 4:
+                    repl = cs_precedes ? symbol+sign+value : value+symbol+sign;
+                    break;
+            }
         }
 
 
