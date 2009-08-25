@@ -44,7 +44,7 @@
  */
 function _phpjs_shared_bc () {
     // http://kevin.vanzonneveld.net
-    // +   original by: Lance Meyrick (https://sourceforge.net/projects/bcmath-js/)
+    // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
     // *     example 1: _phpjs_shared_bc();
     // *     returns 1: {}
     
