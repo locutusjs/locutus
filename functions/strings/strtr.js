@@ -5,6 +5,9 @@ function strtr (str, from, to) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Alan C
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Taras Bogach
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // -   depends on: krsort
     // *     example 1: $trans = {'hello' : 'hi', 'hi' : 'hello'};
     // *     example 1: strtr('hi all, I said hello', $trans)
     // *     returns 1: 'hello all, I said hi'
@@ -16,6 +19,8 @@ function strtr (str, from, to) {
     // *     returns 4: 'zyyx'
     // *     example 5: strtr('zyyx', 'pthxyz','xyzpth');
     // *     returns 5: 'http'
+    // *     example 6: strtr('aa', {'a':1,'aa':2});
+    // *     returns 6: '2'
 
     var fr = '', i = 0, j = 0, lenStr = 0, lenFrom = 0;
     var tmpFrom = [];
@@ -26,6 +31,7 @@ function strtr (str, from, to) {
     // Received replace_pairs?
     // Convert to normal from->to chars
     if (typeof from === 'object') {
+        this.krsort(from);
         for (fr in from) {
             tmpFrom.push(fr);
             tmpTo.push(from[fr]);
