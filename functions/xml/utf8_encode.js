@@ -7,10 +7,11 @@ function utf8_encode ( argString ) {
     // +   bugfixed by: Onno Marsman
     // +   improved by: Yves Sucaet
     // +   bugfixed by: Onno Marsman
+    // +   bugfixed by: Ulrich
     // *     example 1: utf8_encode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
-    var string = (argString+'').replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+    var string = (argString+''); // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
 
     var utftext = "";
     var start, end;
