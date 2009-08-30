@@ -11,6 +11,8 @@ function mktime () {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Marc Palau
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +      input by: 3D-GRAF
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: mktime(14, 10, 2, 2, 1, 2008);
     // *     returns 1: 1201871402
     // *     example 2: mktime(0, 0, 0, 0, 1, 2008);
@@ -32,7 +34,7 @@ function mktime () {
     var dateManip = {
         0: function (tt){ return d.setHours(tt); },
         1: function (tt){ return d.setMinutes(tt); },
-        2: function (tt){ var set = d.setSeconds(tt); mb = d.getDate() - dn.getDate(); return set;},
+        2: function (tt){ var set = d.setSeconds(tt); mb = d.getDate() - dn.getDate(); d.setDate(1); return set;},
         3: function (tt){ var set = d.setMonth(parseInt(tt, 10)-1); ma = d.getFullYear() - dn.getFullYear(); return set;},
         4: function (tt){ return d.setDate(tt+mb);},
         5: function (tt){
