@@ -14,6 +14,7 @@ load('../functions/var/is_object.js');
 load('../functions/array/array_combine.js');
 load('../functions/var/serialize.js');
 load('../functions/var/var_dump.js');
+load('../functions/datetime/date.js');
 load('../functions/strings/echo.js');
 
 
@@ -30,11 +31,15 @@ window.onload = function(){
      *   rhino debug.js
      *   
     */
-    var $ser;
 
-    $ser = serialize("a \n b");
-    var_dump($ser);
+//
+//    var $ser;
+//
+//    $ser = serialize("a \n b");
+//    var_dump($ser);
 
+    $x = date('W', 1104534000);
+    print($x);
     
     //print('Debug finished');
 }

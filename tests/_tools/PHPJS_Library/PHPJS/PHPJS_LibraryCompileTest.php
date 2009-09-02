@@ -14,7 +14,7 @@ class PHPJS_LibraryCompilerTest extends PHPUnit_Framework_TestCase
      * @var    PHPJS_Library
      * @access protected
      */
-    protected $object;
+    protected $PHPJS;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -25,7 +25,7 @@ class PHPJS_LibraryCompilerTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $p = dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/functions';
-        $this->object = new PHPJS_Library_Compiler($p);
+        $this->PHPJS = new PHPJS_Library_Compiler($p);
     }
 
     /**
@@ -38,6 +38,47 @@ class PHPJS_LibraryCompilerTest extends PHPUnit_Framework_TestCase
     {
     }
 
+    public function testCompile() {
+        $compression = 'none';
+        $namespaced  = 'yes';
+        $selection   = array(
+            'array_shift' => true,
+            'bcadd' => true,
+        );
+        
+        $options = array(
+            'pref_title' => 'test.php',
+            'compression' => $compression,
+            'namespaced' => $namespaced
+        );
+
+        $selection = array_flip(array_keys($this->PHPJS->Functions));
+        
+        // Set selection
+        $this->PHPJS->clearSelection();
+        foreach ($selection as $functionName =>$bool) {
+            $this->PHPJS->addToSelection('function::'.$functionName);
+        }
+
+        // Set flags
+        $flags = 0;
+        if ($options['namespaced'] == 'yes') {
+            $flags = $flags | PHPJS_Library_Compiler::COMPILE_NAMESPACED;
+        }
+        if ($options['compression'] == 'minified') {
+            $flags = $flags | PHPJS_Library_Compiler::COMPILE_MINFIED;
+        }
+        if ($options['compression'] == 'packed') {
+            $flags = $flags | PHPJS_Library_Compiler::COMPILE_PACKED;
+        }
+        
+        $code = $this->PHPJS->compile($flags, 't000');
+        $tmp  = tempnam('/tmp', 'phpjstest');
+        file_put_contents($tmp, $code);
+
+        
+    }
+
     /**
      * @todo Implement testGetDirRealTemp().
      */
@@ -47,27 +88,27 @@ class PHPJS_LibraryCompilerTest extends PHPUnit_Framework_TestCase
         $flags = $flags | PHPJS_Library_Compiler::COMPILE_NAMESPACED;
         $flags = $flags | PHPJS_Library_Compiler::COMPILE_MINFIED;
         $flags = $flags | PHPJS_Library_Compiler::COMPILE_PACKED;
-        $this->assertTrue($this->object->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_NAMESPACED));
-        $this->assertTrue($this->object->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_MINFIED));
-        $this->assertTrue($this->object->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_PACKED));
+        $this->assertTrue($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_NAMESPACED));
+        $this->assertTrue($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_MINFIED));
+        $this->assertTrue($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_PACKED));
 
         $flags = 0;
         $flags = $flags | PHPJS_Library_Compiler::COMPILE_NAMESPACED;
         $flags = $flags | PHPJS_Library_Compiler::COMPILE_MINFIED;
-        $this->assertTrue($this->object->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_NAMESPACED));
-        $this->assertTrue($this->object->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_MINFIED));
-        $this->assertFalse($this->object->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_PACKED));
+        $this->assertTrue($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_NAMESPACED));
+        $this->assertTrue($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_MINFIED));
+        $this->assertFalse($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_PACKED));
 
         $flags = 0;
         $flags = $flags | PHPJS_Library_Compiler::COMPILE_NAMESPACED;
-        $this->assertTrue($this->object->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_NAMESPACED));
-        $this->assertFalse($this->object->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_MINFIED));
-        $this->assertFalse($this->object->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_PACKED));
+        $this->assertTrue($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_NAMESPACED));
+        $this->assertFalse($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_MINFIED));
+        $this->assertFalse($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_PACKED));
 
         $flags = 0;
-        $this->assertFalse($this->object->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_NAMESPACED));
-        $this->assertFalse($this->object->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_MINFIED));
-        $this->assertFalse($this->object->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_PACKED));
+        $this->assertFalse($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_NAMESPACED));
+        $this->assertFalse($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_MINFIED));
+        $this->assertFalse($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_PACKED));
 
     }
 
