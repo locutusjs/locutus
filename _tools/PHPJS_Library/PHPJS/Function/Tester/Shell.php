@@ -178,28 +178,39 @@ Class PHPJS_Function_Tester_Shell extends PHPJS_Function_Tester {
         return file_put_contents($file, $testCode);
     }
     
-    public function runTestCode($testCode, $outputRaw=false) {
+    public function runTestCode($testCode, $outputRaw=false, $jsLint = false) {
         $results = array();
         
         $testPath  = $this->getTesterPath();
+        $jsLintPath = $this->PHPJS_Library->getFleRealJsLint();
         $rhinoPath = $this->PHPJS_Library->getFleRealRhino();
 
+        $cmd = $rhinoPath." ";
         if (!file_exists($rhinoPath)) {
             throw new PHPJS_Exception("Rhino not found at: ".$rhinoPath);
             return false;
         }
         
-        if (!$this->_saveTestCode($testPath, $testCode)) {
-            throw new PHPJS_Exception("Could not write tester to: ".$testPath);
-            return false;
-        }
         
-        $cmd = $rhinoPath." ".$testPath;
+        if ($jsLint) {
+            $cmd .= $jsLintPath." ";
+            $cmd .= $this->getRealPath()." ";
+        } else {
+            if (!$this->_saveTestCode($testPath, $testCode)) {
+                throw new PHPJS_Exception("Could not write tester to: ".$testPath);
+                return false;
+            }
+            $cmd .= $testPath;
+        }
         list($success, $output) = $this->_execute($cmd);
         if (!$success) {
             throw new PHPJS_Exception("Error while executing ".$cmd.": ".print_r($output, true));
             return false;
         } 
+
+        if ($jsLint) {
+            return $output;
+        }
         
         $testOutput  = $output;
         $testResults = $this->_parseTestOutput($testOutput);

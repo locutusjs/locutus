@@ -45,12 +45,12 @@ if (!in_array($funcName, $modes) && $funcName !== false && strlen($funcName) > 1
 }
 
 // Choose mode & execute
+$hr = str_repeat("=", 75)."\n";
 switch($mode) {
     case "testcode":
         echo $Function->testCode();
         break;
     case "debug":
-        $hr = str_repeat("=", 75)."\n";
 
         echo "Info\n";
         echo $hr;
@@ -76,6 +76,11 @@ switch($mode) {
         echo "Test result\n";
         echo $hr;
         $Function->testFunction(false);
+        echo "\n\n";
+
+        echo "Js Lint result\n";
+        echo $hr;
+        $Function->testFunction(false, false, true);
         break;
     case "output":
         $Function->testFunction(true);
@@ -97,6 +102,11 @@ switch($mode) {
         break;
     case "run":
         echo $Function->testFunction();
+        echo "\n\n";
+
+        echo "Js Lint result\n";
+        echo $hr;
+        $Function->testFunction(false, false, true);
         break;
     default:
         die("Unknown command: ".$mode);

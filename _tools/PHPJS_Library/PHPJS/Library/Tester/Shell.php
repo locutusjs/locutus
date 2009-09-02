@@ -5,6 +5,10 @@ Class PHPJS_Library_Tester_Shell extends PHPJS_Library_Tester {
     public function getFleRealRhino() {
         return $this->_fleRealRhino;
     }
+
+    public function getFleRealJsLint() {
+        return $this->_dirRealTool.'/jslint.js';
+    }
     
     public function getAllowedCmdArgs() {
         $posArgs = array();

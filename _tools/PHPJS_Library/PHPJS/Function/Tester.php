@@ -41,16 +41,25 @@ Class PHPJS_Function_Tester extends PHPJS_Function {
     public function phpDeviation() {
         return array();        
     }
-    
-    public function testFunction($outputRaw=false, $phpDeviation=false) {
-        $testCode = $this->testCode();
-        $results  = $this->runTestCode($testCode, $outputRaw);
+
+    public function testFunction($outputRaw=false, $phpDeviation=false, $jsLint = false) {
+        if ($jsLint) {
+            $testCode = $this->getSource();
+        } else {
+            $testCode = $this->testCode();
+        }
+        $results  = $this->runTestCode($testCode, $outputRaw, $jsLint);
         
         $phpResult = false;
         if ($phpDeviation) {
             $phpResult = $this->phpDeviation();
         }
-        
+
+        if ($jsLint) {
+            echo join("\n", $results)."\n";
+            return;
+        }
+
         if ($outputRaw) {
             return $this->showOutput($results);
         } else {
