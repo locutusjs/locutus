@@ -1,0 +1,3 @@
+[submodule "/home/kevin/workspace/phpjs/ext/kvzlib"]
+	path = /home/kevin/workspace/phpjs/ext/kvzlib
+	url = git://github.com/kvz/kvzlib.git
