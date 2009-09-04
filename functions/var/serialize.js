@@ -7,6 +7,9 @@ function serialize (mixed_value) {
     // +      input by: DtTvB (http://dt.in.th/2008-09-16.string-length-in-bytes.html)
     // +   bugfixed by: Russell Walker (http://www.nbill.co.uk/)
     // +   bugfixed by: Jamie Beck (http://www.terabit.ca/)
+    // +      input by: Martin (http://www.erlenwiese.de/)
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // -    depends on: utf8_encode
     // %          note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
     // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
@@ -53,6 +56,7 @@ function serialize (mixed_value) {
             val = (Math.round(mixed_value) == mixed_value ? "i" : "d") + ":" + mixed_value;
             break;
         case "string":
+            mixed_value = (mixed_value);
             val = "s:" + encodeURIComponent(mixed_value).replace(/%../g, 'x').length + ":\"" + mixed_value + "\"";
             break;
         case "array":
