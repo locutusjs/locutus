@@ -56,7 +56,7 @@ function serialize (mixed_value) {
             val = (Math.round(mixed_value) == mixed_value ? "i" : "d") + ":" + mixed_value;
             break;
         case "string":
-            mixed_value = (mixed_value);
+            mixed_value = this.utf8_encode(mixed_value);
             val = "s:" + encodeURIComponent(mixed_value).replace(/%../g, 'x').length + ":\"" + mixed_value + "\"";
             break;
         case "array":
