@@ -45,14 +45,8 @@ function rawurlencode (str) {
                 ret += hexStr((code >> 6) | 0xC0);
                 ret += hexStr((code & 0x3F) | 0x80);
             }
-            else if (code >= 2048 && code < 65536) { // 3 bytes
+            else if (code >= 2048) { // 3 bytes (code < 65536)
                 ret += hexStr((code >> 12) | 0xE0);
-                ret += hexStr(((code >> 6) & 0x3F) | 0x80);
-                ret += hexStr((code & 0x3F) | 0x80);
-            }
-            else if (code >= 65536) { // 4 bytes
-                ret += hexStr((code >> 18) | 0xF0);
-                ret += hexStr(((code >> 12) & 0x3F) | 0x80);
                 ret += hexStr(((code >> 6) & 0x3F) | 0x80);
                 ret += hexStr((code & 0x3F) | 0x80);
             }
