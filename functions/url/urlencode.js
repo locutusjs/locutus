@@ -12,6 +12,7 @@ function urlencode (str) {
     // +   improved by: Lars Fischer
     // +      input by: Ratheous
     // +      reimplemented by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Joris
     // %          note 1: This reflects PHP 5.3/6.0+ behavior
     // *     example 1: urlencode('Kevin van Zonneveld!');
     // *     returns 1: 'Kevin+van+Zonneveld%21'
@@ -21,7 +22,7 @@ function urlencode (str) {
     // *     returns 3: 'http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a'
 
     var hexStr = function (dec) {
-        return '%' + dec.toString(16).toUpperCase();
+        return '%' + (dec < 16 ? '0' : '') + dec.toString(16).toUpperCase();
     };
 
     var ret = '',
@@ -35,8 +36,13 @@ function urlencode (str) {
         }
         else {
             var code = str.charCodeAt(i);
+            if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters); https://developer.mozilla.org/index.php?title=en/Core_JavaScript_1.5_Reference/Global_Objects/String/charCodeAt
+                ret += ((code - 0xD800) * 0x400) + (str.charCodeAt(i+1) - 0xDC00) + 0x10000;
+                i++; // skip the next one as we just retrieved it as a low surrogate
+            }
+            // We never come across a low surrogate because we skip them, unless invalid
             // Reserved assumed to be in UTF-8, as in PHP
-            if (code === 32) {
+            else if (code === 32) {
                 ret += '+'; // %20 in rawurlencode
             }
             else if (code < 128) { // 1 byte
