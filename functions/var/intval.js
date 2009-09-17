@@ -13,6 +13,8 @@ function intval (mixed_var, base) {
     // *     returns 3: 42
     // *     example 4: intval('09');
     // *     returns 4: 9
+    // *     example 5: intval('1e', 16);
+    // *     returns 5: 30
 
     var tmp;
 
