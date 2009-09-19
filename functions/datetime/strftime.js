@@ -2,6 +2,8 @@ function strftime (fmt, timestamp) {
     // http://kevin.vanzonneveld.net
     // +      original by: Blues (http://tech.bluesmoon.info/)
     // + reimplemented by: Brett Zamir (http://brett-zamir.me)
+    // +   input by: Alex
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -       depends on: setlocale
     // %        note 1: Uses global: php_js to store locale info
     // *        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
@@ -142,9 +144,11 @@ function strftime (fmt, timestamp) {
     // END STATIC
 
 
-    var _date = ((typeof(timestamp) == 'undefined') ? new Date() : // Not provided
-        (typeof(timestamp) == 'number') ? new Date(timestamp*1000) : // UNIX timestamp
-        new Date(timestamp)); // Date() object
+    var _date=(
+        (typeof(timestamp) == 'undefined') ? new Date() : // Not provided
+        (typeof(timestamp) == 'object') ? new Date(timestamp) : // Javascript Date()
+        new Date(timestamp*1000) // UNIX timestamp (auto-convert to int)
+    );
 
     var _aggregates = {
         c: 'locale',

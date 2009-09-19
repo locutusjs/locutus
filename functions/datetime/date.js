@@ -17,6 +17,8 @@ function date ( format, timestamp ) {
     // +      input by: majak
     // +   bugfixed by: majak
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   input by: Alex
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
@@ -33,8 +35,8 @@ function date ( format, timestamp ) {
     var that = this;
     var jsdate=(
         (typeof(timestamp) == 'undefined') ? new Date() : // Not provided
-        (typeof(timestamp) == 'number') ? new Date(timestamp*1000) : // UNIX timestamp
-        new Date(timestamp) // Javascript Date()
+        (typeof(timestamp) == 'object') ? new Date(timestamp) : // Javascript Date()
+        new Date(timestamp*1000) // UNIX timestamp (auto-convert to int)
     ); // , tal=[]
     var pad = function (n, c){
         if ( (n = n + "").length < c ) {

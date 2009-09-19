@@ -1,6 +1,8 @@
 function idate (format, timestamp) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
+    // +   input by: Alex
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   derived from: date
     // +   derived from: gettimeofday
     // *     example 1: idate('y');
@@ -14,9 +16,11 @@ function idate (format, timestamp) {
     }
 
     // Fix: Need to allow date_default_timezone_set() (check for this.php_js.default_timezone and use)
-    var date = ((typeof(timestamp) === 'undefined') ? new Date() : // Not provided
-        (typeof(timestamp) === 'number') ? new Date(timestamp*1000) : // UNIX timestamp
-        new Date(timestamp)); // Date() object
+    var date=(
+        (typeof(timestamp) == 'undefined') ? new Date() : // Not provided
+        (typeof(timestamp) == 'object') ? new Date(timestamp) : // Javascript Date()
+        new Date(timestamp*1000) // UNIX timestamp (auto-convert to int)
+    );
 
     var _L = function (date) {
         var y = date.getFullYear();
