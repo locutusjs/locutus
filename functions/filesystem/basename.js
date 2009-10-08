@@ -6,6 +6,8 @@ function basename (path, suffix) {
     // +   improved by: djmix
     // *     example 1: basename('/www/site/home.htm', '.htm');
     // *     returns 1: 'home'
+    // *     example 2: basename('ecra.php?p=1');
+    // *     returns 2: 'ecra.php?p=1'
 
     var b = path.replace(/^.*[\/\\]/g, '');
     
