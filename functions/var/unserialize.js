@@ -11,6 +11,7 @@ function unserialize (data) {
     // +     improved by: James
     // +        input by: Martin (http://www.erlenwiese.de/)
     // +     bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +     improved by: Le Torbi
     // -      depends on: utf8_decode
     // %            note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %            note: Aiming for PHP-compatibility, we have to translate objects to arrays
@@ -18,6 +19,19 @@ function unserialize (data) {
     // *       returns 1: ['Kevin', 'van', 'Zonneveld']
     // *       example 2: unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}');
     // *       returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
+
+    var utf8Overhead = function(chr) {
+        // http://phpjs.org/functions/unserialize:571#comment_95906
+        var code = chr.charCodeAt(0);
+        if (code < 0x0080) {
+            return 0;
+        }
+        if (code < 0x0800) {
+             return 1;
+        }
+        return 2;
+    };
+
 
     var error = function (type, msg, filename, line){throw new this.window[type](msg, filename, line);};
     var read_until = function (data, offset, stopchr){
@@ -41,6 +55,7 @@ function unserialize (data) {
         for (var i = 0;i < length;i++){
             var chr = data.slice(offset + (i - 1),offset + i);
             buf.push(chr);
+            length -= utf8Overhead(chr); 
         }
         return [buf.length, buf.join('')];
     };
@@ -57,7 +72,7 @@ function unserialize (data) {
         var dtype = (data.slice(offset, offset + 1)).toLowerCase();
 
         var dataoffset = offset + 2;
-        var typeconvert = new Function('x', 'return x');
+        var typeconvert = function(x) {return x;};
 
         switch (dtype){
             case 'i':
