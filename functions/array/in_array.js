@@ -22,6 +22,11 @@ function in_array (needle, haystack, argStrict) {
             }
         }
     } else {
+        if (typeof(needle)=='string') {
+            str = haystack.toString();
+            return (str.search(needle) !== false);
+        }
+
         for (key in haystack) {
             if (haystack[key] == needle) {
                 return true;
