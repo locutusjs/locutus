@@ -4,7 +4,7 @@ function array_diff () {
     // +   improved by: Sanjoy Roy
     // +    revised by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld']);
-    // *     returns 1: ['Kevin']
+    // *     returns 1: {0:'Kevin'}
 
     var arr1 = arguments[0], retArr = {};
     var k1 = '', i = 1, k = '', arr = {};
