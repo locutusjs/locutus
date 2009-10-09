@@ -8,12 +8,19 @@ function str_ireplace ( search, replace, subject ) {
     // +   bugfixed by: Onno Marsman
     // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Philipp Lenssen
     // *     example 1: str_ireplace('l', 'l', 'HeLLo');
     // *     returns 1: 'Hello'
+    // *     example 2: str_ireplace('$', 'foo', '$bar');
+    // *     returns 2: 'foobar'
 
     var i, k = '';
     var searchl = 0;
     var reg;
+
+    var escapeRegex = function(s) {
+        return s.replace(/([\\\^\$*+\[\]?{}.=!:(|)])/g, '\\$1');
+    };
 
     search += '';
     searchl = search.length;
@@ -50,7 +57,7 @@ function str_ireplace ( search, replace, subject ) {
 
     searchl = search.length;
     for (i = 0; i < searchl; i++) {
-        reg = new RegExp(search[i], 'gi');
+        reg = new RegExp(escapeRegex(search[i]), 'gi');
         subject = subject.replace(reg, replace[i]);
     }
 
