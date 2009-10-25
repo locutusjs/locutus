@@ -1,6 +1,8 @@
 function money_format (format, number) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
+    // +   input by: daniel airton wermann (http://wermann.com.br)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: setlocale
     // %          note 1: This depends on setlocale having the appropriate locale (these examples use 'en_US')
     // *     example 1: money_format('%i', 1234.56);
@@ -29,6 +31,11 @@ function money_format (format, number) {
     // *     returns 12: ' *****1,234.57'
     // *     example 13: money_format('%=*!14#8.2n', -1234.5678);
     // *     returns 13: '-*****1,234.57'
+    // *     example 14: money_format('%i', 3590);
+    // *     returns 14: ' USD 3,590.00'
+
+    // Per PHP behavior, there seems to be no extra padding for sign when there is a positive number, though my
+    // understanding of the description is that there should be padding; need to revisit examples
 
     // Helpful info at http://ftp.gnu.org/pub/pub/old-gnu/Manuals/glibc-2.2.3/html_chapter/libc_7.html and http://publib.boulder.ibm.com/infocenter/zos/v1r10/index.jsp?topic=/com.ibm.zos.r10.bpxbd00/strfmp.htm
 
@@ -57,7 +64,7 @@ function money_format (format, number) {
         var integer = decpos !== -1 ? number.slice(0, decpos) : number; // Get integer portion
         var fraction = decpos !== -1 ? number.slice(decpos+1) : ''; // Get decimal portion
 
-        var str_splice = function (integerStr, idx, thous_sep) {
+        var _str_splice = function (integerStr, idx, thous_sep) {
             var integerArr = integerStr.split('');
             integerArr.splice(idx, 0, thous_sep);
             return integerArr.join('');
@@ -70,19 +77,20 @@ function money_format (format, number) {
             var fillnum = left-init_lgth;
             integer = new Array(fillnum+1).join(fill)+integer;
         }
-
         if (flags.indexOf('^') === -1) { // flag: ^ (disable grouping characters (of locale))
             // use grouping characters
             var thous_sep = monetary.mon_thousands_sep; // ','
             var mon_grouping = monetary.mon_grouping; // [3] (every 3 digits in U.S.A. locale)
 
-            for (var i = 0, idx = integer.length; i < mon_grouping.length; i++) {
-                idx -= mon_grouping[i]; // e.g., 3
-                if (idx < 0) {break;}
-                if (filler && idx < fillnum) {
-                    thous_sep = fill;
+            if (mon_grouping[0] < integer.length) {
+                for (var i = 0, idx = integer.length; i < mon_grouping.length; i++) {
+                    idx -= mon_grouping[i]; // e.g., 3
+                    if (idx < 0) {break;}
+                    if (filler && idx < fillnum) {
+                        thous_sep = fill;
+                    }
+                    integer = _str_splice(integer, idx, thous_sep);
                 }
-                integer = str_splice(integer, idx, thous_sep);
             }
             if (mon_grouping[i-1] > 0) { // Repeating last grouping (may only be one) until highest portion of integer reached
                 while (idx > mon_grouping[i-1]) {
@@ -90,7 +98,7 @@ function money_format (format, number) {
                     if (filler && idx < fillnum) {
                         thous_sep = fill;
                     }
-                    integer = str_splice(integer, idx, thous_sep);
+                    integer = _str_splice(integer, idx, thous_sep);
                 }
             }
         }
@@ -101,7 +109,7 @@ function money_format (format, number) {
         }
         else {
             var dec_pt = monetary.mon_decimal_point; // '.'
-            if (right === '') {
+            if (right === '' || right === undefined) {
                 right = conversion === 'i' ? monetary.int_frac_digits : monetary.frac_digits;
             }
             right = parseInt(right, 10);
