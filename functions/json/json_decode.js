@@ -20,7 +20,12 @@ function json_decode (str_json) {
         try {
             return json.parse(str_json);
         } catch(err) {
-            return NULL;
+            if (!(err instanceof SyntaxError)) {
+                throw new Error('Unexpected error type in json_decode()');
+            }
+            this.php_js = this.php_js || {};
+            this.php_js.last_error_json = 4; // usable by json_last_error()
+            return null;
         } 
     }
     
@@ -66,6 +71,7 @@ function json_decode (str_json) {
         return j;
     }
 
-    // If the text is not JSON parseable, then a SyntaxError is thrown.
-    throw new SyntaxError('json_decode');
+    this.php_js = this.php_js || {};
+    this.php_js.last_error_json = 4; // usable by json_last_error()
+    return null;
 }
