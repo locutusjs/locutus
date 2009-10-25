@@ -2,9 +2,10 @@ function json_decode (str_json) {
     // http://kevin.vanzonneveld.net
     // +      original by: Public Domain (http://www.json.org/json2.js)
     // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // + improved by: T.J. Leahy
-    // *     example 1: json_decode('[\n    "e",\n    {\n    "pluribus": "unum"\n}\n]');
-    // *     returns 1: ['e', {pluribus: 'unum'}]
+    // +      improved by: T.J. Leahy
+    // +      improved by: Michael White
+    // *        example 1: json_decode('[\n    "e",\n    {\n    "pluribus": "unum"\n}\n]');
+    // *        returns 1: ['e', {pluribus: 'unum'}]
 
     /*
         http://www.JSON.org/json2.js
@@ -16,9 +17,13 @@ function json_decode (str_json) {
 
     var json = this.window.JSON;
     if (typeof json === 'object' && typeof json.parse === 'function') {
-        return json.parse(str_json);
+        try {
+            return json.parse(str_json);
+        } catch(err) {
+            return NULL;
+        } 
     }
-
+    
     var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
     var j;
     var text = str_json;

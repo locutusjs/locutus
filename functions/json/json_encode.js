@@ -2,9 +2,9 @@ function json_encode (mixed_val) {
     // http://kevin.vanzonneveld.net
     // +      original by: Public Domain (http://www.json.org/json2.js)
     // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // + improved by: T.J. Leahy
-    // *     example 1: json_encode(['e', {pluribus: 'unum'}]);
-    // *     returns 1: '[\n    "e",\n    {\n    "pluribus": "unum"\n}\n]'
+    // +      improved by: Michael White
+    // *        example 1: json_encode(['e', {pluribus: 'unum'}]);
+    // *        returns 1: '[\n    "e",\n    {\n    "pluribus": "unum"\n}\n]'
 
     /*
         http://www.JSON.org/json2.js
@@ -15,7 +15,11 @@ function json_encode (mixed_val) {
     */
     var json = this.window.JSON;
     if (typeof json === 'object' && typeof json.stringify === 'function') {
-        return json.stringify(mixed_val);
+        try {
+            return json.stringify(mixed_val);
+        } catch(err) {
+            return NULL;
+        }
     }
 
     var value = mixed_val;
