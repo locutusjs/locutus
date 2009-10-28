@@ -5,6 +5,9 @@ function rawurldecode (str) {
     // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Ratheous
+    // +      reimplemented by: Brett Zamir (http://brett-zamir.me)
+    // %        note 1: Please be aware that this function expects to decode from UTF-8 encoded strings, as found on
+    // %        note 1: pages served as UTF-8
     // *     example 1: rawurldecode('Kevin+van+Zonneveld%21');
     // *     returns 1: 'Kevin+van+Zonneveld!'
     // *     example 2: rawurldecode('http%3A%2F%2Fkevin.vanzonneveld.net%2F');
@@ -14,31 +17,5 @@ function rawurldecode (str) {
     // *     example 4: rawurldecode('-22%97bc%2Fbc');
     // *     returns 4: '-22—bc/bc'
 
-    var hash_map = {}, ret = str.toString(), unicodeStr='', hexEscStr='';
-
-    var replacer = function (search, replace, str) {
-        var tmp_arr = [];
-        tmp_arr = str.split(search);
-        return tmp_arr.join(replace);
-    };
-
-    // The hash_map is identical to the one in urlencode.
-    hash_map["'"]   = '%27';
-    hash_map['(']   = '%28';
-    hash_map[')']   = '%29';
-    hash_map['*']   = '%2A';
-    hash_map['~']   = '%7E';
-    hash_map['!']   = '%21';
-
-
-    for (unicodeStr in hash_map) {
-        hexEscStr = hash_map[unicodeStr]; // Switch order when decoding
-        ret = replacer(hexEscStr, unicodeStr, ret); // Custom replace. No regexing
-    }
-
-    // End with decodeURIComponent, which most resembles PHP's encoding functions
-    ret = ret.replace(/%([a-fA-F][0-9a-fA-F])/g, function (all, hex) {return String.fromCharCode('0x'+hex);}); // These Latin-B have the same values in Unicode, so we can convert them like this
-    ret = decodeURIComponent(ret);
-
-    return ret;
+    return decodeURIComponent(str);
 }
