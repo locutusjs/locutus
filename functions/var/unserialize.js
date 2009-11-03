@@ -12,6 +12,8 @@ function unserialize (data) {
     // +        input by: Martin (http://www.erlenwiese.de/)
     // +     bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +     improved by: Le Torbi
+    // +     input by: kilops
+    // +     bugfixed by Brett Zamir (http://brett-zamir.me)
     // -      depends on: utf8_decode
     // %            note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %            note: Aiming for PHP-compatibility, we have to translate objects to arrays
@@ -20,6 +22,7 @@ function unserialize (data) {
     // *       example 2: unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}');
     // *       returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
 
+    var that = this;
     var utf8Overhead = function(chr) {
         // http://phpjs.org/functions/unserialize:571#comment_95906
         var code = chr.charCodeAt(0);
@@ -33,7 +36,7 @@ function unserialize (data) {
     };
 
 
-    var error = function (type, msg, filename, line){throw new this.window[type](msg, filename, line);};
+    var error = function (type, msg, filename, line){throw new that.window[type](msg, filename, line);};
     var read_until = function (data, offset, stopchr){
         var buf = [];
         var chr = data.slice(offset, offset + 1);
@@ -115,7 +118,7 @@ function unserialize (data) {
 
                 // Length was calculated on an utf-8 encoded string
                 // so wait with decoding
-                readdata = this.utf8_decode(readdata);
+                readdata = that.utf8_decode(readdata);
             break;
             case 'a':
                 readdata = {};
