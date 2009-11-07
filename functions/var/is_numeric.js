@@ -4,6 +4,7 @@ function is_numeric (mixed_var) {
     // +   improved by: David
     // +   improved by: taith
     // +   bugfixed by: Tim de Koning
+    // +   bugfixed by: WebDevHobo (http://webdevhobo.blogspot.com/)
     // *     example 1: is_numeric(186.31);
     // *     returns 1: true
     // *     example 2: is_numeric('Kevin van Zonneveld');
@@ -13,9 +14,5 @@ function is_numeric (mixed_var) {
     // *     example 4: is_numeric('');
     // *     returns 4: false
 
-    if (mixed_var === '') {
-        return false;
-    }
-
-    return !isNaN(mixed_var * 1);
+    return mixed_var !== null && mixed_var !== '' && typeof(mixed_var) !== 'boolean' && !isNaN(mixed_var);
 }
