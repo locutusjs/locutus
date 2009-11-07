@@ -1,9 +1,9 @@
 #!/bin/bash
-git pull origin master
-git submodule status
-git submodule update --init
-
+git pull origin
 if [ "${1}" = "-modules" ]; then
+    git submodule status
+    git submodule update --init
+
     for mod in `git submodule status | awk '{ print $2 }'`; do
         if [ -z "${2}" ] || [ "${2}" = "${mod}" ]; then
             changed=0
