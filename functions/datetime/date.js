@@ -18,8 +18,9 @@ function date ( format, timestamp ) {
     // +      input by: majak
     // +   bugfixed by: majak
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   input by: Alex
+    // +      input by: Alex
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +   improved by: Theriault
     // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
@@ -32,6 +33,14 @@ function date ( format, timestamp ) {
     // *     returns 4: true
     // *     example 5: date('W', 1104534000);
     // *     returns 5: '53'
+    // *     example 6: date('B t', 1104534000);
+    // *     returns 6: '999 31'
+    // *     example 7: date('W', 1293750000); // 2010-12-31
+    // *     returns 7: '52'
+    // *     example 8: date('W', 1293836400); // 2011-01-01
+    // *     returns 8: '52'
+    // *     example 9: date('W Y-m-d', 1293974054); // 2011-01-02
+    // *     returns 9: '52 2011-01-02'
     
     var that = this;
     var jsdate=(
@@ -80,35 +89,35 @@ function date ( format, timestamp ) {
 
     var f = {
         // Day
-            d: function (){
+            d: function () {
                 return _pad(f.j(), 2);
             },
-            D: function (){
+            D: function () {
                 var t = f.l();
                 return t.substr(0,3);
             },
-            j: function (){
+            j: function () {
                 return jsdate.getDate();
             },
-            l: function (){
+            l: function () {
                 return txt_weekdays[f.w()];
             },
-            N: function (){
+            N: function () {
                 //return f.w() + 1;
                 return f.w() ? f.w() : 7;
             },
-            S: function (){
+            S: function () {
                 return txt_ordin[f.j()] ? txt_ordin[f.j()] : 'th';
             },
-            w: function (){
+            w: function () {
                 return jsdate.getDay();
             },
-            z: function (){
+            z: function () {
                 return (jsdate - new Date(jsdate.getFullYear() + "/1/1")) / 864e5 >> 0;
             },
 
         // Week
-            W: function (){
+            W: function () {
 
                 var a = f.z(), b = 364 + f.L() - a;
                 var nd2, nd = (new Date(jsdate.getFullYear() + "/1/1").getDay() || 7) - 1;
@@ -127,36 +136,29 @@ function date ( format, timestamp ) {
             },
 
         // Month
-            F: function (){
+            F: function () {
                 return txt_months[f.n()];
             },
-            m: function (){
+            m: function () {
                 return _pad(f.n(), 2);
             },
-            M: function (){
+            M: function () {
                 var t = f.F();
                 return t.substr(0,3);
             },
-            n: function (){
+            n: function () {
                 return jsdate.getMonth() + 1;
             },
-            t: function (){
-                var n;
-                if ( (n = jsdate.getMonth() + 1) == 2 ){
-                    return 28 + f.L();
-                }
-                if ( n & 1 && n < 8 || !(n & 1) && n > 7 ){
-                    return 31;
-                }
-                return 30;
+            t: function () {
+                return (new Date((f.n() + 1) + '/0/' + f.Y())).getDate();
             },
 
         // Year
-            L: function (){
+            L: function () {
                 var y = f.Y();
                 return (!(y & 3) && (y % 1e2 || !(y % 4e2))) ? 1 : 0;
             },
-            o: function (){
+            o: function () {
                 if (f.n() === 12 && f.W() === 1) {
                     return jsdate.getFullYear()+1;
                 }
@@ -165,44 +167,42 @@ function date ( format, timestamp ) {
                 }
                 return jsdate.getFullYear();
             },
-            Y: function (){
+            Y: function () {
                 return jsdate.getFullYear();
             },
-            y: function (){
+            y: function () {
                 return (jsdate.getFullYear() + "").slice(2);
             },
 
         // Time
-            a: function (){
+            a: function () {
                 return jsdate.getHours() > 11 ? "pm" : "am";
             },
-            A: function (){
+            A: function () {
                 return f.a().toUpperCase();
             },
-            B: function (){
-                return _pad(Math.floor(((jsdate.getUTCHours() * 3600) +
-                                                            (jsdate.getUTCMinutes() * 60) +
-                                                            jsdate.getUTCSeconds() + 3600) / 86.4) % 1000, 3);
+            B: function () {
+                return _pad(Math.floor(((jsdate.getUTCHours() * 36e2) + (jsdate.getUTCMinutes() * 60) + jsdate.getUTCSeconds() + 36e2) / 86.4) % 1e3, 3);
             },
-            g: function (){
+            g: function () {
                 return jsdate.getHours() % 12 || 12;
             },
-            G: function (){
+            G: function () {
                 return jsdate.getHours();
             },
-            h: function (){
+            h: function () {
                 return _pad(f.g(), 2);
             },
-            H: function (){
+            H: function () {
                 return _pad(jsdate.getHours(), 2);
             },
-            i: function (){
+            i: function () {
                 return _pad(jsdate.getMinutes(), 2);
             },
-            s: function (){
+            s: function () {
                 return _pad(jsdate.getSeconds(), 2);
             },
-            u: function (){
+            u: function () {
                 return _pad(jsdate.getMilliseconds()*1000, 6);
             },
 
@@ -225,15 +225,15 @@ function date ( format, timestamp ) {
 */
                 return 'UTC';
             },
-            I: function (){
+            I: function () {
                 return _dst(jsdate);
             },
-            O: function (){
+            O: function () {
                var t = _pad(Math.abs(jsdate.getTimezoneOffset()/60*100), 4);
                t = (jsdate.getTimezoneOffset() > 0) ? "-"+t : "+"+t;
                return t;
             },
-            P: function (){
+            P: function () {
                 var O = f.O();
                 return (O.substr(0, 3) + ":" + O.substr(3, 2));
             },
@@ -261,18 +261,18 @@ function date ( format, timestamp ) {
 */
                 return 'UTC';
             },
-            Z: function (){
+            Z: function () {
                return -jsdate.getTimezoneOffset()*60;
             },
 
         // Full Date/Time
-            c: function (){
+            c: function () {
                 return f.Y() + "-" + f.m() + "-" + f.d() + "T" + f.h() + ":" + f.i() + ":" + f.s() + f.P();
             },
-            r: function (){
+            r: function () {
                 return f.D()+', '+f.d()+' '+f.M()+' '+f.Y()+' '+f.H()+':'+f.i()+':'+f.s()+' '+f.O();
             },
-            U: function (){
+            U: function () {
                 return Math.round(jsdate.getTime()/1000);
             }
     };
