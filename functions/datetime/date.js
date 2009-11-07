@@ -13,6 +13,7 @@ function date ( format, timestamp ) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   improved by: Theriault
     // +  derived from: gettimeofday
     // +      input by: majak
     // +   bugfixed by: majak
@@ -38,7 +39,7 @@ function date ( format, timestamp ) {
         (typeof(timestamp) == 'object') ? new Date(timestamp) : // Javascript Date()
         new Date(timestamp*1000) // UNIX timestamp (auto-convert to int)
     ); // , tal=[]
-    var pad = function (n, c){
+    var _pad = function (n, c){
         if ( (n = n + "").length < c ) {
             return new Array(++c - n.length).join("0") + n;
         } else {
@@ -80,7 +81,7 @@ function date ( format, timestamp ) {
     var f = {
         // Day
             d: function (){
-                return pad(f.j(), 2);
+                return _pad(f.j(), 2);
             },
             D: function (){
                 var t = f.l();
@@ -130,7 +131,7 @@ function date ( format, timestamp ) {
                 return txt_months[f.n()];
             },
             m: function (){
-                return pad(f.n(), 2);
+                return _pad(f.n(), 2);
             },
             M: function (){
                 var t = f.F();
@@ -179,25 +180,9 @@ function date ( format, timestamp ) {
                 return f.a().toUpperCase();
             },
             B: function (){
-                // peter paul koch:
-                var off = (jsdate.getTimezoneOffset() + 60)*60;
-                var theSeconds = (jsdate.getHours() * 3600) +
-                                 (jsdate.getMinutes() * 60) +
-                                  jsdate.getSeconds() + off;
-                var beat = Math.floor(theSeconds/86.4);
-                if (beat > 1000) {
-                    beat -= 1000;
-                }
-                if (beat < 0) {
-                    beat += 1000;
-                }
-                if ((String(beat)).length == 1) {
-                    beat = "00"+beat;
-                }
-                if ((String(beat)).length == 2) {
-                    beat = "0"+beat;
-                }
-                return beat;
+                return _pad(Math.floor(((jsdate.getUTCHours() * 3600) +
+                                                            (jsdate.getUTCMinutes() * 60) +
+                                                            jsdate.getUTCSeconds() + 3600) / 86.4) % 1000, 3);
             },
             g: function (){
                 return jsdate.getHours() % 12 || 12;
@@ -206,19 +191,19 @@ function date ( format, timestamp ) {
                 return jsdate.getHours();
             },
             h: function (){
-                return pad(f.g(), 2);
+                return _pad(f.g(), 2);
             },
             H: function (){
-                return pad(jsdate.getHours(), 2);
+                return _pad(jsdate.getHours(), 2);
             },
             i: function (){
-                return pad(jsdate.getMinutes(), 2);
+                return _pad(jsdate.getMinutes(), 2);
             },
             s: function (){
-                return pad(jsdate.getSeconds(), 2);
+                return _pad(jsdate.getSeconds(), 2);
             },
             u: function (){
-                return pad(jsdate.getMilliseconds()*1000, 6);
+                return _pad(jsdate.getMilliseconds()*1000, 6);
             },
 
         // Timezone
@@ -244,7 +229,7 @@ function date ( format, timestamp ) {
                 return _dst(jsdate);
             },
             O: function (){
-               var t = pad(Math.abs(jsdate.getTimezoneOffset()/60*100), 4);
+               var t = _pad(Math.abs(jsdate.getTimezoneOffset()/60*100), 4);
                t = (jsdate.getTimezoneOffset() > 0) ? "-"+t : "+"+t;
                return t;
             },
