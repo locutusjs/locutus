@@ -13,7 +13,7 @@ function unserialize (data) {
     // +     bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +     improved by: Le Torbi
     // +     input by: kilops
-    // +     bugfixed by Brett Zamir (http://brett-zamir.me)
+    // +     bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -      depends on: utf8_decode
     // %            note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %            note: Aiming for PHP-compatibility, we have to translate objects to arrays
