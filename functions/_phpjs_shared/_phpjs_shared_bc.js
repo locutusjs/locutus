@@ -157,7 +157,7 @@ function _phpjs_shared_bc () {
                         carry = Math.floor(value / libbcmath.BASE);   // @CHECK cint //carry = value / BASE;
                     }
 
-                    if (carry != 0) {
+                    if (carry !== 0) {
                         result[rptr] = carry;
                     }
                 }
@@ -477,8 +477,8 @@ function _phpjs_shared_bc () {
             }
 
             //assert (accum->n_len+accum->n_scale >= shift+count);
-            if (!(accum.n_len+accum.n_scale >= shift+count)) {
-                throw new Error("len + scale < shift + count"); // ?? I think thats what assert does :)
+            if (accum.n_len+accum.n_scale < shift+count) {
+                throw new Error("len + scale < shift + count"); // ?? I think that's what assert does :)
             }
 
 

@@ -33,7 +33,7 @@ function array_splice (arr, offst, lgth, replacement) {
         return ct;
     };
 
-    if (replacement && !(typeof replacement === 'object')) {
+    if (replacement && typeof replacement !== 'object') {
         replacement = [replacement];
     }
     if (lgth === undefined) {

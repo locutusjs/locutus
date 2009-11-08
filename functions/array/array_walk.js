@@ -8,12 +8,12 @@ function array_walk (array, funcname, userdata) {
     
     var key; 
     
-    if (typeof array != 'object') {
+    if (typeof array !== 'object' || array === null) {
         return false;
     }
     
     for (key in array) {
-        if (typeof(userdata) != 'undefined') {
+        if (typeof(userdata) !== 'undefined') {
             eval(funcname + '( array [key] , key , userdata  )' );
         } else {
             eval(funcname + '(  userdata ) ');

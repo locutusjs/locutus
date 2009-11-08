@@ -18,7 +18,7 @@ function array_slice (arr, offst, lgth, preserve_keys) {
    
     var key = '';
 
-    if (!(arr instanceof Array) || (preserve_keys && offst != 0)) { // Assoc. array as input or if required as output
+    if (!(arr instanceof Array) || (preserve_keys && offst !== 0)) { // Assoc. array as input or if required as output
         var lgt =0, newAssoc = {};
         for (key in arr) {
             //if (key !== 'length') {
@@ -29,7 +29,7 @@ function array_slice (arr, offst, lgth, preserve_keys) {
         arr = newAssoc;
 
         offst = (offst < 0) ? lgt + offst : offst;
-        lgth  = lgth == undefined ? lgt : (lgth < 0) ? lgt + lgth - offst : lgth;
+        lgth  = lgth === undefined ? lgt : (lgth < 0) ? lgt + lgth - offst : lgth;
 
         var assoc = {};
         var start = false, it=-1, arrlgth=0, no_pk_idx=0;
