@@ -45,6 +45,7 @@
 function _phpjs_shared_bc () {
     // http://kevin.vanzonneveld.net
     // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: _phpjs_shared_bc();
     // *     returns 1: {}
     
@@ -86,9 +87,9 @@ function _phpjs_shared_bc () {
          //  N1 is added to N2 and the result placed into RESULT.  SCALE_MIN
          //  is the minimum scale for the result.
          *
-         * @param bc_num n1
-         * @param bc_num n2
-         * @pram int scale_min
+         * @param {bc_num} n1
+         * @param {bc_num} n2
+         * @param {int} scale_min
          * @return bc_num
          */
         bc_add: function(n1, n2, scale_min) {
@@ -125,22 +126,13 @@ function _phpjs_shared_bc () {
 
         /**
  * This is the "user callable" routine to compare numbers N1 and N2.
- * @param bc_num n1
- * @param bc_num n2
+ * @param {bc_num} n1
+ * @param {bc_num} n2
  * @return int -1, 0, 1  (n1 < n2, ==, n1 > n2)
  */
         bc_compare: function(n1, n2) {
             return libbcmath._bc_do_compare (n1, n2, true, false);
         },
-
-        /**
- * @param bc_num n1
- * @param bc_num n2
- * @param boolean use_sign
- * @param boolean ignore_last
- * @return -1, 0, 1 (see bc_compare)
- */
-
 
         _one_mult: function(num, n_ptr, size, digit, result, r_ptr) {
             var carry, value; // int
@@ -400,10 +392,10 @@ function _phpjs_shared_bc () {
    the result being MIN(N2 scale+N1 scale, MAX (SCALE, N2 scale, N1 scale)).
    */
         /**
- * @param n1 bc_num
- * @param n2 bc_num
- * @param scale [int] optional
- */
+         * @param n1 bc_num
+         * @param n2 bc_num
+         * @param scale [int] optional
+         */
         bc_multiply: function(n1, n2, scale) {
             var pval; // bc_num
             var len1, len2; // int
@@ -472,9 +464,9 @@ function _phpjs_shared_bc () {
 
 
         /* A special adder/subtractor for the recursive divide and conquer
-   multiply algorithm.  Note: if sub is called, accum must
-   be larger that what is being subtracted.  Also, accum and val
-   must have n_scale = 0.  (e.g. they must look like integers. *) */
+           multiply algorithm.  Note: if sub is called, accum must
+           be larger that what is being subtracted.  Also, accum and val
+           must have n_scale = 0.  (e.g. they must look like integers. *) */
         _bc_shift_addsub: function(accum, val, shift, sub) {
             var accp, valp; //signed char *accp, *valp;
             var count, carry; //int  count, carry;
@@ -539,13 +531,13 @@ function _phpjs_shared_bc () {
         },
 
         /* Recursive divide and conquer multiply algorithm.
-   Based on
-   Let u = u0 + u1*(b^n)
-   Let v = v0 + v1*(b^n)
-   Then uv = (B^2n+B^n)*u1*v1 + B^n*(u1-u0)*(v0-v1) + (B^n+1)*u0*v0
+           Based on
+           Let u = u0 + u1*(b^n)
+           Let v = v0 + v1*(b^n)
+           Then uv = (B^2n+B^n)*u1*v1 + B^n*(u1-u0)*(v0-v1) + (B^n+1)*u0*v0
 
-   B is the base of storage, number of digits in u1,u0 close to equal.
-*/
+           B is the base of storage, number of digits in u1,u0 close to equal.
+        */
         _bc_rec_mul: function (u, ulen, v, vlen, full_scale) {
             var prod; // @return
             var u0, u1, v0, v1; //bc_num
@@ -643,6 +635,14 @@ function _phpjs_shared_bc () {
         },
 
 
+        /**
+         * 
+         * @param {bc_num} n1
+         * @param {bc_num} n2
+         * @param {boolean} use_sign
+         * @param {boolean} ignore_last
+         * @return -1, 0, 1 (see bc_compare)
+         */
         _bc_do_compare: function(n1, n2, use_sign, ignore_last) {
             var n1ptr, n2ptr; // int
             var count;    // int
@@ -909,9 +909,9 @@ function _phpjs_shared_bc () {
      * 2. start from the right and subtract the two numbers from each other
      * 3. if the sum of the 2 numbers < 0, carry -1 to the next set and add 10 (ie 18 > carry 1 becomes 8). thus 0.9 + 0.9 = 1.8
      *
-     * @param bc_num n1
-     * @param bc_num n2
-     * @param int scale_min
+     * @param {bc_num} n1
+     * @param {bc_num} n2
+     * @param {int} scale_min
      * @return bc_num
      */
         _bc_do_sub: function(n1, n2, scale_min) {
@@ -1004,8 +1004,9 @@ function _phpjs_shared_bc () {
         },
 
         /**
-         * @param int length
-         * @param int scale
+         * 
+         * @param {int} length
+         * @param {int} scale
          * @return bc_num
          */
         bc_new_num: function(length, scale) {
@@ -1162,8 +1163,8 @@ function _phpjs_shared_bc () {
 
         /**
          * Basic min function
-         * @param int
-         * @param int
+         * @param {int} a
+         * @param {int} b
          */
         MIN: function(a, b) {
             return ((a > b) ? b : a);
@@ -1171,8 +1172,8 @@ function _phpjs_shared_bc () {
 
         /**
          * Basic max function
-         * @param int
-         * @param int
+         * @param {int} a
+         * @param {int} b
          */
         MAX: function(a, b) {
             return ((a > b) ? a : b);
@@ -1180,8 +1181,7 @@ function _phpjs_shared_bc () {
 
         /**
          * Basic odd function
-         * @param int
-         * @param int
+         * @param {int} a
          */
         ODD: function(a) {
             return (a & 1);
@@ -1189,9 +1189,10 @@ function _phpjs_shared_bc () {
 
         /**
          * replicate c function
-         * @param array     return (by reference)
-         * @param string    char to fill
-         * @param int       length to fill
+         * @param {array} r     return (by reference)
+         * @param {int} ptr
+         * @param {string} chr    char to fill
+         * @param {int} len       length to fill
          */
         memset: function(r, ptr, chr, len) {
             var i;
@@ -1216,7 +1217,7 @@ function _phpjs_shared_bc () {
 
         /**
          * Determine if the number specified is zero or not
-         * @param bc_num num    number to check
+         * @param {bc_num} num    number to check
          * @return boolean      true when zero, false when not zero.
          */
         bc_is_zero: function(num) {

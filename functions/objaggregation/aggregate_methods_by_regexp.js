@@ -1,6 +1,7 @@
 function aggregate_methods_by_regexp (obj, class_name, regexp, exclude) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: We can't copy privileged methods, as those require instantiation (with potential side-effects when called)
     // %          note 1: We've chosen not to assign to or create a prototype object on the destination object even if the original object had the methods on its prototype
     // *     example 1: var A = function () {};
@@ -10,13 +11,6 @@ function aggregate_methods_by_regexp (obj, class_name, regexp, exclude) {
     // *     returns 1: undefined
 
     var p = '', test=false, record={}, pos=-1;
-    var getFuncName = function (fn) {
-        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if (!name) {
-            return '(Anonymous)';
-        }
-        return name[1];
-    };
 
     if (typeof regexp === 'string') { // If passing the regular expression as a string, note that this behavior may change in the future as we seek to implement PHP-style regexp (e.g., delimiteres and modifier flags within the string)
         regexp = eval(regexp);

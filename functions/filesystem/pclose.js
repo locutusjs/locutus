@@ -12,9 +12,9 @@ function pclose (handle) {
     try {
         delete this.php_js.resourceDataPointer[handle.id];
         delete this.php_js.resourceData[handle.id]; // Free up memory
-        return true;
     }
     catch (e) {
         return false;
     }
+    return true;
 }

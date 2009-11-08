@@ -4,6 +4,7 @@ function http_build_query (formdata, numeric_prefix, arg_separator) {
     // +   improved by: Legaev Andrey
     // +   improved by: Michael White (http://getsprink.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +    revised by: stag019
     // -    depends on: urlencode
     // *     example 1: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;');
@@ -20,15 +21,17 @@ function http_build_query (formdata, numeric_prefix, arg_separator) {
         } else if (val === false) {
             val = "0";
         }
-        if (typeof(val) == "array" || typeof(val) == "object") {
+        if (val !== null && typeof(val) === "object") {
             for (k in val) {
                 if (val[k] !== null) {
                     tmp.push(_http_build_query_helper(key + "[" + k + "]", val[k], arg_separator));
                 }
             }
             return tmp.join(arg_separator);
-        } else if (typeof(val) != "function") {
+        } else if (typeof(val) !== "function") {
             return this.urlencode(key) + "=" + this.urlencode(val);
+        } else {
+            throw new Error('There was an error processing for http_build_query().');
         }
     };
 

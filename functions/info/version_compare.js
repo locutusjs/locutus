@@ -3,6 +3,7 @@ function version_compare (version1, version2, operator) {
     // +      original by: Philippe Jausions (http://pear.php.net/user/jausions)
     // +      original by: Aidan Lister (http://aidanlister.com/)
     // + reimplemented by: Kankrelune (http://www.webfaktory.info/)
+    // +      improved by: Brett Zamir (http://brett-zamir.me)
     // *        example 1: version_compare('8.2.5rc', '8.2.5a');
     // *        returns 1: 1
     // *        example 2: version_compare('8.2.50', '8.2.52', '<') ;
@@ -15,11 +16,8 @@ function version_compare (version1, version2, operator) {
     this.php_js.ENV = this.php_js.ENV || {};
     // END REDUNDANT
 
-    if (!version1) {
-        return;
-    }
-    if (!version2) {
-        return;
+    if (!version1 || !version2) {
+        throw 'version_compare() is missing a required argument';
     }
     
     var v1, v2, compare = 0, i = 0, x = 0;

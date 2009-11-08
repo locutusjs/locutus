@@ -12,9 +12,9 @@ function runkit_function_remove (funcname) {
 
     try {
         this.window[funcname] = undefined;
-        return true;
     }
     catch (e) {
         return false;
     }
+    return true;
 }

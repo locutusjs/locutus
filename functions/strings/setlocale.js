@@ -158,8 +158,8 @@ function setlocale (category, locale) {
         phpjs.locales.fr =_copy(phpjs.locales.en);
         phpjs.locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'];
         phpjs.locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
-        phpjs.locales.fr.LC_TIME.b = ['jan', 'fÃ©v', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoÃ»', 'sep', 'oct', 'nov', 'dÃ©c'];
-        phpjs.locales.fr.LC_TIME.B = ['janvier', 'fÃ©vrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aoÃ»t', 'septembre', 'octobre', 'novembre', 'dÃ©cembre'];
+        phpjs.locales.fr.LC_TIME.b = ['jan', 'f\u00E9v', 'mar', 'avr', 'mai', 'jun', 'jui', 'ao\u00FB', 'sep', 'oct', 'nov', 'd\u00E9c'];
+        phpjs.locales.fr.LC_TIME.B = ['janvier', 'f\u00E9vrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'ao\u00FBt', 'septembre', 'octobre', 'novembre', 'd\u00E9cembre'];
         phpjs.locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z';
         phpjs.locales.fr.LC_TIME.p = ['', ''];
         phpjs.locales.fr.LC_TIME.P = ['', ''];

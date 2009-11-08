@@ -11,9 +11,9 @@ function runkit_function_add (funcname, arglist, code) {
     
     try {
         this.window[funcname] = Function.apply(null, arglist.split(',').concat(code));
-        return true;
     }
     catch (e) {
         return false;
     }
+    return true;
 }
