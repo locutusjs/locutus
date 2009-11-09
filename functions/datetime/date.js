@@ -208,6 +208,7 @@ function date ( format, timestamp ) {
 
         // Timezone
             e: function () {
+// The following works, but requires inclusion of the very large timezone_abbreviations_list() function
 /*                var abbr='', i=0;
                 if (this.php_js && this.php_js.default_timezone) {
                     return this.php_js.default_timezone;
@@ -238,6 +239,8 @@ function date ( format, timestamp ) {
                 return (O.substr(0, 3) + ":" + O.substr(3, 2));
             },
             T: function () {
+
+// The following works, but requires inclusion of the very large timezone_abbreviations_list() function
 /*                var abbr='', i=0;
                 if (!tal.length) {
                     tal = that.timezone_abbreviations_list();
