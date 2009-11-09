@@ -47,7 +47,7 @@ function date ( format, timestamp ) {
         (typeof(timestamp) == 'undefined') ? new Date() : // Not provided
         (typeof(timestamp) == 'object') ? new Date(timestamp) : // Javascript Date()
         new Date(timestamp*1000) // UNIX timestamp (auto-convert to int)
-    ); // , tal=[]
+    ); // , tal=[] // Keep this here (works, but for code commented-out below for file size reasons)
     var _pad = function (n, c){
         if ( (n = n + "").length < c ) {
             return new Array(++c - n.length).join("0") + n;
