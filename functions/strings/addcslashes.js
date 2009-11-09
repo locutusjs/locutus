@@ -3,7 +3,6 @@ function addcslashes (str, charlist) {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // %  note 1: We show double backslashes in the return value example code below because a JavaScript string will not
     // %  note 1: render them as backslashes otherwise
-    // -    depends on: sprintf
     // *     example 1: addcslashes('foo[ ]', 'A..z'); // Escape all ASCII within capital A to lower z range, including square brackets
     // *     returns 1: "\\f\\o\\o\\[ \\]"
     // *     example 2: addcslashes("zoo['.']", 'z..A'); // Only escape z, period, and A here since not a lower-to-higher range
@@ -17,7 +16,8 @@ function addcslashes (str, charlist) {
     // *     example 6: addcslashes("\r\u0007\n", '\0'); // Do not recognize C escape sequences if not specified
     // *     returns 7: "\r\u0007\n"
 
-    var target = '', chrs = [], i = 0, j = 0, c = '', next = '', rangeBegin = '', rangeEnd = '', chr = '', begin = 0, end = 0, octalLength = 0, postOctalPos = 0, cca = 0;
+    var target = '', chrs = [], i = 0, j = 0, c = '', next = '', rangeBegin = '', rangeEnd = '', chr = '', begin = 0, end = 0,
+                octalLength = 0, postOctalPos = 0, cca = 0;
 
     for (i=0; i < charlist.length; i++) {
         c = charlist[i];
