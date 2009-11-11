@@ -1,4 +1,4 @@
-    function echo ( ) {
+function echo () {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
     // +   improved by: echo is bad
