@@ -27,20 +27,20 @@ function addcslashes (str, charlist) {
     };
 
     for (i=0; i < charlist.length; i++) {
-        c = charlist[i];
-        next = charlist[i+1];
+        c = charlist.charAt(i);
+        next = charlist.charAt(i+1);
         if (c === '\\' && next && (/\d/).test(next)) { // Octal
             rangeBegin = charlist.slice(i+1).match(/^\d+/)[0];
             octalLength = rangeBegin.length;
             postOctalPos = i+octalLength+1;
-            if (charlist[postOctalPos]+charlist[postOctalPos+1] === '..' ) { // Octal begins range
+            if (charlist.charAt(postOctalPos)+charlist.charAt(postOctalPos+1) === '..' ) { // Octal begins range
                 begin = rangeBegin.charCodeAt(0);
-                if ((/\\\d/).test(charlist[postOctalPos+2]+charlist[postOctalPos+3])) { // Range ends with octal
+                if ((/\\\d/).test(charlist.charAt(postOctalPos+2)+charlist.charAt(postOctalPos+3))) { // Range ends with octal
                     rangeEnd = charlist.slice(postOctalPos+3).match(/^\d+/)[0];
                     i += 1; // Skip range end backslash
                 }
-                else if (charlist[postOctalPos+2]) { // Range ends with character
-                    rangeEnd = charlist[postOctalPos+2];
+                else if (charlist.charAt(postOctalPos+2)) { // Range ends with character
+                    rangeEnd = charlist.charAt(postOctalPos+2);
                 }
                 else {
                     throw 'Range with no end point';
@@ -62,15 +62,15 @@ function addcslashes (str, charlist) {
             }
             i += octalLength; // Skip range begin
         }
-        else if (next+charlist[i+2] === '..') { // Character begins range
+        else if (next+charlist.charAt(i+2) === '..') { // Character begins range
             rangeBegin = c;
             begin = rangeBegin.charCodeAt(0);
-            if ((/\\\d/).test(charlist[i+3]+charlist[i+4])) { // Range ends with octal
+            if ((/\\\d/).test(charlist.charAt(i+3)+charlist.charAt(i+4))) { // Range ends with octal
                 rangeEnd = charlist.slice(i+4).match(/^\d+/)[0];
                 i += 1; // Skip range end backslash
             }
-            else if (charlist[i+3]) { // Range ends with character
-                rangeEnd = charlist[i+3];
+            else if (charlist.charAt(i+3)) { // Range ends with character
+                rangeEnd = charlist.charAt(i+3);
             }
             else {
                 throw 'Range with no end point';
@@ -92,7 +92,7 @@ function addcslashes (str, charlist) {
     }
 
     for (i = 0; i < str.length; i++) {
-        c = str[i];
+        c = str.charAt(i);
         if (chrs.indexOf(c) !== -1) {
             target += '\\';
             cca = c.charCodeAt(0);
