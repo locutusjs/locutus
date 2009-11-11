@@ -10,9 +10,11 @@ function header (hdr, replace, http_response_code) {
     var value = hdr.slice(semi+1).replace(/^\s+/, '');
 
     if (window.addHeader) { // old SSJS 1.2
+        // See http://research.nihonsoft.org/javascript/ServerReferenceJS12/index.htm
         window.addHeader(prop, value);
     }
     else if (Jaxer && Jaxer.response && Jaxer.response.addHeader) {
+        // See http://jaxer.org/api/
         Jaxer.response.addHeader(prop, value);
     }
     else {
