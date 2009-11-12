@@ -37,7 +37,7 @@ function ErrorException (message, code, severity, filename, lineno) {
     this.line = lineno; // protected int; The line where the exception was thrown
    // For JavaScript:
     this.name = 'ErrorException';
-    that.php_js.exception_handler(this);
+    that.php_js.error_handler(this);
 }
 ErrorException.prototype = new this.Exception();
 ErrorException.prototype.constructor = ErrorException;
