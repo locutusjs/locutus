@@ -70,10 +70,13 @@ function strftime (fmt, timestamp) {
         },
         j: function (d) {
             var ms = d - new Date('' + d.getFullYear() + '/1/1 GMT');
-            ms += d.getTimezoneOffset()*60000;
+            ms += d.getTimezoneOffset()*60000; // Line differs from Yahoo implementation which would be equivalent to replacing it here with:
+            // ms = new Date('' + d.getFullYear() + '/' + (d.getMonth()+1) + '/' + d.getDate() + ' GMT') - ms;
+
             var doy = parseInt(ms/60000/60/24, 10)+1;
             return _xPad(doy, 0, 100);
         },
+        k: ['getHours', '0'], // not in PHP, but implemented here (as in Yahoo)
         l: function (d) {
             var l=d.getHours()%12; return _xPad(l===0?12:l, ' ');
         },
@@ -87,7 +90,7 @@ function strftime (fmt, timestamp) {
         P: function (d) {
             return locales[locale].LC_TIME.P[d.getHours() >= 12 ? 1 : 0 ];
         },
-        s: function (d) {
+        s: function (d) { // Yahoo uses return parseInt(d.getTime()/1000, 10);
             return Date.parse(d)/1000;
         },
         S: ['getSeconds', '0'],
@@ -136,6 +139,14 @@ function strftime (fmt, timestamp) {
         },
         Z: function (d) {
             return d.toString().replace(/^.*\(([^)]+)\)$/, '$1');
+            /*
+            // Yahoo's: Better?
+            var tz = d.toString().replace(/^.*:\d\d( GMT[+-]\d+)? \(?([A-Za-z ]+)\)?\d*$/, '$2').replace(/[a-z ]/g, '');
+            if(tz.length > 4) {
+                tz = Dt.formats.z(d);
+            }
+            return tz;
+            */
         },
         '%': function (d) {
             return '%';
@@ -161,15 +172,13 @@ function strftime (fmt, timestamp) {
         t: '\t',
         T: '%H:%M:%S',
         x: 'locale',
-        X: 'locale',
-        z: _formats.z(_date),
-        Z: _formats.Z(_date)
+        X: 'locale'
     };
 
 
-    // First replace aggregates
-    while (fmt.match(/%[cDFhnrRtTxXzZ]/)) {
-        fmt = fmt.replace(/%([cDFhnrRtTxXzZ])/g, function (m0, m1)
+    // First replace aggregates (run in a loop because an agg may be made up of other aggs)
+    while (fmt.match(/%[cDFhnrRtTxX]/)) {
+        fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function (m0, m1)
         {
             var f = _aggregates[m1];
             return (f === 'locale' ? locales[locale].LC_TIME[m1] : f);
@@ -177,7 +186,7 @@ function strftime (fmt, timestamp) {
     }
 
     // Now replace formats - we need a closure so that the date object gets passed through
-    var str = fmt.replace(/%([aAbBCdegGHIjlmMpPsSuUVwWyY%])/g, function (m0, m1) {
+    var str = fmt.replace(/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g, function (m0, m1) {
         var f = _formats[m1];
         if (typeof f === 'string') {
             return _date[f]();
