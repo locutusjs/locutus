@@ -7,6 +7,8 @@ function nl2br (str, is_xhtml) {
     // +   bugfixed by: Onno Marsman
     // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   improved by: Maximusya
     // *     example 1: nl2br('Kevin\nvan\nZonneveld');
     // *     returns 1: 'Kevin<br />\nvan<br />\nZonneveld'
     // *     example 2: nl2br("\nOne\nTwo\n\nThree\n", false);
@@ -14,12 +16,7 @@ function nl2br (str, is_xhtml) {
     // *     example 3: nl2br("\nOne\nTwo\n\nThree\n", true);
     // *     returns 3: '<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n'
 
-    var breakTag = '';
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
 
-    breakTag = '<br />';
-    if (typeof is_xhtml != 'undefined' && !is_xhtml) {
-        breakTag = '<br>';
-    }
-
-    return (str + '').replace(/([^>]?)\n/g, '$1'+ breakTag +'\n');
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
 }
