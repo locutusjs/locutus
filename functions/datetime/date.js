@@ -21,6 +21,7 @@ function date(format, timestamp) {
     // +      input by: Alex
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Theriault
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
@@ -48,8 +49,8 @@ function date(format, timestamp) {
         (typeof(timestamp) === 'object') ? new Date(timestamp) : // Javascript Date()
         new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
     ), //, tal= [], // Keep this here (works, but for code commented-out below for file size reasons)
-        Rep = /\\?([a-z])/gi,
-        RepCallback = function (t, s) {
+        formatChr = /\\?([a-z])/gi,
+        formatChrCb = function (t, s) {
             return f[t] ? f[t]() : s;
         },
         _pad = function (n, c) {
@@ -92,6 +93,7 @@ function date(format, timestamp) {
 
         // Week
             W: function () {
+                var c;
                 return 1 + Math.round(((c = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3)) - (new Date(c.getFullYear(), 0, 4))) / 864e5 / 7);
             },
 
@@ -135,7 +137,8 @@ function date(format, timestamp) {
                 return f.a().toUpperCase();
             },
             B: function () {
-                return _pad(Math.floor(((jsdate.getUTCHours() * 36e2) + (jsdate.getUTCMinutes() * 60) + jsdate.getUTCSeconds() + 36e2) / 86.4) % 1e3, 3);
+                return _pad(Math.floor(((jsdate.getUTCHours() * 36e2) + (jsdate.getUTCMinutes() * 60) +
+                                        jsdate.getUTCSeconds() + 36e2) / 86.4) % 1e3, 3);
             },
             g: function () {
                 return jsdate.getHours() % 12 || 12;
@@ -163,11 +166,11 @@ function date(format, timestamp) {
             e: function () {
 // The following works, but requires inclusion of the very large timezone_abbreviations_list() function
 /*                var abbr='', i=0;
-                if (this.php_js && this.php_js.default_timezone) {
-                    return this.php_js.default_timezone;
+                if (that.php_js && that.php_js.default_timezone) {
+                    return that.php_js.default_timezone;
                 }
                 if (!tal.length) {
-                    tal = this.timezone_abbreviations_list();
+                    tal = that.timezone_abbreviations_list();
                 }
                 for (abbr in tal) {
                     for (i=0; i < tal[abbr].length; i++) {
@@ -180,7 +183,8 @@ function date(format, timestamp) {
                 return 'UTC';
             },
             I: function () {
-                return 0 + (jsdate.getTimezoneOffset() < Math.max((new Date(f.Y(), 0, 1)).getTimezoneOffset(), (new Date(f.Y(), 6, 1)).getTimezoneOffset()));
+                return 0 + (jsdate.getTimezoneOffset() < Math.max((new Date(f.Y(), 0, 1)).getTimezoneOffset(),
+                                                                                                                (new Date(f.Y(), 6, 1)).getTimezoneOffset()));
             },
             O: function () {
                 return ((jsdate.getTimezoneOffset() > 0) ? "-" : "+") + _pad(Math.abs(jsdate.getTimezoneOffset() / 60 * 100), 4);
@@ -196,10 +200,10 @@ function date(format, timestamp) {
                 if (!tal.length) {
                     tal = that.timezone_abbreviations_list();
                 }
-                if (this.php_js && this.php_js.default_timezone) {
+                if (that.php_js && that.php_js.default_timezone) {
                     for (abbr in tal) {
                         for (i=0; i < tal[abbr].length; i++) {
-                            if (tal[abbr][i].timezone_id === this.php_js.default_timezone) {
+                            if (tal[abbr][i].timezone_id === that.php_js.default_timezone) {
                                 return abbr.toUpperCase();
                             }
                         }
@@ -221,14 +225,14 @@ function date(format, timestamp) {
 
         // Full Date/Time
             c: function () {
-                return 'Y-m-d\\Th:i:sP'.replace(Rep, RepCallback);
+                return 'Y-m-d\\Th:i:sP'.replace(formatChr, formatChrCb);
             },
             r: function () {
-                return 'D, d M Y H:i:s O'.replace(Rep, RepCallback);
+                return 'D, d M Y H:i:s O'.replace(formatChr, formatChrCb);
             },
             U: function () {
                 return Math.round(jsdate.getTime() / 1000);
             }
         };
-    return format.replace(Rep, RepCallback);
+    return format.replace(formatChr, formatChrCb);
 }
