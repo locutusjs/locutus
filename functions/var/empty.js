@@ -7,6 +7,7 @@ function empty (mixed_var) {
     // +   improved by: Onno Marsman
     // +   improved by: Francesco
     // +   improved by: Marc Jansen
+    // +   input by: Stoyan Kyosev (http://www.svest.org/)
     // *     example 1: empty(null);
     // *     returns 1: true
     // *     example 2: empty(undefined);
@@ -25,7 +26,7 @@ function empty (mixed_var) {
         mixed_var === "0" ||
         mixed_var === null ||
         mixed_var === false ||
-        mixed_var === undefined
+        typeof mixed_var === 'undefined'
     ){
         return true;
     }
