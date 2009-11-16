@@ -1,4 +1,4 @@
-function date ( format, timestamp ) {
+function date(format, timestamp) {
     // http://kevin.vanzonneveld.net
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
@@ -41,116 +41,75 @@ function date ( format, timestamp ) {
     // *     returns 8: '52'
     // *     example 9: date('W Y-m-d', 1293974054); // 2011-01-02
     // *     returns 9: '52 2011-01-02'
-    
-    var that = this;
-    var jsdate=(
-        (typeof(timestamp) == 'undefined') ? new Date() : // Not provided
-        (typeof(timestamp) == 'object') ? new Date(timestamp) : // Javascript Date()
-        new Date(timestamp*1000) // UNIX timestamp (auto-convert to int)
-    ); // , tal=[] // Keep this here (works, but for code commented-out below for file size reasons)
-    var _pad = function (n, c){
-        if ( (n = n + "").length < c ) {
-            return new Array(++c - n.length).join("0") + n;
-        } else {
-            return n;
-        }
-    };
-    var _dst = function (t) {
-        // Calculate Daylight Saving Time (derived from gettimeofday() code)
-        var dst=0;
-        var jan1 = new Date(t.getFullYear(), 0, 1, 0, 0, 0, 0);  // jan 1st
-        var june1 = new Date(t.getFullYear(), 6, 1, 0, 0, 0, 0); // june 1st
-        var temp = jan1.toUTCString();
-        var jan2 = new Date(temp.slice(0, temp.lastIndexOf(' ')-1));
-        temp = june1.toUTCString();
-        var june2 = new Date(temp.slice(0, temp.lastIndexOf(' ')-1));
-        var std_time_offset = (jan1 - jan2) / (1000 * 60 * 60);
-        var daylight_time_offset = (june1 - june2) / (1000 * 60 * 60);
 
-        if (std_time_offset === daylight_time_offset) {
-            dst = 0; // daylight savings time is NOT observed
-        } else {
-            // positive is southern, negative is northern hemisphere
-            var hemisphere = std_time_offset - daylight_time_offset;
-            if (hemisphere >= 0) {
-                std_time_offset = daylight_time_offset;
+    var that = this,
+        jsdate = (
+        (timestamp === undefined) ? new Date() : // Not provided
+        (typeof(timestamp) === 'object') ? new Date(timestamp) : // Javascript Date()
+        new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+    ), //, tal= [], // Keep this here (works, but for code commented-out below for file size reasons)
+        Rep = /\\?([a-z])/gi,
+        RepCallback = function (t, s) {
+            return f[t] ? f[t]() : s;
+        },
+        _pad = function (n, c) {
+            if ((n = n + "").length < c) {
+                return new Array((++c) - n.length).join("0") + n;
+            } else {
+                return n;
             }
-            dst = 1; // daylight savings time is observed
-        }
-        return dst;
-    };
-    var ret = '';
-    var txt_weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday",
-        "Thursday", "Friday", "Saturday"];
-    var txt_ordin = {1: "st", 2: "nd", 3: "rd", 21: "st", 22: "nd", 23: "rd", 31: "st"};
-    var txt_months =  ["", "January", "February", "March", "April",
-        "May", "June", "July", "August", "September", "October", "November",
-        "December"];
-
-    var f = {
+        },
+        txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur",
+        "January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"],
+        txt_ordin = {1: "st", 2: "nd", 3: "rd", 21: "st", 22: "nd", 23: "rd", 31: "st"},
+        f = {
         // Day
             d: function () {
                 return _pad(f.j(), 2);
             },
             D: function () {
-                var t = f.l();
-                return t.substr(0,3);
+                return f.l().substr(0, 3);
             },
             j: function () {
                 return jsdate.getDate();
             },
             l: function () {
-                return txt_weekdays[f.w()];
+                return txt_words[f.w()] + 'day';
             },
             N: function () {
-                //return f.w() + 1;
-                return f.w() ? f.w() : 7;
+                return f.w() || 7;
             },
             S: function () {
-                return txt_ordin[f.j()] ? txt_ordin[f.j()] : 'th';
+                return txt_ordin[f.j()] || 'th';
             },
             w: function () {
                 return jsdate.getDay();
             },
             z: function () {
-                return (jsdate - new Date(jsdate.getFullYear() + "/1/1")) / 864e5 >> 0;
+                return (jsdate - new Date(jsdate.getFullYear(), 0, 1)) / 864e5 >> 0;
             },
 
         // Week
             W: function () {
-
-                var a = f.z(), b = 364 + f.L() - a;
-                var nd2, nd = (new Date(jsdate.getFullYear() + "/1/1").getDay() || 7) - 1;
-
-                if (b <= 2 && ((jsdate.getDay() || 7) - 1) <= 2 - b){
-                    return 1;
-                } 
-                if (a <= 2 && nd >= 4 && a >= (6 - nd)){
-                    nd2 = new Date(jsdate.getFullYear() - 1 + "/12/31");
-                    return that.date("W", Math.round(nd2.getTime()/1000));
-                }
-                
-                var w = (1 + (nd <= 3 ? ((a + nd) / 7) : (a - (7 - nd)) / 7) >> 0);
-
-                return (w ? w : 53);
+                return 1 + Math.round(((c = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3)) - (new Date(c.getFullYear(), 0, 4))) / 864e5 / 7);
             },
 
         // Month
             F: function () {
-                return txt_months[f.n()];
+                return txt_words[6 + f.n()];
             },
             m: function () {
                 return _pad(f.n(), 2);
             },
             M: function () {
-                var t = f.F();
-                return t.substr(0,3);
+                return f.F().substr(0, 3);
             },
             n: function () {
                 return jsdate.getMonth() + 1;
             },
             t: function () {
-                return (new Date((f.n() + 1) + '/0/' + f.Y())).getDate();
+                return (new Date(f.Y(), f.n() + 1, 0)).getDate();
             },
 
         // Year
@@ -159,13 +118,7 @@ function date ( format, timestamp ) {
                 return (!(y & 3) && (y % 1e2 || !(y % 4e2))) ? 1 : 0;
             },
             o: function () {
-                if (f.n() === 12 && f.W() === 1) {
-                    return jsdate.getFullYear()+1;
-                }
-                if (f.n() === 1 && f.W() >= 52) {
-                    return jsdate.getFullYear()-1;
-                }
-                return jsdate.getFullYear();
+                return f.Y() + (f.n() === 12 && f.W() < 9 ? -1 : (f.n() === 1 && f.W() > 9 ? 1 : 0));
             },
             Y: function () {
                 return jsdate.getFullYear();
@@ -194,7 +147,7 @@ function date ( format, timestamp ) {
                 return _pad(f.g(), 2);
             },
             H: function () {
-                return _pad(jsdate.getHours(), 2);
+                return _pad(f.G(), 2);
             },
             i: function () {
                 return _pad(jsdate.getMinutes(), 2);
@@ -203,7 +156,7 @@ function date ( format, timestamp ) {
                 return _pad(jsdate.getSeconds(), 2);
             },
             u: function () {
-                return _pad(jsdate.getMilliseconds()*1000, 6);
+                return _pad(jsdate.getMilliseconds() * 1000, 6);
             },
 
         // Timezone
@@ -227,12 +180,10 @@ function date ( format, timestamp ) {
                 return 'UTC';
             },
             I: function () {
-                return _dst(jsdate);
+                return 0 + (jsdate.getTimezoneOffset() < Math.max((new Date(f.Y(), 0, 1)).getTimezoneOffset(), (new Date(f.Y(), 6, 1)).getTimezoneOffset()));
             },
             O: function () {
-               var t = _pad(Math.abs(jsdate.getTimezoneOffset()/60*100), 4);
-               t = (jsdate.getTimezoneOffset() > 0) ? "-"+t : "+"+t;
-               return t;
+                return ((jsdate.getTimezoneOffset() > 0) ? "-" : "+") + _pad(Math.abs(jsdate.getTimezoneOffset() / 60 * 100), 4);
             },
             P: function () {
                 var O = f.O();
@@ -265,32 +216,19 @@ function date ( format, timestamp ) {
                 return 'UTC';
             },
             Z: function () {
-               return -jsdate.getTimezoneOffset()*60;
+                return -jsdate.getTimezoneOffset() * 60;
             },
 
         // Full Date/Time
             c: function () {
-                return f.Y() + "-" + f.m() + "-" + f.d() + "T" + f.h() + ":" + f.i() + ":" + f.s() + f.P();
+                return 'Y-m-d\\Th:i:sP'.replace(Rep, RepCallback);
             },
             r: function () {
-                return f.D()+', '+f.d()+' '+f.M()+' '+f.Y()+' '+f.H()+':'+f.i()+':'+f.s()+' '+f.O();
+                return 'D, d M Y H:i:s O'.replace(Rep, RepCallback);
             },
             U: function () {
-                return Math.round(jsdate.getTime()/1000);
+                return Math.round(jsdate.getTime() / 1000);
             }
-    };
-
-    return format.replace(/[\\]?([a-zA-Z])/g, function (t, s){
-        if ( t!=s ){
-            // escaped
-            ret = s;
-        } else if (f[s]){
-            // a date function exists
-            ret = f[s]();
-        } else {
-            // nothing special
-            ret = s;
-        }
-        return ret;
-    });
+        };
+    return format.replace(Rep, RepCallback);
 }
