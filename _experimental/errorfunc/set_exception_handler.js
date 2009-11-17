@@ -38,7 +38,7 @@ function set_exception_handler (callback) {
             //    in Mozilla, error objects (e.g., if you're in a catch block), have these properties which might be used to
             //    add to the object after instantiation (or during instantiation if extending the exception): fileName,
             //    lineNumber, stack; actually, should use PHP Error object for these anyways if following the PHP API
-            //    since it does has these properties
+            //    since it does have these properties
             //  Note that for the trace, however, in Mozilla the stack property is a string, and getTrace() needs the items
             //    parsed as an array; this might be doable by setting the exception object's trace property to
             //    "e.stack.replace(/\n$/, '').split('\n');" if 'e' is a JavaScript exception
