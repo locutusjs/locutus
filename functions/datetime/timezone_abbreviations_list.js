@@ -11,13 +11,16 @@ function timezone_abbreviations_list () {
 
     var list = {}, i = 0, j = 0, len = 0, jlen = 0, indice = '', curr = '', currSub = '', currSubPrefix = '', timezone_id = '';
 
-    // BEGIN REDUNDANT
-    if (!this.php_js) {
-        this.php_js = {};
+    // BEGIN STATIC
+    try { // We can't try to access on window, since it might not exist in some environments, and if we use "this.window"
+            //    we risk adding another copy if different window objects are associated with the namespaced object
+        php_js_shared; // Will be private static variable in namespaced version or global in non-namespaced
+                                       //   version since we wish to share this across all instances
     }
-    // END REDUNDANT
-
-    
+    catch(e) {
+        php_js_shared = {};
+    }
+ 
     // An array of arrays. The index of each array is the relative
     // abbreviation from the abbreviations array below. Each sub array
     // consists of 2 to 4 values. The first value will be DST. The
@@ -26,8 +29,8 @@ function timezone_abbreviations_list () {
     // returned if their is no value. The fourth value is the index
     // of the prefix to use for the timezone ID if applicable.
 
-    if (!this.php_js.tz_abbrs) { // This should really be static, but we can at least avoid rebuilding the array each time
-        this.php_js.tz_abbrs = [
+    if (!php_js_shared.tz_abbrs) { // This should really be static, but we can at least avoid rebuilding the array each time
+        php_js_shared.tz_abbrs = [
 [[1, 14, "Porto_Acre", 9],
 [1, 14, "Eirunepe", 9],
 [1, 14, "Rio_Branco", 9],
@@ -1729,8 +1732,8 @@ function timezone_abbreviations_list () {
         ];
     }
 
-    if (!this.php_js.tz_abbreviations) {
-        this.php_js.tz_abbreviations = [
+    if (!php_js_shared.tz_abbreviations) {
+        php_js_shared.tz_abbreviations = [
 "acst", "act", "addt", "adt", "aft", "ahdt", "ahst", "akdt",
 "akst", "aktst", "aktt", "almst", "almt", "amst", "amt", "anast",
 "anat", "ant", "apt", "aqtst", "aqtt", "arst", "art", "ashst",
@@ -1774,7 +1777,8 @@ function timezone_abbreviations_list () {
 "utc", "u", "v", "w", "x", "y", "zzz", "z"];
     }
 
-    var offsets = [
+    if (!php_js_shared.tz_offsets) {
+        php_js_shared.tz_offsets = [
 -43200, -41400, -39600, -37800, -36000, -34200, -32400,
 -28800, -25200, -21600, -19800, -18000, -16966, -16200,
 -14400, -14308, -13500, -13252, -13236, -12756, -12652,
@@ -1787,25 +1791,29 @@ function timezone_abbreviations_list () {
 27000,  28656,  28800,  30000,  30600,  31500,  32400,
 34200,  35100,  36000,  37800,  39600,  41400,  43200,
 45000,  45900,  46800,  49500,  50400];
-
-    var prefixes = [
+    }
+    
+    if (!php_js_shared.tz_prefixes) {
+        php_js_shared.tz_prefixes = [
 'Africa', 'America', 'America/Argentina', 'America',
 'America/Indiana', 'America', 'America/Kentucky', 'America',
 'America/North_Dakota', 'America', 'Antarctica', 'Arctic',
 'Asia', 'Atlantic', 'Australia', 'Brazil', 'Canada', 'Chile',
 'Europe', 'Indian', 'Mexico', 'Pacific'];
+    }
+    // END STATIC
 
-    for (i=0, len = this.php_js.tz_abbrs.length; i < len; i++) {
-        indice = this.php_js.tz_abbreviations[i];
-        curr = this.php_js.tz_abbrs[i];
+    for (i=0, len = php_js_shared.tz_abbrs.length; i < len; i++) {
+        indice = php_js_shared.tz_abbreviations[i];
+        curr = php_js_shared.tz_abbrs[i];
         list[indice] = [];
         for (j=0, jlen=curr.length; j < jlen; j++) {
             currSub = curr[j];
-            currSubPrefix = (currSub[3] ? prefixes[currSub[3]] + '/' : '');
+            currSubPrefix = (currSub[3] ? php_js_shared.tz_prefixes[currSub[3]] + '/' : '');
             timezone_id = currSub[2] ? (currSubPrefix + currSub[2]) : null;
             list[indice].push({
                 'dst' : !!currSub[0],
-                'offset' : offsets[currSub[1]],
+                'offset' : php_js_shared.tz_offsets[currSub[1]],
                 'timezone_id' : timezone_id
             });
         }
