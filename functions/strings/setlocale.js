@@ -13,11 +13,6 @@ function setlocale (category, locale) {
     // *     returns 1: 'en_US'
     var categ='', cats = [], i = 0, d = this.window.document;
 
-    // BEGIN REDUNDANT
-    this.php_js = this.php_js || {};
-    // END REDUNDANT
-    var phpjs = this.php_js;
-
     // BEGIN STATIC
     var _copy = function _copy (orig) {
         var newObj = {};
@@ -31,6 +26,12 @@ function setlocale (category, locale) {
         }
         return newObj;
     };
+    // END STATIC
+
+    // BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    
+    var phpjs = this.php_js;
 
     if (!phpjs.locales) {
         // Can add to the locales
@@ -205,7 +206,7 @@ function setlocale (category, locale) {
             'LC_MESSAGES':phpjs.locale// for system responses (available if PHP was compiled with libintl)
         };
     }
-    // END STATIC
+    // END REDUNDANT
 
     if (locale === null || locale === '') {
         locale = this.getenv(category) || this.getenv('LANG');

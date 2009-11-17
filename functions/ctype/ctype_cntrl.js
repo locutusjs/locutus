@@ -7,8 +7,8 @@ function ctype_cntrl (text) {
     if (typeof text !== 'string') {
         return false;
     }
-    // BEGIN STATIC
+    // BEGIN REDUNDANT
     this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END STATIC
+    // END REDUNDANT
     return this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.ct.test(text);
 }

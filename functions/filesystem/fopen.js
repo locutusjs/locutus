@@ -61,6 +61,7 @@ function fopen (filename, mode, use_include_path, context) {
     this.php_js.resourceIdCounter = this.php_js.resourceIdCounter || 0;
     // END REDUNDANT
 
+    // BEGIN STATIC
     function PHPJS_Resource (type, id, opener) { // Can reuse the following for other resources, just changing the instantiation
         // See http://php.net/manual/en/resource.php for types
         this.type = type;
@@ -76,7 +77,7 @@ function fopen (filename, mode, use_include_path, context) {
     PHPJS_Resource.prototype.var_dump = function () {
         return 'resource('+this.id+') of type ('+this.type+')';
     };
-    // END REDUNDANT
+    // END STATIC
 
     this.php_js.resourceIdCounter++;
     this.php_js.resourceData[this.php_js.resourceIdCounter] = this.file_get_contents(filename);

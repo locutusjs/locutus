@@ -61,8 +61,7 @@ function popen (filename, mode, use_include_path, context) {
     this.php_js.resourceIdCounter = this.php_js.resourceIdCounter || 0;
     // END REDUNDANT
     
-    this.php_js.resourceIdCounter++;
-
+    // BEGIN STATIC
     function PHPJS_Resource (type, id, opener) { // Can reuse the following for other resources, just changing the instantiation
         // See http://php.net/manual/en/resource.php for types
         this.type = type;
@@ -79,6 +78,8 @@ function popen (filename, mode, use_include_path, context) {
         return 'resource('+this.id+') of type ('+this.type+')';
     };
     // END STATIC
+
+    this.php_js.resourceIdCounter++;
 
     this.php_js.resourceData[this.php_js.resourceIdCounter] = this.file_get_contents(filename);
     this.php_js.resourceDataPointer[this.php_js.resourceIdCounter] = 0;

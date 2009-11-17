@@ -11,11 +11,11 @@ function strftime (fmt, timestamp) {
 
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     // END REDUNDANT
     var phpjs = this.php_js;
 
     // BEGIN STATIC
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     var _xPad = function (x, pad, r) {
         if (typeof r === 'undefined') {
             r=10;
