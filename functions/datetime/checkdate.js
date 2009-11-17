@@ -1,7 +1,8 @@
-function checkdate (month, day, year) {
+function checkdate ( m, d, y ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Pyerre
+    // +   improved by: Theriault
     // *     example 1: checkdate(12, 31, 2000);
     // *     returns 1: true
     // *     example 2: checkdate(2, 29, 2001);
@@ -11,8 +12,6 @@ function checkdate (month, day, year) {
     // *     example 4: checkdate(1, 390, 2000);
     // *     returns 4: false
 
-    var myDate = new Date();
-    myDate.setFullYear( year, (month - 1), day );
+    return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0)).getDate();
 
-    return month >= 1 && month <= 12 && year >= 1 && year <= 32767 && ((myDate.getMonth()+1) == month && day<32);
 }

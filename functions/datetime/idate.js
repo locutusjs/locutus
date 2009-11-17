@@ -1,10 +1,11 @@
 function idate(format, timestamp) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
-    // +   input by: Alex
+    // +      input by: Alex
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-    // +   derived from: date
-    // +   derived from: gettimeofday
+    // +   improved by: Theriault
+    // +  derived from: date
+    // +  derived from: gettimeofday
     // *     example 1: idate('y');
     // *     returns 1: 9
 
@@ -17,8 +18,8 @@ function idate(format, timestamp) {
 
     // Fix: Need to allow date_default_timezone_set() (check for this.php_js.default_timezone and use)
     var date = (
-        (timestamp === undefined) ? new Date() : // Not provided
-        (typeof(timestamp) === 'object') ? new Date(timestamp) : // Javascript Date()
+        (typeof timestamp === 'undefined') ? new Date() : // Not provided
+        (timestamp instanceof Date) ? new Date(timestamp) : // Javascript Date()
         new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
     ), a;
 
@@ -35,8 +36,11 @@ function idate(format, timestamp) {
         case 'i':
             return date.getMinutes();
         case 'I': // capital 'i'
-            return 0 + (date.getTimezoneOffset() < Math.max((new Date(date.getFullYear(), 0, 1)).getTimezoneOffset(),
-                                                                                                        (new Date(date.getFullYear(), 6, 1)).getTimezoneOffset()));
+            // Logic derived from getimeofday().
+            // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
+            // If they are not equal, then DST is observed.
+            a = date.getFullYear();
+            return 0 + (((new Date(a, 0)) - Date.UTC(a, 0)) !== ((new Date(a, 6)) - Date.UTC(a, 6)));
         case 'L':
             a = date.getFullYear();
             return (!(a & 3) && (a % 1e2 || !(a % 4e2))) ? 1 : 0;
@@ -65,3 +69,5 @@ function idate(format, timestamp) {
             throw 'Unrecognized date format token';
     }
 }
+
+

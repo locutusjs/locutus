@@ -1,4 +1,4 @@
-function date(format, timestamp) {
+function date ( format, timestamp ) {
     // http://kevin.vanzonneveld.net
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
@@ -22,6 +22,7 @@ function date(format, timestamp) {
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Theriault
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   improved by: Theriault
     // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
@@ -45,8 +46,8 @@ function date(format, timestamp) {
 
     var that = this,
         jsdate = (
-        (timestamp === undefined) ? new Date() : // Not provided
-        (typeof(timestamp) === 'object') ? new Date(timestamp) : // Javascript Date()
+        (typeof timestamp === 'undefined') ? new Date() : // Not provided
+        (timestamp instanceof Date) ? new Date(timestamp) : // Javascript Date()
         new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
     ), //, tal= [], // Keep this here (works, but for code commented-out below for file size reasons)
         formatChr = /\\?([a-z])/gi,
@@ -70,7 +71,7 @@ function date(format, timestamp) {
                 return _pad(f.j(), 2);
             },
             D: function () {
-                return f.l().substr(0, 3);
+                return f.l().slice(0, 3);
             },
             j: function () {
                 return jsdate.getDate();
@@ -88,13 +89,13 @@ function date(format, timestamp) {
                 return jsdate.getDay();
             },
             z: function () {
-                return (jsdate - new Date(jsdate.getFullYear(), 0, 1)) / 864e5 >> 0;
+                return (jsdate - new Date(f.Y(), 0, 1)) / 864e5 >> 0;
             },
 
         // Week
             W: function () {
-                var c;
-                return 1 + Math.round(((c = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3)) - (new Date(c.getFullYear(), 0, 4))) / 864e5 / 7);
+                var c = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3);
+                return 1 + Math.round((c - (new Date(c.getFullYear(), 0, 4))) / 864e5 / 7);
             },
 
         // Month
@@ -105,7 +106,7 @@ function date(format, timestamp) {
                 return _pad(f.n(), 2);
             },
             M: function () {
-                return f.F().substr(0, 3);
+                return f.F().slice(0, 3);
             },
             n: function () {
                 return jsdate.getMonth() + 1;
@@ -183,11 +184,13 @@ function date(format, timestamp) {
                 return 'UTC';
             },
             I: function () {
-                return 0 + (jsdate.getTimezoneOffset() < Math.max((new Date(f.Y(), 0, 1)).getTimezoneOffset(),
-                                                                                                                (new Date(f.Y(), 6, 1)).getTimezoneOffset()));
+                // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
+                // If they are not equal, then DST is observed.
+                return 0 + (((new Date(f.Y(), 0)) - Date.UTC(f.Y(), 0)) !== ((new Date(f.Y(), 6)) - Date.UTC(f.Y(), 6)));
             },
             O: function () {
-                return ((jsdate.getTimezoneOffset() > 0) ? "-" : "+") + _pad(Math.abs(jsdate.getTimezoneOffset() / 60 * 100), 4);
+                var a = jsdate.getTimezoneOffset();
+                return (a > 0 ? "-" : "+") + _pad(Math.abs(a / 60 * 100), 4);
             },
             P: function () {
                 var O = f.O();
