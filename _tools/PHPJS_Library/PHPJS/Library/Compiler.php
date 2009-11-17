@@ -140,7 +140,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         
         $template = file_get_contents($namespaceTemplate);
         $source = str_replace('//#FUNCTIONS_HERE#', $this->_indentBlock($source, 8), $template);
-        $source = preg_replace('@// BEGIN REDUNDANT(.+)// END REDUNDANT@smU', '', $source);
+        // $source = preg_replace('@// BEGIN REDUNDANT(.+)// END REDUNDANT@smU', '', $source); // Should not strip out until remove duplicates and auto-place single copies (or at least ensure copies are manually added there); also do for BEGIN/END STATIC
 
         return $source;
     }
