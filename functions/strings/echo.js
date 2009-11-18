@@ -8,6 +8,7 @@ function echo () {
     // +   bugfixed by: Eugene Bulkin (http://doubleaw.com/)
     // +   input by: JB
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),
     // %        note 1: we wouldn't need any such long code (even most of the code below). See
     // %        note 1: link below for a cross-browser implementation in JavaScript. HTML5 might
@@ -125,7 +126,7 @@ function echo () {
         if (d.appendChild) {
             if (d.body) {
                 if (win.navigator.appName == 'Microsoft Internet Explorer') { // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
-                    d.body.appendChild(ieFix(stringToDOM(arg)));
+                    d.body.appendChild(ieFix(arg));
                 }
                 else {
                     var unappendedLeft = stringToDOM(arg, d.body, ns_xhtml, 'div').cloneNode(true); // We will not actually append the div tag (just using for providing XHTML namespace by default)
