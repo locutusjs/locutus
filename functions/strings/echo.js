@@ -126,7 +126,7 @@ function echo () {
         if (d.appendChild) {
             if (d.body) {
                 if (win.navigator.appName == 'Microsoft Internet Explorer') { // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
-                    d.body.appendChild(ieFix(arg));
+                    d.body.appendChild(stringToDOM(ieFix(arg)));
                 }
                 else {
                     var unappendedLeft = stringToDOM(arg, d.body, ns_xhtml, 'div').cloneNode(true); // We will not actually append the div tag (just using for providing XHTML namespace by default)
