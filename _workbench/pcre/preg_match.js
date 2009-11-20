@@ -191,7 +191,7 @@ throw 'X flag is unimplemented at present';
     if (offset) {
         // Not implemented
     }
-    if (flags === 'PREG_OFFSET_CAPTURE') {
+    if (flags === 'PREG_OFFSET_CAPTURE' || flags === 256) { // Fix: make flags as number and allow bitwise AND checks against flags; see pathinfo()
         // Not implemented
         return 1; // matches will need to be different, so we return early here
     }

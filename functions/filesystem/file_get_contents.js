@@ -23,7 +23,7 @@ function file_get_contents (url, flags, context, offset, maxLen) {
     // *     returns 1: '123'
     // Note: could also be made to optionally add to global $http_response_header as per http://php.net/manual/en/reserved.variables.httpresponseheader.php
 
-    var tmp, headers = [], newTmp = [], k=0, i=0, href = '', pathPos = -1, flagNames = '', content = null, http_stream = false;
+    var tmp, headers = [], newTmp = [], k=0, i=0, href = '', pathPos = -1, flagNames = 0, content = null, http_stream = false;
     var func = function (value) { return value.substring(1) !== ''; };
 
     // BEGIN REDUNDANT

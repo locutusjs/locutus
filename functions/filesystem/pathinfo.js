@@ -30,7 +30,7 @@ function pathinfo (path, options) {
     // *     returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
     // Working vars
-    var opt = '', optName='', tmp_arr = {}, cnt = 0, i=0;
+    var opt = '', optName = '', optTemp = 0, tmp_arr = {}, cnt = 0, i=0;
     var have_basename = false, have_extension = false, have_filename = false;
 
     // Input defaulting & sanitation
@@ -55,9 +55,10 @@ function pathinfo (path, options) {
         for (i=0; i < options.length; i++) {
             // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
             if (OPTS[options[i]]) {
-                options = options | OPTS[options[i]];
+                optTemp = optTemp | OPTS[options[i]];
             }
         }
+        options = optTemp;
     }
 
     // Internal Functions

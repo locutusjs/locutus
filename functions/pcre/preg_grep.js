@@ -10,7 +10,7 @@ function preg_grep (pattern, input, flags) {
     // *     returns 1: {2: 4.5, 5: 4.4}
 
     var p='', retObj = {};
-    var invert = flags === 'PREG_GREP_INVERT' ? true : false;
+    var invert = (flags === 1 || flags === 'PREG_GREP_INVERT'); // Todo: put flags as number and do bitwise checks (at least if other flags allowable); see pathinfo()
 
     if (typeof pattern === 'string') {
         pattern = eval(pattern);
