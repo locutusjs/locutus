@@ -28,7 +28,7 @@ function preg_split (pattern, subject, limit, flags) {
     OPTS = {
         'PREG_SPLIT_NO_EMPTY': 1,
         'PREG_SPLIT_DELIM_CAPTURE': 2,
-        'PREG_SPLIT_OFFSET_CAPTURE': 4,
+        'PREG_SPLIT_OFFSET_CAPTURE': 4
     };
     if (typeof flags !== 'number') { // Allow for a single string or an array of string flags
         flags = [].concat(flags);
