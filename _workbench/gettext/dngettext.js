@@ -7,9 +7,10 @@ function dngettext (domain, msgid1, msgid2, n) {
 
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
+    this.php_js.textdomains_codesets = this.php_js.textdomains_codesets || {};
     // END REDUNDANT
 
-    var codeset = this.php_js.textdomains_codesets && this.php_js.textdomains_codesets[domain]; // For file-getting
+    var codeset = this.php_js.textdomains_codesets[domain]; // For file-getting
     var dir = this.php_js.textdomains[domain]; // For file-getting
 
     var lang = this.setlocale('LC_ALL', 0);

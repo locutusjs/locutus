@@ -7,9 +7,10 @@ function dcgettext (domain, msg, category) {
 
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
+    this.php_js.textdomains_codesets = this.php_js.textdomains_codesets || {};
     // END REDUNDANT
 
-    var codeset = this.php_js.textdomains_codesets && this.php_js.textdomains_codesets[domain]; // For file-getting
+    var codeset = this.php_js.textdomains_codesets[domain]; // For file-getting
     var dir = this.php_js.textdomains[domain]; // For file-getting
 
     this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
