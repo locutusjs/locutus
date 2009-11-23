@@ -36,24 +36,24 @@ function setlocale (category, locale) {
         return 0;
     };
     var _nplurals2a = function (n) { // e.g., English
-        return n !== 1;
+        return n !== 1 ? 1 : 0;
     };
     var _nplurals2b = function (n) { // e.g., French
-        return n > 1;
+        return n > 1 ? 1 : 0;
     };
     var _nplurals2c = function (n) { // e.g., Icelandic (MDC)
         return n % 10 === 1 && n % 100 !== 11 ? 0 : 1;
     };
-    var _nplurals3a = function (n) { // e.g., Latvian
+    var _nplurals3a = function (n) { // e.g., Latvian (MDC has a different order from gettext)
         return n % 10 === 1 && n % 100 !== 11 ? 0 : n !== 0 ? 1 : 2;
     };
     var _nplurals3b = function (n) { // e.g., Scottish Gaelic
-        return n==1 ? 0 : n === 2 ? 1 : 2;
+        return n === 1 ? 0 : n === 2 ? 1 : 2;
     };
     var _nplurals3c = function (n) { // e.g., Romanian
         return n === 1 ? 0 : (n === 0 || (n % 100 > 0 && n % 100 < 20)) ? 1 : 2;
     };
-    var _nplurals3d = function (n) { // e.g., Lithuanian
+    var _nplurals3d = function (n) { // e.g., Lithuanian (MDC has a different order from gettext)
         return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && (n % 100 <10 || n % 100 >= 20) ? 1 : 2;
     };
     var _nplurals3e = function (n) { // e.g., Croatian
@@ -77,9 +77,9 @@ function setlocale (category, locale) {
     var _nplurals5 = function (n) { // e.g., Irish Gaeilge (MDC)
         return n === 1 ? 0 : n === 2 ? 1 : n >=3 && n <= 6 ? 2 : n >= 7 && n <= 10 ? 3 : 4;
     };
-    var _nplurals6 = function (n) { // e.g., Arabic (MDC)
-        return n === 0 ? 0 : n === 1 ? 1 : n === 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ?
-                                                                                                                                3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;
+    var _nplurals6 = function (n) { // e.g., Arabic (MDC) - Per MDC puts 0 as last group
+        return n === 0 ? 5 : n === 1 ? 0 : n === 2 ? 1 : n % 100 >= 3 && n % 100 <= 10 ?
+                                                                                                                                2 : n % 100 >= 11 && n % 100 <= 99 ? 3 : 4;
     };
     // END STATIC
 
