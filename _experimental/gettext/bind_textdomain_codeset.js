@@ -6,7 +6,7 @@ function bind_textdomain_codeset (domain, codeset) {
 
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
-    this.php_js.textdomains = this.php_js.textdomains || {};
+    this.php_js.textdomains_codesets = this.php_js.textdomains_codesets || {};
     // END REDUNDANT
 
     if (codeset === null) {
@@ -16,5 +16,4 @@ function bind_textdomain_codeset (domain, codeset) {
     this.php_js.textdomains_codesets[domain] = codeset;
     this.php_js.last_textdomain_codeset = codeset;
     return codeset;
-
 }
