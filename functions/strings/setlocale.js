@@ -11,7 +11,7 @@ function setlocale (category, locale) {
     // %          note 3: Consider using http://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
     // *     example 1: setlocale('LC_ALL', 'en_US');
     // *     returns 1: 'en_US'
-    var categ='', cats = [], i = 0, d = this.window.document;
+    var categ = '', cats = [], i = 0, d = this.window.document;
 
     // BEGIN STATIC
     var _copy = function _copy (orig) {
@@ -26,6 +26,61 @@ function setlocale (category, locale) {
         }
         return newObj;
     };
+
+    // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(), but locale-specific)
+    // See http://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms though amended with others from
+    // https://developer.mozilla.org/En/Localization_and_Plurals (new categories noted with "MDC" below, though
+    // not sure of whether there is a convention for the relative order of these newer groups as far as ngettext)
+    // The function name indicates the number of plural forms (nplural)
+    var _nplurals1 = function (n) { // e.g., Japanese
+        return 0;
+    };
+    var _nplurals2a = function (n) { // e.g., English
+        return n !== 1;
+    };
+    var _nplurals2b = function (n) { // e.g., French
+        return n > 1;
+    };
+    var _nplurals2c = function (n) { // e.g., Icelandic (MDC)
+        return n % 10 === 1 && n % 100 !== 11 ? 0 : 1;
+    };
+    var _nplurals3a = function (n) { // e.g., Latvian
+        return n % 10 === 1 && n % 100 !== 11 ? 0 : n !== 0 ? 1 : 2;
+    };
+    var _nplurals3b = function (n) { // e.g., Scottish Gaelic
+        return n==1 ? 0 : n === 2 ? 1 : 2;
+    };
+    var _nplurals3c = function (n) { // e.g., Romanian
+        return n === 1 ? 0 : (n === 0 || (n % 100 > 0 && n % 100 < 20)) ? 1 : 2;
+    };
+    var _nplurals3d = function (n) { // e.g., Lithuanian
+        return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && (n % 100 <10 || n % 100 >= 20) ? 1 : 2;
+    };
+    var _nplurals3e = function (n) { // e.g., Croatian
+        return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >=2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2;
+    };
+    var _nplurals3f = function (n) { // e.g., Slovak
+        return n === 1 ? 0 : n >= 2 && n <= 4 ? 1 : 2;
+    };
+    var _nplurals3g = function (n) { // e.g., Polish
+        return n === 1 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2;
+    };
+    var _nplurals3h = function (n) { // e.g., Macedonian (MDC)
+        return n % 10 === 1 ? 0 : n % 10 === 2 ? 1 : 2;
+    };
+    var _nplurals4a = function (n) { // e.g., Slovenian
+        return n % 100 === 1 ? 0 : n % 100 === 2 ? 1 : n % 100 === 3 || n % 100 === 4 ? 2 : 3;
+    };
+    var _nplurals4b = function (n) { // e.g., Maltese (MDC)
+        return n === 1 ? 0 : n === 0 || (n % 100 && n % 100 <= 10) ? 1 : n % 100 >= 11 && n % 100 <= 19 ? 2 : 3;
+    };
+    var _nplurals5 = function (n) { // e.g., Irish Gaeilge (MDC)
+        return n === 1 ? 0 : n === 2 ? 1 : n >=3 && n <= 6 ? 2 : n >= 7 && n <= 10 ? 3 : 4;
+    };
+    var _nplurals6 = function (n) { // e.g., Arabic (MDC)
+        return n === 0 ? 0 : n === 1 ? 1 : n === 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ?
+                                                                                                                                3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;
+    };
     // END STATIC
 
     // BEGIN REDUNDANT
@@ -33,6 +88,9 @@ function setlocale (category, locale) {
     
     var phpjs = this.php_js;
 
+    // Reconcile Windows vs. *nix locale names?
+    // Allow different priority orders of languages, esp. if implement gettext as in
+    //     LANGUAGE env. var.? (e.g., show German if French is not available)
     if (!phpjs.locales) {
         // Can add to the locales
         phpjs.locales = {};
@@ -108,7 +166,8 @@ function setlocale (category, locale) {
                 NOEXPR : '^[nN].*',
                 YESSTR : '',
                 NOSTR : ''
-            }
+            },
+            nplurals : _nplurals2a
         };
         phpjs.locales.en_US = _copy(phpjs.locales.en);
         phpjs.locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z';
@@ -157,6 +216,7 @@ function setlocale (category, locale) {
         phpjs.locales.C.LC_MESSAGES.NOEXPR = '^[nN]';
 
         phpjs.locales.fr =_copy(phpjs.locales.en);
+        phpjs.locales.fr.nplurals = _nplurals2b;
         phpjs.locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'];
         phpjs.locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
         phpjs.locales.fr.LC_TIME.b = ['jan', 'f\u00E9v', 'mar', 'avr', 'mai', 'jun', 'jui', 'ao\u00FB', 'sep', 'oct', 'nov', 'd\u00E9c'];
@@ -169,7 +229,6 @@ function setlocale (category, locale) {
 
         phpjs.locales.fr_CA = _copy(phpjs.locales.fr);
         phpjs.locales.fr_CA.LC_TIME.x = '%Y-%m-%d';
-
     }
     if (!phpjs.locale) {
         phpjs.locale = 'en_US';
@@ -227,7 +286,7 @@ function setlocale (category, locale) {
     if (locale === '0' || locale === 0) {
         if (category === 'LC_ALL') {
             for (categ in this.php_js.localeCategories) {
-                cats.push(categ+'='+this.php_js.localeCategories[categ]);
+                cats.push(categ+'='+this.php_js.localeCategories[categ]); // Add ".UTF-8" or allow ".@latint", etc. to the end?
             }
             return cats.join(';');
         }
