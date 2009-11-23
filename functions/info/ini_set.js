@@ -21,7 +21,7 @@ function ini_set (varname, newvalue) {
     switch (varname) {
         case 'extension':
             if (typeof this.dl === 'function') {
-                this.dl(newvalue); // This function is only experimental in PHP.JS
+                this.dl(newvalue); // This function is only experimental in php.js
             }
             _setArr(oldval, newvalue);
             break;

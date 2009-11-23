@@ -7,7 +7,7 @@ function pathinfo (path, options) {
     // %        note 1: The way the bitwise arguments are handled allows for greater flexibility
     // %        note 1: & compatability. We might even standardize this code and use a similar approach for
     // %        note 1: other bitwise PHP functions
-    // %        note 2: PHP.JS tries very hard to stay away from a core.js file with global dependencies, because we like
+    // %        note 2: php.js tries very hard to stay away from a core.js file with global dependencies, because we like
     // %        note 2: that you can just take a couple of functions and be on your way.
     // %        note 2: But by way we implemented this function, if you want you can still declare the PATHINFO_*
     // %        note 2: yourself, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);
