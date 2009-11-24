@@ -8,6 +8,11 @@ function substr (f_string, f_start, f_length) {
     // *       example 2: substr(2, 0, -6);
     // *       returns 2: ''
 
+// (?) Use unicode.semantics and/or unicode.runtime_encoding (e.g., with string wrapped in "binary" or "Binary" class) to
+// allow access of binary (see file_get_contents()) by: charCodeAt(x) & 0xFF (see https://developer.mozilla.org/En/Using_XMLHttpRequest )
+
+// Fix: Handle 4-byte characters
+
     f_string += '';
 
     if (f_start < 0) {
