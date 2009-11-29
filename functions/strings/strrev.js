@@ -5,6 +5,8 @@ function strrev (string) {
     // *     example 1: strrev('Kevin van Zonneveld');
     // *     returns 1: 'dlevennoZ nav niveK'
 
+    // Fix: Check ahead for combining characters to avoid (as per PHP 6), reversing these too
+
     var ret = '', i = 0;
 
     string += '';
