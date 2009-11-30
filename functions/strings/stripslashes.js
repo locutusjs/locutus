@@ -16,7 +16,7 @@ function stripslashes (str) {
             case '\\':
                 return '\\';
             case '0':
-                return '\0';
+                return '\u000';
             case '':
                 return '';
             default:
