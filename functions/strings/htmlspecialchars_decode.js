@@ -13,6 +13,7 @@ function htmlspecialchars_decode (string, quote_style) {
     // +      input by: Ratheous
     // +      input by: Mailfaker (http://www.weedem.fr/)
     // +      reimplemented by: Brett Zamir (http://brett-zamir.me)
+    // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
     // *     returns 1: '<p>this -> &quot;</p>'
     // *     example 2: htmlspecialchars_decode("&amp;quot;");
@@ -29,7 +30,7 @@ function htmlspecialchars_decode (string, quote_style) {
         'ENT_HTML_QUOTE_DOUBLE' : 2,
         'ENT_COMPAT': 2,
         'ENT_QUOTES': 3,
-        'ENT_IGNORE' : 4,
+        'ENT_IGNORE' : 4
     };
     if (quote_style === 0) {
         noquotes = true;

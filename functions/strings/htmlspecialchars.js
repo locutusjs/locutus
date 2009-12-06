@@ -9,6 +9,8 @@ function htmlspecialchars (string, quote_style, charset, double_encode) {
     // +      input by: Ratheous
     // +      input by: Mailfaker (http://www.weedem.fr/)
     // +      reimplemented by: Brett Zamir (http://brett-zamir.me)
+    // +      input by: felix
+    // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: charset argument not supported
     // *     example 1: htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
     // *     returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
@@ -33,7 +35,7 @@ function htmlspecialchars (string, quote_style, charset, double_encode) {
         'ENT_HTML_QUOTE_DOUBLE' : 2,
         'ENT_COMPAT': 2,
         'ENT_QUOTES': 3,
-        'ENT_IGNORE' : 4,
+        'ENT_IGNORE' : 4
     };
     if (quote_style === 0) {
         noquotes = true;
