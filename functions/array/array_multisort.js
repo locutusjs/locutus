@@ -17,6 +17,7 @@ function array_multisort (arr) {
     // *     results 3: lastnames ==  ['Adams','Adams','Kennedy','Tyler','Carter','Madison','Monroe'];
     // *     results 3: president ==  [2,      6,      35,       10,     39,       4,       5];
 
+// Fix: this function must be fixed like asort(), etc., to return a (shallow) copy by default, since IE does not support!
 
     // VARIABLE DESCRIPTIONS
     //

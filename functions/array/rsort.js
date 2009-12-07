@@ -6,20 +6,25 @@ function rsort (inputArr, sort_flags) {
     // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
     // %        note 1: integrated into all of these functions by adapting the code at
     // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
+    // %        note 2: This function deviates from PHP in returning a copy of the array instead
+    // %        note 2: of acting by reference and returning true; this was necessary because
+    // %        note 2: IE does not allow deleting and re-adding of properties without caching
+    // %        note 2: of property position; you can set the ini of "phpjs.strictForIn" to true to
+    // %        note 2: get the PHP behavior, but use this only if you are in an environment
+    // %        note 2: such as Firefox extensions where for-in iteration order is fixed and true
+    // %        note 2: property deletion is supported. Note that we intend to implement the PHP
+    // %        note 2: behavior by default if IE ever does allow it; only gives shallow copy since
+    // %        note 2: is by reference in PHP anyways
     // -    depends on: i18n_loc_get_default
     // *     example 1: rsort(['Kevin', 'van', 'Zonneveld']);
-    // *     returns 1: true
+    // *     returns 1: ['van', 'Zonneveld', 'Kevin']
+    // *     example 2: ini_set('phpjs.strictForIn', true);
     // *     example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
     // *     example 2: rsort(fruits);
-    // *     returns 2: true
     // *     results 2: fruits == {0: 'orange', 1: 'lemon', 2: 'banana', 3: 'apple'}
+    // *     returns 2: true
 
-    var valArr = [], k = '', i = 0, sorter = false, that=this;
-    
-    for (k in inputArr) { // Get key and value arrays
-        valArr.push(inputArr[k]);
-        delete inputArr[k];
-    }
+    var valArr = [], k = '', i = 0, sorter = false, that=this, strictForIn = false, populateArr = [];
 
     switch (sort_flags) {
         case 'SORT_STRING': // compare items as strings
@@ -49,10 +54,26 @@ function rsort (inputArr, sort_flags) {
             };
             break;
     }
+
+    // BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    this.php_js.ini = this.php_js.ini || {};
+    // END REDUNDANT
+
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value;
+    populateArr = strictForIn ? inputArr : populateArr;
+
+    for (k in inputArr) { // Get key and value arrays
+        valArr.push(inputArr[k]);
+        if (strictForIn) {
+            delete inputArr[k];
+        }
+    }
+
     valArr.sort(sorter);
 
     for (i = 0; i < valArr.length; i++) { // Repopulate the old array
-        inputArr[i] = valArr[i];
+        populateArr[i] = valArr[i];
     }
-    return true;
+    return strictForIn ? true : populateArr;
 }

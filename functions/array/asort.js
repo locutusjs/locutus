@@ -2,19 +2,35 @@ function asort (inputArr, sort_flags) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   input by: paulo kuong
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
     // %        note 1: integrated into all of these functions by adapting the code at
     // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
     // %        note 2: The examples are correct, this is a new way
     // %        note 2: Credits to: http://javascript.internet.com/math-related/bubble-sort.html
+    // %        note 3: This function deviates from PHP in returning a copy of the array instead
+    // %        note 3: of acting by reference and returning true; this was necessary because
+    // %        note 3: IE does not allow deleting and re-adding of properties without caching
+    // %        note 3: of property position; you can set the ini of "phpjs.strictForIn" to true to
+    // %        note 3: get the PHP behavior, but use this only if you are in an environment
+    // %        note 3: such as Firefox extensions where for-in iteration order is fixed and true
+    // %        note 3: property deletion is supported. Note that we intend to implement the PHP
+    // %        note 3: behavior by default if IE ever does allow it; only gives shallow copy since
+    // %        note 3: is by reference in PHP anyways
     // -    depends on: strnatcmp
     // -    depends on: i18n_loc_get_default
     // *     example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
-    // *     example 1: asort(data);
+    // *     example 1: data = asort(data);
     // *     results 1: data == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
     // *     returns 1: true
+    // *     example 2: ini_set('phpjs.strictForIn', true);
+    // *     example 2: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
+    // *     example 2: asort(data);
+    // *     results 2: data == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
+    // *     returns 2: true
 
-    var valArr=[], keyArr=[], k, i, ret, sorter, that = this;
+    var valArr=[], keyArr=[], k, i, ret, sorter, that = this, strictForIn = false, populateArr = [];
 
     switch (sort_flags) {
         case 'SORT_STRING': // compare items as strings
@@ -62,11 +78,21 @@ function asort (inputArr, sort_flags) {
         }
     };
 
+    // BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    this.php_js.ini = this.php_js.ini || {};
+    // END REDUNDANT
+
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value;
+    populateArr = strictForIn ? inputArr : populateArr;
+
     // Get key and value arrays
     for (k in inputArr) {
         valArr.push(inputArr[k]);
         keyArr.push(k);
-        delete inputArr[k];
+        if (strictForIn) {
+            delete inputArr[k];
+        }
     }
     try {
         // Sort our new temporary arrays
@@ -77,8 +103,8 @@ function asort (inputArr, sort_flags) {
 
     // Repopulate the old array
     for (i = 0; i < valArr.length; i++) {
-        inputArr[keyArr[i]] = valArr[i];
+        populateArr[keyArr[i]] = valArr[i];
     }
 
-    return true;
+    return strictForIn ? true : populateArr;
 }

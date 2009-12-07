@@ -34,7 +34,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
         f_stringl = f_string.length;
         for (i = 0; i < f_stringl; i++) {
             chr = f_string.substring(i, i + 1);
-            if (chr.match(/[0-9]/)) {
+            if (chr.match(/\d/)) {
                 if (text) {
                     if (buffer.length > 0){
                         result[result.length] = buffer;
@@ -44,7 +44,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
                     text = false;
                 }
                 buffer += chr;
-            } else if ((text == false) && (chr == '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i + 2).match(/[0-9]/))) {
+            } else if ((text == false) && (chr == '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i + 2).match(/\d/))) {
                 result[result.length] = buffer;
                 buffer = '';
             } else {
