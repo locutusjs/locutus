@@ -64,9 +64,11 @@ function rsort (inputArr, sort_flags) {
     populateArr = strictForIn ? inputArr : populateArr;
 
     for (k in inputArr) { // Get key and value arrays
-        valArr.push(inputArr[k]);
-        if (strictForIn) {
-            delete inputArr[k];
+        if (inputArr.hasOwnProperty) {
+            valArr.push(inputArr[k]);
+            if (strictForIn) {
+                delete inputArr[k];
+            }
         }
     }
 

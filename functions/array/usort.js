@@ -33,9 +33,11 @@ function usort (inputArr, sorter) {
     
 
     for (k in inputArr) { // Get key and value arrays
-        valArr.push(inputArr[k]);
-        if (strictForIn) {
-            delete inputArr[k];
+        if (inputArr.hasOwnProperty) {
+            valArr.push(inputArr[k]);
+            if (strictForIn) {
+                delete inputArr[k];
+            }
         }
     }
     try {

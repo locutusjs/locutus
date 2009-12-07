@@ -25,7 +25,9 @@ function uksort (inputArr, sorter) {
 
     // Make a list of key names
     for (k in inputArr) {
-        keys.push(k);
+        if (inputArr.hasOwnProperty) {
+            keys.push(k);
+        }
     }
 
     // Sort key names
@@ -57,7 +59,9 @@ function uksort (inputArr, sorter) {
         }
     }
     for (i in tmp_arr) {
-        populateArr[i] = tmp_arr[i];
+        if (tmp_arr.hasOwnProperty) {
+            populateArr[i] = tmp_arr[i];
+        }
     }
     return strictForIn ? true : populateArr;
 }

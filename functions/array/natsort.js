@@ -45,10 +45,12 @@ function natsort (inputArr) {
 
     // Get key and value arrays
     for (k in inputArr) {
-        valArr.push(inputArr[k]);
-        keyArr.push(k);
-        if (strictForIn) {
-            delete inputArr[k];
+        if (inputArr.hasOwnProperty) {
+            valArr.push(inputArr[k]);
+            keyArr.push(k);
+            if (strictForIn) {
+                delete inputArr[k];
+            }
         }
     }
     try {

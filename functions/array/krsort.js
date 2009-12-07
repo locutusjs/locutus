@@ -56,7 +56,9 @@ function krsort (inputArr, sort_flags) {
 
     // Make a list of key names
     for (k in inputArr) {
-        keys.push(k);
+        if (inputArr.hasOwnProperty) {
+            keys.push(k);
+        }
     }
     keys.sort(sorter);
 
@@ -78,7 +80,9 @@ function krsort (inputArr, sort_flags) {
         }
     }
     for (i in tmp_arr) {
-        populateArr[i] = tmp_arr[i];
+        if (tmp_arr.hasOwnProperty) {
+            populateArr[i] = tmp_arr[i];
+        }
     }
 
     return strictForIn ? true : populateArr;

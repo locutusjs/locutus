@@ -20,17 +20,21 @@ function array_unique (inputArr) {
     var __array_search = function (needle, haystack) {
         var fkey = '';
         for (fkey in haystack) {
-            if ((haystack[fkey] + '') === (needle + '')) {
-                return fkey;
+            if (haystack.hasOwnProperty) {
+                if ((haystack[fkey] + '') === (needle + '')) {
+                    return fkey;
+                }
             }
         }
         return false;
     };
 
     for (key in inputArr) {
-        val = inputArr[key];
-        if (false === __array_search(val, tmp_arr2)) {
-            tmp_arr2[key] = val;
+        if (inputArr.hasOwnProperty) {
+            val = inputArr[key];
+            if (false === __array_search(val, tmp_arr2)) {
+                tmp_arr2[key] = val;
+            }
         }
     }
 
