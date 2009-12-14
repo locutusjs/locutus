@@ -7,8 +7,10 @@ function html_entity_decode (string, quote_style) {
     // +   bugfixed by: Onno Marsman
     // +   improved by: marc andreu
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +      input by: Ratheous
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +      input by: Nick Kolosov
+    // +   bugfixed by: Fox
     // -    depends on: get_html_translation_table
     // *     example 1: html_entity_decode('Kevin &amp; van Zonneveld');
     // *     returns 1: 'Kevin & van Zonneveld'
@@ -21,6 +23,11 @@ function html_entity_decode (string, quote_style) {
     if (false === (hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {
         return false;
     }
+
+    // fix &amp; problem
+    // http://phpjs.org/functions/get_html_translation_table:416#comment_97660
+    delete(hash_map['&']);
+    hash_map['&'] = '&amp;';
 
     for (symbol in hash_map) {
         entity = hash_map[symbol];
