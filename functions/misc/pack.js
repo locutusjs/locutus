@@ -5,24 +5,24 @@ function pack(format) {
     // %        note 1: Float encoding by: Jonas Raoni Soares Silva (http://jsfromhell.com/classes/binary-parser)
     // %        note 2: Home: http://www.kingsquare.nl/blog/12-12-2009/13507444/New-phpjs-function-pack
     // %        note 3: Feedback: phpjs-pack@kingsquare.nl
-    // %        note 4: 'machine dependant byte order and size' aren't applicable for javascript
+    // %        note 4: 'machine dependant byte order and size' aren't applicable for JavaScript
     // %        note 4: pack works as on a 32bit, little endian machine
     // *     example 1: pack("nvc*", 0x1234, 0x5678, 65, 66);
     // *     returns 1: '4xVAB'
 
-    var formatPointer = 0;
-    var argumentPointer = 1;
-    var result = '';
-    var argument = '';
-    var i = 0;
-    var r = [];
-    var instruction, quantifier, word, nibble;
+    var formatPointer = 0,
+        argumentPointer = 1,
+        result = '',
+        argument = '',
+        i = 0,
+        r = [],
+        instruction, quantifier, word;
 
     while (formatPointer < format.length) {
         instruction = format[formatPointer];
         quantifier = '';
         formatPointer++;
-        while((formatPointer < format.length) && (format[formatPointer].match(/[0-9\*]/) !== null)) {
+        while((formatPointer < format.length) && (format[formatPointer].match(/[\d\*]/) !== null)) {
             quantifier += format[formatPointer];
             formatPointer++;
         }
@@ -33,7 +33,7 @@ function pack(format) {
         switch(instruction) {
             case 'A': //NUL-padded string
             case 'a': //SPACE-padded string
-                if (typeof arguments[argumentPointer] === undefined) {
+                if (typeof arguments[argumentPointer] === 'undefined') {
                     throw new Error('Warning:  pack() Type '+instruction+': not enough arguments');
                 } else {
                     argument = arguments[argumentPointer];
@@ -42,11 +42,11 @@ function pack(format) {
                     quantifier = argument.length;
                 }
                 for (i = 0; i < quantifier; i++) {
-                    if (typeof argument[i] === undefined) {
+                    if (typeof argument[i] === 'undefined') {
                         if (instruction === 'a') {
-                            result += "\0";
+                            result += '\0';
                         } else {
-                            result += " ";
+                            result += ' ';
                         }
                     } else {
                         result += argument[i];
@@ -57,7 +57,7 @@ function pack(format) {
 
             case 'h': //Hex string, low nibble first
             case 'H': //Hex string, high nibble first
-                if (typeof arguments[argumentPointer] === undefined) {
+                if (typeof arguments[argumentPointer] === 'undefined') {
                     throw new Error( 'Warning:  pack() Type '+instruction+': not enough arguments');
                 } else {
                     argument = arguments[argumentPointer];
@@ -71,7 +71,7 @@ function pack(format) {
                 for (i = 0; i < quantifier; i+=2) {
                     //always get per 2 bytes...
                     word = argument[i];
-                    if (((i+1) >= quantifier) || typeof(argument[i+1]) === undefined) { 
+                    if (((i+1) >= quantifier) || typeof(argument[i+1]) === 'undefined') {
                         word += "0";
                     } else {
                         word += argument[i+1];
@@ -115,8 +115,8 @@ function pack(format) {
                 }
 
                 for (i = 0; i < quantifier; i++) {
-                    result += String.fromCharCode(arguments[argumentPointer]&0xFF);
-                    result += String.fromCharCode(arguments[argumentPointer]>>8&0xFF);
+                    result += String.fromCharCode(arguments[argumentPointer] & 0xFF);
+                    result += String.fromCharCode(arguments[argumentPointer] >> 8 & 0xFF);
                     argumentPointer++;
                 }
                 break;
@@ -130,8 +130,8 @@ function pack(format) {
                 }
 
                 for (i = 0; i < quantifier; i++) {
-                    result += String.fromCharCode(arguments[argumentPointer]>>8&0xFF);
-                    result += String.fromCharCode(arguments[argumentPointer]&0xFF);
+                    result += String.fromCharCode(arguments[argumentPointer] >> 8 & 0xFF);
+                    result += String.fromCharCode(arguments[argumentPointer] & 0xFF);
                     argumentPointer++;
                 }
                 break;
@@ -150,9 +150,9 @@ function pack(format) {
 
                 for (i = 0; i < quantifier; i++) {
                     result += String.fromCharCode(arguments[argumentPointer]&0xFF);
-                    result += String.fromCharCode(arguments[argumentPointer]>>8&0xFF);
-                    result += String.fromCharCode(arguments[argumentPointer]>>16&0xFF);
-                    result += String.fromCharCode(arguments[argumentPointer]>>24&0xFF);
+                    result += String.fromCharCode(arguments[argumentPointer] >> 8 & 0xFF);
+                    result += String.fromCharCode(arguments[argumentPointer] >> 16 & 0xFF);
+                    result += String.fromCharCode(arguments[argumentPointer] >> 24 & 0xFF);
                     argumentPointer++;
                 }
 
@@ -166,10 +166,10 @@ function pack(format) {
                 }
 
                 for (i = 0; i < quantifier; i++) {
-                    result += String.fromCharCode(arguments[argumentPointer]>>24&0xFF);
-                    result += String.fromCharCode(arguments[argumentPointer]>>16&0xFF);
-                    result += String.fromCharCode(arguments[argumentPointer]>>8&0xFF);
-                    result += String.fromCharCode(arguments[argumentPointer]&0xFF);
+                    result += String.fromCharCode(arguments[argumentPointer] >> 24 & 0xFF);
+                    result += String.fromCharCode(arguments[argumentPointer] >> 16 & 0xFF);
+                    result += String.fromCharCode(arguments[argumentPointer] >> 8 & 0xFF);
+                    result += String.fromCharCode(arguments[argumentPointer] & 0xFF);
                     argumentPointer++;
                 }
                 break;
@@ -218,7 +218,7 @@ function pack(format) {
                     throw new Error('Warning: pack(): Type x: \'*\' ignored');
                 }
                 for (i = 0; i < quantifier; i++) {
-                    result += "\0";
+                    result += '\0';
                 }
                 break;
 
@@ -242,7 +242,7 @@ function pack(format) {
                 if (quantifier > result.length) {
                     var extraNullCount = quantifier - result.length;
                     for (i = 0; i < extraNullCount; i++) {
-                        result += "\0";
+                        result += '\0';
                     }
                 }
                 if (quantifier < result.length) {
