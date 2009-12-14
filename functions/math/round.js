@@ -13,8 +13,12 @@ function round (val, precision, mode) {
     // *     returns 1: 1242000
     // *     example 2: round(3.6);
     // *     returns 2: 4
-    // *     example 3: round(2.835,2);
+    // *     example 3: round(2.835, 2);
     // *     returns 3: 2.84
+    // *     example 4: round(1.1749999999999, 2);
+    // *     returns 4: 1.17
+    // *     example 5: round(1.17499999999999, 2);
+    // *     returns 5: 1.18
 
     /* Declare Variables
      * retVal  - temporay holder of the value to be returned
