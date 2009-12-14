@@ -4,6 +4,7 @@ function round (val, precision, mode) {
     // +    revised by: Onno Marsman
     // +      input by: Greenseed
     // +    revised by: T.Wild
+    // +      input by: meo
     // %        note 1: Great work. Ideas for improvement:
     // %        note 1:  - code more compliant with developer guidelines
     // %        note 1:  - for implementing PHP constant arguments look at
