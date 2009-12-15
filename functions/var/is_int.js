@@ -20,5 +20,5 @@ function is_int (mixed_var) {
         return false;
     }
 
-    return (!(mixed_var % 1));
+    return !(mixed_var % 1);
 }
