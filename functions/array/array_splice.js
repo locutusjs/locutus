@@ -1,8 +1,14 @@
 function array_splice (arr, offst, lgth, replacement) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
+    // +   input by: Theriault
     // %        note 1: Order does get shifted in associative array input with numeric indices,
-    // %        note 1: since PHP behavior doesn't preserve keys, but I understand order is not reliable anyways
+    // %        note 1: since PHP behavior doesn't preserve keys, but I understand order is
+    // %        note 1: not reliable anyways
+    // %        note 2: Note also that IE retains information about property position even
+    // %        note 2: after being supposedly deleted, so use of this function may produce
+    // %        note 2: unexpected results in IE if you later attempt to add back properties
+    // %        note 2: with the same keys that had been deleted
     // -    depends on: is_int
     // *     example 1: input = {4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"};
     // *     example 1: array_splice(input, 2);
@@ -17,7 +23,7 @@ function array_splice (arr, offst, lgth, replacement) {
     // *     returns 3: ["yellow"]
     // *     results 3: input == ["red", "green", "blue", "black", "maroon"]
     
-    var checkToUpIndices = function (arr, ct, key) {
+    var _checkToUpIndices = function (arr, ct, key) {
         // Deal with situation, e.g., if encounter index 4 and try to set it to 0, but 0 exists later in loop (need to
         // increment all subsequent (skipping current key, since we need its value below) until find unused)
         if (arr[ct] !== undefined) {
@@ -26,7 +32,7 @@ function array_splice (arr, offst, lgth, replacement) {
             if (ct === key) {
                 ct += 1;
             }
-            ct = checkToUpIndices(arr, ct, key);
+            ct = _checkToUpIndices(arr, ct, key);
             arr[ct] = arr[tmp];
             delete arr[tmp];
         }
@@ -61,7 +67,7 @@ function array_splice (arr, offst, lgth, replacement) {
                     if (parseInt(key, 10) === int_ct) { // Key is already numbered ok, so don't need to change key for value
                         continue;
                     }
-                    checkToUpIndices(arr, int_ct, key); // Deal with situation, e.g.,
+                    _checkToUpIndices(arr, int_ct, key); // Deal with situation, e.g.,
                     // if encounter index 4 and try to set it to 0, but 0 exists later in loop
                     arr[int_ct] = arr[key];
                     delete arr[key];
