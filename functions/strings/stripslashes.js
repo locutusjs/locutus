@@ -17,7 +17,7 @@ function stripslashes (str) {
         switch (n1) {
             case '\\':
                 return '\\';
-            case '0': // Will not reach here, since automatically converted in JavaScript strings
+            case '0':
                 return '\u0000';
             case '':
                 return '';
