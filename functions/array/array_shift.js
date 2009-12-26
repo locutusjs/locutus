@@ -2,6 +2,7 @@ function array_shift (inputArr) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Martijn Wieringa
+    // %        note 1: Currently does not handle objects
     // *     example 1: array_shift(['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: 'Kevin'
 
@@ -30,6 +31,9 @@ function array_shift (inputArr) {
     if (inputArr.length > 0) {
         return inputArr.shift();
     }
+
+    /*
+    UNFINISHED FOR HANDLING OBJECTS
     for (pr in inputArr) {
         if (inputArr.hasOwnProperty(pr)) {
             props = true;
@@ -55,4 +59,5 @@ function array_shift (inputArr) {
         return null;
     }
     return shift;
+    */
 }
