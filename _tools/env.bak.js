@@ -8,6 +8,15 @@
 var window = this;
 
 (function(){
+
+	var indexOf = function (value) { // If using this in IE?
+		for (var i = 0, length=this.length; i < length; i++) {
+			if (this[i] === value) {
+				return i;
+			}
+		}
+		return -1;
+	};
     
 	// Browser Navigator
 
@@ -96,6 +105,9 @@ var window = this;
 		if ( !events[this.uuid][type] )
 			events[this.uuid][type] = [];
 		
+		if (!events[this.uuid][type].indexOf) { // If using in IE?
+			events[this.uuid][type].indexOf = indexOf;
+		}
 		if ( events[this.uuid][type].indexOf( fn ) < 0 )
 			events[this.uuid][type].push( fn );
 	};

@@ -23,7 +23,7 @@ function soundex (str) {
         MN: 5, 
         R: 6
     };
-    var r = (s = (str+'').toUpperCase().replace(/[^A-Z]/g, "").split("")).splice(0, 1);
+    var r = (s = (str+'').toUpperCase().replace(/[^A-Z]/g, '').split('')).splice(0, 1);
     var sl = 0;
 
     sl = s.length;
@@ -35,5 +35,5 @@ function soundex (str) {
         }
     }
 
-    return r.length > p && (r.length = p), r.join("") + (new Array(p - r.length + 1)).join("0");
+    return r.length > p && (r.length = p), r.join('') + (new Array(p - r.length + 1)).join('0');
 }

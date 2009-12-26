@@ -9,19 +9,30 @@ function deaggregate (obj, class_name) {
     // *     example 1: deaggregate(b, 'A');
     // *     returns 1: undefined
 
-    var p='', idx=-1, pos=-1, i=0;
-    var getFuncName = function (fn) {
-        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if (!name) {
-            return '(Anonymous)';
-        }
-        return name[1];
-    };
+    var p='', idx=-1, pos=-1, i=0,
+		indexOf = function (value) {
+			for (var i = 0, length=this.length; i < length; i++) {
+				if (this[i] === value) {
+					return i;
+				}
+			}
+			return -1;
+		},
+		getFuncName = function (fn) {
+			var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+			if (!name) {
+				return '(Anonymous)';
+			}
+			return name[1];
+		};
 
     if (!this.php_js || !this.php_js.aggregateRecords || !this.php_js.aggregateKeys || !this.php_js.aggregateClasses) {
         return;
     }
 
+	if (!this.php_js.aggregateKeys.indexOf) {
+        this.php_js.aggregateKeys.indexOf = indexOf;
+    }
     idx = this.php_js.aggregateKeys.indexOf(obj);
     if (idx === -1) {
         return;
@@ -31,6 +42,9 @@ function deaggregate (obj, class_name) {
         if (typeof class_name === 'string') { // PHP behavior
             class_name = this.window[class_name];
         }
+		if (!this.php_js.aggregateClasses[idx].indexOf) {
+			this.php_js.aggregateClasses[idx].indexOf = indexOf;
+		}
         pos = this.php_js.aggregateClasses[idx].indexOf(getFuncName(class_name));
         if (pos !== -1) {
             for (p in this.php_js.aggregateRecords[idx][pos]) {

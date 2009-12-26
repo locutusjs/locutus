@@ -9,7 +9,15 @@ function aggregate_properties_by_regexp (obj, class_name, regexp, exclude) {
     // *     example 1: aggregate_properties_by_regexp(b, 'A', /^pr/, false);
     // *     returns 1: undefined
 
-    var p = '', test=false, record={}, pos=-1;
+    var p = '', test=false, record={}, pos=-1,
+		indexOf = function (value) {
+			for (var i = 0, length=this.length; i < length; i++) {
+				if (this[i] === value) {
+					return i;
+				}
+			}
+			return -1;
+		};
 
     if (typeof regexp === 'string') { // If passing the regular expression as a string, note that this behavior may change in the future as we seek to implement PHP-style regexp (e.g., delimiteres and modifier flags within the string)
         regexp = eval(regexp);
@@ -52,6 +60,9 @@ function aggregate_properties_by_regexp (obj, class_name, regexp, exclude) {
             obj[p] = class_name.prototype[p];
             record[p] = class_name.prototype[p];
         }
+    }
+	if (!this.php_js.aggregateKeys.indexOf) {
+        this.php_js.aggregateKeys.indexOf = indexOf;
     }
     pos = this.php_js.aggregateKeys.indexOf(obj);
     if (pos !== -1) {

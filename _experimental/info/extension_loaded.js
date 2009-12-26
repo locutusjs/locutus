@@ -4,6 +4,6 @@ function extension_loaded (name) {
     // *     example 1: extension_loaded('strings');
     // *     returns 1: true
 
-    return !!(this.php_js && this.php_js.ini && this.php_js.ini['phpjs.loaded_extensions'] && 
+    return !!(this.php_js && this.php_js.ini && this.php_js.ini['phpjs.loaded_extensions'] && // dl() also ensures indexOf is added for IE
                     this.php_js.ini['phpjs.loaded_extensions'].local_value.indexOf(name) !== -1);
 }

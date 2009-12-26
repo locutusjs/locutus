@@ -24,8 +24,8 @@ function import_request_variables (types, prefix) {
     requestObj = _ini_get('phpjs.requestVarsObj') || requestObj;
     if (/g/i.test(types)) { // GET
         getObj = _ini_get('phpjs.getVarsObj') || getObj;
-        for (i = 0, url = win.location.href, vars = url.substring(url.lastIndexOf("?") + 1, url.length).split("&"); i < vars.length; i++){
-            current = vars[i].split("=");
+        for (i = 0, url = win.location.href, vars = url.substring(url.lastIndexOf("?") + 1, url.length).split('&'); i < vars.length; i++){
+            current = vars[i].split('=');
             current[1] = decodeURIComponent(current[1]);
             arrayBracketPos = current[0].indexOf('[');
             if (arrayBracketPos !== -1) {

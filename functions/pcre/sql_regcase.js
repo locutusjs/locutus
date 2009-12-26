@@ -13,7 +13,7 @@ function sql_regcase (str) {
 
     for (i=0; i < str.length; i++) {
         if (((pos = upper.indexOf(str.charAt(i))) !== -1) || ((pos = lower.indexOf(str.charAt(i))) !== -1)) {
-            retStr += '['+upper[pos]+lower[pos]+']';
+            retStr += '['+upper.charAt(pos)+lower.charAt(pos)+']';
         }
         else {
             retStr += str.charAt(i);

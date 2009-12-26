@@ -7,37 +7,37 @@ function metaphone (word, phones){
     // As far as use of the String() constructor, the author recalls IE 6 giving errors otherwise
     
     var wordlength = word.length,
-        x = 0, tempchar = "",
-        metaword = "";
-    var removedbl = function (word){
-        var wordlength = word.length,
-        tempword = word.toLowerCase(),
-        rebuilt,
-        tempchar1, tempchar2,
-        x;
+        x = 0, tempchar = '',
+        metaword = '',
+		removedbl = function (word){
+			var wordlength = word.length,
+			tempword = word.toLowerCase(),
+			rebuilt,
+			tempchar1, tempchar2,
+			x;
 
-        tempchar1 = tempword.charAt(0);
-        rebuilt = tempchar1;
-        for (x=1;x<wordlength;x++){
-            tempchar2 = tempword.charAt(x);
-            if (tempchar2 != tempchar1 || tempchar2 == 'c' || tempchar2 == 'g'){
-                rebuilt += tempchar2;
-            }
-            tempchar1 = tempchar2;
-        }
-        return rebuilt;
-    };
-    var isVowel=function(a){
-        switch (a.toLowerCase()) {
-            case 'a': return true;
-            case 'e': return true;
-            case 'i': return true;
-            case 'o': return true;
-            case 'u': return true;
-            default: return false;
-        }
-    };
-    var tempword = removedbl(word.toLowerCase());
+			tempchar1 = tempword.charAt(0);
+			rebuilt = tempchar1;
+			for (x=1;x<wordlength;x++){
+				tempchar2 = tempword.charAt(x);
+				if (tempchar2 != tempchar1 || tempchar2 == 'c' || tempchar2 == 'g'){
+					rebuilt += tempchar2;
+				}
+				tempchar1 = tempchar2;
+			}
+			return rebuilt;
+		},
+		isVowel=function(a){
+			switch (a.toLowerCase()) {
+				case 'a': return true;
+				case 'e': return true;
+				case 'i': return true;
+				case 'o': return true;
+				case 'u': return true;
+				default: return false;
+			}
+		},
+		tempword = removedbl(word.toLowerCase());
 
     //Special wh- case
     if (tempword.charAt(0) == 'w' && tempword.charAt(1) == 'h'){
@@ -143,7 +143,7 @@ function metaphone (word, phones){
                 case 'k': if (x > 0){ if (String(tempword).charAt(x-1) != 'c'){metaword += 'k';}}else{metaword += 'k';} break;
                 case 'p': if (x+1 <= wordlength){if(String(tempword).charAt(x+1) == 'h'){metaword += 'f';}else{metaword +='p';}}else{metaword += 'p';} break;
                 case 'y': if (x+1 <= wordlength){if(isVowel(String(tempword).charAt(x+1)) === true){metaword += 'y';}}else{metaword += 'y';} break;
-                case 'h': if (x === 0 || ['c', 's', 'p', 't', 'g'].indexOf(String(tempword).charAt(x-1)) === -1) {
+                case 'h': if (x === 0 || 'csptg'.indexOf(String(tempword).charAt(x-1)) === -1) {
                             if (isVowel(String(tempword).charAt(x+1)) === true){metaword += 'h';}} break;
                 case 's': if (x+1 <= wordlength){if(String(tempword).charAt(x+1) == 'h'){ metaword += 'x'; }
                             else if (x+2 <= wordlength){if(String(tempword).charAt(x+1) == 'i'){if(String(tempword).charAt(x+2) == 'o' || String(tempword).charAt(x+2) == 'a'){metaword += 'x';}else{metaword += 's';}

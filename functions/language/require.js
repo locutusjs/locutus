@@ -15,7 +15,7 @@ function require (filename) {
     var script_block = d.createElementNS ? d.createElementNS('http://www.w3.org/1999/xhtml', 'script') : d.createElement('script');
     script_block.type = 'text/javascript';
     var client_pc = navigator.userAgent.toLowerCase();
-    if ((client_pc.indexOf("msie") != -1) && (client_pc.indexOf("opera") == -1)) {
+    if ((client_pc.indexOf('msie') !== -1) && (client_pc.indexOf('opera') === -1)) {
         script_block.text = js_code;
     } else {
         script_block.appendChild(d.createTextNode(js_code));

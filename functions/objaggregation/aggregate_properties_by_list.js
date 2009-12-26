@@ -9,7 +9,19 @@ function aggregate_properties_by_list (obj, class_name, properties_list, exclude
     // *     example 1: aggregate_properties_by_list(b, 'A', ['prop'], false);
     // *     returns 1: undefined
 
-    var p = '', i=0, record={}, pos=-1;
+    var p = '', i=0, record={}, pos=-1,
+		indexOf = function (value) {
+			for (var i = 0, length=this.length; i < length; i++) {
+				if (this[i] === value) {
+					return i;
+				}
+			}
+			return -1;
+		};
+		
+	if (!properties_list.indexOf) {
+        properties_list.indexOf = indexOf;
+    }
 
     if (typeof class_name === 'string') { // PHP behavior
         class_name = this.window[class_name];
@@ -66,6 +78,9 @@ function aggregate_properties_by_list (obj, class_name, properties_list, exclude
                 record[p] = class_name.prototype[p];
             }
         }
+    }
+	if (!this.php_js.aggregateKeys.indexOf) {
+        this.php_js.aggregateKeys.indexOf = indexOf;
     }
     pos = this.php_js.aggregateKeys.indexOf(obj);
     if (pos !== -1) {

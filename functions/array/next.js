@@ -10,8 +10,19 @@ function next (arr) {
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
+	var indexOf = function (value) {
+        for (var i = 0, length=this.length; i < length; i++) {
+            if (this[i] === value) {
+                return i;
+            }
+        }
+        return -1;
+    };
     // END REDUNDANT
     var pointers = this.php_js.pointers;
+	if (!pointers.indexOf) {
+        pointers.indexOf = indexOf;
+    }
     if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0);
     }
