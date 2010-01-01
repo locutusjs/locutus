@@ -112,7 +112,7 @@ function date ( format, timestamp ) {
                 return jsdate.getMonth() + 1;
             },
             t: function () {
-                return (new Date(f.Y(), f.n() + 1, 0)).getDate();
+                return (new Date(f.Y(), f.n(), 0)).getDate();
             },
 
         // Year
