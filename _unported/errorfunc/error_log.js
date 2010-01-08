@@ -1,3 +1,0 @@
-function error_log () {
-    
-}
