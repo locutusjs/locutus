@@ -14,7 +14,7 @@ function inet_pton(a) {
         // Return if 4 bytes, otherwise false.
         return m.length === 4 ? m : false;
     }
-    r = /^((?:[\da-f]{1,4}(?::|)){0,16})(::)?((?:[\da-f]{1,4}(?::|)){0,16})$/;
+    r = /^((?:[\da-f]{1,4}(?::|)){0,8})(::)?((?:[\da-f]{1,4}(?::|)){0,8})$/;
     m = a.match(r); // IPv6
     if (m) {
         // Translate each hexadecimal value.
@@ -26,11 +26,11 @@ function inet_pton(a) {
             m[j] = m[j].split(':');
             for (i = 0; i < m[j].length; i++) {
                 m[j][i] = parseInt(m[j][i], 16);
-                // NaN or greater than 2 bytes, return false.
-                if (isNaN(m[j][i]) || m[j][i] > 0xFFFF) {
+                // Would be NaN if it was blank, return false.
+                if (isNaN(m[j][i])) {
                     return false; // Invalid IP.
                 }
-                m[j][i] = f(m[j][i]);
+                m[j][i] = f(m[j][i] >> 8) + f(m[j][i] & 0xFF);
             }
             m[j] = m[j].join('');
         }
