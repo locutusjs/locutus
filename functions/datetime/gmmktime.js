@@ -1,65 +1,38 @@
-function gmmktime () {
+function gmmktime() {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   derived from: mktime
     // *     example 1: gmmktime(14, 10, 2, 2, 1, 2008);
     // *     returns 1: 1201875002
+    // *     example 2: gmmktime(0, 0, -1, 1, 1, 1970);
+    // *     returns 2: -1
 
-    var no=0, i = 0, ma=0, mb=0, d = new Date(), dn = new Date(), argv = arguments, argc = argv.length;
+    var d = new Date(), r = arguments, i = 0,
+        e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear'];
 
-    var dateManip = {
-        0: function (tt){ return d.setUTCHours(tt); },
-        1: function (tt){ return d.setUTCMinutes(tt); },
-        2: function (tt){ var set = d.setUTCSeconds(tt); mb = d.getUTCDate() - dn.getUTCDate(); return set;},
-        3: function (tt){ var set = d.setUTCMonth(parseInt(tt, 10)-1); ma = d.getUTCFullYear() - dn.getUTCFullYear(); return set;},
-        4: function (tt){ return d.setUTCDate(tt+mb);},
-        5: function (tt){
-            if (tt >= 0 && tt <= 69) {
-                tt += 2000;
-            }
-            else if (tt >= 70 && tt <= 100) {
-                tt += 1900;
-            }
-            return d.setUTCFullYear(tt+ma);
-        }
-        // 7th argument (for DST) is deprecated
-    };
-
-    for (i = 0; i < argc; i++){
-        no = parseInt(argv[i]*1, 10);
-        if (isNaN(no)) {
-            return false;
+    for (i = 0; i < e.length; i++) {
+        if (typeof r[i] === 'undefined') {
+            r[i] = d['getUTC' + e[i]]();
+            r[i] += (i === 3); // +1 to fix JS months.
         } else {
-            // arg is number, let's manipulate date object
-            if (!dateManip[i](no)){
-                // failed
+            r[i] = parseInt(r[i], 10);
+            if (isNaN(r[i])) {
                 return false;
             }
         }
     }
-    for (i = argc; i < 6; i++) {
-        switch (i) {
-            case 0:
-                no = dn.getUTCHours();
-                break;
-            case 1:
-                no = dn.getUTCMinutes();
-                break;
-            case 2:
-                no = dn.getUTCSeconds();
-                break;
-            case 3:
-                no = dn.getUTCMonth()+1;
-                break;
-            case 4:
-                no = dn.getUTCDate();
-                break;
-            case 5:
-                no = dn.getUTCFullYear();
-                break;
-        }
-        dateManip[i](no);
-    }
+    
+    // Map years 0-69 to 2000-2069 and years 70-100 to 1970-2000.
+    r[5] += (r[5] >= 0 ? (r[5] <= 69 ? 2e3 : (r[5] <= 100 ? 1900 : 0)) : 0);
+    
+    // Set year, month (-1 to fix JS months), and date.
+    // !This must come before the call to setHours!
+    d.setUTCFullYear(r[5], r[3] - 1, r[4]);
+    
+    // Set hours, minutes, and seconds.
+    d.setUTCHours(r[0], r[1], r[2]);
 
-    return Math.floor(d.getTime()/1000);
+    // Divide milliseconds by 1000 to return seconds and drop decimal.
+    // Add 1 second if negative or it'll be off from PHP by 1 second.
+    return (d.getTime() / 1e3 >> 0) - (d.getTime() < 0);
 }
