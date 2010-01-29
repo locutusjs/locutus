@@ -1,6 +1,8 @@
 function fopen (filename, mode, use_include_path, context) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
+    // +   input by: Paul Smith
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: file_get_contents
     // *     example 1: fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
     // *     returns 1: 'Resource id #1'
@@ -37,10 +39,10 @@ function fopen (filename, mode, use_include_path, context) {
     }
 
     for (i=0; i < mode.length; i++) { // Have to deal with other flags if ever allow
-        if (mode[i] === 'r' && (!mode[i+1] || mode[i+1] !== '+')) {
+        if (mode.charAt(i) === 'r' && (!mode.charAt(i+1) || mode.charAt(i+1) !== '+')) {
             continue;
         }
-        switch (mode[i]) {
+        switch (mode.charAt(i)) {
             case 'r': // must have '+' now
             case 'w': // or 'w+'
             case 'a': // or 'a+'

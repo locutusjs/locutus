@@ -1,6 +1,8 @@
 function popen (filename, mode, use_include_path, context) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
+    // +   input by: Paul Smith
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: file_get_contents
     // *     example 1: popen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
     // *     returns 1: 'Resource id #1'
@@ -37,9 +39,9 @@ function popen (filename, mode, use_include_path, context) {
     }
 
     for (i=0; i < mode.length; i++) { // Have to deal with other flags if ever allow
-        switch (mode[i]) {
+        switch (mode.charAt(i)) {
             case 'r':
-                if (!mode[i+1] || mode[i+1] !== '+') {
+                if (!mode.charAt(i+1) || mode.charAt(i+1) !== '+') {
                     break;
                 }
             case 'w': // or 'w+'
