@@ -196,7 +196,7 @@ function sscanf (str, format) {
             ++i; // Calculate skipping beyond initial percent too
         }
         else if (format.charAt(i) !== str.charAt(j)) {
-            if ((_NWS).test(str.charAt(j))) { // Whitespace doesn't need to be an exact match)
+            if ((_NWS).test(str.charAt(j)) || str.charAt(j) === '') { // Whitespace doesn't need to be an exact match)
                 return _setExtraConversionSpecs(i+1);
             }
             else {
