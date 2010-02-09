@@ -31,7 +31,7 @@ function sscanf (str, format) {
         return _finish();
     };
 
-    function _finish () {
+    var _finish = function () {
         if (args.length === 2) {
             return retArr;
         }
@@ -39,7 +39,7 @@ function sscanf (str, format) {
             that.window[args[i+2]] = retArr[i];
         }
         return i;
-    }
+    };
 
     var _addNext = function (j, regex, cb) {
         if (assign) {
