@@ -7,8 +7,6 @@ function fscanf (handle, format) {
     // *     example 1: fscanf(handle, '%s\t%s\t%s\n');
     // *     returns 1: ['robert', 'slacker', 'us']
 
-    // Note: Waiting on sscanf() to be implemented
-
     var mixed; // Could be an array or an integer
 
     mixed = this.sscanf.apply(this, [fgets(handle), format].concat(Array.prototype.slice.call(arguments, 2)));
