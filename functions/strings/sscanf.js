@@ -178,7 +178,7 @@ function sscanf (str, format) {
                     });
                     break;
                 case 's': // Greedy match
-                    j = _addNext(j, /.+/);
+                    j = _addNext(j, /\S+/);
                     break;
                 case 'X': // Same as 'x'?
                 case 'x':
