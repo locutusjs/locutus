@@ -13,7 +13,7 @@ function sscanf (str, format) {
     // *     returns 3: [20, 10]
 
     // SETUP
-    var retArr = [], num = 0, _NWS = /\S/, args = arguments, that = this;
+    var retArr = [], num = 0, _NWS = /\S/, args = arguments, that = this, digit;
 
     var _setExtraConversionSpecs = function (offset) {
         // Since a mismatched character sets us off track from future legitimate finds, we just scan
@@ -80,7 +80,12 @@ function sscanf (str, format) {
 
             var preConvs = prePattern.exec(format.slice(i+1));
 
-            var digit = parseInt(preConvs[1], 10)-1;
+            var tmpDigit = digit;
+            if (tmpDigit && preConvs[1] === undefined) {
+                throw 'All groups in sscanf() must be expressed as numeric if any have already been used';
+            }
+            digit = preConvs[1] ? parseInt(preConvs[1], 10)-1 : undefined;
+
             assign = !preConvs[2];
             width = parseInt(preConvs[3], 10);
             var sizeCode = preConvs[4];
@@ -195,9 +200,9 @@ function sscanf (str, format) {
                 return _setExtraConversionSpecs(i+1);
             }
             else {
-                // Adjust strings when encounter non-matching whitespace, so they align in future checks above;
-                // this might be called repeatedly in sequence
-                str = str.slice(0, j-1)+str.slice(j+1);
+                // Adjust strings when encounter non-matching whitespace, so they align in future checks above
+                str = str.slice(0, j)+str.slice(j+1);
+                i--;
             }
         }
         else {
