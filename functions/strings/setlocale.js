@@ -32,6 +32,9 @@ function setlocale (category, locale) {
     // https://developer.mozilla.org/En/Localization_and_Plurals (new categories noted with "MDC" below, though
     // not sure of whether there is a convention for the relative order of these newer groups as far as ngettext)
     // The function name indicates the number of plural forms (nplural)
+    // Need to look into http://cldr.unicode.org/ (maybe future JavaScript); Dojo has some functions (under new BSD),
+    // including JSON conversions of LDML XML from CLDR: http://bugs.dojotoolkit.org/browser/dojo/trunk/cldr
+    // and docs at http://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
     var _nplurals1 = function (n) { // e.g., Japanese
         return 0;
     };
