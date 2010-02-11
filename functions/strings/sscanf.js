@@ -44,11 +44,11 @@ function sscanf (str, format) {
     var _addNext = function (j, regex, cb) {
         if (assign) {
             var remaining = str.slice(j);
-            var check = width ? remaining && remaining.substr(0, width) : remaining;
+            var check = width ? remaining.substr(0, width) : remaining;
             var match = regex.exec(check);
             var testNull = retArr[digit !== undefined ? digit : retArr.length] = match ? (cb ? cb.apply(null, match) : match[0]) : null;
             if (testNull === null) {
-                return _setExtraConversionSpecs();
+                throw 'No match in string';
             }
             return j+match[0].length;
         }
@@ -71,7 +71,7 @@ function sscanf (str, format) {
                     continue;
                 }
                 // Format indicated a percent literal, but not actually present
-                return _setExtraConversionSpecs(i+1);
+                return _setExtraConversionSpecs(i+2);
             }
 
             // CHARACTER FOLLOWING PERCENT IS NOT A PERCENT
@@ -105,93 +105,100 @@ function sscanf (str, format) {
                 }
             }
             // PROCESS CHARACTER
-            switch (format.charAt(i+1)) {
-                // For detailed explanations, see http://web.archive.org/web/20031128125047/http://www.uwm.edu/cgi-bin/IMT/wwwman?topic=scanf%283%29&msection=
-                // Also http://www.mathworks.com/access/helpdesk/help/techdoc/ref/sscanf.html
-                // p, S, C arguments in C function not available
-                // DOCUMENTED UNDER SSCANF
-                case 'F': // Not supported in PHP sscanf; the argument is treated as a float, and
-                                 //  presented as a floating-point number (non-locale aware)
-                    // sscanf doesn't support locales, so no need for two (see %f)
-                    break;
-                case 'g': // Not supported in PHP sscanf; shorter of %e and %f
-                    // Irrelevant to input conversion
-                    break;
-                case 'G': // Not supported in PHP sscanf; shorter of %E and %f
-                    // Irrelevant to input conversion
-                    break;
-                case 'b': // Not supported in PHP sscanf; the argument is treated as an integer, and presented as a binary number
-                    // Not supported - couldn't distinguish from other integers
-                    break;
-                case 'i': // Integer with base detection (Equivalent of 'd', but base 0 instead of 10)
-                    j = _addNext(j, /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/, function (num, sign, hex, oct, dec) {
-                        return hex ? parseInt(num, 16) : oct ? parseInt(num, 8) : parseInt(num, 10);
-                    });
-                    break;
-                case 'n': // Number of characters processed so far
-                    retArr[digit !== undefined ? digit : retArr.length-1] = j;
-                    break;
-                // DOCUMENTED UNDER SPRINTF
-                case 'c': // Get character; suppresses skipping over whitespace! (but shouldn't be whitespace in format anyways, so no difference here)
-                    // Non-greedy match
-                    j = _addNext(j, new RegExp('.{1,'+(width || 1)+'}'));
-                    break;
-                case 'D': // sscanf documented decimal number; equivalent of 'd';
-                case 'd': // Optionally signed decimal integer
-                    j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (num, sign, dec) {
-                        // Ignores initial zeroes, unlike %i and parseInt()
-                        var decInt = parseInt((sign ||'')+dec, 10);
-                        if (decInt < 0) { // PHP also won't allow less than -2147483648
-                            return decInt < -2147483648 ? -2147483648: decInt; // integer overflow with negative
-                        }
-                        else { // PHP also won't allow greater than -2147483647
-                            return decInt < 2147483647 ? decInt : 2147483647;
-                        }
-                    });
-                    break;
-                case 'f': // Although sscanf doesn't support locales, this is used instead of '%F'; seems to be same as %e
-                case 'E': // These don't discriminate here as both allow exponential float of either case
-                case 'e':
-                    j = _addNext(j, /([+-])?(?:0*)(\d*\.?\d*(?:[eE]?\d+)?)/, function (num, sign, dec) {
-                        if (dec === '.') {
-                            return null;
-                        }
-                        return parseFloat((sign ||'')+dec); // Ignores initial zeroes, unlike %i and parseFloat()
-                    });
-                    break;
-                case 'u': // unsigned decimal integer
-                    // We won't deal with integer overflows due to signs
-                    j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (num, sign, dec) {
-                        // Ignores initial zeroes, unlike %i and parseInt()
-                        var decInt = parseInt(dec, 10);
-                        if (sign === '-') { // PHP also won't allow greater than 4294967295
-                            return 4294967296-decInt; // integer overflow with negative
-                        }
-                        else {
-                            return decInt < 4294967295 ? decInt : 4294967295;
-                        }
-                    });
-                    break;
-                case 'o': // Octal integer // Fix: add overflows as above?
-                    j = _addNext(j, /([+-])?(?:0([0-7]+))/, function (num, sign, oct) {
-                        return parseInt(num, 8);
-                    });
-                    break;
-                case 's': // Greedy match
-                    j = _addNext(j, /\S+/);
-                    break;
-                case 'X': // Same as 'x'?
-                case 'x':
-                     // Fix: add overflows as above?
-                    // Initial 0x not necessary here
-                    j = _addNext(j, /([+-])?(?:(?:0x)?([\da-fA-F]+))/, function (num, sign, hex) {
-                        return parseInt(num, 16);
-                    });
-                    break;
-                case '': // If no character left in expression
-                    throw 'Missing character after percent mark in sscanf() format argument';
-                default:
-                    throw 'Unrecognized character after percent mark in sscanf() format argument';
+            try {
+                switch (format.charAt(i+1)) {
+                    // For detailed explanations, see http://web.archive.org/web/20031128125047/http://www.uwm.edu/cgi-bin/IMT/wwwman?topic=scanf%283%29&msection=
+                    // Also http://www.mathworks.com/access/helpdesk/help/techdoc/ref/sscanf.html
+                    // p, S, C arguments in C function not available
+                    // DOCUMENTED UNDER SSCANF
+                    case 'F': // Not supported in PHP sscanf; the argument is treated as a float, and
+                                     //  presented as a floating-point number (non-locale aware)
+                        // sscanf doesn't support locales, so no need for two (see %f)
+                        break;
+                    case 'g': // Not supported in PHP sscanf; shorter of %e and %f
+                        // Irrelevant to input conversion
+                        break;
+                    case 'G': // Not supported in PHP sscanf; shorter of %E and %f
+                        // Irrelevant to input conversion
+                        break;
+                    case 'b': // Not supported in PHP sscanf; the argument is treated as an integer, and presented as a binary number
+                        // Not supported - couldn't distinguish from other integers
+                        break;
+                    case 'i': // Integer with base detection (Equivalent of 'd', but base 0 instead of 10)
+                        j = _addNext(j, /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/, function (num, sign, hex, oct, dec) {
+                            return hex ? parseInt(num, 16) : oct ? parseInt(num, 8) : parseInt(num, 10);
+                        });
+                        break;
+                    case 'n': // Number of characters processed so far
+                        retArr[digit !== undefined ? digit : retArr.length-1] = j;
+                        break;
+                    // DOCUMENTED UNDER SPRINTF
+                    case 'c': // Get character; suppresses skipping over whitespace! (but shouldn't be whitespace in format anyways, so no difference here)
+                        // Non-greedy match
+                        j = _addNext(j, new RegExp('.{1,'+(width || 1)+'}'));
+                        break;
+                    case 'D': // sscanf documented decimal number; equivalent of 'd';
+                    case 'd': // Optionally signed decimal integer
+                        j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (num, sign, dec) {
+                            // Ignores initial zeroes, unlike %i and parseInt()
+                            var decInt = parseInt((sign ||'')+dec, 10);
+                            if (decInt < 0) { // PHP also won't allow less than -2147483648
+                                return decInt < -2147483648 ? -2147483648: decInt; // integer overflow with negative
+                            }
+                            else { // PHP also won't allow greater than -2147483647
+                                return decInt < 2147483647 ? decInt : 2147483647;
+                            }
+                        });
+                        break;
+                    case 'f': // Although sscanf doesn't support locales, this is used instead of '%F'; seems to be same as %e
+                    case 'E': // These don't discriminate here as both allow exponential float of either case
+                    case 'e':
+                        j = _addNext(j, /([+-])?(?:0*)(\d*\.?\d*(?:[eE]?\d+)?)/, function (num, sign, dec) {
+                            if (dec === '.') {
+                                return null;
+                            }
+                            return parseFloat((sign ||'')+dec); // Ignores initial zeroes, unlike %i and parseFloat()
+                        });
+                        break;
+                    case 'u': // unsigned decimal integer
+                        // We won't deal with integer overflows due to signs
+                        j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (num, sign, dec) {
+                            // Ignores initial zeroes, unlike %i and parseInt()
+                            var decInt = parseInt(dec, 10);
+                            if (sign === '-') { // PHP also won't allow greater than 4294967295
+                                return 4294967296-decInt; // integer overflow with negative
+                            }
+                            else {
+                                return decInt < 4294967295 ? decInt : 4294967295;
+                            }
+                        });
+                        break;
+                    case 'o': // Octal integer // Fix: add overflows as above?
+                        j = _addNext(j, /([+-])?(?:0([0-7]+))/, function (num, sign, oct) {
+                            return parseInt(num, 8);
+                        });
+                        break;
+                    case 's': // Greedy match
+                        j = _addNext(j, /\S+/);
+                        break;
+                    case 'X': // Same as 'x'?
+                    case 'x':
+                         // Fix: add overflows as above?
+                        // Initial 0x not necessary here
+                        j = _addNext(j, /([+-])?(?:(?:0x)?([\da-fA-F]+))/, function (num, sign, hex) {
+                            return parseInt(num, 16);
+                        });
+                        break;
+                    case '': // If no character left in expression
+                        throw 'Missing character after percent mark in sscanf() format argument';
+                    default:
+                        throw 'Unrecognized character after percent mark in sscanf() format argument';
+                }
+            }
+            catch(e) {
+                if (e.message === 'No match in string') { // Allow us to exit
+                    return _setExtraConversionSpecs(i+2);
+                }
             }
             ++i; // Calculate skipping beyond initial percent too
         }

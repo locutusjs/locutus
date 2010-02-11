@@ -178,8 +178,7 @@ function strftime (fmt, timestamp) {
 
     // First replace aggregates (run in a loop because an agg may be made up of other aggs)
     while (fmt.match(/%[cDFhnrRtTxX]/)) {
-        fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function (m0, m1)
-        {
+        fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function (m0, m1) {
             var f = _aggregates[m1];
             return (f === 'locale' ? locales[locale].LC_TIME[m1] : f);
         });
