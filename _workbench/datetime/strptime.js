@@ -10,7 +10,12 @@ function strptime (dateStr, format) {
 
     // tm_isdst is in other docs; why not PHP?
 
-    var retObj = {tm_sec:0, tm_min:0, tm_hour:0, tm_mday:0, tm_mon:0, tm_year:0, tm_wday:0, tm_yday: 0, unparsed: ''}, that = this;
+    var retObj = {
+            tm_sec:0, tm_min:0, tm_hour:0,
+            tm_mday:0, tm_mon:0, tm_year:0,
+            tm_wday:0, tm_yday: 0, unparsed: ''
+        },
+        that = this;
 
     // BEGIN STATIC
     var _NWS = /\S/, _WS = /\s/;
@@ -123,8 +128,15 @@ Oy
                     case 'B':
                         j = _addLocalized(j, formatChar, 'tm_mon'); // also changes wday, yday
                         break;
-                    case 'C':
-                        // tm_year // Also changes wday; and sets yday to -1
+                    case 'C': // 0+
+                        j = _addNext(j,
+                                                /^\d?\d/, // PHP docs say two-digit, but accepts one-digit (two-digit max)
+                                                function (d) {
+                                                    var year = (parseInt(d, 10)-19)*100;
+                                                    retObj.tm_year = year;
+                                                    // Also changes wday; and sets yday to -1
+                                                }
+                        );
                         break;
                     case 'd':
                         // Fall-through
@@ -225,8 +237,25 @@ Oy
                     case 'W': // Apparently ignored
                         break;
                     case 'y':// tm_year // Also changes wday; and sets yday to -1
+                        j = _addNext(j,
+                                                /^\d?\d/, // PHP docs say two-digit, but accepts one-digit (two-digit max)
+                                                function (d) {
+                                                    d = parseInt(d, 10);
+                                                    var year = d >= 69 ? d : d+100;
+                                                    retObj.tm_year = year;
+                                                    // Also changes wday; and sets yday to -1
+                                                }
+                        );
                         break;
                     case 'Y':// tm_year // Also changes wday; and sets yday to -1
+                        j = _addNext(j,
+                                                /^\d{1-4}/, // PHP docs say four-digit, but accepts one-digit (four-digit max)
+                                                function (d) {
+                                                    var year = (parseInt(d, 10))-1900;
+                                                    retObj.tm_year = year;
+                                                    // Also changes wday; and sets yday to -1
+                                                }
+                        );
                         break;
                     case 'z': // On my system, strftime gives -0800, but strptime seems not to alter hour setting
                         break;
@@ -268,9 +297,6 @@ Oy
     }
 
     // POST-PROCESSING
-
-    // fix: also handle date re-calculations?
-
     retObj.unparsed = dateStr.slice(j); // Will also get extra whitespace; empty string if none
     return retObj;
 }
