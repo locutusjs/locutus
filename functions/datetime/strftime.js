@@ -4,6 +4,7 @@ function strftime (fmt, timestamp) {
     // + reimplemented by: Brett Zamir (http://brett-zamir.me)
     // +   input by: Alex
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // -       depends on: setlocale
     // %        note 1: Uses global: php_js to store locale info
     // *        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
@@ -28,19 +29,20 @@ function strftime (fmt, timestamp) {
 
     var locale = phpjs.localeCategories.LC_TIME;
     var locales = phpjs.locales;
+    var lc_time = locales[locale].LC_TIME;
 
     var _formats = {
         a: function (d) {
-            return locales[locale].LC_TIME.a[d.getDay()];
+            return lc_time.a[d.getDay()];
         },
         A: function (d) {
-            return locales[locale].LC_TIME.A[d.getDay()];
+            return lc_time.A[d.getDay()];
         },
         b: function (d) {
-            return locales[locale].LC_TIME.b[d.getMonth()];
+            return lc_time.b[d.getMonth()];
         },
         B: function (d) {
-            return locales[locale].LC_TIME.B[d.getMonth()];
+            return lc_time.B[d.getMonth()];
         },
         C: function (d) {
             return _xPad(parseInt(d.getFullYear()/100, 10), 0);
@@ -85,10 +87,10 @@ function strftime (fmt, timestamp) {
         },
         M: ['getMinutes', '0'],
         p: function (d) {
-            return locales[locale].LC_TIME.p[d.getHours() >= 12 ? 1 : 0 ];
+            return lc_time.p[d.getHours() >= 12 ? 1 : 0 ];
         },
         P: function (d) {
-            return locales[locale].LC_TIME.P[d.getHours() >= 12 ? 1 : 0 ];
+            return lc_time.P[d.getHours() >= 12 ? 1 : 0 ];
         },
         s: function (d) { // Yahoo uses return parseInt(d.getTime()/1000, 10);
             return Date.parse(d)/1000;
@@ -154,6 +156,24 @@ function strftime (fmt, timestamp) {
     };
     // END STATIC
 
+/* Fix: Locale alternatives are supported though not documented in PHP; see http://linux.die.net/man/3/strptime
+Ec
+EC
+Ex
+EX
+Ey
+EY
+Od or Oe
+OH
+OI
+Om
+OM
+OS
+OU
+Ow
+OW
+Oy
+*/
 
     var _date=(
         (typeof(timestamp) == 'undefined') ? new Date() : // Not provided
@@ -180,7 +200,7 @@ function strftime (fmt, timestamp) {
     while (fmt.match(/%[cDFhnrRtTxX]/)) {
         fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function (m0, m1) {
             var f = _aggregates[m1];
-            return (f === 'locale' ? locales[locale].LC_TIME[m1] : f);
+            return (f === 'locale' ? lc_time[m1] : f);
         });
     }
 

@@ -203,12 +203,13 @@ function sscanf (str, format) {
             ++i; // Calculate skipping beyond initial percent too
         }
         else if (format.charAt(i) !== str.charAt(j)) {
+            // Fix: Double-check i whitespace ignored in string and/or formats
             if ((_NWS).test(str.charAt(j)) || str.charAt(j) === '') { // Whitespace doesn't need to be an exact match)
                 return _setExtraConversionSpecs(i+1);
             }
             else {
                 // Adjust strings when encounter non-matching whitespace, so they align in future checks above
-                str = str.slice(0, j)+str.slice(j+1);
+                str = str.slice(0, j)+str.slice(j+1); // Ok to replace with j++;?
                 i--;
             }
         }
