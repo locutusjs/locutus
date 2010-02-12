@@ -196,7 +196,7 @@ function sscanf (str, format) {
                 }
             }
             catch(e) {
-                if (e.message === 'No match in string') { // Allow us to exit
+                if (e === 'No match in string') { // Allow us to exit
                     return _setExtraConversionSpecs(i+2);
                 }
             }
