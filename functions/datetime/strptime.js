@@ -1,6 +1,7 @@
 function strptime (dateStr, format) {
     // http://kevin.vanzonneveld.net
     // +      original by: Brett Zamir (http://brett-zamir.me)
+    // +      based on: strftime
     // -       depends on: setlocale
     // -       depends on: array_map
     // *        example 1: strptime('20091112222135', '%Y%m%d%H%M%S'); // Return value will depend on date and locale
