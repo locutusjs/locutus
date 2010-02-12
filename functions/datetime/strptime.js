@@ -232,12 +232,14 @@ Oy
                                                 }
                         );
                         break;
-                    case 'p':
+                    case 'P': // Seems not to work; AM-PM
+                        return false; // Could make fall-through instead since supposed to be a synonym despite PHP docs
+                    case 'p': // am-pm
                         j = _addNext(j,
                                                 /^(am|pm)/i,
                                                 function (d) {
                                                     // No effect on 'H' since already 24 hours but
-                                                    //   works before or after setting of l/I hour; am-pm
+                                                    //   works before or after setting of l/I hour
                                                     amPmOffset = (/a/).test(d) ? 0 : 12;
                                                     if (prevHour) {
                                                         retObj.tm_hour += amPmOffset;
@@ -245,9 +247,7 @@ Oy
                                                 }
                         );
                         break;
-                    case 'P': // Seems not to work
-                        return false;
-                    case 's': // Timestamp
+                    case 's': // Unix timestamp (in seconds)
                         j = _addNext(j,
                                                 /^\d+/,
                                                 function (d) {
