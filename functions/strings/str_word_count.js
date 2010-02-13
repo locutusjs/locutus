@@ -3,52 +3,83 @@ function str_word_count (str, format, charlist) {
     // +   original by: Ole Vrijenhoek
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-    // %          note 1: Original author stated that "charlist parameter works correct but the last word in the given string will not be counted", but seems to work
-    // *     example 1: str_word_count('Hello fri3nd, youre   looking          good today!', 1, 'àáãç3');
+    // +   input by: Bug?
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // -   depends on: ctype_alpha
+    // *     example 1: str_word_count('Hello fri3nd, youre   looking          good today!', 1, '3');
     // *     returns 1: ['Hello', 'fri3nd', 'youre', 'looking', 'good', 'today']
 
-    // A word is valid when it contains a-z A-Z ' - Ole Vrijenhoek
-    var l = str.length, tmpStr = "";
-    var i = 0;
-    var c = '';
-    var wArr = [], wC = 0;
-    var assArr = {}, aC = 0, reg = "";
+    var len = str.length, cl = charlist && charlist.length,
+            chr = '', tmpStr = '', i = 0, c = '', wArr = [], wC = 0, assoc = {}, aC = 0, reg = '', match = false;
     
-    if (charlist) {
-        for (i = 0; i<=charlist.length - 1; i++) {
-            if (i != charlist.length - 1) {
-                reg = reg + charlist.charCodeAt(i) + "|";
-            } else {
-                reg = reg + charlist.charCodeAt(i);
-            }
+    // BEGIN STATIC
+    var _preg_quote = function (str) {
+        return (str+'').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<>\|\:])/g, '\\$1');
+    }, 
+    _getWholeChar = function (str, i) { // Use for rare cases of non-BMP characters
+        var code = str.charCodeAt(i);
+        if (code < 0xD800 || code > 0xDFFF) {
+            return str.charAt(i);
         }
+        if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+            if (str.length <= (i+1))  {
+                throw 'High surrogate without following low surrogate';
+            }
+            var next = str.charCodeAt(i+1);
+            if (0xDC00 > next || next > 0xDFFF) {
+                throw 'High surrogate without following low surrogate';
+            }
+            return str.charAt(i)+str.charAt(i+1);
+        }
+        // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
+        if (i === 0) {
+            throw 'Low surrogate without preceding high surrogate';
+        }
+        var prev = str.charCodeAt(i-1);
+        if (0xD800 > prev || prev > 0xDBFF) { // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+            throw 'Low surrogate without preceding high surrogate';
+        }
+        return false; // We can pass over low surrogates now as the second component in a pair which we have already processed
+    };
+    // END STATIC
+    
+    if (cl) {
+        reg = '^'+_preg_quote(_getWholeChar(charlist, 0));
+        for (i = 1; i < cl; i++) {
+            if ((chr = _getWholeChar(str, i)) === false) {continue;}
+            reg += '|'+_preg_quote(chr);
+        }
+        reg += '$';
         reg = new RegExp(reg);
     }
 
-    for (i = 0; i <= l-1; i++) {
-        c = str.charCodeAt(i);
-        if ((c<91&&c>64)||(c<123&&c>96)||c == 45||c == 39||(reg && reg.test(c))) {
-            if (tmpStr == "" && format == 2) {
+    for (i = 0; i < len; i++) {
+        if ((c = _getWholeChar(str, i)) === false) {continue;}
+        match = this.ctype_alpha(c) || (reg && c.search(reg) !== -1);
+        if (match) {
+            if (tmpStr === '' && format === 2) {
                 aC = i;
             }
-            tmpStr = tmpStr + String.fromCharCode(c);
-        } else if (tmpStr != "") {
-            if (format != 2) {
+            tmpStr = tmpStr + c;
+        }
+        if (i === len-1 || !match && tmpStr !== '') {
+            if (format !== 2) {
                 wArr[wArr.length] = tmpStr;
             } else {
-                assArr[aC] = tmpStr;
+                assoc[aC] = tmpStr;
             }
-            tmpStr = "";
+            tmpStr = '';
             wC++;
         }
     }
     
     if (!format) {
         return wC;
-    } else if (format == 1) {
+    } else if (format === 1) {
         return wArr;
-    } else if (format == 2) {
-        return assArr;
+    } else if (format === 2) {
+        return assoc;
     }
     throw 'You have supplied an incorrect format';
 }
