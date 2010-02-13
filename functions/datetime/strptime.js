@@ -74,7 +74,7 @@ OW
 Oy
 */
     var _preg_quote = function (str) {
-        return (str+'').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<>\|\:])/g, "\\$1");
+        return (str+'').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<>\|\:])/g, '\\$1');
     };
     // END STATIC
 
