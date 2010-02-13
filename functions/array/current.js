@@ -19,7 +19,7 @@ function current (arr) {
     };
     // END REDUNDANT
     var pointers = this.php_js.pointers;
-	if (!pointers.indexOf) {
+    if (!pointers.indexOf) {
         pointers.indexOf = indexOf;
     }
     if (pointers.indexOf(arr) === -1) {

@@ -8,20 +8,20 @@ function stream_filter_remove (stream_filter) {
     // *     returns 1: true
 
     var streamResourceObj = stream_filter.streamData[0],
-		streamData = stream_filter.streamData.slice(1),
-		indexOf = function (value) {
-			for (var i = 0, length=this.length; i < length; i++) {
-				if (this[i] === value) {
-					return i;
-				}
-			}
-			return -1;
-		};
-	
-	
-	if (!streamResourceObj.filters.indexOf) {
-		streamResourceObj.filters.indexOf = indexOf;
-	}
+        streamData = stream_filter.streamData.slice(1),
+        indexOf = function (value) {
+            for (var i = 0, length=this.length; i < length; i++) {
+                if (this[i] === value) {
+                    return i;
+                }
+            }
+            return -1;
+        };
+    
+    
+    if (!streamResourceObj.filters.indexOf) {
+        streamResourceObj.filters.indexOf = indexOf;
+    }
 
     var filterPos = streamResourceObj.filters.indexOf(streamData);
 

@@ -9,15 +9,15 @@ function timezone_identifiers_list (what, country) {
     // *     returns 1: 1
 
     var i = 0, new_what = '', returnArr = [], continents = [], codes = [],
-		indexOf = function (value) {
-			for (var i = 0, length=this.length; i < length; i++) {
-				if (this[i] === value) {
-					return i;
-				}
-			}
-			return -1;
-		},
-		identifiers = [
+        indexOf = function (value) {
+            for (var i = 0, length=this.length; i < length; i++) {
+                if (this[i] === value) {
+                    return i;
+                }
+            }
+            return -1;
+        },
+        identifiers = [
 'Africa/Abidjan',
 'Africa/Accra',
 'Africa/Addis_Ababa',
@@ -590,10 +590,10 @@ function timezone_identifiers_list (what, country) {
         'PACIFIC'
     ];
     codes = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512];
-	if (!codes.indexOf) {
+    if (!codes.indexOf) {
         codes.indexOf = indexOf;
     }
-	if (!continents.indexOf) {
+    if (!continents.indexOf) {
         continents.indexOf = indexOf;
     }
 

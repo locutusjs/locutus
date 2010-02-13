@@ -18,6 +18,7 @@ function ini_get_all (extension, details) {
     if (extension) {
         extPattern = new RegExp('^'+extension+'\\.');
         for (key in this.php_js.ini) {
+            extPattern.lastIndex = 0;
             if (extPattern.test(key)) {
                 ini[key] = this.php_js.ini[key];
             }

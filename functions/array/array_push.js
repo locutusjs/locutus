@@ -23,7 +23,7 @@ function array_push ( inputArr ) {
     for (pr in inputArr) {
         if (inputArr.hasOwnProperty(pr)) {
             ++len;
-            if (allDigits.test(pr)) {
+            if (pr.search(allDigits) !== -1) {
                 size = parseInt(pr, 10);
                 highestIdx = size > highestIdx ? size : highestIdx;
             }

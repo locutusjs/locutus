@@ -10,14 +10,14 @@ function aggregate_properties (obj, class_name) {
     // *     returns 1: undefined
 
     var p = '', record={}, pos=-1,
-		indexOf = function (value) {
-			for (var i = 0, length=this.length; i < length; i++) {
-				if (this[i] === value) {
-					return i;
-				}
-			}
-			return -1;
-		};
+        indexOf = function (value) {
+            for (var i = 0, length=this.length; i < length; i++) {
+                if (this[i] === value) {
+                    return i;
+                }
+            }
+            return -1;
+        };
 
     if (typeof class_name === 'string') { // PHP behavior
         class_name = this.window[class_name];
@@ -50,7 +50,7 @@ function aggregate_properties (obj, class_name) {
             record[p] = class_name.prototype[p];
         }
     }
-	if (!this.php_js.aggregateKeys.indexOf) {
+    if (!this.php_js.aggregateKeys.indexOf) {
         this.php_js.aggregateKeys.indexOf = indexOf;
     }
     pos = this.php_js.aggregateKeys.indexOf(obj);

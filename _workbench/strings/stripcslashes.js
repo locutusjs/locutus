@@ -14,7 +14,7 @@ function stripcslashes (str) {
             target += s;
             continue;
         }
-		switch (next) {
+        switch (next) {
             case 'r':  target +='\u000D'; break;
             case 'a':  target +='\u0007'; break;
             case 'n':  target +='\n'; break;
@@ -25,7 +25,7 @@ function stripcslashes (str) {
             case '\\': target +='\\'; break;
             case 'x': // Hex (not used in addcslashes)
                 rest = str.slice(i+2);
-                if ((hex2DigMax).test(rest)) { // C accepts hex larger than 2 digits (per http://www.php.net/manual/en/function.stripcslashes.php#34041 ), but not PHP
+                if (rest.search(hex2DigMax) !== -1) { // C accepts hex larger than 2 digits (per http://www.php.net/manual/en/function.stripcslashes.php#34041 ), but not PHP
                     hex = (hex2DigMax).exec(rest);
                     i += hex.length; // Skip over hex
                     target += String.fromCharCode(parseInt(hex, 16));
@@ -34,7 +34,7 @@ function stripcslashes (str) {
                 // Fall-through
             default: // Up to 3 digit octal in PHP, but we may have created a larger one in addcslashes
                 rest = str.slice(i+2);
-                if ((oct3DigMaxs).test(rest)) { // C accepts hex larger than 2 digits (per http://www.php.net/manual/en/function.stripcslashes.php#34041 ), but not PHP
+                if (rest.search(oct3DigMaxs) !== -1) { // C accepts hex larger than 2 digits (per http://www.php.net/manual/en/function.stripcslashes.php#34041 ), but not PHP
                     oct = (oct3DigMaxs).exec(rest);
                     i += oct[1].length; // Skip over first octal
                     // target += String.fromCharCode(parseInt(oct[1], 8)); // Sufficient for UTF-16 treatment

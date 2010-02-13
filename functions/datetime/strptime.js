@@ -328,11 +328,11 @@ Oy
             // (just a problem when between % and format specifier)
 
             // If the string has white-space, it is ok to ignore
-            if ((_WS).test(dateStr.charAt(j))) {
+            if (dateStr.charAt(j).search(_WS) !== -1) {
                 j++;
                 i--; // Let the next iteration try again with the same format character
             }
-            else if ((_NWS).test(format.charAt(i))) { // Any extra formatting characters besides white-space causes 
+            else if (format.charAt(i).search(_NWS) !== -1) { // Any extra formatting characters besides white-space causes 
                 // problems (do check after WS though, as may just be WS in string before next character)
                 return false;
             }

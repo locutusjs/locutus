@@ -10,7 +10,7 @@ function aggregate_methods_by_list (obj, class_name, properties_list, exclude) {
     // *     returns 1: undefined
 
     var p = '', i=0, record={}, pos=-1;
-	var indexOf = function (value) {
+    var indexOf = function (value) {
         for (var i = 0, length=this.length; i < length; i++) {
             if (this[i] === value) {
                 return i;
@@ -37,8 +37,8 @@ function aggregate_methods_by_list (obj, class_name, properties_list, exclude) {
     };
     // END REDUNDANT
     this.php_js.aggregateClasses.push(getFuncName(class_name));
-	
-	if (!properties_list.indexOf) {
+    
+    if (!properties_list.indexOf) {
         properties_list.indexOf = indexOf;
     }
 
@@ -79,7 +79,7 @@ function aggregate_methods_by_list (obj, class_name, properties_list, exclude) {
             }
         }
     }
-	if (!this.php_js.aggregateKeys.indexOf) {
+    if (!this.php_js.aggregateKeys.indexOf) {
         this.php_js.aggregateKeys.indexOf = indexOf;
     }
     pos = this.php_js.aggregateKeys.indexOf(obj);

@@ -20,7 +20,7 @@ function define_syslog_variables () {
     $LOG_AUTH = 32;
     $LOG_SYSLOG = 40; // Note: Not available on Netware
     $LOG_LPR = 48;
-    $LOG_NEWS = 56; // Meaning: Usenet new 	Note: Not available on HP-UX
+    $LOG_NEWS = 56; // Meaning: Usenet new     Note: Not available on HP-UX
     // $LOG_UUCP = 64;
     $LOG_CRON = 72; // Note: Not available on all platforms
     $LOG_AUTHPRIV = 80; // Note: Not available on AIX

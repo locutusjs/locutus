@@ -52,7 +52,7 @@ function money_format (format, number) {
         if (conversion === '%') { // Percent does not seem to be allowed with intervening content
             return '%';
         }
-        var fill = flags && /=./.test(flags) ? flags.match(/=(.)/)[1] : ' '; // flag: =f (numeric fill)
+        var fill = flags && (/=./).test(flags) ? flags.match(/=(.)/)[1] : ' '; // flag: =f (numeric fill)
         var showCurrSymbol = !flags || flags.indexOf('!') === -1; // flag: ! (suppress currency symbol)
         width = parseInt(width, 10) || 0; // field width: w (minimum field width)
 

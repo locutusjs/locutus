@@ -10,6 +10,7 @@ function unset () {
     var i=0, arg = '', win='', winRef=/^(?:this)?window[.[]/, arr=[], accessor='', bracket=/\[['"]?(\d+)['"]?\]$/;
     for (i=0; i < arguments.length; i++) {
         arg = arguments[i];
+        winRef.lastIndex = 0, bracket.lastIndex = 0;
         win = winRef.test(arg) ? '' : 'this.window.';
         if (bracket.test(arg)) {
             accessor = arg.match(bracket)[1];

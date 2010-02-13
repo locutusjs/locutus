@@ -14,14 +14,14 @@ function dl (library) {
                             'i18n', 'inclued', 'info', 'json', 'language', 'math', 'misc', 'net-gopher', 'network', 'objaggregation',
                             'outcontrol', 'overload', 'pcre', 'runkit', 'session', 'stream', 'strings', 'tokenizer', 'url', 'var', 'xml',
                             'xmlreader', 'xmlwriter'],
-		indexOf = function (value) {
-			for (var i = 0, length=this.length; i < length; i++) {
-				if (this[i] === value) {
-					return i;
-				}
-			}
-			return -1;
-		};
+        indexOf = function (value) {
+            for (var i = 0, length=this.length; i < length; i++) {
+                if (this[i] === value) {
+                    return i;
+                }
+            }
+            return -1;
+        };
 
     this.php_js = this.php_js || {};
     var ini = this.php_js.ini = this.php_js.ini || {};
@@ -48,7 +48,7 @@ function dl (library) {
 
     this.php_js.ini['phpjs.loaded_extensions'] = this.php_js.ini['phpjs.loaded_extensions'] || {};
     this.php_js.ini['phpjs.loaded_extensions'].local_value = this.php_js.ini['phpjs.loaded_extensions'].local_value || [];
-	if (!this.php_js.ini['phpjs.loaded_extensions'].local_value.indexOf) {
+    if (!this.php_js.ini['phpjs.loaded_extensions'].local_value.indexOf) {
         this.php_js.ini['phpjs.loaded_extensions'].local_value.indexOf = indexOf;
     }
     if (this.php_js.ini['phpjs.loaded_extensions'].local_value.indexOf(library) === -1) {
@@ -129,9 +129,9 @@ function dl (library) {
             return ret;
         }
     } else {
-		if (!libraries.indexOf) {
-			libraries.indexOf = indexOf;
-		}
+        if (!libraries.indexOf) {
+            libraries.indexOf = indexOf;
+        }
         if (libraries.indexOf(library) === -1 && !_ini_get('phpjs.dl_allow_individual_funcs')) {
             throw 'The library or file is not recognized';
         }
@@ -148,9 +148,9 @@ function dl (library) {
             } catch(e) {
                 this.get_extension_funcs(); // Doesn't need to exist as we're just setting up the global below
                 for (var ext in this.php_js.exts) {
-					if (!this.php_js.exts[ext].indexOf) {
-						this.php_js.exts[ext].indexOf = indexOf;
-					}
+                    if (!this.php_js.exts[ext].indexOf) {
+                        this.php_js.exts[ext].indexOf = indexOf;
+                    }
                     if (this.php_js.exts[ext].indexOf(library) !== -1) {
                         try {
                             ret = _fgc(basepath+ext+sep+library+jsext);

@@ -204,6 +204,7 @@ function sscanf (str, format) {
         }
         else if (format.charAt(i) !== str.charAt(j)) {
             // Fix: Double-check i whitespace ignored in string and/or formats
+            _NWS.lastIndex = 0;
             if ((_NWS).test(str.charAt(j)) || str.charAt(j) === '') { // Whitespace doesn't need to be an exact match)
                 return _setExtraConversionSpecs(i+1);
             }

@@ -10,5 +10,5 @@ function ctype_digit (text) {
     // BEGIN REDUNDANT
     this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     // END REDUNDANT
-    return this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.dg.test(text);
+    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.dg) !== -1;
 }

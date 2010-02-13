@@ -17,7 +17,7 @@ function aggregate_methods (obj, class_name) {
         }
         return name[1];
     };
-	var indexOf = function (value) {
+    var indexOf = function (value) {
         for (var i = 0, length=this.length; i < length; i++) {
             if (this[i] === value) {
                 return i;
@@ -50,7 +50,7 @@ function aggregate_methods (obj, class_name) {
             record[p] = class_name.prototype[p];
         }
     }
-	if (!this.php_js.aggregateKeys.indexOf) {
+    if (!this.php_js.aggregateKeys.indexOf) {
         this.php_js.aggregateKeys.indexOf = indexOf;
     }
     pos = this.php_js.aggregateKeys.indexOf(obj);

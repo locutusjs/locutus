@@ -11,7 +11,7 @@ function aggregate_info (obj) {
     // *     returns 1: {'A':{methods:['someMethod'], properties:['prop']}}
 
     var idx=-1, p='', infoObj={}, retObj={}, i=0, name='';
-	var indexOf = function (value) {
+    var indexOf = function (value) {
         for (var i = 0, length=this.length; i < length; i++) {
             if (this[i] === value) {
                 return i;
@@ -24,7 +24,7 @@ function aggregate_info (obj) {
         return false; // Is this what is returned?
     }
 
-	if (!this.php_js.aggregateKeys.indexOf) {
+    if (!this.php_js.aggregateKeys.indexOf) {
         this.php_js.aggregateKeys.indexOf = indexOf;
     }
     idx = this.php_js.aggregateKeys.indexOf(obj);

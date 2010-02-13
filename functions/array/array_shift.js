@@ -44,7 +44,7 @@ function array_shift (inputArr) {
     }
     for (pr in inputArr) {
         if (inputArr.hasOwnProperty(pr)) {
-            if (allDigits.test(pr)) {
+            if (pr.search(allDigits) !== -1) {
                 int_ct += 1;
                 if (parseInt(pr, 10) === int_ct) { // Key is already numbered ok, so don't need to change key for value
                     continue;

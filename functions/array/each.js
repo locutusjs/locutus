@@ -16,7 +16,7 @@ function each (arr) {
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
-	var indexOf = function (value) {
+    var indexOf = function (value) {
         for (var i = 0, length=this.length; i < length; i++) {
             if (this[i] === value) {
                 return i;
@@ -26,7 +26,7 @@ function each (arr) {
     };
     // END REDUNDANT
     var pointers = this.php_js.pointers;
-	if (!pointers.indexOf) {
+    if (!pointers.indexOf) {
         pointers.indexOf = indexOf;
     }
     if (pointers.indexOf(arr) === -1) {
