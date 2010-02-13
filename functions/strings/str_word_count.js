@@ -7,12 +7,16 @@ function str_word_count (str, format, charlist) {
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // -   depends on: ctype_alpha
-    // *     example 1: str_word_count('Hello fri3nd, youre   looking          good today!', 1, '\u00e0\u00e1\u00e3\u00e73');
-    // *     returns 1: ['Hello', 'fri3nd', 'youre', 'looking', 'good', 'today']
+    // *     example 1: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1);
+    // *     returns 1: ['Hello', 'fri', 'nd', "you're", 'looking', 'good', 'today']
+    // *     example 2: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 2);
+    // *     returns 2: {0: 'Hello', 6: 'fri', 10: 'nd', 14: "you're", 29: 'looking', 46: 'good', 51: 'today'}
+    // *     example 3: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1, '\u00e0\u00e1\u00e3\u00e73');
+    // *     returns 3: ['Hello', 'fri3nd', 'youre', 'looking', 'good', 'today']
 
     var len = str.length, cl = charlist && charlist.length,
             chr = '', tmpStr = '', i = 0, c = '', wArr = [], wC = 0, assoc = {}, aC = 0, reg = '', match = false;
-    
+
     // BEGIN STATIC
     var _preg_quote = function (str) {
         return (str+'').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<>\|\:])/g, '\\$1');
@@ -56,7 +60,9 @@ function str_word_count (str, format, charlist) {
 
     for (i = 0; i < len; i++) {
         if ((c = _getWholeChar(str, i)) === false) {continue;}
-        match = this.ctype_alpha(c) || (reg && c.search(reg) !== -1);
+        match = this.ctype_alpha(c) || (reg && c.search(reg) !== -1) ||
+                            ((i !== 0 && i !== len-1) && c === '-') || // No hyphen at beginning or end unless allowed in charlist (or locale)
+                            (i !== 0 && c === "'"); // No apostrophe at beginning unless allowed in charlist (or locale)
         if (match) {
             if (tmpStr === '' && format === 2) {
                 aC = i;
