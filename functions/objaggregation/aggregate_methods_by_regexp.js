@@ -44,8 +44,7 @@ function aggregate_methods_by_regexp (obj, class_name, regexp, exclude) {
     this.php_js.aggregateClasses.push(getFuncName(class_name));
     
     for (p in class_name) {
-        regexp.lastIndex = 0;
-        test = exclude ? !regexp.test(p) : regexp.test(p);
+        test = exclude ? p.search(regexp) === -1 : p.search(regexp) !== -1;
         if (!(p in obj) &&
                 typeof class_name[p] === 'function' &&
                     p[0] !== '_' &&
@@ -55,8 +54,7 @@ function aggregate_methods_by_regexp (obj, class_name, regexp, exclude) {
         }
     }
     for (p in class_name.prototype) {
-        regexp.lastIndex = 0;
-        test = exclude ? !regexp.test(p) : regexp.test(p);
+        test = exclude ? p.search(regexp) === -1 : p.search(regexp) !== -1;
         if (!(p in obj) &&
                 typeof class_name.prototype[p] === 'function' &&
                     p[0] !== '_' &&
