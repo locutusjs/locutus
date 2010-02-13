@@ -7,7 +7,7 @@ function str_word_count (str, format, charlist) {
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // -   depends on: ctype_alpha
-    // *     example 1: str_word_count('Hello fri3nd, youre   looking          good today!', 1, '3');
+    // *     example 1: str_word_count('Hello fri3nd, youre   looking          good today!', 1, '\u00e0\u00e1\u00e3\u00e73');
     // *     returns 1: ['Hello', 'fri3nd', 'youre', 'looking', 'good', 'today']
 
     var len = str.length, cl = charlist && charlist.length,
@@ -45,12 +45,12 @@ function str_word_count (str, format, charlist) {
     // END STATIC
     
     if (cl) {
-        reg = '^'+_preg_quote(_getWholeChar(charlist, 0));
+        reg = '^('+_preg_quote(_getWholeChar(charlist, 0));
         for (i = 1; i < cl; i++) {
-            if ((chr = _getWholeChar(str, i)) === false) {continue;}
+            if ((chr = _getWholeChar(charlist, i)) === false) {continue;}
             reg += '|'+_preg_quote(chr);
         }
-        reg += '$';
+        reg += ')$';
         reg = new RegExp(reg);
     }
 
