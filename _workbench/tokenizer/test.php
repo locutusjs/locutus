@@ -1,7 +1,7 @@
 <?php
 $a->ats=array();
 
-$a="escape\\\"asd"
+$a="escape\\\"asd";
 
 $a="set_$prop";
 

@@ -1,11 +1,28 @@
-function var_dump () {
+function var_export (mixed_expression, bool_return) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
+    // +   original by: Philip Peterson
+    // +   improved by: johnrembo
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   input by: Brian Tafoya (http://www.premasolutions.com/)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: echo
-    // *     example 1: var_dump(1);
-    // *     returns 1: 'int(1)'
+    // *     example 1: var_export(null);
+    // *     returns 1: null
+    // *     example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);
+    // *     returns 2: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld'\n)"
+    // *     example 3: data = 'Kevin';
+    // *     example 3: var_export(data, true);
+    // *     returns 3: "'Kevin'"
 
-    var output = "", pad_char = " ", pad_val = 4, lgth = 0, i = 0, d = this.window.document;
+    var retstr = '',
+        iret = '',
+        cnt = 0,
+        x = [],
+        i = 0,
+        funcParts = [],
+        idtLevel = arguments[2] || 2, // We use the last argument (not part of PHP) to pass in our indentation level
+        innerIndent = '', outerIndent = '';
+
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
         if (!name) {
@@ -14,94 +31,80 @@ function var_dump () {
         return name[1];
     };
 
-    var repeat_char = function (len, pad_char) {
-        var str = "";
-        for (var i=0; i < len; i++) {
-            str += pad_char;
-        }
-        return str;
-    };
-    var getScalarVal = function (val) {
-        var ret = '';
-        if (val === null) {
-            ret = 'NULL';
-        }
-        else if (typeof val === 'boolean') {
-            ret = 'bool('+val+')';
-        }
-        else if (typeof val === 'string') {
-            ret = 'string('+val.length+') "'+val+'"';
-        }
-        else if (typeof val === 'number') {
-            if (parseFloat(val) == parseInt(val, 10)) {
-                ret = 'int('+val+')';
-            }
-            else {
-                ret = 'float('+val+')';
-            }
-        }
-        else if (val === undefined) {
-            ret = 'UNDEFINED'; // Not PHP behavior, but neither is undefined as value
-        }
-        else if (typeof val === 'function') {
-            ret = 'FUNCTION'; // Not PHP behavior, but neither is function as value
-        }
-        return ret;
+    var _makeIndent = function (idtLevel) {
+        return (new Array(idtLevel+1)).join(' ');
     };
 
-    var formatArray = function (obj, cur_depth, pad_val, pad_char) {
-        var someProp = '';
-        if (cur_depth > 0) {
-            cur_depth++;
+    var __getType = function (inp) {
+        var i = 0;
+        var match, type = typeof inp;
+        if (type === 'object' && inp.constructor && getFuncName(inp.constructor) === 'PHPJS_Resource') {
+            return 'resource';
         }
-
-        var base_pad = repeat_char(pad_val*(cur_depth-1), pad_char);
-        var thick_pad = repeat_char(pad_val*(cur_depth+1), pad_char);
-        var str = "";
-        var val='';
-
-        if (typeof obj === 'object' && obj !== null) {
-            if (obj.constructor && getFuncName(obj.constructor) === 'PHPJS_Resource') {
-                return obj.var_dump();
+        if (type === 'function') {
+            return 'function';
+        }
+        if (type === 'object' && !inp) {
+            return 'null'; // Should this be just null?
+        }
+        if (type === "object") {
+            if (!inp.constructor) {
+                return 'object';
             }
-            lgth = 0;
-            for (someProp in obj) {
-                lgth++;
+            var cons = inp.constructor.toString();
+            match = cons.match(/(\w+)\(/);
+            if (match) {
+                cons = match[1].toLowerCase();
             }
-            str += "array("+lgth+") {\n";
-            for (var key in obj) {
-                if (typeof obj[key] === 'object' && obj[key] !== null) {
-                    str += thick_pad + "["+key+"] =>\n"+thick_pad+formatArray(obj[key], cur_depth+1, pad_val, pad_char);
-                } else {
-                    val = getScalarVal(obj[key]);
-                    str += thick_pad + "["+key+"] =>\n"+thick_pad + val + "\n";
+            var types = ["boolean", "number", "string", "array"];
+            for (i=0; i < types.length; i++) {
+                if (cons === types[i]) {
+                    type = types[i];
+                    break;
                 }
             }
-            str += base_pad + "}\n";
-        } else {
-            str = getScalarVal(obj);
         }
-        return str;
+        return type;
     };
+    var type = __getType(mixed_expression);
 
-    output = formatArray(arguments[0], 0, pad_val, pad_char);
-    for (i=1; i < arguments.length; i++) {
-        output += '\n'+formatArray(arguments[i], 0, pad_val, pad_char);
+    if (type === null) {
+        retstr = "NULL";
+    } else if (type === 'array' || type === 'object') {
+        outerIndent = _makeIndent(idtLevel-2);
+        innerIndent = _makeIndent(idtLevel);
+        for (i in mixed_expression) {
+            var value = this.var_export(mixed_expression[i], true, idtLevel+2);
+            value = typeof value === 'string' ? value.replace(/</g, '&lt;').replace(/>/g, '&gt;') : value;
+            x[cnt++] = innerIndent+i+' => '+(__getType(mixed_expression[i]) === 'array' ? '\n' : '')+value;
+        }
+        iret = x.join(',\n');
+        retstr = outerIndent+"array (\n"+iret+'\n'+outerIndent+')';
+    }
+    else if (type === 'function') {
+        funcParts = mixed_expression.toString().match(/function .*?\((.*?)\) \{([\s\S]*)\}/);
+
+        // For lambda functions, var_export() outputs such as the following:  '\000lambda_1'
+        // Since it will probably not be a common use to expect this (unhelpful) form, we'll use another PHP-exportable
+        // construct, create_function() (though dollar signs must be on the variables in JavaScript); if using instead
+        // in JavaScript and you are using the namespaced version, note that create_function() will not be available
+        // as a global
+        retstr = "create_function ('"+funcParts[1]+"', '"+funcParts[2].replace(new RegExp("'", 'g'), "\\'")+"')";
+    }
+    else if (type === 'resource') {
+        retstr = 'NULL'; // Resources treated as null for var_export
+    } else {
+        retstr = (typeof ( mixed_expression ) !== 'string') ? mixed_expression : "'" + mixed_expression.replace(/(["'])/g, "\\$1").replace(/\0/g, "\\0") + "'";
     }
 
-    if (d.body) {
-        this.echo(output);
-    }
-    else {
-        try {
-            d = XULDocument; // We're in XUL, so appending as plain text won't work
-            this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">'+output+'</pre>');
-        }
-        catch (e) {
-            this.echo(output); // Outputting as plain text may work in some plain XML
-        }
+    if (bool_return !== true) {
+        this.echo(retstr);
+        return null;
+    } else {
+        return retstr;
     }
 }
+
 function echo () {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
@@ -112,6 +115,7 @@ function echo () {
     // +   bugfixed by: Eugene Bulkin (http://doubleaw.com/)
     // +   input by: JB
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),
     // %        note 1: we wouldn't need any such long code (even most of the code below). See
@@ -258,3 +262,4 @@ function echo () {
         }*/
     }
 }
+
