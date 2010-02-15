@@ -322,14 +322,14 @@ function token_get_all(source) {
             return sp;
         }
         else if (mode === 1) {
-            if (ascii === 10 || (ascii === 13 && source.charCodeAt(start+1) === 10)) {
-                return (ascii === 13 ? source.charAt(start)+source.charAt(start+1) : source.charAt(start));
+            if (ascii === 10 || (ascii === 13 && source.charCodeAt(start + 1) === 10)) {
+                return (ascii === 13 ? source.charAt(start) + source.charAt(start + 1) : source.charAt(start));
             }
             else {return '';}
         }
         else {
-            if (ascii === 32 || ascii === 10 || (ascii === 13 && source.charCodeAt(start+1) === 10)) {
-                return (ascii === 13 ? source.charAt(start)+source.charAt(start+1) : source.charAt(start));
+            if (ascii === 32 || ascii === 10 || (ascii === 13 && source.charCodeAt(start + 1) === 10)) {
+                return (ascii === 13 ? source.charAt(start) + source.charAt(start + 1) : source.charAt(start));
             }
             else {return '';}
         }
@@ -340,7 +340,7 @@ function token_get_all(source) {
         var ind = str.indexOf(sub), count = 0;
         while (ind>-1) {
             count++;
-            ind = str.indexOf(sub, ind+1);
+            ind = str.indexOf(sub, ind + 1);
         }
         return count;
     },
@@ -359,7 +359,7 @@ function token_get_all(source) {
                 // HTML
                 case 'HTML':
                     // If there's no php open tag add the char to the buffer and continue
-                    if (ch === '<' && (source.charAt(i+1) === '?' || source.charAt(i+1) === '%')) {
+                    if (ch === '<' && (source.charAt(i + 1) === '?' || source.charAt(i + 1) === '%')) {
                         if (buffer.length) {pushOnRet(tokens.T_INLINE_HTML, buffer);}
                         line += countSubstrings(buffer, '\n');
                         bufferType = undefined;
@@ -386,8 +386,8 @@ function token_get_all(source) {
                 case 'multilineComment':
                     // Add the char to the buffer and stop it if there's the close comments sign
                     buffer += ch;
-                    if (ch === '*' && source.charAt(i+1) === '/') {
-                        buffer += source.charAt(i+1);
+                    if (ch === '*' && source.charAt(i + 1) === '/') {
+                        buffer += source.charAt(i + 1);
                         if (bufferType === 'multilineComment') {pushOnRet(tokens.T_COMMENT, buffer);}
                         else {
                             pushOnRet(tokens.T_DOC_COMMENT, buffer);
@@ -454,7 +454,7 @@ function token_get_all(source) {
         if (bufferType !== 'doubleQuote') {
             // Whitespaces
             if (ASCII === 9 || ASCII === 10 || ASCII === 13 || ASCII === 32) {
-                ws = getCurrentWhitespaces(i+1);
+                ws = getCurrentWhitespaces(i + 1);
                 ch += ws;
                 pushOnRet(tokens.T_WHITESPACE, ch);
                 // If it's new line character increment the line variable
@@ -510,8 +510,8 @@ function token_get_all(source) {
             continue;
         }
         // Variables
-        else if (bufferType != 'doubleQuote' && ch === '$' && (nextCharWord = getCurrentWord(i+1))) {
-            pushOnRet(tokens.T_VARIABLE, ch+nextCharWord[1]);
+        else if (bufferType != 'doubleQuote' && ch === '$' && (nextCharWord = getCurrentWord(i + 1))) {
+            pushOnRet(tokens.T_VARIABLE, ch + nextCharWord[1]);
             i += nextCharWord[1].length;
             continue;
         }
@@ -520,8 +520,8 @@ function token_get_all(source) {
             var toInsert = [], changeBuffer = false;
             if (ch === '$') {
                 // ${a}
-                if (source.charAt(i+1) === '{') {
-                    nextCharWord = getCurrentWord(i+2);
+                if (source.charAt(i + 1) === '{') {
+                    nextCharWord = getCurrentWord(i + 2);
                     if (nextCharWord) {
                         // Get the next word and check that it is followed by a }
                         var afterChar = source.charAt(i + nextCharWord[0].length + 2);
@@ -534,10 +534,10 @@ function token_get_all(source) {
                         // ${a[0]}, ${a[b]}
                         else if (afterChar === '[') {
                             // If it's followed by a [ get the array index
-                            var nextNextCharWord = getCurrentWord(i+nextCharWord[0].length+3);
+                            var nextNextCharWord = getCurrentWord(i + nextCharWord[0].length + 3);
                             // Check also that it's followed by a ] and a }
-                            if (nextNextCharWord && source.charAt(i+nextCharWord[0].length+3+nextNextCharWord[0].length) === ']' &&
-                                source.charAt(i+nextCharWord[0].length+3+nextNextCharWord[0].length+1) === '}') {
+                            if (nextNextCharWord && source.charAt(i + nextCharWord[0].length + 3 + nextNextCharWord[0].length) === ']' &&
+                                source.charAt(i + nextCharWord[0].length + 3 + nextNextCharWord[0].length + 1) === '}') {
                                 toInsert.push([tokens.T_DOLLAR_OPEN_CURLY_BRACES, '${']);
                                 toInsert.push([tokens.T_STRING_VARNAME, nextCharWord[0]]);
                                 toInsert.push('[');
@@ -545,22 +545,22 @@ function token_get_all(source) {
                                 else {toInsert.push([tokens.T_STRING, nextNextCharWord[0]]);}
                                 toInsert.push(']');
                                 toInsert.push('}');
-                                i += nextCharWord[0].length+3+nextNextCharWord[0].length + 1;
+                                i += nextCharWord[0].length + 3 + nextNextCharWord[0].length + 1;
                             }
                         }
                     }
                 }
                 // $a
                 else {
-                    nextCharWord = getCurrentWord(i+1);
+                    nextCharWord = getCurrentWord(i + 1);
                     if (nextCharWord) {
-                        toInsert.push([tokens.T_VARIABLE, ch+nextCharWord[1]]);
+                        toInsert.push([tokens.T_VARIABLE, ch + nextCharWord[1]]);
                         i += nextCharWord[1].length;
                         // $a[0], $a[b]
-                        if (source.charAt(i+1) === '[') {
+                        if (source.charAt(i + 1) === '[') {
                             // If it's an array get its index and check that it's followed by a ]
-                            nextCharWord = getCurrentWord(i+2);
-                            if (nextCharWord && source.charAt(i+nextCharWord[0].length+2) === ']') {
+                            nextCharWord = getCurrentWord(i + 2);
+                            if (nextCharWord && source.charAt(i + nextCharWord[0].length + 2) === ']') {
                                 toInsert.push('[');
                                 if (/^\d+$/.test(nextCharWord[0])) {
                                     toInsert.push([tokens.T_NUM_STRING, nextCharWord[0]]);
@@ -569,14 +569,14 @@ function token_get_all(source) {
                                     toInsert.push([tokens.T_STRING, nextCharWord[0]]);
                                 }
                                 toInsert.push(']');
-                                i += nextCharWord[0].length+2;
+                                i += nextCharWord[0].length + 2;
                             }
                         }
                     }
                 }
             }
             // {$a}
-            else if (source.charAt(i+1) === '$') {
+            else if (source.charAt(i + 1) === '$') {
                 // If there are variables inside brackets parse them as normal code by changing the buffer
                 toInsert.push([tokens.T_CURLY_OPEN, ch]);
                 changeBuffer = true;
@@ -611,7 +611,7 @@ function token_get_all(source) {
             continue;
         }
         // Concat the current char with the following
-        var couple = ch+source.charAt(i+1), triplet = couple+source.charAt(i+2), insString;
+        var couple = ch + source.charAt(i + 1), triplet = couple + source.charAt(i + 2), insString;
         // If it's a three chars token add it and continue
         if (threeCharsTokens[triplet]) {
             pushOnRet(threeCharsTokens[triplet], triplet);
@@ -629,7 +629,7 @@ function token_get_all(source) {
             // If it's a php closing tag start an HTML buffer
             case '?>':
             case '%>':
-                ws = getCurrentWhitespaces(i+2, 1);
+                ws = getCurrentWhitespaces(i + 2, 1);
                 couple += ws;
                 pushOnRet(tokens.T_CLOSE_TAG, couple);
                 if (ws && ws.indexOf('\n') !== -1) {line++;}
@@ -639,7 +639,7 @@ function token_get_all(source) {
                 continue;
             case '<<':
                 // If <<< check for heredoc start
-                if (source.charAt(i+2) === '<' && (nextCharWord = getHeredoc(i+3))) {
+                if (source.charAt(i + 2) === '<' && (nextCharWord = getHeredoc(i + 3))) {
                     // If there's a heredo start a double quoted string buffer
                     // because they have the same behaviour
                     bufferType = 'doubleQuote';
@@ -654,8 +654,8 @@ function token_get_all(source) {
             case '<%':
             case '<?':
                 insString = couple;
-                if (couple === '<?' && source.charAt(i+2) === 'p' &&
-                    source.charAt(i+3) === 'h' && source.charAt(i+4) === 'p') {
+                if (couple === '<?' && source.charAt(i + 2) === 'p' &&
+                    source.charAt(i + 3) === 'h' && source.charAt(i + 4) === 'p') {
                     insString += 'php';
                 }
                 ws = getCurrentWhitespaces(i + 2 + (insString.length>2 ? 3 : 0), 2);
@@ -667,9 +667,9 @@ function token_get_all(source) {
             // Start a multiline comment buffer
             case '/*':
                 buffer = couple;
-                if (source.charAt(i+2) === '*' && /\s/.test(source.charAt(i+3))) {
+                if (source.charAt(i + 2) === '*' && /\s/.test(source.charAt(i + 3))) {
                     bufferType = 'DOCComment';
-                    buffer += source.charAt(i+2) + source.charAt(i+3);
+                    buffer += source.charAt(i + 2) + source.charAt(i + 3);
                     i += 2;
                 }
                 else {bufferType = 'multilineComment';}
