@@ -5,7 +5,8 @@ $a = token_get_all($content); ?>
 <html>
 <head>
 	<script type="text/javascript" src="token_get_all.js"></script>
-	<script type="text/javascript" src="test.min.js"></script>
+	<script type="text/javascript" src="file_get_contents.min.js"></script>
+    <script type="text/javascript" src="var_dump.js"></script>
 	<script type="application/PHPJS" id="test" style="display:none">
 <?php echo $content."\n"?>
     </script>
@@ -67,6 +68,7 @@ $a = token_get_all($content); ?>
 				el.innerHTML = str;
 				document.body.appendChild(el);
 			}
+            var_dump(tokens);
 		});
 	</script>
 </head>
