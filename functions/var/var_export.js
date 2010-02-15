@@ -5,6 +5,7 @@ function var_export (mixed_expression, bool_return) {
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   input by: Brian Tafoya (http://www.premasolutions.com/)
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: echo
     // *     example 1: var_export(null);
     // *     returns 1: null
@@ -13,20 +14,26 @@ function var_export (mixed_expression, bool_return) {
     // *     example 3: data = 'Kevin';
     // *     example 3: var_export(data, true);
     // *     returns 3: "'Kevin'"
-    
+
     var retstr = '',
         iret = '',
         cnt = 0,
         x = [],
         i = 0,
-        funcParts = [];
-        
+        funcParts = [],
+        idtLevel = arguments[2] || 2, // We use the last argument (not part of PHP) to pass in our indentation level
+        innerIndent = '', outerIndent = '';
+
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
         if (!name) {
             return '(Anonymous)';
         }
         return name[1];
+    };
+
+    var _makeIndent = function (idtLevel) {
+        return (new Array(idtLevel+1)).join(' ');
     };
 
     var __getType = function (inp) {
@@ -65,11 +72,15 @@ function var_export (mixed_expression, bool_return) {
     if (type === null) {
         retstr = "NULL";
     } else if (type === 'array' || type === 'object') {
+        outerIndent = _makeIndent(idtLevel-2);
+        innerIndent = _makeIndent(idtLevel);
         for (i in mixed_expression) {
-            x[cnt++] = this.var_export(i,true)+" => "+this.var_export(mixed_expression[i], true);
+            var value = this.var_export(mixed_expression[i], true, idtLevel+2);
+            value = typeof value === 'string' ? value.replace(/</g, '&lt;').replace(/>/g, '&gt;') : value;
+            x[cnt++] = innerIndent+i+' => '+(__getType(mixed_expression[i]) === 'array' ? '\n' : '')+value;
         }
-        iret = x.join(',\n  ');
-        retstr = "array (\n  "+iret+"\n)";
+        iret = x.join(',\n');
+        retstr = outerIndent+"array (\n"+iret+'\n'+outerIndent+')';
     }
     else if (type === 'function') {
         funcParts = mixed_expression.toString().match(/function .*?\((.*?)\) \{([\s\S]*)\}/);
@@ -84,7 +95,7 @@ function var_export (mixed_expression, bool_return) {
     else if (type === 'resource') {
         retstr = 'NULL'; // Resources treated as null for var_export
     } else {
-        retstr = (!isNaN( mixed_expression )) ? mixed_expression : "'" + mixed_expression.replace(/(["'])/g, "\\$1").replace(/\0/g, "\\0") + "'";
+        retstr = (typeof ( mixed_expression ) !== 'string') ? mixed_expression : "'" + mixed_expression.replace(/(["'])/g, "\\$1").replace(/\0/g, "\\0") + "'";
     }
 
     if (bool_return !== true) {
