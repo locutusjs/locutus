@@ -5,6 +5,7 @@ function var_export (mixed_expression, bool_return) {
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   input by: Brian Tafoya (http://www.premasolutions.com/)
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: echo
     // *     example 1: var_export(null);
     // *     returns 1: null
