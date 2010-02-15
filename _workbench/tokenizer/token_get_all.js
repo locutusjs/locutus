@@ -496,7 +496,7 @@ function token_get_all(source) {
             }
         }
         // Get the current word
-        var word = getCurrentWord(i), lowWord = word ? word[1].toLowerCase() : '', nextCharWord;
+        var word = getCurrentWord(i), lowWord = word ? word[1].toLowerCase() : '', nextCharWord = getCurrentWord(i + 1);
         // Keyword
         if (word && (keywordsTokens[word[1]] || keywordsTokens[lowWord])) {
             pushOnRet((keywordsTokens[lowWord] ? tokens[keywordsTokens[lowWord]] : tokens[keywordsTokens[word[1]]]), word[1]);
@@ -510,7 +510,7 @@ function token_get_all(source) {
             continue;
         }
         // Variables
-        else if (bufferType != 'doubleQuote' && ch === '$' && (nextCharWord = getCurrentWord(i + 1))) {
+        else if (bufferType != 'doubleQuote' && ch === '$' && nextCharWord) {
             pushOnRet(tokens.T_VARIABLE, ch + nextCharWord[1]);
             i += nextCharWord[1].length;
             continue;
@@ -639,7 +639,8 @@ function token_get_all(source) {
                 continue;
             case '<<':
                 // If <<< check for heredoc start
-                if (source.charAt(i + 2) === '<' && (nextCharWord = getHeredoc(i + 3))) {
+                nextCharWord = getHeredoc(i + 3);
+                if (source.charAt(i + 2) === '<' && nextCharWord) {
                     // If there's a heredo start a double quoted string buffer
                     // because they have the same behaviour
                     bufferType = 'doubleQuote';
@@ -682,13 +683,14 @@ function token_get_all(source) {
                 i++;
                 continue;
             default:
+                insString = checkCurrentNumber(i);
                 // Other characters without tokens
                 if (charNoToken.indexOf(ch) !== -1) {
                     pushOnRet(ch);
                     continue;
                 }
                 //  Integer and decimal numbers
-                else if (insString = checkCurrentNumber(i)) {
+                else if (insString) {
                     pushOnRet(insString[0], insString[1]);
                     i += insString[1].length - 1;
                     continue;
