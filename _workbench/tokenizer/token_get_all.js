@@ -587,7 +587,7 @@ function token_get_all(source) {
                 continue;
             }
             // Insert the buffer as with the T_ENCAPSED_AND_WHITESPACE token
-            if (!isEncapsed && buffer[0] === '"') {
+            if (!isEncapsed && buffer.charAt(0) === '"') {
                 pushOnRet('"');
                 buffer = buffer.substr(1);
                 isEncapsed = true;
