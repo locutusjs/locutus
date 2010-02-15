@@ -1,61 +1,67 @@
-<?php 
+<?php
 include "config.php";
-$content=file_get_contents($file);
-$a=token_get_all($content); ?>
+$content = file_get_contents($file);
+$a = token_get_all($content); ?>
 <html>
 <head>
 	<script type="text/javascript" src="token_get_all.js"></script>
 	<script type="text/javascript" src="test.min.js"></script>
 	<?php/*<script type="application/PHPJS" id="test" style="display:none"><?php echo $content?></script>*/?>
 	<script type="text/javascript">
-		function DOMReady(f){
-		  if (/(?!.*?compatible|.*?webkit)^mozilla|opera/i.test(navigator.userAgent)){ // Feeling dirty yet?
-			document.addEventListener("DOMContentLoaded", f, false);
-		  }else{
-			window.setTimeout(f,0);
+		function DOMReady(f) {
+		  if ((/(?!.*?compatible|.*?webkit)^mozilla|opera/i).test(navigator.userAgent)){ // Feeling dirty yet?
+			document.addEventListener('DOMContentLoaded', f, false);
+		  } else{
+			window.setTimeout(f, 0);
 		  }
-		} 
-		function replaceAll(st,rp,rpm)
-		{
-			while(st.indexOf(rp)>-1) st=st.replace(rp,rpm);
+		}
+		function replaceAll(st, rp, rpm) {
+			while (st.indexOf(rp)>-1) {
+                st = st.replace(rp, rpm);
+            }
 			return st;
 		}
-		function fixToken(token)
-		{
-			token=replaceAll(token,"\n","\\n");
-			token=replaceAll(token,"\t","\\t");
-			token=replaceAll(token,"\r","\\r");
-			token=replaceAll(token," ","&nbsp;");
+		function fixToken(token) {
+			token = replaceAll(token, '\n', '\\n');
+			token = replaceAll(token, '\t', '\\t');
+			token = replaceAll(token, '\r', '\\r');
+			token = replaceAll(token, ' ', '&nbsp;');
 			return token;
 		}
-		DOMReady(function(){			
-			var cont=file_get_contents("s.php");
-			var now=Date.now();
-			var tokens=token_get_all(cont);
-			alert(((Date.now()-now)/1000)+" seconds");
-			var start=<?php echo count($a)+1?>;
+		DOMReady(function() {
+			var cont = file_get_contents('s.php');
+			var now = Date.now();
+			var tokens = token_get_all(cont);
+			alert(((Date.now() - now) / 1000) + ' seconds');
+			var start = <?php echo count($a) + 1?>; // Not in use
 			var Struct=[
 			<?php
-			foreach($a as $k=>$tok)
-			{
+			foreach($a as $k => $tok) {
 				echo "\"<font color='red'>";
-				if(!is_array($tok)) echo str_replace(array("\n","\t","\r"," ",'"'),array("\\\\n","\\\\t","\\\\r","&nbsp;",'\"'),htmlentities($tok))."<br>";
-				else foreach($tok as $t) echo str_replace(array("\n","\t","\r"," ",'"'),array("\\\\n","\\\\t","\\\\r","&nbsp;",'\"'),htmlentities($t))."<br>";
-				echo "</font>\"".($k==count($a)-1 ? "" : ",");
+				if (!is_array($tok)) {
+                    echo str_replace(array("\n","\t","\r"," ",'"'),array("\\\\n","\\\\t","\\\\r","&nbsp;",'\"'),htmlentities($tok))."<br>";
+                }
+				else {
+                    foreach($tok as $t) {
+                        echo str_replace(array("\n","\t","\r"," ",'"'),array("\\\\n","\\\\t","\\\\r","&nbsp;",'\"'),htmlentities($t))."<br>";
+                    }
+                }
+				echo "</font>\"".($k == count($a) - 1 ? "" : ",");
 			}
 			?>
 			];
-			for(i=0;i<tokens.length;i++)
-			{
-				var str=Struct[i] ? Struct[i] : "";
-				if(!(tokens[i] instanceof Array)) str+=tokens[i] ? fixToken(tokens[i]) : "undefined";
+			for (var i = 0; i < tokens.length; i++) {
+				var str = Struct[i] ? Struct[i] : "";
+				if (!(tokens[i] instanceof Array)) {
+                    str += tokens[i] ? fixToken(tokens[i]) : 'undefined';
+                }
 				else {
-					tokens[i][1]=tokens[i][1] ? fixToken(tokens[i][1]) : "undefined";
-					str+=tokens[i].join("<br>");
+					tokens[i][1] = tokens[i][1] ? fixToken(tokens[i][1]) : 'undefined';
+					str += tokens[i].join('<br>');
 				}
-				var el=document.createElement("div");
-				el.style.backgroundColor=i%2==0 ? "#EEE" : "#FFF";
-				el.innerHTML=str;
+				var el = document.createElement('div');
+				el.style.backgroundColor = i%2 === 0 ? '#EEE' : '#FFF';
+				el.innerHTML = str;
 				document.body.appendChild(el);
 			}
 		});
