@@ -598,7 +598,7 @@ function token_get_all(source) {
                 buffer = '';
             }
             // Insert every token found
-            for (ind = 0; ind < toInsert.length; ind++) {
+            for (var ind = 0; ind < toInsert.length; ind++) {
                 if (toInsert[ind] instanceof Array) {
                     pushOnRet(toInsert[ind][0], toInsert[ind][1]);
                 }
