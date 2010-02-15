@@ -16,7 +16,10 @@ function setlocale (category, locale) {
     // BEGIN STATIC
     var _copy = function _copy (orig) {
         if (orig instanceof RegExp) {
-            return orig;
+            return new RegExp(orig);
+        }
+        else if (orig instanceof Date) {
+            return new Date(orig);
         }
         var newObj = {};
         for (var i in orig) {
