@@ -4,7 +4,7 @@ $content=file_get_contents($file);
 $a=token_get_all($content); ?>
 <html>
 <head>
-	<script type="text/javascript" src="token.js"></script>
+	<script type="text/javascript" src="token_get_all.js"></script>
 	<script type="text/javascript" src="test.min.js"></script>
 	<?php/*<script type="application/PHPJS" id="test" style="display:none"><?php echo $content?></script>*/?>
 	<script type="text/javascript">
