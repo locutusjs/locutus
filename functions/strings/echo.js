@@ -9,6 +9,7 @@ function echo () {
     // +   input by: JB
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),
     // %        note 1: we wouldn't need any such long code (even most of the code below). See
     // %        note 1: link below for a cross-browser implementation in JavaScript. HTML5 might
@@ -49,12 +50,23 @@ function echo () {
         }
         else if (win.DOMParser) {
             // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
-            return new DOMParser().parseFromString(stringContainer, 'text/xml').documentElement.firstChild;
+            try {
+                var fc = new DOMParser().parseFromString(stringContainer, 'text/xml');
+                if (!fc || !fc.documentElement ||
+                        fc.documentElement.localName !== 'parsererror' ||
+                        fc.documentElement.namespaceURI !== 'http://www.mozilla.org/newlayout/xml/parsererror.xml') {
+                    return fc.documentElement.firstChild;
+                }
+                // If there's a parsing error, we just continue on
+            }
+            catch(e) {
+                // If there's a parsing error, we just continue on
+            }
         }
         else if (win.ActiveXObject) { // We don't bother with a holder in Explorer as it doesn't support namespaces
-            var d = new ActiveXObject('MSXML2.DOMDocument');
-            d.loadXML(str);
-            return d.documentElement;
+            var axo = new ActiveXObject('MSXML2.DOMDocument');
+            axo.loadXML(str);
+            return axo.documentElement;
         }
         /*else if (win.XMLHttpRequest) { // Supposed to work in older Safari
             var req = new win.XMLHttpRequest;
@@ -65,25 +77,24 @@ function echo () {
             req.send(null);
             return req.responseXML;
         }*/
-        else { // Document fragment did not work with innerHTML, so we create a temporary element holder
-            // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
-            //if (d.createElementNS && (d.contentType && d.contentType !== 'text/html')) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways)
-            if (d.createElementNS &&  // Browser supports the method
-                d.documentElement.namespaceURI && (d.documentElement.namespaceURI !== null || // We can use if the document is using a namespace
-                d.documentElement.nodeName.toLowerCase() !== 'html' || // We know it's not HTML4 or less, if the tag is not HTML (even if the root namespace is null)
-                (d.contentType && d.contentType !== 'text/html') // We know it's not regular HTML4 or less if this is Mozilla (only browser supporting the attribute) and the content type is something other than text/html; other HTML5 roots (like svg) still have a namespace
-            )) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document
-                holder = d.createElementNS(ns, container);
-            }
-            else {
-                holder = d.createElement(container); // Document fragment did not work with innerHTML
-            }
-            holder.innerHTML = str;
-            while (holder.firstChild) {
-                parent.appendChild(holder.firstChild);
-            }
-            return false;
+        // Document fragment did not work with innerHTML, so we create a temporary element holder
+        // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
+        //if (d.createElementNS && (d.contentType && d.contentType !== 'text/html')) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways)
+        if (d.createElementNS &&  // Browser supports the method
+            d.documentElement.namespaceURI && (d.documentElement.namespaceURI !== null || // We can use if the document is using a namespace
+            d.documentElement.nodeName.toLowerCase() !== 'html' || // We know it's not HTML4 or less, if the tag is not HTML (even if the root namespace is null)
+            (d.contentType && d.contentType !== 'text/html') // We know it's not regular HTML4 or less if this is Mozilla (only browser supporting the attribute) and the content type is something other than text/html; other HTML5 roots (like svg) still have a namespace
+        )) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document
+            holder = d.createElementNS(ns, container);
         }
+        else {
+            holder = d.createElement(container); // Document fragment did not work with innerHTML
+        }
+        holder.innerHTML = str;
+        while (holder.firstChild) {
+            parent.appendChild(holder.firstChild);
+        }
+        return false;
         // throw 'Your browser does not support DOM parsing as required by echo()';
     };
 
@@ -112,7 +123,7 @@ function echo () {
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
         if (this.php_js && this.php_js.ini && this.php_js.ini['phpjs.echo_embedded_vars']) {
-            arg = arg.replace(/(.?)\{\$(.*?)\}/g, function (s, m1, m2) { 
+            arg = arg.replace(/(.?)\{\$(.*?)\}/g, function (s, m1, m2) {
                 // We assume for now that embedded variables do not have dollar sign; to add a dollar sign, you currently must use {$$var} (We might change this, however.)
                 // Doesn't cover all cases yet: see http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
                 if (m1 !== '\\') {
