@@ -1,7 +1,16 @@
 function token_get_all(source) {
     // Split given source into PHP tokens
     // +      original by: Marco Marchiò
-
+    // +      improved by: Brett Zamir (http://brett-zamir.me)
+    // -    depends on: token_name
+    // %        note 1: Token numbers depend on the PHP version
+    // %        note 2: token_name is only necessary for a non-standard php.js-specific use of this function;
+    // %        note 2: if you define an object on this.php_js.phpParser (where "this" is the scope of the
+    // %        note 2: token_get_all function (either a namespaced php.js object or the window object)),
+    // %        note 2: this function will call that object's methods if they have the same names as the tokens,
+    // %        note 2: passing them the string, line number, and token number (in that order)
+    // *     example 1: token_get_all('/'+'* comment *'+'/');
+    // *     returns 1: [[311, '/* comment */', 1]]
 
     // Token to number conversion
     var tokens = {
@@ -129,7 +138,7 @@ function token_get_all(source) {
         T_DIR:378,
         T_NS_SEPARATOR:379
     },
-
+    // Fix:
     tokens = { // using PHP 5.2.6 on Windows, I get these values for token_name()
         T_REQUIRE_ONCE:258,
         T_REQUIRE:259,
@@ -474,7 +483,19 @@ function token_get_all(source) {
     pushOnRet = function (token, string) {
         if (string === undefined) {ret.push(token);}
         else {ret.push([token, string, line]);}
-    };
+    }, 
+    oldPushOnRet = pushOnRet;
+    
+    var that = this;
+    if (this.php_js.phpParser) {
+        pushOnRet = function (token, string) {
+            var action = this.php_js.phpParser[that.token_name(token)];
+            if (typeof action === 'function') {
+                action(string, line, token);
+            }
+            oldPushOnRet(token, string);
+        };
+    }
     // Loop through every character in the string
     for (var i = 0; i < source.length; i++) {
         // Get the current character and its ascii code
