@@ -489,9 +489,9 @@ function token_get_all(source) {
     var that = this;
     if (this.php_js.phpParser) {
         pushOnRet = function (token, string) {
-            var action = this.php_js.phpParser[that.token_name(token)];
+            var action = this.php_js.phpParser[typeof token === 'number' ? that.token_name(token) : token];
             if (typeof action === 'function') {
-                action(string, line, token);
+                action.call(this.php_js.phpParser, string, line, token);
             }
             oldPushOnRet(token, string);
         };
@@ -612,8 +612,8 @@ function token_get_all(source) {
                 i += ch.length-1;
                 continue;
             }
-            // Bed char
-            else if (ASCII<32) {
+            // Bad char
+            else if (ASCII < 32) {
                 pushOnRet(tokens.T_BAD_CHARACTER, ch);
                 continue;
             }
