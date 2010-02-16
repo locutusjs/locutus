@@ -129,6 +129,134 @@ function token_get_all(source) {
         T_DIR:378,
         T_NS_SEPARATOR:379
     },
+
+    tokens = { // using PHP 5.2.6 on Windows, I get these values for token_name()
+        T_REQUIRE_ONCE:258,
+        T_REQUIRE:259,
+        T_EVAL:260,
+        T_INCLUDE_ONCE:261,
+        T_INCLUDE:262,
+        T_LOGICAL_OR:263,
+        T_LOGICAL_XOR:264,
+        T_LOGICAL_AND:265,
+        T_PRINT:266,
+        T_SR_EQUAL:267,
+        T_SL_EQUAL:268,
+        T_XOR_EQUAL:269,
+        T_OR_EQUAL:270,
+        T_AND_EQUAL:271,
+        T_MOD_EQUAL:272,
+        T_CONCAT_EQUAL:273,
+        T_DIV_EQUAL:274,
+        T_MUL_EQUAL:275,
+        T_MINUS_EQUAL:276,
+        T_PLUS_EQUAL:277,
+        T_BOOLEAN_OR:278,
+        T_BOOLEAN_AND:279,
+        T_IS_NOT_IDENTICAL:280,
+        T_IS_IDENTICAL:281,
+        T_IS_NOT_EQUAL:282,
+        T_IS_EQUAL:283,
+        T_IS_GREATER_OR_EQUAL:284,
+        T_IS_SMALLER_OR_EQUAL:285,
+        T_SR:286,
+        T_SL:287,
+        T_INSTANCEOF:288,
+        T_UNSET_CAST:289,
+        T_BOOL_CAST:290,
+        T_OBJECT_CAST:291,
+        T_ARRAY_CAST:292,
+        T_STRING_CAST:293,
+        T_DOUBLE_CAST:294,
+        T_INT_CAST:295,
+        T_DEC:296,
+        T_INC:297,
+        T_CLONE:298,
+        T_NEW:299,
+        T_EXIT:300,
+        T_IF:301,
+        T_ELSEIF:302,
+        T_ELSE:303,
+        T_ENDIF:304,
+        T_LNUMBER:305,
+        T_DNUMBER:306,
+        T_STRING:307,
+        T_STRING_VARNAME:308,
+        T_VARIABLE:309,
+        T_NUM_STRING:310,
+        T_INLINE_HTML:311,
+        T_CHARACTER:312,
+        T_BAD_CHARACTER:313,
+        T_ENCAPSED_AND_WHITESPACE:314,
+        T_CONSTANT_ENCAPSED_STRING:315,
+        T_ECHO:316,
+        T_DO:317,
+        T_WHILE:318,
+        T_ENDWHILE:319,
+        T_FOR:320,
+        T_ENDFOR:321,
+        T_FOREACH:322,
+        T_ENDFOREACH:323,
+        T_DECLARE:324,
+        T_ENDDECLARE:325,
+        T_AS:326,
+        T_SWITCH:327,
+        T_ENDSWITCH:328,
+        T_CASE:329,
+        T_DEFAULT:330,
+        T_BREAK:331,
+        T_CONTINUE:332,
+        T_FUNCTION:333,
+        T_CONST:334,
+        T_RETURN:335,
+        T_TRY:336,
+        T_CATCH:337,
+        T_THROW:338,
+        T_USE:339,
+        T_GLOBAL:340,
+        T_PUBLIC:341,
+        T_PROTECTED:342,
+        T_PRIVATE:343,
+        T_FINAL:344,
+        T_ABSTRACT:345,
+        T_STATIC:346,
+        T_VAR:347,
+        T_UNSET:348,
+        T_ISSET:349,
+        T_EMPTY:350,
+        T_HALT_COMPILER:351,
+        T_CLASS:352,
+        T_INTERFACE:353,
+        T_EXTENDS:354,
+        T_IMPLEMENTS:355,
+        T_OBJECT_OPERATOR:356,
+        T_DOUBLE_ARROW:357,
+        T_LIST:358,
+        T_ARRAY:359,
+        T_CLASS_C:360,
+        T_METHOD_C:361,
+        T_FUNC_C:362,
+        T_LINE:363,
+        T_FILE:364,
+        T_COMMENT:365,
+        T_DOC_COMMENT:366,
+        T_OPEN_TAG:367,
+        T_OPEN_TAG_WITH_ECHO:368,
+        T_CLOSE_TAG:369,
+        T_WHITESPACE:370,
+        T_START_HEREDOC:371,
+        T_END_HEREDOC:372,
+        T_DOLLAR_OPEN_CURLY_BRACES:373,
+        T_CURLY_OPEN:374,
+        T_DOUBLE_COLON:375
+        /*,UNKNOWN:376,
+        UNKNOWN:377,
+        UNKNOWN:378,
+        UNKNOWN:379,
+        UNKNOWN:380,*/
+    },
+
+
     // Tokens indentified by a keyword
     keywordsTokens = {
         'abstract':'T_ABSTRACT',
@@ -262,12 +390,12 @@ function token_get_all(source) {
     line = 1, isEncapsed, hdlabel, ret = [],
     // Get a word in the code starting from the given index
     getCurrentWord = function (start) {
-        var match = /^([\w]+)\s*(\()?/.exec(source.substr(start));
+        var match = (/^([\w]+)\s*(\()?/).exec(source.substr(start));
         return match;
     },
     // Get a type cast construct in the code starting from the given index
     getCurrentCasting = function (start) {
-        var match = /^\(\s*(\w+)\s*\)/.exec(source.substr(start));
+        var match = (/^\(\s*(\w+)\s*\)/).exec(source.substr(start));
         if (match && match[1]) {
             match[1] = match[1].toLowerCase();
         }
@@ -275,10 +403,10 @@ function token_get_all(source) {
     },
     // Get a decimal or integer number in the code starting from the given index
     checkCurrentNumber = function (start) {
-        var match = /^\d*\.?\d+(?:x[\da-f]+|e\-?\d+)?/i.exec(source.substr(start));
+        var match = (/^\d*\.?\d+(?:x[\da-f]+|e\-?\d+)?/i).exec(source.substr(start));
         if (match) {
             var at;
-            if (/^\d+(?:x[\da-f]+)?$/i.test(match[0])) {at = tokens.T_LNUMBER;}
+            if ((/^\d+(?:x[\da-f]+)?$/i).test(match[0])) {at = tokens.T_LNUMBER;}
             else {at = tokens.T_DNUMBER;}
             return [at, match[0]];
         }
@@ -296,17 +424,15 @@ function token_get_all(source) {
     },
     // Get the heredoc starting label
     getHeredoc = function (start) {
-        var match = /^(\s*(.*)?)[\r\n]+/i.exec(source.substr(start));
+        var match = (/^(\s*(.*)?)(\r?\n)/i).exec(source.substr(start));
         return match;
     },
     // Get heredoc closing label
     getHeredocClose = function(start, lab) {
-        for (var s = start-1; s>=0; s--) {
-            if (source.charAt(s) === '\n') {break;}
-        }
-        if (s === 0) {return null;}
-        var reg = new RegExp('^\\s*' + lab + '\\s*[;\\n\\r]'),
-        match = reg.exec(source.substr(s));
+        var s = start - 1;
+        if (source.charAt(s) !== '\n') {return null;}
+        var reg = new RegExp('^' + lab + ';\\r?\\n'),
+        match = reg.exec(source.substr(start));
         return match;
     },
     // Get whitespaces at the given position
@@ -405,12 +531,14 @@ function token_get_all(source) {
                     // or a curly bracket and it's not escaped don't skip this part
                     if (bufferType === 'singleQuote' || (ch !== '$' && ch !== '{') || isEscaped(i)) {
                         // Heredoc. If there's a heredoc open and this can close it, close the buffer
-                        if (hdlabel && ch === hdlabel[0] && getHeredocClose(i, hdlabel)) {
-                            if (buffer.length) {
+                        if (hdlabel && ch === hdlabel.charAt(0) && getHeredocClose(i, hdlabel)) {
+                            if (buffer.length) { // Is the fact that token_get_all does report a line break at
+                                                             // the end of a HEREDOC, despite it not being counted as
+                                                             // part of the HEREDOC, a PHP bug?
                                 pushOnRet(tokens.T_ENCAPSED_AND_WHITESPACE, buffer);
+                                line += countSubstrings(buffer, '\n');
                             }
                             pushOnRet(tokens.T_END_HEREDOC, hdlabel);
-                            line += countSubstrings(buffer, '\n');
                             i += hdlabel.length - 1;
                             hdlabel = null;
                             bufferType = undefined;
@@ -541,7 +669,7 @@ function token_get_all(source) {
                                 toInsert.push([tokens.T_DOLLAR_OPEN_CURLY_BRACES, '${']);
                                 toInsert.push([tokens.T_STRING_VARNAME, nextCharWord[0]]);
                                 toInsert.push('[');
-                                if (/^\d+$/.test(nextNextCharWord[0])) {toInsert.push([tokens.T_LNUMBER, nextNextCharWord[0]]);}
+                                if ((/^\d+$/).test(nextNextCharWord[0])) {toInsert.push([tokens.T_LNUMBER, nextNextCharWord[0]]);}
                                 else {toInsert.push([tokens.T_STRING, nextNextCharWord[0]]);}
                                 toInsert.push(']');
                                 toInsert.push('}');
@@ -562,7 +690,7 @@ function token_get_all(source) {
                             nextCharWord = getCurrentWord(i + 2);
                             if (nextCharWord && source.charAt(i + nextCharWord[0].length + 2) === ']') {
                                 toInsert.push('[');
-                                if (/^\d+$/.test(nextCharWord[0])) {
+                                if ((/^\d+$/).test(nextCharWord[0])) {
                                     toInsert.push([tokens.T_NUM_STRING, nextCharWord[0]]);
                                 }
                                 else {
@@ -619,6 +747,8 @@ function token_get_all(source) {
             continue;
         // If it's a two chars token add it and continue
         }
+        else if (triplet === '<<<') { // Avoid being treated as '<<' shift by couple check (handle instead in switch below)
+        }
         else if (twoCharsTokens[couple]) {
             pushOnRet(twoCharsTokens[couple], couple);
             i++;
@@ -641,14 +771,15 @@ function token_get_all(source) {
                 // If <<< check for heredoc start
                 nextCharWord = getHeredoc(i + 3);
                 if (source.charAt(i + 2) === '<' && nextCharWord) {
-                    // If there's a heredo start a double quoted string buffer
+                    // If there's a heredoc start a double quoted string buffer
                     // because they have the same behaviour
                     bufferType = 'doubleQuote';
                     isEncapsed = true;
-                    buffer = '<<<' + nextCharWord[1];
+                    buffer = '';
                     i += nextCharWord[0].length + 2;
-                    hdlabel = nextCharWord[0];
-                    pushOnRet(tokens.T_START_HEREDOC, hdlabel);
+                    hdlabel = nextCharWord[1];
+                    pushOnRet(tokens.T_START_HEREDOC, '<<<'+nextCharWord[0]);
+                    line++;
                     continue;
                 }
             break;
@@ -668,7 +799,7 @@ function token_get_all(source) {
             // Start a multiline comment buffer
             case '/*':
                 buffer = couple;
-                if (source.charAt(i + 2) === '*' && /\s/.test(source.charAt(i + 3))) {
+                if (source.charAt(i + 2) === '*' && (/\s/).test(source.charAt(i + 3))) {
                     bufferType = 'DOCComment';
                     buffer += source.charAt(i + 2) + source.charAt(i + 3);
                     i += 2;
