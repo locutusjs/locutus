@@ -138,7 +138,7 @@ function token_get_all(source) {
         T_DIR:378,
         T_NS_SEPARATOR:379
     },
-    // Fix:
+/**
     tokens = { // using PHP 5.2.6 on Windows, I get these values for token_name()
         T_REQUIRE_ONCE:258,
         T_REQUIRE:259,
@@ -264,7 +264,7 @@ function token_get_all(source) {
         UNKNOWN:379,
         UNKNOWN:380,*/
     },
-
+//*/
 
     // Tokens indentified by a keyword
     keywordsTokens = {

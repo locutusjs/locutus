@@ -129,7 +129,8 @@ function token_name (token) {
         379: 'T_DIR',
         380: 'T_NS_SEPARATOR'
    };
-   // Fixing for my implementation
+// On PHP 5.2.6 on Windows, these values are returned instead
+/**
    var tokens = {
         258:'T_REQUIRE_ONCE',
         259:'T_REQUIRE',
@@ -255,5 +256,6 @@ function token_name (token) {
         379:'UNKNOWN',
         380:'UNKNOWN'
    };
+//*/
    return tokens[token];
 }
