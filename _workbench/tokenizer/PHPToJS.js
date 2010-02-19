@@ -1,5 +1,8 @@
-function PHPToJS () {
+function PHPToJS (config) {
 	this._js = '';
+	if (config && typeof config.no$ !== 'undefined') {
+		this.no$ = config.no$;
+	}
 }
 PHPToJS.prototype.T_REQUIRE_ONCE = function (string, line, token) {
     this._js += string;
@@ -201,7 +204,7 @@ PHPToJS.prototype.T_STRING_VARNAME = function (string, line, token) {
 
 };
 PHPToJS.prototype.T_VARIABLE = function (string, line, token) {
-    this._js += string;
+    this._js += 'var '+ (this.no$ ? string.replace(/^\$/, '') : string);
 
 };
 PHPToJS.prototype.T_NUM_STRING = function (string, line, token) {
@@ -221,7 +224,7 @@ PHPToJS.prototype.T_BAD_CHARACTER = function (string, line, token) {
 
 };
 PHPToJS.prototype.T_ENCAPSED_AND_WHITESPACE = function (string, line, token) {
-    this._js += "'"+string+"'";
+    this._js += "'"+string.replace(/'/g, "\\'")+"'";
 
 };
 PHPToJS.prototype.T_CONSTANT_ENCAPSED_STRING = function (string, line, token) {
