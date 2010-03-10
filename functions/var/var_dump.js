@@ -4,7 +4,7 @@ function var_dump () {
     // +   improved by: Zahlii
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: echo
-    // %        note 1: For returning a string, use var_export() with the second argument
+    // %        note 1: For returning a string, use var_export() with the second argument set to true
     // *     example 1: var_dump(1);
     // *     returns 1: 'int(1)'
 
