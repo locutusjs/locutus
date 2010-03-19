@@ -66,7 +66,7 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
 			}
 		}
     }
-	else if (flags & OPTS.XDIFF_PATCH_REVERSE) {
+	else if (flags & OPTS.XDIFF_PATCH_REVERSE) { // Only differs from above by a few lines
 	    for (i=0, ll = lines.length; i < ll; i++) {
 			ranges = lines[i].match(rangeExp);
 			if (ranges) {
