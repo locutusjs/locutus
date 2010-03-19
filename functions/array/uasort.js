@@ -49,7 +49,7 @@ function uasort (inputArr, sorter) {
 
 
     for (k in inputArr) { // Get key and value arrays
-        if (inputArr.hasOwnProperty) {
+        if (inputArr.hasOwnProperty(k)) {
             valArr.push(inputArr[k]);
             keyArr.push(k);
             if (strictForIn) {

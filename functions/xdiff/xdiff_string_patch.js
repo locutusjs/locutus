@@ -2,8 +2,8 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not currently supported
-    // %        note 1: This has not been widely tested
-    // *     example 1: xdiff_string_patch ('', '@@ -0,0 +1,1 @@\n+Hello world!');
+    // %        note 2: This has not been widely tested
+    // *     example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!');
     // *     returns 1: 'Hello world!'
 
     var i = 0, ll = 0, ranges = [], lastLinePos = 0, firstChar = '',

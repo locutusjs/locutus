@@ -20,7 +20,7 @@ function array_unique (inputArr) {
     var __array_search = function (needle, haystack) {
         var fkey = '';
         for (fkey in haystack) {
-            if (haystack.hasOwnProperty) {
+            if (haystack.hasOwnProperty(fkey)) {
                 if ((haystack[fkey] + '') === (needle + '')) {
                     return fkey;
                 }
@@ -30,7 +30,7 @@ function array_unique (inputArr) {
     };
 
     for (key in inputArr) {
-        if (inputArr.hasOwnProperty) {
+        if (inputArr.hasOwnProperty(key)) {
             val = inputArr[key];
             if (false === __array_search(val, tmp_arr2)) {
                 tmp_arr2[key] = val;
