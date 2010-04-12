@@ -1,7 +1,8 @@
-function xdiff_string_diff (old_data, new_data, context, minimal) {
+function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   based on: Imgen Tata (http://www.myipdf.com/)
+    // +   bugfixed by: Imgen Tata (http://www.myipdf.com/)
     // %        note 1: The minimal argument is not currently supported
     // *     example 1: xdiff_string_diff('', 'Hello world!');
     // *     returns 1: '@@ -0,0 +1,1 @@\n+Hello world!'
@@ -285,9 +286,9 @@ function xdiff_string_diff (old_data, new_data, context, minimal) {
     }
 
     if (typeof context_lines != 'number' ||
-        context > MAX_CONTEXT_LINES ||
-        context < MIN_CONTEXT_LINES) {
-        context = DEFAULT_CONTEXT_LINES;
+        context_lines > MAX_CONTEXT_LINES ||
+        context_lines < MIN_CONTEXT_LINES) {
+        context_lines = DEFAULT_CONTEXT_LINES;
     }
 
     ori_lines = split_into_lines(old_data);
@@ -328,11 +329,11 @@ function xdiff_string_diff (old_data, new_data, context, minimal) {
         // Regularize leading context by the context_lines parameter
         regularize_leading_context = function(context) {
             if (context.length === 0 ||
-                context === 0) {
+                context_lines === 0) {
                 return [];
             }
 
-            var context_start_pos = Math.max(context.length - context, 0);
+            var context_start_pos = Math.max(context.length - context_lines, 0);
 
             return context.slice(context_start_pos);
         },
@@ -340,12 +341,12 @@ function xdiff_string_diff (old_data, new_data, context, minimal) {
         // Regularize trailing context by the context_lines parameter
         regularize_trailing_context = function(context) {
             if (context.length === 0 ||
-                context === 0) {
+                context_lines === 0) {
                 return [];
             }
 
             return context.slice(0,
-                    Math.min(context, context.length));
+                    Math.min(context_lines, context.length));
         };
 
     // Skip common lines in the beginning
@@ -390,8 +391,8 @@ function xdiff_string_diff (old_data, new_data, context, minimal) {
         }
 
         if (k >= lcs_len || // No more in longest common lines
-            trailing_context.length >= 2 * context) {// Context break found
-            if (trailing_context.length < 2 * context) {// It must be last block of common lines but not a context break
+            trailing_context.length >= 2 * context_lines) {// Context break found
+            if (trailing_context.length < 2 * context_lines) {// It must be last block of common lines but not a context break
                 trailing_context = [];
 
                 // Force break out
