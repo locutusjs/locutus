@@ -43,7 +43,7 @@
     // You can do so like this:   var $P = PHP_JS();
     // 2) To pass in initial ini values without requiring ini_set() calls (see the
     // individual functions and
-    // http://trac.phpjs.org/projects/phpjs/wiki/php_js_Global for
+    // http://wiki.github.com/kvz/phpjs/php_js_global
     // which ones are available), you can pass in the ini data as follows:
     // var $P = new PHP_JS({ini: {
     //     'date.timezone':'America/Chicago', // PHP ini's used in PHP.JS
