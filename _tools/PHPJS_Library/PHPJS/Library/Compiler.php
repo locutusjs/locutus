@@ -88,7 +88,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         
         // Wrap it with namespaced-specific-code
         if ($commonjs) {
-            $compiledTxt = join(",\n", $compiled);
+            $compiledTxt = join("\n", $compiled);
             $compiledTxt = $this->_commonjs($compiledTxt);
         } elseif ($namespaced) {
             $compiledTxt = join(",\n", $compiled);
@@ -169,7 +169,7 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         }
 
         $template = file_get_contents($commonjsTemplate);
-        $source = str_replace('//#FUNCTIONS_HERE#', $this->_indentBlock($source, 8), $template);
+        $source = str_replace('//#FUNCTIONS_HERE#', $source, $template);
         // $source = preg_replace('@// BEGIN REDUNDANT(.+)// END REDUNDANT@smU', '', $source); // Should not strip out until remove duplicates and auto-place single copies (or at least ensure copies are manually added there); also do for BEGIN/END STATIC
 
         return $source;
