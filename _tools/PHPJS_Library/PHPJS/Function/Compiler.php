@@ -7,7 +7,7 @@ Class PHPJS_Function_Compiler extends PHPJS_Function {
      * 
      * @return string
      */
-    public function compileFunction($namespaced=false) {
+    public function compileFunction($namespaced = false, $commonjs = false) {
         
         $head = implode("\n", $this->getWrapHead());
         $docb = implode("\n", $this->getDocBlock());
@@ -19,13 +19,11 @@ Class PHPJS_Function_Compiler extends PHPJS_Function {
         $vers = $this->getVersion();
         $furl = $this->getUrl();
         
-        if (!$namespaced) {
-            
-        } else {
+        if ($namespaced) {
             $dependencies = $this->DocBlock->getDependencies();
             
             // Convert function declarations & examples to namespaced variants
-            $head = preg_replace('/(function\s*([a-z][a-z0-9_]*))/s', '$2: function', $head);
+            $head = preg_replace('/(function\s*([a-z_][a-z0-9_]*))/s', '$2: function', $head);
             $docb = preg_replace('/(example\s+(\d+):\s+([a-z][a-z0-9_]+))/s', 'example $2: \$P.$3', $docb);
             
             // Convert dependency function calls to namespaced variants 
@@ -35,6 +33,8 @@ Class PHPJS_Function_Compiler extends PHPJS_Function {
              
             // Convert recursive function calls to namespaced variants 
             #$real = preg_replace('/([^a-zA-Z0-9_\.])('.$name.')([^a-zA-Z0-9_])/s', '$1this.$2$3', $real);
+        } elseif ($commonjs) {
+            
         }
         
 
@@ -55,4 +55,3 @@ Class PHPJS_Function_Compiler extends PHPJS_Function {
         return $source;
     }
 }
-?>

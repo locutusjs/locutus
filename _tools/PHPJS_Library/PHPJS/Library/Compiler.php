@@ -15,7 +15,12 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
      * Compile flag: Minified
      */
     const COMPILE_MINFIED = 4;    
-    
+
+    /**
+     * Compile flag: Namespaced
+     */
+    const COMPILE_COMMONJS = 8;
+
     /**
      * Tests if a specified flag is given
      *
@@ -64,13 +69,13 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
     public function compile($flags = 0, $version = 'unknown', $breakOnError=false) {
         $selectedFunctions = $this->getSelection();
 
-
         $namespaced = ($this->_flagIsEnabled($flags, self::COMPILE_NAMESPACED));
+        $commonjs   = ($this->_flagIsEnabled($flags, self::COMPILE_COMMONJS));
         
         // Compile each function individually and store in $compiled array
         $compiled = array();
         foreach ($selectedFunctions as $funcName) {
-            if (false === ($x = $this->compileFunction($funcName, $namespaced))) {
+            if (false === ($x = $this->compileFunction($funcName, $namespaced, $commonjs))) {
                 $compiled[$funcName] = "\n // Failed to compile: ".$funcName."\n";
                 if ($breakOnError) {
                     return false;
@@ -82,7 +87,10 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         }
         
         // Wrap it with namespaced-specific-code
-        if ($namespaced) {
+        if ($commonjs) {
+            $compiledTxt = join(",\n", $compiled);
+            $compiledTxt = $this->_commonjs($compiledTxt);
+        } elseif ($namespaced) {
             $compiledTxt = join(",\n", $compiled);
             $compiledTxt = $this->_namespace($compiledTxt);
         } else {
@@ -111,14 +119,14 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
      * 
      * @return string
      */
-    public function compileFunction($funcName, $namespaced = false) {
+    public function compileFunction($funcName, $namespaced = false, $commonjs = false) {
         if (($Function = $this->getFunction($funcName)) === false) {
             throw new PHPJS_Exception("Function $funcName does not exist");
             return false;
         }
         
         // Forward to Function Object 
-        $results = $Function->compileFunction($namespaced);
+        $results = $Function->compileFunction($namespaced, $commonjs);
         
         return $results; 
     }
@@ -144,7 +152,29 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
 
         return $source;
     }
-    
+
+    /**
+     * Encloses muliple commonjs functions with a namespace wrapper
+     *
+     * @param string $source
+     *
+     * @return string
+     */
+    protected function _commonjs($source) {
+        $commonjsTemplate = dirname(__FILE__).'/Compiler/commonjs_template.js';
+
+        if (!file_exists($commonjsTemplate)) {
+            throw new PHPJS_Exception("commonjsTemplate ".$commonjsTemplate." does not exist");
+            return false;
+        }
+
+        $template = file_get_contents($commonjsTemplate);
+        $source = str_replace('//#FUNCTIONS_HERE#', $this->_indentBlock($source, 8), $template);
+        // $source = preg_replace('@// BEGIN REDUNDANT(.+)// END REDUNDANT@smU', '', $source); // Should not strip out until remove duplicates and auto-place single copies (or at least ensure copies are manually added there); also do for BEGIN/END STATIC
+
+        return $source;
+    }
+
     /**
      * Indent a block of code
      *
@@ -165,4 +195,3 @@ Class PHPJS_Library_Compiler extends PHPJS_Library {
         return join("\n", $lines);
     }    
 }
-?>

@@ -1,54 +1,55 @@
-/**
- * BC Math Library for Javascript
- * Ported from the PHP5 bcmath extension source code,
- * which uses the libbcmath package...
- *    Copyright (C) 1991, 1992, 1993, 1994, 1997 Free Software Foundation, Inc.
- *    Copyright (C) 2000 Philip A. Nelson
- *     The Free Software Foundation, Inc.
- *     59 Temple Place, Suite 330
- *     Boston, MA 02111-1307 USA.
- *      e-mail:  philnelson@acm.org
- *     us-mail:  Philip A. Nelson
- *               Computer Science Department, 9062
- *               Western Washington University
- *               Bellingham, WA 98226-9062
- *
- * bcmath-js homepage:
- *
- * This code is covered under the LGPL licence, and can be used however you want :)
- * Be kind and share any decent code changes.
- */
-
-/**
- * Binary Calculator (BC) Arbitrary Precision Mathematics Lib v0.10  (LGPL)
- * Copy of libbcmath included in PHP5 src
- *
- * Note: this is just the shared library file and does not include the php-style functions.
- *       use bcmath{-min}.js for functions like bcadd, bcsub etc.
- *
- * Feel free to use how-ever you want, just email any bug-fixes/improvements to the sourceforge project:
- *      
- *
- * Ported from the PHP5 bcmath extension source code,
- * which uses the libbcmath package...
- *    Copyright (C) 1991, 1992, 1993, 1994, 1997 Free Software Foundation, Inc.
- *    Copyright (C) 2000 Philip A. Nelson
- *     The Free Software Foundation, Inc.
- *     59 Temple Place, Suite 330
- *     Boston, MA 02111-1307 USA.
- *      e-mail:  philnelson@acm.org
- *     us-mail:  Philip A. Nelson
- *               Computer Science Department, 9062
- *               Western Washington University
- *               Bellingham, WA 98226-9062
- */
 function _phpjs_shared_bc () {
     // http://kevin.vanzonneveld.net
     // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: _phpjs_shared_bc();
     // *     returns 1: {}
-    
+
+    /**
+     * BC Math Library for Javascript
+     * Ported from the PHP5 bcmath extension source code,
+     * which uses the libbcmath package...
+     *    Copyright (C) 1991, 1992, 1993, 1994, 1997 Free Software Foundation, Inc.
+     *    Copyright (C) 2000 Philip A. Nelson
+     *     The Free Software Foundation, Inc.
+     *     59 Temple Place, Suite 330
+     *     Boston, MA 02111-1307 USA.
+     *      e-mail:  philnelson@acm.org
+     *     us-mail:  Philip A. Nelson
+     *               Computer Science Department, 9062
+     *               Western Washington University
+     *               Bellingham, WA 98226-9062
+     *
+     * bcmath-js homepage:
+     *
+     * This code is covered under the LGPL licence, and can be used however you want :)
+     * Be kind and share any decent code changes.
+     */
+
+    /**
+     * Binary Calculator (BC) Arbitrary Precision Mathematics Lib v0.10  (LGPL)
+     * Copy of libbcmath included in PHP5 src
+     *
+     * Note: this is just the shared library file and does not include the php-style functions.
+     *       use bcmath{-min}.js for functions like bcadd, bcsub etc.
+     *
+     * Feel free to use how-ever you want, just email any bug-fixes/improvements to the sourceforge project:
+     *
+     *
+     * Ported from the PHP5 bcmath extension source code,
+     * which uses the libbcmath package...
+     *    Copyright (C) 1991, 1992, 1993, 1994, 1997 Free Software Foundation, Inc.
+     *    Copyright (C) 2000 Philip A. Nelson
+     *     The Free Software Foundation, Inc.
+     *     59 Temple Place, Suite 330
+     *     Boston, MA 02111-1307 USA.
+     *      e-mail:  philnelson@acm.org
+     *     us-mail:  Philip A. Nelson
+     *               Computer Science Department, 9062
+     *               Western Washington University
+     *               Bellingham, WA 98226-9062
+     */
+
     var libbcmath = {
         PLUS: '+',
         MINUS: '-',

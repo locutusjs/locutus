@@ -1,6 +1,6 @@
-// jslint.com configuration options. See: http://wiki.github.com/kvz/phpjs/jslint-options
-/* global window */
-/* jslint adsafe: false, bitwise: false, browser: false, cap: false, css: false, debug: false, devel: false, eqeqeq: true, evil: false, forin: false, fragment: false, immed: true, indent: 4, laxbreak: false, maxerr: 100, maxlen: 80, newcap: true, nomen: false, on: true, onevar: false, passfail: false, plusplus: false, regexp: false, rhino: false, safe: false, sidebar: false, strict: false, sub: false, undef: true, white: false, widget: false */
+// jslint.com configuration options: see http://jslint.com/
+/*jslint evil: true, forin: true, newcap: true*/
+/*global window */
 (function() {
     if(typeof(this.PHP_JS) === "undefined"){ 
         // This references at top of namespace allows PHP_JS class to
@@ -37,5 +37,22 @@
 //#FUNCTIONS_HERE#
     }; // end PHP_JS.prototype
 
-    this.PHP_JS = PHP_JS;
+    // 1) You must now instantiate PHP_JS yourself to use it (you don't need
+    // "new" to do it, though it is slightly faster and better practice if you do
+    // use "new").
+    // You can do so like this:   var $P = PHP_JS();
+    // 2) To pass in initial ini values without requiring ini_set() calls (see the
+    // individual functions and
+    // http://wiki.github.com/kvz/phpjs/php_js_global
+    // which ones are available), you can pass in the ini data as follows:
+    // var $P = new PHP_JS({ini: {
+    //     'date.timezone':'America/Chicago', // PHP ini's used in PHP.JS
+    //     'phpjs.objectsAsArrays': true // custom PHP.JS ini's
+    // }});
+    // 3) If you place this namespace in a context like a JavaScript module
+    // (e.g., for a Firefox extension) without access to the global
+    // window object, you could instantiate in code which can obtain a
+    // "window" object like this: var $P = PHP_JS({window:window});
+    // This is not necessary for regular HTML JavaScript.
+    this.PHP_JS = PHP_JS; // Make PHP_JS available outside of namespace
 }());
