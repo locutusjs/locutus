@@ -82,7 +82,7 @@ Class PHPJS_Function extends SplFileInfo {
      * @return boolean
      */
     protected function _isLineComment($line) {
-        return preg_match('/^[\s]*(\/\/|\#|\*)/', $line);
+        return preg_match('/^[\s]*(\/\/|\/\*|\#|\*)/', $line);
     }
     
     /**
