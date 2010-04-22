@@ -5,17 +5,38 @@ function exit (status) {
     // +   bugfixed by: Hyam Singer (http://www.impact-computing.com/)
     // +   improved by: Philip Peterson
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-    // %        note 1: Should be considered expirimental. Please comment on this function.
+    // %        note 1: Should be considered experimental. Please comment on this function.
     // *     example 1: exit();
     // *     returns 1: null
 
-    var i;
+    var i, that = this,
+        _addEvent = function (el, type, handler, capturing) {
+            if (el.addEventListener) { /* W3C */
+                el.addEventListener(type, handler, !!capturing);
+            }
+            else if (el.attachEvent) { /* IE */
+                el.attachEvent('on'+type, handler);
+            }
+            else { /* OLDER BROWSERS (DOM0) */
+                el['on'+type] = handler;
+            }
+        },
+        _stopEvent = function(e) {
+            if (e.stopPropagation) { /* W3C */
+                e.stopPropagation();
+                e.preventDefault();
+            }
+            else {
+                that.window.event.cancelBubble = true;
+                that.window.event.returnValue = false;
+            }
+        };
 
     if (typeof status === 'string') {
         alert(status);
     }
 
-    this.window.addEventListener('error', function (e) {e.preventDefault();e.stopPropagation();}, false);
+    _addEvent(this.window, 'error', function (e) {_stopEvent(e);}, false);
 
     var handlers = [
         'copy', 'cut', 'paste',
@@ -24,12 +45,8 @@ function exit (status) {
         'abort', 'close', 'dragdrop', 'load', 'paint', 'reset', 'select', 'submit', 'unload'
     ];
     
-    function stopPropagation (e) {
-        e.stopPropagation();
-        // e.preventDefault(); // Stop for the form controls, etc., too?
-    }
     for (i=0; i < handlers.length; i++) {
-        this.window.addEventListener(handlers[i], function (e) {stopPropagation(e);}, true);
+        _addEvent(this.window, handlers[i], function (e) {_stopEvent(e);}, true);
     }
 
     if (this.window.stop) {
