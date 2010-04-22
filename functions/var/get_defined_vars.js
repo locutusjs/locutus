@@ -20,15 +20,16 @@ function get_defined_vars () {
                     }
                 }
             }
-            else {
-                if (!already[i]) {
-                    already[i] = 1;
-                    arr.push(i);
-                }
+            else if (!already[i]) {
+                already[i] = 1;
+                arr.push(i);
             }
         }
-        catch (e) {
-
+        catch (e) { // Problems accessing some properties in FF (e.g., sessionStorage)
+            if (!already[i]) {
+                already[i] = 1;
+                arr.push(i);
+            }
         }
     }
 
