@@ -6,6 +6,7 @@ function include (filename) {
     // +   improved by: Michael White (http://getsprink.com)
     // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
     // %        note 2: The included file does not come available until a second script block, so typically use this in the header.
     // %        note 3: Uses global: php_js to keep track of included files
@@ -13,11 +14,12 @@ function include (filename) {
     // *     returns 1: 1
 
     var d = this.window.document;
-    var js = d.createElementNS ? d.createElementNS('http://www.w3.org/1999/xhtml', 'script') : d.createElement('script');
+    var isXML = d.documentElement.nodeName !== 'HTML';
+    var js = d.createElementNS && isXML ? d.createElementNS('http://www.w3.org/1999/xhtml', 'script') : d.createElement('script');
     js.setAttribute('type', 'text/javascript');
     js.setAttribute('src', filename);
     js.setAttribute('defer', 'defer');
-    d.getElementsByTagNameNS ?
+    d.getElementsByTagNameNS && isXML ?
         (d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0] ?
             d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(js) :
             d.documentElement.insertBefore(js, d.documentElement.firstChild) // in case of XUL
