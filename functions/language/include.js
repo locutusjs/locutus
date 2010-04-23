@@ -14,7 +14,7 @@ function include (filename) {
     // *     returns 1: 1
 
     var d = this.window.document;
-    var isXML = d.documentElement.nodeName !== 'HTML';
+    var isXML = d.documentElement.nodeName !== 'HTML' || !d.write; // Latter is for silly comprehensiveness
     var js = d.createElementNS && isXML ? d.createElementNS('http://www.w3.org/1999/xhtml', 'script') : d.createElement('script');
     js.setAttribute('type', 'text/javascript');
     js.setAttribute('src', filename);

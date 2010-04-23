@@ -13,7 +13,7 @@ function require (filename) {
     // *     returns 1: 2
 
     var d = this.window.document;
-    var isXML = d.documentElement.nodeName !== 'HTML';
+    var isXML = d.documentElement.nodeName !== 'HTML' || !d.write; // Latter is for silly comprehensiveness
     var js_code = this.file_get_contents(filename);
     var script_block = d.createElementNS && isXML ? d.createElementNS('http://www.w3.org/1999/xhtml', 'script') : d.createElement('script');
     script_block.type = 'text/javascript';
