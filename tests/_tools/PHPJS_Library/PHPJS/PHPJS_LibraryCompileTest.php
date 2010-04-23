@@ -2,6 +2,24 @@
 ini_set("include_path", "../_tools/PHPJS_Library/PHPJS".PATH_SEPARATOR."../../../../_tools/PHPJS_Library/PHPJS".PATH_SEPARATOR.ini_get("include_path"));
 require_once 'PHPUnit/Framework.php';
 
+error_reporting(E_ALL);
+if (!function_exists('pr')) {
+    function pr($arr) {
+        if (is_array($arr) && count($arr)) {
+            print_r($arr);
+        } else {
+            var_dump($arr);
+        }
+        echo "\n";
+    }
+}
+if (!function_exists('prd')) {
+    function prd($arr) {
+        pr($arr);
+        die();
+    }
+}
+
 require_once 'Library.php';
 
 /**
@@ -42,6 +60,7 @@ class PHPJS_LibraryCompilerTest extends PHPUnit_Framework_TestCase
         $compression = 'none';
         $namespaced  = 'yes';
         $selection   = array(
+            '_phpjs_shared_bc' => true,
             'array_shift' => true,
             'bcadd' => true,
         );
@@ -52,7 +71,7 @@ class PHPJS_LibraryCompilerTest extends PHPUnit_Framework_TestCase
             'namespaced' => $namespaced
         );
 
-        $selection = array_flip(array_keys($this->PHPJS->Functions));
+        #$selection = array_flip(array_keys($this->PHPJS->Functions));
         
         // Set selection
         $this->PHPJS->clearSelection();
@@ -60,10 +79,14 @@ class PHPJS_LibraryCompilerTest extends PHPUnit_Framework_TestCase
             $this->PHPJS->addToSelection('function::'.$functionName);
         }
 
+        #pr($this->PHPJS->getSelection());
+
         // Set flags
         $flags = 0;
         if ($options['namespaced'] == 'yes') {
             $flags = $flags | PHPJS_Library_Compiler::COMPILE_NAMESPACED;
+        } elseif ($options['namespaced'] == 'commonjs') {
+            $flags = $flags | PHPJS_Library_Compiler::COMPILE_COMMONJS;
         }
         if ($options['compression'] == 'minified') {
             $flags = $flags | PHPJS_Library_Compiler::COMPILE_MINFIED;
@@ -72,8 +95,9 @@ class PHPJS_LibraryCompilerTest extends PHPUnit_Framework_TestCase
             $flags = $flags | PHPJS_Library_Compiler::COMPILE_PACKED;
         }
         
-        $code = $this->PHPJS->compile($flags, 't000');
-        $tmp  = tempnam('/tmp', 'phpjstest');
+        $code = $this->PHPJS->compile($flags, 't'.date("H:i:s"));
+        $tmp  = tempnam('/tmp', 'phpjstest').'.js';
+        echo "You could run: \n  rhino -debug ".$tmp."\n";
         file_put_contents($tmp, $code);
 
         
@@ -88,9 +112,11 @@ class PHPJS_LibraryCompilerTest extends PHPUnit_Framework_TestCase
         $flags = $flags | PHPJS_Library_Compiler::COMPILE_NAMESPACED;
         $flags = $flags | PHPJS_Library_Compiler::COMPILE_MINFIED;
         $flags = $flags | PHPJS_Library_Compiler::COMPILE_PACKED;
+        $flags = $flags | PHPJS_Library_Compiler::COMPILE_COMMONJS;
         $this->assertTrue($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_NAMESPACED));
         $this->assertTrue($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_MINFIED));
         $this->assertTrue($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_PACKED));
+        $this->assertTrue($this->PHPJS->isFlagEnabled($flags, PHPJS_Library_Compiler::COMPILE_COMMONJS));
 
         $flags = 0;
         $flags = $flags | PHPJS_Library_Compiler::COMPILE_NAMESPACED;
@@ -113,4 +139,3 @@ class PHPJS_LibraryCompilerTest extends PHPUnit_Framework_TestCase
     }
 
 }
-?>

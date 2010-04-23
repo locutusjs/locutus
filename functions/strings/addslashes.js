@@ -7,8 +7,9 @@ function addslashes (str) {
     // +   improved by: Onno Marsman
     // +   input by: Denny Wardhana
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   improved by: Oskar Larsson Högfeldt (http://oskar-lh.name/)
     // *     example 1: addslashes("kevin's birthday");
     // *     returns 1: 'kevin\'s birthday'
  
-    return (str+'').replace(/([\\"'])/g, "\\$1").replace(/\u0000/g, "\\0");
+    return (str+'').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
 }

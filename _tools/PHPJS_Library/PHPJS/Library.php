@@ -572,4 +572,3 @@ Class PHPJS_Library {
         return $first;
     }    
 }
-?>

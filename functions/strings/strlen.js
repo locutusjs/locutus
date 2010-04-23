@@ -17,6 +17,11 @@ function strlen (string) {
     var str = string+'';
     var i = 0, chr = '', lgth = 0;
 
+    if (!this.php_js || !this.php_js.ini || !this.php_js.ini['unicode.semantics'] ||
+            this.php_js.ini['unicode.semantics'].local_value.toLowerCase() !== 'on') {
+        return string.length;
+    }
+
     var getWholeChar = function (str, i) {
         var code = str.charCodeAt(i);
         var next = '', prev = '';

@@ -2,8 +2,8 @@ function array_merge () {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Nate
-    // -    depends on: is_int
-    // %          note: Relies on is_int because !isNaN accepts floats     
+    // +   input by: josh
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: arr1 = {"color": "red", 0: 2, 1: 4}
     // *     example 1: arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
     // *     example 1: array_merge(arr1, arr2)
@@ -11,13 +11,12 @@ function array_merge () {
     // *     example 2: arr1 = []
     // *     example 2: arr2 = {1: "data"}
     // *     example 2: array_merge(arr1, arr2)
-    // *     returns 2: {1: "data"}
+    // *     returns 2: {0: "data"}
     
-    var args = Array.prototype.slice.call(arguments);
-    var retObj = {}, k, j = 0, i = 0;
-    var retArr;
+    var args = Array.prototype.slice.call(arguments),
+                            retObj = {}, k, j = 0, i = 0, retArr = true;
     
-    for (i=0, retArr=true; i < args.length; i++) {
+    for (i=0; i < args.length; i++) {
         if (!(args[i] instanceof Array)) {
             retArr=false;
             break;
@@ -25,7 +24,11 @@ function array_merge () {
     }
     
     if (retArr) {
-        return args;
+        retArr = [];
+        for (i=0; i < args.length; i++) {
+            retArr = retArr.concat(args[i]);
+        }
+        return retArr;
     }
     var ct = 0;
     
@@ -36,14 +39,15 @@ function array_merge () {
             }
         } else {
             for (k in args[i]) {
-                if (this.is_int(k)) {
-                    retObj[ct++] = args[i][k];
-                } else {
-                    retObj[k] = args[i][k];
+                if (args[i].hasOwnProperty(k)) {
+                    if (parseInt(k, 10)+'' === k) {
+                        retObj[ct++] = args[i][k];
+                    } else {
+                        retObj[k] = args[i][k];
+                    }
                 }
             }
         }
     }
-    
     return retObj;
 }

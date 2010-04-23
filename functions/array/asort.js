@@ -88,7 +88,7 @@ function asort (inputArr, sort_flags) {
 
     // Get key and value arrays
     for (k in inputArr) {
-        if (inputArr.hasOwnProperty) {
+        if (inputArr.hasOwnProperty(k)) {
             valArr.push(inputArr[k]);
             keyArr.push(k);
             if (strictForIn) {
