@@ -23,9 +23,10 @@ function date(format, timestamp) {
     // +   improved by: Theriault
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Theriault
-    // +   improved by: Thomas Beaucourt  (http://www.webapp.fr)
+    // +   improved by: Thomas Beaucourt (http://www.webapp.fr)
     // +   improved by: JT
     // +   improved by: Theriault
+    // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
     // %        note 1: Uses global: php_js to store the default timezone
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
@@ -40,8 +41,8 @@ function date(format, timestamp) {
     // *     returns 5: '53'
     // *     example 6: date('B t', 1104534000);
     // *     returns 6: '999 31'
-    // *     example 7: date('W', 1293750000); // 2010-12-31
-    // *     returns 7: '52'
+    // *     example 7: date('W U', 1293750000.82); // 2010-12-31
+    // *     returns 7: '52 1293750000'
     // *     example 8: date('W', 1293836400); // 2011-01-01
     // *     returns 8: '52'
     // *     example 9: date('W Y-m-d', 1293974054); // 2011-01-02
@@ -256,7 +257,7 @@ function date(format, timestamp) {
             return 'D, d M Y H:i:s O'.replace(formatChr, formatChrCb);
         },
         U: function () { // Seconds since UNIX epoch
-            return Math.round(jsdate.getTime() / 1000);
+            return jsdate.getTime() / 1000 | 0;
         }
     };
     this.date = function (format, timestamp) {
