@@ -1,9 +1,9 @@
 function localtime(timestamp, is_assoc) {
-    // + updated by: Ryan W Tenney (http://ryan.10e.us) 22 Apr 2010
     // http://kevin.vanzonneveld.net
-    // + original by: Brett Zamir (http://brett-zamir.me)
-    // +      derived from: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
-    // +         parts by: Breaking Par Consulting Inc (http://www.breakingpar.com/bkp/home.nsf/0/87256B280015193F87256CFB006C45F7)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
+    // +  derived from: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
+    // +      parts by: Breaking Par Consulting Inc (http://www.breakingpar.com/bkp/home.nsf/0/87256B280015193F87256CFB006C45F7)
+    // +   improved by: Ryan W Tenney (http://ryan.10e.us)
     // *     example 1: localtime();
     // *     returns 1: [50,28,0,14,2,109,6,73,0]
 
