@@ -67,5 +67,5 @@ function uasort (inputArr, sorter) {
         populateArr[keyArr[i]] = valArr[i];
     }
     
-    return strictForIn ? true : populateArr;
+    return strictForIn || populateArr;
 }

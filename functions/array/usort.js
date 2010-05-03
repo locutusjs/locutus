@@ -50,5 +50,5 @@ function usort (inputArr, sorter) {
         populateArr[i] = valArr[i];
     }
 
-    return strictForIn ? true : populateArr;
+    return strictForIn || populateArr;
 }

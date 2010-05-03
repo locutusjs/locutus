@@ -24,7 +24,7 @@ function rsort (inputArr, sort_flags) {
     // *     results 2: fruits == {0: 'orange', 1: 'lemon', 2: 'banana', 3: 'apple'}
     // *     returns 2: true
 
-    var valArr = [], k = '', i = 0, sorter = false, that=this, strictForIn = false, populateArr = {};
+    var valArr = [], k = '', i = 0, sorter = false, that=this, strictForIn = false, populateArr = [];
 
     switch (sort_flags) {
         case 'SORT_STRING': // compare items as strings
@@ -78,5 +78,5 @@ function rsort (inputArr, sort_flags) {
     for (i = 0; i < valArr.length; i++) { // Repopulate the old array
         populateArr[i] = valArr[i];
     }
-    return strictForIn ? true : populateArr;
+    return strictForIn || populateArr;
 }

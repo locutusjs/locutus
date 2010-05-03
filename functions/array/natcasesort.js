@@ -69,5 +69,5 @@ function natcasesort (inputArr) {
         populateArr[keyArr[i]] = valArr[i];
     }
 
-    return strictForIn ? true : populateArr;
+    return strictForIn || populateArr;
 }

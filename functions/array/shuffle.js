@@ -22,7 +22,7 @@ function shuffle (inputArr) {
     // *     results 2: {5:'a', 'q':5, 3:'c', 2:'3', 4:5}
     // *     returns 2: true
 
-    var valArr = [], k = '', i = 0, strictForIn = false, populateArr = {};
+    var valArr = [], k = '', i = 0, strictForIn = false, populateArr = [];
 
     for (k in inputArr) { // Get key and value arrays
         if (inputArr.hasOwnProperty(k)) {
@@ -47,5 +47,5 @@ function shuffle (inputArr) {
         populateArr[i] = valArr[i];
     }
     
-    return strictForIn ? true : populateArr;
+    return strictForIn || populateArr;
 }

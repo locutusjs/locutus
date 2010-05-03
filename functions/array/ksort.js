@@ -85,5 +85,5 @@ function ksort (inputArr, sort_flags) {
         }
     }
 
-    return strictForIn ? true : populateArr;
+    return strictForIn || populateArr;
 }

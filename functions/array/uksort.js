@@ -64,5 +64,5 @@ function uksort (inputArr, sorter) {
             populateArr[i] = tmp_arr[i];
         }
     }
-    return strictForIn ? true : populateArr;
+    return strictForIn || populateArr;
 }

@@ -110,5 +110,5 @@ function asort (inputArr, sort_flags) {
         populateArr[keyArr[i]] = valArr[i];
     }
 
-    return strictForIn ? true : populateArr;
+    return strictForIn || populateArr;
 }
