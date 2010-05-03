@@ -26,7 +26,7 @@ function arsort (inputArr, sort_flags) {
     // *     results 2: data == {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
     // *     returns 2: true
 
-    var valArr=[], keyArr=[], k, i, ret, sorter, that = this, strictForIn = false, populateArr = [];
+    var valArr=[], keyArr=[], k, i, ret, sorter, that = this, strictForIn = false, populateArr = {};
 
     switch (sort_flags) {
         case 'SORT_STRING': // compare items as strings
@@ -79,7 +79,8 @@ function arsort (inputArr, sort_flags) {
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
 
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value;
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
+                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
 
 

@@ -23,7 +23,7 @@ function krsort (inputArr, sort_flags) {
     // *     results 2: data == {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
     // *     returns 2: true
 
-    var tmp_arr={}, keys=[], sorter, i, k, that=this, strictForIn = false, populateArr = [];
+    var tmp_arr={}, keys=[], sorter, i, k, that=this, strictForIn = false, populateArr = {};
 
     switch (sort_flags) {
         case 'SORT_STRING': // compare items as strings
@@ -67,7 +67,8 @@ function krsort (inputArr, sort_flags) {
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
 
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value;
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
+                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
 
 

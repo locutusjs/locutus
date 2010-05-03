@@ -18,7 +18,7 @@ function natcasesort (inputArr) {
     // *     example 1: $array1 = natcasesort($array1);
     // *     returns 1: {a: 'IMG0.png', e: 'img1.png', d: 'img2.png', f: 'IMG3.png', c: 'img10.png', b: 'img12.png'}
 
-    var valArr=[], keyArr=[], k, i, ret, that = this, strictForIn = false, populateArr = [];
+    var valArr=[], keyArr=[], k, i, ret, that = this, strictForIn = false, populateArr = {};
 
     var bubbleSort = function (keyArr, inputArr) {
         var i, j, tempValue, tempKeyVal;
@@ -42,7 +42,8 @@ function natcasesort (inputArr) {
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
 
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value;
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
+                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
 
     // Get key and value arrays

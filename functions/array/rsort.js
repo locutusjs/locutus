@@ -24,7 +24,7 @@ function rsort (inputArr, sort_flags) {
     // *     results 2: fruits == {0: 'orange', 1: 'lemon', 2: 'banana', 3: 'apple'}
     // *     returns 2: true
 
-    var valArr = [], k = '', i = 0, sorter = false, that=this, strictForIn = false, populateArr = [];
+    var valArr = [], k = '', i = 0, sorter = false, that=this, strictForIn = false, populateArr = {};
 
     switch (sort_flags) {
         case 'SORT_STRING': // compare items as strings
@@ -60,7 +60,8 @@ function rsort (inputArr, sort_flags) {
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
 
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value;
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
+                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
 
     for (k in inputArr) { // Get key and value arrays

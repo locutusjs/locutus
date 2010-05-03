@@ -15,7 +15,7 @@ function uasort (inputArr, sorter) {
     // *     example 1: fruits = uasort(fruits, function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;});
     // *     results 1: fruits == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
-    var valArr = [], keyArr=[], tempKeyVal, tempValue, ret, k = '', i = 0, strictForIn = false, populateArr = [];
+    var valArr = [], keyArr=[], tempKeyVal, tempValue, ret, k = '', i = 0, strictForIn = false, populateArr = {};
 
     if (typeof sorter === 'string') {
         sorter = this[sorter];
@@ -44,7 +44,8 @@ function uasort (inputArr, sorter) {
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
 
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value;
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
+                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
 
 

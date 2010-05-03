@@ -4,6 +4,7 @@ function asort (inputArr, sort_flags) {
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   input by: paulo kuong
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Adam Wallner (http://web2.bitbaro.hu/)
     // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
     // %        note 1: integrated into all of these functions by adapting the code at
     // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
@@ -30,7 +31,7 @@ function asort (inputArr, sort_flags) {
     // *     results 2: data == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
     // *     returns 2: true
 
-    var valArr=[], keyArr=[], k, i, ret, sorter, that = this, strictForIn = false, populateArr = [];
+    var valArr=[], keyArr=[], k, i, ret, sorter, that = this, strictForIn = false, populateArr = {};
 
     switch (sort_flags) {
         case 'SORT_STRING': // compare items as strings
@@ -83,7 +84,8 @@ function asort (inputArr, sort_flags) {
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
 
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value;
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
+                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
 
     // Get key and value arrays

@@ -16,7 +16,7 @@ function natsort (inputArr) {
     // *     example 1: $array1 = natsort($array1);
     // *     returns 1: {d: 'img1.png', c: 'img2.png', b: 'img10.png', a: 'img12.png'}
 
-    var valArr=[], keyArr=[], k, i, ret, that = this, strictForIn = false, populateArr = [];
+    var valArr=[], keyArr=[], k, i, ret, that = this, strictForIn = false, populateArr = {};
 
     var bubbleSort = function (keyArr, inputArr) {
         var i, j, tempValue, tempKeyVal;
@@ -40,7 +40,8 @@ function natsort (inputArr) {
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
 
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value;
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
+                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
 
     // Get key and value arrays
