@@ -248,4 +248,3 @@ Class PHPJS_Function extends SplFileInfo {
         return intval(date("y",$stamp)).date("m.jH", $stamp);
     }
 }
-?>

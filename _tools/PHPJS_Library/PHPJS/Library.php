@@ -275,11 +275,11 @@ Class PHPJS_Library {
     public function addFunction($path) {
         
         $className = str_replace("Library", "Function", get_class($this));
-        $obj = new $className($path, &$this);
+        $Function = new $className($path, $this);
         
         //$obj->reload();
-        $funcName = $obj->getFunctionName();
-        $this->Functions[$funcName] = &$obj;
+        $funcName = $Function->getFunctionName();
+        $this->Functions[$funcName] = $Function;
     }
     
     public function functionExists($funcName) {
@@ -438,14 +438,16 @@ Class PHPJS_Library {
      * 
      * @return boolean
      */
-    public function index($dir=false) {
-        if ($dir === false) $dir = $this->_dirRealFunc;            
+    public function index ($dir = null) {
+        if ($dir === null) $dir = $this->_dirRealFunc;
+        if ($dir === false) return false;
         if (!is_dir($dir)) return false;
-
+        
         $it = new RecursiveDirectoryIterator($dir);
-        foreach($it as $splFile){
-            $path = $splFile->getRealPath();
-            if ($splFile->isDir()) {
+        foreach (glob($dir.'/*') as $filename){
+            $path = $filename;
+
+            if (is_dir($path)) {
                 // Recurse
                 $this->index($path);
             } else {
