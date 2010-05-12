@@ -6,12 +6,12 @@ function settype (vr, type) {
     // %        note 1: Credits to Crockford also
     // %        note 2: only works on global variables, and "vr" must be passed in as a string
     // *     example 1: foo = '5bar';
-    // *     example 1: settype(foo, 'integer');
-    // *     results 1: foo == 5
+    // *     example 1: settype('foo', 'integer');
+    // *     results 1: foo === 5
     // *     returns 1: true
     // *     example 2: foo = true;
-    // *     example 2: settype(foo, 'string');
-    // *     results 2: foo == '1'
+    // *     example 2: settype('foo', 'string');
+    // *     results 2: foo === '1'
     // *     returns 2: true
 
     var is_array = function (arr) {
