@@ -5,10 +5,12 @@ function strnatcasecmp (str1, str2) {
     // + reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
     // + reimplemented by: Brett Zamir (http://brett-zamir.me)
     // +      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: strnatcasecmp(10, 1);
-    // *     returns 1: 1
-    // *     example 1: strnatcasecmp('1', '10');
-    // *     returns 1: -1
+    // +         input by: Devan Penner-Woelk
+    // +      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *        example 1: strnatcasecmp(10, 1);
+    // *        returns 1: 1
+    // *        example 1: strnatcasecmp('1', '10');
+    // *        returns 1: -1
     var a = (str1+'').toLowerCase();
     var b = (str2+'').toLowerCase();
 
@@ -33,7 +35,7 @@ function strnatcasecmp (str1, str2) {
         // value wins, but we can't know that it will until we've scanned
         // both numbers to know that they have the same magnitude, so we
         // remember it in BIAS.
-        for (;; ia++, ib++) {
+        for (var cnt = 0 ; true; ia++, ib++) {
             ca = a.charAt(ia);
             cb = b.charAt(ib);
 
@@ -45,14 +47,14 @@ function strnatcasecmp (str1, str2) {
             } else if (!isDigitChar(cb)) {
                 return +1;
             } else if (ca < cb) {
-                if (bias == 0) {
+                if (bias === '0') {
                     bias = -1;
                 }
             } else if (ca > cb) {
-                if (bias == 0) {
+                if (bias === '0') {
                     bias = +1;
                 }
-            } else if (ca == 0 && cb == 0) {
+            } else if (ca === '0' && cb === '0') {
                 return bias;
             }
         }
@@ -71,8 +73,8 @@ function strnatcasecmp (str1, str2) {
         cb = b.charAt(ib);
 
         // skip over leading spaces or zeros
-        while (isWhitespaceChar( ca ) || ca =='0') {
-            if (ca == '0') {
+        while (isWhitespaceChar( ca ) || ca ==='0') {
+            if (ca === '0') {
                 nza++;
             } else {
                 // only count consecutive zeroes
@@ -82,8 +84,8 @@ function strnatcasecmp (str1, str2) {
             ca = a.charAt(++ia);
         }
 
-        while (isWhitespaceChar( cb ) || cb == '0') {
-            if (cb == '0') {
+        while (isWhitespaceChar( cb ) || cb === '0') {
+            if (cb === '0') {
                 nzb++;
             } else {
                 // only count consecutive zeroes
@@ -95,12 +97,12 @@ function strnatcasecmp (str1, str2) {
 
         // process run of digits
         if (isDigitChar(ca) && isDigitChar(cb)) {
-            if ((result = compareRight(a.substring(ia), b.substring(ib))) != 0) {
+            if ((result = compareRight(a.substring(ia), b.substring(ib))) !== '0') {
                 return result;
             }
         }
 
-        if (ca == 0 && cb == 0) {
+        if (ca === '0' && cb === '0') {
             // The strings compare the same.  Perhaps the caller
             // will want to call strcmp to break the tie.
             return nza - nzb;
