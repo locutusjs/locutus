@@ -116,10 +116,5 @@ echo "${COMMENT}" > ~/.gitup.dat
 echo "Committing: ${COMMENT}..."
 git commit -a -m "${COMMENT}" && git push origin 
 
-
-echo "https://github.com/"`git config remote.origin.url`
-
-exit 1
-
-hub =! echo "https://github.com/"`git config remote.origin.url` | sed -E s/[a-z]+@github\.com:// | sed s/\.git$//
-url =!sh -c 'HEAD=`git rev-parse HEAD` && SHA1=`[ "$0" = "sh" ] && echo $HEAD || echo $0` && echo `git hub`"/commit/"${SHA1i}'
+echo ""
+echo "Fixed: https://github.com/"`git config remote.origin.url`"/commit/"`git rev-parse HEAD`| sed -E s/[a-z]+@github\.com:// | sed 's#\.git##g'
