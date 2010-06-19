@@ -1,6 +1,6 @@
 function is_scalar (mixed_var) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Paulo Ricardo F. Santos
+    // +   original by: Paulo Freitas
     // *     example 1: is_scalar(186.31);
     // *     returns 1: true
     // *     example 2: is_scalar({0: 'Kevin van Zonneveld'});

@@ -1,6 +1,6 @@
 function microtime (get_as_float) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Paulo Ricardo F. Santos
+    // +   original by: Paulo Freitas
     // *     example 1: timeStamp = microtime(true);
     // *     results 1: timeStamp > 1000000000 && timeStamp < 2000000000
 

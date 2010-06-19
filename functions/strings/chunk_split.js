@@ -1,6 +1,6 @@
 function chunk_split (body, chunklen, end) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Paulo Ricardo F. Santos
+    // +   original by: Paulo Freitas
     // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Theriault

@@ -4,7 +4,7 @@ function sprintf ( ) {
     // + namespaced by: Michael White (http://getsprink.com)
     // +    tweaked by: Jack
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +      input by: Paulo Ricardo F. Santos
+    // +      input by: Paulo Freitas
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

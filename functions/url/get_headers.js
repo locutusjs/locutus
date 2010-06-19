@@ -1,5 +1,5 @@
 function get_headers (url, format) {
-    // +   original by: Paulo Ricardo F. Santos
+    // +   original by: Paulo Freitas
     // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
     // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.

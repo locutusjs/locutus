@@ -1,6 +1,6 @@
 function gettype (mixed_var) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Paulo Ricardo F. Santos
+    // +   original by: Paulo Freitas
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Douglas Crockford (http://javascript.crockford.com)
     // +   input by: KELAN
