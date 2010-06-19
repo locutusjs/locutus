@@ -37,10 +37,10 @@ function ksort (inputArr, sort_flags) {
             break;
         case 'SORT_NUMERIC': // compare items numerically
             sorter = function (a, b) {
-                return (a - b);
+                return ((a+0) - (b+0));
             };
             break;
-        case 'SORT_REGULAR': // compare items normally (don't change types)
+        // case 'SORT_REGULAR': // compare items normally (don't change types)
         default:
             sorter = function (a, b) {
                 if (a > b) {
