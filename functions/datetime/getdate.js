@@ -1,6 +1,6 @@
 function getdate (timestamp) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Paulo Ricardo F. Santos
+    // +   original by: Paulo Freitas
     // +   input by: Alex
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: getdate(1055901520);

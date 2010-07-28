@@ -1,6 +1,6 @@
 function is_float (mixed_var) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Paulo Ricardo F. Santos
+    // +   original by: Paulo Freitas
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: WebDevHobo (http://webdevhobo.blogspot.com/)
     // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
