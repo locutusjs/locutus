@@ -3,6 +3,7 @@ function isset () {
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: FremyCompany
     // +   improved by: Onno Marsman
+    // +   improved by: Rafał Kukawski
     // *     example 1: isset( undefined, true);
     // *     returns 1: false
     // *     example 2: isset( 'Kevin van Zonneveld' );
@@ -15,11 +16,10 @@ function isset () {
     }
     
     while (i!==l) {
-        if (typeof(a[i])=='undefined' || a[i]===null) { 
+        if (typeof(a[i]) === 'undefined' || a[i] === null) {
             return false; 
-        } else { 
-            i++; 
         }
+        i++; 
     }
     return true;
 }
