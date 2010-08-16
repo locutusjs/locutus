@@ -8,6 +8,8 @@ function parse_str (str, array){
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: stag019
     // -    depends on: urldecode
+    // +   input by: Dreamer
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: When no argument is specified, will put variables in global scope.
     // *     example 1: var arr = {};
     // *     example 1: parse_str('first=foo&second=bar', arr);
@@ -16,7 +18,7 @@ function parse_str (str, array){
     // *     example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr);
     // *     results 2: arr == { str_a: "Jack and Jill didn't see the well." }
 
-    var glue1 = '=', glue2 = '&', array2 = String(str).split(glue2),
+    var glue1 = '=', glue2 = '&', array2 = String(str).replace(/^&(.*)$/, '$1').replace(/^(.*)&$/, '$1').split(glue2),
     i, j, chr, tmp, key, value, bracket, keys, evalStr, that = this,
     fixStr = function (str) {
         return that.urldecode(str).replace(/([\\"'])/g, '\\$1').replace(/\n/g, '\\n').replace(/\r/g, '\\r');
