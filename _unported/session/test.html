@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
-                    "http://www.w3.org/TR/html4/loose.dtd">
+					"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -39,6 +39,17 @@ $(document).ready(function(){
 		session_destroy();
 		equals($_SESSION, null, "$_SESSION empty");
 	});
+
+	
+	// Reset for sake of next page
+	test("$_SESSION Restored for Next Page", function() {
+		session_start();
+		$_SESSION['test'] = "data";
+		$_SESSION['coheed'] = "yotbr";
+		session_update();
+        ok($_SESSION, "Session Restored");
+	});
+	
 });
 </script>
   
