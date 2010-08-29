@@ -9,7 +9,7 @@ function timezone_abbreviations_list () {
     // *     example 1: list['acst'][0].timezone_id
     // *     returns 1: 'America/Porto_Acre'
 
-    var list = {}, i = 0, j = 0, len = 0, jlen = 0, indice = '', curr = '', currSub = '', currSubPrefix = '', timezone_id = '';
+    var list = {}, i = 0, j = 0, len = 0, jlen = 0, indice = '', curr = '', currSub = '', currSubPrefix = '', timezone_id = '', tzo = 0;
 
     // BEGIN STATIC
     try { // We can't try to access on window, since it might not exist in some environments, and if we use "this.window"
@@ -1803,6 +1803,8 @@ function timezone_abbreviations_list () {
     }
     // END STATIC
 
+    
+    var dtz = this.php_js && this.php_js.default_timezone;
     for (i=0, len = php_js_shared.tz_abbrs.length; i < len; i++) {
         indice = php_js_shared.tz_abbreviations[i];
         curr = php_js_shared.tz_abbrs[i];
@@ -1811,11 +1813,15 @@ function timezone_abbreviations_list () {
             currSub = curr[j];
             currSubPrefix = (currSub[3] ? php_js_shared.tz_prefixes[currSub[3]] + '/' : '');
             timezone_id = currSub[2] ? (currSubPrefix + currSub[2]) : null;
+            tzo = php_js_shared.tz_offsets[currSub[1]];
             list[indice].push({
                 'dst' : !!currSub[0],
-                'offset' : php_js_shared.tz_offsets[currSub[1]],
+                'offset' : tzo,
                 'timezone_id' : timezone_id
             });
+            if (dtz === timezone_id) { // Apply this within date functions
+                this.php_js.currentTimezoneOffset = tzo;
+            }
         }
     }
 
