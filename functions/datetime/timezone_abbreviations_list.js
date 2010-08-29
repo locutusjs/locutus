@@ -1804,7 +1804,7 @@ function timezone_abbreviations_list () {
     // END STATIC
 
     
-    var dtz = this.php_js && this.php_js.default_timezone;
+    var dtz = this.date_default_timezone_get();
     for (i=0, len = php_js_shared.tz_abbrs.length; i < len; i++) {
         indice = php_js_shared.tz_abbreviations[i];
         curr = php_js_shared.tz_abbrs[i];
