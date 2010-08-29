@@ -11,7 +11,7 @@ function date_default_timezone_set (tz) {
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     // END REDUNDANT
-    // PHP verifies that the timezone is valid and also sets this.php_js.currentTimezoneOffset if so
+    // PHP verifies that the timezone is valid and also sets this.php_js.currentTimezoneOffset and this.php_js.currentTimezoneDST if so
     tal = this.timezone_abbreviations_list();
     for (abbr in tal) {
         for (i=0; i < tal[abbr].length; i++) {
