@@ -7,6 +7,7 @@ function date(format, timestamp) {
     // +   improved by: Brad Touesnard
     // +   improved by: Tim Wiel
     // +   improved by: Bryan Elliott
+    //
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: David Randall
     // +      input by: Brett Zamir (http://brett-zamir.me)
@@ -28,6 +29,10 @@ function date(format, timestamp) {
     // +   improved by: Theriault
     // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
     // %        note 1: Uses global: php_js to store the default timezone
+    // %        note 2: Although the function potentially allows timezone info (see notes), it currently does not set
+    // %        note 2: per a timezone specified by date_default_timezone_set(). Implementers might use
+    // %        note 2: this.php_js.currentTimezoneOffset and this.php_js.currentTimezoneDST set by that function
+    // %        note 2: in order to adjust the dates in this function (or our other date functions!) accordingly
     // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
     // *     returns 1: '09:09:40 m is month'
     // *     example 2: date('F j, Y, g:i a', 1062462400);
@@ -182,23 +187,9 @@ function date(format, timestamp) {
         e: function () { // Timezone identifier; e.g. Atlantic/Azores, ...
 // The following works, but requires inclusion of the very large
 // timezone_abbreviations_list() function.
-/*              var abbr = '', i = 0, os = 0;
-            if (that.php_js && that.php_js.default_timezone) {
-                return that.php_js.default_timezone;
-            }
-            if (!tal.length) {
-                tal = that.timezone_abbreviations_list();
-            }
-            for (abbr in tal) {
-                for (i = 0; i < tal[abbr].length; i++) {
-                    os = -jsdate.getTimezoneOffset() * 60;
-                    if (tal[abbr][i].offset === os) {
-                        return tal[abbr][i].timezone_id;
-                    }
-                }
-            }
+/*              return this.date_default_timezone_get();
 */
-            return 'UTC';
+            throw 'Not supported (see source code of date() for timezone on how to add support)';
         },
         I: function () { // DST observed?; 0 or 1
             // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
