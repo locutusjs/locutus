@@ -15,7 +15,9 @@ load('../functions/array/array_combine.js');
 load('../functions/var/serialize.js');
 load('../functions/var/var_dump.js');
 load('../functions/datetime/date.js');
+load('../functions/datetime/mktime.js');
 load('../functions/strings/echo.js');
+
 
 
 window.location = './tester.htm';
@@ -38,8 +40,11 @@ window.onload = function(){
 //    $ser = serialize("a \n b");
 //    var_dump($ser);
 
-    $x = date('W', 1104534000);
-    print($x);
-    
+	var timestamp = mktime( 0, 0, 0, 10, 31, 2010 );
+	var temp = timestamp + (60*60*24*7);
+    string_date = date('d-m-Y', temp);
+
+    print(string_date);
+
     //print('Debug finished');
 }
