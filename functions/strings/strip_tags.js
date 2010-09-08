@@ -1,4 +1,4 @@
-function strip_tags (str, allowed_tags) {
+function strip_tags (input, allowed) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Luke Godfrey
@@ -15,6 +15,8 @@ function strip_tags (str, allowed_tags) {
     // +      input by: Bobby Drake
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Tomasz Wesolowski
+    // +      input by: Evertjan Garretsen
+    // +    revised by: Rafał Kukawski (http://blog.kukawski.pl/)
     // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>');
     // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
     // *     example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>');
@@ -23,63 +25,20 @@ function strip_tags (str, allowed_tags) {
     // *     returns 3: '<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>'
     // *     example 4: strip_tags('1 < 5 5 > 1');
     // *     returns 4: '1 < 5 5 > 1'
+    // *     example 5: strip_tags('1 <br/> 1');
+    // *     returns 5: '1  1'
+    // *     example 6: strip_tags('1 <br/> 1', '<br>');
+    // *     returns 6: '1  1'
+    // *     example 7: strip_tags('1 <br/> 1', '<br><br/>');
+    // *     returns 7: '1 <br/> 1'
 
-    var key = '', allowed = false;
-    var matches = [];
-    var allowed_array = [];
-    var allowed_tag = '';
-    var i = 0;
-    var k = '';
-    var html = '';
-
-    var replacer = function (search, replace, str) {
-        return str.split(search).join(replace);
-    };
-
-    // Build allowes tags associative array
-    if (allowed_tags) {
-        allowed_array = allowed_tags.match(/([a-zA-Z0-9]+)/gi);
-    }
-
-    str += '';
-
-    // Match tags
-    matches = str.match(/(<\/?[\S][^>]*>)/gi);
-
-    // Go through all HTML tags
-    for (key in matches) {
-        if (isNaN(key)) {
-            // IE7 Hack
-            continue;
-        }
-
-        // Save HTML tag
-        html = matches[key].toString();
-
-        // Is tag not in allowed list? Remove from str!
-        allowed = false;
-
-        // Go through all allowed tags
-        for (k in allowed_array) {
-            // Init
-            allowed_tag = allowed_array[k];
-            i = -1;
-
-            if (i != 0) { i = html.toLowerCase().indexOf('<'+allowed_tag+'>');}
-            if (i != 0) { i = html.toLowerCase().indexOf('<'+allowed_tag+' ');}
-            if (i != 0) { i = html.toLowerCase().indexOf('</'+allowed_tag)   ;}
-
-            // Determine
-            if (i == 0) {
-                allowed = true;
-                break;
-            }
-        }
-
-        if (!allowed) {
-            str = replacer(html, "", str); // Custom replace. No regexing
-        }
-    }
-
-    return str;
-}
+	   allowed = (((allowed || "") + "")
+	      .toLowerCase()
+	      .match(/<[a-z][a-z0-9]*>/g) || [])
+	      .join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
+	   var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
+	       commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
+	   return input.replace(commentsAndPhpTags, '').replace(tags, function($0, $1){
+	      return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
+	   });
+	}
