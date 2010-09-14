@@ -18,6 +18,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     // +      input by: Amir Habibi (http://www.residence-mixte.com/)
     // +     bugfix by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Theriault
+    // +      input by: Amirouche
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: number_format(1234.56);
     // *     returns 1: '1,235'
     // *     example 2: number_format(1234.56, 2, ',', ' ');
@@ -42,6 +44,9 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     // *    returns 11: '1.2000'
     // *    example 12: number_format('1.2000', 3);
     // *    returns 12: '1.200'
+    // *    example 13: number_format('1 000,50', 2, '.', ' ');
+    // *    returns 13: '100 050.00'
+    number = (number+'').replace(',', '').replace(' ', '');
     var n = !isFinite(+number) ? 0 : +number, 
         prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
         sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,

@@ -1,6 +1,11 @@
 #!/usr/bin/php -q
 <?php
 
+$timestamp = mktime( 0, 0, 0, 10, 31, 2010 );
+$temp = $timestamp + (60*60*24*7);
+$string_date = date('d-m-Y', $temp);
+print($string_date);
+die("\n");
 
 $ser = serialize("a \n b");
 var_dump($ser);
