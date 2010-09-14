@@ -17,5 +17,5 @@ function rawurldecode (str) {
     // *     example 4: rawurldecode('-22%97bc%2Fbc');
     // *     returns 4: '-22—bc/bc'
 
-    return decodeURIComponent(str);
+    return decodeURIComponent(str+'');
 }
