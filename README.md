@@ -11,7 +11,5 @@ That's what we are doing for you.
 
 More info at:
 
-- [http://phpjs.org/][1]
-
-  [1]: http://phpjs.org/
- 
+- [http://phpjs.org/](http://phpjs.org/)
+- [http://github.com/kvz/phpjs/wiki/](http://github.com/kvz/phpjs/wiki/)
