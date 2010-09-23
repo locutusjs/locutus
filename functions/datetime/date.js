@@ -134,8 +134,7 @@ function date(format, timestamp) {
 
     // Year
         L: function () { // Is leap year?; 0 or 1
-            var y = f.Y(), a = y & 3, b = y % 4e2, c = y % 1e2;
-            return 0 + (!a && (c || !b));
+            return new Date(f.Y(), 1, 29).getMonth() === 1 | 0;
         },
         o: function () { // ISO-8601 year
             var n = f.n(), W = f.W(), Y = f.Y();
