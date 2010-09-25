@@ -19,6 +19,10 @@ function asort (inputArr, sort_flags) {
     // %        note 3: property deletion is supported. Note that we intend to implement the PHP
     // %        note 3: behavior by default if IE ever does allow it; only gives shallow copy since
     // %        note 3: is by reference in PHP anyways
+    // %        note 4: Since JS objects' keys are always strings, and (the
+    // %        note 4: default) SORT_REGULAR flag distinguishes by key type,
+    // %        note 4: if the content is a numeric string, we treat the
+    // %        note 4: "original type" as numeric.
     // -    depends on: strnatcmp
     // -    depends on: i18n_loc_get_default
     // *     example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
@@ -51,13 +55,20 @@ function asort (inputArr, sort_flags) {
         case 'SORT_REGULAR': // compare items normally (don't change types)
         default:
             sorter = function (a, b) {
-                if (a > b) {
+                var aFloat = parseFloat(a),
+                    bFloat = parseFloat(b),
+                    aNumeric = aFloat+'' === a,
+                    bNumeric = bFloat+'' === b;
+                if (aNumeric && bNumeric) {
+                    return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0;
+                }
+                else if (aNumeric && !bNumeric) {
                     return 1;
                 }
-                if (a < b) {
+                else if (!aNumeric && bNumeric) {
                     return -1;
                 }
-                return 0;
+                return a > b ? 1 : a < b ? -1 : 0;
             };
             break;
     }
