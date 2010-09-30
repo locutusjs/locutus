@@ -6,6 +6,7 @@ function soundex (str) {
     // +   bugfixed by: Onno Marsman
     // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Rafał Kukawski (http://blog.kukawski.pl)
     // +   original by: Arnout Kazemier (http://www.3rd-Eden.com)
     // *     example 1: soundex('Kevin');
     // *     returns 1: 'K150'
@@ -15,7 +16,7 @@ function soundex (str) {
     // *     returns 3: 'E460'
 
     var upStr = (str+'').toUpperCase();
-    var sdx = [upStr[0],0,0,0],
+    var sdx = [upStr.charAt(0),0,0,0],
         m = {BFPV: 1, CGJKQSXZ: 2, DT: 3, L: 4, MN: 5, R: 6 },
         k = ['BFPV', 'CGJKQSXZ', 'DT', 'L', 'MN', 'R'],
         i = 1, j = 0, s = 0, key, code,
@@ -23,11 +24,11 @@ function soundex (str) {
 
     for (; i < l; i++){
         j = k.length;
-        while (s != 3 && j--){
+        while (s !== 3 && j--){
             key = k[j];
-            if (key.indexOf(upStr[i]) !== -1) {
+            if (key.indexOf(upStr.charAt(i)) !== -1) {
                 code = m[key];
-                if (code != sdx[s]){
+                if (code !== sdx[s]){
                     sdx[++s] = code;
                 }
             }
