@@ -15,25 +15,22 @@ function soundex (str) {
     // *     example 3: soundex('Euler');
     // *     returns 3: 'E460'
 
-    var upStr = (str+'').toUpperCase();
-    var sdx = [upStr.charAt(0),0,0,0],
-        m = {BFPV: 1, CGJKQSXZ: 2, DT: 3, L: 4, MN: 5, R: 6 },
-        k = ['BFPV', 'CGJKQSXZ', 'DT', 'L', 'MN', 'R'],
-        i = 1, j = 0, s = 0, key, code,
-        l = upStr.length;
+    str = (str + '').toUpperCase();
+    var sdx = [str.charAt(0), 0, 0 , 0],
+        k = ['BFPV', 'CGJKQSXZ', 'DT', 'L', 'MN', 'R'], kl = k.length,
+        i = 1, j = 0, s = 0, c, p;
 
-    for (; i < l; i++){
-        j = k.length;
-        while (s !== 3 && j--){
-            key = k[j];
-            if (key.indexOf(upStr.charAt(i)) !== -1) {
-                code = m[key];
-                if (code !== sdx[s]){
-                    sdx[++s] = code;
+    while ((c = str.charAt(i++)) && s < 3 ){
+	j = 0;
+        while (p = k[j++]){
+            if (p.indexOf(c) !== -1) {
+                if (j !== sdx[s]){
+                    sdx[++s] = j;
                 }
+                break;
             }
         }
     }
-
     return sdx.join('');
 }
+
