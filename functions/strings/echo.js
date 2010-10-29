@@ -10,6 +10,7 @@ function echo () {
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: EdorFaus
     // %        note 1: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),
     // %        note 1: we wouldn't need any such long code (even most of the code below). See
     // %        note 1: link below for a cross-browser implementation in JavaScript. HTML5 might
@@ -22,20 +23,18 @@ function echo () {
     // *     example 1: echo('<div><p>abc</p><p>abc</p></div>');
     // *     returns 1: undefined
 
-    var arg = '', argc = arguments.length, argv = arguments, i = 0;
-    var win = this.window;
-    var d = win.document;
-    var ns_xhtml = 'http://www.w3.org/1999/xhtml';
-    var ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
-
-    var holder;
+    var arg = '', argc = arguments.length, argv = arguments, i = 0, holder,
+        win = this.window,
+        d = win.document,
+        ns_xhtml = 'http://www.w3.org/1999/xhtml',
+        ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
 
     var stringToDOM = function (str, parent, ns, container) {
         var extraNSs = '';
         if (ns === ns_xul) {
-            extraNSs = ' xmlns:html="'+ns_xhtml+'"';
+            extraNSs = ' xmlns:html="' + ns_xhtml + '"';
         }
-        var stringContainer = '<'+container+' xmlns="'+ns+'"'+extraNSs+'>'+str+'</'+container+'>';
+        var stringContainer = '<' + container + ' xmlns="' + ns + '"' + extraNSs + '>' + str + '</'+container+'>';
         if (win.DOMImplementationLS &&
             win.DOMImplementationLS.createLSInput &&
             win.DOMImplementationLS.createLSParser) { // Follows the DOM 3 Load and Save standard, but not
@@ -52,8 +51,8 @@ function echo () {
             // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
             try {
                 var fc = new DOMParser().parseFromString(stringContainer, 'text/xml');
-                if (!fc || !fc.documentElement ||
-                        fc.documentElement.localName !== 'parsererror' ||
+                if (fc && fc.documentElement &&
+                        fc.documentElement.localName !== 'parsererror' &&
                         fc.documentElement.namespaceURI !== 'http://www.mozilla.org/newlayout/xml/parsererror.xml') {
                     return fc.documentElement.firstChild;
                 }
