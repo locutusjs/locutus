@@ -35,22 +35,22 @@ function echo () {
             extraNSs = ' xmlns:html="' + ns_xhtml + '"';
         }
         var stringContainer = '<' + container + ' xmlns="' + ns + '"' + extraNSs + '>' + str + '</'+container+'>';
-        if (win.DOMImplementationLS &&
-            win.DOMImplementationLS.createLSInput &&
-            win.DOMImplementationLS.createLSParser) { // Follows the DOM 3 Load and Save standard, but not
+        var dils = win.DOMImplementationLS, dp = win.DOMParser, ax = win.ActiveXObject;
+        if (dils && dils.createLSInput && dils.createLSParser) {
+            // Follows the DOM 3 Load and Save standard, but not
             // implemented in browsers at present; HTML5 is to standardize on innerHTML, but not for XML (though
             // possibly will also standardize with DOMParser); in the meantime, to ensure fullest browser support, could
             // attach http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.js (see http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.xhtml for a simple test file)
-            var lsInput = DOMImplementationLS.createLSInput();
+            var lsInput = dils.createLSInput();
             // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
             lsInput.stringData = stringContainer;
-            var lsParser = DOMImplementationLS.createLSParser(1, null); // synchronous, no schema type
+            var lsParser = dils.createLSParser(1, null); // synchronous, no schema type
             return lsParser.parse(lsInput).firstChild;
         }
-        else if (win.DOMParser) {
+        else if (dp) {
             // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
             try {
-                var fc = new DOMParser().parseFromString(stringContainer, 'text/xml');
+                var fc = new dp().parseFromString(stringContainer, 'text/xml');
                 if (fc && fc.documentElement &&
                         fc.documentElement.localName !== 'parsererror' &&
                         fc.documentElement.namespaceURI !== 'http://www.mozilla.org/newlayout/xml/parsererror.xml') {
@@ -62,8 +62,8 @@ function echo () {
                 // If there's a parsing error, we just continue on
             }
         }
-        else if (win.ActiveXObject) { // We don't bother with a holder in Explorer as it doesn't support namespaces
-            var axo = new ActiveXObject('MSXML2.DOMDocument');
+        else if (ax) { // We don't bother with a holder in Explorer as it doesn't support namespaces
+            var axo = new ax('MSXML2.DOMDocument');
             axo.loadXML(str);
             return axo.documentElement;
         }
@@ -119,23 +119,25 @@ function echo () {
         }
     };
 
+    var replacer = function (s, m1, m2) {
+        // We assume for now that embedded variables do not have dollar sign; to add a dollar sign, you currently must use {$$var} (We might change this, however.)
+        // Doesn't cover all cases yet: see http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
+        if (m1 !== '\\') {
+            return m1 + eval(m2);
+        }
+        else {
+            return s;
+        }
+    };
+
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
         if (this.php_js && this.php_js.ini && this.php_js.ini['phpjs.echo_embedded_vars']) {
-            arg = arg.replace(/(.?)\{\$(.*?)\}/g, function (s, m1, m2) {
-                // We assume for now that embedded variables do not have dollar sign; to add a dollar sign, you currently must use {$$var} (We might change this, however.)
-                // Doesn't cover all cases yet: see http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
-                if (m1 !== '\\') {
-                    return m1+eval(m2);
-                }
-                else {
-                    return s;
-                }
-            });
+            arg = arg.replace(/(.?)\{\$(.*?)\}/g, replacer);
         }
         if (d.appendChild) {
             if (d.body) {
-                if (win.navigator.appName == 'Microsoft Internet Explorer') { // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
+                if (win.navigator.appName === 'Microsoft Internet Explorer') { // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
                     d.body.appendChild(stringToDOM(ieFix(arg)));
                 }
                 else {
