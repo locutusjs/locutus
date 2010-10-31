@@ -1,3 +1,0 @@
-function hi () {
-  alert('hello');
-}
