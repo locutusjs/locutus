@@ -11,6 +11,7 @@ function serialize (mixed_value) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net/)
     // +   improved by: Le Torbi (http://www.letorbi.de/)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net/)
+    // +   bugfixed by: Ben (http://benblume.co.uk/)
     // -    depends on: utf8_encode
     // %          note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
@@ -22,7 +23,7 @@ function serialize (mixed_value) {
 	var _utf8Size = function (str) {
 	    var size = 0, i = 0, l = str.length, code = '';
 	    for (i = 0; i < l; i++) {
-	        code = str[i].charCodeAt(0);
+	        code = str.charCodeAt(i);
 	        if (code < 0x0080) {
 	            size += 1;
 	        } else if (code < 0x0800) {
