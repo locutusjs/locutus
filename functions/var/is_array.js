@@ -7,9 +7,11 @@ function is_array (mixed_var) {
     // +   improved by: Onno Marsman
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +   improved by: Nathan
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: In php.js, javascript objects are like php associative arrays, thus JavaScript objects will also
-    // %        note 1: return true  in this function (except for objects which inherit properties, being thus used as objects),
-    // %        note 1: unless you do ini_set('phpjs.objectsAsArrays', true), in which case only genuine JavaScript arrays
+    // %        note 1: return true in this function (except for objects which inherit properties, being thus used as objects),
+    // %        note 1: unless you do ini_set('phpjs.objectsAsArrays', 0), in which case only genuine JavaScript arrays
     // %        note 1: will return true
     // *     example 1: is_array(['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: true
@@ -20,16 +22,22 @@ function is_array (mixed_var) {
     // *     example 4: is_array(function tmp_a(){this.name = 'Kevin'});
     // *     returns 4: false
 
-    var key = '';
-    var getFuncName = function (fn) {
-        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-        if (!name) {
-            return '(Anonymous)';
-        }
-        return name[1];
-    };
+    var _getFuncName = function (fn) {
+            var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+            if (!name) {
+                return '(Anonymous)';
+            }
+            return name[1];
+        },
+        _isArray = function (mixed_var) {
+            return Object.prototype.toString.call(mixed_var) === '[object Array]';
+            // Other approaches:
+            // && mixed_var.hasOwnProperty('length') && // Not non-enumerable because of being on parent class
+            // !mixed_var.propertyIsEnumerable('length') && // Since is own property, if not enumerable, it must be a built-in function
+            //   _getFuncName(mixed_var.constructor) !== 'String'; // exclude String(), but not another function returning String()
+        };
 
-    if (!mixed_var) {
+    if (!mixed_var || typeof mixed_var !== 'object') {
         return false;
     }
 
@@ -37,33 +45,19 @@ function is_array (mixed_var) {
     this.php_js = this.php_js || {};
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
+    var ini = this.php_js.ini['phpjs.objectsAsArrays'];
 
-    if (typeof mixed_var === 'object') {
-
-        if (this.php_js.ini['phpjs.objectsAsArrays'] &&  // Strict checking for being a JavaScript array (only check this way if call ini_set('phpjs.objectsAsArrays', 0) to disallow objects as arrays)
-            (
-            (this.php_js.ini['phpjs.objectsAsArrays'].local_value.toLowerCase &&
-                    this.php_js.ini['phpjs.objectsAsArrays'].local_value.toLowerCase() === 'off') ||
-                parseInt(this.php_js.ini['phpjs.objectsAsArrays'].local_value, 10) === 0)
-            ) {
-            return mixed_var.hasOwnProperty('length') && // Not non-enumerable because of being on parent class
-                            !mixed_var.propertyIsEnumerable('length') && // Since is own property, if not enumerable, it must be a built-in function
-                                getFuncName(mixed_var.constructor) !== 'String'; // exclude String()
-        }
-
-        if (mixed_var.hasOwnProperty) {
-            for (key in mixed_var) {
-                // Checks whether the object has the specified property
-                // if not, we figure it's not an object in the sense of a php-associative-array.
-                if (false === mixed_var.hasOwnProperty(key)) {
-                    return false;
-                }
-            }
-        }
-
-        // Read discussion at: http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_is_array/
-        return true;
-    }
-
-    return false;
+    return _isArray(mixed_var) ||
+        // Allow returning true unless user has called
+        // ini_set('phpjs.objectsAsArrays', 0) to disallow objects as arrays
+        (!ini ||
+            ( // if it's not set to 0 and it's not 'off', check for objects as arrays
+                (parseInt(ini.local_value, 10) !== 0 &&
+                    (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !== 'off'))
+            )
+        ) &&
+        (
+            Object.prototype.toString.call(mixed_var) === '[object Object]' &&
+            _getFuncName(mixed_var.constructor) === 'Object' // Most likely a literal and intended as assoc. array
+        );
 }
