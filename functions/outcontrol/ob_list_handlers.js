@@ -13,7 +13,7 @@ function ob_list_handlers () {
         return name[1];
     };
 
-    this.php_js = this.phpjs || {};
+    this.php_js = this.php_js || {};
     var phpjs = this.php_js, ini = phpjs.ini;
     
     if (!phpjs.obs || !phpjs.obs.length) {

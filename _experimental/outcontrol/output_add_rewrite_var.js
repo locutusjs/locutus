@@ -8,7 +8,7 @@ function output_add_rewrite_var (name, value) {
 
     var handlers = [], handler = '', startAgain = true;
     
-    this.php_js = this.phpjs || {};
+    this.php_js = this.php_js || {};
     var phpjs = this.php_js, obs = phpjs.obs;
 
     handlers = this.ob_list_handlers();

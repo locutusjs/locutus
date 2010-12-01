@@ -4,7 +4,7 @@ function ob_get_contents () {
     // *     example 1: ob_get_contents();
     // *     returns 1: 'some buffer contents'
 
-    this.php_js = this.phpjs || {};
+    this.php_js = this.php_js || {};
     var phpjs = this.php_js, ini = phpjs.ini, obs = phpjs.obs;
     if (!obs || !obs.length) {
         return (ini && ini.output_buffering &&

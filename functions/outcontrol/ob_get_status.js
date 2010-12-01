@@ -13,7 +13,7 @@ function ob_get_status (full_status) {
         return name[1];
     };
 
-    this.php_js = this.phpjs || {};
+    this.php_js = this.php_js || {};
     var phpjs = this.php_js, ini = phpjs.ini, obs = phpjs.obs;
 
     if (!obs || !obs.length) {

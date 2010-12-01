@@ -1,6 +1,7 @@
 function ob_start (output_callback, chunk_size, erase) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
+    // %        note 1: chunk_size and erase arguments are not presently supported
     // *     example 1: ob_start('someCallback', 4096, true);
     // *     returns 1: true
     
@@ -8,8 +9,8 @@ function ob_start (output_callback, chunk_size, erase) {
     erase = !(erase === false); // true is default
     chunk_size = chunk_size === 1 ? 4096 : (chunk_size || 0);
 
-    this.php_js = this.phpjs || {};
-    this.php_js.obs = phpjs.obs || []; // Array for nestable buffers
+    this.php_js = this.php_js || {};
+    this.php_js.obs = this.php_js.obs || []; // Array for nestable buffers
     var phpjs = this.php_js, ini = phpjs.ini, obs = phpjs.obs;
     
     if (!obs && 

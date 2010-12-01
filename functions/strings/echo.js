@@ -11,6 +11,7 @@ function echo () {
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: EdorFaus
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),
     // %        note 1: we wouldn't need any such long code (even most of the code below). See
     // %        note 1: link below for a cross-browser implementation in JavaScript. HTML5 might
@@ -130,11 +131,19 @@ function echo () {
         }
     };
 
+    this.php_js = this.php_js || {};
+    var phpjs = this.php_js, ini = phpjs.ini, obs = phpjs.obs;
     for (i = 0; i < argc; i++ ) {
         arg = argv[i];
-        if (this.php_js && this.php_js.ini && this.php_js.ini['phpjs.echo_embedded_vars']) {
-            arg = arg.replace(/(.?)\{\$(.*?)\}/g, replacer);
+        if (ini && ini['phpjs.echo_embedded_vars']) {
+            arg = arg.replace(/(.?)\{?\$(\w*?\}|\w*)/g, replacer);
         }
+
+        if (!phpjs.flushing && obs && obs.length) { // If flushing we output, but otherwise presence of a buffer means caching output
+            obs[obs.length-1].buffer += arg;
+            continue;
+        }
+
         if (d.appendChild) {
             if (d.body) {
                 if (win.navigator.appName === 'Microsoft Internet Explorer') { // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
