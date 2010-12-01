@@ -3,6 +3,8 @@ function ob_end_flush () {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: ob_end_flush();
     // *     returns 1: true
+    
+    var PHP_OUTPUT_HANDLER_START = 1, PHP_OUTPUT_HANDLER_END = 4;
 
     this.php_js = this.phpjs || {};
     var obs = this.php_js.obs;
@@ -10,9 +12,17 @@ function ob_end_flush () {
     if (!obs || !obs.length) {
         return false;
     }
-    var contents = obs[obs.length-1].buffer;
+    var flags = 0, ob = obs[obs.length-1], buffer = ob.buffer;
+    if (obs.callback) {
+        if (!ob.status) {
+            flags |= PHP_OUTPUT_HANDLER_START;
+        }
+        flags |= PHP_OUTPUT_HANDLER_END;
+        ob.status = 2;
+        buffer = obs.callback(buffer, flags);
+    }
     obs.pop();
-    this.echo(contents);
+    this.echo(buffer);
 
     return true;
 }

@@ -33,7 +33,7 @@ function ob_start (output_callback, chunk_size, erase) {
             return false;
         }
     }
-    bufferObj = {erase:erase, chunk_size:chunk_size, callback:output_callback, type:1,status:0, buffer:''};
+    bufferObj = {erase:erase, chunk_size:chunk_size, callback:output_callback, type:1, status:0, buffer:''};
 
     // Fix: When else do type and status vary (see also below for non-full-status)
     // type: PHP_OUTPUT_HANDLER_INTERNAL (0) or PHP_OUTPUT_HANDLER_USER (1)
