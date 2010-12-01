@@ -4,10 +4,12 @@ function ob_get_clean () {
     // *     example 1: ob_get_clean();
     // *     returns 1: 'some buffer contents'
     var buffer = '';
-    if (!this.php_js || !this.php_js.obs || !this.php_js.obs.length) {
+    this.php_js = this.phpjs || {};
+    var phpjs = this.php_js, obs = phpjs.obs;
+    if (!obs || !obs.length) {
         return false;
     }
-    buffer = this.php_js.obs[this.php_js.obs.length-1].buffer;
-    this.php_js.obs.pop();
+    buffer = obs[obs.length-1].buffer;
+    obs.pop();
     return buffer;
 }

@@ -4,7 +4,7 @@ function ob_list_handlers () {
     // *     example 1: ob_list_handlers();
     // *     returns 1: ['default output handler', 'myOwnHandler']
 
-    var i=0, arr=[], name='';
+    var i = 0, arr = [], name='', cbname = '';
     var getFuncName = function (fn) {
         var name=(/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
         if (!name) {
@@ -12,15 +12,20 @@ function ob_list_handlers () {
         }
         return name[1];
     };
-    var cbname=getFuncName(this.php_js.obs[i].callback);
+
+    this.php_js = this.phpjs || {};
+    var phpjs = this.php_js, ini = phpjs.ini;
     
-    if (!this.php_js || !this.php_js.obs || !this.php_js.obs.length) {
-        if (this.php_js.ini && this.php_js.ini['output_buffering'] && (typeof this.php_js.ini['output_buffering'].local_value !== 'string' || this.php_js.ini['output_buffering'].local_value.toLowerCase() !== 'off')) {
+    if (!phpjs.obs || !phpjs.obs.length) {
+        if (ini && ini['output_buffering'] && 
+            (typeof ini['output_buffering'].local_value !== 'string' ||
+            ini['output_buffering'].local_value.toLowerCase() !== 'off')) {
             return ['default output handler']; // PHP doesn't return output_handler ini, even if it is set
         }
         return arr;
     }
-    for (i=0; i < this.php_js.obs.length; i++) {
+    for (i=0; i < phpjs.obs.length; i++) {
+        cbname = getFuncName(phpjs.obs[i].callback);
         name = cbname === '' ? 'default output handler' : cbname === 'URLRewriter' ? 'URL-Rewriter' : cbname;
         arr.push(name);
     }

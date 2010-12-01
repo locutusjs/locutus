@@ -4,10 +4,13 @@ function flush () {
     // *     example 1: flush();
     // *     returns 1: undefined
 
+    this.php_js = this.phpjs || {};
+    var phpjs = this.php_js, obs = phpjs.obs;
+
     // Not distinct from ob_flush() in JavaScript, since not sending to a browser
-    if (!this.php_js || !this.php_js.obs || !this.php_js.obs.length) {
+    if (!obs || !obs.length) {
         return;
     }
-    this.echo(this.php_js.obs[this.php_js.obs.length-1].buffer);
-    this.php_js.obs[this.php_js.obs.length-1].buffer = '';
+    this.echo(obs[obs.length-1].buffer);
+    obs[obs.length-1].buffer = '';
 }

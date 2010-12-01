@@ -6,7 +6,10 @@ function output_add_rewrite_var (name, value) {
     // *     example 1: output_add_rewrite_var('var', 'value');
     // *     returns 1: true
 
-    var handlers = [], handler='', startAgain=true;
+    var handlers = [], handler = '', startAgain = true;
+    
+    this.php_js = this.phpjs || {};
+    var phpjs = this.php_js, obs = phpjs.obs;
 
     handlers = this.ob_list_handlers();
 
@@ -20,10 +23,10 @@ function output_add_rewrite_var (name, value) {
         this.ob_start('URL-Rewriter', 0, true);
     }
 
-    if (!this.php_js.obs[this.php_js.obs.length-1].vars) {
-        this.php_js.obs[this.php_js.obs.length-1].vars = {};
+    if (!obs[obs.length-1].vars) {
+        obs[obs.length-1].vars = {};
     }
-    this.php_js.obs[this.php_js.obs.length-1].vars[name] = value;
+    obs[obs.length-1].vars[name] = value;
 
     return true;
 }

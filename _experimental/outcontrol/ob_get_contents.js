@@ -4,14 +4,12 @@ function ob_get_contents () {
     // *     example 1: ob_get_contents();
     // *     returns 1: 'some buffer contents'
 
-    var phpjs = this.php_js;
-    if (!phpjs || !phpjs.obs || !phpjs.obs.length) {
-        if (phpjs.ini && phpjs.ini.output_buffering &&
-            (typeof phpjs.ini.output_buffering.local_value !== 'string' ||
-                phpjs.ini.output_buffering.local_value.toLowerCase() !== 'off')) {
-            return ''; // If output was already buffered, it would be available in phpjs.obs
-        }
-        return false;
+    this.php_js = this.phpjs || {};
+    var phpjs = this.php_js, ini = phpjs.ini, obs = phpjs.obs;
+    if (!obs || !obs.length) {
+        return (ini && ini.output_buffering &&
+            (typeof ini.output_buffering.local_value !== 'string' ||
+                ini.output_buffering.local_value.toLowerCase() !== 'off')) ? '' : false; // If output was already buffered, it would be available in obs
     }
-    return phpjs.obs[phpjs.obs.length-1].buffer; // Retrieve most recently added buffer contents
+    return obs[obs.length-1].buffer; // Retrieve most recently added buffer contents
 }

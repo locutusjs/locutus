@@ -8,18 +8,19 @@ function ob_start (output_callback, chunk_size, erase) {
     erase = !(erase === false); // true is default
     chunk_size = chunk_size === 1 ? 4096 : (chunk_size || 0);
 
-    this.php_js = phpjs || {};
-    var phpjs = this.php_js;
-    if (!phpjs.obs && 
-            (phpjs.ini && phpjs.ini.output_buffering &&
-                (typeof phpjs.ini.output_buffering.local_value !== 'string' ||
-                    phpjs.ini.output_buffering.local_value.toLowerCase() !== 'off')
+    this.php_js = this.phpjs || {};
+    this.php_js.obs = phpjs.obs || []; // Array for nestable buffers
+    var phpjs = this.php_js, ini = phpjs.ini, obs = phpjs.obs;
+    
+    if (!obs && 
+            (ini && ini.output_buffering &&
+                (typeof ini.output_buffering.local_value !== 'string' ||
+                    ini.output_buffering.local_value.toLowerCase() !== 'off')
             )
         ) {
         extra = true; // We'll run another ob_start() below (recursion prevented)
     }
 
-    this.php_js.obs = phpjs.obs || []; // Array for nestable buffers
     if (typeof output_callback === 'string') {
         if (output_callback === 'URL-Rewriter') { // Any others?
             internalType = true;
@@ -42,7 +43,7 @@ function ob_start (output_callback, chunk_size, erase) {
         bufferObj.type = 0;
     }
 
-    this.php_js.obs.push(bufferObj);
+    obs.push(bufferObj);
 
     if (extra) {
         return this.ob_start(); // We have to start buffering ourselves if the preference is set (and no buffering on yet)

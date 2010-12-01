@@ -3,8 +3,12 @@ function ob_clean () {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: ob_clean();
     // *     returns 1: undefined
-    if (!this.php_js || !this.php_js.obs || !this.php_js.obs.length) {
+
+    this.php_js = this.phpjs || {};
+    var phpjs = this.php_js, obs = phpjs.obs;
+
+    if (!obs || !obs.length) {
         return;
     }
-    this.php_js.obs[this.php_js.obs.length-1].buffer = '';
+    obs[obs.length-1].buffer = '';
 }

@@ -4,11 +4,13 @@ function ob_get_level () {
     // *     example 1: ob_get_level();
     // *     returns 1: 1
 
-    if (!this.php_js || !this.php_js.obs || !this.php_js.obs.length) {
-        if (this.php_js.ini && this.php_js.ini['output_buffering'] && (typeof this.php_js.ini['output_buffering'].local_value !== 'string' || this.php_js.ini['output_buffering'].local_value.toLowerCase() !== 'off')) {
-            return 1;
-        }
-        return 0;
+    this.php_js = this.phpjs || {};
+    var phpjs = this.php_js, ini = phpjs.ini, obs = phpjs.obs;
+    
+    if (!obs || !obs.length) {
+        return (ini && ini['output_buffering'] &&
+            (typeof ini['output_buffering'].local_value !== 'string' ||
+            ini['output_buffering'].local_value.toLowerCase() !== 'off')) ? 1 : 0;
     }
-    return this.php_js.obs.length;
+    return obs.length;
 }

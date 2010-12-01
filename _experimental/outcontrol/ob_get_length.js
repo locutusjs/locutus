@@ -4,11 +4,13 @@ function ob_get_length () {
     // *     example 1: ob_get_length();
     // *     returns 1: 155
 
-    if (!this.php_js || !this.php_js.obs || !this.php_js.obs.length) {
-        if (this.php_js.ini && this.php_js.ini['output_buffering'] && (typeof this.php_js.ini['output_buffering'].local_value !== 'string' || this.php_js.ini['output_buffering'].local_value.toLowerCase() !== 'off')) {
-            return 0; // If output was already buffered, it would be available in this.php_js.obs
-        }
-        return false;
+    this.php_js = this.phpjs || {};
+    var phpjs = this.php_js, ini = phpjs.ini, obs = phpjs.obs;
+
+    if (!obs || !obs.length) {
+        return (ini && ini['output_buffering'] &&
+            (typeof ini['output_buffering'].local_value !== 'string' ||
+            ini['output_buffering'].local_value.toLowerCase() !== 'off')) ? 0 : false; // If output was already buffered, it would be available in obs
     }
-    return this.php_js.obs[this.php_js.obs.length-1].buffer.length; // Retrieve length of most recently added buffer contents
+    return obs[obs.length-1].buffer.length; // Retrieve length of most recently added buffer contents
 }

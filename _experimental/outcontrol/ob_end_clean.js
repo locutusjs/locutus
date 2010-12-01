@@ -3,9 +3,13 @@ function ob_end_clean () {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: ob_end_clean();
     // *     returns 1: true
-    if (!this.php_js || !this.php_js.obs || !this.php_js.obs.length) {
+
+    this.php_js = this.phpjs || {};
+    var phpjs = this.php_js, obs = phpjs.obs;
+
+    if (!obs || !obs.length) {
         return false;
     }
-    this.php_js.obs.pop();
+    obs.pop();
     return true;
 }

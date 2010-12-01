@@ -3,12 +3,15 @@ function ob_end_flush () {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: ob_end_flush();
     // *     returns 1: true
-    
-    if (!this.php_js || !this.php_js.obs || !this.php_js.obs.length) {
+
+    this.php_js = this.phpjs || {};
+    var obs = this.php_js.obs;
+
+    if (!obs || !obs.length) {
         return false;
     }
-    var contents = this.php_js.obs[this.php_js.obs.length-1].buffer;
-    this.php_js.obs.pop();
+    var contents = obs[obs.length-1].buffer;
+    obs.pop();
     this.echo(contents);
 
     return true;
