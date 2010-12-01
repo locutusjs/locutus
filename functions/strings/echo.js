@@ -24,6 +24,8 @@ function echo () {
     // *     example 1: echo('<div><p>abc</p><p>abc</p></div>');
     // *     returns 1: undefined
 
+    // Fix: This function really needs to allow non-XHTML input (unless in true XHTML mode) as in jQuery
+
     var arg = '', argc = arguments.length, argv = arguments, i = 0, holder,
         win = this.window,
         d = win.document,
