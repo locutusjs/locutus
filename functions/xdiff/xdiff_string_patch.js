@@ -44,8 +44,9 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
                 if (s.lastIndex > lastLastIndex) {
                     output.push(str.slice(lastLastIndex, match.index));
 
-                    if (match.length > 1 && match.index < str.length)
+                    if (match.length > 1 && match.index < str.length) {
                         Array.prototype.push.apply(output, match.slice(1));
+                    }
 
                     lastLength = match[0].length;
                     lastLastIndex = s.lastIndex;
@@ -54,13 +55,15 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
                         break;
                 }
 
-                if (s.lastIndex === match.index)
+                if (s.lastIndex === match.index) {
                     s.lastIndex++;
+                }
             }
 
             if (lastLastIndex === str.length) {
-                if (!s.test("") || lastLength)
+                if (!s.test("") || lastLength) {
                     output.push("");
+                }
             } else {
                 output.push(str.slice(lastLastIndex));
             }
