@@ -1,4 +1,11 @@
 function session_unset () {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Louis Stowasser
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // -    depends on: urlencode
+    // *     example 1: 
+    // *     returns 1: 
+
     var t = this;
     //* Bundle all session destroying functions (they all do the same thing)
     //* Resets the global $_SESSION and sets the cookie to null
@@ -16,9 +23,9 @@ function session_unset () {
         }
         
         return secure && r.push('secure'), document.cookie = r.join(";"), true;
-    }
+    };
 
     t.$_SESSION = null;
 	// t.setcookie('JSSESSID', null);
-    t.session_set_cookie('JSSESSID', null);
+    return session_set_cookie('JSSESSID', null);
 }

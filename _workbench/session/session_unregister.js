@@ -13,14 +13,21 @@ function session_unregister (name) {
 }
 
 function session_unregister () {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Louis Stowasser
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // -    depends on: urlencode
+    // *     example 1: 
+    // *     returns 1: 
+
     //* Bundle all session destroying functions (they all do the same thing)
     //* Resets the global $_SESSION and sets the cookie to null
-    function session_set_cookie (name, value, expires, path, domain, secure) {
+    var session_set_cookie = function (name, value, expires, path, domain, secure) {
         if (expires) {
             expires = (new Date((new Date).getTime() + expires * 3600)).toGMTString();
         }
      
-        var r = [name + '=' + w.urlencode(value)], s = {}, i = '';
+        var r = [name + '=' + t.urlencode(value)], s = {}, i = '';
         s = {expires: expires, path: path, domain: domain};
         for (var i in s) {
             if (s.hasOwnProperty(i)) { // Exclude items on Object.prototype
@@ -28,11 +35,12 @@ function session_unregister () {
             }
         }
         
-        return secure && r.push('secure'), w.document.cookie = r.join(";"), true;
-    }
+        return secure && r.push('secure'), document.cookie = r.join(";"), true;
+    };
+
 
     var t = this;
     t.$_SESSION = null;
 	// t.setcookie('JSSESSID', null);
-    t.session_set_cookie('JSSESSID', null);
+    return session_set_cookie('JSSESSID', null);
 }

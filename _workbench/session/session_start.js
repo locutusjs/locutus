@@ -1,4 +1,10 @@
 function session_start() {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Louis Stowasser
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // *     example 1: 
+    // *     returns 1: 
+
 	/**
 	* Check for a PHPSESSID. If found unpack it from the cookie
 	* If not found, create it then pack everything in $_SESSION 
@@ -13,45 +19,47 @@ function session_start() {
 }
 
  /**
+
     * Check for a PHPSESSID. If found unpack it from the cookie
     * If not found, create it then pack everything in $_SESSION 
     * into a cookie.
     */
 function session_start () {
-    function session_set_cookie (name, value, expires, path, domain, secure) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Louis Stowasser
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // -    depends on: unserialize
+    // -    depends on: serialize
+    // -    depends on: urlencode
+    // -    depends on: getcookie
+    // *     example 1: 
+    // *     returns 1: 
+
+    //* Bundle all session destroying functions (they all do the same thing)
+    //* Resets the global $_SESSION and sets the cookie to null
+    var t = this;
+    var session_set_cookie = function (name, value, expires, path, domain, secure) {
         if (expires) {
             expires = (new Date((new Date).getTime() + expires * 3600)).toGMTString();
         }
      
-        var r = [name + '=' + w.urlencode(value)], s = {}, i = '';
+        var r = [name + '=' + t.urlencode(value)], s = {}, i = '';
         s = {expires: expires, path: path, domain: domain};
-        for (i in s) {
+        for (var i in s) {
             if (s.hasOwnProperty(i)) { // Exclude items on Object.prototype
                 s[i] && r.push(i + '=' + s[i]);
             }
         }
         
-        return secure && r.push('secure'), w.document.cookie = r.join(";"), true;
-    }
+        return secure && r.push('secure'), document.cookie = r.join(";"), true;
+    };
 
-    var sid = 'JSSESSID', t = this;
+    var sid = 'JSSESSID', this.php_js = this.php_js || {}, pj = this.php_js;
     var cookie = this.getcookie(sid);
     if(!cookie || cookie == "null") {
         t.$_SESSION = {};
-        t.session_set_cookie(sid, t.serialize(t.$_SESSION), lifetime, path, domain, secure);
-    } else {
-        t.$_SESSION = t.unserialize(t.urldecode(t.getcookie(sid)));
+        return session_set_cookie(sid, t.serialize(t.$_SESSION), pj.lifetime, pj.path, pj.domain, pj.secure);
     }
-}
-
-
-
-function getcookie(name) {
-	var cookies = document.cookie.split(';'),i=0,l=cookies.length,
-		current;
-	for(;i<l;i++) {
-		current = cookies[i].split('=');
-		if(current[0] === name) return current[1];
-	}
-	return undefined;
+    t.$_SESSION = t.unserialize(t.urldecode(t.getcookie(sid)));
+    return true;
 }

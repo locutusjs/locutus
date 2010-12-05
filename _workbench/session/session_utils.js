@@ -1,3 +1,4 @@
+// This file is only for assisting session testing; it is NOT a php.js function
 /**
 * Get value of a cookie
 */
