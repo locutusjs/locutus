@@ -8,6 +8,11 @@
 <script type="text/javascript" src="php.default.min.js"></script>
 <script type="text/javascript" src="session_utils.js"></script>
 
+<script type="text/javascript" src="session_start.js"></script>
+<script type="text/javascript" src="session_encode.js"></script>
+<script type="text/javascript" src="session_destroy.js"></script>
+<script type="text/javascript" src="$_SESSION.js"></script>
+
 
 <script>
 $(document).ready(function(){
@@ -37,17 +42,17 @@ $(document).ready(function(){
 	test('Session Destroy/Unregister/Unset',function() {
 		session_destroy();
 		equals($_SESSION, null, '$_SESSION empty');
+        // Add back for sake of next page
 		session_start();
 		$_SESSION('test', 'data');
 		$_SESSION('coheed', 'yotbr');
-		session_update();
     });
 });
 </script>
-  
+
 </head>
 <body>
-  <h1 id="qunit-header">QUnit example</h1>
+ <h1 id="qunit-header">QUnit example</h1>
  <h2 id="qunit-banner"></h2>
  <h2 id="qunit-userAgent"></h2>
  <ol id="qunit-tests"></ol>
