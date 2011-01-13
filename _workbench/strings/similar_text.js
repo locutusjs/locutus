@@ -1,11 +1,17 @@
 function similar_text (first, second) {
-    /*
-     * This is a direct port from PHP source code with a few modifications. May be buggy.
-     * This function still needs to be checked and unit tested.
-     * Other goals are to switch from recursive to iterative approach
-     *
-     * Original by: Rafał Kukawski
-     */
+    // http://kevin.vanzonneveld.net
+    // +   original by: Rafał Kukawski (http://blog.kukawski.pl)
+    // *     example 1: similar_text('Hello World!', 'Hello phpjs!');
+    // *     returns 1: 7
+    // *     example 2: similar_text('Hello World!', null);
+    // *     returns 2: 0
+    
+    if (first === null || second === null || typeof first === "undefined" || typeof second === "undefined") {
+        return 0;
+    }
+    
+    first += ''; second += '';
+    
     var pos1 = 0, pos2 = 0, max = 0,
         firstLength = first.length, secondLength = second.length,
         p, q, l, sum;
