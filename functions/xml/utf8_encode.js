@@ -13,9 +13,9 @@ function utf8_encode ( argString ) {
 
     var string = (argString+''); // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
 
-    var utftext = "";
-    var start, end;
-    var stringl = 0;
+    var utftext = "",
+        start, end,
+        stringl = 0;
 
     start = end = 0;
     stringl = string.length;
@@ -25,14 +25,16 @@ function utf8_encode ( argString ) {
 
         if (c1 < 128) {
             end++;
-        } else if (c1 > 127 && c1 < 2048) {
+        }
+        else if (c1 > 127 && c1 < 2048) {
             enc = String.fromCharCode((c1 >> 6) | 192) + String.fromCharCode((c1 & 63) | 128);
-        } else {
+        }
+        else {
             enc = String.fromCharCode((c1 >> 12) | 224) + String.fromCharCode(((c1 >> 6) & 63) | 128) + String.fromCharCode((c1 & 63) | 128);
         }
         if (enc !== null) {
             if (end > start) {
-                utftext += string.substring(start, end);
+                utftext += string.slice(start, end);
             }
             utftext += enc;
             start = end = n+1;
@@ -40,7 +42,7 @@ function utf8_encode ( argString ) {
     }
 
     if (end > start) {
-        utftext += string.substring(start, string.length);
+        utftext += string.slice(start, stringl);
     }
 
     return utftext;

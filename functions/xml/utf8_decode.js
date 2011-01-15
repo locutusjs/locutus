@@ -20,13 +20,15 @@ function utf8_decode ( str_data ) {
         if (c1 < 128) {
             tmp_arr[ac++] = String.fromCharCode(c1);
             i++;
-        } else if ((c1 > 191) && (c1 < 224)) {
-            c2 = str_data.charCodeAt(i+1);
+        }
+        else if (c1 > 191 && c1 < 224) {
+            c2 = str_data.charCodeAt(i + 1);
             tmp_arr[ac++] = String.fromCharCode(((c1 & 31) << 6) | (c2 & 63));
             i += 2;
-        } else {
-            c2 = str_data.charCodeAt(i+1);
-            c3 = str_data.charCodeAt(i+2);
+        }
+        else {
+            c2 = str_data.charCodeAt(i + 1);
+            c3 = str_data.charCodeAt(i + 2);
             tmp_arr[ac++] = String.fromCharCode(((c1 & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
             i += 3;
         }
