@@ -17,6 +17,7 @@ function ord (string) {
             return code; // This is just a high surrogate with no following low surrogate, so we return its value;
                                     // we could also throw an error as it is not a complete character, but someone may want to know
         }
+        var low = str.charCodeAt(1);
         return ((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000;
     }
     if (0xDC00 <= code && code <= 0xDFFF) { // Low surrogate
