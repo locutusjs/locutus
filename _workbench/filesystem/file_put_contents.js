@@ -64,7 +64,7 @@ var file = Components.classes["@mozilla.org/file/directory_service;1"].
              getService(Components.interfaces.nsIProperties).
              get("TmpD", Components.interfaces.nsIFile);
 file.append("suggestedName.tmp");
-file.createUnique(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 0666);
+file.createUnique(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 438); // 0666
 //
 var file = Components.classes["@mozilla.org/file/directory_service;1"].
              getService(Components.interfaces.nsIProperties).
@@ -79,18 +79,18 @@ var file = Components.classes["@mozilla.org/file/directory_service;1"].
     }
 
     if( !file.exists() ) {   // if it doesn't exist, create  // || !file.isDirectory()
-        file.create(Ci.nsIFile.NORMAL_FILE_TYPE, 0777); // DIRECTORY_TYPE
+        file.create(Ci.nsIFile.NORMAL_FILE_TYPE, 511); // DIRECTORY_TYPE (0777)
     }
     else if (!append) {
         file.remove(false); // I needed to do this to avoid some apparent race condition (the effect of junk getting added to the end)
-        file.create(Ci.nsIFile.NORMAL_FILE_TYPE, 0777); // DIRECTORY_TYPE
+        file.create(Ci.nsIFile.NORMAL_FILE_TYPE, 511); // DIRECTORY_TYPE (0777)
     }
-    // file.createUnique(Ci.nsIFile.NORMAL_FILE_TYPE, 0664); // for temporary
+    // file.createUnique(Ci.nsIFile.NORMAL_FILE_TYPE, 436); // for temporary (0664)
 
     var foStream = Cc['@mozilla.org/network/file-output-stream;1'].createInstance(Ci.nsIFileOutputStream);
     var fileFlags = append ? (0x02 | 0x10) : 0x02; // use 0x02 | 0x10 to open file for appending.
-    foStream.init(file, fileFlags, 0664, 0);
-    // foStream.init(file, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
+    foStream.init(file, fileFlags, 436, 0); // 436 is 0664
+    // foStream.init(file, 0x02 | 0x08 | 0x20, 436, 0); // write, create, truncate (436 is 0664)
 
     var os = Cc['@mozilla.org/intl/converter-output-stream;1'].createInstance(Ci.nsIConverterOutputStream);
     // This assumes that foStream is the nsIOutputStream you want to write to
