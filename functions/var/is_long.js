@@ -6,6 +6,5 @@ function is_long (mixed_var) {
     // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
     // *     example 1: is_long(186.31);
     // *     returns 1: true
-
     return this.is_float(mixed_var);
 }

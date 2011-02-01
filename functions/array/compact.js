@@ -1,4 +1,4 @@
-function compact ( ) {
+function compact () {
     // http://kevin.vanzonneveld.net
     // +   original by: Waldo Malqui Silva
     // +    tweaked by: Jack
@@ -7,15 +7,17 @@ function compact ( ) {
     // *     example 1: var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';  
     // *     example 1: compact('var1', 'var2', 'var3');
     // *     returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}    
-    
-    var matrix = {}, that = this;
+    var matrix = {},
+        that = this;
 
-    var process = function ( value ) {
-        var i = 0, l = value.length, key_value = '';
+    var process = function (value) {
+        var i = 0,
+            l = value.length,
+            key_value = '';
         for (i = 0; i < l; i++) {
-            key_value = value [ i ];
+            key_value = value[i];
             if (key_value instanceof Array) {
-                process( key_value );
+                process(key_value);
             } else {
                 if (typeof that.window[key_value] !== 'undefined') {
                     matrix[key_value] = that.window[key_value];
@@ -24,7 +26,7 @@ function compact ( ) {
         }
         return true;
     };
-    
+
     process(arguments);
     return matrix;
 }

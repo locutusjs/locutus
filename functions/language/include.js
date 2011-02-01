@@ -12,19 +12,14 @@ function include (filename) {
     // %        note 3: Uses global: php_js to keep track of included files
     // *     example 1: include('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: 1
-
     var d = this.window.document;
     var isXML = d.documentElement.nodeName !== 'HTML' || !d.write; // Latter is for silly comprehensiveness
     var js = d.createElementNS && isXML ? d.createElementNS('http://www.w3.org/1999/xhtml', 'script') : d.createElement('script');
     js.setAttribute('type', 'text/javascript');
     js.setAttribute('src', filename);
     js.setAttribute('defer', 'defer');
-    d.getElementsByTagNameNS && isXML ?
-        (d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0] ?
-            d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(js) :
-            d.documentElement.insertBefore(js, d.documentElement.firstChild) // in case of XUL
-        ):
-        d.getElementsByTagName('head')[0].appendChild(js);
+    d.getElementsByTagNameNS && isXML ? (d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0] ? d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(js) : d.documentElement.insertBefore(js, d.documentElement.firstChild) // in case of XUL
+    ) : d.getElementsByTagName('head')[0].appendChild(js);
     // save include state for reference by include_once
     var cur_file = {};
     cur_file[this.window.location.href] = 1;

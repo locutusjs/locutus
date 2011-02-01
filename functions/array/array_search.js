@@ -6,7 +6,7 @@ function array_search (needle, haystack, argStrict) {
     // *     example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'});
     // *     returns 1: 'surname'
 
-    var strict = !!argStrict;
+    var strict = !! argStrict;
     var key = '';
 
     for (key in haystack) {

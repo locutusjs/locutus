@@ -28,14 +28,24 @@ function pathinfo (path, options) {
     // *     returns 6: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
     // *     example 7: pathinfo('/www/htdocs/index.html');
     // *     returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
-
     // Working vars
-    var opt = '', optName = '', optTemp = 0, tmp_arr = {}, cnt = 0, i=0;
-    var have_basename = false, have_extension = false, have_filename = false;
+    var opt = '',
+        optName = '',
+        optTemp = 0,
+        tmp_arr = {},
+        cnt = 0,
+        i = 0;
+    var have_basename = false,
+        have_extension = false,
+        have_filename = false;
 
     // Input defaulting & sanitation
-    if (!path) {return false;}
-    if (!options) {options = 'PATHINFO_ALL';}
+    if (!path) {
+        return false;
+    }
+    if (!options) {
+        options = 'PATHINFO_ALL';
+    }
 
     // Initialize binary arguments. Both the string & integer (constant) input is
     // allowed
@@ -52,7 +62,7 @@ function pathinfo (path, options) {
     }
     if (typeof options !== 'number') { // Allow for a single string or an array of string flags
         options = [].concat(options);
-        for (i=0; i < options.length; i++) {
+        for (i = 0; i < options.length; i++) {
             // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
             if (OPTS[options[i]]) {
                 optTemp = optTemp | OPTS[options[i]];
@@ -63,8 +73,8 @@ function pathinfo (path, options) {
 
     // Internal Functions
     var __getExt = function (path) {
-        var str  = path+'';
-        var dotP = str.lastIndexOf('.')+1;
+        var str = path + '';
+        var dotP = str.lastIndexOf('.') + 1;
         return str.substr(dotP);
     };
 
@@ -99,7 +109,7 @@ function pathinfo (path, options) {
             have_extension = __getExt(have_basename);
         }
         if (false === have_filename) {
-            have_filename  = have_basename.substr(0, (have_basename.length - have_extension.length)-1);
+            have_filename = have_basename.substr(0, (have_basename.length - have_extension.length) - 1);
         }
 
         tmp_arr.filename = have_filename;
@@ -108,7 +118,7 @@ function pathinfo (path, options) {
 
     // If array contains only 1 element: return string
     cnt = 0;
-    for (opt in tmp_arr){
+    for (opt in tmp_arr) {
         cnt++;
     }
     if (cnt == 1) {

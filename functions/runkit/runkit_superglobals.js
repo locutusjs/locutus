@@ -5,10 +5,11 @@ function runkit_superglobals () {
     // %          note 2: Another alternative (though you can't reflect on them with this function) is to use import_request_variables()
     // *     example 1: runkit_superglobals();
     // *     returns 1: []
-
-    var superglobal = {}, p='', arr=[];
+    var superglobal = {},
+        p = '',
+        arr = [];
     var superglobals = ['$_GET', '$_POST', '$_REQUEST', '$_COOKIE', '$_SESSION', '$_SERVER', '$_ENV', '$_FILES'];
-    for (var i=0; i < superglobals.length; i++) {
+    for (var i = 0; i < superglobals.length; i++) {
         superglobal = this.window[superglobals[i]];
         for (p in superglobal) {
             arr.push(superglobal[p]);

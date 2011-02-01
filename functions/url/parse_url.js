@@ -12,26 +12,27 @@ function parse_url (str, component) {
     // %          note: the scheme/protocol (to allow file:/// as in PHP)
     // *     example 1: parse_url('http://username:password@hostname/path?arg=value#anchor');
     // *     returns 1: {scheme: 'http', host: 'hostname', user: 'username', pass: 'password', path: '/path', query: 'arg=value', fragment: 'anchor'}
-
-    var  o   = {
+    var o = {
         strictMode: false,
-        key: ["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"],
-        q:   {
-            name:   "queryKey",
+        key: ["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"],
+        q: {
+            name: "queryKey",
             parser: /(?:^|&)([^&=]*)=?([^&]*)/g
         },
         parser: {
             strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
-            loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/\/?)?((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/ // Added one optional slash to post-protocol to catch file:/// (should restrict this)
+            loose: /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/\/?)?((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/ // Added one optional slash to post-protocol to catch file:/// (should restrict this)
         }
     };
-    
-    var m   = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
-    uri = {},
-    i   = 14;
-    while (i--) {uri[o.key[i]] = m[i] || "";}
+
+    var m = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
+        uri = {},
+        i = 14;
+    while (i--) {
+        uri[o.key[i]] = m[i] || "";
+    }
     // Uncomment the following to use the original more detailed (non-PHP) script
-    /*
+/*
         uri[o.q.name] = {};
         uri[o.key[12]].replace(o.q.parser, function ($0, $1, $2) {
         if ($1) {uri[o.q.name][$1] = $2;}
@@ -40,32 +41,48 @@ function parse_url (str, component) {
     */
 
     switch (component) {
-        case 'PHP_URL_SCHEME':
-            return uri.protocol;
-        case 'PHP_URL_HOST':
-            return uri.host;
-        case 'PHP_URL_PORT':
-            return uri.port;
-        case 'PHP_URL_USER':
-            return uri.user;
-        case 'PHP_URL_PASS':
-            return uri.password;
-        case 'PHP_URL_PATH':
-            return uri.path;
-        case 'PHP_URL_QUERY':
-            return uri.query;
-        case 'PHP_URL_FRAGMENT':
-            return uri.anchor;
-        default:
-            var retArr = {};
-            if (uri.protocol !== '') {retArr.scheme=uri.protocol;}
-            if (uri.host !== '') {retArr.host=uri.host;}
-            if (uri.port !== '') {retArr.port=uri.port;}
-            if (uri.user !== '') {retArr.user=uri.user;}
-            if (uri.password !== '') {retArr.pass=uri.password;}
-            if (uri.path !== '') {retArr.path=uri.path;}
-            if (uri.query !== '') {retArr.query=uri.query;}
-            if (uri.anchor !== '') {retArr.fragment=uri.anchor;}
-            return retArr;
+    case 'PHP_URL_SCHEME':
+        return uri.protocol;
+    case 'PHP_URL_HOST':
+        return uri.host;
+    case 'PHP_URL_PORT':
+        return uri.port;
+    case 'PHP_URL_USER':
+        return uri.user;
+    case 'PHP_URL_PASS':
+        return uri.password;
+    case 'PHP_URL_PATH':
+        return uri.path;
+    case 'PHP_URL_QUERY':
+        return uri.query;
+    case 'PHP_URL_FRAGMENT':
+        return uri.anchor;
+    default:
+        var retArr = {};
+        if (uri.protocol !== '') {
+            retArr.scheme = uri.protocol;
+        }
+        if (uri.host !== '') {
+            retArr.host = uri.host;
+        }
+        if (uri.port !== '') {
+            retArr.port = uri.port;
+        }
+        if (uri.user !== '') {
+            retArr.user = uri.user;
+        }
+        if (uri.password !== '') {
+            retArr.pass = uri.password;
+        }
+        if (uri.path !== '') {
+            retArr.path = uri.path;
+        }
+        if (uri.query !== '') {
+            retArr.query = uri.query;
+        }
+        if (uri.anchor !== '') {
+            retArr.fragment = uri.anchor;
+        }
+        return retArr;
     }
 }

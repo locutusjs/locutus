@@ -9,21 +9,19 @@ function call_user_func_array (cb, parameters) {
     // *     returns 1: true
     // *     example 2: call_user_func_array('isNaN', [1]);
     // *     returns 2: false
-
     var func;
 
     if (typeof cb === 'string') {
         func = (typeof this[cb] === 'function') ? this[cb] : func = (new Function(null, 'return ' + cb))();
     } else if (cb instanceof Array) {
-        func = ( typeof cb[0] == 'string' ) ? eval(cb[0]+"['"+cb[1]+"']") : func = cb[0][cb[1]];
+        func = (typeof cb[0] == 'string') ? eval(cb[0] + "['" + cb[1] + "']") : func = cb[0][cb[1]];
     } else if (typeof cb === 'function') {
         func = cb;
     }
-    
+
     if (typeof func !== 'function') {
         throw new Error(func + ' is not a valid function');
     }
 
-    return (typeof cb[0] === 'string') ? func.apply(eval(cb[0]), parameters) :
-                ( typeof cb[0] !== 'object' ) ? func.apply(null, parameters) : func.apply(cb[0], parameters);
+    return (typeof cb[0] === 'string') ? func.apply(eval(cb[0]), parameters) : (typeof cb[0] !== 'object') ? func.apply(null, parameters) : func.apply(cb[0], parameters);
 }

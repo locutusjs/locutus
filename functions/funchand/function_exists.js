@@ -6,10 +6,9 @@ function function_exists (function_name) {
     // *     example 1: function_exists('isFinite');
     // *     returns 1: true
 
-
-    if (typeof function_name == 'string'){
+    if (typeof function_name == 'string') {
         return (typeof this.window[function_name] == 'function');
-    } else{
+    } else {
         return (function_name instanceof Function);
     }
 }

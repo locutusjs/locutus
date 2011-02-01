@@ -11,18 +11,17 @@ function strstr (haystack, needle, bool) {
     // *     returns 3: '@example.com'
     // *     example 4: strstr('name@example.com', '@', true);
     // *     returns 4: 'name'
-
     var pos = 0;
-    
+
     haystack += '';
-    pos = haystack.indexOf( needle );
+    pos = haystack.indexOf(needle);
     if (pos == -1) {
         return false;
-    } else{
-        if (bool){
-            return haystack.substr( 0, pos );
-        } else{
-            return haystack.slice( pos );
+    } else {
+        if (bool) {
+            return haystack.substr(0, pos);
+        } else {
+            return haystack.slice(pos);
         }
     }
 }

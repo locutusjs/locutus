@@ -17,21 +17,24 @@ function natcasesort (inputArr) {
     // *     example 1: $array1 = {a:'IMG0.png', b:'img12.png', c:'img10.png', d:'img2.png', e:'img1.png', f:'IMG3.png'};
     // *     example 1: $array1 = natcasesort($array1);
     // *     returns 1: {a: 'IMG0.png', e: 'img1.png', d: 'img2.png', f: 'IMG3.png', c: 'img10.png', b: 'img12.png'}
-
-    var valArr=[], keyArr=[], k, i, ret, that = this, strictForIn = false, populateArr = {};
+    var valArr = [],
+        keyArr = [],
+        k, i, ret, that = this,
+        strictForIn = false,
+        populateArr = {};
 
     var bubbleSort = function (keyArr, inputArr) {
         var i, j, tempValue, tempKeyVal;
-        for (i = inputArr.length-2; i >= 0; i--) {
+        for (i = inputArr.length - 2; i >= 0; i--) {
             for (j = 0; j <= i; j++) {
-                ret = that.strnatcasecmp(inputArr[j+1], inputArr[j]);
+                ret = that.strnatcasecmp(inputArr[j + 1], inputArr[j]);
                 if (ret < 0) {
                     tempValue = inputArr[j];
-                    inputArr[j] = inputArr[j+1];
-                    inputArr[j+1] = tempValue;
+                    inputArr[j] = inputArr[j + 1];
+                    inputArr[j + 1] = tempValue;
                     tempKeyVal = keyArr[j];
-                    keyArr[j] = keyArr[j+1];
-                    keyArr[j+1] = tempKeyVal;
+                    keyArr[j] = keyArr[j + 1];
+                    keyArr[j + 1] = tempKeyVal;
                 }
             }
         }
@@ -41,9 +44,7 @@ function natcasesort (inputArr) {
     this.php_js = this.php_js || {};
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
-
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
-                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
 
     // Get key and value arrays

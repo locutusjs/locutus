@@ -14,10 +14,7 @@ function get_class (obj) {
     // *     returns 5: false
     // *     example 6: get_class(function MyFunction() {});
     // *     returns 6: false
-
-    if (obj instanceof Object && !(obj instanceof Array) && 
-        !(obj instanceof Function) && obj.constructor &&
-        obj != this.window) {
+    if (obj instanceof Object && !(obj instanceof Array) && !(obj instanceof Function) && obj.constructor && obj != this.window) {
         var arr = obj.constructor.toString().match(/function\s*(\w+)/);
 
         if (arr && arr.length == 2) {

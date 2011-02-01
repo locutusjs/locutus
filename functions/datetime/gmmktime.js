@@ -1,4 +1,4 @@
-function gmmktime() {
+function gmmktime () {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   derived from: mktime
@@ -6,8 +6,9 @@ function gmmktime() {
     // *     returns 1: 1201875002
     // *     example 2: gmmktime(0, 0, -1, 1, 1, 1970);
     // *     returns 2: -1
-
-    var d = new Date(), r = arguments, i = 0,
+    var d = new Date(),
+        r = arguments,
+        i = 0,
         e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear'];
 
     for (i = 0; i < e.length; i++) {
@@ -21,14 +22,14 @@ function gmmktime() {
             }
         }
     }
-    
+
     // Map years 0-69 to 2000-2069 and years 70-100 to 1970-2000.
     r[5] += (r[5] >= 0 ? (r[5] <= 69 ? 2e3 : (r[5] <= 100 ? 1900 : 0)) : 0);
-    
+
     // Set year, month (-1 to fix JS months), and date.
     // !This must come before the call to setHours!
     d.setUTCFullYear(r[5], r[3] - 1, r[4]);
-    
+
     // Set hours, minutes, and seconds.
     d.setUTCHours(r[0], r[1], r[2]);
 

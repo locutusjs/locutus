@@ -5,12 +5,11 @@ function current (arr) {
     // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
     // *     example 1: current(transport); 
     // *     returns 1: 'foot'
-
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
     var indexOf = function (value) {
-        for (var i = 0, length=this.length; i < length; i++) {
+        for (var i = 0, length = this.length; i < length; i++) {
             if (this[i] === value) {
                 return i;
             }
@@ -26,7 +25,7 @@ function current (arr) {
         pointers.push(arr, 0);
     }
     var arrpos = pointers.indexOf(arr);
-    var cursor = pointers[arrpos+1];
+    var cursor = pointers[arrpos + 1];
     if (arr instanceof Array) {
         return arr[cursor] || false;
     }

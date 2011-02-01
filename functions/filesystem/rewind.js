@@ -13,8 +13,7 @@ function rewind (handle) {
         }
         return name[1];
     };
-    if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer ||
-            !handle || !handle.constructor || getFuncName(handle.constructor) !== 'PHPJS_Resource') {
+    if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer || !handle || !handle.constructor || getFuncName(handle.constructor) !== 'PHPJS_Resource') {
         return false;
     }
     this.php_js.resourceDataPointer[handle.id] = 0;

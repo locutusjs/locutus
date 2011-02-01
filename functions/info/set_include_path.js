@@ -13,9 +13,11 @@ function set_include_path (new_include_path) {
     // END REDUNDANT
     var old_path = this.php_js.ini.include_path && this.php_js.ini.include_path.local_value;
     if (!old_path) {
-        this.php_js.ini.include_path = {global_value:new_include_path, local_value:new_include_path};
-    }
-    else {
+        this.php_js.ini.include_path = {
+            global_value: new_include_path,
+            local_value: new_include_path
+        };
+    } else {
         this.php_js.ini.include_path.global_value = new_include_path;
         this.php_js.ini.include_path.local_value = new_include_path;
     }

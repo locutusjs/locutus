@@ -1,5 +1,4 @@
-function getrandmax ()
-{
+function getrandmax () {
     // http://kevin.vanzonneveld.net
     // +   original by: Onno Marsman
     // *     example 1: getrandmax();

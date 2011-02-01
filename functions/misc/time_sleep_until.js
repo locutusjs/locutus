@@ -6,7 +6,6 @@ function time_sleep_until (timestamp) {
     // %          note: Consider using setTimeout() instead.
     // *     example 1: time_sleep_until(1233146501) // delays until the time indicated by the given timestamp is reached
     // *     returns 1: true
-
-    while (new Date() < timestamp*1000) {}
+    while (new Date() < timestamp * 1000) {}
     return true;
 }

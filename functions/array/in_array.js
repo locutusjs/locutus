@@ -14,8 +14,8 @@ function in_array (needle, haystack, argStrict) {
     // *     returns 3: true
     // *     example 4: in_array(1, ['1', '2', '3'], true);
     // *     returns 4: false
-
-    var key = '', strict = !!argStrict;
+    var key = '',
+        strict = !! argStrict;
 
     if (strict) {
         for (key in haystack) {

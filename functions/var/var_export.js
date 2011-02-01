@@ -14,15 +14,16 @@ function var_export (mixed_expression, bool_return) {
     // *     example 3: data = 'Kevin';
     // *     example 3: var_export(data, true);
     // *     returns 3: "'Kevin'"
-
     var retstr = '',
         iret = '',
         cnt = 0,
         x = [],
         i = 0,
         funcParts = [],
-        idtLevel = arguments[2] || 2, // We use the last argument (not part of PHP) to pass in our indentation level
-        innerIndent = '', outerIndent = '';
+        idtLevel = arguments[2] || 2,
+        // We use the last argument (not part of PHP) to pass in our indentation level
+        innerIndent = '',
+        outerIndent = '';
 
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
@@ -33,7 +34,7 @@ function var_export (mixed_expression, bool_return) {
     };
 
     var _makeIndent = function (idtLevel) {
-        return (new Array(idtLevel+1)).join(' ');
+        return (new Array(idtLevel + 1)).join(' ');
     };
 
     var __getType = function (inp) {
@@ -58,7 +59,7 @@ function var_export (mixed_expression, bool_return) {
                 cons = match[1].toLowerCase();
             }
             var types = ["boolean", "number", "string", "array"];
-            for (i=0; i < types.length; i++) {
+            for (i = 0; i < types.length; i++) {
                 if (cons === types[i]) {
                     type = types[i];
                     break;
@@ -72,17 +73,16 @@ function var_export (mixed_expression, bool_return) {
     if (type === null) {
         retstr = "NULL";
     } else if (type === 'array' || type === 'object') {
-        outerIndent = _makeIndent(idtLevel-2);
+        outerIndent = _makeIndent(idtLevel - 2);
         innerIndent = _makeIndent(idtLevel);
         for (i in mixed_expression) {
-            var value = this.var_export(mixed_expression[i], true, idtLevel+2);
+            var value = this.var_export(mixed_expression[i], true, idtLevel + 2);
             value = typeof value === 'string' ? value.replace(/</g, '&lt;').replace(/>/g, '&gt;') : value;
-            x[cnt++] = innerIndent+i+' => '+(__getType(mixed_expression[i]) === 'array' ? '\n' : '')+value;
+            x[cnt++] = innerIndent + i + ' => ' + (__getType(mixed_expression[i]) === 'array' ? '\n' : '') + value;
         }
         iret = x.join(',\n');
-        retstr = outerIndent+"array (\n"+iret+'\n'+outerIndent+')';
-    }
-    else if (type === 'function') {
+        retstr = outerIndent + "array (\n" + iret + '\n' + outerIndent + ')';
+    } else if (type === 'function') {
         funcParts = mixed_expression.toString().match(/function .*?\((.*?)\) \{([\s\S]*)\}/);
 
         // For lambda functions, var_export() outputs such as the following:  '\000lambda_1'
@@ -90,12 +90,11 @@ function var_export (mixed_expression, bool_return) {
         // construct, create_function() (though dollar signs must be on the variables in JavaScript); if using instead
         // in JavaScript and you are using the namespaced version, note that create_function() will not be available
         // as a global
-        retstr = "create_function ('"+funcParts[1]+"', '"+funcParts[2].replace(new RegExp("'", 'g'), "\\'")+"')";
-    }
-    else if (type === 'resource') {
+        retstr = "create_function ('" + funcParts[1] + "', '" + funcParts[2].replace(new RegExp("'", 'g'), "\\'") + "')";
+    } else if (type === 'resource') {
         retstr = 'NULL'; // Resources treated as null for var_export
     } else {
-        retstr = (typeof ( mixed_expression ) !== 'string') ? mixed_expression : "'" + mixed_expression.replace(/(["'])/g, "\\$1").replace(/\0/g, "\\0") + "'";
+        retstr = (typeof(mixed_expression) !== 'string') ? mixed_expression : "'" + mixed_expression.replace(/(["'])/g, "\\$1").replace(/\0/g, "\\0") + "'";
     }
 
     if (bool_return !== true) {

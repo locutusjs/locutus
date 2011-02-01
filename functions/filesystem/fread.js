@@ -9,7 +9,7 @@ function fread (handle, length) {
         return false;
     }
 
-    length = length < 8192 ? (Math.floor(length/2) || 1) : 4096; // 2 bytes per character (or surrogate) means limit of 8192 bytes = 4096 characters; ensure at least one
+    length = length < 8192 ? (Math.floor(length / 2) || 1) : 4096; // 2 bytes per character (or surrogate) means limit of 8192 bytes = 4096 characters; ensure at least one
 
     var start = this.php_js.resourceDataPointer[handle.id];
 

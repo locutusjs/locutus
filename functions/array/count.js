@@ -9,12 +9,11 @@ function count (mixed_var, mode) {
     // *     returns 1: 6
     // *     example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
     // *     returns 2: 6
-
     var key, cnt = 0;
 
-    if (mixed_var === null){
+    if (mixed_var === null) {
         return 0;
-    } else if (mixed_var.constructor !== Array && mixed_var.constructor !== Object){
+    } else if (mixed_var.constructor !== Array && mixed_var.constructor !== Object) {
         return 1;
     }
 
@@ -25,10 +24,10 @@ function count (mixed_var, mode) {
         mode = 0;
     }
 
-    for (key in mixed_var){
+    for (key in mixed_var) {
         if (mixed_var.hasOwnProperty(key)) {
             cnt++;
-            if ( mode==1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor === Object) ){
+            if (mode == 1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor === Object)) {
                 cnt += this.count(mixed_var[key], 1);
             }
         }

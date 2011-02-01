@@ -1,4 +1,4 @@
-function defined (constant_name)  {
+function defined (constant_name) {
     // http://kevin.vanzonneveld.net
     // +   original by: Waldo Malqui Silva
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -8,10 +8,9 @@ function defined (constant_name)  {
     // %          note 1: in a threaded environment, e.g., DOM worker threads)
     // *     example 1: defined('IMAGINARY_CONSTANT1');
     // *     returns 1: false
-
     var tmp = this.window[constant_name];
-    
-    this.window[constant_name] = this.window[constant_name] ? 'changed'+this.window[constant_name].toString() : 'changed';
+
+    this.window[constant_name] = this.window[constant_name] ? 'changed' + this.window[constant_name].toString() : 'changed';
     var returnval = this.window[constant_name] === tmp;
     if (!returnval) { // Reset
         this.window[constant_name] = tmp;

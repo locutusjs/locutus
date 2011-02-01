@@ -7,8 +7,9 @@ function get_defined_functions () {
     // *     example 1: funcs = get_defined_functions();
     // *     example 1: found = test_in_array(funcs, 'get_defined_functions');
     // *     results 1: found == true
-
-    var i = '', arr = [], already = {};
+    var i = '',
+        arr = [],
+        already = {};
 
     for (i in this.window) {
         try {
@@ -17,8 +18,7 @@ function get_defined_functions () {
                     already[i] = 1;
                     arr.push(i);
                 }
-            }
-            else if (typeof this.window[i] === 'object') {
+            } else if (typeof this.window[i] === 'object') {
                 for (var j in this.window[i]) {
                     if (typeof this.window[j] === 'function' && this.window[j] && !already[j]) {
                         already[j] = 1;
@@ -26,8 +26,7 @@ function get_defined_functions () {
                     }
                 }
             }
-        }
-        catch (e) {
+        } catch (e) {
             // Some objects in Firefox throw exceptions when their properties are accessed (e.g., sessionStorage)
         }
     }

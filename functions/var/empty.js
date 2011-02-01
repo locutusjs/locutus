@@ -18,16 +18,9 @@ function empty (mixed_var) {
     // *     returns 4: true
     // *     example 5: empty({'aFunc' : function () { alert('humpty'); } });
     // *     returns 5: false
-    
     var key;
-    
-    if (mixed_var === "" ||
-        mixed_var === 0 ||
-        mixed_var === "0" ||
-        mixed_var === null ||
-        mixed_var === false ||
-        typeof mixed_var === 'undefined'
-    ){
+
+    if (mixed_var === "" || mixed_var === 0 || mixed_var === "0" || mixed_var === null || mixed_var === false || typeof mixed_var === 'undefined') {
         return true;
     }
 

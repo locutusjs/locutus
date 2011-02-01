@@ -5,10 +5,9 @@ function create_function (args, code) {
     // *     example 1: f = create_function('a, b', "return (a + b);");
     // *     example 1: f(1, 2);
     // *     returns 1: 3
-     try {
+    try {
         return Function.apply(null, args.split(',').concat(code));
-     }
-     catch (e) {
-         return false;
-     }
+    } catch (e) {
+        return false;
+    }
 }

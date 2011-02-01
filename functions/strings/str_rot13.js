@@ -10,8 +10,7 @@ function str_rot13 (str) {
     // *     returns 2: 'Kevin van Zonneveld'
     // *     example 3: str_rot13(33);
     // *     returns 3: '33'
-    
-    return (str+'').replace(/[a-z]/gi, function(s){
-        return String.fromCharCode(s.charCodeAt(0)+(s.toLowerCase()<'n'?13:-13));
+    return (str + '').replace(/[a-z]/gi, function (s) {
+        return String.fromCharCode(s.charCodeAt(0) + (s.toLowerCase() < 'n' ? 13 : -13));
     });
 }

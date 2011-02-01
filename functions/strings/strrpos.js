@@ -12,17 +12,15 @@ function strrpos (haystack, needle, offset) {
     // *     returns 3: false
     // *     example 4: strrpos('baa', 'a', 2);
     // *     returns 4: 2
-
     var i = -1;
     if (offset) {
-        i = (haystack+'').slice(offset).lastIndexOf(needle); // strrpos' offset indicates starting point of range till end,
+        i = (haystack + '').slice(offset).lastIndexOf(needle); // strrpos' offset indicates starting point of range till end,
         // while lastIndexOf's optional 2nd argument indicates ending point of range from the beginning
         if (i !== -1) {
             i += offset;
         }
-    }
-    else {
-        i = (haystack+'').lastIndexOf(needle);
+    } else {
+        i = (haystack + '').lastIndexOf(needle);
     }
     return i >= 0 ? i : false;
 }

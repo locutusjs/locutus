@@ -8,18 +8,20 @@ function isset () {
     // *     returns 1: false
     // *     example 2: isset( 'Kevin van Zonneveld' );
     // *     returns 2: true
-    
-    var a = arguments, l = a.length, i = 0, undef;
-    
+    var a = arguments,
+        l = a.length,
+        i = 0,
+        undef;
+
     if (l === 0) {
-        throw new Error('Empty isset'); 
+        throw new Error('Empty isset');
     }
-    
+
     while (i !== l) {
         if (a[i] === undef || a[i] === null) {
-            return false; 
+            return false;
         }
-        i++; 
+        i++;
     }
     return true;
 }

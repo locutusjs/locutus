@@ -13,5 +13,5 @@ function set_time_limit (seconds) {
             this.php_js.timeoutStatus = true;
         }
         throw 'Maximum execution time exceeded';
-    }, seconds*1000);
+    }, seconds * 1000);
 }

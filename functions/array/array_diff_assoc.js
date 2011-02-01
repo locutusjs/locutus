@@ -5,12 +5,14 @@ function array_diff_assoc () {
     // +    revised by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'});
     // *     returns 1: {1: 'van', 2: 'Zonneveld'}
+    var arr1 = arguments[0],
+        retArr = {};
+    var k1 = '',
+        i = 1,
+        k = '',
+        arr = {};
 
-    var arr1 = arguments[0], retArr = {};
-    var k1 = '', i = 1, k = '', arr = {};
-
-    arr1keys:
-    for (k1 in arr1) {
+    arr1keys: for (k1 in arr1) {
         for (i = 1; i < arguments.length; i++) {
             arr = arguments[i];
             for (k in arr) {

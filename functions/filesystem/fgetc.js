@@ -20,11 +20,11 @@ function fgetc (handle) {
     var chr = this.php_js.resourceData[handle.id].substr(start, length);
 
     // If don't want to treat surrogate pairs as single characters, can delete from here until the last line (return chr;)
-    var nextChr = this.php_js.resourceData[handle.id].substr(start+1, 1);
-    var prevChr = start === 0 ? false : this.php_js.resourceData[handle.id].substr(start-1, 1);
+    var nextChr = this.php_js.resourceData[handle.id].substr(start + 1, 1);
+    var prevChr = start === 0 ? false : this.php_js.resourceData[handle.id].substr(start - 1, 1);
     var code = chr.charCodeAt(0);
     if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
-        if (!nextChr)  {
+        if (!nextChr) {
             throw 'High surrogate without following low surrogate (fgetc)';
         }
         var next = nextChr.charCodeAt(0);
@@ -32,9 +32,8 @@ function fgetc (handle) {
             throw 'High surrogate without following low surrogate (fgetc)';
         }
         this.php_js.resourceDataPointer[handle.id] += length; // Need to increment counter again since grabbing next item
-        return chr+nextChr;
-    }
-    else if (0xDC00 <= code && code <= 0xDFFF) { // Low surrogate
+        return chr + nextChr;
+    } else if (0xDC00 <= code && code <= 0xDFFF) { // Low surrogate
         if (prevChr === false) {
             throw 'Low surrogate without preceding high surrogate (fgetc)';
         }
@@ -42,8 +41,8 @@ function fgetc (handle) {
         if (0xD800 > prev || prev > 0xDBFF) { //(could change last hex to 0xDB7F to treat high private surrogates as single characters)
             throw 'Low surrogate without preceding high surrogate (fgetc)';
         }
-        return prevChr+chr; // Probably shouldn't have reached here, at least if traversing by fgetc()
+        return prevChr + chr; // Probably shouldn't have reached here, at least if traversing by fgetc()
     }
-    
+
     return chr;
 }

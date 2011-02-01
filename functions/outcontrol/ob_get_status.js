@@ -4,9 +4,13 @@ function ob_get_status (full_status) {
     // *     example 1: ob_get_status(true);
     // *     returns 1: [{chunk_size:4096, name:myCallback, del:true, type:1,status:0}]
 
-    var i = 0, retObj = {}, ob = {}, retArr = [], name = '';
+    var i = 0,
+        retObj = {},
+        ob = {},
+        retArr = [],
+        name = '';
     var getFuncName = function (fn) {
-        var name=(/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
         if (!name) {
             return '(Anonymous)';
         }
@@ -14,19 +18,22 @@ function ob_get_status (full_status) {
     };
 
     this.php_js = this.php_js || {};
-    var phpjs = this.php_js, ini = phpjs.ini, obs = phpjs.obs;
+    var phpjs = this.php_js,
+        ini = phpjs.ini,
+        obs = phpjs.obs;
 
     if (!obs || !obs.length) {
-        if (ini && ini.output_buffering &&
-                (typeof ini.output_buffering.local_value !== 'string' ||
-                    ini.output_buffering.local_value.toLowerCase() !== 'off')
-            ) { // handler itself is stored in 'output_handler' ini
-            retObj = {type:1, status:0, name:'default output handler', del:true};
+        if (ini && ini.output_buffering && (typeof ini.output_buffering.local_value !== 'string' || ini.output_buffering.local_value.toLowerCase() !== 'off')) { // handler itself is stored in 'output_handler' ini
+            retObj = {
+                type: 1,
+                status: 0,
+                name: 'default output handler',
+                del: true
+            };
             if (full_status) {
                 retObj.chunk_size = 4096;
                 return [retObj];
-            }
-            else {
+            } else {
                 retObj.level = 1;
                 return retObj;
             }
@@ -34,14 +41,16 @@ function ob_get_status (full_status) {
         return retArr;
     }
     if (full_status) {
-        for (i=0; i < obs.length; i++) {
+        for (i = 0; i < obs.length; i++) {
             ob = obs[i];
-            name = ob.callback && getFuncName(ob.callback) ? 
-                (getFuncName(ob.callback) === 'URLRewriter' ?
-                    'URL-Rewriter' :
-                    getFuncName(ob.callback)
-                ) : undefined;
-            retObj = {chunk_size: ob.chunk_size, name: name, del: ob.erase, type: ob.type, status: ob.status};
+            name = ob.callback && getFuncName(ob.callback) ? (getFuncName(ob.callback) === 'URLRewriter' ? 'URL-Rewriter' : getFuncName(ob.callback)) : undefined;
+            retObj = {
+                chunk_size: ob.chunk_size,
+                name: name,
+                del: ob.erase,
+                type: ob.type,
+                status: ob.status
+            };
             if (ob.size) {
                 retObj.size = ob.size;
             }
@@ -52,7 +61,13 @@ function ob_get_status (full_status) {
         }
         return retArr;
     }
-    ob = obs[phpjs.obs.length-1];
+    ob = obs[phpjs.obs.length - 1];
     name = getFuncName(ob.callback);
-    return {level: phpjs.obs.length, name: name, del: ob.erase, type: ob.type, status: ob.status};
+    return {
+        level: phpjs.obs.length,
+        name: name,
+        del: ob.erase,
+        type: ob.type,
+        status: ob.status
+    };
 }

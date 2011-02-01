@@ -7,6 +7,5 @@ function floatval (mixed_var) {
     // *     returns 2: 0
     // *     example 2: floatval('-50 + 8');
     // *     returns 2: -50
-
     return (parseFloat(mixed_var) || 0);
 }

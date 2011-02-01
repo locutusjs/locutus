@@ -5,15 +5,13 @@ function runkit_function_remove (funcname) {
     // *     example 1: function add (a, b, c) {return a+b+c;}
     // *     example 1: runkit_function_remove('add');
     // *     returns 1: true
-
     if (this.window[funcname] === undefined) { // Requires existing function?
         return false;
     }
 
     try {
         this.window[funcname] = undefined;
-    }
-    catch (e) {
+    } catch (e) {
         return false;
     }
     return true;

@@ -7,6 +7,5 @@ function setcookie (name, value, expires, path, domain, secure) {
     // -    depends on: setrawcookie
     // *     example 1: setcookie('author_name', 'Kevin van Zonneveld');
     // *     returns 1: true
-
     return this.setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure);
 }

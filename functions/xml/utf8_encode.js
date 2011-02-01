@@ -1,4 +1,4 @@
-function utf8_encode ( argString ) {
+function utf8_encode (argString) {
     // http://kevin.vanzonneveld.net
     // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -10,12 +10,9 @@ function utf8_encode ( argString ) {
     // +   bugfixed by: Ulrich
     // *     example 1: utf8_encode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
-
-    var string = (argString+''); // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-
+    var string = (argString + ''); // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
     var utftext = "",
-        start, end,
-        stringl = 0;
+        start, end, stringl = 0;
 
     start = end = 0;
     stringl = string.length;
@@ -25,11 +22,9 @@ function utf8_encode ( argString ) {
 
         if (c1 < 128) {
             end++;
-        }
-        else if (c1 > 127 && c1 < 2048) {
+        } else if (c1 > 127 && c1 < 2048) {
             enc = String.fromCharCode((c1 >> 6) | 192) + String.fromCharCode((c1 & 63) | 128);
-        }
-        else {
+        } else {
             enc = String.fromCharCode((c1 >> 12) | 224) + String.fromCharCode(((c1 >> 6) & 63) | 128) + String.fromCharCode((c1 & 63) | 128);
         }
         if (enc !== null) {
@@ -37,7 +32,7 @@ function utf8_encode ( argString ) {
                 utftext += string.slice(start, end);
             }
             utftext += enc;
-            start = end = n+1;
+            start = end = n + 1;
         }
     }
 

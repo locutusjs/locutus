@@ -7,6 +7,5 @@ function log10 (arg) {
     // *     returns 1: 1
     // *     example 2: log10(1);
     // *     returns 2: 0
-
-    return Math.log(arg)/Math.LN10;
+    return Math.log(arg) / Math.LN10;
 }

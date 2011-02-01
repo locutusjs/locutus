@@ -13,9 +13,8 @@ function ftell (handle) {
         }
         return name[1];
     };
-    if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer ||
-            !handle || !handle.constructor || getFuncName(handle.constructor) !== 'PHPJS_Resource') {
+    if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer || !handle || !handle.constructor || getFuncName(handle.constructor) !== 'PHPJS_Resource') {
         return false;
     }
-    return this.php_js.resourceDataPointer[handle.id]*2-1; // We're currently storing by character, so need to multiply by two; subtract one to appear like array pointer
+    return this.php_js.resourceDataPointer[handle.id] * 2 - 1; // We're currently storing by character, so need to multiply by two; subtract one to appear like array pointer
 }

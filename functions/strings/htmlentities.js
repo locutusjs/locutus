@@ -13,10 +13,12 @@ function htmlentities (string, quote_style) {
     // *     returns 1: 'Kevin &amp; van Zonneveld'
     // *     example 2: htmlentities("foo'bar","ENT_QUOTES");
     // *     returns 2: 'foo&#039;bar'
-
-    var hash_map = {}, symbol = '', tmp_str = '', entity = '';
+    var hash_map = {},
+        symbol = '',
+        tmp_str = '',
+        entity = '';
     tmp_str = string.toString();
-    
+
     if (false === (hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {
         return false;
     }
@@ -25,6 +27,6 @@ function htmlentities (string, quote_style) {
         entity = hash_map[symbol];
         tmp_str = tmp_str.split(symbol).join(entity);
     }
-    
+
     return tmp_str;
 }

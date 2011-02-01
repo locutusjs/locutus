@@ -4,7 +4,6 @@ function is_resource (handle) {
     // +   improved by: Luis Salazar (http://www.freaky-media.com/)
     // *     example 1: is_resource('a');
     // *     returns 1: false
-
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
         if (!name) {

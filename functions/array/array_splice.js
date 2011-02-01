@@ -22,7 +22,6 @@ function array_splice (arr, offst, lgth, replacement) {
     // *     example 3: array_splice(input, -1, 1, ["black", "maroon"]);
     // *     returns 3: ["yellow"]
     // *     results 3: input == ["red", "green", "blue", "black", "maroon"]
-    
     var _checkToUpIndices = function (arr, ct, key) {
         // Deal with situation, e.g., if encounter index 4 and try to set it to 0, but 0 exists later in loop (need to
         // increment all subsequent (skipping current key, since we need its value below) until find unused)
@@ -45,15 +44,23 @@ function array_splice (arr, offst, lgth, replacement) {
     if (lgth === undefined) {
         lgth = offst >= 0 ? arr.length - offst : -offst;
     } else if (lgth < 0) {
-        lgth = (offst >= 0 ? arr.length - offst : -offst)  + lgth;
+        lgth = (offst >= 0 ? arr.length - offst : -offst) + lgth;
     }
 
     if (!(arr instanceof Array)) {
-        /*if (arr.length !== undefined) { // Deal with array-like objects as input
+/*if (arr.length !== undefined) { // Deal with array-like objects as input
         delete arr.length;
         }*/
-        var lgt = 0, ct = -1, rmvd = [], rmvdObj = {}, repl_ct=-1, int_ct=-1;
-        var returnArr = true, rmvd_ct = 0, rmvd_lgth = 0, key = '';
+        var lgt = 0,
+            ct = -1,
+            rmvd = [],
+            rmvdObj = {},
+            repl_ct = -1,
+            int_ct = -1;
+        var returnArr = true,
+            rmvd_ct = 0,
+            rmvd_lgth = 0,
+            key = '';
         // rmvdObj.length = 0;
         for (key in arr) { // Can do arr.__count__ in some browsers
             lgt += 1;
@@ -79,11 +86,10 @@ function array_splice (arr, offst, lgth, replacement) {
                 rmvdObj[rmvd_ct++] = arr[key]; // PHP starts over here too
             } else {
                 rmvdObj[key] = arr[key];
-                returnArr    = false;
+                returnArr = false;
             }
             rmvd_lgth += 1;
             // rmvdObj.length += 1;
-
             if (replacement && replacement[++repl_ct]) {
                 arr[key] = replacement[repl_ct];
             } else {

@@ -7,8 +7,8 @@ function get_object_vars (obj) {
     // *     example 1: Myclass.prototype.myfunc2 = function () {return(true);}
     // *     example 1: get_object_vars('MyClass')
     // *     returns 1: {}
-
-    var retArr = {}, prop = '';
+    var retArr = {},
+        prop = '';
 
     for (prop in obj) {
         if (typeof obj[prop] !== 'function' && prop !== 'prototype') {
@@ -20,6 +20,6 @@ function get_object_vars (obj) {
             retArr[prop] = obj.prototype[prop];
         }
     }
-    
+
     return retArr;
 }

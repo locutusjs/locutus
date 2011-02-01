@@ -18,12 +18,12 @@ function array_pop (inputArr) {
     // *     example 2: lastElem = array_pop(data);
     // *     returns 2: 'van Zonneveld'
     // *     results 2: data == {firstName: 'Kevin'}
-
-    var key = '', lastKey = '';
+    var key = '',
+        lastKey = '';
 
     if (inputArr.hasOwnProperty('length')) {
         // Indexed
-        if (!inputArr.length){
+        if (!inputArr.length) {
             // Done popping, are we?
             return null;
         }

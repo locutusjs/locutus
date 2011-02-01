@@ -8,18 +8,19 @@ function array_intersect () {
     // *     example 1: $array3 = ['green', 'red'];
     // *     example 1: $result = array_intersect($array1, $array2, $array3);
     // *     returns 1: {0: 'red', a: 'green'}
+    var arr1 = arguments[0],
+        retArr = {};
+    var k1 = '',
+        arr = {},
+        i = 0,
+        k = '';
 
-    var arr1 = arguments[0], retArr = {};
-    var k1 = '', arr = {}, i = 0, k = '';
-    
-    arr1keys:
-    for (k1 in arr1) {
-        arrs:
-        for (i=1; i < arguments.length; i++) {
+    arr1keys: for (k1 in arr1) {
+        arrs: for (i = 1; i < arguments.length; i++) {
             arr = arguments[i];
             for (k in arr) {
                 if (arr[k] === arr1[k1]) {
-                    if (i === arguments.length-1) {
+                    if (i === arguments.length - 1) {
                         retArr[k1] = arr1[k1];
                     }
                     // If the innermost loop always leads at least once to an equal value, continue the loop until done

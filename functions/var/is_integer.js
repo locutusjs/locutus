@@ -8,6 +8,5 @@ function is_integer (mixed_var) {
     // *     returns 1: false
     // *     example 2: is_integer(12);
     // *     returns 2: true
-
     return this.is_int(mixed_var);
 }
