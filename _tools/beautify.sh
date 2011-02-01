@@ -9,6 +9,3 @@ for File in $(find ${Root} -type f -name '*.js' |sort |head -n20); do
         > "${File}.beautified" \
     && mv -f "${File}.beautified" "${File}"
 done
-
-
-cat functions/array/array_change_key_case.js 
