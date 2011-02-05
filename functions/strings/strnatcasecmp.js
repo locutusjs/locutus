@@ -45,14 +45,14 @@ function strnatcasecmp (str1, str2) {
             } else if (!isDigitChar(ca)) {
                 return -1;
             } else if (!isDigitChar(cb)) {
-                return +1;
+                return 1;
             } else if (ca < cb) {
-                if (bias === '0') {
+                if (bias === 0) {
                     bias = -1;
                 }
             } else if (ca > cb) {
-                if (bias === '0') {
-                    bias = +1;
+                if (bias === 0) {
+                    bias = 1;
                 }
             } else if (ca === '0' && cb === '0') {
                 return bias;
@@ -97,7 +97,7 @@ function strnatcasecmp (str1, str2) {
 
         // process run of digits
         if (isDigitChar(ca) && isDigitChar(cb)) {
-            if ((result = compareRight(a.substring(ia), b.substring(ib))) !== '0') {
+            if ((result = compareRight(a.substring(ia), b.substring(ib))) !== 0) {
                 return result;
             }
         }
