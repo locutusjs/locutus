@@ -6,22 +6,29 @@ function array_keys (input, search_value, argStrict) {
     // *     example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
     // *     returns 1: {0: 'firstname', 1: 'surname'}
     
-    var tmp_arr = {}, strict = !!argStrict, include = true, cnt = 0;
-    var key = '';
+    var search = typeof search_value !== 'undefined', 
+        tmp_arr = search ? {} : [], // We can return a real array if we know each key will be used
+        strict = !!argStrict, 
+        include = true, 
+        cnt = 0, 
+        key = '';
     
     for (key in input) {
-        include = true;
-        if (search_value != undefined) {
-            if (strict && input[key] !== search_value){
-                include = false;
-            } else if (input[key] != search_value){
-                include = false;
+        if (input.hasOwnProperty(key)) {
+            include = true;
+            if (search) {
+                if (strict && input[key] !== search_value) {
+                    include = false;
+                }
+                else if (input[key] != search_value) {
+                    include = false;
+                }
             }
-        }
-        
-        if (include) {
-            tmp_arr[cnt] = key;
-            cnt++;
+
+            if (include) {
+                tmp_arr[cnt] = key;
+                cnt++;
+            }            
         }
     }
     
