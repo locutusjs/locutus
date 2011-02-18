@@ -6,18 +6,13 @@ function vprintf (format, args) {
     // -    depends on: sprintf
     // *     example 1: printf("%01.2f", 123.1);
     // *     returns 1: 6
-
     var body, elmt;
-    var ret = '', d = this.window.document;
+    var ret = '',
+        d = this.window.document;
 
     // .shift() does not work to get first item in bodies
-
     var HTMLNS = 'http://www.w3.org/1999/xhtml';
-    body = d.getElementsByTagNameNS ?
-      (d.getElementsByTagNameNS(HTMLNS, 'body')[0] ?
-        d.getElementsByTagNameNS(HTMLNS, 'body')[0] :
-        d.documentElement.lastChild) :
-      d.getElementsByTagName('body')[0];
+    body = d.getElementsByTagNameNS ? (d.getElementsByTagNameNS(HTMLNS, 'body')[0] ? d.getElementsByTagNameNS(HTMLNS, 'body')[0] : d.documentElement.lastChild) : d.getElementsByTagName('body')[0];
 
     if (!body) {
         return false;

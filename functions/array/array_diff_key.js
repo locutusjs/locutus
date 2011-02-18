@@ -6,12 +6,14 @@ function array_diff_key () {
     // *     returns 1: {"green":2, "blue":3, "white":4}
     // *     example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5});
     // *     returns 2: {"green":2, "blue":3, "white":4}
+    var arr1 = arguments[0],
+        retArr = {};
+    var k1 = '',
+        i = 1,
+        k = '',
+        arr = {};
 
-    var arr1 = arguments[0], retArr = {};
-    var k1 = '', i = 1, k = '', arr = {};
- 
-    arr1keys:
-    for (k1 in arr1) {
+    arr1keys: for (k1 in arr1) {
         for (i = 1; i < arguments.length; i++) {
             arr = arguments[i];
             for (k in arr) {

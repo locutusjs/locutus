@@ -1,4 +1,4 @@
-function parse_str (str, array){
+function parse_str (str, array) {
     // http://kevin.vanzonneveld.net
     // +   original by: Cagri Ekin
     // +   improved by: Michael White (http://getsprink.com)
@@ -17,12 +17,13 @@ function parse_str (str, array){
     // *     example 2: var arr = {};
     // *     example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr);
     // *     results 2: arr == { str_a: "Jack and Jill didn't see the well." }
-
-    var glue1 = '=', glue2 = '&', array2 = String(str).replace(/^&?([\s\S]*?)&?$/, '$1').split(glue2),
-    i, j, chr, tmp, key, value, bracket, keys, evalStr, that = this,
-    fixStr = function (str) {
-        return that.urldecode(str).replace(/([\\"'])/g, '\\$1').replace(/\n/g, '\\n').replace(/\r/g, '\\r');
-    };
+    var glue1 = '=',
+        glue2 = '&',
+        array2 = String(str).replace(/^&?([\s\S]*?)&?$/, '$1').split(glue2),
+        i, j, chr, tmp, key, value, bracket, keys, evalStr, that = this,
+        fixStr = function (str) {
+            return that.urldecode(str).replace(/([\\"'])/g, '\\$1').replace(/\n/g, '\\n').replace(/\r/g, '\\r');
+        };
 
     if (!array) {
         array = this.window;
@@ -33,7 +34,7 @@ function parse_str (str, array){
         if (tmp.length < 2) {
             tmp = [tmp, ''];
         }
-        key   = fixStr(tmp[0]);
+        key = fixStr(tmp[0]);
         value = fixStr(tmp[1]);
         while (key.charAt(0) === ' ') {
             key = key.substr(1);
@@ -42,13 +43,12 @@ function parse_str (str, array){
             key = key.substr(0, key.indexOf('\0'));
         }
         if (key && key.charAt(0) !== '[') {
-            keys    = [];
+            keys = [];
             bracket = 0;
             for (j = 0; j < key.length; j++) {
                 if (key.charAt(j) === '[' && !bracket) {
                     bracket = j + 1;
-                }
-                else if (key.charAt(j) === ']') {
+                } else if (key.charAt(j) === ']') {
                     if (bracket) {
                         if (!keys.length) {
                             keys.push(key.substr(0, bracket - 1));
@@ -78,8 +78,7 @@ function parse_str (str, array){
                 key = keys[j];
                 if ((key !== '' && key !== ' ') || j === 0) {
                     key = "'" + key + "'";
-                }
-                else {
+                } else {
                     key = eval(evalStr + '.push([]);') - 1;
                 }
                 evalStr += '[' + key + ']';

@@ -9,7 +9,6 @@ function method_exists (obj, method) {
     // *     example 2: var instance_a = new class_a();
     // *     example 2: method_exists(instance_a, 'meth2');
     // *     returns 2: false
-
     if (typeof obj === 'string') {
         return this.window[obj] && typeof this.window[obj][method] === 'function';
     }

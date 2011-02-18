@@ -8,5 +8,5 @@ function filemtime (file) {
 
     var headers = {};
     headers = this.get_headers(file, 1);
-    return (headers && headers['Last-Modified'] && Date.parse(headers['Last-Modified'])/1000) || false;
+    return (headers && headers['Last-Modified'] && Date.parse(headers['Last-Modified']) / 1000) || false;
 }

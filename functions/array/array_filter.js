@@ -8,14 +8,14 @@ function array_filter (arr, func) {
     // *     example 2: var even = function (num) {return (!(num & 1));}
     // *     example 2: array_filter([6, 7, 8, 9, 10, 11, 12], even);
     // *     returns 2: {0: 6, 2: 8, 4: 10, 6: 12} 
-    
-    var retObj = {}, k;
-    
+    var retObj = {},
+        k;
+
     for (k in arr) {
         if (func(arr[k])) {
             retObj[k] = arr[k];
         }
     }
-    
+
     return retObj;
 }

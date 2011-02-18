@@ -7,8 +7,9 @@ function get_defined_vars () {
     // *     example 1: funcs = get_defined_vars();
     // *     example 1: found = test_in_array(funcs, 'get_defined_vars');
     // *     results 1: found == true
-
-    var i = '', arr = [], already = {};
+    var i = '',
+        arr = [],
+        already = {};
 
     for (i in this.window) {
         try {
@@ -19,13 +20,11 @@ function get_defined_vars () {
                         arr.push(j);
                     }
                 }
-            }
-            else if (!already[i]) {
+            } else if (!already[i]) {
                 already[i] = 1;
                 arr.push(i);
             }
-        }
-        catch (e) { // Problems accessing some properties in FF (e.g., sessionStorage)
+        } catch (e) { // Problems accessing some properties in FF (e.g., sessionStorage)
             if (!already[i]) {
                 already[i] = 1;
                 arr.push(i);

@@ -16,10 +16,12 @@ function html_entity_decode (string, quote_style) {
     // *     returns 1: 'Kevin & van Zonneveld'
     // *     example 2: html_entity_decode('&amp;lt;');
     // *     returns 2: '&lt;'
-
-    var hash_map = {}, symbol = '', tmp_str = '', entity = '';
+    var hash_map = {},
+        symbol = '',
+        tmp_str = '',
+        entity = '';
     tmp_str = string.toString();
-    
+
     if (false === (hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {
         return false;
     }
@@ -34,6 +36,6 @@ function html_entity_decode (string, quote_style) {
         tmp_str = tmp_str.split(entity).join(symbol);
     }
     tmp_str = tmp_str.split('&#039;').join("'");
-    
+
     return tmp_str;
 }

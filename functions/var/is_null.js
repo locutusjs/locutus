@@ -5,6 +5,5 @@ function is_null (mixed_var) {
     // *     returns 1: false
     // *     example 2: is_null(null);
     // *     returns 2: true
-
-    return ( mixed_var === null );
+    return (mixed_var === null);
 }

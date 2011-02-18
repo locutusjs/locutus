@@ -5,12 +5,13 @@ function ini_set (varname, newvalue) {
     // *     example 1: ini_set('date.timezone', 'America/Chicago');
     // *     returns 1: 'Asia/Hong_Kong'
 
-    var oldval = '', that = this;
+    var oldval = '',
+        that = this;
     this.php_js = this.php_js || {};
     this.php_js.ini = this.php_js.ini || {};
     this.php_js.ini[varname] = this.php_js.ini[varname] || {};
     oldval = this.php_js.ini[varname].local_value;
-    
+
     var _setArr = function (oldval) { // Although these are set individually, they are all accumulated
         if (typeof oldval === 'undefined') {
             that.php_js.ini[varname].local_value = [];
@@ -19,15 +20,15 @@ function ini_set (varname, newvalue) {
     };
 
     switch (varname) {
-        case 'extension':
-            if (typeof this.dl === 'function') {
-                this.dl(newvalue); // This function is only experimental in php.js
-            }
-            _setArr(oldval, newvalue);
-            break;
-        default:
-            this.php_js.ini[varname].local_value = newvalue;
-            break;
+    case 'extension':
+        if (typeof this.dl === 'function') {
+            this.dl(newvalue); // This function is only experimental in php.js
+        }
+        _setArr(oldval, newvalue);
+        break;
+    default:
+        this.php_js.ini[varname].local_value = newvalue;
+        break;
     }
     return oldval;
 }

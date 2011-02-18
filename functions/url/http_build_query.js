@@ -13,8 +13,8 @@ function http_build_query (formdata, numeric_prefix, arg_separator) {
     // *     returns 1: 'foo=bar&amp;php=hypertext+processor&amp;baz=boom&amp;cow=milk'
     // *     example 2: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_');
     // *     returns 2: 'php=hypertext+processor&myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&cow=milk'
-
-    var value, key, tmp = [], that = this;
+    var value, key, tmp = [],
+        that = this;
 
     var _http_build_query_helper = function (key, val, arg_separator) {
         var k, tmp = [];

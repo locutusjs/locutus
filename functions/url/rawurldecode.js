@@ -16,6 +16,5 @@ function rawurldecode (str) {
     // *     returns 3: 'http://www.google.nl/search?q=php.js&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a'
     // *     example 4: rawurldecode('-22%97bc%2Fbc');
     // *     returns 4: '-22—bc/bc'
-
-    return decodeURIComponent(str+'');
+    return decodeURIComponent(str + '');
 }

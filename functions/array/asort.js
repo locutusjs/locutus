@@ -34,57 +34,62 @@ function asort (inputArr, sort_flags) {
     // *     example 2: asort(data);
     // *     results 2: data == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
     // *     returns 2: true
-
-    var valArr=[], keyArr=[], k, i, ret, sorter, that = this, strictForIn = false, populateArr = {};
+    var valArr = [],
+        keyArr = [],
+        k, i, ret, sorter, that = this,
+        strictForIn = false,
+        populateArr = {};
 
     switch (sort_flags) {
-        case 'SORT_STRING': // compare items as strings
-            sorter = function (a, b) {
-                return that.strnatcmp(a, b);
-            };
-            break;
-        case 'SORT_LOCALE_STRING': // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
-            var loc = this.i18n_loc_get_default();
-            sorter = this.php_js.i18nLocales[loc].sorting;
-            break;
-        case 'SORT_NUMERIC': // compare items numerically
-            sorter = function (a, b) {
-                return (a - b);
-            };
-            break;
-        case 'SORT_REGULAR': // compare items normally (don't change types)
-        default:
-            sorter = function (a, b) {
-                var aFloat = parseFloat(a),
-                    bFloat = parseFloat(b),
-                    aNumeric = aFloat+'' === a,
-                    bNumeric = bFloat+'' === b;
-                if (aNumeric && bNumeric) {
-                    return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0;
-                }
-                else if (aNumeric && !bNumeric) {
-                    return 1;
-                }
-                else if (!aNumeric && bNumeric) {
-                    return -1;
-                }
-                return a > b ? 1 : a < b ? -1 : 0;
-            };
-            break;
+    case 'SORT_STRING':
+        // compare items as strings
+        sorter = function (a, b) {
+            return that.strnatcmp(a, b);
+        };
+        break;
+    case 'SORT_LOCALE_STRING':
+        // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
+        var loc = this.i18n_loc_get_default();
+        sorter = this.php_js.i18nLocales[loc].sorting;
+        break;
+    case 'SORT_NUMERIC':
+        // compare items numerically
+        sorter = function (a, b) {
+            return (a - b);
+        };
+        break;
+    case 'SORT_REGULAR':
+        // compare items normally (don't change types)
+    default:
+        sorter = function (a, b) {
+            var aFloat = parseFloat(a),
+                bFloat = parseFloat(b),
+                aNumeric = aFloat + '' === a,
+                bNumeric = bFloat + '' === b;
+            if (aNumeric && bNumeric) {
+                return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0;
+            } else if (aNumeric && !bNumeric) {
+                return 1;
+            } else if (!aNumeric && bNumeric) {
+                return -1;
+            }
+            return a > b ? 1 : a < b ? -1 : 0;
+        };
+        break;
     }
 
     var bubbleSort = function (keyArr, inputArr) {
         var i, j, tempValue, tempKeyVal;
-        for (i = inputArr.length-2; i >= 0; i--) {
+        for (i = inputArr.length - 2; i >= 0; i--) {
             for (j = 0; j <= i; j++) {
-                ret = sorter(inputArr[j+1], inputArr[j]);
+                ret = sorter(inputArr[j + 1], inputArr[j]);
                 if (ret < 0) {
                     tempValue = inputArr[j];
-                    inputArr[j] = inputArr[j+1];
-                    inputArr[j+1] = tempValue;
+                    inputArr[j] = inputArr[j + 1];
+                    inputArr[j + 1] = tempValue;
                     tempKeyVal = keyArr[j];
-                    keyArr[j] = keyArr[j+1];
-                    keyArr[j+1] = tempKeyVal;
+                    keyArr[j] = keyArr[j + 1];
+                    keyArr[j + 1] = tempKeyVal;
                 }
             }
         }
@@ -94,9 +99,7 @@ function asort (inputArr, sort_flags) {
     this.php_js = this.php_js || {};
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
-
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
-                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
 
     // Get key and value arrays

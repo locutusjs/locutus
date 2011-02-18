@@ -10,9 +10,12 @@ function aggregate_methods_by_regexp (obj, class_name, regexp, exclude) {
     // *     example 1: aggregate_methods_by_regexp(b, 'A', /^meth/, false);
     // *     returns 1: undefined
 
-    var p = '', test=false, record={}, pos=-1,
+    var p = '',
+        test = false,
+        record = {},
+        pos = -1,
         indexOf = function (value) {
-            for (var i = 0, length=this.length; i < length; i++) {
+            for (var i = 0, length = this.length; i < length; i++) {
                 if (this[i] === value) {
                     return i;
                 }
@@ -42,23 +45,17 @@ function aggregate_methods_by_regexp (obj, class_name, regexp, exclude) {
     };
     // END REDUNDANT
     this.php_js.aggregateClasses.push(getFuncName(class_name));
-    
+
     for (p in class_name) {
         test = exclude ? p.search(regexp) === -1 : p.search(regexp) !== -1;
-        if (!(p in obj) &&
-                typeof class_name[p] === 'function' &&
-                    p[0] !== '_' &&
-                        test) { // Static (non-private) class methods
+        if (!(p in obj) && typeof class_name[p] === 'function' && p[0] !== '_' && test) { // Static (non-private) class methods
             obj[p] = class_name[p];
             record[p] = class_name[p];
         }
     }
     for (p in class_name.prototype) {
         test = exclude ? p.search(regexp) === -1 : p.search(regexp) !== -1;
-        if (!(p in obj) &&
-                typeof class_name.prototype[p] === 'function' &&
-                    p[0] !== '_' &&
-                        test) { // Prototype (non-private) instance methods
+        if (!(p in obj) && typeof class_name.prototype[p] === 'function' && p[0] !== '_' && test) { // Prototype (non-private) instance methods
             obj[p] = class_name.prototype[p];
             record[p] = class_name.prototype[p];
         }

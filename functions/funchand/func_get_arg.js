@@ -5,12 +5,11 @@ function func_get_arg (num) {
     // *     example 1: function tmp_a() {return func_get_arg(1);}
     // *     example 1: tmp_a('a', 'b');
     // *     returns 1: 'a'
-
     if (!arguments.callee.caller) {
         try {
             throw new Error('Either you are using this in a browser which does not support the "caller" property or you are calling this from a global context');
             //return false;
-        } catch (e){
+        } catch (e) {
             return false;
         }
     }
@@ -19,7 +18,7 @@ function func_get_arg (num) {
         try {
             throw new Error('Argument number is greater than the number of arguments actually passed');
             //return false;
-        } catch (e2){
+        } catch (e2) {
             return false;
         }
     }

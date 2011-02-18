@@ -7,21 +7,24 @@ function strval (str) {
     // -    depends on: gettype
     // *     example 1: strval({red: 1, green: 2, blue: 3, white: 4});
     // *     returns 1: 'Array'
-
     var type = '';
 
-    if (str === null) {return '';}
+    if (str === null) {
+        return '';
+    }
 
     type = this.gettype(str);
     switch (type) {
-        case 'boolean':
-            if (str === true) {return '1';}
-            return '';
-        case 'array':
-            return 'Array';
-        case 'object':
-            return 'Object';
+    case 'boolean':
+        if (str === true) {
+            return '1';
+        }
+        return '';
+    case 'array':
+        return 'Array';
+    case 'object':
+        return 'Object';
     }
-    
+
     return str;
 }

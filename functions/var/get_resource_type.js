@@ -3,7 +3,6 @@ function get_resource_type (handle) {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: get_resource_type('a');
     // *     returns 1: false
-
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
         if (!name) {

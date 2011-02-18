@@ -11,8 +11,8 @@ function strnatcasecmp (str1, str2) {
     // *        returns 1: 1
     // *        example 1: strnatcasecmp('1', '10');
     // *        returns 1: -1
-    var a = (str1+'').toLowerCase();
-    var b = (str2+'').toLowerCase();
+    var a = (str1 + '').toLowerCase();
+    var b = (str2 + '').toLowerCase();
 
     var isWhitespaceChar = function (a) {
         return a.charCodeAt(0) <= 32;
@@ -20,10 +20,10 @@ function strnatcasecmp (str1, str2) {
 
     var isDigitChar = function (a) {
         var charCode = a.charCodeAt(0);
-        return ( charCode >= 48  && charCode <= 57 );
+        return (charCode >= 48 && charCode <= 57);
     };
 
-    var compareRight = function (a,b) {
+    var compareRight = function (a, b) {
         var bias = 0;
         var ia = 0;
         var ib = 0;
@@ -35,24 +35,23 @@ function strnatcasecmp (str1, str2) {
         // value wins, but we can't know that it will until we've scanned
         // both numbers to know that they have the same magnitude, so we
         // remember it in BIAS.
-        for (var cnt = 0 ; true; ia++, ib++) {
+        for (var cnt = 0; true; ia++, ib++) {
             ca = a.charAt(ia);
             cb = b.charAt(ib);
 
-            if (!isDigitChar(ca) &&
-                !isDigitChar(cb)) {
+            if (!isDigitChar(ca) && !isDigitChar(cb)) {
                 return bias;
             } else if (!isDigitChar(ca)) {
                 return -1;
             } else if (!isDigitChar(cb)) {
-                return +1;
+                return 1;
             } else if (ca < cb) {
-                if (bias === '0') {
+                if (bias === 0) {
                     bias = -1;
                 }
             } else if (ca > cb) {
-                if (bias === '0') {
-                    bias = +1;
+                if (bias === 0) {
+                    bias = 1;
                 }
             } else if (ca === '0' && cb === '0') {
                 return bias;
@@ -60,8 +59,10 @@ function strnatcasecmp (str1, str2) {
         }
     };
 
-    var ia = 0, ib = 0;
-    var nza = 0, nzb = 0;
+    var ia = 0,
+        ib = 0;
+    var nza = 0,
+        nzb = 0;
     var ca, cb;
     var result;
 
@@ -73,7 +74,7 @@ function strnatcasecmp (str1, str2) {
         cb = b.charAt(ib);
 
         // skip over leading spaces or zeros
-        while (isWhitespaceChar( ca ) || ca ==='0') {
+        while (isWhitespaceChar(ca) || ca === '0') {
             if (ca === '0') {
                 nza++;
             } else {
@@ -84,7 +85,7 @@ function strnatcasecmp (str1, str2) {
             ca = a.charAt(++ia);
         }
 
-        while (isWhitespaceChar( cb ) || cb === '0') {
+        while (isWhitespaceChar(cb) || cb === '0') {
             if (cb === '0') {
                 nzb++;
             } else {
@@ -97,7 +98,7 @@ function strnatcasecmp (str1, str2) {
 
         // process run of digits
         if (isDigitChar(ca) && isDigitChar(cb)) {
-            if ((result = compareRight(a.substring(ia), b.substring(ib))) !== '0') {
+            if ((result = compareRight(a.substring(ia), b.substring(ib))) !== 0) {
                 return result;
             }
         }
@@ -114,6 +115,7 @@ function strnatcasecmp (str1, str2) {
             return +1;
         }
 
-        ++ia; ++ib;
+        ++ia;
+        ++ib;
     }
 }

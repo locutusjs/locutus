@@ -16,7 +16,7 @@ function forward_static_call_array (cb, parameters) {
             func = (new Function(null, 'return ' + cb))();
         }
     } else if (cb instanceof Array) {
-        func = eval(cb[0]+"['"+cb[1]+"']");
+        func = eval(cb[0] + "['" + cb[1] + "']");
     }
 
     if (typeof func != 'function') {

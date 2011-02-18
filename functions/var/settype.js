@@ -1,5 +1,5 @@
 function settype (vr, type) {
-   // http://kevin.vanzonneveld.net
+    // http://kevin.vanzonneveld.net
     // +   original by: Waldo Malqui Silva
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Brett Zamir (http://brett-zamir.me)
@@ -13,77 +13,105 @@ function settype (vr, type) {
     // *     example 2: settype('foo', 'string');
     // *     results 2: foo === '1'
     // *     returns 2: true
-
     var is_array = function (arr) {
-        return typeof arr === 'object' && typeof arr.length === 'number' &&
-                    !(arr.propertyIsEnumerable('length')) &&
-                    typeof arr.splice === 'function';
+        return typeof arr === 'object' && typeof arr.length === 'number' && !(arr.propertyIsEnumerable('length')) && typeof arr.splice === 'function';
     };
     var v, mtch, i, obj;
     v = this[vr] ? this[vr] : vr;
-    
+
     try {
         switch (type) {
-            case 'boolean':
-                if (is_array(v) && v.length === 0) {this[vr]=false;}
-                else if (v === '0') {this[vr]=false;}
-                else if (typeof v === 'object' && !is_array(v)) {
-                    var lgth = false;
-                    for (i in v) {
-                        lgth = true;
-                    }
-                    this[vr]=lgth;
+        case 'boolean':
+            if (is_array(v) && v.length === 0) {
+                this[vr] = false;
+            } else if (v === '0') {
+                this[vr] = false;
+            } else if (typeof v === 'object' && !is_array(v)) {
+                var lgth = false;
+                for (i in v) {
+                    lgth = true;
                 }
-                else {this[vr] = !!v;}
-                break;
-            case 'integer':
-                if (typeof v === 'number') {this[vr]=parseInt(v, 10);}
-                else if (typeof v === 'string') {
-                    mtch = v.match(/^([+\-]?)(\d+)/);
-                    if (!mtch) {this[vr]=0;}
-                    else {this[vr]=parseInt(v, 10);}
+                this[vr] = lgth;
+            } else {
+                this[vr] = !! v;
+            }
+            break;
+        case 'integer':
+            if (typeof v === 'number') {
+                this[vr] = parseInt(v, 10);
+            } else if (typeof v === 'string') {
+                mtch = v.match(/^([+\-]?)(\d+)/);
+                if (!mtch) {
+                    this[vr] = 0;
+                } else {
+                    this[vr] = parseInt(v, 10);
                 }
-                else if (v === true) {this[vr]=1;}
-                else if (v === false || v === null) {this[vr]=0;}
-                else if (is_array(v) && v.length === 0) {this[vr]=0;}
-                else if (typeof v === 'object') {this[vr]=1;}
+            } else if (v === true) {
+                this[vr] = 1;
+            } else if (v === false || v === null) {
+                this[vr] = 0;
+            } else if (is_array(v) && v.length === 0) {
+                this[vr] = 0;
+            } else if (typeof v === 'object') {
+                this[vr] = 1;
+            }
 
-                break;
-            case 'float':
-                if (typeof v === 'string') {
-                    mtch = v.match(/^([+\-]?)(\d+(\.\d+)?|\.\d+)([eE][+\-]?\d+)?/);
-                    if (!mtch) {this[vr]=0;}
-                    else {this[vr]=parseFloat(v, 10);}
+            break;
+        case 'float':
+            if (typeof v === 'string') {
+                mtch = v.match(/^([+\-]?)(\d+(\.\d+)?|\.\d+)([eE][+\-]?\d+)?/);
+                if (!mtch) {
+                    this[vr] = 0;
+                } else {
+                    this[vr] = parseFloat(v, 10);
                 }
-                else if (v === true) {this[vr]=1;}
-                else if (v === false || v === null) {this[vr]=0;}
-                else if (is_array(v) && v.length === 0) {this[vr]=0;}
-                else if (typeof v === 'object') {this[vr]=1;}
-                break;
-            case 'string':
-                if (v === null || v === false) {this[vr]='';}
-                else if (is_array(v)) {this[vr]='Array';}
-                else if (typeof v === 'object') {this[vr]='Object';}
-                else if (v === true) {this[vr]='1';}
-                else {this[vr] += '';} // numbers (and functions?)
-                break;
-            case 'array':
-                if (v === null) {this[vr] = [];}
-                else if (typeof v !== 'object') {this[vr] = [v];}
-                break;
-            case 'object':
-                if (v === null) {this[vr]={};}
-                else if (is_array(v)) {
-                    for (i = 0, obj={}; i < v.length; i++) {
-                        obj[i] = v;
-                    }
-                    this[vr] = obj;
+            } else if (v === true) {
+                this[vr] = 1;
+            } else if (v === false || v === null) {
+                this[vr] = 0;
+            } else if (is_array(v) && v.length === 0) {
+                this[vr] = 0;
+            } else if (typeof v === 'object') {
+                this[vr] = 1;
+            }
+            break;
+        case 'string':
+            if (v === null || v === false) {
+                this[vr] = '';
+            } else if (is_array(v)) {
+                this[vr] = 'Array';
+            } else if (typeof v === 'object') {
+                this[vr] = 'Object';
+            } else if (v === true) {
+                this[vr] = '1';
+            } else {
+                this[vr] += '';
+            } // numbers (and functions?)
+            break;
+        case 'array':
+            if (v === null) {
+                this[vr] = [];
+            } else if (typeof v !== 'object') {
+                this[vr] = [v];
+            }
+            break;
+        case 'object':
+            if (v === null) {
+                this[vr] = {};
+            } else if (is_array(v)) {
+                for (i = 0, obj = {}; i < v.length; i++) {
+                    obj[i] = v;
                 }
-                else if (typeof v !== 'object') {this[vr]={scalar:v};}
-                break;
-            case 'null':
-                delete this[vr];
-                break;
+                this[vr] = obj;
+            } else if (typeof v !== 'object') {
+                this[vr] = {
+                    scalar: v
+                };
+            }
+            break;
+        case 'null':
+            delete this[vr];
+            break;
         }
         return true;
     } catch (e) {

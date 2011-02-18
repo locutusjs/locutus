@@ -15,17 +15,16 @@ function intval (mixed_var, base) {
     // *     returns 4: 9
     // *     example 5: intval('1e', 16);
     // *     returns 5: 30
-
     var tmp;
 
-    var type = typeof( mixed_var );
+    var type = typeof(mixed_var);
 
     if (type === 'boolean') {
         return (mixed_var) ? 1 : 0;
     } else if (type === 'string') {
         tmp = parseInt(mixed_var, base || 10);
         return (isNaN(tmp) || !isFinite(tmp)) ? 0 : tmp;
-    } else if (type === 'number' && isFinite(mixed_var) ) {
+    } else if (type === 'number' && isFinite(mixed_var)) {
         return Math.floor(mixed_var);
     } else {
         return 0;

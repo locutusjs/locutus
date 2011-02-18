@@ -21,14 +21,13 @@ function is_array (mixed_var) {
     // *     returns 3: true
     // *     example 4: is_array(function tmp_a(){this.name = 'Kevin'});
     // *     returns 4: false
-
     var _getFuncName = function (fn) {
-            var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-            if (!name) {
-                return '(Anonymous)';
-            }
-            return name[1];
-        },
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if (!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    },
         _isArray = function (mixed_var) {
             return Object.prototype.toString.call(mixed_var) === '[object Array]';
             // Other approaches:
@@ -48,16 +47,10 @@ function is_array (mixed_var) {
     var ini = this.php_js.ini['phpjs.objectsAsArrays'];
 
     return _isArray(mixed_var) ||
-        // Allow returning true unless user has called
-        // ini_set('phpjs.objectsAsArrays', 0) to disallow objects as arrays
-        (!ini ||
-            ( // if it's not set to 0 and it's not 'off', check for objects as arrays
-                (parseInt(ini.local_value, 10) !== 0 &&
-                    (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !== 'off'))
-            )
-        ) &&
-        (
-            Object.prototype.toString.call(mixed_var) === '[object Object]' &&
-            _getFuncName(mixed_var.constructor) === 'Object' // Most likely a literal and intended as assoc. array
-        );
+    // Allow returning true unless user has called
+    // ini_set('phpjs.objectsAsArrays', 0) to disallow objects as arrays
+    (!ini || ( // if it's not set to 0 and it's not 'off', check for objects as arrays
+    (parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !== 'off')))) && (
+    Object.prototype.toString.call(mixed_var) === '[object Object]' && _getFuncName(mixed_var.constructor) === 'Object' // Most likely a literal and intended as assoc. array
+    );
 }

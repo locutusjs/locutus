@@ -7,7 +7,6 @@ function is_float (mixed_var) {
     // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
     // *     example 1: is_float(186.31);
     // *     returns 1: true
-
     if (typeof mixed_var !== 'number') {
         return false;
     }

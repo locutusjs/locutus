@@ -6,7 +6,6 @@ function stream_context_set_default (options) {
     // *     example 1: var context = stream_context_set_default(opts);
     // *     example 1: get_resource_type(context);
     // *     returns 1: 'stream-context'
-
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     // END REDUNDANT

@@ -1,4 +1,4 @@
-function number_format(number, decimals, dec_point, thousands_sep) {
+function number_format (number, decimals, dec_point, thousands_sep) {
     // http://kevin.vanzonneveld.net
     // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -46,8 +46,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     // *    returns 12: '1.200'
     // *    example 13: number_format('1 000,50', 2, '.', ' ');
     // *    returns 13: '100 050.00'
-    number = (number+'').replace(',', '').replace(' ', '');
-    var n = !isFinite(+number) ? 0 : +number, 
+    number = (number + '').replace(',', '').replace(' ', '');
+    var n = !isFinite(+number) ? 0 : +number,
         prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
         sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
         dec = (typeof dec_point === 'undefined') ? '.' : dec_point,

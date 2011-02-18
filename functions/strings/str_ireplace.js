@@ -1,4 +1,4 @@
-function str_ireplace ( search, replace, subject ) {
+function str_ireplace (search, replace, subject) {
     // http://kevin.vanzonneveld.net
     // +   original by: Martijn Wieringa
     // +      input by: penutbutterjelly
@@ -13,12 +13,11 @@ function str_ireplace ( search, replace, subject ) {
     // *     returns 1: 'Hello'
     // *     example 2: str_ireplace('$', 'foo', '$bar');
     // *     returns 2: 'foobar'
-
     var i, k = '';
     var searchl = 0;
     var reg;
 
-    var escapeRegex = function(s) {
+    var escapeRegex = function (s) {
         return s.replace(/([\\\^\$*+\[\]?{}.=!:(|)])/g, '\\$1');
     };
 
@@ -38,7 +37,7 @@ function str_ireplace ( search, replace, subject ) {
     if (!(search instanceof Array)) {
         search = [search];
     }
-    while (search.length>replace.length) {
+    while (search.length > replace.length) {
         // If replace has fewer values than search,
         // then an empty string is used for the rest of replacement values
         replace[replace.length] = '';

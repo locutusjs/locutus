@@ -17,8 +17,7 @@ function array_replace_recursive (arr) {
         for (var p in arguments[i]) {
             if (typeof retObj[p] === 'object' && retObj[p] !== null) {
                 retObj[p] = this.array_replace_recursive(retObj[p], arguments[i][p]);
-            }
-            else {
+            } else {
                 retObj[p] = arguments[i][p];
             }
         }

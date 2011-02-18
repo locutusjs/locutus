@@ -1,4 +1,4 @@
-function strnatcmp ( f_string1, f_string2, f_version ) {
+function strnatcmp (f_string1, f_string2, f_version) {
     // http://kevin.vanzonneveld.net
     // +   original by: Martijn Wieringa
     // + namespaced by: Michael White (http://getsprink.com)
@@ -16,18 +16,18 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
     // *     returns 4: -6
     // *     example 5: strnatcmp('Version 12.15', 'Version 12.9', true);
     // *     returns 5: 6
-
     var i = 0;
 
     if (f_version == undefined) {
         f_version = false;
     }
 
-    var __strnatcmp_split = function ( f_string ) {
+    var __strnatcmp_split = function (f_string) {
         var result = [];
         var buffer = '';
         var chr = '';
-        var i = 0, f_stringl = 0;
+        var i = 0,
+            f_stringl = 0;
 
         var text = true;
 
@@ -36,7 +36,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
             chr = f_string.substring(i, i + 1);
             if (chr.match(/\d/)) {
                 if (text) {
-                    if (buffer.length > 0){
+                    if (buffer.length > 0) {
                         result[result.length] = buffer;
                         buffer = '';
                     }
@@ -70,8 +70,8 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
         return result;
     };
 
-    var array1 = __strnatcmp_split(f_string1+'');
-    var array2 = __strnatcmp_split(f_string2+'');
+    var array1 = __strnatcmp_split(f_string1 + '');
+    var array2 = __strnatcmp_split(f_string2 + '');
 
     var len = array1.length;
     var text = true;
@@ -92,7 +92,7 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
                 if ((r = this.strcmp(array1[i], array2[i])) != 0) {
                     return r;
                 }
-            } else if (text){
+            } else if (text) {
                 return 1;
             } else {
                 return -1;
@@ -100,11 +100,11 @@ function strnatcmp ( f_string1, f_string2, f_version ) {
         } else if (isNaN(array2[i])) {
             if (text) {
                 return -1;
-            } else{
+            } else {
                 return 1;
             }
         } else {
-            if (text || f_version){
+            if (text || f_version) {
                 if ((r = (array1[i] - array2[i])) != 0) {
                     return r;
                 }

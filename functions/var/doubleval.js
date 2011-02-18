@@ -6,6 +6,5 @@ function doubleval (mixed_var) {
     // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
     // *     example 1: doubleval(186);
     // *     returns 1: 186.00
-
     return this.floatval(mixed_var);
 }

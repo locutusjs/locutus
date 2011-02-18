@@ -15,7 +15,6 @@ function is_int (mixed_var) {
     // *     returns 3: false
     // *     example 4: is_int(true)
     // *     returns 4: false
-
     if (typeof mixed_var !== 'number') {
         return false;
     }

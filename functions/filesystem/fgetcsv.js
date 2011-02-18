@@ -6,7 +6,8 @@ function fgetcsv (handle, length, delimiter, enclosure, escape) {
     // *     example 1: fgetcsv(handle, 1);
     // *     returns 1: '<'
 
-    var start=0, fullline='';
+    var start = 0,
+        fullline = '';
 
     if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer || length !== undefined && !length) {
         return false;
@@ -18,12 +19,12 @@ function fgetcsv (handle, length, delimiter, enclosure, escape) {
         return false; // Resource was already closed or already reached the end of the file
     }
 
-    fullline = this.php_js.resourceData[handle.id].slice(start, this.php_js.resourceData[handle.id].indexOf('\n', start)+1);
+    fullline = this.php_js.resourceData[handle.id].slice(start, this.php_js.resourceData[handle.id].indexOf('\n', start) + 1);
     if (fullline === '') {
         fullline = this.php_js.resourceData[handle.id].slice(start); // Get to rest of the file
     }
 
-    length = (length === undefined || fullline.length < length) ? fullline.length : Math.floor(length/2) || 1; // two bytes per character (or surrogate), but ensure at least one
+    length = (length === undefined || fullline.length < length) ? fullline.length : Math.floor(length / 2) || 1; // two bytes per character (or surrogate), but ensure at least one
 
     this.php_js.resourceDataPointer[handle.id] += length; // Leaves the pointer one higher apparently than in fgets/fgetss
     return this.str_getcsv(this.php_js.resourceData[handle.id].substr(start, length), delimiter, enclosure, escape);

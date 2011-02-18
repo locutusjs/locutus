@@ -12,9 +12,10 @@ function array_count_values (array) {
     // *     returns 2: {3:2, 5:1, "foo":2, "bar":1}
     // *     example 3: array_count_values([ true, 4.2, 42, "fubar" ]);
     // *     returns 3: {42:1, "fubar":1}
+    var tmp_arr = {},
+        key = '',
+        t = '';
 
-    var tmp_arr = {}, key = '', t = '';
-    
     var __getType = function (obj) {
         // Objects are php associative arrays.
         var t = typeof obj;
@@ -27,20 +28,20 @@ function array_count_values (array) {
 
     var __countValue = function (value) {
         switch (typeof(value)) {
-            case "number":
-                if (Math.floor(value) !== value) {
-                    return;
-                }
-                // Fall-through
-            case "string":
-                if (value in this && this.hasOwnProperty(value)) {
-                    ++this[value];
-                } else {
-                    this[value] = 1;
-                }
+        case "number":
+            if (Math.floor(value) !== value) {
+                return;
+            }
+            // Fall-through
+        case "string":
+            if (value in this && this.hasOwnProperty(value)) {
+                ++this[value];
+            } else {
+                this[value] = 1;
+            }
         }
     };
-    
+
     t = __getType(array);
     if (t === 'array') {
         for (key in array) {
@@ -48,6 +49,6 @@ function array_count_values (array) {
                 __countValue.call(tmp_arr, array[key]);
             }
         }
-    } 
+    }
     return tmp_arr;
 }

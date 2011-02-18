@@ -18,16 +18,17 @@ function version_compare (v1, v2, operator) {
     this.php_js = this.php_js || {};
     this.php_js.ENV = this.php_js.ENV || {};
     // END REDUNDANT
-    
     // Important: compare must be initialized at 0. 
-    var i = 0, x = 0, compare = 0,
-    // vm maps textual PHP versions to negatives so they're less than 0.
-    // PHP currently defines these as CASE-SENSITIVE. It is important to
-    // leave these as negatives so that they can come before numerical versions
-    // and as if no letters were there to begin with.
-    // (1alpha is < 1 and < 1.1 but > 1dev1)
-    // If a non-numerical value can't be mapped to this table, it receives
-    // -7 as its value.
+    var i = 0,
+        x = 0,
+        compare = 0,
+        // vm maps textual PHP versions to negatives so they're less than 0.
+        // PHP currently defines these as CASE-SENSITIVE. It is important to
+        // leave these as negatives so that they can come before numerical versions
+        // and as if no letters were there to begin with.
+        // (1alpha is < 1 and < 1.1 but > 1dev1)
+        // If a non-numerical value can't be mapped to this table, it receives
+        // -7 as its value.
         vm = {
             'dev': -6,
             'alpha': -5,
@@ -81,33 +82,33 @@ function version_compare (v1, v2, operator) {
     if (!operator) {
         return compare;
     }
-    
+
     // Important: operator is CASE-SENSITIVE.
     // "No operator" seems to be treated as "<."
     // Any other values seem to make the function return null.
     switch (operator) {
-        case '>':
-        case 'gt':
-            return (compare > 0);
-        case '>=':
-        case 'ge':
-            return (compare >= 0);
-        case '<=':
-        case 'le':
-            return (compare <= 0);
-        case '==':
-        case '=':
-        case 'eq':
-            return (compare === 0);
-        case '<>':
-        case '!=':
-        case 'ne':
-            return (compare !== 0);
-        case '':
-        case '<':
-        case 'lt':
-            return (compare < 0);
-        default:
-            return null;
-    }	
+    case '>':
+    case 'gt':
+        return (compare > 0);
+    case '>=':
+    case 'ge':
+        return (compare >= 0);
+    case '<=':
+    case 'le':
+        return (compare <= 0);
+    case '==':
+    case '=':
+    case 'eq':
+        return (compare === 0);
+    case '<>':
+    case '!=':
+    case 'ne':
+        return (compare !== 0);
+    case '':
+    case '<':
+    case 'lt':
+        return (compare < 0);
+    default:
+        return null;
+    }
 }

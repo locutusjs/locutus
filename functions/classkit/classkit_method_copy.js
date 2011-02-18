@@ -3,8 +3,8 @@ function classkit_method_copy (dClass, dMethod, sClass, sMethod) {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: classkit_method_copy('newClass', 'newMethod', 'someClass', 'someMethod');
     // *     returns 1: true
-    
-    /*
+
+/*
     function A(){}
     function C(){}
     C.d = function () {alert('inside d');}

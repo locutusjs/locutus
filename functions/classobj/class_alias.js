@@ -19,7 +19,7 @@ function class_alias (clss, alias, autoload) {
         clss = this.window[clss];
     }
     if (typeof clss === 'undefined') {
-        throw "Class '"+getFuncName(clss)+"' not found";
+        throw "Class '" + getFuncName(clss) + "' not found";
         return false; // Return false until replace throw with error triggering
     }
     if (typeof clss !== 'function') {
@@ -27,7 +27,7 @@ function class_alias (clss, alias, autoload) {
         return false;
     }
     if (typeof this.window[alias] === 'function') {
-        throw 'Cannot redeclare class '+alias;
+        throw 'Cannot redeclare class ' + alias;
         return false;
     }
 

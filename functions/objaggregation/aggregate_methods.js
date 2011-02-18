@@ -9,7 +9,9 @@ function aggregate_methods (obj, class_name) {
     // *     example 1: aggregate_methods(b, 'A');
     // *     returns 1: undefined
 
-    var p = '', record={}, pos=-1;
+    var p = '',
+        record = {},
+        pos = -1;
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
         if (!name) {
@@ -18,7 +20,7 @@ function aggregate_methods (obj, class_name) {
         return name[1];
     };
     var indexOf = function (value) {
-        for (var i = 0, length=this.length; i < length; i++) {
+        for (var i = 0, length = this.length; i < length; i++) {
             if (this[i] === value) {
                 return i;
             }

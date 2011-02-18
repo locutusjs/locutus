@@ -4,6 +4,5 @@ function join (glue, pieces) {
     // -    depends on: implode
     // *     example 1: join(' ', ['Kevin', 'van', 'Zonneveld']);
     // *     returns 1: 'Kevin van Zonneveld'
-
-    return this.implode( glue, pieces );
+    return this.implode(glue, pieces);
 }

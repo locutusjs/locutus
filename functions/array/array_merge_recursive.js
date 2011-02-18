@@ -1,4 +1,4 @@
-function array_merge_recursive (arr1, arr2){
+function array_merge_recursive (arr1, arr2) {
     // http://kevin.vanzonneveld.net
     // +   original by: Subhasis Deb
     // +      input by: Brett Zamir (http://brett-zamir.me)
@@ -8,7 +8,6 @@ function array_merge_recursive (arr1, arr2){
     // *     example 1: arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
     // *     example 1: array_merge_recursive(arr1, arr2)
     // *     returns 1: {'color': {'favorite': {0: 'red', 1: 'green'}, 0: 'blue'}, 1: 5, 1: 10}
-
     var idx = '';
 
     if ((arr1 && (arr1 instanceof Array)) && (arr2 && (arr2 instanceof Array))) {
@@ -28,6 +27,6 @@ function array_merge_recursive (arr1, arr2){
             }
         }
     }
-    
+
     return arr1;
 }

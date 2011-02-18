@@ -1,4 +1,4 @@
-function ip2long(IP) {
+function ip2long (IP) {
     // http://kevin.vanzonneveld.net
     // +   original by: Waldo Malqui Silva
     // +   improved by: Victor
@@ -10,7 +10,6 @@ function ip2long(IP) {
     // *     returns 2: 11259375
     // *     example 3: ip2long('255.255.255.256');
     // *     returns 3: false
-
     var i = 0;
     // PHP allows decimal, octal, and hexadecimal IP components.
     // PHP allows between 1 (e.g. 127) to 4 (e.g 127.0.0.1) components.
@@ -21,7 +20,7 @@ function ip2long(IP) {
     // Reuse IP variable for component counter.
     IP[0] = 0;
     for (i = 1; i < 5; i += 1) {
-        IP[0] += !!((IP[i] || '').length);
+        IP[0] += !! ((IP[i] || '').length);
         IP[i] = parseInt(IP[i]) || 0;
     }
     // Continue to use IP for overflow values.

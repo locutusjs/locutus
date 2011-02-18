@@ -7,7 +7,6 @@ function getenv (varname) {
     // %        note 3: Uses global: php_js to store environment info
     // *     example 1: getenv('LC_ALL');
     // *     returns 1: false
-    
     if (!this.php_js || !this.php_js.ENV || !this.php_js.ENV[varname]) {
         return false;
     }

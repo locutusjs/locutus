@@ -11,6 +11,6 @@ function putenv (setting) {
     this.php_js.ENV = this.php_js.ENV || {};
     // END REDUNDANT
     var pos = setting.indexOf('=');
-    this.php_js.ENV[setting.slice(0,pos)] = setting.slice(pos+1);
+    this.php_js.ENV[setting.slice(0, pos)] = setting.slice(pos + 1);
     return true;
 }

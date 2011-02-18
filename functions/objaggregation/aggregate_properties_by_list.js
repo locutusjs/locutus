@@ -9,16 +9,19 @@ function aggregate_properties_by_list (obj, class_name, properties_list, exclude
     // *     example 1: aggregate_properties_by_list(b, 'A', ['prop'], false);
     // *     returns 1: undefined
 
-    var p = '', i=0, record={}, pos=-1,
+    var p = '',
+        i = 0,
+        record = {},
+        pos = -1,
         indexOf = function (value) {
-            for (var i = 0, length=this.length; i < length; i++) {
+            for (var i = 0, length = this.length; i < length; i++) {
                 if (this[i] === value) {
                     return i;
                 }
             }
             return -1;
         };
-        
+
     if (!properties_list.indexOf) {
         properties_list.indexOf = indexOf;
     }
@@ -44,36 +47,24 @@ function aggregate_properties_by_list (obj, class_name, properties_list, exclude
 
     if (exclude) {
         for (p in class_name) {
-            if (!(p in obj) &&
-                    typeof class_name[p] !== 'function' &&
-                        p[0] !== '_' &&
-                            properties_list.indexOf(p) === -1) { // Static (non-private) class properties
+            if (!(p in obj) && typeof class_name[p] !== 'function' && p[0] !== '_' && properties_list.indexOf(p) === -1) { // Static (non-private) class properties
                 obj[p] = class_name[p];
                 record[p] = class_name[p];
             }
         }
         for (p in class_name.prototype) {
-            if (!(p in obj) &&
-                    typeof class_name.prototype[p] !== 'function' &&
-                        p[0] !== '_' &&
-                            properties_list.indexOf(p) === -1) { // Prototype (non-private) default properties
+            if (!(p in obj) && typeof class_name.prototype[p] !== 'function' && p[0] !== '_' && properties_list.indexOf(p) === -1) { // Prototype (non-private) default properties
                 obj[p] = class_name.prototype[p];
                 record[p] = class_name.prototype[p];
             }
         }
     } else {
-        for (i=0; i < properties_list.length; i++) {
+        for (i = 0; i < properties_list.length; i++) {
             p = properties_list[i];
-            if (!(p in obj) &&
-                    p in class_name &&
-                        p[0] !== '_' &&
-                            typeof class_name.prototype[p] !== 'function') { // Static (non-private) class properties
+            if (!(p in obj) && p in class_name && p[0] !== '_' && typeof class_name.prototype[p] !== 'function') { // Static (non-private) class properties
                 obj[p] = class_name[p];
                 record[p] = class_name[p];
-            } else if (!(p in obj) &&
-                    p in class_name.prototype &&
-                        p[0] !== '_' &&
-                            typeof class_name.prototype[p] !== 'function') { // Prototype (non-private) default properties
+            } else if (!(p in obj) && p in class_name.prototype && p[0] !== '_' && typeof class_name.prototype[p] !== 'function') { // Prototype (non-private) default properties
                 obj[p] = class_name.prototype[p];
                 record[p] = class_name.prototype[p];
             }

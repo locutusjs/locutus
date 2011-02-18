@@ -15,21 +15,24 @@ function natsort (inputArr) {
     // *     example 1: $array1 = {a:"img12.png", b:"img10.png", c:"img2.png", d:"img1.png"};
     // *     example 1: $array1 = natsort($array1);
     // *     returns 1: {d: 'img1.png', c: 'img2.png', b: 'img10.png', a: 'img12.png'}
-
-    var valArr=[], keyArr=[], k, i, ret, that = this, strictForIn = false, populateArr = {};
+    var valArr = [],
+        keyArr = [],
+        k, i, ret, that = this,
+        strictForIn = false,
+        populateArr = {};
 
     var bubbleSort = function (keyArr, inputArr) {
         var i, j, tempValue, tempKeyVal;
-        for (i = inputArr.length-2; i >= 0; i--) {
+        for (i = inputArr.length - 2; i >= 0; i--) {
             for (j = 0; j <= i; j++) {
-                ret = that.strnatcmp(inputArr[j+1], inputArr[j]);
+                ret = that.strnatcmp(inputArr[j + 1], inputArr[j]);
                 if (ret < 0) {
                     tempValue = inputArr[j];
-                    inputArr[j] = inputArr[j+1];
-                    inputArr[j+1] = tempValue;
+                    inputArr[j] = inputArr[j + 1];
+                    inputArr[j + 1] = tempValue;
                     tempKeyVal = keyArr[j];
-                    keyArr[j] = keyArr[j+1];
-                    keyArr[j+1] = tempKeyVal;
+                    keyArr[j] = keyArr[j + 1];
+                    keyArr[j + 1] = tempKeyVal;
                 }
             }
         }
@@ -39,9 +42,7 @@ function natsort (inputArr) {
     this.php_js = this.php_js || {};
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
-
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
-                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
 
     // Get key and value arrays

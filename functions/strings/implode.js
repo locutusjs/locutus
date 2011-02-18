@@ -8,8 +8,9 @@ function implode (glue, pieces) {
     // *     returns 1: 'Kevin van Zonneveld'
     // *     example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'});
     // *     returns 2: 'Kevin van Zonneveld'
-
-    var i = '', retVal='', tGlue='';
+    var i = '',
+        retVal = '',
+        tGlue = '';
     if (arguments.length === 1) {
         pieces = glue;
         glue = '';
@@ -17,16 +18,14 @@ function implode (glue, pieces) {
     if (typeof(pieces) === 'object') {
         if (pieces instanceof Array) {
             return pieces.join(glue);
-        }
-        else {
+        } else {
             for (i in pieces) {
                 retVal += tGlue + pieces[i];
                 tGlue = glue;
             }
             return retVal;
         }
-    }
-    else {
+    } else {
         return pieces;
     }
 }

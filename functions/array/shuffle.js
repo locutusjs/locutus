@@ -21,8 +21,11 @@ function shuffle (inputArr) {
     // *     example 2: shuffle(data);
     // *     results 2: {5:'a', 'q':5, 3:'c', 2:'3', 4:5}
     // *     returns 2: true
-
-    var valArr = [], k = '', i = 0, strictForIn = false, populateArr = [];
+    var valArr = [],
+        k = '',
+        i = 0,
+        strictForIn = false,
+        populateArr = [];
 
     for (k in inputArr) { // Get key and value arrays
         if (inputArr.hasOwnProperty(k)) {
@@ -32,20 +35,20 @@ function shuffle (inputArr) {
             }
         }
     }
-    valArr.sort(function() {return 0.5 - Math.random();});
+    valArr.sort(function () {
+        return 0.5 - Math.random();
+    });
 
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
-
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
-                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
 
     for (i = 0; i < valArr.length; i++) { // Repopulate the old array
         populateArr[i] = valArr[i];
     }
-    
+
     return strictForIn || populateArr;
 }

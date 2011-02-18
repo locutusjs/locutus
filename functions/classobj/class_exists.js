@@ -5,11 +5,11 @@ function class_exists (cls) {
     // *     example 1: var instance_a = new class_a();
     // *     example 1: class_exists('class_a');
     // *     returns 1: true
-
     var i = '';
     cls = this.window[cls]; // Note: will prevent inner classes
-
-    if (typeof cls !== 'function') {return false;}
+    if (typeof cls !== 'function') {
+        return false;
+    }
 
     for (i in cls.prototype) {
         return true;
@@ -19,12 +19,12 @@ function class_exists (cls) {
             return true;
         }
     }
-    if (cls.toSource && cls.toSource().match(/this\./)) { 
+    if (cls.toSource && cls.toSource().match(/this\./)) {
         // Hackish and non-standard but can probably detect if setting
         // a property (we don't want to test by instantiating as that
         // may have side-effects)
         return true;
     }
-    
+
     return false;
 }

@@ -9,9 +9,12 @@ function deaggregate (obj, class_name) {
     // *     example 1: deaggregate(b, 'A');
     // *     returns 1: undefined
 
-    var p='', idx=-1, pos=-1, i=0,
+    var p = '',
+        idx = -1,
+        pos = -1,
+        i = 0,
         indexOf = function (value) {
-            for (var i = 0, length=this.length; i < length; i++) {
+            for (var i = 0, length = this.length; i < length; i++) {
                 if (this[i] === value) {
                     return i;
                 }
@@ -53,9 +56,8 @@ function deaggregate (obj, class_name) {
             this.php_js.aggregateClasses[idx].splice(pos, 1);
             this.php_js.aggregateRecords[idx].splice(pos, 1);
         }
-    }
-    else {
-        for (i=0; i < this.php_js.aggregateClasses[idx].length; i++) {
+    } else {
+        for (i = 0; i < this.php_js.aggregateClasses[idx].length; i++) {
             for (p in this.php_js.aggregateRecords[idx][i]) {
                 delete obj[p];
             }

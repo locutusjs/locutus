@@ -11,6 +11,5 @@ function checkdate (m, d, y) {
     // *     returns 3: true
     // *     example 4: checkdate(1, 390, 2000);
     // *     returns 4: false
-
     return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0)).getDate();
 }

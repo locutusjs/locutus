@@ -7,21 +7,30 @@ function phpversion () {
     // *     example 1: phpversion();
     // *     returns 1: '1.8'
 
-    var xhtml=true, s={}, firstScript={}, d = this.window.document,
-            c = 'createElement', cn = 'createElementNS', xn = 'http://www.w3.org/1999/xhtml',
-            g = 'getElementsByTagName', gn = 'getElementsByTagNameNS';
+    var xhtml = true,
+        s = {},
+        firstScript = {},
+        d = this.window.document,
+        c = 'createElement',
+        cn = 'createElementNS',
+        xn = 'http://www.w3.org/1999/xhtml',
+        g = 'getElementsByTagName',
+        gn = 'getElementsByTagNameNS';
 
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     // END REDUNDANT
 
     var getVersion = function (app) {
-        var att='', minVers=0, versionString='', temp_jsversion=undefined;
+        var att = '',
+            minVers = 0,
+            versionString = '',
+            temp_jsversion = undefined;
         if (this.php_js.jsversion !== undefined) {
             return this.php_js.jsversion;
         }
         while (this.php_js.jsversion === temp_jsversion && minVers < 10) {
-            temp_jsversion = '1.'+minVers;
+            temp_jsversion = '1.' + minVers;
             if (gn) {
                 firstScript = d[gn](xn, 'script')[0];
             }
@@ -31,22 +40,20 @@ function phpversion () {
             }
             if (d[cn] && xhtml) {
                 s = d[cn](xn, 'script');
-            }
-            else {
+            } else {
                 s = d[c]('script');
             }
 
             if (app) { // Check with standard attribute (but not cross-browser standardized value?) as per Mozilla
                 att = 'type';
-                versionString='application/javascript;version=1.';
-            }
-            else {
+                versionString = 'application/javascript;version=1.';
+            } else {
                 att = 'language'; // non-standard
-                versionString='JavaScript1.';
+                versionString = 'JavaScript1.';
             }
 
-            s.setAttribute(att, versionString+minVers);
-            s.appendChild(d.createTextNode("this.php_js.jsversion="+"'1."+minVers+"'"));
+            s.setAttribute(att, versionString + minVers);
+            s.appendChild(d.createTextNode("this.php_js.jsversion=" + "'1." + minVers + "'"));
             firstScript.parentNode.insertBefore(s, firstScript);
             s.parentNode.removeChild(s);
             minVers++;
