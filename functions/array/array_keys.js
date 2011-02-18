@@ -7,10 +7,9 @@ function array_keys (input, search_value, argStrict) {
     // *     returns 1: {0: 'firstname', 1: 'surname'}
 
     var search = typeof search_value !== 'undefined',
-        tmp_arr = search ? {} : [], // We can return a real array if we know each key will be used
+        tmp_arr = [],
         strict = !!argStrict,
         include = true,
-        cnt = 0,
         key = '';
 
     for (key in input) {
@@ -26,8 +25,7 @@ function array_keys (input, search_value, argStrict) {
             }
 
             if (include) {
-                tmp_arr[cnt] = key;
-                cnt++;
+                tmp_arr[tmp_arr.length] = key;
             }
         }
     }
