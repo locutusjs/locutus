@@ -46,7 +46,8 @@ function number_format (number, decimals, dec_point, thousands_sep) {
     // *    returns 12: '1.200'
     // *    example 13: number_format('1 000,50', 2, '.', ' ');
     // *    returns 13: '100 050.00'
-    number = (number + '').replace(',', '').replace(' ', '');
+    // Strip all characters but numerical ones.
+    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
     var n = !isFinite(+number) ? 0 : +number,
         prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
         sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
