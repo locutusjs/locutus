@@ -1,4 +1,4 @@
-function date_create (time, timezone) {var __ = Relator.$();
+function date_create (time, timezone) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: strtotime
@@ -7,7 +7,6 @@ function date_create (time, timezone) {var __ = Relator.$();
     // *     returns 1: {}
     
     // Incomplete
-    var that = this;
 
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
@@ -20,7 +19,7 @@ function date_create (time, timezone) {var __ = Relator.$();
             // 2) In constructor, put: var _ = __.constructor(this);
             // 3) At top of each prototype method, put: var _ = __.method(this);
             // 4) Use like:  _.privateVar = 5;
-            function indexOf (value) {
+            function _indexOf (value) {
                 for (var i = 0, length=this.length; i < length; i++) {
                     if (this[i] === value) {
                         return i;
@@ -31,7 +30,7 @@ function date_create (time, timezone) {var __ = Relator.$();
             function Relator () {
                 var Stack = [], Array = [];
                 if (!Stack.indexOf) {
-                    Stack.indexOf = indexOf;
+                    Stack.indexOf = _indexOf;
                 }
                 return {
                     // create a new relator
@@ -53,18 +52,52 @@ function date_create (time, timezone) {var __ = Relator.$();
         }();
     }
     // END REDUNDANT
-
+    var that = this,
+        __ = Relator.$();
 
     // Returned by DateTime.diff()  (cf. date_interval_create_from_date_string())
     function DateInterval (interval_spec) { // string
+        var matches, weeks = false, 
+            dec = '(?:(\\d+(?:[.,]\\d*)?)'; // Must decimal be followed by number?
+        if ((matches = interval_spec.match(/^P(\d+)W$/))) {
+            this.d = 7 * matches[1];
+            weeks = true;
+        }
+        else if ((matches = interval_spec.match(new RegExp(
+            '^P' + dec + 'Y)?' + dec + 'M)?' + dec + 'D)?(?:T' + dec + 'H)?' + dec + 'M)?' + dec + 'S)?)?$'
+        )))) {
+            var mj = matches.join('');
+            if (
+                mj.match(/[.,]\d+../) || // Decimal used in non-lowest position
+                mj.replace(/[.,]/g, '').length < 3 // Only P and/or T
+            ) {
+                throw 'Malformed DateInterval';
+            }
+        }
+        else if (!(matches = interval_spec.match( // Fix: FIXXXXXXXXXXXX
+            /^P(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3[0-1])T([0-1]\d|2[0-3]):([0-5]\d):([0-5]\d)$/
+        ))) {
+            throw 'Malformed DateInterval';
+        }
+        if (!weeks) {
+            this.y = matches[1] || 0;
+            this.m = matches[2] || 0;
+            this.d = matches[3] || 0;
+            this.h = matches[4] || 0;
+            this.i = matches[5] || 0;
+            this.s = matches[6] || 0;
+        }
+        this.invert = 1 || 0; // Fix: Must be changed directly to work?
+        this.days = this.d || false; // Fix: How does this differ from this.d? Why does example show 0 though docs say if not determinable should be false?
     }
     DateInterval.prototype = {
         constructor: DateInterval,
-        format : function () {
+        format : function (format) {
+            
             return '';
         }
     };
-    DateInterval.createFromDateString = function (time){ // string (date string with relative parts)
+    DateInterval.createFromDateString = function (time) { // string (date string with relative parts)
         return new DateInterval(time); // time argument ok ????
     };
 
@@ -87,14 +120,18 @@ function date_create (time, timezone) {var __ = Relator.$();
     }
     DateTime.prototype = {
         constructor: DateTime,
-        add : function (/*string*/ interval) {return this;},
+        add : function (/*DateInterval*/ interval) {
+            return this;
+        },
         diff : function (/*DateTime*/ datetime, /*optional bool*/ absolute) {return DateInterval;},
         format : function (/*string*/ format) {return '';},
         getOffset : function () {return 0;},
         getTimestamp : function () {var _ = __.method(this);
-            return that.strtotime(_.time+' +'+$timezone_offset+' hours');
+            return that.strtotime(_.time + ' +' + $timezone_offset + ' hours');
         },
-        getTimezone : function () {var _ = __.method(this);return that.timezone_open(_.timezone);},
+        getTimezone : function () {var _ = __.method(this);
+            return that.timezone_open(_.timezone);
+        },
         modify : function (/*string */ modify) {return this;},
         setDate : function (/*int*/ year, /*int*/ month , /*int*/ day) {return this;},
         setISODate : function (/*int*/ year, /*int*/ week, /*optional int*/ day) {return this;},
@@ -102,11 +139,19 @@ function date_create (time, timezone) {var __ = Relator.$();
         setTimestamp : function (/*int*/ unixtimestamp) {return this;},
         setTimezone : function (/*DateTimeZone*/ timezone) {return this;},
         sub : function (/*DateInterval*/ interval) {return this;},
-        __wakeup : function () {return new DateTime();}
+        __wakeup : function () {
+            return new DateTime();
+        }
     };
-    DateTime.createFromFormat = function (/*string*/ format , /*string*/ time, /*optional DateTimeZone*/ timezone) {return new DateTime();}
-    DateTime.__set_state = function (/*array*/ array) {return new DateTime();}
-    DateTime.getLastErrors = function () {return [];};
+    DateTime.createFromFormat = function (/*string*/ format , /*string*/ time, /*optional DateTimeZone*/ timezone) {
+        return new DateTime();
+    }
+    DateTime.__set_state = function (/*array*/ array) {
+        return new DateTime();
+    }
+    DateTime.getLastErrors = function () {
+        return [];
+    };
     
 
     DateTime.ATOM  = 'Y-m-d\\TH:i:sP';
