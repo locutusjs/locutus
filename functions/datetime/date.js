@@ -59,11 +59,10 @@ function date (format, timestamp) {
         // below for file size reasons)
         //, tal= [],
         _pad = function (n, c) {
-            if ((n = n + "").length < c) {
-                return new Array((++c) - n.length).join("0") + n;
-            } else {
-                return n;
+            if ((n = n + '').length < c) {
+                return new Array((++c) - n.length).join('0') + n;
             }
+            return n;
         },
         txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         txt_ordin = {

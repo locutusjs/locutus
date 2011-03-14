@@ -101,7 +101,6 @@ function DateTime (time, timezone) {
             return [];
         };
 
-
         DateTime.ATOM  = 'Y-m-d\\TH:i:sP';
         DateTime.COOKIE = 'l, d-M-y H:i:s T';
         DateTime.ISO8601 = 'Y-m-d\\TH:i:sO';

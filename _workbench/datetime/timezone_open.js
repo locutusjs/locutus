@@ -7,3 +7,4 @@ function timezone_open (timezone) {
 
     return new this.DateTimeZone(timezone);
 }
+
