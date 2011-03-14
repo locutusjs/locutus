@@ -65,7 +65,8 @@ function DateTime (time, timezone) {
 
     // Redefine DateTimeZone here for use below (see timezone_open())
     
-    if (DateTime) {
+    if (!this.DateTime.prototype.add) {
+        var DateTime = this.DateTime;
         DateTime.prototype = {
             constructor: DateTime,
             add : function (/*DateInterval*/ interval) {
