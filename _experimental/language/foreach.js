@@ -6,6 +6,9 @@ function foreach (arr, handler) {
     // *     example 2: foreach (['a', 'b'], function (key, val) {alert(key+'::'+val);});
     // *     returns 2: undefined
    var k;
+   if (arr && typeof arr === 'object' && arr.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+        return arr.foreach(handler);
+   }
    if (handler.length === 1) {
        for (k in arr) {
            handler(arr[k]); // only pass the value

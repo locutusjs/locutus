@@ -114,6 +114,16 @@ function array () {
             e.values = function () {var _ = __.method(this);
                 return _.values;
             };
+            e.foreach = function (handler) {var _ = __.method(this);
+                for (var i = 0, kl = _.keys.length; i < kl; i++) {
+                    if (handler.length === 1) {
+                        handler(_.values[i]); // only pass the value
+                    }
+                    else {
+                        handler(_.keys[i], _.values[i]);
+                    }                    
+                }
+            };
             // Our own custom convenience functions
             e.$object = function () {var _ = __.method(this);
                 return _.object;
