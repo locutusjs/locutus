@@ -12,8 +12,21 @@ function list () {
     var i = 0, arr = [];
 
     arr = arguments[arguments.length-1];
-    for (i = 0; i < arr.length; i++) {
-        this.window[arguments[i]] = arr[i];
+    
+    if (arr && typeof arr === 'object' && arr.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+        return arr.list.apply(arr, Array.prototype.slice.call(arguments, 0, -1));
+    }
+    if (arr && typeof arr === 'object' && arr.length && !arr.propertyIsEnumerable('length')) {
+        for (i = 0; i < arr.length; i++) {
+            this.window[arguments[i]] = arr[i];
+        }
+    }
+    else {
+        for (i in arr) {
+            if (i.length === parseInt(i).toString().length && parseInt(i) < arguments.length-1) {
+                this.window[arguments[i]] = arr[i];
+            }
+        }
     }
     
     return arr;

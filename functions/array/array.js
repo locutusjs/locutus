@@ -114,6 +114,7 @@ function array () {
             e.values = function () {var _ = __.method(this);
                 return _.values;
             };
+            // Experimental functions
             e.foreach = function (handler) {var _ = __.method(this);
                 for (var i = 0, kl = _.keys.length; i < kl; i++) {
                     if (handler.length === 1) {
@@ -123,12 +124,24 @@ function array () {
                         handler(_.keys[i], _.values[i]);
                     }                    
                 }
+                return this;
+            };
+            e.list = function () {var _ = __.method(this);
+                for (var i = 0, argl = arguments.length; i < argl; i++) {
+                    var key = _.keys[i];
+                    if (key && key.length === parseInt(key).toString().length && // Key represents an int
+                        parseInt(key) < arguments.length) { // Key does not exceed arguments
+                        that.window[arguments[key]] = _.values[key];
+                    }
+                }
+                return this;
             };
             // Parallel functionality and naming of built-in JavaScript array methods
             e.forEach = function (handler) {var _ = __.method(this);
                 for (var i = 0, kl = _.keys.length; i < kl; i++) {
                     handler(_.values[i], _.keys[i], this);
                 }
+                return this;
             };
             // Our own custom convenience functions
             e.$object = function () {var _ = __.method(this);
