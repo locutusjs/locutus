@@ -1,6 +1,7 @@
 function array () {
     // http://kevin.vanzonneveld.net
     // +   original by: d3x
+    // +      improved by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: array('Kevin', 'van', 'Zonneveld');
     // *     returns 1: ['Kevin', 'van', 'Zonneveld']
     var mainArgs = arguments, p = this.php_js = this.php_js || {},

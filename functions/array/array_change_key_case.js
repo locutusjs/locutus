@@ -2,6 +2,7 @@ function array_change_key_case (array, cs) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com)
     // +   improved by: marrtins
+    // +      improved by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: array_change_key_case(42);
     // *     returns 1: false
     // *     example 2: array_change_key_case([ 3, 5 ]);
