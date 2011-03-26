@@ -53,11 +53,8 @@ function DateTime (time, timezone) {
         }();
     }
     // END REDUNDANT
-    
-    if (!this.php_js.DateTimeRelator) {
-        this.php_js.DateTimeRelator = this.php_js.Relator.$();
-    }
-    var __ = this.php_js.DateTimeRelator,
+
+    var __ = this.php_js.DateTimeRelator = this.php_js.DateTimeRelator || this.php_js.Relator.$(),
         _ = __.constructor(this),
         that = this;
 

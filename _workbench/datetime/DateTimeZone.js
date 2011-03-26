@@ -54,10 +54,9 @@ function DateTimeZone ($timezone) {
             return Relator();
         }();
     }
-    if (!this.php_js.DateTimeZoneRelator) {
-        this.php_js.DateTimeZoneRelator = this.php_js.Relator.$();
-    }
-    var __ = this.php_js.DateTimeZoneRelator,
+    // END REDUNDANT
+    
+    var __ = this.php_js.DateTimeZoneRelator = this.php_js.DateTimeZoneRelator || this.php_js.Relator.$(),
         _ = __.constructor(this),
         that = this;
     

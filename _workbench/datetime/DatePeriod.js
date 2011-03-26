@@ -14,7 +14,9 @@ function DatePeriod (start, interval, recurrences, options) { // DateTime, DateI
         var DatePeriod = this.DatePeriod;
         // See https://developer.mozilla.org/en/New_in_JavaScript_1.7#Iterators
         DatePeriod.prototype.__iterator__ = function () { // Mozilla/Chrome/Safari only; will allow DatePeriod to be iterated with for...in or for each
-           return Iterator(this.data, false); // Allow both key and value to be passed back? (otherwise, 2nd arg is true); need destructuring to get individually; might also use our implementation of foreach to do without this Mozilla-only approach, but it will require use of (and adaptation of) our foreach()
+           return Iterator(this.data, false); // Allow both key and value to be passed back? (otherwise, 2nd arg is true); 
+           // need destructuring to get individually; might also use our implementation of foreach to do without this 
+           // Mozilla-only approach, but it will require use of (and adaptation of) our foreach()
         };
         DatePeriod.EXCLUDE_START_DATE = 1;
     }
