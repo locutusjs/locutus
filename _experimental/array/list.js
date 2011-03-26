@@ -13,7 +13,7 @@ function list () {
 
     arr = arguments[arguments.length-1];
     for (i = 0; i < arr.length; i++) {
-        window[arguments[i]] = arr[i];
+        this.window[arguments[i]] = arr[i];
     }
     
     return arr;
