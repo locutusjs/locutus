@@ -1,4 +1,4 @@
-function array_change_key_case (array) {
+function array_change_key_case (array, cs) {
     // http://kevin.vanzonneveld.net
     // +   original by: Ates Goral (http://magnetiq.com)
     // +   improved by: marrtins
@@ -14,26 +14,20 @@ function array_change_key_case (array) {
     // *     returns 5: {"FUBAR": 42}
     // *     example 6: array_change_key_case({ FuBaR: 42 }, 2);
     // *     returns 6: {"FUBAR": 42}
-    var case_fn, tmp_ar = {},
-        argc = arguments.length,
-        argv = arguments,
-        key;
+    var case_fn, key, tmp_ar = {};
 
     if (array instanceof Array) {
         return array;
     }
-
-    if (array instanceof Object) {
-        if (argc === 1 || argv[1] === 'CASE_LOWER' || argv[1] === 0) {
-            case_fn = "toLowerCase";
-        } else {
-            case_fn = "toUpperCase";
-        }
+    if (array && typeof array === 'object' && array.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+        return array.change_key_case(cs);
+    }
+    if (array && typeof array === 'object' ) {
+        case_fn = (!cs || cs === 'CASE_LOWER') ? 'toLowerCase' : 'toUpperCase';
         for (key in array) {
             tmp_ar[key[case_fn]()] = array[key];
         }
         return tmp_ar;
     }
-
     return false;
 }

@@ -14,6 +14,10 @@ function array_keys (input, search_value, argStrict) {
         include = true,
         key = '';
 
+    if (input && typeof input === 'object' && input.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+        return input.keys(cs);
+    }
+
     for (key in input) {
         if (input.hasOwnProperty(key)) {
             include = true;
