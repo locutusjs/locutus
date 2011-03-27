@@ -22,7 +22,29 @@ function is_numeric (mixed_var) {
     // eg. "\t123\t". phpjs function returns true, where PHP returns false
     
     // The function below should cover the case described above,
-    // but I don't like the dependency on trim(), though
-    // Unfortunatelly it's needed for case where the input is in exponential form ("1e3")
-    return !isNaN(mixed_var) && (typeof(mixed_var) === 'number' || (typeof(mixed_var) === 'string' && mixed_var !== '' && this.trim(mixed_var) === mixed_var));
+    // Still thinking about removing the regex, but have no better idea
+    // also type checking is still required, because one-element arrays
+    // are serialized to valid numeric strings and numbers (+[3.14] -> 3.14)
+    // and PHP returns false for arrays
+    var type = typeof mixed_var,
+        /*
+            ^ # the string has to begin with
+            [+\-]? # optional sign character
+            (?:
+                0x[\da-f]+ # should be proper HEX value
+                | # or
+                (?:
+                    (?:
+                        \d+(?:\.\d*)? # integer part with optional decimal part (0, 000, 001, 3, 3.14 or 3.)
+                        | # or
+                        \.\d+ # just the decimal part (.14)
+                    )
+                )
+                (e[+\-]?\d+)? # and with optional scientific notation e2, e-2, e+2
+            )
+            $
+        */
+        valid_number = /^[+\-]?(?:0x[\da-f]+|(?:(?:\d+(?:\.\d*)?|\.\d+))(e[+\-]?\d+)?)$/i;
+    
+    return !isNaN(mixed_var) && (type === 'number' || (type === 'string' && valid_number.test(mixed_var));
 }
