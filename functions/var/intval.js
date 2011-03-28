@@ -5,6 +5,7 @@ function intval (mixed_var, base) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   input by: Matteo
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Rafał Kukawski (http://kukawski.pl)
     // *     example 1: intval('Kevin van Zonneveld');
     // *     returns 1: 0
     // *     example 2: intval(4.2);
@@ -20,12 +21,12 @@ function intval (mixed_var, base) {
     var type = typeof(mixed_var);
 
     if (type === 'boolean') {
-        return (mixed_var) ? 1 : 0;
+        return +mixed_var;
     } else if (type === 'string') {
         tmp = parseInt(mixed_var, base || 10);
         return (isNaN(tmp) || !isFinite(tmp)) ? 0 : tmp;
     } else if (type === 'number' && isFinite(mixed_var)) {
-        return Math.floor(mixed_var);
+        return mixed_var | 0;
     } else {
         return 0;
     }
