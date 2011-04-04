@@ -79,7 +79,7 @@ function unpack(format, data) {
             label += format[formatPointer];
             formatPointer++;
         }
-        if (label === '/') {
+        if (format[formatPointer] === '/') {
             formatPointer++;
         }
 
