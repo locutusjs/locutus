@@ -79,6 +79,9 @@ function unpack(format, data) {
             label += format[formatPointer];
             formatPointer++;
         }
+        if (label === '/') {
+            formatPointer++;
+        }
 
         // Process given instruction
         switch (instruction) {
