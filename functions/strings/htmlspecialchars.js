@@ -44,10 +44,11 @@ function htmlspecialchars (string, quote_style, charset, double_encode) {
     if (typeof quote_style !== 'number') { // Allow for a single string or an array of string flags
         quote_style = [].concat(quote_style);
         for (i = 0; i < quote_style.length; i++) {
-            // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
+            // Resolve string input to bitwise e.g. 'ENT_IGNORE' becomes 4
             if (OPTS[quote_style[i]] === 0) {
                 noquotes = true;
-            } else if (OPTS[quote_style[i]]) {
+            }
+            else if (OPTS[quote_style[i]]) {
                 optTemp = optTemp | OPTS[quote_style[i]];
             }
         }
