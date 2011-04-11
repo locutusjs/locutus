@@ -28,6 +28,8 @@ function date (format, timestamp) {
     // +   improved by: JT
     // +   improved by: Theriault
     // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
+    // +      input by: Martin
+    // +      input by: Alex Wilson
     // %        note 1: Uses global: php_js to store the default timezone
     // %        note 2: Although the function potentially allows timezone info (see notes), it currently does not set
     // %        note 2: per a timezone specified by date_default_timezone_set(). Implementers might use
@@ -64,16 +66,7 @@ function date (format, timestamp) {
             }
             return n;
         },
-        txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-        txt_ordin = {
-            1: "st",
-            2: "nd",
-            3: "rd",
-            21: "st",
-            22: "nd",
-            23: "rd",
-            31: "st"
-        };
+        txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     formatChrCb = function (t, s) {
         return f[t] ? f[t]() : s;
     };
@@ -95,7 +88,8 @@ function date (format, timestamp) {
             return f.w() || 7;
         },
         S: function () { // Ordinal suffix for day of month; st, nd, rd, th
-            return txt_ordin[f.j()] || 'th';
+            var j = f.j();
+            return j > 4 || j < 21 ? 'th' : {1: 'st', 2: 'nd', 3: 'rd'}[j % 10] || 'th';
         },
         w: function () { // Day of week; 0[Sun]..6[Sat]
             return jsdate.getDay();
@@ -110,7 +104,7 @@ function date (format, timestamp) {
         W: function () { // ISO-8601 week number
             var a = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3),
                 b = new Date(a.getFullYear(), 0, 4);
-            return 1 + Math.round((a - b) / 864e5 / 7);
+            return _pad(1 + Math.round((a - b) / 864e5 / 7), 2);
         },
 
         // Month
