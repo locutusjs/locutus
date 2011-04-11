@@ -115,6 +115,10 @@ function array () {
                 }
                 return tmp_arr;
             };
+            e.values = function () {var _ = __.method(this);
+                return _.values;
+            };
+            // Return non-object, non-array values, since most sensible
             e.search = function (needle, argStrict) {var _ = __.method(this);
                 var strict = !!argStrict;
                 for (var i=0, vl = _.values.length; i < vl; i++) {
@@ -124,9 +128,6 @@ function array () {
                     }
                 }
                 return false;
-            };
-            e.values = function () {var _ = __.method(this);
-                return _.values;
             };
             // Experimental functions
             e.foreach = function (handler) {var _ = __.method(this);
