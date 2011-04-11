@@ -115,6 +115,16 @@ function array () {
                 }
                 return tmp_arr;
             };
+            e.search = function (needle, argStrict) {var _ = __.method(this);
+                var strict = !!argStrict;
+                for (var i=0, vl = _.values.length; i < vl; i++) {
+                    var val = _.values[i];
+                    if ((strict && val === needle) || (!strict && val == needle)) {
+                        return _.keys[i];
+                    }
+                }
+                return false;
+            };
             e.values = function () {var _ = __.method(this);
                 return _.values;
             };
