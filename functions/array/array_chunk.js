@@ -2,6 +2,7 @@ function array_chunk (input, size, preserve_keys) {
     // http://kevin.vanzonneveld.net
     // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // %        note 1: Important note: Per the ECMAScript specification, objects may not always iterate in a predictable order
     // *     example 1: array_chunk(['Kevin', 'van', 'Zonneveld'], 2);
     // *     returns 1: [['Kevin', 'van'], ['Zonneveld']]
     // *     example 2: array_chunk(['Kevin', 'van', 'Zonneveld'], 2, true);
