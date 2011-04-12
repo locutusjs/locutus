@@ -3,6 +3,7 @@ function unpack(format, data) {
     // +   original by: Tim de Koning (http://www.kingsquare.nl)
     // +      parts by: Jonas Raoni Soares Silva
     // +      http://www.jsfromhell.com
+    // +   bugfixed by: marcuswestin
     // %        note 1: Float decoding by: Jonas Raoni Soares Silva
     // %        note 2: Home: http://www.kingsquare.nl/blog/22-12-2009/13650536
     // %        note 3: Feedback: phpjs-unpack@kingsquare.nl
