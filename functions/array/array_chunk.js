@@ -6,7 +6,7 @@ function array_chunk (input, size, preserve_keys) {
     // *     example 1: array_chunk(['Kevin', 'van', 'Zonneveld'], 2);
     // *     returns 1: [['Kevin', 'van'], ['Zonneveld']]
     // *     example 2: array_chunk(['Kevin', 'van', 'Zonneveld'], 2, true);
-    // *     returns 2: [['Kevin', 'van'], [,,'Zonneveld']]
+    // *     returns 2: [{0:'Kevin', 1:'van'}, {2: 'Zonneveld'}]
     // *     example 3: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2);
     // *     returns 3: [['Kevin', 'van'], ['Zonneveld']]
     // *     example 4: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2, true);
@@ -21,7 +21,7 @@ function array_chunk (input, size, preserve_keys) {
     if (Object.prototype.toString.call(input) === '[object Array]') {
         if (preserve_keys) {
             while (i < l) {
-                (x = i % size) ? n[c][i] = input[i] : n[++c] = [], n[c][i] = input[i];
+                (x = i % size) ? n[c][i] = input[i] : n[++c] = {}, n[c][i] = input[i];
                 i++;
             }
         }
