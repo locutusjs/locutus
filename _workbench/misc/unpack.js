@@ -79,8 +79,8 @@ function unpack(format, data) {
             label += format[formatPointer];
             formatPointer++;
         }
-        if (label === '') {
-            label = '';
+        if (format[formatPointer] === '/') {
+            formatPointer++;
         }
 
         // Process given instruction
@@ -161,7 +161,7 @@ function unpack(format, data) {
                 }
 
                 currentData = data.substr(dataPointer, quantifier * 2);
-                dataPointer += quantifier;
+                dataPointer += quantifier * 2;
 
                 for (i=0;i<currentData.length;i+=2) {
                      // sum per word;
@@ -184,7 +184,7 @@ function unpack(format, data) {
                 }
 
                 currentData = data.substr(dataPointer, quantifier * 2);
-                dataPointer += quantifier;
+                dataPointer += quantifier * 2;
 
                 for (i=0;i<currentData.length;i+=2) {
                      // sum per word;
@@ -208,7 +208,7 @@ function unpack(format, data) {
                 }
 
                 currentData = data.substr(dataPointer, quantifier * 4);
-                dataPointer += quantifier;
+                dataPointer += quantifier * 4;
 
                 for (i=0;i<currentData.length;i+=4) {
                     currentResult =
@@ -231,7 +231,7 @@ function unpack(format, data) {
                 }
 
                 currentData = data.substr(dataPointer, quantifier * 4);
-                dataPointer += quantifier;
+                dataPointer += quantifier * 4;
 
                 for (i=0;i<currentData.length;i+=4) {
                     currentResult =
@@ -263,7 +263,7 @@ function unpack(format, data) {
 
                 currentData = data.substr(dataPointer,
                         quantifier * dataByteLength);
-                dataPointer += quantifier;
+                dataPointer += quantifier * dataByteLength;
 
                 for (i=0;i<currentData.length;i+=dataByteLength) {
                     data = currentData.substr(i, dataByteLength);
