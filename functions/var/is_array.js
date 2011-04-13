@@ -49,7 +49,7 @@ function is_array (mixed_var) {
             }
             // Get rid of the property we added onto a non-array object; only possible 
             // side-effect is if the user adds back the property later, it will iterate 
-            // this property in the older order placement (an order which should not 
+            // this property in the older order placement in IE (an order which should not 
             // be depended on anyways)
             delete mixed_var[mixed_var.length];
             return false;
