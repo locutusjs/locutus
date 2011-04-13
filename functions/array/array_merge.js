@@ -14,6 +14,7 @@ function array_merge () {
     // *     returns 2: {0: "data"}
     var args = Array.prototype.slice.call(arguments),
         argl = args.length,
+        arg,
         retObj = {},
         k = '', 
         argil = 0,
@@ -39,19 +40,20 @@ function array_merge () {
     }
 
     for (i = 0, ct = 0; i < argl; i++) {
-        if (toStr.call(args[i]) === '[object Array]') {
-            for (j = 0, argil = args[i].length; j < argil; j++) {
-                retObj[ct++] = args[i][j];
+        arg = args[i];
+        if (toStr.call(arg) === '[object Array]') {
+            for (j = 0, argil = arg.length; j < argil; j++) {
+                retObj[ct++] = arg[j];
             }
         }
         else {
-            for (k in args[i]) {
-                if (args[i].hasOwnProperty(k)) {
+            for (k in arg) {
+                if (arg.hasOwnProperty(k)) {
                     if (parseInt(k, 10) + '' === k) {
-                        retObj[ct++] = args[i][k];
+                        retObj[ct++] = arg[k];
                     }
                     else {
-                        retObj[k] = args[i][k];
+                        retObj[k] = arg[k];
                     }
                 }
             }
