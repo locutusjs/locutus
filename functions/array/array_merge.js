@@ -13,14 +13,18 @@ function array_merge () {
     // *     example 2: array_merge(arr1, arr2)
     // *     returns 2: {0: "data"}
     var args = Array.prototype.slice.call(arguments),
+        argl = args.length,
         retObj = {},
-        k, j = 0,
+        k = '', 
+        argil = 0,
+        j = 0,
         i = 0,
         ct = 0,
+        toStr = Object.prototype.toString,
         retArr = true;
 
-    for (i = 0; i < args.length; i++) {
-        if (Object.prototype.toString.call(args[i]) !== '[object Array]') {
+    for (i = 0; i < argl; i++) {
+        if (toStr.call(args[i]) !== '[object Array]') {
             retArr = false;
             break;
         }
@@ -28,15 +32,15 @@ function array_merge () {
 
     if (retArr) {
         retArr = [];
-        for (i = 0; i < args.length; i++) {
+        for (i = 0; i < argl; i++) {
             retArr = retArr.concat(args[i]);
         }
         return retArr;
     }
 
-    for (i = 0, ct = 0; i < args.length; i++) {
-        if (Object.prototype.toString.call(arg[i]) === '[object Array]') {
-            for (j = 0; j < args[i].length; j++) {
+    for (i = 0, ct = 0; i < argl; i++) {
+        if (toStr.call(arg[i]) === '[object Array]') {
+            for (j = 0, argil = args[i].length; j < argil; j++) {
                 retObj[ct++] = args[i][j];
             }
         }
