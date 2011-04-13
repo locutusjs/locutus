@@ -39,7 +39,7 @@ function array_merge () {
     }
 
     for (i = 0, ct = 0; i < argl; i++) {
-        if (toStr.call(arg[i]) === '[object Array]') {
+        if (toStr.call(args[i]) === '[object Array]') {
             for (j = 0, argil = args[i].length; j < argil; j++) {
                 retObj[ct++] = args[i][j];
             }
