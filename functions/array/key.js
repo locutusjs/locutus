@@ -28,7 +28,7 @@ function key (arr) {
         pointers.push(arr, 0);
     }
     var cursor = pointers[pointers.indexOf(arr) + 1];
-    if (!(arr instanceof Array)) {
+    if (Object.prototype.toString.call(arr) !== '[object Array]') {
         var ct = 0;
         for (var k in arr) {
             if (ct === cursor) {

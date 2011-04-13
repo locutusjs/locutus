@@ -9,9 +9,11 @@ function call_user_func (cb) {
 
     if (typeof cb === 'string') {
         func = (typeof this[cb] === 'function') ? this[cb] : func = (new Function(null, 'return ' + cb))();
-    } else if (cb instanceof Array) {
+    }
+    else if (Object.prototype.toString.call(cb) === '[object Array]') {
         func = (typeof cb[0] == 'string') ? eval(cb[0] + "['" + cb[1] + "']") : func = cb[0][cb[1]];
-    } else if (typeof cb === 'function') {
+    }
+    else if (typeof cb === 'function') {
         func = cb;
     }
 

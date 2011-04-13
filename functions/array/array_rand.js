@@ -18,7 +18,7 @@ function array_rand (input, num_req) {
         return exist;
     };
 
-    if (input instanceof Array && ticks <= input.length) {
+    if (Object.prototype.toString.call(input) === '[object Array]' && ticks <= input.length) {
         while (true) {
             var rand = Math.floor((Math.random() * input.length));
             if (indexes.length === ticks) {

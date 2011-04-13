@@ -748,7 +748,7 @@ function token_get_all(source) {
             }
             // Insert every token found
             for (var ind = 0; ind < toInsert.length; ind++) {
-                if (toInsert[ind] instanceof Array) {
+                if (Object.prototype.toString.call(toInsert[ind]) === '[object Array]') {
                     pushOnRet(toInsert[ind][0], toInsert[ind][1]);
                 }
                 else {

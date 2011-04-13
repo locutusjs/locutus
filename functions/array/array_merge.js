@@ -19,7 +19,7 @@ function array_merge () {
         retArr = true;
 
     for (i = 0; i < args.length; i++) {
-        if (!(args[i] instanceof Array)) {
+        if (Object.prototype.toString.call(args[i]) !== '[object Array]') {
             retArr = false;
             break;
         }
@@ -35,7 +35,7 @@ function array_merge () {
     var ct = 0;
 
     for (i = 0, ct = 0; i < args.length; i++) {
-        if (args[i] instanceof Array) {
+        if (Object.prototype.toString.call(arg[i]) === '[object Array]') {
             for (j = 0; j < args[i].length; j++) {
                 retObj[ct++] = args[i][j];
             }

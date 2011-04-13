@@ -23,9 +23,9 @@ function str_ireplace (search, replace, subject) {
 
     search += '';
     searchl = search.length;
-    if (!(replace instanceof Array)) {
+    if (Object.prototype.toString.call(replace) !== '[object Array]') {
         replace = [replace];
-        if (search instanceof Array) {
+        if (Object.prototype.toString.call(search) === '[object Array]') {
             // If search is an array and replace is a string,
             // then this replacement string is used for every value of search
             while (searchl > replace.length) {
@@ -34,7 +34,7 @@ function str_ireplace (search, replace, subject) {
         }
     }
 
-    if (!(search instanceof Array)) {
+    if (Object.prototype.toString.call(search) !== '[object Array]') {
         search = [search];
     }
     while (search.length > replace.length) {
@@ -43,7 +43,7 @@ function str_ireplace (search, replace, subject) {
         replace[replace.length] = '';
     }
 
-    if (subject instanceof Array) {
+    if (Object.prototype.toString.call(subject) === '[object Array]') {
         // If subject is an array, then the search and replace is performed
         // with every entry of subject , and the return value is an array as well.
         for (k in subject) {

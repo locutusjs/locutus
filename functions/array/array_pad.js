@@ -13,7 +13,7 @@ function array_pad (input, pad_size, pad_value) {
         newArray = [],
         newLength, i = 0;
 
-    if (input instanceof Array && !isNaN(pad_size)) {
+    if (Object.prototype.toString.call(input) === '[object Array]' && !isNaN(pad_size)) {
         newLength = ((pad_size < 0) ? (pad_size * -1) : pad_size);
         if (newLength > input.length) {
             for (i = 0; i < (newLength - input.length); i++) {

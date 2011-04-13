@@ -27,7 +27,7 @@ function next (arr) {
     }
     var arrpos = pointers.indexOf(arr);
     var cursor = pointers[arrpos + 1];
-    if (!(arr instanceof Array)) {
+    if (Object.prototype.toString.call(arr) !== '[object Array]') {
         var ct = 0;
         for (var k in arr) {
             if (ct === cursor + 1) {

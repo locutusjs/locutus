@@ -17,7 +17,7 @@ function array_change_key_case (array, cs) {
     // *     returns 6: {"FUBAR": 42}
     var case_fn, key, tmp_ar = {};
 
-    if (array instanceof Array) {
+    if (Object.prototype.toString.call(array) === '[object Array]') {
         return array;
     }
     if (array && typeof array === 'object' && array.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array

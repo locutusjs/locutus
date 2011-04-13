@@ -113,16 +113,18 @@ function array_multisort (arr) {
 
     // Store first argument into sortArrs and sortKeys if an Object.
     // First Argument should be either a Javascript Array or an Object, otherwise function would return FALSE like in PHP
-    if (arr instanceof Array) {
+    if (Object.prototype.toString.call(arr) === '[object Array]') {
         sortArrs[0] = arr;
-    } else if (arr instanceof Object) {
+    }
+    else if (arr instanceof Object) {
         for (i in arr) {
             if (arr.hasOwnProperty(i)) {
                 sortKeys[0].push(i);
                 sortArrs[0].push(arr[i]);
             }
         }
-    } else {
+    }
+    else {
         return false;
     }
 
@@ -135,7 +137,7 @@ function array_multisort (arr) {
 
     // Loop through all other arguments, checking lengths and sort flags of arrays and adding them to the above variables.
     for (j = 1; j < arguments.length; j++) {
-        if (arguments[j] instanceof Array) {
+        if (Object.prototype.toString.call(arguments[j]) === '[object Array]') {
             sortArrs[j] = arguments[j];
             sortFlag[j] = 0;
             if (arguments[j].length !== arrMainLength) {
@@ -181,7 +183,7 @@ function array_multisort (arr) {
 
             // If ther are no sortComponents, then no more sorting is neeeded. Copy the array back to the argument.
             if (sortComponents.length === 0) {
-                if (arguments[i] instanceof Array) {
+                if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
                     args[i] = sortArrs[i];
                 } else {
                     for (k in arguments[i]) {
@@ -289,9 +291,10 @@ function array_multisort (arr) {
             if (sortComponents.length & 1) {
                 sortComponents.push(j);
             }
-            if (arguments[i] instanceof Array) {
+            if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
                 args[i] = sortArrs[i];
-            } else {
+            } 
+            else {
                 for (j in arguments[i]) {
                     if (arguments[i].hasOwnProperty(j)) {
                         delete arguments[i][j];

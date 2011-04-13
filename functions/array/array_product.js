@@ -5,7 +5,7 @@ function array_product (input) {
     // *     returns 1: 384
     var Index = 0,
         product = 1;
-    if (input instanceof Array) {
+    if (Object.prototype.toString.call(input) === '[object Array]') {
         while (Index < input.length) {
             product *= (!isNaN(input[Index]) ? input[Index] : 0);
             Index++;

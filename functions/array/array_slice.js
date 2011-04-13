@@ -17,7 +17,8 @@ function array_slice (arr, offst, lgth, preserve_keys) {
 
     var key = '';
 
-    if (!(arr instanceof Array) || (preserve_keys && offst !== 0)) { // Assoc. array as input or if required as output
+    if (Object.prototype.toString.call(arr) !== '[object Array]' || 
+        (preserve_keys && offst !== 0)) { // Assoc. array as input or if required as output
         var lgt = 0,
             newAssoc = {};
         for (key in arr) {

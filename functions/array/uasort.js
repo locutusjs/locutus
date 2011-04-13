@@ -23,7 +23,7 @@ function uasort (inputArr, sorter) {
 
     if (typeof sorter === 'string') {
         sorter = this[sorter];
-    } else if (sorter instanceof Array) {
+    } else if (Object.prototype.toString.call(sorter) === '[object Array]') {
         sorter = this[sorter[0]][sorter[1]];
     }
 

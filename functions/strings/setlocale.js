@@ -297,7 +297,7 @@ function setlocale (category, locale) {
     // END REDUNDANT
     if (locale === null || locale === '') {
         locale = this.getenv(category) || this.getenv('LANG');
-    } else if (locale instanceof Array) {
+    } else if (Object.prototype.toString.call(locale) === '[object Array]') {
         for (i = 0; i < locale.length; i++) {
             if (!(locale[i] in this.php_js.locales)) {
                 if (i === locale.length - 1) {

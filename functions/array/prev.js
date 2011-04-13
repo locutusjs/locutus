@@ -26,7 +26,7 @@ function prev (arr) {
     if (pointers.indexOf(arr) === -1 || cursor === 0) {
         return false;
     }
-    if (!(arr instanceof Array)) {
+    if (Object.prototype.toString.call(arr) !== '[object Array]') {
         var ct = 0;
         for (var k in arr) {
             if (ct === cursor - 1) {

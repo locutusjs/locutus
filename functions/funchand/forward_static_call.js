@@ -13,7 +13,8 @@ function forward_static_call (cb, parameters) {
         } else {
             func = (new Function(null, 'return ' + cb))();
         }
-    } else if (cb instanceof Array) {
+    }
+    else if (Object.prototype.toString.call(cb) === '[object Array]') {
         func = eval(cb[0] + "['" + cb[1] + "']");
     }
 

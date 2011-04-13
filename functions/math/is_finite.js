@@ -15,7 +15,7 @@ function is_finite (val) {
 
     //Some warnings for maximum PHP compatibility
     if (typeof val == 'object') {
-        warningType = (val instanceof Array ? 'array' : 'object');
+        warningType = (Object.prototype.toString.call(val) === '[object Array]' ? 'array' : 'object');
     } else if (typeof val == 'string' && !val.match(/^[\+\-]?\d/)) {
         //simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
         warningType = 'string';
