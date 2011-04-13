@@ -16,6 +16,7 @@ function array_merge () {
         retObj = {},
         k, j = 0,
         i = 0,
+        ct = 0,
         retArr = true;
 
     for (i = 0; i < args.length; i++) {
@@ -32,19 +33,20 @@ function array_merge () {
         }
         return retArr;
     }
-    var ct = 0;
 
     for (i = 0, ct = 0; i < args.length; i++) {
         if (Object.prototype.toString.call(arg[i]) === '[object Array]') {
             for (j = 0; j < args[i].length; j++) {
                 retObj[ct++] = args[i][j];
             }
-        } else {
+        }
+        else {
             for (k in args[i]) {
                 if (args[i].hasOwnProperty(k)) {
                     if (parseInt(k, 10) + '' === k) {
                         retObj[ct++] = args[i][k];
-                    } else {
+                    }
+                    else {
                         retObj[k] = args[i][k];
                     }
                 }
