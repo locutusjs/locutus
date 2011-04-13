@@ -30,11 +30,29 @@ function is_array (mixed_var) {
             return name[1];
         },
         _isArray = function (mixed_var) {
-            return Object.prototype.toString.call(mixed_var) === '[object Array]';
-            // Other approaches:
-            // && mixed_var.hasOwnProperty('length') && // Not non-enumerable because of being on parent class
-            // !mixed_var.propertyIsEnumerable('length') && // Since is own property, if not enumerable, it must be a built-in function
-            //   _getFuncName(mixed_var.constructor) !== 'String'; // exclude String(), but not another function returning String()
+            // return Object.prototype.toString.call(mixed_var) === '[object Array]';
+            // The above works, but let's do the even more stringent approach: (since Object.prototype.toString could be overridden)
+            // Null, Not an object, no length property so couldn't be an Array (or String)
+            if (!mixed_var || typeof mixed_var !== 'object' || typeof mixed_var.length !== 'number') {
+                return false;
+            }
+            var len = mixed_var.length;
+            mixed_var[mixed_var.length] = 'bogus';
+            // The only way I can think of to get around this (or where there would be trouble) would be to have an object defined 
+            // with a custom "length" getter which changed behavior on each call (or a setter to mess up the following below) or a custom 
+            // setter for numeric properties, but even that would need to listen for specific indexes; but there should be no false negatives 
+            // and such a false positive would need to rely on later JavaScript innovations like __defineSetter__
+            if (len !== mixed_var.length) { // We know it's an array since length auto-changed with the addition of a 
+            // numeric property at its length end, so safely get rid of our bogus element
+                mixed_var.length -= 1;
+                return true;
+            }
+            // Get rid of the property we added onto a non-array object; only possible 
+            // side-effect is if the user adds back the property later, it will iterate 
+            // this property in the older order placement (an order which should not 
+            // be depended on anyways)
+            delete mixed_var[mixed_var.length];
+            return false;
         };
 
     if (!mixed_var || typeof mixed_var !== 'object') {
