@@ -11,5 +11,5 @@ function gmdate (format, timestamp) {
     new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
     );
     timestamp = Date.parse(dt.toUTCString().slice(0, -4)) / 1000;
-    return this.date(format, timestamp);
+    return this.Date(format, timestamp);
 }
