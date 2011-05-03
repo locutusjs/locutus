@@ -44,8 +44,8 @@ function uasort (inputArr, sorter) {
         }
     }
     valArr.sort(function (a, b) {
-		return sorter(a[1], b[1]);
-	});
+        return sorter(a[1], b[1]);
+    });
     
     for (i = 0; i < valArr.length; i++) { // Repopulate the old array
         populateArr[valArr[i][0]] = valArr[i][1];

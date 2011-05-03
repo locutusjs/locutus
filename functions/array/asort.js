@@ -96,12 +96,11 @@ function asort (inputArr, sort_flags) {
     }
     
     valArr.sort(function (a, b) {
-		return sorter(a[1], b[1]);
-	});
+        return sorter(a[1], b[1]);
+    });
 
     // Repopulate the old array
     for (i = 0; i < valArr.length; i++) {
-			alert(valArr[i]);
         populateArr[valArr[i][0]] = valArr[i][1];
     }
 

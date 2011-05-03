@@ -39,10 +39,10 @@ function natcasesort (inputArr) {
             }
         }
     }
-	valArr.sort(function (a, b) {
-		return that.strnatcasecmp(a[1], b[1]);
-	});
-	
+    valArr.sort(function (a, b) {
+        return that.strnatcasecmp(a[1], b[1]);
+    });
+
     // Repopulate the old array
     for (i = 0; i < valArr.length; i++) {
         populateArr[valArr[i][0]] = valArr[i][1];

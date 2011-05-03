@@ -38,8 +38,8 @@ function natsort (inputArr) {
         }
     }
     valArr.sort(function (a, b) {
-		return that.strnatcmp(a[1], b[1]);
-	});
+        return that.strnatcmp(a[1], b[1]);
+    });
 
     // Repopulate the old array
     for (i = 0; i < valArr.length; i++) {
