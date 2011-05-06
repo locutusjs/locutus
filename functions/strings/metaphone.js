@@ -27,20 +27,7 @@ function metaphone (word, phones) {
             return rebuilt;
         },
         isVowel = function (a) {
-            switch (a.toLowerCase()) {
-            case 'a':
-                return true;
-            case 'e':
-                return true;
-            case 'i':
-                return true;
-            case 'o':
-                return true;
-            case 'u':
-                return true;
-            default:
-                return false;
-            }
+			return (/[aeiou]/).test(a.toLowerCase());
         },
         tempword = removedbl(word.toLowerCase());
 
@@ -61,17 +48,8 @@ function metaphone (word, phones) {
                     metaword += 'a';
                 }
                 break;
-            case 'e':
-                metaword += 'e';
-                break;
-            case 'i':
-                metaword += 'i';
-                break;
-            case 'o':
-                metaword += 'o';
-                break;
-            case 'u':
-                metaword += 'u';
+            case 'e': case 'i': case 'o': case 'u':
+                metaword += tempchar;
                 break;
             case 'g':
                 if (String(tempword).charAt(x + 1) == 'n') {
@@ -214,23 +192,11 @@ function metaphone (word, phones) {
                     metaword += 'k';
                 }
                 break;
-            case 'm':
-                metaword += 'm';
-                break;
-            case 'j':
-                metaword += 'j';
-                break;
-            case 'n':
-                metaword += 'n';
+            case 'm': case 'j': case 'n': case 'r': case 'l':
+                metaword += tempchar;
                 break;
             case 'q':
                 metaword += 'k';
-                break;
-            case 'r':
-                metaword += 'r';
-                break;
-            case 'l':
-                metaword += 'l';
                 break;
             case 'v':
                 metaword += 'f';
@@ -239,14 +205,7 @@ function metaphone (word, phones) {
                 metaword += 's';
                 break;
             case 'x':
-                if (x === 0) {
-                    metaword += 's';
-                } else {
-                    metaword += 'ks';
-                }
-                break;
-            case 'm':
-                metaword += 'm';
+                metaword += (x === 0) ? 's' : 'ks';
                 break;
             case 'k':
                 if (x > 0) {
