@@ -1,4 +1,4 @@
-function array_intersect_assoc () {
+function array_intersect_assoc (arr1) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: These only output associative arrays (would need to be
@@ -7,19 +7,20 @@ function array_intersect_assoc () {
     // *     example 1: $array2 = {a: 'green', 0: 'yellow', 1: 'red'}
     // *     example 1: array_intersect_assoc($array1, $array2)
     // *     returns 1: {a: 'green'}
-    var arr1 = arguments[0],
-        retArr = {};
-    var k1 = '',
+    var retArr = {},
+        argl = arguments.length,
+        arglm1 = argl - 1,
+        k1 = '',
         arr = {},
         i = 0,
         k = '';
 
     arr1keys: for (k1 in arr1) {
-        arrs: for (i = 1; i < arguments.length; i++) {
+        arrs: for (i = 1; i < argl; i++) {
             arr = arguments[i];
             for (k in arr) {
                 if (arr[k] === arr1[k1] && k === k1) {
-                    if (i === arguments.length - 1) {
+                    if (i === arglm1) {
                         retArr[k1] = arr1[k1];
                     }
                     // If the innermost loop always leads at least once to an equal value, continue the loop until done
