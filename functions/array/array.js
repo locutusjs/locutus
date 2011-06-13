@@ -160,7 +160,7 @@ function array () {
                 for (var i = 0, argl = arguments.length; i < argl; i++) {
                     var key = _.keys[i];
                     if (key && key.length === parseInt(key).toString().length && // Key represents an int
-                        parseInt(key) < arguments.length) { // Key does not exceed arguments
+                        parseInt(key) < argl) { // Key does not exceed arguments
                         that.window[arguments[key]] = _.values[key];
                     }
                 }
