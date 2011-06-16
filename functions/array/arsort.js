@@ -30,7 +30,7 @@ function arsort (inputArr, sort_flags) {
     // *     example 2: arsort(data);
     // *     results 2: data == {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
     // *     returns 2: true
-    var valArr = [],
+    var valArr = [], valArrLen = 0,
         k, i, ret, sorter, that = this,
         strictForIn = false,
         populateArr = {};
@@ -95,7 +95,7 @@ function arsort (inputArr, sort_flags) {
     });
  
     // Repopulate the old array
-    for (i = 0; i < valArr.length; i++) {
+    for (i = 0, valArrLen = valArr.length; i < valArrLen; i++) {
         populateArr[valArr[i][0]] = valArr[i][1];
     }
 
