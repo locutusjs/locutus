@@ -9,31 +9,35 @@ function htmlentities (string, quote_style, charset, double_encode) {
     // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +      input by: Ratheous
     // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
+    // +   improved by: Dj (http://phpjs.org/functions/htmlentities:425#comment_134018)
     // -    depends on: get_html_translation_table
     // *     example 1: htmlentities('Kevin & van Zonneveld');
     // *     returns 1: 'Kevin &amp; van Zonneveld'
     // *     example 2: htmlentities("foo'bar","ENT_QUOTES");
     // *     returns 2: 'foo&#039;bar'
-    var hash_map = {},
-        symbol = '',
-        entity = '',
-        self = this;
-    string += '';
-    double_encode = !!double_encode || double_encode == null;
+    var hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style),
+        symbol = '';
+    string = string == null ? '' : string + '';
 
-    if (false === (hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {
+    if (!hash_map) {
         return false;
     }
-    hash_map["'"] = '&#039;';
     
-    if (double_encode) {
+    if (quote_style && quote_style === 'ENT_QUOTES') {
+        hash_map["'"] = '&#039;';
+    }
+    
+    if (!!double_encode || double_encode == null) {
         for (symbol in hash_map) {
-            entity = hash_map[symbol];
-            string = string.split(symbol).join(entity);
+            string = string.split(symbol).join(hash_map[symbol]);
         }
     } else {
-        string = string.replace(/([\s\S]*?)(&(?:#\d+|#x[\da-f]+|[a-z][\da-z]*);|$)/g, function (ignore, text, entity) {
-            return self.htmlentities(text, quote_style, charset) + entity;
+        string = string.replace(/([\s\S]*?)(&(?:#\d+|#x[\da-f]+|[a-zA-Z][\da-z]*);|$)/g, function (ignore, text, entity) {
+            for (symbol in hash_map) {
+                text = text.split(symbol).join(hash_map[symbol]);
+            }
+            
+            return text + entity;
         });
     }
 
