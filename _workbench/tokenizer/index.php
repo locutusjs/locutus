@@ -1,209 +1,296 @@
 <?php
-/*
-echo '<pre>';
-echo '        ', token_name(258), ':', 258,  ',<br/>';
-echo '        ', token_name(259), ':', 259,  ',<br/>';
-echo '        ', token_name(260), ':', 260,  ',<br/>';
-echo '        ', token_name(261), ':', 261,  ',<br/>';
-echo '        ', token_name(262), ':', 262,  ',<br/>';
-echo '        ', token_name(263), ':', 263,  ',<br/>';
-echo '        ', token_name(264), ':', 264,  ',<br/>';
-echo '        ', token_name(265), ':', 265,  ',<br/>';
-echo '        ', token_name(266), ':', 266,  ',<br/>';
-echo '        ', token_name(267), ':', 267,  ',<br/>';
-echo '        ', token_name(268), ':', 268,  ',<br/>';
-echo '        ', token_name(269), ':', 269,  ',<br/>';
-echo '        ', token_name(270), ':', 270,  ',<br/>';
-echo '        ', token_name(271), ':', 271,  ',<br/>';
-echo '        ', token_name(272), ':', 272,  ',<br/>';
-echo '        ', token_name(273), ':', 273,  ',<br/>';
-echo '        ', token_name(274), ':', 274,  ',<br/>';
-echo '        ', token_name(275), ':', 275,  ',<br/>';
-echo '        ', token_name(276), ':', 276,  ',<br/>';
-echo '        ', token_name(277), ':', 277,  ',<br/>';
-echo '        ', token_name(278), ':', 278,  ',<br/>';
-echo '        ', token_name(279), ':', 279,  ',<br/>';
-echo '        ', token_name(280), ':', 280,  ',<br/>';
-echo '        ', token_name(281), ':', 281,  ',<br/>';
-echo '        ', token_name(282), ':', 282,  ',<br/>';
-echo '        ', token_name(283), ':', 283,  ',<br/>';
-echo '        ', token_name(284), ':', 284,  ',<br/>';
-echo '        ', token_name(285), ':', 285,  ',<br/>';
-echo '        ', token_name(286), ':', 286,  ',<br/>';
-echo '        ', token_name(287), ':', 287,  ',<br/>';
-echo '        ', token_name(288), ':', 288,  ',<br/>';
-echo '        ', token_name(289), ':', 289,  ',<br/>';
-echo '        ', token_name(290), ':', 290,  ',<br/>';
-echo '        ', token_name(291), ':', 291,  ',<br/>';
-echo '        ', token_name(292), ':', 292,  ',<br/>';
-echo '        ', token_name(293), ':', 293,  ',<br/>';
-echo '        ', token_name(294), ':', 294,  ',<br/>';
-echo '        ', token_name(295), ':', 295,  ',<br/>';
-echo '        ', token_name(296), ':', 296,  ',<br/>';
-echo '        ', token_name(297), ':', 297,  ',<br/>';
-echo '        ', token_name(298), ':', 298,  ',<br/>';
-echo '        ', token_name(299), ':', 299,  ',<br/>';
-echo '        ', token_name(300), ':', 300,  ',<br/>';
-echo '        ', token_name(301), ':', 301,  ',<br/>';
-echo '        ', token_name(302), ':', 302,  ',<br/>';
-echo '        ', token_name(303), ':', 303,  ',<br/>';
-echo '        ', token_name(304), ':', 304,  ',<br/>';
-echo '        ', token_name(305), ':', 305,  ',<br/>';
-echo '        ', token_name(306), ':', 306,  ',<br/>';
-echo '        ', token_name(307), ':', 307,  ',<br/>';
-echo '        ', token_name(308), ':', 308,  ',<br/>';
-echo '        ', token_name(309), ':', 309,  ',<br/>';
-echo '        ', token_name(310), ':', 310,  ',<br/>';
-echo '        ', token_name(311), ':', 311,  ',<br/>';
-echo '        ', token_name(312), ':', 312,  ',<br/>';
-echo '        ', token_name(313), ':', 313,  ',<br/>';
-echo '        ', token_name(314), ':', 314,  ',<br/>';
-echo '        ', token_name(315), ':', 315,  ',<br/>';
-echo '        ', token_name(316), ':', 316,  ',<br/>';
-echo '        ', token_name(317), ':', 317,  ',<br/>';
-echo '        ', token_name(318), ':', 318,  ',<br/>';
-echo '        ', token_name(319), ':', 319,  ',<br/>';
-echo '        ', token_name(320), ':', 320,  ',<br/>';
-echo '        ', token_name(321), ':', 321,  ',<br/>';
-echo '        ', token_name(322), ':', 322,  ',<br/>';
-echo '        ', token_name(323), ':', 323,  ',<br/>';
-echo '        ', token_name(324), ':', 324,  ',<br/>';
-echo '        ', token_name(325), ':', 325,  ',<br/>';
-echo '        ', token_name(326), ':', 326,  ',<br/>';
-echo '        ', token_name(327), ':', 327,  ',<br/>';
-echo '        ', token_name(328), ':', 328,  ',<br/>';
-echo '        ', token_name(329), ':', 329,  ',<br/>';
-echo '        ', token_name(330), ':', 330,  ',<br/>';
-echo '        ', token_name(331), ':', 331,  ',<br/>';
-echo '        ', token_name(332), ':', 332,  ',<br/>';
-echo '        ', token_name(333), ':', 333,  ',<br/>';
-echo '        ', token_name(334), ':', 334,  ',<br/>';
-echo '        ', token_name(335), ':', 335,  ',<br/>';
-echo '        ', token_name(336), ':', 336,  ',<br/>';
-echo '        ', token_name(337), ':', 337,  ',<br/>';
-echo '        ', token_name(338), ':', 338,  ',<br/>';
-echo '        ', token_name(339), ':', 339,  ',<br/>';
-echo '        ', token_name(340), ':', 340,  ',<br/>';
-echo '        ', token_name(341), ':', 341,  ',<br/>';
-echo '        ', token_name(342), ':', 342,  ',<br/>';
-echo '        ', token_name(343), ':', 343,  ',<br/>';
-echo '        ', token_name(344), ':', 344,  ',<br/>';
-echo '        ', token_name(345), ':', 345,  ',<br/>';
-echo '        ', token_name(346), ':', 346,  ',<br/>';
-echo '        ', token_name(347), ':', 347,  ',<br/>';
-echo '        ', token_name(348), ':', 348,  ',<br/>';
-echo '        ', token_name(349), ':', 349,  ',<br/>';
-echo '        ', token_name(350), ':', 350,  ',<br/>';
-echo '        ', token_name(351), ':', 351,  ',<br/>';
-echo '        ', token_name(352), ':', 352,  ',<br/>';
-echo '        ', token_name(353), ':', 353,  ',<br/>';
-echo '        ', token_name(354), ':', 354,  ',<br/>';
-echo '        ', token_name(355), ':', 355,  ',<br/>';
-echo '        ', token_name(356), ':', 356,  ',<br/>';
-echo '        ', token_name(357), ':', 357,  ',<br/>';
-echo '        ', token_name(358), ':', 358,  ',<br/>';
-echo '        ', token_name(359), ':', 359,  ',<br/>';
-echo '        ', token_name(360), ':', 360,  ',<br/>';
-echo '        ', token_name(361), ':', 361,  ',<br/>';
-echo '        ', token_name(362), ':', 362,  ',<br/>';
-echo '        ', token_name(363), ':', 363,  ',<br/>';
-echo '        ', token_name(364), ':', 364,  ',<br/>';
-echo '        ', token_name(365), ':', 365,  ',<br/>';
-echo '        ', token_name(366), ':', 366,  ',<br/>';
-echo '        ', token_name(367), ':', 367,  ',<br/>';
-echo '        ', token_name(368), ':', 368,  ',<br/>';
-echo '        ', token_name(369), ':', 369,  ',<br/>';
-echo '        ', token_name(370), ':', 370,  ',<br/>';
-echo '        ', token_name(371), ':', 371,  ',<br/>';
-echo '        ', token_name(372), ':', 372,  ',<br/>';
-echo '        ', token_name(373), ':', 373,  ',<br/>';
-echo '        ', token_name(374), ':', 374,  ',<br/>';
-echo '        ', token_name(375), ':', 375,  ',<br/>';
-echo '        ', token_name(376), ':', 376,  ',<br/>';
-echo '        ', token_name(377), ':', 377,  ',<br/>';
-echo '        ', token_name(378), ':', 378,  ',<br/>';
-echo '        ', token_name(379), ':', 379,  ',<br/>';
-echo '        ', token_name(380), ':', 380,  ',<br/>';
-echo '</pre>';
-*/
-include "config.php";
-$content = file_get_contents($file);
-$a = token_get_all($content);
+$tests=array();
+$files=scandir("tests");
+foreach($files as $file) {
+	if (preg_match("#\.php#i", $file)) {
+		$tests[] = $file;
+	}
+}
 ?>
 <html>
-<head>
-	<script type="text/javascript" src="token_get_all.js"></script>
-	<script type="text/javascript" src="file_get_contents.min.js"></script>
-    <script type="text/javascript" src="var_export.js"></script>
-	<script type="application/PHPJS" id="test" style="display:none">
-<?php echo $content."\n"?>
-    </script>
-	<script type="text/javascript">
-
-		function DOMReady(f) {
-		  if ((/(?!.*?compatible|.*?webkit)^mozilla|opera/i).test(navigator.userAgent)){ // Feeling dirty yet?
-			document.addEventListener('DOMContentLoaded', f, false);
-		  } else{
-			window.setTimeout(f, 0);
-		  }
-		}
-		function replaceAll(st, rp, rpm) {
-			while (st.indexOf(rp)>-1) {
-                st = st.replace(rp, rpm);
-            }
-			return st;
-		}
-		function fixToken(token) {
-			token = replaceAll(token, '\n', '\\n');
-			token = replaceAll(token, '\t', '\\t');
-			token = replaceAll(token, '\r', '\\r');
-			token = replaceAll(token, ' ', '&nbsp;');
-			return token;
-		}
-		DOMReady(function() {
-			var cont = file_get_contents('s.php');
-			var now = Date.now();
-			var tokens = token_get_all(cont);
-//			alert(((Date.now() - now) / 1000) + ' seconds');
-            echo('<pre>'+var_export(tokens, true)+'</pre>');
-			var start = <?php echo count($a) + 1?>; // Not in use
-			var Struct=[
-			<?php
-			foreach($a as $k => $tok) {
-				echo "\"<font color='red'>";
-				if (!is_array($tok)) {
-                    echo str_replace(array("\n","\t","\r"," ",'"'),array("\\\\n","\\\\t","\\\\r","&nbsp;",'\"'),htmlentities($tok))."<br>";
-                }
-				else {
-                    foreach($tok as $t) {
-                        echo str_replace(array("\n","\t","\r"," ",'"'),array("\\\\n","\\\\t","\\\\r","&nbsp;",'\"'),htmlentities($t))."<br>";
-                    }
-                }
-				echo "</font>\"".($k == count($a) - 1 ? "" : ",");
-			}
-			?>
-			];
-			for (var i = 0; i < tokens.length; i++) {
-				var str = Struct[i] ? Struct[i] : "";
-				if (!(tokens[i] instanceof Array)) {
-                    str += tokens[i] ? fixToken(tokens[i]) : 'undefined';
-                }
-				else {
-					tokens[i][1] = tokens[i][1] ? fixToken(tokens[i][1]) : 'undefined';
-					str += tokens[i].join('<br>');
+	<head>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript" src="token_get_all.js"></script>
+		<script type="text/javascript">
+			function execTest () {
+				if (next >= files.length) {
+					document.getElementsByTagName("button")[0].disabled = false;
+					return;
 				}
-				var el = document.createElement('div');
-				el.style.backgroundColor = i%2 === 0 ? '#EEE' : '#FFF';
-				el.innerHTML = str;
-				document.body.appendChild(el);
-			}       
-     	});
-	</script>
-</head>
-<body>
-<table>
-<tr><td>T_REQUIRE_ONCE</td><td><font color="red">261</font></td></tr><tr><td>T_REQUIRE</td><td><font color="red">260</font></td></tr><tr><td>T_EVAL</td><td><font color="red">259</font></td></tr><tr><td>T_INCLUDE_ONCE</td><td><font color="red">258</font></td></tr><tr><td>T_INCLUDE</td><td><font color="red">257</font></td></tr><tr><td>T_LOGICAL_OR</td><td><font color="red">262</font></td></tr><tr><td>T_LOGICAL_XOR</td><td><font color="red">263</font></td></tr><tr><td>T_LOGICAL_AND</td><td><font color="red">264</font></td></tr><tr><td>T_PRINT</td><td><font color="red">265</font></td></tr><tr><td>T_SR_EQUAL</td><td><font color="red">276</font></td></tr><tr><td>T_SL_EQUAL</td><td><font color="red">275</font></td></tr><tr><td>T_XOR_EQUAL</td><td><font color="red">274</font></td></tr><tr><td>T_OR_EQUAL</td><td><font color="red">273</font></td></tr><tr><td>T_AND_EQUAL</td><td><font color="red">272</font></td></tr><tr><td>T_MOD_EQUAL</td><td><font color="red">271</font></td></tr><tr><td>T_CONCAT_EQUAL</td><td><font color="red">270</font></td></tr><tr><td>T_DIV_EQUAL</td><td><font color="red">269</font></td></tr><tr><td>T_MUL_EQUAL</td><td><font color="red">268</font></td></tr><tr><td>T_MINUS_EQUAL</td><td><font color="red">267</font></td></tr><tr><td>T_PLUS_EQUAL</td><td><font color="red">266</font></td></tr><tr><td>T_BOOLEAN_OR</td><td><font color="red">277</font></td></tr><tr><td>T_BOOLEAN_AND</td><td><font color="red">278</font></td></tr><tr><td>T_IS_NOT_IDENTICAL</td><td><font color="red">282</font></td></tr><tr><td>T_IS_IDENTICAL</td><td><font color="red">281</font></td></tr><tr><td>T_IS_NOT_EQUAL</td><td><font color="red">280</font></td></tr><tr><td>T_IS_EQUAL</td><td><font color="red">279</font></td></tr><tr><td>T_IS_GREATER_OR_EQUAL</td><td><font color="red">284</font></td></tr><tr><td>T_IS_SMALLER_OR_EQUAL</td><td><font color="red">283</font></td></tr><tr><td>T_SR</td><td><font color="red">286</font></td></tr><tr><td>T_SL</td><td><font color="red">285</font></td></tr><tr><td>T_INSTANCEOF</td><td><font color="red">287</font></td></tr><tr><td>T_UNSET_CAST</td><td><font color="red">296</font></td></tr><tr><td>T_BOOL_CAST</td><td><font color="red">295</font></td></tr><tr><td>T_OBJECT_CAST</td><td><font color="red">294</font></td></tr><tr><td>T_ARRAY_CAST</td><td><font color="red">293</font></td></tr><tr><td>T_STRING_CAST</td><td><font color="red">292</font></td></tr><tr><td>T_DOUBLE_CAST</td><td><font color="red">291</font></td></tr><tr><td>T_INT_CAST</td><td><font color="red">290</font></td></tr><tr><td>T_DEC</td><td><font color="red">289</font></td></tr><tr><td>T_INC</td><td><font color="red">288</font></td></tr><tr><td>T_CLONE</td><td><font color="red">298</font></td></tr><tr><td>T_NEW</td><td><font color="red">297</font></td></tr><tr><td>T_EXIT</td><td><font color="red">299</font></td></tr><tr><td>T_IF</td><td><font color="red">300</font></td></tr><tr><td>T_ELSEIF</td><td><font color="red">301</font></td></tr><tr><td>T_ELSE</td><td><font color="red">302</font></td></tr><tr><td>T_ENDIF</td><td><font color="red">303</font></td></tr><tr><td>T_LNUMBER</td><td><font color="red">304</font></td></tr><tr><td>T_DNUMBER</td><td><font color="red">305</font></td></tr><tr><td>T_STRING</td><td><font color="red">306</font></td></tr><tr><td>T_STRING_VARNAME</td><td><font color="red">307</font></td></tr><tr><td>T_VARIABLE</td><td><font color="red">308</font></td></tr><tr><td>T_NUM_STRING</td><td><font color="red">309</font></td></tr><tr><td>T_INLINE_HTML</td><td><font color="red">310</font></td></tr><tr><td>T_CHARACTER</td><td><font color="red">311</font></td></tr><tr><td>T_BAD_CHARACTER</td><td><font color="red">312</font></td></tr><tr><td>T_ENCAPSED_AND_WHITESPACE</td><td><font color="red">313</font></td></tr><tr><td>T_CONSTANT_ENCAPSED_STRING</td><td><font color="red">314</font></td></tr><tr><td>T_ECHO</td><td><font color="red">315</font></td></tr><tr><td>T_DO</td><td><font color="red">316</font></td></tr><tr><td>T_WHILE</td><td><font color="red">317</font></td></tr><tr><td>T_ENDWHILE</td><td><font color="red">318</font></td></tr><tr><td>T_FOR</td><td><font color="red">319</font></td></tr><tr><td>T_ENDFOR</td><td><font color="red">320</font></td></tr><tr><td>T_FOREACH</td><td><font color="red">321</font></td></tr><tr><td>T_ENDFOREACH</td><td><font color="red">322</font></td></tr><tr><td>T_DECLARE</td><td><font color="red">323</font></td></tr><tr><td>T_ENDDECLARE</td><td><font color="red">324</font></td></tr><tr><td>T_AS</td><td><font color="red">325</font></td></tr><tr><td>T_SWITCH</td><td><font color="red">326</font></td></tr><tr><td>T_ENDSWITCH</td><td><font color="red">327</font></td></tr><tr><td>T_CASE</td><td><font color="red">328</font></td></tr><tr><td>T_DEFAULT</td><td><font color="red">329</font></td></tr><tr><td>T_BREAK</td><td><font color="red">330</font></td></tr><tr><td>T_CONTINUE</td><td><font color="red">331</font></td></tr><tr><td>T_GOTO</td><td><font color="red">332</font></td></tr><tr><td>T_FUNCTION</td><td><font color="red">333</font></td></tr><tr><td>T_CONST</td><td><font color="red">334</font></td></tr><tr><td>T_RETURN</td><td><font color="red">335</font></td></tr><tr><td>T_TRY</td><td><font color="red">336</font></td></tr><tr><td>T_CATCH</td><td><font color="red">337</font></td></tr><tr><td>T_THROW</td><td><font color="red">338</font></td></tr><tr><td>T_USE</td><td><font color="red">339</font></td></tr><tr><td>T_GLOBAL</td><td><font color="red">340</font></td></tr><tr><td>T_PUBLIC</td><td><font color="red">346</font></td></tr><tr><td>T_PROTECTED</td><td><font color="red">345</font></td></tr><tr><td>T_PRIVATE</td><td><font color="red">344</font></td></tr><tr><td>T_FINAL</td><td><font color="red">343</font></td></tr><tr><td>T_ABSTRACT</td><td><font color="red">342</font></td></tr><tr><td>T_STATIC</td><td><font color="red">341</font></td></tr><tr><td>T_VAR</td><td><font color="red">347</font></td></tr><tr><td>T_UNSET</td><td><font color="red">348</font></td></tr><tr><td>T_ISSET</td><td><font color="red">349</font></td></tr><tr><td>T_EMPTY</td><td><font color="red">350</font></td></tr><tr><td>T_HALT_COMPILER</td><td><font color="red">351</font></td></tr><tr><td>T_CLASS</td><td><font color="red">352</font></td></tr><tr><td>T_INTERFACE</td><td><font color="red">353</font></td></tr><tr><td>T_EXTENDS</td><td><font color="red">354</font></td></tr><tr><td>T_IMPLEMENTS</td><td><font color="red">355</font></td></tr><tr><td>T_OBJECT_OPERATOR</td><td><font color="red">356</font></td></tr><tr><td>T_DOUBLE_ARROW</td><td><font color="red">357</font></td></tr><tr><td>T_LIST</td><td><font color="red">358</font></td></tr><tr><td>T_ARRAY</td><td><font color="red">359</font></td></tr><tr><td>T_CLASS_C</td><td><font color="red">360</font></td></tr><tr><td>T_METHOD_C</td><td><font color="red">361</font></td></tr><tr><td>T_FUNC_C</td><td><font color="red">362</font></td></tr><tr><td>T_LINE</td><td><font color="red">363</font></td></tr><tr><td>T_FILE</td><td><font color="red">364</font></td></tr><tr><td>T_COMMENT</td><td><font color="red">365</font></td></tr><tr><td>T_DOC_COMMENT</td><td><font color="red">366</font></td></tr><tr><td>T_OPEN_TAG</td><td><font color="red">367</font></td></tr><tr><td>T_OPEN_TAG_WITH_ECHO</td><td><font color="red">368</font></td></tr><tr><td>T_CLOSE_TAG</td><td><font color="red">369</font></td></tr><tr><td>T_WHITESPACE</td><td><font color="red">370</font></td></tr><tr><td>T_START_HEREDOC</td><td><font color="red">371</font></td></tr><tr><td>T_END_HEREDOC</td><td><font color="red">372</font></td></tr><tr><td>T_DOLLAR_OPEN_CURLY_BRACES</td><td><font color="red">373</font></td></tr><tr><td>T_CURLY_OPEN</td><td><font color="red">374</font></td></tr><tr><td>T_PAAMAYIM_NEKUDOTAYIM</td><td><font color="red">375</font></td></tr><tr><td>T_NAMESPACE</td><td><font color="red">376</font></td></tr><tr><td>T_NS_C</td><td><font color="red">377</font></td></tr><tr><td>T_DIR</td><td><font color="red">378</font></td></tr><tr><td>T_NS_SEPARATOR</td><td><font color="red">379</font></td></tr>
-</table>
-<pre><?php echo str_replace(array('&', '<'), array('&amp;', '&lt;'), var_export($a, true));  ?></pre>
-</body>
+				$.post("tokenizer.php", {file: files[next]}, function (data) {
+					data = $.parseJSON(data);
+					var php = data[0],
+						tokens,
+						start,
+						res = true;
+					try {
+						start = + (new Date);
+						tokens = token_get_all(data[1]);
+						time = (+ (new Date)) - start;
+						totTime += time;
+						var i = 0,
+							l = tokens.length;
+						for (; i < l; i++) {
+							//console.log("PHP", php[i]);
+							//console.log("JS", tokens[i]);
+							if (!i in php) {
+								failTest("Missing token at index " + i);
+								res = false;
+								break;
+							} else {
+								var tArr = $.isArray(tokens[i]),
+									pArr = $.isArray(php[i]);
+								if (tArr !== pArr) {
+									res = false;
+								} else if (!tArr) {
+									if (tokens[i] !== php[i]) {
+										res = false;
+									}
+								} else {
+									for (var c = 0, lc = tokens[i].length; c < lc; c++) {
+										if (tokens[i][c] !== php[i][c]) {
+											res = false;
+											break;
+										}
+									}
+								}
+								if (!res) {
+									var s = i,
+										stop = Math.min(s + 5, l),
+										err = "";
+									for (; s < stop; s++) {
+										err += "PHP (" + s + "):" + "<br>" + (php[s] + "").replace(replace, replacement) + "<br>";
+										err += "JS (" + s + "):" + "<br>" + (tokens[s] + "").replace(replace, replacement) + "<br>";
+									}
+									res = false;
+									failTest(err);
+									break;
+								}
+							}
+						}
+						if (res && l !== php.length) {
+							failTest("Different number of tokens. PHP: " + php.length + ", JS: " + l);
+						}
+					} catch (e) {
+						time = (+ (new Date)) - start;
+						res = false;
+						failTest((e.fileName ? e.fileName + "<br>" : "") + (e.lineNumber ? "Line: " + e.lineNumber + "<br>" : "") + "Message: " + e.message);
+					}
+					res && passTest();
+					next++;
+					execTest();
+				});
+			}
+			
+			function failTest (msg)
+			{
+				var html = boxes.eq(next).html();
+				boxes.eq(next).addClass("fail").html(html+ " - Time: " + time + "ms").append($("<div class='error'>" + msg + "</div>"));
+				pf.innerHTML=parseInt(pf.innerHTML) + 1;
+				pt.innerHTML = totTime;
+			}
+			
+			function passTest ()
+			{
+				var html = boxes.eq(next).html();
+				boxes.eq(next).addClass("pass").html(html+ " - Time: " + time + "ms");
+				pb.innerHTML=parseInt(pb.innerHTML) + 1;
+				pt.innerHTML = totTime;
+			}
+			
+			var files = [
+					"<?php echo implode('", "', $tests);?>"
+				],
+				next = 0,
+				replace = /[\n\r\t <>]/g,
+				replacement = function (match) {
+					if (match === "\n") {
+						return "\\n";
+					} else if (match === "\r") {
+						return "\\r";
+					} else if (match === "\t") {
+						return "\\t";
+					} else if (match === " ") {
+						return "\\s";
+					} else if (match === ">") {
+						return "&gt;";
+					} else if (match === "<") {
+						return "&lt;";
+					}
+					return match;
+				},
+				boxes,
+				pb,
+				pt,
+				pf,
+				time,
+				totTime = 0;
+			$(document).ready(function () {
+				boxes = $(".test");
+				pb=document.getElementById("pass");
+				pf=document.getElementById("fail");
+				pt=document.getElementById("ttime");
+			});
+		</script>
+		<style>
+		body{
+			font-family: Arial, Verdana, sans-serif;
+			font-size:13px;
+		}
+		.test {
+			background: #F0F0F0;
+			border: 1px solid #CDCDCD;
+			padding: 10px;
+			margin-top: 10px;
+		}
+		.test.pass {
+			background: #DCFEDA;
+			border: 1px solid #A6FCA2;
+		}
+		.test.fail {
+			background: #FEDADA;
+			border: 1px solid #FCA6A6;
+		}
+		.test .error {
+			background: white;
+			margin-top:5px;
+			border: 1px solid #FCA6A6;
+		}
+		</style>
+	</head>
 </html>
+<body>
+	<button onClick="this.disabled=true;execTest();">Run test</button> Total: <?php echo count($tests)?>, Pass: <span id="pass">0</span>, Fail: <span id="fail">0</span>, Total time: <span id="ttime">0</span> ms
+	<?php foreach ($tests as $test):?>
+	<div class="test">
+		<?php echo $test?>
+	</div>
+	<?php endforeach;?>
+	<?php
+	/*echo "T_ABSTRACT: ".T_ABSTRACT.",<br>";
+	echo "T_AND_EQUAL: ".T_AND_EQUAL.",<br>";
+	echo "T_ARRAY: ".T_ARRAY.",<br>";
+	echo "T_ARRAY_CAST: ".T_ARRAY_CAST.",<br>";
+	echo "T_AS: ".T_AS.",<br>";
+	echo "T_BAD_CHARACTER: ".T_BAD_CHARACTER.",<br>";
+	echo "T_BOOLEAN_AND: ".T_BOOLEAN_AND.",<br>";
+	echo "T_BOOLEAN_OR: ".T_BOOLEAN_OR.",<br>";
+	echo "T_BOOL_CAST: ".T_BOOL_CAST.",<br>";
+	echo "T_BREAK: ".T_BREAK.",<br>";
+	echo "T_CASE: ".T_CASE.",<br>";
+	echo "T_CATCH: ".T_CATCH.",<br>";
+	echo "T_CHARACTER: ".T_CHARACTER.",<br>";
+	echo "T_CLASS: ".T_CLASS.",<br>";
+	echo "T_CLASS_C: ".T_CLASS_C.",<br>";
+	echo "T_CLONE: ".T_CLONE.",<br>";
+	echo "T_CLOSE_TAG: ".T_CLOSE_TAG.",<br>";
+	echo "T_COMMENT: ".T_COMMENT.",<br>";
+	echo "T_CONCAT_EQUAL: ".T_CONCAT_EQUAL.",<br>";
+	echo "T_CONST: ".T_CONST.",<br>";
+	echo "T_CONSTANT_ENCAPSED_STRING: ".T_CONSTANT_ENCAPSED_STRING.",<br>";
+	echo "T_CONTINUE: ".T_CONTINUE.",<br>";
+	echo "T_CURLY_OPEN: ".T_CURLY_OPEN.",<br>";
+	echo "T_DEC: ".T_DEC.",<br>";
+	echo "T_DECLARE: ".T_DECLARE.",<br>";
+	echo "T_DEFAULT: ".T_DEFAULT.",<br>";
+	echo "T_DIR: ".T_DIR.",<br>";
+	echo "T_DIV_EQUAL: ".T_DIV_EQUAL.",<br>";
+	echo "T_DNUMBER: ".T_DNUMBER.",<br>";
+	echo "T_DOC_COMMENT: ".T_DOC_COMMENT.",<br>";
+	echo "T_DO: ".T_DO.",<br>";
+	echo "T_DOLLAR_OPEN_CURLY_BRACES: ".T_DOLLAR_OPEN_CURLY_BRACES.",<br>";
+	echo "T_DOUBLE_ARROW: ".T_DOUBLE_ARROW.",<br>";
+	echo "T_DOUBLE_CAST: ".T_DOUBLE_CAST.",<br>";
+	echo "T_DOUBLE_COLON: ".T_DOUBLE_COLON.",<br>";
+	echo "T_ECHO: ".T_ECHO.",<br>";
+	echo "T_ELSE: ".T_ELSE.",<br>";
+	echo "T_ELSEIF: ".T_ELSEIF.",<br>";
+	echo "T_EMPTY: ".T_EMPTY.",<br>";
+	echo "T_ENCAPSED_AND_WHITESPACE: ".T_ENCAPSED_AND_WHITESPACE.",<br>";
+	echo "T_ENDDECLARE: ".T_ENDDECLARE.",<br>";
+	echo "T_ENDFOR: ".T_ENDFOR.",<br>";
+	echo "T_ENDFOREACH: ".T_ENDFOREACH.",<br>";
+	echo "T_ENDIF: ".T_ENDIF.",<br>";
+	echo "T_ENDSWITCH: ".T_ENDSWITCH.",<br>";
+	echo "T_ENDWHILE: ".T_ENDWHILE.",<br>";
+	echo "T_END_HEREDOC: ".T_END_HEREDOC.",<br>";
+	echo "T_EVAL: ".T_EVAL.",<br>";
+	echo "T_EXIT: ".T_EXIT.",<br>";
+	echo "T_EXTENDS: ".T_EXTENDS.",<br>";
+	echo "T_FILE: ".T_FILE.",<br>";
+	echo "T_FINAL: ".T_FINAL.",<br>";
+	echo "T_FOR: ".T_FOR.",<br>";
+	echo "T_FOREACH: ".T_FOREACH.",<br>";
+	echo "T_FUNCTION: ".T_FUNCTION.",<br>";
+	echo "T_FUNC_C: ".T_FUNC_C.",<br>";
+	echo "T_GLOBAL: ".T_GLOBAL.",<br>";
+	echo "T_GOTO: ".T_GOTO.",<br>";
+	echo "T_HALT_COMPILER: ".T_HALT_COMPILER.",<br>";
+	echo "T_IF: ".T_IF.",<br>";
+	echo "T_IMPLEMENTS: ".T_IMPLEMENTS.",<br>";
+	echo "T_INC: ".T_INC.",<br>";
+	echo "T_INCLUDE: ".T_INCLUDE.",<br>";
+	echo "T_INCLUDE_ONCE: ".T_INCLUDE_ONCE.",<br>";
+	echo "T_INLINE_HTML: ".T_INLINE_HTML.",<br>";
+	echo "T_INSTANCEOF: ".T_INSTANCEOF.",<br>";
+	echo "T_INT_CAST: ".T_INT_CAST.",<br>";
+	echo "T_INTERFACE: ".T_INTERFACE.",<br>";
+	echo "T_ISSET: ".T_ISSET.",<br>";
+	echo "T_IS_EQUAL: ".T_IS_EQUAL.",<br>";
+	echo "T_IS_GREATER_OR_EQUAL: ".T_IS_GREATER_OR_EQUAL.",<br>";
+	echo "T_IS_IDENTICAL: ".T_IS_IDENTICAL.",<br>";
+	echo "T_IS_NOT_EQUAL: ".T_IS_NOT_EQUAL.",<br>";
+	echo "T_IS_NOT_IDENTICAL: ".T_IS_NOT_IDENTICAL.",<br>";
+	echo "T_IS_SMALLER_OR_EQUAL: ".T_IS_SMALLER_OR_EQUAL.",<br>";
+	echo "T_LINE: ".T_LINE.",<br>";
+	echo "T_LIST: ".T_LIST.",<br>";
+	echo "T_LNUMBER: ".T_LNUMBER.",<br>";
+	echo "T_LOGICAL_AND: ".T_LOGICAL_AND.",<br>";
+	echo "T_LOGICAL_OR: ".T_LOGICAL_OR.",<br>";
+	echo "T_LOGICAL_XOR: ".T_LOGICAL_XOR.",<br>";
+	echo "T_METHOD_C: ".T_METHOD_C.",<br>";
+	echo "T_MINUS_EQUAL: ".T_MINUS_EQUAL.",<br>";
+	echo "T_MOD_EQUAL: ".T_MOD_EQUAL.",<br>";
+	echo "T_MUL_EQUAL: ".T_MUL_EQUAL.",<br>";
+	echo "T_NAMESPACE: ".T_NAMESPACE.",<br>";
+	echo "T_NS_C: ".T_NS_C.",<br>";
+	echo "T_NS_SEPARATOR: ".T_NS_SEPARATOR.",<br>";
+	echo "T_NEW: ".T_NEW.",<br>";
+	echo "T_NUM_STRING: ".T_NUM_STRING.",<br>";
+	echo "T_OBJECT_CAST: ".T_OBJECT_CAST.",<br>";
+	echo "T_OBJECT_OPERATOR: ".T_OBJECT_OPERATOR.",<br>";
+	echo "T_OPEN_TAG: ".T_OPEN_TAG.",<br>";
+	echo "T_OPEN_TAG_WITH_ECHO: ".T_OPEN_TAG_WITH_ECHO.",<br>";
+	echo "T_OR_EQUAL: ".T_OR_EQUAL.",<br>";
+	echo "T_PAAMAYIM_NEKUDOTAYIM: ".T_PAAMAYIM_NEKUDOTAYIM.",<br>";
+	echo "T_PLUS_EQUAL: ".T_PLUS_EQUAL.",<br>";
+	echo "T_PRINT: ".T_PRINT.",<br>";
+	echo "T_PRIVATE: ".T_PRIVATE.",<br>";
+	echo "T_PUBLIC: ".T_PUBLIC.",<br>";
+	echo "T_PROTECTED: ".T_PROTECTED.",<br>";
+	echo "T_REQUIRE: ".T_REQUIRE.",<br>";
+	echo "T_REQUIRE_ONCE: ".T_REQUIRE_ONCE.",<br>";
+	echo "T_RETURN: ".T_RETURN.",<br>";
+	echo "T_SL: ".T_SL.",<br>";
+	echo "T_SL_EQUAL: ".T_SL_EQUAL.",<br>";
+	echo "T_SR: ".T_SR.",<br>";
+	echo "T_SR_EQUAL: ".T_SR_EQUAL.",<br>";
+	echo "T_START_HEREDOC: ".T_START_HEREDOC.",<br>";
+	echo "T_STATIC: ".T_STATIC.",<br>";
+	echo "T_STRING: ".T_STRING.",<br>";
+	echo "T_STRING_CAST: ".T_STRING_CAST.",<br>";
+	echo "T_STRING_VARNAME: ".T_STRING_VARNAME.",<br>";
+	echo "T_SWITCH: ".T_SWITCH.",<br>";
+	echo "T_THROW: ".T_THROW.",<br>";
+	echo "T_TRY: ".T_TRY.",<br>";
+	echo "T_UNSET: ".T_UNSET.",<br>";
+	echo "T_UNSET_CAST: ".T_UNSET_CAST.",<br>";
+	echo "T_USE: ".T_USE.",<br>";
+	echo "T_VAR: ".T_VAR.",<br>";
+	echo "T_VARIABLE: ".T_VARIABLE.",<br>";
+	echo "T_WHILE: ".T_WHILE.",<br>";
+	echo "T_WHITESPACE: ".T_WHITESPACE.",<br>";
+	echo "T_XOR_EQUAL: ".T_XOR_EQUAL.",<br>";
+	*/
+	?>
+</body>
