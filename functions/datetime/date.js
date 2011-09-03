@@ -89,7 +89,7 @@ function date (format, timestamp) {
         },
         S: function () { // Ordinal suffix for day of month; st, nd, rd, th
             var j = f.j();
-            return j > 4 || j < 21 ? 'th' : {1: 'st', 2: 'nd', 3: 'rd'}[j % 10] || 'th';
+            return j > 4 && j < 21 ? 'th' : {1: 'st', 2: 'nd', 3: 'rd'}[j % 10] || 'th';
         },
         w: function () { // Day of week; 0[Sun]..6[Sat]
             return jsdate.getDay();
