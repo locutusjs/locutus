@@ -20,8 +20,7 @@ function get_html_translation_table (table, quote_style) {
     // *     returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
     var entities = {},
         hash_map = {},
-        decimal = 0,
-        symbol = '';
+        decimal;
     var constMappingTable = {},
         constMappingQuoteStyle = {};
     var useTable = {},
@@ -154,8 +153,9 @@ function get_html_translation_table (table, quote_style) {
 
     // ascii decimals to real symbols
     for (decimal in entities) {
-        symbol = String.fromCharCode(decimal);
-        hash_map[symbol] = entities[decimal];
+        if (entities.hasOwnProperty(decimal)) {
+            hash_map[String.fromCharCode(decimal)] = entities[decimal];
+        }
     }
 
     return hash_map;

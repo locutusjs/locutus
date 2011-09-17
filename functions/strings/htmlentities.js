@@ -29,12 +29,16 @@ function htmlentities (string, quote_style, charset, double_encode) {
     
     if (!!double_encode || double_encode == null) {
         for (symbol in hash_map) {
-            string = string.split(symbol).join(hash_map[symbol]);
+            if (hash_map.hasOwnProperty(symbol)) {
+                string = string.split(symbol).join(hash_map[symbol]);
+            }
         }
     } else {
         string = string.replace(/([\s\S]*?)(&(?:#\d+|#x[\da-f]+|[a-zA-Z][\da-z]*);|$)/g, function (ignore, text, entity) {
             for (symbol in hash_map) {
-                text = text.split(symbol).join(hash_map[symbol]);
+                if (hash_map.hasOwnProperty(symbol)) {
+                    text = text.split(symbol).join(hash_map[symbol]);
+                }
             }
             
             return text + entity;
