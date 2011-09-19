@@ -28,6 +28,7 @@ function date (format, timestamp) {
     // +   improved by: JT
     // +   improved by: Theriault
     // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
+    // +   bugfixed by: omid (http://phpjs.org/functions/380:380#comment_137122)
     // +      input by: Martin
     // +      input by: Alex Wilson
     // %        note 1: Uses global: php_js to store the default timezone
@@ -89,7 +90,7 @@ function date (format, timestamp) {
         },
         S: function () { // Ordinal suffix for day of month; st, nd, rd, th
             var j = f.j();
-            return j > 4 || j < 21 ? 'th' : {1: 'st', 2: 'nd', 3: 'rd'}[j % 10] || 'th';
+            return j > 4 && j < 21 ? 'th' : {1: 'st', 2: 'nd', 3: 'rd'}[j % 10] || 'th';
         },
         w: function () { // Day of week; 0[Sun]..6[Sat]
             return jsdate.getDay();
@@ -199,8 +200,9 @@ function date (format, timestamp) {
             return 0 + ((a - c) !== (b - d));
         },
         O: function () { // Difference to GMT in hour format; e.g. +0200
-            var a = jsdate.getTimezoneOffset();
-            return (a > 0 ? "-" : "+") + _pad(Math.abs(a / 60 * 100), 4);
+            var tzo = jsdate.getTimezoneOffset(),
+                a = Math.abs(tzo);
+            return (tzo > 0 ? "-" : "+") + _pad(Math.floor(a / 60) * 100 + a % 60, 4);
         },
         P: function () { // Difference to GMT w/colon; e.g. +02:00
             var O = f.O();
