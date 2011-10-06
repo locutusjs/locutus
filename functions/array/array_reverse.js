@@ -4,15 +4,36 @@ function array_reverse (array, preserve_keys) {
     // +   improved by: Karol Kowalski
     // *     example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true);
     // *     returns 1: { 2: ['green', 'red'], 1: 4, 0: 'php'}
-    var arr_len = array.length,
-        newkey = 0,
-        tmp_arr = {},
-        key = '';
-    preserve_keys = !! preserve_keys;
+    var isArray = Object.prototype.toString.call(array) === "[object Array]",
+        tmp_arr = preserve_keys ? {} : [],
+        key;
+        
+    if (isArray && !preserve_keys) {
+        return array.slice(0).reverse();
+    }
 
-    for (key in array) {
-        newkey = arr_len - key - 1;
-        tmp_arr[preserve_keys ? key : newkey] = array[key];
+    if (preserve_keys) {
+        var keys = [];
+        for (key in array) {
+            // if (array.hasOwnProperty(key)) {
+            keys.push(key);
+            // }
+        }
+        
+        var i = keys.length;
+        while (i--) {
+            key = keys[i];
+            // FIXME: don't rely on browsers keeping keys in insertion order
+            // it's implementation specific
+            // eg. the result will differ from expected in Google Chrome
+            tmp_arr[key] = array[key];
+        }
+    } else {
+        for (key in array) {
+            // if (array.hasOwnProperty(key)) {
+            tmp_arr.unshift(array[key]);
+            // }
+        }
     }
 
     return tmp_arr;
