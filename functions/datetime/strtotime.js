@@ -22,10 +22,10 @@ function strtotime (str, now) {
     strTmp = str;
     strTmp = strTmp.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
     strTmp = strTmp.replace(/[\t\r\n]/g, ''); // unecessary chars
-    if (strTmp == 'now') {
-        return (new Date()).getTime() / 1000; // Return seconds, not milli-seconds
+    if (strTmp === 'now') {
+        return new Date().getTime() / 1000 | 0; // Return seconds, not milli-seconds
     } else if (!isNaN(parse = Date.parse(strTmp))) {
-        return (parse / 1000);
+        return parse / 1000 | 0;
     } else if (now) {
         now = new Date(now * 1000); // Accept PHP-style seconds
     } else {
@@ -178,5 +178,5 @@ function strtotime (str, now) {
         }
     }
 
-    return (now.getTime() / 1000);
+    return now.getTime() / 1000 | 0;
 }
