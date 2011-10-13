@@ -23,7 +23,7 @@ function strtotime (str, now) {
     strTmp = strTmp.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
     strTmp = strTmp.replace(/[\t\r\n]/g, ''); // unecessary chars
     if (strTmp === 'now') {
-        return new Date().getTime() / 1000 | 0; // Return seconds, not milli-seconds
+        return now === null || isNaN(now) ? new Date().getTime() / 1000 | 0 : now | 0;
     } else if (!isNaN(parse = Date.parse(strTmp))) {
         return parse / 1000 | 0;
     } else if (now) {
