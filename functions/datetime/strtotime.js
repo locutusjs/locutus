@@ -16,15 +16,13 @@ function strtotime (str, now) {
     // *     returns 3: 1127041200
     // *     example 4: strtotime('2009-05-04 08:30:00');
     // *     returns 4: 1241418600
-    var i, match, s, strTmp = '',
-        parse = '';
+    var i, l, match, s, parse = '';
 
-    strTmp = str;
-    strTmp = strTmp.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
-    strTmp = strTmp.replace(/[\t\r\n]/g, ''); // unecessary chars
-    if (strTmp === 'now') {
+    str = str.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
+    str = str.replace(/[\t\r\n]/g, ''); // unecessary chars
+    if (str === 'now') {
         return now === null || isNaN(now) ? new Date().getTime() / 1000 | 0 : now | 0;
-    } else if (!isNaN(parse = Date.parse(strTmp))) {
+    } else if (!isNaN(parse = Date.parse(str))) {
         return parse / 1000 | 0;
     } else if (now) {
         now = new Date(now * 1000); // Accept PHP-style seconds
@@ -32,7 +30,7 @@ function strtotime (str, now) {
         now = new Date();
     }
 
-    strTmp = strTmp.toLowerCase();
+    str = str.toLowerCase();
 
     var __is = {
         day: {
@@ -144,7 +142,7 @@ function strtotime (str, now) {
         return true;
     };
 
-    match = strTmp.match(/^(\d{2,4}-\d{2}-\d{2})(?:\s(\d{1,2}:\d{2}(:\d{2})?)?(?:\.(\d+))?)?$/);
+    match = str.match(/^(\d{2,4}-\d{2}-\d{2})(?:\s(\d{1,2}:\d{2}(:\d{2})?)?(?:\.(\d+))?)?$/);
     if (match != null) {
         if (!match[2]) {
             match[2] = '00:00:00';
@@ -167,12 +165,12 @@ function strtotime (str, now) {
 
     var regex = '([+-]?\\d+\\s' + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?' + '|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday' + '|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday)' + '|(last|next)\\s' + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?' + '|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday' + '|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday))' + '(\\sago)?';
 
-    match = strTmp.match(new RegExp(regex, 'gi')); // Brett: seems should be case insensitive per docs, so added 'i'
+    match = str.match(new RegExp(regex, 'gi')); // Brett: seems should be case insensitive per docs, so added 'i'
     if (match == null) {
         return false;
     }
 
-    for (i = 0; i < match.length; i++) {
+    for (i = 0, l = match.length; i < l; i++) {
         if (!process(match[i].split(' '))) {
             return false;
         }
