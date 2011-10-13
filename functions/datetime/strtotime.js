@@ -59,8 +59,8 @@ function strtotime (str, now) {
     };
 
     var process = function (m) {
-        var ago = (m[2] && m[2] == 'ago');
-        var num = (num = m[0] == 'last' ? -1 : 1) * (ago ? -1 : 1);
+        var ago = (m[2] && m[2] === 'ago');
+        var num = (num = m[0] === 'last' ? -1 : 1) * (ago ? -1 : 1);
 
         switch (m[0]) {
         case 'last':
@@ -88,17 +88,17 @@ function strtotime (str, now) {
                 now.setSeconds(now.getSeconds() + num);
                 break;
             default:
-                var day;
-                if (typeof(day = __is.day[m[1].substring(0, 3)]) != 'undefined') {
+                var day = __is.day[m[1].substring(0, 3)];
+                if (typeof day !== 'undefined') {
                     var diff = day - now.getDay();
-                    if (diff == 0) {
+                    if (diff === 0) {
                         diff = 7 * num;
                     } else if (diff > 0) {
-                        if (m[0] == 'last') {
+                        if (m[0] === 'last') {
                             diff -= 7;
                         }
                     } else {
-                        if (m[0] == 'next') {
+                        if (m[0] === 'next') {
                             diff += 7;
                         }
                     }
@@ -143,7 +143,7 @@ function strtotime (str, now) {
     };
 
     match = str.match(/^(\d{2,4}-\d{2}-\d{2})(?:\s(\d{1,2}:\d{2}(:\d{2})?)?(?:\.(\d+))?)?$/);
-    if (match != null) {
+    if (match !== null) {
         if (!match[2]) {
             match[2] = '00:00:00';
         } else if (!match[3]) {
@@ -153,7 +153,7 @@ function strtotime (str, now) {
         s = match[1].split(/-/g);
 
         for (i in __is.mon) {
-            if (__is.mon[i] == s[1] - 1) {
+            if (__is.mon[i] === s[1] - 1) {
                 s[1] = i;
             }
         }
@@ -166,7 +166,7 @@ function strtotime (str, now) {
     var regex = '([+-]?\\d+\\s' + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?' + '|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday' + '|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday)' + '|(last|next)\\s' + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?' + '|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday' + '|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday))' + '(\\sago)?';
 
     match = str.match(new RegExp(regex, 'gi')); // Brett: seems should be case insensitive per docs, so added 'i'
-    if (match == null) {
+    if (match === null) {
         return false;
     }
 
