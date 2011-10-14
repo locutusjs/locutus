@@ -42,20 +42,20 @@ function strtotime (str, now) {
             'fri': 5,
             'sat': 6
         },
-        mon: {
-            'jan': 0,
-            'feb': 1,
-            'mar': 2,
-            'apr': 3,
-            'may': 4,
-            'jun': 5,
-            'jul': 6,
-            'aug': 7,
-            'sep': 8,
-            'oct': 9,
-            'nov': 10,
-            'dec': 11
-        }
+        mon: [
+            'jan',
+            'feb',
+            'mar',
+            'apr',
+            'may',
+            'jun',
+            'jul',
+            'aug',
+            'sep',
+            'oct',
+            'nov',
+            'dec'
+        ]
     };
 
     var process = function (m) {
@@ -152,12 +152,8 @@ function strtotime (str, now) {
 
         s = match[1].split(/-/g);
 
-        for (i in __is.mon) {
-            if (__is.mon[i] === s[1] - 1) {
-                s[1] = i;
-            }
-        }
-        s[0] = parseInt(s[0], 10);
+        s[1] = __is.mon[s[1] - 1] || s[1];
+        s[0] = +s[0];
 
         s[0] = (s[0] >= 0 && s[0] <= 69) ? '20' + (s[0] < 10 ? '0' + s[0] : s[0] + '') : (s[0] >= 70 && s[0] <= 99) ? '19' + s[0] : s[0] + '';
         return parseInt(this.strtotime(s[2] + ' ' + s[1] + ' ' + s[0] + ' ' + match[2]) + (match[4] ? match[4] / 1000 : ''), 10);
