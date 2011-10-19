@@ -90,7 +90,7 @@ function date (format, timestamp) {
         },
         S: function () { // Ordinal suffix for day of month; st, nd, rd, th
             var j = f.j();
-            return j > 4 && j < 21 ? 'th' : {1: 'st', 2: 'nd', 3: 'rd'}[j % 10] || 'th';
+            return j < 4 | j > 20 && ['st', 'nd', 'rd'][j%10 - 1] || 'th'; 
         },
         w: function () { // Day of week; 0[Sun]..6[Sat]
             return jsdate.getDay();
@@ -127,7 +127,8 @@ function date (format, timestamp) {
 
         // Year
         L: function () { // Is leap year?; 0 or 1
-            return new Date(f.Y(), 1, 29).getMonth() === 1 | 0;
+            var j = f.Y();
+            return j%4==0 & j%100!=0 | j%400==0;
         },
         o: function () { // ISO-8601 year
             var n = f.n(),
@@ -248,7 +249,7 @@ function date (format, timestamp) {
             return 'D, d M Y H:i:s O'.replace(formatChr, formatChrCb);
         },
         U: function () { // Seconds since UNIX epoch
-            return jsdate.getTime() / 1000 | 0;
+            return jsdate / 1000 | 0;
         }
     };
     this.date = function (format, timestamp) {
