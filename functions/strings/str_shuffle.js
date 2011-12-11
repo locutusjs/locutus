@@ -3,18 +3,23 @@ function str_shuffle (str) {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: shuffled = str_shuffle("abcdef");
     // *     results 1: shuffled.length == 6
-    if (str == null) {
+    if (arguments.length === 0) {
         throw 'Wrong parameter count for str_shuffle()';
+    }
+    
+    if (str == null) {
+        return '';
     }
     
     str += '';
 
-    var newStr = '', rand;
+    var newStr = '', rand, i = str.length;
 
-    while (str.length) {
-        rand = Math.floor(Math.random() * str.length);
+    while (i) {
+        rand = Math.floor(Math.random() * i);
         newStr += str.charAt(rand);
         str = str.substring(0, rand) + str.substr(rand + 1);
+        i--;
     }
 
     return newStr;
