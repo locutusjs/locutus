@@ -61,16 +61,13 @@ function strtotime (str, now) {
     var process = function (m) {
         var ago = (m[2] && m[2] === 'ago');
         var num = (num = m[0] === 'last' ? -1 : 1) * (ago ? -1 : 1);
-
+        
         switch (m[0]) {
         case 'last':
         case 'next':
             switch (m[1].substring(0, 3)) {
             case 'yea':
                 now.setFullYear(now.getFullYear() + num);
-                break;
-            case 'mon':
-                now.setMonth(now.getMonth() + num);
                 break;
             case 'wee':
                 now.setDate(now.getDate() + (num * 7));
@@ -87,6 +84,12 @@ function strtotime (str, now) {
             case 'sec':
                 now.setSeconds(now.getSeconds() + num);
                 break;
+            case 'mon':
+                if (m[1] === "month") {
+                    now.setMonth(now.getMonth() + num);
+                    break;
+                }
+                // fall through
             default:
                 var day = __is.day[m[1].substring(0, 3)];
                 if (typeof day !== 'undefined') {
@@ -103,6 +106,7 @@ function strtotime (str, now) {
                         }
                     }
                     now.setDate(now.getDate() + diff);
+                    now.setHours(0, 0, 0, 0); // when jumping to a specific last/previous day of week, PHP sets the time to 00:00:00
                 }
             }
             break;
