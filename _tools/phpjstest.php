@@ -33,12 +33,12 @@ if (!in_array($funcName, $modes) && $funcName !== false && strlen($funcName) > 1
         // Convert a path to plain function name
         $funcName = basename($funcName, ".js");
     }
-    
+
     if (!$PHPJS_Tester_Shell->functionExists($funcName)) {
         die("Function '".$funcName."' does not exist\n");
     } else {
         $Function = $PHPJS_Tester_Shell->getFunction($funcName);
-    }        
+    }
 } else {
     $mode     = $arg1;
     $funcName = $arg2;
@@ -57,12 +57,12 @@ switch($mode) {
         echo "source file: ". $Function->getRealPath()."\n";
         echo "tester file: ". $Function->getTesterPath()."\n";
         echo "\n\n";
-        
+
         echo "Examples\n";
         echo $hr;
         print_r($Function->DocBlock->getExamples());
         echo "\n\n";
-        
+
         echo "Dependencies\n";
         echo $hr;
         print_r($Function->getDependencies());
@@ -72,7 +72,7 @@ switch($mode) {
         echo $hr;
         $Function->testFunction(true);
         echo "\n\n";
-        
+
         echo "Test result\n";
         echo $hr;
         $Function->testFunction(false);
