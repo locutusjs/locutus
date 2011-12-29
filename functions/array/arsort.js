@@ -2,6 +2,7 @@ function arsort (inputArr, sort_flags) {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   improved by: Theriault
     // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be
     // %        note 1: integrated into all of these functions by adapting the code at
     // %        note 1: http://sourcefrog.net/projects/natsort/natcompare.js
@@ -29,8 +30,7 @@ function arsort (inputArr, sort_flags) {
     // *     example 2: arsort(data);
     // *     results 2: data == {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
     // *     returns 2: true
-    var valArr = [],
-        keyArr = [],
+    var valArr = [], valArrLen = 0,
         k, i, ret, sorter, that = this,
         strictForIn = false,
         populateArr = {};
@@ -73,23 +73,6 @@ function arsort (inputArr, sort_flags) {
         break;
     }
 
-    var bubbleSort = function (keyArr, inputArr) {
-        var i, j, tempValue, tempKeyVal;
-        for (i = inputArr.length - 2; i >= 0; i--) {
-            for (j = 0; j <= i; j++) {
-                ret = sorter(inputArr[j + 1], inputArr[j]);
-                if (ret > 0) {
-                    tempValue = inputArr[j];
-                    inputArr[j] = inputArr[j + 1];
-                    inputArr[j + 1] = tempValue;
-                    tempKeyVal = keyArr[j];
-                    keyArr[j] = keyArr[j + 1];
-                    keyArr[j + 1] = tempKeyVal;
-                }
-            }
-        }
-    };
-
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.ini = this.php_js.ini || {};
@@ -101,23 +84,19 @@ function arsort (inputArr, sort_flags) {
     // Get key and value arrays
     for (k in inputArr) {
         if (inputArr.hasOwnProperty(k)) {
-            valArr.push(inputArr[k]);
-            keyArr.push(k);
+            valArr.push([k, inputArr[k]]);
             if (strictForIn) {
                 delete inputArr[k];
             }
         }
     }
-    try {
-        // Sort our new temporary arrays
-        bubbleSort(keyArr, valArr);
-    } catch (e) {
-        return false;
-    }
-
+    valArr.sort(function (a, b) {
+        return sorter(a[1], b[1]);
+    });
+ 
     // Repopulate the old array
-    for (i = 0; i < valArr.length; i++) {
-        populateArr[keyArr[i]] = valArr[i];
+    for (i = 0, valArrLen = valArr.length; i < valArrLen; i++) {
+        populateArr[valArr[i][0]] = valArr[i][1];
     }
 
     return strictForIn || populateArr;

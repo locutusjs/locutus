@@ -13,13 +13,19 @@ function array_merge () {
     // *     example 2: array_merge(arr1, arr2)
     // *     returns 2: {0: "data"}
     var args = Array.prototype.slice.call(arguments),
+        argl = args.length,
+        arg,
         retObj = {},
-        k, j = 0,
+        k = '', 
+        argil = 0,
+        j = 0,
         i = 0,
+        ct = 0,
+        toStr = Object.prototype.toString,
         retArr = true;
 
-    for (i = 0; i < args.length; i++) {
-        if (!(args[i] instanceof Array)) {
+    for (i = 0; i < argl; i++) {
+        if (toStr.call(args[i]) !== '[object Array]') {
             retArr = false;
             break;
         }
@@ -27,25 +33,27 @@ function array_merge () {
 
     if (retArr) {
         retArr = [];
-        for (i = 0; i < args.length; i++) {
+        for (i = 0; i < argl; i++) {
             retArr = retArr.concat(args[i]);
         }
         return retArr;
     }
-    var ct = 0;
 
-    for (i = 0, ct = 0; i < args.length; i++) {
-        if (args[i] instanceof Array) {
-            for (j = 0; j < args[i].length; j++) {
-                retObj[ct++] = args[i][j];
+    for (i = 0, ct = 0; i < argl; i++) {
+        arg = args[i];
+        if (toStr.call(arg) === '[object Array]') {
+            for (j = 0, argil = arg.length; j < argil; j++) {
+                retObj[ct++] = arg[j];
             }
-        } else {
-            for (k in args[i]) {
-                if (args[i].hasOwnProperty(k)) {
+        }
+        else {
+            for (k in arg) {
+                if (arg.hasOwnProperty(k)) {
                     if (parseInt(k, 10) + '' === k) {
-                        retObj[ct++] = args[i][k];
-                    } else {
-                        retObj[k] = args[i][k];
+                        retObj[ct++] = arg[k];
+                    }
+                    else {
+                        retObj[k] = arg[k];
                     }
                 }
             }

@@ -29,8 +29,8 @@ function str_replace (search, replace, subject, count) {
         f = [].concat(search),
         r = [].concat(replace),
         s = subject,
-        ra = r instanceof Array,
-        sa = s instanceof Array;
+        ra = Object.prototype.toString.call(r) === '[object Array]',
+        sa = Object.prototype.toString.call(s) === '[object Array]';
     s = [].concat(s);
     if (count) {
         this.window[count] = 0;

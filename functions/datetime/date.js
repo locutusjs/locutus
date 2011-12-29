@@ -28,6 +28,9 @@ function date (format, timestamp) {
     // +   improved by: JT
     // +   improved by: Theriault
     // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
+    // +   bugfixed by: omid (http://phpjs.org/functions/380:380#comment_137122)
+    // +      input by: Martin
+    // +      input by: Alex Wilson
     // %        note 1: Uses global: php_js to store the default timezone
     // %        note 2: Although the function potentially allows timezone info (see notes), it currently does not set
     // %        note 2: per a timezone specified by date_default_timezone_set(). Implementers might use
@@ -59,22 +62,12 @@ function date (format, timestamp) {
         // below for file size reasons)
         //, tal= [],
         _pad = function (n, c) {
-            if ((n = n + "").length < c) {
-                return new Array((++c) - n.length).join("0") + n;
-            } else {
-                return n;
+            if ((n = n + '').length < c) {
+                return new Array((++c) - n.length).join('0') + n;
             }
+            return n;
         },
-        txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-        txt_ordin = {
-            1: "st",
-            2: "nd",
-            3: "rd",
-            21: "st",
-            22: "nd",
-            23: "rd",
-            31: "st"
-        };
+        txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     formatChrCb = function (t, s) {
         return f[t] ? f[t]() : s;
     };
@@ -96,7 +89,8 @@ function date (format, timestamp) {
             return f.w() || 7;
         },
         S: function () { // Ordinal suffix for day of month; st, nd, rd, th
-            return txt_ordin[f.j()] || 'th';
+            var j = f.j();
+            return j < 4 | j > 20 && ['st', 'nd', 'rd'][j%10 - 1] || 'th'; 
         },
         w: function () { // Day of week; 0[Sun]..6[Sat]
             return jsdate.getDay();
@@ -111,7 +105,7 @@ function date (format, timestamp) {
         W: function () { // ISO-8601 week number
             var a = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3),
                 b = new Date(a.getFullYear(), 0, 4);
-            return 1 + Math.round((a - b) / 864e5 / 7);
+            return _pad(1 + Math.round((a - b) / 864e5 / 7), 2);
         },
 
         // Month
@@ -133,7 +127,8 @@ function date (format, timestamp) {
 
         // Year
         L: function () { // Is leap year?; 0 or 1
-            return new Date(f.Y(), 1, 29).getMonth() === 1 | 0;
+            var j = f.Y();
+            return j%4==0 & j%100!=0 | j%400==0;
         },
         o: function () { // ISO-8601 year
             var n = f.n(),
@@ -206,8 +201,9 @@ function date (format, timestamp) {
             return 0 + ((a - c) !== (b - d));
         },
         O: function () { // Difference to GMT in hour format; e.g. +0200
-            var a = jsdate.getTimezoneOffset();
-            return (a > 0 ? "-" : "+") + _pad(Math.abs(a / 60 * 100), 4);
+            var tzo = jsdate.getTimezoneOffset(),
+                a = Math.abs(tzo);
+            return (tzo > 0 ? "-" : "+") + _pad(Math.floor(a / 60) * 100 + a % 60, 4);
         },
         P: function () { // Difference to GMT w/colon; e.g. +02:00
             var O = f.O();
@@ -253,12 +249,12 @@ function date (format, timestamp) {
             return 'D, d M Y H:i:s O'.replace(formatChr, formatChrCb);
         },
         U: function () { // Seconds since UNIX epoch
-            return jsdate.getTime() / 1000 | 0;
+            return jsdate / 1000 | 0;
         }
     };
     this.date = function (format, timestamp) {
         that = this;
-        jsdate = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
+        jsdate = (timestamp == null ? new Date() : // Not provided
         (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
         new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
         );

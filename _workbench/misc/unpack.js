@@ -3,6 +3,7 @@ function unpack(format, data) {
     // +   original by: Tim de Koning (http://www.kingsquare.nl)
     // +      parts by: Jonas Raoni Soares Silva
     // +      http://www.jsfromhell.com
+    // +   bugfixed by: marcuswestin
     // %        note 1: Float decoding by: Jonas Raoni Soares Silva
     // %        note 2: Home: http://www.kingsquare.nl/blog/22-12-2009/13650536
     // %        note 3: Feedback: phpjs-unpack@kingsquare.nl
@@ -79,8 +80,8 @@ function unpack(format, data) {
             label += format[formatPointer];
             formatPointer++;
         }
-        if (label === '') {
-            label = '';
+        if (format[formatPointer] === '/') {
+            formatPointer++;
         }
 
         // Process given instruction
@@ -161,7 +162,7 @@ function unpack(format, data) {
                 }
 
                 currentData = data.substr(dataPointer, quantifier * 2);
-                dataPointer += quantifier;
+                dataPointer += quantifier * 2;
 
                 for (i=0;i<currentData.length;i+=2) {
                      // sum per word;
@@ -184,7 +185,7 @@ function unpack(format, data) {
                 }
 
                 currentData = data.substr(dataPointer, quantifier * 2);
-                dataPointer += quantifier;
+                dataPointer += quantifier * 2;
 
                 for (i=0;i<currentData.length;i+=2) {
                      // sum per word;
@@ -208,7 +209,7 @@ function unpack(format, data) {
                 }
 
                 currentData = data.substr(dataPointer, quantifier * 4);
-                dataPointer += quantifier;
+                dataPointer += quantifier * 4;
 
                 for (i=0;i<currentData.length;i+=4) {
                     currentResult =
@@ -231,7 +232,7 @@ function unpack(format, data) {
                 }
 
                 currentData = data.substr(dataPointer, quantifier * 4);
-                dataPointer += quantifier;
+                dataPointer += quantifier * 4;
 
                 for (i=0;i<currentData.length;i+=4) {
                     currentResult =
@@ -263,7 +264,7 @@ function unpack(format, data) {
 
                 currentData = data.substr(dataPointer,
                         quantifier * dataByteLength);
-                dataPointer += quantifier;
+                dataPointer += quantifier * dataByteLength;
 
                 for (i=0;i<currentData.length;i+=dataByteLength) {
                     data = currentData.substr(i, dataByteLength);

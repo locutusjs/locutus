@@ -5,6 +5,8 @@ function array_keys (input, search_value, argStrict) {
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: jd
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   input by: P
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
     // *     returns 1: {0: 'firstname', 1: 'surname'}
 
@@ -13,6 +15,10 @@ function array_keys (input, search_value, argStrict) {
         strict = !!argStrict,
         include = true,
         key = '';
+
+    if (input && typeof input === 'object' && input.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+        return input.keys(search_value, argStrict);
+    }
 
     for (key in input) {
         if (input.hasOwnProperty(key)) {

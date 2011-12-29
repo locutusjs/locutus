@@ -16,7 +16,7 @@ function compact () {
             key_value = '';
         for (i = 0; i < l; i++) {
             key_value = value[i];
-            if (key_value instanceof Array) {
+            if (Object.prototype.toString.call(key_value) === '[object Array]') {
                 process(key_value);
             } else {
                 if (typeof that.window[key_value] !== 'undefined') {

@@ -86,7 +86,7 @@ function money_format (format, number) {
             if (mon_grouping[0] < integer.length) {
                 for (var i = 0, idx = integer.length; i < mon_grouping.length; i++) {
                     idx -= mon_grouping[i]; // e.g., 3
-                    if (idx < 0) {
+                    if (idx <= 0) {
                         break;
                     }
                     if (filler && idx < fillnum) {

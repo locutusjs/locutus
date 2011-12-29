@@ -47,7 +47,7 @@ function array_splice (arr, offst, lgth, replacement) {
         lgth = (offst >= 0 ? arr.length - offst : -offst) + lgth;
     }
 
-    if (!(arr instanceof Array)) {
+    if (Object.prototype.toString.call(arr) !== '[object Array]') {
 /*if (arr.length !== undefined) { // Deal with array-like objects as input
         delete arr.length;
         }*/

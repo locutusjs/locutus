@@ -34,7 +34,7 @@ function each (arr) {
     var cursor = pointers[arrpos + 1];
     var pos = 0;
 
-    if (!(arr instanceof Array)) {
+    if (Object.prototype.toString.call(arr) !== '[object Array]') {
         var ct = 0;
         for (var k in arr) {
             if (ct === cursor) {

@@ -9,9 +9,8 @@ function is_object (mixed_var) {
     // *     returns 2: true
     // *     example 3: is_object(null);
     // *     returns 3: false
-    if (mixed_var instanceof Array) {
+    if (Object.prototype.toString.call(mixed_var) === '[object Array]') {
         return false;
-    } else {
-        return (mixed_var !== null) && (typeof(mixed_var) == 'object');
     }
+    return mixed_var !== null && typeof mixed_var == 'object';
 }

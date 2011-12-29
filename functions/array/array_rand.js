@@ -7,8 +7,9 @@ function array_rand (input, num_req) {
     var ticks = num_req || 1;
     var checkDuplicate = function (input, value) {
         var exist = false,
-            index = 0;
-        while (index < input.length) {
+            index = 0,
+            il = input.length;
+        while (index < il) {
             if (input[index] === value) {
                 exist = true;
                 break;
@@ -18,7 +19,7 @@ function array_rand (input, num_req) {
         return exist;
     };
 
-    if (input instanceof Array && ticks <= input.length) {
+    if (Object.prototype.toString.call(input) === '[object Array]' && ticks <= input.length) {
         while (true) {
             var rand = Math.floor((Math.random() * input.length));
             if (indexes.length === ticks) {

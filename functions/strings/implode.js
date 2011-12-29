@@ -16,16 +16,14 @@ function implode (glue, pieces) {
         glue = '';
     }
     if (typeof(pieces) === 'object') {
-        if (pieces instanceof Array) {
+        if (Object.prototype.toString.call(pieces) === '[object Array]') {
             return pieces.join(glue);
-        } else {
-            for (i in pieces) {
-                retVal += tGlue + pieces[i];
-                tGlue = glue;
-            }
-            return retVal;
+        } 
+        for (i in pieces) {
+            retVal += tGlue + pieces[i];
+            tGlue = glue;
         }
-    } else {
-        return pieces;
+        return retVal;
     }
+    return pieces;
 }

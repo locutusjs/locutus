@@ -26,7 +26,7 @@ function reset (arr) {
         pointers.push(arr, 0);
     }
     var arrpos = pointers.indexOf(arr);
-    if (!(arr instanceof Array)) {
+    if (Object.prototype.toString.call(arr) !== '[object Array]') {
         for (var k in arr) {
             if (pointers.indexOf(arr) === -1) {
                 pointers.push(arr, 0);

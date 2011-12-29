@@ -1,19 +1,19 @@
-function array_diff () {
+function array_diff (arr1) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Sanjoy Roy
     // +    revised by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld']);
     // *     returns 1: {0:'Kevin'}
-    var arr1 = arguments[0],
-        retArr = {};
-    var k1 = '',
+    var retArr = {},
+        argl = arguments.length,
+        k1 = '',
         i = 1,
         k = '',
         arr = {};
 
     arr1keys: for (k1 in arr1) {
-        for (i = 1; i < arguments.length; i++) {
+        for (i = 1; i < argl; i++) {
             arr = arguments[i];
             for (k in arr) {
                 if (arr[k] === arr1[k1]) {

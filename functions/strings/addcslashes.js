@@ -33,11 +33,10 @@ function addcslashes (str, charlist) {
         encoded = '',
         percentHex = /%([\dA-Fa-f]+)/g;
     var _pad = function (n, c) {
-        if ((n = n + "").length < c) {
-            return new Array(++c - n.length).join("0") + n;
-        } else {
-            return n;
+        if ((n = n + '').length < c) {
+            return new Array(++c - n.length).join('0') + n;
         }
+        return n;
     };
 
     for (i = 0; i < charlist.length; i++) {

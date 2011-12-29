@@ -56,13 +56,15 @@ function array_multisort (arr) {
     // sortRegularDESC: Function for sorting regular, descending.
     //
     // thingsToSort: Holds a bit that indicates which indexes in the arrays can be sorted. Updated after every array is sorted.
-    var flags = {
-        'SORT_REGULAR': 16,
-        'SORT_NUMERIC': 17,
-        'SORT_STRING': 18,
-        'SORT_ASC': 32,
-        'SORT_DESC': 40
-    },
+    var argl = arguments.length,
+        sal = 0,
+        flags = {
+            'SORT_REGULAR': 16,
+            'SORT_NUMERIC': 17,
+            'SORT_STRING': 18,
+            'SORT_ASC': 32,
+            'SORT_DESC': 40
+        },
         sortArrs = [
             []
         ],
@@ -86,43 +88,45 @@ function array_multisort (arr) {
         elIndex = 0,
         sortDuplicator = function (a, b) {
             return nLastSort.shift();
-        };
-    var sortFunctions = [
-        [function (a, b) {
-            lastSort.push(a > b ? 1 : (a < b ? -1 : 0));
-            return a > b ? 1 : (a < b ? -1 : 0);
-        }, function (a, b) {
-            lastSort.push(b > a ? 1 : (b < a ? -1 : 0));
-            return b > a ? 1 : (b < a ? -1 : 0);
-        }],
-        [function (a, b) {
-            lastSort.push(a - b);
-            return a - b;
-        }, function (a, b) {
-            lastSort.push(b - a);
-            return b - a;
-        }],
-        [function (a, b) {
-            lastSort.push((a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0));
-            return (a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0);
-        }, function (a, b) {
-            lastSort.push((b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0));
-            return (b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0);
-        }]
-    ];
+        },
+        sortFunctions = [
+            [function (a, b) {
+                lastSort.push(a > b ? 1 : (a < b ? -1 : 0));
+                return a > b ? 1 : (a < b ? -1 : 0);
+            }, function (a, b) {
+                lastSort.push(b > a ? 1 : (b < a ? -1 : 0));
+                return b > a ? 1 : (b < a ? -1 : 0);
+            }],
+            [function (a, b) {
+                lastSort.push(a - b);
+                return a - b;
+            }, function (a, b) {
+                lastSort.push(b - a);
+                return b - a;
+            }],
+            [function (a, b) {
+                lastSort.push((a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0));
+                return (a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0);
+            }, function (a, b) {
+                lastSort.push((b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0));
+                return (b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0);
+            }]
+        ];
 
     // Store first argument into sortArrs and sortKeys if an Object.
     // First Argument should be either a Javascript Array or an Object, otherwise function would return FALSE like in PHP
-    if (arr instanceof Array) {
+    if (Object.prototype.toString.call(arr) === '[object Array]') {
         sortArrs[0] = arr;
-    } else if (arr instanceof Object) {
+    }
+    else if (arr && typeof arr === 'object') {
         for (i in arr) {
             if (arr.hasOwnProperty(i)) {
                 sortKeys[0].push(i);
                 sortArrs[0].push(arr[i]);
             }
         }
-    } else {
+    }
+    else {
         return false;
     }
 
@@ -134,14 +138,14 @@ function array_multisort (arr) {
         sortComponents = [0, arrMainLength];
 
     // Loop through all other arguments, checking lengths and sort flags of arrays and adding them to the above variables.
-    for (j = 1; j < arguments.length; j++) {
-        if (arguments[j] instanceof Array) {
+    for (j = 1; j < argl; j++) {
+        if (Object.prototype.toString.call(arguments[j]) === '[object Array]') {
             sortArrs[j] = arguments[j];
             sortFlag[j] = 0;
             if (arguments[j].length !== arrMainLength) {
                 return false;
             }
-        } else if (arguments[j] instanceof Object) {
+        } else if (arguments[j] && typeof arguments[j] === 'object') {
             sortKeys[j] = [];
             sortArrs[j] = [];
             sortFlag[j] = 0;
@@ -181,7 +185,7 @@ function array_multisort (arr) {
 
             // If ther are no sortComponents, then no more sorting is neeeded. Copy the array back to the argument.
             if (sortComponents.length === 0) {
-                if (arguments[i] instanceof Array) {
+                if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
                     args[i] = sortArrs[i];
                 } else {
                     for (k in arguments[i]) {
@@ -189,7 +193,8 @@ function array_multisort (arr) {
                             delete arguments[i][k];
                         }
                     }
-                    for (j = 0, vkey = 0; j < sortArrs[i].length; j++) {
+                    sal = sortArrs[i].length;
+                    for (j = 0, vkey = 0; j < sal; j++) {
                         vkey = sortKeys[i][j];
                         args[i][vkey] = sortArrs[i][j];
                     }
@@ -289,15 +294,18 @@ function array_multisort (arr) {
             if (sortComponents.length & 1) {
                 sortComponents.push(j);
             }
-            if (arguments[i] instanceof Array) {
+            if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
                 args[i] = sortArrs[i];
-            } else {
+            } 
+            else {
                 for (j in arguments[i]) {
                     if (arguments[i].hasOwnProperty(j)) {
                         delete arguments[i][j];
                     }
                 }
-                for (j = 0, vkey = 0; j < sortArrs[i].length; j++) {
+                
+                sal = sortArrs[i].length;
+                for (j = 0, vkey = 0; j < sal; j++) {
                     vkey = sortKeys[i][j];
                     args[i][vkey] = sortArrs[i][j];
                 }

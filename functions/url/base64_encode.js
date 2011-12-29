@@ -6,6 +6,7 @@ function base64_encode (data) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Pellentesque Malesuada
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Rafał Kukawski (http://kukawski.pl)
     // -    depends on: utf8_encode
     // *     example 1: base64_encode('Kevin van Zonneveld');
     // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
@@ -43,15 +44,9 @@ function base64_encode (data) {
     } while (i < data.length);
 
     enc = tmp_arr.join('');
+    
+    var r = data.length % 3;
+    
+    return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3);
 
-    switch (data.length % 3) {
-    case 1:
-        enc = enc.slice(0, -2) + '==';
-        break;
-    case 2:
-        enc = enc.slice(0, -1) + '=';
-        break;
-    }
-
-    return enc;
 }
