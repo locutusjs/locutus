@@ -9,7 +9,6 @@ function base64_decode (data) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // -    depends on: utf8_decode
     // *     example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
     // *     returns 1: 'Kevin van Zonneveld'
     // mozilla has this native
@@ -51,7 +50,6 @@ function base64_decode (data) {
     } while (i < data.length);
 
     dec = tmp_arr.join('');
-    dec = this.utf8_decode(dec);
 
     return dec;
 }
