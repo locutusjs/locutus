@@ -7,7 +7,6 @@ function base64_encode (data) {
     // +   bugfixed by: Pellentesque Malesuada
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Rafał Kukawski (http://kukawski.pl)
-    // -    depends on: utf8_encode
     // *     example 1: base64_encode('Kevin van Zonneveld');
     // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
     // mozilla has this native
@@ -24,8 +23,6 @@ function base64_encode (data) {
     if (!data) {
         return data;
     }
-
-    data = this.utf8_encode(data + '');
 
     do { // pack three octets into four hexets
         o1 = data.charCodeAt(i++);
