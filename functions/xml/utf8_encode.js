@@ -9,6 +9,7 @@ function utf8_encode (argString) {
     // +   bugfixed by: Onno Marsman
     // +   bugfixed by: Ulrich
     // +   bugfixed by: Rafal Kukawski
+    // +   improved by: kirilloid
     // *     example 1: utf8_encode('Kevin van Zonneveld');
     // *     returns 1: 'Kevin van Zonneveld'
 
@@ -17,7 +18,7 @@ function utf8_encode (argString) {
     }
 
     var string = (argString + ''); // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-    var utftext = "",
+    var utftext = '',
         start, end, stringl = 0;
 
     start = end = 0;
@@ -29,9 +30,9 @@ function utf8_encode (argString) {
         if (c1 < 128) {
             end++;
         } else if (c1 > 127 && c1 < 2048) {
-            enc = String.fromCharCode((c1 >> 6) | 192) + String.fromCharCode((c1 & 63) | 128);
+            enc = String.fromCharCode((c1 >> 6) | 192, (c1 & 63) | 128);
         } else {
-            enc = String.fromCharCode((c1 >> 12) | 224) + String.fromCharCode(((c1 >> 6) & 63) | 128) + String.fromCharCode((c1 & 63) | 128);
+            enc = String.fromCharCode((c1 >> 12) | 224, ((c1 >> 6) & 63) | 128), (c1 & 63) | 128);
         }
         if (enc !== null) {
             if (end > start) {
