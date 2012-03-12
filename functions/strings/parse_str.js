@@ -11,6 +11,8 @@ function parse_str (str, array) {
     // +   input by: Dreamer
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: When no argument is specified, will put variables in global scope.
+    // +   bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
+    // %        note 1: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c
     // *     example 1: var arr = {};
     // *     example 1: parse_str('first=foo&second=bar', arr);
     // *     results 1: arr == { first: 'foo', second: 'bar' }
@@ -34,8 +36,8 @@ function parse_str (str, array) {
         if (tmp.length < 2) {
             tmp = [tmp, ''];
         }
-        key = fixStr(tmp[0]);
-        value = fixStr(tmp[1]);
+        key = fixStr(tmp.shift());
+        value = fixStr(tmp.join(glue1));
         while (key.charAt(0) === ' ') {
             key = key.substr(1);
         }
