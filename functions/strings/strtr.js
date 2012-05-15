@@ -24,8 +24,15 @@ function strtr (str, from, to) {
     // *     returns 5: 'http'
     // *     example 6: strtr('aa', {'a':1,'aa':2});
     // *     returns 6: '2'
-
-    var fr = '', i = 0, j = 0, lenStr = 0, lenFrom = 0, tmpStrictForIn = false, fromTypeStr = '', toTypeStr = '', istr = '';
+    var fr = '',
+        i = 0,
+        j = 0,
+        lenStr = 0,
+        lenFrom = 0,
+        tmpStrictForIn = false,
+        fromTypeStr = '',
+        toTypeStr = '',
+        istr = '';
     var tmpFrom = [];
     var tmpTo = [];
     var ret = '';
@@ -48,9 +55,9 @@ function strtr (str, from, to) {
         from = tmpFrom;
         to = tmpTo;
     }
-    
+
     // Walk through subject and replace chars when needed
-    lenStr  = str.length;
+    lenStr = str.length;
     lenFrom = from.length;
     fromTypeStr = typeof from === 'string';
     toTypeStr = typeof to === 'string';
@@ -65,13 +72,12 @@ function strtr (str, from, to) {
                     break;
                 }
             }
-        }
-        else {
+        } else {
             for (j = 0; j < lenFrom; j++) {
                 if (str.substr(i, from[j].length) == from[j]) {
                     match = true;
                     // Fast forward
-                    i = (i + from[j].length)-1;
+                    i = (i + from[j].length) - 1;
                     break;
                 }
             }

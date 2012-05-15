@@ -1,4 +1,4 @@
-function parse_str (str, array){
+function parse_str (str, array) {
     // http://kevin.vanzonneveld.net
     // +   original by: Cagri Ekin
     // +   improved by: Michael White (http://getsprink.com)
@@ -11,18 +11,21 @@ function parse_str (str, array){
     // +   input by: Dreamer
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: When no argument is specified, will put variables in global scope.
+    // +   bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
+    // %        note 1: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c
     // *     example 1: var arr = {};
     // *     example 1: parse_str('first=foo&second=bar', arr);
     // *     results 1: arr == { first: 'foo', second: 'bar' }
     // *     example 2: var arr = {};
     // *     example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr);
     // *     results 2: arr == { str_a: "Jack and Jill didn't see the well." }
-
-    var glue1 = '=', glue2 = '&', array2 = String(str).replace(/^&?([\s\S]*?)&?$/, '$1').split(glue2),
-    i, j, chr, tmp, key, value, bracket, keys, evalStr, that = this,
-    fixStr = function (str) {
-        return that.urldecode(str).replace(/([\\"'])/g, '\\$1').replace(/\n/g, '\\n').replace(/\r/g, '\\r');
-    };
+    var glue1 = '=',
+        glue2 = '&',
+        array2 = String(str).replace(/^&?([\s\S]*?)&?$/, '$1').split(glue2),
+        i, j, chr, tmp, key, value, bracket, keys, evalStr, that = this,
+        fixStr = function (str) {
+            return that.urldecode(str).replace(/([\\"'])/g, '\\$1').replace(/\n/g, '\\n').replace(/\r/g, '\\r');
+        };
 
     if (!array) {
         array = this.window;
@@ -33,8 +36,8 @@ function parse_str (str, array){
         if (tmp.length < 2) {
             tmp = [tmp, ''];
         }
-        key   = fixStr(tmp[0]);
-        value = fixStr(tmp[1]);
+        key = fixStr(tmp.shift());
+        value = fixStr(tmp.join(glue1));
         while (key.charAt(0) === ' ') {
             key = key.substr(1);
         }
@@ -42,13 +45,12 @@ function parse_str (str, array){
             key = key.substr(0, key.indexOf('\0'));
         }
         if (key && key.charAt(0) !== '[') {
-            keys    = [];
+            keys = [];
             bracket = 0;
             for (j = 0; j < key.length; j++) {
                 if (key.charAt(j) === '[' && !bracket) {
                     bracket = j + 1;
-                }
-                else if (key.charAt(j) === ']') {
+                } else if (key.charAt(j) === ']') {
                     if (bracket) {
                         if (!keys.length) {
                             keys.push(key.substr(0, bracket - 1));
@@ -78,8 +80,7 @@ function parse_str (str, array){
                 key = keys[j];
                 if ((key !== '' && key !== ' ') || j === 0) {
                     key = "'" + key + "'";
-                }
-                else {
+                } else {
                     key = eval(evalStr + '.push([]);') - 1;
                 }
                 evalStr += '[' + key + ']';

@@ -7,7 +7,6 @@ function php_strip_whitespace (file) {
     // -    depends on: file_get_contents
     // *     example 1: php_strip_whitespace('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '123'
-
     try {
         var str = this.file_get_contents(file);
     } catch (e) {

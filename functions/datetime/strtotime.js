@@ -16,29 +16,24 @@ function strtotime (str, now) {
     // *     returns 3: 1127041200
     // *     example 4: strtotime('2009-05-04 08:30:00');
     // *     returns 4: 1241418600
- 
-    var i, match, s, strTmp = '', parse = '';
+    var i, l, match, s, parse = '';
 
-    strTmp = str;
-    strTmp = strTmp.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
-    strTmp = strTmp.replace(/[\t\r\n]/g, ''); // unecessary chars
-
-    if (strTmp == 'now') {
-        return (new Date()).getTime()/1000; // Return seconds, not milli-seconds
-    } else if (!isNaN(parse = Date.parse(strTmp))) {
-        return (parse/1000);
+    str = str.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
+    str = str.replace(/[\t\r\n]/g, ''); // unecessary chars
+    if (str === 'now') {
+        return now === null || isNaN(now) ? new Date().getTime() / 1000 | 0 : now | 0;
+    } else if (!isNaN(parse = Date.parse(str))) {
+        return parse / 1000 | 0;
     } else if (now) {
-        now = new Date(now*1000); // Accept PHP-style seconds
+        now = new Date(now * 1000); // Accept PHP-style seconds
     } else {
         now = new Date();
     }
 
-    strTmp = strTmp.toLowerCase();
+    str = str.toLowerCase();
 
-    var __is =
-    {
-        day:
-        {
+    var __is = {
+        day: {
             'sun': 0,
             'mon': 1,
             'tue': 2,
@@ -47,105 +42,112 @@ function strtotime (str, now) {
             'fri': 5,
             'sat': 6
         },
-        mon:
-        {
-            'jan': 0,
-            'feb': 1,
-            'mar': 2,
-            'apr': 3,
-            'may': 4,
-            'jun': 5,
-            'jul': 6,
-            'aug': 7,
-            'sep': 8,
-            'oct': 9,
-            'nov': 10,
-            'dec': 11
-        }
+        mon: [
+            'jan',
+            'feb',
+            'mar',
+            'apr',
+            'may',
+            'jun',
+            'jul',
+            'aug',
+            'sep',
+            'oct',
+            'nov',
+            'dec'
+        ]
     };
 
     var process = function (m) {
-        var ago = (m[2] && m[2] == 'ago');
-        var num = (num = m[0] == 'last' ? -1 : 1) * (ago ? -1 : 1);
-
+        var ago = (m[2] && m[2] === 'ago');
+        var num = (num = m[0] === 'last' ? -1 : 1) * (ago ? -1 : 1);
+        
         switch (m[0]) {
-            case 'last':
-            case 'next':
-                switch (m[1].substring(0, 3)) {
-                    case 'yea':
-                        now.setFullYear(now.getFullYear() + num);
-                        break;
-                    case 'mon':
-                        now.setMonth(now.getMonth() + num);
-                        break;
-                    case 'wee':
-                        now.setDate(now.getDate() + (num * 7));
-                        break;
-                    case 'day':
-                        now.setDate(now.getDate() + num);
-                        break;
-                    case 'hou':
-                        now.setHours(now.getHours() + num);
-                        break;
-                    case 'min':
-                        now.setMinutes(now.getMinutes() + num);
-                        break;
-                    case 'sec':
-                        now.setSeconds(now.getSeconds() + num);
-                        break;
-                    default:
-                        var day;
-                        if (typeof (day = __is.day[m[1].substring(0, 3)]) != 'undefined') {
-                            var diff = day - now.getDay();
-                            if (diff == 0) {
-                                diff = 7 * num;
-                            } else if (diff > 0) {
-                                if (m[0] == 'last') {diff -= 7;}
-                            } else {
-                                if (m[0] == 'next') {diff += 7;}
-                            }
-                            now.setDate(now.getDate() + diff);
-                        }
-                }
+        case 'last':
+        case 'next':
+            switch (m[1].substring(0, 3)) {
+            case 'yea':
+                now.setFullYear(now.getFullYear() + num);
                 break;
-
+            case 'wee':
+                now.setDate(now.getDate() + (num * 7));
+                break;
+            case 'day':
+                now.setDate(now.getDate() + num);
+                break;
+            case 'hou':
+                now.setHours(now.getHours() + num);
+                break;
+            case 'min':
+                now.setMinutes(now.getMinutes() + num);
+                break;
+            case 'sec':
+                now.setSeconds(now.getSeconds() + num);
+                break;
+            case 'mon':
+                if (m[1] === "month") {
+                    now.setMonth(now.getMonth() + num);
+                    break;
+                }
+                // fall through
             default:
-                if (/\d+/.test(m[0])) {
-                    num *= parseInt(m[0], 10);
-
-                    switch (m[1].substring(0, 3)) {
-                        case 'yea':
-                            now.setFullYear(now.getFullYear() + num);
-                            break;
-                        case 'mon':
-                            now.setMonth(now.getMonth() + num);
-                            break;
-                        case 'wee':
-                            now.setDate(now.getDate() + (num * 7));
-                            break;
-                        case 'day':
-                            now.setDate(now.getDate() + num);
-                            break;
-                        case 'hou':
-                            now.setHours(now.getHours() + num);
-                            break;
-                        case 'min':
-                            now.setMinutes(now.getMinutes() + num);
-                            break;
-                        case 'sec':
-                            now.setSeconds(now.getSeconds() + num);
-                            break;
+                var day = __is.day[m[1].substring(0, 3)];
+                if (typeof day !== 'undefined') {
+                    var diff = day - now.getDay();
+                    if (diff === 0) {
+                        diff = 7 * num;
+                    } else if (diff > 0) {
+                        if (m[0] === 'last') {
+                            diff -= 7;
+                        }
+                    } else {
+                        if (m[0] === 'next') {
+                            diff += 7;
+                        }
                     }
-                } else {
-                    return false;
+                    now.setDate(now.getDate() + diff);
+                    now.setHours(0, 0, 0, 0); // when jumping to a specific last/previous day of week, PHP sets the time to 00:00:00
                 }
-                break;
+            }
+            break;
+
+        default:
+            if (/\d+/.test(m[0])) {
+                num *= parseInt(m[0], 10);
+
+                switch (m[1].substring(0, 3)) {
+                case 'yea':
+                    now.setFullYear(now.getFullYear() + num);
+                    break;
+                case 'mon':
+                    now.setMonth(now.getMonth() + num);
+                    break;
+                case 'wee':
+                    now.setDate(now.getDate() + (num * 7));
+                    break;
+                case 'day':
+                    now.setDate(now.getDate() + num);
+                    break;
+                case 'hou':
+                    now.setHours(now.getHours() + num);
+                    break;
+                case 'min':
+                    now.setMinutes(now.getMinutes() + num);
+                    break;
+                case 'sec':
+                    now.setSeconds(now.getSeconds() + num);
+                    break;
+                }
+            } else {
+                return false;
+            }
+            break;
         }
         return true;
     };
 
-    match = strTmp.match(/^(\d{2,4}-\d{2}-\d{2})(?:\s(\d{1,2}:\d{2}(:\d{2})?)?(?:\.(\d+))?)?$/);
-    if (match != null) {
+    match = str.match(/^(\d{2,4}-\d{2}-\d{2})(?:\s(\d{1,2}:\d{2}(:\d{2})?)?(?:\.(\d+))?)?$/);
+    if (match !== null) {
         if (!match[2]) {
             match[2] = '00:00:00';
         } else if (!match[3]) {
@@ -154,37 +156,25 @@ function strtotime (str, now) {
 
         s = match[1].split(/-/g);
 
-        for (i in __is.mon) {
-            if (__is.mon[i] == s[1] - 1) {
-                s[1] = i;
-            }
-        }
-        s[0] = parseInt(s[0], 10);
+        s[1] = __is.mon[s[1] - 1] || s[1];
+        s[0] = +s[0];
 
-        s[0] = (s[0] >= 0 && s[0] <= 69) ? '20'+(s[0] < 10 ? '0'+s[0] : s[0]+'') : (s[0] >= 70 && s[0] <= 99) ? '19'+s[0] : s[0]+'';
-        return parseInt(this.strtotime(s[2] + ' ' + s[1] + ' ' + s[0] + ' ' + match[2])+(match[4] ? match[4]/1000 : ''), 10);
+        s[0] = (s[0] >= 0 && s[0] <= 69) ? '20' + (s[0] < 10 ? '0' + s[0] : s[0] + '') : (s[0] >= 70 && s[0] <= 99) ? '19' + s[0] : s[0] + '';
+        return parseInt(this.strtotime(s[2] + ' ' + s[1] + ' ' + s[0] + ' ' + match[2]) + (match[4] ? match[4] / 1000 : ''), 10);
     }
 
-    var regex = '([+-]?\\d+\\s'+
-        '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'+
-        '|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday'+
-        '|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday)'+
-        '|(last|next)\\s'+
-        '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?'+
-        '|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday'+
-        '|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday))'+
-        '(\\sago)?';
+    var regex = '([+-]?\\d+\\s' + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?' + '|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday' + '|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday)' + '|(last|next)\\s' + '(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?' + '|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday' + '|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday))' + '(\\sago)?';
 
-    match = strTmp.match(new RegExp(regex, 'gi')); // Brett: seems should be case insensitive per docs, so added 'i'
-    if (match == null) {
+    match = str.match(new RegExp(regex, 'gi')); // Brett: seems should be case insensitive per docs, so added 'i'
+    if (match === null) {
         return false;
     }
 
-    for (i = 0; i < match.length; i++) {
+    for (i = 0, l = match.length; i < l; i++) {
         if (!process(match[i].split(' '))) {
             return false;
         }
     }
 
-    return (now.getTime()/1000);
+    return now.getTime() / 1000 | 0;
 }

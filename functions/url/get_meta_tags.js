@@ -13,11 +13,7 @@ function get_meta_tags (file) {
 
     if (false) {
         // Use this for testing instead of the line above:
-        fulltxt = '<meta name="author" content="name">'+
-        '<meta name="keywords" content="php documentation">'+
-        '<meta name="DESCRIPTION" content="a php manual">'+
-        '<meta name="geo.position" content="49.33;-86.59">'+
-        '</head>';
+        fulltxt = '<meta name="author" content="name">' + '<meta name="keywords" content="php documentation">' + '<meta name="DESCRIPTION" content="a php manual">' + '<meta name="geo.position" content="49.33;-86.59">' + '</head>';
     } else {
         fulltxt = this.file_get_contents(file).match(/^[\s\S]*<\/head>/i); // We have to disallow some character, so we choose a Unicode non-character
     }
@@ -25,7 +21,7 @@ function get_meta_tags (file) {
     var patt = /<meta[^>]*?>/gim;
     var patt1 = /<meta\s+.*?name\s*=\s*(['"]?)(.*?)\1\s+.*?content\s*=\s*(['"]?)(.*?)\3/gim;
     var patt2 = /<meta\s+.*?content\s*=\s*(['"?])(.*?)\1\s+.*?name\s*=\s*(['"]?)(.*?)\3/gim;
-    var txt, match, name, arr={};
+    var txt, match, name, arr = {};
 
     while ((txt = patt.exec(fulltxt)) !== null) {
         while ((match = patt1.exec(txt)) !== null) {

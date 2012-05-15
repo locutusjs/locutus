@@ -4,7 +4,6 @@ function get_included_files () {
     // %        note 1: Uses global: php_js to keep track of included files
     // *     example 1: get_included_files();
     // *     returns 1: ['http://kevin.vanzonneveld.net/pj_tester.php']
-
     var cur_file = {};
     cur_file[this.window.location.href] = 1;
     if (!this.php_js) {
@@ -16,7 +15,7 @@ function get_included_files () {
 
     var includes = [];
     var i = 0;
-    for (var key in this.php_js.includes){
+    for (var key in this.php_js.includes) {
         includes[i] = key;
         i++;
     }

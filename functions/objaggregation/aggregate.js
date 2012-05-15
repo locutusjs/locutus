@@ -9,8 +9,10 @@ function aggregate (obj, class_name) {
     // *     example 1: aggregate(b, 'A');
     // *     returns 1: undefined
 
-   var p = '', record={}, pos=-1;
-   var getFuncName = function (fn) {
+    var p = '',
+        record = {},
+        pos = -1;
+    var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
         if (!name) {
             return '(Anonymous)';
@@ -18,7 +20,7 @@ function aggregate (obj, class_name) {
         return name[1];
     };
     var indexOf = function (value) {
-        for (var i = 0, length=this.length; i < length; i++) {
+        for (var i = 0, length = this.length; i < length; i++) {
             if (this[i] === value) {
                 return i;
             }
@@ -26,9 +28,9 @@ function aggregate (obj, class_name) {
         return -1;
     };
 
-   if (typeof class_name === 'string') { // PHP behavior
-       class_name = this.window[class_name];
-   }
+    if (typeof class_name === 'string') { // PHP behavior
+        class_name = this.window[class_name];
+    }
 
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};

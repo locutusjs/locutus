@@ -14,12 +14,15 @@ function usort (inputArr, sorter) {
     // *     example 1: stuff = {d: '3', a: '1', b: '11', c: '4'};
     // *     example 1: stuff = usort(stuff, function (a, b) {return(a-b);});
     // *     results 1: stuff = {0: '1', 1: '3', 2: '4', 3: '11'};
-
-    var valArr = [], k = '', i = 0, strictForIn = false, populateArr = {};
+    var valArr = [],
+        k = '',
+        i = 0,
+        strictForIn = false,
+        populateArr = {};
 
     if (typeof sorter === 'string') {
         sorter = this[sorter];
-    } else if (sorter instanceof Array) {
+    } else if (Object.prototype.toString.call(sorter) === '[object Array]') {
         sorter = this[sorter[0]][sorter[1]];
     }
 
@@ -27,11 +30,9 @@ function usort (inputArr, sorter) {
     this.php_js = this.php_js || {};
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
-
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
-                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
-    
+
 
     for (k in inputArr) { // Get key and value arrays
         if (inputArr.hasOwnProperty(k)) {

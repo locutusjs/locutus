@@ -1,4 +1,4 @@
-function abs (mixed_number)  {
+function abs (mixed_number) {
     // http://kevin.vanzonneveld.net
     // +   original by: Waldo Malqui Silva
     // +   improved by: Karol Kowalski
@@ -12,6 +12,5 @@ function abs (mixed_number)  {
     // *     returns 3: 5
     // *     example 4: abs('_argos');
     // *     returns 4: 0
-
     return Math.abs(mixed_number) || 0;
 }

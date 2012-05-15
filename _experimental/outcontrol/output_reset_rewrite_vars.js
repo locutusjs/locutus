@@ -6,8 +6,11 @@ function output_reset_rewrite_vars () {
 
     // Fix: also need to deal with those set by session_start() (will add to same obs?)
 
-    if (this.php_js && this.php_js.obs && this.php_js.obs.length && this.php_js.obs[this.php_js.obs.length-1].vars) {
-        this.php_js.obs[this.php_js.obs.length-1].vars = {};
+    this.php_js = this.php_js || {};
+    var phpjs = this.php_js, obs = phpjs.obs;
+
+    if (obs && obs.length && obs[obs.length-1].vars) {
+        obs[obs.length-1].vars = {};
     }
     return true;
 }

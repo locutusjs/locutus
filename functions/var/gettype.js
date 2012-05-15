@@ -18,8 +18,8 @@ function gettype (mixed_var) {
     // *     returns 4: 'string'
     // *     example 5: gettype({0: function () {return false;}});
     // *     returns 5: 'array'
-
-    var s = typeof mixed_var, name;
+    var s = typeof mixed_var,
+        name;
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
         if (!name) {
@@ -29,28 +29,22 @@ function gettype (mixed_var) {
     };
     if (s === 'object') {
         if (mixed_var !== null) { // From: http://javascript.crockford.com/remedial.html
-            if (typeof mixed_var.length === 'number' &&
-                    !(mixed_var.propertyIsEnumerable('length')) &&
-                    typeof mixed_var.splice === 'function') {
+            if (typeof mixed_var.length === 'number' && !(mixed_var.propertyIsEnumerable('length')) && typeof mixed_var.splice === 'function') {
                 s = 'array';
-            }
-            else if (mixed_var.constructor && getFuncName(mixed_var.constructor)) {
+            } else if (mixed_var.constructor && getFuncName(mixed_var.constructor)) {
                 name = getFuncName(mixed_var.constructor);
                 if (name === 'Date') {
                     s = 'date'; // not in PHP
-                }
-                else if (name === 'RegExp') {
+                } else if (name === 'RegExp') {
                     s = 'regexp'; // not in PHP
-                }
-                else if (name === 'PHPJS_Resource') { // Check against our own resource constructor
+                } else if (name === 'PHPJS_Resource') { // Check against our own resource constructor
                     s = 'resource';
                 }
             }
         } else {
             s = 'null';
         }
-    }
-    else if (s === 'number') {
+    } else if (s === 'number') {
         s = this.is_float(mixed_var) ? 'double' : 'integer';
     }
     return s;

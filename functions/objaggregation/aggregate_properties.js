@@ -9,9 +9,11 @@ function aggregate_properties (obj, class_name) {
     // *     example 1: aggregate_properties(b, 'A');
     // *     returns 1: undefined
 
-    var p = '', record={}, pos=-1,
+    var p = '',
+        record = {},
+        pos = -1,
         indexOf = function (value) {
-            for (var i = 0, length=this.length; i < length; i++) {
+            for (var i = 0, length = this.length; i < length; i++) {
                 if (this[i] === value) {
                     return i;
                 }

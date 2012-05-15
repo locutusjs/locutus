@@ -5,7 +5,6 @@ function rand (min, max) {
     // %          note 1: See the commented out code below for a version which will work with our experimental (though probably unnecessary) srand() function)
     // *     example 1: rand(1, 1);
     // *     returns 1: 1
-    
     var argc = arguments.length;
     if (argc === 0) {
         min = 0;
@@ -14,8 +13,8 @@ function rand (min, max) {
         throw new Error('Warning: rand() expects exactly 2 parameters, 1 given');
     }
     return Math.floor(Math.random() * (max - min + 1)) + min;
-    
-    /*
+
+/*
     // See note above for an explanation of the following alternative code
     
     // +   reimplemented by: Brett Zamir (http://brett-zamir.me)

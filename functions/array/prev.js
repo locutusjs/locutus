@@ -5,12 +5,11 @@ function prev (arr) {
     // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
     // *     example 1: prev(transport);
     // *     returns 1: false
-
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
     var indexOf = function (value) {
-        for (var i = 0, length=this.length; i < length; i++) {
+        for (var i = 0, length = this.length; i < length; i++) {
             if (this[i] === value) {
                 return i;
             }
@@ -23,24 +22,24 @@ function prev (arr) {
         pointers.indexOf = indexOf;
     }
     var arrpos = pointers.indexOf(arr);
-    var cursor = pointers[arrpos+1];
+    var cursor = pointers[arrpos + 1];
     if (pointers.indexOf(arr) === -1 || cursor === 0) {
         return false;
     }
-    if (!(arr instanceof Array)) {
+    if (Object.prototype.toString.call(arr) !== '[object Array]') {
         var ct = 0;
         for (var k in arr) {
-            if (ct === cursor-1) {
-                pointers[arrpos+1] -= 1;
+            if (ct === cursor - 1) {
+                pointers[arrpos + 1] -= 1;
                 return arr[k];
             }
             ct++;
         }
-    // Shouldn't reach here
+        // Shouldn't reach here
     }
     if (arr.length === 0) {
         return false;
     }
-    pointers[arrpos+1] -= 1;
-    return arr[pointers[arrpos+1]];
+    pointers[arrpos + 1] -= 1;
+    return arr[pointers[arrpos + 1]];
 }

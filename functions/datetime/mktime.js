@@ -1,4 +1,4 @@
-function mktime() {
+function mktime () {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: baris ozdil
@@ -36,7 +36,9 @@ function mktime() {
     // *     returns 7: 1293839999
     // *     example 8: mktime(0, 0, -1, 1, 1, 1970)
     // *     returns 8: -1
-    var d = new Date(), r = arguments, i = 0,
+    var d = new Date(),
+        r = arguments,
+        i = 0,
         e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear'];
 
     for (i = 0; i < e.length; i++) {
@@ -50,14 +52,14 @@ function mktime() {
             }
         }
     }
-    
+
     // Map years 0-69 to 2000-2069 and years 70-100 to 1970-2000.
     r[5] += (r[5] >= 0 ? (r[5] <= 69 ? 2e3 : (r[5] <= 100 ? 1900 : 0)) : 0);
-    
+
     // Set year, month (-1 to fix JS months), and date.
     // !This must come before the call to setHours!
     d.setFullYear(r[5], r[3] - 1, r[4]);
-    
+
     // Set hours, minutes, and seconds.
     d.setHours(r[0], r[1], r[2]);
 

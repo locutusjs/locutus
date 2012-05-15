@@ -8,25 +8,22 @@ function implode (glue, pieces) {
     // *     returns 1: 'Kevin van Zonneveld'
     // *     example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'});
     // *     returns 2: 'Kevin van Zonneveld'
-
-    var i = '', retVal='', tGlue='';
+    var i = '',
+        retVal = '',
+        tGlue = '';
     if (arguments.length === 1) {
         pieces = glue;
         glue = '';
     }
     if (typeof(pieces) === 'object') {
-        if (pieces instanceof Array) {
+        if (Object.prototype.toString.call(pieces) === '[object Array]') {
             return pieces.join(glue);
+        } 
+        for (i in pieces) {
+            retVal += tGlue + pieces[i];
+            tGlue = glue;
         }
-        else {
-            for (i in pieces) {
-                retVal += tGlue + pieces[i];
-                tGlue = glue;
-            }
-            return retVal;
-        }
+        return retVal;
     }
-    else {
-        return pieces;
-    }
+    return pieces;
 }

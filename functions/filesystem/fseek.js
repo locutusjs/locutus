@@ -12,24 +12,24 @@ function fseek (handle, offset, whence) {
         }
         return name[1];
     };
-    if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer ||
-            !handle || !handle.constructor || getFuncName(handle.constructor) !== 'PHPJS_Resource') {
+    if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer || !handle || !handle.constructor || getFuncName(handle.constructor) !== 'PHPJS_Resource') {
         return -1;
     }
 
     switch (whence) {
-        case undefined: // fall-through
-        case 'SEEK_SET':
-            this.php_js.resourceDataPointer[handle.id] = offset/2+1;
-            break;
-        case 'SEEK_CUR':
-            this.php_js.resourceDataPointer[handle.id] += offset/2+1;
-            break;
-        case 'SEEK_END':
-            this.php_js.resourceDataPointer[handle.id] = this.php_js.resourceData[handle.id].length + offset/2 + 1;
-            break;
-        default:
-            throw 'Unrecognized whence value for fseek()';
+    case undefined:
+        // fall-through
+    case 'SEEK_SET':
+        this.php_js.resourceDataPointer[handle.id] = offset / 2 + 1;
+        break;
+    case 'SEEK_CUR':
+        this.php_js.resourceDataPointer[handle.id] += offset / 2 + 1;
+        break;
+    case 'SEEK_END':
+        this.php_js.resourceDataPointer[handle.id] = this.php_js.resourceData[handle.id].length + offset / 2 + 1;
+        break;
+    default:
+        throw 'Unrecognized whence value for fseek()';
     }
     return 0;
 }

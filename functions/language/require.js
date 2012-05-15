@@ -11,7 +11,6 @@ function require (filename) {
     // -    depends on: file_get_contents
     // *     example 1: require('http://www.phpjs.org/js/phpjs/_supporters/pj_test_supportfile_2.js');
     // *     returns 1: 2
-
     var d = this.window.document;
     var isXML = d.documentElement.nodeName !== 'HTML' || !d.write; // Latter is for silly comprehensiveness
     var js_code = this.file_get_contents(filename);
@@ -23,14 +22,10 @@ function require (filename) {
     } else {
         script_block.appendChild(d.createTextNode(js_code));
     }
-    
+
     if (typeof(script_block) !== 'undefined') {
-        d.getElementsByTagNameNS && isXML ?
-            (d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0] ?
-                d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(script_block) :
-                d.documentElement.insertBefore(script_block, d.documentElement.firstChild) // in case of XUL
-            ):
-            d.getElementsByTagName('head')[0].appendChild(script_block);
+        d.getElementsByTagNameNS && isXML ? (d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0] ? d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(script_block) : d.documentElement.insertBefore(script_block, d.documentElement.firstChild) // in case of XUL
+        ) : d.getElementsByTagName('head')[0].appendChild(script_block);
 
         // save include state for reference by include_once and require_once()
         var cur_file = {};
@@ -39,7 +34,6 @@ function require (filename) {
         // BEGIN REDUNDANT
         this.php_js = this.php_js || {};
         // END REDUNDANT
-
         if (!this.php_js.includes) {
             this.php_js.includes = cur_file;
         }

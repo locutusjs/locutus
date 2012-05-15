@@ -9,22 +9,24 @@ function ini_get_all (extension, details) {
     // *     example 1: ini_get_all('date', false);
     // *     returns 1: {'date.default_latitude':"31.7667", 'date.default_longitude':"35.2333", 'date.sunrise_zenith':"90.583333", 'date.sunset_zenith':"90.583333", date.timezone:""}
 
-    var key='', ini={}, noDetails={}, extPattern;
+    var key = '',
+        ini = {},
+        noDetails = {},
+        extPattern;
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
 
     if (extension) {
-        extPattern = new RegExp('^'+extension+'\\.');
+        extPattern = new RegExp('^' + extension + '\\.');
         for (key in this.php_js.ini) {
             extPattern.lastIndex = 0;
             if (extPattern.test(key)) {
                 ini[key] = this.php_js.ini[key];
             }
         }
-    }
-    else {
+    } else {
         for (key in this.php_js.ini) {
             ini[key] = this.php_js.ini[key];
         }

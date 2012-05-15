@@ -14,14 +14,13 @@ function date_parse (date) {
 
     try {
         var ts = this.strtotime(date);
-    }
-    finally {
+    } finally {
         if (!ts) {
             return false;
         }
     }
 
-    var dt = new Date(ts*1000);
+    var dt = new Date(ts * 1000);
 
     var retObj = { // Grab any new warnings or errors added (not implemented yet in strtotime()); throwing warnings, notices, or errors could also be easily monitored by using 'watch' on this.php_js.latestWarning, etc. and/or calling any defined error handlers
         warning_count: warningsOffset !== null ? this.php_js.warnings.slice(warningsOffset).length : 0,
@@ -30,12 +29,12 @@ function date_parse (date) {
         errors: errorsOffset !== null ? this.php_js.errors.slice(errorsOffset) : []
     };
     retObj.year = dt.getFullYear();
-    retObj.month = dt.getMonth()+1;
+    retObj.month = dt.getMonth() + 1;
     retObj.day = dt.getDate();
     retObj.hour = dt.getHours();
     retObj.minute = dt.getMinutes();
     retObj.second = dt.getSeconds();
-    retObj.fraction = parseFloat('0.'+dt.getMilliseconds());
+    retObj.fraction = parseFloat('0.' + dt.getMilliseconds());
     retObj.is_localtime = dt.getTimezoneOffset !== 0;
 
     return retObj;

@@ -3,7 +3,7 @@ function classkit_method_remove (classname, methodname) {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: classkit_method_remove('someClass', 'someMethod');
     // *     returns 1: true
-    
+
     if (typeof classname === 'string') {
         classname = this.window[classname];
     }

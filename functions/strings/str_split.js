@@ -8,7 +8,6 @@ function str_split (string, split_length) {
     // +      revised by: Rafał Kukawski (http://blog.kukawski.pl/)
     // *       example 1: str_split('Hello Friend', 3);
     // *       returns 1: ['Hel', 'lo ', 'Fri', 'end']
-
     if (split_length === null) {
         split_length = 1;
     }
@@ -16,10 +15,12 @@ function str_split (string, split_length) {
         return false;
     }
     string += '';
-    var chunks = [], pos = 0, len = string.length;
+    var chunks = [],
+        pos = 0,
+        len = string.length;
     while (pos < len) {
         chunks.push(string.slice(pos, pos += split_length));
     }
-	
+
     return chunks;
 }

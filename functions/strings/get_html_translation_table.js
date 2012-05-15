@@ -18,23 +18,26 @@ function get_html_translation_table (table, quote_style) {
     // %          note: chooses to create the constants themselves.
     // *     example 1: get_html_translation_table('HTML_SPECIALCHARS');
     // *     returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
-    
-    var entities = {}, hash_map = {}, decimal = 0, symbol = '';
-    var constMappingTable = {}, constMappingQuoteStyle = {};
-    var useTable = {}, useQuoteStyle = {};
-    
+    var entities = {},
+        hash_map = {},
+        decimal;
+    var constMappingTable = {},
+        constMappingQuoteStyle = {};
+    var useTable = {},
+        useQuoteStyle = {};
+
     // Translate arguments
-    constMappingTable[0]      = 'HTML_SPECIALCHARS';
-    constMappingTable[1]      = 'HTML_ENTITIES';
+    constMappingTable[0] = 'HTML_SPECIALCHARS';
+    constMappingTable[1] = 'HTML_ENTITIES';
     constMappingQuoteStyle[0] = 'ENT_NOQUOTES';
     constMappingQuoteStyle[2] = 'ENT_COMPAT';
     constMappingQuoteStyle[3] = 'ENT_QUOTES';
 
-    useTable       = !isNaN(table) ? constMappingTable[table] : table ? table.toUpperCase() : 'HTML_SPECIALCHARS';
+    useTable = !isNaN(table) ? constMappingTable[table] : table ? table.toUpperCase() : 'HTML_SPECIALCHARS';
     useQuoteStyle = !isNaN(quote_style) ? constMappingQuoteStyle[quote_style] : quote_style ? quote_style.toUpperCase() : 'ENT_COMPAT';
 
     if (useTable !== 'HTML_SPECIALCHARS' && useTable !== 'HTML_ENTITIES') {
-        throw new Error("Table: "+useTable+' not supported');
+        throw new Error("Table: " + useTable + ' not supported');
         // return false;
     }
 
@@ -150,9 +153,10 @@ function get_html_translation_table (table, quote_style) {
 
     // ascii decimals to real symbols
     for (decimal in entities) {
-        symbol = String.fromCharCode(decimal);
-        hash_map[symbol] = entities[decimal];
+        if (entities.hasOwnProperty(decimal)) {
+            hash_map[String.fromCharCode(decimal)] = entities[decimal];
+        }
     }
-    
+
     return hash_map;
 }

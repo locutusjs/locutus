@@ -8,7 +8,6 @@ function chunk_split (body, chunklen, end) {
     // *     returns 1: 'H*e*l*l*o* *w*o*r*l*d*!*'
     // *     example 2: chunk_split('Hello world!', 10, '*');
     // *     returns 2: 'Hello worl*d!*'
-    
     chunklen = parseInt(chunklen, 10) || 76;
     end = end || '\r\n';
 

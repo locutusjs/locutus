@@ -5,7 +5,6 @@ function runkit_function_rename (funcname, newname) {
     // *     example 1: function plus (a, b) { return (a + b); }
     // *     example 1: runkit_function_rename('plus', 'add');
     // *     returns 1: true
-
     if (typeof this.window[newname] !== 'function' || this.window[funcname] !== undefined) { //  (presumably disallow overwriting existing variables)
         return false;
     }

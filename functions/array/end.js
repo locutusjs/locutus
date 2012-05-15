@@ -1,4 +1,4 @@
-function end ( arr ) {
+function end (arr) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   bugfixed by: Legaev Andrey
@@ -11,12 +11,11 @@ function end ( arr ) {
     // *     returns 1: 'Zonneveld'
     // *     example 2: end(['Kevin', 'van', 'Zonneveld']);
     // *     returns 2: 'Zonneveld'
-    
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
     var indexOf = function (value) {
-        for (var i = 0, length=this.length; i < length; i++) {
+        for (var i = 0, length = this.length; i < length; i++) {
             if (this[i] === value) {
                 return i;
             }
@@ -32,7 +31,7 @@ function end ( arr ) {
         pointers.push(arr, 0);
     }
     var arrpos = pointers.indexOf(arr);
-    if (!(arr instanceof Array)) {
+    if (Object.prototype.toString.call(arr) !== '[object Array]') {
         var ct = 0;
         for (var k in arr) {
             ct++;
@@ -41,12 +40,12 @@ function end ( arr ) {
         if (ct === 0) {
             return false; // Empty
         }
-        pointers[arrpos+1] = ct - 1;
+        pointers[arrpos + 1] = ct - 1;
         return val;
     }
     if (arr.length === 0) {
         return false;
     }
-    pointers[arrpos+1] = arr.length - 1;
-    return arr[pointers[arrpos+1]];
+    pointers[arrpos + 1] = arr.length - 1;
+    return arr[pointers[arrpos + 1]];
 }

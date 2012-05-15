@@ -10,14 +10,12 @@ function mail (to, subject, message, additional_headers, additional_parameters) 
     // *     example 2:           'From: jack@example.com\r\n'+'Organization : Example Corp\r\n'+
     // *     example 2:           'Content-type: text/html;charset=utf8');
     // *     returns 2: true
-
     var _append = function (sm, prop, value) {
         if (!sm[prop]) { // Ok?
             sm[prop] = '';
             sm[prop] += value;
-        }
-        else {
-            sm[prop] += ','+value;
+        } else {
+            sm[prop] += ',' + value;
         }
     };
 
@@ -37,26 +35,31 @@ function mail (to, subject, message, additional_headers, additional_parameters) 
                     throw new Error('Malformed headers');
                 }
                 var prop = header.slice(0, colonPos).trim();
-                var value = header.slice(colonPos+1).trim();
-                switch(prop) {
+                var value = header.slice(colonPos + 1).trim();
+                switch (prop) {
                     // Todo: Add any others to this top fall-through which can allow multiple headers
                     //                via commas; will otherwise be overwritten (Errorsto, Replyto?)
-                    case 'Bcc':
-                        // Fall-through
-                    case 'Cc':
-                        // Fall-through
-                    case 'To': // Apparently appendable with additional headers per PHP examples
-                        _append(sm, prop, value);
-                        break;
-                    case 'Subject': // Overridable in additional headers?
-                        break;
-                    case 'Body': // Overridable in additional headers?
-                        break;
-                    case 'From': // Default, though can be overridden
-                        /* Fall-through */
-                    default: //  Errorsto, Organization, Replyto, Smtpserver
-                        sm[prop] = value;
-                        break;
+                case 'Bcc':
+                    // Fall-through
+                case 'Cc':
+                    // Fall-through
+                case 'To':
+                    // Apparently appendable with additional headers per PHP examples
+                    _append(sm, prop, value);
+                    break;
+                case 'Subject':
+                    // Overridable in additional headers?
+                    break;
+                case 'Body':
+                    // Overridable in additional headers?
+                    break;
+                case 'From':
+                    // Default, though can be overridden
+                    /* Fall-through */
+                default:
+                    //  Errorsto, Organization, Replyto, Smtpserver
+                    sm[prop] = value;
+                    break;
                 }
             }
         }

@@ -16,8 +16,12 @@ function uksort (inputArr, sorter) {
     // *     example 1: data = uksort(data, function (key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
     // *     results 1: data == {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
     // *     returns 1: true
-
-    var tmp_arr = {}, keys = [], i = 0, k = '', strictForIn = false, populateArr = {};
+    var tmp_arr = {},
+        keys = [],
+        i = 0,
+        k = '',
+        strictForIn = false,
+        populateArr = {};
 
     if (typeof sorter === 'string') {
         sorter = this.window[sorter];
@@ -45,9 +49,7 @@ function uksort (inputArr, sorter) {
     this.php_js = this.php_js || {};
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
-
-    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && 
-                    this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+    strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
     populateArr = strictForIn ? inputArr : populateArr;
 
 

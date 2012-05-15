@@ -5,20 +5,19 @@ function array_walk (array, funcname, userdata) {
     // *     returns 1: true
     // *     example 2: array_walk ('a', 'void', 'userdata');
     // *     returns 2: false
-    
-    var key; 
-    
+    var key;
+
     if (typeof array !== 'object' || array === null) {
         return false;
     }
-    
+
     for (key in array) {
         if (typeof(userdata) !== 'undefined') {
-            eval(funcname + '( array [key] , key , userdata  )' );
+            eval(funcname + '( array [key] , key , userdata  )');
         } else {
             eval(funcname + '(  userdata ) ');
         }
     }
-    
+
     return true;
 }

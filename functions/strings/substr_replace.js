@@ -14,7 +14,6 @@ function substr_replace (str, replace, start, length) {
     // *     returns 5: 'ABCDEFGH:/bob/'
     // *     example 6: 'substr_replace('ABCDEFGH:/MNRPQR/', '', 10, -1)'
     // *     returns 6: 'ABCDEFGH://'
-
     if (start < 0) { // start position in str
         start = start + str.length;
     }
@@ -22,5 +21,5 @@ function substr_replace (str, replace, start, length) {
     if (length < 0) {
         length = length + str.length - start;
     }
-    return str.slice(0, start)+replace.substr(0, length)+replace.slice(length)+str.slice(start+length);
+    return str.slice(0, start) + replace.substr(0, length) + replace.slice(length) + str.slice(start + length);
 }

@@ -6,6 +6,5 @@ function pos (arr) {
     // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
     // *     example 1: pos(transport);
     // *     returns 1: 'foot'
-    
     return this.current(arr);
 }

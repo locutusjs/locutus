@@ -11,5 +11,5 @@ function feof (handle) {
     }
 
     return !this.php_js.resourceData[handle.id][this.php_js.resourceDataPointer[handle.id]];
-    
+
 }

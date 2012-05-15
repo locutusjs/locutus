@@ -8,6 +8,5 @@ function dirname (path) {
     // *     returns 2: 'c:/Temp'
     // *     example 3: dirname('/dir/test/');
     // *     returns 3: '/dir'
-    
-    return path.replace(/\\/g,'/').replace(/\/[^\/]*\/?$/, '');
+    return path.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, '');
 }

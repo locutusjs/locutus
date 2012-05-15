@@ -12,7 +12,9 @@ function is_callable (v, syntax_only, callable_name) {
     // *     example 3: var testObj = new SomeClass();
     // *     example 3: is_callable([testObj, 'someMethod'], true, 'myVar');
     // *     example 3: alert(myVar); // 'SomeClass::someMethod'
-    var name='', obj={}, method='';
+    var name = '',
+        obj = {},
+        method = '';
     var getFuncName = function (fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
         if (!name) {
@@ -25,10 +27,11 @@ function is_callable (v, syntax_only, callable_name) {
         method = v;
         name = v;
     }
-    else if (v instanceof Array && v.length === 2 && typeof v[0] === 'object' && typeof v[1] === 'string') {
+    else if (Object.prototype.toString.call(v) === '[object Array]' && 
+                v.length === 2 && typeof v[0] === 'object' && typeof v[1] === 'string') {
         obj = v[0];
         method = v[1];
-        name = (obj.constructor && getFuncName(obj.constructor))+'::'+method;
+        name = (obj.constructor && getFuncName(obj.constructor)) + '::' + method;
     }
     else {
         return false;

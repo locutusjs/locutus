@@ -5,6 +5,5 @@ function stream_context_get_options (stream_or_context) {
     // *     example 1: var context = stream_context_create(opts);
     // *     example 1: stream_context_get_options(context);
     // *     returns 1: {http:{ method:'GET', header: 'Accept-language: en\r\nCookie: foo=bar\r\n' }}
-
     return stream_or_context.stream_options;
 }

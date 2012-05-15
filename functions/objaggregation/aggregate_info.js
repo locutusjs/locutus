@@ -10,9 +10,14 @@ function aggregate_info (obj) {
     // *     example 1: aggregate_info(b);
     // *     returns 1: {'A':{methods:['someMethod'], properties:['prop']}}
 
-    var idx=-1, p='', infoObj={}, retObj={}, i=0, name='';
+    var idx = -1,
+        p = '',
+        infoObj = {},
+        retObj = {},
+        i = 0,
+        name = '';
     var indexOf = function (value) {
-        for (var i = 0, length=this.length; i < length; i++) {
+        for (var i = 0, length = this.length; i < length; i++) {
             if (this[i] === value) {
                 return i;
             }
@@ -32,19 +37,21 @@ function aggregate_info (obj) {
         return false;
     }
 
-    for (i=0; i < this.php_js.aggregateClasses[idx].length; i++) {
+    for (i = 0; i < this.php_js.aggregateClasses[idx].length; i++) {
         name = this.php_js.aggregateClasses[idx][i];
-        infoObj={methods:[], properties:[]};
+        infoObj = {
+            methods: [],
+            properties: []
+        };
         for (p in this.php_js.aggregateRecords[idx][i]) {
             if (typeof this.php_js.aggregateRecords[idx][i][p] === 'function') {
                 infoObj.methods.push(p);
-            }
-            else {
+            } else {
                 infoObj.properties.push(p);
             }
         }
         retObj[name] = infoObj;
     }
-    
+
     return retObj;
 }

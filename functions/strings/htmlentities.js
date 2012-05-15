@@ -1,4 +1,4 @@
-function htmlentities (string, quote_style) {
+function htmlentities (string, quote_style, charset, double_encode) {
     // http://kevin.vanzonneveld.net
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -8,23 +8,42 @@ function htmlentities (string, quote_style) {
     // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +      input by: Ratheous
+    // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
+    // +   improved by: Dj (http://phpjs.org/functions/htmlentities:425#comment_134018)
     // -    depends on: get_html_translation_table
     // *     example 1: htmlentities('Kevin & van Zonneveld');
     // *     returns 1: 'Kevin &amp; van Zonneveld'
     // *     example 2: htmlentities("foo'bar","ENT_QUOTES");
     // *     returns 2: 'foo&#039;bar'
+    var hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style),
+        symbol = '';
+    string = string == null ? '' : string + '';
 
-    var hash_map = {}, symbol = '', tmp_str = '', entity = '';
-    tmp_str = string.toString();
-    
-    if (false === (hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {
+    if (!hash_map) {
         return false;
     }
-    hash_map["'"] = '&#039;';
-    for (symbol in hash_map) {
-        entity = hash_map[symbol];
-        tmp_str = tmp_str.split(symbol).join(entity);
+    
+    if (quote_style && quote_style === 'ENT_QUOTES') {
+        hash_map["'"] = '&#039;';
     }
     
-    return tmp_str;
+    if (!!double_encode || double_encode == null) {
+        for (symbol in hash_map) {
+            if (hash_map.hasOwnProperty(symbol)) {
+                string = string.split(symbol).join(hash_map[symbol]);
+            }
+        }
+    } else {
+        string = string.replace(/([\s\S]*?)(&(?:#\d+|#x[\da-f]+|[a-zA-Z][\da-z]*);|$)/g, function (ignore, text, entity) {
+            for (symbol in hash_map) {
+                if (hash_map.hasOwnProperty(symbol)) {
+                    text = text.split(symbol).join(hash_map[symbol]);
+                }
+            }
+            
+            return text + entity;
+        });
+    }
+
+    return string;
 }

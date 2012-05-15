@@ -14,10 +14,9 @@ function strncasecmp (argStr1, argStr2, len) {
     // *     returns 4: 8
     // *     example 5: strncasecmp('Version 12.15', 'Version 12.9', 20);
     // *     returns 5: -8
-
     var diff, i = 0;
-    var str1 = (argStr1+'').toLowerCase().substr(0,len);
-    var str2 = (argStr2+'').toLowerCase().substr(0,len);
+    var str1 = (argStr1 + '').toLowerCase().substr(0, len);
+    var str2 = (argStr2 + '').toLowerCase().substr(0, len);
 
     if (str1.length !== str2.length) {
         if (str1.length < str2.length) {
@@ -37,7 +36,7 @@ function strncasecmp (argStr1, argStr2, len) {
         len = str1.length;
     }
 
-    for (diff = 0, i=0; i < len; i++) {
+    for (diff = 0, i = 0; i < len; i++) {
         diff = str1.charCodeAt(i) - str2.charCodeAt(i);
         if (diff !== 0) {
             return diff;

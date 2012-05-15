@@ -9,9 +9,12 @@ function aggregate_methods_by_list (obj, class_name, properties_list, exclude) {
     // *     example 1: aggregate_methods_by_list(b, 'A', ['method'], false);
     // *     returns 1: undefined
 
-    var p = '', i=0, record={}, pos=-1;
+    var p = '',
+        i = 0,
+        record = {},
+        pos = -1;
     var indexOf = function (value) {
-        for (var i = 0, length=this.length; i < length; i++) {
+        for (var i = 0, length = this.length; i < length; i++) {
             if (this[i] === value) {
                 return i;
             }
@@ -37,43 +40,31 @@ function aggregate_methods_by_list (obj, class_name, properties_list, exclude) {
     };
     // END REDUNDANT
     this.php_js.aggregateClasses.push(getFuncName(class_name));
-    
+
     if (!properties_list.indexOf) {
         properties_list.indexOf = indexOf;
     }
 
     if (exclude) {
         for (p in class_name) {
-            if (!(p in obj) &&
-                    typeof class_name[p] === 'function' &&
-                        p[0] !== '_' &&
-                            properties_list.indexOf(p) === -1) { // Static (non-private) class methods
+            if (!(p in obj) && typeof class_name[p] === 'function' && p[0] !== '_' && properties_list.indexOf(p) === -1) { // Static (non-private) class methods
                 obj[p] = class_name[p];
                 record[p] = class_name[p];
             }
         }
         for (p in class_name.prototype) {
-            if (!(p in obj) &&
-                    typeof class_name.prototype[p] === 'function' &&
-                        p[0] !== '_' &&
-                            properties_list.indexOf(p) === -1) { // Prototype (non-private) instance methods
+            if (!(p in obj) && typeof class_name.prototype[p] === 'function' && p[0] !== '_' && properties_list.indexOf(p) === -1) { // Prototype (non-private) instance methods
                 obj[p] = class_name.prototype[p];
                 record[p] = class_name.prototype[p];
             }
         }
     } else {
-        for (i=0; i < properties_list.length; i++) {
+        for (i = 0; i < properties_list.length; i++) {
             p = properties_list[i];
-            if (!(p in obj) &&
-                    p in class_name &&
-                        p[0] !== '_' &&
-                            typeof class_name.prototype[p] === 'function') { // Static (non-private) class methods
+            if (!(p in obj) && p in class_name && p[0] !== '_' && typeof class_name.prototype[p] === 'function') { // Static (non-private) class methods
                 obj[p] = class_name[p];
                 record[p] = class_name[p];
-            } else if (!(p in obj) &&
-                    p in class_name.prototype &&
-                        p[0] !== '_' &&
-                            typeof class_name.prototype[p] === 'function') { // Prototype (non-private) instance methods
+            } else if (!(p in obj) && p in class_name.prototype && p[0] !== '_' && typeof class_name.prototype[p] === 'function') { // Prototype (non-private) instance methods
                 obj[p] = class_name.prototype[p];
                 record[p] = class_name.prototype[p];
             }
