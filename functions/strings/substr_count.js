@@ -20,9 +20,8 @@ function substr_count (haystack, needle, offset, length) {
     while ((offset = haystack.indexOf(needle, offset+1)) != -1){
         if (length > 0 && (offset+needle.length) > length){
             return false;
-        } else{
-            cnt++;
         }
+        cnt++;
     }
 
     return cnt;
