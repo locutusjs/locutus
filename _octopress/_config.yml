@@ -33,10 +33,11 @@ destination: public
 plugins: plugins
 code_dir: downloads/code
 category_dir: categories
+category_title_prefix: "Category: "
 markdown: rdiscount
 pygments: false # default python pygments have been replaced by pygments.rb
 
-paginate: 100          # Posts per page on the blog index
+paginate: 1000          # Posts per page on the blog index
 pagination_dir: paginate  # Directory base for pagination URLs eg. /blog/page/2/
 recent_posts: 5       # Posts in the sidebar Recent Posts section
 excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
@@ -89,7 +90,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
+disqus_short_name: phpjs
 disqus_show_comment_count: false
 
 # Google Analytics
