@@ -27,8 +27,9 @@ bundle install
 ```
 
 ```shell
-# build
-rake generate
+# clean, build, preview
+git clean -fd
+rake build && rake generate && && rake preview
 ```
 
 ```shell
