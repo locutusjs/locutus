@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://kvz.github.com/phpjs
+url: http://kvz.github.com/phpjs/
 title: php.js
 subtitle: php functions in javascript
 author: phpjs.org
@@ -39,7 +39,7 @@ pygments: false # default python pygments have been replaced by pygments.rb
 
 paginate: 1000          # Posts per page on the blog index
 pagination_dir: paginate  # Directory base for pagination URLs eg. /blog/page/2/
-recent_posts: 5       # Posts in the sidebar Recent Posts section
+recent_posts: 15       # Posts in the sidebar Recent Posts section
 excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
 
 titlecase: false       # Converts page and post titles to titlecase
@@ -94,7 +94,7 @@ disqus_short_name: phpjs
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id: "UA-63083-7"
+google_analytics_tracking_id: UA-63083-7
 
 # Facebook Like
 facebook_like: true
