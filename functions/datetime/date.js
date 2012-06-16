@@ -184,7 +184,7 @@ function date (format, timestamp) {
         e: function () { // Timezone identifier; e.g. Atlantic/Azores, ...
             // The following works, but requires inclusion of the very large
             // timezone_abbreviations_list() function.
-/*              return this.date_default_timezone_get();
+/*              return that.date_default_timezone_get();
 */
             throw 'Not supported (see source code of date() for timezone on how to add support)';
         },
