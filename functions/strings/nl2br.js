@@ -15,7 +15,7 @@ function nl2br (str, is_xhtml) {
     // *     returns 2: '<br>\nOne<br>\nTwo<br>\n<br>\nThree<br>\n'
     // *     example 3: nl2br("\nOne\nTwo\n\nThree\n", true);
     // *     returns 3: '<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n'
-    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br ' + '/>' : '<br>'; // Adjust comment to avoid issue on phpjs.org display
 
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
 }
