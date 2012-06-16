@@ -243,7 +243,7 @@ function date (format, timestamp) {
 
         // Full Date/Time
         c: function () { // ISO-8601 date.
-            return 'Y-m-d\\Th:i:sP'.replace(formatChr, formatChrCb);
+            return 'Y-m-d\\TH:i:sP'.replace(formatChr, formatChrCb);
         },
         r: function () { // RFC 2822
             return 'D, d M Y H:i:s O'.replace(formatChr, formatChrCb);

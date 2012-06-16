@@ -9,6 +9,7 @@ function substr_count (haystack, needle, offset, length) {
     // *     returns 2: 0
     // *     example 3: substr_count('Kevin van Zonneveld', 'Z', 0, 10);
     // *     returns 3: false
+
     var pos = 0,
         cnt = 0;
 
