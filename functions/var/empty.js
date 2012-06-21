@@ -18,15 +18,21 @@ function empty (mixed_var) {
     // *     returns 4: true
     // *     example 5: empty({'aFunc' : function () { alert('humpty'); } });
     // *     returns 5: false
-    var key;
-
-    if (mixed_var === "" || mixed_var === 0 || mixed_var === "0" || mixed_var === null || mixed_var === false || typeof mixed_var === 'undefined') {
-        return true;
+    var undef, key, i, len;
+    var emptyValues = [undef, null, false, 0, "", "0"];
+    
+    for (i = 0, len = emptyValues.length; i < len; i++) {
+        if (mixed_var === emptyValues[i]) {
+            return true;
+        }
     }
 
-    if (typeof mixed_var == 'object') {
+    if (typeof mixed_var === "object") {
         for (key in mixed_var) {
+            // TODO: should we check for own properties only?
+            //if (mixed_var.hasOwnProperty(key)) {
             return false;
+            //}
         }
         return true;
     }
