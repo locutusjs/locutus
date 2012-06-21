@@ -102,6 +102,74 @@ function array () {
                 }
                 return this;
             };
+            e.walk = function (funcname, userdata) {var _ = __.method(this);
+                var ini, i = 0, kl = 0;
+                
+                try {
+                    if (typeof funcname === 'function') {
+                        for (i = 0, kl = _.keys.length; i < kl; i++) {
+                            if (arguments.length > 1) {
+                                funcname(_.values[i], _.keys[i], userdata);
+                            }
+                            else {
+                                funcname(_.values[i], _.keys[i]);
+                            }                            
+                        }
+                    }
+                    else if (typeof funcname === 'string') {
+                        this.php_js = this.php_js || {};
+                        this.php_js.ini = this.php_js.ini || {};
+                        ini = this.php_js.ini['phpjs.no-eval'];
+                        if (ini && (
+                            parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !== 'off')
+                        )) {
+                            if (arguments.length > 1) {
+                                for (i = 0, kl = _.keys.length; i < kl; i++) {
+                                    this.window[funcname](_.values[i], _.keys[i], userdata);
+                                }
+                            }
+                            else {
+                                for (i = 0, kl = _.keys.length; i < kl; i++) {
+                                    this.window[funcname](_.values[i], _.keys[i]);
+                                }
+                            }
+                        }
+                        else {
+                            if (arguments.length > 1) {
+                                for (i = 0, kl = _.keys.length; i < kl; i++) {
+                                    eval(funcname + '(_.values[i], _.keys[i], userdata)');
+                                }
+                            }
+                            else {
+                                for (i = 0, kl = _.keys.length; i < kl; i++) {
+                                    eval(funcname + '(_.values[i], _.keys[i])');
+                                }
+                            }
+                        }
+                    }
+                    else if (funcname && typeof funcname === 'object' && funcname.length === 2) {
+                        var obj = funcname[0], func = funcname[1];
+                        if (arguments.length > 1) {
+                            for (i = 0, kl = _.keys.length; i < kl; i++) {
+                                obj[func](_.values[i], _.keys[i], userdata);
+                            }
+                        }
+                        else {
+                            for (i = 0, kl = _.keys.length; i < kl; i++) {
+                                obj[func](_.values[i], _.keys[i]);
+                            }
+                        }            
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                catch (e) {
+                    return false;
+                }
+
+                return this;
+            };
             // Here we'll return actual arrays since most logical and practical for these functions to do this
             e.keys = function (search_value, argStrict) {var _ = __.method(this);
                 var pos, search = typeof search_value !== 'undefined',
