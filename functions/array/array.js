@@ -222,6 +222,14 @@ function array () {
                 }
                 return false;
             };
+            e.sum = function () {
+                var _ = __.method(this), sum = 0, i = 0, kl = _.keys.length;
+                while (i < kl) {
+                    sum += (_.values[i] * 1);
+                    i++;
+                }
+                return sum;
+            };
             // Experimental functions
             e.foreach = function (handler) {
                 var _ = __.method(this), i = 0, kl = _.keys.length;
