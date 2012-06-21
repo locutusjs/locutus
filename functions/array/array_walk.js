@@ -13,7 +13,10 @@ function array_walk (array, funcname, userdata) {
     // *     returns 3: true
     // *     example 4: array_walk ({40: 'My age', 50: 'My IQ'}, [window, 'prompt']);
     // *     returns 4: true
-    
+    // *     example 5: ini_set('phpjs.return_phpjs_arrays', 'on'); 
+    // *     example 5: var arr = array({40: 'My age'}, {50: 'My IQ'});
+    // *     example 5: array_walk(arr, [window, 'prompt']);
+    // *     returns 5: [object Object]    
     var key, value, ini;
 
     if (!array || typeof array !== 'object') {
