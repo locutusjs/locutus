@@ -24,7 +24,8 @@ function parse_str (str, array) {
     // *     results 2: arr == { str_a: "Jack and Jill didn't see the well." }
     // *     example 3: var abc = {3:'a'}; 
     // *     example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5');
-    // *     example 3: JSON.stringify(abc) === '{"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}';
+    // *     results 3: JSON.stringify(abc) === '{"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}';
+    
 
     var strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&'),
         sal = strArr.length,
