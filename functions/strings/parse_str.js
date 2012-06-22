@@ -7,11 +7,13 @@ function parse_str (str, array) {
     // +   reimplemented by: stag019
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: stag019
-    // -    depends on: urldecode
     // +   input by: Dreamer
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-    // %        note 1: When no argument is specified, will put variables in global scope.
     // +   bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
+    // +   input by: Zaide (http://zaidesthings.com/)
+    // +   input by: David Pesta (http://davidpesta.com/)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // %        note 1: When no argument is specified, will put variables in global scope.
     // %        note 1: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c
     // *     example 1: var arr = {};
     // *     example 1: parse_str('first=foo&second=bar', arr);
@@ -19,44 +21,47 @@ function parse_str (str, array) {
     // *     example 2: var arr = {};
     // *     example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr);
     // *     results 2: arr == { str_a: "Jack and Jill didn't see the well." }
-    var glue1 = '=',
-        glue2 = '&',
-        array2 = String(str).replace(/^&?([\s\S]*?)&?$/, '$1').split(glue2),
-        i, j, chr, tmp, key, value, bracket, keys, evalStr, that = this,
+    // *     example 3: var abc = {3:'a'}; 
+    // *     example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5');
+    // *     example 3: JSON.stringify(abc) === '{"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}';
+
+    var strArr = (str + '').replace(/^&/, '').replace(/&$/, '').split('&'),
+        sal = strArr.length,
+        i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value, 
+        postLeftBracketPos, keys, keysLen,
         fixStr = function (str) {
-            return that.urldecode(str).replace(/([\\"'])/g, '\\$1').replace(/\n/g, '\\n').replace(/\r/g, '\\r');
+            return decodeURIComponent(str.replace(/\+/g, '%20'));
         };
 
     if (!array) {
         array = this.window;
     }
 
-    for (i = 0; i < array2.length; i++) {
-        tmp = array2[i].split(glue1);
-        if (tmp.length < 2) {
-            tmp = [tmp, ''];
-        }
-        key = fixStr(tmp.shift());
-        value = fixStr(tmp.join(glue1));
+    for (i = 0; i < sal; i++) {
+        tmp = strArr[i].split('=');
+        key = fixStr(tmp[0]);
+		value = (tmp.length < 2) ? '' : fixStr(tmp[1]);
+        
         while (key.charAt(0) === ' ') {
-            key = key.substr(1);
+            key = key.slice(1);
         }
-        if (key.indexOf('\0') !== -1) {
-            key = key.substr(0, key.indexOf('\0'));
+        if (key.indexOf('\x00') > -1) {
+            key = key.slice(0, key.indexOf('\x00'));
         }
         if (key && key.charAt(0) !== '[') {
             keys = [];
-            bracket = 0;
+            postLeftBracketPos = 0;
             for (j = 0; j < key.length; j++) {
-                if (key.charAt(j) === '[' && !bracket) {
-                    bracket = j + 1;
-                } else if (key.charAt(j) === ']') {
-                    if (bracket) {
+                if (key.charAt(j) === '[' && !postLeftBracketPos) {
+                    postLeftBracketPos = j + 1;
+                }
+                else if (key.charAt(j) === ']') {
+                    if (postLeftBracketPos) {
                         if (!keys.length) {
-                            keys.push(key.substr(0, bracket - 1));
+                            keys.push(key.slice(0, postLeftBracketPos - 1));
                         }
-                        keys.push(key.substr(bracket, j - bracket));
-                        bracket = 0;
+                        keys.push(key.substr(postLeftBracketPos, j - postLeftBracketPos));
+                        postLeftBracketPos = 0;
                         if (key.charAt(j + 1) !== '[') {
                             break;
                         }
@@ -75,21 +80,29 @@ function parse_str (str, array) {
                     break;
                 }
             }
-            evalStr = 'array';
-            for (j = 0; j < keys.length; j++) {
-                key = keys[j];
+            
+            obj = array;
+            for (j = 0, keysLen = keys.length; j < keysLen; j++) {
+                key = keys[j].replace(/^['"]/, '').replace(/['"]$/, '');
+                lastIter = j !== keys.length - 1;
+                lastObj = obj;
                 if ((key !== '' && key !== ' ') || j === 0) {
-                    key = "'" + key + "'";
-                } else {
-                    key = eval(evalStr + '.push([]);') - 1;
+                    if (obj[key] === undef) {
+                        obj[key] = {};
+                    }
+                    obj = obj[key];
                 }
-                evalStr += '[' + key + ']';
-                if (j !== keys.length - 1 && eval('typeof ' + evalStr) === 'undefined') {
-                    eval(evalStr + ' = [];');
+                else { // To insert new dimension
+                    ct = -1;
+                    for (p in obj) {
+                        if (+p > ct && p.match(/^\d+$/g)) {
+                            ct = +p;
+                        }
+                    }
+                    key = ct + 1;
                 }
-            }
-            evalStr += " = '" + value + "';\n";
-            eval(evalStr);
+            } 
+            lastObj[key] = value;
         }
     }
 }
