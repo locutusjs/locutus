@@ -12,6 +12,7 @@ function parse_str (str, array) {
     // +   bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
     // +   input by: Zaide (http://zaidesthings.com/)
     // +   input by: David Pesta (http://davidpesta.com/)
+    // +   input by: jeicquest
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: When no argument is specified, will put variables in global scope.
     // %        note 1: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c
