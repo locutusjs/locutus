@@ -26,7 +26,7 @@ function parse_str (str, array) {
     // *     example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5');
     // *     example 3: JSON.stringify(abc) === '{"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}';
 
-    var strArr = (str + '').replace(/^&/, '').replace(/&$/, '').split('&'),
+    var strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&'),
         sal = strArr.length,
         i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value, 
         postLeftBracketPos, keys, keysLen,
@@ -96,8 +96,10 @@ function parse_str (str, array) {
                 else { // To insert new dimension
                     ct = -1;
                     for (p in obj) {
-                        if (+p > ct && p.match(/^\d+$/g)) {
-                            ct = +p;
+                        if (obj.hasOwnProperty(p)) {
+                            if (+p > ct && p.match(/^\d+$/g)) {
+                                ct = +p;
+                            }
                         }
                     }
                     key = ct + 1;
