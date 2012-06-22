@@ -12,7 +12,6 @@ function serialize (mixed_value) {
     // +   improved by: Le Torbi (http://www.letorbi.de/)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net/)
     // +   bugfixed by: Ben (http://benblume.co.uk/)
-    // -    depends on: utf8_encode
     // %          note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
     // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
