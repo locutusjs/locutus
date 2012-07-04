@@ -225,7 +225,9 @@ function array () {
             e.sum = function () {
                 var _ = __.method(this), sum = 0, i = 0, kl = _.keys.length;
                 while (i < kl) {
-                    sum += (_.values[i] * 1);
+                    if (!isNaN(parseFloat(_.values[i]))) {
+                        sum += parseFloat(_.values[i]);
+                    }
                     i++;
                 }
                 return sum;
