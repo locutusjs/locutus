@@ -7,6 +7,7 @@ function strtotime (str, now) {
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Wagner B. Soares
     // +   bugfixed by: Artur Tchernychev
+    // +   input by: wookie
     // %        note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
     // *     example 1: strtotime('+1 day', 1129633200);
     // *     returns 1: 1129719600
@@ -18,8 +19,8 @@ function strtotime (str, now) {
     // *     returns 4: 1241418600
     var i, l, match, s, parse = '';
 
-    str = str.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
-    str = str.replace(/[\t\r\n]/g, ''); // unecessary chars
+    str = (str + '').replace(/\s{2,}|^\s|\s$/g, ' ').replace(/[\t\r\n]/g, '');; // unecessary spaces and chars
+
     if (str === 'now') {
         return now === null || isNaN(now) ? new Date().getTime() / 1000 | 0 : now | 0;
     } else if (!isNaN(parse = Date.parse(str))) {
