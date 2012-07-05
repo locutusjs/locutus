@@ -31,6 +31,7 @@ function date (format, timestamp) {
     // +   bugfixed by: omid (http://phpjs.org/functions/380:380#comment_137122)
     // +      input by: Martin
     // +      input by: Alex Wilson
+    // +   bugfixed by: Chris (http://www.devotis.nl/)
     // %        note 1: Uses global: php_js to store the default timezone
     // %        note 2: Although the function potentially allows timezone info (see notes), it currently does not set
     // %        note 2: per a timezone specified by date_default_timezone_set(). Implementers might use
@@ -134,7 +135,7 @@ function date (format, timestamp) {
             var n = f.n(),
                 W = f.W(),
                 Y = f.Y();
-            return Y + (n === 12 && W < 9 ? -1 : n === 1 && W > 9);
+            return Y + (n === 12 && W < 9 ? 1 : -(n === 1 && W > 9));
         },
         Y: function () { // Full year; e.g. 1980...2010
             return jsdate.getFullYear();
