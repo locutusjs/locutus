@@ -14,7 +14,7 @@ function unserialize (data) {
     // +     improved by: Le Torbi
     // +     input by: kilops
     // +     bugfixed by: Brett Zamir (http://brett-zamir.me)
-    // -      depends on: utf8_decode
+    // +      input by: Jaroslaw Czarniak
     // %            note: We feel the main purpose of this function should be to ease the transport of data between php & js
     // %            note: Aiming for PHP-compatibility, we have to translate objects to arrays
     // *       example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
@@ -120,10 +120,6 @@ function unserialize (data) {
                     if (chrs != parseInt(stringlength, 10) && chrs != readdata.length) {
                         error('SyntaxError', 'String length mismatch');
                     }
-
-                    // Length was calculated on an utf-8 encoded string
-                    // so wait with decoding
-                    readdata = that.utf8_decode(readdata);
                     break;
                 case 'a':
                     readdata = {};
