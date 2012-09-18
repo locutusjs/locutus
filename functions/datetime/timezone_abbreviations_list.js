@@ -2429,7 +2429,7 @@ function timezone_abbreviations_list () {
     }
     // END STATIC
 
-    var dtz = this.date_default_timezone_get();
+    //var dtz = this.date_default_timezone_get();
     for (i = 0, len = php_js_shared.tz_abbrs.length; i < len; i++) {
         indice = php_js_shared.tz_abbreviations[i];
         curr = php_js_shared.tz_abbrs[i];
@@ -2445,10 +2445,10 @@ function timezone_abbreviations_list () {
                 'offset': tzo,
                 'timezone_id': timezone_id
             });
-            if (dtz === timezone_id) { // Apply this within date functions
-                this.php_js.currentTimezoneOffset = tzo;
-                this.php_js.currentTimezoneDST = dst;
-            }
+            // if (dtz === timezone_id) { // Apply this within date functions
+            //     this.php_js.currentTimezoneOffset = tzo;
+            //     this.php_js.currentTimezoneDST = dst;
+            // }
         }
     }
 
