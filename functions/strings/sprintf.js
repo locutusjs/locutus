@@ -8,13 +8,14 @@ function sprintf () {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Dj
     // *     example 1: sprintf("%01.2f", 123.1);
     // *     returns 1: 123.10
     // *     example 2: sprintf("[%10s]", 'monkey');
     // *     returns 2: '[    monkey]'
     // *     example 3: sprintf("[%'#10s]", 'monkey');
     // *     returns 3: '[####monkey]'
-    var regex = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
+    var regex = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g;
     var a = arguments,
         i = 0,
         format = a[i++];
@@ -162,7 +163,7 @@ function sprintf () {
             return justify(value, prefix, leftJustify, minWidth, zeroPad);
         case 'e':
         case 'E':
-        case 'f':
+        case 'f': // Should handle locales (as per setlocale)
         case 'F':
         case 'g':
         case 'G':
