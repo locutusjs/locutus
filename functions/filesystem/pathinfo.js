@@ -75,13 +75,14 @@ function pathinfo (path, options) {
     var __getExt = function (path) {
         var str = path + '';
         var dotP = str.lastIndexOf('.') + 1;
-        return dotP ? str.substr(dotP) : '';
+        return !dotP ? false : dotP !== str.length ? str.substr(dotP) : '';
     };
 
 
     // Gather path infos
     if (options & OPTS.PATHINFO_DIRNAME) {
-        tmp_arr.dirname = this.dirname(path);
+        var dirname = this.dirname(path);
+        tmp_arr.dirname = dirname === path ? '.' : dirname;
     }
 
     if (options & OPTS.PATHINFO_BASENAME) {
@@ -98,7 +99,9 @@ function pathinfo (path, options) {
         if (false === have_extension) {
             have_extension = __getExt(have_basename);
         }
-        tmp_arr.extension = have_extension;
+        if (false !== have_extension) {
+            tmp_arr.extension = have_extension;            
+        }
     }
 
     if (options & OPTS.PATHINFO_FILENAME) {
@@ -109,7 +112,7 @@ function pathinfo (path, options) {
             have_extension = __getExt(have_basename);
         }
         if (false === have_filename) {
-            have_filename = have_basename.substr(0, (have_basename.length - have_extension.length) - 1);
+            have_filename = have_basename.slice(0, have_basename.length - (have_extension ? have_extension.length + 1 : have_extension === false ? 0 : 1));
         }
 
         tmp_arr.filename = have_filename;
