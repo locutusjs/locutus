@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/file_get_contents
+permalink: /phpjs/functions/file_get_contents
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's file_get_contents

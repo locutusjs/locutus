@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/str_word_count
+permalink: /phpjs/functions/str_word_count
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's str_word_count

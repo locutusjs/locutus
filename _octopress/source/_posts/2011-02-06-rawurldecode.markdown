@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/rawurldecode
+permalink: /phpjs/functions/rawurldecode
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's rawurldecode

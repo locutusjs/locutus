@@ -5,7 +5,7 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/serialize
+permalink: /phpjs/functions/serialize
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's serialize

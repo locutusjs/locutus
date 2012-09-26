@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/quoted_printable_decode
+permalink: /phpjs/functions/quoted_printable_decode
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's quoted_printable_decode

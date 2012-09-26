@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/ini_alter
+permalink: /phpjs/functions/ini_alter
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's ini_alter

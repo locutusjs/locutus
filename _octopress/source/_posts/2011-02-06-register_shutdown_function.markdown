@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/register_shutdown_function
+permalink: /phpjs/functions/register_shutdown_function
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's register_shutdown_function

@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/php_ini_loaded_file
+permalink: /phpjs/functions/php_ini_loaded_file
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's php_ini_loaded_file

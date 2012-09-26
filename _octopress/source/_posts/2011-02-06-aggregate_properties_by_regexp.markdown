@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/aggregate_properties_by_regexp
+permalink: /phpjs/functions/aggregate_properties_by_regexp
 categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregate_properties_by_regexp

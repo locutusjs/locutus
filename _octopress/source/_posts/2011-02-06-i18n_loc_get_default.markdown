@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/i18n_loc_get_default
+permalink: /phpjs/functions/i18n_loc_get_default
 categories: [ i18n, functions ]
 ---
 A JavaScript equivalent of PHP's i18n_loc_get_default

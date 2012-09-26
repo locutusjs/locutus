@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/get_class_methods
+permalink: /phpjs/functions/get_class_methods
 categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's get_class_methods

@@ -5,7 +5,7 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/call_user_func
+permalink: /phpjs/functions/call_user_func
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's call_user_func

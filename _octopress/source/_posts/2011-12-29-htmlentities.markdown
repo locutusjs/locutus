@@ -5,7 +5,7 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/htmlentities
+permalink: /phpjs/functions/htmlentities
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's htmlentities

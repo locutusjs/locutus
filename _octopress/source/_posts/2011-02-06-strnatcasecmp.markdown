@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/strnatcasecmp
+permalink: /phpjs/functions/strnatcasecmp
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strnatcasecmp

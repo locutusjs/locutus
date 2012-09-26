@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/error_reporting
+permalink: /phpjs/functions/error_reporting
 categories: [ errorfunc, functions ]
 ---
 A JavaScript equivalent of PHP's error_reporting

@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/get_defined_functions
+permalink: /phpjs/functions/get_defined_functions
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's get_defined_functions

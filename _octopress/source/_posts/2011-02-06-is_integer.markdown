@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/is_integer
+permalink: /phpjs/functions/is_integer
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_integer

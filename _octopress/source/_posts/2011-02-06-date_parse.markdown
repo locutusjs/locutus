@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/date_parse
+permalink: /phpjs/functions/date_parse
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's date_parse

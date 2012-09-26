@@ -5,7 +5,7 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/str_repeat
+permalink: /phpjs/functions/str_repeat
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's str_repeat

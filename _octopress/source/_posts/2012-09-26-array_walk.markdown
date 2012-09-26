@@ -5,7 +5,7 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/array_walk
+permalink: /phpjs/functions/array_walk
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_walk

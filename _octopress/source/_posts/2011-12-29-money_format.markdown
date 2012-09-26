@@ -5,7 +5,7 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/money_format
+permalink: /phpjs/functions/money_format
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's money_format

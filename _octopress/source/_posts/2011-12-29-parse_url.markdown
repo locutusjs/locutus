@@ -5,7 +5,7 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/parse_url
+permalink: /phpjs/functions/parse_url
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's parse_url

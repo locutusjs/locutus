@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/realpath
+permalink: /phpjs/functions/realpath
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's realpath

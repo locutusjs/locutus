@@ -5,7 +5,7 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/array_intersect_key
+permalink: /phpjs/functions/array_intersect_key
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_intersect_key

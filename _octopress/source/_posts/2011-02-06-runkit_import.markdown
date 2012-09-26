@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/runkit_import
+permalink: /phpjs/functions/runkit_import
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_import

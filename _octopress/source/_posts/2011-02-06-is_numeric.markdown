@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/is_numeric
+permalink: /phpjs/functions/is_numeric
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_numeric

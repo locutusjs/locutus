@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/htmlspecialchars_decode
+permalink: /phpjs/functions/htmlspecialchars_decode
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's htmlspecialchars_decode

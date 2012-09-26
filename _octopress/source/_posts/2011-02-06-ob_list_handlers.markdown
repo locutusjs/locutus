@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/ob_list_handlers
+permalink: /phpjs/functions/ob_list_handlers
 categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_list_handlers

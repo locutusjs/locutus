@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/date_default_timezone_get
+permalink: /phpjs/functions/date_default_timezone_get
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's date_default_timezone_get

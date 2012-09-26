@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/json_decode
+permalink: /phpjs/functions/json_decode
 categories: [ json, functions ]
 ---
 A JavaScript equivalent of PHP's json_decode

@@ -5,7 +5,7 @@ date: 2011-03-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/convert_cyr_string
+permalink: /phpjs/functions/convert_cyr_string
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's convert_cyr_string

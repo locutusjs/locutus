@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/runkit_method_remove
+permalink: /phpjs/functions/runkit_method_remove
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_method_remove

@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/base_convert
+permalink: /phpjs/functions/base_convert
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's base_convert

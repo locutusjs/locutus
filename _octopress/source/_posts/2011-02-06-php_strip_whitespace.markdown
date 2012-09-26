@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/php_strip_whitespace
+permalink: /phpjs/functions/php_strip_whitespace
 categories: [ misc, functions ]
 ---
 A JavaScript equivalent of PHP's php_strip_whitespace

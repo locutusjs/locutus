@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/xdiff_string_diff
+permalink: /phpjs/functions/xdiff_string_diff
 categories: [ xdiff, functions ]
 ---
 A JavaScript equivalent of PHP's xdiff_string_diff

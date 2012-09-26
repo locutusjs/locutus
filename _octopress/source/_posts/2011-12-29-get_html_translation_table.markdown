@@ -5,7 +5,7 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/get_html_translation_table
+permalink: /phpjs/functions/get_html_translation_table
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's get_html_translation_table

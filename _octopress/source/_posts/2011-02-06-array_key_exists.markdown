@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/array_key_exists
+permalink: /phpjs/functions/array_key_exists
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_key_exists
