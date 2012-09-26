@@ -52,6 +52,7 @@ default_asides:
 - custom/asides/category_cloud.html 
 - asides/github.html
 - asides/twitter.html
+- custom/asides/banners.html
 #-asides/delicious.html
 #-asides/pinboard.html
 #-asides/googleplus.html
