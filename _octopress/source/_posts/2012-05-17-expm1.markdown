@@ -1,0 +1,39 @@
+---
+layout: post
+title: "JavaScript expm1 function"
+date: 2012-05-17 18:49
+comments: true
+sharing: true
+footer: true
+permalink: functions/expm1
+categories: [functions, math ]
+---
+A JavaScript equivalent of PHP's expm1
+<!-- more -->
+{% codeblock math/expm1.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/expm1.js raw on github %}
+function expm1 (x) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brett-zamir.me)
+    // %          note 1: Precision 'n' can be adjusted as desired
+    // *     example 1: expm1(1e-15);
+    // *     returns 1: 1.0000000000000007e-15
+    var ret = 0,
+        n = 50; // degree of precision
+    var factorial = function factorial(n) {
+        if ((n === 0) || (n === 1)) {
+            return 1;
+        } else {
+            var result = (n * factorial(n - 1));
+            return result;
+        }
+    };
+    for (var i = 1; i < n; i++) {
+        ret += Math.pow(x, i) / factorial(i);
+    }
+    return ret;
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/expm1.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/expm1.js">edit on github</a></li>
+</ul>

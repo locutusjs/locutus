@@ -1,0 +1,23 @@
+---
+layout: post
+title: "JavaScript lcg_value function"
+date: 2012-05-17 18:49
+comments: true
+sharing: true
+footer: true
+permalink: functions/lcg_value
+categories: [functions, math ]
+---
+A JavaScript equivalent of PHP's lcg_value
+<!-- more -->
+{% codeblock math/lcg_value.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/lcg_value.js raw on github %}
+function lcg_value () {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Onno Marsman
+    return Math.random();
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/lcg_value.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/lcg_value.js">edit on github</a></li>
+</ul>

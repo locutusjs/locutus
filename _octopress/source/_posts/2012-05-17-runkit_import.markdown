@@ -1,0 +1,35 @@
+---
+layout: post
+title: "JavaScript runkit_import function"
+date: 2012-05-17 18:49
+comments: true
+sharing: true
+footer: true
+permalink: functions/runkit_import
+categories: [functions, runkit ]
+---
+A JavaScript equivalent of PHP's runkit_import
+<!-- more -->
+{% codeblock runkit/runkit_import.js lang:js https://raw.github.com/kvz/phpjs/master/functions/runkit/runkit_import.js raw on github %}
+function runkit_import (file, flags) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brett-zamir.me)
+    // -    depends on: file_get_contents
+    // %        note 1: does not return an associative array as in PHP and will evaluate all variables, not only those in a function or class
+    // %        note 2: Implement instead with include?
+    // *     example 1: runkit_import('http://example.com/somefile.js');
+    // *     returns 1: undefined
+    if (flags) {
+        // RUNKIT_IMPORT_FUNCTIONS, RUNKIT_IMPORT_CLASS_METHODS, RUNKIT_IMPORT_CLASS_CONSTS,
+        // RUNKIT_IMPORT_CLASS_PROPS, RUNKIT_IMPORT_CLASSES, RUNKIT_IMPORT_OVERRIDE
+        // CLASSKIT_AGGREGATE_OVERRIDE ?
+        throw 'Flags not supported for runkit_import';
+    }
+
+    eval(this.file_get_contents(file));
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_import.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_import.js">edit on github</a></li>
+</ul>
