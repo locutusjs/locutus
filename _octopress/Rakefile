@@ -27,6 +27,64 @@ new_page_ext    = "markdown"  # default new page file extension when using the n
 server_port     = "4000"      # port for preview server eg. localhost:4000
 
 
+desc "Build jekyll source by php.js source"
+task :build do
+  raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
+  octodir = Dir.pwd()
+  phpjsdir = "#{octodir}/.."
+  Dir.chdir("../functions")
+  Dir.glob("*/").each { |dir|
+    category = dir.gsub /\//, ''
+    next if File.file? dir or category[0] == '_'
+    Dir.chdir(dir)
+    Dir.glob("*.js").each { |file|
+      function = file.gsub /\.js$/, ''
+      next if function[0] == '_'
+
+      mtime = File.mtime(file)
+      mdate = mtime.strftime('%Y-%m-%d %H:%M')
+      ctime = File.ctime(file)
+      cdate = mtime.strftime('%Y-%m-%d')
+      page_dir = "#{octodir}/#{source_dir}/#{posts_dir}"
+      page_file = "#{page_dir}/#{cdate}-#{function}.#{new_post_ext}"
+      mkdir_p page_dir
+
+      puts "Creating page: #{page_file}"
+      File.unlink(page_file) if File.file?(page_file)
+      open(page_file, 'w') do |page|
+        page.puts "---"
+        page.puts "layout: post"
+        page.puts "title: \"JavaScript #{function} function\""
+        page.puts "date: #{mdate}"
+        page.puts "comments: true"
+        page.puts "sharing: true"
+        page.puts "footer: true"
+        page.puts "permalink: functions/#{function}"
+        page.puts "categories: [ #{category}, functions ]"
+        page.puts "---"
+        page.puts "A JavaScript equivalent of PHP's #{function}"
+        page.puts "<!-- more -->"
+
+        codefile = File.open("#{phpjsdir}/functions/#{category}/#{function}.js", "r")
+        contents = codefile.read
+        page.puts "{% codeblock #{category}/#{function}.js lang:js https://raw.github.com/kvz/phpjs/master/functions/#{category}/#{function}.js raw on github %}"
+        page.puts "#{contents}"
+        page.puts "{% endcodeblock %}"
+        page.puts "<ul>"
+        page.puts " <li><a href=\"https://github.com/kvz/phpjs/blob/master/functions/#{category}/#{function}.js\">view on github</a></li>"
+        page.puts " <li><a href=\"https://github.com/kvz/phpjs/edit/master/functions/#{category}/#{function}.js\">edit on github</a></li>"
+        page.puts "</ul>"
+      end
+
+      # break
+    }
+    Dir.chdir("..")
+    # break
+  }
+
+  Dir.chdir(octodir)
+end
+
 desc "Initial setup for Octopress: copies the default theme into the path of Jekyll's generator. Rake install defaults to rake install[classic] to install a different theme run rake install[some_theme_name]"
 task :install, :theme do |t, args|
   if File.directory?(source_dir) || File.directory?("sass")
@@ -299,7 +357,7 @@ task :setup_github_pages, :repo do |t, args|
   if args.repo
     repo_url = args.repo
   else
-    puts "Enter the read/write url for your repository" 
+    puts "Enter the read/write url for your repository"
     puts "(For example, 'git@github.com:your_username/your_username.github.com)"
     repo_url = get_stdin("Repository url: ")
   end
