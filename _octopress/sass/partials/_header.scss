@@ -1,18 +1,53 @@
 body > header {
-  background: $header-bg;
+  padding-left:0;
   h1 {
     display: inline-block;
     margin: 0;
+    font-size: 2.7em;
+    padding-left: 0.1em;
+    text-shadow: rgba(0, 0, 0, 0.8) 0 0 8px;
+    float: left;
     a, a:visited, a:hover {
       color: $title_color;
       text-decoration: none;
     }
   }
+  div{
+    float: left;
+    font-family: $header-title-font-family;
+    color: #FFFFFF;
+    span{
+      color: blue;
+    }
+  }
+  div#logo{
+    margin-top: 0.58em;
+    font-size: 1.9em;
+    color: #f9f9f9;
+  }
+  div#logoText{
+    color: #f1f1f1;
+    letter-spacing: 1px;
+    margin: -1px 0 0 -6px;
+  }
+  div#logoRight{
+    margin-left: -6px;
+  }
+  div#logoLeft, #logoRight{
+    color: #1b88ff;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: normal;
+    font-size: 1.2em;
+    margin-left: -8px;
+  }
   h2 {
-    margin: .2em 0 0;
+    margin: -10px 0 0 0;
     @extend .sans;
-    font-size: 1em;
+    font-size: 0.6em;
     color: $subtitle-color;
     font-weight: normal;
+    letter-spacing: 1px;
+    clear: both;
+    float: left;
   }
 }

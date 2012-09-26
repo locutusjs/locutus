@@ -1,10 +1,17 @@
+
+@font-face {
+  font-family: "League";
+  src: url('/font/LeagueGothic.otf');
+}
+
 $blockquote: $type-border !default;
-$sans: "PT Sans", "Helvetica Neue", Arial, sans-serif !default;
-$serif: "PT Serif", Georgia, Times, "Times New Roman", serif !default;
+$sans: "Lato", sans-serif;
+$serif: "Lato", sans-serif;
 $mono: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace !default;
-$heading-font-family: "PT Serif", "Georgia", "Helvetica Neue", Arial, sans-serif !default;
-$header-title-font-family: $heading-font-family !default;
+$heading-font-family: 'Lato', sans-serif;
+$header-title-font-family: "League", Helvetica, Arial, sans-serif;
 $header-subtitle-font-family: $heading-font-family !default;
+
 
 // Fonts
 .heading {
@@ -29,16 +36,28 @@ body > header h2 {
 body {
   line-height: 1.5em;
   color: $text-color;
+  font-size: 1em;
   @extend .serif;
 }
+
 h1 {
-  font-size: 2.2em;
+  font-size: 1.8em;
   line-height: 1.2em;
 }
 
+h1.external{
+  font-style: italic;
+}
+
+h1 span{
+  font-weight: normal;
+  font-style: normal;
+  color: #E0841B;
+}
+
 @media only screen and (min-width: 992px) {
-  body { font-size: 1.15em; }
-  h1 { font-size: 2.6em; line-height: 1.2em; }
+  body { font-size: 1em; }
+  h1 { font-size: 1.8em; line-height: 1.2em; }
 }
 
 #{headings()}{
@@ -62,6 +81,11 @@ h5, section h4, section section h3 {
 h6, section h5, section section h4, section section section h3 {
   font-size: .8em;
 }
+
+article h2, article h3, article header h1{
+  font-weight: normal;
+}
+
 p, blockquote, ul, ol { margin-bottom: 1.5em; }
 
 ul { list-style-type: disc;
@@ -107,9 +131,10 @@ big { font-size: 1.2em; }
 
 blockquote {
   $bq-margin: 1.2em;
+  color: #555555;
   font-style: italic;
   position: relative;
-  font-size: 1.2em;
+  font-size: 1em;
   line-height: 1.5em;
   padding-left: 1em;
   border-left: 4px solid rgba($text-color-light, .5);

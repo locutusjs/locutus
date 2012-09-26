@@ -5,12 +5,10 @@
     font-size: 13px;
     line-height: 1.45em;
     @if $solarized == light {
-      background: lighten($base03, 1) $noise-bg !important;
       border-right: 1px solid darken($base02, 2) !important;
       @include box-shadow(lighten($base03, 2) -1px 0 inset);
       text-shadow: lighten($base02, 2) 0 -1px;
     } @else {
-      background: $base02 $noise-bg !important;
       border-right: 1px solid darken($base03, 2) !important;
       @include box-shadow(lighten($base02, 2) -1px 0 inset);
       text-shadow: darken($base02, 10) 0 -1px;
@@ -47,11 +45,10 @@ html .gist .gist-file {
    color: $base01;
    font-size: .7em !important;
    @if $solarized == light {
-     background: lighten($base03, 2) $noise-bg;
      border: 1px solid $pre-border !important;
      border-top: 1px solid lighten($base03, 2) !important;
    } @else {
-     background: $base02 $noise-bg;
+     background: $base02;
    }
    @extend .sans;
    line-height: 1.5em;
@@ -73,7 +70,7 @@ html .gist .gist-file {
   }
 }
 pre {
-  background: $pre-bg $noise-bg;
+  background: $pre-bg;
   @include border-radius(.4em);
   @extend .mono;
   border: 1px solid $pre-border;
@@ -115,7 +112,7 @@ p, li {
   padding: .8em !important;
   overflow-x: auto;
   line-height: 1.45em;
-  background: $base03 $noise-bg !important;
+  background: $base03 !important;
   color: $base1 !important;
   span { color: $base1 !important; }
   span { font-style: normal !important; font-weight: normal !important; }

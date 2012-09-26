@@ -1,11 +1,18 @@
 .side-shadow-border {
   @include box-shadow(lighten($sidebar-bg, 5) 0 1px);
 }
+
 aside.sidebar {
   overflow: hidden;
   color: $sidebar-color;
   text-shadow: lighten($sidebar-bg, 8) 0 1px;
-  a { @extend .force-wrap; }
+  -moz-border-radius-topright: 0.4em;
+  -webkit-border-radius: 0 0.4em 0 0;
+  border-radius: 0 0.4em 0 0;
+  a { 
+    @extend .force-wrap; 
+    text-decoration: none; 
+  }
   section {
     @extend .sans;
     font-size: .8em;
@@ -15,11 +22,18 @@ aside.sidebar {
       margin: 1.5em 0 0;
       padding-bottom: .2em;
       border-bottom: 1px solid $sidebar-border;
+      letter-spacing: 0.1em;
       @extend .side-shadow-border;
       + p {
         padding-top: .4em;
       }
     }
+  }
+  section.about{
+    color: #888888;
+    font-size: 1em !important;
+    font-style:italic;
+    margin-bottom: 2em;
   }
   img {
     @extend .flex-content;
@@ -55,6 +69,11 @@ aside.sidebar {
     color: $sidebar-link-color-subdued-hover;
   }
 }
+ul#gh_repos > li > a{
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.4em;
+}
 
 @media only screen and (min-width: 768px) {
   .toggle-sidebar {
@@ -66,6 +85,9 @@ aside.sidebar {
     width: 9px;
     cursor: pointer;
     &:hover {
+      -moz-border-radius: 0 0.4em 0 0;
+      -webkit-border-radius: 0 0.4em 0 0;
+      border-radius: 0 0.4em 0 0;
       background: mix($sidebar-border, $sidebar-bg);
       @include background(linear-gradient(left, rgba($sidebar-border, .5), rgba($sidebar-border, 0)));
     }
@@ -77,7 +99,7 @@ aside.sidebar {
       padding-bottom: .15em;
       @include border-bottom-right-radius(.3em);
       text-align: center;
-      background: $main-bg $noise-bg;
+      background: $main-bg;
       border-bottom: 1px solid $sidebar-border;
       border-right: 1px solid $sidebar-border;
       content: "\00BB";

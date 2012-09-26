@@ -1,9 +1,17 @@
 {% unless page.no_header %}
   <header>
     {% if index %}
-      <h1 class="entry-title"><a href="{{ root_url }}{{ post.url }}">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</a></h1>
+      {% if post.external-url %}<!-- This defines how Octopress will use posts with external-url. -->
+        <h1 class="entry-title external"><a href="{{ post.external-url }}">{% if site.titlecase %}{{ post.title | titlecase }} <span>&rArr;</span>{% else %}{{ post.title }}{% endif %}</a></h1>
+        {% else %}<!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="{{ root_url }}{{ post.url }}">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</a></h1>
+      {% endif %}
     {% else %}
-      <h1 class="entry-title">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</h1>
+      {% if page.external-url %}
+        <h1 class="entry-title external"><a href="{{ page.external-url }}">{% if site.titlecase %}{{ page.title | titlecase }} <span>&rArr;</span>{% else %}{{ page.title }}{% endif %}</a></h1>
+        {% else %}
+        <h1 class="entry-title">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</h1>
+      {% endif %}
     {% endif %}
     {% unless page.meta == false %}
       <p class="meta">
