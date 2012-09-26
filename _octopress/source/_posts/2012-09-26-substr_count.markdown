@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "JavaScript substr_count function"
-date: 2012-09-26 14:27
+date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/substr_count
+permalink: /phpjs/functions/substr_count
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's substr_count

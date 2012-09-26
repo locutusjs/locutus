@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "JavaScript strtotime function"
-date: 2012-09-26 14:27
+date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/strtotime
+permalink: /phpjs/functions/strtotime
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's strtotime

@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "JavaScript nl2br function"
-date: 2012-09-26 14:27
+date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/nl2br
+permalink: /phpjs/functions/nl2br
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's nl2br

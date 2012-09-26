@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "JavaScript var_export function"
-date: 2012-09-26 14:27
+date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/var_export
+permalink: /phpjs/functions/var_export
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's var_export

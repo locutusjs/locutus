@@ -1,0 +1,28 @@
+---
+layout: post
+title: "JavaScript is_real function"
+date: 2011-02-06 12:00:00
+comments: true
+sharing: true
+footer: true
+permalink: /phpjs/functions/is_real
+categories: [ var, functions ]
+---
+A JavaScript equivalent of PHP's is_real
+<!-- more -->
+{% codeblock var/is_real.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_real.js raw on github %}
+function is_real (mixed_var) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brett-zamir.me)
+    //  -   depends on: is_float
+    // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+    // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
+    // *     example 1: is_double(186.31);
+    // *     returns 1: true
+    return this.is_float(mixed_var);
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/is_real.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/is_real.js">edit on github</a></li>
+</ul>

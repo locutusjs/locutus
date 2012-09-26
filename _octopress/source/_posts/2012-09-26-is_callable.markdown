@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "JavaScript is_callable function"
-date: 2012-09-26 14:27
+date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: functions/is_callable
+permalink: /phpjs/functions/is_callable
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_callable

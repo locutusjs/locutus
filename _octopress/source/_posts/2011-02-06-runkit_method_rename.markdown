@@ -1,0 +1,50 @@
+---
+layout: post
+title: "JavaScript runkit_method_rename function"
+date: 2011-02-06 12:00:00
+comments: true
+sharing: true
+footer: true
+permalink: /phpjs/functions/runkit_method_rename
+categories: [ runkit, functions ]
+---
+A JavaScript equivalent of PHP's runkit_method_rename
+<!-- more -->
+{% codeblock runkit/runkit_method_rename.js lang:js https://raw.github.com/kvz/phpjs/master/functions/runkit/runkit_method_rename.js raw on github %}
+function runkit_method_rename (classname, methodname, newname) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brett-zamir.me)
+    // *     example 1: runkit_method_rename('someClass', 'someMethod', 'newMethod');
+    // *     returns 1: true
+    var getFuncName = function (fn) {
+        var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+        if (!name) {
+            return '(Anonymous)';
+        }
+        return name[1];
+    };
+
+    if (typeof classname === 'string') {
+        classname = this.window[classname];
+    }
+
+/*
+    var method = classname[methodname]; // Static
+    classname[newname] = method;
+    delete classname[methodname];
+    */
+
+    if (getFuncName(classname) !== 'PHP_JS' || // By default, don't allow overriding of PHP functions
+    (this.php_js && this.php_js.ini && this.php_js.ini['runkit.internal_override'] && (this.php_js.ini['runkit.internal_override'].local_value === true || this.php_js.ini['runkit.internal_override'].local_value === 1 || this.php_js.ini['runkit.internal_override'].local_value === '1' || this.php_js.ini['runkit.internal_override'].local_value === 'true'))) {
+        var method = classname.prototype[methodname];
+        classname.prototype[newname] = method;
+        delete classname.prototype[methodname];
+        return true;
+    }
+    return false;
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_method_rename.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_method_rename.js">edit on github</a></li>
+</ul>

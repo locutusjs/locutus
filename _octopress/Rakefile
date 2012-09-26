@@ -42,7 +42,7 @@ task :build do
       next if function[0] == '_'
 
       mtime = File.mtime(file)
-      mdate = mtime.strftime('%Y-%m-%d %H:%M')
+      mdate = mtime.strftime('%Y-%m-%d 12:00:00')
       ctime = File.ctime(file)
       cdate = mtime.strftime('%Y-%m-%d')
       page_dir = "#{octodir}/#{source_dir}/#{posts_dir}"
@@ -59,7 +59,7 @@ task :build do
         page.puts "comments: true"
         page.puts "sharing: true"
         page.puts "footer: true"
-        page.puts "permalink: functions/#{function}"
+        page.puts "permalink: /phpjs/functions/#{function}"
         page.puts "categories: [ #{category}, functions ]"
         page.puts "---"
         page.puts "A JavaScript equivalent of PHP's #{function}"

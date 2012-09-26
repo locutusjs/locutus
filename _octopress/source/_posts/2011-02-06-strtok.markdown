@@ -1,0 +1,49 @@
+---
+layout: post
+title: "JavaScript strtok function"
+date: 2011-02-06 12:00:00
+comments: true
+sharing: true
+footer: true
+permalink: /phpjs/functions/strtok
+categories: [ strings, functions ]
+---
+A JavaScript equivalent of PHP's strtok
+<!-- more -->
+{% codeblock strings/strtok.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strtok.js raw on github %}
+function strtok (str, tokens) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brett-zamir.me)
+    // %        note 1: Use tab and newline as tokenizing characters as well
+    // *     example 1: $string = "\t\t\t\nThis is\tan example\nstring\n";
+    // *     example 1: $tok = strtok($string, " \n\t");
+    // *     example 1: $b = '';
+    // *     example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
+    // *     example 1: $b
+    // *     returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
+    // BEGIN REDUNDANT
+    this.php_js = this.php_js || {};
+    // END REDUNDANT
+    if (tokens === undefined) {
+        tokens = str;
+        str = this.php_js.strtokleftOver;
+    }
+    if (str.length === 0) {
+        return false;
+    }
+    if (tokens.indexOf(str.charAt(0)) !== -1) {
+        return this.strtok(str.substr(1), tokens);
+    }
+    for (var i = 0; i < str.length; i++) {
+        if (tokens.indexOf(str.charAt(i)) !== -1) {
+            break;
+        }
+    }
+    this.php_js.strtokleftOver = str.substr(i + 1);
+    return str.substring(0, i);
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strtok.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strtok.js">edit on github</a></li>
+</ul>
