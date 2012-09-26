@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/strcmp
-categories: [functions, strings ]
+categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strcmp
 <!-- more -->

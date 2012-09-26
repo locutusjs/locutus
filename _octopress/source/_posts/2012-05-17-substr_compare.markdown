@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/substr_compare
-categories: [functions, strings ]
+categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's substr_compare
 <!-- more -->

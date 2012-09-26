@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/i18n_loc_set_default
-categories: [functions, i18n ]
+categories: [ i18n, functions ]
 ---
 A JavaScript equivalent of PHP's i18n_loc_set_default
 <!-- more -->

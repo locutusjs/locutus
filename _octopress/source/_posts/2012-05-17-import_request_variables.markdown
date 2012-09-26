@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/import_request_variables
-categories: [functions, var ]
+categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's import_request_variables
 <!-- more -->

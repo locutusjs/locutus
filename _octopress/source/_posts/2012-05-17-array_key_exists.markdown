@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/array_key_exists
-categories: [functions, array ]
+categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_key_exists
 <!-- more -->

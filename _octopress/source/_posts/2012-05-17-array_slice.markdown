@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/array_slice
-categories: [functions, array ]
+categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_slice
 <!-- more -->

@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/var_export
-categories: [functions, var ]
+categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's var_export
 <!-- more -->

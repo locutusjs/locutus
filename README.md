@@ -26,14 +26,17 @@ gem install bundler
 bundle install
 ```
 
-## clean, build, generate, commit, push, deploy
+## build, generate, commit, push, deploy
 ```shell
-git clean -fd
 make site
 ```
 
 ## preview locally
 ```shell
-cd _octopress
-rake build && rake generate && rake preview
+make site-preview
+```
+
+## reset site (should not be necessary)
+```shell
+make site-clean
 ```

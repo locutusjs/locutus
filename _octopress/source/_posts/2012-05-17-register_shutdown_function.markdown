@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/register_shutdown_function
-categories: [functions, funchand ]
+categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's register_shutdown_function
 <!-- more -->

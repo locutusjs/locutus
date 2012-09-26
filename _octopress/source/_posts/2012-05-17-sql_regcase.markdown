@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/sql_regcase
-categories: [functions, pcre ]
+categories: [ pcre, functions ]
 ---
 A JavaScript equivalent of PHP's sql_regcase
 <!-- more -->

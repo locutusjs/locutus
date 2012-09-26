@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/quotemeta
-categories: [functions, strings ]
+categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's quotemeta
 <!-- more -->

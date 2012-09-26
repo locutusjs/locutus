@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/mail
-categories: [functions, mail ]
+categories: [ mail, functions ]
 ---
 A JavaScript equivalent of PHP's mail
 <!-- more -->

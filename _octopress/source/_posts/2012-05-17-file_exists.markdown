@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/file_exists
-categories: [functions, filesystem ]
+categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's file_exists
 <!-- more -->

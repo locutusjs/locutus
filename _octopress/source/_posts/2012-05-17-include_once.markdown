@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/include_once
-categories: [functions, language ]
+categories: [ language, functions ]
 ---
 A JavaScript equivalent of PHP's include_once
 <!-- more -->

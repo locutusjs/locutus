@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/assert_options
-categories: [functions, info ]
+categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's assert_options
 <!-- more -->

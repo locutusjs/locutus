@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/get_cfg_var
-categories: [functions, info ]
+categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's get_cfg_var
 <!-- more -->

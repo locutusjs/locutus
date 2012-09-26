@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/get_defined_vars
-categories: [functions, var ]
+categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's get_defined_vars
 <!-- more -->

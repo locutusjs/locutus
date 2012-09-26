@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/restore_include_path
-categories: [functions, info ]
+categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's restore_include_path
 <!-- more -->

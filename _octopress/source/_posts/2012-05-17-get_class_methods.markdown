@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/get_class_methods
-categories: [functions, classobj ]
+categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's get_class_methods
 <!-- more -->

@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/ob_end_flush
-categories: [functions, outcontrol ]
+categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_end_flush
 <!-- more -->

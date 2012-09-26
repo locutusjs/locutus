@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/microtime
-categories: [functions, datetime ]
+categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's microtime
 <!-- more -->

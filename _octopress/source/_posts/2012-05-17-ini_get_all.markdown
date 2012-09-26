@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/ini_get_all
-categories: [functions, info ]
+categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's ini_get_all
 <!-- more -->

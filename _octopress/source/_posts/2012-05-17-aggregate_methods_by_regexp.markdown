@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/aggregate_methods_by_regexp
-categories: [functions, objaggregation ]
+categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregate_methods_by_regexp
 <!-- more -->

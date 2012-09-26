@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/mt_getrandmax
-categories: [functions, math ]
+categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's mt_getrandmax
 <!-- more -->

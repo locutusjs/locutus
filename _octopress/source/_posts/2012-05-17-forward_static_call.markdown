@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/forward_static_call
-categories: [functions, funchand ]
+categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's forward_static_call
 <!-- more -->

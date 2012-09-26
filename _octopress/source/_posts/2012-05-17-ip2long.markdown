@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/ip2long
-categories: [functions, network ]
+categories: [ network, functions ]
 ---
 A JavaScript equivalent of PHP's ip2long
 <!-- more -->

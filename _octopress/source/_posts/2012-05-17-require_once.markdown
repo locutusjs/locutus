@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/require_once
-categories: [functions, language ]
+categories: [ language, functions ]
 ---
 A JavaScript equivalent of PHP's require_once
 <!-- more -->

@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/html_entity_decode
-categories: [functions, strings ]
+categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's html_entity_decode
 <!-- more -->

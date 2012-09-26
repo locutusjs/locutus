@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/get_required_files
-categories: [functions, info ]
+categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's get_required_files
 <!-- more -->

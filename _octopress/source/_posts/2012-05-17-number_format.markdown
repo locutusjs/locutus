@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/number_format
-categories: [functions, strings ]
+categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's number_format
 <!-- more -->

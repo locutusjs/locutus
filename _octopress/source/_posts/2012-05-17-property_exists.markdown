@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/property_exists
-categories: [functions, classobj ]
+categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's property_exists
 <!-- more -->

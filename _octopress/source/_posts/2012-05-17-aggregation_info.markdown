@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/aggregation_info
-categories: [functions, objaggregation ]
+categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregation_info
 <!-- more -->

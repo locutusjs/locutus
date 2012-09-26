@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/stream_is_local
-categories: [functions, stream ]
+categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_is_local
 <!-- more -->

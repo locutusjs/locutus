@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/get_defined_constants
-categories: [functions, info ]
+categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's get_defined_constants
 <!-- more -->

@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/call_user_func
-categories: [functions, funchand ]
+categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's call_user_func
 <!-- more -->

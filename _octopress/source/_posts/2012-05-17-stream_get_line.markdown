@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/stream_get_line
-categories: [functions, stream ]
+categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_get_line
 <!-- more -->

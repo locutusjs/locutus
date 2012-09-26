@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/parse_str
-categories: [functions, strings ]
+categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's parse_str
 <!-- more -->

@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/json_encode
-categories: [functions, json ]
+categories: [ json, functions ]
 ---
 A JavaScript equivalent of PHP's json_encode
 <!-- more -->

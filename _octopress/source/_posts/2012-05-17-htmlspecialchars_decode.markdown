@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/htmlspecialchars_decode
-categories: [functions, strings ]
+categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's htmlspecialchars_decode
 <!-- more -->

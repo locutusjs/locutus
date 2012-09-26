@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/timezone_identifiers_list
-categories: [functions, datetime ]
+categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's timezone_identifiers_list
 <!-- more -->

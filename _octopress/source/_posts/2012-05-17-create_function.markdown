@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/create_function
-categories: [functions, funchand ]
+categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's create_function
 <!-- more -->

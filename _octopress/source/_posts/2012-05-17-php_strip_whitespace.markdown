@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/php_strip_whitespace
-categories: [functions, misc ]
+categories: [ misc, functions ]
 ---
 A JavaScript equivalent of PHP's php_strip_whitespace
 <!-- more -->

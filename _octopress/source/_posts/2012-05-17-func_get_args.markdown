@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/func_get_args
-categories: [functions, funchand ]
+categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's func_get_args
 <!-- more -->

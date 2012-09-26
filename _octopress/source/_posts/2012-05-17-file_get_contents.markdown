@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/file_get_contents
-categories: [functions, filesystem ]
+categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's file_get_contents
 <!-- more -->

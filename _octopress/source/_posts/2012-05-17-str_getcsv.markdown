@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/str_getcsv
-categories: [functions, strings ]
+categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's str_getcsv
 <!-- more -->

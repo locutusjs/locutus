@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/urldecode
-categories: [functions, url ]
+categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's urldecode
 <!-- more -->

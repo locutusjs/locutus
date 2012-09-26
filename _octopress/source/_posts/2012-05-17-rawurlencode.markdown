@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/rawurlencode
-categories: [functions, url ]
+categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's rawurlencode
 <!-- more -->

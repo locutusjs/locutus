@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/error_get_last
-categories: [functions, errorfunc ]
+categories: [ errorfunc, functions ]
 ---
 A JavaScript equivalent of PHP's error_get_last
 <!-- more -->

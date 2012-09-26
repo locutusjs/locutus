@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/classkit_method_redefine
-categories: [functions, classkit ]
+categories: [ classkit, functions ]
 ---
 A JavaScript equivalent of PHP's classkit_method_redefine
 <!-- more -->

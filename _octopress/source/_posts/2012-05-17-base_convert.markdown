@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/base_convert
-categories: [functions, math ]
+categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's base_convert
 <!-- more -->

@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/gettype
-categories: [functions, var ]
+categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's gettype
 <!-- more -->

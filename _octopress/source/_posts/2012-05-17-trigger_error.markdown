@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/trigger_error
-categories: [functions, errorfunc ]
+categories: [ errorfunc, functions ]
 ---
 A JavaScript equivalent of PHP's trigger_error
 <!-- more -->

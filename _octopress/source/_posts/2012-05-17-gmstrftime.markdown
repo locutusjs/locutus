@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/gmstrftime
-categories: [functions, datetime ]
+categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's gmstrftime
 <!-- more -->

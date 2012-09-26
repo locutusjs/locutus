@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/quoted_printable_encode
-categories: [functions, strings ]
+categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's quoted_printable_encode
 <!-- more -->

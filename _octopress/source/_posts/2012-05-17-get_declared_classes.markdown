@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/get_declared_classes
-categories: [functions, classobj ]
+categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's get_declared_classes
 <!-- more -->

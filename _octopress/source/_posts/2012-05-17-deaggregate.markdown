@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/deaggregate
-categories: [functions, objaggregation ]
+categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's deaggregate
 <!-- more -->

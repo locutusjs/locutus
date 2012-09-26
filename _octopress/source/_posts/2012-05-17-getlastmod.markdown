@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/getlastmod
-categories: [functions, info ]
+categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's getlastmod
 <!-- more -->

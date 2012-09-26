@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/gettimeofday
-categories: [functions, datetime ]
+categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's gettimeofday
 <!-- more -->

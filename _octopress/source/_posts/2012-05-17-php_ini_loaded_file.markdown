@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/php_ini_loaded_file
-categories: [functions, info ]
+categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's php_ini_loaded_file
 <!-- more -->

@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/phpversion
-categories: [functions, info ]
+categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's phpversion
 <!-- more -->

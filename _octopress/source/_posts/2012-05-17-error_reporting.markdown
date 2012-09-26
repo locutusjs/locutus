@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/error_reporting
-categories: [functions, errorfunc ]
+categories: [ errorfunc, functions ]
 ---
 A JavaScript equivalent of PHP's error_reporting
 <!-- more -->

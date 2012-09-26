@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/base64_decode
-categories: [functions, url ]
+categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's base64_decode
 <!-- more -->

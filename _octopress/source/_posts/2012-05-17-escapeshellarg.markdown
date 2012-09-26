@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/escapeshellarg
-categories: [functions, exec ]
+categories: [ exec, functions ]
 ---
 A JavaScript equivalent of PHP's escapeshellarg
 <!-- more -->

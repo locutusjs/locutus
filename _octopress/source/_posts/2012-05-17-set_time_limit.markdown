@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/set_time_limit
-categories: [functions, info ]
+categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's set_time_limit
 <!-- more -->

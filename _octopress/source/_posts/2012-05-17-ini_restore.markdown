@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/ini_restore
-categories: [functions, info ]
+categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's ini_restore
 <!-- more -->

@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/get_meta_tags
-categories: [functions, url ]
+categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's get_meta_tags
 <!-- more -->

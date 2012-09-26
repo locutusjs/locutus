@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/gopher_parsedir
-categories: [functions, net-gopher ]
+categories: [ net-gopher, functions ]
 ---
 A JavaScript equivalent of PHP's gopher_parsedir
 <!-- more -->

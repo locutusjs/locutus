@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/pow
-categories: [functions, math ]
+categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's pow
 <!-- more -->

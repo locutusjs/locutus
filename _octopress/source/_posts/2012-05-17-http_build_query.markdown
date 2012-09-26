@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/http_build_query
-categories: [functions, url ]
+categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's http_build_query
 <!-- more -->

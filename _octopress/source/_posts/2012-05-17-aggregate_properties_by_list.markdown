@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/aggregate_properties_by_list
-categories: [functions, objaggregation ]
+categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregate_properties_by_list
 <!-- more -->

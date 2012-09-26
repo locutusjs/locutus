@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/version_compare
-categories: [functions, info ]
+categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's version_compare
 <!-- more -->

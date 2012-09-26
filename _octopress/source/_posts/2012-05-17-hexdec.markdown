@@ -6,7 +6,7 @@ comments: true
 sharing: true
 footer: true
 permalink: functions/hexdec
-categories: [functions, math ]
+categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's hexdec
 <!-- more -->
