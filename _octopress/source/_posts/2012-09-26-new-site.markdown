@@ -24,7 +24,7 @@ For instance, you can now very easily:
 
 You'll need:
 
- - A specific ruby version, I documented it [here]([Octopress](http://kvz.io/blog/2012/09/25/blog-with-octopress/))
+ - A specific ruby version, I documented it [here](http://kvz.io/blog/2012/09/25/blog-with-octopress/)
  - to hack on your files
  - to run `make site`
 
