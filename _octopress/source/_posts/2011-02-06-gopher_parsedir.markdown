@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/gopher_parsedir
+permalink: functions/gopher_parsedir
 categories: [ net-gopher, functions ]
 ---
 A JavaScript equivalent of PHP's gopher_parsedir

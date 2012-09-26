@@ -5,7 +5,7 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/metaphone
+permalink: functions/metaphone
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's metaphone

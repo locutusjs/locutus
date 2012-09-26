@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ctype_print
+permalink: functions/ctype_print
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_print

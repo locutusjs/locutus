@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/property_exists
+permalink: functions/property_exists
 categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's property_exists

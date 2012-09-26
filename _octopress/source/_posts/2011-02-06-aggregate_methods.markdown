@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/aggregate_methods
+permalink: functions/aggregate_methods
 categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregate_methods

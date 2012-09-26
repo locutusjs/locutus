@@ -59,7 +59,7 @@ task :build do
         page.puts "comments: true"
         page.puts "sharing: true"
         page.puts "footer: true"
-        page.puts "permalink: /phpjs/functions/#{function}"
+        page.puts "permalink: functions/#{function}"
         page.puts "categories: [ #{category}, functions ]"
         page.puts "---"
         page.puts "A JavaScript equivalent of PHP's #{function}"

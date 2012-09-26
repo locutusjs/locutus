@@ -5,7 +5,7 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/forward_static_call
+permalink: functions/forward_static_call
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's forward_static_call

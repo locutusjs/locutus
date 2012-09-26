@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/classkit_method_rename
+permalink: functions/classkit_method_rename
 categories: [ classkit, functions ]
 ---
 A JavaScript equivalent of PHP's classkit_method_rename

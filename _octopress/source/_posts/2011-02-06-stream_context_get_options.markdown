@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/stream_context_get_options
+permalink: functions/stream_context_get_options
 categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_context_get_options

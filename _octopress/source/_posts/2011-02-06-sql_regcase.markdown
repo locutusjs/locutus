@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/sql_regcase
+permalink: functions/sql_regcase
 categories: [ pcre, functions ]
 ---
 A JavaScript equivalent of PHP's sql_regcase

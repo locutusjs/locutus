@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ini_get_all
+permalink: functions/ini_get_all
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's ini_get_all

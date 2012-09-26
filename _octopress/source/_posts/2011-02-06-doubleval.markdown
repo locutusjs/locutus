@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/doubleval
+permalink: functions/doubleval
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's doubleval

@@ -5,7 +5,7 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/str_shuffle
+permalink: functions/str_shuffle
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's str_shuffle

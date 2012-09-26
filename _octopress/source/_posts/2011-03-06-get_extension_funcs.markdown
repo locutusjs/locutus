@@ -5,7 +5,7 @@ date: 2011-03-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_extension_funcs
+permalink: functions/get_extension_funcs
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's get_extension_funcs

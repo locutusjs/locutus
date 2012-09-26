@@ -5,7 +5,7 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/timezone_abbreviations_list
+permalink: functions/timezone_abbreviations_list
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's timezone_abbreviations_list

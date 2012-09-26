@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ob_get_contents
+permalink: functions/ob_get_contents
 categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_get_contents

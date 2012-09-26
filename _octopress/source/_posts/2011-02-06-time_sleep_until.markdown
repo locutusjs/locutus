@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/time_sleep_until
+permalink: functions/time_sleep_until
 categories: [ misc, functions ]
 ---
 A JavaScript equivalent of PHP's time_sleep_until

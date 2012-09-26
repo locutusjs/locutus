@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_required_files
+permalink: functions/get_required_files
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's get_required_files

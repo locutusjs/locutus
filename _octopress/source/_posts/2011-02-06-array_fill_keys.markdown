@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_fill_keys
+permalink: functions/array_fill_keys
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_fill_keys

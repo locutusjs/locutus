@@ -5,7 +5,7 @@ date: 2011-03-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/number_format
+permalink: functions/number_format
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's number_format

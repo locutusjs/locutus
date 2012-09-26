@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/substr_compare
+permalink: functions/substr_compare
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's substr_compare

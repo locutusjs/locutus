@@ -5,7 +5,7 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/restore_include_path
+permalink: functions/restore_include_path
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's restore_include_path

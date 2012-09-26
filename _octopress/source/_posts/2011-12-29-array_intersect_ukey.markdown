@@ -5,7 +5,7 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_intersect_ukey
+permalink: functions/array_intersect_ukey
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_intersect_ukey

@@ -5,7 +5,7 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/is_object
+permalink: functions/is_object
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_object
