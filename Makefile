@@ -1,4 +1,5 @@
 site:
+	git pull && \
 	cd _octopress && \
 	cd _deploy && \
 	git remote add origin git@github.com:kvz/phpjs.git ; \
