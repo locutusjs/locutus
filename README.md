@@ -22,7 +22,7 @@ For prerequisites please check [here](http://kvz.io/blog/2012/09/25/blog-with-oc
 
 ## build, generate, commit, push, deploy
 ```shell
-make site
+make site MSG="Updated site"
 ```
 
 ## preview locally
