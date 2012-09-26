@@ -58,14 +58,14 @@ function unpack(format, data) {
     };
 
     while (formatPointer < format.length) {
-        instruction = format[formatPointer];
+        instruction = format.charAt(formatPointer);
 
         // Start reading 'quantifier'
         quantifier = '';
         formatPointer++;
         while ((formatPointer < format.length) &&
-              (format[formatPointer].match(/[\d\*]/) !== null)) {
-            quantifier += format[formatPointer];
+              (format.charAt(formatPointer).match(/[\d\*]/) !== null)) {
+            quantifier += format.charAt(formatPointer);
             formatPointer++;
         }
         if (quantifier === '') {
@@ -76,11 +76,11 @@ function unpack(format, data) {
         // Start reading label
         label = '';
         while ((formatPointer < format.length) &&
-              (format[formatPointer] !== '/')) {
-            label += format[formatPointer];
+              (format.charAt(formatPointer) !== '/')) {
+            label += format.charAt(formatPointer);
             formatPointer++;
         }
-        if (format[formatPointer] === '/') {
+        if (format.charAt(formatPointer) === '/') {
             formatPointer++;
         }
 

@@ -23,11 +23,11 @@ function pack (format) {
     var bias, minExp, maxExp, minUnnormExp, status, exp, len, bin, signal, n, intPart, floatPart, lastBit, rounded, j, k, tmpResult;
 
     while (formatPointer < format.length) {
-        instruction = format[formatPointer];
+        instruction = format.charAt(formatPointer);
         quantifier = '';
         formatPointer++;
-        while ((formatPointer < format.length) && (format[formatPointer].match(/[\d\*]/) !== null)) {
-            quantifier += format[formatPointer];
+        while ((formatPointer < format.length) && (format.charAt(formatPointer).match(/[\d\*]/) !== null)) {
+            quantifier += format.charAt(formatPointer);
             formatPointer++;
         }
         if (quantifier === '') {

@@ -31,6 +31,7 @@ function date (format, timestamp) {
     // +   bugfixed by: omid (http://phpjs.org/functions/380:380#comment_137122)
     // +      input by: Martin
     // +      input by: Alex Wilson
+    // +   bugfixed by: Chris (http://www.devotis.nl/)
     // %        note 1: Uses global: php_js to store the default timezone
     // %        note 2: Although the function potentially allows timezone info (see notes), it currently does not set
     // %        note 2: per a timezone specified by date_default_timezone_set(). Implementers might use
@@ -134,7 +135,7 @@ function date (format, timestamp) {
             var n = f.n(),
                 W = f.W(),
                 Y = f.Y();
-            return Y + (n === 12 && W < 9 ? -1 : n === 1 && W > 9);
+            return Y + (n === 12 && W < 9 ? 1 : n === 1 && W > 9 ? -1 : 0);
         },
         Y: function () { // Full year; e.g. 1980...2010
             return jsdate.getFullYear();
@@ -184,7 +185,7 @@ function date (format, timestamp) {
         e: function () { // Timezone identifier; e.g. Atlantic/Azores, ...
             // The following works, but requires inclusion of the very large
             // timezone_abbreviations_list() function.
-/*              return this.date_default_timezone_get();
+/*              return that.date_default_timezone_get();
 */
             throw 'Not supported (see source code of date() for timezone on how to add support)';
         },
@@ -255,8 +256,8 @@ function date (format, timestamp) {
     this.date = function (format, timestamp) {
         that = this;
         jsdate = (timestamp == null ? new Date() : // Not provided
-        (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
-        new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+            (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
+            new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
         );
         return format.replace(formatChr, formatChrCb);
     };
