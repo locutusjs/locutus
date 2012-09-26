@@ -2,12 +2,12 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://kvz.github.com/phpjs/
+url: http://kvz.github.com/phpjs
 title: php.js
 subtitle: php functions in javascript
 author: phpjs.org
 simple_search: http://google.com/search
-description: php.js is a community driven resource that shows how you could implement php functions in javacript
+description:
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -26,10 +26,10 @@ email:
 # ----------------------- #
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
-root: /
+root: /phpjs
 permalink: /blog/:year/:month/:day/:title/
 source: source
-destination: public
+destination: public/phpjs
 plugins: plugins
 code_dir: downloads/code
 category_dir: categories
@@ -91,7 +91,7 @@ delicious_count: 3
 
 # Disqus Comments
 disqus_short_name: phpjs
-disqus_show_comment_count: false
+disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id: UA-63083-7
