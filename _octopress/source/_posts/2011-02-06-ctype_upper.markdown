@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ctype_upper
+alias:
+- /phpjs/functions/ctype_upper:760
+- /phpjs/functions/760
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_upper

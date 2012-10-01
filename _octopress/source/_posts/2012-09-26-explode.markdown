@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/explode
+alias:
+- /phpjs/functions/explode:396
+- /phpjs/functions/396
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's explode

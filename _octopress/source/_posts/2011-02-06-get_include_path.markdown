@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/get_include_path
+alias:
+- /phpjs/functions/get_include_path:853
+- /phpjs/functions/853
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's get_include_path

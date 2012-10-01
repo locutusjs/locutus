@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ctype_alnum
+alias:
+- /phpjs/functions/ctype_alnum:751
+- /phpjs/functions/751
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_alnum

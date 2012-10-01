@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/max
+alias:
+- /phpjs/functions/max:468
+- /phpjs/functions/468
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's max

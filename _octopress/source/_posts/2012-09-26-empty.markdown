@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/empty
+alias:
+- /phpjs/functions/empty:392
+- /phpjs/functions/392
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's empty

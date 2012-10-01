@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ctype_space
+alias:
+- /phpjs/functions/ctype_space:759
+- /phpjs/functions/759
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_space

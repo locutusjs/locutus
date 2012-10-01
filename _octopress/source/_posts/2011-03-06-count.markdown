@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/count
+alias:
+- /phpjs/functions/count:375
+- /phpjs/functions/375
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's count

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_merge
+alias:
+- /phpjs/functions/array_merge:326
+- /phpjs/functions/326
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_merge

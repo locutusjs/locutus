@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/get_meta_tags
+alias:
+- /phpjs/functions/get_meta_tags:418
+- /phpjs/functions/418
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's get_meta_tags

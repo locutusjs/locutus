@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/fscanf
+alias:
+- /phpjs/functions/fscanf:885
+- /phpjs/functions/885
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's fscanf

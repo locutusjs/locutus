@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/strncasecmp
+alias:
+- /phpjs/functions/strncasecmp:542
+- /phpjs/functions/542
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strncasecmp

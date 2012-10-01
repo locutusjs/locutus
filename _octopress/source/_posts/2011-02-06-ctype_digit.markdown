@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ctype_digit
+alias:
+- /phpjs/functions/ctype_digit:754
+- /phpjs/functions/754
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_digit

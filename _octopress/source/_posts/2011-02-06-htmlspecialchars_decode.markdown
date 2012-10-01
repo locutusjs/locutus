@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/htmlspecialchars_decode
+alias:
+- /phpjs/functions/htmlspecialchars_decode:427
+- /phpjs/functions/427
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's htmlspecialchars_decode

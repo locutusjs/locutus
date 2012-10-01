@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/putenv
+alias:
+- /phpjs/functions/putenv:588
+- /phpjs/functions/588
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's putenv

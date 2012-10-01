@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_diff
+alias:
+- /phpjs/functions/array_diff:309
+- /phpjs/functions/309
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_diff

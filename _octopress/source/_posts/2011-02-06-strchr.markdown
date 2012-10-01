@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/strchr
+alias:
+- /phpjs/functions/strchr:532
+- /phpjs/functions/532
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strchr

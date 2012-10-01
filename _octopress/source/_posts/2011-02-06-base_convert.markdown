@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/base_convert
+alias:
+- /phpjs/functions/base_convert:359
+- /phpjs/functions/359
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's base_convert

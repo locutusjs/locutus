@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/strptime
+alias:
+- /phpjs/functions/strptime:887
+- /phpjs/functions/887
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's strptime

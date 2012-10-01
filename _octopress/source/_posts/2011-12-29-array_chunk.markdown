@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_chunk
+alias:
+- /phpjs/functions/array_chunk:306
+- /phpjs/functions/306
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_chunk

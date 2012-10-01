@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/similar_text
+alias:
+- /phpjs/functions/similar_text:902
+- /phpjs/functions/902
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's similar_text

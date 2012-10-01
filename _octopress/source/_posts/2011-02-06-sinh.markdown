@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/sinh
+alias:
+- /phpjs/functions/sinh:516
+- /phpjs/functions/516
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's sinh

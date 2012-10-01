@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/stream_get_contents
+alias:
+- /phpjs/functions/stream_get_contents:856
+- /phpjs/functions/856
 categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_get_contents

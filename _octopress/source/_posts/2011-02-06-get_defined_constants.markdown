@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/get_defined_constants
+alias:
+- /phpjs/functions/get_defined_constants:839
+- /phpjs/functions/839
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's get_defined_constants

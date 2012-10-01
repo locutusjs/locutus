@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/substr_compare
+alias:
+- /phpjs/functions/substr_compare:790
+- /phpjs/functions/790
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's substr_compare

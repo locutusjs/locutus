@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/compact
+alias:
+- /phpjs/functions/compact:371
+- /phpjs/functions/371
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's compact

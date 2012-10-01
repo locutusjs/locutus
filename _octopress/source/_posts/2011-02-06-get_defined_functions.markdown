@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/get_defined_functions
+alias:
+- /phpjs/functions/get_defined_functions:413
+- /phpjs/functions/413
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's get_defined_functions

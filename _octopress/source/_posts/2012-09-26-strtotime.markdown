@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/strtotime
+alias:
+- /phpjs/functions/strtotime:554
+- /phpjs/functions/554
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's strtotime

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_diff_ukey
+alias:
+- /phpjs/functions/array_diff_ukey:313
+- /phpjs/functions/313
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_diff_ukey

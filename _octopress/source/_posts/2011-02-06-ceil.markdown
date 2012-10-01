@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ceil
+alias:
+- /phpjs/functions/ceil:365
+- /phpjs/functions/365
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's ceil

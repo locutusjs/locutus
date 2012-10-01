@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ini_restore
+alias:
+- /phpjs/functions/ini_restore:599
+- /phpjs/functions/599
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's ini_restore

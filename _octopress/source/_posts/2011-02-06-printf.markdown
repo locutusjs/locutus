@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/printf
+alias:
+- /phpjs/functions/printf:494
+- /phpjs/functions/494
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's printf

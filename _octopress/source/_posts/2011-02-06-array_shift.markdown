@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_shift
+alias:
+- /phpjs/functions/array_shift:336
+- /phpjs/functions/336
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_shift

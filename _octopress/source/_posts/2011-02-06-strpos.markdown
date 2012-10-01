@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/strpos
+alias:
+- /phpjs/functions/strpos:545
+- /phpjs/functions/545
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strpos

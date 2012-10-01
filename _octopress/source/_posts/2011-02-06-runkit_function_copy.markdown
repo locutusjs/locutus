@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/runkit_function_copy
+alias:
+- /phpjs/functions/runkit_function_copy:823
+- /phpjs/functions/823
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_function_copy

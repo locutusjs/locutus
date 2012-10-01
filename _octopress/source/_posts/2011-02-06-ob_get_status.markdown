@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ob_get_status
+alias:
+- /phpjs/functions/ob_get_status:899
+- /phpjs/functions/899
 categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_get_status

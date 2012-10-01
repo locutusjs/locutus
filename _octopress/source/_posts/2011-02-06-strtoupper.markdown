@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/strtoupper
+alias:
+- /phpjs/functions/strtoupper:555
+- /phpjs/functions/555
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strtoupper

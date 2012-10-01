@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/tan
+alias:
+- /phpjs/functions/tan:560
+- /phpjs/functions/560
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's tan

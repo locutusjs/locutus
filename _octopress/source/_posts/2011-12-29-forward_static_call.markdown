@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/forward_static_call
+alias:
+- /phpjs/functions/forward_static_call:861
+- /phpjs/functions/861
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's forward_static_call

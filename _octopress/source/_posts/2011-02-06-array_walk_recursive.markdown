@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_walk_recursive
+alias:
+- /phpjs/functions/array_walk_recursive:350
+- /phpjs/functions/350
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_walk_recursive

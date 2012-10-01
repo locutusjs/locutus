@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/strnatcmp
+alias:
+- /phpjs/functions/strnatcmp:541
+- /phpjs/functions/541
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strnatcmp

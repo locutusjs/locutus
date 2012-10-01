@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/is_numeric
+alias:
+- /phpjs/functions/is_numeric:449
+- /phpjs/functions/449
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_numeric

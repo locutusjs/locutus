@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/natcasesort
+alias:
+- /phpjs/functions/natcasesort:477
+- /phpjs/functions/477
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's natcasesort

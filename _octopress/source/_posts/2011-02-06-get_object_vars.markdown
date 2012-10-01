@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/get_object_vars
+alias:
+- /phpjs/functions/get_object_vars:419
+- /phpjs/functions/419
 categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's get_object_vars

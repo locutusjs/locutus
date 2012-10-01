@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ctype_print
+alias:
+- /phpjs/functions/ctype_print:757
+- /phpjs/functions/757
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_print

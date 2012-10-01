@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/substr_count
+alias:
+- /phpjs/functions/substr_count:559
+- /phpjs/functions/559
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's substr_count

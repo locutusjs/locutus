@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/http_build_query
+alias:
+- /phpjs/functions/http_build_query:428
+- /phpjs/functions/428
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's http_build_query

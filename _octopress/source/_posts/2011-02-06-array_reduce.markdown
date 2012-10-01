@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_reduce
+alias:
+- /phpjs/functions/array_reduce:333
+- /phpjs/functions/333
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_reduce

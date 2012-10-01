@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/str_repeat
+alias:
+- /phpjs/functions/str_repeat:526
+- /phpjs/functions/526
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's str_repeat

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/getrandmax
+alias:
+- /phpjs/functions/getrandmax:421
+- /phpjs/functions/421
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's getrandmax

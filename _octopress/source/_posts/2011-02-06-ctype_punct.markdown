@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ctype_punct
+alias:
+- /phpjs/functions/ctype_punct:758
+- /phpjs/functions/758
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_punct

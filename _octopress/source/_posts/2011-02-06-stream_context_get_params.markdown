@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/stream_context_get_params
+alias:
+- /phpjs/functions/stream_context_get_params:847
+- /phpjs/functions/847
 categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_context_get_params

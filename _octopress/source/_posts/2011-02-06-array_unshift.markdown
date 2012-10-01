@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_unshift
+alias:
+- /phpjs/functions/array_unshift:347
+- /phpjs/functions/347
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_unshift

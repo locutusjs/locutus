@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/strcmp
+alias:
+- /phpjs/functions/strcmp:533
+- /phpjs/functions/533
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strcmp

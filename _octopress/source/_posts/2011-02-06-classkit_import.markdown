@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/classkit_import
+alias:
+- /phpjs/functions/classkit_import:762
+- /phpjs/functions/762
 categories: [ classkit, functions ]
 ---
 A JavaScript equivalent of PHP's classkit_import

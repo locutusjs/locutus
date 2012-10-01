@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/split
+alias:
+- /phpjs/functions/split:521
+- /phpjs/functions/521
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's split

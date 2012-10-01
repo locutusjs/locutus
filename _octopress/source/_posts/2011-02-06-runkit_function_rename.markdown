@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/runkit_function_rename
+alias:
+- /phpjs/functions/runkit_function_rename:826
+- /phpjs/functions/826
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_function_rename

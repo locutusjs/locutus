@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_reverse
+alias:
+- /phpjs/functions/array_reverse:334
+- /phpjs/functions/334
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_reverse

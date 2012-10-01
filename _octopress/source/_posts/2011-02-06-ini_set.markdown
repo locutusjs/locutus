@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ini_set
+alias:
+- /phpjs/functions/ini_set:600
+- /phpjs/functions/600
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's ini_set

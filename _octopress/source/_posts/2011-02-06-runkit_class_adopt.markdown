@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/runkit_class_adopt
+alias:
+- /phpjs/functions/runkit_class_adopt:820
+- /phpjs/functions/820
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_class_adopt

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/trim
+alias:
+- /phpjs/functions/trim:566
+- /phpjs/functions/566
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's trim

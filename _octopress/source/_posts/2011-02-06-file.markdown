@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/file
+alias:
+- /phpjs/functions/file:398
+- /phpjs/functions/398
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's file

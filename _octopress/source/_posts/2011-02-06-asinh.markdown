@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/asinh
+alias:
+- /phpjs/functions/asinh:353
+- /phpjs/functions/353
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's asinh

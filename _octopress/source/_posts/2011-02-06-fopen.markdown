@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/fopen
+alias:
+- /phpjs/functions/fopen:774
+- /phpjs/functions/774
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's fopen

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ctype_lower
+alias:
+- /phpjs/functions/ctype_lower:756
+- /phpjs/functions/756
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_lower

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/is_string
+alias:
+- /phpjs/functions/is_string:453
+- /phpjs/functions/453
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_string

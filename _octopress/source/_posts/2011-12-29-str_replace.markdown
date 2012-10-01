@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/str_replace
+alias:
+- /phpjs/functions/str_replace:527
+- /phpjs/functions/527
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's str_replace

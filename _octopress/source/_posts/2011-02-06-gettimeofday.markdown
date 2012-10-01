@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/gettimeofday
+alias:
+- /phpjs/functions/gettimeofday:778
+- /phpjs/functions/778
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's gettimeofday

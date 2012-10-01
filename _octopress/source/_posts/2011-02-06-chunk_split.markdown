@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/chunk_split
+alias:
+- /phpjs/functions/chunk_split:369
+- /phpjs/functions/369
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's chunk_split

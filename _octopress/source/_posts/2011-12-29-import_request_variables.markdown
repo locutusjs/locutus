@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/import_request_variables
+alias:
+- /phpjs/functions/import_request_variables:431
+- /phpjs/functions/431
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's import_request_variables

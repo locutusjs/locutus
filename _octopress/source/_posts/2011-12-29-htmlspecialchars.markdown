@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/htmlspecialchars
+alias:
+- /phpjs/functions/htmlspecialchars:426
+- /phpjs/functions/426
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's htmlspecialchars

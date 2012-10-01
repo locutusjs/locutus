@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/aggregate_methods
+alias:
+- /phpjs/functions/aggregate_methods:793
+- /phpjs/functions/793
 categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregate_methods

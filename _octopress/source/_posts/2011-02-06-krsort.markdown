@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/krsort
+alias:
+- /phpjs/functions/krsort:459
+- /phpjs/functions/459
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's krsort

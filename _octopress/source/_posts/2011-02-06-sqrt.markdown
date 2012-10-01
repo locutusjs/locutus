@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/sqrt
+alias:
+- /phpjs/functions/sqrt:523
+- /phpjs/functions/523
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's sqrt

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_map
+alias:
+- /phpjs/functions/array_map:325
+- /phpjs/functions/325
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_map

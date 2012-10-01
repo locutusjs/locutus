@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/md5
+alias:
+- /phpjs/functions/md5:469
+- /phpjs/functions/469
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's md5

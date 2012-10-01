@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/stream_context_set_default
+alias:
+- /phpjs/functions/stream_context_set_default:848
+- /phpjs/functions/848
 categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_context_set_default

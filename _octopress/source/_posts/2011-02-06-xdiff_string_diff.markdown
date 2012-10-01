@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/xdiff_string_diff
+alias:
+- /phpjs/functions/xdiff_string_diff:889
+- /phpjs/functions/889
 categories: [ xdiff, functions ]
 ---
 A JavaScript equivalent of PHP's xdiff_string_diff

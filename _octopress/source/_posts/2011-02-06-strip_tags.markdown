@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/strip_tags
+alias:
+- /phpjs/functions/strip_tags:535
+- /phpjs/functions/535
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strip_tags

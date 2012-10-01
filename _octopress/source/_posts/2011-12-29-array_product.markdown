@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_product
+alias:
+- /phpjs/functions/array_product:330
+- /phpjs/functions/330
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_product

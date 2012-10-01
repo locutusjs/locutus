@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/octdec
+alias:
+- /phpjs/functions/octdec:482
+- /phpjs/functions/482
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's octdec

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/preg_grep
+alias:
+- /phpjs/functions/preg_grep:785
+- /phpjs/functions/785
 categories: [ pcre, functions ]
 ---
 A JavaScript equivalent of PHP's preg_grep

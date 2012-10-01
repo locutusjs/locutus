@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/runkit_import
+alias:
+- /phpjs/functions/runkit_import:812
+- /phpjs/functions/812
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_import

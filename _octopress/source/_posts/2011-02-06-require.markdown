@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/require
+alias:
+- /phpjs/functions/require:502
+- /phpjs/functions/502
 categories: [ language, functions ]
 ---
 A JavaScript equivalent of PHP's require

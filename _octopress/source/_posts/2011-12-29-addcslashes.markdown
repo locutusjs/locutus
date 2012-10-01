@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/addcslashes
+alias:
+- /phpjs/functions/addcslashes:879
+- /phpjs/functions/879
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's addcslashes

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/rand
+alias:
+- /phpjs/functions/rand:498
+- /phpjs/functions/498
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's rand

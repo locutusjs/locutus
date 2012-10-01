@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/strcoll
+alias:
+- /phpjs/functions/strcoll:789
+- /phpjs/functions/789
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strcoll

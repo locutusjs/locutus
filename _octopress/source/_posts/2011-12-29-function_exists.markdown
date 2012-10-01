@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/function_exists
+alias:
+- /phpjs/functions/function_exists:408
+- /phpjs/functions/408
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's function_exists

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/rsort
+alias:
+- /phpjs/functions/rsort:506
+- /phpjs/functions/506
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's rsort

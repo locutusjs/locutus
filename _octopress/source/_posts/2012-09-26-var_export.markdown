@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/var_export
+alias:
+- /phpjs/functions/var_export:578
+- /phpjs/functions/578
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's var_export

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/base64_encode
+alias:
+- /phpjs/functions/base64_encode:358
+- /phpjs/functions/358
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's base64_encode

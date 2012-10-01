@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ob_list_handlers
+alias:
+- /phpjs/functions/ob_list_handlers:900
+- /phpjs/functions/900
 categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_list_handlers

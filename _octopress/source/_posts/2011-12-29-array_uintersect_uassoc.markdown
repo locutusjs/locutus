@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_uintersect_uassoc
+alias:
+- /phpjs/functions/array_uintersect_uassoc:345
+- /phpjs/functions/345
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_uintersect_uassoc

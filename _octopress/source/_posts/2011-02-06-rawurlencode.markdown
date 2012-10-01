@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/rawurlencode
+alias:
+- /phpjs/functions/rawurlencode:501
+- /phpjs/functions/501
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's rawurlencode

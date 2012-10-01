@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/in_array
+alias:
+- /phpjs/functions/in_array:432
+- /phpjs/functions/432
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's in_array

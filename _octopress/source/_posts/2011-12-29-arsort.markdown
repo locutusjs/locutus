@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/arsort
+alias:
+- /phpjs/functions/arsort:351
+- /phpjs/functions/351
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's arsort

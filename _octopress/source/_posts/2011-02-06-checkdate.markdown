@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/checkdate
+alias:
+- /phpjs/functions/checkdate:366
+- /phpjs/functions/366
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's checkdate

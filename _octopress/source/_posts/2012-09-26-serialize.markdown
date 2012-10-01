@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/serialize
+alias:
+- /phpjs/functions/serialize:508
+- /phpjs/functions/508
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's serialize

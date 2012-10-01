@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/expm1
+alias:
+- /phpjs/functions/expm1:770
+- /phpjs/functions/770
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's expm1

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/is_resource
+alias:
+- /phpjs/functions/is_resource:781
+- /phpjs/functions/781
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_resource

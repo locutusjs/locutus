@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/get_resource_type
+alias:
+- /phpjs/functions/get_resource_type:777
+- /phpjs/functions/777
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's get_resource_type

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/getdate
+alias:
+- /phpjs/functions/getdate:420
+- /phpjs/functions/420
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's getdate

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/class_alias
+alias:
+- /phpjs/functions/class_alias:858
+- /phpjs/functions/858
 categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's class_alias

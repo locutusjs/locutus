@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/metaphone
+alias:
+- /phpjs/functions/metaphone:863
+- /phpjs/functions/863
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's metaphone

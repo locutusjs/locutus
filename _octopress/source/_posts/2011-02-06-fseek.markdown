@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/fseek
+alias:
+- /phpjs/functions/fseek:805
+- /phpjs/functions/805
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's fseek

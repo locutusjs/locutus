@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_search
+alias:
+- /phpjs/functions/array_search:335
+- /phpjs/functions/335
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_search

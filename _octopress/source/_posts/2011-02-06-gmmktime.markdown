@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/gmmktime
+alias:
+- /phpjs/functions/gmmktime:779
+- /phpjs/functions/779
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's gmmktime

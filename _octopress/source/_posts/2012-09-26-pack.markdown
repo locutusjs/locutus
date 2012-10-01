@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/pack
+alias:
+- /phpjs/functions/pack:880
+- /phpjs/functions/880
 categories: [ misc, functions ]
 ---
 A JavaScript equivalent of PHP's pack

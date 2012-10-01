@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/json_last_error
+alias:
+- /phpjs/functions/json_last_error:878
+- /phpjs/functions/878
 categories: [ json, functions ]
 ---
 A JavaScript equivalent of PHP's json_last_error

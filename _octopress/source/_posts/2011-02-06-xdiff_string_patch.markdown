@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/xdiff_string_patch
+alias:
+- /phpjs/functions/xdiff_string_patch:888
+- /phpjs/functions/888
 categories: [ xdiff, functions ]
 ---
 A JavaScript equivalent of PHP's xdiff_string_patch

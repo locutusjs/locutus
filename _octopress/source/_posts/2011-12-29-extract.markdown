@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/extract
+alias:
+- /phpjs/functions/extract:397
+- /phpjs/functions/397
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's extract

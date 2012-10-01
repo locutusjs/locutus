@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ini_alter
+alias:
+- /phpjs/functions/ini_alter:596
+- /phpjs/functions/596
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's ini_alter

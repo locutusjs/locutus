@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/time_sleep_until
+alias:
+- /phpjs/functions/time_sleep_until:564
+- /phpjs/functions/564
 categories: [ misc, functions ]
 ---
 A JavaScript equivalent of PHP's time_sleep_until

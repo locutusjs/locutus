@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/log1p
+alias:
+- /phpjs/functions/log1p:783
+- /phpjs/functions/783
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's log1p

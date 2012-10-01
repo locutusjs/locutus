@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_multisort
+alias:
+- /phpjs/functions/array_multisort:830
+- /phpjs/functions/830
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_multisort

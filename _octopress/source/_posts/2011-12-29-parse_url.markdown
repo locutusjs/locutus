@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/parse_url
+alias:
+- /phpjs/functions/parse_url:485
+- /phpjs/functions/485
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's parse_url

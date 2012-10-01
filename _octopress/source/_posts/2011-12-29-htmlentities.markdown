@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/htmlentities
+alias:
+- /phpjs/functions/htmlentities:425
+- /phpjs/functions/425
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's htmlentities

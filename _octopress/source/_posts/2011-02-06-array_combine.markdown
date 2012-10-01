@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_combine
+alias:
+- /phpjs/functions/array_combine:307
+- /phpjs/functions/307
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_combine

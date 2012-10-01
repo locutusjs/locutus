@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/set_include_path
+alias:
+- /phpjs/functions/set_include_path:855
+- /phpjs/functions/855
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's set_include_path

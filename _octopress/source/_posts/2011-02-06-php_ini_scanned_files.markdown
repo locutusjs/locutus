@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/php_ini_scanned_files
+alias:
+- /phpjs/functions/php_ini_scanned_files:602
+- /phpjs/functions/602
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's php_ini_scanned_files

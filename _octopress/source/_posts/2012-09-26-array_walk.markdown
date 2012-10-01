@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_walk
+alias:
+- /phpjs/functions/array_walk:349
+- /phpjs/functions/349
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_walk

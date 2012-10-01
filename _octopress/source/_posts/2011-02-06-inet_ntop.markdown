@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/inet_ntop
+alias:
+- /phpjs/functions/inet_ntop:882
+- /phpjs/functions/882
 categories: [ network, functions ]
 ---
 A JavaScript equivalent of PHP's inet_ntop

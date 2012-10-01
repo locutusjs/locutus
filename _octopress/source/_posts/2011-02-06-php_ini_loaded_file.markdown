@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/php_ini_loaded_file
+alias:
+- /phpjs/functions/php_ini_loaded_file:601
+- /phpjs/functions/601
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's php_ini_loaded_file

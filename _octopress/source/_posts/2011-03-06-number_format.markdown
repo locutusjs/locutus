@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/number_format
+alias:
+- /phpjs/functions/number_format:481
+- /phpjs/functions/481
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's number_format

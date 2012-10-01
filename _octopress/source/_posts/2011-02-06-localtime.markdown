@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/localtime
+alias:
+- /phpjs/functions/localtime:587
+- /phpjs/functions/587
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's localtime

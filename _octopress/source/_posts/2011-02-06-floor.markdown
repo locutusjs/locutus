@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/floor
+alias:
+- /phpjs/functions/floor:403
+- /phpjs/functions/403
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's floor

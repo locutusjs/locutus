@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/classkit_method_rename
+alias:
+- /phpjs/functions/classkit_method_rename:767
+- /phpjs/functions/767
 categories: [ classkit, functions ]
 ---
 A JavaScript equivalent of PHP's classkit_method_rename

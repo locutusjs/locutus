@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/strnatcasecmp
+alias:
+- /phpjs/functions/strnatcasecmp:540
+- /phpjs/functions/540
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strnatcasecmp

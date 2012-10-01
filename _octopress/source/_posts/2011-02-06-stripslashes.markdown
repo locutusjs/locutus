@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/stripslashes
+alias:
+- /phpjs/functions/stripslashes:537
+- /phpjs/functions/537
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's stripslashes

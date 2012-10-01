@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/is_array
+alias:
+- /phpjs/functions/is_array:437
+- /phpjs/functions/437
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_array

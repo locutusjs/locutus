@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ctype_alpha
+alias:
+- /phpjs/functions/ctype_alpha:752
+- /phpjs/functions/752
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_alpha

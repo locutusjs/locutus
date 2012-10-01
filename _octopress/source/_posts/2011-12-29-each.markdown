@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/each
+alias:
+- /phpjs/functions/each:390
+- /phpjs/functions/390
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's each

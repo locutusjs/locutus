@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/range
+alias:
+- /phpjs/functions/range:499
+- /phpjs/functions/499
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's range

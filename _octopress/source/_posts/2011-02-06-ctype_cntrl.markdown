@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ctype_cntrl
+alias:
+- /phpjs/functions/ctype_cntrl:753
+- /phpjs/functions/753
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_cntrl

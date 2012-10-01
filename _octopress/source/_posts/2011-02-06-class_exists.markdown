@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/class_exists
+alias:
+- /phpjs/functions/class_exists:370
+- /phpjs/functions/370
 categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's class_exists

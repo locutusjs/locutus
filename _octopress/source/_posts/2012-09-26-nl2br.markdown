@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/nl2br
+alias:
+- /phpjs/functions/nl2br:480
+- /phpjs/functions/480
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's nl2br

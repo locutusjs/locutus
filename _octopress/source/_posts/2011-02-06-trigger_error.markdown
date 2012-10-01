@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/trigger_error
+alias:
+- /phpjs/functions/trigger_error:842
+- /phpjs/functions/842
 categories: [ errorfunc, functions ]
 ---
 A JavaScript equivalent of PHP's trigger_error

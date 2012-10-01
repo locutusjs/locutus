@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/user_error
+alias:
+- /phpjs/functions/user_error:843
+- /phpjs/functions/843
 categories: [ errorfunc, functions ]
 ---
 A JavaScript equivalent of PHP's user_error

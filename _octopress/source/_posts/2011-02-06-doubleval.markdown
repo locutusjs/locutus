@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/doubleval
+alias:
+- /phpjs/functions/doubleval:389
+- /phpjs/functions/389
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's doubleval

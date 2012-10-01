@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/is_null
+alias:
+- /phpjs/functions/is_null:448
+- /phpjs/functions/448
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_null

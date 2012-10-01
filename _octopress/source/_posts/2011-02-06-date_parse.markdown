@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/date_parse
+alias:
+- /phpjs/functions/date_parse:827
+- /phpjs/functions/827
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's date_parse

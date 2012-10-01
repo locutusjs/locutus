@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_pad
+alias:
+- /phpjs/functions/array_pad:328
+- /phpjs/functions/328
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_pad

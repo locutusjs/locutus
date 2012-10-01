@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/is_float
+alias:
+- /phpjs/functions/is_float:442
+- /phpjs/functions/442
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_float

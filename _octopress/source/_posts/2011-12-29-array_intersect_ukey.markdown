@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_intersect_ukey
+alias:
+- /phpjs/functions/array_intersect_ukey:322
+- /phpjs/functions/322
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_intersect_ukey

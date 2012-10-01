@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_values
+alias:
+- /phpjs/functions/array_values:348
+- /phpjs/functions/348
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_values

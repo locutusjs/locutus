@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/levenshtein
+alias:
+- /phpjs/functions/levenshtein:463
+- /phpjs/functions/463
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's levenshtein

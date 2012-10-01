@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_filter
+alias:
+- /phpjs/functions/array_filter:316
+- /phpjs/functions/316
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_filter

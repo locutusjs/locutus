@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_merge_recursive
+alias:
+- /phpjs/functions/array_merge_recursive:327
+- /phpjs/functions/327
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_merge_recursive

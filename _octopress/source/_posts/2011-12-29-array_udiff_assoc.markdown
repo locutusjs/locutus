@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_udiff_assoc
+alias:
+- /phpjs/functions/array_udiff_assoc:341
+- /phpjs/functions/341
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_udiff_assoc

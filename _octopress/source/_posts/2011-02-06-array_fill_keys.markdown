@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_fill_keys
+alias:
+- /phpjs/functions/array_fill_keys:315
+- /phpjs/functions/315
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_fill_keys

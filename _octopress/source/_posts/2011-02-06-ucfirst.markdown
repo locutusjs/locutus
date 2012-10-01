@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ucfirst
+alias:
+- /phpjs/functions/ucfirst:568
+- /phpjs/functions/568
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's ucfirst

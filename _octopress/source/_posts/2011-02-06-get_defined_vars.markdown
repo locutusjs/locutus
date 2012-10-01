@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/get_defined_vars
+alias:
+- /phpjs/functions/get_defined_vars:414
+- /phpjs/functions/414
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's get_defined_vars

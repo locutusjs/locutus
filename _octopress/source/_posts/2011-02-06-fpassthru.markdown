@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/fpassthru
+alias:
+- /phpjs/functions/fpassthru:804
+- /phpjs/functions/804
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's fpassthru

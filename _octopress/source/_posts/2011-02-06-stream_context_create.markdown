@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/stream_context_create
+alias:
+- /phpjs/functions/stream_context_create:844
+- /phpjs/functions/844
 categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_context_create

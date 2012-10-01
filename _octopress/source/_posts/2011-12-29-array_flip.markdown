@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_flip
+alias:
+- /phpjs/functions/array_flip:317
+- /phpjs/functions/317
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_flip

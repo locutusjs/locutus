@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/runkit_method_remove
+alias:
+- /phpjs/functions/runkit_method_remove:816
+- /phpjs/functions/816
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_method_remove

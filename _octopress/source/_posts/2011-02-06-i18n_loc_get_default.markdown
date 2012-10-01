@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/i18n_loc_get_default
+alias:
+- /phpjs/functions/i18n_loc_get_default:864
+- /phpjs/functions/864
 categories: [ i18n, functions ]
 ---
 A JavaScript equivalent of PHP's i18n_loc_get_default

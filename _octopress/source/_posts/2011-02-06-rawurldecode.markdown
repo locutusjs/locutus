@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/rawurldecode
+alias:
+- /phpjs/functions/rawurldecode:500
+- /phpjs/functions/500
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's rawurldecode

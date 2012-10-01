@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/key
+alias:
+- /phpjs/functions/key:458
+- /phpjs/functions/458
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's key

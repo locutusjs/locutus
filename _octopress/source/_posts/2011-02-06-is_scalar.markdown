@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/is_scalar
+alias:
+- /phpjs/functions/is_scalar:452
+- /phpjs/functions/452
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_scalar

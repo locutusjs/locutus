@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/get_extension_funcs
+alias:
+- /phpjs/functions/get_extension_funcs:867
+- /phpjs/functions/867
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's get_extension_funcs

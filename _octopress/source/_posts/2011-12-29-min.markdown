@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/min
+alias:
+- /phpjs/functions/min:473
+- /phpjs/functions/473
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's min

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/substr_replace
+alias:
+- /phpjs/functions/substr_replace:819
+- /phpjs/functions/819
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's substr_replace

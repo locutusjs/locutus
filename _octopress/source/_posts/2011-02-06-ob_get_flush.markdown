@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ob_get_flush
+alias:
+- /phpjs/functions/ob_get_flush:896
+- /phpjs/functions/896
 categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_get_flush

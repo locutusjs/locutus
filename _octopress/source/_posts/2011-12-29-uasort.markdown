@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/uasort
+alias:
+- /phpjs/functions/uasort:567
+- /phpjs/functions/567
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's uasort

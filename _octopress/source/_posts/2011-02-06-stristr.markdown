@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/stristr
+alias:
+- /phpjs/functions/stristr:538
+- /phpjs/functions/538
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's stristr

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/define
+alias:
+- /phpjs/functions/define:384
+- /phpjs/functions/384
 categories: [ misc, functions ]
 ---
 A JavaScript equivalent of PHP's define

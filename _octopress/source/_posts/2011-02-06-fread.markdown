@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/fread
+alias:
+- /phpjs/functions/fread:775
+- /phpjs/functions/775
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's fread

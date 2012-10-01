@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/is_long
+alias:
+- /phpjs/functions/is_long:446
+- /phpjs/functions/446
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_long

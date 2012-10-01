@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/mail
+alias:
+- /phpjs/functions/mail:884
+- /phpjs/functions/884
 categories: [ mail, functions ]
 ---
 A JavaScript equivalent of PHP's mail

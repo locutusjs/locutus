@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/require_once
+alias:
+- /phpjs/functions/require_once:503
+- /phpjs/functions/503
 categories: [ language, functions ]
 ---
 A JavaScript equivalent of PHP's require_once

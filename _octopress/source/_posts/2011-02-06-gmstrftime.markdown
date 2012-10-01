@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/gmstrftime
+alias:
+- /phpjs/functions/gmstrftime:780
+- /phpjs/functions/780
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's gmstrftime

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/next
+alias:
+- /phpjs/functions/next:479
+- /phpjs/functions/479
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's next

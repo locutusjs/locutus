@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/rtrim
+alias:
+- /phpjs/functions/rtrim:507
+- /phpjs/functions/507
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's rtrim

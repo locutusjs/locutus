@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/file_get_contents
+alias:
+- /phpjs/functions/file_get_contents:400
+- /phpjs/functions/400
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's file_get_contents

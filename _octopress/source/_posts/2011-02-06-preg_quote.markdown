@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/preg_quote
+alias:
+- /phpjs/functions/preg_quote:491
+- /phpjs/functions/491
 categories: [ pcre, functions ]
 ---
 A JavaScript equivalent of PHP's preg_quote

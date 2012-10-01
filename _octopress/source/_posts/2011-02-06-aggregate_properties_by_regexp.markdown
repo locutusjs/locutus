@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/aggregate_properties_by_regexp
+alias:
+- /phpjs/functions/aggregate_properties_by_regexp:798
+- /phpjs/functions/798
 categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregate_properties_by_regexp

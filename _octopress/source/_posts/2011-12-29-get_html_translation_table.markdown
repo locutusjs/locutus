@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/get_html_translation_table
+alias:
+- /phpjs/functions/get_html_translation_table:416
+- /phpjs/functions/416
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's get_html_translation_table

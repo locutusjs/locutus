@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/date_default_timezone_get
+alias:
+- /phpjs/functions/date_default_timezone_get:583
+- /phpjs/functions/583
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's date_default_timezone_get

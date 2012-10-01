@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/is_integer
+alias:
+- /phpjs/functions/is_integer:445
+- /phpjs/functions/445
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_integer

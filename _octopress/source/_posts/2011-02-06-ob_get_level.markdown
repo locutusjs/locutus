@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ob_get_level
+alias:
+- /phpjs/functions/ob_get_level:898
+- /phpjs/functions/898
 categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_get_level

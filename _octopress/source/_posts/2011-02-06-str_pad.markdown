@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/str_pad
+alias:
+- /phpjs/functions/str_pad:525
+- /phpjs/functions/525
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's str_pad

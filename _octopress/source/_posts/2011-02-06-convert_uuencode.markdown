@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/convert_uuencode
+alias:
+- /phpjs/functions/convert_uuencode:769
+- /phpjs/functions/769
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's convert_uuencode

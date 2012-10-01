@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/str_shuffle
+alias:
+- /phpjs/functions/str_shuffle:529
+- /phpjs/functions/529
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's str_shuffle

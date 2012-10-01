@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/rad2deg
+alias:
+- /phpjs/functions/rad2deg:497
+- /phpjs/functions/497
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's rad2deg

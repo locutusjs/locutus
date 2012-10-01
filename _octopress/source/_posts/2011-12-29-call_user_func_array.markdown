@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/call_user_func_array
+alias:
+- /phpjs/functions/call_user_func_array:364
+- /phpjs/functions/364
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's call_user_func_array

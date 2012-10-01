@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/setcookie
+alias:
+- /phpjs/functions/setcookie:509
+- /phpjs/functions/509
 categories: [ network, functions ]
 ---
 A JavaScript equivalent of PHP's setcookie

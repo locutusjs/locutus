@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/floatval
+alias:
+- /phpjs/functions/floatval:402
+- /phpjs/functions/402
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's floatval

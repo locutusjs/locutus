@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ob_get_clean
+alias:
+- /phpjs/functions/ob_get_clean:894
+- /phpjs/functions/894
 categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_get_clean

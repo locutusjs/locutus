@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/str_word_count
+alias:
+- /phpjs/functions/str_word_count:788
+- /phpjs/functions/788
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's str_word_count

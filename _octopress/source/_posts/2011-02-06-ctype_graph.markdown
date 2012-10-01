@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/ctype_graph
+alias:
+- /phpjs/functions/ctype_graph:755
+- /phpjs/functions/755
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_graph

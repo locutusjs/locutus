@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/runkit_superglobals
+alias:
+- /phpjs/functions/runkit_superglobals:829
+- /phpjs/functions/829
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_superglobals

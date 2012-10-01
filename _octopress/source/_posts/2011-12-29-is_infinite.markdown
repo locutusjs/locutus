@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/is_infinite
+alias:
+- /phpjs/functions/is_infinite:443
+- /phpjs/functions/443
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's is_infinite

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/count_chars
+alias:
+- /phpjs/functions/count_chars:376
+- /phpjs/functions/376
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's count_chars

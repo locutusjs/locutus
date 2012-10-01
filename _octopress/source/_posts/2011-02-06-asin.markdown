@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/asin
+alias:
+- /phpjs/functions/asin:352
+- /phpjs/functions/352
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's asin

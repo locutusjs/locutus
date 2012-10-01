@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/timezone_abbreviations_list
+alias:
+- /phpjs/functions/timezone_abbreviations_list:565
+- /phpjs/functions/565
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's timezone_abbreviations_list

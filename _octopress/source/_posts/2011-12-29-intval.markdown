@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/intval
+alias:
+- /phpjs/functions/intval:435
+- /phpjs/functions/435
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's intval

@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/escapeshellarg
+alias:
+- /phpjs/functions/escapeshellarg:866
+- /phpjs/functions/866
 categories: [ exec, functions ]
 ---
 A JavaScript equivalent of PHP's escapeshellarg

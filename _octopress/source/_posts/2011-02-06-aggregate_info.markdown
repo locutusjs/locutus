@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/aggregate_info
+alias:
+- /phpjs/functions/aggregate_info:792
+- /phpjs/functions/792
 categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregate_info

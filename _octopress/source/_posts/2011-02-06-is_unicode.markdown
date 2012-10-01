@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/is_unicode
+alias:
+- /phpjs/functions/is_unicode:593
+- /phpjs/functions/593
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_unicode

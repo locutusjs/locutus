@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/convert_cyr_string
+alias:
+- /phpjs/functions/convert_cyr_string:881
+- /phpjs/functions/881
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's convert_cyr_string

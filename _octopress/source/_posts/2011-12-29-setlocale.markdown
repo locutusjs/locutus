@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/setlocale
+alias:
+- /phpjs/functions/setlocale:589
+- /phpjs/functions/589
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's setlocale

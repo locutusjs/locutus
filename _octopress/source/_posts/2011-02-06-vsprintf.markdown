@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/vsprintf
+alias:
+- /phpjs/functions/vsprintf:580
+- /phpjs/functions/580
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's vsprintf

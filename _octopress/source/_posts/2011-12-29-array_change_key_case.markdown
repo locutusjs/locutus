@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/array_change_key_case
+alias:
+- /phpjs/functions/array_change_key_case:305
+- /phpjs/functions/305
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_change_key_case

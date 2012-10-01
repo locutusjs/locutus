@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 permalink: /phpjs/functions/strcspn
+alias:
+- /phpjs/functions/strcspn:534
+- /phpjs/functions/534
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strcspn
