@@ -52,6 +52,7 @@ task :build do
       puts "Creating page: #{page_file}"
       File.unlink(page_file) if File.file?(page_file)
       open(page_file, 'w') do |page|
+        id = `cat #{octodir}/#{source_dir}/id-mapping.txt |egrep [[:space:]]#{function}\$ |awk '{print \$1}'`
         page.puts "---"
         page.puts "layout: post"
         page.puts "title: \"JavaScript #{function} function\""
@@ -60,6 +61,9 @@ task :build do
         page.puts "sharing: true"
         page.puts "footer: true"
         page.puts "permalink: /phpjs/functions/#{function}"
+        page.puts "alias:"
+        page.puts "- /phpjs/functions/#{function}:#{id}"
+        page.puts "- /phpjs/functions/#{id}"
         page.puts "categories: [ #{category}, functions ]"
         page.puts "---"
         page.puts "A JavaScript equivalent of PHP's #{function}"
