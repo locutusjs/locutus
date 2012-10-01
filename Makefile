@@ -4,6 +4,7 @@ site:
 	cd _deploy && \
 	git remote add origin git@github.com:kvz/phpjs.git ; \
 	cd .. ; \
+	rake integrate && \
 	rake build && \
 	rake generate && \
 	rake deploy ; \
