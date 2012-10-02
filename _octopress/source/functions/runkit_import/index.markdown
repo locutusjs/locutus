@@ -34,5 +34,5 @@ function runkit_import (file, flags) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_import.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_import.js)
 
-## PHP functions in available in pure Javascript in the runkit extension
+### Other PHP functions in the runkit extension
 {% render_partial _includes/custom/runkit.html %}

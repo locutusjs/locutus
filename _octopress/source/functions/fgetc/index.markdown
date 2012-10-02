@@ -65,5 +65,5 @@ function fgetc (handle) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/fgetc.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/fgetc.js)
 
-## PHP functions in available in pure Javascript in the filesystem extension
+### Other PHP functions in the filesystem extension
 {% render_partial _includes/custom/filesystem.html %}

@@ -26,5 +26,5 @@ function is_scalar (mixed_var) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_scalar.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_scalar.js)
 
-## PHP functions in available in pure Javascript in the var extension
+### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}

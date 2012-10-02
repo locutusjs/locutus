@@ -45,5 +45,5 @@ function ob_clean () {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/outcontrol/ob_clean.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/outcontrol/ob_clean.js)
 
-## PHP functions in available in pure Javascript in the outcontrol extension
+### Other PHP functions in the outcontrol extension
 {% render_partial _includes/custom/outcontrol.html %}

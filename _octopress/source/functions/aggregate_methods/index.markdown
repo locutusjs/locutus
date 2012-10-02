@@ -85,5 +85,5 @@ function aggregate_methods (obj, class_name) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate_methods.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate_methods.js)
 
-## PHP functions in available in pure Javascript in the objaggregation extension
+### Other PHP functions in the objaggregation extension
 {% render_partial _includes/custom/objaggregation.html %}

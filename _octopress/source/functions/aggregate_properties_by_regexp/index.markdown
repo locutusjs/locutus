@@ -91,5 +91,5 @@ function aggregate_properties_by_regexp (obj, class_name, regexp, exclude) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate_properties_by_regexp.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate_properties_by_regexp.js)
 
-## PHP functions in available in pure Javascript in the objaggregation extension
+### Other PHP functions in the objaggregation extension
 {% render_partial _includes/custom/objaggregation.html %}

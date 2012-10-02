@@ -42,5 +42,5 @@ function sql_regcase (str) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/pcre/sql_regcase.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/pcre/sql_regcase.js)
 
-## PHP functions in available in pure Javascript in the pcre extension
+### Other PHP functions in the pcre extension
 {% render_partial _includes/custom/pcre.html %}

@@ -179,5 +179,5 @@ function get_html_translation_table (table, quote_style) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/get_html_translation_table.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/get_html_translation_table.js)
 
-## PHP functions in available in pure Javascript in the strings extension
+### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

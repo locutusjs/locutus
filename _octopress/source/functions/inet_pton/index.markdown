@@ -61,5 +61,5 @@ function inet_pton (a) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/network/inet_pton.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/network/inet_pton.js)
 
-## PHP functions in available in pure Javascript in the network extension
+### Other PHP functions in the network extension
 {% render_partial _includes/custom/network.html %}

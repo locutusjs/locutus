@@ -52,5 +52,5 @@ function setrawcookie (name, value, expires, path, domain, secure) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/network/setrawcookie.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/network/setrawcookie.js)
 
-## PHP functions in available in pure Javascript in the network extension
+### Other PHP functions in the network extension
 {% render_partial _includes/custom/network.html %}

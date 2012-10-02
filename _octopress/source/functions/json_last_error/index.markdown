@@ -32,5 +32,5 @@ function json_last_error () {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/json/json_last_error.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/json/json_last_error.js)
 
-## PHP functions in available in pure Javascript in the json extension
+### Other PHP functions in the json extension
 {% render_partial _includes/custom/json.html %}

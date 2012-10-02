@@ -29,5 +29,5 @@ function error_reporting (level) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/errorfunc/error_reporting.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/errorfunc/error_reporting.js)
 
-## PHP functions in available in pure Javascript in the errorfunc extension
+### Other PHP functions in the errorfunc extension
 {% render_partial _includes/custom/errorfunc.html %}

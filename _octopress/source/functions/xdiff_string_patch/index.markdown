@@ -190,5 +190,5 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/xdiff/xdiff_string_patch.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/xdiff/xdiff_string_patch.js)
 
-## PHP functions in available in pure Javascript in the xdiff extension
+### Other PHP functions in the xdiff extension
 {% render_partial _includes/custom/xdiff.html %}

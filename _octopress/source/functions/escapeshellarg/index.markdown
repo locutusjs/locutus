@@ -31,5 +31,5 @@ function escapeshellarg (arg) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/exec/escapeshellarg.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/exec/escapeshellarg.js)
 
-## PHP functions in available in pure Javascript in the exec extension
+### Other PHP functions in the exec extension
 {% render_partial _includes/custom/exec.html %}

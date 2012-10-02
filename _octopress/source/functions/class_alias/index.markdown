@@ -53,5 +53,5 @@ function class_alias (clss, alias, autoload) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/class_alias.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/class_alias.js)
 
-## PHP functions in available in pure Javascript in the classobj extension
+### Other PHP functions in the classobj extension
 {% render_partial _includes/custom/classobj.html %}

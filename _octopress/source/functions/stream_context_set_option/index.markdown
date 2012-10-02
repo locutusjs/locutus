@@ -34,5 +34,5 @@ function stream_context_set_option (stream_or_context, optionsOrWrapper, option,
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_set_option.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_set_option.js)
 
-## PHP functions in available in pure Javascript in the stream extension
+### Other PHP functions in the stream extension
 {% render_partial _includes/custom/stream.html %}

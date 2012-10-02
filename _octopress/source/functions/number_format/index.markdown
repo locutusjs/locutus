@@ -87,5 +87,5 @@ function number_format (number, decimals, dec_point, thousands_sep) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/number_format.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/number_format.js)
 
-## PHP functions in available in pure Javascript in the strings extension
+### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

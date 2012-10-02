@@ -74,5 +74,5 @@ function aggregate_info (obj) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate_info.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate_info.js)
 
-## PHP functions in available in pure Javascript in the objaggregation extension
+### Other PHP functions in the objaggregation extension
 {% render_partial _includes/custom/objaggregation.html %}

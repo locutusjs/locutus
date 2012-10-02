@@ -28,5 +28,5 @@ function time_sleep_until (timestamp) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/misc/time_sleep_until.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/misc/time_sleep_until.js)
 
-## PHP functions in available in pure Javascript in the misc extension
+### Other PHP functions in the misc extension
 {% render_partial _includes/custom/misc.html %}

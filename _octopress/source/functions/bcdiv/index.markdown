@@ -62,5 +62,5 @@ function bcdiv (left_operand, right_operand, scale) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/bc/bcdiv.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/bc/bcdiv.js)
 
-## PHP functions in available in pure Javascript in the bc extension
+### Other PHP functions in the bc extension
 {% render_partial _includes/custom/bc.html %}

@@ -37,5 +37,5 @@ function defined (constant_name) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/misc/defined.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/misc/defined.js)
 
-## PHP functions in available in pure Javascript in the misc extension
+### Other PHP functions in the misc extension
 {% render_partial _includes/custom/misc.html %}

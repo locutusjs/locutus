@@ -275,5 +275,5 @@ function file_get_contents (url, flags, context, offset, maxLen) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/file_get_contents.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/file_get_contents.js)
 
-## PHP functions in available in pure Javascript in the filesystem extension
+### Other PHP functions in the filesystem extension
 {% render_partial _includes/custom/filesystem.html %}

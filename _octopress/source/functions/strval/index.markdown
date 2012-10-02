@@ -47,5 +47,5 @@ function strval (str) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/strval.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/strval.js)
 
-## PHP functions in available in pure Javascript in the var extension
+### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}

@@ -36,5 +36,5 @@ function php_strip_whitespace (file) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/misc/php_strip_whitespace.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/misc/php_strip_whitespace.js)
 
-## PHP functions in available in pure Javascript in the misc extension
+### Other PHP functions in the misc extension
 {% render_partial _includes/custom/misc.html %}

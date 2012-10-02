@@ -37,5 +37,5 @@ function stream_get_contents (handle, maxLength, offset) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_get_contents.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_get_contents.js)
 
-## PHP functions in available in pure Javascript in the stream extension
+### Other PHP functions in the stream extension
 {% render_partial _includes/custom/stream.html %}

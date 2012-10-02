@@ -169,5 +169,5 @@ function json_encode (mixed_val) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/json/json_encode.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/json/json_encode.js)
 
-## PHP functions in available in pure Javascript in the json extension
+### Other PHP functions in the json extension
 {% render_partial _includes/custom/json.html %}

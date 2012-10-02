@@ -434,5 +434,5 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/xdiff/xdiff_string_diff.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/xdiff/xdiff_string_diff.js)
 
-## PHP functions in available in pure Javascript in the xdiff extension
+### Other PHP functions in the xdiff extension
 {% render_partial _includes/custom/xdiff.html %}

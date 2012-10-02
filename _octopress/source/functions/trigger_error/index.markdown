@@ -135,5 +135,5 @@ function trigger_error (error_msg, error_type) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/errorfunc/trigger_error.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/errorfunc/trigger_error.js)
 
-## PHP functions in available in pure Javascript in the errorfunc extension
+### Other PHP functions in the errorfunc extension
 {% render_partial _includes/custom/errorfunc.html %}

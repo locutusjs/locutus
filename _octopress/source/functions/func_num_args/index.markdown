@@ -35,5 +35,5 @@ function func_num_args () {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/funchand/func_num_args.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/funchand/func_num_args.js)
 
-## PHP functions in available in pure Javascript in the funchand extension
+### Other PHP functions in the funchand extension
 {% render_partial _includes/custom/funchand.html %}

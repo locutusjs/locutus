@@ -58,5 +58,5 @@ function array_push (inputArr) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_push.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_push.js)
 
-## PHP functions in available in pure Javascript in the array extension
+### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}

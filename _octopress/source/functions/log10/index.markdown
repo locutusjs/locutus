@@ -29,5 +29,5 @@ function log10 (arg) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/log10.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/log10.js)
 
-## PHP functions in available in pure Javascript in the math extension
+### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

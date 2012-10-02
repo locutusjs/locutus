@@ -22,5 +22,5 @@ function lcg_value () {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/lcg_value.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/lcg_value.js)
 
-## PHP functions in available in pure Javascript in the math extension
+### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

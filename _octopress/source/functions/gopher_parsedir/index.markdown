@@ -89,5 +89,5 @@ function gopher_parsedir (dirent) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/net-gopher/gopher_parsedir.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/net-gopher/gopher_parsedir.js)
 
-## PHP functions in available in pure Javascript in the net-gopher extension
+### Other PHP functions in the net-gopher extension
 {% render_partial _includes/custom/net-gopher.html %}

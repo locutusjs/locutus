@@ -52,5 +52,5 @@ function get_class_vars (name) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/get_class_vars.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/get_class_vars.js)
 
-## PHP functions in available in pure Javascript in the classobj extension
+### Other PHP functions in the classobj extension
 {% render_partial _includes/custom/classobj.html %}

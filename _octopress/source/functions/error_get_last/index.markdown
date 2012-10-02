@@ -27,5 +27,5 @@ function error_get_last () {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/errorfunc/error_get_last.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/errorfunc/error_get_last.js)
 
-## PHP functions in available in pure Javascript in the errorfunc extension
+### Other PHP functions in the errorfunc extension
 {% render_partial _includes/custom/errorfunc.html %}

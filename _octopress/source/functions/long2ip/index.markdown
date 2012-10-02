@@ -27,5 +27,5 @@ function long2ip (ip) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/network/long2ip.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/network/long2ip.js)
 
-## PHP functions in available in pure Javascript in the network extension
+### Other PHP functions in the network extension
 {% render_partial _includes/custom/network.html %}

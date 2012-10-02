@@ -28,5 +28,5 @@ function stream_is_local (stream_or_url) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_is_local.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_is_local.js)
 
-## PHP functions in available in pure Javascript in the stream extension
+### Other PHP functions in the stream extension
 {% render_partial _includes/custom/stream.html %}

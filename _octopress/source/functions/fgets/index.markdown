@@ -52,5 +52,5 @@ function fgets (handle, length) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/fgets.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/fgets.js)
 
-## PHP functions in available in pure Javascript in the filesystem extension
+### Other PHP functions in the filesystem extension
 {% render_partial _includes/custom/filesystem.html %}

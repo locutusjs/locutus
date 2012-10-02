@@ -25,5 +25,5 @@ function ini_alter (varname, newvalue) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/ini_alter.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/ini_alter.js)
 
-## PHP functions in available in pure Javascript in the info extension
+### Other PHP functions in the info extension
 {% render_partial _includes/custom/info.html %}

@@ -31,5 +31,5 @@ function ctype_punct (text) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_punct.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_punct.js)
 
-## PHP functions in available in pure Javascript in the ctype extension
+### Other PHP functions in the ctype extension
 {% render_partial _includes/custom/ctype.html %}

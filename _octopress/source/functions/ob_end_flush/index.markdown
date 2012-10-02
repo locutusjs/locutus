@@ -53,5 +53,5 @@ function ob_end_flush () {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/outcontrol/ob_end_flush.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/outcontrol/ob_end_flush.js)
 
-## PHP functions in available in pure Javascript in the outcontrol extension
+### Other PHP functions in the outcontrol extension
 {% render_partial _includes/custom/outcontrol.html %}

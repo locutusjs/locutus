@@ -32,5 +32,5 @@ function preg_quote (str, delimiter) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/pcre/preg_quote.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/pcre/preg_quote.js)
 
-## PHP functions in available in pure Javascript in the pcre extension
+### Other PHP functions in the pcre extension
 {% render_partial _includes/custom/pcre.html %}

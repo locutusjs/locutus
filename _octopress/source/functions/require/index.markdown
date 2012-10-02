@@ -66,5 +66,5 @@ function require (filename) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/language/require.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/language/require.js)
 
-## PHP functions in available in pure Javascript in the language extension
+### Other PHP functions in the language extension
 {% render_partial _includes/custom/language.html %}

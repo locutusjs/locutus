@@ -37,5 +37,5 @@ function rawurldecode (str) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/url/rawurldecode.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/url/rawurldecode.js)
 
-## PHP functions in available in pure Javascript in the url extension
+### Other PHP functions in the url extension
 {% render_partial _includes/custom/url.html %}

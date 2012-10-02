@@ -52,5 +52,5 @@ function ip2long (IP) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/network/ip2long.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/network/ip2long.js)
 
-## PHP functions in available in pure Javascript in the network extension
+### Other PHP functions in the network extension
 {% render_partial _includes/custom/network.html %}

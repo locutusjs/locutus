@@ -49,5 +49,5 @@ function runkit_method_rename (classname, methodname, newname) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_method_rename.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_method_rename.js)
 
-## PHP functions in available in pure Javascript in the runkit extension
+### Other PHP functions in the runkit extension
 {% render_partial _includes/custom/runkit.html %}

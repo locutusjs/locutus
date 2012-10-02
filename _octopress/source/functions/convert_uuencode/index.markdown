@@ -98,5 +98,5 @@ function convert_uuencode (str) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/convert_uuencode.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/convert_uuencode.js)
 
-## PHP functions in available in pure Javascript in the strings extension
+### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

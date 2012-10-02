@@ -26,5 +26,5 @@ function stream_context_get_params (stream_or_context) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_get_params.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_get_params.js)
 
-## PHP functions in available in pure Javascript in the stream extension
+### Other PHP functions in the stream extension
 {% render_partial _includes/custom/stream.html %}

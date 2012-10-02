@@ -52,5 +52,5 @@ function fseek (handle, offset, whence) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/fseek.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/fseek.js)
 
-## PHP functions in available in pure Javascript in the filesystem extension
+### Other PHP functions in the filesystem extension
 {% render_partial _includes/custom/filesystem.html %}

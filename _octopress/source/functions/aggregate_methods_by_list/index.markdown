@@ -103,5 +103,5 @@ function aggregate_methods_by_list (obj, class_name, properties_list, exclude) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate_methods_by_list.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate_methods_by_list.js)
 
-## PHP functions in available in pure Javascript in the objaggregation extension
+### Other PHP functions in the objaggregation extension
 {% render_partial _includes/custom/objaggregation.html %}

@@ -51,5 +51,5 @@ function classkit_method_redefine (classname, methodname, args, code, flags) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classkit/classkit_method_redefine.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classkit/classkit_method_redefine.js)
 
-## PHP functions in available in pure Javascript in the classkit extension
+### Other PHP functions in the classkit extension
 {% render_partial _includes/custom/classkit.html %}

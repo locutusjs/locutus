@@ -38,5 +38,5 @@ function is_int (mixed_var) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_int.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_int.js)
 
-## PHP functions in available in pure Javascript in the var extension
+### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}

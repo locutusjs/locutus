@@ -58,5 +58,5 @@ function date_parse (date) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/date_parse.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/date_parse.js)
 
-## PHP functions in available in pure Javascript in the datetime extension
+### Other PHP functions in the datetime extension
 {% render_partial _includes/custom/datetime.html %}

@@ -52,5 +52,5 @@ function preg_grep (pattern, input, flags) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/pcre/preg_grep.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/pcre/preg_grep.js)
 
-## PHP functions in available in pure Javascript in the pcre extension
+### Other PHP functions in the pcre extension
 {% render_partial _includes/custom/pcre.html %}

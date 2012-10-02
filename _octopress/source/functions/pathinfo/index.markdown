@@ -151,5 +151,5 @@ function pathinfo (path, options) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/pathinfo.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/pathinfo.js)
 
-## PHP functions in available in pure Javascript in the filesystem extension
+### Other PHP functions in the filesystem extension
 {% render_partial _includes/custom/filesystem.html %}

@@ -90,5 +90,5 @@ function mail (to, subject, message, additional_headers, additional_parameters) 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/mail/mail.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/mail/mail.js)
 
-## PHP functions in available in pure Javascript in the mail extension
+### Other PHP functions in the mail extension
 {% render_partial _includes/custom/mail.html %}

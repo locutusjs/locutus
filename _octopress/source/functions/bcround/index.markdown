@@ -78,5 +78,5 @@ function bcround (val, precision) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/bc/bcround.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/bc/bcround.js)
 
-## PHP functions in available in pure Javascript in the bc extension
+### Other PHP functions in the bc extension
 {% render_partial _includes/custom/bc.html %}

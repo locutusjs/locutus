@@ -137,5 +137,5 @@ function settype (vr, type) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/settype.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/settype.js)
 
-## PHP functions in available in pure Javascript in the var extension
+### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}

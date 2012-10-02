@@ -43,5 +43,5 @@ function call_user_func (cb) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/funchand/call_user_func.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/funchand/call_user_func.js)
 
-## PHP functions in available in pure Javascript in the funchand extension
+### Other PHP functions in the funchand extension
 {% render_partial _includes/custom/funchand.html %}

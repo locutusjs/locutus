@@ -56,5 +56,5 @@ function get_declared_classes () {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/get_declared_classes.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/get_declared_classes.js)
 
-## PHP functions in available in pure Javascript in the classobj extension
+### Other PHP functions in the classobj extension
 {% render_partial _includes/custom/classobj.html %}

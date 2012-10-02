@@ -66,5 +66,5 @@ function get_extension_funcs (module_name) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/get_extension_funcs.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/get_extension_funcs.js)
 
-## PHP functions in available in pure Javascript in the info extension
+### Other PHP functions in the info extension
 {% render_partial _includes/custom/info.html %}

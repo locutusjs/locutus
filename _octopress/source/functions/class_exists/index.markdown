@@ -47,5 +47,5 @@ function class_exists (cls) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/class_exists.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/class_exists.js)
 
-## PHP functions in available in pure Javascript in the classobj extension
+### Other PHP functions in the classobj extension
 {% render_partial _includes/custom/classobj.html %}

@@ -31,5 +31,5 @@ function ctype_digit (text) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_digit.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_digit.js)
 
-## PHP functions in available in pure Javascript in the ctype extension
+### Other PHP functions in the ctype extension
 {% render_partial _includes/custom/ctype.html %}

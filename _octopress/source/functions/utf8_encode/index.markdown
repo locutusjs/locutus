@@ -68,5 +68,5 @@ function utf8_encode (argString) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/xml/utf8_encode.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/xml/utf8_encode.js)
 
-## PHP functions in available in pure Javascript in the xml extension
+### Other PHP functions in the xml extension
 {% render_partial _includes/custom/xml.html %}

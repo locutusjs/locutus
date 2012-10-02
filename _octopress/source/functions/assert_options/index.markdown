@@ -62,5 +62,5 @@ function assert_options (what, value) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/assert_options.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/assert_options.js)
 
-## PHP functions in available in pure Javascript in the info extension
+### Other PHP functions in the info extension
 {% render_partial _includes/custom/info.html %}

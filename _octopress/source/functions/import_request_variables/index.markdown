@@ -90,5 +90,5 @@ function import_request_variables (types, prefix) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/import_request_variables.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/import_request_variables.js)
 
-## PHP functions in available in pure Javascript in the var extension
+### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}

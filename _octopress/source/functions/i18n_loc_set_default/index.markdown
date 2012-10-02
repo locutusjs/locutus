@@ -41,5 +41,5 @@ function i18n_loc_set_default (name) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/i18n/i18n_loc_set_default.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/i18n/i18n_loc_set_default.js)
 
-## PHP functions in available in pure Javascript in the i18n extension
+### Other PHP functions in the i18n extension
 {% render_partial _includes/custom/i18n.html %}

@@ -48,5 +48,5 @@ function fgetcsv (handle, length, delimiter, enclosure, escape) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/fgetcsv.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/fgetcsv.js)
 
-## PHP functions in available in pure Javascript in the filesystem extension
+### Other PHP functions in the filesystem extension
 {% render_partial _includes/custom/filesystem.html %}

@@ -25,5 +25,5 @@ function base_convert (number, frombase, tobase) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/base_convert.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/base_convert.js)
 
-## PHP functions in available in pure Javascript in the math extension
+### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

@@ -46,5 +46,5 @@ function stream_get_line (handle, length, ending) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_get_line.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_get_line.js)
 
-## PHP functions in available in pure Javascript in the stream extension
+### Other PHP functions in the stream extension
 {% render_partial _includes/custom/stream.html %}

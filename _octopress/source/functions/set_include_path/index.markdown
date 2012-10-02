@@ -42,5 +42,5 @@ function set_include_path (new_include_path) {
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/set_include_path.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/set_include_path.js)
 
-## PHP functions in available in pure Javascript in the info extension
+### Other PHP functions in the info extension
 {% render_partial _includes/custom/info.html %}
