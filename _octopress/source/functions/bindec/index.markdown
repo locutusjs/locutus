@@ -1,0 +1,29 @@
+---
+layout: page
+title: "JavaScript bindec function"
+comments: true
+sharing: true
+footer: true
+alias:
+- /functions/bindec:362
+- /functions/362
+---
+A JavaScript equivalent of PHP's bindec
+
+{% codeblock math/bindec.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/bindec.js raw on github %}
+function bindec (binary_string) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Philippe Baumann
+    // *     example 1: bindec('110011');
+    // *     returns 1: 51
+    // *     example 2: bindec('000110011');
+    // *     returns 2: 51
+    // *     example 3: bindec('111');
+    // *     returns 3: 7
+    binary_string = (binary_string + '').replace(/[^01]/gi, '');
+    return parseInt(binary_string, 2);
+}
+{% endcodeblock %}
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/bindec.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/bindec.js)

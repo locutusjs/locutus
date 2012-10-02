@@ -1,0 +1,24 @@
+---
+layout: page
+title: "JavaScript acos function"
+comments: true
+sharing: true
+footer: true
+alias:
+- /functions/acos:301
+- /functions/301
+---
+A JavaScript equivalent of PHP's acos
+
+{% codeblock math/acos.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/acos.js raw on github %}
+function acos (arg) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Onno Marsman
+    // *     example 1: acos(0.3);
+    // *     returns 1: 1.2661036727794992
+    return Math.acos(arg);
+}
+{% endcodeblock %}
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/acos.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/acos.js)

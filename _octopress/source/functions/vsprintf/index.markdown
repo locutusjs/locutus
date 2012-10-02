@@ -1,0 +1,25 @@
+---
+layout: page
+title: "JavaScript vsprintf function"
+comments: true
+sharing: true
+footer: true
+alias:
+- /functions/vsprintf:580
+- /functions/580
+---
+A JavaScript equivalent of PHP's vsprintf
+
+{% codeblock strings/vsprintf.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/vsprintf.js raw on github %}
+function vsprintf (format, args) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: ejsanders
+    // -    depends on: sprintf
+    // *     example 1: vsprintf('%04d-%02d-%02d', [1988, 8, 1]);
+    // *     returns 1: '1988-08-01'
+    return this.sprintf.apply(this, [format].concat(args));
+}
+{% endcodeblock %}
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/vsprintf.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/vsprintf.js)

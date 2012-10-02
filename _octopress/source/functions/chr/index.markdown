@@ -1,0 +1,34 @@
+---
+layout: page
+title: "JavaScript chr function"
+comments: true
+sharing: true
+footer: true
+alias:
+- /functions/chr:368
+- /functions/368
+---
+A JavaScript equivalent of PHP's chr
+
+{% codeblock strings/chr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/chr.js raw on github %}
+function chr (codePt) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // *     example 1: chr(75);
+    // *     returns 1: 'K'
+    // *     example 1: chr(65536) === '\uD800\uDC00';
+    // *     returns 1: true
+    if (codePt > 0xFFFF) { // Create a four-byte string (length 2) since this code point is high
+        //   enough for the UTF-16 encoding (JavaScript internal use), to
+        //   require representation with two surrogates (reserved non-characters
+        //   used for building other characters; the first is "high" and the next "low")
+        codePt -= 0x10000;
+        return String.fromCharCode(0xD800 + (codePt >> 10), 0xDC00 + (codePt & 0x3FF));
+    }
+    return String.fromCharCode(codePt);
+}
+{% endcodeblock %}
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/chr.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/chr.js)

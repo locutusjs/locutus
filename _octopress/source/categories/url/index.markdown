@@ -1,0 +1,19 @@
+---
+layout: page
+title: "JavaScript url functions"
+comments: false
+sharing: false
+footer: true
+---
+JavaScript equivalents of PHP's url functions
+
+ - [base64_decode](/functions/base64_decode)
+ - [base64_encode](/functions/base64_encode)
+ - [get_headers](/functions/get_headers)
+ - [get_meta_tags](/functions/get_meta_tags)
+ - [http_build_query](/functions/http_build_query)
+ - [parse_url](/functions/parse_url)
+ - [rawurldecode](/functions/rawurldecode)
+ - [rawurlencode](/functions/rawurlencode)
+ - [urldecode](/functions/urldecode)
+ - [urlencode](/functions/urlencode)

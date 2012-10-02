@@ -1,0 +1,38 @@
+---
+layout: page
+title: "JavaScript constant function"
+comments: true
+sharing: true
+footer: true
+alias:
+- /functions/constant:372
+- /functions/372
+---
+A JavaScript equivalent of PHP's constant
+
+{% codeblock misc/constant.js lang:js https://raw.github.com/kvz/phpjs/master/functions/misc/constant.js raw on github %}
+function constant (name) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Paulo Freitas
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // *     example 1: constant('IMAGINARY_CONSTANT1');
+    // *     returns 1: null
+    var clssPos = 0,
+        clssCnst = null;
+    if ((clssPos = name.indexOf('::')) !== -1) {
+        clssCnst = name.slice(clssPos + 2);
+        name = name.slice(0, clssPos);
+    }
+
+    if (this.window[name] === undefined) {
+        return null;
+    }
+    if (clssCnst) {
+        return this.window[name][clssCnst];
+    }
+    return this.window[name];
+}
+{% endcodeblock %}
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/misc/constant.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/misc/constant.js)

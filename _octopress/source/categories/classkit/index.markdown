@@ -1,0 +1,15 @@
+---
+layout: page
+title: "JavaScript classkit functions"
+comments: false
+sharing: false
+footer: true
+---
+JavaScript equivalents of PHP's classkit functions
+
+ - [classkit_import](/functions/classkit_import)
+ - [classkit_method_add](/functions/classkit_method_add)
+ - [classkit_method_copy](/functions/classkit_method_copy)
+ - [classkit_method_redefine](/functions/classkit_method_redefine)
+ - [classkit_method_remove](/functions/classkit_method_remove)
+ - [classkit_method_rename](/functions/classkit_method_rename)

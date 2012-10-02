@@ -1,0 +1,35 @@
+---
+layout: page
+title: "JavaScript decbin function"
+comments: true
+sharing: true
+footer: true
+alias:
+- /functions/decbin:381
+- /functions/381
+---
+A JavaScript equivalent of PHP's decbin
+
+{% codeblock math/decbin.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/decbin.js raw on github %}
+function decbin (number) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Enrique Gonzalez
+    // +   bugfixed by: Onno Marsman
+    // +   improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
+    // +   input by: pilus
+    // +   input by: nord_ua
+    // *     example 1: decbin(12);
+    // *     returns 1: '1100'
+    // *     example 2: decbin(26);
+    // *     returns 2: '11010'
+    // *     example 3: decbin('26');
+    // *     returns 3: '11010'
+    if (number < 0) {
+        number = 0xFFFFFFFF + number + 1;
+    }
+    return parseInt(number, 10).toString(2);
+}
+{% endcodeblock %}
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/decbin.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/decbin.js)

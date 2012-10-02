@@ -1,0 +1,11 @@
+---
+layout: page
+title: "JavaScript xdiff functions"
+comments: false
+sharing: false
+footer: true
+---
+JavaScript equivalents of PHP's xdiff functions
+
+ - [xdiff_string_diff](/functions/xdiff_string_diff)
+ - [xdiff_string_patch](/functions/xdiff_string_patch)

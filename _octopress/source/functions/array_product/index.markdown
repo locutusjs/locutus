@@ -1,0 +1,37 @@
+---
+layout: page
+title: "JavaScript array_product function"
+comments: true
+sharing: true
+footer: true
+alias:
+- /functions/array_product:330
+- /functions/330
+---
+A JavaScript equivalent of PHP's array_product
+
+{% codeblock array/array_product.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_product.js raw on github %}
+function array_product (input) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Waldo Malqui Silva
+    // *     example 1: array_product([ 2, 4, 6, 8 ]);
+    // *     returns 1: 384
+    var idx = 0,
+        product = 1,
+        il = 0;
+
+    if (Object.prototype.toString.call(input) !== '[object Array]') {
+        return null;
+    }
+
+    il = input.length;
+    while (idx < il) {
+        product *= (!isNaN(input[idx]) ? input[idx] : 0);
+        idx++;
+    }
+    return product;
+}
+{% endcodeblock %}
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_product.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_product.js)

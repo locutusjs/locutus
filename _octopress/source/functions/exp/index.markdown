@@ -1,0 +1,24 @@
+---
+layout: page
+title: "JavaScript exp function"
+comments: true
+sharing: true
+footer: true
+alias:
+- /functions/exp:395
+- /functions/395
+---
+A JavaScript equivalent of PHP's exp
+
+{% codeblock math/exp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/exp.js raw on github %}
+function exp (arg) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Onno Marsman
+    // *     example 1: exp(0.3);
+    // *     returns 1: 1.3498588075760032
+    return Math.exp(arg);
+}
+{% endcodeblock %}
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/exp.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/exp.js)

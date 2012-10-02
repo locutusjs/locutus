@@ -1,0 +1,27 @@
+---
+layout: page
+title: "JavaScript is_bool function"
+comments: true
+sharing: true
+footer: true
+alias:
+- /functions/is_bool:438
+- /functions/438
+---
+A JavaScript equivalent of PHP's is_bool
+
+{% codeblock var/is_bool.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_bool.js raw on github %}
+function is_bool (mixed_var) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Onno Marsman
+    // +   improved by: CoursesWeb (http://www.coursesweb.net/)
+    // *     example 1: is_bool(false);
+    // *     returns 1: true
+    // *     example 2: is_bool(0);
+    // *     returns 2: false
+    return (obj === true || obj === false); // Faster (in FF) than type checking
+}
+{% endcodeblock %}
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_bool.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_bool.js)

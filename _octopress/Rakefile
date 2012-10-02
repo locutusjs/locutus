@@ -32,63 +32,107 @@ task :build do
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   octodir = Dir.pwd()
   phpjsdir = "#{octodir}/.."
+
+  page_cats_dir  = "#{octodir}/#{source_dir}/categories"
+  page_cats_file = "#{page_cats_dir}/index.#{new_post_ext}"
+  mkdir_p page_cats_dir unless File.directory? page_cats_dir
+  page_cats = File.open(page_cats_file, 'w')
+
+  page_catsinc_file = "#{octodir}/#{source_dir}/_includes/custom/asides/category_list.html"
+  page_cats_inc = File.open(page_catsinc_file, 'w')
+  page_cats_inc.puts "<section>"
+  page_cats_inc.puts "<h1>Categories</h1>"
+  page_cats_inc.puts "<ul id='category-list'>"
+
+  page_fncs_dir  = "#{octodir}/#{source_dir}/functions"
+  page_fncs_file = "#{page_fncs_dir}/index.#{new_post_ext}"
+  mkdir_p page_fncs_dir unless File.directory? page_fncs_dir
+  page_fncs = File.open(page_fncs_file, 'w')
+
+
   Dir.chdir("../functions")
   Dir.glob("*/").each { |dir|
     category = dir.gsub /\//, ''
     next if File.file? dir or category[0] == '_'
+    page_cat_dir  = "#{octodir}/#{source_dir}/categories/#{category}"
+    page_cat_file = "#{page_cat_dir}/index.#{new_post_ext}"
+    mkdir_p page_cat_dir unless File.directory? page_cat_dir
+    page_cat = File.open(page_cat_file, 'w')
+
+    page_cat.puts "---"
+    page_cat.puts "layout: page"
+    page_cat.puts "title: \"JavaScript #{category} functions\""
+    page_cat.puts "comments: false"
+    page_cat.puts "sharing: false"
+    page_cat.puts "footer: true"
+    page_cat.puts "---"
+
+    page_cat.puts "JavaScript equivalents of PHP's #{category} functions"
+    page_cat.puts ""
+
+    page_cats_inc.puts "## #{category}"
+    page_cats_inc.puts ""
+
+    page_fncs.puts "## #{category}"
+    page_fncs.puts ""
+
     Dir.chdir(dir)
     Dir.glob("*.js").each { |file|
       function = file.gsub /\.js$/, ''
-      next if function[0] == '_'
+      next if File.directory? file or function[0] == '_'
+      page_fnc_dir  = "#{octodir}/#{source_dir}/functions/#{function}"
+      page_fnc_file = "#{page_fnc_dir}/index.#{new_post_ext}"
+      mkdir_p page_fnc_dir unless File.directory? page_fnc_dir
+      page_fnc = File.open(page_fnc_file, 'w')
+      puts "Creating page_fnc: #{page_fnc_file}"
 
-      # mtime = File.mtime(file)
-      # mdate = mtime.strftime('2010-10-10 10:10:10')
-      mdate = "2010-10-10 10:10:10"
-      page_dir = "#{octodir}/#{source_dir}/#{posts_dir}"
-      page_file = "#{page_dir}/2010-10-10-function-#{function}.#{new_post_ext}"
-      mkdir_p page_dir
+      page_cat.puts " - [#{function}](/functions/#{function})"
+      page_cats_inc.puts " - [#{function}](/functions/#{function})"
+      page_fncs.puts " - [#{function}](/functions/#{function})"
 
-      puts "Creating page: #{page_file}"
-      File.unlink(page_file) if File.file?(page_file)
-      open(page_file, 'w') do |page|
-        id = `cat #{octodir}/#{source_dir}/id-mapping.txt |egrep [[:space:]]#{function}\$ |awk '{print \$1}'`
-        page.puts "---"
-        page.puts "layout: post"
-        page.puts "title: \"JavaScript #{function} function\""
-        # page.puts "date: #{mdate}"
-        page.puts "comments: true"
-        page.puts "sharing: true"
-        page.puts "footer: true"
-        page.puts "permalink: /functions/#{function}"
-        page.puts "alias:"
-        page.puts "- /functions/#{function}:#{id}"
-        page.puts "- /functions/#{id}"
-        page.puts "categories:"
-        page.puts "- php #{category} extension"
-        page.puts "- functions"
-        page.puts "---"
 
-        page.puts "A JavaScript equivalent of PHP's #{function}"
-        page.puts ""
-        page.puts "<!-- more -->"
-        page.puts ""
+      id = `cat #{octodir}/#{source_dir}/id-mapping.txt |egrep [[:space:]]#{function}\$ |awk '{print \$1}'`
+      page_fnc.puts "---"
+      page_fnc.puts "layout: page"
+      page_fnc.puts "title: \"JavaScript #{function} function\""
+      page_fnc.puts "comments: true"
+      page_fnc.puts "sharing: true"
+      page_fnc.puts "footer: true"
+      page_fnc.puts "alias:"
+      page_fnc.puts "- /functions/#{function}:#{id}"
+      page_fnc.puts "- /functions/#{id}"
+      page_fnc.puts "---"
 
-        codefile = File.open("#{phpjsdir}/functions/#{category}/#{function}.js", "r")
-        contents = codefile.read
-        page.puts "{% codeblock #{category}/#{function}.js lang:js https://raw.github.com/kvz/phpjs/master/functions/#{category}/#{function}.js raw on github %}"
-        page.puts "#{contents}"
-        page.puts "{% endcodeblock %}"
-        page.puts ""
-        page.puts " - [view on github](https://github.com/kvz/phpjs/blob/master/functions/#{category}/#{function}.js)"
-        page.puts " - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/#{category}/#{function}.js)"
-        page.puts ""
-      end
+      page_fnc.puts "A JavaScript equivalent of PHP's #{function}"
+      page_fnc.puts ""
+      # page_fnc.puts "<!-- more -->"
+      # page_fnc.puts ""
 
-      # break
+      codefile = File.open("#{phpjsdir}/functions/#{category}/#{function}.js", "r")
+      contents = codefile.read
+      codefile.close
+      page_fnc.puts "{% codeblock #{category}/#{function}.js lang:js https://raw.github.com/kvz/phpjs/master/functions/#{category}/#{function}.js raw on github %}"
+      page_fnc.puts "#{contents}"
+      page_fnc.puts "{% endcodeblock %}"
+      page_fnc.puts ""
+      page_fnc.puts " - [view on github](https://github.com/kvz/phpjs/blob/master/functions/#{category}/#{function}.js)"
+      page_fnc.puts " - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/#{category}/#{function}.js)"
+
+      page_fnc.close
     }
+
+    page_cat.close
+
     Dir.chdir("..")
-    # break
+
   }
+
+  page_cats_inc.puts "</ul>"
+  page_cats_inc.puts "</section>"
+
+  page_cats_inc.close
+  page_cats.close
+  page_fncs.close
 
   Dir.chdir(octodir)
 end

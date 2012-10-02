@@ -1,0 +1,37 @@
+---
+layout: page
+title: "JavaScript defined function"
+comments: true
+sharing: true
+footer: true
+alias:
+- /functions/defined:385
+- /functions/385
+---
+A JavaScript equivalent of PHP's defined
+
+{% codeblock misc/defined.js lang:js https://raw.github.com/kvz/phpjs/master/functions/misc/defined.js raw on github %}
+function defined (constant_name) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Waldo Malqui Silva
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    revised by: Brett Zamir (http://brett-zamir.me)
+    // %          note 1: Because this function can (albeit only temporarily) overwrite a global variable,
+    // %          note 1: it is not thread-safe (normally not a concern for JavaScript, but would be if used
+    // %          note 1: in a threaded environment, e.g., DOM worker threads)
+    // *     example 1: defined('IMAGINARY_CONSTANT1');
+    // *     returns 1: false
+    var tmp = this.window[constant_name];
+
+    this.window[constant_name] = this.window[constant_name] ? 'changed' + this.window[constant_name].toString() : 'changed';
+    var returnval = this.window[constant_name] === tmp;
+    if (!returnval) { // Reset
+        this.window[constant_name] = tmp;
+    }
+
+    return returnval;
+}
+{% endcodeblock %}
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/misc/defined.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/misc/defined.js)

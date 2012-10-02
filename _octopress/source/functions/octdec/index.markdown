@@ -1,0 +1,25 @@
+---
+layout: page
+title: "JavaScript octdec function"
+comments: true
+sharing: true
+footer: true
+alias:
+- /functions/octdec:482
+- /functions/482
+---
+A JavaScript equivalent of PHP's octdec
+
+{% codeblock math/octdec.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/octdec.js raw on github %}
+function octdec (oct_string) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Philippe Baumann
+    // *     example 1: octdec('77');
+    // *     returns 1: 63
+    oct_string = (oct_string + '').replace(/[^0-7]/gi, '');
+    return parseInt(oct_string, 8);
+}
+{% endcodeblock %}
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/octdec.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/octdec.js)
