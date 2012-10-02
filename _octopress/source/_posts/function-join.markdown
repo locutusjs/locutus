@@ -1,0 +1,28 @@
+---
+layout: post
+title: "JavaScript join function"
+comments: true
+sharing: true
+footer: true
+permalink: /functions/join
+alias:
+- /functions/join:455
+- /functions/455
+categories: [ strings, functions ]
+---
+A JavaScript equivalent of PHP's join
+<!-- more -->
+{% codeblock strings/join.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/join.js raw on github %}
+function join (glue, pieces) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // -    depends on: implode
+    // *     example 1: join(' ', ['Kevin', 'van', 'Zonneveld']);
+    // *     returns 1: 'Kevin van Zonneveld'
+    return this.implode(glue, pieces);
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/join.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/join.js">edit on github</a></li>
+</ul>

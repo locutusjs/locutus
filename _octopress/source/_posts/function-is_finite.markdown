@@ -1,0 +1,48 @@
+---
+layout: post
+title: "JavaScript is_finite function"
+comments: true
+sharing: true
+footer: true
+permalink: /functions/is_finite
+alias:
+- /functions/is_finite:441
+- /functions/441
+categories: [ math, functions ]
+---
+A JavaScript equivalent of PHP's is_finite
+<!-- more -->
+{% codeblock math/is_finite.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/is_finite.js raw on github %}
+function is_finite (val) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Onno Marsman
+    // *     example 1: is_finite(Infinity);
+    // *     returns 1: false
+    // *     example 2: is_finite(-Infinity);
+    // *     returns 2: false
+    // *     example 3: is_finite(0);
+    // *     returns 3: true
+    var warningType = '';
+
+    if (val === Infinity || val === -Infinity) {
+        return false;
+    }
+
+    //Some warnings for maximum PHP compatibility
+    if (typeof val == 'object') {
+        warningType = (Object.prototype.toString.call(val) === '[object Array]' ? 'array' : 'object');
+    } else if (typeof val == 'string' && !val.match(/^[\+\-]?\d/)) {
+        //simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
+        warningType = 'string';
+    }
+    if (warningType) {
+        throw new Error('Warning: is_finite() expects parameter 1 to be double, ' + warningType + ' given');
+    }
+
+    return true;
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/is_finite.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/is_finite.js">edit on github</a></li>
+</ul>

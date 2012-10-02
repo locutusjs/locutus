@@ -1,0 +1,35 @@
+---
+layout: post
+title: "JavaScript fscanf function"
+comments: true
+sharing: true
+footer: true
+permalink: /functions/fscanf
+alias:
+- /functions/fscanf:885
+- /functions/885
+categories: [ filesystem, functions ]
+---
+A JavaScript equivalent of PHP's fscanf
+<!-- more -->
+{% codeblock filesystem/fscanf.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/fscanf.js raw on github %}
+function fscanf (handle, format) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brett-zamir.me)
+    // -    depends on: fgets
+    // -    depends on: sscanf
+    // *     example 1: var handle = fopen('http://example.com/names_and_professions.html', 'r');
+    // *     example 1: fscanf(handle, '%s\t%s\t%s\n');
+    // *     returns 1: ['robert', 'slacker', 'us']
+
+    var mixed; // Could be an array or an integer
+
+    mixed = this.sscanf.apply(this, [fgets(handle), format].concat(Array.prototype.slice.call(arguments, 2)));
+
+    return mixed;
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/fscanf.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/fscanf.js">edit on github</a></li>
+</ul>

@@ -1,0 +1,36 @@
+---
+layout: post
+title: "JavaScript str_rot13 function"
+comments: true
+sharing: true
+footer: true
+permalink: /functions/str_rot13
+alias:
+- /functions/str_rot13:528
+- /functions/528
+categories: [ strings, functions ]
+---
+A JavaScript equivalent of PHP's str_rot13
+<!-- more -->
+{% codeblock strings/str_rot13.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_rot13.js raw on github %}
+function str_rot13 (str) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // +   improved by: Ates Goral (http://magnetiq.com)
+    // +   bugfixed by: Onno Marsman
+    // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
+    // *     example 1: str_rot13('Kevin van Zonneveld');
+    // *     returns 1: 'Xriva ina Mbaariryq'
+    // *     example 2: str_rot13('Xriva ina Mbaariryq');
+    // *     returns 2: 'Kevin van Zonneveld'
+    // *     example 3: str_rot13(33);
+    // *     returns 3: '33'
+    return (str + '').replace(/[a-z]/gi, function (s) {
+        return String.fromCharCode(s.charCodeAt(0) + (s.toLowerCase() < 'n' ? 13 : -13));
+    });
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/str_rot13.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/str_rot13.js">edit on github</a></li>
+</ul>
