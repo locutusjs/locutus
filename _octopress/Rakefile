@@ -48,7 +48,16 @@ task :build do
   page_fncs_file = "#{page_fncs_dir}/index.#{new_post_ext}"
   mkdir_p page_fncs_dir unless File.directory? page_fncs_dir
   page_fncs = File.open(page_fncs_file, 'w')
-
+  page_fncs.puts "---"
+  page_fncs.puts "layout: page"
+  page_fncs.puts "title: \"PHP functions for JavaScript\""
+  page_fncs.puts "comments: false"
+  page_fncs.puts "sharing: true"
+  page_fncs.puts "footer: true"
+  page_fncs.puts "alias:"
+  page_fncs.puts "- /functions/index"
+  page_fncs.puts "- /categories/index"
+  page_fncs.puts "---"
 
   Dir.chdir("../functions")
   Dir.glob("*/").each { |dir|
@@ -70,7 +79,7 @@ task :build do
     page_cat.puts "JavaScript equivalents of PHP's #{category} functions"
     page_cat.puts ""
 
-    page_cats_inc.puts "## #{category}"
+    page_cats_inc.puts "<li><a href=\"/categories/#{category}\">#{category}</a></li>"
     page_cats_inc.puts ""
 
     page_fncs.puts "## #{category}"
@@ -87,7 +96,6 @@ task :build do
       puts "Creating page_fnc: #{page_fnc_file}"
 
       page_cat.puts " - [#{function}](/functions/#{function})"
-      page_cats_inc.puts " - [#{function}](/functions/#{function})"
       page_fncs.puts " - [#{function}](/functions/#{function})"
 
 

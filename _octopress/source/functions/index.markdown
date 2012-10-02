@@ -1,3 +1,13 @@
+---
+layout: page
+title: "PHP functions for JavaScript"
+comments: false
+sharing: true
+footer: true
+alias:
+- /functions/index
+- /categories/index
+---
 ## array
 
  - [array](/functions/array)
