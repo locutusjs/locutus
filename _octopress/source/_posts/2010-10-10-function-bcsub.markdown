@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript bcsub function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/bcsub
 alias:
 - /functions/bcsub:875
 - /functions/875
-categories: [ bc, functions ]
+categories:
+- php bc extension
+- functions
 ---
 A JavaScript equivalent of PHP's bcsub
+
 <!-- more -->
+
 {% codeblock bc/bcsub.js lang:js https://raw.github.com/kvz/phpjs/master/functions/bc/bcsub.js raw on github %}
 function bcsub (left_operand, right_operand, scale) {
     // http://kevin.vanzonneveld.net
@@ -56,7 +59,7 @@ function bcsub (left_operand, right_operand, scale) {
 
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/bc/bcsub.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/bc/bcsub.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/bc/bcsub.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/bc/bcsub.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_flip function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_flip
 alias:
 - /functions/array_flip:317
 - /functions/317
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_flip
+
 <!-- more -->
+
 {% codeblock array/array_flip.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_flip.js raw on github %}
 function array_flip (trans) {
     // http://kevin.vanzonneveld.net
@@ -30,7 +33,7 @@ function array_flip (trans) {
     return tmp_ar;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_flip.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_flip.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_flip.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_flip.js)
+

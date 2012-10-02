@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript base64_decode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/base64_decode
 alias:
 - /functions/base64_decode:357
 - /functions/357
-categories: [ url, functions ]
+categories:
+- php url extension
+- functions
 ---
 A JavaScript equivalent of PHP's base64_decode
+
 <!-- more -->
+
 {% codeblock url/base64_decode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/base64_decode.js raw on github %}
 function base64_decode (data) {
     // http://kevin.vanzonneveld.net
@@ -70,7 +73,7 @@ function base64_decode (data) {
     return dec;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/url/base64_decode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/url/base64_decode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/url/base64_decode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/url/base64_decode.js)
+

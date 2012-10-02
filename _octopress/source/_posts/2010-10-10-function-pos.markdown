@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript pos function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/pos
 alias:
 - /functions/pos:489
 - /functions/489
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's pos
+
 <!-- more -->
+
 {% codeblock array/pos.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/pos.js raw on github %}
 function pos (arr) {
     // http://kevin.vanzonneveld.net
@@ -25,7 +28,7 @@ function pos (arr) {
     return this.current(arr);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/pos.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/pos.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/pos.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/pos.js)
+

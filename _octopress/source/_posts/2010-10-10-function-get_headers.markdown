@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript get_headers function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/get_headers
 alias:
 - /functions/get_headers:415
 - /functions/415
-categories: [ url, functions ]
+categories:
+- php url extension
+- functions
 ---
 A JavaScript equivalent of PHP's get_headers
+
 <!-- more -->
+
 {% codeblock url/get_headers.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/get_headers.js raw on github %}
 function get_headers (url, format) {
     // +   original by: Paulo Freitas
@@ -53,7 +56,7 @@ function get_headers (url, format) {
     return headers;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/url/get_headers.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/url/get_headers.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/url/get_headers.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/url/get_headers.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript metaphone function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/metaphone
 alias:
 - /functions/metaphone:863
 - /functions/863
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's metaphone
+
 <!-- more -->
+
 {% codeblock strings/metaphone.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/metaphone.js raw on github %}
 function metaphone (word, phones) {
     // +   original by: Greg Frazier
@@ -262,7 +265,7 @@ function metaphone (word, phones) {
     return metaword;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/metaphone.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/metaphone.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/metaphone.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/metaphone.js)
+

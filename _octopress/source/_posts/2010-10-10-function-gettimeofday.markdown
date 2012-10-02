@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript gettimeofday function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/gettimeofday
 alias:
 - /functions/gettimeofday:778
 - /functions/778
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's gettimeofday
+
 <!-- more -->
+
 {% codeblock datetime/gettimeofday.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/gettimeofday.js raw on github %}
 function gettimeofday (return_float) {
     // http://kevin.vanzonneveld.net
@@ -41,7 +44,7 @@ function gettimeofday (return_float) {
     };
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/gettimeofday.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/gettimeofday.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/gettimeofday.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/gettimeofday.js)
+

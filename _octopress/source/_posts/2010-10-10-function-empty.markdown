@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript empty function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/empty
 alias:
 - /functions/empty:392
 - /functions/392
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's empty
+
 <!-- more -->
+
 {% codeblock var/empty.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/empty.js raw on github %}
 function empty (mixed_var) {
     // Checks if the argument variable is empty
@@ -62,7 +65,7 @@ function empty (mixed_var) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/empty.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/empty.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/empty.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/empty.js)
+

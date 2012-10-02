@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript round function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/round
 alias:
 - /functions/round:505
 - /functions/505
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's round
+
 <!-- more -->
+
 {% codeblock math/round.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/round.js raw on github %}
 function round (value, precision, mode) {
     // http://kevin.vanzonneveld.net
@@ -67,7 +70,7 @@ function round (value, precision, mode) {
     return (isHalf ? value : Math.round(value)) / m;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/round.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/round.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/round.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/round.js)
+

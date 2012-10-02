@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript str_shuffle function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/str_shuffle
 alias:
 - /functions/str_shuffle:529
 - /functions/529
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's str_shuffle
+
 <!-- more -->
+
 {% codeblock strings/str_shuffle.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_shuffle.js raw on github %}
 function str_shuffle (str) {
     // http://kevin.vanzonneveld.net
@@ -41,7 +44,7 @@ function str_shuffle (str) {
     return newStr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/str_shuffle.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/str_shuffle.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/str_shuffle.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/str_shuffle.js)
+

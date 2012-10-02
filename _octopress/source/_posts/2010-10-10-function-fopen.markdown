@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript fopen function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/fopen
 alias:
 - /functions/fopen:774
 - /functions/774
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's fopen
+
 <!-- more -->
+
 {% codeblock filesystem/fopen.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/fopen.js raw on github %}
 function fopen (filename, mode, use_include_path, context) {
     // http://kevin.vanzonneveld.net
@@ -114,7 +117,7 @@ function fopen (filename, mode, use_include_path, context) {
     return resource; // may be 'file' instead of 'stream' type on some systems
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/fopen.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/fopen.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/fopen.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/fopen.js)
+

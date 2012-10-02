@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_sum function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_sum
 alias:
 - /functions/array_sum:339
 - /functions/339
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_sum
+
 <!-- more -->
+
 {% codeblock array/array_sum.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_sum.js raw on github %}
 function array_sum (array) {
     // http://kevin.vanzonneveld.net
@@ -46,7 +49,7 @@ function array_sum (array) {
     return sum;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_sum.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_sum.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_sum.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_sum.js)
+

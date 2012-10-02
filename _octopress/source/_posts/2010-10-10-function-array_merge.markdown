@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_merge function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_merge
 alias:
 - /functions/array_merge:326
 - /functions/326
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_merge
+
 <!-- more -->
+
 {% codeblock array/array_merge.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_merge.js raw on github %}
 function array_merge () {
     // http://kevin.vanzonneveld.net
@@ -78,7 +81,7 @@ function array_merge () {
     return retObj;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_merge.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_merge.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_merge.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_merge.js)
+

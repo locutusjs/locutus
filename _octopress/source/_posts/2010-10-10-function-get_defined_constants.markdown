@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript get_defined_constants function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/get_defined_constants
 alias:
 - /functions/get_defined_constants:839
 - /functions/839
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's get_defined_constants
+
 <!-- more -->
+
 {% codeblock info/get_defined_constants.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/get_defined_constants.js raw on github %}
 function get_defined_constants (categorize) {
     // +    original by: Brett Zamir (http://brett-zamir.me)
@@ -408,7 +411,7 @@ function get_defined_constants (categorize) {
     return flatConstObj;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/get_defined_constants.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/get_defined_constants.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/get_defined_constants.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/get_defined_constants.js)
+

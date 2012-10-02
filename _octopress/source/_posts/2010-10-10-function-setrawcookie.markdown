@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript setrawcookie function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/setrawcookie
 alias:
 - /functions/setrawcookie:510
 - /functions/510
-categories: [ network, functions ]
+categories:
+- php network extension
+- functions
 ---
 A JavaScript equivalent of PHP's setrawcookie
+
 <!-- more -->
+
 {% codeblock network/setrawcookie.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/setrawcookie.js raw on github %}
 function setrawcookie (name, value, expires, path, domain, secure) {
     // http://kevin.vanzonneveld.net
@@ -50,7 +53,7 @@ function setrawcookie (name, value, expires, path, domain, secure) {
     return secure && r.push('secure'), this.window.document.cookie = r.join(";"), true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/network/setrawcookie.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/network/setrawcookie.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/network/setrawcookie.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/network/setrawcookie.js)
+

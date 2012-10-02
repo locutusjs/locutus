@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strcspn function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strcspn
 alias:
 - /functions/strcspn:534
 - /functions/534
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strcspn
+
 <!-- more -->
+
 {% codeblock strings/strcspn.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strcspn.js raw on github %}
 function strcspn (str, mask, start, length) {
     // http://kevin.vanzonneveld.net
@@ -34,7 +37,7 @@ function strcspn (str, mask, start, length) {
     return lgth;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strcspn.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strcspn.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strcspn.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strcspn.js)
+

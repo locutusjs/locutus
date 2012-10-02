@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strtotime function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strtotime
 alias:
 - /functions/strtotime:554
 - /functions/554
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's strtotime
+
 <!-- more -->
+
 {% codeblock datetime/strtotime.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/strtotime.js raw on github %}
 function strtotime (str, now) {
     // http://kevin.vanzonneveld.net
@@ -196,7 +199,7 @@ function strtotime (str, now) {
     return now.getTime() / 1000 | 0;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/strtotime.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/strtotime.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/strtotime.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/strtotime.js)
+

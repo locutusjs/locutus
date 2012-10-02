@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strrchr function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strrchr
 alias:
 - /functions/strrchr:546
 - /functions/546
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strrchr
+
 <!-- more -->
+
 {% codeblock strings/strrchr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strrchr.js raw on github %}
 function strrchr (haystack, needle) {
     // http://kevin.vanzonneveld.net
@@ -35,7 +38,7 @@ function strrchr (haystack, needle) {
     return haystack.substr(pos);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strrchr.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strrchr.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strrchr.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strrchr.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript is_scalar function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/is_scalar
 alias:
 - /functions/is_scalar:452
 - /functions/452
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's is_scalar
+
 <!-- more -->
+
 {% codeblock var/is_scalar.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_scalar.js raw on github %}
 function is_scalar (mixed_var) {
     // http://kevin.vanzonneveld.net
@@ -24,7 +27,7 @@ function is_scalar (mixed_var) {
     return (/boolean|number|string/).test(typeof mixed_var);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/is_scalar.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/is_scalar.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_scalar.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_scalar.js)
+

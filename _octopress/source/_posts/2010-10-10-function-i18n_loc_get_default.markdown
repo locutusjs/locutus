@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript i18n_loc_get_default function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/i18n_loc_get_default
 alias:
 - /functions/i18n_loc_get_default:864
 - /functions/864
-categories: [ i18n, functions ]
+categories:
+- php i18n extension
+- functions
 ---
 A JavaScript equivalent of PHP's i18n_loc_get_default
+
 <!-- more -->
+
 {% codeblock i18n/i18n_loc_get_default.js lang:js https://raw.github.com/kvz/phpjs/master/functions/i18n/i18n_loc_get_default.js raw on github %}
 function i18n_loc_get_default () {
     // http://kevin.vanzonneveld.net
@@ -30,7 +33,7 @@ function i18n_loc_get_default () {
     return this.php_js.i18nLocale || (i18n_loc_set_default('en_US_POSIX'), 'en_US_POSIX'); // Ensure defaults are set up
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/i18n/i18n_loc_get_default.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/i18n/i18n_loc_get_default.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/i18n/i18n_loc_get_default.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/i18n/i18n_loc_get_default.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_pad function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_pad
 alias:
 - /functions/array_pad:328
 - /functions/328
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_pad
+
 <!-- more -->
+
 {% codeblock array/array_pad.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_pad.js raw on github %}
 function array_pad (input, pad_size, pad_value) {
     // http://kevin.vanzonneveld.net
@@ -48,7 +51,7 @@ function array_pad (input, pad_size, pad_value) {
     return pad;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_pad.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_pad.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_pad.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_pad.js)
+

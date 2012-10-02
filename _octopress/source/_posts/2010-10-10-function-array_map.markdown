@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_map function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_map
 alias:
 - /functions/array_map:325
 - /functions/325
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_map
+
 <!-- more -->
+
 {% codeblock array/array_map.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_map.js raw on github %}
 function array_map (callback) {
     // http://kevin.vanzonneveld.net
@@ -55,7 +58,7 @@ function array_map (callback) {
     return tmp_ar;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_map.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_map.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_map.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_map.js)
+

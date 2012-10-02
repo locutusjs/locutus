@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript addslashes function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/addslashes
 alias:
 - /functions/addslashes:303
 - /functions/303
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's addslashes
+
 <!-- more -->
+
 {% codeblock strings/addslashes.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/addslashes.js raw on github %}
 function addslashes (str) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function addslashes (str) {
     return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/addslashes.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/addslashes.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/addslashes.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/addslashes.js)
+

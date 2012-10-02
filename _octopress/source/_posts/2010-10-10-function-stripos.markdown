@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript stripos function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/stripos
 alias:
 - /functions/stripos:536
 - /functions/536
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's stripos
+
 <!-- more -->
+
 {% codeblock strings/stripos.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/stripos.js raw on github %}
 function stripos (f_haystack, f_needle, f_offset) {
     // http://kevin.vanzonneveld.net
@@ -30,7 +33,7 @@ function stripos (f_haystack, f_needle, f_offset) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/stripos.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/stripos.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/stripos.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/stripos.js)
+

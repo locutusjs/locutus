@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript settype function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/settype
 alias:
 - /functions/settype:511
 - /functions/511
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's settype
+
 <!-- more -->
+
 {% codeblock var/settype.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/settype.js raw on github %}
 function settype (vr, type) {
     // http://kevin.vanzonneveld.net
@@ -135,7 +138,7 @@ function settype (vr, type) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/settype.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/settype.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/settype.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/settype.js)
+

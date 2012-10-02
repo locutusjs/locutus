@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript timezone_abbreviations_list function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/timezone_abbreviations_list
 alias:
 - /functions/timezone_abbreviations_list:565
 - /functions/565
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's timezone_abbreviations_list
+
 <!-- more -->
+
 {% codeblock datetime/timezone_abbreviations_list.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/timezone_abbreviations_list.js raw on github %}
 function timezone_abbreviations_list () {
     // http://kevin.vanzonneveld.net
@@ -2471,7 +2474,7 @@ function timezone_abbreviations_list () {
     return list;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/timezone_abbreviations_list.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/timezone_abbreviations_list.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/timezone_abbreviations_list.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/timezone_abbreviations_list.js)
+

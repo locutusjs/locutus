@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript md5 function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/md5
 alias:
 - /functions/md5:469
 - /functions/469
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's md5
+
 <!-- more -->
+
 {% codeblock strings/md5.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/md5.js raw on github %}
 function md5 (str) {
     // http://kevin.vanzonneveld.net
@@ -226,7 +229,7 @@ function md5 (str) {
     return temp.toLowerCase();
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/md5.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/md5.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/md5.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/md5.js)
+

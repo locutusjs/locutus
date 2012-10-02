@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript range function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/range
 alias:
 - /functions/range:499
 - /functions/499
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's range
+
 <!-- more -->
+
 {% codeblock array/range.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/range.js raw on github %}
 function range (low, high, step) {
     // http://kevin.vanzonneveld.net
@@ -58,7 +61,7 @@ function range (low, high, step) {
     return matrix;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/range.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/range.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/range.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/range.js)
+

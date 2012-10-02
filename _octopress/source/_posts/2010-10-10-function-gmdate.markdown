@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript gmdate function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/gmdate
 alias:
 - /functions/gmdate:586
 - /functions/586
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's gmdate
+
 <!-- more -->
+
 {% codeblock datetime/gmdate.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/gmdate.js raw on github %}
 function gmdate (format, timestamp) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function gmdate (format, timestamp) {
     return this.date(format, timestamp);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/gmdate.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/gmdate.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/gmdate.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/gmdate.js)
+

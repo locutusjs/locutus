@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript json_decode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/json_decode
 alias:
 - /functions/json_decode:456
 - /functions/456
-categories: [ json, functions ]
+categories:
+- php json extension
+- functions
 ---
 A JavaScript equivalent of PHP's json_decode
+
 <!-- more -->
+
 {% codeblock json/json_decode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/json/json_decode.js raw on github %}
 function json_decode (str_json) {
     // http://kevin.vanzonneveld.net
@@ -88,7 +91,7 @@ function json_decode (str_json) {
     return null;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/json/json_decode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/json/json_decode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/json/json_decode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/json/json_decode.js)
+

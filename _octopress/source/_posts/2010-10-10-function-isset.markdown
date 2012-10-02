@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript isset function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/isset
 alias:
 - /functions/isset:454
 - /functions/454
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's isset
+
 <!-- more -->
+
 {% codeblock var/isset.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/isset.js raw on github %}
 function isset () {
     // http://kevin.vanzonneveld.net
@@ -42,7 +45,7 @@ function isset () {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/isset.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/isset.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/isset.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/isset.js)
+

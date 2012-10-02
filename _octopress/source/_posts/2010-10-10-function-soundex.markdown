@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript soundex function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/soundex
 alias:
 - /functions/soundex:520
 - /functions/520
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's soundex
+
 <!-- more -->
+
 {% codeblock strings/soundex.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/soundex.js raw on github %}
 function soundex (str) {
     // http://kevin.vanzonneveld.net
@@ -74,7 +77,7 @@ function soundex (str) {
     return sdx.join('');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/soundex.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/soundex.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/soundex.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/soundex.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript import_request_variables function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/import_request_variables
 alias:
 - /functions/import_request_variables:431
 - /functions/431
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's import_request_variables
+
 <!-- more -->
+
 {% codeblock var/import_request_variables.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/import_request_variables.js raw on github %}
 function import_request_variables (types, prefix) {
     // http://kevin.vanzonneveld.net
@@ -88,7 +91,7 @@ function import_request_variables (types, prefix) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/import_request_variables.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/import_request_variables.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/import_request_variables.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/import_request_variables.js)
+

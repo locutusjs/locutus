@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript forward_static_call_array function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/forward_static_call_array
 alias:
 - /functions/forward_static_call_array:862
 - /functions/862
-categories: [ funchand, functions ]
+categories:
+- php funchand extension
+- functions
 ---
 A JavaScript equivalent of PHP's forward_static_call_array
+
 <!-- more -->
+
 {% codeblock funchand/forward_static_call_array.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/forward_static_call_array.js raw on github %}
 function forward_static_call_array (cb, parameters) {
     // http://kevin.vanzonneveld.net
@@ -43,7 +46,7 @@ function forward_static_call_array (cb, parameters) {
     return func.apply(null, parameters);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/funchand/forward_static_call_array.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/funchand/forward_static_call_array.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/funchand/forward_static_call_array.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/funchand/forward_static_call_array.js)
+

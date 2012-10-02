@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript stream_context_set_params function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/stream_context_set_params
 alias:
 - /functions/stream_context_set_params:850
 - /functions/850
-categories: [ stream, functions ]
+categories:
+- php stream extension
+- functions
 ---
 A JavaScript equivalent of PHP's stream_context_set_params
+
 <!-- more -->
+
 {% codeblock stream/stream_context_set_params.js lang:js https://raw.github.com/kvz/phpjs/master/functions/stream/stream_context_set_params.js raw on github %}
 function stream_context_set_params (stream_or_context, params) {
     // http://kevin.vanzonneveld.net
@@ -33,7 +36,7 @@ function stream_context_set_params (stream_or_context, params) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_set_params.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_set_params.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_set_params.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_set_params.js)
+

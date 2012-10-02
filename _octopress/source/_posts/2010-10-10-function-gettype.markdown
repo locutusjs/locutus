@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript gettype function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/gettype
 alias:
 - /functions/gettype:422
 - /functions/422
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's gettype
+
 <!-- more -->
+
 {% codeblock var/gettype.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/gettype.js raw on github %}
 function gettype (mixed_var) {
     // http://kevin.vanzonneveld.net
@@ -66,7 +69,7 @@ function gettype (mixed_var) {
     return s;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/gettype.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/gettype.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/gettype.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/gettype.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript file_exists function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/file_exists
 alias:
 - /functions/file_exists:399
 - /functions/399
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's file_exists
+
 <!-- more -->
+
 {% codeblock filesystem/file_exists.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/file_exists.js raw on github %}
 function file_exists (url) {
     // http://kevin.vanzonneveld.net
@@ -38,7 +41,7 @@ function file_exists (url) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/file_exists.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/file_exists.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/file_exists.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/file_exists.js)
+

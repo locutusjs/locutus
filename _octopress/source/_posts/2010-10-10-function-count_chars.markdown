@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript count_chars function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/count_chars
 alias:
 - /functions/count_chars:376
 - /functions/376
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's count_chars
+
 <!-- more -->
+
 {% codeblock strings/count_chars.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/count_chars.js raw on github %}
 function count_chars (str, mode) {
     // http://kevin.vanzonneveld.net
@@ -70,7 +73,7 @@ function count_chars (str, mode) {
     return resultArr.join('');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/count_chars.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/count_chars.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/count_chars.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/count_chars.js)
+

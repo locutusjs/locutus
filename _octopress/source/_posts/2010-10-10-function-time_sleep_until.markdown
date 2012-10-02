@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript time_sleep_until function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/time_sleep_until
 alias:
 - /functions/time_sleep_until:564
 - /functions/564
-categories: [ misc, functions ]
+categories:
+- php misc extension
+- functions
 ---
 A JavaScript equivalent of PHP's time_sleep_until
+
 <!-- more -->
+
 {% codeblock misc/time_sleep_until.js lang:js https://raw.github.com/kvz/phpjs/master/functions/misc/time_sleep_until.js raw on github %}
 function time_sleep_until (timestamp) {
     // http://kevin.vanzonneveld.net
@@ -26,7 +29,7 @@ function time_sleep_until (timestamp) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/misc/time_sleep_until.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/misc/time_sleep_until.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/misc/time_sleep_until.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/misc/time_sleep_until.js)
+

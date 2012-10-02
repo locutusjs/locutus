@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript version_compare function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/version_compare
 alias:
 - /functions/version_compare:852
 - /functions/852
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's version_compare
+
 <!-- more -->
+
 {% codeblock info/version_compare.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/version_compare.js raw on github %}
 function version_compare (v1, v2, operator) {
     // http://kevin.vanzonneveld.net
@@ -129,7 +132,7 @@ function version_compare (v1, v2, operator) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/version_compare.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/version_compare.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/version_compare.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/version_compare.js)
+

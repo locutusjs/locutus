@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript pathinfo function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/pathinfo
 alias:
 - /functions/pathinfo:486
 - /functions/486
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's pathinfo
+
 <!-- more -->
+
 {% codeblock filesystem/pathinfo.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/pathinfo.js raw on github %}
 function pathinfo (path, options) {
     // http://kevin.vanzonneveld.net
@@ -149,7 +152,7 @@ function pathinfo (path, options) {
     return tmp_arr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/pathinfo.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/pathinfo.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/pathinfo.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/pathinfo.js)
+

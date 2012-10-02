@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript acos function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/acos
 alias:
 - /functions/acos:301
 - /functions/301
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's acos
+
 <!-- more -->
+
 {% codeblock math/acos.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/acos.js raw on github %}
 function acos (arg) {
     // http://kevin.vanzonneveld.net
@@ -22,7 +25,7 @@ function acos (arg) {
     return Math.acos(arg);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/acos.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/acos.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/acos.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/acos.js)
+

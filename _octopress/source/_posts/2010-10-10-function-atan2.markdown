@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript atan2 function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/atan2
 alias:
 - /functions/atan2:768
 - /functions/768
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's atan2
+
 <!-- more -->
+
 {% codeblock math/atan2.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/atan2.js raw on github %}
 function atan2 (y, x) {
     // http://kevin.vanzonneveld.net
@@ -22,7 +25,7 @@ function atan2 (y, x) {
     return Math.atan2(y, x);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/atan2.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/atan2.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/atan2.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/atan2.js)
+

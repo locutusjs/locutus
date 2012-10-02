@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript stream_context_get_options function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/stream_context_get_options
 alias:
 - /functions/stream_context_get_options:846
 - /functions/846
-categories: [ stream, functions ]
+categories:
+- php stream extension
+- functions
 ---
 A JavaScript equivalent of PHP's stream_context_get_options
+
 <!-- more -->
+
 {% codeblock stream/stream_context_get_options.js lang:js https://raw.github.com/kvz/phpjs/master/functions/stream/stream_context_get_options.js raw on github %}
 function stream_context_get_options (stream_or_context) {
     // http://kevin.vanzonneveld.net
@@ -24,7 +27,7 @@ function stream_context_get_options (stream_or_context) {
     return stream_or_context.stream_options;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_get_options.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_get_options.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_get_options.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_get_options.js)
+

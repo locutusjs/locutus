@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript require function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/require
 alias:
 - /functions/require:502
 - /functions/502
-categories: [ language, functions ]
+categories:
+- php language extension
+- functions
 ---
 A JavaScript equivalent of PHP's require
+
 <!-- more -->
+
 {% codeblock language/require.js lang:js https://raw.github.com/kvz/phpjs/master/functions/language/require.js raw on github %}
 function require (filename) {
     // http://kevin.vanzonneveld.net
@@ -64,7 +67,7 @@ function require (filename) {
     return 0;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/language/require.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/language/require.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/language/require.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/language/require.js)
+

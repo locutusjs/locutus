@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ltrim function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ltrim
 alias:
 - /functions/ltrim:467
 - /functions/467
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's ltrim
+
 <!-- more -->
+
 {% codeblock strings/ltrim.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/ltrim.js raw on github %}
 function ltrim (str, charlist) {
     // http://kevin.vanzonneveld.net
@@ -27,7 +30,7 @@ function ltrim (str, charlist) {
     return (str + '').replace(re, '');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/ltrim.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/ltrim.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/ltrim.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/ltrim.js)
+

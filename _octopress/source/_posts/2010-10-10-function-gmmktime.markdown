@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript gmmktime function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/gmmktime
 alias:
 - /functions/gmmktime:779
 - /functions/779
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's gmmktime
+
 <!-- more -->
+
 {% codeblock datetime/gmmktime.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/gmmktime.js raw on github %}
 function gmmktime () {
     // http://kevin.vanzonneveld.net
@@ -54,7 +57,7 @@ function gmmktime () {
     return (d.getTime() / 1e3 >> 0) - (d.getTime() < 0);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/gmmktime.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/gmmktime.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/gmmktime.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/gmmktime.js)
+

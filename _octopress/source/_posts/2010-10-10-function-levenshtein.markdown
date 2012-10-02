@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript levenshtein function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/levenshtein
 alias:
 - /functions/levenshtein:463
 - /functions/463
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's levenshtein
+
 <!-- more -->
+
 {% codeblock strings/levenshtein.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/levenshtein.js raw on github %}
 function levenshtein (s1, s2) {
     // http://kevin.vanzonneveld.net
@@ -85,7 +88,7 @@ function levenshtein (s1, s2) {
     return v0[s1_len];
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/levenshtein.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/levenshtein.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/levenshtein.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/levenshtein.js)
+

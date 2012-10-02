@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ob_flush function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ob_flush
 alias:
 - /functions/ob_flush:893
 - /functions/893
-categories: [ outcontrol, functions ]
+categories:
+- php outcontrol extension
+- functions
 ---
 A JavaScript equivalent of PHP's ob_flush
+
 <!-- more -->
+
 {% codeblock outcontrol/ob_flush.js lang:js https://raw.github.com/kvz/phpjs/master/functions/outcontrol/ob_flush.js raw on github %}
 function ob_flush () {
     // http://kevin.vanzonneveld.net
@@ -51,7 +54,7 @@ function ob_flush () {
     ob.buffer = '';
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/outcontrol/ob_flush.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/outcontrol/ob_flush.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/outcontrol/ob_flush.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/outcontrol/ob_flush.js)
+

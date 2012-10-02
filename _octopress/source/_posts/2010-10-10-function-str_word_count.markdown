@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript str_word_count function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/str_word_count
 alias:
 - /functions/str_word_count:788
 - /functions/788
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's str_word_count
+
 <!-- more -->
+
 {% codeblock strings/str_word_count.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_word_count.js raw on github %}
 function str_word_count (str, format, charlist) {
     // http://kevin.vanzonneveld.net
@@ -117,7 +120,7 @@ function str_word_count (str, format, charlist) {
     throw 'You have supplied an incorrect format';
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/str_word_count.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/str_word_count.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/str_word_count.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/str_word_count.js)
+

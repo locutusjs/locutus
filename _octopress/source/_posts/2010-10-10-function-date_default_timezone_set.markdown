@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript date_default_timezone_set function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/date_default_timezone_set
 alias:
 - /functions/date_default_timezone_set:584
 - /functions/584
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's date_default_timezone_set
+
 <!-- more -->
+
 {% codeblock datetime/date_default_timezone_set.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/date_default_timezone_set.js raw on github %}
 function date_default_timezone_set (tz) {
     // http://kevin.vanzonneveld.net
@@ -41,7 +44,7 @@ function date_default_timezone_set (tz) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/date_default_timezone_set.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/date_default_timezone_set.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/date_default_timezone_set.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/date_default_timezone_set.js)
+

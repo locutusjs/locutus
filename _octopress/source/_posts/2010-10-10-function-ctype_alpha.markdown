@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ctype_alpha function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ctype_alpha
 alias:
 - /functions/ctype_alpha:752
 - /functions/752
-categories: [ ctype, functions ]
+categories:
+- php ctype extension
+- functions
 ---
 A JavaScript equivalent of PHP's ctype_alpha
+
 <!-- more -->
+
 {% codeblock ctype/ctype_alpha.js lang:js https://raw.github.com/kvz/phpjs/master/functions/ctype/ctype_alpha.js raw on github %}
 function ctype_alpha (text) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function ctype_alpha (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.al) !== -1;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_alpha.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_alpha.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_alpha.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_alpha.js)
+

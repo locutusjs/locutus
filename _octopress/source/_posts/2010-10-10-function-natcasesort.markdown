@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript natcasesort function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/natcasesort
 alias:
 - /functions/natcasesort:477
 - /functions/477
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's natcasesort
+
 <!-- more -->
+
 {% codeblock array/natcasesort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/natcasesort.js raw on github %}
 function natcasesort (inputArr) {
     // http://kevin.vanzonneveld.net
@@ -67,7 +70,7 @@ function natcasesort (inputArr) {
     return strictForIn || populateArr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/natcasesort.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/natcasesort.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/natcasesort.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/natcasesort.js)
+

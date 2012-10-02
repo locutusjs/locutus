@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript convert_uuencode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/convert_uuencode
 alias:
 - /functions/convert_uuencode:769
 - /functions/769
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's convert_uuencode
+
 <!-- more -->
+
 {% codeblock strings/convert_uuencode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/convert_uuencode.js raw on github %}
 function convert_uuencode (str) {
     // http://kevin.vanzonneveld.net
@@ -96,7 +99,7 @@ function convert_uuencode (str) {
     return encoded;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/convert_uuencode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/convert_uuencode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/convert_uuencode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/convert_uuencode.js)
+

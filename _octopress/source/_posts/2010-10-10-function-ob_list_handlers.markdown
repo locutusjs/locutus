@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ob_list_handlers function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ob_list_handlers
 alias:
 - /functions/ob_list_handlers:900
 - /functions/900
-categories: [ outcontrol, functions ]
+categories:
+- php outcontrol extension
+- functions
 ---
 A JavaScript equivalent of PHP's ob_list_handlers
+
 <!-- more -->
+
 {% codeblock outcontrol/ob_list_handlers.js lang:js https://raw.github.com/kvz/phpjs/master/functions/outcontrol/ob_list_handlers.js raw on github %}
 function ob_list_handlers () {
     // http://kevin.vanzonneveld.net
@@ -50,7 +53,7 @@ function ob_list_handlers () {
     return arr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/outcontrol/ob_list_handlers.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/outcontrol/ob_list_handlers.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/outcontrol/ob_list_handlers.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/outcontrol/ob_list_handlers.js)
+

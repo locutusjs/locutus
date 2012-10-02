@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript nl_langinfo function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/nl_langinfo
 alias:
 - /functions/nl_langinfo:784
 - /functions/784
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's nl_langinfo
+
 <!-- more -->
+
 {% codeblock strings/nl_langinfo.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/nl_langinfo.js raw on github %}
 function nl_langinfo (item) {
     // http://kevin.vanzonneveld.net
@@ -109,7 +112,7 @@ function nl_langinfo (item) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/nl_langinfo.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/nl_langinfo.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/nl_langinfo.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/nl_langinfo.js)
+

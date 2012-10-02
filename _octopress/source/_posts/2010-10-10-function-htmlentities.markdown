@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript htmlentities function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/htmlentities
 alias:
 - /functions/htmlentities:425
 - /functions/425
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's htmlentities
+
 <!-- more -->
+
 {% codeblock strings/htmlentities.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/htmlentities.js raw on github %}
 function htmlentities (string, quote_style, charset, double_encode) {
     // http://kevin.vanzonneveld.net
@@ -64,7 +67,7 @@ function htmlentities (string, quote_style, charset, double_encode) {
     return string;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/htmlentities.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/htmlentities.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/htmlentities.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/htmlentities.js)
+

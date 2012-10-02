@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ord function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ord
 alias:
 - /functions/ord:483
 - /functions/483
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's ord
+
 <!-- more -->
+
 {% codeblock strings/ord.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/ord.js raw on github %}
 function ord (string) {
     // http://kevin.vanzonneveld.net
@@ -42,7 +45,7 @@ function ord (string) {
     return code;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/ord.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/ord.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/ord.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/ord.js)
+

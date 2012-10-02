@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript expm1 function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/expm1
 alias:
 - /functions/expm1:770
 - /functions/770
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's expm1
+
 <!-- more -->
+
 {% codeblock math/expm1.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/expm1.js raw on github %}
 function expm1 (x) {
     // http://kevin.vanzonneveld.net
@@ -36,7 +39,7 @@ function expm1 (x) {
     return ret;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/expm1.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/expm1.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/expm1.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/expm1.js)
+

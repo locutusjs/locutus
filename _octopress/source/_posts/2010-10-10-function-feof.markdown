@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript feof function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/feof
 alias:
 - /functions/feof:772
 - /functions/772
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's feof
+
 <!-- more -->
+
 {% codeblock filesystem/feof.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/feof.js raw on github %}
 function feof (handle) {
     // http://kevin.vanzonneveld.net
@@ -30,7 +33,7 @@ function feof (handle) {
 
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/feof.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/feof.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/feof.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/feof.js)
+

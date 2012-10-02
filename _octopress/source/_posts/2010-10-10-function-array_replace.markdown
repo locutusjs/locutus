@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_replace function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_replace
 alias:
 - /functions/array_replace:859
 - /functions/859
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_replace
+
 <!-- more -->
+
 {% codeblock array/array_replace.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_replace.js raw on github %}
 function array_replace (arr) {
     // +   original by: Brett Zamir (http://brett-zamir.me)
@@ -41,7 +44,7 @@ function array_replace (arr) {
     return retObj;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_replace.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_replace.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_replace.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_replace.js)
+

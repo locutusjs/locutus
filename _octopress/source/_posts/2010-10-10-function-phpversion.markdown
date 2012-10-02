@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript phpversion function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/phpversion
 alias:
 - /functions/phpversion:603
 - /functions/603
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's phpversion
+
 <!-- more -->
+
 {% codeblock info/phpversion.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/phpversion.js raw on github %}
 function phpversion () {
     // http://kevin.vanzonneveld.net
@@ -82,7 +85,7 @@ function phpversion () {
     return this.php_js.jsversion;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/phpversion.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/phpversion.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/phpversion.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/phpversion.js)
+

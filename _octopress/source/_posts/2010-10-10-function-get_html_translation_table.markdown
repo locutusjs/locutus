@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript get_html_translation_table function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/get_html_translation_table
 alias:
 - /functions/get_html_translation_table:416
 - /functions/416
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's get_html_translation_table
+
 <!-- more -->
+
 {% codeblock strings/get_html_translation_table.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/get_html_translation_table.js raw on github %}
 function get_html_translation_table (table, quote_style) {
     // http://kevin.vanzonneveld.net
@@ -177,7 +180,7 @@ function get_html_translation_table (table, quote_style) {
     return hash_map;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/get_html_translation_table.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/get_html_translation_table.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/get_html_translation_table.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/get_html_translation_table.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript str_split function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/str_split
 alias:
 - /functions/str_split:530
 - /functions/530
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's str_split
+
 <!-- more -->
+
 {% codeblock strings/str_split.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_split.js raw on github %}
 function str_split (string, split_length) {
     // http://kevin.vanzonneveld.net
@@ -41,7 +44,7 @@ function str_split (string, split_length) {
     return chunks;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/str_split.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/str_split.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/str_split.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/str_split.js)
+

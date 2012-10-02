@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript intval function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/intval
 alias:
 - /functions/intval:435
 - /functions/435
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's intval
+
 <!-- more -->
+
 {% codeblock var/intval.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/intval.js raw on github %}
 function intval (mixed_var, base) {
     // http://kevin.vanzonneveld.net
@@ -48,7 +51,7 @@ function intval (mixed_var, base) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/intval.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/intval.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/intval.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/intval.js)
+

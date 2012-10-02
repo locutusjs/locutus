@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ctype_upper function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ctype_upper
 alias:
 - /functions/ctype_upper:760
 - /functions/760
-categories: [ ctype, functions ]
+categories:
+- php ctype extension
+- functions
 ---
 A JavaScript equivalent of PHP's ctype_upper
+
 <!-- more -->
+
 {% codeblock ctype/ctype_upper.js lang:js https://raw.github.com/kvz/phpjs/master/functions/ctype/ctype_upper.js raw on github %}
 function ctype_upper (text) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function ctype_upper (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.up) !== -1;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_upper.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_upper.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_upper.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_upper.js)
+

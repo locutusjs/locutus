@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript bcadd function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/bcadd
 alias:
 - /functions/bcadd:869
 - /functions/869
-categories: [ bc, functions ]
+categories:
+- php bc extension
+- functions
 ---
 A JavaScript equivalent of PHP's bcadd
+
 <!-- more -->
+
 {% codeblock bc/bcadd.js lang:js https://raw.github.com/kvz/phpjs/master/functions/bc/bcadd.js raw on github %}
 function bcadd (left_operand, right_operand, scale) {
     // http://kevin.vanzonneveld.net
@@ -54,7 +57,7 @@ function bcadd (left_operand, right_operand, scale) {
     return result.toString();
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/bc/bcadd.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/bc/bcadd.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/bc/bcadd.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/bc/bcadd.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript get_extension_funcs function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/get_extension_funcs
 alias:
 - /functions/get_extension_funcs:867
 - /functions/867
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's get_extension_funcs
+
 <!-- more -->
+
 {% codeblock info/get_extension_funcs.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/get_extension_funcs.js raw on github %}
 function get_extension_funcs (module_name) {
     // http://kevin.vanzonneveld.net
@@ -64,7 +67,7 @@ function get_extension_funcs (module_name) {
     return this.php_js.exts[module_name] || false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/get_extension_funcs.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/get_extension_funcs.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/get_extension_funcs.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/get_extension_funcs.js)
+

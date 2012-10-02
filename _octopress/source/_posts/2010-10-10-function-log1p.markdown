@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript log1p function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/log1p
 alias:
 - /functions/log1p:783
 - /functions/783
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's log1p
+
 <!-- more -->
+
 {% codeblock math/log1p.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/log1p.js raw on github %}
 function log1p (x) {
     // http://kevin.vanzonneveld.net
@@ -39,7 +42,7 @@ function log1p (x) {
     return ret;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/log1p.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/log1p.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/log1p.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/log1p.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ip2long function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ip2long
 alias:
 - /functions/ip2long:436
 - /functions/436
-categories: [ network, functions ]
+categories:
+- php network extension
+- functions
 ---
 A JavaScript equivalent of PHP's ip2long
+
 <!-- more -->
+
 {% codeblock network/ip2long.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/ip2long.js raw on github %}
 function ip2long (IP) {
     // http://kevin.vanzonneveld.net
@@ -50,7 +53,7 @@ function ip2long (IP) {
     return IP[1] * (IP[0] === 1 || 16777216) + IP[2] * (IP[0] <= 2 || 65536) + IP[3] * (IP[0] <= 3 || 256) + IP[4] * 1;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/network/ip2long.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/network/ip2long.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/network/ip2long.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/network/ip2long.js)
+

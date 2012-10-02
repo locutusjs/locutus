@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript pow function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/pow
 alias:
 - /functions/pow:490
 - /functions/490
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's pow
+
 <!-- more -->
+
 {% codeblock math/pow.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/pow.js raw on github %}
 function pow (base, exp) {
     // http://kevin.vanzonneveld.net
@@ -22,7 +25,7 @@ function pow (base, exp) {
     return Math.pow(base, exp);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/pow.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/pow.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/pow.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/pow.js)
+

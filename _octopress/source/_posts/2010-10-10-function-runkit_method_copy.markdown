@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript runkit_method_copy function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/runkit_method_copy
 alias:
 - /functions/runkit_method_copy:814
 - /functions/814
-categories: [ runkit, functions ]
+categories:
+- php runkit extension
+- functions
 ---
 A JavaScript equivalent of PHP's runkit_method_copy
+
 <!-- more -->
+
 {% codeblock runkit/runkit_method_copy.js lang:js https://raw.github.com/kvz/phpjs/master/functions/runkit/runkit_method_copy.js raw on github %}
 function runkit_method_copy (dClass, dMethod, sClass, sMethod) {
     // http://kevin.vanzonneveld.net
@@ -40,7 +43,7 @@ function runkit_method_copy (dClass, dMethod, sClass, sMethod) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_method_copy.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_method_copy.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_method_copy.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_method_copy.js)
+

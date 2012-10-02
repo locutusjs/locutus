@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strrev function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strrev
 alias:
 - /functions/strrev:547
 - /functions/547
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strrev
+
 <!-- more -->
+
 {% codeblock strings/strrev.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strrev.js raw on github %}
 function strrev (string) {
     // http://kevin.vanzonneveld.net
@@ -39,7 +42,7 @@ function strrev (string) {
     return string.split('').reverse().join('');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strrev.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strrev.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strrev.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strrev.js)
+

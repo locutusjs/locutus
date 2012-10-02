@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript pclose function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/pclose
 alias:
 - /functions/pclose:807
 - /functions/807
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's pclose
+
 <!-- more -->
+
 {% codeblock filesystem/pclose.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/pclose.js raw on github %}
 function pclose (handle) {
     // http://kevin.vanzonneveld.net
@@ -33,7 +36,7 @@ function pclose (handle) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/pclose.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/pclose.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/pclose.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/pclose.js)
+

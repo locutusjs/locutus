@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript fgetss function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/fgetss
 alias:
 - /functions/fgetss:803
 - /functions/803
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's fgetss
+
 <!-- more -->
+
 {% codeblock filesystem/fgetss.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/fgetss.js raw on github %}
 function fgetss (handle, length, allowable_tags) {
     // http://kevin.vanzonneveld.net
@@ -46,7 +49,7 @@ function fgetss (handle, length, allowable_tags) {
     return this.strip_tags(this.php_js.resourceData[handle.id].substr(start, length), allowable_tags);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/fgetss.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/fgetss.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/fgetss.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/fgetss.js)
+

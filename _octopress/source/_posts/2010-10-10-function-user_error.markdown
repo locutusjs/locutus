@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript user_error function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/user_error
 alias:
 - /functions/user_error:843
 - /functions/843
-categories: [ errorfunc, functions ]
+categories:
+- php errorfunc extension
+- functions
 ---
 A JavaScript equivalent of PHP's user_error
+
 <!-- more -->
+
 {% codeblock errorfunc/user_error.js lang:js https://raw.github.com/kvz/phpjs/master/functions/errorfunc/user_error.js raw on github %}
 function user_error (error_msg, error_type) {
     // http://kevin.vanzonneveld.net
@@ -23,7 +26,7 @@ function user_error (error_msg, error_type) {
     return this.trigger_error(error_msg, error_type);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/errorfunc/user_error.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/errorfunc/user_error.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/errorfunc/user_error.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/errorfunc/user_error.js)
+

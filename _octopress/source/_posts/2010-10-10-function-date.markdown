@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript date function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/date
 alias:
 - /functions/date:380
 - /functions/380
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's date
+
 <!-- more -->
+
 {% codeblock datetime/date.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/date.js raw on github %}
 function date (format, timestamp) {
     // http://kevin.vanzonneveld.net
@@ -280,7 +283,7 @@ function date (format, timestamp) {
     return this.date(format, timestamp);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/date.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/date.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/date.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/date.js)
+

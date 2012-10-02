@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript similar_text function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/similar_text
 alias:
 - /functions/similar_text:902
 - /functions/902
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's similar_text
+
 <!-- more -->
+
 {% codeblock strings/similar_text.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/similar_text.js raw on github %}
 function similar_text (first, second) {
     // http://kevin.vanzonneveld.net
@@ -65,7 +68,7 @@ function similar_text (first, second) {
     return sum;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/similar_text.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/similar_text.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/similar_text.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/similar_text.js)
+

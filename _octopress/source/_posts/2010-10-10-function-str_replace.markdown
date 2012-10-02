@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript str_replace function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/str_replace
 alias:
 - /functions/str_replace:527
 - /functions/527
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's str_replace
+
 <!-- more -->
+
 {% codeblock strings/str_replace.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_replace.js raw on github %}
 function str_replace (search, replace, subject, count) {
     // http://kevin.vanzonneveld.net
@@ -68,7 +71,7 @@ function str_replace (search, replace, subject, count) {
     return sa ? s : s[0];
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/str_replace.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/str_replace.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/str_replace.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/str_replace.js)
+

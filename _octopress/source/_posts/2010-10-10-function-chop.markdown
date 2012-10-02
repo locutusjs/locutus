@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript chop function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/chop
 alias:
 - /functions/chop:367
 - /functions/367
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's chop
+
 <!-- more -->
+
 {% codeblock strings/chop.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/chop.js raw on github %}
 function chop (str, charlist) {
     // http://kevin.vanzonneveld.net
@@ -23,7 +26,7 @@ function chop (str, charlist) {
     return this.rtrim(str, charlist);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/chop.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/chop.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/chop.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/chop.js)
+

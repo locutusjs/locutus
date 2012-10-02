@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strtok function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strtok
 alias:
 - /functions/strtok:552
 - /functions/552
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strtok
+
 <!-- more -->
+
 {% codeblock strings/strtok.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strtok.js raw on github %}
 function strtok (str, tokens) {
     // http://kevin.vanzonneveld.net
@@ -46,7 +49,7 @@ function strtok (str, tokens) {
     return str.substring(0, i);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strtok.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strtok.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strtok.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strtok.js)
+

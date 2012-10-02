@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript asinh function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/asinh
 alias:
 - /functions/asinh:353
 - /functions/353
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's asinh
+
 <!-- more -->
+
 {% codeblock math/asinh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/asinh.js raw on github %}
 function asinh (arg) {
     // http://kevin.vanzonneveld.net
@@ -22,7 +25,7 @@ function asinh (arg) {
     return Math.log(arg + Math.sqrt(arg * arg + 1));
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/asinh.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/asinh.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/asinh.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/asinh.js)
+

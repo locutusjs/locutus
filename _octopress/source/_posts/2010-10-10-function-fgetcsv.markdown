@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript fgetcsv function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/fgetcsv
 alias:
 - /functions/fgetcsv:801
 - /functions/801
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's fgetcsv
+
 <!-- more -->
+
 {% codeblock filesystem/fgetcsv.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/fgetcsv.js raw on github %}
 function fgetcsv (handle, length, delimiter, enclosure, escape) {
     // http://kevin.vanzonneveld.net
@@ -46,7 +49,7 @@ function fgetcsv (handle, length, delimiter, enclosure, escape) {
     return this.str_getcsv(this.php_js.resourceData[handle.id].substr(start, length), delimiter, enclosure, escape);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/fgetcsv.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/fgetcsv.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/fgetcsv.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/fgetcsv.js)
+

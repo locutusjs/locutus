@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript call_user_func function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/call_user_func
 alias:
 - /functions/call_user_func:363
 - /functions/363
-categories: [ funchand, functions ]
+categories:
+- php funchand extension
+- functions
 ---
 A JavaScript equivalent of PHP's call_user_func
+
 <!-- more -->
+
 {% codeblock funchand/call_user_func.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/call_user_func.js raw on github %}
 function call_user_func (cb) {
     // http://kevin.vanzonneveld.net
@@ -41,7 +44,7 @@ function call_user_func (cb) {
     return (typeof cb[0] === 'string') ? func.apply(eval(cb[0]), parameters) : (typeof cb[0] !== 'object') ? func.apply(null, parameters) : func.apply(cb[0], parameters);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/funchand/call_user_func.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/funchand/call_user_func.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/funchand/call_user_func.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/funchand/call_user_func.js)
+

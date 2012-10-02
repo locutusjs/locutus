@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript trim function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/trim
 alias:
 - /functions/trim:566
 - /functions/566
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's trim
+
 <!-- more -->
+
 {% codeblock strings/trim.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/trim.js raw on github %}
 function trim (str, charlist) {
     // http://kevin.vanzonneveld.net
@@ -63,7 +66,7 @@ function trim (str, charlist) {
     return whitespace.indexOf(str.charAt(0)) === -1 ? str : '';
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/trim.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/trim.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/trim.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/trim.js)
+

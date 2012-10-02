@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript html_entity_decode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/html_entity_decode
 alias:
 - /functions/html_entity_decode:424
 - /functions/424
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's html_entity_decode
+
 <!-- more -->
+
 {% codeblock strings/html_entity_decode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/html_entity_decode.js raw on github %}
 function html_entity_decode (string, quote_style) {
     // http://kevin.vanzonneveld.net
@@ -56,7 +59,7 @@ function html_entity_decode (string, quote_style) {
     return tmp_str;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/html_entity_decode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/html_entity_decode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/html_entity_decode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/html_entity_decode.js)
+

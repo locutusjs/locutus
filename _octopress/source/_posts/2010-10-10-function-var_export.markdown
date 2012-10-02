@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript var_export function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/var_export
 alias:
 - /functions/var_export:578
 - /functions/578
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's var_export
+
 <!-- more -->
+
 {% codeblock var/var_export.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/var_export.js raw on github %}
 function var_export (mixed_expression, bool_return) {
     // http://kevin.vanzonneveld.net
@@ -129,7 +132,7 @@ function var_export (mixed_expression, bool_return) {
     return retstr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/var_export.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/var_export.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/var_export.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/var_export.js)
+

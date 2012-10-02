@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript rewind function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/rewind
 alias:
 - /functions/rewind:811
 - /functions/811
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's rewind
+
 <!-- more -->
+
 {% codeblock filesystem/rewind.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/rewind.js raw on github %}
 function rewind (handle) {
     // http://kevin.vanzonneveld.net
@@ -36,7 +39,7 @@ function rewind (handle) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/rewind.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/rewind.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/rewind.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/rewind.js)
+

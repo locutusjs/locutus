@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript printf function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/printf
 alias:
 - /functions/printf:494
 - /functions/494
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's printf
+
 <!-- more -->
+
 {% codeblock strings/printf.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/printf.js raw on github %}
 function printf () {
     // http://kevin.vanzonneveld.net
@@ -40,7 +43,7 @@ function printf () {
     return ret.length;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/printf.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/printf.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/printf.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/printf.js)
+

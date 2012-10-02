@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript include_once function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/include_once
 alias:
 - /functions/include_once:434
 - /functions/434
-categories: [ language, functions ]
+categories:
+- php language extension
+- functions
 ---
 A JavaScript equivalent of PHP's include_once
+
 <!-- more -->
+
 {% codeblock language/include_once.js lang:js https://raw.github.com/kvz/phpjs/master/functions/language/include_once.js raw on github %}
 function include_once (filename) {
     // http://kevin.vanzonneveld.net
@@ -51,7 +54,7 @@ function include_once (filename) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/language/include_once.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/language/include_once.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/language/include_once.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/language/include_once.js)
+

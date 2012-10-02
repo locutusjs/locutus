@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript next function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/next
 alias:
 - /functions/next:479
 - /functions/479
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's next
+
 <!-- more -->
+
 {% codeblock array/next.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/next.js raw on github %}
 function next (arr) {
     // http://kevin.vanzonneveld.net
@@ -61,7 +64,7 @@ function next (arr) {
     return arr[pointers[arrpos + 1]];
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/next.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/next.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/next.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/next.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript htmlspecialchars_decode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/htmlspecialchars_decode
 alias:
 - /functions/htmlspecialchars_decode:427
 - /functions/427
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's htmlspecialchars_decode
+
 <!-- more -->
+
 {% codeblock strings/htmlspecialchars_decode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/htmlspecialchars_decode.js raw on github %}
 function htmlspecialchars_decode (string, quote_style) {
     // http://kevin.vanzonneveld.net
@@ -77,7 +80,7 @@ function htmlspecialchars_decode (string, quote_style) {
     return string;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/htmlspecialchars_decode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/htmlspecialchars_decode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/htmlspecialchars_decode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/htmlspecialchars_decode.js)
+

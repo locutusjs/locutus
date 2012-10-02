@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript compact function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/compact
 alias:
 - /functions/compact:371
 - /functions/371
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's compact
+
 <!-- more -->
+
 {% codeblock array/compact.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/compact.js raw on github %}
 function compact () {
     // http://kevin.vanzonneveld.net
@@ -47,7 +50,7 @@ function compact () {
     return matrix;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/compact.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/compact.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/compact.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/compact.js)
+

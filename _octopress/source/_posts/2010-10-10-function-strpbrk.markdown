@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strpbrk function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strpbrk
 alias:
 - /functions/strpbrk:544
 - /functions/544
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strpbrk
+
 <!-- more -->
+
 {% codeblock strings/strpbrk.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strpbrk.js raw on github %}
 function strpbrk (haystack, char_list) {
     // http://kevin.vanzonneveld.net
@@ -30,7 +33,7 @@ function strpbrk (haystack, char_list) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strpbrk.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strpbrk.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strpbrk.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strpbrk.js)
+

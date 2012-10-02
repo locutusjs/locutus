@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strlen function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strlen
 alias:
 - /functions/strlen:539
 - /functions/539
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strlen
+
 <!-- more -->
+
 {% codeblock strings/strlen.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strlen.js raw on github %}
 function strlen (string) {
     // http://kevin.vanzonneveld.net
@@ -73,7 +76,7 @@ function strlen (string) {
     return lgth;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strlen.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strlen.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strlen.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strlen.js)
+

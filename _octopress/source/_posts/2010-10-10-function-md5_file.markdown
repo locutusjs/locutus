@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript md5_file function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/md5_file
 alias:
 - /functions/md5_file:470
 - /functions/470
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's md5_file
+
 <!-- more -->
+
 {% codeblock strings/md5_file.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/md5_file.js raw on github %}
 function md5_file (str_filename) {
     // http://kevin.vanzonneveld.net
@@ -34,7 +37,7 @@ function md5_file (str_filename) {
     return this.md5(buf);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/md5_file.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/md5_file.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/md5_file.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/md5_file.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strstr function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strstr
 alias:
 - /functions/strstr:551
 - /functions/551
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strstr
+
 <!-- more -->
+
 {% codeblock strings/strstr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strstr.js raw on github %}
 function strstr (haystack, needle, bool) {
     // http://kevin.vanzonneveld.net
@@ -42,7 +45,7 @@ function strstr (haystack, needle, bool) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strstr.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strstr.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strstr.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strstr.js)
+

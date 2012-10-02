@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript htmlspecialchars function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/htmlspecialchars
 alias:
 - /functions/htmlspecialchars:426
 - /functions/426
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's htmlspecialchars
+
 <!-- more -->
+
 {% codeblock strings/htmlspecialchars.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/htmlspecialchars.js raw on github %}
 function htmlspecialchars (string, quote_style, charset, double_encode) {
     // http://kevin.vanzonneveld.net
@@ -80,7 +83,7 @@ function htmlspecialchars (string, quote_style, charset, double_encode) {
     return string;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/htmlspecialchars.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/htmlspecialchars.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/htmlspecialchars.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/htmlspecialchars.js)
+

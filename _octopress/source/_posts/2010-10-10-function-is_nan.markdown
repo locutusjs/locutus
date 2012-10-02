@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript is_nan function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/is_nan
 alias:
 - /functions/is_nan:447
 - /functions/447
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's is_nan
+
 <!-- more -->
+
 {% codeblock math/is_nan.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/is_nan.js raw on github %}
 function is_nan (val) {
     // http://kevin.vanzonneveld.net
@@ -43,7 +46,7 @@ function is_nan (val) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/is_nan.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/is_nan.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/is_nan.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/is_nan.js)
+

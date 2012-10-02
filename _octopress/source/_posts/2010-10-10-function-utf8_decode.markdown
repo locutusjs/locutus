@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript utf8_decode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/utf8_decode
 alias:
 - /functions/utf8_decode:576
 - /functions/576
-categories: [ xml, functions ]
+categories:
+- php xml extension
+- functions
 ---
 A JavaScript equivalent of PHP's utf8_decode
+
 <!-- more -->
+
 {% codeblock xml/utf8_decode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/xml/utf8_decode.js raw on github %}
 function utf8_decode (str_data) {
     // http://kevin.vanzonneveld.net
@@ -55,7 +58,7 @@ function utf8_decode (str_data) {
     return tmp_arr.join('');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/xml/utf8_decode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/xml/utf8_decode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/xml/utf8_decode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/xml/utf8_decode.js)
+

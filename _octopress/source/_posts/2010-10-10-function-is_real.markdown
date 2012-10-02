@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript is_real function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/is_real
 alias:
 - /functions/is_real:451
 - /functions/451
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's is_real
+
 <!-- more -->
+
 {% codeblock var/is_real.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_real.js raw on github %}
 function is_real (mixed_var) {
     // http://kevin.vanzonneveld.net
@@ -25,7 +28,7 @@ function is_real (mixed_var) {
     return this.is_float(mixed_var);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/is_real.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/is_real.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_real.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_real.js)
+

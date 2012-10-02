@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ctype_graph function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ctype_graph
 alias:
 - /functions/ctype_graph:755
 - /functions/755
-categories: [ ctype, functions ]
+categories:
+- php ctype extension
+- functions
 ---
 A JavaScript equivalent of PHP's ctype_graph
+
 <!-- more -->
+
 {% codeblock ctype/ctype_graph.js lang:js https://raw.github.com/kvz/phpjs/master/functions/ctype/ctype_graph.js raw on github %}
 function ctype_graph (text) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function ctype_graph (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.gr) !== -1;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_graph.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_graph.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_graph.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_graph.js)
+

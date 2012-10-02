@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript checkdate function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/checkdate
 alias:
 - /functions/checkdate:366
 - /functions/366
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's checkdate
+
 <!-- more -->
+
 {% codeblock datetime/checkdate.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/checkdate.js raw on github %}
 function checkdate (m, d, y) {
     // http://kevin.vanzonneveld.net
@@ -30,7 +33,7 @@ function checkdate (m, d, y) {
     return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0)).getDate();
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/checkdate.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/checkdate.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/checkdate.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/checkdate.js)
+

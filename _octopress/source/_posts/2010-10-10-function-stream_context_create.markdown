@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript stream_context_create function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/stream_context_create
 alias:
 - /functions/stream_context_create:844
 - /functions/844
-categories: [ stream, functions ]
+categories:
+- php stream extension
+- functions
 ---
 A JavaScript equivalent of PHP's stream_context_create
+
 <!-- more -->
+
 {% codeblock stream/stream_context_create.js lang:js https://raw.github.com/kvz/phpjs/master/functions/stream/stream_context_create.js raw on github %}
 function stream_context_create (options, params) {
     // http://kevin.vanzonneveld.net
@@ -55,7 +58,7 @@ function stream_context_create (options, params) {
     return resource;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_create.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_create.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_create.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_create.js)
+

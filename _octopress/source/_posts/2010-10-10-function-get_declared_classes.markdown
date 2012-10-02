@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript get_declared_classes function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/get_declared_classes
 alias:
 - /functions/get_declared_classes:412
 - /functions/412
-categories: [ classobj, functions ]
+categories:
+- php classobj extension
+- functions
 ---
 A JavaScript equivalent of PHP's get_declared_classes
+
 <!-- more -->
+
 {% codeblock classobj/get_declared_classes.js lang:js https://raw.github.com/kvz/phpjs/master/functions/classobj/get_declared_classes.js raw on github %}
 function get_declared_classes () {
     // http://kevin.vanzonneveld.net
@@ -54,7 +57,7 @@ function get_declared_classes () {
     return arr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/classobj/get_declared_classes.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/classobj/get_declared_classes.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/get_declared_classes.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/get_declared_classes.js)
+

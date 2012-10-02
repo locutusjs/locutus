@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript print_r function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/print_r
 alias:
 - /functions/print_r:493
 - /functions/493
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's print_r
+
 <!-- more -->
+
 {% codeblock var/print_r.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/print_r.js raw on github %}
 function print_r (array, return_val) {
     // http://kevin.vanzonneveld.net
@@ -92,7 +95,7 @@ function print_r (array, return_val) {
     return output;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/print_r.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/print_r.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/print_r.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/print_r.js)
+

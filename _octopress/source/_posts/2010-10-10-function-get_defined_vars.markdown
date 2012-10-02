@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript get_defined_vars function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/get_defined_vars
 alias:
 - /functions/get_defined_vars:414
 - /functions/414
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's get_defined_vars
+
 <!-- more -->
+
 {% codeblock var/get_defined_vars.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/get_defined_vars.js raw on github %}
 function get_defined_vars () {
     // http://kevin.vanzonneveld.net
@@ -51,7 +54,7 @@ function get_defined_vars () {
     return arr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/get_defined_vars.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/get_defined_vars.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/get_defined_vars.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/get_defined_vars.js)
+

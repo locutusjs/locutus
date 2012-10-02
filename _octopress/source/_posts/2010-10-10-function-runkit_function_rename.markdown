@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript runkit_function_rename function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/runkit_function_rename
 alias:
 - /functions/runkit_function_rename:826
 - /functions/826
-categories: [ runkit, functions ]
+categories:
+- php runkit extension
+- functions
 ---
 A JavaScript equivalent of PHP's runkit_function_rename
+
 <!-- more -->
+
 {% codeblock runkit/runkit_function_rename.js lang:js https://raw.github.com/kvz/phpjs/master/functions/runkit/runkit_function_rename.js raw on github %}
 function runkit_function_rename (funcname, newname) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function runkit_function_rename (funcname, newname) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_function_rename.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_function_rename.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_function_rename.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_function_rename.js)
+

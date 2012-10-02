@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript set_include_path function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/set_include_path
 alias:
 - /functions/set_include_path:855
 - /functions/855
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's set_include_path
+
 <!-- more -->
+
 {% codeblock info/set_include_path.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/set_include_path.js raw on github %}
 function set_include_path (new_include_path) {
     // http://kevin.vanzonneveld.net
@@ -40,7 +43,7 @@ function set_include_path (new_include_path) {
     return old_path;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/set_include_path.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/set_include_path.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/set_include_path.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/set_include_path.js)
+

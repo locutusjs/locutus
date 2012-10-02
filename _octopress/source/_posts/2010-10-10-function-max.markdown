@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript max function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/max
 alias:
 - /functions/max:468
 - /functions/468
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's max
+
 <!-- more -->
+
 {% codeblock math/max.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/max.js raw on github %}
 function max () {
     // http://kevin.vanzonneveld.net
@@ -134,7 +137,7 @@ function max () {
     return retVal;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/max.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/max.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/max.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/max.js)
+

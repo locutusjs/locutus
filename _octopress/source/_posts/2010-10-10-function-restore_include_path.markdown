@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript restore_include_path function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/restore_include_path
 alias:
 - /functions/restore_include_path:854
 - /functions/854
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's restore_include_path
+
 <!-- more -->
+
 {% codeblock info/restore_include_path.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/restore_include_path.js raw on github %}
 function restore_include_path () {
     // http://kevin.vanzonneveld.net
@@ -25,7 +28,7 @@ function restore_include_path () {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/restore_include_path.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/restore_include_path.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/restore_include_path.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/restore_include_path.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript mktime function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/mktime
 alias:
 - /functions/mktime:474
 - /functions/474
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's mktime
+
 <!-- more -->
+
 {% codeblock datetime/mktime.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/mktime.js raw on github %}
 function mktime () {
     // http://kevin.vanzonneveld.net
@@ -84,7 +87,7 @@ function mktime () {
     return (d.getTime() / 1e3 >> 0) - (d.getTime() < 0);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/mktime.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/mktime.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/mktime.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/mktime.js)
+

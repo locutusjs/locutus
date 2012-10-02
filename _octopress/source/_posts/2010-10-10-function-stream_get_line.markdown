@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript stream_get_line function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/stream_get_line
 alias:
 - /functions/stream_get_line:857
 - /functions/857
-categories: [ stream, functions ]
+categories:
+- php stream extension
+- functions
 ---
 A JavaScript equivalent of PHP's stream_get_line
+
 <!-- more -->
+
 {% codeblock stream/stream_get_line.js lang:js https://raw.github.com/kvz/phpjs/master/functions/stream/stream_get_line.js raw on github %}
 function stream_get_line (handle, length, ending) {
     // http://kevin.vanzonneveld.net
@@ -44,7 +47,7 @@ function stream_get_line (handle, length, ending) {
     return this.php_js.resourceData[handle.id].substr(start, length - (fullline && ending && ending.length ? ending.length : 0));
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/stream/stream_get_line.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/stream/stream_get_line.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_get_line.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_get_line.js)
+

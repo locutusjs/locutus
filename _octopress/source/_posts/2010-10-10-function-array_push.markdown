@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_push function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_push
 alias:
 - /functions/array_push:331
 - /functions/331
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_push
+
 <!-- more -->
+
 {% codeblock array/array_push.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_push.js raw on github %}
 function array_push (inputArr) {
     // http://kevin.vanzonneveld.net
@@ -56,7 +59,7 @@ function array_push (inputArr) {
     return len + i - 1;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_push.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_push.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_push.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_push.js)
+

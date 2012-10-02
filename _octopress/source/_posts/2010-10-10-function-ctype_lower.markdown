@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ctype_lower function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ctype_lower
 alias:
 - /functions/ctype_lower:756
 - /functions/756
-categories: [ ctype, functions ]
+categories:
+- php ctype extension
+- functions
 ---
 A JavaScript equivalent of PHP's ctype_lower
+
 <!-- more -->
+
 {% codeblock ctype/ctype_lower.js lang:js https://raw.github.com/kvz/phpjs/master/functions/ctype/ctype_lower.js raw on github %}
 function ctype_lower (text) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function ctype_lower (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.lw) !== -1;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_lower.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_lower.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_lower.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_lower.js)
+

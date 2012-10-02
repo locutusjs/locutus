@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strnatcmp function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strnatcmp
 alias:
 - /functions/strnatcmp:541
 - /functions/541
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strnatcmp
+
 <!-- more -->
+
 {% codeblock strings/strnatcmp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strnatcmp.js raw on github %}
 function strnatcmp (f_string1, f_string2, f_version) {
     // http://kevin.vanzonneveld.net
@@ -137,7 +140,7 @@ function strnatcmp (f_string1, f_string2, f_version) {
     return result;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strnatcmp.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strnatcmp.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strnatcmp.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strnatcmp.js)
+

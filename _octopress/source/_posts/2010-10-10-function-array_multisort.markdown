@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_multisort function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_multisort
 alias:
 - /functions/array_multisort:830
 - /functions/830
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_multisort
+
 <!-- more -->
+
 {% codeblock array/array_multisort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_multisort.js raw on github %}
 function array_multisort (arr) {
     // +   original by: Theriault
@@ -334,7 +337,7 @@ function array_multisort (arr) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_multisort.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_multisort.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_multisort.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_multisort.js)
+

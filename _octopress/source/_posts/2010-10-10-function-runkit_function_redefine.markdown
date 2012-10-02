@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript runkit_function_redefine function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/runkit_function_redefine
 alias:
 - /functions/runkit_function_redefine:824
 - /functions/824
-categories: [ runkit, functions ]
+categories:
+- php runkit extension
+- functions
 ---
 A JavaScript equivalent of PHP's runkit_function_redefine
+
 <!-- more -->
+
 {% codeblock runkit/runkit_function_redefine.js lang:js https://raw.github.com/kvz/phpjs/master/functions/runkit/runkit_function_redefine.js raw on github %}
 function runkit_function_redefine (funcname, arglist, code) {
     // http://kevin.vanzonneveld.net
@@ -33,7 +36,7 @@ function runkit_function_redefine (funcname, arglist, code) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_function_redefine.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_function_redefine.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_function_redefine.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_function_redefine.js)
+

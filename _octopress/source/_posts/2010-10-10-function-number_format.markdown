@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript number_format function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/number_format
 alias:
 - /functions/number_format:481
 - /functions/481
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's number_format
+
 <!-- more -->
+
 {% codeblock strings/number_format.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/number_format.js raw on github %}
 function number_format (number, decimals, dec_point, thousands_sep) {
     // http://kevin.vanzonneveld.net
@@ -85,7 +88,7 @@ function number_format (number, decimals, dec_point, thousands_sep) {
     return s.join(dec);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/number_format.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/number_format.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/number_format.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/number_format.js)
+

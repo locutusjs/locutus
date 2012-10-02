@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript sort function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/sort
 alias:
 - /functions/sort:519
 - /functions/519
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's sort
+
 <!-- more -->
+
 {% codeblock array/sort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/sort.js raw on github %}
 function sort (inputArr, sort_flags) {
     // http://kevin.vanzonneveld.net
@@ -114,7 +117,7 @@ function sort (inputArr, sort_flags) {
     return strictForIn || populateArr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/sort.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/sort.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/sort.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/sort.js)
+

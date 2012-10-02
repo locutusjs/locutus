@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript crc32 function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/crc32
 alias:
 - /functions/crc32:377
 - /functions/377
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's crc32
+
 <!-- more -->
+
 {% codeblock strings/crc32.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/crc32.js raw on github %}
 function crc32 (str) {
     // http://kevin.vanzonneveld.net
@@ -38,7 +41,7 @@ function crc32 (str) {
     return crc ^ (-1);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/crc32.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/crc32.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/crc32.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/crc32.js)
+

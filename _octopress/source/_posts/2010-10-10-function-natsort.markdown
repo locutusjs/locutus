@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript natsort function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/natsort
 alias:
 - /functions/natsort:478
 - /functions/478
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's natsort
+
 <!-- more -->
+
 {% codeblock array/natsort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/natsort.js raw on github %}
 function natsort (inputArr) {
     // http://kevin.vanzonneveld.net
@@ -65,7 +68,7 @@ function natsort (inputArr) {
     return strictForIn || populateArr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/natsort.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/natsort.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/natsort.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/natsort.js)
+

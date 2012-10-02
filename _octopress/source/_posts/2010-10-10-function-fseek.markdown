@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript fseek function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/fseek
 alias:
 - /functions/fseek:805
 - /functions/805
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's fseek
+
 <!-- more -->
+
 {% codeblock filesystem/fseek.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/fseek.js raw on github %}
 function fseek (handle, offset, whence) {
     // http://kevin.vanzonneveld.net
@@ -50,7 +53,7 @@ function fseek (handle, offset, whence) {
     return 0;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/fseek.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/fseek.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/fseek.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/fseek.js)
+

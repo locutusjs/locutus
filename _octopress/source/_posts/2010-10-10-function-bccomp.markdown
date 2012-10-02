@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript bccomp function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/bccomp
 alias:
 - /functions/bccomp:877
 - /functions/877
-categories: [ bc, functions ]
+categories:
+- php bc extension
+- functions
 ---
 A JavaScript equivalent of PHP's bccomp
+
 <!-- more -->
+
 {% codeblock bc/bccomp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/bc/bccomp.js raw on github %}
 function bccomp (left_operand, right_operand, scale) {
     // http://kevin.vanzonneveld.net
@@ -43,7 +46,7 @@ function bccomp (left_operand, right_operand, scale) {
     return libbcmath.bc_compare(first, second, scale);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/bc/bccomp.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/bc/bccomp.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/bc/bccomp.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/bc/bccomp.js)
+

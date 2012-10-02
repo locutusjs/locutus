@@ -55,7 +55,7 @@ task :build do
         page.puts "---"
         page.puts "layout: post"
         page.puts "title: \"JavaScript #{function} function\""
-        page.puts "date: #{mdate}"
+        # page.puts "date: #{mdate}"
         page.puts "comments: true"
         page.puts "sharing: true"
         page.puts "footer: true"
@@ -63,20 +63,25 @@ task :build do
         page.puts "alias:"
         page.puts "- /functions/#{function}:#{id}"
         page.puts "- /functions/#{id}"
-        page.puts "categories: [ #{category}, functions ]"
+        page.puts "categories:"
+        page.puts "- php #{category} extension"
+        page.puts "- functions"
         page.puts "---"
+
         page.puts "A JavaScript equivalent of PHP's #{function}"
+        page.puts ""
         page.puts "<!-- more -->"
+        page.puts ""
 
         codefile = File.open("#{phpjsdir}/functions/#{category}/#{function}.js", "r")
         contents = codefile.read
         page.puts "{% codeblock #{category}/#{function}.js lang:js https://raw.github.com/kvz/phpjs/master/functions/#{category}/#{function}.js raw on github %}"
         page.puts "#{contents}"
         page.puts "{% endcodeblock %}"
-        page.puts "<ul>"
-        page.puts " <li><a href=\"https://github.com/kvz/phpjs/blob/master/functions/#{category}/#{function}.js\">view on github</a></li>"
-        page.puts " <li><a href=\"https://github.com/kvz/phpjs/edit/master/functions/#{category}/#{function}.js\">edit on github</a></li>"
-        page.puts "</ul>"
+        page.puts ""
+        page.puts " - [view on github](https://github.com/kvz/phpjs/blob/master/functions/#{category}/#{function}.js)"
+        page.puts " - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/#{category}/#{function}.js)"
+        page.puts ""
       end
 
       # break

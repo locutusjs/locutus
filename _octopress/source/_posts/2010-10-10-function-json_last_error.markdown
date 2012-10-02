@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript json_last_error function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/json_last_error
 alias:
 - /functions/json_last_error:878
 - /functions/878
-categories: [ json, functions ]
+categories:
+- php json extension
+- functions
 ---
 A JavaScript equivalent of PHP's json_last_error
+
 <!-- more -->
+
 {% codeblock json/json_last_error.js lang:js https://raw.github.com/kvz/phpjs/master/functions/json/json_last_error.js raw on github %}
 function json_last_error () {
     // http://kevin.vanzonneveld.net
@@ -30,7 +33,7 @@ function json_last_error () {
     return this.php_js && this.php_js.last_error_json ? this.php_js.last_error_json : 0;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/json/json_last_error.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/json/json_last_error.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/json/json_last_error.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/json/json_last_error.js)
+

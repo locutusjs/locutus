@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ini_get function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ini_get
 alias:
 - /functions/ini_get:597
 - /functions/597
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's ini_get
+
 <!-- more -->
+
 {% codeblock info/ini_get.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/ini_get.js raw on github %}
 function ini_get (varname) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function ini_get (varname) {
     return '';
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/ini_get.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/ini_get.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/ini_get.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/ini_get.js)
+

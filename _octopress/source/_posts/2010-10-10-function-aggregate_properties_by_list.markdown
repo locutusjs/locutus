@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript aggregate_properties_by_list function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/aggregate_properties_by_list
 alias:
 - /functions/aggregate_properties_by_list:797
 - /functions/797
-categories: [ objaggregation, functions ]
+categories:
+- php objaggregation extension
+- functions
 ---
 A JavaScript equivalent of PHP's aggregate_properties_by_list
+
 <!-- more -->
+
 {% codeblock objaggregation/aggregate_properties_by_list.js lang:js https://raw.github.com/kvz/phpjs/master/functions/objaggregation/aggregate_properties_by_list.js raw on github %}
 function aggregate_properties_by_list (obj, class_name, properties_list, exclude) {
     // http://kevin.vanzonneveld.net
@@ -101,7 +104,7 @@ function aggregate_properties_by_list (obj, class_name, properties_list, exclude
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate_properties_by_list.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate_properties_by_list.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate_properties_by_list.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate_properties_by_list.js)
+

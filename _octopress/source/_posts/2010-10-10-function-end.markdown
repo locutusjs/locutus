@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript end function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/end
 alias:
 - /functions/end:393
 - /functions/393
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's end
+
 <!-- more -->
+
 {% codeblock array/end.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/end.js raw on github %}
 function end (arr) {
     // http://kevin.vanzonneveld.net
@@ -66,7 +69,7 @@ function end (arr) {
     return arr[pointers[arrpos + 1]];
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/end.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/end.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/end.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/end.js)
+

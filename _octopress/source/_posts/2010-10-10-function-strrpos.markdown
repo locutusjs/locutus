@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strrpos function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strrpos
 alias:
 - /functions/strrpos:549
 - /functions/549
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strrpos
+
 <!-- more -->
+
 {% codeblock strings/strrpos.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strrpos.js raw on github %}
 function strrpos (haystack, needle, offset) {
     // http://kevin.vanzonneveld.net
@@ -41,7 +44,7 @@ function strrpos (haystack, needle, offset) {
     return i >= 0 ? i : false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strrpos.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strrpos.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strrpos.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strrpos.js)
+

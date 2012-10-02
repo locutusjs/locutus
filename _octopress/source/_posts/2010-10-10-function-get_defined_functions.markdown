@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript get_defined_functions function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/get_defined_functions
 alias:
 - /functions/get_defined_functions:413
 - /functions/413
-categories: [ funchand, functions ]
+categories:
+- php funchand extension
+- functions
 ---
 A JavaScript equivalent of PHP's get_defined_functions
+
 <!-- more -->
+
 {% codeblock funchand/get_defined_functions.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/get_defined_functions.js raw on github %}
 function get_defined_functions () {
     // http://kevin.vanzonneveld.net
@@ -50,7 +53,7 @@ function get_defined_functions () {
     return arr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/funchand/get_defined_functions.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/funchand/get_defined_functions.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/funchand/get_defined_functions.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/funchand/get_defined_functions.js)
+

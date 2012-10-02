@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_unshift function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_unshift
 alias:
 - /functions/array_unshift:347
 - /functions/347
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_unshift
+
 <!-- more -->
+
 {% codeblock array/array_unshift.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_unshift.js raw on github %}
 function array_unshift (array) {
     // http://kevin.vanzonneveld.net
@@ -31,7 +34,7 @@ function array_unshift (array) {
     return arguments[0].length;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_unshift.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_unshift.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_unshift.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_unshift.js)
+

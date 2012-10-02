@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript arsort function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/arsort
 alias:
 - /functions/arsort:351
 - /functions/351
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's arsort
+
 <!-- more -->
+
 {% codeblock array/arsort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/arsort.js raw on github %}
 function arsort (inputArr, sort_flags) {
     // http://kevin.vanzonneveld.net
@@ -118,7 +121,7 @@ function arsort (inputArr, sort_flags) {
     return strictForIn || populateArr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/arsort.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/arsort.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/arsort.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/arsort.js)
+

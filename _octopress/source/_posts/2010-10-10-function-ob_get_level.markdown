@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ob_get_level function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ob_get_level
 alias:
 - /functions/ob_get_level:898
 - /functions/898
-categories: [ outcontrol, functions ]
+categories:
+- php outcontrol extension
+- functions
 ---
 A JavaScript equivalent of PHP's ob_get_level
+
 <!-- more -->
+
 {% codeblock outcontrol/ob_get_level.js lang:js https://raw.github.com/kvz/phpjs/master/functions/outcontrol/ob_get_level.js raw on github %}
 function ob_get_level () {
     // http://kevin.vanzonneveld.net
@@ -31,7 +34,7 @@ function ob_get_level () {
     return obs.length;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/outcontrol/ob_get_level.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/outcontrol/ob_get_level.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/outcontrol/ob_get_level.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/outcontrol/ob_get_level.js)
+

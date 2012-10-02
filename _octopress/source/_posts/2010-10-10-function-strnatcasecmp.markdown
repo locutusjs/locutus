@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strnatcasecmp function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strnatcasecmp
 alias:
 - /functions/strnatcasecmp:540
 - /functions/540
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strnatcasecmp
+
 <!-- more -->
+
 {% codeblock strings/strnatcasecmp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strnatcasecmp.js raw on github %}
 function strnatcasecmp (str1, str2) {
     // http://kevin.vanzonneveld.net
@@ -136,7 +139,7 @@ function strnatcasecmp (str1, str2) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strnatcasecmp.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strnatcasecmp.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strnatcasecmp.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strnatcasecmp.js)
+

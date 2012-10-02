@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript nl2br function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/nl2br
 alias:
 - /functions/nl2br:480
 - /functions/480
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's nl2br
+
 <!-- more -->
+
 {% codeblock strings/nl2br.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/nl2br.js raw on github %}
 function nl2br (str, is_xhtml) {
     // http://kevin.vanzonneveld.net
@@ -36,7 +39,7 @@ function nl2br (str, is_xhtml) {
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/nl2br.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/nl2br.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/nl2br.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/nl2br.js)
+

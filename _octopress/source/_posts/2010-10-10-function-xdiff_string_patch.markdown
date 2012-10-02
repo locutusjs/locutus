@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript xdiff_string_patch function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/xdiff_string_patch
 alias:
 - /functions/xdiff_string_patch:888
 - /functions/888
-categories: [ xdiff, functions ]
+categories:
+- php xdiff extension
+- functions
 ---
 A JavaScript equivalent of PHP's xdiff_string_patch
+
 <!-- more -->
+
 {% codeblock xdiff/xdiff_string_patch.js lang:js https://raw.github.com/kvz/phpjs/master/functions/xdiff/xdiff_string_patch.js raw on github %}
 function xdiff_string_patch (originalStr, patch, flags, error) {
     // http://kevin.vanzonneveld.net
@@ -188,7 +191,7 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
     return newStrArr.join('\n');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/xdiff/xdiff_string_patch.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/xdiff/xdiff_string_patch.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/xdiff/xdiff_string_patch.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/xdiff/xdiff_string_patch.js)
+

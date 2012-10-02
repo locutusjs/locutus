@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript call_user_func_array function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/call_user_func_array
 alias:
 - /functions/call_user_func_array:364
 - /functions/364
-categories: [ funchand, functions ]
+categories:
+- php funchand extension
+- functions
 ---
 A JavaScript equivalent of PHP's call_user_func_array
+
 <!-- more -->
+
 {% codeblock funchand/call_user_func_array.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/call_user_func_array.js raw on github %}
 function call_user_func_array (cb, parameters) {
     // http://kevin.vanzonneveld.net
@@ -44,7 +47,7 @@ function call_user_func_array (cb, parameters) {
     return (typeof cb[0] === 'string') ? func.apply(eval(cb[0]), parameters) : (typeof cb[0] !== 'object') ? func.apply(null, parameters) : func.apply(cb[0], parameters);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/funchand/call_user_func_array.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/funchand/call_user_func_array.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/funchand/call_user_func_array.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/funchand/call_user_func_array.js)
+

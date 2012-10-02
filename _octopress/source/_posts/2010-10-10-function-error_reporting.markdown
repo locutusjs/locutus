@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript error_reporting function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/error_reporting
 alias:
 - /functions/error_reporting:841
 - /functions/841
-categories: [ errorfunc, functions ]
+categories:
+- php errorfunc extension
+- functions
 ---
 A JavaScript equivalent of PHP's error_reporting
+
 <!-- more -->
+
 {% codeblock errorfunc/error_reporting.js lang:js https://raw.github.com/kvz/phpjs/master/functions/errorfunc/error_reporting.js raw on github %}
 function error_reporting (level) {
     // http://kevin.vanzonneveld.net
@@ -27,7 +30,7 @@ function error_reporting (level) {
     return this.ini_set('error_reporting', level);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/errorfunc/error_reporting.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/errorfunc/error_reporting.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/errorfunc/error_reporting.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/errorfunc/error_reporting.js)
+

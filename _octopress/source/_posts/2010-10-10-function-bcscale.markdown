@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript bcscale function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/bcscale
 alias:
 - /functions/bcscale:874
 - /functions/874
-categories: [ bc, functions ]
+categories:
+- php bc extension
+- functions
 ---
 A JavaScript equivalent of PHP's bcscale
+
 <!-- more -->
+
 {% codeblock bc/bcscale.js lang:js https://raw.github.com/kvz/phpjs/master/functions/bc/bcscale.js raw on github %}
 function bcscale (scale) {
     // http://kevin.vanzonneveld.net
@@ -40,7 +43,7 @@ function bcscale (scale) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/bc/bcscale.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/bc/bcscale.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/bc/bcscale.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/bc/bcscale.js)
+

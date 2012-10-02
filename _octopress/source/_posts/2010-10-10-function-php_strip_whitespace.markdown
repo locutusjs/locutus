@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript php_strip_whitespace function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/php_strip_whitespace
 alias:
 - /functions/php_strip_whitespace:487
 - /functions/487
-categories: [ misc, functions ]
+categories:
+- php misc extension
+- functions
 ---
 A JavaScript equivalent of PHP's php_strip_whitespace
+
 <!-- more -->
+
 {% codeblock misc/php_strip_whitespace.js lang:js https://raw.github.com/kvz/phpjs/master/functions/misc/php_strip_whitespace.js raw on github %}
 function php_strip_whitespace (file) {
     // http://kevin.vanzonneveld.net
@@ -34,7 +37,7 @@ function php_strip_whitespace (file) {
     return str.replace(/\/\/.*?\n/g, '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/[ \f\r\t\v\u00A0\u2028\u2029]+/g, ' ').replace(/\s*\n+/g, '\n').replace(/^\s+/gm, '').replace(/\s*$/gm, '');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/misc/php_strip_whitespace.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/misc/php_strip_whitespace.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/misc/php_strip_whitespace.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/misc/php_strip_whitespace.js)
+

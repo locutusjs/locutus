@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript putenv function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/putenv
 alias:
 - /functions/putenv:588
 - /functions/588
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's putenv
+
 <!-- more -->
+
 {% codeblock info/putenv.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/putenv.js raw on github %}
 function putenv (setting) {
     // http://kevin.vanzonneveld.net
@@ -31,7 +34,7 @@ function putenv (setting) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/putenv.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/putenv.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/putenv.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/putenv.js)
+

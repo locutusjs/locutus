@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript str_pad function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/str_pad
 alias:
 - /functions/str_pad:525
 - /functions/525
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's str_pad
+
 <!-- more -->
+
 {% codeblock strings/str_pad.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_pad.js raw on github %}
 function str_pad (input, pad_length, pad_string, pad_type) {
     // http://kevin.vanzonneveld.net
@@ -60,7 +63,7 @@ function str_pad (input, pad_length, pad_string, pad_type) {
     return input;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/str_pad.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/str_pad.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/str_pad.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/str_pad.js)
+

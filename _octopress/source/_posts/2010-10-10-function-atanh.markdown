@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript atanh function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/atanh
 alias:
 - /functions/atanh:356
 - /functions/356
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's atanh
+
 <!-- more -->
+
 {% codeblock math/atanh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/atanh.js raw on github %}
 function atanh (arg) {
     // http://kevin.vanzonneveld.net
@@ -22,7 +25,7 @@ function atanh (arg) {
     return 0.5 * Math.log((1 + arg) / (1 - arg));
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/atanh.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/atanh.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/atanh.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/atanh.js)
+

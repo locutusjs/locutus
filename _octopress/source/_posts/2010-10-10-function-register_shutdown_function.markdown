@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript register_shutdown_function function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/register_shutdown_function
 alias:
 - /functions/register_shutdown_function:810
 - /functions/810
-categories: [ funchand, functions ]
+categories:
+- php funchand extension
+- functions
 ---
 A JavaScript equivalent of PHP's register_shutdown_function
+
 <!-- more -->
+
 {% codeblock funchand/register_shutdown_function.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/register_shutdown_function.js raw on github %}
 function register_shutdown_function (cb) {
     // http://kevin.vanzonneveld.net
@@ -36,7 +39,7 @@ function register_shutdown_function (cb) {
     }, false);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/funchand/register_shutdown_function.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/funchand/register_shutdown_function.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/funchand/register_shutdown_function.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/funchand/register_shutdown_function.js)
+

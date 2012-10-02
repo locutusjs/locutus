@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript class_exists function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/class_exists
 alias:
 - /functions/class_exists:370
 - /functions/370
-categories: [ classobj, functions ]
+categories:
+- php classobj extension
+- functions
 ---
 A JavaScript equivalent of PHP's class_exists
+
 <!-- more -->
+
 {% codeblock classobj/class_exists.js lang:js https://raw.github.com/kvz/phpjs/master/functions/classobj/class_exists.js raw on github %}
 function class_exists (cls) {
     // http://kevin.vanzonneveld.net
@@ -45,7 +48,7 @@ function class_exists (cls) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/classobj/class_exists.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/classobj/class_exists.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/class_exists.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/class_exists.js)
+

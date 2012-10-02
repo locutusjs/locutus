@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_diff_key function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_diff_key
 alias:
 - /functions/array_diff_key:311
 - /functions/311
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_diff_key
+
 <!-- more -->
+
 {% codeblock array/array_diff_key.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_diff_key.js raw on github %}
 function array_diff_key (arr1) {
     // http://kevin.vanzonneveld.net
@@ -46,7 +49,7 @@ function array_diff_key (arr1) {
     return retArr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_diff_key.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_diff_key.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_diff_key.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_diff_key.js)
+

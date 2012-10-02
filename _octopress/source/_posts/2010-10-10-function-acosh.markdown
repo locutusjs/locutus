@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript acosh function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/acosh
 alias:
 - /functions/acosh:302
 - /functions/302
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's acosh
+
 <!-- more -->
+
 {% codeblock math/acosh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/acosh.js raw on github %}
 function acosh (arg) {
     // http://kevin.vanzonneveld.net
@@ -22,7 +25,7 @@ function acosh (arg) {
     return Math.log(arg + Math.sqrt(arg * arg - 1));
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/acosh.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/acosh.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/acosh.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/acosh.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript defined function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/defined
 alias:
 - /functions/defined:385
 - /functions/385
-categories: [ misc, functions ]
+categories:
+- php misc extension
+- functions
 ---
 A JavaScript equivalent of PHP's defined
+
 <!-- more -->
+
 {% codeblock misc/defined.js lang:js https://raw.github.com/kvz/phpjs/master/functions/misc/defined.js raw on github %}
 function defined (constant_name) {
     // http://kevin.vanzonneveld.net
@@ -35,7 +38,7 @@ function defined (constant_name) {
     return returnval;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/misc/defined.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/misc/defined.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/misc/defined.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/misc/defined.js)
+

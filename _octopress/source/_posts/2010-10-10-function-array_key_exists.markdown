@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_key_exists function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_key_exists
 alias:
 - /functions/array_key_exists:323
 - /functions/323
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_key_exists
+
 <!-- more -->
+
 {% codeblock array/array_key_exists.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_key_exists.js raw on github %}
 function array_key_exists (key, search) {
     // http://kevin.vanzonneveld.net
@@ -28,7 +31,7 @@ function array_key_exists (key, search) {
     return key in search;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_key_exists.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_key_exists.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_key_exists.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_key_exists.js)
+

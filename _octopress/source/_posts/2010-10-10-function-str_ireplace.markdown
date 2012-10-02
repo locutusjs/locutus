@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript str_ireplace function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/str_ireplace
 alias:
 - /functions/str_ireplace:524
 - /functions/524
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's str_ireplace
+
 <!-- more -->
+
 {% codeblock strings/str_ireplace.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_ireplace.js raw on github %}
 function str_ireplace (search, replace, subject) {
     // http://kevin.vanzonneveld.net
@@ -79,7 +82,7 @@ function str_ireplace (search, replace, subject) {
     return subject;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/str_ireplace.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/str_ireplace.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/str_ireplace.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/str_ireplace.js)
+

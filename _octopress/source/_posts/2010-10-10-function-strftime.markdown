@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strftime function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strftime
 alias:
 - /functions/strftime:590
 - /functions/590
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's strftime
+
 <!-- more -->
+
 {% codeblock datetime/strftime.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/strftime.js raw on github %}
 function strftime (fmt, timestamp) {
     // http://kevin.vanzonneveld.net
@@ -234,7 +237,7 @@ Oy
     return str;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/strftime.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/strftime.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/strftime.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/strftime.js)
+

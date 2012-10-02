@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript get_class_vars function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/get_class_vars
 alias:
 - /functions/get_class_vars:411
 - /functions/411
-categories: [ classobj, functions ]
+categories:
+- php classobj extension
+- functions
 ---
 A JavaScript equivalent of PHP's get_class_vars
+
 <!-- more -->
+
 {% codeblock classobj/get_class_vars.js lang:js https://raw.github.com/kvz/phpjs/master/functions/classobj/get_class_vars.js raw on github %}
 function get_class_vars (name) {
     // http://kevin.vanzonneveld.net
@@ -50,7 +53,7 @@ function get_class_vars (name) {
     return retArr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/classobj/get_class_vars.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/classobj/get_class_vars.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/get_class_vars.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/get_class_vars.js)
+

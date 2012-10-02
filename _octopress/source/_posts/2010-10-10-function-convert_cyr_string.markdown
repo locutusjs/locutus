@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript convert_cyr_string function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/convert_cyr_string
 alias:
 - /functions/convert_cyr_string:881
 - /functions/881
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's convert_cyr_string
+
 <!-- more -->
+
 {% codeblock strings/convert_cyr_string.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/convert_cyr_string.js raw on github %}
 function convert_cyr_string (str, from, to) {
     // http://kevin.vanzonneveld.net
@@ -93,7 +96,7 @@ function convert_cyr_string (str, from, to) {
     return retStr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/convert_cyr_string.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/convert_cyr_string.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/convert_cyr_string.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/convert_cyr_string.js)
+

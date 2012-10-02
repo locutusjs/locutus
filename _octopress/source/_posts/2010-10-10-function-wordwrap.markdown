@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript wordwrap function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/wordwrap
 alias:
 - /functions/wordwrap:581
 - /functions/581
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's wordwrap
+
 <!-- more -->
+
 {% codeblock strings/wordwrap.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/wordwrap.js raw on github %}
 function wordwrap (str, int_width, str_break, cut) {
     // http://kevin.vanzonneveld.net
@@ -50,7 +53,7 @@ function wordwrap (str, int_width, str_break, cut) {
     return r.join("\n");
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/wordwrap.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/wordwrap.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/wordwrap.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/wordwrap.js)
+

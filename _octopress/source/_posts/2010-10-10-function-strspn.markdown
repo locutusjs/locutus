@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strspn function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strspn
 alias:
 - /functions/strspn:550
 - /functions/550
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strspn
+
 <!-- more -->
+
 {% codeblock strings/strspn.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strspn.js raw on github %}
 function strspn (str1, str2, start, lgth) {
     // http://kevin.vanzonneveld.net
@@ -50,7 +53,7 @@ function strspn (str1, str2, start, lgth) {
     return i;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strspn.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strspn.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strspn.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strspn.js)
+

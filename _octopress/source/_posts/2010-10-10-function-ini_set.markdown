@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ini_set function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ini_set
 alias:
 - /functions/ini_set:600
 - /functions/600
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's ini_set
+
 <!-- more -->
+
 {% codeblock info/ini_set.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/ini_set.js raw on github %}
 function ini_set (varname, newvalue) {
     // http://kevin.vanzonneveld.net
@@ -49,7 +52,7 @@ function ini_set (varname, newvalue) {
     return oldval;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/ini_set.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/ini_set.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/ini_set.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/ini_set.js)
+

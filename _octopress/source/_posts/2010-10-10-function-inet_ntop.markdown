@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript inet_ntop function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/inet_ntop
 alias:
 - /functions/inet_ntop:882
 - /functions/882
-categories: [ network, functions ]
+categories:
+- php network extension
+- functions
 ---
 A JavaScript equivalent of PHP's inet_ntop
+
 <!-- more -->
+
 {% codeblock network/inet_ntop.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/inet_ntop.js raw on github %}
 function inet_ntop (a) {
     // http://kevin.vanzonneveld.net
@@ -41,7 +44,7 @@ function inet_ntop (a) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/network/inet_ntop.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/network/inet_ntop.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/network/inet_ntop.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/network/inet_ntop.js)
+

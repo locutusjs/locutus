@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript parse_url function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/parse_url
 alias:
 - /functions/parse_url:485
 - /functions/485
-categories: [ url, functions ]
+categories:
+- php url extension
+- functions
 ---
 A JavaScript equivalent of PHP's parse_url
+
 <!-- more -->
+
 {% codeblock url/parse_url.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/parse_url.js raw on github %}
 function parse_url (str, component) {
     // http://kevin.vanzonneveld.net
@@ -66,7 +69,7 @@ function parse_url (str, component) {
     return uri;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/url/parse_url.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/url/parse_url.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/url/parse_url.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/url/parse_url.js)
+

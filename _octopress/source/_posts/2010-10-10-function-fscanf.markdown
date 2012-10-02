@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript fscanf function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/fscanf
 alias:
 - /functions/fscanf:885
 - /functions/885
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's fscanf
+
 <!-- more -->
+
 {% codeblock filesystem/fscanf.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/fscanf.js raw on github %}
 function fscanf (handle, format) {
     // http://kevin.vanzonneveld.net
@@ -30,7 +33,7 @@ function fscanf (handle, format) {
     return mixed;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/fscanf.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/fscanf.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/fscanf.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/fscanf.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strncasecmp function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strncasecmp
 alias:
 - /functions/strncasecmp:542
 - /functions/542
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strncasecmp
+
 <!-- more -->
+
 {% codeblock strings/strncasecmp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strncasecmp.js raw on github %}
 function strncasecmp (argStr1, argStr2, len) {
     // http://kevin.vanzonneveld.net
@@ -62,7 +65,7 @@ function strncasecmp (argStr1, argStr2, len) {
     return 0;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strncasecmp.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strncasecmp.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strncasecmp.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strncasecmp.js)
+

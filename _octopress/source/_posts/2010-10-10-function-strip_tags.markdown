@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strip_tags function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strip_tags
 alias:
 - /functions/strip_tags:535
 - /functions/535
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strip_tags
+
 <!-- more -->
+
 {% codeblock strings/strip_tags.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strip_tags.js raw on github %}
 function strip_tags (input, allowed) {
     // http://kevin.vanzonneveld.net
@@ -55,7 +58,7 @@ function strip_tags (input, allowed) {
     });
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strip_tags.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strip_tags.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strip_tags.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strip_tags.js)
+

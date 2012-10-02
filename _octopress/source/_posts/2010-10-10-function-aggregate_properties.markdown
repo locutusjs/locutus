@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript aggregate_properties function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/aggregate_properties
 alias:
 - /functions/aggregate_properties:796
 - /functions/796
-categories: [ objaggregation, functions ]
+categories:
+- php objaggregation extension
+- functions
 ---
 A JavaScript equivalent of PHP's aggregate_properties
+
 <!-- more -->
+
 {% codeblock objaggregation/aggregate_properties.js lang:js https://raw.github.com/kvz/phpjs/master/functions/objaggregation/aggregate_properties.js raw on github %}
 function aggregate_properties (obj, class_name) {
     // http://kevin.vanzonneveld.net
@@ -83,7 +86,7 @@ function aggregate_properties (obj, class_name) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate_properties.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate_properties.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate_properties.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate_properties.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript krsort function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/krsort
 alias:
 - /functions/krsort:459
 - /functions/459
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's krsort
+
 <!-- more -->
+
 {% codeblock array/krsort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/krsort.js raw on github %}
 function krsort (inputArr, sort_flags) {
     // http://kevin.vanzonneveld.net
@@ -119,7 +122,7 @@ function krsort (inputArr, sort_flags) {
     return strictForIn || populateArr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/krsort.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/krsort.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/krsort.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/krsort.js)
+

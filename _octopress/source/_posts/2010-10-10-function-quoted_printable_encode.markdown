@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript quoted_printable_encode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/quoted_printable_encode
 alias:
 - /functions/quoted_printable_encode:835
 - /functions/835
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's quoted_printable_encode
+
 <!-- more -->
+
 {% codeblock strings/quoted_printable_encode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/quoted_printable_encode.js raw on github %}
 function quoted_printable_encode (str) {
     // +   original by: Theriault
@@ -58,7 +61,7 @@ function quoted_printable_encode (str) {
     return str.substr(0, str.length - 3);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/quoted_printable_encode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/quoted_printable_encode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/quoted_printable_encode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/quoted_printable_encode.js)
+

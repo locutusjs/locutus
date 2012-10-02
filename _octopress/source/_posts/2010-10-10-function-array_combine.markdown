@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_combine function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_combine
 alias:
 - /functions/array_combine:307
 - /functions/307
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_combine
+
 <!-- more -->
+
 {% codeblock array/array_combine.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_combine.js raw on github %}
 function array_combine (keys, values) {
     // http://kevin.vanzonneveld.net
@@ -42,7 +45,7 @@ function array_combine (keys, values) {
     return new_array;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_combine.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_combine.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_combine.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_combine.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript chr function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/chr
 alias:
 - /functions/chr:368
 - /functions/368
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's chr
+
 <!-- more -->
+
 {% codeblock strings/chr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/chr.js raw on github %}
 function chr (codePt) {
     // http://kevin.vanzonneveld.net
@@ -32,7 +35,7 @@ function chr (codePt) {
     return String.fromCharCode(codePt);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/chr.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/chr.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/chr.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/chr.js)
+

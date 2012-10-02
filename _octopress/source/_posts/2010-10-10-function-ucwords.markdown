@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ucwords function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ucwords
 alias:
 - /functions/ucwords:569
 - /functions/569
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's ucwords
+
 <!-- more -->
+
 {% codeblock strings/ucwords.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/ucwords.js raw on github %}
 function ucwords (str) {
     // http://kevin.vanzonneveld.net
@@ -31,7 +34,7 @@ function ucwords (str) {
     });
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/ucwords.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/ucwords.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/ucwords.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/ucwords.js)
+

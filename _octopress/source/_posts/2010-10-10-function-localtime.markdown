@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript localtime function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/localtime
 alias:
 - /functions/localtime:587
 - /functions/587
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's localtime
+
 <!-- more -->
+
 {% codeblock datetime/localtime.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/localtime.js raw on github %}
 function localtime (timestamp, is_assoc) {
     // http://kevin.vanzonneveld.net
@@ -63,7 +66,7 @@ function localtime (timestamp, is_assoc) {
     o.tm_sec, o.tm_min, o.tm_hour, o.tm_mday, o.tm_mon, o.tm_year, o.tm_wday, o.tm_yday, o.tm_isdst];
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/localtime.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/localtime.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/localtime.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/localtime.js)
+

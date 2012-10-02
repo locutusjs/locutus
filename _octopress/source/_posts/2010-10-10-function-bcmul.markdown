@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript bcmul function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/bcmul
 alias:
 - /functions/bcmul:872
 - /functions/872
-categories: [ bc, functions ]
+categories:
+- php bc extension
+- functions
 ---
 A JavaScript equivalent of PHP's bcmul
+
 <!-- more -->
+
 {% codeblock bc/bcmul.js lang:js https://raw.github.com/kvz/phpjs/master/functions/bc/bcmul.js raw on github %}
 function bcmul (left_operand, right_operand, scale) {
     // http://kevin.vanzonneveld.net
@@ -53,7 +56,7 @@ function bcmul (left_operand, right_operand, scale) {
     return result.toString();
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/bc/bcmul.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/bc/bcmul.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/bc/bcmul.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/bc/bcmul.js)
+

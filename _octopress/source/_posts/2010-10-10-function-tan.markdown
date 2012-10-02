@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript tan function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/tan
 alias:
 - /functions/tan:560
 - /functions/560
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's tan
+
 <!-- more -->
+
 {% codeblock math/tan.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/tan.js raw on github %}
 function tan (arg) {
     // http://kevin.vanzonneveld.net
@@ -22,7 +25,7 @@ function tan (arg) {
     return Math.tan(arg);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/tan.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/tan.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/tan.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/tan.js)
+

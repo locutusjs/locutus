@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript lcfirst function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/lcfirst
 alias:
 - /functions/lcfirst:461
 - /functions/461
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's lcfirst
+
 <!-- more -->
+
 {% codeblock strings/lcfirst.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/lcfirst.js raw on github %}
 function lcfirst (str) {
     // http://kevin.vanzonneveld.net
@@ -24,7 +27,7 @@ function lcfirst (str) {
     return f + str.substr(1);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/lcfirst.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/lcfirst.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/lcfirst.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/lcfirst.js)
+

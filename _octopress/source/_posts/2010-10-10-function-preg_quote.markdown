@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript preg_quote function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/preg_quote
 alias:
 - /functions/preg_quote:491
 - /functions/491
-categories: [ pcre, functions ]
+categories:
+- php pcre extension
+- functions
 ---
 A JavaScript equivalent of PHP's preg_quote
+
 <!-- more -->
+
 {% codeblock pcre/preg_quote.js lang:js https://raw.github.com/kvz/phpjs/master/functions/pcre/preg_quote.js raw on github %}
 function preg_quote (str, delimiter) {
     // http://kevin.vanzonneveld.net
@@ -30,7 +33,7 @@ function preg_quote (str, delimiter) {
     return (str + '').replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/pcre/preg_quote.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/pcre/preg_quote.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/pcre/preg_quote.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/pcre/preg_quote.js)
+

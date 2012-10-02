@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_change_key_case function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_change_key_case
 alias:
 - /functions/array_change_key_case:305
 - /functions/305
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_change_key_case
+
 <!-- more -->
+
 {% codeblock array/array_change_key_case.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_change_key_case.js raw on github %}
 function array_change_key_case (array, cs) {
     // http://kevin.vanzonneveld.net
@@ -49,7 +52,7 @@ function array_change_key_case (array, cs) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_change_key_case.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_change_key_case.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_change_key_case.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_change_key_case.js)
+

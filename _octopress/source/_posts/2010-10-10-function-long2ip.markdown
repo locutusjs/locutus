@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript long2ip function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/long2ip
 alias:
 - /functions/long2ip:466
 - /functions/466
-categories: [ network, functions ]
+categories:
+- php network extension
+- functions
 ---
 A JavaScript equivalent of PHP's long2ip
+
 <!-- more -->
+
 {% codeblock network/long2ip.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/long2ip.js raw on github %}
 function long2ip (ip) {
     // http://kevin.vanzonneveld.net
@@ -25,7 +28,7 @@ function long2ip (ip) {
 	return [ip >>> 24, ip >>> 16 & 0xFF, ip >>> 8 & 0xFF, ip & 0xFF].join('.');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/network/long2ip.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/network/long2ip.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/network/long2ip.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/network/long2ip.js)
+

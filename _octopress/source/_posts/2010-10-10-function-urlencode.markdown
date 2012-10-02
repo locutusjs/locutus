@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript urlencode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/urlencode
 alias:
 - /functions/urlencode:573
 - /functions/573
-categories: [ url, functions ]
+categories:
+- php url extension
+- functions
 ---
 A JavaScript equivalent of PHP's urlencode
+
 <!-- more -->
+
 {% codeblock url/urlencode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/urlencode.js raw on github %}
 function urlencode (str) {
     // http://kevin.vanzonneveld.net
@@ -47,7 +50,7 @@ function urlencode (str) {
     replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/url/urlencode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/url/urlencode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/url/urlencode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/url/urlencode.js)
+

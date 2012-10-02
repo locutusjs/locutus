@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript runkit_class_emancipate function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/runkit_class_emancipate
 alias:
 - /functions/runkit_class_emancipate:821
 - /functions/821
-categories: [ runkit, functions ]
+categories:
+- php runkit extension
+- functions
 ---
 A JavaScript equivalent of PHP's runkit_class_emancipate
+
 <!-- more -->
+
 {% codeblock runkit/runkit_class_emancipate.js lang:js https://raw.github.com/kvz/phpjs/master/functions/runkit/runkit_class_emancipate.js raw on github %}
 function runkit_class_emancipate (classname) {
     // http://kevin.vanzonneveld.net
@@ -36,7 +39,7 @@ function runkit_class_emancipate (classname) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_class_emancipate.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_class_emancipate.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_class_emancipate.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_class_emancipate.js)
+

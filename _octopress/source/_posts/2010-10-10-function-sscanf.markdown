@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript sscanf function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/sscanf
 alias:
 - /functions/sscanf:886
 - /functions/886
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's sscanf
+
 <!-- more -->
+
 {% codeblock strings/sscanf.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/sscanf.js raw on github %}
 function sscanf (str, format) {
     // +   original by: Brett Zamir (http://brett-zamir.me)
@@ -257,7 +260,7 @@ function sscanf (str, format) {
     return _finish();
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/sscanf.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/sscanf.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/sscanf.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/sscanf.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript escapeshellarg function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/escapeshellarg
 alias:
 - /functions/escapeshellarg:866
 - /functions/866
-categories: [ exec, functions ]
+categories:
+- php exec extension
+- functions
 ---
 A JavaScript equivalent of PHP's escapeshellarg
+
 <!-- more -->
+
 {% codeblock exec/escapeshellarg.js lang:js https://raw.github.com/kvz/phpjs/master/functions/exec/escapeshellarg.js raw on github %}
 function escapeshellarg (arg) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function escapeshellarg (arg) {
     return "'" + ret + "'";
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/exec/escapeshellarg.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/exec/escapeshellarg.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/exec/escapeshellarg.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/exec/escapeshellarg.js)
+

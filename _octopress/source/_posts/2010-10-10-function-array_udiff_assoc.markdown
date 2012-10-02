@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_udiff_assoc function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_udiff_assoc
 alias:
 - /functions/array_udiff_assoc:341
 - /functions/341
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_udiff_assoc
+
 <!-- more -->
+
 {% codeblock array/array_udiff_assoc.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_udiff_assoc.js raw on github %}
 function array_udiff_assoc (arr1) {
     // http://kevin.vanzonneveld.net
@@ -44,7 +47,7 @@ function array_udiff_assoc (arr1) {
     return retArr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_udiff_assoc.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_udiff_assoc.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_udiff_assoc.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_udiff_assoc.js)
+

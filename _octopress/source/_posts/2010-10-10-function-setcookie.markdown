@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript setcookie function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/setcookie
 alias:
 - /functions/setcookie:509
 - /functions/509
-categories: [ network, functions ]
+categories:
+- php network extension
+- functions
 ---
 A JavaScript equivalent of PHP's setcookie
+
 <!-- more -->
+
 {% codeblock network/setcookie.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/setcookie.js raw on github %}
 function setcookie (name, value, expires, path, domain, secure) {
     // http://kevin.vanzonneveld.net
@@ -26,7 +29,7 @@ function setcookie (name, value, expires, path, domain, secure) {
     return this.setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/network/setcookie.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/network/setcookie.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/network/setcookie.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/network/setcookie.js)
+

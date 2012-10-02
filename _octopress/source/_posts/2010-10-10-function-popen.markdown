@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript popen function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/popen
 alias:
 - /functions/popen:808
 - /functions/808
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's popen
+
 <!-- more -->
+
 {% codeblock filesystem/popen.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/popen.js raw on github %}
 function popen (filename, mode, use_include_path, context) {
     // http://kevin.vanzonneveld.net
@@ -114,7 +117,7 @@ function popen (filename, mode, use_include_path, context) {
     return resource; // may be 'file' instead of 'stream' type on some systems
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/popen.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/popen.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/popen.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/popen.js)
+

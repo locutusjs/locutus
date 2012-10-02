@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript sql_regcase function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/sql_regcase
 alias:
 - /functions/sql_regcase:787
 - /functions/787
-categories: [ pcre, functions ]
+categories:
+- php pcre extension
+- functions
 ---
 A JavaScript equivalent of PHP's sql_regcase
+
 <!-- more -->
+
 {% codeblock pcre/sql_regcase.js lang:js https://raw.github.com/kvz/phpjs/master/functions/pcre/sql_regcase.js raw on github %}
 function sql_regcase (str) {
     // http://kevin.vanzonneveld.net
@@ -40,7 +43,7 @@ function sql_regcase (str) {
     return retStr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/pcre/sql_regcase.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/pcre/sql_regcase.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/pcre/sql_regcase.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/pcre/sql_regcase.js)
+

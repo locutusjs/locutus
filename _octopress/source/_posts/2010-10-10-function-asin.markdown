@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript asin function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/asin
 alias:
 - /functions/asin:352
 - /functions/352
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's asin
+
 <!-- more -->
+
 {% codeblock math/asin.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/asin.js raw on github %}
 function asin (arg) {
     // http://kevin.vanzonneveld.net
@@ -22,7 +25,7 @@ function asin (arg) {
     return Math.asin(arg);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/asin.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/asin.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/asin.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/asin.js)
+

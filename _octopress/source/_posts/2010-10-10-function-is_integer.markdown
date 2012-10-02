@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript is_integer function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/is_integer
 alias:
 - /functions/is_integer:445
 - /functions/445
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's is_integer
+
 <!-- more -->
+
 {% codeblock var/is_integer.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_integer.js raw on github %}
 function is_integer (mixed_var) {
     // http://kevin.vanzonneveld.net
@@ -27,7 +30,7 @@ function is_integer (mixed_var) {
     return this.is_int(mixed_var);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/is_integer.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/is_integer.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_integer.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_integer.js)
+

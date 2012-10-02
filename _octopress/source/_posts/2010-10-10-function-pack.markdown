@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript pack function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/pack
 alias:
 - /functions/pack:880
 - /functions/880
-categories: [ misc, functions ]
+categories:
+- php misc extension
+- functions
 ---
 A JavaScript equivalent of PHP's pack
+
 <!-- more -->
+
 {% codeblock misc/pack.js lang:js https://raw.github.com/kvz/phpjs/master/functions/misc/pack.js raw on github %}
 function pack (format) {
     // http://kevin.vanzonneveld.net
@@ -361,7 +364,7 @@ function pack (format) {
     return result;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/misc/pack.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/misc/pack.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/misc/pack.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/misc/pack.js)
+

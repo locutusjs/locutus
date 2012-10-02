@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_filter function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_filter
 alias:
 - /functions/array_filter:316
 - /functions/316
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_filter
+
 <!-- more -->
+
 {% codeblock array/array_filter.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_filter.js raw on github %}
 function array_filter (arr, func) {
     // http://kevin.vanzonneveld.net
@@ -43,7 +46,7 @@ function array_filter (arr, func) {
     return retObj;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_filter.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_filter.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_filter.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_filter.js)
+

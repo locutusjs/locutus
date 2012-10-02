@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strcoll function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strcoll
 alias:
 - /functions/strcoll:789
 - /functions/789
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strcoll
+
 <!-- more -->
+
 {% codeblock strings/strcoll.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strcoll.js raw on github %}
 function strcoll (str1, str2) {
     // http://kevin.vanzonneveld.net
@@ -27,7 +30,7 @@ function strcoll (str1, str2) {
     return cmp(str1, str2);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strcoll.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strcoll.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strcoll.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strcoll.js)
+

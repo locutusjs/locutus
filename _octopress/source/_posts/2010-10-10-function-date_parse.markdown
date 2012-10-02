@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript date_parse function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/date_parse
 alias:
 - /functions/date_parse:827
 - /functions/827
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's date_parse
+
 <!-- more -->
+
 {% codeblock datetime/date_parse.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/date_parse.js raw on github %}
 function date_parse (date) {
     // http://kevin.vanzonneveld.net
@@ -56,7 +59,7 @@ function date_parse (date) {
     return retObj;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/date_parse.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/date_parse.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/date_parse.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/date_parse.js)
+

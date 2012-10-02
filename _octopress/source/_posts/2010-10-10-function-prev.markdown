@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript prev function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/prev
 alias:
 - /functions/prev:492
 - /functions/492
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's prev
+
 <!-- more -->
+
 {% codeblock array/prev.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/prev.js raw on github %}
 function prev (arr) {
     // http://kevin.vanzonneveld.net
@@ -60,7 +63,7 @@ function prev (arr) {
     return arr[pointers[arrpos + 1]];
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/prev.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/prev.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/prev.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/prev.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript assert_options function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/assert_options
 alias:
 - /functions/assert_options:832
 - /functions/832
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's assert_options
+
 <!-- more -->
+
 {% codeblock info/assert_options.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/assert_options.js raw on github %}
 function assert_options (what, value) {
     // http://kevin.vanzonneveld.net
@@ -60,7 +63,7 @@ function assert_options (what, value) {
     return originalValue;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/assert_options.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/assert_options.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/assert_options.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/assert_options.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript is_infinite function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/is_infinite
 alias:
 - /functions/is_infinite:443
 - /functions/443
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's is_infinite
+
 <!-- more -->
+
 {% codeblock math/is_infinite.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/is_infinite.js raw on github %}
 function is_infinite (val) {
     // http://kevin.vanzonneveld.net
@@ -43,7 +46,7 @@ function is_infinite (val) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/is_infinite.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/is_infinite.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/is_infinite.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/is_infinite.js)
+

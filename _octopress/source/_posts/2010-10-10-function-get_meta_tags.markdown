@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript get_meta_tags function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/get_meta_tags
 alias:
 - /functions/get_meta_tags:418
 - /functions/418
-categories: [ url, functions ]
+categories:
+- php url extension
+- functions
 ---
 A JavaScript equivalent of PHP's get_meta_tags
+
 <!-- more -->
+
 {% codeblock url/get_meta_tags.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/get_meta_tags.js raw on github %}
 function get_meta_tags (file) {
     // Extracts all meta tag content attributes from a file and returns an array
@@ -52,7 +55,7 @@ function get_meta_tags (file) {
     return arr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/url/get_meta_tags.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/url/get_meta_tags.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/url/get_meta_tags.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/url/get_meta_tags.js)
+

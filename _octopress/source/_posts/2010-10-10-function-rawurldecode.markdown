@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript rawurldecode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/rawurldecode
 alias:
 - /functions/rawurldecode:500
 - /functions/500
-categories: [ url, functions ]
+categories:
+- php url extension
+- functions
 ---
 A JavaScript equivalent of PHP's rawurldecode
+
 <!-- more -->
+
 {% codeblock url/rawurldecode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/rawurldecode.js raw on github %}
 function rawurldecode (str) {
     // http://kevin.vanzonneveld.net
@@ -35,7 +38,7 @@ function rawurldecode (str) {
     return decodeURIComponent(str + '');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/url/rawurldecode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/url/rawurldecode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/url/rawurldecode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/url/rawurldecode.js)
+

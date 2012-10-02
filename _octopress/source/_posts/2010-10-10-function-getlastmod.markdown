@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript getlastmod function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/getlastmod
 alias:
 - /functions/getlastmod:595
 - /functions/595
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's getlastmod
+
 <!-- more -->
+
 {% codeblock info/getlastmod.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/getlastmod.js raw on github %}
 function getlastmod () {
     // http://kevin.vanzonneveld.net
@@ -23,7 +26,7 @@ function getlastmod () {
     return new Date(this.window.document.lastModified).getTime() / 1000;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/getlastmod.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/getlastmod.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/getlastmod.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/getlastmod.js)
+

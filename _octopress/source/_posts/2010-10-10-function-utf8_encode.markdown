@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript utf8_encode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/utf8_encode
 alias:
 - /functions/utf8_encode:577
 - /functions/577
-categories: [ xml, functions ]
+categories:
+- php xml extension
+- functions
 ---
 A JavaScript equivalent of PHP's utf8_encode
+
 <!-- more -->
+
 {% codeblock xml/utf8_encode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/xml/utf8_encode.js raw on github %}
 function utf8_encode (argString) {
     // http://kevin.vanzonneveld.net
@@ -66,7 +69,7 @@ function utf8_encode (argString) {
     return utftext;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/xml/utf8_encode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/xml/utf8_encode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/xml/utf8_encode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/xml/utf8_encode.js)
+

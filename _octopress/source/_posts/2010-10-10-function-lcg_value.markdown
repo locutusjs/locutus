@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript lcg_value function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/lcg_value
 alias:
 - /functions/lcg_value:462
 - /functions/462
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's lcg_value
+
 <!-- more -->
+
 {% codeblock math/lcg_value.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/lcg_value.js raw on github %}
 function lcg_value () {
     // http://kevin.vanzonneveld.net
@@ -20,7 +23,7 @@ function lcg_value () {
     return Math.random();
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/lcg_value.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/lcg_value.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/lcg_value.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/lcg_value.js)
+

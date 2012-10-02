@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript base64_encode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/base64_encode
 alias:
 - /functions/base64_encode:358
 - /functions/358
-categories: [ url, functions ]
+categories:
+- php url extension
+- functions
 ---
 A JavaScript equivalent of PHP's base64_encode
+
 <!-- more -->
+
 {% codeblock url/base64_encode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/base64_encode.js raw on github %}
 function base64_encode (data) {
     // http://kevin.vanzonneveld.net
@@ -64,7 +67,7 @@ function base64_encode (data) {
 
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/url/base64_encode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/url/base64_encode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/url/base64_encode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/url/base64_encode.js)
+

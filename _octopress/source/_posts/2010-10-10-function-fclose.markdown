@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript fclose function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/fclose
 alias:
 - /functions/fclose:771
 - /functions/771
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's fclose
+
 <!-- more -->
+
 {% codeblock filesystem/fclose.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/fclose.js raw on github %}
 function fclose (handle) {
     // http://kevin.vanzonneveld.net
@@ -33,7 +36,7 @@ function fclose (handle) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/fclose.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/fclose.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/fclose.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/fclose.js)
+

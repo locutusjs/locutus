@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript money_format function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/money_format
 alias:
 - /functions/money_format:876
 - /functions/876
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's money_format
+
 <!-- more -->
+
 {% codeblock strings/money_format.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/money_format.js raw on github %}
 function money_format (format, number) {
     // http://kevin.vanzonneveld.net
@@ -222,7 +225,7 @@ function money_format (format, number) {
     return format.replace(regex, doReplace);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/money_format.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/money_format.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/money_format.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/money_format.js)
+

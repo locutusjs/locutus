@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript get_class function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/get_class
 alias:
 - /functions/get_class:409
 - /functions/409
-categories: [ classobj, functions ]
+categories:
+- php classobj extension
+- functions
 ---
 A JavaScript equivalent of PHP's get_class
+
 <!-- more -->
+
 {% codeblock classobj/get_class.js lang:js https://raw.github.com/kvz/phpjs/master/functions/classobj/get_class.js raw on github %}
 function get_class (obj) {
     // http://kevin.vanzonneveld.net
@@ -44,7 +47,7 @@ function get_class (obj) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/classobj/get_class.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/classobj/get_class.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/get_class.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/get_class.js)
+

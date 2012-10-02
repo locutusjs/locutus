@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript localeconv function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/localeconv
 alias:
 - /functions/localeconv:782
 - /functions/782
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's localeconv
+
 <!-- more -->
+
 {% codeblock strings/localeconv.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/localeconv.js raw on github %}
 function localeconv () {
     // http://kevin.vanzonneveld.net
@@ -37,7 +40,7 @@ function localeconv () {
     return arr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/localeconv.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/localeconv.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/localeconv.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/localeconv.js)
+

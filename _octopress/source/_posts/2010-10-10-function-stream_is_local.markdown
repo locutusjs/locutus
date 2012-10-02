@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript stream_is_local function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/stream_is_local
 alias:
 - /functions/stream_is_local:851
 - /functions/851
-categories: [ stream, functions ]
+categories:
+- php stream extension
+- functions
 ---
 A JavaScript equivalent of PHP's stream_is_local
+
 <!-- more -->
+
 {% codeblock stream/stream_is_local.js lang:js https://raw.github.com/kvz/phpjs/master/functions/stream/stream_is_local.js raw on github %}
 function stream_is_local (stream_or_url) {
     // http://kevin.vanzonneveld.net
@@ -26,7 +29,7 @@ function stream_is_local (stream_or_url) {
     return stream_or_url.is_local ? true : false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/stream/stream_is_local.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/stream/stream_is_local.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_is_local.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_is_local.js)
+

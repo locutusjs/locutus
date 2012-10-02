@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ctype_space function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ctype_space
 alias:
 - /functions/ctype_space:759
 - /functions/759
-categories: [ ctype, functions ]
+categories:
+- php ctype extension
+- functions
 ---
 A JavaScript equivalent of PHP's ctype_space
+
 <!-- more -->
+
 {% codeblock ctype/ctype_space.js lang:js https://raw.github.com/kvz/phpjs/master/functions/ctype/ctype_space.js raw on github %}
 function ctype_space (text) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function ctype_space (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.sp) !== -1;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_space.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_space.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_space.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_space.js)
+

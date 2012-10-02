@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript rawurlencode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/rawurlencode
 alias:
 - /functions/rawurlencode:501
 - /functions/501
-categories: [ url, functions ]
+categories:
+- php url extension
+- functions
 ---
 A JavaScript equivalent of PHP's rawurlencode
+
 <!-- more -->
+
 {% codeblock url/rawurlencode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/rawurlencode.js raw on github %}
 function rawurlencode (str) {
     // http://kevin.vanzonneveld.net
@@ -43,7 +46,7 @@ function rawurlencode (str) {
     replace(/\)/g, '%29').replace(/\*/g, '%2A');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/url/rawurlencode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/url/rawurlencode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/url/rawurlencode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/url/rawurlencode.js)
+

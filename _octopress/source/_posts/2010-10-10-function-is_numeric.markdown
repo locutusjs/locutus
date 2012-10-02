@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript is_numeric function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/is_numeric
 alias:
 - /functions/is_numeric:449
 - /functions/449
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's is_numeric
+
 <!-- more -->
+
 {% codeblock var/is_numeric.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_numeric.js raw on github %}
 function is_numeric (mixed_var) {
     // http://kevin.vanzonneveld.net
@@ -35,7 +38,7 @@ function is_numeric (mixed_var) {
     return (typeof(mixed_var) === 'number' || typeof(mixed_var) === 'string') && mixed_var !== '' && !isNaN(mixed_var);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/is_numeric.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/is_numeric.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_numeric.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_numeric.js)
+

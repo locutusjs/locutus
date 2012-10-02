@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript rsort function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/rsort
 alias:
 - /functions/rsort:506
 - /functions/506
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's rsort
+
 <!-- more -->
+
 {% codeblock array/rsort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/rsort.js raw on github %}
 function rsort (inputArr, sort_flags) {
     // http://kevin.vanzonneveld.net
@@ -113,7 +116,7 @@ function rsort (inputArr, sort_flags) {
     return strictForIn || populateArr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/rsort.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/rsort.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/rsort.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/rsort.js)
+

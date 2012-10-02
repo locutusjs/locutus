@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript include function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/include
 alias:
 - /functions/include:433
 - /functions/433
-categories: [ language, functions ]
+categories:
+- php language extension
+- functions
 ---
 A JavaScript equivalent of PHP's include
+
 <!-- more -->
+
 {% codeblock language/include.js lang:js https://raw.github.com/kvz/phpjs/master/functions/language/include.js raw on github %}
 function include (filename) {
     // http://kevin.vanzonneveld.net
@@ -55,7 +58,7 @@ function include (filename) {
     return this.php_js.includes[filename];
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/language/include.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/language/include.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/language/include.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/language/include.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript rtrim function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/rtrim
 alias:
 - /functions/rtrim:507
 - /functions/507
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's rtrim
+
 <!-- more -->
+
 {% codeblock strings/rtrim.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/rtrim.js raw on github %}
 function rtrim (str, charlist) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function rtrim (str, charlist) {
     return (str + '').replace(re, '');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/rtrim.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/rtrim.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/rtrim.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/rtrim.js)
+

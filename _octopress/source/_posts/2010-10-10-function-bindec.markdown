@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript bindec function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/bindec
 alias:
 - /functions/bindec:362
 - /functions/362
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's bindec
+
 <!-- more -->
+
 {% codeblock math/bindec.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/bindec.js raw on github %}
 function bindec (binary_string) {
     // http://kevin.vanzonneveld.net
@@ -27,7 +30,7 @@ function bindec (binary_string) {
     return parseInt(binary_string, 2);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/bindec.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/bindec.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/bindec.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/bindec.js)
+

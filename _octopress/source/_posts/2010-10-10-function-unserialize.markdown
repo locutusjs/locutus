@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript unserialize function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/unserialize
 alias:
 - /functions/unserialize:571
 - /functions/571
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's unserialize
+
 <!-- more -->
+
 {% codeblock var/unserialize.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/unserialize.js raw on github %}
 function unserialize (data) {
     // http://kevin.vanzonneveld.net
@@ -172,7 +175,7 @@ function unserialize (data) {
     return _unserialize((data + ''), 0)[2];
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/unserialize.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/unserialize.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/unserialize.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/unserialize.js)
+

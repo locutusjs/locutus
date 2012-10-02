@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript gopher_parsedir function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/gopher_parsedir
 alias:
 - /functions/gopher_parsedir:833
 - /functions/833
-categories: [ net-gopher, functions ]
+categories:
+- php net-gopher extension
+- functions
 ---
 A JavaScript equivalent of PHP's gopher_parsedir
+
 <!-- more -->
+
 {% codeblock net-gopher/gopher_parsedir.js lang:js https://raw.github.com/kvz/phpjs/master/functions/net-gopher/gopher_parsedir.js raw on github %}
 function gopher_parsedir (dirent) {
     // http://kevin.vanzonneveld.net
@@ -87,7 +90,7 @@ function gopher_parsedir (dirent) {
     };
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/net-gopher/gopher_parsedir.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/net-gopher/gopher_parsedir.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/net-gopher/gopher_parsedir.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/net-gopher/gopher_parsedir.js)
+

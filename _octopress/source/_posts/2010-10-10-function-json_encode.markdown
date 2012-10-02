@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript json_encode function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/json_encode
 alias:
 - /functions/json_encode:457
 - /functions/457
-categories: [ json, functions ]
+categories:
+- php json extension
+- functions
 ---
 A JavaScript equivalent of PHP's json_encode
+
 <!-- more -->
+
 {% codeblock json/json_encode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/json/json_encode.js raw on github %}
 function json_encode (mixed_val) {
     // http://kevin.vanzonneveld.net
@@ -167,7 +170,7 @@ function json_encode (mixed_val) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/json/json_encode.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/json/json_encode.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/json/json_encode.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/json/json_encode.js)
+

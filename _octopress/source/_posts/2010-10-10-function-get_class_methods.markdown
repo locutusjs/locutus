@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript get_class_methods function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/get_class_methods
 alias:
 - /functions/get_class_methods:410
 - /functions/410
-categories: [ classobj, functions ]
+categories:
+- php classobj extension
+- functions
 ---
 A JavaScript equivalent of PHP's get_class_methods
+
 <!-- more -->
+
 {% codeblock classobj/get_class_methods.js lang:js https://raw.github.com/kvz/phpjs/master/functions/classobj/get_class_methods.js raw on github %}
 function get_class_methods (name) {
     // http://kevin.vanzonneveld.net
@@ -54,7 +57,7 @@ function get_class_methods (name) {
     return retArr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/classobj/get_class_methods.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/classobj/get_class_methods.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/get_class_methods.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/get_class_methods.js)
+

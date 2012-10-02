@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript func_get_arg function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/func_get_arg
 alias:
 - /functions/func_get_arg:405
 - /functions/405
-categories: [ funchand, functions ]
+categories:
+- php funchand extension
+- functions
 ---
 A JavaScript equivalent of PHP's func_get_arg
+
 <!-- more -->
+
 {% codeblock funchand/func_get_arg.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/func_get_arg.js raw on github %}
 function func_get_arg (num) {
     // http://kevin.vanzonneveld.net
@@ -42,7 +45,7 @@ function func_get_arg (num) {
     return arguments.callee.caller.arguments[num];
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/funchand/func_get_arg.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/funchand/func_get_arg.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/funchand/func_get_arg.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/funchand/func_get_arg.js)
+

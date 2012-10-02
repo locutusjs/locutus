@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript runkit_import function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/runkit_import
 alias:
 - /functions/runkit_import:812
 - /functions/812
-categories: [ runkit, functions ]
+categories:
+- php runkit extension
+- functions
 ---
 A JavaScript equivalent of PHP's runkit_import
+
 <!-- more -->
+
 {% codeblock runkit/runkit_import.js lang:js https://raw.github.com/kvz/phpjs/master/functions/runkit/runkit_import.js raw on github %}
 function runkit_import (file, flags) {
     // http://kevin.vanzonneveld.net
@@ -32,7 +35,7 @@ function runkit_import (file, flags) {
     eval(this.file_get_contents(file));
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_import.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_import.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_import.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_import.js)
+

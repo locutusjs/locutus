@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript file function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/file
 alias:
 - /functions/file:398
 - /functions/398
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's file
+
 <!-- more -->
+
 {% codeblock filesystem/file.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/file.js raw on github %}
 function file (url) {
     // http://kevin.vanzonneveld.net
@@ -35,7 +38,7 @@ function file (url) {
     return req.responseText.split('\n');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/file.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/file.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/file.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/file.js)
+

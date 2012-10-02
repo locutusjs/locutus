@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript setlocale function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/setlocale
 alias:
 - /functions/setlocale:589
 - /functions/589
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's setlocale
+
 <!-- more -->
+
 {% codeblock strings/setlocale.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/setlocale.js raw on github %}
 function setlocale (category, locale) {
     // http://kevin.vanzonneveld.net
@@ -352,7 +355,7 @@ function setlocale (category, locale) {
     return locale;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/setlocale.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/setlocale.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/setlocale.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/setlocale.js)
+

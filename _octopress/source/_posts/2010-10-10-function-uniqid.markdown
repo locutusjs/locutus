@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript uniqid function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/uniqid
 alias:
 - /functions/uniqid:750
 - /functions/750
-categories: [ misc, functions ]
+categories:
+- php misc extension
+- functions
 ---
 A JavaScript equivalent of PHP's uniqid
+
 <!-- more -->
+
 {% codeblock misc/uniqid.js lang:js https://raw.github.com/kvz/phpjs/master/functions/misc/uniqid.js raw on github %}
 function uniqid (prefix, more_entropy) {
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -61,7 +64,7 @@ function uniqid (prefix, more_entropy) {
     return retId;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/misc/uniqid.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/misc/uniqid.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/misc/uniqid.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/misc/uniqid.js)
+

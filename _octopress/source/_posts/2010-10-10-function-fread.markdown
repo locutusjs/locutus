@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript fread function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/fread
 alias:
 - /functions/fread:775
 - /functions/775
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's fread
+
 <!-- more -->
+
 {% codeblock filesystem/fread.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/fread.js raw on github %}
 function fread (handle, length) {
     // http://kevin.vanzonneveld.net
@@ -42,7 +45,7 @@ function fread (handle, length) {
     return this.php_js.resourceData[handle.id].substr(start, length); // Extra length won't be a problem here
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/fread.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/fread.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/fread.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/fread.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript uasort function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/uasort
 alias:
 - /functions/uasort:567
 - /functions/567
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's uasort
+
 <!-- more -->
+
 {% codeblock array/uasort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/uasort.js raw on github %}
 function uasort (inputArr, sorter) {
     // http://kevin.vanzonneveld.net
@@ -70,7 +73,7 @@ function uasort (inputArr, sorter) {
     return strictForIn || populateArr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/uasort.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/uasort.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/uasort.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/uasort.js)
+

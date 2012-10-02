@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript getenv function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/getenv
 alias:
 - /functions/getenv:585
 - /functions/585
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's getenv
+
 <!-- more -->
+
 {% codeblock info/getenv.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/getenv.js raw on github %}
 function getenv (varname) {
     // http://kevin.vanzonneveld.net
@@ -30,7 +33,7 @@ function getenv (varname) {
     return this.php_js.ENV[varname];
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/getenv.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/getenv.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/getenv.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/getenv.js)
+

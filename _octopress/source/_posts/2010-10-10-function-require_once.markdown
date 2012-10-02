@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript require_once function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/require_once
 alias:
 - /functions/require_once:503
 - /functions/503
-categories: [ language, functions ]
+categories:
+- php language extension
+- functions
 ---
 A JavaScript equivalent of PHP's require_once
+
 <!-- more -->
+
 {% codeblock language/require_once.js lang:js https://raw.github.com/kvz/phpjs/master/functions/language/require_once.js raw on github %}
 function require_once (filename) {
     // http://kevin.vanzonneveld.net
@@ -50,7 +53,7 @@ function require_once (filename) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/language/require_once.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/language/require_once.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/language/require_once.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/language/require_once.js)
+

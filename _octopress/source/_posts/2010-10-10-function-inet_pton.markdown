@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript inet_pton function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/inet_pton
 alias:
 - /functions/inet_pton:883
 - /functions/883
-categories: [ network, functions ]
+categories:
+- php network extension
+- functions
 ---
 A JavaScript equivalent of PHP's inet_pton
+
 <!-- more -->
+
 {% codeblock network/inet_pton.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/inet_pton.js raw on github %}
 function inet_pton (a) {
     // http://kevin.vanzonneveld.net
@@ -59,7 +62,7 @@ function inet_pton (a) {
     return false; // Invalid IP.
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/network/inet_pton.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/network/inet_pton.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/network/inet_pton.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/network/inet_pton.js)
+

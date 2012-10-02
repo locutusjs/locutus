@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript microtime function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/microtime
 alias:
 - /functions/microtime:472
 - /functions/472
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's microtime
+
 <!-- more -->
+
 {% codeblock datetime/microtime.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/microtime.js raw on github %}
 function microtime (get_as_float) {
     // http://kevin.vanzonneveld.net
@@ -25,7 +28,7 @@ function microtime (get_as_float) {
     return (get_as_float) ? now : (Math.round((now - s) * 1000) / 1000) + ' ' + s;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/microtime.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/microtime.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/microtime.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/microtime.js)
+

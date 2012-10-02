@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_fill_keys function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_fill_keys
 alias:
 - /functions/array_fill_keys:315
 - /functions/315
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_fill_keys
+
 <!-- more -->
+
 {% codeblock array/array_fill_keys.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_fill_keys.js raw on github %}
 function array_fill_keys (keys, value) {
     // http://kevin.vanzonneveld.net
@@ -31,7 +34,7 @@ function array_fill_keys (keys, value) {
     return retObj;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_fill_keys.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_fill_keys.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_fill_keys.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_fill_keys.js)
+

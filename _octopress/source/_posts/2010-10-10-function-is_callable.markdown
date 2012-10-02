@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript is_callable function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/is_callable
 alias:
 - /functions/is_callable:439
 - /functions/439
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's is_callable
+
 <!-- more -->
+
 {% codeblock var/is_callable.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_callable.js raw on github %}
 function is_callable (v, syntax_only, callable_name) {
     // http://kevin.vanzonneveld.net
@@ -70,7 +73,7 @@ function is_callable (v, syntax_only, callable_name) {
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/is_callable.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/is_callable.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_callable.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_callable.js)
+

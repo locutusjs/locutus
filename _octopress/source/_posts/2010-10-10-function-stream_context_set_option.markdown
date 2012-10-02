@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript stream_context_set_option function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/stream_context_set_option
 alias:
 - /functions/stream_context_set_option:849
 - /functions/849
-categories: [ stream, functions ]
+categories:
+- php stream extension
+- functions
 ---
 A JavaScript equivalent of PHP's stream_context_set_option
+
 <!-- more -->
+
 {% codeblock stream/stream_context_set_option.js lang:js https://raw.github.com/kvz/phpjs/master/functions/stream/stream_context_set_option.js raw on github %}
 function stream_context_set_option (stream_or_context, optionsOrWrapper, option, value) {
     // http://kevin.vanzonneveld.net
@@ -32,7 +35,7 @@ function stream_context_set_option (stream_or_context, optionsOrWrapper, option,
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_set_option.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_set_option.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_set_option.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_set_option.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript runkit_superglobals function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/runkit_superglobals
 alias:
 - /functions/runkit_superglobals:829
 - /functions/829
-categories: [ runkit, functions ]
+categories:
+- php runkit extension
+- functions
 ---
 A JavaScript equivalent of PHP's runkit_superglobals
+
 <!-- more -->
+
 {% codeblock runkit/runkit_superglobals.js lang:js https://raw.github.com/kvz/phpjs/master/functions/runkit/runkit_superglobals.js raw on github %}
 function runkit_superglobals () {
     // http://kevin.vanzonneveld.net
@@ -34,7 +37,7 @@ function runkit_superglobals () {
     return arr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_superglobals.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_superglobals.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_superglobals.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_superglobals.js)
+

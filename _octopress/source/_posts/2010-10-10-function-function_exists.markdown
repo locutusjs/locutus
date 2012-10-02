@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript function_exists function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/function_exists
 alias:
 - /functions/function_exists:408
 - /functions/408
-categories: [ funchand, functions ]
+categories:
+- php funchand extension
+- functions
 ---
 A JavaScript equivalent of PHP's function_exists
+
 <!-- more -->
+
 {% codeblock funchand/function_exists.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/function_exists.js raw on github %}
 function function_exists (func_name) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function function_exists (func_name) {
     return typeof func_name === 'function';
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/funchand/function_exists.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/funchand/function_exists.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/funchand/function_exists.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/funchand/function_exists.js)
+

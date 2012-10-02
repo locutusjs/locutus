@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript shuffle function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/shuffle
 alias:
 - /functions/shuffle:514
 - /functions/514
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's shuffle
+
 <!-- more -->
+
 {% codeblock array/shuffle.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/shuffle.js raw on github %}
 function shuffle (inputArr) {
     // http://kevin.vanzonneveld.net
@@ -69,7 +72,7 @@ function shuffle (inputArr) {
     return strictForIn || populateArr;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/shuffle.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/shuffle.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/shuffle.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/shuffle.js)
+

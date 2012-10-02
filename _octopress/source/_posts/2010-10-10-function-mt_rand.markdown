@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript mt_rand function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/mt_rand
 alias:
 - /functions/mt_rand:476
 - /functions/476
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's mt_rand
+
 <!-- more -->
+
 {% codeblock math/mt_rand.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/mt_rand.js raw on github %}
 function mt_rand (min, max) {
     // http://kevin.vanzonneveld.net
@@ -36,7 +39,7 @@ function mt_rand (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/mt_rand.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/mt_rand.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/mt_rand.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/mt_rand.js)
+

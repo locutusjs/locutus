@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript reset function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/reset
 alias:
 - /functions/reset:504
 - /functions/504
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's reset
+
 <!-- more -->
+
 {% codeblock array/reset.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/reset.js raw on github %}
 function reset (arr) {
     // http://kevin.vanzonneveld.net
@@ -60,7 +63,7 @@ function reset (arr) {
     return arr[pointers[arrpos + 1]];
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/reset.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/reset.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/reset.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/reset.js)
+

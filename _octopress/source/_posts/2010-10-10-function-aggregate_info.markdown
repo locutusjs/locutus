@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript aggregate_info function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/aggregate_info
 alias:
 - /functions/aggregate_info:792
 - /functions/792
-categories: [ objaggregation, functions ]
+categories:
+- php objaggregation extension
+- functions
 ---
 A JavaScript equivalent of PHP's aggregate_info
+
 <!-- more -->
+
 {% codeblock objaggregation/aggregate_info.js lang:js https://raw.github.com/kvz/phpjs/master/functions/objaggregation/aggregate_info.js raw on github %}
 function aggregate_info (obj) {
     // http://kevin.vanzonneveld.net
@@ -72,7 +75,7 @@ function aggregate_info (obj) {
     return retObj;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate_info.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate_info.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate_info.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate_info.js)
+

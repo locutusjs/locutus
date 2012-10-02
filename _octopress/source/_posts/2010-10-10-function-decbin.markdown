@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript decbin function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/decbin
 alias:
 - /functions/decbin:381
 - /functions/381
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's decbin
+
 <!-- more -->
+
 {% codeblock math/decbin.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/decbin.js raw on github %}
 function decbin (number) {
     // http://kevin.vanzonneveld.net
@@ -33,7 +36,7 @@ function decbin (number) {
     return parseInt(number, 10).toString(2);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/decbin.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/decbin.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/decbin.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/decbin.js)
+

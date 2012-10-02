@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript get_cfg_var function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/get_cfg_var
 alias:
 - /functions/get_cfg_var:776
 - /functions/776
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's get_cfg_var
+
 <!-- more -->
+
 {% codeblock info/get_cfg_var.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/get_cfg_var.js raw on github %}
 function get_cfg_var (varname) {
     // http://kevin.vanzonneveld.net
@@ -29,7 +32,7 @@ function get_cfg_var (varname) {
     return '';
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/get_cfg_var.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/get_cfg_var.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/get_cfg_var.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/get_cfg_var.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript runkit_method_add function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/runkit_method_add
 alias:
 - /functions/runkit_method_add:813
 - /functions/813
-categories: [ runkit, functions ]
+categories:
+- php runkit extension
+- functions
 ---
 A JavaScript equivalent of PHP's runkit_method_add
+
 <!-- more -->
+
 {% codeblock runkit/runkit_method_add.js lang:js https://raw.github.com/kvz/phpjs/master/functions/runkit/runkit_method_add.js raw on github %}
 function runkit_method_add (classname, methodname, args, code, flags) {
     // http://kevin.vanzonneveld.net
@@ -46,7 +49,7 @@ function runkit_method_add (classname, methodname, args, code, flags) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_method_add.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_method_add.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_method_add.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_method_add.js)
+

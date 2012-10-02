@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript floatval function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/floatval
 alias:
 - /functions/floatval:402
 - /functions/402
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's floatval
+
 <!-- more -->
+
 {% codeblock var/floatval.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/floatval.js raw on github %}
 function floatval (mixed_var) {
     // +   original by: Michael White (http://getsprink.com)
@@ -26,7 +29,7 @@ function floatval (mixed_var) {
     return (parseFloat(mixed_var) || 0);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/floatval.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/floatval.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/floatval.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/floatval.js)
+

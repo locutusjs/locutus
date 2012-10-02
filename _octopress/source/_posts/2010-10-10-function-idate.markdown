@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript idate function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/idate
 alias:
 - /functions/idate:828
 - /functions/828
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's idate
+
 <!-- more -->
+
 {% codeblock datetime/idate.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/idate.js raw on github %}
 function idate (format, timestamp) {
     // http://kevin.vanzonneveld.net
@@ -85,7 +88,7 @@ function idate (format, timestamp) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/idate.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/idate.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/idate.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/idate.js)
+

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript property_exists function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/property_exists
 alias:
 - /functions/property_exists:495
 - /functions/495
-categories: [ classobj, functions ]
+categories:
+- php classobj extension
+- functions
 ---
 A JavaScript equivalent of PHP's property_exists
+
 <!-- more -->
+
 {% codeblock classobj/property_exists.js lang:js https://raw.github.com/kvz/phpjs/master/functions/classobj/property_exists.js raw on github %}
 function property_exists (cls, prop) {
     // http://kevin.vanzonneveld.net
@@ -37,7 +40,7 @@ function property_exists (cls, prop) {
     return (cls[prop] !== undefined && typeof cls[prop] !== 'function') || (cls.prototype !== undefined && cls.prototype[prop] !== undefined && typeof cls.prototype[prop] !== 'function') || (cls.constructor && cls.constructor[prop] !== undefined && typeof cls.constructor[prop] !== 'function');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/classobj/property_exists.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/classobj/property_exists.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/property_exists.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/property_exists.js)
+

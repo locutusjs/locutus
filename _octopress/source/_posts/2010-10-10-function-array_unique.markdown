@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript array_unique function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/array_unique
 alias:
 - /functions/array_unique:346
 - /functions/346
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's array_unique
+
 <!-- more -->
+
 {% codeblock array/array_unique.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_unique.js raw on github %}
 function array_unique (inputArr) {
     // http://kevin.vanzonneveld.net
@@ -58,7 +61,7 @@ function array_unique (inputArr) {
     return tmp_arr2;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/array_unique.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/array_unique.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_unique.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_unique.js)
+

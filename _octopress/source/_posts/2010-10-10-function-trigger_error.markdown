@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript trigger_error function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/trigger_error
 alias:
 - /functions/trigger_error:842
 - /functions/842
-categories: [ errorfunc, functions ]
+categories:
+- php errorfunc extension
+- functions
 ---
 A JavaScript equivalent of PHP's trigger_error
+
 <!-- more -->
+
 {% codeblock errorfunc/trigger_error.js lang:js https://raw.github.com/kvz/phpjs/master/functions/errorfunc/trigger_error.js raw on github %}
 function trigger_error (error_msg, error_type) {
     // http://kevin.vanzonneveld.net
@@ -133,7 +136,7 @@ function trigger_error (error_msg, error_type) {
     return true;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/errorfunc/trigger_error.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/errorfunc/trigger_error.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/errorfunc/trigger_error.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/errorfunc/trigger_error.js)
+

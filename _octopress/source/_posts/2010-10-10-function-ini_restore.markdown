@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript ini_restore function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/ini_restore
 alias:
 - /functions/ini_restore:599
 - /functions/599
-categories: [ info, functions ]
+categories:
+- php info extension
+- functions
 ---
 A JavaScript equivalent of PHP's ini_restore
+
 <!-- more -->
+
 {% codeblock info/ini_restore.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/ini_restore.js raw on github %}
 function ini_restore (varname) {
     // http://kevin.vanzonneveld.net
@@ -24,7 +27,7 @@ function ini_restore (varname) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/info/ini_restore.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/info/ini_restore.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/ini_restore.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/ini_restore.js)
+

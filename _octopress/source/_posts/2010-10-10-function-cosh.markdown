@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript cosh function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/cosh
 alias:
 - /functions/cosh:374
 - /functions/374
-categories: [ math, functions ]
+categories:
+- php math extension
+- functions
 ---
 A JavaScript equivalent of PHP's cosh
+
 <!-- more -->
+
 {% codeblock math/cosh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/cosh.js raw on github %}
 function cosh (arg) {
     // http://kevin.vanzonneveld.net
@@ -22,7 +25,7 @@ function cosh (arg) {
     return (Math.exp(arg) + Math.exp(-arg)) / 2;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/cosh.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/cosh.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/cosh.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/cosh.js)
+

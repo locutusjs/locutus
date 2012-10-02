@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript dirname function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/dirname
 alias:
 - /functions/dirname:388
 - /functions/388
-categories: [ filesystem, functions ]
+categories:
+- php filesystem extension
+- functions
 ---
 A JavaScript equivalent of PHP's dirname
+
 <!-- more -->
+
 {% codeblock filesystem/dirname.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/dirname.js raw on github %}
 function dirname (path) {
     // http://kevin.vanzonneveld.net
@@ -27,7 +30,7 @@ function dirname (path) {
     return path.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, '');
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/filesystem/dirname.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/filesystem/dirname.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/dirname.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/dirname.js)
+

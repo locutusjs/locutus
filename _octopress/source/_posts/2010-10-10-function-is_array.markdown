@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript is_array function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/is_array
 alias:
 - /functions/is_array:437
 - /functions/437
-categories: [ var, functions ]
+categories:
+- php var extension
+- functions
 ---
 A JavaScript equivalent of PHP's is_array
+
 <!-- more -->
+
 {% codeblock var/is_array.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_array.js raw on github %}
 function is_array (mixed_var) {
     // http://kevin.vanzonneveld.net
@@ -92,7 +95,7 @@ function is_array (mixed_var) {
         ));
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/is_array.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/is_array.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_array.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_array.js)
+

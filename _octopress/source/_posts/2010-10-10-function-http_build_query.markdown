@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript http_build_query function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/http_build_query
 alias:
 - /functions/http_build_query:428
 - /functions/428
-categories: [ url, functions ]
+categories:
+- php url extension
+- functions
 ---
 A JavaScript equivalent of PHP's http_build_query
+
 <!-- more -->
+
 {% codeblock url/http_build_query.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/http_build_query.js raw on github %}
 function http_build_query (formdata, numeric_prefix, arg_separator) {
     // http://kevin.vanzonneveld.net
@@ -76,7 +79,7 @@ function http_build_query (formdata, numeric_prefix, arg_separator) {
     return tmp.join(arg_separator);
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/url/http_build_query.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/url/http_build_query.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/url/http_build_query.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/url/http_build_query.js)
+

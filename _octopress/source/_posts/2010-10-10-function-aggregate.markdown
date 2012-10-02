@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript aggregate function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/aggregate
 alias:
 - /functions/aggregate:791
 - /functions/791
-categories: [ objaggregation, functions ]
+categories:
+- php objaggregation extension
+- functions
 ---
 A JavaScript equivalent of PHP's aggregate
+
 <!-- more -->
+
 {% codeblock objaggregation/aggregate.js lang:js https://raw.github.com/kvz/phpjs/master/functions/objaggregation/aggregate.js raw on github %}
 function aggregate (obj, class_name) {
     // http://kevin.vanzonneveld.net
@@ -83,7 +86,7 @@ function aggregate (obj, class_name) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate.js)
+

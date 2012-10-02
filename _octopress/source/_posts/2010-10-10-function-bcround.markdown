@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript bcround function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/bcround
 alias:
 - /functions/bcround:873
 - /functions/873
-categories: [ bc, functions ]
+categories:
+- php bc extension
+- functions
 ---
 A JavaScript equivalent of PHP's bcround
+
 <!-- more -->
+
 {% codeblock bc/bcround.js lang:js https://raw.github.com/kvz/phpjs/master/functions/bc/bcround.js raw on github %}
 function bcround (val, precision) {
     // http://kevin.vanzonneveld.net
@@ -76,7 +79,7 @@ function bcround (val, precision) {
     return result.toString();
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/bc/bcround.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/bc/bcround.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/bc/bcround.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/bc/bcround.js)
+

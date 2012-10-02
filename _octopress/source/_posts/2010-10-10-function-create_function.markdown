@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript create_function function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/create_function
 alias:
 - /functions/create_function:378
 - /functions/378
-categories: [ funchand, functions ]
+categories:
+- php funchand extension
+- functions
 ---
 A JavaScript equivalent of PHP's create_function
+
 <!-- more -->
+
 {% codeblock funchand/create_function.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/create_function.js raw on github %}
 function create_function (args, code) {
     // http://kevin.vanzonneveld.net
@@ -28,7 +31,7 @@ function create_function (args, code) {
     }
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/funchand/create_function.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/funchand/create_function.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/funchand/create_function.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/funchand/create_function.js)
+

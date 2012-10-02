@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript mail function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/mail
 alias:
 - /functions/mail:884
 - /functions/884
-categories: [ mail, functions ]
+categories:
+- php mail extension
+- functions
 ---
 A JavaScript equivalent of PHP's mail
+
 <!-- more -->
+
 {% codeblock mail/mail.js lang:js https://raw.github.com/kvz/phpjs/master/functions/mail/mail.js raw on github %}
 function mail (to, subject, message, additional_headers, additional_parameters) {
     // http://kevin.vanzonneveld.net
@@ -88,7 +91,7 @@ function mail (to, subject, message, additional_headers, additional_parameters) 
     return false;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/mail/mail.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/mail/mail.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/mail/mail.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/mail/mail.js)
+

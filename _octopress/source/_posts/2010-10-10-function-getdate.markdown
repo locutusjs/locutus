@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript getdate function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/getdate
 alias:
 - /functions/getdate:420
 - /functions/420
-categories: [ datetime, functions ]
+categories:
+- php datetime extension
+- functions
 ---
 A JavaScript equivalent of PHP's getdate
+
 <!-- more -->
+
 {% codeblock datetime/getdate.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/getdate.js raw on github %}
 function getdate (timestamp) {
     // http://kevin.vanzonneveld.net
@@ -47,7 +50,7 @@ function getdate (timestamp) {
     return r;
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/datetime/getdate.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/datetime/getdate.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/getdate.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/getdate.js)
+

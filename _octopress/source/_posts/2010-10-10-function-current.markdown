@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript current function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/current
 alias:
 - /functions/current:379
 - /functions/379
-categories: [ array, functions ]
+categories:
+- php array extension
+- functions
 ---
 A JavaScript equivalent of PHP's current
+
 <!-- more -->
+
 {% codeblock array/current.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/current.js raw on github %}
 function current (arr) {
     // http://kevin.vanzonneveld.net
@@ -55,7 +58,7 @@ function current (arr) {
     return false; // Empty
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/array/current.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/array/current.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/current.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/current.js)
+

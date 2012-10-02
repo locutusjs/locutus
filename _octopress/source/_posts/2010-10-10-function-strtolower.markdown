@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript strtolower function"
-date: 2010-10-10 10:10:10
 comments: true
 sharing: true
 footer: true
@@ -9,10 +8,14 @@ permalink: /functions/strtolower
 alias:
 - /functions/strtolower:553
 - /functions/553
-categories: [ strings, functions ]
+categories:
+- php strings extension
+- functions
 ---
 A JavaScript equivalent of PHP's strtolower
+
 <!-- more -->
+
 {% codeblock strings/strtolower.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strtolower.js raw on github %}
 function strtolower (str) {
     // http://kevin.vanzonneveld.net
@@ -23,7 +26,7 @@ function strtolower (str) {
     return (str + '').toLowerCase();
 }
 {% endcodeblock %}
-<ul>
- <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/strtolower.js">view on github</a></li>
- <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/strtolower.js">edit on github</a></li>
-</ul>
+
+ - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strtolower.js)
+ - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strtolower.js)
+
