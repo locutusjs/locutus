@@ -2,10 +2,10 @@
 project_type = :stand_alone
 
 # Publishing paths
-http_path = "/phpjs/"
-http_images_path = "/phpjs/images"
-http_fonts_path = "/phpjs/fonts"
-css_dir = "public/phpjs/stylesheets"
+http_path = "/"
+http_images_path = "/images"
+http_fonts_path = "/fonts"
+css_dir = "public/stylesheets"
 
 # Local development paths
 sass_dir = "sass"
