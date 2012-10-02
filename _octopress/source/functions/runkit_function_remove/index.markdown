@@ -4,7 +4,6 @@ title: "JavaScript runkit_function_remove function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/runkit_function_remove
 alias:
 - /functions/runkit_function_remove:825
 - /functions/825

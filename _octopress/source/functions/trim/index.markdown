@@ -4,7 +4,6 @@ title: "JavaScript trim function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/trim
 alias:
 - /functions/trim:566
 - /functions/566

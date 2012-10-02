@@ -4,7 +4,6 @@ title: "JavaScript each function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/each
 alias:
 - /functions/each:390
 - /functions/390

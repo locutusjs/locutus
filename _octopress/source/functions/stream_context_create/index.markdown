@@ -4,7 +4,6 @@ title: "JavaScript stream_context_create function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/stream_context_create
 alias:
 - /functions/stream_context_create:844
 - /functions/844

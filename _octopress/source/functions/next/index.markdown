@@ -4,7 +4,6 @@ title: "JavaScript next function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/next
 alias:
 - /functions/next:479
 - /functions/479

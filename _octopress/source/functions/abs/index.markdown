@@ -4,7 +4,6 @@ title: "JavaScript abs function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/abs
 alias:
 - /functions/abs:300
 - /functions/300

@@ -4,7 +4,6 @@ title: "JavaScript stream_context_get_params function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/stream_context_get_params
 alias:
 - /functions/stream_context_get_params:847
 - /functions/847

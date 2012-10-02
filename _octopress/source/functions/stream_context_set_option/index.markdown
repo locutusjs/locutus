@@ -4,7 +4,6 @@ title: "JavaScript stream_context_set_option function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/stream_context_set_option
 alias:
 - /functions/stream_context_set_option:849
 - /functions/849

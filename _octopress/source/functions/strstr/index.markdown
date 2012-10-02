@@ -4,7 +4,6 @@ title: "JavaScript strstr function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/strstr
 alias:
 - /functions/strstr:551
 - /functions/551

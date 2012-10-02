@@ -4,7 +4,6 @@ title: "JavaScript http_build_query function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/http_build_query
 alias:
 - /functions/http_build_query:428
 - /functions/428

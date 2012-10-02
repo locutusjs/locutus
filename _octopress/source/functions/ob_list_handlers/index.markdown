@@ -4,7 +4,6 @@ title: "JavaScript ob_list_handlers function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ob_list_handlers
 alias:
 - /functions/ob_list_handlers:900
 - /functions/900

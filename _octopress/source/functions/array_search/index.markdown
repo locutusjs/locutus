@@ -4,7 +4,6 @@ title: "JavaScript array_search function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_search
 alias:
 - /functions/array_search:335
 - /functions/335

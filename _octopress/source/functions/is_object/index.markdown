@@ -4,7 +4,6 @@ title: "JavaScript is_object function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_object
 alias:
 - /functions/is_object:450
 - /functions/450

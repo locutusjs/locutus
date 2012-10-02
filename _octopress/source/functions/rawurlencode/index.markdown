@@ -4,7 +4,6 @@ title: "JavaScript rawurlencode function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/rawurlencode
 alias:
 - /functions/rawurlencode:501
 - /functions/501

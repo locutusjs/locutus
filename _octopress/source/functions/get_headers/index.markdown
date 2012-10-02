@@ -4,7 +4,6 @@ title: "JavaScript get_headers function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/get_headers
 alias:
 - /functions/get_headers:415
 - /functions/415

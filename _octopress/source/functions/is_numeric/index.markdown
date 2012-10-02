@@ -4,7 +4,6 @@ title: "JavaScript is_numeric function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_numeric
 alias:
 - /functions/is_numeric:449
 - /functions/449

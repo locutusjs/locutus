@@ -4,7 +4,6 @@ title: "JavaScript reset function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/reset
 alias:
 - /functions/reset:504
 - /functions/504

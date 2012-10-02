@@ -4,7 +4,6 @@ title: "JavaScript intval function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/intval
 alias:
 - /functions/intval:435
 - /functions/435

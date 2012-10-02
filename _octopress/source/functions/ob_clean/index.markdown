@@ -4,7 +4,6 @@ title: "JavaScript ob_clean function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ob_clean
 alias:
 - /functions/ob_clean:890
 - /functions/890

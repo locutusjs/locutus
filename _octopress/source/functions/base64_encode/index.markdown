@@ -4,7 +4,6 @@ title: "JavaScript base64_encode function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/base64_encode
 alias:
 - /functions/base64_encode:358
 - /functions/358

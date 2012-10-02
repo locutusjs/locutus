@@ -4,7 +4,6 @@ title: "JavaScript empty function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/empty
 alias:
 - /functions/empty:392
 - /functions/392

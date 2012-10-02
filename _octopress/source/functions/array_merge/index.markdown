@@ -4,7 +4,6 @@ title: "JavaScript array_merge function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_merge
 alias:
 - /functions/array_merge:326
 - /functions/326

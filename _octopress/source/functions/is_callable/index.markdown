@@ -4,7 +4,6 @@ title: "JavaScript is_callable function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_callable
 alias:
 - /functions/is_callable:439
 - /functions/439

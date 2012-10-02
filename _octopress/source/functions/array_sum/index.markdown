@@ -4,7 +4,6 @@ title: "JavaScript array_sum function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_sum
 alias:
 - /functions/array_sum:339
 - /functions/339

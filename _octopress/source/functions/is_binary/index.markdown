@@ -4,7 +4,6 @@ title: "JavaScript is_binary function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_binary
 alias:
 - /functions/is_binary:591
 - /functions/591

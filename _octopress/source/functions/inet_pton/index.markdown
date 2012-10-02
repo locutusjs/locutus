@@ -4,7 +4,6 @@ title: "JavaScript inet_pton function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/inet_pton
 alias:
 - /functions/inet_pton:883
 - /functions/883

@@ -4,7 +4,6 @@ title: "JavaScript ctype_upper function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ctype_upper
 alias:
 - /functions/ctype_upper:760
 - /functions/760

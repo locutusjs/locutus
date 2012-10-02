@@ -4,7 +4,6 @@ title: "JavaScript strtr function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/strtr
 alias:
 - /functions/strtr:556
 - /functions/556

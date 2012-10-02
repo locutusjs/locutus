@@ -4,7 +4,6 @@ title: "JavaScript runkit_function_redefine function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/runkit_function_redefine
 alias:
 - /functions/runkit_function_redefine:824
 - /functions/824

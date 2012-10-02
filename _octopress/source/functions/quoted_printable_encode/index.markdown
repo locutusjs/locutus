@@ -4,7 +4,6 @@ title: "JavaScript quoted_printable_encode function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/quoted_printable_encode
 alias:
 - /functions/quoted_printable_encode:835
 - /functions/835

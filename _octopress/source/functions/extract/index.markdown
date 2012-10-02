@@ -4,7 +4,6 @@ title: "JavaScript extract function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/extract
 alias:
 - /functions/extract:397
 - /functions/397

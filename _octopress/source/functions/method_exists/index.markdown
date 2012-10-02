@@ -4,7 +4,6 @@ title: "JavaScript method_exists function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/method_exists
 alias:
 - /functions/method_exists:471
 - /functions/471

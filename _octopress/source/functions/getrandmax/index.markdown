@@ -4,7 +4,6 @@ title: "JavaScript getrandmax function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/getrandmax
 alias:
 - /functions/getrandmax:421
 - /functions/421

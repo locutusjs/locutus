@@ -4,7 +4,6 @@ title: "JavaScript array_key_exists function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_key_exists
 alias:
 - /functions/array_key_exists:323
 - /functions/323

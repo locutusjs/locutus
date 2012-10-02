@@ -4,7 +4,6 @@ title: "JavaScript strftime function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/strftime
 alias:
 - /functions/strftime:590
 - /functions/590

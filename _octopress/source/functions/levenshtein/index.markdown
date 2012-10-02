@@ -4,7 +4,6 @@ title: "JavaScript levenshtein function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/levenshtein
 alias:
 - /functions/levenshtein:463
 - /functions/463

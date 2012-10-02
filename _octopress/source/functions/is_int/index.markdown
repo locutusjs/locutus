@@ -4,7 +4,6 @@ title: "JavaScript is_int function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_int
 alias:
 - /functions/is_int:444
 - /functions/444

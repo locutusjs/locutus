@@ -4,7 +4,6 @@ title: "JavaScript create_function function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/create_function
 alias:
 - /functions/create_function:378
 - /functions/378

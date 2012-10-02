@@ -4,7 +4,6 @@ title: "JavaScript aggregate_info function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/aggregate_info
 alias:
 - /functions/aggregate_info:792
 - /functions/792

@@ -4,7 +4,6 @@ title: "JavaScript runkit_method_add function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/runkit_method_add
 alias:
 - /functions/runkit_method_add:813
 - /functions/813

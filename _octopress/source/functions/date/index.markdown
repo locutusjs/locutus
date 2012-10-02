@@ -4,7 +4,6 @@ title: "JavaScript date function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/date
 alias:
 - /functions/date:380
 - /functions/380

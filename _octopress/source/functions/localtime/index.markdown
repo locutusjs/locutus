@@ -4,7 +4,6 @@ title: "JavaScript localtime function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/localtime
 alias:
 - /functions/localtime:587
 - /functions/587

@@ -4,7 +4,6 @@ title: "JavaScript array_reduce function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_reduce
 alias:
 - /functions/array_reduce:333
 - /functions/333

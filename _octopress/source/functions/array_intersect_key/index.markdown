@@ -4,7 +4,6 @@ title: "JavaScript array_intersect_key function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_intersect_key
 alias:
 - /functions/array_intersect_key:320
 - /functions/320

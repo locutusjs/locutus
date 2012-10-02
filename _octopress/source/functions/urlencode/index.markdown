@@ -4,7 +4,6 @@ title: "JavaScript urlencode function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/urlencode
 alias:
 - /functions/urlencode:573
 - /functions/573

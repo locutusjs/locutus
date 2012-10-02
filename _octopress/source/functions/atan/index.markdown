@@ -4,7 +4,6 @@ title: "JavaScript atan function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/atan
 alias:
 - /functions/atan:355
 - /functions/355

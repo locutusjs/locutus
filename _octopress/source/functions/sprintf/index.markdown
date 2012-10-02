@@ -4,7 +4,6 @@ title: "JavaScript sprintf function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/sprintf
 alias:
 - /functions/sprintf:522
 - /functions/522

@@ -4,7 +4,6 @@ title: "JavaScript substr_compare function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/substr_compare
 alias:
 - /functions/substr_compare:790
 - /functions/790

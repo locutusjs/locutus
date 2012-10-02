@@ -4,7 +4,6 @@ title: "JavaScript convert_cyr_string function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/convert_cyr_string
 alias:
 - /functions/convert_cyr_string:881
 - /functions/881

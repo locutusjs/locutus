@@ -4,7 +4,6 @@ title: "JavaScript array_diff_key function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_diff_key
 alias:
 - /functions/array_diff_key:311
 - /functions/311

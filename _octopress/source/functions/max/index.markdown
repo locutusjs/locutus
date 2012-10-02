@@ -4,7 +4,6 @@ title: "JavaScript max function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/max
 alias:
 - /functions/max:468
 - /functions/468

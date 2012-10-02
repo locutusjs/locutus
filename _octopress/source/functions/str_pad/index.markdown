@@ -4,7 +4,6 @@ title: "JavaScript str_pad function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/str_pad
 alias:
 - /functions/str_pad:525
 - /functions/525

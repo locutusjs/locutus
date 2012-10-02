@@ -4,7 +4,6 @@ title: "JavaScript array_diff_uassoc function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_diff_uassoc
 alias:
 - /functions/array_diff_uassoc:312
 - /functions/312

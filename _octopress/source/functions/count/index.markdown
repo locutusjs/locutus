@@ -4,7 +4,6 @@ title: "JavaScript count function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/count
 alias:
 - /functions/count:375
 - /functions/375

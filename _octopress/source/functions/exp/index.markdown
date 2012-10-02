@@ -4,7 +4,6 @@ title: "JavaScript exp function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/exp
 alias:
 - /functions/exp:395
 - /functions/395

@@ -4,7 +4,6 @@ title: "JavaScript utf8_encode function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/utf8_encode
 alias:
 - /functions/utf8_encode:577
 - /functions/577

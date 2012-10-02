@@ -4,7 +4,6 @@ title: "JavaScript ob_get_flush function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ob_get_flush
 alias:
 - /functions/ob_get_flush:896
 - /functions/896

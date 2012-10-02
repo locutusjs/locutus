@@ -4,7 +4,6 @@ title: "JavaScript gettype function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/gettype
 alias:
 - /functions/gettype:422
 - /functions/422

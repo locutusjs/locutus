@@ -4,7 +4,6 @@ title: "JavaScript is_real function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_real
 alias:
 - /functions/is_real:451
 - /functions/451

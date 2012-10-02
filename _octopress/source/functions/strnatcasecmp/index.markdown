@@ -4,7 +4,6 @@ title: "JavaScript strnatcasecmp function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/strnatcasecmp
 alias:
 - /functions/strnatcasecmp:540
 - /functions/540

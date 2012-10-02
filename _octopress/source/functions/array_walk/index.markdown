@@ -4,7 +4,6 @@ title: "JavaScript array_walk function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_walk
 alias:
 - /functions/array_walk:349
 - /functions/349

@@ -4,7 +4,6 @@ title: "JavaScript uasort function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/uasort
 alias:
 - /functions/uasort:567
 - /functions/567

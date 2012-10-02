@@ -4,7 +4,6 @@ title: "JavaScript array_keys function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_keys
 alias:
 - /functions/array_keys:324
 - /functions/324

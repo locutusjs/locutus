@@ -4,7 +4,6 @@ title: "JavaScript array_replace_recursive function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_replace_recursive
 alias:
 - /functions/array_replace_recursive:860
 - /functions/860

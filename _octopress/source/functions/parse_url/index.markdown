@@ -4,7 +4,6 @@ title: "JavaScript parse_url function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/parse_url
 alias:
 - /functions/parse_url:485
 - /functions/485

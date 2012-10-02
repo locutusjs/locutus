@@ -4,7 +4,6 @@ title: "JavaScript pos function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/pos
 alias:
 - /functions/pos:489
 - /functions/489

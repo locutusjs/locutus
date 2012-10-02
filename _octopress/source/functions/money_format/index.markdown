@@ -4,7 +4,6 @@ title: "JavaScript money_format function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/money_format
 alias:
 - /functions/money_format:876
 - /functions/876

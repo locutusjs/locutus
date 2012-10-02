@@ -4,7 +4,6 @@ title: "JavaScript stristr function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/stristr
 alias:
 - /functions/stristr:538
 - /functions/538

@@ -4,7 +4,6 @@ title: "JavaScript bccomp function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/bccomp
 alias:
 - /functions/bccomp:877
 - /functions/877

@@ -4,7 +4,6 @@ title: "JavaScript inet_ntop function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/inet_ntop
 alias:
 - /functions/inet_ntop:882
 - /functions/882

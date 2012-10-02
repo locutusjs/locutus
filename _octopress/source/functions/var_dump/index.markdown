@@ -4,7 +4,6 @@ title: "JavaScript var_dump function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/var_dump
 alias:
 - /functions/var_dump:604
 - /functions/604

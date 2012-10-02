@@ -4,7 +4,6 @@ title: "JavaScript in_array function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/in_array
 alias:
 - /functions/in_array:432
 - /functions/432

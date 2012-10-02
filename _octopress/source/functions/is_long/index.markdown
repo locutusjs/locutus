@@ -4,7 +4,6 @@ title: "JavaScript is_long function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_long
 alias:
 - /functions/is_long:446
 - /functions/446

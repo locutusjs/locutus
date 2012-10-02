@@ -4,7 +4,6 @@ title: "JavaScript filemtime function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/filemtime
 alias:
 - /functions/filemtime:838
 - /functions/838

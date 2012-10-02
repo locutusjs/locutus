@@ -4,7 +4,6 @@ title: "JavaScript bcsub function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/bcsub
 alias:
 - /functions/bcsub:875
 - /functions/875

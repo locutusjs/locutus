@@ -4,7 +4,6 @@ title: "PHP functions for JavaScript"
 comments: false
 sharing: true
 footer: true
-permalink: /functions/index
 alias:
 - /functions/index
 - /categories/index

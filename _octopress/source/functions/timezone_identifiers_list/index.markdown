@@ -4,7 +4,6 @@ title: "JavaScript timezone_identifiers_list function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/timezone_identifiers_list
 alias:
 - /functions/timezone_identifiers_list:582
 - /functions/582

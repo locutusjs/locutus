@@ -4,7 +4,6 @@ title: "JavaScript date_parse function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/date_parse
 alias:
 - /functions/date_parse:827
 - /functions/827

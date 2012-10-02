@@ -4,7 +4,6 @@ title: "JavaScript ob_flush function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ob_flush
 alias:
 - /functions/ob_flush:893
 - /functions/893

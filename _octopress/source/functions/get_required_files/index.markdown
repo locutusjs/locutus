@@ -4,7 +4,6 @@ title: "JavaScript get_required_files function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/get_required_files
 alias:
 - /functions/get_required_files:594
 - /functions/594

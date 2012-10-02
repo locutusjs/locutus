@@ -4,7 +4,6 @@ title: "JavaScript get_defined_constants function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/get_defined_constants
 alias:
 - /functions/get_defined_constants:839
 - /functions/839

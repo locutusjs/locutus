@@ -4,7 +4,6 @@ title: "JavaScript str_getcsv function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/str_getcsv
 alias:
 - /functions/str_getcsv:818
 - /functions/818

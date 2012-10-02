@@ -4,7 +4,6 @@ title: "JavaScript array_unshift function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_unshift
 alias:
 - /functions/array_unshift:347
 - /functions/347

@@ -4,7 +4,6 @@ title: "JavaScript prev function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/prev
 alias:
 - /functions/prev:492
 - /functions/492

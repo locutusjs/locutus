@@ -4,7 +4,6 @@ title: "JavaScript printf function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/printf
 alias:
 - /functions/printf:494
 - /functions/494

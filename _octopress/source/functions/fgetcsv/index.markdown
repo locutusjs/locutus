@@ -4,7 +4,6 @@ title: "JavaScript fgetcsv function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/fgetcsv
 alias:
 - /functions/fgetcsv:801
 - /functions/801

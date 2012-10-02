@@ -4,7 +4,6 @@ title: "JavaScript bcdiv function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/bcdiv
 alias:
 - /functions/bcdiv:871
 - /functions/871

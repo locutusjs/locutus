@@ -4,7 +4,6 @@ title: "JavaScript unserialize function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/unserialize
 alias:
 - /functions/unserialize:571
 - /functions/571

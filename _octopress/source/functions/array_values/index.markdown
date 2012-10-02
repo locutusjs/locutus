@@ -4,7 +4,6 @@ title: "JavaScript array_values function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_values
 alias:
 - /functions/array_values:348
 - /functions/348

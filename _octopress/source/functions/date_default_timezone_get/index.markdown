@@ -4,7 +4,6 @@ title: "JavaScript date_default_timezone_get function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/date_default_timezone_get
 alias:
 - /functions/date_default_timezone_get:583
 - /functions/583

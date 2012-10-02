@@ -4,7 +4,6 @@ title: "JavaScript is_scalar function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_scalar
 alias:
 - /functions/is_scalar:452
 - /functions/452

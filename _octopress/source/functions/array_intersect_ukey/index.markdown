@@ -4,7 +4,6 @@ title: "JavaScript array_intersect_ukey function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_intersect_ukey
 alias:
 - /functions/array_intersect_ukey:322
 - /functions/322

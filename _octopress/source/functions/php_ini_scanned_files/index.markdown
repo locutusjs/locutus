@@ -4,7 +4,6 @@ title: "JavaScript php_ini_scanned_files function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/php_ini_scanned_files
 alias:
 - /functions/php_ini_scanned_files:602
 - /functions/602

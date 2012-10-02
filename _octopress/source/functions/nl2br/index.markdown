@@ -4,7 +4,6 @@ title: "JavaScript nl2br function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/nl2br
 alias:
 - /functions/nl2br:480
 - /functions/480

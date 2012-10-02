@@ -4,7 +4,6 @@ title: "JavaScript idate function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/idate
 alias:
 - /functions/idate:828
 - /functions/828

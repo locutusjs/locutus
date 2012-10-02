@@ -4,7 +4,6 @@ title: "JavaScript sql_regcase function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/sql_regcase
 alias:
 - /functions/sql_regcase:787
 - /functions/787

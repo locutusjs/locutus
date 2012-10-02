@@ -4,7 +4,6 @@ title: "JavaScript import_request_variables function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/import_request_variables
 alias:
 - /functions/import_request_variables:431
 - /functions/431

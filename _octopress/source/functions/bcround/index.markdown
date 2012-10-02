@@ -4,7 +4,6 @@ title: "JavaScript bcround function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/bcround
 alias:
 - /functions/bcround:873
 - /functions/873

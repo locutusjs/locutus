@@ -4,7 +4,6 @@ title: "JavaScript get_meta_tags function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/get_meta_tags
 alias:
 - /functions/get_meta_tags:418
 - /functions/418

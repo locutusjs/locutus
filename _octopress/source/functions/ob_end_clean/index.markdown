@@ -4,7 +4,6 @@ title: "JavaScript ob_end_clean function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ob_end_clean
 alias:
 - /functions/ob_end_clean:891
 - /functions/891

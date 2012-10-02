@@ -4,7 +4,6 @@ title: "JavaScript is_string function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_string
 alias:
 - /functions/is_string:453
 - /functions/453

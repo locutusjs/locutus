@@ -4,7 +4,6 @@ title: "JavaScript get_class_methods function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/get_class_methods
 alias:
 - /functions/get_class_methods:410
 - /functions/410

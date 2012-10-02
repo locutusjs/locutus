@@ -4,7 +4,6 @@ title: "JavaScript substr_count function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/substr_count
 alias:
 - /functions/substr_count:559
 - /functions/559

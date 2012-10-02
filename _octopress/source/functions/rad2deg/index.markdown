@@ -4,7 +4,6 @@ title: "JavaScript rad2deg function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/rad2deg
 alias:
 - /functions/rad2deg:497
 - /functions/497

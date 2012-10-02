@@ -4,7 +4,6 @@ title: "JavaScript get_declared_classes function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/get_declared_classes
 alias:
 - /functions/get_declared_classes:412
 - /functions/412

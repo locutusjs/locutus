@@ -4,7 +4,6 @@ title: "JavaScript strcspn function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/strcspn
 alias:
 - /functions/strcspn:534
 - /functions/534

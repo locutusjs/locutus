@@ -4,7 +4,6 @@ title: "JavaScript classkit_import function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/classkit_import
 alias:
 - /functions/classkit_import:762
 - /functions/762

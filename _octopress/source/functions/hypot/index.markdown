@@ -4,7 +4,6 @@ title: "JavaScript hypot function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/hypot
 alias:
 - /functions/hypot:429
 - /functions/429

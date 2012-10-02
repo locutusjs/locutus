@@ -4,7 +4,6 @@ title: "JavaScript pi function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/pi
 alias:
 - /functions/pi:488
 - /functions/488

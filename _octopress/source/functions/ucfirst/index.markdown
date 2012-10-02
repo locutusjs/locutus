@@ -4,7 +4,6 @@ title: "JavaScript ucfirst function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ucfirst
 alias:
 - /functions/ucfirst:568
 - /functions/568

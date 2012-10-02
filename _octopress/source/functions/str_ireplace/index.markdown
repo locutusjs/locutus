@@ -4,7 +4,6 @@ title: "JavaScript str_ireplace function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/str_ireplace
 alias:
 - /functions/str_ireplace:524
 - /functions/524

@@ -4,7 +4,6 @@ title: "JavaScript ip2long function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ip2long
 alias:
 - /functions/ip2long:436
 - /functions/436

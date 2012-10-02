@@ -4,7 +4,6 @@ title: "JavaScript xdiff_string_patch function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/xdiff_string_patch
 alias:
 - /functions/xdiff_string_patch:888
 - /functions/888

@@ -4,7 +4,6 @@ title: "JavaScript number_format function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/number_format
 alias:
 - /functions/number_format:481
 - /functions/481

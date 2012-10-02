@@ -4,7 +4,6 @@ title: "JavaScript ord function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ord
 alias:
 - /functions/ord:483
 - /functions/483

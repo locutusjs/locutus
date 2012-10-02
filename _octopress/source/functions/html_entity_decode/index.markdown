@@ -4,7 +4,6 @@ title: "JavaScript html_entity_decode function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/html_entity_decode
 alias:
 - /functions/html_entity_decode:424
 - /functions/424

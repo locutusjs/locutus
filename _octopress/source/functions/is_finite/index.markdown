@@ -4,7 +4,6 @@ title: "JavaScript is_finite function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_finite
 alias:
 - /functions/is_finite:441
 - /functions/441

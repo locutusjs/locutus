@@ -4,7 +4,6 @@ title: "JavaScript doubleval function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/doubleval
 alias:
 - /functions/doubleval:389
 - /functions/389

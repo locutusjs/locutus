@@ -4,7 +4,6 @@ title: "JavaScript classkit_method_copy function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/classkit_method_copy
 alias:
 - /functions/classkit_method_copy:764
 - /functions/764

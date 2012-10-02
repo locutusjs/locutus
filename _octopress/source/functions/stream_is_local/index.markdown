@@ -4,7 +4,6 @@ title: "JavaScript stream_is_local function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/stream_is_local
 alias:
 - /functions/stream_is_local:851
 - /functions/851

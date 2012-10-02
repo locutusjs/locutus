@@ -4,7 +4,6 @@ title: "JavaScript sqrt function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/sqrt
 alias:
 - /functions/sqrt:523
 - /functions/523

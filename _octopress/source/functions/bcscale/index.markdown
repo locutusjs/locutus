@@ -4,7 +4,6 @@ title: "JavaScript bcscale function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/bcscale
 alias:
 - /functions/bcscale:874
 - /functions/874

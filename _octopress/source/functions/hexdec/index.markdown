@@ -4,7 +4,6 @@ title: "JavaScript hexdec function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/hexdec
 alias:
 - /functions/hexdec:423
 - /functions/423

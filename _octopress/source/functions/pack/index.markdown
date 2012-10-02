@@ -4,7 +4,6 @@ title: "JavaScript pack function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/pack
 alias:
 - /functions/pack:880
 - /functions/880

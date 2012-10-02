@@ -4,7 +4,6 @@ title: "JavaScript phpversion function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/phpversion
 alias:
 - /functions/phpversion:603
 - /functions/603

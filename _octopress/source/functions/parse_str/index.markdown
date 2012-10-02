@@ -4,7 +4,6 @@ title: "JavaScript parse_str function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/parse_str
 alias:
 - /functions/parse_str:484
 - /functions/484

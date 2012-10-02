@@ -4,7 +4,6 @@ title: "JavaScript natcasesort function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/natcasesort
 alias:
 - /functions/natcasesort:477
 - /functions/477

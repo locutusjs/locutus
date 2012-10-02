@@ -4,7 +4,6 @@ title: "JavaScript implode function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/implode
 alias:
 - /functions/implode:430
 - /functions/430

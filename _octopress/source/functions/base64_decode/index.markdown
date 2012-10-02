@@ -4,7 +4,6 @@ title: "JavaScript base64_decode function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/base64_decode
 alias:
 - /functions/base64_decode:357
 - /functions/357

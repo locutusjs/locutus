@@ -4,7 +4,6 @@ title: "JavaScript pathinfo function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/pathinfo
 alias:
 - /functions/pathinfo:486
 - /functions/486

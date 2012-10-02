@@ -4,7 +4,6 @@ title: "JavaScript version_compare function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/version_compare
 alias:
 - /functions/version_compare:852
 - /functions/852

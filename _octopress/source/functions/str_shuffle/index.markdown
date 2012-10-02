@@ -4,7 +4,6 @@ title: "JavaScript str_shuffle function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/str_shuffle
 alias:
 - /functions/str_shuffle:529
 - /functions/529

@@ -4,7 +4,6 @@ title: "JavaScript runkit_method_copy function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/runkit_method_copy
 alias:
 - /functions/runkit_method_copy:814
 - /functions/814

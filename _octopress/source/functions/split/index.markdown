@@ -4,7 +4,6 @@ title: "JavaScript split function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/split
 alias:
 - /functions/split:521
 - /functions/521

@@ -4,7 +4,6 @@ title: "JavaScript aggregate_properties function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/aggregate_properties
 alias:
 - /functions/aggregate_properties:796
 - /functions/796

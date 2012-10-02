@@ -4,7 +4,6 @@ title: "JavaScript array_chunk function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_chunk
 alias:
 - /functions/array_chunk:306
 - /functions/306

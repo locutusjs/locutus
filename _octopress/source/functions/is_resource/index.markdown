@@ -4,7 +4,6 @@ title: "JavaScript is_resource function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_resource
 alias:
 - /functions/is_resource:781
 - /functions/781

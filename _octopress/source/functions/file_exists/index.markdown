@@ -4,7 +4,6 @@ title: "JavaScript file_exists function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/file_exists
 alias:
 - /functions/file_exists:399
 - /functions/399

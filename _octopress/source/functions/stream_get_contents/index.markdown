@@ -4,7 +4,6 @@ title: "JavaScript stream_get_contents function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/stream_get_contents
 alias:
 - /functions/stream_get_contents:856
 - /functions/856

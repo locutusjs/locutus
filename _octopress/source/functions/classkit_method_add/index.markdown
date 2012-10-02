@@ -4,7 +4,6 @@ title: "JavaScript classkit_method_add function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/classkit_method_add
 alias:
 - /functions/classkit_method_add:763
 - /functions/763

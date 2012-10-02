@@ -4,7 +4,6 @@ title: "JavaScript array_unique function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_unique
 alias:
 - /functions/array_unique:346
 - /functions/346

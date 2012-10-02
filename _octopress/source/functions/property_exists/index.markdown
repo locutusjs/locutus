@@ -4,7 +4,6 @@ title: "JavaScript property_exists function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/property_exists
 alias:
 - /functions/property_exists:495
 - /functions/495

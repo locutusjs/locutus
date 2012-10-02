@@ -4,7 +4,6 @@ title: "JavaScript get_html_translation_table function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/get_html_translation_table
 alias:
 - /functions/get_html_translation_table:416
 - /functions/416

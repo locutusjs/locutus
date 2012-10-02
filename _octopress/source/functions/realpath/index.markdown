@@ -4,7 +4,6 @@ title: "JavaScript realpath function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/realpath
 alias:
 - /functions/realpath:749
 - /functions/749

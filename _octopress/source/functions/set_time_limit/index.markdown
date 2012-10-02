@@ -4,7 +4,6 @@ title: "JavaScript set_time_limit function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/set_time_limit
 alias:
 - /functions/set_time_limit:786
 - /functions/786

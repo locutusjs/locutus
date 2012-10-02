@@ -4,7 +4,6 @@ title: "JavaScript bin2hex function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/bin2hex
 alias:
 - /functions/bin2hex:361
 - /functions/361

@@ -4,7 +4,6 @@ title: "JavaScript setcookie function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/setcookie
 alias:
 - /functions/setcookie:509
 - /functions/509

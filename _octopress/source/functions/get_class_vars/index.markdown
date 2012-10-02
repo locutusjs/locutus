@@ -4,7 +4,6 @@ title: "JavaScript get_class_vars function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/get_class_vars
 alias:
 - /functions/get_class_vars:411
 - /functions/411

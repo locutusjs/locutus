@@ -4,7 +4,6 @@ title: "JavaScript ctype_digit function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ctype_digit
 alias:
 - /functions/ctype_digit:754
 - /functions/754

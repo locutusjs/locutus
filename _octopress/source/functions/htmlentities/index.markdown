@@ -4,7 +4,6 @@ title: "JavaScript htmlentities function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/htmlentities
 alias:
 - /functions/htmlentities:425
 - /functions/425

@@ -4,7 +4,6 @@ title: "JavaScript log10 function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/log10
 alias:
 - /functions/log10:465
 - /functions/465

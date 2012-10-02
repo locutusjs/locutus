@@ -4,7 +4,6 @@ title: "JavaScript i18n_loc_get_default function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/i18n_loc_get_default
 alias:
 - /functions/i18n_loc_get_default:864
 - /functions/864

@@ -4,7 +4,6 @@ title: "JavaScript strip_tags function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/strip_tags
 alias:
 - /functions/strip_tags:535
 - /functions/535

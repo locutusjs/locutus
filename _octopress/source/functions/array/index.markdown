@@ -4,7 +4,6 @@ title: "JavaScript array function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array
 alias:
 - /functions/array:304
 - /functions/304

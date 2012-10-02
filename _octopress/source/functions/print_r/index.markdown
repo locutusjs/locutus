@@ -4,7 +4,6 @@ title: "JavaScript print_r function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/print_r
 alias:
 - /functions/print_r:493
 - /functions/493

@@ -4,7 +4,6 @@ title: "JavaScript array_flip function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_flip
 alias:
 - /functions/array_flip:317
 - /functions/317

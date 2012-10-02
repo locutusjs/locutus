@@ -4,7 +4,6 @@ title: "JavaScript str_rot13 function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/str_rot13
 alias:
 - /functions/str_rot13:528
 - /functions/528

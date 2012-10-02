@@ -4,7 +4,6 @@ title: "JavaScript escapeshellarg function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/escapeshellarg
 alias:
 - /functions/escapeshellarg:866
 - /functions/866

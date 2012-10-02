@@ -4,7 +4,6 @@ title: "JavaScript fread function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/fread
 alias:
 - /functions/fread:775
 - /functions/775

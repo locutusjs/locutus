@@ -4,7 +4,6 @@ title: "JavaScript ucwords function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ucwords
 alias:
 - /functions/ucwords:569
 - /functions/569

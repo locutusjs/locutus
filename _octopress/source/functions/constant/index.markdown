@@ -4,7 +4,6 @@ title: "JavaScript constant function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/constant
 alias:
 - /functions/constant:372
 - /functions/372

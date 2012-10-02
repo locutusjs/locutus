@@ -4,7 +4,6 @@ title: "JavaScript array_replace function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_replace
 alias:
 - /functions/array_replace:859
 - /functions/859

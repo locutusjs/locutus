@@ -4,7 +4,6 @@ title: "JavaScript strtolower function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/strtolower
 alias:
 - /functions/strtolower:553
 - /functions/553

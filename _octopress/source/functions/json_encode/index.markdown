@@ -4,7 +4,6 @@ title: "JavaScript json_encode function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/json_encode
 alias:
 - /functions/json_encode:457
 - /functions/457

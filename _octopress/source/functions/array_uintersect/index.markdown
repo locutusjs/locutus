@@ -4,7 +4,6 @@ title: "JavaScript array_uintersect function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_uintersect
 alias:
 - /functions/array_uintersect:343
 - /functions/343

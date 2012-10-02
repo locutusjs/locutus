@@ -4,7 +4,6 @@ title: "JavaScript floor function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/floor
 alias:
 - /functions/floor:403
 - /functions/403

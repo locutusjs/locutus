@@ -4,7 +4,6 @@ title: "JavaScript asort function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/asort
 alias:
 - /functions/asort:354
 - /functions/354

@@ -4,7 +4,6 @@ title: "JavaScript is_float function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_float
 alias:
 - /functions/is_float:442
 - /functions/442

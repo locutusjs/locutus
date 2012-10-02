@@ -4,7 +4,6 @@ title: "JavaScript ini_restore function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ini_restore
 alias:
 - /functions/ini_restore:599
 - /functions/599

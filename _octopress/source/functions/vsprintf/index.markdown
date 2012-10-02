@@ -4,7 +4,6 @@ title: "JavaScript vsprintf function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/vsprintf
 alias:
 - /functions/vsprintf:580
 - /functions/580

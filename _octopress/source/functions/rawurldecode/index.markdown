@@ -4,7 +4,6 @@ title: "JavaScript rawurldecode function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/rawurldecode
 alias:
 - /functions/rawurldecode:500
 - /functions/500

@@ -4,7 +4,6 @@ title: "JavaScript usort function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/usort
 alias:
 - /functions/usort:575
 - /functions/575

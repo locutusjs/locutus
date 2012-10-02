@@ -4,7 +4,6 @@ title: "JavaScript md5 function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/md5
 alias:
 - /functions/md5:469
 - /functions/469

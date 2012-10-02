@@ -4,7 +4,6 @@ title: "JavaScript strtotime function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/strtotime
 alias:
 - /functions/strtotime:554
 - /functions/554

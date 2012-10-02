@@ -4,7 +4,6 @@ title: "JavaScript array_splice function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_splice
 alias:
 - /functions/array_splice:338
 - /functions/338

@@ -4,7 +4,6 @@ title: "JavaScript ctype_punct function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ctype_punct
 alias:
 - /functions/ctype_punct:758
 - /functions/758

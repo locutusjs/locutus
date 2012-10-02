@@ -4,7 +4,6 @@ title: "JavaScript explode function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/explode
 alias:
 - /functions/explode:396
 - /functions/396

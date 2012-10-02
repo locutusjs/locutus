@@ -4,7 +4,6 @@ title: "JavaScript bcadd function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/bcadd
 alias:
 - /functions/bcadd:869
 - /functions/869

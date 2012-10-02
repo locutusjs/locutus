@@ -4,7 +4,6 @@ title: "JavaScript array_count_values function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_count_values
 alias:
 - /functions/array_count_values:308
 - /functions/308

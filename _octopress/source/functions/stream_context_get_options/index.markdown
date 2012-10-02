@@ -4,7 +4,6 @@ title: "JavaScript stream_context_get_options function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/stream_context_get_options
 alias:
 - /functions/stream_context_get_options:846
 - /functions/846

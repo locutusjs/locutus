@@ -4,7 +4,6 @@ title: "JavaScript is_array function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/is_array
 alias:
 - /functions/is_array:437
 - /functions/437

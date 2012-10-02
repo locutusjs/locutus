@@ -4,7 +4,6 @@ title: "JavaScript ob_get_contents function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/ob_get_contents
 alias:
 - /functions/ob_get_contents:895
 - /functions/895

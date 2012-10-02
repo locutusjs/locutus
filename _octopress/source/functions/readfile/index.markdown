@@ -4,7 +4,6 @@ title: "JavaScript readfile function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/readfile
 alias:
 - /functions/readfile:809
 - /functions/809

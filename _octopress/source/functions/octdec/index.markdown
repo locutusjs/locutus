@@ -4,7 +4,6 @@ title: "JavaScript octdec function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/octdec
 alias:
 - /functions/octdec:482
 - /functions/482

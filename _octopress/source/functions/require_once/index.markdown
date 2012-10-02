@@ -4,7 +4,6 @@ title: "JavaScript require_once function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/require_once
 alias:
 - /functions/require_once:503
 - /functions/503

@@ -4,7 +4,6 @@ title: "JavaScript array_merge_recursive function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/array_merge_recursive
 alias:
 - /functions/array_merge_recursive:327
 - /functions/327

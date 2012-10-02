@@ -4,7 +4,6 @@ title: "JavaScript mail function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/mail
 alias:
 - /functions/mail:884
 - /functions/884

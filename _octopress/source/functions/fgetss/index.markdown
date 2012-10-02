@@ -4,7 +4,6 @@ title: "JavaScript fgetss function"
 comments: true
 sharing: true
 footer: true
-permalink: /functions/fgetss
 alias:
 - /functions/fgetss:803
 - /functions/803
