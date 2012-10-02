@@ -1,0 +1,29 @@
+---
+layout: post
+title: "JavaScript rad2deg function"
+date: 2010-10-10 10:10:10
+comments: true
+sharing: true
+footer: true
+permalink: /functions/rad2deg
+alias:
+- /functions/rad2deg:497
+- /functions/497
+categories: [ math, functions ]
+---
+A JavaScript equivalent of PHP's rad2deg
+<!-- more -->
+{% codeblock math/rad2deg.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/rad2deg.js raw on github %}
+function rad2deg (angle) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Enrique Gonzalez
+    // +      improved by: Brett Zamir (http://brett-zamir.me)
+    // *     example 1: rad2deg(3.141592653589793);
+    // *     returns 1: 180
+    return angle * 57.29577951308232; // angle / Math.PI * 180
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/rad2deg.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/rad2deg.js">edit on github</a></li>
+</ul>

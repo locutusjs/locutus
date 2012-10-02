@@ -1,0 +1,51 @@
+---
+layout: post
+title: "JavaScript strval function"
+date: 2010-10-10 10:10:10
+comments: true
+sharing: true
+footer: true
+permalink: /functions/strval
+alias:
+- /functions/strval:557
+- /functions/557
+categories: [ var, functions ]
+---
+A JavaScript equivalent of PHP's strval
+<!-- more -->
+{% codeblock var/strval.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/strval.js raw on github %}
+function strval (str) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Brett Zamir (http://brett-zamir.me)
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // %        note 1: Comment out the entire switch if you want JS-like behavior instead of PHP behavior
+    // -    depends on: gettype
+    // *     example 1: strval({red: 1, green: 2, blue: 3, white: 4});
+    // *     returns 1: 'Array'
+    var type = '';
+
+    if (str === null) {
+        return '';
+    }
+
+    type = this.gettype(str);
+    switch (type) {
+    case 'boolean':
+        if (str === true) {
+            return '1';
+        }
+        return '';
+    case 'array':
+        return 'Array';
+    case 'object':
+        return 'Object';
+    }
+
+    return str;
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/var/strval.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/var/strval.js">edit on github</a></li>
+</ul>

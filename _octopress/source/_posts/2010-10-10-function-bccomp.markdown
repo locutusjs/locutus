@@ -1,0 +1,49 @@
+---
+layout: post
+title: "JavaScript bccomp function"
+date: 2010-10-10 10:10:10
+comments: true
+sharing: true
+footer: true
+permalink: /functions/bccomp
+alias:
+- /functions/bccomp:877
+- /functions/877
+categories: [ bc, functions ]
+---
+A JavaScript equivalent of PHP's bccomp
+<!-- more -->
+{% codeblock bc/bccomp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/bc/bccomp.js raw on github %}
+function bccomp (left_operand, right_operand, scale) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+    // -    depends on: _phpjs_shared_bc
+    // *     example 1: bccomp(1, 2);
+    // *     returns 1: 3
+    //  @todo: implement these testcases
+    //        bcscale(0);
+    //
+    //        bcmath.test.result('bccomp', 1, -1, bccomp('-1','5', 4));
+    //        bcmath.test.result('bccomp', 2, -1, bccomp('1928372132132819737213', '8728932001983192837219398127471'));
+    //        bcmath.test.result('bccomp', 3,  0, bccomp('1.00000000000000000001', '1', 2));
+    //        bcmath.test.result('bccomp', 4,  1, bccomp('97321', '2321'));
+    var libbcmath = this._phpjs_shared_bc();
+
+    var first, second; //bc_num
+    if (typeof(scale) == 'undefined') {
+        scale = libbcmath.scale;
+    }
+    scale = ((scale < 0) ? 0 : scale);
+
+    first = libbcmath.bc_init_num();
+    second = libbcmath.bc_init_num();
+
+    first = libbcmath.bc_str2num(left_operand.toString(), scale); // note bc_ not php_str2num
+    second = libbcmath.bc_str2num(right_operand.toString(), scale); // note bc_ not php_str2num
+    return libbcmath.bc_compare(first, second, scale);
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/bc/bccomp.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/bc/bccomp.js">edit on github</a></li>
+</ul>

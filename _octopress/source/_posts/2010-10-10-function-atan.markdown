@@ -1,0 +1,28 @@
+---
+layout: post
+title: "JavaScript atan function"
+date: 2010-10-10 10:10:10
+comments: true
+sharing: true
+footer: true
+permalink: /functions/atan
+alias:
+- /functions/atan:355
+- /functions/355
+categories: [ math, functions ]
+---
+A JavaScript equivalent of PHP's atan
+<!-- more -->
+{% codeblock math/atan.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/atan.js raw on github %}
+function atan (arg) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Onno Marsman
+    // *     example 1: atan(8723321.4);
+    // *     returns 1: 1.5707962121596615
+    return Math.atan(arg);
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/atan.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/atan.js">edit on github</a></li>
+</ul>

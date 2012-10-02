@@ -1,0 +1,47 @@
+---
+layout: post
+title: "JavaScript inet_ntop function"
+date: 2010-10-10 10:10:10
+comments: true
+sharing: true
+footer: true
+permalink: /functions/inet_ntop
+alias:
+- /functions/inet_ntop:882
+- /functions/882
+categories: [ network, functions ]
+---
+A JavaScript equivalent of PHP's inet_ntop
+<!-- more -->
+{% codeblock network/inet_ntop.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/inet_ntop.js raw on github %}
+function inet_ntop (a) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Theriault
+    // *     example 1: inet_ntop('\x7F\x00\x00\x01');
+    // *     returns 1: '127.0.0.1'
+    // *     example 2: inet_ntop('\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1');
+    // *     returns 2: '::1'
+    var i = 0,
+        m = '',
+        c = [];
+    a += '';
+    if (a.length === 4) { // IPv4
+        return [
+        a.charCodeAt(0), a.charCodeAt(1), a.charCodeAt(2), a.charCodeAt(3)].join('.');
+    } else if (a.length === 16) { // IPv6
+        for (i = 0; i < 16; i++) {
+            c.push(((a.charCodeAt(i++) << 8) + a.charCodeAt(i)).toString(16));
+        }
+        return c.join(':').replace(/((^|:)0(?=:|$))+:?/g, function (t) {
+            m = (t.length > m.length) ? t : m;
+            return t;
+        }).replace(m || ' ', '::');
+    } else { // Invalid length
+        return false;
+    }
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/network/inet_ntop.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/network/inet_ntop.js">edit on github</a></li>
+</ul>

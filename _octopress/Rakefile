@@ -41,10 +41,11 @@ task :build do
       function = file.gsub /\.js$/, ''
       next if function[0] == '_'
 
-      mtime = File.mtime(file)
-      mdate = mtime.strftime('2010-10-10 10:10:10')
+      # mtime = File.mtime(file)
+      # mdate = mtime.strftime('2010-10-10 10:10:10')
+      mdate = "2010-10-10 10:10:10"
       page_dir = "#{octodir}/#{source_dir}/#{posts_dir}"
-      page_file = "#{page_dir}/function-#{function}.#{new_post_ext}"
+      page_file = "#{page_dir}/2010-10-10-function-#{function}.#{new_post_ext}"
       mkdir_p page_dir
 
       puts "Creating page: #{page_file}"
@@ -54,7 +55,7 @@ task :build do
         page.puts "---"
         page.puts "layout: post"
         page.puts "title: \"JavaScript #{function} function\""
-        # page.puts "date: #{mdate}"
+        page.puts "date: #{mdate}"
         page.puts "comments: true"
         page.puts "sharing: true"
         page.puts "footer: true"

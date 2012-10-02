@@ -1,0 +1,28 @@
+---
+layout: post
+title: "JavaScript cos function"
+date: 2010-10-10 10:10:10
+comments: true
+sharing: true
+footer: true
+permalink: /functions/cos
+alias:
+- /functions/cos:373
+- /functions/373
+categories: [ math, functions ]
+---
+A JavaScript equivalent of PHP's cos
+<!-- more -->
+{% codeblock math/cos.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/cos.js raw on github %}
+function cos (arg) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Onno Marsman
+    // *     example 1: cos(8723321.4);
+    // *     returns 1: -0.18127180117607017
+    return Math.cos(arg);
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/math/cos.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/math/cos.js">edit on github</a></li>
+</ul>

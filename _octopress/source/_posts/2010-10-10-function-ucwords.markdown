@@ -1,0 +1,37 @@
+---
+layout: post
+title: "JavaScript ucwords function"
+date: 2010-10-10 10:10:10
+comments: true
+sharing: true
+footer: true
+permalink: /functions/ucwords
+alias:
+- /functions/ucwords:569
+- /functions/569
+categories: [ strings, functions ]
+---
+A JavaScript equivalent of PHP's ucwords
+<!-- more -->
+{% codeblock strings/ucwords.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/ucwords.js raw on github %}
+function ucwords (str) {
+    // http://kevin.vanzonneveld.net
+    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // +   improved by: Waldo Malqui Silva
+    // +   bugfixed by: Onno Marsman
+    // +   improved by: Robin
+    // +      input by: James (http://www.james-bell.co.uk/)
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // *     example 1: ucwords('kevin van  zonneveld');
+    // *     returns 1: 'Kevin Van  Zonneveld'
+    // *     example 2: ucwords('HELLO WORLD');
+    // *     returns 2: 'HELLO WORLD'
+    return (str + '').replace(/^([a-z])|\s+([a-z])/g, function ($1) {
+        return $1.toUpperCase();
+    });
+}
+{% endcodeblock %}
+<ul>
+ <li><a href="https://github.com/kvz/phpjs/blob/master/functions/strings/ucwords.js">view on github</a></li>
+ <li><a href="https://github.com/kvz/phpjs/edit/master/functions/strings/ucwords.js">edit on github</a></li>
+</ul>
