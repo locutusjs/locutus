@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/func_get_arg
+permalink: /functions/func_get_arg
 alias:
-- /phpjs/functions/func_get_arg:405
-- /phpjs/functions/405
+- /functions/func_get_arg:405
+- /functions/405
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's func_get_arg

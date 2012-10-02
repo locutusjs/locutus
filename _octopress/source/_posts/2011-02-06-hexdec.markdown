@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/hexdec
+permalink: /functions/hexdec
 alias:
-- /phpjs/functions/hexdec:423
-- /phpjs/functions/423
+- /functions/hexdec:423
+- /functions/423
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's hexdec

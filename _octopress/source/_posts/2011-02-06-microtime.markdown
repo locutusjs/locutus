@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/microtime
+permalink: /functions/microtime
 alias:
-- /phpjs/functions/microtime:472
-- /phpjs/functions/472
+- /functions/microtime:472
+- /functions/472
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's microtime

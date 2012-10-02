@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_merge_recursive
+permalink: /functions/array_merge_recursive
 alias:
-- /phpjs/functions/array_merge_recursive:327
-- /phpjs/functions/327
+- /functions/array_merge_recursive:327
+- /functions/327
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_merge_recursive

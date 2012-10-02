@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_uintersect_uassoc
+permalink: /functions/array_uintersect_uassoc
 alias:
-- /phpjs/functions/array_uintersect_uassoc:345
-- /phpjs/functions/345
+- /functions/array_uintersect_uassoc:345
+- /functions/345
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_uintersect_uassoc

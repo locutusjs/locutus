@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/crc32
+permalink: /functions/crc32
 alias:
-- /phpjs/functions/crc32:377
-- /phpjs/functions/377
+- /functions/crc32:377
+- /functions/377
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's crc32

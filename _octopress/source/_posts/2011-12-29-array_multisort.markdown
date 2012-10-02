@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_multisort
+permalink: /functions/array_multisort
 alias:
-- /phpjs/functions/array_multisort:830
-- /phpjs/functions/830
+- /functions/array_multisort:830
+- /functions/830
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_multisort

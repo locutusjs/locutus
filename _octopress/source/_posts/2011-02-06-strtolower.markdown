@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/strtolower
+permalink: /functions/strtolower
 alias:
-- /phpjs/functions/strtolower:553
-- /phpjs/functions/553
+- /functions/strtolower:553
+- /functions/553
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strtolower

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/stream_get_line
+permalink: /functions/stream_get_line
 alias:
-- /phpjs/functions/stream_get_line:857
-- /phpjs/functions/857
+- /functions/stream_get_line:857
+- /functions/857
 categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_get_line

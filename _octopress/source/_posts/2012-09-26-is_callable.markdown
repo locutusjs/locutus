@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/is_callable
+permalink: /functions/is_callable
 alias:
-- /phpjs/functions/is_callable:439
-- /phpjs/functions/439
+- /functions/is_callable:439
+- /functions/439
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_callable

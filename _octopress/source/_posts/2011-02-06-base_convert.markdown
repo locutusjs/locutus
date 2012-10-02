@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/base_convert
+permalink: /functions/base_convert
 alias:
-- /phpjs/functions/base_convert:359
-- /phpjs/functions/359
+- /functions/base_convert:359
+- /functions/359
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's base_convert

@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/end
+permalink: /functions/end
 alias:
-- /phpjs/functions/end:393
-- /phpjs/functions/393
+- /functions/end:393
+- /functions/393
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's end

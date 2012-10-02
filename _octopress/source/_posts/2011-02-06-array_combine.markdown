@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_combine
+permalink: /functions/array_combine
 alias:
-- /phpjs/functions/array_combine:307
-- /phpjs/functions/307
+- /functions/array_combine:307
+- /functions/307
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_combine

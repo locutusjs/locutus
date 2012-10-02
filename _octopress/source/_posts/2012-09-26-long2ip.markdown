@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/long2ip
+permalink: /functions/long2ip
 alias:
-- /phpjs/functions/long2ip:466
-- /phpjs/functions/466
+- /functions/long2ip:466
+- /functions/466
 categories: [ network, functions ]
 ---
 A JavaScript equivalent of PHP's long2ip

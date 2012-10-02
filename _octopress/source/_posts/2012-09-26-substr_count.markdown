@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/substr_count
+permalink: /functions/substr_count
 alias:
-- /phpjs/functions/substr_count:559
-- /phpjs/functions/559
+- /functions/substr_count:559
+- /functions/559
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's substr_count

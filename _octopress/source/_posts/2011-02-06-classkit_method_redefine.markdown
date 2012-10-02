@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/classkit_method_redefine
+permalink: /functions/classkit_method_redefine
 alias:
-- /phpjs/functions/classkit_method_redefine:765
-- /phpjs/functions/765
+- /functions/classkit_method_redefine:765
+- /functions/765
 categories: [ classkit, functions ]
 ---
 A JavaScript equivalent of PHP's classkit_method_redefine

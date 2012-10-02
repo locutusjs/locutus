@@ -5,10 +5,10 @@ date: 2011-03-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/convert_cyr_string
+permalink: /functions/convert_cyr_string
 alias:
-- /phpjs/functions/convert_cyr_string:881
-- /phpjs/functions/881
+- /functions/convert_cyr_string:881
+- /functions/881
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's convert_cyr_string

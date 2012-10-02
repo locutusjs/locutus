@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ctype_space
+permalink: /functions/ctype_space
 alias:
-- /phpjs/functions/ctype_space:759
-- /phpjs/functions/759
+- /functions/ctype_space:759
+- /functions/759
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_space

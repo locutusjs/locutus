@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/convert_uuencode
+permalink: /functions/convert_uuencode
 alias:
-- /phpjs/functions/convert_uuencode:769
-- /phpjs/functions/769
+- /functions/convert_uuencode:769
+- /functions/769
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's convert_uuencode

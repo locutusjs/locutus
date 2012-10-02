@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_defined_functions
+permalink: /functions/get_defined_functions
 alias:
-- /phpjs/functions/get_defined_functions:413
-- /phpjs/functions/413
+- /functions/get_defined_functions:413
+- /functions/413
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's get_defined_functions

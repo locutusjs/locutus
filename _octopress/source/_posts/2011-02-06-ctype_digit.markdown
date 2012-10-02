@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ctype_digit
+permalink: /functions/ctype_digit
 alias:
-- /phpjs/functions/ctype_digit:754
-- /phpjs/functions/754
+- /functions/ctype_digit:754
+- /functions/754
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_digit

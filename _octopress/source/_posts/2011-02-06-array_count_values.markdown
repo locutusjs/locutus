@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_count_values
+permalink: /functions/array_count_values
 alias:
-- /phpjs/functions/array_count_values:308
-- /phpjs/functions/308
+- /functions/array_count_values:308
+- /functions/308
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_count_values

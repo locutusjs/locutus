@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/fopen
+permalink: /functions/fopen
 alias:
-- /phpjs/functions/fopen:774
-- /phpjs/functions/774
+- /functions/fopen:774
+- /functions/774
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's fopen

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/include_once
+permalink: /functions/include_once
 alias:
-- /phpjs/functions/include_once:434
-- /phpjs/functions/434
+- /functions/include_once:434
+- /functions/434
 categories: [ language, functions ]
 ---
 A JavaScript equivalent of PHP's include_once

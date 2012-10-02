@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/stream_context_get_default
+permalink: /functions/stream_context_get_default
 alias:
-- /phpjs/functions/stream_context_get_default:845
-- /phpjs/functions/845
+- /functions/stream_context_get_default:845
+- /functions/845
 categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_context_get_default

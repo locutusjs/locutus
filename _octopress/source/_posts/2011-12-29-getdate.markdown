@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/getdate
+permalink: /functions/getdate
 alias:
-- /phpjs/functions/getdate:420
-- /phpjs/functions/420
+- /functions/getdate:420
+- /functions/420
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's getdate

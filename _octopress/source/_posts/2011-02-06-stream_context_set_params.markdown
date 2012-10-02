@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/stream_context_set_params
+permalink: /functions/stream_context_set_params
 alias:
-- /phpjs/functions/stream_context_set_params:850
-- /phpjs/functions/850
+- /functions/stream_context_set_params:850
+- /functions/850
 categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_context_set_params

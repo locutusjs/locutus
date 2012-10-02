@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/property_exists
+permalink: /functions/property_exists
 alias:
-- /phpjs/functions/property_exists:495
-- /phpjs/functions/495
+- /functions/property_exists:495
+- /functions/495
 categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's property_exists

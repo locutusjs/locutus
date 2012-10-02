@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/dechex
+permalink: /functions/dechex
 alias:
-- /phpjs/functions/dechex:382
-- /phpjs/functions/382
+- /functions/dechex:382
+- /functions/382
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's dechex

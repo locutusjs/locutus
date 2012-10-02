@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ob_get_length
+permalink: /functions/ob_get_length
 alias:
-- /phpjs/functions/ob_get_length:897
-- /phpjs/functions/897
+- /functions/ob_get_length:897
+- /functions/897
 categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_get_length

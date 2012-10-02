@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/register_shutdown_function
+permalink: /functions/register_shutdown_function
 alias:
-- /phpjs/functions/register_shutdown_function:810
-- /phpjs/functions/810
+- /functions/register_shutdown_function:810
+- /functions/810
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's register_shutdown_function

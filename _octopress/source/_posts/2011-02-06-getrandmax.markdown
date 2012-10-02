@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/getrandmax
+permalink: /functions/getrandmax
 alias:
-- /phpjs/functions/getrandmax:421
-- /phpjs/functions/421
+- /functions/getrandmax:421
+- /functions/421
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's getrandmax

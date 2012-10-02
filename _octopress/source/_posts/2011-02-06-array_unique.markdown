@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_unique
+permalink: /functions/array_unique
 alias:
-- /phpjs/functions/array_unique:346
-- /phpjs/functions/346
+- /functions/array_unique:346
+- /functions/346
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_unique

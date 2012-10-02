@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_product
+permalink: /functions/array_product
 alias:
-- /phpjs/functions/array_product:330
-- /phpjs/functions/330
+- /functions/array_product:330
+- /functions/330
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_product

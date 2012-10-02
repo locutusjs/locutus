@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/is_real
+permalink: /functions/is_real
 alias:
-- /phpjs/functions/is_real:451
-- /phpjs/functions/451
+- /functions/is_real:451
+- /functions/451
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_real

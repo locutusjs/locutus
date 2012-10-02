@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_intersect
+permalink: /functions/array_intersect
 alias:
-- /phpjs/functions/array_intersect:318
-- /phpjs/functions/318
+- /functions/array_intersect:318
+- /functions/318
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_intersect

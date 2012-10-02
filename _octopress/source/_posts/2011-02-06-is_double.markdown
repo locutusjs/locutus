@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/is_double
+permalink: /functions/is_double
 alias:
-- /phpjs/functions/is_double:440
-- /phpjs/functions/440
+- /functions/is_double:440
+- /functions/440
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_double

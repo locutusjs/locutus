@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/doubleval
+permalink: /functions/doubleval
 alias:
-- /phpjs/functions/doubleval:389
-- /phpjs/functions/389
+- /functions/doubleval:389
+- /functions/389
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's doubleval

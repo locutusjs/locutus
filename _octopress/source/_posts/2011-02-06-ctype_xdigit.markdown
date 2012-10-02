@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ctype_xdigit
+permalink: /functions/ctype_xdigit
 alias:
-- /phpjs/functions/ctype_xdigit:761
-- /phpjs/functions/761
+- /functions/ctype_xdigit:761
+- /functions/761
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_xdigit

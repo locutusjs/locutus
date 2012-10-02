@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/substr
+permalink: /functions/substr
 alias:
-- /phpjs/functions/substr:558
-- /phpjs/functions/558
+- /functions/substr:558
+- /functions/558
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's substr

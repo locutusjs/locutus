@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_push
+permalink: /functions/array_push
 alias:
-- /phpjs/functions/array_push:331
-- /phpjs/functions/331
+- /functions/array_push:331
+- /functions/331
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_push

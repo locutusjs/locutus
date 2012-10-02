@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/gettimeofday
+permalink: /functions/gettimeofday
 alias:
-- /phpjs/functions/gettimeofday:778
-- /phpjs/functions/778
+- /functions/gettimeofday:778
+- /functions/778
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's gettimeofday

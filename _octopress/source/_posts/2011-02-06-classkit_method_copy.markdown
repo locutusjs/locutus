@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/classkit_method_copy
+permalink: /functions/classkit_method_copy
 alias:
-- /phpjs/functions/classkit_method_copy:764
-- /phpjs/functions/764
+- /functions/classkit_method_copy:764
+- /functions/764
 categories: [ classkit, functions ]
 ---
 A JavaScript equivalent of PHP's classkit_method_copy

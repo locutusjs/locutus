@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/deg2rad
+permalink: /functions/deg2rad
 alias:
-- /phpjs/functions/deg2rad:386
-- /phpjs/functions/386
+- /functions/deg2rad:386
+- /functions/386
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's deg2rad

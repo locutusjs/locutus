@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/json_last_error
+permalink: /functions/json_last_error
 alias:
-- /phpjs/functions/json_last_error:878
-- /phpjs/functions/878
+- /functions/json_last_error:878
+- /functions/878
 categories: [ json, functions ]
 ---
 A JavaScript equivalent of PHP's json_last_error

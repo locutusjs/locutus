@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/i18n_loc_get_default
+permalink: /functions/i18n_loc_get_default
 alias:
-- /phpjs/functions/i18n_loc_get_default:864
-- /phpjs/functions/864
+- /functions/i18n_loc_get_default:864
+- /functions/864
 categories: [ i18n, functions ]
 ---
 A JavaScript equivalent of PHP's i18n_loc_get_default

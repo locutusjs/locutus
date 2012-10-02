@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/tan
+permalink: /functions/tan
 alias:
-- /phpjs/functions/tan:560
-- /phpjs/functions/560
+- /functions/tan:560
+- /functions/560
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's tan

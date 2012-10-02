@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ctype_lower
+permalink: /functions/ctype_lower
 alias:
-- /phpjs/functions/ctype_lower:756
-- /phpjs/functions/756
+- /functions/ctype_lower:756
+- /functions/756
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_lower

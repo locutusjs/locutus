@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_headers
+permalink: /functions/get_headers
 alias:
-- /phpjs/functions/get_headers:415
-- /phpjs/functions/415
+- /functions/get_headers:415
+- /functions/415
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's get_headers

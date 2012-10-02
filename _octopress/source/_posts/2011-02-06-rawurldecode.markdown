@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/rawurldecode
+permalink: /functions/rawurldecode
 alias:
-- /phpjs/functions/rawurldecode:500
-- /phpjs/functions/500
+- /functions/rawurldecode:500
+- /functions/500
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's rawurldecode

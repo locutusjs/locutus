@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/sha1_file
+permalink: /functions/sha1_file
 alias:
-- /phpjs/functions/sha1_file:513
-- /phpjs/functions/513
+- /functions/sha1_file:513
+- /functions/513
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's sha1_file

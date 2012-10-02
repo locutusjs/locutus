@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_reduce
+permalink: /functions/array_reduce
 alias:
-- /phpjs/functions/array_reduce:333
-- /phpjs/functions/333
+- /functions/array_reduce:333
+- /functions/333
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_reduce

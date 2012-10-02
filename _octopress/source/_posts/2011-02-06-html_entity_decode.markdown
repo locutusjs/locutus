@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/html_entity_decode
+permalink: /functions/html_entity_decode
 alias:
-- /phpjs/functions/html_entity_decode:424
-- /phpjs/functions/424
+- /functions/html_entity_decode:424
+- /functions/424
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's html_entity_decode

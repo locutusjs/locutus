@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/gmstrftime
+permalink: /functions/gmstrftime
 alias:
-- /phpjs/functions/gmstrftime:780
-- /phpjs/functions/780
+- /functions/gmstrftime:780
+- /functions/780
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's gmstrftime

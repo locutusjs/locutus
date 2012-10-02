@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/cosh
+permalink: /functions/cosh
 alias:
-- /phpjs/functions/cosh:374
-- /phpjs/functions/374
+- /functions/cosh:374
+- /functions/374
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's cosh

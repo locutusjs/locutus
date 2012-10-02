@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_shift
+permalink: /functions/array_shift
 alias:
-- /phpjs/functions/array_shift:336
-- /phpjs/functions/336
+- /functions/array_shift:336
+- /functions/336
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_shift

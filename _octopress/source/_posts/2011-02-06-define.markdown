@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/define
+permalink: /functions/define
 alias:
-- /phpjs/functions/define:384
-- /phpjs/functions/384
+- /functions/define:384
+- /functions/384
 categories: [ misc, functions ]
 ---
 A JavaScript equivalent of PHP's define

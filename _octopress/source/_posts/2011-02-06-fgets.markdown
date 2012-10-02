@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/fgets
+permalink: /functions/fgets
 alias:
-- /phpjs/functions/fgets:802
-- /phpjs/functions/802
+- /functions/fgets:802
+- /functions/802
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's fgets

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/strncasecmp
+permalink: /functions/strncasecmp
 alias:
-- /phpjs/functions/strncasecmp:542
-- /phpjs/functions/542
+- /functions/strncasecmp:542
+- /functions/542
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strncasecmp

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/date_default_timezone_get
+permalink: /functions/date_default_timezone_get
 alias:
-- /phpjs/functions/date_default_timezone_get:583
-- /phpjs/functions/583
+- /functions/date_default_timezone_get:583
+- /functions/583
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's date_default_timezone_get

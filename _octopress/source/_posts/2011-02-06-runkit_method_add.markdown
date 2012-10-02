@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/runkit_method_add
+permalink: /functions/runkit_method_add
 alias:
-- /phpjs/functions/runkit_method_add:813
-- /phpjs/functions/813
+- /functions/runkit_method_add:813
+- /functions/813
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_method_add

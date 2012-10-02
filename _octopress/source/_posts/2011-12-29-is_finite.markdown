@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/is_finite
+permalink: /functions/is_finite
 alias:
-- /phpjs/functions/is_finite:441
-- /phpjs/functions/441
+- /functions/is_finite:441
+- /functions/441
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's is_finite

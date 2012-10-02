@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/bccomp
+permalink: /functions/bccomp
 alias:
-- /phpjs/functions/bccomp:877
-- /phpjs/functions/877
+- /functions/bccomp:877
+- /functions/877
 categories: [ bc, functions ]
 ---
 A JavaScript equivalent of PHP's bccomp

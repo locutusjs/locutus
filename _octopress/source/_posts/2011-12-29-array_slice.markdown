@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_slice
+permalink: /functions/array_slice
 alias:
-- /phpjs/functions/array_slice:337
-- /phpjs/functions/337
+- /functions/array_slice:337
+- /functions/337
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_slice

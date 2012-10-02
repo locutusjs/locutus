@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/natsort
+permalink: /functions/natsort
 alias:
-- /phpjs/functions/natsort:478
-- /phpjs/functions/478
+- /functions/natsort:478
+- /functions/478
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's natsort

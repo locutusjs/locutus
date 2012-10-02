@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_fill_keys
+permalink: /functions/array_fill_keys
 alias:
-- /phpjs/functions/array_fill_keys:315
-- /phpjs/functions/315
+- /functions/array_fill_keys:315
+- /functions/315
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_fill_keys

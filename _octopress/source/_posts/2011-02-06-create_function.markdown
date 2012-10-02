@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/create_function
+permalink: /functions/create_function
 alias:
-- /phpjs/functions/create_function:378
-- /phpjs/functions/378
+- /functions/create_function:378
+- /functions/378
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's create_function

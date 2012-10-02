@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_sum
+permalink: /functions/array_sum
 alias:
-- /phpjs/functions/array_sum:339
-- /phpjs/functions/339
+- /functions/array_sum:339
+- /functions/339
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_sum

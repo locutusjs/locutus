@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/str_repeat
+permalink: /functions/str_repeat
 alias:
-- /phpjs/functions/str_repeat:526
-- /phpjs/functions/526
+- /functions/str_repeat:526
+- /functions/526
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's str_repeat

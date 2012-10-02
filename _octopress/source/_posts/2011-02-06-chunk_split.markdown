@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/chunk_split
+permalink: /functions/chunk_split
 alias:
-- /phpjs/functions/chunk_split:369
-- /phpjs/functions/369
+- /functions/chunk_split:369
+- /functions/369
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's chunk_split

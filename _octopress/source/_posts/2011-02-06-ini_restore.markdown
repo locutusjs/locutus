@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ini_restore
+permalink: /functions/ini_restore
 alias:
-- /phpjs/functions/ini_restore:599
-- /phpjs/functions/599
+- /functions/ini_restore:599
+- /functions/599
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's ini_restore

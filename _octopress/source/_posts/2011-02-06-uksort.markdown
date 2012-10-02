@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/uksort
+permalink: /functions/uksort
 alias:
-- /phpjs/functions/uksort:570
-- /phpjs/functions/570
+- /functions/uksort:570
+- /functions/570
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's uksort

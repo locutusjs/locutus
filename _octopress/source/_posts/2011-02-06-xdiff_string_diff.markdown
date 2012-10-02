@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/xdiff_string_diff
+permalink: /functions/xdiff_string_diff
 alias:
-- /phpjs/functions/xdiff_string_diff:889
-- /phpjs/functions/889
+- /functions/xdiff_string_diff:889
+- /functions/889
 categories: [ xdiff, functions ]
 ---
 A JavaScript equivalent of PHP's xdiff_string_diff

@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/current
+permalink: /functions/current
 alias:
-- /phpjs/functions/current:379
-- /phpjs/functions/379
+- /functions/current:379
+- /functions/379
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's current

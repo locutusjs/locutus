@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/localtime
+permalink: /functions/localtime
 alias:
-- /phpjs/functions/localtime:587
-- /phpjs/functions/587
+- /functions/localtime:587
+- /functions/587
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's localtime

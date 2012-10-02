@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/error_reporting
+permalink: /functions/error_reporting
 alias:
-- /phpjs/functions/error_reporting:841
-- /phpjs/functions/841
+- /functions/error_reporting:841
+- /functions/841
 categories: [ errorfunc, functions ]
 ---
 A JavaScript equivalent of PHP's error_reporting

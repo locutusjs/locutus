@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/date
+permalink: /functions/date
 alias:
-- /phpjs/functions/date:380
-- /phpjs/functions/380
+- /functions/date:380
+- /functions/380
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's date

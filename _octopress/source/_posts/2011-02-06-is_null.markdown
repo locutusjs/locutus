@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/is_null
+permalink: /functions/is_null
 alias:
-- /phpjs/functions/is_null:448
-- /phpjs/functions/448
+- /functions/is_null:448
+- /functions/448
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_null

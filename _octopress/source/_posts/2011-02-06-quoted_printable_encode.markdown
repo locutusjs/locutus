@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/quoted_printable_encode
+permalink: /functions/quoted_printable_encode
 alias:
-- /phpjs/functions/quoted_printable_encode:835
-- /phpjs/functions/835
+- /functions/quoted_printable_encode:835
+- /functions/835
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's quoted_printable_encode

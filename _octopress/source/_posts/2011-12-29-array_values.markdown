@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_values
+permalink: /functions/array_values
 alias:
-- /phpjs/functions/array_values:348
-- /phpjs/functions/348
+- /functions/array_values:348
+- /functions/348
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_values

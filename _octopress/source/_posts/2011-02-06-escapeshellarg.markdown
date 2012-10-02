@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/escapeshellarg
+permalink: /functions/escapeshellarg
 alias:
-- /phpjs/functions/escapeshellarg:866
-- /phpjs/functions/866
+- /functions/escapeshellarg:866
+- /functions/866
 categories: [ exec, functions ]
 ---
 A JavaScript equivalent of PHP's escapeshellarg

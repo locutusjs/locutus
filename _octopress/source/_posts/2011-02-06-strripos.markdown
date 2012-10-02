@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/strripos
+permalink: /functions/strripos
 alias:
-- /phpjs/functions/strripos:548
-- /phpjs/functions/548
+- /functions/strripos:548
+- /functions/548
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strripos

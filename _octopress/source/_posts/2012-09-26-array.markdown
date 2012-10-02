@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array
+permalink: /functions/array
 alias:
-- /phpjs/functions/array:304
-- /phpjs/functions/304
+- /functions/array:304
+- /functions/304
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array

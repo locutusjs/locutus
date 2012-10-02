@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/pclose
+permalink: /functions/pclose
 alias:
-- /phpjs/functions/pclose:807
-- /phpjs/functions/807
+- /functions/pclose:807
+- /functions/807
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's pclose

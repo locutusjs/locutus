@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/atan2
+permalink: /functions/atan2
 alias:
-- /phpjs/functions/atan2:768
-- /phpjs/functions/768
+- /functions/atan2:768
+- /functions/768
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's atan2

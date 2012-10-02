@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/setcookie
+permalink: /functions/setcookie
 alias:
-- /phpjs/functions/setcookie:509
-- /phpjs/functions/509
+- /functions/setcookie:509
+- /functions/509
 categories: [ network, functions ]
 ---
 A JavaScript equivalent of PHP's setcookie

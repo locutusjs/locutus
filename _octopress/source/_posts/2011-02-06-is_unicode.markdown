@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/is_unicode
+permalink: /functions/is_unicode
 alias:
-- /phpjs/functions/is_unicode:593
-- /phpjs/functions/593
+- /functions/is_unicode:593
+- /functions/593
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_unicode

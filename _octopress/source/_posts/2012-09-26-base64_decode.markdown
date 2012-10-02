@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/base64_decode
+permalink: /functions/base64_decode
 alias:
-- /phpjs/functions/base64_decode:357
-- /phpjs/functions/357
+- /functions/base64_decode:357
+- /functions/357
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's base64_decode

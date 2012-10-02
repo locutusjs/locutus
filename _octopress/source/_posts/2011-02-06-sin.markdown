@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/sin
+permalink: /functions/sin
 alias:
-- /phpjs/functions/sin:515
-- /phpjs/functions/515
+- /functions/sin:515
+- /functions/515
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's sin

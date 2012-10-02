@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/import_request_variables
+permalink: /functions/import_request_variables
 alias:
-- /phpjs/functions/import_request_variables:431
-- /phpjs/functions/431
+- /functions/import_request_variables:431
+- /functions/431
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's import_request_variables

@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/timezone_abbreviations_list
+permalink: /functions/timezone_abbreviations_list
 alias:
-- /phpjs/functions/timezone_abbreviations_list:565
-- /phpjs/functions/565
+- /functions/timezone_abbreviations_list:565
+- /functions/565
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's timezone_abbreviations_list

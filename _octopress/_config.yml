@@ -2,8 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://kvz.github.com/phpjs
-title: php.js
+url: http://phpjs.org
 subtitle: A resource of php functions in JavsScript
 author: Kevin van Zonneveld
 simple_search: http://google.com/search
@@ -16,7 +15,7 @@ description:
 date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: /phpjs/atom.xml
+subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
 email:
@@ -26,7 +25,7 @@ email:
 # ----------------------- #
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
-root: /phpjs/
+root: 
 permalink: /blog/:year/:month/:day/:title/
 source: source
 destination: public/phpjs

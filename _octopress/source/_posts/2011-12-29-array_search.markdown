@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_search
+permalink: /functions/array_search
 alias:
-- /phpjs/functions/array_search:335
-- /phpjs/functions/335
+- /functions/array_search:335
+- /functions/335
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_search

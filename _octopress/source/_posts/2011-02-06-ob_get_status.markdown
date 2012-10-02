@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ob_get_status
+permalink: /functions/ob_get_status
 alias:
-- /phpjs/functions/ob_get_status:899
-- /phpjs/functions/899
+- /functions/ob_get_status:899
+- /functions/899
 categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_get_status

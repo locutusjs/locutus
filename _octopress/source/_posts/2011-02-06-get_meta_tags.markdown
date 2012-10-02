@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_meta_tags
+permalink: /functions/get_meta_tags
 alias:
-- /phpjs/functions/get_meta_tags:418
-- /phpjs/functions/418
+- /functions/get_meta_tags:418
+- /functions/418
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's get_meta_tags

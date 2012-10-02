@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/var_dump
+permalink: /functions/var_dump
 alias:
-- /phpjs/functions/var_dump:604
-- /phpjs/functions/604
+- /functions/var_dump:604
+- /functions/604
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's var_dump

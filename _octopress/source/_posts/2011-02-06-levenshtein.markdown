@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/levenshtein
+permalink: /functions/levenshtein
 alias:
-- /phpjs/functions/levenshtein:463
-- /phpjs/functions/463
+- /functions/levenshtein:463
+- /functions/463
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's levenshtein

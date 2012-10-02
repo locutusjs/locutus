@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/dirname
+permalink: /functions/dirname
 alias:
-- /phpjs/functions/dirname:388
-- /phpjs/functions/388
+- /functions/dirname:388
+- /functions/388
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's dirname

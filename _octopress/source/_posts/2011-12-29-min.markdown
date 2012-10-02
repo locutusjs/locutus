@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/min
+permalink: /functions/min
 alias:
-- /phpjs/functions/min:473
-- /phpjs/functions/473
+- /functions/min:473
+- /functions/473
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's min

@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_merge
+permalink: /functions/array_merge
 alias:
-- /phpjs/functions/array_merge:326
-- /phpjs/functions/326
+- /functions/array_merge:326
+- /functions/326
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_merge

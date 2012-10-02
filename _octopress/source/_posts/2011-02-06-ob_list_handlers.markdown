@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ob_list_handlers
+permalink: /functions/ob_list_handlers
 alias:
-- /phpjs/functions/ob_list_handlers:900
-- /phpjs/functions/900
+- /functions/ob_list_handlers:900
+- /functions/900
 categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_list_handlers

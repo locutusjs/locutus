@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/atanh
+permalink: /functions/atanh
 alias:
-- /phpjs/functions/atanh:356
-- /phpjs/functions/356
+- /functions/atanh:356
+- /functions/356
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's atanh

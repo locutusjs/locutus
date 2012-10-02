@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/aggregate_properties_by_list
+permalink: /functions/aggregate_properties_by_list
 alias:
-- /phpjs/functions/aggregate_properties_by_list:797
-- /phpjs/functions/797
+- /functions/aggregate_properties_by_list:797
+- /functions/797
 categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregate_properties_by_list

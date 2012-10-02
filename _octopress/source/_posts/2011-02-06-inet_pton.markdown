@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/inet_pton
+permalink: /functions/inet_pton
 alias:
-- /phpjs/functions/inet_pton:883
-- /phpjs/functions/883
+- /functions/inet_pton:883
+- /functions/883
 categories: [ network, functions ]
 ---
 A JavaScript equivalent of PHP's inet_pton

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_object_vars
+permalink: /functions/get_object_vars
 alias:
-- /phpjs/functions/get_object_vars:419
-- /phpjs/functions/419
+- /functions/get_object_vars:419
+- /functions/419
 categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's get_object_vars

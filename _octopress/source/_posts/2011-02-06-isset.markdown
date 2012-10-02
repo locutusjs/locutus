@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/isset
+permalink: /functions/isset
 alias:
-- /phpjs/functions/isset:454
-- /phpjs/functions/454
+- /functions/isset:454
+- /functions/454
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's isset

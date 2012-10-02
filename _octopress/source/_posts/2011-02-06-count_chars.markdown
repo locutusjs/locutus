@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/count_chars
+permalink: /functions/count_chars
 alias:
-- /phpjs/functions/count_chars:376
-- /phpjs/functions/376
+- /functions/count_chars:376
+- /functions/376
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's count_chars

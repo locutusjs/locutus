@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/getlastmod
+permalink: /functions/getlastmod
 alias:
-- /phpjs/functions/getlastmod:595
-- /phpjs/functions/595
+- /functions/getlastmod:595
+- /functions/595
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's getlastmod

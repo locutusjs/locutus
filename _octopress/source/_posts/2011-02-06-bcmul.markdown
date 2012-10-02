@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/bcmul
+permalink: /functions/bcmul
 alias:
-- /phpjs/functions/bcmul:872
-- /phpjs/functions/872
+- /functions/bcmul:872
+- /functions/872
 categories: [ bc, functions ]
 ---
 A JavaScript equivalent of PHP's bcmul

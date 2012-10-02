@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ob_end_clean
+permalink: /functions/ob_end_clean
 alias:
-- /phpjs/functions/ob_end_clean:891
-- /phpjs/functions/891
+- /functions/ob_end_clean:891
+- /functions/891
 categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_end_clean

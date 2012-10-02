@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/sinh
+permalink: /functions/sinh
 alias:
-- /phpjs/functions/sinh:516
-- /phpjs/functions/516
+- /functions/sinh:516
+- /functions/516
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's sinh

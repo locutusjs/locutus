@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/aggregate_methods_by_list
+permalink: /functions/aggregate_methods_by_list
 alias:
-- /phpjs/functions/aggregate_methods_by_list:794
-- /phpjs/functions/794
+- /functions/aggregate_methods_by_list:794
+- /functions/794
 categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregate_methods_by_list

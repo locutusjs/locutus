@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/stripslashes
+permalink: /functions/stripslashes
 alias:
-- /phpjs/functions/stripslashes:537
-- /phpjs/functions/537
+- /functions/stripslashes:537
+- /functions/537
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's stripslashes

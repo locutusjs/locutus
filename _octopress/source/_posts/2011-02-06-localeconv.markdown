@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/localeconv
+permalink: /functions/localeconv
 alias:
-- /phpjs/functions/localeconv:782
-- /phpjs/functions/782
+- /functions/localeconv:782
+- /functions/782
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's localeconv

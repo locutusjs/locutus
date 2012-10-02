@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/json_decode
+permalink: /functions/json_decode
 alias:
-- /phpjs/functions/json_decode:456
-- /phpjs/functions/456
+- /functions/json_decode:456
+- /functions/456
 categories: [ json, functions ]
 ---
 A JavaScript equivalent of PHP's json_decode

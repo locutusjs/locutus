@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_cfg_var
+permalink: /functions/get_cfg_var
 alias:
-- /phpjs/functions/get_cfg_var:776
-- /phpjs/functions/776
+- /functions/get_cfg_var:776
+- /functions/776
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's get_cfg_var

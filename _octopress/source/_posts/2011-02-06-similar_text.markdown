@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/similar_text
+permalink: /functions/similar_text
 alias:
-- /phpjs/functions/similar_text:902
-- /phpjs/functions/902
+- /functions/similar_text:902
+- /functions/902
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's similar_text

@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/unserialize
+permalink: /functions/unserialize
 alias:
-- /phpjs/functions/unserialize:571
-- /phpjs/functions/571
+- /functions/unserialize:571
+- /functions/571
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's unserialize

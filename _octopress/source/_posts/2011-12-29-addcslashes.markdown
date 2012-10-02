@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/addcslashes
+permalink: /functions/addcslashes
 alias:
-- /phpjs/functions/addcslashes:879
-- /phpjs/functions/879
+- /functions/addcslashes:879
+- /functions/879
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's addcslashes

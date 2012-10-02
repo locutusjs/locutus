@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/var_export
+permalink: /functions/var_export
 alias:
-- /phpjs/functions/var_export:578
-- /phpjs/functions/578
+- /functions/var_export:578
+- /functions/578
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's var_export

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/setrawcookie
+permalink: /functions/setrawcookie
 alias:
-- /phpjs/functions/setrawcookie:510
-- /phpjs/functions/510
+- /functions/setrawcookie:510
+- /functions/510
 categories: [ network, functions ]
 ---
 A JavaScript equivalent of PHP's setrawcookie

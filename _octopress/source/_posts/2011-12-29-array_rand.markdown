@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_rand
+permalink: /functions/array_rand
 alias:
-- /phpjs/functions/array_rand:332
-- /phpjs/functions/332
+- /functions/array_rand:332
+- /functions/332
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_rand

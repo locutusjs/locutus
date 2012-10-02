@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_html_translation_table
+permalink: /functions/get_html_translation_table
 alias:
-- /phpjs/functions/get_html_translation_table:416
-- /phpjs/functions/416
+- /functions/get_html_translation_table:416
+- /functions/416
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's get_html_translation_table

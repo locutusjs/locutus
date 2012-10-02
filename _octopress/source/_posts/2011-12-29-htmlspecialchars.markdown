@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/htmlspecialchars
+permalink: /functions/htmlspecialchars
 alias:
-- /phpjs/functions/htmlspecialchars:426
-- /phpjs/functions/426
+- /functions/htmlspecialchars:426
+- /functions/426
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's htmlspecialchars

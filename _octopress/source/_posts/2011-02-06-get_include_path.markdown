@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_include_path
+permalink: /functions/get_include_path
 alias:
-- /phpjs/functions/get_include_path:853
-- /phpjs/functions/853
+- /functions/get_include_path:853
+- /functions/853
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's get_include_path

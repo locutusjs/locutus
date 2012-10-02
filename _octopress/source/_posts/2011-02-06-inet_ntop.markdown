@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/inet_ntop
+permalink: /functions/inet_ntop
 alias:
-- /phpjs/functions/inet_ntop:882
-- /phpjs/functions/882
+- /functions/inet_ntop:882
+- /functions/882
 categories: [ network, functions ]
 ---
 A JavaScript equivalent of PHP's inet_ntop

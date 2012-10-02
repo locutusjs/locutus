@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/round
+permalink: /functions/round
 alias:
-- /phpjs/functions/round:505
-- /phpjs/functions/505
+- /functions/round:505
+- /functions/505
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's round

@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/next
+permalink: /functions/next
 alias:
-- /phpjs/functions/next:479
-- /phpjs/functions/479
+- /functions/next:479
+- /functions/479
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's next

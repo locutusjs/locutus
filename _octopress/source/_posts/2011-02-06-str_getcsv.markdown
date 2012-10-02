@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/str_getcsv
+permalink: /functions/str_getcsv
 alias:
-- /phpjs/functions/str_getcsv:818
-- /phpjs/functions/818
+- /functions/str_getcsv:818
+- /functions/818
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's str_getcsv

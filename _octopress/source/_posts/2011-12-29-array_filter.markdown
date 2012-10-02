@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_filter
+permalink: /functions/array_filter
 alias:
-- /phpjs/functions/array_filter:316
-- /phpjs/functions/316
+- /functions/array_filter:316
+- /functions/316
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_filter

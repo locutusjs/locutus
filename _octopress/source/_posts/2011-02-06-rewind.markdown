@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/rewind
+permalink: /functions/rewind
 alias:
-- /phpjs/functions/rewind:811
-- /phpjs/functions/811
+- /functions/rewind:811
+- /functions/811
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's rewind

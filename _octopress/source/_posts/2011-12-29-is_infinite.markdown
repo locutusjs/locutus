@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/is_infinite
+permalink: /functions/is_infinite
 alias:
-- /phpjs/functions/is_infinite:443
-- /phpjs/functions/443
+- /functions/is_infinite:443
+- /functions/443
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's is_infinite

@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/forward_static_call_array
+permalink: /functions/forward_static_call_array
 alias:
-- /phpjs/functions/forward_static_call_array:862
-- /phpjs/functions/862
+- /functions/forward_static_call_array:862
+- /functions/862
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's forward_static_call_array

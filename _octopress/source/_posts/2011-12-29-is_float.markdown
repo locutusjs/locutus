@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/is_float
+permalink: /functions/is_float
 alias:
-- /phpjs/functions/is_float:442
-- /phpjs/functions/442
+- /functions/is_float:442
+- /functions/442
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_float

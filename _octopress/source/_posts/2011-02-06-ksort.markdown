@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ksort
+permalink: /functions/ksort
 alias:
-- /phpjs/functions/ksort:460
-- /phpjs/functions/460
+- /functions/ksort:460
+- /functions/460
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's ksort

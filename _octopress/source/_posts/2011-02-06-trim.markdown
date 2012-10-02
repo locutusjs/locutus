@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/trim
+permalink: /functions/trim
 alias:
-- /phpjs/functions/trim:566
-- /phpjs/functions/566
+- /functions/trim:566
+- /functions/566
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's trim

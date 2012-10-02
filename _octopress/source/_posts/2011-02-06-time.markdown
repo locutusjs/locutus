@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/time
+permalink: /functions/time
 alias:
-- /phpjs/functions/time:562
-- /phpjs/functions/562
+- /functions/time:562
+- /functions/562
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's time

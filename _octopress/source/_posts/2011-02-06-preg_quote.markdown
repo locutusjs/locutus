@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/preg_quote
+permalink: /functions/preg_quote
 alias:
-- /phpjs/functions/preg_quote:491
-- /phpjs/functions/491
+- /functions/preg_quote:491
+- /functions/491
 categories: [ pcre, functions ]
 ---
 A JavaScript equivalent of PHP's preg_quote

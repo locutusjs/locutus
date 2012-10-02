@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_walk
+permalink: /functions/array_walk
 alias:
-- /phpjs/functions/array_walk:349
-- /phpjs/functions/349
+- /functions/array_walk:349
+- /functions/349
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_walk

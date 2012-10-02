@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ini_get_all
+permalink: /functions/ini_get_all
 alias:
-- /phpjs/functions/ini_get_all:598
-- /phpjs/functions/598
+- /functions/ini_get_all:598
+- /functions/598
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's ini_get_all

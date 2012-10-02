@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/decbin
+permalink: /functions/decbin
 alias:
-- /phpjs/functions/decbin:381
-- /phpjs/functions/381
+- /functions/decbin:381
+- /functions/381
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's decbin

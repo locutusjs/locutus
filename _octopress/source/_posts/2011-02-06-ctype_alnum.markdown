@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ctype_alnum
+permalink: /functions/ctype_alnum
 alias:
-- /phpjs/functions/ctype_alnum:751
-- /phpjs/functions/751
+- /functions/ctype_alnum:751
+- /functions/751
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_alnum

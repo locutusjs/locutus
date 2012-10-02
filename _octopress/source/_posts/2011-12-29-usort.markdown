@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/usort
+permalink: /functions/usort
 alias:
-- /phpjs/functions/usort:575
-- /phpjs/functions/575
+- /functions/usort:575
+- /functions/575
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's usort

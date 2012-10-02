@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_udiff_uassoc
+permalink: /functions/array_udiff_uassoc
 alias:
-- /phpjs/functions/array_udiff_uassoc:342
-- /phpjs/functions/342
+- /functions/array_udiff_uassoc:342
+- /functions/342
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_udiff_uassoc

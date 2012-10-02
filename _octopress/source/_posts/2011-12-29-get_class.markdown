@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_class
+permalink: /functions/get_class
 alias:
-- /phpjs/functions/get_class:409
-- /phpjs/functions/409
+- /functions/get_class:409
+- /functions/409
 categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's get_class

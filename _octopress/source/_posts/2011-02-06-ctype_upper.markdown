@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ctype_upper
+permalink: /functions/ctype_upper
 alias:
-- /phpjs/functions/ctype_upper:760
-- /phpjs/functions/760
+- /functions/ctype_upper:760
+- /functions/760
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_upper

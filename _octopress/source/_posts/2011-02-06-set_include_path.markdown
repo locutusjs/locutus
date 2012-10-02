@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/set_include_path
+permalink: /functions/set_include_path
 alias:
-- /phpjs/functions/set_include_path:855
-- /phpjs/functions/855
+- /functions/set_include_path:855
+- /functions/855
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's set_include_path

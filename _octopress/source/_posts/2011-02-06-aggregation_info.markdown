@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/aggregation_info
+permalink: /functions/aggregation_info
 alias:
-- /phpjs/functions/aggregation_info:799
-- /phpjs/functions/799
+- /functions/aggregation_info:799
+- /functions/799
 categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregation_info

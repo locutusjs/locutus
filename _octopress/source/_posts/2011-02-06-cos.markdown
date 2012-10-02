@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/cos
+permalink: /functions/cos
 alias:
-- /phpjs/functions/cos:373
-- /phpjs/functions/373
+- /functions/cos:373
+- /functions/373
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's cos

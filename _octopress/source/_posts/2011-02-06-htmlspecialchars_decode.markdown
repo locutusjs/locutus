@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/htmlspecialchars_decode
+permalink: /functions/htmlspecialchars_decode
 alias:
-- /phpjs/functions/htmlspecialchars_decode:427
-- /phpjs/functions/427
+- /functions/htmlspecialchars_decode:427
+- /functions/427
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's htmlspecialchars_decode

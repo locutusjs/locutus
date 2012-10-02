@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/strftime
+permalink: /functions/strftime
 alias:
-- /phpjs/functions/strftime:590
-- /phpjs/functions/590
+- /functions/strftime:590
+- /functions/590
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's strftime

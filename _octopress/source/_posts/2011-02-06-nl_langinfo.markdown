@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/nl_langinfo
+permalink: /functions/nl_langinfo
 alias:
-- /phpjs/functions/nl_langinfo:784
-- /phpjs/functions/784
+- /functions/nl_langinfo:784
+- /functions/784
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's nl_langinfo

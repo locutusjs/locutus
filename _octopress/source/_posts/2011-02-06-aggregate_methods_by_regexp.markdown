@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/aggregate_methods_by_regexp
+permalink: /functions/aggregate_methods_by_regexp
 alias:
-- /phpjs/functions/aggregate_methods_by_regexp:795
-- /phpjs/functions/795
+- /functions/aggregate_methods_by_regexp:795
+- /functions/795
 categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregate_methods_by_regexp

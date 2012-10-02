@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/filemtime
+permalink: /functions/filemtime
 alias:
-- /phpjs/functions/filemtime:838
-- /phpjs/functions/838
+- /functions/filemtime:838
+- /functions/838
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's filemtime

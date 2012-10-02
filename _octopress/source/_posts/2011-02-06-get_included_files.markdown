@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_included_files
+permalink: /functions/get_included_files
 alias:
-- /phpjs/functions/get_included_files:417
-- /phpjs/functions/417
+- /functions/get_included_files:417
+- /functions/417
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's get_included_files

@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/metaphone
+permalink: /functions/metaphone
 alias:
-- /phpjs/functions/metaphone:863
-- /phpjs/functions/863
+- /functions/metaphone:863
+- /functions/863
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's metaphone

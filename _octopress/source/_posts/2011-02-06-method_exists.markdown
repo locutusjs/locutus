@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/method_exists
+permalink: /functions/method_exists
 alias:
-- /phpjs/functions/method_exists:471
-- /phpjs/functions/471
+- /functions/method_exists:471
+- /functions/471
 categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's method_exists

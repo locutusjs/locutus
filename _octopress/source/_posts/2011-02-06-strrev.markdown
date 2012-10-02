@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/strrev
+permalink: /functions/strrev
 alias:
-- /phpjs/functions/strrev:547
-- /phpjs/functions/547
+- /functions/strrev:547
+- /functions/547
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strrev

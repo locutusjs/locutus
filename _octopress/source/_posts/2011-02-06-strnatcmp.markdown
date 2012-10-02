@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/strnatcmp
+permalink: /functions/strnatcmp
 alias:
-- /phpjs/functions/strnatcmp:541
-- /phpjs/functions/541
+- /functions/strnatcmp:541
+- /functions/541
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's strnatcmp

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/xdiff_string_patch
+permalink: /functions/xdiff_string_patch
 alias:
-- /phpjs/functions/xdiff_string_patch:888
-- /phpjs/functions/888
+- /functions/xdiff_string_patch:888
+- /functions/888
 categories: [ xdiff, functions ]
 ---
 A JavaScript equivalent of PHP's xdiff_string_patch

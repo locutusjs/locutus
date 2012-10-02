@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/asin
+permalink: /functions/asin
 alias:
-- /phpjs/functions/asin:352
-- /phpjs/functions/352
+- /functions/asin:352
+- /functions/352
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's asin

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ob_flush
+permalink: /functions/ob_flush
 alias:
-- /phpjs/functions/ob_flush:893
-- /phpjs/functions/893
+- /functions/ob_flush:893
+- /functions/893
 categories: [ outcontrol, functions ]
 ---
 A JavaScript equivalent of PHP's ob_flush

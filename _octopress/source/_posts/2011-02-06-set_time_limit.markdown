@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/set_time_limit
+permalink: /functions/set_time_limit
 alias:
-- /phpjs/functions/set_time_limit:786
-- /phpjs/functions/786
+- /functions/set_time_limit:786
+- /functions/786
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's set_time_limit

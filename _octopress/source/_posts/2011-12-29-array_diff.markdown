@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_diff
+permalink: /functions/array_diff
 alias:
-- /phpjs/functions/array_diff:309
-- /phpjs/functions/309
+- /functions/array_diff:309
+- /functions/309
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_diff

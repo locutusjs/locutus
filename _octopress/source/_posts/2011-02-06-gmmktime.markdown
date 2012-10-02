@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/gmmktime
+permalink: /functions/gmmktime
 alias:
-- /phpjs/functions/gmmktime:779
-- /phpjs/functions/779
+- /functions/gmmktime:779
+- /functions/779
 categories: [ datetime, functions ]
 ---
 A JavaScript equivalent of PHP's gmmktime

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/classkit_method_rename
+permalink: /functions/classkit_method_rename
 alias:
-- /phpjs/functions/classkit_method_rename:767
-- /phpjs/functions/767
+- /functions/classkit_method_rename:767
+- /functions/767
 categories: [ classkit, functions ]
 ---
 A JavaScript equivalent of PHP's classkit_method_rename

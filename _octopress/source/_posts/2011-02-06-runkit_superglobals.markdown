@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/runkit_superglobals
+permalink: /functions/runkit_superglobals
 alias:
-- /phpjs/functions/runkit_superglobals:829
-- /phpjs/functions/829
+- /functions/runkit_superglobals:829
+- /functions/829
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_superglobals

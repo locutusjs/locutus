@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/runkit_class_adopt
+permalink: /functions/runkit_class_adopt
 alias:
-- /phpjs/functions/runkit_class_adopt:820
-- /phpjs/functions/820
+- /functions/runkit_class_adopt:820
+- /functions/820
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_class_adopt

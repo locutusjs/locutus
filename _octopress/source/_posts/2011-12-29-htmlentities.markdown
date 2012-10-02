@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/htmlentities
+permalink: /functions/htmlentities
 alias:
-- /phpjs/functions/htmlentities:425
-- /phpjs/functions/425
+- /functions/htmlentities:425
+- /functions/425
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's htmlentities

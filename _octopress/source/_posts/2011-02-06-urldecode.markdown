@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/urldecode
+permalink: /functions/urldecode
 alias:
-- /phpjs/functions/urldecode:572
-- /phpjs/functions/572
+- /functions/urldecode:572
+- /functions/572
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's urldecode

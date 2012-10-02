@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/bcadd
+permalink: /functions/bcadd
 alias:
-- /phpjs/functions/bcadd:869
-- /phpjs/functions/869
+- /functions/bcadd:869
+- /functions/869
 categories: [ bc, functions ]
 ---
 A JavaScript equivalent of PHP's bcadd

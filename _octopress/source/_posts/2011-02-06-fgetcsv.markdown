@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/fgetcsv
+permalink: /functions/fgetcsv
 alias:
-- /phpjs/functions/fgetcsv:801
-- /phpjs/functions/801
+- /functions/fgetcsv:801
+- /functions/801
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's fgetcsv

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ucfirst
+permalink: /functions/ucfirst
 alias:
-- /phpjs/functions/ucfirst:568
-- /phpjs/functions/568
+- /functions/ucfirst:568
+- /functions/568
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's ucfirst

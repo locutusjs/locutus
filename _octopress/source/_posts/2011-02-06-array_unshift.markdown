@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_unshift
+permalink: /functions/array_unshift
 alias:
-- /phpjs/functions/array_unshift:347
-- /phpjs/functions/347
+- /functions/array_unshift:347
+- /functions/347
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_unshift

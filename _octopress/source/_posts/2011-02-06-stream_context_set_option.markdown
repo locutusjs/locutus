@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/stream_context_set_option
+permalink: /functions/stream_context_set_option
 alias:
-- /phpjs/functions/stream_context_set_option:849
-- /phpjs/functions/849
+- /functions/stream_context_set_option:849
+- /functions/849
 categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_context_set_option

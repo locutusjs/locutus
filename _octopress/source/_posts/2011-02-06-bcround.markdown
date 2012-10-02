@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/bcround
+permalink: /functions/bcround
 alias:
-- /phpjs/functions/bcround:873
-- /phpjs/functions/873
+- /functions/bcround:873
+- /functions/873
 categories: [ bc, functions ]
 ---
 A JavaScript equivalent of PHP's bcround

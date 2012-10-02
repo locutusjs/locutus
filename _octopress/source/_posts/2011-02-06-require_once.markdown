@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/require_once
+permalink: /functions/require_once
 alias:
-- /phpjs/functions/require_once:503
-- /phpjs/functions/503
+- /functions/require_once:503
+- /functions/503
 categories: [ language, functions ]
 ---
 A JavaScript equivalent of PHP's require_once

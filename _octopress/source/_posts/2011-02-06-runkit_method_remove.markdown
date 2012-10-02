@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/runkit_method_remove
+permalink: /functions/runkit_method_remove
 alias:
-- /phpjs/functions/runkit_method_remove:816
-- /phpjs/functions/816
+- /functions/runkit_method_remove:816
+- /functions/816
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_method_remove

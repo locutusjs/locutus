@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/runkit_function_rename
+permalink: /functions/runkit_function_rename
 alias:
-- /phpjs/functions/runkit_function_rename:826
-- /phpjs/functions/826
+- /functions/runkit_function_rename:826
+- /functions/826
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_function_rename

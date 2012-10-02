@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_reverse
+permalink: /functions/array_reverse
 alias:
-- /phpjs/functions/array_reverse:334
-- /phpjs/functions/334
+- /functions/array_reverse:334
+- /functions/334
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_reverse

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/version_compare
+permalink: /functions/version_compare
 alias:
-- /phpjs/functions/version_compare:852
-- /phpjs/functions/852
+- /functions/version_compare:852
+- /functions/852
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's version_compare

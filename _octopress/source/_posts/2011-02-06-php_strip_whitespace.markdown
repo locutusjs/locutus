@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/php_strip_whitespace
+permalink: /functions/php_strip_whitespace
 alias:
-- /phpjs/functions/php_strip_whitespace:487
-- /phpjs/functions/487
+- /functions/php_strip_whitespace:487
+- /functions/487
 categories: [ misc, functions ]
 ---
 A JavaScript equivalent of PHP's php_strip_whitespace

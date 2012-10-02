@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/setlocale
+permalink: /functions/setlocale
 alias:
-- /phpjs/functions/setlocale:589
-- /phpjs/functions/589
+- /functions/setlocale:589
+- /functions/589
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's setlocale

@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_replace
+permalink: /functions/array_replace
 alias:
-- /phpjs/functions/array_replace:859
-- /phpjs/functions/859
+- /functions/array_replace:859
+- /functions/859
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_replace

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_resource_type
+permalink: /functions/get_resource_type
 alias:
-- /phpjs/functions/get_resource_type:777
-- /phpjs/functions/777
+- /functions/get_resource_type:777
+- /functions/777
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's get_resource_type

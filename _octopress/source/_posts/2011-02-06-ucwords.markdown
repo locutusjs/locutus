@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ucwords
+permalink: /functions/ucwords
 alias:
-- /phpjs/functions/ucwords:569
-- /phpjs/functions/569
+- /functions/ucwords:569
+- /functions/569
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's ucwords

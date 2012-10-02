@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/fread
+permalink: /functions/fread
 alias:
-- /phpjs/functions/fread:775
-- /phpjs/functions/775
+- /functions/fread:775
+- /functions/775
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's fread

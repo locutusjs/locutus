@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/runkit_method_redefine
+permalink: /functions/runkit_method_redefine
 alias:
-- /phpjs/functions/runkit_method_redefine:815
-- /phpjs/functions/815
+- /functions/runkit_method_redefine:815
+- /functions/815
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_method_redefine

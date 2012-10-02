@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/is_int
+permalink: /functions/is_int
 alias:
-- /phpjs/functions/is_int:444
-- /phpjs/functions/444
+- /functions/is_int:444
+- /functions/444
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's is_int

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/ctype_print
+permalink: /functions/ctype_print
 alias:
-- /phpjs/functions/ctype_print:757
-- /phpjs/functions/757
+- /functions/ctype_print:757
+- /functions/757
 categories: [ ctype, functions ]
 ---
 A JavaScript equivalent of PHP's ctype_print

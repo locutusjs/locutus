@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/urlencode
+permalink: /functions/urlencode
 alias:
-- /phpjs/functions/urlencode:573
-- /phpjs/functions/573
+- /functions/urlencode:573
+- /functions/573
 categories: [ url, functions ]
 ---
 A JavaScript equivalent of PHP's urlencode

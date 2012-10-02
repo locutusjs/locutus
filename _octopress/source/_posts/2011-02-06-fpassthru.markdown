@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/fpassthru
+permalink: /functions/fpassthru
 alias:
-- /phpjs/functions/fpassthru:804
-- /phpjs/functions/804
+- /functions/fpassthru:804
+- /functions/804
 categories: [ filesystem, functions ]
 ---
 A JavaScript equivalent of PHP's fpassthru

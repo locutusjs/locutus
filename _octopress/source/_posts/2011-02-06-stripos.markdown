@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/stripos
+permalink: /functions/stripos
 alias:
-- /phpjs/functions/stripos:536
-- /phpjs/functions/536
+- /functions/stripos:536
+- /functions/536
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's stripos

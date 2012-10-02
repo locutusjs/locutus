@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/str_ireplace
+permalink: /functions/str_ireplace
 alias:
-- /phpjs/functions/str_ireplace:524
-- /phpjs/functions/524
+- /functions/str_ireplace:524
+- /functions/524
 categories: [ strings, functions ]
 ---
 A JavaScript equivalent of PHP's str_ireplace

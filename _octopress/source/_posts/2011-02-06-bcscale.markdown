@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/bcscale
+permalink: /functions/bcscale
 alias:
-- /phpjs/functions/bcscale:874
-- /phpjs/functions/874
+- /functions/bcscale:874
+- /functions/874
 categories: [ bc, functions ]
 ---
 A JavaScript equivalent of PHP's bcscale

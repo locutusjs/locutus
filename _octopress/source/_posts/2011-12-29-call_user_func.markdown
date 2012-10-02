@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/call_user_func
+permalink: /functions/call_user_func
 alias:
-- /phpjs/functions/call_user_func:363
-- /phpjs/functions/363
+- /functions/call_user_func:363
+- /functions/363
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's call_user_func

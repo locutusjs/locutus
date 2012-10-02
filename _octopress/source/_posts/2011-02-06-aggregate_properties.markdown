@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/aggregate_properties
+permalink: /functions/aggregate_properties
 alias:
-- /phpjs/functions/aggregate_properties:796
-- /phpjs/functions/796
+- /functions/aggregate_properties:796
+- /functions/796
 categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregate_properties

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/runkit_function_copy
+permalink: /functions/runkit_function_copy
 alias:
-- /phpjs/functions/runkit_function_copy:823
-- /phpjs/functions/823
+- /functions/runkit_function_copy:823
+- /functions/823
 categories: [ runkit, functions ]
 ---
 A JavaScript equivalent of PHP's runkit_function_copy

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/stream_is_local
+permalink: /functions/stream_is_local
 alias:
-- /phpjs/functions/stream_is_local:851
-- /phpjs/functions/851
+- /functions/stream_is_local:851
+- /functions/851
 categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_is_local

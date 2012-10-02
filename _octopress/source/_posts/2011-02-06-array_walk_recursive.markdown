@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/array_walk_recursive
+permalink: /functions/array_walk_recursive
 alias:
-- /phpjs/functions/array_walk_recursive:350
-- /phpjs/functions/350
+- /functions/array_walk_recursive:350
+- /functions/350
 categories: [ array, functions ]
 ---
 A JavaScript equivalent of PHP's array_walk_recursive

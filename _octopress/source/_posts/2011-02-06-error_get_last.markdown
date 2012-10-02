@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/error_get_last
+permalink: /functions/error_get_last
 alias:
-- /phpjs/functions/error_get_last:840
-- /phpjs/functions/840
+- /functions/error_get_last:840
+- /functions/840
 categories: [ errorfunc, functions ]
 ---
 A JavaScript equivalent of PHP's error_get_last

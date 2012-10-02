@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/restore_include_path
+permalink: /functions/restore_include_path
 alias:
-- /phpjs/functions/restore_include_path:854
-- /phpjs/functions/854
+- /functions/restore_include_path:854
+- /functions/854
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's restore_include_path

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/class_alias
+permalink: /functions/class_alias
 alias:
-- /phpjs/functions/class_alias:858
-- /phpjs/functions/858
+- /functions/class_alias:858
+- /functions/858
 categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's class_alias

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/phpversion
+permalink: /functions/phpversion
 alias:
-- /phpjs/functions/phpversion:603
-- /phpjs/functions/603
+- /functions/phpversion:603
+- /functions/603
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's phpversion

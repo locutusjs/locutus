@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/stream_get_contents
+permalink: /functions/stream_get_contents
 alias:
-- /phpjs/functions/stream_get_contents:856
-- /phpjs/functions/856
+- /functions/stream_get_contents:856
+- /functions/856
 categories: [ stream, functions ]
 ---
 A JavaScript equivalent of PHP's stream_get_contents

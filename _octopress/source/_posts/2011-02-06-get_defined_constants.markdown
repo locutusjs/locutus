@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_defined_constants
+permalink: /functions/get_defined_constants
 alias:
-- /phpjs/functions/get_defined_constants:839
-- /phpjs/functions/839
+- /functions/get_defined_constants:839
+- /functions/839
 categories: [ info, functions ]
 ---
 A JavaScript equivalent of PHP's get_defined_constants

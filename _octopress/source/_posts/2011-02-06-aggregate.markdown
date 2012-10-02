@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/aggregate
+permalink: /functions/aggregate
 alias:
-- /phpjs/functions/aggregate:791
-- /phpjs/functions/791
+- /functions/aggregate:791
+- /functions/791
 categories: [ objaggregation, functions ]
 ---
 A JavaScript equivalent of PHP's aggregate

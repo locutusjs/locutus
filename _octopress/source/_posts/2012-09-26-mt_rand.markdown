@@ -5,10 +5,10 @@ date: 2012-09-26 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/mt_rand
+permalink: /functions/mt_rand
 alias:
-- /phpjs/functions/mt_rand:476
-- /phpjs/functions/476
+- /functions/mt_rand:476
+- /functions/476
 categories: [ math, functions ]
 ---
 A JavaScript equivalent of PHP's mt_rand

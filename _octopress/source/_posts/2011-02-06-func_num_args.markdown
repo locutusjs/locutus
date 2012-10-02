@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/func_num_args
+permalink: /functions/func_num_args
 alias:
-- /phpjs/functions/func_num_args:407
-- /phpjs/functions/407
+- /functions/func_num_args:407
+- /functions/407
 categories: [ funchand, functions ]
 ---
 A JavaScript equivalent of PHP's func_num_args

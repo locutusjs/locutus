@@ -5,10 +5,10 @@ date: 2011-12-29 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/intval
+permalink: /functions/intval
 alias:
-- /phpjs/functions/intval:435
-- /phpjs/functions/435
+- /functions/intval:435
+- /functions/435
 categories: [ var, functions ]
 ---
 A JavaScript equivalent of PHP's intval

@@ -5,10 +5,10 @@ date: 2011-02-06 12:00:00
 comments: true
 sharing: true
 footer: true
-permalink: /phpjs/functions/get_class_vars
+permalink: /functions/get_class_vars
 alias:
-- /phpjs/functions/get_class_vars:411
-- /phpjs/functions/411
+- /functions/get_class_vars:411
+- /functions/411
 categories: [ classobj, functions ]
 ---
 A JavaScript equivalent of PHP's get_class_vars
