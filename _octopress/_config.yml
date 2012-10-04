@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://kvz.github.com/phpjs
+url: http://git@github.com:kvz.github.com/phpjs
 subtitle: A resource of php functions in JavsScript
 author: Kevin van Zonneveld
 simple_search: http://google.com/search
