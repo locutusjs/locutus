@@ -1,9 +1,7 @@
 site:
 	git pull && \
 	cd _octopress && \
-	cd _deploy && \
-	git remote add origin git@github.com:kvz/phpjs.git ; \
-	cd .. ; \
+	rake setup_github_pages git@github.com:kvz/phpjs.git && \
 	rake integrate && \
 	rake build && \
 	rake generate && \
