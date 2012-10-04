@@ -2,6 +2,7 @@ site:
 	git pull && \
 	cd _octopress && \
 	rake setup_github_pages\[git@github.com:kvz/phpjs.git\] && \
+	bundle install && \
 	rake integrate && \
 	rake build && \
 	rake generate && \
