@@ -14,16 +14,28 @@ A JavaScript equivalent of PHP's exp
 
 {% codeblock math/exp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/exp.js raw on github %}
 function exp (arg) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Onno Marsman
-    // *     example 1: exp(0.3);
-    // *     returns 1: 1.3498588075760032
-    return Math.exp(arg);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Onno Marsman
+  // *     example 1: exp(0.3);
+  // *     returns 1: 1.3498588075760032
+  return Math.exp(arg);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/exp.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/exp.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+exp(0.3);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+1.3498588075760032
+{% endcodeblock %}
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

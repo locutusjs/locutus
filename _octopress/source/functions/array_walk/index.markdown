@@ -14,107 +14,141 @@ A JavaScript equivalent of PHP's array_walk
 
 {% codeblock array/array_walk.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_walk.js raw on github %}
 function array_walk (array, funcname, userdata) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
-    // +   bugfixed by: David
-    // +   improved by: Brett Zamir (http://brett-zamir.me)
-    // %   note 1: Using ini_set('phpjs.no-eval', true) will only work with 
-    // %   note 1:  user-defined string functions, not built-in functions like void()
-    // *     example 1: array_walk ({'a':'b'}, 'void', 'userdata');
-    // *     returns 1: true
-    // *     example 2: array_walk ('a', 'void', 'userdata');
-    // *     returns 2: false
-    // *     example 3: array_walk ([3, 4], function () {}, 'userdata');
-    // *     returns 3: true
-    // *     example 4: array_walk ({40: 'My age', 50: 'My IQ'}, [window, 'prompt']);
-    // *     returns 4: true
-    // *     example 5: ini_set('phpjs.return_phpjs_arrays', 'on');
-    // *     example 5: var arr = array({40: 'My age'}, {50: 'My IQ'});
-    // *     example 5: array_walk(arr, [window, 'prompt']);
-    // *     returns 5: [object Object]    
-    var key, value, ini;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
+  // +   bugfixed by: David
+  // +   improved by: Brett Zamir (http://brett-zamir.me)
+  // %   note 1: Using ini_set('phpjs.no-eval', true) will only work with 
+  // %   note 1:  user-defined string functions, not built-in functions like void()
+  // *     example 1: array_walk ({'a':'b'}, 'void', 'userdata');
+  // *     returns 1: true
+  // *     example 2: array_walk ('a', 'void', 'userdata');
+  // *     returns 2: false
+  // *     example 3: array_walk ([3, 4], function () {}, 'userdata');
+  // *     returns 3: true
+  // *     example 4: array_walk ({40: 'My age', 50: 'My IQ'}, [window, 'prompt']);
+  // *     returns 4: true
+  // *     example 5: ini_set('phpjs.return_phpjs_arrays', 'on');
+  // *     example 5: var arr = array({40: 'My age'}, {50: 'My IQ'});
+  // *     example 5: array_walk(arr, [window, 'prompt']);
+  // *     returns 5: [object Object]    
+  var key, value, ini;
 
-    if (!array || typeof array !== 'object') {
-        return false;
+  if (!array || typeof array !== 'object') {
+    return false;
+  }
+  if (typeof array === 'object' && array.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+    if (arguments.length > 2) {
+      return array.walk(funcname, userdata);
     }
-    if (typeof array === 'object' && array.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+    else {
+      return array.walk(funcname);
+    }
+  }
+
+  try {
+    if (typeof funcname === 'function') {
+      for (key in array) {
         if (arguments.length > 2) {
-            return array.walk(funcname, userdata);
+          funcname(array[key], key, userdata);
         }
         else {
-            return array.walk(funcname);
+          funcname(array[key], key);
         }
+      }
     }
-
-    try {
-        if (typeof funcname === 'function') {
-            for (key in array) {
-                if (arguments.length > 2) {
-                    funcname(array[key], key, userdata);
-                }
-                else {
-                    funcname(array[key], key);
-                }
-            }
-        }
-        else if (typeof funcname === 'string') {
-            this.php_js = this.php_js || {};
-            this.php_js.ini = this.php_js.ini || {};
-            ini = this.php_js.ini['phpjs.no-eval'];
-            if (ini && (
-                parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !== 'off')
-            )) {
-                if (arguments.length > 2) {
-                    for (key in array) {
-                        this.window[funcname](array[key], key, userdata);
-                    }
-                }
-                else {
-                    for (key in array) {
-                        this.window[funcname](array[key], key);
-                    }
-                }
-            }
-            else {
-                if (arguments.length > 2) {
-                    for (key in array) {
-                        eval(funcname + '(array[key], key, userdata)');
-                    }
-                }
-                else {
-                    for (key in array) {
-                        eval(funcname + '(array[key], key)');
-                    }
-                }
-            }
-        }
-        else if (funcname && typeof funcname === 'object' && funcname.length === 2) {
-            var obj = funcname[0], func = funcname[1];
-            if (arguments.length > 2) {
-                for (key in array) {
-                    obj[func](array[key], key, userdata);
-                }
-            }
-            else {
-                for (key in array) {
-                    obj[func](array[key], key);
-                }
-            }            
+    else if (typeof funcname === 'string') {
+      this.php_js = this.php_js || {};
+      this.php_js.ini = this.php_js.ini || {};
+      ini = this.php_js.ini['phpjs.no-eval'];
+      if (ini && (
+        parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !== 'off')
+      )) {
+        if (arguments.length > 2) {
+          for (key in array) {
+            this.window[funcname](array[key], key, userdata);
+          }
         }
         else {
-            return false;
+          for (key in array) {
+            this.window[funcname](array[key], key);
+          }
         }
+      }
+      else {
+        if (arguments.length > 2) {
+          for (key in array) {
+            eval(funcname + '(array[key], key, userdata)');
+          }
+        }
+        else {
+          for (key in array) {
+            eval(funcname + '(array[key], key)');
+          }
+        }
+      }
     }
-    catch (e) {
-        return false;
+    else if (funcname && typeof funcname === 'object' && funcname.length === 2) {
+      var obj = funcname[0], func = funcname[1];
+      if (arguments.length > 2) {
+        for (key in array) {
+          obj[func](array[key], key, userdata);
+        }
+      }
+      else {
+        for (key in array) {
+          obj[func](array[key], key);
+        }
+      }            
     }
+    else {
+      return false;
+    }
+  }
+  catch (e) {
+    return false;
+  }
 
-    return true;
+  return true;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_walk.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_walk.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+array_walk ({'a':'b'}, 'void', 'userdata');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+array_walk ('a', 'void', 'userdata');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+false
+{% endcodeblock %}
+
+### Example 3
+This code
+{% codeblock lang:js example %}
+array_walk ([3, 4], function () {}, 'userdata');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}

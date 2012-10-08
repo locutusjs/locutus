@@ -14,35 +14,36 @@ A JavaScript equivalent of PHP's str_shuffle
 
 {% codeblock strings/str_shuffle.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_shuffle.js raw on github %}
 function str_shuffle (str) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: shuffled = str_shuffle("abcdef");
-    // *     results 1: shuffled.length == 6
-    if (arguments.length === 0) {
-        throw 'Wrong parameter count for str_shuffle()';
-    }
-    
-    if (str == null) {
-        return '';
-    }
-    
-    str += '';
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: shuffled = str_shuffle("abcdef");
+  // *     results 1: shuffled.length == 6
+  if (arguments.length === 0) {
+    throw 'Wrong parameter count for str_shuffle()';
+  }
 
-    var newStr = '', rand, i = str.length;
+  if (str == null) {
+    return '';
+  }
 
-    while (i) {
-        rand = Math.floor(Math.random() * i);
-        newStr += str.charAt(rand);
-        str = str.substring(0, rand) + str.substr(rand + 1);
-        i--;
-    }
+  str += '';
 
-    return newStr;
+  var newStr = '', rand, i = str.length;
+
+  while (i) {
+    rand = Math.floor(Math.random() * i);
+    newStr += str.charAt(rand);
+    str = str.substring(0, rand) + str.substr(rand + 1);
+    i--;
+  }
+
+  return newStr;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/str_shuffle.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/str_shuffle.js)
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

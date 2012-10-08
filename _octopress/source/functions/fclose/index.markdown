@@ -14,27 +14,40 @@ A JavaScript equivalent of PHP's fclose
 
 {% codeblock filesystem/fclose.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/fclose.js raw on github %}
 function fclose (handle) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: var handle = fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
-    // *     example 1: fclose(handle);
-    // *     returns 1: true
-    if (!handle || handle.opener !== 'fopen') {
-        return false;
-    }
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: var handle = fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
+  // *     example 1: fclose(handle);
+  // *     returns 1: true
+  if (!handle || handle.opener !== 'fopen') {
+    return false;
+  }
 
-    try {
-        delete this.php_js.resourceDataPointer[handle.id];
-        delete this.php_js.resourceData[handle.id]; // Free up memory
-    } catch (e) {
-        return false;
-    }
-    return true;
+  try {
+    delete this.php_js.resourceDataPointer[handle.id];
+    delete this.php_js.resourceData[handle.id]; // Free up memory
+  } catch (e) {
+    return false;
+  }
+  return true;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/filesystem/fclose.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/filesystem/fclose.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+var handle = fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
+fclose(handle);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
 
 ### Other PHP functions in the filesystem extension
 {% render_partial _includes/custom/filesystem.html %}

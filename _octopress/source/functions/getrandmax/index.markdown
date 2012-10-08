@@ -14,16 +14,28 @@ A JavaScript equivalent of PHP's getrandmax
 
 {% codeblock math/getrandmax.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/getrandmax.js raw on github %}
 function getrandmax () {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Onno Marsman
-    // *     example 1: getrandmax();
-    // *     returns 1: 2147483647
-    return 2147483647;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Onno Marsman
+  // *     example 1: getrandmax();
+  // *     returns 1: 2147483647
+  return 2147483647;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/getrandmax.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/getrandmax.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+getrandmax();
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+2147483647
+{% endcodeblock %}
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

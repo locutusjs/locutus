@@ -14,17 +14,29 @@ A JavaScript equivalent of PHP's deg2rad
 
 {% codeblock math/deg2rad.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/deg2rad.js raw on github %}
 function deg2rad (angle) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Enrique Gonzalez
-    // +     improved by: Thomas Grainger (http://graingert.co.uk)
-    // *     example 1: deg2rad(45);
-    // *     returns 1: 0.7853981633974483
-    return angle * .017453292519943295; // (angle / 180) * Math.PI;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Enrique Gonzalez
+  // +     improved by: Thomas Grainger (http://graingert.co.uk)
+  // *     example 1: deg2rad(45);
+  // *     returns 1: 0.7853981633974483
+  return angle * .017453292519943295; // (angle / 180) * Math.PI;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/deg2rad.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/deg2rad.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+deg2rad(45);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+0.7853981633974483
+{% endcodeblock %}
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

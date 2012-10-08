@@ -14,28 +14,40 @@ A JavaScript equivalent of PHP's array_values
 
 {% codeblock array/array_values.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_values.js raw on github %}
 function array_values (input) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +      improved by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );
-    // *     returns 1: {0: 'Kevin', 1: 'van Zonneveld'}
-    var tmp_arr = [],
-        key = '';
+  // http://kevin.vanzonneveld.net
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +      improved by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );
+  // *     returns 1: {0: 'Kevin', 1: 'van Zonneveld'}
+  var tmp_arr = [],
+    key = '';
 
-    if (input && typeof input === 'object' && input.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
-        return input.values();
-    }
+  if (input && typeof input === 'object' && input.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+    return input.values();
+  }
 
-    for (key in input) {
-        tmp_arr[tmp_arr.length] = input[key];
-    }
+  for (key in input) {
+    tmp_arr[tmp_arr.length] = input[key];
+  }
 
-    return tmp_arr;
+  return tmp_arr;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_values.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_values.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{0: 'Kevin', 1: 'van Zonneveld'}
+{% endcodeblock %}
+
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}

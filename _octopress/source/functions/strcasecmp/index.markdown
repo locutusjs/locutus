@@ -14,26 +14,38 @@ A JavaScript equivalent of PHP's strcasecmp
 
 {% codeblock strings/strcasecmp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strcasecmp.js raw on github %}
 function strcasecmp (f_string1, f_string2) {
-    // http://kevin.vanzonneveld.net
-    // +     original by: Martijn Wieringa
-    // +     bugfixed by: Onno Marsman
-    // *         example 1: strcasecmp('Hello', 'hello');
-    // *         returns 1: 0
-    var string1 = (f_string1 + '').toLowerCase();
-    var string2 = (f_string2 + '').toLowerCase();
+  // http://kevin.vanzonneveld.net
+  // +     original by: Martijn Wieringa
+  // +     bugfixed by: Onno Marsman
+  // *         example 1: strcasecmp('Hello', 'hello');
+  // *         returns 1: 0
+  var string1 = (f_string1 + '').toLowerCase();
+  var string2 = (f_string2 + '').toLowerCase();
 
-    if (string1 > string2) {
-        return 1;
-    } else if (string1 == string2) {
-        return 0;
-    }
+  if (string1 > string2) {
+    return 1;
+  } else if (string1 == string2) {
+    return 0;
+  }
 
-    return -1;
+  return -1;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strcasecmp.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strcasecmp.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+strcasecmp('Hello', 'hello');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+0
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

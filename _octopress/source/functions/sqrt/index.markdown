@@ -14,16 +14,28 @@ A JavaScript equivalent of PHP's sqrt
 
 {% codeblock math/sqrt.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/sqrt.js raw on github %}
 function sqrt (arg) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Onno Marsman
-    // *     example 1: sqrt(8723321.4);
-    // *     returns 1: 2953.5269424875746
-    return Math.sqrt(arg);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Onno Marsman
+  // *     example 1: sqrt(8723321.4);
+  // *     returns 1: 2953.5269424875746
+  return Math.sqrt(arg);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/sqrt.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/sqrt.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+sqrt(8723321.4);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+2953.5269424875746
+{% endcodeblock %}
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

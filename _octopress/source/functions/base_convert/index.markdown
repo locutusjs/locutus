@@ -14,17 +14,29 @@ A JavaScript equivalent of PHP's base_convert
 
 {% codeblock math/base_convert.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/base_convert.js raw on github %}
 function base_convert (number, frombase, tobase) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Philippe Baumann
-    // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
-    // *     example 1: base_convert('A37334', 16, 2);
-    // *     returns 1: '101000110111001100110100'
-    return parseInt(number + '', frombase | 0).toString(tobase | 0);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Philippe Baumann
+  // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
+  // *     example 1: base_convert('A37334', 16, 2);
+  // *     returns 1: '101000110111001100110100'
+  return parseInt(number + '', frombase | 0).toString(tobase | 0);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/base_convert.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/base_convert.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+base_convert('A37334', 16, 2);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'101000110111001100110100'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

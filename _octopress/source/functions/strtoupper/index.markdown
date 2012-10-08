@@ -14,17 +14,29 @@ A JavaScript equivalent of PHP's strtoupper
 
 {% codeblock strings/strtoupper.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strtoupper.js raw on github %}
 function strtoupper (str) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Onno Marsman
-    // *     example 1: strtoupper('Kevin van Zonneveld');
-    // *     returns 1: 'KEVIN VAN ZONNEVELD'
-    return (str + '').toUpperCase();
+  // http://kevin.vanzonneveld.net
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   improved by: Onno Marsman
+  // *     example 1: strtoupper('Kevin van Zonneveld');
+  // *     returns 1: 'KEVIN VAN ZONNEVELD'
+  return (str + '').toUpperCase();
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strtoupper.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strtoupper.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+strtoupper('Kevin van Zonneveld');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'KEVIN VAN ZONNEVELD'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

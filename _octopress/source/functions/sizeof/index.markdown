@@ -14,19 +14,42 @@ A JavaScript equivalent of PHP's sizeof
 
 {% codeblock array/sizeof.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/sizeof.js raw on github %}
 function sizeof (mixed_var, mode) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Philip Peterson
-    // -    depends on: count
-    // *     example 1: sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE');
-    // *     returns 1: 6
-    // *     example 2: sizeof({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
-    // *     returns 2: 6
-    return this.count(mixed_var, mode);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Philip Peterson
+  // -    depends on: count
+  // *     example 1: sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE');
+  // *     returns 1: 6
+  // *     example 2: sizeof({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
+  // *     returns 2: 6
+  return this.count(mixed_var, mode);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/sizeof.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/sizeof.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+6
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+sizeof({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+6
+{% endcodeblock %}
+
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}

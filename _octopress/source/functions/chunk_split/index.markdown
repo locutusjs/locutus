@@ -14,29 +14,52 @@ A JavaScript equivalent of PHP's chunk_split
 
 {% codeblock strings/chunk_split.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/chunk_split.js raw on github %}
 function chunk_split (body, chunklen, end) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Paulo Freitas
-    // +      input by: Brett Zamir (http://brett-zamir.me)
-    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Theriault
-    // *     example 1: chunk_split('Hello world!', 1, '*');
-    // *     returns 1: 'H*e*l*l*o* *w*o*r*l*d*!*'
-    // *     example 2: chunk_split('Hello world!', 10, '*');
-    // *     returns 2: 'Hello worl*d!*'
-    chunklen = parseInt(chunklen, 10) || 76;
-    end = end || '\r\n';
+  // http://kevin.vanzonneveld.net
+  // +   original by: Paulo Freitas
+  // +      input by: Brett Zamir (http://brett-zamir.me)
+  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   improved by: Theriault
+  // *     example 1: chunk_split('Hello world!', 1, '*');
+  // *     returns 1: 'H*e*l*l*o* *w*o*r*l*d*!*'
+  // *     example 2: chunk_split('Hello world!', 10, '*');
+  // *     returns 2: 'Hello worl*d!*'
+  chunklen = parseInt(chunklen, 10) || 76;
+  end = end || '\r\n';
 
-    if (chunklen < 1) {
-        return false;
-    }
+  if (chunklen < 1) {
+    return false;
+  }
 
-    return body.match(new RegExp(".{0," + chunklen + "}", "g")).join(end);
+  return body.match(new RegExp(".{0," + chunklen + "}", "g")).join(end);
 
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/chunk_split.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/chunk_split.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+chunk_split('Hello world!', 1, '*');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'H*e*l*l*o* *w*o*r*l*d*!*'
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+chunk_split('Hello world!', 10, '*');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'Hello worl*d!*'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

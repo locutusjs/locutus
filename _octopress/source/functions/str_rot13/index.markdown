@@ -14,25 +14,59 @@ A JavaScript equivalent of PHP's str_rot13
 
 {% codeblock strings/str_rot13.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_rot13.js raw on github %}
 function str_rot13 (str) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-    // +   improved by: Ates Goral (http://magnetiq.com)
-    // +   bugfixed by: Onno Marsman
-    // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
-    // *     example 1: str_rot13('Kevin van Zonneveld');
-    // *     returns 1: 'Xriva ina Mbaariryq'
-    // *     example 2: str_rot13('Xriva ina Mbaariryq');
-    // *     returns 2: 'Kevin van Zonneveld'
-    // *     example 3: str_rot13(33);
-    // *     returns 3: '33'
-    return (str + '').replace(/[a-z]/gi, function (s) {
-        return String.fromCharCode(s.charCodeAt(0) + (s.toLowerCase() < 'n' ? 13 : -13));
-    });
+  // http://kevin.vanzonneveld.net
+  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // +   improved by: Ates Goral (http://magnetiq.com)
+  // +   bugfixed by: Onno Marsman
+  // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
+  // *     example 1: str_rot13('Kevin van Zonneveld');
+  // *     returns 1: 'Xriva ina Mbaariryq'
+  // *     example 2: str_rot13('Xriva ina Mbaariryq');
+  // *     returns 2: 'Kevin van Zonneveld'
+  // *     example 3: str_rot13(33);
+  // *     returns 3: '33'
+  return (str + '').replace(/[a-z]/gi, function (s) {
+    return String.fromCharCode(s.charCodeAt(0) + (s.toLowerCase() < 'n' ? 13 : -13));
+  });
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/str_rot13.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/str_rot13.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+str_rot13('Kevin van Zonneveld');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'Xriva ina Mbaariryq'
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+str_rot13('Xriva ina Mbaariryq');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'Kevin van Zonneveld'
+{% endcodeblock %}
+
+### Example 3
+This code
+{% codeblock lang:js example %}
+str_rot13(33);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'33'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

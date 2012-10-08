@@ -14,25 +14,38 @@ A JavaScript equivalent of PHP's array_fill_keys
 
 {% codeblock array/array_fill_keys.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_fill_keys.js raw on github %}
 function array_fill_keys (keys, value) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: keys = {'a': 'foo', 2: 5, 3: 10, 4: 'bar'}
-    // *     example 1: array_fill_keys(keys, 'banana')
-    // *     returns 1: {"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
-    var retObj = {},
-        key = '';
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: keys = {'a': 'foo', 2: 5, 3: 10, 4: 'bar'}
+  // *     example 1: array_fill_keys(keys, 'banana')
+  // *     returns 1: {"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
+  var retObj = {},
+    key = '';
 
-    for (key in keys) {
-        retObj[keys[key]] = value;
-    }
+  for (key in keys) {
+    retObj[keys[key]] = value;
+  }
 
-    return retObj;
+  return retObj;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_fill_keys.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_fill_keys.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+keys = {'a': 'foo', 2: 5, 3: 10, 4: 'bar'}
+array_fill_keys(keys, 'banana')
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
+{% endcodeblock %}
+
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}

@@ -14,24 +14,36 @@ A JavaScript equivalent of PHP's stripos
 
 {% codeblock strings/stripos.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/stripos.js raw on github %}
 function stripos (f_haystack, f_needle, f_offset) {
-    // http://kevin.vanzonneveld.net
-    // +     original by: Martijn Wieringa
-    // +      revised by: Onno Marsman
-    // *         example 1: stripos('ABC', 'a');
-    // *         returns 1: 0
-    var haystack = (f_haystack + '').toLowerCase();
-    var needle = (f_needle + '').toLowerCase();
-    var index = 0;
+  // http://kevin.vanzonneveld.net
+  // +     original by: Martijn Wieringa
+  // +      revised by: Onno Marsman
+  // *         example 1: stripos('ABC', 'a');
+  // *         returns 1: 0
+  var haystack = (f_haystack + '').toLowerCase();
+  var needle = (f_needle + '').toLowerCase();
+  var index = 0;
 
-    if ((index = haystack.indexOf(needle, f_offset)) !== -1) {
-        return index;
-    }
-    return false;
+  if ((index = haystack.indexOf(needle, f_offset)) !== -1) {
+    return index;
+  }
+  return false;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/stripos.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/stripos.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+stripos('ABC', 'a');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+0
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

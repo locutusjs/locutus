@@ -14,14 +14,15 @@ A JavaScript equivalent of PHP's lcg_value
 
 {% codeblock math/lcg_value.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/lcg_value.js raw on github %}
 function lcg_value () {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Onno Marsman
-    return Math.random();
+  // http://kevin.vanzonneveld.net
+  // +   original by: Onno Marsman
+  return Math.random();
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/lcg_value.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/lcg_value.js)
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

@@ -7,7 +7,6 @@ sharing: false
 footer: true
 alias:
 - /pages/contact
-- /authors
 ---
 
 php.js is a resource that offers community built javascript alternatives for php functions.

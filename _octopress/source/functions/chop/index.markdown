@@ -14,17 +14,29 @@ A JavaScript equivalent of PHP's chop
 
 {% codeblock strings/chop.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/chop.js raw on github %}
 function chop (str, charlist) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Paulo Freitas
-    // -    depends on: rtrim
-    // *     example 1: rtrim('    Kevin van Zonneveld    ');
-    // *     returns 1: '    Kevin van Zonneveld'
-    return this.rtrim(str, charlist);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Paulo Freitas
+  // -    depends on: rtrim
+  // *     example 1: rtrim('    Kevin van Zonneveld    ');
+  // *     returns 1: '    Kevin van Zonneveld'
+  return this.rtrim(str, charlist);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/chop.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/chop.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+rtrim('    Kevin van Zonneveld    ');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'    Kevin van Zonneveld'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

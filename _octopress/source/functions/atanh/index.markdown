@@ -14,16 +14,28 @@ A JavaScript equivalent of PHP's atanh
 
 {% codeblock math/atanh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/atanh.js raw on github %}
 function atanh (arg) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Onno Marsman
-    // *     example 1: atanh(0.3);
-    // *     returns 1: 0.3095196042031118
-    return 0.5 * Math.log((1 + arg) / (1 - arg));
+  // http://kevin.vanzonneveld.net
+  // +   original by: Onno Marsman
+  // *     example 1: atanh(0.3);
+  // *     returns 1: 0.3095196042031118
+  return 0.5 * Math.log((1 + arg) / (1 - arg));
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/atanh.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/atanh.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+atanh(0.3);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+0.3095196042031118
+{% endcodeblock %}
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

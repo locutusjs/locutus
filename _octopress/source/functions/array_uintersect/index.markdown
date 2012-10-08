@@ -14,47 +14,61 @@ A JavaScript equivalent of PHP's array_uintersect
 
 {% codeblock array/array_uintersect.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_uintersect.js raw on github %}
 function array_uintersect (arr1) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // +   bugfixed by: Demosthenes Koptsis
-    // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
-    // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
-    // *     example 1: array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 == string2) return 0; return -1;});
-    // *     returns 1: {a: 'green', b: 'brown', 0: 'red'}
-    var retArr = {},
-        arglm1 = arguments.length - 1,
-        arglm2 = arglm1 - 1,
-        cb = arguments[arglm1],
-        k1 = '',
-        i = 1,
-        arr = {},
-        k = '';
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   bugfixed by: Demosthenes Koptsis
+  // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+  // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
+  // *     example 1: array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 == string2) return 0; return -1;});
+  // *     returns 1: {a: 'green', b: 'brown', 0: 'red'}
+  var retArr = {},
+    arglm1 = arguments.length - 1,
+    arglm2 = arglm1 - 1,
+    cb = arguments[arglm1],
+    k1 = '',
+    i = 1,
+    arr = {},
+    k = '';
 
-    cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
+  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
 
-    arr1keys: for (k1 in arr1) {
-        arrs: for (i = 1; i < arglm1; i++) {
-            arr = arguments[i];
-            for (k in arr) {
-                if (cb(arr[k], arr1[k1]) === 0) {
-                    if (i === arglm2) {
-                        retArr[k1] = arr1[k1];
-                    }
-                    // If the innermost loop always leads at least once to an equal value, continue the loop until done
-                    continue arrs;
-                }
-            }
-            // If it reaches here, it wasn't found in at least one array, so try next value
-            continue arr1keys;
+  arr1keys: for (k1 in arr1) {
+    arrs: for (i = 1; i < arglm1; i++) {
+      arr = arguments[i];
+      for (k in arr) {
+        if (cb(arr[k], arr1[k1]) === 0) {
+          if (i === arglm2) {
+            retArr[k1] = arr1[k1];
+          }
+          // If the innermost loop always leads at least once to an equal value, continue the loop until done
+          continue arrs;
         }
+      }
+      // If it reaches here, it wasn't found in at least one array, so try next value
+      continue arr1keys;
     }
+  }
 
-    return retArr;
+  return retArr;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_uintersect.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_uintersect.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+$array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+$array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
+array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 == string2) return 0; return -1;});
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{a: 'green', b: 'brown', 0: 'red'}
+{% endcodeblock %}
+
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}

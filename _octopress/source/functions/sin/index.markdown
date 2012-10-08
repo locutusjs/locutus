@@ -14,16 +14,28 @@ A JavaScript equivalent of PHP's sin
 
 {% codeblock math/sin.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/sin.js raw on github %}
 function sin (arg) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Onno Marsman
-    // *     example 1: sin(8723321.4);
-    // *     returns 1: -0.9834330348825909
-    return Math.sin(arg);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Onno Marsman
+  // *     example 1: sin(8723321.4);
+  // *     returns 1: -0.9834330348825909
+  return Math.sin(arg);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/sin.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/sin.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+sin(8723321.4);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+-0.9834330348825909
+{% endcodeblock %}
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

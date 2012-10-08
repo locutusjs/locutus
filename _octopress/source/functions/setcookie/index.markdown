@@ -14,20 +14,32 @@ A JavaScript equivalent of PHP's setcookie
 
 {% codeblock network/setcookie.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/setcookie.js raw on github %}
 function setcookie (name, value, expires, path, domain, secure) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-    // +   bugfixed by: Andreas
-    // +   bugfixed by: Onno Marsman
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // -    depends on: setrawcookie
-    // *     example 1: setcookie('author_name', 'Kevin van Zonneveld');
-    // *     returns 1: true
-    return this.setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // +   bugfixed by: Andreas
+  // +   bugfixed by: Onno Marsman
+  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // -    depends on: setrawcookie
+  // *     example 1: setcookie('author_name', 'Kevin van Zonneveld');
+  // *     returns 1: true
+  return this.setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/network/setcookie.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/network/setcookie.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+setcookie('author_name', 'Kevin van Zonneveld');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
 
 ### Other PHP functions in the network extension
 {% render_partial _includes/custom/network.html %}

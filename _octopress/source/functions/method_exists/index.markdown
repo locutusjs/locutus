@@ -14,26 +14,53 @@ A JavaScript equivalent of PHP's method_exists
 
 {% codeblock classobj/method_exists.js lang:js https://raw.github.com/kvz/phpjs/master/functions/classobj/method_exists.js raw on github %}
 function method_exists (obj, method) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: function class_a() {this.meth1 = function () {return true;}};
-    // *     example 1: var instance_a = new class_a();
-    // *     example 1: method_exists(instance_a, 'meth1');
-    // *     returns 1: true
-    // *     example 2: function class_a() {this.meth1 = function () {return true;}};
-    // *     example 2: var instance_a = new class_a();
-    // *     example 2: method_exists(instance_a, 'meth2');
-    // *     returns 2: false
-    if (typeof obj === 'string') {
-        return this.window[obj] && typeof this.window[obj][method] === 'function';
-    }
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: function class_a() {this.meth1 = function () {return true;}};
+  // *     example 1: var instance_a = new class_a();
+  // *     example 1: method_exists(instance_a, 'meth1');
+  // *     returns 1: true
+  // *     example 2: function class_a() {this.meth1 = function () {return true;}};
+  // *     example 2: var instance_a = new class_a();
+  // *     example 2: method_exists(instance_a, 'meth2');
+  // *     returns 2: false
+  if (typeof obj === 'string') {
+    return this.window[obj] && typeof this.window[obj][method] === 'function';
+  }
 
-    return typeof obj[method] === 'function';
+  return typeof obj[method] === 'function';
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/method_exists.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/method_exists.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+function class_a() {this.meth1 = function () {return true;}};
+var instance_a = new class_a();
+method_exists(instance_a, 'meth1');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+function class_a() {this.meth1 = function () {return true;}};
+var instance_a = new class_a();
+method_exists(instance_a, 'meth2');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+false
+{% endcodeblock %}
+
 
 ### Other PHP functions in the classobj extension
 {% render_partial _includes/custom/classobj.html %}

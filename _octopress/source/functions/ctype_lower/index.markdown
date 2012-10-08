@@ -14,23 +14,35 @@ A JavaScript equivalent of PHP's ctype_lower
 
 {% codeblock ctype/ctype_lower.js lang:js https://raw.github.com/kvz/phpjs/master/functions/ctype/ctype_lower.js raw on github %}
 function ctype_lower (text) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // -    depends on: setlocale
-    // *     example 1: ctype_lower('abc');
-    // *     returns 1: true
-    if (typeof text !== 'string') {
-        return false;
-    }
-    // BEGIN REDUNDANT
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.lw) !== -1;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // -    depends on: setlocale
+  // *     example 1: ctype_lower('abc');
+  // *     returns 1: true
+  if (typeof text !== 'string') {
+    return false;
+  }
+  // BEGIN REDUNDANT
+  this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+  // END REDUNDANT
+  return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.lw) !== -1;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/ctype/ctype_lower.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_lower.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+ctype_lower('abc');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
 
 ### Other PHP functions in the ctype extension
 {% render_partial _includes/custom/ctype.html %}

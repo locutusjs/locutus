@@ -14,25 +14,48 @@ A JavaScript equivalent of PHP's ucwords
 
 {% codeblock strings/ucwords.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/ucwords.js raw on github %}
 function ucwords (str) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-    // +   improved by: Waldo Malqui Silva
-    // +   bugfixed by: Onno Marsman
-    // +   improved by: Robin
-    // +      input by: James (http://www.james-bell.co.uk/)
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: ucwords('kevin van  zonneveld');
-    // *     returns 1: 'Kevin Van  Zonneveld'
-    // *     example 2: ucwords('HELLO WORLD');
-    // *     returns 2: 'HELLO WORLD'
-    return (str + '').replace(/^([a-z])|\s+([a-z])/g, function ($1) {
-        return $1.toUpperCase();
-    });
+  // http://kevin.vanzonneveld.net
+  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // +   improved by: Waldo Malqui Silva
+  // +   bugfixed by: Onno Marsman
+  // +   improved by: Robin
+  // +      input by: James (http://www.james-bell.co.uk/)
+  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // *     example 1: ucwords('kevin van  zonneveld');
+  // *     returns 1: 'Kevin Van  Zonneveld'
+  // *     example 2: ucwords('HELLO WORLD');
+  // *     returns 2: 'HELLO WORLD'
+  return (str + '').replace(/^([a-z])|\s+([a-z])/g, function ($1) {
+    return $1.toUpperCase();
+  });
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/ucwords.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/ucwords.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+ucwords('kevin van  zonneveld');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'Kevin Van  Zonneveld'
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+ucwords('HELLO WORLD');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'HELLO WORLD'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

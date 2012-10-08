@@ -14,31 +14,54 @@ A JavaScript equivalent of PHP's bin2hex
 
 {% codeblock strings/bin2hex.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/bin2hex.js raw on github %}
 function bin2hex (s) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   bugfixed by: Onno Marsman
-    // +   bugfixed by: Linuxworld
-    // +   improved by: ntoniazzi (http://phpjs.org/functions/bin2hex:361#comment_177616)
-    // *     example 1: bin2hex('Kev');
-    // *     returns 1: '4b6576'
-    // *     example 2: bin2hex(String.fromCharCode(0x00));
-    // *     returns 2: '00'
-    
-    var i, l, o = "", n;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   bugfixed by: Onno Marsman
+  // +   bugfixed by: Linuxworld
+  // +   improved by: ntoniazzi (http://phpjs.org/functions/bin2hex:361#comment_177616)
+  // *     example 1: bin2hex('Kev');
+  // *     returns 1: '4b6576'
+  // *     example 2: bin2hex(String.fromCharCode(0x00));
+  // *     returns 2: '00'
 
-    s += "";
-    
-    for (i = 0, l = s.length; i < l; i++) {
-        n = s.charCodeAt(i).toString(16)
-        o += n.length < 2 ? "0" + n : n;
-    }
-    
-    return o;
+  var i, l, o = "", n;
+
+  s += "";
+
+  for (i = 0, l = s.length; i < l; i++) {
+    n = s.charCodeAt(i).toString(16)
+    o += n.length < 2 ? "0" + n : n;
+  }
+
+  return o;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/bin2hex.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/bin2hex.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+bin2hex('Kev');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'4b6576'
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+bin2hex(String.fromCharCode(0x00));
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'00'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

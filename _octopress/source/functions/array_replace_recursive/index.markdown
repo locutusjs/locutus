@@ -14,39 +14,51 @@ A JavaScript equivalent of PHP's array_replace_recursive
 
 {% codeblock array/array_replace_recursive.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_replace_recursive.js raw on github %}
 function array_replace_recursive (arr) {
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']});
-    // *     returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']});
+  // *     returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
 
-    var retObj = {},
-        i = 0,
-        p = '',
-        argl = arguments.length;
-    
-    if (argl < 2) {
-        throw new Error('There should be at least 2 arguments passed to array_replace_recursive()');
-    }
+  var retObj = {},
+    i = 0,
+    p = '',
+    argl = arguments.length;
 
-    // Although docs state that the arguments are passed in by reference, it seems they are not altered, but rather the copy that is returned (just guessing), so we make a copy here, instead of acting on arr itself
-    for (p in arr) {
-        retObj[p] = arr[p];
-    }
+  if (argl < 2) {
+    throw new Error('There should be at least 2 arguments passed to array_replace_recursive()');
+  }
 
-    for (i = 1; i < argl; i++) {
-        for (p in arguments[i]) {
-            if (retObj[p] && typeof retObj[p] === 'object') {
-                retObj[p] = this.array_replace_recursive(retObj[p], arguments[i][p]);
-            } else {
-                retObj[p] = arguments[i][p];
-            }
-        }
+  // Although docs state that the arguments are passed in by reference, it seems they are not altered, but rather the copy that is returned (just guessing), so we make a copy here, instead of acting on arr itself
+  for (p in arr) {
+    retObj[p] = arr[p];
+  }
+
+  for (i = 1; i < argl; i++) {
+    for (p in arguments[i]) {
+      if (retObj[p] && typeof retObj[p] === 'object') {
+        retObj[p] = this.array_replace_recursive(retObj[p], arguments[i][p]);
+      } else {
+        retObj[p] = arguments[i][p];
+      }
     }
-    return retObj;
+  }
+  return retObj;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_replace_recursive.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_replace_recursive.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']});
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
+{% endcodeblock %}
+
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}

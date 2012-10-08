@@ -14,66 +14,83 @@ A JavaScript equivalent of PHP's aggregate_info
 
 {% codeblock objaggregation/aggregate_info.js lang:js https://raw.github.com/kvz/phpjs/master/functions/objaggregation/aggregate_info.js raw on github %}
 function aggregate_info (obj) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // -    depends on: aggregate_info
-    // *     example 1: var A = function () {};
-    // *     example 1: A.prop = 5;
-    // *     example 1: A.prototype.someMethod = function () {};
-    // *     example 1: var b = {};
-    // *     example 1: aggregate(b, 'A');
-    // *     example 1: aggregate_info(b);
-    // *     returns 1: {'A':{methods:['someMethod'], properties:['prop']}}
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // -    depends on: aggregate_info
+  // *     example 1: var A = function () {};
+  // *     example 1: A.prop = 5;
+  // *     example 1: A.prototype.someMethod = function () {};
+  // *     example 1: var b = {};
+  // *     example 1: aggregate(b, 'A');
+  // *     example 1: aggregate_info(b);
+  // *     returns 1: {'A':{methods:['someMethod'], properties:['prop']}}
 
-    var idx = -1,
-        p = '',
-        infoObj = {},
-        retObj = {},
-        i = 0,
-        name = '';
-    var indexOf = function (value) {
-        for (var i = 0, length = this.length; i < length; i++) {
-            if (this[i] === value) {
-                return i;
-            }
-        }
-        return -1;
+  var idx = -1,
+    p = '',
+    infoObj = {},
+    retObj = {},
+    i = 0,
+    name = '';
+  var indexOf = function (value) {
+    for (var i = 0, length = this.length; i < length; i++) {
+      if (this[i] === value) {
+        return i;
+      }
+    }
+    return -1;
+  };
+
+  if (!this.php_js || !this.php_js.aggregateRecords || !this.php_js.aggregateKeys || !this.php_js.aggregateClasses) {
+    return false; // Is this what is returned?
+  }
+
+  if (!this.php_js.aggregateKeys.indexOf) {
+    this.php_js.aggregateKeys.indexOf = indexOf;
+  }
+  idx = this.php_js.aggregateKeys.indexOf(obj);
+  if (idx === -1) {
+    return false;
+  }
+
+  for (i = 0; i < this.php_js.aggregateClasses[idx].length; i++) {
+    name = this.php_js.aggregateClasses[idx][i];
+    infoObj = {
+      methods: [],
+      properties: []
     };
-
-    if (!this.php_js || !this.php_js.aggregateRecords || !this.php_js.aggregateKeys || !this.php_js.aggregateClasses) {
-        return false; // Is this what is returned?
+    for (p in this.php_js.aggregateRecords[idx][i]) {
+      if (typeof this.php_js.aggregateRecords[idx][i][p] === 'function') {
+        infoObj.methods.push(p);
+      } else {
+        infoObj.properties.push(p);
+      }
     }
+    retObj[name] = infoObj;
+  }
 
-    if (!this.php_js.aggregateKeys.indexOf) {
-        this.php_js.aggregateKeys.indexOf = indexOf;
-    }
-    idx = this.php_js.aggregateKeys.indexOf(obj);
-    if (idx === -1) {
-        return false;
-    }
-
-    for (i = 0; i < this.php_js.aggregateClasses[idx].length; i++) {
-        name = this.php_js.aggregateClasses[idx][i];
-        infoObj = {
-            methods: [],
-            properties: []
-        };
-        for (p in this.php_js.aggregateRecords[idx][i]) {
-            if (typeof this.php_js.aggregateRecords[idx][i][p] === 'function') {
-                infoObj.methods.push(p);
-            } else {
-                infoObj.properties.push(p);
-            }
-        }
-        retObj[name] = infoObj;
-    }
-
-    return retObj;
+  return retObj;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/objaggregation/aggregate_info.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/objaggregation/aggregate_info.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+var A = function () {};
+A.prop = 5;
+A.prototype.someMethod = function () {};
+var b = {};
+aggregate(b, 'A');
+aggregate_info(b);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{'A':{methods:['someMethod'], properties:['prop']}}
+{% endcodeblock %}
+
 
 ### Other PHP functions in the objaggregation extension
 {% render_partial _includes/custom/objaggregation.html %}

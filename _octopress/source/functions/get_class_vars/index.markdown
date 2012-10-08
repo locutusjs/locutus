@@ -14,44 +14,60 @@ A JavaScript equivalent of PHP's get_class_vars
 
 {% codeblock classobj/get_class_vars.js lang:js https://raw.github.com/kvz/phpjs/master/functions/classobj/get_class_vars.js raw on github %}
 function get_class_vars (name) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: function Myclass(){privMethod = function (){};}
-    // *     example 1: Myclass.classMethod = function () {}
-    // *     example 1: Myclass.prototype.myfunc1 = function () {return(true);};
-    // *     example 1: Myclass.prototype.myfunc2 = function () {return(true);}
-    // *     example 1: get_class_vars('MyClass')
-    // *     returns 1: {}
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: function Myclass(){privMethod = function (){};}
+  // *     example 1: Myclass.classMethod = function () {}
+  // *     example 1: Myclass.prototype.myfunc1 = function () {return(true);};
+  // *     example 1: Myclass.prototype.myfunc2 = function () {return(true);}
+  // *     example 1: get_class_vars('MyClass')
+  // *     returns 1: {}
 
-    var constructor, retArr = {},
-        prop = '';
+  var constructor, retArr = {},
+    prop = '';
 
-    if (typeof name === 'function') {
-        constructor = name;
-    } else if (typeof name === 'string') {
-        constructor = this.window[name];
+  if (typeof name === 'function') {
+    constructor = name;
+  } else if (typeof name === 'string') {
+    constructor = this.window[name];
+  }
+
+  for (prop in constructor) {
+    if (typeof constructor[prop] !== 'function' && prop !== 'prototype') {
+      retArr[prop] = constructor[prop];
     }
-
-    for (prop in constructor) {
-        if (typeof constructor[prop] !== 'function' && prop !== 'prototype') {
-            retArr[prop] = constructor[prop];
-        }
+  }
+  // Comment out this block to behave as "class" is usually defined in JavaScript convention
+  if (constructor.prototype) {
+    for (prop in constructor.prototype) {
+      if (typeof constructor.prototype[prop] !== 'function') {
+        retArr[prop] = constructor.prototype[prop];
+      }
     }
-    // Comment out this block to behave as "class" is usually defined in JavaScript convention
-    if (constructor.prototype) {
-        for (prop in constructor.prototype) {
-            if (typeof constructor.prototype[prop] !== 'function') {
-                retArr[prop] = constructor.prototype[prop];
-            }
-        }
-    }
+  }
 
-    return retArr;
+  return retArr;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/get_class_vars.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/get_class_vars.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+function Myclass(){privMethod = function (){};}
+Myclass.classMethod = function () {}
+Myclass.prototype.myfunc1 = function () {return(true);};
+Myclass.prototype.myfunc2 = function () {return(true);}
+get_class_vars('MyClass')
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{}
+{% endcodeblock %}
+
 
 ### Other PHP functions in the classobj extension
 {% render_partial _includes/custom/classobj.html %}

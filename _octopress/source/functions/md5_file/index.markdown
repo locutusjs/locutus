@@ -14,28 +14,40 @@ A JavaScript equivalent of PHP's md5_file
 
 {% codeblock strings/md5_file.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/md5_file.js raw on github %}
 function md5_file (str_filename) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +      input by: Brett Zamir (http://brett-zamir.me)
-    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // -    depends on: file_get_contents
-    // -    depends on: md5
-    // *     example 1: md5_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
-    // *     returns 1: '202cb962ac59075b964b07152d234b70'
-    var buf = '';
+  // http://kevin.vanzonneveld.net
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +      input by: Brett Zamir (http://brett-zamir.me)
+  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // -    depends on: file_get_contents
+  // -    depends on: md5
+  // *     example 1: md5_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
+  // *     returns 1: '202cb962ac59075b964b07152d234b70'
+  var buf = '';
 
-    buf = this.file_get_contents(str_filename);
+  buf = this.file_get_contents(str_filename);
 
-    if (!buf) {
-        return false;
-    }
+  if (!buf) {
+    return false;
+  }
 
-    return this.md5(buf);
+  return this.md5(buf);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/md5_file.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/md5_file.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+md5_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'202cb962ac59075b964b07152d234b70'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

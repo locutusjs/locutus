@@ -14,18 +14,32 @@ A JavaScript equivalent of PHP's stream_context_get_params
 
 {% codeblock stream/stream_context_get_params.js lang:js https://raw.github.com/kvz/phpjs/master/functions/stream/stream_context_get_params.js raw on github %}
 function stream_context_get_params (stream_or_context) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: var params = {notification:function (notification_code, severity, message, message_code, bytes_transferred, bytes_max) {}};
-    // *     example 1: var context = stream_context_create({}, params);
-    // *     example 1: stream_context_get_params(context);
-    // *     returns 1: {notification:function (notification_code, severity, message, message_code, bytes_transferred, bytes_max) {}, options:{}}
-    return stream_or_context.stream_params;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: var params = {notification:function (notification_code, severity, message, message_code, bytes_transferred, bytes_max) {}};
+  // *     example 1: var context = stream_context_create({}, params);
+  // *     example 1: stream_context_get_params(context);
+  // *     returns 1: {notification:function (notification_code, severity, message, message_code, bytes_transferred, bytes_max) {}, options:{}}
+  return stream_or_context.stream_params;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_get_params.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_get_params.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+var params = {notification:function (notification_code, severity, message, message_code, bytes_transferred, bytes_max) {}};
+var context = stream_context_create({}, params);
+stream_context_get_params(context);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{notification:function (notification_code, severity, message, message_code, bytes_transferred, bytes_max) {}, options:{}}
+{% endcodeblock %}
+
 
 ### Other PHP functions in the stream extension
 {% render_partial _includes/custom/stream.html %}

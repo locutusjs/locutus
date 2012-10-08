@@ -14,23 +14,35 @@ A JavaScript equivalent of PHP's ini_get
 
 {% codeblock info/ini_get.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/ini_get.js raw on github %}
 function ini_get (varname) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // %        note 1: The ini values must be set by ini_set or manually within an ini file
-    // *     example 1: ini_get('date.timezone');
-    // *     returns 1: 'Asia/Hong_Kong'
-    if (this.php_js && this.php_js.ini && this.php_js.ini[varname] && this.php_js.ini[varname].local_value !== undefined) {
-        if (this.php_js.ini[varname].local_value === null) {
-            return '';
-        }
-        return this.php_js.ini[varname].local_value;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // %        note 1: The ini values must be set by ini_set or manually within an ini file
+  // *     example 1: ini_get('date.timezone');
+  // *     returns 1: 'Asia/Hong_Kong'
+  if (this.php_js && this.php_js.ini && this.php_js.ini[varname] && this.php_js.ini[varname].local_value !== undefined) {
+    if (this.php_js.ini[varname].local_value === null) {
+      return '';
     }
-    return '';
+    return this.php_js.ini[varname].local_value;
+  }
+  return '';
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/ini_get.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/ini_get.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+ini_get('date.timezone');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'Asia/Hong_Kong'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the info extension
 {% render_partial _includes/custom/info.html %}

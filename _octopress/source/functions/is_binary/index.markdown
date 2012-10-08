@@ -14,15 +14,27 @@ A JavaScript equivalent of PHP's is_binary
 
 {% codeblock var/is_binary.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_binary.js raw on github %}
 function is_binary (vr) {
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: is_binary('This could be binary as far as JavaScript knows...');
-    // *     returns 1: true
-    return typeof vr === 'string'; // If it is a string of any kind, it could be binary
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: is_binary('This could be binary as far as JavaScript knows...');
+  // *     returns 1: true
+  return typeof vr === 'string'; // If it is a string of any kind, it could be binary
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_binary.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_binary.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+is_binary('This could be binary as far as JavaScript knows...');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
 
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}

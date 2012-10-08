@@ -14,20 +14,32 @@ A JavaScript equivalent of PHP's get_include_path
 
 {% codeblock info/get_include_path.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/get_include_path.js raw on github %}
 function get_include_path () {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: get_include_path();
-    // *     returns 1: '/phpjs'
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: get_include_path();
+  // *     returns 1: '/phpjs'
 
-    if (this.php_js && this.php_js.ini && this.php_js.ini.include_path && this.php_js.ini.include_path.local_value) {
-        return this.php_js.ini.include_path.local_value;
-    }
-    return '';
+  if (this.php_js && this.php_js.ini && this.php_js.ini.include_path && this.php_js.ini.include_path.local_value) {
+    return this.php_js.ini.include_path.local_value;
+  }
+  return '';
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/get_include_path.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/get_include_path.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+get_include_path();
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'/phpjs'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the info extension
 {% render_partial _includes/custom/info.html %}

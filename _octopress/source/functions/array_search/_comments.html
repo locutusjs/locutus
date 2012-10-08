@@ -3,25 +3,6 @@
 <strong>
 <a href="http://www.coursesweb.net" rel="nofollow">CoursesWeb</a>
 </strong>
-on 2012-04-30 17:12:56 <br />
-Hi,
-For a simple array_search function, without the third parameter, i use made this variant (works with array and objects:
-<pre><code>
-function array_search(val, array) {
-  if(typeof(array) === 'array' || typeof(array) === 'object') {
-    for(var indice in array) {
-      if(array[indice] == val) break;
-    }
-    if(indice) return indice;
-  }
-}
-</code></pre>
-<hr />
-
-
-<strong>
-<a href="http://www.coursesweb.net" rel="nofollow">CoursesWeb</a>
-</strong>
 on 2012-04-30 18:08:28 <br />
 Hi,
 This is a comment to correct the function posted below.
@@ -38,6 +19,25 @@ function array_search(val, array) {
       }
     }
     return rekey;
+  }
+}
+</code></pre>
+<hr />
+
+
+<strong>
+<a href="http://www.coursesweb.net" rel="nofollow">CoursesWeb</a>
+</strong>
+on 2012-04-30 17:12:56 <br />
+Hi,
+For a simple array_search function, without the third parameter, i use made this variant (works with array and objects:
+<pre><code>
+function array_search(val, array) {
+  if(typeof(array) === 'array' || typeof(array) === 'object') {
+    for(var indice in array) {
+      if(array[indice] == val) break;
+    }
+    if(indice) return indice;
   }
 }
 </code></pre>

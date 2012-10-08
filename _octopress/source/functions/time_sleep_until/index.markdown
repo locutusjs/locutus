@@ -14,20 +14,32 @@ A JavaScript equivalent of PHP's time_sleep_until
 
 {% codeblock misc/time_sleep_until.js lang:js https://raw.github.com/kvz/phpjs/master/functions/misc/time_sleep_until.js raw on github %}
 function time_sleep_until (timestamp) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // %          note: For study purposes. Current implementation could lock up the user's browser.
-    // %          note: Expects a timestamp in seconds, so DO NOT pass in a JavaScript timestamp which are in milliseconds (e.g., new Date()) or otherwise the function will lock up the browser 1000 times longer than probably intended.
-    // %          note: Consider using setTimeout() instead.
-    // *     example 1: time_sleep_until(1233146501) // delays until the time indicated by the given timestamp is reached
-    // *     returns 1: true
-    while (new Date() < timestamp * 1000) {}
-    return true;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // %          note: For study purposes. Current implementation could lock up the user's browser.
+  // %          note: Expects a timestamp in seconds, so DO NOT pass in a JavaScript timestamp which are in milliseconds (e.g., new Date()) or otherwise the function will lock up the browser 1000 times longer than probably intended.
+  // %          note: Consider using setTimeout() instead.
+  // *     example 1: time_sleep_until(1233146501) // delays until the time indicated by the given timestamp is reached
+  // *     returns 1: true
+  while (new Date() < timestamp * 1000) {}
+  return true;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/misc/time_sleep_until.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/misc/time_sleep_until.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+time_sleep_until(1233146501) // delays until the time indicated by the given timestamp is reached
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
 
 ### Other PHP functions in the misc extension
 {% render_partial _includes/custom/misc.html %}

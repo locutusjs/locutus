@@ -14,36 +14,59 @@ A JavaScript equivalent of PHP's array_walk_recursive
 
 {% codeblock array/array_walk_recursive.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_walk_recursive.js raw on github %}
 function array_walk_recursive (array, funcname, userdata) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
-    // *     example 1: array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
-    // *     returns 1: true
-    // *     example 2: array_walk_recursive ('a', 'void', 'userdata');
-    // *     returns 2: false
-    var key;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
+  // *     example 1: array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
+  // *     returns 1: true
+  // *     example 2: array_walk_recursive ('a', 'void', 'userdata');
+  // *     returns 2: false
+  var key;
 
-    if (typeof array != 'object') {
-        return false;
+  if (typeof array != 'object') {
+    return false;
+  }
+
+  for (key in array) {
+    if (typeof array[key] == 'object') {
+      return this.array_walk_recursive(array[key], funcname, userdata);
     }
 
-    for (key in array) {
-        if (typeof array[key] == 'object') {
-            return this.array_walk_recursive(array[key], funcname, userdata);
-        }
-
-        if (typeof(userdata) != 'undefined') {
-            eval(funcname + '( array [key] , key , userdata  )');
-        } else {
-            eval(funcname + '(  userdata ) ');
-        }
+    if (typeof(userdata) != 'undefined') {
+      eval(funcname + '( array [key] , key , userdata  )');
+    } else {
+      eval(funcname + '(  userdata ) ');
     }
+  }
 
-    return true;
+  return true;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_walk_recursive.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_walk_recursive.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+array_walk_recursive ('a', 'void', 'userdata');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+false
+{% endcodeblock %}
+
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}

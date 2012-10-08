@@ -14,19 +14,31 @@ A JavaScript equivalent of PHP's log
 
 {% codeblock math/log.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/log.js raw on github %}
 function log (arg, base) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Onno Marsman
-    // +   improved by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: log(8723321.4, 7);
-    // *     returns 1: 8.212871815082147
-    return (typeof base === 'undefined') ? 
-        Math.log(arg) :
-        Math.log(arg) / Math.log(base);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Onno Marsman
+  // +   improved by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: log(8723321.4, 7);
+  // *     returns 1: 8.212871815082147
+  return (typeof base === 'undefined') ?
+    Math.log(arg) :
+    Math.log(arg) / Math.log(base);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/log.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/log.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+log(8723321.4, 7);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+8.212871815082147
+{% endcodeblock %}
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

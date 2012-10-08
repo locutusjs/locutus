@@ -14,30 +14,64 @@ A JavaScript equivalent of PHP's nl2br
 
 {% codeblock strings/nl2br.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/nl2br.js raw on github %}
 function nl2br (str, is_xhtml) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Philip Peterson
-    // +   improved by: Onno Marsman
-    // +   improved by: Atli Þór
-    // +   bugfixed by: Onno Marsman
-    // +      input by: Brett Zamir (http://brett-zamir.me)
-    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Brett Zamir (http://brett-zamir.me)
-    // +   improved by: Maximusya
-    // *     example 1: nl2br('Kevin\nvan\nZonneveld');
-    // *     returns 1: 'Kevin<br />\nvan<br />\nZonneveld'
-    // *     example 2: nl2br("\nOne\nTwo\n\nThree\n", false);
-    // *     returns 2: '<br>\nOne<br>\nTwo<br>\n<br>\nThree<br>\n'
-    // *     example 3: nl2br("\nOne\nTwo\n\nThree\n", true);
-    // *     returns 3: '<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n'
-    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br ' + '/>' : '<br>'; // Adjust comment to avoid issue on phpjs.org display
+  // http://kevin.vanzonneveld.net
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   improved by: Philip Peterson
+  // +   improved by: Onno Marsman
+  // +   improved by: Atli Þór
+  // +   bugfixed by: Onno Marsman
+  // +      input by: Brett Zamir (http://brett-zamir.me)
+  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   improved by: Brett Zamir (http://brett-zamir.me)
+  // +   improved by: Maximusya
+  // *     example 1: nl2br('Kevin\nvan\nZonneveld');
+  // *     returns 1: 'Kevin<br />\nvan<br />\nZonneveld'
+  // *     example 2: nl2br("\nOne\nTwo\n\nThree\n", false);
+  // *     returns 2: '<br>\nOne<br>\nTwo<br>\n<br>\nThree<br>\n'
+  // *     example 3: nl2br("\nOne\nTwo\n\nThree\n", true);
+  // *     returns 3: '<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n'
+  var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br ' + '/>' : '<br>'; // Adjust comment to avoid issue on phpjs.org display
 
-    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+  return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/nl2br.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/nl2br.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+nl2br('Kevin\nvan\nZonneveld');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'Kevin<br />\nvan<br />\nZonneveld'
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+nl2br("\nOne\nTwo\n\nThree\n", false);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'<br>\nOne<br>\nTwo<br>\n<br>\nThree<br>\n'
+{% endcodeblock %}
+
+### Example 3
+This code
+{% codeblock lang:js example %}
+nl2br("\nOne\nTwo\n\nThree\n", true);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

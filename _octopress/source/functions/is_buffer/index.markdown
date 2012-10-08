@@ -14,15 +14,27 @@ A JavaScript equivalent of PHP's is_buffer
 
 {% codeblock var/is_buffer.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_buffer.js raw on github %}
 function is_buffer (vr) {
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: is_buffer('This could be binary or a regular string as far as JavaScript knows...');
-    // *     returns 1: true
-    return typeof vr === 'string';
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: is_buffer('This could be binary or a regular string as far as JavaScript knows...');
+  // *     returns 1: true
+  return typeof vr === 'string';
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_buffer.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_buffer.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+is_buffer('This could be binary or a regular string as far as JavaScript knows...');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
 
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}

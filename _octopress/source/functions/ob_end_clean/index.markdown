@@ -14,38 +14,50 @@ A JavaScript equivalent of PHP's ob_end_clean
 
 {% codeblock outcontrol/ob_end_clean.js lang:js https://raw.github.com/kvz/phpjs/master/functions/outcontrol/ob_end_clean.js raw on github %}
 function ob_end_clean () {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: ob_end_clean();
-    // *     returns 1: true
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: ob_end_clean();
+  // *     returns 1: true
 
-    var PHP_OUTPUT_HANDLER_START = 1,
-        PHP_OUTPUT_HANDLER_END = 4;
-    this.php_js = this.php_js || {};
-    var phpjs = this.php_js,
-        obs = phpjs.obs;
+  var PHP_OUTPUT_HANDLER_START = 1,
+    PHP_OUTPUT_HANDLER_END = 4;
+  this.php_js = this.php_js || {};
+  var phpjs = this.php_js,
+    obs = phpjs.obs;
 
-    if (!obs || !obs.length) {
-        return false;
+  if (!obs || !obs.length) {
+    return false;
+  }
+  var flags = 0,
+    ob = obs[obs.length - 1],
+    buffer = ob.buffer;
+  if (ob.callback) {
+    if (!ob.status) {
+      flags |= PHP_OUTPUT_HANDLER_START;
     }
-    var flags = 0,
-        ob = obs[obs.length - 1],
-        buffer = ob.buffer;
-    if (ob.callback) {
-        if (!ob.status) {
-            flags |= PHP_OUTPUT_HANDLER_START;
-        }
-        flags |= PHP_OUTPUT_HANDLER_END;
-        ob.status = 2;
-        buffer = ob.callback(buffer, flags);
-    }
-    obs.pop();
-    return true;
+    flags |= PHP_OUTPUT_HANDLER_END;
+    ob.status = 2;
+    buffer = ob.callback(buffer, flags);
+  }
+  obs.pop();
+  return true;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/outcontrol/ob_end_clean.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/outcontrol/ob_end_clean.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+ob_end_clean();
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
 
 ### Other PHP functions in the outcontrol extension
 {% render_partial _includes/custom/outcontrol.html %}

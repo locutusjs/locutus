@@ -14,36 +14,70 @@ A JavaScript equivalent of PHP's strstr
 
 {% codeblock strings/strstr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strstr.js raw on github %}
 function strstr (haystack, needle, bool) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   bugfixed by: Onno Marsman
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: strstr('Kevin van Zonneveld', 'van');
-    // *     returns 1: 'van Zonneveld'
-    // *     example 2: strstr('Kevin van Zonneveld', 'van', true);
-    // *     returns 2: 'Kevin '
-    // *     example 3: strstr('name@example.com', '@');
-    // *     returns 3: '@example.com'
-    // *     example 4: strstr('name@example.com', '@', true);
-    // *     returns 4: 'name'
-    var pos = 0;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   bugfixed by: Onno Marsman
+  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // *     example 1: strstr('Kevin van Zonneveld', 'van');
+  // *     returns 1: 'van Zonneveld'
+  // *     example 2: strstr('Kevin van Zonneveld', 'van', true);
+  // *     returns 2: 'Kevin '
+  // *     example 3: strstr('name@example.com', '@');
+  // *     returns 3: '@example.com'
+  // *     example 4: strstr('name@example.com', '@', true);
+  // *     returns 4: 'name'
+  var pos = 0;
 
-    haystack += '';
-    pos = haystack.indexOf(needle);
-    if (pos == -1) {
-        return false;
+  haystack += '';
+  pos = haystack.indexOf(needle);
+  if (pos == -1) {
+    return false;
+  } else {
+    if (bool) {
+      return haystack.substr(0, pos);
     } else {
-        if (bool) {
-            return haystack.substr(0, pos);
-        } else {
-            return haystack.slice(pos);
-        }
+      return haystack.slice(pos);
     }
+  }
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strstr.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strstr.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+strstr('Kevin van Zonneveld', 'van');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'van Zonneveld'
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+strstr('Kevin van Zonneveld', 'van', true);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'Kevin '
+{% endcodeblock %}
+
+### Example 3
+This code
+{% codeblock lang:js example %}
+strstr('name@example.com', '@');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'@example.com'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

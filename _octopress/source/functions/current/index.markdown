@@ -14,49 +14,62 @@ A JavaScript equivalent of PHP's current
 
 {% codeblock array/current.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/current.js raw on github %}
 function current (arr) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // %        note 1: Uses global: php_js to store the array pointer
-    // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
-    // *     example 1: current(transport); 
-    // *     returns 1: 'foot'
-    // BEGIN REDUNDANT
-    this.php_js = this.php_js || {};
-    this.php_js.pointers = this.php_js.pointers || [];
-    var indexOf = function (value) {
-        for (var i = 0, length = this.length; i < length; i++) {
-            if (this[i] === value) {
-                return i;
-            }
-        }
-        return -1;
-    };
-    // END REDUNDANT
-    var pointers = this.php_js.pointers;
-    if (!pointers.indexOf) {
-        pointers.indexOf = indexOf;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // %        note 1: Uses global: php_js to store the array pointer
+  // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
+  // *     example 1: current(transport);
+  // *     returns 1: 'foot'
+  // BEGIN REDUNDANT
+  this.php_js = this.php_js || {};
+  this.php_js.pointers = this.php_js.pointers || [];
+  var indexOf = function (value) {
+    for (var i = 0, length = this.length; i < length; i++) {
+      if (this[i] === value) {
+        return i;
+      }
     }
-    if (pointers.indexOf(arr) === -1) {
-        pointers.push(arr, 0);
+    return -1;
+  };
+  // END REDUNDANT
+  var pointers = this.php_js.pointers;
+  if (!pointers.indexOf) {
+    pointers.indexOf = indexOf;
+  }
+  if (pointers.indexOf(arr) === -1) {
+    pointers.push(arr, 0);
+  }
+  var arrpos = pointers.indexOf(arr);
+  var cursor = pointers[arrpos + 1];
+  if (Object.prototype.toString.call(arr) === '[object Array]') {
+    return arr[cursor] || false;
+  }
+  var ct = 0;
+  for (var k in arr) {
+    if (ct === cursor) {
+      return arr[k];
     }
-    var arrpos = pointers.indexOf(arr);
-    var cursor = pointers[arrpos + 1];
-    if (Object.prototype.toString.call(arr) === '[object Array]') {
-        return arr[cursor] || false;
-    }
-    var ct = 0;
-    for (var k in arr) {
-        if (ct === cursor) {
-            return arr[k];
-        }
-        ct++;
-    }
-    return false; // Empty
+    ct++;
+  }
+  return false; // Empty
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/current.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/current.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+transport = ['foot', 'bike', 'car', 'plane'];
+current(transport);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'foot'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}

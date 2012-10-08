@@ -14,42 +14,76 @@ A JavaScript equivalent of PHP's array_pad
 
 {% codeblock array/array_pad.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_pad.js raw on github %}
 function array_pad (input, pad_size, pad_value) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Waldo Malqui Silva
-    // *     example 1: array_pad([ 7, 8, 9 ], 2, 'a');
-    // *     returns 1: [ 7, 8, 9]
-    // *     example 2: array_pad([ 7, 8, 9 ], 5, 'a');
-    // *     returns 2: [ 7, 8, 9, 'a', 'a']
-    // *     example 3: array_pad([ 7, 8, 9 ], 5, 2);
-    // *     returns 3: [ 7, 8, 9, 2, 2]
-    // *     example 4: array_pad([ 7, 8, 9 ], -5, 'a');
-    // *     returns 4: [ 'a', 'a', 7, 8, 9 ]
-    var pad = [],
-        newArray = [],
-        newLength, 
-        diff = 0,
-        i = 0;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Waldo Malqui Silva
+  // *     example 1: array_pad([ 7, 8, 9 ], 2, 'a');
+  // *     returns 1: [ 7, 8, 9]
+  // *     example 2: array_pad([ 7, 8, 9 ], 5, 'a');
+  // *     returns 2: [ 7, 8, 9, 'a', 'a']
+  // *     example 3: array_pad([ 7, 8, 9 ], 5, 2);
+  // *     returns 3: [ 7, 8, 9, 2, 2]
+  // *     example 4: array_pad([ 7, 8, 9 ], -5, 'a');
+  // *     returns 4: [ 'a', 'a', 7, 8, 9 ]
+  var pad = [],
+    newArray = [],
+    newLength,
+    diff = 0,
+    i = 0;
 
-    if (Object.prototype.toString.call(input) === '[object Array]' && !isNaN(pad_size)) {
-        newLength = ((pad_size < 0) ? (pad_size * -1) : pad_size);
-        diff = newLength - input.length;
-        
-        if (diff > 0) {
-            for (i = 0; i < diff; i++) {
-                newArray[i] = pad_value;
-            }
-            pad = ((pad_size < 0) ? newArray.concat(input) : input.concat(newArray));
-        } else {
-            pad = input;
-        }
+  if (Object.prototype.toString.call(input) === '[object Array]' && !isNaN(pad_size)) {
+    newLength = ((pad_size < 0) ? (pad_size * -1) : pad_size);
+    diff = newLength - input.length;
+
+    if (diff > 0) {
+      for (i = 0; i < diff; i++) {
+        newArray[i] = pad_value;
+      }
+      pad = ((pad_size < 0) ? newArray.concat(input) : input.concat(newArray));
+    } else {
+      pad = input;
     }
+  }
 
-    return pad;
+  return pad;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_pad.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_pad.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+array_pad([ 7, 8, 9 ], 2, 'a');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+[ 7, 8, 9]
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+array_pad([ 7, 8, 9 ], 5, 'a');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+[ 7, 8, 9, 'a', 'a']
+{% endcodeblock %}
+
+### Example 3
+This code
+{% codeblock lang:js example %}
+array_pad([ 7, 8, 9 ], 5, 2);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+[ 7, 8, 9, 2, 2]
+{% endcodeblock %}
+
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}

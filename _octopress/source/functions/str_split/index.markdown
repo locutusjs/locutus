@@ -14,35 +14,47 @@ A JavaScript equivalent of PHP's str_split
 
 {% codeblock strings/str_split.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_split.js raw on github %}
 function str_split (string, split_length) {
-    // http://kevin.vanzonneveld.net
-    // +     original by: Martijn Wieringa
-    // +     improved by: Brett Zamir (http://brett-zamir.me)
-    // +     bugfixed by: Onno Marsman
-    // +      revised by: Theriault
-    // +        input by: Bjorn Roesbeke (http://www.bjornroesbeke.be/)
-    // +      revised by: Rafał Kukawski (http://blog.kukawski.pl/)
-    // *       example 1: str_split('Hello Friend', 3);
-    // *       returns 1: ['Hel', 'lo ', 'Fri', 'end']
-    if (split_length === null) {
-        split_length = 1;
-    }
-    if (string === null || split_length < 1) {
-        return false;
-    }
-    string += '';
-    var chunks = [],
-        pos = 0,
-        len = string.length;
-    while (pos < len) {
-        chunks.push(string.slice(pos, pos += split_length));
-    }
+  // http://kevin.vanzonneveld.net
+  // +     original by: Martijn Wieringa
+  // +     improved by: Brett Zamir (http://brett-zamir.me)
+  // +     bugfixed by: Onno Marsman
+  // +      revised by: Theriault
+  // +        input by: Bjorn Roesbeke (http://www.bjornroesbeke.be/)
+  // +      revised by: Rafał Kukawski (http://blog.kukawski.pl/)
+  // *       example 1: str_split('Hello Friend', 3);
+  // *       returns 1: ['Hel', 'lo ', 'Fri', 'end']
+  if (split_length === null) {
+    split_length = 1;
+  }
+  if (string === null || split_length < 1) {
+    return false;
+  }
+  string += '';
+  var chunks = [],
+    pos = 0,
+    len = string.length;
+  while (pos < len) {
+    chunks.push(string.slice(pos, pos += split_length));
+  }
 
-    return chunks;
+  return chunks;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/str_split.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/str_split.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+str_split('Hello Friend', 3);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+['Hel', 'lo ', 'Fri', 'end']
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

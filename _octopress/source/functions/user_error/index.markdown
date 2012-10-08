@@ -14,17 +14,29 @@ A JavaScript equivalent of PHP's user_error
 
 {% codeblock errorfunc/user_error.js lang:js https://raw.github.com/kvz/phpjs/master/functions/errorfunc/user_error.js raw on github %}
 function user_error (error_msg, error_type) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // -    depends on: trigger_error
-    // *     example 1: user_error('Cannot divide by zero', 256);
-    // *     returns 1: true
-    return this.trigger_error(error_msg, error_type);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // -    depends on: trigger_error
+  // *     example 1: user_error('Cannot divide by zero', 256);
+  // *     returns 1: true
+  return this.trigger_error(error_msg, error_type);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/errorfunc/user_error.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/errorfunc/user_error.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+user_error('Cannot divide by zero', 256);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
 
 ### Other PHP functions in the errorfunc extension
 {% render_partial _includes/custom/errorfunc.html %}

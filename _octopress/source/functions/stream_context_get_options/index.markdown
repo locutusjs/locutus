@@ -14,18 +14,32 @@ A JavaScript equivalent of PHP's stream_context_get_options
 
 {% codeblock stream/stream_context_get_options.js lang:js https://raw.github.com/kvz/phpjs/master/functions/stream/stream_context_get_options.js raw on github %}
 function stream_context_get_options (stream_or_context) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: var opts = {http:{method:'GET', header: 'Accept-language: en\r\nCookie: foo=bar\r\n'}};
-    // *     example 1: var context = stream_context_create(opts);
-    // *     example 1: stream_context_get_options(context);
-    // *     returns 1: {http:{ method:'GET', header: 'Accept-language: en\r\nCookie: foo=bar\r\n' }}
-    return stream_or_context.stream_options;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: var opts = {http:{method:'GET', header: 'Accept-language: en\r\nCookie: foo=bar\r\n'}};
+  // *     example 1: var context = stream_context_create(opts);
+  // *     example 1: stream_context_get_options(context);
+  // *     returns 1: {http:{ method:'GET', header: 'Accept-language: en\r\nCookie: foo=bar\r\n' }}
+  return stream_or_context.stream_options;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_get_options.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_get_options.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+var opts = {http:{method:'GET', header: 'Accept-language: en\r\nCookie: foo=bar\r\n'}};
+var context = stream_context_create(opts);
+stream_context_get_options(context);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{http:{ method:'GET', header: 'Accept-language: en\r\nCookie: foo=bar\r\n' }}
+{% endcodeblock %}
+
 
 ### Other PHP functions in the stream extension
 {% render_partial _includes/custom/stream.html %}

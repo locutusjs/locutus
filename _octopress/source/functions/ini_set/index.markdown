@@ -14,43 +14,55 @@ A JavaScript equivalent of PHP's ini_set
 
 {% codeblock info/ini_set.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/ini_set.js raw on github %}
 function ini_set (varname, newvalue) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // %        note 1: This will not set a global_value or access level for the ini item
-    // *     example 1: ini_set('date.timezone', 'America/Chicago');
-    // *     returns 1: 'Asia/Hong_Kong'
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // %        note 1: This will not set a global_value or access level for the ini item
+  // *     example 1: ini_set('date.timezone', 'America/Chicago');
+  // *     returns 1: 'Asia/Hong_Kong'
 
-    var oldval = '',
-        that = this;
-    this.php_js = this.php_js || {};
-    this.php_js.ini = this.php_js.ini || {};
-    this.php_js.ini[varname] = this.php_js.ini[varname] || {};
-    oldval = this.php_js.ini[varname].local_value;
+  var oldval = '',
+    that = this;
+  this.php_js = this.php_js || {};
+  this.php_js.ini = this.php_js.ini || {};
+  this.php_js.ini[varname] = this.php_js.ini[varname] || {};
+  oldval = this.php_js.ini[varname].local_value;
 
-    var _setArr = function (oldval) { // Although these are set individually, they are all accumulated
-        if (typeof oldval === 'undefined') {
-            that.php_js.ini[varname].local_value = [];
-        }
-        that.php_js.ini[varname].local_value.push(newvalue);
-    };
-
-    switch (varname) {
-    case 'extension':
-        if (typeof this.dl === 'function') {
-            this.dl(newvalue); // This function is only experimental in php.js
-        }
-        _setArr(oldval, newvalue);
-        break;
-    default:
-        this.php_js.ini[varname].local_value = newvalue;
-        break;
+  var _setArr = function (oldval) { // Although these are set individually, they are all accumulated
+    if (typeof oldval === 'undefined') {
+      that.php_js.ini[varname].local_value = [];
     }
-    return oldval;
+    that.php_js.ini[varname].local_value.push(newvalue);
+  };
+
+  switch (varname) {
+  case 'extension':
+    if (typeof this.dl === 'function') {
+      this.dl(newvalue); // This function is only experimental in php.js
+    }
+    _setArr(oldval, newvalue);
+    break;
+  default:
+    this.php_js.ini[varname].local_value = newvalue;
+    break;
+  }
+  return oldval;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/ini_set.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/ini_set.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+ini_set('date.timezone', 'America/Chicago');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'Asia/Hong_Kong'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the info extension
 {% render_partial _includes/custom/info.html %}

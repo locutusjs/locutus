@@ -14,27 +14,41 @@ A JavaScript equivalent of PHP's stream_context_set_default
 
 {% codeblock stream/stream_context_set_default.js lang:js https://raw.github.com/kvz/phpjs/master/functions/stream/stream_context_set_default.js raw on github %}
 function stream_context_set_default (options) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // -    depends on: stream_context_create
-    // *     example 1: var opts = {http:{ method:'GET', header: 'Accept-language: en\r\nCookie: foo=bar\r\n' } };
-    // *     example 1: var context = stream_context_set_default(opts);
-    // *     example 1: get_resource_type(context);
-    // *     returns 1: 'stream-context'
-    // BEGIN REDUNDANT
-    this.php_js = this.php_js || {};
-    // END REDUNDANT
-    if (!this.php_js.default_streams_context) {
-        this.php_js.default_streams_context = this.stream_context_create(options);
-    }
-    this.php_js.default_streams_context.stream_options = options;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // -    depends on: stream_context_create
+  // *     example 1: var opts = {http:{ method:'GET', header: 'Accept-language: en\r\nCookie: foo=bar\r\n' } };
+  // *     example 1: var context = stream_context_set_default(opts);
+  // *     example 1: get_resource_type(context);
+  // *     returns 1: 'stream-context'
+  // BEGIN REDUNDANT
+  this.php_js = this.php_js || {};
+  // END REDUNDANT
+  if (!this.php_js.default_streams_context) {
+    this.php_js.default_streams_context = this.stream_context_create(options);
+  }
+  this.php_js.default_streams_context.stream_options = options;
 
-    return this.php_js.default_streams_context;
+  return this.php_js.default_streams_context;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/stream/stream_context_set_default.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/stream/stream_context_set_default.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+var opts = {http:{ method:'GET', header: 'Accept-language: en\r\nCookie: foo=bar\r\n' } };
+var context = stream_context_set_default(opts);
+get_resource_type(context);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'stream-context'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the stream extension
 {% render_partial _includes/custom/stream.html %}

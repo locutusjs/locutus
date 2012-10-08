@@ -14,33 +14,45 @@ A JavaScript equivalent of PHP's get_included_files
 
 {% codeblock info/get_included_files.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/get_included_files.js raw on github %}
 function get_included_files () {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Michael White (http://getsprink.com)
-    // %        note 1: Uses global: php_js to keep track of included files
-    // *     example 1: get_included_files();
-    // *     returns 1: ['http://kevin.vanzonneveld.net/pj_tester.php']
-    var cur_file = {};
-    cur_file[this.window.location.href] = 1;
-    if (!this.php_js) {
-        this.php_js = {};
-    }
-    if (!this.php_js.includes) {
-        this.php_js.includes = cur_file;
-    }
+  // http://kevin.vanzonneveld.net
+  // +   original by: Michael White (http://getsprink.com)
+  // %        note 1: Uses global: php_js to keep track of included files
+  // *     example 1: get_included_files();
+  // *     returns 1: ['http://kevin.vanzonneveld.net/pj_tester.php']
+  var cur_file = {};
+  cur_file[this.window.location.href] = 1;
+  if (!this.php_js) {
+    this.php_js = {};
+  }
+  if (!this.php_js.includes) {
+    this.php_js.includes = cur_file;
+  }
 
-    var includes = [];
-    var i = 0;
-    for (var key in this.php_js.includes) {
-        includes[i] = key;
-        i++;
-    }
+  var includes = [];
+  var i = 0;
+  for (var key in this.php_js.includes) {
+    includes[i] = key;
+    i++;
+  }
 
-    return includes;
+  return includes;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/get_included_files.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/get_included_files.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+get_included_files();
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+['http://kevin.vanzonneveld.net/pj_tester.php']
+{% endcodeblock %}
+
 
 ### Other PHP functions in the info extension
 {% render_partial _includes/custom/info.html %}

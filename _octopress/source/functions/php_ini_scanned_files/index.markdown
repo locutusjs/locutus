@@ -14,20 +14,32 @@ A JavaScript equivalent of PHP's php_ini_scanned_files
 
 {% codeblock info/php_ini_scanned_files.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/php_ini_scanned_files.js raw on github %}
 function php_ini_scanned_files () {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // %        note 1: This comma-separated string of files contained in one directory must be manually set by the script to this.php_js.ini_scanned_files
-    // *     example 1: php_ini_scanned_files();
-    // *     returns 1: 'myini.js,myini2.js'
-    if (!this.php_js || !this.php_js.ini_scanned_files) {
-        return false;
-    }
-    return this.php_js.ini_scanned_files;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // %        note 1: This comma-separated string of files contained in one directory must be manually set by the script to this.php_js.ini_scanned_files
+  // *     example 1: php_ini_scanned_files();
+  // *     returns 1: 'myini.js,myini2.js'
+  if (!this.php_js || !this.php_js.ini_scanned_files) {
+    return false;
+  }
+  return this.php_js.ini_scanned_files;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/php_ini_scanned_files.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/php_ini_scanned_files.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+php_ini_scanned_files();
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'myini.js,myini2.js'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the info extension
 {% render_partial _includes/custom/info.html %}

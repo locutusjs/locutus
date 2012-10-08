@@ -14,16 +14,28 @@ A JavaScript equivalent of PHP's acos
 
 {% codeblock math/acos.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/acos.js raw on github %}
 function acos (arg) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Onno Marsman
-    // *     example 1: acos(0.3);
-    // *     returns 1: 1.2661036727794992
-    return Math.acos(arg);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Onno Marsman
+  // *     example 1: acos(0.3);
+  // *     returns 1: 1.2661036727794992
+  return Math.acos(arg);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/acos.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/acos.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+acos(0.3);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+1.2661036727794992
+{% endcodeblock %}
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

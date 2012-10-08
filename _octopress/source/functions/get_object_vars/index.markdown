@@ -14,34 +14,50 @@ A JavaScript equivalent of PHP's get_object_vars
 
 {% codeblock classobj/get_object_vars.js lang:js https://raw.github.com/kvz/phpjs/master/functions/classobj/get_object_vars.js raw on github %}
 function get_object_vars (obj) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: function Myclass () {this.privMethod = function (){}}
-    // *     example 1: Myclass.classMethod = function () {}
-    // *     example 1: Myclass.prototype.myfunc1 = function () {return(true);};
-    // *     example 1: Myclass.prototype.myfunc2 = function () {return(true);}
-    // *     example 1: get_object_vars('MyClass')
-    // *     returns 1: {}
-    var retArr = {},
-        prop = '';
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: function Myclass () {this.privMethod = function (){}}
+  // *     example 1: Myclass.classMethod = function () {}
+  // *     example 1: Myclass.prototype.myfunc1 = function () {return(true);};
+  // *     example 1: Myclass.prototype.myfunc2 = function () {return(true);}
+  // *     example 1: get_object_vars('MyClass')
+  // *     returns 1: {}
+  var retArr = {},
+    prop = '';
 
-    for (prop in obj) {
-        if (typeof obj[prop] !== 'function' && prop !== 'prototype') {
-            retArr[prop] = obj[prop];
-        }
+  for (prop in obj) {
+    if (typeof obj[prop] !== 'function' && prop !== 'prototype') {
+      retArr[prop] = obj[prop];
     }
-    for (prop in obj.prototype) {
-        if (typeof obj.prototype[prop] !== 'function') {
-            retArr[prop] = obj.prototype[prop];
-        }
+  }
+  for (prop in obj.prototype) {
+    if (typeof obj.prototype[prop] !== 'function') {
+      retArr[prop] = obj.prototype[prop];
     }
+  }
 
-    return retArr;
+  return retArr;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classobj/get_object_vars.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classobj/get_object_vars.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+function Myclass () {this.privMethod = function (){}}
+Myclass.classMethod = function () {}
+Myclass.prototype.myfunc1 = function () {return(true);};
+Myclass.prototype.myfunc2 = function () {return(true);}
+get_object_vars('MyClass')
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{}
+{% endcodeblock %}
+
 
 ### Other PHP functions in the classobj extension
 {% render_partial _includes/custom/classobj.html %}

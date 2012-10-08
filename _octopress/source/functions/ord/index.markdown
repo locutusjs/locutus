@@ -14,36 +14,59 @@ A JavaScript equivalent of PHP's ord
 
 {% codeblock strings/ord.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/ord.js raw on github %}
 function ord (string) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   bugfixed by: Onno Marsman
-    // +   improved by: Brett Zamir (http://brett-zamir.me)
-    // +   input by: incidence
-    // *     example 1: ord('K');
-    // *     returns 1: 75
-    // *     example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
-    // *     returns 2: 65536
-    var str = string + '',
-        code = str.charCodeAt(0);
-    if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
-        var hi = code;
-        if (str.length === 1) {
-            return code; // This is just a high surrogate with no following low surrogate, so we return its value;
-            // we could also throw an error as it is not a complete character, but someone may want to know
-        }
-        var low = str.charCodeAt(1);
-        return ((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   bugfixed by: Onno Marsman
+  // +   improved by: Brett Zamir (http://brett-zamir.me)
+  // +   input by: incidence
+  // *     example 1: ord('K');
+  // *     returns 1: 75
+  // *     example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
+  // *     returns 2: 65536
+  var str = string + '',
+    code = str.charCodeAt(0);
+  if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+    var hi = code;
+    if (str.length === 1) {
+      return code; // This is just a high surrogate with no following low surrogate, so we return its value;
+      // we could also throw an error as it is not a complete character, but someone may want to know
     }
-    if (0xDC00 <= code && code <= 0xDFFF) { // Low surrogate
-        return code; // This is just a low surrogate with no preceding high surrogate, so we return its value;
-        // we could also throw an error as it is not a complete character, but someone may want to know
-    }
-    return code;
+    var low = str.charCodeAt(1);
+    return ((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000;
+  }
+  if (0xDC00 <= code && code <= 0xDFFF) { // Low surrogate
+    return code; // This is just a low surrogate with no preceding high surrogate, so we return its value;
+    // we could also throw an error as it is not a complete character, but someone may want to know
+  }
+  return code;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/ord.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/ord.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+ord('K');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+75
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+65536
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

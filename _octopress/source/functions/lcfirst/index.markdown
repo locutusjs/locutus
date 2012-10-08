@@ -14,18 +14,30 @@ A JavaScript equivalent of PHP's lcfirst
 
 {% codeblock strings/lcfirst.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/lcfirst.js raw on github %}
 function lcfirst (str) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: lcfirst('Kevin Van Zonneveld');
-    // *     returns 1: 'kevin Van Zonneveld'
-    str += '';
-    var f = str.charAt(0).toLowerCase();
-    return f + str.substr(1);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: lcfirst('Kevin Van Zonneveld');
+  // *     returns 1: 'kevin Van Zonneveld'
+  str += '';
+  var f = str.charAt(0).toLowerCase();
+  return f + str.substr(1);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/lcfirst.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/lcfirst.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+lcfirst('Kevin Van Zonneveld');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'kevin Van Zonneveld'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

@@ -14,23 +14,35 @@ A JavaScript equivalent of PHP's escapeshellarg
 
 {% codeblock exec/escapeshellarg.js lang:js https://raw.github.com/kvz/phpjs/master/functions/exec/escapeshellarg.js raw on github %}
 function escapeshellarg (arg) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Felix Geisendoerfer (http://www.debuggable.com/felix)
-    // +   improved by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: escapeshellarg("kevin's birthday");
-    // *     returns 1: "'kevin\'s birthday'"
-    var ret = '';
+  // http://kevin.vanzonneveld.net
+  // +   original by: Felix Geisendoerfer (http://www.debuggable.com/felix)
+  // +   improved by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: escapeshellarg("kevin's birthday");
+  // *     returns 1: "'kevin\'s birthday'"
+  var ret = '';
 
-    ret = arg.replace(/[^\\]'/g, function (m, i, s) {
-        return m.slice(0, 1) + '\\\'';
-    });
+  ret = arg.replace(/[^\\]'/g, function (m, i, s) {
+    return m.slice(0, 1) + '\\\'';
+  });
 
-    return "'" + ret + "'";
+  return "'" + ret + "'";
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/exec/escapeshellarg.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/exec/escapeshellarg.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+escapeshellarg("kevin's birthday");
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+"'kevin\'s birthday'"
+{% endcodeblock %}
+
 
 ### Other PHP functions in the exec extension
 {% render_partial _includes/custom/exec.html %}

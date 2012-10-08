@@ -14,17 +14,29 @@ A JavaScript equivalent of PHP's octdec
 
 {% codeblock math/octdec.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/octdec.js raw on github %}
 function octdec (oct_string) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Philippe Baumann
-    // *     example 1: octdec('77');
-    // *     returns 1: 63
-    oct_string = (oct_string + '').replace(/[^0-7]/gi, '');
-    return parseInt(oct_string, 8);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Philippe Baumann
+  // *     example 1: octdec('77');
+  // *     returns 1: 63
+  oct_string = (oct_string + '').replace(/[^0-7]/gi, '');
+  return parseInt(oct_string, 8);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/octdec.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/octdec.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+octdec('77');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+63
+{% endcodeblock %}
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

@@ -14,30 +14,42 @@ A JavaScript equivalent of PHP's mt_rand
 
 {% codeblock math/mt_rand.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/mt_rand.js raw on github %}
 function mt_rand (min, max) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Onno Marsman
-    // +   improved by: Brett Zamir (http://brett-zamir.me)
-    // +   input by: Kongo
-    // *     example 1: mt_rand(1, 1);
-    // *     returns 1: 1
-    var argc = arguments.length;
-    if (argc === 0) {
-        min = 0;
-        max = 2147483647;
-    }
-    else if (argc === 1) {
-        throw new Error('Warning: mt_rand() expects exactly 2 parameters, 1 given');
-    }
-    else {
-        min = parseInt(min, 10);
-        max = parseInt(max, 10);
-    }
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Onno Marsman
+  // +   improved by: Brett Zamir (http://brett-zamir.me)
+  // +   input by: Kongo
+  // *     example 1: mt_rand(1, 1);
+  // *     returns 1: 1
+  var argc = arguments.length;
+  if (argc === 0) {
+    min = 0;
+    max = 2147483647;
+  }
+  else if (argc === 1) {
+    throw new Error('Warning: mt_rand() expects exactly 2 parameters, 1 given');
+  }
+  else {
+    min = parseInt(min, 10);
+    max = parseInt(max, 10);
+  }
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/mt_rand.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/mt_rand.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+mt_rand(1, 1);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+1
+{% endcodeblock %}
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

@@ -14,21 +14,33 @@ A JavaScript equivalent of PHP's strcoll
 
 {% codeblock strings/strcoll.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strcoll.js raw on github %}
 function strcoll (str1, str2) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // +   improved by: Brett Zamir (http://brett-zamir.me)
-    // -    depends on: setlocale
-    // *     example 1: strcoll('a', 'b');
-    // *     returns 1: -1
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    var cmp = this.php_js.locales[this.php_js.localeCategories.LC_COLLATE].LC_COLLATE;
-    // return str1.localeCompare(str2); // We don't use this as it doesn't allow us to control it via setlocale()
-    return cmp(str1, str2);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   improved by: Brett Zamir (http://brett-zamir.me)
+  // -    depends on: setlocale
+  // *     example 1: strcoll('a', 'b');
+  // *     returns 1: -1
+  this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+  var cmp = this.php_js.locales[this.php_js.localeCategories.LC_COLLATE].LC_COLLATE;
+  // return str1.localeCompare(str2); // We don't use this as it doesn't allow us to control it via setlocale()
+  return cmp(str1, str2);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strcoll.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strcoll.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+strcoll('a', 'b');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+-1
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

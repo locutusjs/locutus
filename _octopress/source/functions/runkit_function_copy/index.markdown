@@ -14,22 +14,35 @@ A JavaScript equivalent of PHP's runkit_function_copy
 
 {% codeblock runkit/runkit_function_copy.js lang:js https://raw.github.com/kvz/phpjs/master/functions/runkit/runkit_function_copy.js raw on github %}
 function runkit_function_copy (funcname, targetname) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // %          note 1: Function can only be copied to and from the global context
-    // *     example 1: function plus (a, b) { return (a + b); }
-    // *     example 1: runkit_function_copy('plus', 'add');
-    // *     returns 1: true
-    if (typeof this.window[funcname] !== 'function' || this.window[targetname] !== undefined) { //  (presumably disallow overwriting existing variables)
-        return false;
-    }
-    this.window[targetname] = this.window[funcname];
-    return true;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // %          note 1: Function can only be copied to and from the global context
+  // *     example 1: function plus (a, b) { return (a + b); }
+  // *     example 1: runkit_function_copy('plus', 'add');
+  // *     returns 1: true
+  if (typeof this.window[funcname] !== 'function' || this.window[targetname] !== undefined) { //  (presumably disallow overwriting existing variables)
+    return false;
+  }
+  this.window[targetname] = this.window[funcname];
+  return true;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/runkit/runkit_function_copy.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/runkit/runkit_function_copy.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+function plus (a, b) { return (a + b); }
+runkit_function_copy('plus', 'add');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
 
 ### Other PHP functions in the runkit extension
 {% render_partial _includes/custom/runkit.html %}

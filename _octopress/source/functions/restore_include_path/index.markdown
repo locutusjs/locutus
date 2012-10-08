@@ -14,19 +14,31 @@ A JavaScript equivalent of PHP's restore_include_path
 
 {% codeblock info/restore_include_path.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/restore_include_path.js raw on github %}
 function restore_include_path () {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // *     example 1: restore_include_path();
-    // *     returns 1: undefined
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *     example 1: restore_include_path();
+  // *     returns 1: undefined
 
-    if (this.php_js && this.php_js.ini && this.php_js.ini.include_path) {
-        this.php_js.ini.include_path.local_value = this.php_js.ini.include_path.global_value;
-    }
+  if (this.php_js && this.php_js.ini && this.php_js.ini.include_path) {
+    this.php_js.ini.include_path.local_value = this.php_js.ini.include_path.global_value;
+  }
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/restore_include_path.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/restore_include_path.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+restore_include_path();
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+undefined
+{% endcodeblock %}
+
 
 ### Other PHP functions in the info extension
 {% render_partial _includes/custom/info.html %}

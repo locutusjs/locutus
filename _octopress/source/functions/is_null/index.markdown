@@ -14,18 +14,41 @@ A JavaScript equivalent of PHP's is_null
 
 {% codeblock var/is_null.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_null.js raw on github %}
 function is_null (mixed_var) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: is_null('23');
-    // *     returns 1: false
-    // *     example 2: is_null(null);
-    // *     returns 2: true
-    return (mixed_var === null);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // *     example 1: is_null('23');
+  // *     returns 1: false
+  // *     example 2: is_null(null);
+  // *     returns 2: true
+  return (mixed_var === null);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_null.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_null.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+is_null('23');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+false
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+is_null(null);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
 
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}

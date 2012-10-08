@@ -14,25 +14,37 @@ A JavaScript equivalent of PHP's array_unshift
 
 {% codeblock array/array_unshift.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_unshift.js raw on github %}
 function array_unshift (array) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Martijn Wieringa
-    // +   improved by: jmweb
-    // %        note 1: Currently does not handle objects
-    // *     example 1: array_unshift(['van', 'Zonneveld'], 'Kevin');
-    // *     returns 1: 3
-    var i = arguments.length;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   improved by: Martijn Wieringa
+  // +   improved by: jmweb
+  // %        note 1: Currently does not handle objects
+  // *     example 1: array_unshift(['van', 'Zonneveld'], 'Kevin');
+  // *     returns 1: 3
+  var i = arguments.length;
 
-    while (--i !== 0) {
-        arguments[0].unshift(arguments[i]);
-    }
+  while (--i !== 0) {
+    arguments[0].unshift(arguments[i]);
+  }
 
-    return arguments[0].length;
+  return arguments[0].length;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_unshift.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_unshift.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+array_unshift(['van', 'Zonneveld'], 'Kevin');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+3
+{% endcodeblock %}
+
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}

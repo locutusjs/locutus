@@ -14,17 +14,29 @@ A JavaScript equivalent of PHP's join
 
 {% codeblock strings/join.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/join.js raw on github %}
 function join (glue, pieces) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // -    depends on: implode
-    // *     example 1: join(' ', ['Kevin', 'van', 'Zonneveld']);
-    // *     returns 1: 'Kevin van Zonneveld'
-    return this.implode(glue, pieces);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // -    depends on: implode
+  // *     example 1: join(' ', ['Kevin', 'van', 'Zonneveld']);
+  // *     returns 1: 'Kevin van Zonneveld'
+  return this.implode(glue, pieces);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/join.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/join.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+join(' ', ['Kevin', 'van', 'Zonneveld']);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'Kevin van Zonneveld'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

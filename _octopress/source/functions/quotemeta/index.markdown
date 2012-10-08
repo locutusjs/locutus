@@ -14,16 +14,28 @@ A JavaScript equivalent of PHP's quotemeta
 
 {% codeblock strings/quotemeta.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/quotemeta.js raw on github %}
 function quotemeta (str) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Paulo Freitas
-    // *     example 1: quotemeta(". + * ? ^ ( $ )");
-    // *     returns 1: '\. \+ \* \? \^ \( \$ \)'
-    return (str + '').replace(/([\.\\\+\*\?\[\^\]\$\(\)])/g, '\\$1');
+  // http://kevin.vanzonneveld.net
+  // +   original by: Paulo Freitas
+  // *     example 1: quotemeta(". + * ? ^ ( $ )");
+  // *     returns 1: '\. \+ \* \? \^ \( \$ \)'
+  return (str + '').replace(/([\.\\\+\*\?\[\^\]\$\(\)])/g, '\\$1');
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/quotemeta.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/quotemeta.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+quotemeta(". + * ? ^ ( $ )");
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+'\. \+ \* \? \^ \( \$ \)'
+{% endcodeblock %}
+
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}

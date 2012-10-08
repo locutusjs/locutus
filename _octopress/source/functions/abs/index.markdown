@@ -14,25 +14,59 @@ A JavaScript equivalent of PHP's abs
 
 {% codeblock math/abs.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/abs.js raw on github %}
 function abs (mixed_number) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Waldo Malqui Silva
-    // +   improved by: Karol Kowalski
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-    // *     example 1: abs(4.2);
-    // *     returns 1: 4.2
-    // *     example 2: abs(-4.2);
-    // *     returns 2: 4.2
-    // *     example 3: abs(-5);
-    // *     returns 3: 5
-    // *     example 4: abs('_argos');
-    // *     returns 4: 0
-    return Math.abs(mixed_number) || 0;
+  // http://kevin.vanzonneveld.net
+  // +   original by: Waldo Malqui Silva
+  // +   improved by: Karol Kowalski
+  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // *     example 1: abs(4.2);
+  // *     returns 1: 4.2
+  // *     example 2: abs(-4.2);
+  // *     returns 2: 4.2
+  // *     example 3: abs(-5);
+  // *     returns 3: 5
+  // *     example 4: abs('_argos');
+  // *     returns 4: 0
+  return Math.abs(mixed_number) || 0;
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/abs.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/abs.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+abs(4.2);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+4.2
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+abs(-4.2);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+4.2
+{% endcodeblock %}
+
+### Example 3
+This code
+{% codeblock lang:js example %}
+abs(-5);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+5
+{% endcodeblock %}
+
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}

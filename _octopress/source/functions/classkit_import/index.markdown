@@ -14,21 +14,33 @@ A JavaScript equivalent of PHP's classkit_import
 
 {% codeblock classkit/classkit_import.js lang:js https://raw.github.com/kvz/phpjs/master/functions/classkit/classkit_import.js raw on github %}
 function classkit_import (file) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Brett Zamir (http://brett-zamir.me)
-    // -    depends on: file_get_contents
-    // %        note 1: does not return an associative array as in PHP
-    // %        note 2: Implement instead with include?
-    // %        note 3: CLASSKIT_AGGREGATE_OVERRIDE is mentioned as a flag at http://www.php.net/manual/en/runkit.constants.php but not in classkit docs
-    // *     example 1: classkit_import('http://example.com/somefile.js');
-    // *     returns 1: undefined
+  // http://kevin.vanzonneveld.net
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // -    depends on: file_get_contents
+  // %        note 1: does not return an associative array as in PHP
+  // %        note 2: Implement instead with include?
+  // %        note 3: CLASSKIT_AGGREGATE_OVERRIDE is mentioned as a flag at http://www.php.net/manual/en/runkit.constants.php but not in classkit docs
+  // *     example 1: classkit_import('http://example.com/somefile.js');
+  // *     returns 1: undefined
 
-    eval(this.file_get_contents(file));
+  eval(this.file_get_contents(file));
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/classkit/classkit_import.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/classkit/classkit_import.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+classkit_import('http://example.com/somefile.js');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+undefined
+{% endcodeblock %}
+
 
 ### Other PHP functions in the classkit extension
 {% render_partial _includes/custom/classkit.html %}

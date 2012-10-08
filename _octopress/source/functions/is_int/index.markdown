@@ -14,30 +14,64 @@ A JavaScript equivalent of PHP's is_int
 
 {% codeblock var/is_int.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_int.js raw on github %}
 function is_int (mixed_var) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: Alex
-    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +    revised by: Matt Bradley
-    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // +   improved by: WebDevHobo (http://webdevhobo.blogspot.com/)
-    // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
-    // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
-    // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
-    // *     example 1: is_int(23)
-    // *     returns 1: true
-    // *     example 2: is_int('23')
-    // *     returns 2: false
-    // *     example 3: is_int(23.5)
-    // *     returns 3: false
-    // *     example 4: is_int(true)
-    // *     returns 4: false
-    
-    return mixed_var === +mixed_var && isFinite(mixed_var) && !(mixed_var % 1);
+  // http://kevin.vanzonneveld.net
+  // +   original by: Alex
+  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +    revised by: Matt Bradley
+  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   improved by: WebDevHobo (http://webdevhobo.blogspot.com/)
+  // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
+  // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  // *     example 1: is_int(23)
+  // *     returns 1: true
+  // *     example 2: is_int('23')
+  // *     returns 2: false
+  // *     example 3: is_int(23.5)
+  // *     returns 3: false
+  // *     example 4: is_int(true)
+  // *     returns 4: false
+
+  return mixed_var === +mixed_var && isFinite(mixed_var) && !(mixed_var % 1);
 }
 {% endcodeblock %}
 
  - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_int.js)
  - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_int.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+is_int(23)
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+true
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+is_int('23')
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+false
+{% endcodeblock %}
+
+### Example 3
+This code
+{% codeblock lang:js example %}
+is_int(23.5)
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+false
+{% endcodeblock %}
+
 
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}
