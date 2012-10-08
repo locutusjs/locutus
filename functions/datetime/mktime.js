@@ -27,11 +27,11 @@ function mktime () {
     // *     example 3: diff = (real - make);
     // *     results 3: diff < 5
     // *     example 4: mktime(0, 0, 0, 13, 1, 1997)
-    // *     returns 4: 883612800 
+    // *     returns 4: 883612800
     // *     example 5: mktime(0, 0, 0, 1, 1, 1998)
-    // *     returns 5: 883612800 
+    // *     returns 5: 883612800
     // *     example 6: mktime(0, 0, 0, 1, 1, 98)
-    // *     returns 6: 883612800 
+    // *     returns 6: 883612800
     // *     example 7: mktime(23, 59, 59, 13, 0, 2010)
     // *     returns 7: 1293839999
     // *     example 8: mktime(0, 0, -1, 1, 1, 1970)

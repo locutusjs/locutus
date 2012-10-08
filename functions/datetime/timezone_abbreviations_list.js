@@ -34,7 +34,7 @@ function timezone_abbreviations_list () {
     // abbreviation from the abbreviations array below. Each sub array
     // consists of 2 to 4 values. The first value will be DST. The
     // second value is the index of the value in the offsets array.
-    // The third value is the timezone ID if applicable. Null is 
+    // The third value is the timezone ID if applicable. Null is
     // returned if their is no value. The fourth value is the index
     // of the prefix to use for the timezone ID if applicable.
     if (!php_js_shared.tz_abbrs) { // This should really be static, but we can at least avoid rebuilding the array each time

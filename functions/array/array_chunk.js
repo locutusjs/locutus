@@ -11,9 +11,9 @@ function array_chunk (input, size, preserve_keys) {
     // *     returns 3: [['Kevin', 'van'], ['Zonneveld']]
     // *     example 4: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2, true);
     // *     returns 4: [{1: 'Kevin', 2: 'van'}, {3: 'Zonneveld'}]
-    
+
     var x, p = '', i = 0, c = -1, l = input.length || 0, n = [];
-    
+
     if (size < 1) {
         return null;
     }

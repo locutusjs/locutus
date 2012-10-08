@@ -617,7 +617,7 @@ function _phpjs_shared_bc () {
 
 
         /**
-         * 
+         *
          * @param {bc_num} n1
          * @param {bc_num} n2
          * @param {boolean} use_sign
@@ -972,7 +972,7 @@ function _phpjs_shared_bc () {
         },
 
         /**
-         * 
+         *
          * @param {int} length
          * @param {int} scale
          * @return bc_num

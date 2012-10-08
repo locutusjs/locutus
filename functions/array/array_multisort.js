@@ -296,14 +296,14 @@ function array_multisort (arr) {
             }
             if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
                 args[i] = sortArrs[i];
-            } 
+            }
             else {
                 for (j in arguments[i]) {
                     if (arguments[i].hasOwnProperty(j)) {
                         delete arguments[i][j];
                     }
                 }
-                
+
                 sal = sortArrs[i].length;
                 for (j = 0, vkey = 0; j < sal; j++) {
                     vkey = sortKeys[i][j];

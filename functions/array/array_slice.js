@@ -4,7 +4,7 @@ function array_slice (arr, offst, lgth, preserve_keys) {
     // -    depends on: is_int
     // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // %          note: Relies on is_int because !isNaN accepts floats 
+    // %          note: Relies on is_int because !isNaN accepts floats
     // *     example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1);
     // *     returns 1: {0: 'c', 1: 'd'}
     // *     example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true);
@@ -17,7 +17,7 @@ function array_slice (arr, offst, lgth, preserve_keys) {
 
     var key = '';
 
-    if (Object.prototype.toString.call(arr) !== '[object Array]' || 
+    if (Object.prototype.toString.call(arr) !== '[object Array]' ||
         (preserve_keys && offst !== 0)) { // Assoc. array as input or if required as output
         var lgt = 0,
             newAssoc = {};

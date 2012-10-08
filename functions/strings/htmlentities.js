@@ -22,11 +22,11 @@ function htmlentities (string, quote_style, charset, double_encode) {
     if (!hash_map) {
         return false;
     }
-    
+
     if (quote_style && quote_style === 'ENT_QUOTES') {
         hash_map["'"] = '&#039;';
     }
-    
+
     if (!!double_encode || double_encode == null) {
         for (symbol in hash_map) {
             if (hash_map.hasOwnProperty(symbol)) {
@@ -40,7 +40,7 @@ function htmlentities (string, quote_style, charset, double_encode) {
                     text = text.split(symbol).join(hash_map[symbol]);
                 }
             }
-            
+
             return text + entity;
         });
     }

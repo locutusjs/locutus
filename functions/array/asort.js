@@ -94,7 +94,7 @@ function asort (inputArr, sort_flags) {
             }
         }
     }
-    
+
     valArr.sort(function (a, b) {
         return sorter(a[1], b[1]);
     });

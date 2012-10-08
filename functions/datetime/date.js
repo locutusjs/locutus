@@ -43,7 +43,7 @@ function date (format, timestamp) {
     // *     returns 2: 'September 2, 2003, 2:26 am'
     // *     example 3: date('Y W o', 1062462400);
     // *     returns 3: '2003 36 2003'
-    // *     example 4: x = date('Y m d', (new Date()).getTime()/1000); 
+    // *     example 4: x = date('Y m d', (new Date()).getTime()/1000);
     // *     example 4: (x+'').length == 10 // 2009 01 09
     // *     returns 4: true
     // *     example 5: date('W', 1104534000);
@@ -91,7 +91,7 @@ function date (format, timestamp) {
         },
         S: function () { // Ordinal suffix for day of month; st, nd, rd, th
             var j = f.j();
-            return j < 4 | j > 20 && ['st', 'nd', 'rd'][j%10 - 1] || 'th'; 
+            return j < 4 | j > 20 && ['st', 'nd', 'rd'][j%10 - 1] || 'th';
         },
         w: function () { // Day of week; 0[Sun]..6[Sat]
             return jsdate.getDay();

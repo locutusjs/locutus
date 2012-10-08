@@ -50,7 +50,7 @@ function min () {
                     nl = next.length;
                     if (nl > cl) {
                         return 1;
-                    } 
+                    }
                     else if (nl < cl) {
                         return -1;
                     }
@@ -82,7 +82,7 @@ function min () {
                 }
                 return (next > 0 ? 1 : -1);
             }
-            
+
             if (next == current) {
                 return 0;
             }

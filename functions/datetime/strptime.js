@@ -337,7 +337,7 @@ Oy
             if (dateStr.charAt(j).search(_WS) !== -1) {
                 j++;
                 i--; // Let the next iteration try again with the same format character
-            } else if (format.charAt(i).search(_NWS) !== -1) { // Any extra formatting characters besides white-space causes 
+            } else if (format.charAt(i).search(_NWS) !== -1) { // Any extra formatting characters besides white-space causes
                 // problems (do check after WS though, as may just be WS in string before next character)
                 return false;
             } else { // Extra WS in format

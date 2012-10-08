@@ -4,9 +4,9 @@ function compact () {
     // +    tweaked by: Jack
     // +      input by: Brett Zamir (http://brett-zamir.me)
     // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // *     example 1: var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';  
+    // *     example 1: var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';
     // *     example 1: compact('var1', 'var2', 'var3');
-    // *     returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}    
+    // *     returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}
     var matrix = {},
         that = this;
 

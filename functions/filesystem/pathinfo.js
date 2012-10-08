@@ -101,7 +101,7 @@ function pathinfo (path, options) {
             have_extension = __getExt(have_basename);
         }
         if (false !== have_extension) {
-            tmp_arr.extension = have_extension;            
+            tmp_arr.extension = have_extension;
         }
     }
 

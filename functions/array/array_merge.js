@@ -16,7 +16,7 @@ function array_merge () {
         argl = args.length,
         arg,
         retObj = {},
-        k = '', 
+        k = '',
         argil = 0,
         j = 0,
         i = 0,

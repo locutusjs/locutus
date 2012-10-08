@@ -93,7 +93,7 @@ function arsort (inputArr, sort_flags) {
     valArr.sort(function (a, b) {
         return sorter(a[1], b[1]);
     });
- 
+
     // Repopulate the old array
     for (i = 0, valArrLen = valArr.length; i < valArrLen; i++) {
         populateArr[valArr[i][0]] = valArr[i][1];

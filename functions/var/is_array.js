@@ -38,18 +38,18 @@ function is_array (mixed_var) {
             }
             var len = mixed_var.length;
             mixed_var[mixed_var.length] = 'bogus';
-            // The only way I can think of to get around this (or where there would be trouble) would be to have an object defined 
-            // with a custom "length" getter which changed behavior on each call (or a setter to mess up the following below) or a custom 
-            // setter for numeric properties, but even that would need to listen for specific indexes; but there should be no false negatives 
+            // The only way I can think of to get around this (or where there would be trouble) would be to have an object defined
+            // with a custom "length" getter which changed behavior on each call (or a setter to mess up the following below) or a custom
+            // setter for numeric properties, but even that would need to listen for specific indexes; but there should be no false negatives
             // and such a false positive would need to rely on later JavaScript innovations like __defineSetter__
-            if (len !== mixed_var.length) { // We know it's an array since length auto-changed with the addition of a 
+            if (len !== mixed_var.length) { // We know it's an array since length auto-changed with the addition of a
             // numeric property at its length end, so safely get rid of our bogus element
                 mixed_var.length -= 1;
                 return true;
             }
-            // Get rid of the property we added onto a non-array object; only possible 
-            // side-effect is if the user adds back the property later, it will iterate 
-            // this property in the older order placement in IE (an order which should not 
+            // Get rid of the property we added onto a non-array object; only possible
+            // side-effect is if the user adds back the property later, it will iterate
+            // this property in the older order placement in IE (an order which should not
             // be depended on anyways)
             delete mixed_var[mixed_var.length];
             return false;
@@ -63,7 +63,7 @@ function is_array (mixed_var) {
     this.php_js = this.php_js || {};
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
-    
+
     ini = this.php_js.ini['phpjs.objectsAsArrays'];
 
     return _isArray(mixed_var) ||

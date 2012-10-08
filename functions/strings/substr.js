@@ -1,6 +1,6 @@
 function substr (str, start, len) {
-    // Returns part of a string  
-    // 
+    // Returns part of a string
+    //
     // version: 909.322
     // discuss at: http://phpjs.org/functions/substr
     // +     original by: Martijn Wieringa

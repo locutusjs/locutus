@@ -62,7 +62,7 @@ function strtotime (str, now) {
     var process = function (m) {
         var ago = (m[2] && m[2] === 'ago');
         var num = (num = m[0] === 'last' ? -1 : 1) * (ago ? -1 : 1);
-        
+
         switch (m[0]) {
         case 'last':
         case 'next':

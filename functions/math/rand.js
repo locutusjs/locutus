@@ -16,7 +16,7 @@ function rand (min, max) {
 
 /*
     // See note above for an explanation of the following alternative code
-    
+
     // +   reimplemented by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: srand
     // %          note 1: This is a very possibly imperfect adaptation from the PHP source code

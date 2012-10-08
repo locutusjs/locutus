@@ -7,7 +7,7 @@ function array_replace_recursive (arr) {
         i = 0,
         p = '',
         argl = arguments.length;
-    
+
     if (argl < 2) {
         throw new Error('There should be at least 2 arguments passed to array_replace_recursive()');
     }

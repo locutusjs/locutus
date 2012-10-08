@@ -8,7 +8,7 @@ function extract (arr, type, prefix) {
     // *     example 1: extract(var_array, 'EXTR_PREFIX_SAME', 'wddx');
     // *     example 1: color+'-'+size+'-'+shape+'-'+wddx_size;
     // *     returns 1: 'blue-large-sphere-medium'
-    if (Object.prototype.toString.call(arr) === '[object Array]' && 
+    if (Object.prototype.toString.call(arr) === '[object Array]' &&
         (type !== 'EXTR_PREFIX_ALL' && type !== 'EXTR_PREFIX_INVALID')) {
         return 0;
     }

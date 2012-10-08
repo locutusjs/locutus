@@ -3,7 +3,7 @@ function current (arr) {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Uses global: php_js to store the array pointer
     // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
-    // *     example 1: current(transport); 
+    // *     example 1: current(transport);
     // *     returns 1: 'foot'
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};

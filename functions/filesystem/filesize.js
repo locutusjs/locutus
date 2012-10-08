@@ -5,7 +5,7 @@ function filesize (url) {
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: T. Wild
     // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
-    // %        note 1: Synchronous so may lock up browser, mainly here for study purposes. 
+    // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
     // *     example 1: filesize('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
     // *     returns 1: '3'
     var req = this.window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();

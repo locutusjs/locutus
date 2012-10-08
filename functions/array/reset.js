@@ -5,7 +5,7 @@ function reset (arr) {
     // +    revised by: Brett Zamir (http://brett-zamir.me)
     // %        note 1: Uses global: php_js to store the array pointer
     // *     example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
-    // *     returns 1: 'Kevin' 
+    // *     returns 1: 'Kevin'
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];

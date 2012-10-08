@@ -4,31 +4,31 @@ function metaphone (word, phones) {
     // +   improved by: Rafał Kukawski (http://kukawski.pl)
     // *     example 1: metaphone('Gnu');
     // *     returns 1: 'N'
-    
+
     word = (word == null ? '' : word + '').toUpperCase();
-    
+
     function isVowel (a) {
         return 'AEIOU'.indexOf(a) !== -1;
     }
-    
+
     function removeDuplicates (word) {
         var wordlength = word.length,
             char1 = word.charAt(0),
             char2,
             rebuilt = char1;
-            
+
         for (var i = 1; i < wordlength; i++) {
             char2 = word.charAt(i);
-            
+
             if (char2 !== char1 || char2 === 'C' || char2 === 'G') { // 'c' and 'g' are exceptions
                 rebuilt += char2;
             }
             char1 = char2;
         }
-        
+
         return rebuilt;
     }
-    
+
     word = removeDuplicates(word);
 
     var wordlength = word.length,
@@ -40,12 +40,12 @@ function metaphone (word, phones) {
         // Remove "h" and rebuild the string
         word = 'W' + word.substr(2);
     }
-    
+
     var cc = word.charAt(0); // current char. Short name cause it's used all over the function
     var pc = ''; // previous char. There is none when x === 0
     var nc = word.charAt(1); // next char
     var nnc = ''; // 2 characters ahead. Needed later
-    
+
     if (1 <= wordlength) {
         switch (cc) {
         case 'A':
@@ -78,7 +78,7 @@ function metaphone (word, phones) {
         pc = word.charAt(x - 1);
         nc = word.charAt(x + 1);
         nnc = word.charAt(x + 2);
-        
+
         if (!isVowel(cc)) {
             switch (cc) {
             case 'B':
@@ -133,7 +133,7 @@ function metaphone (word, phones) {
                     if (word.substr(x - 2, 3) === 'ING' && x === wordlength - 1) {
                         break;
                     }
-                    
+
                     if (x + 1 <= wordlength - 1 && word.substr(x - 2, 4) === 'OUGH') {
                         metaword += 'F';
                         break;

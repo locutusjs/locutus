@@ -8,15 +8,15 @@ function bin2hex (s) {
     // *     returns 1: '4b6576'
     // *     example 2: bin2hex(String.fromCharCode(0x00));
     // *     returns 2: '00'
-    
+
     var i, l, o = "", n;
 
     s += "";
-    
+
     for (i = 0, l = s.length; i < l; i++) {
         n = s.charCodeAt(i).toString(16)
         o += n.length < 2 ? "0" + n : n;
     }
-    
+
     return o;
 }

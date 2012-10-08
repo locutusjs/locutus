@@ -6,7 +6,7 @@ function decoct (number) {
     // +   input by: pilus
     // *     example 1: decoct(15);
     // *     returns 1: '17'
-    // *     example 2: decoct(264); 
+    // *     example 2: decoct(264);
     // *     returns 2: '410'
     if (number < 0) {
         number = 0xFFFFFFFF + number + 1;

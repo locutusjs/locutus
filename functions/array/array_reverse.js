@@ -7,7 +7,7 @@ function array_reverse (array, preserve_keys) {
     var isArray = Object.prototype.toString.call(array) === "[object Array]",
         tmp_arr = preserve_keys ? {} : [],
         key;
-        
+
     if (isArray && !preserve_keys) {
         return array.slice(0).reverse();
     }
@@ -19,7 +19,7 @@ function array_reverse (array, preserve_keys) {
             keys.push(key);
             // }
         }
-        
+
         var i = keys.length;
         while (i--) {
             key = keys[i];

@@ -22,14 +22,14 @@ function parse_str (str, array) {
     // *     example 2: var arr = {};
     // *     example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr);
     // *     results 2: arr == { str_a: "Jack and Jill didn't see the well." }
-    // *     example 3: var abc = {3:'a'}; 
+    // *     example 3: var abc = {3:'a'};
     // *     example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5');
     // *     results 3: JSON.stringify(abc) === '{"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}';
-    
+
 
     var strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&'),
         sal = strArr.length,
-        i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value, 
+        i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value,
         postLeftBracketPos, keys, keysLen,
         fixStr = function (str) {
             return decodeURIComponent(str.replace(/\+/g, '%20'));
@@ -43,7 +43,7 @@ function parse_str (str, array) {
         tmp = strArr[i].split('=');
         key = fixStr(tmp[0]);
 		value = (tmp.length < 2) ? '' : fixStr(tmp[1]);
-        
+
         while (key.charAt(0) === ' ') {
             key = key.slice(1);
         }
@@ -82,7 +82,7 @@ function parse_str (str, array) {
                     break;
                 }
             }
-            
+
             obj = array;
             for (j = 0, keysLen = keys.length; j < keysLen; j++) {
                 key = keys[j].replace(/^['"]/, '').replace(/['"]$/, '');
@@ -105,7 +105,7 @@ function parse_str (str, array) {
                     }
                     key = ct + 1;
                 }
-            } 
+            }
             lastObj[key] = value;
         }
     }

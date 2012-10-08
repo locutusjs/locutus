@@ -4,7 +4,7 @@ function str_getcsv (input, delimiter, enclosure, escape) {
     // *     example 1: str_getcsv('"abc", "def", "ghi"');
     // *     returns 1: ['abc', 'def', 'ghi']
     var output = [];
-    var backwards = function (str) { // We need to go backwards to simulate negative look-behind (don't split on 
+    var backwards = function (str) { // We need to go backwards to simulate negative look-behind (don't split on
         //an escaped enclosure even if followed by the delimiter and another enclosure mark)
         return str.split('').reverse().join('');
     };

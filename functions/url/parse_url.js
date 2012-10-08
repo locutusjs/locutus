@@ -14,10 +14,10 @@ function parse_url (str, component) {
     // %          note: an extra slash after the scheme/protocol (to allow file:/// as in PHP)
     // *     example 1: parse_url('http://username:password@hostname/path?arg=value#anchor');
     // *     returns 1: {scheme: 'http', host: 'hostname', user: 'username', pass: 'password', path: '/path', query: 'arg=value', fragment: 'anchor'}
-    var key = ['source', 'scheme', 'authority', 'userInfo', 'user', 'pass', 'host', 'port', 
+    var key = ['source', 'scheme', 'authority', 'userInfo', 'user', 'pass', 'host', 'port',
                         'relative', 'path', 'directory', 'file', 'query', 'fragment'],
         ini = (this.php_js && this.php_js.ini) || {},
-        mode = (ini['phpjs.parse_url.mode'] && 
+        mode = (ini['phpjs.parse_url.mode'] &&
             ini['phpjs.parse_url.mode'].local_value) || 'php',
         parser = {
             php: /^(?:([^:\/?#]+):)?(?:\/\/()(?:(?:()(?:([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?))?()(?:(()(?:(?:[^?#\/]*\/)*)()(?:[^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
@@ -30,7 +30,7 @@ function parse_url (str, component) {
         i = 14;
     while (i--) {
         if (m[i]) {
-          uri[key[i]] = m[i];  
+          uri[key[i]] = m[i];
         }
     }
 
@@ -38,7 +38,7 @@ function parse_url (str, component) {
         return uri[component.replace('PHP_URL_', '').toLowerCase()];
     }
     if (mode !== 'php') {
-        var name = (ini['phpjs.parse_url.queryKey'] && 
+        var name = (ini['phpjs.parse_url.queryKey'] &&
                 ini['phpjs.parse_url.queryKey'].local_value) || 'queryKey';
         parser = /(?:^|&)([^&=]*)=?([^&]*)/g;
         uri[name] = {};

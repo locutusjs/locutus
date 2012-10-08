@@ -12,7 +12,7 @@ function array_search (needle, haystack, argStrict) {
 
     var strict = !!argStrict,
         key = '';
-    
+
     if (haystack && typeof haystack === 'object' && haystack.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
         return haystack.search(needle, argStrict);
     }

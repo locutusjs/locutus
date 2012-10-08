@@ -6,11 +6,11 @@ function str_shuffle (str) {
     if (arguments.length === 0) {
         throw 'Wrong parameter count for str_shuffle()';
     }
-    
+
     if (str == null) {
         return '';
     }
-    
+
     str += '';
 
     var newStr = '', rand, i = str.length;

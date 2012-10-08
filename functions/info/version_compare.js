@@ -18,7 +18,7 @@ function version_compare (v1, v2, operator) {
     this.php_js = this.php_js || {};
     this.php_js.ENV = this.php_js.ENV || {};
     // END REDUNDANT
-    // Important: compare must be initialized at 0. 
+    // Important: compare must be initialized at 0.
     var i = 0,
         x = 0,
         compare = 0,
