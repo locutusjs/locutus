@@ -3,7 +3,7 @@ layout: post
 title: "New site"
 date: 2012-09-26 17:39
 comments: true
-categories: [ blog ]
+categories: [ website, octopress, future ]
 ---
 
 Hi everybody,
