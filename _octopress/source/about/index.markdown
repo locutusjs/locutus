@@ -5,6 +5,9 @@ date: 2012-09-26 17:18
 comments: true
 sharing: false
 footer: true
+alias:
+- /pages/contact
+- /authors
 ---
 
 php.js is a resource that offers community built javascript alternatives for php functions.
@@ -60,6 +63,12 @@ It is that easy.
 We use github for collaboration. Comments are only for remarks.
 Please read our guidelines in the Wiki.
 
+## Who uses php.js
+
+ - [node-mysql](https://github.com/masuidrive/node-mysql)
+ - [harmony framework](http://www.harmony-framework.com)
+ - [node.js](http://github.com/ry/node/blob/1107a1bd1e367d3056b8c3975c2026b7402e9f61/lib/multipart.js#L174-200)
+ - [Ext for Yii](http://www.ext4yii.com)
 
 ## Licensing
 
