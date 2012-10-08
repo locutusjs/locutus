@@ -3,6 +3,7 @@
 # ----------------------- #
 
 url: http://kvz.github.com/phpjs
+title: php.js
 subtitle: A resource of php functions in JavsScript
 author: Kevin van Zonneveld
 simple_search: http://google.com/search
@@ -25,7 +26,7 @@ email:
 # ----------------------- #
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
-root: 
+root:
 permalink: /blog/:year/:month/:day/:title/
 source: source
 destination: public/phpjs
@@ -47,11 +48,11 @@ titlecase: false       # Converts page and post titles to titlecase
 
 # https://github.com/alswl/octopress-category-list
 default_asides:
-- custom/asides/category_list.html 
+- custom/asides/category_list.html
 - asides/github.html
 - asides/twitter.html
 - custom/asides/banners.html
-# - custom/asides/category_cloud.html 
+# - custom/asides/category_cloud.html
 #-asides/delicious.html
 #-asides/pinboard.html
 #-asides/googleplus.html
