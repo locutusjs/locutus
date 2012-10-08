@@ -107,7 +107,7 @@ function aggregate_properties_by_list (obj, class_name, properties_list, exclude
 ### Other PHP functions in the objaggregation extension
 {% render_partial _includes/custom/objaggregation.html %}
 ## Legacy comments
-These were imported from our old site. Please use disqus for new comments
-<div style="overflow-y: scroll; height: 500px;">
-{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/aggregate_properties_by_list/comments.markdown %}
+These were imported from our old site. Please use disqus below for new comments
+<div style="overflow-y: scroll; max-height: 500px;">
+{% render_partial functions/aggregate_properties_by_list/_comments.html %}
 </div>

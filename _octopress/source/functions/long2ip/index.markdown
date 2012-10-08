@@ -31,7 +31,7 @@ function long2ip (ip) {
 ### Other PHP functions in the network extension
 {% render_partial _includes/custom/network.html %}
 ## Legacy comments
-These were imported from our old site. Please use disqus for new comments
-<div style="overflow-y: scroll; height: 500px;">
-{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/long2ip/comments.markdown %}
+These were imported from our old site. Please use disqus below for new comments
+<div style="overflow-y: scroll; max-height: 500px;">
+{% render_partial functions/long2ip/_comments.html %}
 </div>

@@ -1,7 +1,0 @@
-*[yoh]()* on 2009-03-11 06:53:11  
-cool... thanks for sharing
----------------------------------------
-*[???? ????](http://an3m1.com/)* on 2012-04-17 15:32:14  
-Write more, that’s all I have to say. Literally, it seems as though you relied on the video to make your point. You clearly know what you’re talking about, why waste your intelligence on just posting videos to your blog when you could be giving us something enlightening to read 
-
----------------------------------------

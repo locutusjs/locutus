@@ -68,7 +68,7 @@ function empty (mixed_var) {
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}
 ## Legacy comments
-These were imported from our old site. Please use disqus for new comments
-<div style="overflow-y: scroll; height: 500px;">
-{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/empty/comments.markdown %}
+These were imported from our old site. Please use disqus below for new comments
+<div style="overflow-y: scroll; max-height: 500px;">
+{% render_partial functions/empty/_comments.html %}
 </div>

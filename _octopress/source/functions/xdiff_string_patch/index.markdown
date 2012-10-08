@@ -194,7 +194,7 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
 ### Other PHP functions in the xdiff extension
 {% render_partial _includes/custom/xdiff.html %}
 ## Legacy comments
-These were imported from our old site. Please use disqus for new comments
-<div style="overflow-y: scroll; height: 500px;">
-{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/xdiff_string_patch/comments.markdown %}
+These were imported from our old site. Please use disqus below for new comments
+<div style="overflow-y: scroll; max-height: 500px;">
+{% render_partial functions/xdiff_string_patch/_comments.html %}
 </div>

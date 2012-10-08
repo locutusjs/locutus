@@ -86,7 +86,7 @@ function timezone_identifiers_list (what, country) {
 ### Other PHP functions in the datetime extension
 {% render_partial _includes/custom/datetime.html %}
 ## Legacy comments
-These were imported from our old site. Please use disqus for new comments
-<div style="overflow-y: scroll; height: 500px;">
-{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/timezone_identifiers_list/comments.markdown %}
+These were imported from our old site. Please use disqus below for new comments
+<div style="overflow-y: scroll; max-height: 500px;">
+{% render_partial functions/timezone_identifiers_list/_comments.html %}
 </div>
