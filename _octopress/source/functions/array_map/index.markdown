@@ -4,6 +4,7 @@ title: "JavaScript array_map function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_map:325
 - /functions/325

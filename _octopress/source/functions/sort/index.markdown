@@ -4,6 +4,7 @@ title: "JavaScript sort function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/sort:519
 - /functions/519

@@ -4,6 +4,7 @@ title: "JavaScript runkit_superglobals function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/runkit_superglobals:829
 - /functions/829

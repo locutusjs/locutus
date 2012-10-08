@@ -4,6 +4,7 @@ title: "JavaScript str_repeat function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/str_repeat:526
 - /functions/526

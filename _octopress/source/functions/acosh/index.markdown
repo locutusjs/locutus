@@ -4,6 +4,7 @@ title: "JavaScript acosh function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/acosh:302
 - /functions/302

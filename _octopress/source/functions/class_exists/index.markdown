@@ -4,6 +4,7 @@ title: "JavaScript class_exists function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/class_exists:370
 - /functions/370

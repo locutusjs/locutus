@@ -4,6 +4,7 @@ title: "JavaScript forward_static_call function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/forward_static_call:861
 - /functions/861

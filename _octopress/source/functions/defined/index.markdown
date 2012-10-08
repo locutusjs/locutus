@@ -4,6 +4,7 @@ title: "JavaScript defined function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/defined:385
 - /functions/385

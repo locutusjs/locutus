@@ -4,6 +4,7 @@ title: "JavaScript urldecode function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/urldecode:572
 - /functions/572

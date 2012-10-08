@@ -4,6 +4,7 @@ title: "JavaScript ksort function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/ksort:460
 - /functions/460

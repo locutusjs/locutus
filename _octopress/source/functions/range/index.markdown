@@ -4,6 +4,7 @@ title: "JavaScript range function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/range:499
 - /functions/499

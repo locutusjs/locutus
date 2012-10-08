@@ -4,6 +4,7 @@ title: "JavaScript array_rand function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_rand:332
 - /functions/332

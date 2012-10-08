@@ -4,6 +4,7 @@ title: "JavaScript rewind function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/rewind:811
 - /functions/811

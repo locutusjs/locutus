@@ -4,6 +4,7 @@ title: "JavaScript strspn function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/strspn:550
 - /functions/550

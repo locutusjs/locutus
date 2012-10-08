@@ -4,6 +4,7 @@ title: "JavaScript setrawcookie function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/setrawcookie:510
 - /functions/510

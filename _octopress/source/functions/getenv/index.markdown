@@ -4,6 +4,7 @@ title: "JavaScript getenv function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/getenv:585
 - /functions/585

@@ -4,6 +4,7 @@ title: "JavaScript gmstrftime function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/gmstrftime:780
 - /functions/780

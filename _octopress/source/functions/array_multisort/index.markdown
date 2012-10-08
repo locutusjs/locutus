@@ -4,6 +4,7 @@ title: "JavaScript array_multisort function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_multisort:830
 - /functions/830

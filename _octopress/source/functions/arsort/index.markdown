@@ -4,6 +4,7 @@ title: "JavaScript arsort function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/arsort:351
 - /functions/351

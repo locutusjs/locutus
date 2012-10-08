@@ -4,6 +4,7 @@ title: "JavaScript array_fill function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_fill:314
 - /functions/314

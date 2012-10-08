@@ -4,6 +4,7 @@ title: "JavaScript mt_getrandmax function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/mt_getrandmax:475
 - /functions/475

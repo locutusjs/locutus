@@ -4,6 +4,7 @@ title: "JavaScript runkit_function_copy function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/runkit_function_copy:823
 - /functions/823

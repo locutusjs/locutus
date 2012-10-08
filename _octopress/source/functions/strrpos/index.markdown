@@ -4,6 +4,7 @@ title: "JavaScript strrpos function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/strrpos:549
 - /functions/549

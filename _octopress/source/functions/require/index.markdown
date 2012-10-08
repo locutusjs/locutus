@@ -4,6 +4,7 @@ title: "JavaScript require function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/require:502
 - /functions/502

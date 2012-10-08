@@ -4,6 +4,7 @@ title: "JavaScript str_split function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/str_split:530
 - /functions/530

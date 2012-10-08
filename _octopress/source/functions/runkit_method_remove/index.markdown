@@ -4,6 +4,7 @@ title: "JavaScript runkit_method_remove function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/runkit_method_remove:816
 - /functions/816

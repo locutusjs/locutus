@@ -4,6 +4,7 @@ title: "JavaScript pi function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/pi:488
 - /functions/488

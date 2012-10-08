@@ -4,6 +4,7 @@ title: "JavaScript strpbrk function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/strpbrk:544
 - /functions/544

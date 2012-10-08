@@ -4,6 +4,7 @@ title: "JavaScript var_export function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/var_export:578
 - /functions/578

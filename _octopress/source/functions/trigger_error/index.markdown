@@ -4,6 +4,7 @@ title: "JavaScript trigger_error function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/trigger_error:842
 - /functions/842

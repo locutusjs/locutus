@@ -4,6 +4,7 @@ title: "JavaScript metaphone function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/metaphone:863
 - /functions/863

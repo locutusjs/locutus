@@ -4,6 +4,7 @@ title: "JavaScript strval function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/strval:557
 - /functions/557

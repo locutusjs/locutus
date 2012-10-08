@@ -4,6 +4,7 @@ title: "JavaScript checkdate function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/checkdate:366
 - /functions/366

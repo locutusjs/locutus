@@ -4,6 +4,7 @@ title: "JavaScript isset function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/isset:454
 - /functions/454

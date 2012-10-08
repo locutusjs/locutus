@@ -4,6 +4,7 @@ title: "JavaScript func_get_arg function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/func_get_arg:405
 - /functions/405

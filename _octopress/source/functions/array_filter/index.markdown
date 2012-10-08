@@ -4,6 +4,7 @@ title: "JavaScript array_filter function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_filter:316
 - /functions/316

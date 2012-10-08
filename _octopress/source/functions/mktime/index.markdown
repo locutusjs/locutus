@@ -4,6 +4,7 @@ title: "JavaScript mktime function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/mktime:474
 - /functions/474

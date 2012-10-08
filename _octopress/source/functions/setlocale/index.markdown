@@ -4,6 +4,7 @@ title: "JavaScript setlocale function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/setlocale:589
 - /functions/589

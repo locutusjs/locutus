@@ -4,6 +4,7 @@ title: "JavaScript array_walk_recursive function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_walk_recursive:350
 - /functions/350

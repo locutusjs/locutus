@@ -4,6 +4,7 @@ title: "JavaScript sin function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/sin:515
 - /functions/515

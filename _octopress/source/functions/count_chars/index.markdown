@@ -4,6 +4,7 @@ title: "JavaScript count_chars function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/count_chars:376
 - /functions/376

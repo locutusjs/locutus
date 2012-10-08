@@ -4,6 +4,7 @@ title: "JavaScript htmlspecialchars function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/htmlspecialchars:426
 - /functions/426

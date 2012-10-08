@@ -4,6 +4,7 @@ title: "JavaScript wordwrap function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/wordwrap:581
 - /functions/581

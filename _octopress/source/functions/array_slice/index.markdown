@@ -4,6 +4,7 @@ title: "JavaScript array_slice function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_slice:337
 - /functions/337

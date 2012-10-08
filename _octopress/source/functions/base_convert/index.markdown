@@ -4,6 +4,7 @@ title: "JavaScript base_convert function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/base_convert:359
 - /functions/359

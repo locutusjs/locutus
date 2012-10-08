@@ -4,6 +4,7 @@ title: "JavaScript ob_start function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/ob_start:901
 - /functions/901

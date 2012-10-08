@@ -4,6 +4,7 @@ title: "JavaScript dechex function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/dechex:382
 - /functions/382

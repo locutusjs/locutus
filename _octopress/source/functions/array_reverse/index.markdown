@@ -4,6 +4,7 @@ title: "JavaScript array_reverse function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_reverse:334
 - /functions/334

@@ -4,6 +4,7 @@ title: "JavaScript aggregate_methods_by_regexp function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/aggregate_methods_by_regexp:795
 - /functions/795

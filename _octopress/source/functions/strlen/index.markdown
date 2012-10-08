@@ -4,6 +4,7 @@ title: "JavaScript strlen function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/strlen:539
 - /functions/539

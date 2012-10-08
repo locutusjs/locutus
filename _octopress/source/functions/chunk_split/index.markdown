@@ -4,6 +4,7 @@ title: "JavaScript chunk_split function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/chunk_split:369
 - /functions/369

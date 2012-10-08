@@ -4,6 +4,7 @@ title: "JavaScript stream_context_get_default function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/stream_context_get_default:845
 - /functions/845

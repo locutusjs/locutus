@@ -4,6 +4,7 @@ title: "JavaScript chop function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/chop:367
 - /functions/367

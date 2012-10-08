@@ -4,6 +4,7 @@ title: "JavaScript time_sleep_until function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/time_sleep_until:564
 - /functions/564

@@ -4,6 +4,7 @@ title: "JavaScript is_nan function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/is_nan:447
 - /functions/447

@@ -4,6 +4,7 @@ title: "JavaScript quoted_printable_decode function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/quoted_printable_decode:834
 - /functions/834

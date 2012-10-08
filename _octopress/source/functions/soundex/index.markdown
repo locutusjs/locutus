@@ -4,6 +4,7 @@ title: "JavaScript soundex function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/soundex:520
 - /functions/520

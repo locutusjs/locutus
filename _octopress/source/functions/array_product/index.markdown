@@ -4,6 +4,7 @@ title: "JavaScript array_product function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_product:330
 - /functions/330

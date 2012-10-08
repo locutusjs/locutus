@@ -4,6 +4,7 @@ title: "JavaScript lcg_value function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/lcg_value:462
 - /functions/462

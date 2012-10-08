@@ -4,6 +4,7 @@ title: "JavaScript decbin function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/decbin:381
 - /functions/381

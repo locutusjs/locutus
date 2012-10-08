@@ -4,6 +4,7 @@ title: "JavaScript strtok function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/strtok:552
 - /functions/552

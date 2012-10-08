@@ -4,6 +4,7 @@ title: "JavaScript join function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/join:455
 - /functions/455

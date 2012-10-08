@@ -4,6 +4,7 @@ title: "JavaScript call_user_func_array function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/call_user_func_array:364
 - /functions/364

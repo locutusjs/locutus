@@ -4,6 +4,7 @@ title: "JavaScript file_get_contents function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/file_get_contents:400
 - /functions/400

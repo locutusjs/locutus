@@ -4,6 +4,7 @@ title: "JavaScript array_change_key_case function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_change_key_case:305
 - /functions/305

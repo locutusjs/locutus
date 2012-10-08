@@ -4,6 +4,7 @@ title: "JavaScript preg_quote function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/preg_quote:491
 - /functions/491

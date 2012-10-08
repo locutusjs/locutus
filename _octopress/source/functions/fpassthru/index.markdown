@@ -4,6 +4,7 @@ title: "JavaScript fpassthru function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/fpassthru:804
 - /functions/804

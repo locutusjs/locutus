@@ -4,6 +4,7 @@ title: "JavaScript http_build_query function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/http_build_query:428
 - /functions/428

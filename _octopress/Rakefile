@@ -1,4 +1,4 @@
-require "rubygems"
+ "rubygems"
 require "bundler/setup"
 require "stringex"
 
@@ -109,7 +109,7 @@ task :build do
       page_fnc.puts "comments: true"
       page_fnc.puts "sharing: true"
       page_fnc.puts "footer: true"
-      page_cat.puts "sidebar: false"
+      page_fnc.puts "sidebar: false"
       page_fnc.puts "alias:"
       page_fnc.puts "- /functions/#{function}:#{id}"
       page_fnc.puts "- /functions/#{id}"

@@ -4,6 +4,7 @@ title: "JavaScript addcslashes function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/addcslashes:879
 - /functions/879

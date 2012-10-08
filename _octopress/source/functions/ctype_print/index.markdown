@@ -4,6 +4,7 @@ title: "JavaScript ctype_print function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/ctype_print:757
 - /functions/757

@@ -4,6 +4,7 @@ title: "JavaScript microtime function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/microtime:472
 - /functions/472

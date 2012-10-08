@@ -4,6 +4,7 @@ title: "JavaScript uniqid function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/uniqid:750
 - /functions/750

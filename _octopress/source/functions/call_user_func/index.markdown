@@ -4,6 +4,7 @@ title: "JavaScript call_user_func function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/call_user_func:363
 - /functions/363

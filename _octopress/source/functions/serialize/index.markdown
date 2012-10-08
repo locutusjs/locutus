@@ -4,6 +4,7 @@ title: "JavaScript serialize function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/serialize:508
 - /functions/508

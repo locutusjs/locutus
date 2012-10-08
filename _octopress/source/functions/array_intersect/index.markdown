@@ -4,6 +4,7 @@ title: "JavaScript array_intersect function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_intersect:318
 - /functions/318

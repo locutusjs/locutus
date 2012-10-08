@@ -4,6 +4,7 @@ title: "JavaScript atan2 function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/atan2:768
 - /functions/768

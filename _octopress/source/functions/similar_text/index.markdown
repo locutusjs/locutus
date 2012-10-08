@@ -4,6 +4,7 @@ title: "JavaScript similar_text function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/similar_text:902
 - /functions/902

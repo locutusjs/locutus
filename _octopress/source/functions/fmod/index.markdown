@@ -4,6 +4,7 @@ title: "JavaScript fmod function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/fmod:404
 - /functions/404

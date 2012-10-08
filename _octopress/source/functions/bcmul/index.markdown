@@ -4,6 +4,7 @@ title: "JavaScript bcmul function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/bcmul:872
 - /functions/872

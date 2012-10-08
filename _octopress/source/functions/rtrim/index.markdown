@@ -4,6 +4,7 @@ title: "JavaScript rtrim function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/rtrim:507
 - /functions/507

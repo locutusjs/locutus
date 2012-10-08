@@ -4,6 +4,7 @@ title: "JavaScript timezone_abbreviations_list function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/timezone_abbreviations_list:565
 - /functions/565

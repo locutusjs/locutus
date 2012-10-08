@@ -4,6 +4,7 @@ title: "JavaScript utf8_decode function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/utf8_decode:576
 - /functions/576

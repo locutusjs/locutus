@@ -4,6 +4,7 @@ title: "JavaScript ob_get_status function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/ob_get_status:899
 - /functions/899

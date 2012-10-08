@@ -4,6 +4,7 @@ title: "JavaScript substr_replace function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/substr_replace:819
 - /functions/819

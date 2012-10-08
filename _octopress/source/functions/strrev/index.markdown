@@ -4,6 +4,7 @@ title: "JavaScript strrev function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/strrev:547
 - /functions/547

@@ -4,6 +4,7 @@ title: "JavaScript is_unicode function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/is_unicode:593
 - /functions/593

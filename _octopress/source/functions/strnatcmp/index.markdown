@@ -4,6 +4,7 @@ title: "JavaScript strnatcmp function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/strnatcmp:541
 - /functions/541

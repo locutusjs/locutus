@@ -4,6 +4,7 @@ title: "JavaScript fclose function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/fclose:771
 - /functions/771

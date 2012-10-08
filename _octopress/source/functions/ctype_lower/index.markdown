@@ -4,6 +4,7 @@ title: "JavaScript ctype_lower function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/ctype_lower:756
 - /functions/756

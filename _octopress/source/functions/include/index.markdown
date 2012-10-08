@@ -4,6 +4,7 @@ title: "JavaScript include function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/include:433
 - /functions/433

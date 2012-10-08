@@ -4,6 +4,7 @@ title: "JavaScript htmlspecialchars_decode function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/htmlspecialchars_decode:427
 - /functions/427

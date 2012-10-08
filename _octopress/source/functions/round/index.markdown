@@ -4,6 +4,7 @@ title: "JavaScript round function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/round:505
 - /functions/505

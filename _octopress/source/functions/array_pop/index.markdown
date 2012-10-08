@@ -4,6 +4,7 @@ title: "JavaScript array_pop function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_pop:329
 - /functions/329

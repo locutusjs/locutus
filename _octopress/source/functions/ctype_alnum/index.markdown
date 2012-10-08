@@ -4,6 +4,7 @@ title: "JavaScript ctype_alnum function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/ctype_alnum:751
 - /functions/751

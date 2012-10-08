@@ -4,6 +4,7 @@ title: "JavaScript define function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/define:384
 - /functions/384

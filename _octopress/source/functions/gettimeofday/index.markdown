@@ -4,6 +4,7 @@ title: "JavaScript gettimeofday function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/gettimeofday:778
 - /functions/778

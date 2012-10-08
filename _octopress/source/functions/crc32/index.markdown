@@ -4,6 +4,7 @@ title: "JavaScript crc32 function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/crc32:377
 - /functions/377

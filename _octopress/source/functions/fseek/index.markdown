@@ -4,6 +4,7 @@ title: "JavaScript fseek function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/fseek:805
 - /functions/805

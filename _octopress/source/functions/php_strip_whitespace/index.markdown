@@ -4,6 +4,7 @@ title: "JavaScript php_strip_whitespace function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/php_strip_whitespace:487
 - /functions/487

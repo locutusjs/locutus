@@ -4,6 +4,7 @@ title: "JavaScript time function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/time:562
 - /functions/562

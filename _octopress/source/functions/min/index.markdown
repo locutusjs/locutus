@@ -4,6 +4,7 @@ title: "JavaScript min function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/min:473
 - /functions/473

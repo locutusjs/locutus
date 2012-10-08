@@ -4,6 +4,7 @@ title: "JavaScript end function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/end:393
 - /functions/393

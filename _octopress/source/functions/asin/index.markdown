@@ -4,6 +4,7 @@ title: "JavaScript asin function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/asin:352
 - /functions/352

@@ -4,6 +4,7 @@ title: "JavaScript forward_static_call_array function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/forward_static_call_array:862
 - /functions/862

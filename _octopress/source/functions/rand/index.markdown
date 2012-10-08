@@ -4,6 +4,7 @@ title: "JavaScript rand function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/rand:498
 - /functions/498

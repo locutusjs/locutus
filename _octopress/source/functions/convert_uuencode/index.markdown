@@ -4,6 +4,7 @@ title: "JavaScript convert_uuencode function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/convert_uuencode:769
 - /functions/769

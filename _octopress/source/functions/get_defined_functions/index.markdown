@@ -4,6 +4,7 @@ title: "JavaScript get_defined_functions function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/get_defined_functions:413
 - /functions/413

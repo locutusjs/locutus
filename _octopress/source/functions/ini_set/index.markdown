@@ -4,6 +4,7 @@ title: "JavaScript ini_set function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/ini_set:600
 - /functions/600

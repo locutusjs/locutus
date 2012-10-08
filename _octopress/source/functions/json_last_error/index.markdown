@@ -4,6 +4,7 @@ title: "JavaScript json_last_error function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/json_last_error:878
 - /functions/878

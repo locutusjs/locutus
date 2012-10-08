@@ -4,6 +4,7 @@ title: "JavaScript set_include_path function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/set_include_path:855
 - /functions/855

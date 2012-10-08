@@ -4,6 +4,7 @@ title: "JavaScript echo function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/echo:391
 - /functions/391

@@ -4,6 +4,7 @@ title: "JavaScript dirname function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/dirname:388
 - /functions/388

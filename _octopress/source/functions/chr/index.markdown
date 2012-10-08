@@ -4,6 +4,7 @@ title: "JavaScript chr function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/chr:368
 - /functions/368

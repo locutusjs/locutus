@@ -4,6 +4,7 @@ title: "JavaScript sha1 function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/sha1:512
 - /functions/512

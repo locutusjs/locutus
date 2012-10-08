@@ -4,6 +4,7 @@ title: "JavaScript register_shutdown_function function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/register_shutdown_function:810
 - /functions/810

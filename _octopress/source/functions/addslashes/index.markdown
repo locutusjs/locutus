@@ -4,6 +4,7 @@ title: "JavaScript addslashes function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/addslashes:303
 - /functions/303

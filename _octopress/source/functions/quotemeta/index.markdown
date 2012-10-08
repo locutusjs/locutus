@@ -4,6 +4,7 @@ title: "JavaScript quotemeta function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/quotemeta:496
 - /functions/496

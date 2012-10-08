@@ -4,6 +4,7 @@ title: "JavaScript include_once function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/include_once:434
 - /functions/434

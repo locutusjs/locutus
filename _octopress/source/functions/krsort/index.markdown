@@ -4,6 +4,7 @@ title: "JavaScript krsort function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/krsort:459
 - /functions/459

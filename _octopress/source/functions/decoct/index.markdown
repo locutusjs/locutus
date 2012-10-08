@@ -4,6 +4,7 @@ title: "JavaScript decoct function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/decoct:383
 - /functions/383

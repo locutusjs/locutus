@@ -4,6 +4,7 @@ title: "JavaScript array_push function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_push:331
 - /functions/331

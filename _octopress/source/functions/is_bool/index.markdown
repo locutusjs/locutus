@@ -4,6 +4,7 @@ title: "JavaScript is_bool function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/is_bool:438
 - /functions/438

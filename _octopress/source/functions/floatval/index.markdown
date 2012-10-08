@@ -4,6 +4,7 @@ title: "JavaScript floatval function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/floatval:402
 - /functions/402

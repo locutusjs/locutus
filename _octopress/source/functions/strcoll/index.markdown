@@ -4,6 +4,7 @@ title: "JavaScript strcoll function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/strcoll:789
 - /functions/789

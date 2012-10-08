@@ -4,6 +4,7 @@ title: "JavaScript error_get_last function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/error_get_last:840
 - /functions/840

@@ -4,6 +4,7 @@ title: "JavaScript sinh function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/sinh:516
 - /functions/516

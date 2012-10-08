@@ -4,6 +4,7 @@ title: "JavaScript is_null function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/is_null:448
 - /functions/448

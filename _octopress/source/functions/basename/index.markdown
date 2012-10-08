@@ -4,6 +4,7 @@ title: "JavaScript basename function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/basename:360
 - /functions/360

@@ -4,6 +4,7 @@ title: "JavaScript fgetc function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/fgetc:773
 - /functions/773

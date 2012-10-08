@@ -4,6 +4,7 @@ title: "JavaScript pow function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/pow:490
 - /functions/490

@@ -4,6 +4,7 @@ title: "JavaScript cos function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/cos:373
 - /functions/373

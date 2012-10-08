@@ -4,6 +4,7 @@ title: "JavaScript get_class function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/get_class:409
 - /functions/409

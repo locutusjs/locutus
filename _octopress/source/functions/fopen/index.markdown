@@ -4,6 +4,7 @@ title: "JavaScript fopen function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/fopen:774
 - /functions/774

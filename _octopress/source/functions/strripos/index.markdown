@@ -4,6 +4,7 @@ title: "JavaScript strripos function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/strripos:548
 - /functions/548

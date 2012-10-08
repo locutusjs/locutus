@@ -4,6 +4,7 @@ title: "JavaScript acos function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/acos:301
 - /functions/301

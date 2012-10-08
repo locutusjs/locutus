@@ -4,6 +4,7 @@ title: "JavaScript substr function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/substr:558
 - /functions/558

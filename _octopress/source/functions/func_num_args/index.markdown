@@ -4,6 +4,7 @@ title: "JavaScript func_num_args function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/func_num_args:407
 - /functions/407

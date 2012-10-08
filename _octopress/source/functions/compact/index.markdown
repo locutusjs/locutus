@@ -4,6 +4,7 @@ title: "JavaScript compact function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/compact:371
 - /functions/371

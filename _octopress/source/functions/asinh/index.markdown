@@ -4,6 +4,7 @@ title: "JavaScript asinh function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/asinh:353
 - /functions/353

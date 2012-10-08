@@ -4,6 +4,7 @@ title: "JavaScript stripos function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/stripos:536
 - /functions/536

@@ -4,6 +4,7 @@ title: "JavaScript classkit_method_redefine function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/classkit_method_redefine:765
 - /functions/765

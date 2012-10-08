@@ -4,6 +4,7 @@ title: "JavaScript array_combine function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_combine:307
 - /functions/307

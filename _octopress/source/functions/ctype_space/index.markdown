@@ -4,6 +4,7 @@ title: "JavaScript ctype_space function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/ctype_space:759
 - /functions/759

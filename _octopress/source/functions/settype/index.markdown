@@ -4,6 +4,7 @@ title: "JavaScript settype function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/settype:511
 - /functions/511

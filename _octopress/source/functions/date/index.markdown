@@ -4,6 +4,7 @@ title: "JavaScript date function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/date:380
 - /functions/380

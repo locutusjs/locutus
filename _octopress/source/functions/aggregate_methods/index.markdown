@@ -4,6 +4,7 @@ title: "JavaScript aggregate_methods function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/aggregate_methods:793
 - /functions/793

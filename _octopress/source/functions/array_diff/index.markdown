@@ -4,6 +4,7 @@ title: "JavaScript array_diff function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_diff:309
 - /functions/309

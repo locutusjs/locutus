@@ -4,6 +4,7 @@ title: "JavaScript str_word_count function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/str_word_count:788
 - /functions/788

@@ -4,6 +4,7 @@ title: "JavaScript ctype_alpha function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/ctype_alpha:752
 - /functions/752

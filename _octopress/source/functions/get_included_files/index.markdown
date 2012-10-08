@@ -4,6 +4,7 @@ title: "JavaScript get_included_files function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/get_included_files:417
 - /functions/417

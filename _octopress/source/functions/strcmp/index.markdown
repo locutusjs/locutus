@@ -4,6 +4,7 @@ title: "JavaScript strcmp function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/strcmp:533
 - /functions/533

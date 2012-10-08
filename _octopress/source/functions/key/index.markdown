@@ -4,6 +4,7 @@ title: "JavaScript key function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/key:458
 - /functions/458

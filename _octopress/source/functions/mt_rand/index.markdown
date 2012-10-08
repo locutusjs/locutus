@@ -4,6 +4,7 @@ title: "JavaScript mt_rand function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/mt_rand:476
 - /functions/476

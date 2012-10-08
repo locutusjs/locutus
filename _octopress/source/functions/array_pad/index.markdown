@@ -4,6 +4,7 @@ title: "JavaScript array_pad function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_pad:328
 - /functions/328

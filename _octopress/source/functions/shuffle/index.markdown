@@ -4,6 +4,7 @@ title: "JavaScript shuffle function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/shuffle:514
 - /functions/514

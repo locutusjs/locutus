@@ -4,6 +4,7 @@ title: "JavaScript putenv function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/putenv:588
 - /functions/588

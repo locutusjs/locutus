@@ -4,6 +4,7 @@ title: "JavaScript feof function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/feof:772
 - /functions/772

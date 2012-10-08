@@ -4,6 +4,7 @@ title: "JavaScript json_decode function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/json_decode:456
 - /functions/456

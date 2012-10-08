@@ -4,6 +4,7 @@ title: "JavaScript array_uintersect_uassoc function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/array_uintersect_uassoc:345
 - /functions/345

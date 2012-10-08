@@ -4,6 +4,7 @@ title: "JavaScript vprintf function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/vprintf:579
 - /functions/579

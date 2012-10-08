@@ -4,6 +4,7 @@ title: "JavaScript aggregate_properties_by_regexp function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/aggregate_properties_by_regexp:798
 - /functions/798

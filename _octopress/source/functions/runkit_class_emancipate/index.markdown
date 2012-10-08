@@ -4,6 +4,7 @@ title: "JavaScript runkit_class_emancipate function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/runkit_class_emancipate:821
 - /functions/821

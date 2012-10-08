@@ -4,6 +4,7 @@ title: "JavaScript gmdate function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/gmdate:586
 - /functions/586

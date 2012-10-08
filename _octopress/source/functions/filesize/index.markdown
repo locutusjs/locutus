@@ -4,6 +4,7 @@ title: "JavaScript filesize function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/filesize:401
 - /functions/401

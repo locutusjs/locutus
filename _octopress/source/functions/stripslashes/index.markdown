@@ -4,6 +4,7 @@ title: "JavaScript stripslashes function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/stripslashes:537
 - /functions/537

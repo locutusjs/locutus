@@ -4,6 +4,7 @@ title: "JavaScript date_default_timezone_set function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/date_default_timezone_set:584
 - /functions/584

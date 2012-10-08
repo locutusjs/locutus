@@ -4,6 +4,7 @@ title: "JavaScript ini_get function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/ini_get:597
 - /functions/597

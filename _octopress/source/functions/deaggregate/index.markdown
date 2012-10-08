@@ -4,6 +4,7 @@ title: "JavaScript deaggregate function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/deaggregate:800
 - /functions/800

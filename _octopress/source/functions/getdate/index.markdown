@@ -4,6 +4,7 @@ title: "JavaScript getdate function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/getdate:420
 - /functions/420

@@ -4,6 +4,7 @@ title: "JavaScript classkit_method_remove function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/classkit_method_remove:766
 - /functions/766

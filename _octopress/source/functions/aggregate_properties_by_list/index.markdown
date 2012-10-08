@@ -4,6 +4,7 @@ title: "JavaScript aggregate_properties_by_list function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/aggregate_properties_by_list:797
 - /functions/797

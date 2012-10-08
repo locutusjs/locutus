@@ -4,6 +4,7 @@ title: "JavaScript strncasecmp function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/strncasecmp:542
 - /functions/542

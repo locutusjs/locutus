@@ -4,6 +4,7 @@ title: "JavaScript tanh function"
 comments: true
 sharing: true
 footer: true
+sidebar: false
 alias:
 - /functions/tanh:561
 - /functions/561
