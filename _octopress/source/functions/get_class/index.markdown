@@ -49,3 +49,8 @@ function get_class (obj) {
 
 ### Other PHP functions in the classobj extension
 {% render_partial _includes/custom/classobj.html %}
+## Legacy comments
+These were imported from our old site. Please use disqus for new comments
+<div style="overflow-y: scroll; height: 500px;">
+{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/get_class/comments.markdown %}
+</div>

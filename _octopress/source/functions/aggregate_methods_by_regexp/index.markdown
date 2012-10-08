@@ -96,3 +96,8 @@ function aggregate_methods_by_regexp (obj, class_name, regexp, exclude) {
 
 ### Other PHP functions in the objaggregation extension
 {% render_partial _includes/custom/objaggregation.html %}
+## Legacy comments
+These were imported from our old site. Please use disqus for new comments
+<div style="overflow-y: scroll; height: 500px;">
+{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/aggregate_methods_by_regexp/comments.markdown %}
+</div>

@@ -1,0 +1,54 @@
+*[ToshaUst]()* on 2008-07-31 13:58:01  
+```
+function ord( string , inHex) 
+{ 
+	var code = string.charCodeAt(0);
+    if(inHex)
+    {
+    	var ar = ['A','B','C','D','E','F'],f,s;
+    	f = Math.floor(code/16);
+    	if(f &gt; 9) f = ar[f-10];
+    	s = code % 16;
+    	if(s &gt; 9) s = ar[s-10];
+    	code = f+s;
+    }
+    return code;
+}
+```
+---------------------------------------
+*[Kevin van Zonneveld](http://kevin.vanzonneveld.net)* on 2008-08-27 16:49:23  
+@ ToshaUst: Thanks for your code! However I don't believe that PHP supports a second argument. What are the use cases? Based on those we can choose to stray from our policy, not to extend function with custom ideas.
+---------------------------------------
+*[Ole Vrijenhoek]()* on 2009-05-13 21:16:23  
+Hey,
+I don't if it is the intention to similate this function,
+so it does the exact same thing as php's.
+But charCodeAt() returns the unicode or ascii and ord() only does the ascii.
+---------------------------------------
+*[Brett Zamir](http://bahai-library.com)* on 2009-05-14 01:19:33  
+@Ole, three bits of good news here...
+
+One, PHP6 is scheduled to have these work with Unicode: http://lxr.php.net/source/php-src/ext/standard/string.c#3641 and http://lxr.php.net/source/php-src/ext/standard/string.c#3621
+
+Two, it'd be pretty strange to use chr()/ord(), expecting both correct behavior for ASCII (which is reasonable) while also expecting some _specific_ non-Unicode behavior for non-ASCII. While PHP's chr/ord functions before version 6 don't work with Unicode, it does work with ASCII for which it was designed, and these values are the same in both systems (though requiring 2 bytes in Unicode UTF-16 as JavaScript uses internally--though this does not change the behavior of fromCharCode/charCodeAt which work with single 2-byte sequences, not one-byte ones). So, the functions (ours and PHP's) will continue to work fine with ASCII. Just don't go using these functions with Unicode in PHP4 or PHP5. But the fact that they don't work in PHP4 and PHP5 is due to a bug which is now corrected in PHP6.
+
+3) I updated chr() and ord() to work with all Unicode characters, including those rarer ones beyond the Basic Multi-lingual Plane (BMP).
+---------------------------------------
+*[incidence]()* on 2011-01-23 13:45:36  
+Please explain this empty if
+```
+        var low = str.charCodeAt(1);
+        if (!low) {
+            
+        }
+```
+
+Thanks!
+---------------------------------------
+*[Brett Zamir](http://brett-zamir.me)* on 2011-01-24 04:50:48  
+@incidence: Thanks for the report! Fixed in Git. I think I was going to use the "if" code until I realized "if (str.length === 1) { return code;}" would do the trick (and I just forgot to remove the subsequent dead code). 
+---------------------------------------
+*[???? ????????](http://an3m1.com/)* on 2012-04-18 10:21:17  
+If I might —perhaps you should consider adding a few images. I don’t mean to disrespect what you’ve said ; its very enlightening, indeed. However, I think would respond to it more positively if they could be something tangible to your ideas 
+
+---------------------------------------

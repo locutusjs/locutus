@@ -93,3 +93,8 @@ function json_decode (str_json) {
 
 ### Other PHP functions in the json extension
 {% render_partial _includes/custom/json.html %}
+## Legacy comments
+These were imported from our old site. Please use disqus for new comments
+<div style="overflow-y: scroll; height: 500px;">
+{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/json_decode/comments.markdown %}
+</div>

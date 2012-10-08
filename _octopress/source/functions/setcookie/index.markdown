@@ -31,3 +31,8 @@ function setcookie (name, value, expires, path, domain, secure) {
 
 ### Other PHP functions in the network extension
 {% render_partial _includes/custom/network.html %}
+## Legacy comments
+These were imported from our old site. Please use disqus for new comments
+<div style="overflow-y: scroll; height: 500px;">
+{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/setcookie/comments.markdown %}
+</div>

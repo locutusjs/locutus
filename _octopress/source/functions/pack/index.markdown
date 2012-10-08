@@ -366,3 +366,8 @@ function pack (format) {
 
 ### Other PHP functions in the misc extension
 {% render_partial _includes/custom/misc.html %}
+## Legacy comments
+These were imported from our old site. Please use disqus for new comments
+<div style="overflow-y: scroll; height: 500px;">
+{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/pack/comments.markdown %}
+</div>

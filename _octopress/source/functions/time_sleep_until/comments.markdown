@@ -1,0 +1,6 @@
+*[Brett Zamir](http://bahai-library.com)* on 2009-02-02 03:25:09  
+A quick warning about this function (I'll try to add to SVN later)... This works in the PHP style of expecting a timestamp in seconds--NOT IN MILLISECONDS! So, don't try to pass in a raw JavaScript timestamp (like new Date())--which are in milliseconds, or else it will lock up the browser probably a thousand times longer than you intended! (No doubt you'd restart before that anyways (!), but, it's no fun to lock up the browser...)
+---------------------------------------
+*[Kevin van Zonneveld](http://kevin.vanzonneveld.net)* on 2009-02-02 10:41:33  
+@ Brett Zamir: It's probably possible to detect for this kind of input since the difference between good &amp; bad input is at least 3 digits. Maybe we should sanitize it and save our users the trouble.
+---------------------------------------

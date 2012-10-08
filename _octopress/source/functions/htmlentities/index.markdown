@@ -69,3 +69,8 @@ function htmlentities (string, quote_style, charset, double_encode) {
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}
+## Legacy comments
+These were imported from our old site. Please use disqus for new comments
+<div style="overflow-y: scroll; height: 500px;">
+{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/htmlentities/comments.markdown %}
+</div>

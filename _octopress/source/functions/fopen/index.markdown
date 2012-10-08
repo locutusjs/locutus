@@ -119,3 +119,8 @@ function fopen (filename, mode, use_include_path, context) {
 
 ### Other PHP functions in the filesystem extension
 {% render_partial _includes/custom/filesystem.html %}
+## Legacy comments
+These were imported from our old site. Please use disqus for new comments
+<div style="overflow-y: scroll; height: 500px;">
+{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/fopen/comments.markdown %}
+</div>

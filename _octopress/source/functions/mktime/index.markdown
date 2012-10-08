@@ -89,3 +89,8 @@ function mktime () {
 
 ### Other PHP functions in the datetime extension
 {% render_partial _includes/custom/datetime.html %}
+## Legacy comments
+These were imported from our old site. Please use disqus for new comments
+<div style="overflow-y: scroll; height: 500px;">
+{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/mktime/comments.markdown %}
+</div>

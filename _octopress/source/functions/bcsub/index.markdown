@@ -61,3 +61,8 @@ function bcsub (left_operand, right_operand, scale) {
 
 ### Other PHP functions in the bc extension
 {% render_partial _includes/custom/bc.html %}
+## Legacy comments
+These were imported from our old site. Please use disqus for new comments
+<div style="overflow-y: scroll; height: 500px;">
+{% render_partial /Users/kevin/workspace/phpjs/_octopress/source/functions/bcsub/comments.markdown %}
+</div>
