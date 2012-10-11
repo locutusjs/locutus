@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/nl_langinfo:784
+- /functions/view/nl_langinfo
+- /functions/view/784
 - /functions/nl_langinfo:784
 - /functions/784
 ---

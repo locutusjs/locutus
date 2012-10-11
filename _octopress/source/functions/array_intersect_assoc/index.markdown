@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/array_intersect_assoc:319
+- /functions/view/array_intersect_assoc
+- /functions/view/319
 - /functions/array_intersect_assoc:319
 - /functions/319
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/split:521
+- /functions/view/split
+- /functions/view/521
 - /functions/split:521
 - /functions/521
 ---

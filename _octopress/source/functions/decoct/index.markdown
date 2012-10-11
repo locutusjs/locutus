@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/decoct:383
+- /functions/view/decoct
+- /functions/view/383
 - /functions/decoct:383
 - /functions/383
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/reset:504
+- /functions/view/reset
+- /functions/view/504
 - /functions/reset:504
 - /functions/504
 ---

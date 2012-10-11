@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/var_dump:604
+- /functions/view/var_dump
+- /functions/view/604
 - /functions/var_dump:604
 - /functions/604
 ---

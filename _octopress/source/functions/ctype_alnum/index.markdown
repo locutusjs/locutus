@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ctype_alnum:751
+- /functions/view/ctype_alnum
+- /functions/view/751
 - /functions/ctype_alnum:751
 - /functions/751
 ---

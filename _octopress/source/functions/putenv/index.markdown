@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/putenv:588
+- /functions/view/putenv
+- /functions/view/588
 - /functions/putenv:588
 - /functions/588
 ---

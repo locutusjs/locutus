@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/chunk_split:369
+- /functions/view/chunk_split
+- /functions/view/369
 - /functions/chunk_split:369
 - /functions/369
 ---

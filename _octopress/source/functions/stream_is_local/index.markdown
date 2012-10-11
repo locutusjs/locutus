@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/stream_is_local:851
+- /functions/view/stream_is_local
+- /functions/view/851
 - /functions/stream_is_local:851
 - /functions/851
 ---

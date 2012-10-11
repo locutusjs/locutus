@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/range:499
+- /functions/view/range
+- /functions/view/499
 - /functions/range:499
 - /functions/499
 ---

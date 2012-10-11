@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/uksort:570
+- /functions/view/uksort
+- /functions/view/570
 - /functions/uksort:570
 - /functions/570
 ---

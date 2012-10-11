@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/get_cfg_var:776
+- /functions/view/get_cfg_var
+- /functions/view/776
 - /functions/get_cfg_var:776
 - /functions/776
 ---

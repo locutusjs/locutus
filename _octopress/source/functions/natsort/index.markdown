@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/natsort:478
+- /functions/view/natsort
+- /functions/view/478
 - /functions/natsort:478
 - /functions/478
 ---

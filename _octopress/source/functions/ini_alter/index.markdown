@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ini_alter:596
+- /functions/view/ini_alter
+- /functions/view/596
 - /functions/ini_alter:596
 - /functions/596
 ---

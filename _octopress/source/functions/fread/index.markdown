@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/fread:775
+- /functions/view/fread
+- /functions/view/775
 - /functions/fread:775
 - /functions/775
 ---

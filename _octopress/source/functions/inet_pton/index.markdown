@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/inet_pton:883
+- /functions/view/inet_pton
+- /functions/view/883
 - /functions/inet_pton:883
 - /functions/883
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/lcfirst:461
+- /functions/view/lcfirst
+- /functions/view/461
 - /functions/lcfirst:461
 - /functions/461
 ---

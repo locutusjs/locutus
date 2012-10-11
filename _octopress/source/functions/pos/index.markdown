@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/pos:489
+- /functions/view/pos
+- /functions/view/489
 - /functions/pos:489
 - /functions/489
 ---

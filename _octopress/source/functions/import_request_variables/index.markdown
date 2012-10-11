@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/import_request_variables:431
+- /functions/view/import_request_variables
+- /functions/view/431
 - /functions/import_request_variables:431
 - /functions/431
 ---

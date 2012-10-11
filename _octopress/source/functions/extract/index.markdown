@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/extract:397
+- /functions/view/extract
+- /functions/view/397
 - /functions/extract:397
 - /functions/397
 ---

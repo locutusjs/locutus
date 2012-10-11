@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/date_default_timezone_set:584
+- /functions/view/date_default_timezone_set
+- /functions/view/584
 - /functions/date_default_timezone_set:584
 - /functions/584
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/checkdate:366
+- /functions/view/checkdate
+- /functions/view/366
 - /functions/checkdate:366
 - /functions/366
 ---

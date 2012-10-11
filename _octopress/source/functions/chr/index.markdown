@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/chr:368
+- /functions/view/chr
+- /functions/view/368
 - /functions/chr:368
 - /functions/368
 ---

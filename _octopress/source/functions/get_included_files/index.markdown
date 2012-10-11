@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/get_included_files:417
+- /functions/view/get_included_files
+- /functions/view/417
 - /functions/get_included_files:417
 - /functions/417
 ---

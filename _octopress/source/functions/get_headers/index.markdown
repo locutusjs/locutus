@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/get_headers:415
+- /functions/view/get_headers
+- /functions/view/415
 - /functions/get_headers:415
 - /functions/415
 ---

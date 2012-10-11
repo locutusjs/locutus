@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ord:483
+- /functions/view/ord
+- /functions/view/483
 - /functions/ord:483
 - /functions/483
 ---

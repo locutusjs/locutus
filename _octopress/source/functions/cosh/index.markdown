@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/cosh:374
+- /functions/view/cosh
+- /functions/view/374
 - /functions/cosh:374
 - /functions/374
 ---

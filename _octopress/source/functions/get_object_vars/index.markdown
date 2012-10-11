@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/get_object_vars:419
+- /functions/view/get_object_vars
+- /functions/view/419
 - /functions/get_object_vars:419
 - /functions/419
 ---

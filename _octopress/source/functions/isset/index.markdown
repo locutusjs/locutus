@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/isset:454
+- /functions/view/isset
+- /functions/view/454
 - /functions/isset:454
 - /functions/454
 ---

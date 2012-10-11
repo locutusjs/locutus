@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/file:398
+- /functions/view/file
+- /functions/view/398
 - /functions/file:398
 - /functions/398
 ---

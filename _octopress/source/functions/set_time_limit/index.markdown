@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/set_time_limit:786
+- /functions/view/set_time_limit
+- /functions/view/786
 - /functions/set_time_limit:786
 - /functions/786
 ---

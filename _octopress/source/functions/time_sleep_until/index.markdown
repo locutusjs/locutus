@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/time_sleep_until:564
+- /functions/view/time_sleep_until
+- /functions/view/564
 - /functions/time_sleep_until:564
 - /functions/564
 ---

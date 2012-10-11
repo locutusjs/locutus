@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/aggregate_methods_by_list:794
+- /functions/view/aggregate_methods_by_list
+- /functions/view/794
 - /functions/aggregate_methods_by_list:794
 - /functions/794
 ---

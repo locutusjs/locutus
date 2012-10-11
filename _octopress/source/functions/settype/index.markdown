@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/settype:511
+- /functions/view/settype
+- /functions/view/511
 - /functions/settype:511
 - /functions/511
 ---

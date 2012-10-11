@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/is_infinite:443
+- /functions/view/is_infinite
+- /functions/view/443
 - /functions/is_infinite:443
 - /functions/443
 ---

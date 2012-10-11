@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/substr_compare:790
+- /functions/view/substr_compare
+- /functions/view/790
 - /functions/substr_compare:790
 - /functions/790
 ---

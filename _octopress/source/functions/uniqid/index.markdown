@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/uniqid:750
+- /functions/view/uniqid
+- /functions/view/750
 - /functions/uniqid:750
 - /functions/750
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/register_shutdown_function:810
+- /functions/view/register_shutdown_function
+- /functions/view/810
 - /functions/register_shutdown_function:810
 - /functions/810
 ---

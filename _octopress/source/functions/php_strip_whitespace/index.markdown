@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/php_strip_whitespace:487
+- /functions/view/php_strip_whitespace
+- /functions/view/487
 - /functions/php_strip_whitespace:487
 - /functions/487
 ---

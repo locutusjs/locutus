@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/pi:488
+- /functions/view/pi
+- /functions/view/488
 - /functions/pi:488
 - /functions/488
 ---

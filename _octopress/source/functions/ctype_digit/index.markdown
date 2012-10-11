@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ctype_digit:754
+- /functions/view/ctype_digit
+- /functions/view/754
 - /functions/ctype_digit:754
 - /functions/754
 ---

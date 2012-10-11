@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/gettype:422
+- /functions/view/gettype
+- /functions/view/422
 - /functions/gettype:422
 - /functions/422
 ---

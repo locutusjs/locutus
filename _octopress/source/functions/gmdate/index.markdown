@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/gmdate:586
+- /functions/view/gmdate
+- /functions/view/586
 - /functions/gmdate:586
 - /functions/586
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/array_change_key_case:305
+- /functions/view/array_change_key_case
+- /functions/view/305
 - /functions/array_change_key_case:305
 - /functions/305
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/str_rot13:528
+- /functions/view/str_rot13
+- /functions/view/528
 - /functions/str_rot13:528
 - /functions/528
 ---

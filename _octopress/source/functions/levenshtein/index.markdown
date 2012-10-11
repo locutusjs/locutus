@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/levenshtein:463
+- /functions/view/levenshtein
+- /functions/view/463
 - /functions/levenshtein:463
 - /functions/463
 ---

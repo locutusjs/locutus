@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/mt_getrandmax:475
+- /functions/view/mt_getrandmax
+- /functions/view/475
 - /functions/mt_getrandmax:475
 - /functions/475
 ---

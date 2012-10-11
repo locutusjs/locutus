@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ucfirst:568
+- /functions/view/ucfirst
+- /functions/view/568
 - /functions/ucfirst:568
 - /functions/568
 ---

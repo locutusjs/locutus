@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/stream_get_line:857
+- /functions/view/stream_get_line
+- /functions/view/857
 - /functions/stream_get_line:857
 - /functions/857
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/get_resource_type:777
+- /functions/view/get_resource_type
+- /functions/view/777
 - /functions/get_resource_type:777
 - /functions/777
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ftell:806
+- /functions/view/ftell
+- /functions/view/806
 - /functions/ftell:806
 - /functions/806
 ---

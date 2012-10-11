@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/is_resource:781
+- /functions/view/is_resource
+- /functions/view/781
 - /functions/is_resource:781
 - /functions/781
 ---

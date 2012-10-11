@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/fgetc:773
+- /functions/view/fgetc
+- /functions/view/773
 - /functions/fgetc:773
 - /functions/773
 ---

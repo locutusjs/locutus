@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/tanh:561
+- /functions/view/tanh
+- /functions/view/561
 - /functions/tanh:561
 - /functions/561
 ---

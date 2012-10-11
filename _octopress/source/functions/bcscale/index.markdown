@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/bcscale:874
+- /functions/view/bcscale
+- /functions/view/874
 - /functions/bcscale:874
 - /functions/874
 ---

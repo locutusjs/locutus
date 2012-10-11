@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/get_include_path:853
+- /functions/view/get_include_path
+- /functions/view/853
 - /functions/get_include_path:853
 - /functions/853
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ob_start:901
+- /functions/view/ob_start
+- /functions/view/901
 - /functions/ob_start:901
 - /functions/901
 ---

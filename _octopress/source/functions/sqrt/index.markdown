@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/sqrt:523
+- /functions/view/sqrt
+- /functions/view/523
 - /functions/sqrt:523
 - /functions/523
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/array_walk_recursive:350
+- /functions/view/array_walk_recursive
+- /functions/view/350
 - /functions/array_walk_recursive:350
 - /functions/350
 ---

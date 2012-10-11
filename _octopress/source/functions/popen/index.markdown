@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/popen:808
+- /functions/view/popen
+- /functions/view/808
 - /functions/popen:808
 - /functions/808
 ---

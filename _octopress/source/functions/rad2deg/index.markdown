@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/rad2deg:497
+- /functions/view/rad2deg
+- /functions/view/497
 - /functions/rad2deg:497
 - /functions/497
 ---

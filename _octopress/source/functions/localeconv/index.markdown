@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/localeconv:782
+- /functions/view/localeconv
+- /functions/view/782
 - /functions/localeconv:782
 - /functions/782
 ---

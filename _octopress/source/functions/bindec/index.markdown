@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/bindec:362
+- /functions/view/bindec
+- /functions/view/362
 - /functions/bindec:362
 - /functions/362
 ---

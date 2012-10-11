@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/substr_count:559
+- /functions/view/substr_count
+- /functions/view/559
 - /functions/substr_count:559
 - /functions/559
 ---

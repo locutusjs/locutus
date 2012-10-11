@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/utf8_encode:577
+- /functions/view/utf8_encode
+- /functions/view/577
 - /functions/utf8_encode:577
 - /functions/577
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/strptime:887
+- /functions/view/strptime
+- /functions/view/887
 - /functions/strptime:887
 - /functions/887
 ---

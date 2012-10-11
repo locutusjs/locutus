@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/getlastmod:595
+- /functions/view/getlastmod
+- /functions/view/595
 - /functions/getlastmod:595
 - /functions/595
 ---

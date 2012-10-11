@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/is_finite:441
+- /functions/view/is_finite
+- /functions/view/441
 - /functions/is_finite:441
 - /functions/441
 ---

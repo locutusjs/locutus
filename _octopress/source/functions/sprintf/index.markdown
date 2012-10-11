@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/sprintf:522
+- /functions/view/sprintf
+- /functions/view/522
 - /functions/sprintf:522
 - /functions/522
 ---

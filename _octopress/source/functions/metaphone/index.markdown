@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/metaphone:863
+- /functions/view/metaphone
+- /functions/view/863
 - /functions/metaphone:863
 - /functions/863
 ---

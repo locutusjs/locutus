@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/printf:494
+- /functions/view/printf
+- /functions/view/494
 - /functions/printf:494
 - /functions/494
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ceil:365
+- /functions/view/ceil
+- /functions/view/365
 - /functions/ceil:365
 - /functions/365
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/log1p:783
+- /functions/view/log1p
+- /functions/view/783
 - /functions/log1p:783
 - /functions/783
 ---

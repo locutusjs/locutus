@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/runkit_class_adopt:820
+- /functions/view/runkit_class_adopt
+- /functions/view/820
 - /functions/runkit_class_adopt:820
 - /functions/820
 ---

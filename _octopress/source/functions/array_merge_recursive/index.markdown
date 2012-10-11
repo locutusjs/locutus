@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/array_merge_recursive:327
+- /functions/view/array_merge_recursive
+- /functions/view/327
 - /functions/array_merge_recursive:327
 - /functions/327
 ---

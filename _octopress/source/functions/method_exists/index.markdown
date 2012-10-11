@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/method_exists:471
+- /functions/view/method_exists
+- /functions/view/471
 - /functions/method_exists:471
 - /functions/471
 ---

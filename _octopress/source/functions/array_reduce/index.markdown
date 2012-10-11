@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/array_reduce:333
+- /functions/view/array_reduce
+- /functions/view/333
 - /functions/array_reduce:333
 - /functions/333
 ---

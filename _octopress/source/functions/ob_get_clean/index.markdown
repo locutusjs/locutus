@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ob_get_clean:894
+- /functions/view/ob_get_clean
+- /functions/view/894
 - /functions/ob_get_clean:894
 - /functions/894
 ---

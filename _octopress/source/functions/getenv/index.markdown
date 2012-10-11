@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/getenv:585
+- /functions/view/getenv
+- /functions/view/585
 - /functions/getenv:585
 - /functions/585
 ---

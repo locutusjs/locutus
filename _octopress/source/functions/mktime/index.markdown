@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/mktime:474
+- /functions/view/mktime
+- /functions/view/474
 - /functions/mktime:474
 - /functions/474
 ---

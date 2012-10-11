@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/inet_ntop:882
+- /functions/view/inet_ntop
+- /functions/view/882
 - /functions/inet_ntop:882
 - /functions/882
 ---

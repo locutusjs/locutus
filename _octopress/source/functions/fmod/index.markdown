@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/fmod:404
+- /functions/view/fmod
+- /functions/view/404
 - /functions/fmod:404
 - /functions/404
 ---

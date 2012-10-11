@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/explode:396
+- /functions/view/explode
+- /functions/view/396
 - /functions/explode:396
 - /functions/396
 ---

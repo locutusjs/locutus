@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/stream_context_set_option:849
+- /functions/view/stream_context_set_option
+- /functions/view/849
 - /functions/stream_context_set_option:849
 - /functions/849
 ---

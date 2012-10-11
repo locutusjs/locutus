@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ltrim:467
+- /functions/view/ltrim
+- /functions/view/467
 - /functions/ltrim:467
 - /functions/467
 ---

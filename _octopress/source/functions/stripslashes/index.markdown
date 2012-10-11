@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/stripslashes:537
+- /functions/view/stripslashes
+- /functions/view/537
 - /functions/stripslashes:537
 - /functions/537
 ---

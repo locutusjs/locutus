@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/vprintf:579
+- /functions/view/vprintf
+- /functions/view/579
 - /functions/vprintf:579
 - /functions/579
 ---

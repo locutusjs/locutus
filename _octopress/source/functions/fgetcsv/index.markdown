@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/fgetcsv:801
+- /functions/view/fgetcsv
+- /functions/view/801
 - /functions/fgetcsv:801
 - /functions/801
 ---

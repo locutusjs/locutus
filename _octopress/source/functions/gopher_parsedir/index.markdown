@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/gopher_parsedir:833
+- /functions/view/gopher_parsedir
+- /functions/view/833
 - /functions/gopher_parsedir:833
 - /functions/833
 ---

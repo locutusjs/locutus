@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/php_ini_loaded_file:601
+- /functions/view/php_ini_loaded_file
+- /functions/view/601
 - /functions/php_ini_loaded_file:601
 - /functions/601
 ---

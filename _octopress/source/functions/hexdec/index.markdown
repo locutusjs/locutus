@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/hexdec:423
+- /functions/view/hexdec
+- /functions/view/423
 - /functions/hexdec:423
 - /functions/423
 ---

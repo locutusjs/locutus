@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/htmlspecialchars:426
+- /functions/view/htmlspecialchars
+- /functions/view/426
 - /functions/htmlspecialchars:426
 - /functions/426
 ---

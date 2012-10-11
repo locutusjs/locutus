@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/php_ini_scanned_files:602
+- /functions/view/php_ini_scanned_files
+- /functions/view/602
 - /functions/php_ini_scanned_files:602
 - /functions/602
 ---

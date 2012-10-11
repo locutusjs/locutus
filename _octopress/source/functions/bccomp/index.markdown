@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/bccomp:877
+- /functions/view/bccomp
+- /functions/view/877
 - /functions/bccomp:877
 - /functions/877
 ---

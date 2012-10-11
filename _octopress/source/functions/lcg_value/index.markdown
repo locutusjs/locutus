@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/lcg_value:462
+- /functions/view/lcg_value
+- /functions/view/462
 - /functions/lcg_value:462
 - /functions/462
 ---

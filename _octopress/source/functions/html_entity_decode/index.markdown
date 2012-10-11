@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/html_entity_decode:424
+- /functions/view/html_entity_decode
+- /functions/view/424
 - /functions/html_entity_decode:424
 - /functions/424
 ---

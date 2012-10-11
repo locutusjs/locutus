@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/mt_rand:476
+- /functions/view/mt_rand
+- /functions/view/476
 - /functions/mt_rand:476
 - /functions/476
 ---

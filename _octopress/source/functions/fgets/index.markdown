@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/fgets:802
+- /functions/view/fgets
+- /functions/view/802
 - /functions/fgets:802
 - /functions/802
 ---

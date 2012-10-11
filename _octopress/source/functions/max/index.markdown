@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/max:468
+- /functions/view/max
+- /functions/view/468
 - /functions/max:468
 - /functions/468
 ---

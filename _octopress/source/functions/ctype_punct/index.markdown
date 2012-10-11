@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ctype_punct:758
+- /functions/view/ctype_punct
+- /functions/view/758
 - /functions/ctype_punct:758
 - /functions/758
 ---

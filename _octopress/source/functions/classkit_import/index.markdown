@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/classkit_import:762
+- /functions/view/classkit_import
+- /functions/view/762
 - /functions/classkit_import:762
 - /functions/762
 ---

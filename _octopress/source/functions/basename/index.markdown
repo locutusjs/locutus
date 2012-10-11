@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/basename:360
+- /functions/view/basename
+- /functions/view/360
 - /functions/basename:360
 - /functions/360
 ---

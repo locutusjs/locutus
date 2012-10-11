@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/strpbrk:544
+- /functions/view/strpbrk
+- /functions/view/544
 - /functions/strpbrk:544
 - /functions/544
 ---

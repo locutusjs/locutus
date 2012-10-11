@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/urlencode:573
+- /functions/view/urlencode
+- /functions/view/573
 - /functions/urlencode:573
 - /functions/573
 ---

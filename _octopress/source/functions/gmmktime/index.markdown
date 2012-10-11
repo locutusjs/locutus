@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/gmmktime:779
+- /functions/view/gmmktime
+- /functions/view/779
 - /functions/gmmktime:779
 - /functions/779
 ---

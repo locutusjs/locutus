@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/get_extension_funcs:867
+- /functions/view/get_extension_funcs
+- /functions/view/867
 - /functions/get_extension_funcs:867
 - /functions/867
 ---

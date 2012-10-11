@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/bcadd:869
+- /functions/view/bcadd
+- /functions/view/869
 - /functions/bcadd:869
 - /functions/869
 ---

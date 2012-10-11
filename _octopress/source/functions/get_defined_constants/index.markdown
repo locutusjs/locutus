@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/get_defined_constants:839
+- /functions/view/get_defined_constants
+- /functions/view/839
 - /functions/get_defined_constants:839
 - /functions/839
 ---

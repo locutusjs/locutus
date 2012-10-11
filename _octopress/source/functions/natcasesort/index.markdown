@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/natcasesort:477
+- /functions/view/natcasesort
+- /functions/view/477
 - /functions/natcasesort:477
 - /functions/477
 ---

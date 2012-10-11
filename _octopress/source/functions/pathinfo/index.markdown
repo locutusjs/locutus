@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/pathinfo:486
+- /functions/view/pathinfo
+- /functions/view/486
 - /functions/pathinfo:486
 - /functions/486
 ---

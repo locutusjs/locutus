@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/convert_uuencode:769
+- /functions/view/convert_uuencode
+- /functions/view/769
 - /functions/convert_uuencode:769
 - /functions/769
 ---

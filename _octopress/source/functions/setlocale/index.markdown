@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/setlocale:589
+- /functions/view/setlocale
+- /functions/view/589
 - /functions/setlocale:589
 - /functions/589
 ---

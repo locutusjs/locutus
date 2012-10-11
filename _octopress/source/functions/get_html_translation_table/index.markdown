@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/get_html_translation_table:416
+- /functions/view/get_html_translation_table
+- /functions/view/416
 - /functions/get_html_translation_table:416
 - /functions/416
 ---

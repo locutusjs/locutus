@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/join:455
+- /functions/view/join
+- /functions/view/455
 - /functions/join:455
 - /functions/455
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/json_encode:457
+- /functions/view/json_encode
+- /functions/view/457
 - /functions/json_encode:457
 - /functions/457
 ---

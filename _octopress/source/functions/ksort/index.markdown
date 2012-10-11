@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ksort:460
+- /functions/view/ksort
+- /functions/view/460
 - /functions/ksort:460
 - /functions/460
 ---

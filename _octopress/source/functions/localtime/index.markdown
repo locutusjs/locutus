@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/localtime:587
+- /functions/view/localtime
+- /functions/view/587
 - /functions/localtime:587
 - /functions/587
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/money_format:876
+- /functions/view/money_format
+- /functions/view/876
 - /functions/money_format:876
 - /functions/876
 ---

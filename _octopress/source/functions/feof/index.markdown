@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/feof:772
+- /functions/view/feof
+- /functions/view/772
 - /functions/feof:772
 - /functions/772
 ---

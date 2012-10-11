@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/bcmul:872
+- /functions/view/bcmul
+- /functions/view/872
 - /functions/bcmul:872
 - /functions/872
 ---

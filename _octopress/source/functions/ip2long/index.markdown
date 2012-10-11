@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ip2long:436
+- /functions/view/ip2long
+- /functions/view/436
 - /functions/ip2long:436
 - /functions/436
 ---

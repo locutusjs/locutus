@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/http_build_query:428
+- /functions/view/http_build_query
+- /functions/view/428
 - /functions/http_build_query:428
 - /functions/428
 ---

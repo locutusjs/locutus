@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/acosh:302
+- /functions/view/acosh
+- /functions/view/302
 - /functions/acosh:302
 - /functions/302
 ---

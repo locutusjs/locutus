@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/timezone_abbreviations_list:565
+- /functions/view/timezone_abbreviations_list
+- /functions/view/565
 - /functions/timezone_abbreviations_list:565
 - /functions/565
 ---

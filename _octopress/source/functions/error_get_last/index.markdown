@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/error_get_last:840
+- /functions/view/error_get_last
+- /functions/view/840
 - /functions/error_get_last:840
 - /functions/840
 ---

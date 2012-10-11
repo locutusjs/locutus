@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/dirname:388
+- /functions/view/dirname
+- /functions/view/388
 - /functions/dirname:388
 - /functions/388
 ---

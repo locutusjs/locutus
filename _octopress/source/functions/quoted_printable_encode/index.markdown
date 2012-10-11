@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/quoted_printable_encode:835
+- /functions/view/quoted_printable_encode
+- /functions/view/835
 - /functions/quoted_printable_encode:835
 - /functions/835
 ---

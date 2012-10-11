@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/htmlentities:425
+- /functions/view/htmlentities
+- /functions/view/425
 - /functions/htmlentities:425
 - /functions/425
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/i18n_loc_get_default:864
+- /functions/view/i18n_loc_get_default
+- /functions/view/864
 - /functions/i18n_loc_get_default:864
 - /functions/864
 ---

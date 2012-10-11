@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/rand:498
+- /functions/view/rand
+- /functions/view/498
 - /functions/rand:498
 - /functions/498
 ---

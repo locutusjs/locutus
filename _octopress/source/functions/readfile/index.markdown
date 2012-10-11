@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/readfile:809
+- /functions/view/readfile
+- /functions/view/809
 - /functions/readfile:809
 - /functions/809
 ---

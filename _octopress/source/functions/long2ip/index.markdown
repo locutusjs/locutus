@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/long2ip:466
+- /functions/view/long2ip
+- /functions/view/466
 - /functions/long2ip:466
 - /functions/466
 ---

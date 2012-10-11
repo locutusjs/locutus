@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/is_integer:445
+- /functions/view/is_integer
+- /functions/view/445
 - /functions/is_integer:445
 - /functions/445
 ---

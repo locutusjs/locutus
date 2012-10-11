@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/base_convert:359
+- /functions/view/base_convert
+- /functions/view/359
 - /functions/base_convert:359
 - /functions/359
 ---

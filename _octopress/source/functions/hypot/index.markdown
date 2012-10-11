@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/hypot:429
+- /functions/view/hypot
+- /functions/view/429
 - /functions/hypot:429
 - /functions/429
 ---

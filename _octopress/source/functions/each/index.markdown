@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/each:390
+- /functions/view/each
+- /functions/view/390
 - /functions/each:390
 - /functions/390
 ---

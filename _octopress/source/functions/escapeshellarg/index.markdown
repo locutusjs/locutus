@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/escapeshellarg:866
+- /functions/view/escapeshellarg
+- /functions/view/866
 - /functions/escapeshellarg:866
 - /functions/866
 ---

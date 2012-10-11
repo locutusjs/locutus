@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/classkit_method_rename:767
+- /functions/view/classkit_method_rename
+- /functions/view/767
 - /functions/classkit_method_rename:767
 - /functions/767
 ---

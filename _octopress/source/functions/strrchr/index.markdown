@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/strrchr:546
+- /functions/view/strrchr
+- /functions/view/546
 - /functions/strrchr:546
 - /functions/546
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/strtotime:554
+- /functions/view/strtotime
+- /functions/view/554
 - /functions/strtotime:554
 - /functions/554
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/arsort:351
+- /functions/view/arsort
+- /functions/view/351
 - /functions/arsort:351
 - /functions/351
 ---

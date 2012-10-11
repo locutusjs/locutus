@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/stristr:538
+- /functions/view/stristr
+- /functions/view/538
 - /functions/stristr:538
 - /functions/538
 ---

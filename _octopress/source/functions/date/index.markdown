@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/date:380
+- /functions/view/date
+- /functions/view/380
 - /functions/date:380
 - /functions/380
 ---

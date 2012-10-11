@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/is_double:440
+- /functions/view/is_double
+- /functions/view/440
 - /functions/is_double:440
 - /functions/440
 ---

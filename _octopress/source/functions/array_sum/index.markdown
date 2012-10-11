@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/array_sum:339
+- /functions/view/array_sum
+- /functions/view/339
 - /functions/array_sum:339
 - /functions/339
 ---

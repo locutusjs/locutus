@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/wordwrap:581
+- /functions/view/wordwrap
+- /functions/view/581
 - /functions/wordwrap:581
 - /functions/581
 ---

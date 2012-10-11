@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/chop:367
+- /functions/view/chop
+- /functions/view/367
 - /functions/chop:367
 - /functions/367
 ---

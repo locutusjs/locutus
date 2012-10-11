@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ob_get_length:897
+- /functions/view/ob_get_length
+- /functions/view/897
 - /functions/ob_get_length:897
 - /functions/897
 ---

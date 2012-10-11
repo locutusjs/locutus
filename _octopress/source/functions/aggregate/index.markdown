@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/aggregate:791
+- /functions/view/aggregate
+- /functions/view/791
 - /functions/aggregate:791
 - /functions/791
 ---

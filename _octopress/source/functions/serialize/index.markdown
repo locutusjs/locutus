@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/serialize:508
+- /functions/view/serialize
+- /functions/view/508
 - /functions/serialize:508
 - /functions/508
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/substr_replace:819
+- /functions/view/substr_replace
+- /functions/view/819
 - /functions/substr_replace:819
 - /functions/819
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ob_get_level:898
+- /functions/view/ob_get_level
+- /functions/view/898
 - /functions/ob_get_level:898
 - /functions/898
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/log10:465
+- /functions/view/log10
+- /functions/view/465
 - /functions/log10:465
 - /functions/465
 ---

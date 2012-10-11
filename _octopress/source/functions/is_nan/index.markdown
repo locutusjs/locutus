@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/is_nan:447
+- /functions/view/is_nan
+- /functions/view/447
 - /functions/is_nan:447
 - /functions/447
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/bcround:873
+- /functions/view/bcround
+- /functions/view/873
 - /functions/bcround:873
 - /functions/873
 ---

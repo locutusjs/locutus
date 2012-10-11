@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/preg_quote:491
+- /functions/view/preg_quote
+- /functions/view/491
 - /functions/preg_quote:491
 - /functions/491
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/include:433
+- /functions/view/include
+- /functions/view/433
 - /functions/include:433
 - /functions/433
 ---

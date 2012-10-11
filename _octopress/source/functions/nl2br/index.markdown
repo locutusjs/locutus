@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/nl2br:480
+- /functions/view/nl2br
+- /functions/view/480
 - /functions/nl2br:480
 - /functions/480
 ---

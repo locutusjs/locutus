@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/crc32:377
+- /functions/view/crc32
+- /functions/view/377
 - /functions/crc32:377
 - /functions/377
 ---

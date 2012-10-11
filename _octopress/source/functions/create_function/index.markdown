@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/create_function:378
+- /functions/view/create_function
+- /functions/view/378
 - /functions/create_function:378
 - /functions/378
 ---

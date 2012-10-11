@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/round:505
+- /functions/view/round
+- /functions/view/505
 - /functions/round:505
 - /functions/505
 ---

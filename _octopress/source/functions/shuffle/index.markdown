@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/shuffle:514
+- /functions/view/shuffle
+- /functions/view/514
 - /functions/shuffle:514
 - /functions/514
 ---

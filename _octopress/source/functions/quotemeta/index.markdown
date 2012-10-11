@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/quotemeta:496
+- /functions/view/quotemeta
+- /functions/view/496
 - /functions/quotemeta:496
 - /functions/496
 ---

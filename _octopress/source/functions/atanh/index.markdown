@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/atanh:356
+- /functions/view/atanh
+- /functions/view/356
 - /functions/atanh:356
 - /functions/356
 ---

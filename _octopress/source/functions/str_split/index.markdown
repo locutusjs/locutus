@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/str_split:530
+- /functions/view/str_split
+- /functions/view/530
 - /functions/str_split:530
 - /functions/530
 ---

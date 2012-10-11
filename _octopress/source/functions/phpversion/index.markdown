@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/phpversion:603
+- /functions/view/phpversion
+- /functions/view/603
 - /functions/phpversion:603
 - /functions/603
 ---

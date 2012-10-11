@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/property_exists:495
+- /functions/view/property_exists
+- /functions/view/495
 - /functions/property_exists:495
 - /functions/495
 ---

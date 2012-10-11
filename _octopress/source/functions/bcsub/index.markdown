@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/bcsub:875
+- /functions/view/bcsub
+- /functions/view/875
 - /functions/bcsub:875
 - /functions/875
 ---

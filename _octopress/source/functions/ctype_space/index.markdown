@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ctype_space:759
+- /functions/view/ctype_space
+- /functions/view/759
 - /functions/ctype_space:759
 - /functions/759
 ---

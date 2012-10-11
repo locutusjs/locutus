@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/strnatcmp:541
+- /functions/view/strnatcmp
+- /functions/view/541
 - /functions/strnatcmp:541
 - /functions/541
 ---

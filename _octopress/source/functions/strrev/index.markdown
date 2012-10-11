@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/strrev:547
+- /functions/view/strrev
+- /functions/view/547
 - /functions/strrev:547
 - /functions/547
 ---

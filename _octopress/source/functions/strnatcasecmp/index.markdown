@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/strnatcasecmp:540
+- /functions/view/strnatcasecmp
+- /functions/view/540
 - /functions/strnatcasecmp:540
 - /functions/540
 ---

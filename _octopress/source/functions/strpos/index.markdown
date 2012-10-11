@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/strpos:545
+- /functions/view/strpos
+- /functions/view/545
 - /functions/strpos:545
 - /functions/545
 ---

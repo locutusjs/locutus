@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/compact:371
+- /functions/view/compact
+- /functions/view/371
 - /functions/compact:371
 - /functions/371
 ---

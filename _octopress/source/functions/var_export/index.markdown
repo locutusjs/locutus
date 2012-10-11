@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/var_export:578
+- /functions/view/var_export
+- /functions/view/578
 - /functions/var_export:578
 - /functions/578
 ---

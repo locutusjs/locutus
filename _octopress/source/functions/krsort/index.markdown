@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/krsort:459
+- /functions/view/krsort
+- /functions/view/459
 - /functions/krsort:459
 - /functions/459
 ---

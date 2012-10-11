@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/quoted_printable_decode:834
+- /functions/view/quoted_printable_decode
+- /functions/view/834
 - /functions/quoted_printable_decode:834
 - /functions/834
 ---

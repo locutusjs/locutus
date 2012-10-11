@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/soundex:520
+- /functions/view/soundex
+- /functions/view/520
 - /functions/soundex:520
 - /functions/520
 ---

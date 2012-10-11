@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/octdec:482
+- /functions/view/octdec
+- /functions/view/482
 - /functions/octdec:482
 - /functions/482
 ---

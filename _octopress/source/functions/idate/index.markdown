@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/idate:828
+- /functions/view/idate
+- /functions/view/828
 - /functions/idate:828
 - /functions/828
 ---

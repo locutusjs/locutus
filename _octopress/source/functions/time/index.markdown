@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/time:562
+- /functions/view/time
+- /functions/view/562
 - /functions/time:562
 - /functions/562
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/bin2hex:361
+- /functions/view/bin2hex
+- /functions/view/361
 - /functions/bin2hex:361
 - /functions/361
 ---

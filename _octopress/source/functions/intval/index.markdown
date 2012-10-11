@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/intval:435
+- /functions/view/intval
+- /functions/view/435
 - /functions/intval:435
 - /functions/435
 ---

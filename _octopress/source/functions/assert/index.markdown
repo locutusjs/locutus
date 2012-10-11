@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/assert:831
+- /functions/view/assert
+- /functions/view/831
 - /functions/assert:831
 - /functions/831
 ---

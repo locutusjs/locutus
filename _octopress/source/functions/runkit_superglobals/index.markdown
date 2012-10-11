@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/runkit_superglobals:829
+- /functions/view/runkit_superglobals
+- /functions/view/829
 - /functions/runkit_superglobals:829
 - /functions/829
 ---

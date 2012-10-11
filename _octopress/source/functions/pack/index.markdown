@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/pack:880
+- /functions/view/pack
+- /functions/view/880
 - /functions/pack:880
 - /functions/880
 ---

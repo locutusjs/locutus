@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/next:479
+- /functions/view/next
+- /functions/view/479
 - /functions/next:479
 - /functions/479
 ---

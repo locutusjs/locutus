@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/rawurlencode:501
+- /functions/view/rawurlencode
+- /functions/view/501
 - /functions/rawurlencode:501
 - /functions/501
 ---

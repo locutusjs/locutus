@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/md5:469
+- /functions/view/md5
+- /functions/view/469
 - /functions/md5:469
 - /functions/469
 ---

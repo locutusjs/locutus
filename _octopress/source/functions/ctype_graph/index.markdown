@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ctype_graph:755
+- /functions/view/ctype_graph
+- /functions/view/755
 - /functions/ctype_graph:755
 - /functions/755
 ---

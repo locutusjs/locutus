@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/uasort:567
+- /functions/view/uasort
+- /functions/view/567
 - /functions/uasort:567
 - /functions/567
 ---

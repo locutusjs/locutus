@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/stripos:536
+- /functions/view/stripos
+- /functions/view/536
 - /functions/stripos:536
 - /functions/536
 ---

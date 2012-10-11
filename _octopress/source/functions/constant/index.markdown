@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/constant:372
+- /functions/view/constant
+- /functions/view/372
 - /functions/constant:372
 - /functions/372
 ---

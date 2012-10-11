@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/rtrim:507
+- /functions/view/rtrim
+- /functions/view/507
 - /functions/rtrim:507
 - /functions/507
 ---

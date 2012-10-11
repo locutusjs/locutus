@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/array_multisort:830
+- /functions/view/array_multisort
+- /functions/view/830
 - /functions/array_multisort:830
 - /functions/830
 ---

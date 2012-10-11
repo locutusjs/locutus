@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/prev:492
+- /functions/view/prev
+- /functions/view/492
 - /functions/prev:492
 - /functions/492
 ---

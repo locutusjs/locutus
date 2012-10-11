@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/trigger_error:842
+- /functions/view/trigger_error
+- /functions/view/842
 - /functions/trigger_error:842
 - /functions/842
 ---

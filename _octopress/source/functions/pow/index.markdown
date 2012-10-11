@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/pow:490
+- /functions/view/pow
+- /functions/view/490
 - /functions/pow:490
 - /functions/490
 ---

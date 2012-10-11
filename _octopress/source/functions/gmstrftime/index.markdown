@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/gmstrftime:780
+- /functions/view/gmstrftime
+- /functions/view/780
 - /functions/gmstrftime:780
 - /functions/780
 ---

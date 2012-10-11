@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ob_flush:893
+- /functions/view/ob_flush
+- /functions/view/893
 - /functions/ob_flush:893
 - /functions/893
 ---

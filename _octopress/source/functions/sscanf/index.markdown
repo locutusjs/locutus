@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/sscanf:886
+- /functions/view/sscanf
+- /functions/view/886
 - /functions/sscanf:886
 - /functions/886
 ---

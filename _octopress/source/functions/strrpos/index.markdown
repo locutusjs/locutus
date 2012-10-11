@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/strrpos:549
+- /functions/view/strrpos
+- /functions/view/549
 - /functions/strrpos:549
 - /functions/549
 ---

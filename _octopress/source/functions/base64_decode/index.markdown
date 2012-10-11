@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/base64_decode:357
+- /functions/view/base64_decode
+- /functions/view/357
 - /functions/base64_decode:357
 - /functions/357
 ---

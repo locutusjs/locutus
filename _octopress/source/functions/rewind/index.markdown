@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/rewind:811
+- /functions/view/rewind
+- /functions/view/811
 - /functions/rewind:811
 - /functions/811
 ---

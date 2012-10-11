@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/filemtime:838
+- /functions/view/filemtime
+- /functions/view/838
 - /functions/filemtime:838
 - /functions/838
 ---

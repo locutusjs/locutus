@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/strripos:548
+- /functions/view/strripos
+- /functions/view/548
 - /functions/strripos:548
 - /functions/548
 ---

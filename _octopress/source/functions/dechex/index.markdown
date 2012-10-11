@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/dechex:382
+- /functions/view/dechex
+- /functions/view/382
 - /functions/dechex:382
 - /functions/382
 ---

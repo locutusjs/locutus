@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/asin:352
+- /functions/view/asin
+- /functions/view/352
 - /functions/asin:352
 - /functions/352
 ---

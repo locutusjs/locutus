@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/atan2:768
+- /functions/view/atan2
+- /functions/view/768
 - /functions/atan2:768
 - /functions/768
 ---

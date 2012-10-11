@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/parse_url:485
+- /functions/view/parse_url
+- /functions/view/485
 - /functions/parse_url:485
 - /functions/485
 ---

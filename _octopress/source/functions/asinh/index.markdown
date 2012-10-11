@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/asinh:353
+- /functions/view/asinh
+- /functions/view/353
 - /functions/asinh:353
 - /functions/353
 ---

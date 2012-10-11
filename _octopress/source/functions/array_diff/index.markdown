@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/array_diff:309
+- /functions/view/array_diff
+- /functions/view/309
 - /functions/array_diff:309
 - /functions/309
 ---

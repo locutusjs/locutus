@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/forward_static_call:861
+- /functions/view/forward_static_call
+- /functions/view/861
 - /functions/forward_static_call:861
 - /functions/861
 ---

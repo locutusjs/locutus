@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/convert_cyr_string:881
+- /functions/view/convert_cyr_string
+- /functions/view/881
 - /functions/convert_cyr_string:881
 - /functions/881
 ---

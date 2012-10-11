@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/setcookie:509
+- /functions/view/setcookie
+- /functions/view/509
 - /functions/setcookie:509
 - /functions/509
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/is_unicode:593
+- /functions/view/is_unicode
+- /functions/view/593
 - /functions/is_unicode:593
 - /functions/593
 ---

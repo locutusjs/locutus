@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/get_class_methods:410
+- /functions/view/get_class_methods
+- /functions/view/410
 - /functions/get_class_methods:410
 - /functions/410
 ---

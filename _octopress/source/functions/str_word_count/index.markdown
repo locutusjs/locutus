@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/str_word_count:788
+- /functions/view/str_word_count
+- /functions/view/788
 - /functions/str_word_count:788
 - /functions/788
 ---

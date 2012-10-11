@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/rawurldecode:500
+- /functions/view/rawurldecode
+- /functions/view/500
 - /functions/rawurldecode:500
 - /functions/500
 ---

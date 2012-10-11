@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/fopen:774
+- /functions/view/fopen
+- /functions/view/774
 - /functions/fopen:774
 - /functions/774
 ---

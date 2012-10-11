@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/gettimeofday:778
+- /functions/view/gettimeofday
+- /functions/view/778
 - /functions/gettimeofday:778
 - /functions/778
 ---

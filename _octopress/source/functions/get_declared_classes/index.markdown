@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/get_declared_classes:412
+- /functions/view/get_declared_classes
+- /functions/view/412
 - /functions/get_declared_classes:412
 - /functions/412
 ---

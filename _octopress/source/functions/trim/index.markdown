@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/trim:566
+- /functions/view/trim
+- /functions/view/566
 - /functions/trim:566
 - /functions/566
 ---

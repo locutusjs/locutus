@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/ucwords:569
+- /functions/view/ucwords
+- /functions/view/569
 - /functions/ucwords:569
 - /functions/569
 ---

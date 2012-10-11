@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/strncasecmp:542
+- /functions/view/strncasecmp
+- /functions/view/542
 - /functions/strncasecmp:542
 - /functions/542
 ---

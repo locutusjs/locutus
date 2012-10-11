@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/decbin:381
+- /functions/view/decbin
+- /functions/view/381
 - /functions/decbin:381
 - /functions/381
 ---

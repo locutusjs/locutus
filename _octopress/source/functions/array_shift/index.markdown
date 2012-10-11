@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/array_shift:336
+- /functions/view/array_shift
+- /functions/view/336
 - /functions/array_shift:336
 - /functions/336
 ---

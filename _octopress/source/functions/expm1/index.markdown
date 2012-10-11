@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/expm1:770
+- /functions/view/expm1
+- /functions/view/770
 - /functions/expm1:770
 - /functions/770
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/sha1_file:513
+- /functions/view/sha1_file
+- /functions/view/513
 - /functions/sha1_file:513
 - /functions/513
 ---

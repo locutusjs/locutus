@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/array_diff_ukey:313
+- /functions/view/array_diff_ukey
+- /functions/view/313
 - /functions/array_diff_ukey:313
 - /functions/313
 ---

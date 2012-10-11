@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/microtime:472
+- /functions/view/microtime
+- /functions/view/472
 - /functions/microtime:472
 - /functions/472
 ---

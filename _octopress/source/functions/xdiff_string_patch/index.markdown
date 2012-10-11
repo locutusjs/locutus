@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/xdiff_string_patch:888
+- /functions/view/xdiff_string_patch
+- /functions/view/888
 - /functions/xdiff_string_patch:888
 - /functions/888
 ---

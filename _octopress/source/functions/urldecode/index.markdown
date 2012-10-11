@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/urldecode:572
+- /functions/view/urldecode
+- /functions/view/572
 - /functions/urldecode:572
 - /functions/572
 ---

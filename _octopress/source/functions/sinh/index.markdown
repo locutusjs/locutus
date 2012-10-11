@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/sinh:516
+- /functions/view/sinh
+- /functions/view/516
 - /functions/sinh:516
 - /functions/516
 ---

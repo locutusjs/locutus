@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/implode:430
+- /functions/view/implode
+- /functions/view/430
 - /functions/implode:430
 - /functions/430
 ---

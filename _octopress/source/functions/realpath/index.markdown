@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/realpath:749
+- /functions/view/realpath
+- /functions/view/749
 - /functions/realpath:749
 - /functions/749
 ---

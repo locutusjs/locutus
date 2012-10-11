@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/sort:519
+- /functions/view/sort
+- /functions/view/519
 - /functions/sort:519
 - /functions/519
 ---

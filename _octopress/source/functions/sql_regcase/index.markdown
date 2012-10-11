@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/sql_regcase:787
+- /functions/view/sql_regcase
+- /functions/view/787
 - /functions/sql_regcase:787
 - /functions/787
 ---

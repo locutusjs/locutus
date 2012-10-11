@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/date_parse:827
+- /functions/view/date_parse
+- /functions/view/827
 - /functions/date_parse:827
 - /functions/827
 ---

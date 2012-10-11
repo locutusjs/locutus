@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/call_user_func_array:364
+- /functions/view/call_user_func_array
+- /functions/view/364
 - /functions/call_user_func_array:364
 - /functions/364
 ---

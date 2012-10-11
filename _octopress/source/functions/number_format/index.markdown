@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/number_format:481
+- /functions/view/number_format
+- /functions/view/481
 - /functions/number_format:481
 - /functions/481
 ---

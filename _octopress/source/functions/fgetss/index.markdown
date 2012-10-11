@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/fgetss:803
+- /functions/view/fgetss
+- /functions/view/803
 - /functions/fgetss:803
 - /functions/803
 ---

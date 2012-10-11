@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/addslashes:303
+- /functions/view/addslashes
+- /functions/view/303
 - /functions/addslashes:303
 - /functions/303
 ---

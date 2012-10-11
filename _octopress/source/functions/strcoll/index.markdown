@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/strcoll:789
+- /functions/view/strcoll
+- /functions/view/789
 - /functions/strcoll:789
 - /functions/789
 ---

@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/is_buffer:592
+- /functions/view/is_buffer
+- /functions/view/592
 - /functions/is_buffer:592
 - /functions/592
 ---

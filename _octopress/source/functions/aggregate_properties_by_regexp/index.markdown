@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/aggregate_properties_by_regexp:798
+- /functions/view/aggregate_properties_by_regexp
+- /functions/view/798
 - /functions/aggregate_properties_by_regexp:798
 - /functions/798
 ---

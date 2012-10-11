@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/mail:884
+- /functions/view/mail
+- /functions/view/884
 - /functions/mail:884
 - /functions/884
 ---

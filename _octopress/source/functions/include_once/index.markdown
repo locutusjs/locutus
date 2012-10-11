@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/include_once:434
+- /functions/view/include_once
+- /functions/view/434
 - /functions/include_once:434
 - /functions/434
 ---

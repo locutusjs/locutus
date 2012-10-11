@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/array_uintersect_uassoc:345
+- /functions/view/array_uintersect_uassoc
+- /functions/view/345
 - /functions/array_uintersect_uassoc:345
 - /functions/345
 ---

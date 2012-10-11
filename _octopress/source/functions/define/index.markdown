@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/define:384
+- /functions/view/define
+- /functions/view/384
 - /functions/define:384
 - /functions/384
 ---

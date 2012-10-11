@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/deaggregate:800
+- /functions/view/deaggregate
+- /functions/view/800
 - /functions/deaggregate:800
 - /functions/800
 ---

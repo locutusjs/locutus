@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/runkit_function_copy:823
+- /functions/view/runkit_function_copy
+- /functions/view/823
 - /functions/runkit_function_copy:823
 - /functions/823
 ---

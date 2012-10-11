@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/json_last_error:878
+- /functions/view/json_last_error
+- /functions/view/878
 - /functions/json_last_error:878
 - /functions/878
 ---

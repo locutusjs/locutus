@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/user_error:843
+- /functions/view/user_error
+- /functions/view/843
 - /functions/user_error:843
 - /functions/843
 ---

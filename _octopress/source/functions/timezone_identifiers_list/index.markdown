@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/timezone_identifiers_list:582
+- /functions/view/timezone_identifiers_list
+- /functions/view/582
 - /functions/timezone_identifiers_list:582
 - /functions/582
 ---

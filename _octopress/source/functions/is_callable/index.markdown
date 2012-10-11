@@ -6,6 +6,9 @@ sharing: true
 footer: true
 sidebar: false
 alias:
+- /functions/view/is_callable:439
+- /functions/view/is_callable
+- /functions/view/439
 - /functions/is_callable:439
 - /functions/439
 ---
