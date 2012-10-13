@@ -9,19 +9,19 @@ alias:
 - /pages/contact
 ---
 
-php.js is a resource that offers community built javascript alternatives for php functions.
+php.js is a resource that offers community-built JavaScript alternatives for PHP functions.
 
-If you want to perform high-level operations on javascript platforms such as webbrowsers, node.js, etc, you probably need to write JS that combines its lower-level functions and build it up until you have something useful like: strip_tags(), strtotime(), number_format(), wordwrap(), date(), md5().
+If you want to perform high-level operations on JavaScript platforms such as webbrowsers, node.js, etc, you probably need to write JS that combines its lower-level functions and build it up until you have something useful like: strip_tags(), strtotime(), number_format(), wordwrap(), or date().
 
-PHP is a language with many high-level functions and while they're not always implemented as consistently as we'd like (mostly because they mimic their underlying C parts), it has a huge following familiar with its syntax so it makes sense to pick its API as a reference. Eliminating the need for our own documentation, thus making life easier, we hope.
+PHP is a language with many high-level functions and while they're not always implemented as consistently as we'd like (mostly because they mimic their underlying C parts), it has a huge following familiar with its syntax so it makes sense to pick its API as a reference, and in the process, eliminating the need for our own documentation, thus making life easier, we hope.
 
 We recognize JS - on the other hand - has beautiful language features, and we encourage you to learn them. Never let php.js be an excuse not to.
 For the same reason, we're not porting entire language or control structures of PHP; we stick with the functions.
 
-That said, we think of it as a challenge to port everything and decided to also port low-level PHP functions like strpos even though it may have a JavaScript counterpart (String.indexOf).
-Cause besides the intellectual challenge for us, porting more also opens up php.js to all kinds of thought excercises and study purposes.
-And so we see ourselves as a big resource and leave it up to the developer to decide what makes sense to take from it.
-And what not.
+That said, we think of it as a challenge to port everything and decided to also port low-level PHP functions like strpos even though it may have a close JavaScript counterpart (String.indexOf).
+Besides the intellectual challenge for ourselves, porting also opens up php.js to all kinds of thought excercises and study purposes.
+And so we see ourselves as a big resource and leave it up to the developer to decide when it makes sense for them to take from it.
+And when not.
 
 <!--
 The History of php.js
