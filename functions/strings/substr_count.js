@@ -21,6 +21,9 @@ function substr_count (haystack, needle, offset, length) {
   if (isNaN(length)) {
     length = 0;
   }
+  if (needle.length == 0) {
+    return false;
+  }
   offset--;
 
   while ((offset = haystack.indexOf(needle, offset + 1)) != -1) {
