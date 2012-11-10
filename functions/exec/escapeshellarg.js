@@ -6,8 +6,8 @@ function escapeshellarg (arg) {
   // *     returns 1: "'kevin\'s birthday'"
   var ret = '';
 
-  ret = arg.replace(/[^\\]'/g, function (m, i, s) {
-    return m.slice(0, 1) + '\\\'';
+  ret = arg.replace(/(#|&|;|`|\||\*|\?|\~|<|>|\^|\(|\)|[|]|{|}|$|\\|'|")/g, function (m, i, s) {
+    return '\\' + m.slice(0, 1);
   });
 
   return "'" + ret + "'";
