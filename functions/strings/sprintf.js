@@ -160,9 +160,8 @@ function sprintf () {
       return formatBaseX(value, 10, prefixBaseX, leftJustify, minWidth, precision, zeroPad);
     case 'i':
     case 'd':
-      //number = (+value) | 0; // The '|' will force a 64-bit long integer to be a 32-bit long integer
-      number = Math.round(value);
-      if (isNaN(number)) number = 0;
+      number = +value || 0;
+      number = Math.round(number - number % 1); // Plain Math.round doesn't just truncate
       prefix = number < 0 ? '-' : positivePrefix;
       value = prefix + pad(String(Math.abs(number)), precision, '0', false);
       return justify(value, prefix, leftJustify, minWidth, zeroPad);
