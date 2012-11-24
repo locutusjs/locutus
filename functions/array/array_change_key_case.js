@@ -15,6 +15,12 @@ function array_change_key_case (array, cs) {
   // *     returns 5: {"FUBAR": 42}
   // *     example 6: array_change_key_case({ FuBaR: 42 }, 2);
   // *     returns 6: {"FUBAR": 42}
+  // *     example 7: ini_set('phpjs.return_phpjs_arrays', 'on');
+  // *     example 7: var arr = array({a: 0}, {B: 1}, {c: 2});
+  // *     example 7: var newArr = array_change_key_case(arr);
+  // *     example 7: newArr.b
+  // *     example 7: 1
+
   var case_fn, key, tmp_ar = {};
 
   if (Object.prototype.toString.call(array) === '[object Array]') {
