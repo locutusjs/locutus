@@ -166,7 +166,7 @@ function unpack(format, data) {
 
                 for (i=0;i<currentData.length;i+=2) {
                      // sum per word;
-                    currentResult = (currentData.charCodeAt(i+1) & 0xFF) << 8 +
+                    currentResult = ((currentData.charCodeAt(i+1) & 0xFF) << 8) +
                             (currentData.charCodeAt(i) & 0xFF);
                     if ((instruction === 's') && (currentResult >= 32768)) {
                         currentResult -= 65536;
