@@ -1,4 +1,4 @@
-function similar_text (first, second) {
+function similar_text (first, second, percent) {
   // http://kevin.vanzonneveld.net
   // +   original by: Rafał Kukawski (http://blog.kukawski.pl)
   // +   bugfixed by: Chris McMacken
@@ -49,9 +49,9 @@ function similar_text (first, second) {
     }
   }
   
-  if (percent == undefined) {
+  if (!percent) {
     return sum;
-  }else{
+  } else {
     return (sum * 200) / (firstLength + secondLength);
   }
 }
