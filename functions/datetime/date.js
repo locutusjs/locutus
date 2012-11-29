@@ -99,7 +99,7 @@ function date (format, timestamp) {
     z: function () { // Day of year; 0..365
       var a = new Date(f.Y(), f.n() - 1, f.j()),
         b = new Date(f.Y(), 0, 1);
-      return Math.round((a - b) / 864e5) + 1;
+      return Math.round((a - b) / 864e5);
     },
 
     // Week
