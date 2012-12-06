@@ -28,10 +28,14 @@ For the this reason, we're not porting entire language or control structures of 
 That said, we think of it as a challenge to port everything and decided to also port low-level PHP functions like
 [strpos](http://phpjs.org/functions/strpos/)
 even though it has a perfectly fine (and more performant!) JavaScript counterpart ([String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf)).
-Besides the intellectual challenge of seeing how far we can take it, porting ALL THE THINGS also opens up php.js to other thought excercises, and study purposes. A lot of PHP developers use php.js to learn how something is done in Javascript.
+Besides the intellectual challenge of seeing how far we can take it, porting ALL THE THINGS also opens up php.js to other thought excercises like realtime in-browser debugging of PHP code, or running .php files with JavaScript interpreters.
+Also, there are many PHP developers that use php.js to learn how something is done in Javascript.
 
-And so we see ourselves as a big resource and leave it up to the developer to decide what makes sense to take from it.
+And so we see ourselves as just this big resource and leave it up to the developer to decide what makes sense to take from it.
 And what not.
+
+Under the phrase: Make it work, then make it work better, we have plently of functions here online that aren't perfect just yet.
+If you know how to improve, just send us a pull request on GitHub.
 
 ## Contributing
 
