@@ -19,22 +19,23 @@ If you want to perform high-level operations on JavaScript platforms such as web
 [wordwrap](http://phpjs.org/functions/wordwrap/), or
 [date](http://phpjs.org/functions/date/).
 
-PHP is a language with many high-level functions and while they're not always implemented as consistently as we'd like (mimicking their underlying C parts), it has a huge following familiar with its syntax so it makes sense to pick its API as a reference, and in the process, eliminating the need for our own documentation, thus making life easier, we hope.
+PHP is a language with many high-level functions and while they're not always implemented as consistently as we'd like (mimicking their underlying C parts), it has a huge following familiar with its functions.
 
-We recognize JS - on the other hand - has beautiful language features, and we encourage you to learn them.
+We recognize JS has beautiful language features, and we encourage you to learn them.
 Never let php.js be an excuse not to.
-For the this reason, we're not porting entire language or control structures of PHP; we stick with the functions.
+For the this reason we don't offer gigantic php.js packages or compilers anymore.
 
-That said, we think of it as a challenge to port everything and decided to also port low-level PHP functions like
+That said, we do think it's a challenge to port everything and decided to also port low-level PHP functions like
 [strpos](http://phpjs.org/functions/strpos/)
 even though it has a perfectly fine (and more performant!) JavaScript counterpart ([String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf)).
-Besides the intellectual challenge of seeing how far we can take it, porting ALL THE THINGS also opens up php.js to other thought excercises like realtime in-browser debugging of PHP code, or running .php files with JavaScript interpreters.
-Also, there are many PHP developers that use php.js to learn how something is done in Javascript.
+Besides the intellectual challenge of seeing how far we could come, porting ALL THE THINGS opens up php.js to be used for
+other fun thought excercises such as realtime in-browser debugging/running of PHP code, or running .php files with JavaScript interpreters.
+Also, there are quite a few PHP developers that use php.js just to learn how something is done in JavaScript.
 
-And so we see ourselves as just this big resource and leave it up to the developer to decide what makes sense to take from it.
+And so we see ourselves as this big resource and leave it up to the developer to decide what makes sense to take from it.
 And what not.
 
-Under the phrase: Make it work, then make it work better, we have plently of functions here online that aren't perfect just yet.
+Under the motto: "Make it work, then make it work better", we have plently of functions here online that aren't perfect just yet.
 If you know how to improve, just send us a pull request on GitHub.
 
 ## Contributing
