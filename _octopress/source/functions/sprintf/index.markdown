@@ -27,12 +27,15 @@ function sprintf () {
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Dj
+  // +   improved by: Allidylls
   // *     example 1: sprintf("%01.2f", 123.1);
   // *     returns 1: 123.10
   // *     example 2: sprintf("[%10s]", 'monkey');
   // *     returns 2: '[    monkey]'
   // *     example 3: sprintf("[%'#10s]", 'monkey');
   // *     returns 3: '[####monkey]'
+  // *     example 4: sprintf("%d", 123456789012345);
+  // *     returns 4: '123456789012345'
   var regex = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g;
   var a = arguments,
     i = 0,
@@ -175,7 +178,8 @@ function sprintf () {
       return formatBaseX(value, 10, prefixBaseX, leftJustify, minWidth, precision, zeroPad);
     case 'i':
     case 'd':
-      number = (+value) | 0;
+      number = +value || 0;
+      number = Math.round(number - number % 1); // Plain Math.round doesn't just truncate
       prefix = number < 0 ? '-' : positivePrefix;
       value = prefix + pad(String(Math.abs(number)), precision, '0', false);
       return justify(value, prefix, leftJustify, minWidth, zeroPad);
