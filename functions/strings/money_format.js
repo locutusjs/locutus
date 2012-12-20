@@ -121,6 +121,9 @@ function money_format (format, number) {
         dec_pt = '';
       } else if (right < fraction.length) {
         fraction = Math.round(parseFloat(fraction.slice(0, right) + '.' + fraction.substr(right, 1))) + '';
+        if (right > fraction.length) {
+          fraction = new Array(right - fraction.length + 1).join('0') + fraction; // prepend with 0's
+        }
       } else if (right > fraction.length) {
         fraction += new Array(right - fraction.length + 1).join('0'); // pad with 0's
       }
