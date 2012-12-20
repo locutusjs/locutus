@@ -120,7 +120,7 @@ function money_format (format, number) {
         fraction = '';
         dec_pt = '';
       } else if (right < fraction.length) {
-        fraction = Math.round(parseFloat(fraction.slice(0, right) + '.' + fraction.substr(right, 1), 10)) + '';
+        fraction = Math.round(parseFloat(fraction.slice(0, right) + '.' + fraction.substr(right, 1))) + '';
       } else if (right > fraction.length) {
         fraction += new Array(right - fraction.length + 1).join('0'); // pad with 0's
       }
