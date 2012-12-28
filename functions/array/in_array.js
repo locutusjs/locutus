@@ -17,19 +17,12 @@ function in_array (needle, haystack, argStrict) {
   var key = '',
     strict = !! argStrict;
 
-  if (strict) {
-    for (key in haystack) {
-      if (haystack[key] === needle) {
-        return true;
-      }
-    }
-  } else {
-    for (key in haystack) {
-      if (haystack[key] == needle) {
-        return true;
-      }
-    }
-  }
-
-  return false;
+  for (var id = 0; id < haystack.length; id++) {
+  			if (strict === true) {
+					if (haystack[id] === needle) return true;
+				} else {
+					if (haystack[id] == needle) return true;
+				}
+			}
+			return false;
 }
