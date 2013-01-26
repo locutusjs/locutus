@@ -167,7 +167,7 @@ function file_get_contents (url, flags, context, offset, maxLen) {
             default:
               throw 'Unrecognized ready state for file_get_contents()';
             }
-          }
+          };
         }
       }
     }

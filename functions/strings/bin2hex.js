@@ -14,7 +14,7 @@ function bin2hex (s) {
   s += "";
 
   for (i = 0, l = s.length; i < l; i++) {
-    n = s.charCodeAt(i).toString(16)
+    n = s.charCodeAt(i).toString(16);
     o += n.length < 2 ? "0" + n : n;
   }
 
