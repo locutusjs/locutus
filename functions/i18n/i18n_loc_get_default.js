@@ -11,5 +11,8 @@ function i18n_loc_get_default () {
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};
   // END REDUNDANT
-  return this.php_js.i18nLocale || (i18n_loc_set_default('en_US_POSIX'), 'en_US_POSIX'); // Ensure defaults are set up
+  if (!this.php_js.i18nLocale){// Ensure defaults are set up
+	  i18n_loc_set_default('en_US_POSIX');
+  }
+  return this.php_js.i18nLocale;	   
 }
