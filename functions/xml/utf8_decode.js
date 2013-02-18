@@ -21,18 +21,22 @@ function utf8_decode (str_data) {
 
   while (i < str_data.length) {
     c1 = str_data.charCodeAt(i);
-    if (c1 < 128) {
+    if (c1 <= 191) {
       tmp_arr[ac++] = String.fromCharCode(c1);
       i++;
-    } else if (c1 > 191 && c1 < 224) {
+    } else if (c1 >= 192 && c1 <= 223) {
       c2 = str_data.charCodeAt(i + 1);
       tmp_arr[ac++] = String.fromCharCode(((c1 & 31) << 6) | (c2 & 63));
       i += 2;
-    } else {
+    } else if (c1 >= 224 && c1 <= 239) {
+      // http://en.wikipedia.org/wiki/UTF-8#Codepage_layout
       c2 = str_data.charCodeAt(i + 1);
       c3 = str_data.charCodeAt(i + 2);
       tmp_arr[ac++] = String.fromCharCode(((c1 & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
       i += 3;
+    } else {
+      tmp_arr[ac++] = String.fromCharCode(c1);
+      i++;
     }
   }
 
