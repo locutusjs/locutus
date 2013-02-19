@@ -22,7 +22,12 @@ function strtotime (text, now) {
 	// *     returns 4: 1241418600
 	if (!text)
 		return null;
-
+		
+	//code for trim added for browsers that don't support it
+	if (!String.prototype.trim) {
+		String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g, '');};
+	}
+	
 	// Unecessary spaces
 	text = text.trim()
 		.replace(/\s{2,}/g, ' ')
