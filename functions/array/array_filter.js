@@ -16,12 +16,12 @@ function array_filter (arr, func) {
   var retObj = {},
     k;
     
-  func = func || function (v) {return v;};
+  func = func || function (v) { return v; };
 
   // Fix: Issue #73
-	if( Object.prototype.toString.call( arr ) === '[object Array]' ) {
-		retObj = []
-	}
+  if (Object.prototype.toString.call(arr) === '[object Array]') {
+    retObj = [];
+  }
 
   for (k in arr) {
     if (func(arr[k])) {
