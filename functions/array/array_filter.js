@@ -18,6 +18,11 @@ function array_filter (arr, func) {
     
   func = func || function (v) {return v;};
 
+  // Fix: Issue #73
+	if( Object.prototype.toString.call( arr ) === '[object Array]' ) {
+		retObj = []
+	}
+
   for (k in arr) {
     if (func(arr[k])) {
       retObj[k] = arr[k];
