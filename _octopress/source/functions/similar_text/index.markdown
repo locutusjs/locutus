@@ -16,14 +16,17 @@ alias:
 A JavaScript equivalent of PHP's similar_text
 
 {% codeblock strings/similar_text.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/similar_text.js raw on github %}
-function similar_text (first, second) {
+function similar_text (first, second, percent) {
   // http://kevin.vanzonneveld.net
   // +   original by: Rafał Kukawski (http://blog.kukawski.pl)
   // +   bugfixed by: Chris McMacken
+  // +   added percent parameter by: Markus Padourek (taken from http://www.kevinhq.com/2012/06/php-similartext-function-in-javascript_16.html)
   // *     example 1: similar_text('Hello World!', 'Hello phpjs!');
   // *     returns 1: 7
   // *     example 2: similar_text('Hello World!', null);
   // *     returns 2: 0
+  // *     example 3: similar_text('Hello World!', null, 1);
+  // *     returns 3: 58.33
   if (first === null || second === null || typeof first === 'undefined' || typeof second === 'undefined') {
     return 0;
   }
@@ -63,8 +66,12 @@ function similar_text (first, second) {
       sum += this.similar_text(first.substr(pos1 + max, firstLength - pos1 - max), second.substr(pos2 + max, secondLength - pos2 - max));
     }
   }
-
-  return sum;
+  
+  if (!percent) {
+    return sum;
+  } else {
+    return (sum * 200) / (firstLength + secondLength);
+  }
 }
 {% endcodeblock %}
 
@@ -91,6 +98,17 @@ similar_text('Hello World!', null);
 Should return
 {% codeblock lang:js returns %}
 0
+{% endcodeblock %}
+
+### Example 3
+This code
+{% codeblock lang:js example %}
+similar_text('Hello World!', null, 1);
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+58.33
 {% endcodeblock %}
 
 

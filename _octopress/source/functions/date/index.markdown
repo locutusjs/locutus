@@ -74,19 +74,19 @@ function date (format, timestamp) {
   // *     returns 8: '52'
   // *     example 9: date('W Y-m-d', 1293974054); // 2011-01-02
   // *     returns 9: '52 2011-01-02'
-  var that = this,
-    jsdate, f, formatChr = /\\?([a-z])/gi,
-    formatChrCb,
-    // Keep this here (works, but for code commented-out
-    // below for file size reasons)
-    //, tal= [],
-    _pad = function (n, c) {
-      if ((n = n + '').length < c) {
-        return new Array((++c) - n.length).join('0') + n;
-      }
-      return n;
-    },
-    txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var that = this,
+      jsdate,
+      f,
+      formatChr = /\\?([a-z])/gi,
+      formatChrCb,
+      // Keep this here (works, but for code commented-out
+      // below for file size reasons)
+      //, tal= [],
+      _pad = function (n, c) {
+        n = n.toString();
+        return n.length < c ? _pad('0' + n, c, '0') : n;
+      },
+      txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   formatChrCb = function (t, s) {
     return f[t] ? f[t]() : s;
   };
@@ -109,7 +109,7 @@ function date (format, timestamp) {
     },
     S: function () { // Ordinal suffix for day of month; st, nd, rd, th
       var j = f.j();
-      return j < 4 | j > 20 && ['st', 'nd', 'rd'][j%10 - 1] || 'th';
+      return j < 4 | j > 20 && (['st', 'nd', 'rd'][j % 10 - 1] || 'th');
     },
     w: function () { // Day of week; 0[Sun]..6[Sat]
       return jsdate.getDay();
@@ -117,7 +117,7 @@ function date (format, timestamp) {
     z: function () { // Day of year; 0..365
       var a = new Date(f.Y(), f.n() - 1, f.j()),
         b = new Date(f.Y(), 0, 1);
-      return Math.round((a - b) / 864e5) + 1;
+      return Math.round((a - b) / 864e5);
     },
 
     // Week
@@ -147,7 +147,7 @@ function date (format, timestamp) {
     // Year
     L: function () { // Is leap year?; 0 or 1
       var j = f.Y();
-      return j%4==0 & j%100!=0 | j%400==0;
+      return j % 4 === 0 & j % 100 !== 0 | j % 400 === 0;
     },
     o: function () { // ISO-8601 year
       var n = f.n(),
@@ -159,7 +159,7 @@ function date (format, timestamp) {
       return jsdate.getFullYear();
     },
     y: function () { // Last two digits of year; 00...99
-      return (f.Y() + "").slice(-2);
+      return f.Y().toString().slice(-2);
     },
 
     // Time
@@ -217,7 +217,7 @@ function date (format, timestamp) {
         b = new Date(f.Y(), 6),
         // Jul 1
         d = Date.UTC(f.Y(), 6); // Jul 1 UTC
-      return 0 + ((a - c) !== (b - d));
+      return ((a - c) !== (b - d)) ? 1 : 0;
     },
     O: function () { // Difference to GMT in hour format; e.g. +0200
       var tzo = jsdate.getTimezoneOffset(),
@@ -273,7 +273,7 @@ function date (format, timestamp) {
   };
   this.date = function (format, timestamp) {
     that = this;
-    jsdate = (timestamp == null ? new Date() : // Not provided
+    jsdate = (timestamp === undefined ? new Date() : // Not provided
       (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
       new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
     );

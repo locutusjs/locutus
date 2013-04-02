@@ -118,11 +118,30 @@ function array () {
         while (i < kl) {
           oldkey = _.keys[i];
           newkey = _.keys[i] = _.keys[i][case_fn]();
-          this[newkey] = _.object[newkey] = _.objectChain[i][newkey] = _.values[i]; // Fix: should we make a deep copy?
-          this[oldkey] = _.object[oldkey] = _.objectChain[i][oldkey] = null; // Break reference before deleting
-          delete this[oldkey];
-          delete _.object[oldkey];
-          delete _.objectChain[i][oldkey];
+          if (oldkey !== newkey) {
+              this[oldkey] = _.object[oldkey] = _.objectChain[i][oldkey] = null; // Break reference before deleting
+              delete this[oldkey];
+              delete _.object[oldkey];
+              delete _.objectChain[i][oldkey];
+              this[newkey] = _.object[newkey] = _.objectChain[i][newkey] = _.values[i]; // Fix: should we make a deep copy?
+          }
+          i++;
+        }
+        return this;
+      };
+      e.flip = function () {
+        var _ = __.method(this), i = 0, kl = _.keys.length;
+        while (i < kl) {
+          oldkey = _.keys[i];
+          newkey = _.values[i];
+          if (oldkey !== newkey) {
+            this[oldkey] = _.object[oldkey] = _.objectChain[i][oldkey] = null; // Break reference before deleting
+            delete this[oldkey];
+            delete _.object[oldkey];
+            delete _.objectChain[i][oldkey];
+            this[newkey] = _.object[newkey] = _.objectChain[i][newkey] = oldkey;
+            _.keys[i] = newkey;
+          }
           i++;
         }
         return this;
