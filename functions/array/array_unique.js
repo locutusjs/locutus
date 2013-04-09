@@ -22,7 +22,11 @@ function array_unique (inputArr) {
     var fkey = '';
     for (fkey in haystack) {
       if (haystack.hasOwnProperty(fkey)) {
-        if ((haystack[fkey] + '') === (needle + '')) {
+        if (typeof haystack[fkey] == 'object' && typeof json_encode != 'undefined' ) {
+          if (json_encode(haystack[fkey]) == json_encode(needle)) {
+            return fkey;
+          }
+        } else if ((haystack[fkey] + '') === (needle + '')) {
           return fkey;
         }
       }
