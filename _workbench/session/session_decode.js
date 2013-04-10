@@ -3,8 +3,8 @@ function session_decode(str) {
     // +   original by: Louis Stowasser
     // -    depends on: unserialize
     // -    depends on: urldecode
-    // *     example 1: 
-    // *     returns 1: 
+    // *     example 1:
+    // *     returns 1:
 
 /**
 * Decode string from session format

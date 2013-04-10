@@ -48,6 +48,6 @@ function date_parse_from_format (format, dateArg) {
     // Fix: need to add the following as well
     //zone_type: TIMELIB_ZONETYPE_OFFSET 1, TIMELIB_ZONETYPE_ABBR   2, TIMELIB_ZONETYPE_ID     3
     //zone: -60
-    
+
     return retObj;
 }

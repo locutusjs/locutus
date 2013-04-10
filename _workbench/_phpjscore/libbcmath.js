@@ -18,7 +18,7 @@
  * This code is covered under the LGPL licence, and can be used however you want :)
  * Be kind and share any decent code changes.
  */
- 
+
 var libbcmath = {
     PLUS: '+',
     MINUS: '-',
@@ -38,10 +38,10 @@ var libbcmath = {
         this.toString = function() {
             var r, tmp;
             tmp=this.n_value.join('');
-            
+
             // add minus sign (if applicable) then add the integer part
             r = ((this.n_sign == libbcmath.PLUS) ? '' : this.n_sign) + tmp.substr(0, this.n_len);
-            
+
             // if decimal places, add a . and the decimal part
             if (this.n_scale > 0) {
                 r += '.' + tmp.substr(this.n_len, this.n_scale);
@@ -49,7 +49,7 @@ var libbcmath = {
             return r;
         };
     },
-    
+
     /**
      * @param int length
      * @param int scale
@@ -65,7 +65,7 @@ var libbcmath = {
         libbcmath.memset(temp.n_value, 0, 0, length+scale);
         return temp;
     },
-    
+
     safe_emalloc: function(size, len, extra) {
         return Array((size * len) + extra);
     },
@@ -85,7 +85,7 @@ var libbcmath = {
             num.n_len--;
         }
     },
-    
+
     /**
      * Convert to bc_num detecting scale
      */
@@ -99,19 +99,19 @@ var libbcmath = {
         }
 
     },
-    
+
     CH_VAL: function(c) {
         return c - '0'; //??
     },
-    
+
     BCD_CHAR: function(d) {
         return d + '0'; // ??
     },
-    
+
     isdigit: function(c) {
         return (isNaN(parseInt(c,10)) ? false : true);
     },
-    
+
     bc_str2num: function(str_in, scale) {
         var str,num, ptr, digits, strscale, zero_int, nptr;
         // remove any non-expected characters
@@ -133,7 +133,7 @@ var libbcmath = {
             ptr++;
             digits++;    /* digits */
         }
-        
+
         if (str[ptr] === '.') {
             ptr++;            /* decimal point */
         }
@@ -206,7 +206,7 @@ var libbcmath = {
         }
         return x;
     },
-    
+
     /**
      * Basic min function
      * @param int
@@ -215,7 +215,7 @@ var libbcmath = {
     MIN: function(a, b) {
         return ((a > b) ? b : a);
     },
-    
+
     /**
      * Basic max function
      * @param int
@@ -224,7 +224,7 @@ var libbcmath = {
     MAX: function(a, b) {
         return ((a > b) ? a : b);
     },
-    
+
     /**
      * Basic odd function
      * @param int
@@ -233,7 +233,7 @@ var libbcmath = {
     ODD: function(a) {
         return (a & 1);
     },
-    
+
     /**
      * replicate c function
      * @param array     return (by reference)
@@ -246,7 +246,7 @@ var libbcmath = {
             r[ptr+i] = chr;
         }
     },
-    
+
     /**
      * Replacement c function
      * Obviously can't work like c does, so we've added an "offset" param so you could do memcpy(dest+1, src, len) as memcpy(dest, 1, src, len)
@@ -259,8 +259,8 @@ var libbcmath = {
         }
         return true;
     },
-    
-    
+
+
     /**
      * Determine if the number specified is zero or not
      * @param bc_num num    number to check
@@ -288,7 +288,7 @@ var libbcmath = {
             return true;
         }
     },
-    
+
     bc_out_of_memory: function() {
         throw new Error("(BC) Out of memory");
     }

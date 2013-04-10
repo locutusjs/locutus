@@ -8,7 +8,7 @@ function ErrorException (message, code, severity, filename, lineno) {
     // *     example 1: var e = new Exception('some exception');
     // *     example 1: e.getMessage();
     // *     returns 1: 'some exception'
-    
+
     if (!message) {
         message = '';
     }
@@ -25,7 +25,7 @@ function ErrorException (message, code, severity, filename, lineno) {
     this.message = message; // protected string
     this.code = code; // protected int
     this.string = 'Exception'; // private string; Internal Exception name
-    
+
     this.severity = severity; // protected int
 
     // UNFINISHED

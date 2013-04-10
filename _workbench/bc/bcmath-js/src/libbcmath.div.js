@@ -62,7 +62,7 @@ libbcmath.bc_divide = function(n1, n2, scale) {
     if (libbcmath.bc_is_zero(n2)) {
         return -1;
     }
-    
+
     /* Test for zero divide by anything (return zero) */
     if (libbcmath.bc_is_zero(n1)) {
         return libbcmath.bc_new_num(1, scale);
@@ -120,7 +120,7 @@ libbcmath.bc_divide = function(n1, n2, scale) {
     libbcmath.memcpy(num2, 0, n2.n_value, 0, len2);  //memcpy (num2, n2.n_value, len2);
     num2[len2] = 0;   // *(num2+len2) = 0;
     n2ptr = 0; //n2ptr = num2;
-    
+
     while (num2[n2ptr] === 0) {   // while (*n2ptr == 0)
         n2ptr++;
         len2--;
@@ -148,7 +148,7 @@ libbcmath.bc_divide = function(n1, n2, scale) {
     if (mval === null) {
         libbcmath.bc_out_of_memory();
     }
-    
+
     /* Now for the full divide algorithm. */
     if (!zero) {
         /* Normalize */
@@ -159,7 +159,7 @@ libbcmath.bc_divide = function(n1, n2, scale) {
             libbcmath._one_mult(n2.n_value, n2ptr, len2, norm, n2.n_value, n2ptr); //libbcmath._one_mult(n2ptr, len2, norm, n2ptr);
 
             // @CHECK Is the pointer affected by the call? if so, maybe need to adjust points on return?
-            
+
         }
 
         /* Initialize divide loop. */
@@ -196,7 +196,7 @@ libbcmath.bc_divide = function(n1, n2, scale) {
 
                 ptr1 = qdig+len2; //(unsigned char *) num1+qdig+len2;
                 ptr2 = len2; //(unsigned char *) mval+len2;
-                
+
                 // @CHECK: Does a negative pointer return null?
                 //         ptr2 can be < 0 here as ptr1 = len2, thus count < len2+1 will always fail ?
                 for (count = 0; count < len2+1; count++) {
@@ -257,7 +257,7 @@ libbcmath.bc_divide = function(n1, n2, scale) {
         qval.n_sign = libbcmath.PLUS;
     }
     libbcmath._bc_rm_leading_zeros(qval);
-    
+
     return qval;
 
     //return 0;    /* Everything is OK. */

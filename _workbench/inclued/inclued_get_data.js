@@ -8,7 +8,7 @@ function inclued_get_data () {
     // The only other directive is inclued.dumpdir but that requires file writing
     // Per the docs, "Class inheritance dependencies are also reported"; how?
 
-    /* 
+    /*
      * this.php_js.incluedData could look like:
     {
         includes : [
@@ -27,5 +27,5 @@ function inclued_get_data () {
     if (!this.php_js || !this.php_js.incluedData) {
         return {};
     }
-    return this.php_js.incluedData;   
+    return this.php_js.incluedData;
 }

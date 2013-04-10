@@ -1,6 +1,6 @@
 function date_sunset (timestamp, format, latitude, longitude, zenith, gmt_offset) {
     // depends on: ini_get
-    
+
     var calc_sunset = 1; // One part that differs from date_sunrise
 
     var SUNFUNCS_RET_STRING = 1, SUNFUNCS_RET_TIMESTAMP = 0, SUNFUNCS_RET_DOUBLE = 2;
@@ -17,13 +17,13 @@ function date_sunset (timestamp, format, latitude, longitude, zenith, gmt_offset
 	var rs;
 	var t;
 	var tzi;
-	var retstr;	
+	var retstr;
 
 	if (!arguments.length || arguments.length > 6) {
         // throw "invalid format"; // warning
         return false;
 	}
-    
+
 	if (format !== SUNFUNCS_RET_TIMESTAMP &&
 		format !== SUNFUNCS_RET_STRING &&
 		format !== SUNFUNCS_RET_DOUBLE) {

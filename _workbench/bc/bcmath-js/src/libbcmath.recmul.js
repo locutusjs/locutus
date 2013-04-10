@@ -90,7 +90,7 @@ libbcmath._bc_shift_addsub = function(accum, val, shift, sub) {
     if (val.n_value[0] === 0) {
         count--;
     }
-    
+
     //assert (accum->n_len+accum->n_scale >= shift+count);
     if (!(accum.n_len+accum.n_scale >= shift+count)) {
         throw new Error("len + scale < shift + count"); // ?? I think thats what assert does :)

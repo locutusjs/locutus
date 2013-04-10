@@ -6,7 +6,7 @@ function DateTime (time, timezone) {
     // *     example 1: var tzo = timezone_open('Asia/Hong_Kong');
     // *     example 1: new DateTime('now', tzo);
     // *     returns 1: {}
-    
+
     // Incomplete
 
     // BEGIN REDUNDANT
@@ -61,7 +61,7 @@ function DateTime (time, timezone) {
     // DateInterval Returned by DateTime.diff()  (cf. date_interval_create_from_date_string())
 
     // Redefine DateTimeZone here for use below (see timezone_open())
-    
+
     if (!this.DateTime.prototype.add) {
         var DateTime = this.DateTime;
         DateTime.prototype = {
@@ -111,7 +111,7 @@ function DateTime (time, timezone) {
         DateTime.RSS = 'D, d M Y H:i:s O';
         DateTime.W3C = 'Y-m-d\\TH:i:sP';
     }
-    
+
     // Depends on strtotime() and optionally accepts DateTimeZone object
     if (!time) {
         time = 'now';
@@ -124,5 +124,5 @@ function DateTime (time, timezone) {
     else {
         _.timezone = timezone.getName();
     }
-    
+
 }

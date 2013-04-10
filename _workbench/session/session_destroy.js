@@ -3,8 +3,8 @@ function session_destroy () {
     // +   original by: Louis Stowasser
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: urlencode
-    // *     example 1: 
-    // *     returns 1: 
+    // *     example 1:
+    // *     returns 1:
 
     var t = this;
 
@@ -14,7 +14,7 @@ function session_destroy () {
         if (expires) {
             expires = (new Date((new Date).getTime() + expires * 3600)).toGMTString();
         }
-     
+
         var r = [name + '=' + t.urlencode(value)], s = {}, i = '';
         s = {expires: expires, path: path, domain: domain};
         for (var i in s) {
@@ -22,7 +22,7 @@ function session_destroy () {
                 s[i] && r.push(i + '=' + s[i]);
             }
         }
-        
+
         return secure && r.push('secure'), document.cookie = r.join(";"), true;
     };
 

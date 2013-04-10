@@ -36,7 +36,7 @@ function debug_backtrace (provide_object) {
 
     for (i=0; i < stackArr.length; i++) {
         stackItem = stackArr[i];
-        
+
         // Will not work if parentheses (or ampersands) are in the file name! (other option would be worse, as arguments couldn't have @ or )
         lastAtPos = stackItem.lastIndexOf('@')+1;
         fileLine = stackItem.slice(lastAtPos);
@@ -64,7 +64,7 @@ function debug_backtrace (provide_object) {
         if (provide_object) {
             throw 'provide_object argument is not supported in debug_backtrace';
         }
-        
+
         backtraceArray.push({
             'function': funcName, // string; The current function name. See also __FUNCTION__.
             'line': line, // integer; The current line number. See also __LINE__.

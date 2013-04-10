@@ -5,12 +5,12 @@ function DateTimeZone ($timezone) {
     // -    depends on: timezone_abbreviations_list()
     // -    depends on: timezone_identifiers_list()
     // -    depends on: timezone_transitions_get()
-    // %        note 1: Creates a DateTimeZone() object as in PHP, but we really 
-    // %        note 1: need to implement DateTime() and possibly fix some 
+    // %        note 1: Creates a DateTimeZone() object as in PHP, but we really
+    // %        note 1: need to implement DateTime() and possibly fix some
     // %        note 1: methods here
     // *     example 1: new DateTimeZone('Europe/Prague'); // Can't convert to string in PHP; returns the DTZ object
     // *     returns 1: {}
-    
+
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     if (!this.php_js.Relator) {
@@ -55,11 +55,11 @@ function DateTimeZone ($timezone) {
         }();
     }
     // END REDUNDANT
-    
+
     var __ = this.php_js.DateTimeZoneRelator = this.php_js.DateTimeZoneRelator || this.php_js.Relator.$(),
         _ = __.constructor(this),
         that = this;
-    
+
     if (!this.DateTimeZone.AFRICA) {
         var DateTimeZone = this.DateTimeZone;
         DateTimeZone.prototype = {
@@ -93,7 +93,7 @@ function DateTimeZone ($timezone) {
         DateTimeZone.ALL_WITH_BC = 4095;
         DateTimeZone.PER_COUNTRY = 4096;
     }
-    
+
     // END REDUNDANT
     _.timezone = $timezone;
 }

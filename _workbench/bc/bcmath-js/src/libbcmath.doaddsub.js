@@ -73,7 +73,7 @@ libbcmath._bc_do_add = function(n1, n2, scale_min) {
         // add the two numbers together
         tmp = n1.n_value[n1ptr--] + n2.n_value[n2ptr--] + carry;
         // *sumptr = *n1ptr-- + *n2ptr-- + carry;
-        
+
         // check if they are >= 10 (impossible to be more then 18)
         if (tmp >= libbcmath.BASE) {
             carry = 1;

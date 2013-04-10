@@ -10,7 +10,7 @@ bcmath.benchmark = {
     lastStart: null,
     lastStop: null,
     testCount: 500,
-    
+
     doBenchmark: function() {
 
         var i, x, browserTime, bcTime;
@@ -25,7 +25,7 @@ bcmath.benchmark = {
 
         alert('Benchmark time: ' + bcTime);
 
-        
+
     },
 
     start: function() {
@@ -33,7 +33,7 @@ bcmath.benchmark = {
         bcmath.benchmark.lastStart = d.getTime();
 
     },
-    
+
     stop: function() {
         var d=new Date();
         bcmath.benchmark.lastStop = d.getTime();

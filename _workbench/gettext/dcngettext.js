@@ -3,7 +3,7 @@ function dcngettext (domain, msgid1, msgid2, n, category) {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // -    depends on: setlocale
     // *     example 1:
-    // *     returns 1: 
+    // *     returns 1:
 
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};

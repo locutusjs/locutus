@@ -2,8 +2,8 @@ function session_encode () {
     // http://kevin.vanzonneveld.net
     // +   original by: Louis Stowasser
     // -    depends on: urldecode
-    // *     example 1: 
-    // *     returns 1: 
+    // *     example 1:
+    // *     returns 1:
 
     var _getcookie = function (name) {
         var cookies = document.cookie.split(';'),i=0,l=cookies.length,

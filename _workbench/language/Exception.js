@@ -17,7 +17,7 @@ function Exception (message, code, previous) { // string, int, Exception (all ar
     if (!previous) {
         previous = null;
     }
-    
+
     this.message = message; // protected string
     this.code = code; // protected int
     this.string = 'Exception'; // private string; Internal Exception name

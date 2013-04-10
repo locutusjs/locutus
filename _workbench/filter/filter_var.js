@@ -12,7 +12,7 @@ function filter_var(input, filter, options) {
         if (val == null) {
             return type === "null";
         }
-        
+
         if (type === "primitive") {
             return val !== Object(val);
         }
@@ -238,7 +238,7 @@ function filter_var(input, filter, options) {
 
     case supportedFilters.FILTER_SANITIZE_EMAIL:
         return ("" + data).replace(/[^a-zA-Z\d!#$%&'*+\-\/=?\^_`{|}~@.\[\]]/g, '');
-            
+
     case supportedFilters.FILTER_DEFAULT:
         // is alias of FILTER_UNSAFE_RAW
         // fall-through

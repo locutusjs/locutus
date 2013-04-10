@@ -6,8 +6,8 @@ function DateInterval (interval_spec) { // string
     // *     example 1: di.d === 4;
     // *     returns 1: true
 
-    var that = this, 
-        matches, weeks = false, 
+    var that = this,
+        matches, weeks = false,
         dec = '(?:(\\d+(?:[.,]\\d*)?)', // Must decimal be followed by number?
         _pad = function (n, c) {
             if ((n = n + '').length < c ) {
@@ -45,7 +45,7 @@ function DateInterval (interval_spec) { // string
             return that.date_interval_create_from_date_string(time);
         };
     }
-    
+
     try {
         if ((matches = interval_spec.match(/^P(\d+)W$/))) {
             this.d = 7 * matches[1];

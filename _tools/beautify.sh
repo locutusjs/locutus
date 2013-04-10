@@ -30,7 +30,7 @@ __DIR__="$(cd "$(dirname "${0}")"; echo $(pwd))"
 __ROOT__="$(cd "$(dirname "${0}")/.."; echo $(pwd))"
 __FILE__="${__DIR__}/$(basename "${0}")"
 
-__FUNCTIONS__="${__ROOT__}/_experimental"
+__FUNCTIONS__="${__ROOT__}/functions"
 
 ### Functions
 #####################################################################

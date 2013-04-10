@@ -483,9 +483,9 @@ function token_get_all(source) {
     pushOnRet = function (token, string) {
         if (string === undefined) {ret.push(token);}
         else {ret.push([token, string, line]);}
-    }, 
+    },
     oldPushOnRet = pushOnRet;
-    
+
     var that = this;
     if (this.php_js && this.php_js.phpParser) {
         pushOnRet = function (token, string) {

@@ -147,7 +147,7 @@ throw 'X flag is unimplemented at present';
                                 // P = join([Pc, Pd, Pe, Pf, Pi, Po, Ps]);
                                 // S = join([Sc, Sk, Sm, So]);
                                 // Z = join([Zl, Zp, Zs]);
-                                
+
 
                                 // \X = (?>\PM\pM*)
                                 // "Extended properties such as "Greek" or "InMusicalSymbols" are not supported by PCRE."

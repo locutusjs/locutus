@@ -17,10 +17,10 @@ function is_numeric (mixed_var) {
     // *     returns 4: false
     // *     example 4: is_numeric([]);
     // *     returns 4: false
-    
+
     // The old implementation doesn't work correctly with strings containing white characters at the beginnig or at the end
     // eg. "\t123\t". phpjs function returns true, where PHP returns false
-    
+
     // The function below should cover the case described above,
     // Still thinking about removing the regex, but have no better idea
     // also type checking is still required, because one-element arrays
@@ -45,6 +45,6 @@ function is_numeric (mixed_var) {
             $
         */
         valid_number = /^[+\-]?(?:0x[\da-f]+|(?:(?:\d+(?:\.\d*)?|\.\d+))(e[+\-]?\d+)?)$/i;
-    
+
     return !isNaN(mixed_var) && (type === 'number' || (type === 'string' && valid_number.test(mixed_var));
 }

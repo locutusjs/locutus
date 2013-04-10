@@ -11,7 +11,7 @@ function token_get_all (source) {
 	// % note 2: passing them the string, line number, and token number (in that order)
 	// * example 1: token_get_all('/'+'* comment *'+'/');
 	// * returns 1: [[310, '/* comment */', 1]]
-	
+
 	// Token to number conversion
     var num,
         nextch,
@@ -249,7 +249,7 @@ function token_get_all (source) {
             "/=": tokens.T_DIV_EQUAL,
             "=>": tokens.T_DOUBLE_ARROW,
             "::": tokens.T_PAAMAYIM_NEKUDOTAYIM,
-            "++": tokens.T_INC,		
+            "++": tokens.T_INC,
             "==": tokens.T_IS_EQUAL,
             ">=": tokens.T_IS_GREATER_OR_EQUAL,
             "!=": tokens.T_IS_NOT_EQUAL,
@@ -268,8 +268,8 @@ function token_get_all (source) {
         },
         //Symbols tokens with 3 characters
         symbols3chars = {
-            "===": tokens.T_IS_IDENTICAL,	
-            "!==": tokens.T_IS_NOT_IDENTICAL,		
+            "===": tokens.T_IS_IDENTICAL,
+            "!==": tokens.T_IS_NOT_IDENTICAL,
             "<<=": tokens.T_SL_EQUAL,
             ">>=": tokens.T_SR_EQUAL,
             "<?=": tokens.T_OPEN_TAG_WITH_ECHO,
@@ -454,7 +454,7 @@ function token_get_all (source) {
             oldEmitToken(token, code, preventBuffer, l);
         };
     }
-	
+
 	for (; i < length; i++) {
 		ch = source.charAt(i);
 		ASCII = ch.charCodeAt(0);

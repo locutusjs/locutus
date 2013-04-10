@@ -27,21 +27,21 @@ function fnmatch (pattern, string, flags) {
         case 'FNM_FILE_NAME': // Would have been fall-through but gone by PHP 6
             throw 'Obsolete flag';
         case 'FNM_PATHNAME': // Slash in string only matches slash in the given pattern.
-            
+
             break;
         case 'FNM_PERIOD': // Leading period in string must be exactly matched by period in the given pattern.
-            
+
             break;
         case 'FNM_NOSYS': // Gone by PHP 6
             throw 'Obsolete flag';
         case 'FNM_LEADING_DIR': // Ignore /<tail> after Imatch.
-            
+
             break;
         case 'FNM_CASEFOLD': // Caseless match. Part of the GNU extension.
             flagStr += 'i';
             break;
         case 'FNM_PREFIX_DIRS': // Directory prefixes of pattern match too.
-            
+
             break;
         default:
             break;

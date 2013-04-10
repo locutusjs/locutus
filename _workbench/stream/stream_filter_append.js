@@ -38,7 +38,7 @@ function stream_filter_append (stream, filtername, read_write, params) {
     // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
     this.php_js.resourceIdCounter = this.php_js.resourceIdCounter || 0;
-    
+
     function PHPJS_Resource (type, id, opener) { // Can reuse the following for other resources, just changing the instantiation
         // See http://php.net/manual/en/resource.php for types
         this.type = type;
@@ -55,7 +55,7 @@ function stream_filter_append (stream, filtername, read_write, params) {
         return 'resource('+this.id+') of type ('+this.type+')';
     };
     // END REDUNDANT
-    
+
     this.php_js.resourceIdCounter++;
     resource = new PHPJS_Resource('stream filter', this.php_js.resourceIdCounter, 'stream_filter_append');
     resource.streamData = [stream, filtername, opts, params]; // Will be used as basis for stream_filter_remove()

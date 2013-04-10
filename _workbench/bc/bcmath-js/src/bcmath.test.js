@@ -8,11 +8,11 @@ if (typeof(bcmath) == 'undefined') {
 bcmath.test = {
     pass: 0,
     fail: 0,
-    
+
     doTests: function() {
         bcmath.test.pass = 0;
         bcmath.test.fail = 0;
-        
+
         bcmath.test.bcadd();
         bcmath.test.bcsub();
         bcmath.test.bccomp();
@@ -38,7 +38,7 @@ bcmath.test = {
         }
         return true;
     },
-    
+
     bcadd: function() {
 
         // set scale to zero
@@ -51,12 +51,12 @@ bcmath.test = {
 
         return true;
     },
-    
+
     bcsub: function() {
 
         // set scale to zero
         bcscale(0);
-        
+
         bcmath.test.result('bcsub', 1, '-1', bcsub('1','2'));
         bcmath.test.result('bcsub', 2, '-6.0000', bcsub('-1','5', 4));
         bcmath.test.result('bcsub', 3, '8728932000054820705086578390258.00', bcsub('8728932001983192837219398127471','1928372132132819737213', 2));
@@ -65,7 +65,7 @@ bcmath.test = {
 
         return true;
     },
-    
+
     bccomp: function() {
         // set scale to zero
         bcscale(0);
@@ -77,9 +77,9 @@ bcmath.test = {
 
         return true;
     },
-    
+
     bcscale: function() {
-    
+
         bcmath.test.result('bcscale', 1, false, bcscale('fail'));
         bcmath.test.result('bcscale', 2, false, bcscale(-1));
         bcmath.test.result('bcscale', 3, true, bcscale(5));
@@ -87,12 +87,12 @@ bcmath.test = {
 
         return true;
     },
-    
+
     bcdiv: function() {
-    
+
         // set scale to zero
         bcscale(0);
-        
+
         bcmath.test.result('bcdiv', 1, '0', bcdiv("1", "2"));
         bcmath.test.result('bcdiv', 2, '0.50', bcdiv("1", "2", 2));
         bcmath.test.result('bcdiv', 3, '-0.2000', bcdiv("-1", "5", 4));
@@ -104,11 +104,11 @@ bcmath.test = {
         bcmath.test.result('bcdiv', 10, '4526580661.75', bcdiv('8728932001983192837219398127471.00', '1928372132132819737213.00', 2));
         return true;
     },
-    
+
     bcmul: function() {
-    
+
         bcscale(0);
-        
+
         bcmath.test.result('bcmul', 1, '2', bcmul("1", "2"));
         bcmath.test.result('bcmul', 2, '-15', bcmul("-3", "5"));
         bcmath.test.result('bcmul', 3, '12193263111263526900', bcmul("1234567890", "9876543210"));
@@ -117,9 +117,9 @@ bcmath.test = {
 
         return true;
     },
-    
+
     bcround: function() {
-    
+
         bcmath.test.result('bcround', 1, '-2', bcround('-1.5', 0));
         bcmath.test.result('bcround', 2, '-1.1235', bcround('-1.1234567', 4));
         bcmath.test.result('bcround', 3, '2', bcround('1.5', 0));
@@ -130,6 +130,6 @@ bcmath.test = {
         bcmath.test.result('bcround', 8, '-1.44', bcround('-1.444999', 2));
 
         return true;
-    
+
     }
 };

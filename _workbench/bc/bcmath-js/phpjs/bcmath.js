@@ -22,7 +22,7 @@ function bcadd(left_operand, right_operand, scale) {
         scale = libbcmath.scale;
     }
     scale   = ((scale < 0) ? 0 : scale);
-    
+
     // create objects
     first   = libbcmath.bc_init_num();
     second  = libbcmath.bc_init_num();
@@ -37,7 +37,7 @@ function bcadd(left_operand, right_operand, scale) {
     if (result.n_scale > scale) {
         result.n_scale = scale;
     }
-    
+
     return result.toString();
 }
 
@@ -86,15 +86,15 @@ function bcsub(left_operand, right_operand, scale) {
  */
 function bccomp(left_operand, right_operand, scale) {
     var first, second; //bc_num
-    
+
     if (typeof(scale) == 'undefined') {
         scale = libbcmath.scale;
     }
     scale   = ((scale < 0) ? 0 : scale);
-    
+
     first   = libbcmath.bc_init_num();
     second  = libbcmath.bc_init_num();
-    
+
     first   = libbcmath.bc_str2num(left_operand.toString(), scale);     // note bc_ not php_str2num
     second  = libbcmath.bc_str2num(right_operand.toString(), scale);    // note bc_ not php_str2num
 
@@ -142,7 +142,7 @@ function bcdiv(left_operand, right_operand, scale) {
 
     first   = libbcmath.php_str2num(left_operand.toString());
     second  = libbcmath.php_str2num(right_operand.toString());
-    
+
     result  = libbcmath.bc_divide(first, second, scale);
     if (result === -1) {
         // error
@@ -179,7 +179,7 @@ function bcmul(left_operand, right_operand, scale) {
     second  = libbcmath.php_str2num(right_operand.toString());
 
     result  = libbcmath.bc_multiply(first, second, scale);
-    
+
     if (result.n_scale > scale) {
         result.n_scale = scale;
     }
@@ -203,7 +203,7 @@ function bcround(val, precision) {
     // create number
     temp  = libbcmath.bc_init_num();
     temp  = libbcmath.php_str2num(val.toString());
-    
+
     // check if any rounding needs
     if (precision >= temp.n_scale) {
         // nothing to round, just add the zeros.

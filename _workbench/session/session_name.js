@@ -7,7 +7,7 @@ function session_name (name) {
         throw 'Session name must consist of alphanumeric characters only (and at least one letter)';
     }
     var oldSessionName = '';
-    
+
     // BEGIN REDUNDANT
     if (!this.php_js) {
         this.php_js = {};
@@ -19,11 +19,11 @@ function session_name (name) {
         this.php_js.ini['session.name'] = {};
     }
     // END REDUNDANT
-    
+
     if (this.php_js.ini['session.name'].local_value) {
         oldSessionName = this.php_js.ini['session.name'].local_value;
     }
-    
+
     if (name) {
         this.php_js.ini['session.name'].local_value = name;
     }

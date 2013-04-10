@@ -5,7 +5,7 @@ function xmlwriter_open_memory () {
     // *     returns 1: true
 
     var that = this;
-    
+
     // Note: see echo for the type of Sax2 or the like which we want to be able to parse from strings
 
    // Create unique resource id
@@ -215,8 +215,8 @@ function xmlwriter_open_memory () {
 
         return true;
     };
-    
+
     var xmlwriter = new XMLWriter();
-    
+
     return xmlwriter;
 }

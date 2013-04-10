@@ -6,7 +6,7 @@ function stripcslashes (str) {
 
     var target = '', i = 0, sl = 0, s = '', next = '', hex = '', oct = '', hex2DigMax = /[\dA-Fa-f]{1,2}/, rest = '', seq = '',
             oct3DigMaxs = /([0-7]{1,3})((\\[0-7]{1,3})*)/, oct3DigMax = /(\\([0-7]{1,3}))*/g, escOctGrp = [];
-    
+
     for (i = 0, sl = str.length; i < sl; i++) {
         s = str.charAt(i);
         next = str.charAt(i+1);
@@ -42,7 +42,7 @@ function stripcslashes (str) {
                     // Interpret int here as UTF-8 octet(s) instead, produce non-character if none
                     rest = str.slice(i+2); // Get remainder after the octal (still need to add 2, since before close of iterating loop)
                     seq = '';
-                    
+
                     if ((escOctGrp = oct3DigMax.exec(rest)) !== null) {
                         seq += '%'+parseInt(escOctGrp[2], 8).toString(16);
                     }
@@ -56,7 +56,7 @@ function stripcslashes (str) {
                         stripcslashes('\\343\\220\\201')
                     )
                     */
-                   
+
                     try {
                         target += decodeURIComponent(seq);
                     }
