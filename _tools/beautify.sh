@@ -9,7 +9,7 @@
 # http://twitter.com/kvz
 #
 # Usage:
-#  LOG_LEVEL=7 ./template.sh -f /tmp/foo -d 
+#  LOG_LEVEL=7 ./template.sh -f /tmp/foo -d
 #
 #
 # Based on BASH3 Boilerplate v0.0.3 (https://github.com/kvz/bash3boilerplate)
@@ -30,7 +30,7 @@ __DIR__="$(cd "$(dirname "${0}")"; echo $(pwd))"
 __ROOT__="$(cd "$(dirname "${0}")/.."; echo $(pwd))"
 __FILE__="${__DIR__}/$(basename "${0}")"
 
-__FUNCTIONS__="${__ROOT__}"
+__FUNCTIONS__="${__ROOT__}/functions"
 
 ### Functions
 #####################################################################
@@ -70,22 +70,19 @@ function help () {
 }
 
 
-### Switches (like -d for debugmdoe, -h for showing helppage)
-#####################################################################
-
-# debug mode
-if [ "${arg_d}" = "1" ]; then
-  # turn on tracing
-  set -x
-  # output debug messages
-  LOG_LEVEL="7"
-fi
-
-
 ### Validation (decide what's required for running your script and error out)
 #####################################################################
 
 [ -z "${LOG_LEVEL}" ] && emergency "Cannot continue without LOG_LEVEL. "
+
+# Setup (g)sed
+if which gsed; then
+  alias sed=gsed
+fi
+gsed -v > /dev/null 2>&1
+if [ "${?}" -ne 4 ]; then
+  emergency "You need GNU sed, probably brew install gsed on osx"
+fi
 
 
 ### Runtime
@@ -100,13 +97,19 @@ set -eu
 # This way you can catch the error in case mysqldump fails in `mysqldump |gzip`
 set -o pipefail
 
-info "--> end all files with a newline in ${__FUNCTIONS__}"
-pushd ""
-  for js_file in $(find "${__FUNCTIONS__}" -type f -name *.js); do 
-  	if [ -n "$(tail -c 1 <"${js_file}")" ]; then 
-	  notice "--> adding newline in ${js_file}"
+for js_file in $(find "${__FUNCTIONS__}" -type f -name '*.js'); do
+  # Add trailing newline where needed
+  if [ -n "$(tail -c 1 <"${js_file}")" ]; then
+    notice " ${js_file}"
+    echo >>"${js_file}"
+  fi
 
-  	  echo >>"${js_file}"; 
-  	fi; 
-  done
-popd
+  # Change 4 spaces to tabs
+  sed -i"" -e ':repeat; s/^\(\t*\)    /\1\t/; t repeat' "${js_file}"
+
+  # Change tabs to 2 spaces
+  sed -i"" -e ':repeat; s/^\(\(  \)*\)\t/\1  /; t repeat' "${js_file}"
+
+  # Change dos 2 unix newlines
+  sed 's/^M$//'
+done
