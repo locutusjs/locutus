@@ -1,6 +1,6 @@
 function strtotime (text, now) {
-	// Convert string representation of date and time to a timestamp  
-	// 
+	// Convert string representation of date and time to a timestamp
+	//
 	// version: 1109.2015
 	// discuss at: http://phpjs.org/functions/strtotime
 	// +   original by: Caio Ariede (http://caioariede.com)

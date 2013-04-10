@@ -114,7 +114,7 @@ function strnatcasecmp (str1, str2) {
     } else if (ca > cb) {
       return +1;
     }
-    
+
     // prevent possible infinite loop
     if (ia >= a.length && ib >= b.length) return 0;
 

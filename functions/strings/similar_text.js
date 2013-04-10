@@ -48,7 +48,7 @@ function similar_text (first, second, percent) {
       sum += this.similar_text(first.substr(pos1 + max, firstLength - pos1 - max), second.substr(pos2 + max, secondLength - pos2 - max));
     }
   }
-  
+
   if (!percent) {
     return sum;
   } else {

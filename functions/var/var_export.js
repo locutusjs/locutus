@@ -22,7 +22,7 @@ function var_export (mixed_expression, bool_return) {
     x = [],
     i = 0,
     funcParts = [],
-    // We use the last argument (not part of PHP) to pass in 
+    // We use the last argument (not part of PHP) to pass in
     // our indentation level
     idtLevel = arguments[2] || 2,
     innerIndent = '',
@@ -39,7 +39,7 @@ function var_export (mixed_expression, bool_return) {
     },
     __getType = function (inp) {
       var i = 0, match, types, cons, type = typeof inp;
-      if (type === 'object' && inp.constructor && 
+      if (type === 'object' && inp.constructor &&
         getFuncName(inp.constructor) === 'PHPJS_Resource') {
         return 'resource';
       }
@@ -79,8 +79,8 @@ function var_export (mixed_expression, bool_return) {
       value = this.var_export(mixed_expression[i], 1, idtLevel + 2);
       value = typeof value === 'string' ? value.replace(/</g, '&lt;').
                         replace(/>/g, '&gt;') : value;
-      x[cnt++] = innerIndent + i + ' => ' + 
-            (__getType(mixed_expression[i]) === 'array' ? 
+      x[cnt++] = innerIndent + i + ' => ' +
+            (__getType(mixed_expression[i]) === 'array' ?
               '\n' : '') + value;
     }
     iret = x.join(',\n');
@@ -89,19 +89,19 @@ function var_export (mixed_expression, bool_return) {
     funcParts = mixed_expression.toString().
             match(/function .*?\((.*?)\) \{([\s\S]*)\}/);
 
-    // For lambda functions, var_export() outputs such as the following:  
-    // '\000lambda_1'. Since it will probably not be a common use to 
-    // expect this (unhelpful) form, we'll use another PHP-exportable 
-    // construct, create_function() (though dollar signs must be on the 
-    // variables in JavaScript); if using instead in JavaScript and you 
+    // For lambda functions, var_export() outputs such as the following:
+    // '\000lambda_1'. Since it will probably not be a common use to
+    // expect this (unhelpful) form, we'll use another PHP-exportable
+    // construct, create_function() (though dollar signs must be on the
+    // variables in JavaScript); if using instead in JavaScript and you
     // are using the namespaced version, note that create_function() will
     // not be available as a global
-    retstr = "create_function ('" + funcParts[1] + "', '" + 
+    retstr = "create_function ('" + funcParts[1] + "', '" +
           funcParts[2].replace(new RegExp("'", 'g'), "\\'") + "')";
   } else if (type === 'resource') {
     retstr = 'NULL'; // Resources treated as null for var_export
   } else {
-    retstr = typeof mixed_expression !== 'string' ? mixed_expression : 
+    retstr = typeof mixed_expression !== 'string' ? mixed_expression :
           "'" + mixed_expression.replace(/(["'])/g, "\\$1").
               replace(/\0/g, "\\0") + "'";
   }

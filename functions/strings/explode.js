@@ -6,19 +6,19 @@ function explode (delimiter, string, limit) {
     return { 0: '' };
   }
   if ( delimiter === true ) delimiter = '1';
-  
+
   // Here we go...
   delimiter += '';
   string += '';
-  
+
   var s = string.split( delimiter );
-  
+
 
   if ( typeof limit === 'undefined' ) return s;
-  
+
   // Support for limit
   if ( limit === 0 ) limit = 1;
-  
+
   // Positive limit
   if ( limit > 0 ){
     if ( limit >= s.length ) return s;
@@ -27,7 +27,7 @@ function explode (delimiter, string, limit) {
 
   // Negative limit
   if ( -limit >= s.length ) return [];
-  
+
   s.splice( s.length + limit );
   return s;
 }

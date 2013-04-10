@@ -18,8 +18,8 @@ function serialize (mixed_value) {
   // *     returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
   // *     example 2: serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'});
   // *     returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
-  var val, key, okey, 
-    ktype = '', vals = '', count = 0, 
+  var val, key, okey,
+    ktype = '', vals = '', count = 0,
     _utf8Size = function (str) {
       var size = 0,
         i = 0,
@@ -66,7 +66,7 @@ function serialize (mixed_value) {
     },
     type = _getType(mixed_value)
   ;
-  
+
   switch (type) {
     case 'function':
       val = '';
