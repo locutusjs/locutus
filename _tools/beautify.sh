@@ -81,7 +81,11 @@ if which gsed; then
 fi
 gsed -v > /dev/null 2>&1
 if [ "${?}" -ne 4 ]; then
-  emergency "You need GNU sed, probably brew install gsed on osx"
+  emergency "You need GNU sed, brew install gsed on osx"
+fi
+dos2unix -v > /dev/null 2>&1
+if [ "${?}" -ne 1 ]; then
+  emergency "You need dos2unix, brew install dos2unix on osx"
 fi
 
 
@@ -98,18 +102,19 @@ set -eu
 set -o pipefail
 
 for js_file in $(find "${__FUNCTIONS__}" -type f -name '*.js'); do
+  info "Cleaning up ${js_file}"
+
   # Add trailing newline where needed
   if [ -n "$(tail -c 1 <"${js_file}")" ]; then
-    notice " ${js_file}"
     echo >>"${js_file}"
   fi
 
-  # Change 4 spaces to tabs
-  sed -i"" -e ':repeat; s/^\(\t*\)    /\1\t/; t repeat' "${js_file}"
-
   # Change tabs to 2 spaces
-  sed -i"" -e ':repeat; s/^\(\(  \)*\)\t/\1  /; t repeat' "${js_file}"
+  sed -i.bak -e ':repeat; s/^\(\(  \)*\)\t/\1  /; t repeat' "${js_file}" && rm "${js_file}.bak"
 
-  # Change dos 2 unix newlines
-  sed 's/^M$//'
+  # Change dos to unix newlines
+  dos2unix -q -o "${js_file}"
+
+  # Remove trailing whitespace
+  sed -i.bak 's/[[:space:]]*$//g' "${js_file}" && rm "${js_file}.bak"
 done
