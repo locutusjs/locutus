@@ -18,11 +18,25 @@ function array_unique (inputArr) {
     tmp_arr2 = {},
     val = '';
 
+  var __objToString = function (obj) {
+    var str = '';
+    for (var prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        str += prop + '::' + obj[prop] + '\n';
+      }
+    }
+    return str;
+  };
+
   var __array_search = function (needle, haystack) {
     var fkey = '';
     for (fkey in haystack) {
       if (haystack.hasOwnProperty(fkey)) {
-        if ((haystack[fkey] + '') === (needle + '')) {
+        if (Object.prototype.toString.call(haystack[fkey]) === '[object Object]') {
+          if (__objToString(haystack[fkey]) === __objToString(needle)) {
+            return fkey;
+          }
+        } else if ((haystack[fkey] + '') === (needle + '')) {
           return fkey;
         }
       }
