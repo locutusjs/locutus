@@ -6,7 +6,7 @@ function $_COOKIE (name) {
     // *     example 1: document.cookie = 'test=hello';
     // *     example 1: var $myVar = $_COOKIE('test'); // Note the round brackets!
     // *     returns 1: 'hello'
-    
+
     var i = 0, c = '', nameEQ = name + '=',
         ca = document.cookie.split(';'),
         cal = ca.length;

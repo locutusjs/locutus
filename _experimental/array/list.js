@@ -12,7 +12,7 @@ function list () {
     var i = 0, arr = [];
 
     arr = arguments[arguments.length-1];
-    
+
     if (arr && typeof arr === 'object' && arr.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
         return arr.list.apply(arr, Array.prototype.slice.call(arguments, 0, -1));
     }
@@ -28,6 +28,6 @@ function list () {
             }
         }
     }
-    
+
     return arr;
 }

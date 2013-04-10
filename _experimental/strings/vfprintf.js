@@ -7,7 +7,7 @@ function vfprintf (handle, format, args) {
     // *     example 1: vfprintf(fp, '%01.2f', [123.1]); // 123.10
     // *     returns 1: 6
 
-    
+
     var str = this.sprintf.apply(this, [].concat(format, args));
     try {
         this.fwrite(handle, str);

@@ -17,8 +17,8 @@ function stream_filter_remove (stream_filter) {
             }
             return -1;
         };
-    
-    
+
+
     if (!streamResourceObj.filters.indexOf) {
         streamResourceObj.filters.indexOf = indexOf;
     }

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # php.js source cleaner
-# Version v0.0.1
+# Version v0.0.2
 # More info: http://phpjs.org
 #
 # Licensed under MIT: http://kvz.io/licenses/LICENSE-MIT
@@ -9,7 +9,7 @@
 # http://twitter.com/kvz
 #
 # Usage:
-#  LOG_LEVEL=7 ./template.sh -f /tmp/foo -d
+#  LOG_LEVEL=7 ./beautify.sh
 #
 #
 # Based on BASH3 Boilerplate v0.0.3 (https://github.com/kvz/bash3boilerplate)
@@ -30,7 +30,7 @@ __DIR__="$(cd "$(dirname "${0}")"; echo $(pwd))"
 __ROOT__="$(cd "$(dirname "${0}")/.."; echo $(pwd))"
 __FILE__="${__DIR__}/$(basename "${0}")"
 
-__FUNCTIONS__="${__ROOT__}/functions"
+__FUNCTIONS__="${__ROOT__}/_experimental"
 
 ### Functions
 #####################################################################

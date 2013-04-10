@@ -8,7 +8,7 @@ function php_user_filter () {
 
     this.filtername = '';
     this.params = '';
-    
+
 }
 php_user_filter.prototype = {
     constructor: php_user_filter,

@@ -21,7 +21,7 @@ function error_log (message, message_type, destination, extra_headers) {
         };
     message_type = message_type || 0;
 
-    switch(message_type) {            
+    switch(message_type) {
         case 1: // Email
             var subject = 'PHP error_log message'; // Apparently no way to customize the subject
             return this.mail(destination, subject, message, extra_headers);

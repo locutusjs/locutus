@@ -4,7 +4,7 @@ function define_syslog_variables () {
     // %        note 1: This function has been deprecated in PHP
     // *     example 1: define_syslog_variables();
     // *     results 1: undefined
-    
+
     $LOG_EMERG = 1; // Meaning: System is unusable
     $LOG_ALERT = 1; // Meaning: Immediate action required
     $LOG_CRIT = 1; // Meaning: Critical conditions

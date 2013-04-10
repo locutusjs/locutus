@@ -3,7 +3,7 @@ function connection_status () {
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // *     example 1: connection_status();
     // *     returns 1: 3
-    
+
     var ret = 0; // NORMAL
     if (this.php_js && this.php_js.abortStatus) {
         ret += 1; // ABORTED

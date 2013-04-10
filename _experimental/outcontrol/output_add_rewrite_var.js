@@ -7,7 +7,7 @@ function output_add_rewrite_var (name, value) {
     // *     returns 1: true
 
     var handlers = [], handler = '', startAgain = true;
-    
+
     this.php_js = this.php_js || {};
     var phpjs = this.php_js, obs = phpjs.obs;
 

@@ -44,7 +44,7 @@ function exit (status) {
         'DOMNodeInserted', 'DOMNodeRemoved', 'DOMNodeRemovedFromDocument', 'DOMNodeInsertedIntoDocument', 'DOMAttrModified', 'DOMCharacterDataModified', 'DOMElementNameChanged', 'DOMAttributeNameChanged', 'DOMActivate', 'DOMFocusIn', 'DOMFocusOut', 'online', 'offline', 'textInput',
         'abort', 'close', 'dragdrop', 'load', 'paint', 'reset', 'select', 'submit', 'unload'
     ];
-    
+
     for (i=0; i < handlers.length; i++) {
         _addEvent(this.window, handlers[i], function (e) {_stopEvent(e);}, true);
     }
@@ -52,6 +52,6 @@ function exit (status) {
     if (this.window.stop) {
         this.window.stop();
     }
-    
+
     throw '';
 }

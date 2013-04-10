@@ -4,7 +4,7 @@ function unset () {
     // *     example 1: var arr = ['a', 'b', 'c'];
     // *     example 1: unset('arr[1]');
     // *     returns 1: undefined
-    
+
     // Must pass in a STRING to indicate the variable, not the variable itself (whether or not that evaluates to a string)
     // Works only on globals
     var i=0, arg = '', win='', winRef=/^(?:this)?window[.[]/, arr=[], accessor='', bracket=/\[['"]?(\d+)['"]?\]$/;

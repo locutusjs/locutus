@@ -18,7 +18,7 @@ function stream_get_filters () {
     this.php_js = this.php_js || {};
     this.php_js.stream_filters = this.php_js.stream_filters || {};
     // END REDUNDANT
-    
+
     for (filter_name in this.php_js.stream_filters) {
         retArr.push(filter_name);
     }

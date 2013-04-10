@@ -7,6 +7,6 @@ function date_create_from_format (dt, format, time, tzo) {
     // *     returns 1: {}
 
     // Fix: check time string above
-    
+
     return dt.constructor.createFromFormat(format, time, tzo);
 }

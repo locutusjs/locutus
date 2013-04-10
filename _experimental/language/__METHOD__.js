@@ -9,7 +9,7 @@ function __METHOD__() {
     // *     example 1: var myobj = new MyClass();
     // *     example 1: myobj.myMethod();
     // *     returns 1: 'MyClass::myActualMethodName'
-    
+
     var getFuncName = function (fn) {
         var name=(/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
         if (!name) {

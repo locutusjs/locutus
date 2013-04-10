@@ -5,7 +5,7 @@ function call_user_method_array(method, obj, params) {
     // %        note 1: Deprecated in PHP
     // *     example 1: call_user_method_array('alert', 'this.window', ['Hello!']);
     // *     returns 1: 'Hello!'
-    
+
     var func;
     func = eval(obj+"['"+method+"']");
 

@@ -5,7 +5,7 @@ function call_user_method(method, obj) {
     // %        note 1: Deprecated in PHP
     // *     example 1: call_user_method('alert', 'this.window', 'Hello!');
     // *     returns 1: 'Hello!'
-    
+
     var func;
     func = eval(obj+"['"+method+"']");
 

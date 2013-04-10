@@ -26,6 +26,6 @@ function connection_aborted() {
             that.php_js.abortStatus = 1;
         }
     };
-   
+
     return this.php_js.abortStatus;
 }

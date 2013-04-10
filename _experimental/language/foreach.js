@@ -9,7 +9,7 @@ function foreach (arr, handler) {
     // *     returns 1: undefined
     // *     example 2: foreach ({key: 'value'}, function (key, val) {alert(key+'::'+val);});
     // *     returns 2: undefined
-    
+
     var k, it, pair;
     if (arr && typeof arr === 'object' && arr.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
         return arr.foreach(handler);

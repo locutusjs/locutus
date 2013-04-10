@@ -40,7 +40,7 @@ function stream_wrapper_register (protocol, classname, flags) {
     }
 
     this.php_js.stream_wrappers[protocol] = {is_url: opts & OPTS.STREAM_IS_URL, clss: classname};
-    
+
 /*
 // The stream wrapper prototype "class" (all properties and methods below are public); more like an interface, but not all methods are required
 streamWrapper   {

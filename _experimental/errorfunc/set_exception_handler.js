@@ -94,6 +94,6 @@ function set_exception_handler (callback) {
             }
         };
     }
-    
+
     return oldHandlerName;
 }

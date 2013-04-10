@@ -7,7 +7,7 @@ function $_GET (name) {
     // *     returns 1: 'hello'
 
     var nameEQ = name + '=',
-        url = window.location.href, 
+        url = window.location.href,
         pos = url.indexOf('?'),
         url = url.slice(pos + 1),
         arr = url.split('&'),

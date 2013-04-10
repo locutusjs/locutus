@@ -7,7 +7,7 @@ function at(cb) {  // Could also name as "at_sign", "silence", "error_suppressor
     // *     returns 1: undefined
 
     // Perhaps could be configured to return the appropriate value in case of errors (no doubt it would usually be 'false')
-    
+
     try {
         return cb.apply(null, Array.prototype.slice.call(arguments, 1));
     }
@@ -27,7 +27,7 @@ function at(cb) {  // Could also name as "at_sign", "silence", "error_suppressor
         ) {
             $php_errormsg = e.message || e; // Can assign to this global, as in PHP (see http://php.net/manual/en/reserved.variables.phperrormsg.php )
         }
-        if (this.php_js.ini['scream.enabled'] && 
+        if (this.php_js.ini['scream.enabled'] &&
             (
                 this.php_js.ini['scream.enabled'].local_value.toString().toLowerCase() === 'on' ||
                 this.php_js.ini['scream.enabled'].local_value.toString().toLowerCase() === 'true' ||
