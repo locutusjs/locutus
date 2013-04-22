@@ -107,9 +107,11 @@ function date (format, timestamp) {
     N: function () { // ISO-8601 day of week; 1[Mon]..7[Sun]
       return f.w() || 7;
     },
-    S: function () { // Ordinal suffix for day of month; st, nd, rd, th
-      var j = f.j();
-      return j < 4 | j > 20 && (['st', 'nd', 'rd'][j % 10 - 1] || 'th');
+    S: function(){ // Ordinal suffix for day of month; st, nd, rd, th
+      var j = f.j()
+      i = j%10;
+      if (i <= 3 && parseInt((j%100)/10) == 1) i = 0;
+      return ['st', 'nd', 'rd'][i - 1] || 'th';
     },
     w: function () { // Day of week; 0[Sun]..6[Sat]
       return jsdate.getDay();

@@ -54,7 +54,7 @@ function is_callable (v, syntax_only, callable_name) {
   else if (typeof v === 'function') {
     return true;
   }
-  else if (Object.prototype.toString.call(v) === '[object Array]' && 
+  else if (Object.prototype.toString.call(v) === '[object Array]' &&
         v.length === 2 && typeof v[0] === 'object' && typeof v[1] === 'string') {
     obj = v[0];
     method = v[1];

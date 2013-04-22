@@ -16,9 +16,9 @@ alias:
 A JavaScript equivalent of PHP's strtotime
 
 {% codeblock datetime/strtotime.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/strtotime.js raw on github %}
-strtotime: function(text, now) {
-	// Convert string representation of date and time to a timestamp  
-	// 
+function strtotime (text, now) {
+	// Convert string representation of date and time to a timestamp
+	//
 	// version: 1109.2015
 	// discuss at: http://phpjs.org/functions/strtotime
 	// +   original by: Caio Ariede (http://caioariede.com)

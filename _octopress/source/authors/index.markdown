@@ -298,7 +298,7 @@ these authors that contributed via the old site's commenting system (before we h
  - josh (1)
  - jpfle (1)
  - kilops (1)
- - kirilloid (1)
+ - kirilloid (3)
  - [lmeyrick](https://sourceforge.net/projects/bcmath-js/) (6)
  - [lmeyrick](https://sourceforge.net/projects/bcmath-js/) (1)
  - madipta (1)

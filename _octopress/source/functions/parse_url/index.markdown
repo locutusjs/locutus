@@ -32,7 +32,7 @@ function parse_url (str, component) {
   // %          note: an extra slash after the scheme/protocol (to allow file:/// as in PHP)
   // *     example 1: parse_url('http://username:password@hostname/path?arg=value#anchor');
   // *     returns 1: {scheme: 'http', host: 'hostname', user: 'username', pass: 'password', path: '/path', query: 'arg=value', fragment: 'anchor'}
-  var key = ['source', 'scheme', 'authority', 'userInfo', 'user', 'pass', 'host', 'port',
+  var query, key = ['source', 'scheme', 'authority', 'userInfo', 'user', 'pass', 'host', 'port',
             'relative', 'path', 'directory', 'file', 'query', 'fragment'],
     ini = (this.php_js && this.php_js.ini) || {},
     mode = (ini['phpjs.parse_url.mode'] &&
@@ -60,7 +60,8 @@ function parse_url (str, component) {
         ini['phpjs.parse_url.queryKey'].local_value) || 'queryKey';
     parser = /(?:^|&)([^&=]*)=?([^&]*)/g;
     uri[name] = {};
-    uri[key[12]].replace(parser, function ($0, $1, $2) {
+    query = uri[key[12]] || '';
+    query.replace(parser, function ($0, $1, $2) {
       if ($1) {uri[name][$1] = $2;}
     });
   }

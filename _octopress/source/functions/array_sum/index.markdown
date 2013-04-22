@@ -33,7 +33,7 @@ function array_sum (array) {
   if (array && typeof array === 'object' && array.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
     return array.sum.apply(array, Array.prototype.slice.call(arguments, 0));
   }
-  
+
   // input sanitation
   if (typeof array !== 'object') {
     return null;

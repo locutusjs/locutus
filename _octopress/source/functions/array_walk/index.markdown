@@ -21,7 +21,7 @@ function array_walk (array, funcname, userdata) {
   // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
   // +   bugfixed by: David
   // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // %   note 1: Using ini_set('phpjs.no-eval', true) will only work with 
+  // %   note 1: Using ini_set('phpjs.no-eval', true) will only work with
   // %   note 1:  user-defined string functions, not built-in functions like void()
   // *     example 1: array_walk ({'a':'b'}, 'void', 'userdata');
   // *     returns 1: true
@@ -34,7 +34,7 @@ function array_walk (array, funcname, userdata) {
   // *     example 5: ini_set('phpjs.return_phpjs_arrays', 'on');
   // *     example 5: var arr = array({40: 'My age'}, {50: 'My IQ'});
   // *     example 5: array_walk(arr, [window, 'prompt']);
-  // *     returns 5: [object Object]    
+  // *     returns 5: [object Object]
   var key, value, ini;
 
   if (!array || typeof array !== 'object') {
@@ -102,7 +102,7 @@ function array_walk (array, funcname, userdata) {
         for (key in array) {
           obj[func](array[key], key);
         }
-      }            
+      }
     }
     else {
       return false;

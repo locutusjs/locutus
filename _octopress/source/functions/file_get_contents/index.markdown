@@ -243,10 +243,15 @@ function file_get_contents (url, flags, context, offset, maxLen) {
       // responseText.charCodeAt(x) & 0xFF; // throw away high-order byte (f7) where x is 0 to responseText.length-1 (see notes in our substr())
     }
 
-    if (http_options && http_options['phpjs.sendAsBinary']) { // For content sent in a POST or PUT request (use with file_put_contents()?)
-      req.sendAsBinary(content); // In Firefox, only available FF3+
-    } else {
-      req.send(content);
+    try {
+      if (http_options && http_options['phpjs.sendAsBinary']) { // For content sent in a POST or PUT request (use with file_put_contents()?)
+        req.sendAsBinary(content); // In Firefox, only available FF3+
+      } else {
+        req.send(content);
+      }
+    } catch (e) {
+      // catches exception reported in issue #66
+      return false;
     }
 
     tmp = req.getAllResponseHeaders();

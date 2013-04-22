@@ -25,8 +25,8 @@ function array () {
   // *     example 2: ini_set('phpjs.return_phpjs_arrays', 'on');
   // *     example 2: var arr = array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys();
   // *     returns 1: [0,'A',2]
-  
-  var arrInst, e, __, that = this, PHPJS_Array = function PHPJS_Array() {}, 
+
+  var arrInst, e, __, that = this, PHPJS_Array = function PHPJS_Array() {},
     mainArgs = arguments, p = this.php_js = this.php_js || {},
     _indexOf = function (value, from, strict) {
       var i = from || 0, nonstrict = !strict, length = this.length;
@@ -83,8 +83,8 @@ function array () {
     }());
   }
   // END REDUNDANT
-  
-  if (p && p.ini && p.ini['phpjs.return_phpjs_arrays'].local_value.toLowerCase() === 'on') {    
+
+  if (p && p.ini && p.ini['phpjs.return_phpjs_arrays'].local_value.toLowerCase() === 'on') {
     if (!p.PHPJS_Array) {
       // We keep this Relator outside the class in case adding prototype methods below
       // Prototype methods added elsewhere can also use this ArrayRelator to share these "pseudo-global mostly-private" variables
@@ -92,7 +92,7 @@ function array () {
       // We could instead allow arguments of {key:XX, value:YY} but even more cumbersome to write
       p.PHPJS_Array = function PHPJS_Array () {
         var _ = __.constructor(this), args = arguments, i = 0, argl, p;
-        args = (args.length === 1 && args[0] && typeof args[0] === 'object' && 
+        args = (args.length === 1 && args[0] && typeof args[0] === 'object' &&
             args[0].length && !args[0].propertyIsEnumerable('length')) ? args[0] : args; // If first and only arg is an array, use that (Don't depend on this)
         if (!_.objectChain) {
           _.objectChain = args;
@@ -113,7 +113,7 @@ function array () {
       };
       e = p.PHPJS_Array.prototype;
       e.change_key_case = function (cs) {
-        var _ = __.method(this), oldkey, newkey, i = 0, kl = _.keys.length, 
+        var _ = __.method(this), oldkey, newkey, i = 0, kl = _.keys.length,
           case_fn = (!cs || cs === 'CASE_LOWER') ? 'toLowerCase' : 'toUpperCase';
         while (i < kl) {
           oldkey = _.keys[i];
@@ -148,7 +148,7 @@ function array () {
       };
       e.walk = function (funcname, userdata) {
         var _ = __.method(this), obj, func, ini, i = 0, kl = 0;
-        
+
         try {
           if (typeof funcname === 'function') {
             for (i = 0, kl = _.keys.length; i < kl; i++) {
@@ -157,7 +157,7 @@ function array () {
               }
               else {
                 funcname(_.values[i], _.keys[i]);
-              }                            
+              }
             }
           }
           else if (typeof funcname === 'string') {
@@ -203,7 +203,7 @@ function array () {
               for (i = 0, kl = _.keys.length; i < kl; i++) {
                 obj[func](_.values[i], _.keys[i]);
               }
-            }            
+            }
           }
           else {
             return false;
@@ -217,7 +217,7 @@ function array () {
       };
       // Here we'll return actual arrays since most logical and practical for these functions to do this
       e.keys = function (search_value, argStrict) {
-        var _ = __.method(this), pos, 
+        var _ = __.method(this), pos,
           search = typeof search_value !== 'undefined',
           tmp_arr = [],
           strict = !!argStrict;
@@ -234,7 +234,7 @@ function array () {
       };
       // Return non-object, non-array values, since most sensible
       e.search = function (needle, argStrict) {
-        var _ = __.method(this), 
+        var _ = __.method(this),
           strict = !!argStrict, haystack = _.values, i, vl, val, flags;
         if (typeof needle === 'object' && needle.exec) { // Duck-type for RegExp
           if (!strict) { // Let's consider case sensitive searches as strict

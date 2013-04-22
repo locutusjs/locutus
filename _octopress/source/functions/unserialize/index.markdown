@@ -79,10 +79,10 @@ function unserialize (data) {
       return [buf.length, buf.join('')];
     },
     _unserialize = function (data, offset) {
-      var dtype, dataoffset, keyandchrs, keys, 
-        readdata, readData, ccount, stringlength, 
+      var dtype, dataoffset, keyandchrs, keys,
+        readdata, readData, ccount, stringlength,
         i, key, kprops, kchrs, vprops, vchrs, value,
-        chrs = 0, 
+        chrs = 0,
         typeconvert = function (x) {
           return x;
         };
