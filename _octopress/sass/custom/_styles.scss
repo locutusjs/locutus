@@ -5,18 +5,18 @@ ul, ol {
 	margin-left: 18px;
 }
 
+.pre-code ::-moz-selection,
+html .gist .gist-file .gist-syntax .gist-highlight pre ::-moz-selection,
+.highlight code ::-moz-selection {
+	color: inherit;
+	background-color: #b1d0f3;
+	text-shadow: #FDF6E3 0 1px;
+}
 
 .pre-code ::selection,
-.pre-code ::-moz-selection,
-.pre-code ::-webkit-selection,
 html .gist .gist-file .gist-syntax .gist-highlight pre ::selection,
-html .gist .gist-file .gist-syntax .gist-highlight pre ::-moz-selection,
-html .gist .gist-file .gist-syntax .gist-highlight pre ::-webkit-selection,
-.highlight code ::selection
-.highlight code ::-moz-selection
-.highlight code ::-webkit-selection
-{
-	background: #b1d0f3 !important;
+.highlight code ::selection {
 	color: inherit;
+	background-color: #b1d0f3;
 	text-shadow: #FDF6E3 0 1px;
 }
