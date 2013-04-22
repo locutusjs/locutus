@@ -52,7 +52,7 @@ function http_build_query (formdata, numeric_prefix, arg_separator) {
       key = String(numeric_prefix) + key;
     }
     var query=_http_build_query_helper(key, value, arg_separator);
-    if(query != '') {
+    if(query !== '') {
       tmp.push(query);
     }
   }

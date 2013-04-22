@@ -152,7 +152,7 @@ function metaphone (word, phones) {
             }
           } else if (x + 1 <= wordlength) {
             if ('EIY'.indexOf(nc) !== -1) {
-              if (pc != 'G') {
+              if (pc !== 'G') {
                 metaword += 'J';
               }
             } else if (x === 0 || pc !== 'D' || 'EIY'.indexOf(nc) === -1) {

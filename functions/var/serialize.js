@@ -83,7 +83,7 @@ function serialize (mixed_value) {
     case 'array': case 'object':
       val = 'a';
   /*
-        if (type == 'object') {
+        if (type === 'object') {
           var objname = mixed_value.constructor.toString().match(/(\w+)\(\)/);
           if (objname == undefined) {
             return;

@@ -32,7 +32,7 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
     *Trims string
     */
     trim = function (text) {
-      if (typeof text != 'string') {
+      if (typeof text !== 'string') {
         throw Error('String parameter required');
       }
 
@@ -46,7 +46,7 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
         args_len = arguments.length,
         basic_types = ['number', 'boolean', 'string', 'function', 'object', 'undefined'],
         basic_type, i, j, type_of_type = typeof type;
-      if (type_of_type != 'string' && type_of_type != 'function') {
+      if (type_of_type !== 'string' && type_of_type !== 'function') {
         throw new Error('Bad type parameter');
       }
 
@@ -54,10 +54,10 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
         throw new Error('Too few arguments');
       }
 
-      if (type_of_type == 'string') {
+      if (type_of_type === 'string') {
         type = trim(type);
 
-        if (type == '') {
+        if (type === '') {
           throw new Error('Bad type parameter');
         }
 
@@ -110,7 +110,7 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
         args_len = arguments.length,
         basic_types = ['number', 'boolean', 'string', 'function', 'object', 'undefined'],
         basic_type, i, j, type_of_type = typeof type;
-      if (type_of_type != 'string' && type_of_type != 'function') {
+      if (type_of_type !== 'string' && type_of_type !== 'function') {
         throw new Error('Bad type parameter');
       }
 
@@ -118,10 +118,10 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
         throw new Error('Too few arguments');
       }
 
-      if (type_of_type == 'string') {
+      if (type_of_type === 'string') {
         type = trim(type);
 
-        if (type == '') {
+        if (type === '') {
           return false;
         }
 
@@ -171,7 +171,7 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
     split_into_lines = function (text) {
       verify_type('string', text);
 
-      if (text == '') {
+      if (text === '') {
         return [];
       }
       return text.split('\n');
@@ -268,7 +268,7 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
     return '';
   }
 
-  if (typeof context_lines != 'number' || context_lines > MAX_CONTEXT_LINES || context_lines < MIN_CONTEXT_LINES) {
+  if (typeof context_lines !== 'number' || context_lines > MAX_CONTEXT_LINES || context_lines < MIN_CONTEXT_LINES) {
     context_lines = DEFAULT_CONTEXT_LINES;
   }
 

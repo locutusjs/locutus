@@ -8,7 +8,7 @@ function uniqid (prefix, more_entropy) {
   // *     returns 2: 'fooa30285b1cd361'
   // *     example 3: uniqid('bar', true);
   // *     returns 3: 'bara20285b23dfd1.31879087'
-  if (typeof prefix == 'undefined') {
+  if (typeof prefix === 'undefined') {
     prefix = "";
   }
 

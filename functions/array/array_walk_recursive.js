@@ -7,7 +7,7 @@ function array_walk_recursive (array, funcname, userdata) {
   // *     returns 2: false
   var key;
 
-  if (typeof array != 'object') {
+  if (typeof array !== 'object') {
     return false;
   }
 
