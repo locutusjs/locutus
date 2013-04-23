@@ -77,7 +77,7 @@ function session_start () {
     this.php_js = this.php_js || {};
     var pj = this.php_js;
     var cookie = _getcookie(sid);
-    if(!cookie || cookie == "null") {
+    if(!cookie || cookie === "null") {
         t.$_SESSION = {};
         return session_set_cookie(sid, t.serialize(t.$_SESSION), pj.lifetime, pj.path, pj.domain, pj.secure);
     }

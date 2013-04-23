@@ -865,7 +865,7 @@ class Style {
       else
         $weight = "bold";
 
-    } else if ( $weight == "bold" || $weight == "bolder" ) {
+    } else if ( $weight === "bold" || $weight === "bolder" ) {
       $weight = "bold";
 
     } else {
@@ -876,11 +876,11 @@ class Style {
     // Resolve font-style
     $font_style = $this->__get("font_style");
 
-    if ( $weight == "bold" && ($font_style == "italic" || $font_style == "oblique") )
+    if ( $weight === "bold" && ($font_style === "italic" || $font_style === "oblique") )
       $subtype = "bold_italic";
-    else if ( $weight == "bold" && $font_style != "italic" && $font_style != "oblique" )
+    else if ( $weight === "bold" && $font_style !== "italic" && $font_style !== "oblique" )
       $subtype = "bold";
-    else if ( $weight != "bold" && ($font_style == "italic" || $font_style == "oblique") )
+    else if ( $weight !== "bold" && ($font_style === "italic" || $font_style === "oblique") )
       $subtype = "italic";
     else
       $subtype = "normal";
@@ -1569,11 +1569,11 @@ class Style {
     $tmp = explode(" ", $val);
     $important = isset($this->_important_props["background"]);
     foreach($tmp as $attr) {
-	  if (mb_substr($attr, 0, 3) == "url" || $attr == "none") {
+	  if (mb_substr($attr, 0, 3) == "url" || $attr === "none") {
    	    $this->_set_style("background_image", $this->_image($attr), $important);
-  	  } else if ($attr == "fixed" || $attr == "scroll") {
+  	  } else if ($attr === "fixed" || $attr === "scroll") {
    	    $this->_set_style("background_attachment", $attr, $important);
-  	  } else if ($attr == "repeat" || $attr == "repeat-x" || $attr == "repeat-y" || $attr == "no-repeat") {
+  	  } else if ($attr === "repeat" || $attr === "repeat-x" || $attr === "repeat-y" || $attr === "no-repeat") {
    	    $this->_set_style("background_repeat", $attr, $important);
       } else if (($col = $this->munge_color($attr)) != null ) {
    	    $this->_set_style("background_color", is_array($col) ? $col["hex"] : $col, $important);
@@ -1891,7 +1891,7 @@ class Style {
       /* http://www.w3.org/TR/CSS21/generate.html#list-style
        * A value of 'none' for the 'list-style' property sets both 'list-style-type' and 'list-style-image' to 'none'
        */
-      if ($value == "none") {
+      if ($value === "none") {
    	    $this->_set_style("list_style_type", $value, $important);
    	    $this->_set_style("list_style_image", $value, $important);
         continue;

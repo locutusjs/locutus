@@ -14,7 +14,7 @@ function preg_replace(pattern, replacement, subject, limit){
 
     // We also need to get rid of eval usage!
 
-    if(typeof limit == "undefined") limit=-1;
+    if(typeof limit === "undefined") limit=-1;
     if (subject.match(eval(pattern))) {
         if (limit == -1) { //no limit
             return subject.replace(eval(pattern + "g"), replacement);
