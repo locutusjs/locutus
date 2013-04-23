@@ -659,7 +659,7 @@ function token_get_all(source) {
             continue;
         }
         // Variables
-        else if (bufferType != 'doubleQuote' && ch === '$' && nextCharWord) {
+        else if (bufferType !== 'doubleQuote' && ch === '$' && nextCharWord) {
             pushOnRet(tokens.T_VARIABLE, ch + nextCharWord[1]);
             i += nextCharWord[1].length;
             continue;

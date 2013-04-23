@@ -318,7 +318,7 @@ class Zend_Date extends Zend_Date_DateObject
         } else {
             $return = $this->_calcdetail($calc, $stamp, self::TIMESTAMP, null);
         }
-        if ($calc != 'cmp') {
+        if ($calc !== 'cmp') {
             return $this;
         }
         return $return;
@@ -412,7 +412,7 @@ class Zend_Date extends Zend_Date_DateObject
 
         if ($format === null) {
             $format = Zend_Locale_Format::getDateFormat($locale) . ' ' . Zend_Locale_Format::getTimeFormat($locale);
-        } else if (((self::$_options['format_type'] == 'php') && ($type === null)) or ($type == 'php')) {
+        } else if (((self::$_options['format_type'] == 'php') && ($type === null)) or ($type === 'php')) {
             $format = Zend_Locale_Format::convertPhpToIsoFormat($format);
         }
 

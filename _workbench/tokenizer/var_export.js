@@ -244,7 +244,7 @@ function echo () {
         }
         if (d.appendChild) {
             if (d.body) {
-                if (win.navigator.appName == 'Microsoft Internet Explorer') { // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
+                if (win.navigator.appName === 'Microsoft Internet Explorer') { // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
                     d.body.appendChild(stringToDOM(ieFix(arg)));
                 }
                 else {

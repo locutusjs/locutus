@@ -7,7 +7,7 @@ function define (name, value) {
   // +       revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
   // + reimplemented by: Brett Zamir (http://brett-zamir.me)
   // *        example 1: define('IMAGINARY_CONSTANT1', 'imaginary_value1');
-  // *        results 1: IMAGINARY_CONSTANT1 == 'imaginary_value1'
+  // *        results 1: IMAGINARY_CONSTANT1 === 'imaginary_value1'
   var defn, replace, script, that = this,
     d = this.window.document;
   var toString = function (name, value) {

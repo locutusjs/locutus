@@ -11,7 +11,7 @@ function parse_ini_string ( $filepath ) {
     for( $ini in $line ){
         $line = trim( $line );
         // Comments
-        if ( $line == '' || $line.substr(0,1) == ';' ) { continue; }
+        if ( $line === '' || $line.substr(0,1) == ';' ) { continue; }
         // Sections
         if ( $line.substr(0,1) == '[' ) {
             $sections.push($line.substr(1, -1));

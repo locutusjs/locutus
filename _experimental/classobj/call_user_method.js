@@ -9,7 +9,7 @@ function call_user_method(method, obj) {
     var func;
     func = eval(obj+"['"+method+"']");
 
-    if (typeof func != 'function') {
+    if (typeof func !== 'function') {
         throw new this.Exception(func + ' is not a valid method');
     }
 
