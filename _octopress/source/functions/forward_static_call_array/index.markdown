@@ -27,7 +27,7 @@ function forward_static_call_array (cb, parameters) {
 
   var func;
 
-  if (typeof cb == 'string') {
+  if (typeof cb === 'string') {
     if (typeof this[cb] == 'function') {
       func = this[cb];
     } else {
@@ -38,7 +38,7 @@ function forward_static_call_array (cb, parameters) {
     func = eval(cb[0] + "['" + cb[1] + "']");
   }
 
-  if (typeof func != 'function') {
+  if (typeof func !== 'function') {
     throw new Error(func + ' is not a valid function');
   }
 

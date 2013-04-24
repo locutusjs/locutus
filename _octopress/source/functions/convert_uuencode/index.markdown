@@ -30,7 +30,7 @@ function convert_uuencode (str) {
     return String.fromCharCode(c);
   };
 
-  if (!str || str == "") {
+  if (!str || str === "") {
     return chr(0);
   } else if (!this.is_scalar(str)) {
     return false;

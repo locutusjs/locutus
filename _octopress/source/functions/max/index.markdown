@@ -87,7 +87,7 @@ function max () {
         }
         return -1;
       }
-      else if (typeof next == 'object') {
+      else if (typeof next === 'object') {
         return 1;
       }
       else if (isNaN(next) && !isNaN(current)) {

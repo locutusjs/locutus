@@ -92,7 +92,7 @@ function sprintf () {
     var textTransform;
     var value;
 
-    if (substring == '%%') {
+    if (substring === '%%') {
       return '%';
     }
 
@@ -130,7 +130,7 @@ function sprintf () {
     // we want to ignore null, undefined and empty-string values
     if (!minWidth) {
       minWidth = 0;
-    } else if (minWidth == '*') {
+    } else if (minWidth === '*') {
       minWidth = +a[i++];
     } else if (minWidth.charAt(0) == '*') {
       minWidth = +a[minWidth.slice(1, -1)];
@@ -149,8 +149,8 @@ function sprintf () {
     }
 
     if (!precision) {
-      precision = 'fFeE'.indexOf(type) > -1 ? 6 : (type == 'd') ? 0 : undefined;
-    } else if (precision == '*') {
+      precision = 'fFeE'.indexOf(type) > -1 ? 6 : (type === 'd') ? 0 : undefined;
+    } else if (precision === '*') {
       precision = +a[i++];
     } else if (precision.charAt(0) == '*') {
       precision = +a[precision.slice(1, -1)];

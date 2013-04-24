@@ -30,7 +30,7 @@ function is_object (mixed_var) {
   if (Object.prototype.toString.call(mixed_var) === '[object Array]') {
     return false;
   }
-  return mixed_var !== null && typeof mixed_var == 'object';
+  return mixed_var !== null && typeof mixed_var === 'object';
 }
 {% endcodeblock %}
 

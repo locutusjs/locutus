@@ -25,7 +25,7 @@ function import_request_variables (types, prefix) {
   // %          note 1: especially if you want to use any of these variables in an eval()-like function (not recommended)!
   // *        example 1: document.cookie = 'snack=yummy';
   // *        example 1: import_request_variables('gc', 'pr_');
-  // *        results 1: pr_snack == 'yummy'
+  // *        results 1: pr_snack === 'yummy'
   // *        example 2: ini_set('phpjs.getVarsObj', $_GET = {}); // Only works in PHP.JS, not PHP (!), though by using ini_set(), it does work as though PHP.JS were an extension to PHP
   // *        example 2: import_request_variables('g'); // Allows $_GET['myRequestVar'] access to query string variables
 

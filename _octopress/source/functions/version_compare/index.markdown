@@ -56,8 +56,8 @@ function version_compare (v1, v2, operator) {
       'RC': -3,
       'rc': -3,
       '#': -2,
-      'p': -1,
-      'pl': -1
+      'p': 1,
+      'pl': 1
     },
     // This function will be called to prepare each version argument.
     // It replaces every _, -, and + with a dot.

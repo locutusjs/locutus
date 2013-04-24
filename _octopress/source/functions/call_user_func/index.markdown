@@ -35,7 +35,7 @@ function call_user_func (cb) {
     func = cb;
   }
 
-  if (typeof func != 'function') {
+  if (typeof func !== 'function') {
     throw new Error(func + ' is not a valid function');
   }
 

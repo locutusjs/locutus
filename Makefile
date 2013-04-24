@@ -14,7 +14,7 @@ site:
 	rake deploy ; \
 	cd .. ; \
 	git add . ; \
-	git commit -am "${MSG}" ; \
+	git commit -am "Update site" ; \
 	git push origin master
 
 site-clean:

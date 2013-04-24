@@ -4,10 +4,10 @@
 
 url: http://phpjs.org
 title: php.js
-subtitle: A resource of php functions in JavaScript
+subtitle: A community effort to implement PHP functions in JavaScript
 author: Kevin van Zonneveld
 simple_search: http://google.com/search
-description:
+description: Learn how to do it in JavaScript. Explore boundaries. Use the functions that turn out to be great.
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in

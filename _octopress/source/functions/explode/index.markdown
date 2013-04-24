@@ -18,9 +18,9 @@ A JavaScript equivalent of PHP's explode
 {% codeblock strings/explode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/explode.js raw on github %}
 function explode (delimiter, string, limit) {
 
-  if ( arguments.length < 2 || typeof delimiter == 'undefined' || typeof string == 'undefined' ) return null;
+  if ( arguments.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined' ) return null;
   if ( delimiter === '' || delimiter === false || delimiter === null) return false;
-  if ( typeof delimiter == 'function' || typeof delimiter == 'object' || typeof string == 'function' || typeof string == 'object'){
+  if ( typeof delimiter === 'function' || typeof delimiter === 'object' || typeof string === 'function' || typeof string === 'object'){
     return { 0: '' };
   }
   if ( delimiter === true ) delimiter = '1';

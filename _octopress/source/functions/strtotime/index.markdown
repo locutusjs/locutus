@@ -53,7 +53,7 @@ function strtotime (text, now) {
 		return now === null || isNaN(now) ? new Date().getTime() / 1000 | 0 : now | 0;
 	else if (!isNaN(parse = Date.parse(text)))
 		return parse / 1000 | 0;
-	if (text == 'now')
+	if (text === 'now')
 		return new Date().getTime() / 1000; // Return seconds, not milli-seconds
 	else if (!isNaN(parsed = Date.parse(text)))
 		return parsed / 1000;
