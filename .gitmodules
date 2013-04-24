@@ -1,3 +1,0 @@
-[submodule "kvzlib"]
-	path = ext/kvzlib
-	url = git://github.com/kvz/kvzlib.git
