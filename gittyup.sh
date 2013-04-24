@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function capinstall {
     if [ ! -x /var/lib/gems/1.8/bin/cap ]; then
