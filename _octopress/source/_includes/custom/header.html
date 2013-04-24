@@ -5,7 +5,10 @@
   </div>
 
   {% if site.subtitle %}
-    <h2><strong>{{ site.subtitle }}</strong> - {{ site.description }}</h2>
+    <h2><strong>{{ site.subtitle }}</strong></h2>
+  {% endif %}
+  {% if site.description %}
+    <h2>{{ site.description }}</h2>
   {% endif %}
   <div class="clear"></div>
 </hgroup>
