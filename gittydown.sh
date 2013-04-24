@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 git pull origin
 if [ "${1}" = "-modules" ]; then
     git submodule status
