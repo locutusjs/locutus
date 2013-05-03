@@ -23,18 +23,18 @@ to generate minified packages from php.js functions.
 
 Understandibly this has [raised](https://github.com/kvz/phpjs/issues/75)
 [questions](http://phpjs.org/about/index.html#comment-861825612).
-It still only takes 2 commands to bundle 4 useful functions:
+It is still possible to bundle 4 useful functions:
 
 ```bash
-# - Note that this combined 6 useful php.js functions into a file called: myphp.js
+# - Note that this combined 4 php.js functions into a file called: myphp.js
 # and minified version: myphp.min.js in the current directory.
-# - Note that this creates a Javascript include that throws all functions in the
-# global scope. It's better to put them in a dedicated phpjs object.
-PHPJS_VERSION="master"
-curl -sk https://raw.github.com/kvz/phpjs/${PHPJS_VERSION}/functions/{datetime/date\
-    ,datetime/strtotime\
-    ,strings/md5\
-    ,strings/vsprintf\
+# - Note that this throws all functions into the
+# global scope. It would be better to put them in a dedicated phpjs object.
+curl -sk https://raw.github.com/kvz/phpjs/31bf3129f08672f8c1d6d0dcad2368ebc4ac57f2/functions/\
+{datetime/date\
+,datetime/strtotime\
+,strings/md5\
+,strings/vsprintf\
 }.js |tee ./myphp.js && \
 curl -vo ./myphp.min.js \
     -X POST \
@@ -46,7 +46,7 @@ curl -vo ./myphp.min.js \
     http://closure-compiler.appspot.com/compile
 ```
 
-but some people are upset that it has become harder to bundle all of php.js into one big file:
+but some people think php.js should bundle all of it's functions into one big file:
 
 > Not providing an all-in-one, downloadable, minified, ready-to-use
 > .js file is going to kill php.js.
@@ -60,7 +60,7 @@ but some people are upset that it has become harder to bundle all of php.js into
 
 I'd like to comment on that here. While I appreciate the sentiment, wether the
 project is being killed by these changes depends on how you look at php.js.
-To me, it's a resource:
+To me, php.js is a resource:
 
  - For PHP developers that want see how it's done in JavaScript
  - That enables fun experiments
@@ -75,7 +75,7 @@ If - on the other hand - you think of php.js as a
 ..then yes, *these changes are going to kill php.js*.
 
 I have limited time to spend on open source, and I want to spend it on things I enjoy and can believe in.
-Not on supporting use-cases that keep people from learning or make the web slower.
+Not on working to support use-cases that keep new developers from learning, or make the web slower.
 I'm sorry if this upsets folks but it really is my free time.
 
 Luckily though for people with different views, I released php.js under MIT so
