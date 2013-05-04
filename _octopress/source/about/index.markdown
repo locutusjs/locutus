@@ -11,15 +11,21 @@ alias:
 
 php.js is a resource that offers community-built JavaScript alternatives to PHP functions.
 
-If you want to perform high-level operations on JavaScript platforms such as 
-webbrowsers, node.js, etc, you probably need to write JS that combines its 
-lower-level functions and build it up until you have something useful like:
+**Why on earth would you port php to js?**
+
+ - to see if we can
+ - to learn JavaScript
+ - to help others learn JavaScript
+ - to see how a php program performs with V8 strapped on it's back
+ - to run & debug php code in the browser
+ - to profit from helpful functions like:
 [strip_tags](http://phpjs.org/functions/strip_tags/),
 [strtotime](http://phpjs.org/functions/strtotime/),
 [strftime](http://phpjs.org/functions/strftime/),
 [number_format](http://phpjs.org/functions/number_format/),
-[wordwrap](http://phpjs.org/functions/wordwrap/), or
-[date](http://phpjs.org/functions/date/).
+[wordwrap](http://phpjs.org/functions/wordwrap/), 
+[vsprintf](http://phpjs.org/functions/vsprintf/), and
+[date](http://phpjs.org/functions/date/), that are too high-level for JavaScript.
 
 PHP is a language with many high-level functions and while they're not always 
 implemented as consistently as we'd like (mimicking their underlying C parts), 
@@ -28,13 +34,13 @@ or abstractions.
 
 We recognize JS has beautiful language features, and we encourage you to learn them.
 Never let php.js be an excuse not to. For the this reason we don't offer 
-gigantic php.js packages or compilers anymore.
+gigantic php.js packages or compilers.
 
 That said, we do think it's a challenge to port everything and decided to also port 
 low-level PHP functions like
 [strpos](http://phpjs.org/functions/strpos/)
-even though it has a perfectly fine (and more performant!) JavaScript 
-counterpart ([String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf)).
+that have a perfectly fine (and more performant!) JavaScript 
+counterparts ([String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf) in this case).
 
 Besides the geeky-challenge of seeing how far we could come, porting ALL THE THINGS also 
 opens up php.js to other fun experiments such as realtime in-browser debugging/running of
@@ -50,12 +56,12 @@ And what not.
 
 Going by [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d) 
 we have plently of functions here online that aren't perfect just yet.
-If you know how to improve, just send us a pull request on GitHub.
+If you know how to improve, just send us a pull request on GitHub!
 
 ## Contributing
 
 We use [GitHub](http://github.com/kvz/phpjs) for collaboration. Comments are for remarks only.
-Please adhere to our [coding standards](https://github.com/kvz/phpjs/wiki/DeveloperGuidelines) before
+Please adhere to our [coding standards](http://nodeguide.com/style.html) before
 sending a pull request.
 
 ## Licensing
