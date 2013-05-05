@@ -1,0 +1,26 @@
+{
+  "name": "nest",
+  "version": "0.0.1",
+  "description": "php.js node testing",
+  "homepage": "http://phpjs.org",
+  "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "dependencies": {
+    "q": "~0.9.3"
+  },
+  "keywords": [
+    "cli",
+    "console",
+    "test",
+    "phpjs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kvz/phpjs.git"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+}

@@ -50,4 +50,4 @@ make the project ready for the future.
 
 Best wishes,
 
-[Kevin van Zonneveld](http://twitter.com/kvz)
+[Kevin](http://twitter.com/kvz)

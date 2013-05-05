@@ -83,3 +83,9 @@ it's cool for anybody to fork this project and run with it.
 
 If anything, knowing that the php.js repository will focus on the raw `./functions`
 makes this easier.
+
+
+Best wishes,
+
+[Kevin](http://twitter.com/kvz)
+
