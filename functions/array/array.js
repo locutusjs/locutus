@@ -6,7 +6,7 @@ function array () {
   // *     returns 1: ['Kevin', 'van', 'Zonneveld']
   // *     example 2: ini_set('phpjs.return_phpjs_arrays', 'on');
   // *     example 2: var arr = array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys();
-  // *     returns 1: [0,'A',2]
+  // *     returns 2: [0,'A',2]
 
   var arrInst, e, __, that = this, PHPJS_Array = function PHPJS_Array() {},
     mainArgs = arguments, p = this.php_js = this.php_js || {},

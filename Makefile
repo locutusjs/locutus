@@ -4,6 +4,9 @@ setup:
 	rake setup_github_pages\[git@github.com:kvz/phpjs.git\] && \
 	cd .. ; \
 
+test:
+	find functions -type f |grep -v '/_' |xargs node _tests/cli.js -f
+
 site:
 	git pull && \
 	cd _octopress && \
