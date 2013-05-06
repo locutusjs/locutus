@@ -77,6 +77,9 @@ PhpjsUtil.parse = function(name, code, cb) {
 
   var headKeys = this._headKeys(commentBlocks[0].clean);
 
+  // @todo(kvz) If we add function signature, we can use
+  // body to generate CommonJs compatible output 
+  // in the browser.
   cb(null, {
     headKeys: headKeys,
     body: body,
