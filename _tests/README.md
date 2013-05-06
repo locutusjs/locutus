@@ -10,10 +10,10 @@ node cli.js -f ../functions/datetime/date.js
 
 ```html
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="phpjs.js"></script>
+<script src="phpjsutil.js"></script>
 <script type="text/javascript">
   // Get `code`
-  Phpjs.parse(code, function (err, result) {
+  PhpjsUtil.parse(code, function (err, result) {
     if (err) {
       $('#content').append('<pre class="alert-warning alert">' + JSON.stringify(err, undefined, 2) + '</pre>');
     }

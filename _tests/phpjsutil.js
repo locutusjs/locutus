@@ -1,10 +1,10 @@
 if (typeof require !== 'undefined') {
-  module.exports = Phpjs;
+  module.exports = PhpjsUtil;
 }
-function Phpjs () {
+function PhpjsUtil () {
 }
 
-Phpjs._commentBlocks = function(code) {
+PhpjsUtil._commentBlocks = function(code) {
   var cnt = 0;
   var comment = [];
   var commentBlocks = [];
@@ -32,7 +32,7 @@ Phpjs._commentBlocks = function(code) {
   return commentBlocks;
 }
 
-Phpjs._headKeys = function(headLines) {
+PhpjsUtil._headKeys = function(headLines) {
   var i;
   var keys = {};
   var match = [];
@@ -70,7 +70,7 @@ Phpjs._headKeys = function(headLines) {
   return keys;
 }
 
-Phpjs.parse = function(name, code, cb) {
+PhpjsUtil.parse = function(name, code, cb) {
   var commentBlocks = this._commentBlocks(code);
   var head = commentBlocks[0].raw.join('\n');
   var body = code.replace(head, '');
@@ -87,7 +87,7 @@ Phpjs.parse = function(name, code, cb) {
   });
 };
 
-Phpjs.test = function(params, cb) {
+PhpjsUtil.test = function(params, cb) {
   var i = 0;
   var j = 0;
 

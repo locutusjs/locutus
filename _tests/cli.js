@@ -1,6 +1,6 @@
 var cli = require('cli').enable('status', 'help', 'version', 'glob', 'timeout');
 var FS = require('fs');
-var phpjs = require('./phpjs');
+var PhpjsUtil = require('./phpjsutil');
 
 cli.parse({
   function_file: ['f', 'Function to test', 'path'],
@@ -19,13 +19,13 @@ cli.main(function(args, options) {
       return cli.fatal(err);
     }
 
-    phpjs.parse(options.function_file, code, function (err, params) {
+    PhpjsUtil.parse(options.function_file, code, function (err, params) {
       if (err) {
         return cli.fatal(err);
       }
       // console.log(params['headKeys']);
 
-      phpjs.test(params, function(err, test, params) {
+      PhpjsUtil.test(params, function(err, test, params) {
         var testline = params['name'] + 
           '#' + test['number'] +
           '\t' + test['example'] +
@@ -40,5 +40,4 @@ cli.main(function(args, options) {
       });
     });
   });  
-
 });
