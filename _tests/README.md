@@ -2,8 +2,8 @@
 # Cli
 
 ```bash
-node cli.js -f ../functions/datetime/strtotime.js
-node cli.js -f ../functions/datetime/date.js
+node _tests/cli.js -f sort
+node _tests/cli.js -f strtotime
 ```
 
 # Web
@@ -18,7 +18,7 @@ node cli.js -f ../functions/datetime/date.js
       $('#content').append('<pre class="alert-warning alert">' + JSON.stringify(err, undefined, 2) + '</pre>');
     }
     $('#content').append('<pre>' + JSON.stringify(result, undefined, 2) + '</pre>');
-    
+
     console.log(result);
   });
 </script>

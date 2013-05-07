@@ -8,7 +8,8 @@
     "node": ">= 0.6.0"
   },
   "dependencies": {
-    "cli": "~0.4.4-2"
+    "cli": "~0.4.4-2",
+    "glob": "~3.2.1"
   },
   "keywords": [
     "cli",
