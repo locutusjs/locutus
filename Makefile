@@ -5,6 +5,7 @@ setup:
 	cd .. ; \
 
 test:
+	cd _tests && npm install
 	find functions -type f |grep -v '/_' |xargs node _tests/cli.js -f
 
 site:
