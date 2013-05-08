@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "cli": "~0.4.4-2",
-    "glob": "~3.2.1"
+    "glob": "~3.2.1",
+    "send": "~0.1.0"
   },
   "keywords": [
     "cli",
