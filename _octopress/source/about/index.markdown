@@ -16,11 +16,11 @@ php.js is a resource that offers community-built JavaScript alternatives to PHP 
  - to see if we can
  - to learn JavaScript
  - to help others learn JavaScript
- - to see how a php program performs with V8 strapped on it's back
- - to run & debug php code in the browser
+ - to see how a php scripts perform with V8 strapped on their backs
  - to profit from helpful functions like:
 [strip_tags](http://phpjs.org/functions/strip_tags/),
 [strtotime](http://phpjs.org/functions/strtotime/),
+[md5](http://phpjs.org/functions/md5/),
 [strftime](http://phpjs.org/functions/strftime/),
 [number_format](http://phpjs.org/functions/number_format/),
 [wordwrap](http://phpjs.org/functions/wordwrap/), 
@@ -39,7 +39,7 @@ gigantic php.js packages or compilers.
 That said, we do think it's a challenge to port everything and decided to also port 
 low-level PHP functions like
 [strpos](http://phpjs.org/functions/strpos/)
-that have a perfectly fine (and more performant!) JavaScript 
+that have perfectly fine (and more performant!) JavaScript 
 counterparts ([String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf) in this case).
 
 Besides the geeky-challenge of seeing how far we could come, porting ALL THE THINGS also 
@@ -55,8 +55,8 @@ to decide what makes sense to take from it.
 And what not.
 
 Going by [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d) 
-we have plently of functions here online that aren't perfect just yet.
-If you know how to improve, just send us a pull request on GitHub!
+we have plently of functions online that aren't perfect just yet.
+If you know how better ways, just send us a pull request on GitHub!
 
 ## Contributing
 
