@@ -16,7 +16,7 @@ function array_walk_recursive (array, funcname, userdata) {
       return this.array_walk_recursive(array[key], funcname, userdata);
     }
 
-    if (typeof(userdata) != 'undefined') {
+    if (typeof userdata != 'undefined') {
       eval(funcname + '( array [key] , key , userdata  )');
     } else {
       eval(funcname + '(  userdata ) ');

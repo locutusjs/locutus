@@ -26,14 +26,14 @@ function http_build_query (formdata, numeric_prefix, arg_separator) {
       val = "0";
     }
     if (val != null) {
-      if(typeof(val) === "object") {
+      if(typeof val === "object") {
         for (k in val) {
           if (val[k] != null) {
             tmp.push(_http_build_query_helper(key + "[" + k + "]", val[k], arg_separator));
           }
         }
         return tmp.join(arg_separator);
-      } else if (typeof(val) !== "function") {
+      } else if (typeof val !== "function") {
         return that.urlencode(key) + "=" + that.urlencode(val);
       } else {
         throw new Error('There was an error processing for http_build_query().');

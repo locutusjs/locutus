@@ -15,7 +15,7 @@ function implode (glue, pieces) {
     pieces = glue;
     glue = '';
   }
-  if (typeof(pieces) === 'object') {
+  if (typeof pieces === 'object') {
     if (Object.prototype.toString.call(pieces) === '[object Array]') {
       return pieces.join(glue);
     }

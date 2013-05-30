@@ -16,5 +16,5 @@ function is_numeric (mixed_var) {
   // *     returns 4: false
   // *     example 4: is_numeric([]);
   // *     returns 4: false
-  return (typeof(mixed_var) === 'number' || typeof(mixed_var) === 'string') && mixed_var !== '' && !isNaN(mixed_var);
+  return (typeof mixed_var === 'number' || typeof mixed_var === 'string') && mixed_var !== '' && !isNaN(mixed_var);
 }

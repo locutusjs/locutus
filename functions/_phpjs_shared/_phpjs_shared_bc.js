@@ -1118,7 +1118,7 @@ function _phpjs_shared_bc () {
     },
 
     cint: function (v) {
-      if (typeof(v) == 'undefined') {
+      if (typeof v == 'undefined') {
         v = 0;
       }
       var x = parseInt(v, 10);

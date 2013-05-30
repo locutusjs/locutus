@@ -69,7 +69,7 @@ function strtotime (text, now) {
 	function lastNext(type, range, modifier) {
 		var day = days[range];
 
-		if (typeof(day) !== 'undefined') {
+		if (typeof day !== 'undefined') {
 			var diff = day - date.getDay();
 
 			if (diff === 0)
