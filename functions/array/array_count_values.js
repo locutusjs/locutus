@@ -27,7 +27,7 @@ function array_count_values (array) {
   };
 
   var __countValue = function (value) {
-    switch (typeof(value)) {
+    switch (typeof value) {
     case "number":
       if (Math.floor(value) !== value) {
         return;

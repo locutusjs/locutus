@@ -13,7 +13,7 @@ function setrawcookie (name, value, expires, path, domain, secure) {
 
   if (expires instanceof Date) {
     expires = expires.toGMTString();
-  } else if (typeof(expires) === 'number') {
+  } else if (typeof expires === 'number') {
     expires = (new Date(expires * 1e3)).toGMTString();
   }
 
