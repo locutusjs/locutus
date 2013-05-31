@@ -15,7 +15,7 @@ function bcadd (left_operand, right_operand, scale) {
 
   var first, second, result;
 
-  if (typeof scale == 'undefined') {
+  if (typeof scale === 'undefined') {
     scale = libbcmath.scale;
   }
   scale = ((scale < 0) ? 0 : scale);

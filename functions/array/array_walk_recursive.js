@@ -12,11 +12,11 @@ function array_walk_recursive (array, funcname, userdata) {
   }
 
   for (key in array) {
-    if (typeof array[key] == 'object') {
+    if (typeof array[key] === 'object') {
       return this.array_walk_recursive(array[key], funcname, userdata);
     }
 
-    if (typeof userdata != 'undefined') {
+    if (typeof userdata !== 'undefined') {
       eval(funcname + '( array [key] , key , userdata  )');
     } else {
       eval(funcname + '(  userdata ) ');

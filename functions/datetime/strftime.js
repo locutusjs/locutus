@@ -174,8 +174,8 @@ OW
 Oy
 */
 
-  var _date = ((typeof timestamp == 'undefined') ? new Date() : // Not provided
-  (typeof timestamp == 'object') ? new Date(timestamp) : // Javascript Date()
+  var _date = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
+  (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
   new Date(timestamp * 1000) // PHP API expects UNIX timestamp (auto-convert to int)
   );
 
