@@ -79,7 +79,7 @@ function pack (format) {
       for (i = 0; i < quantifier; i += 2) {
         // Always get per 2 bytes...
         word = argument[i];
-        if (((i + 1) >= quantifier) || typeof(argument[i + 1]) === 'undefined') {
+        if (((i + 1) >= quantifier) || typeof argument[i + 1] === 'undefined') {
           word += '0';
         } else {
           word += argument[i + 1];

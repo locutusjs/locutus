@@ -174,8 +174,8 @@ OW
 Oy
 */
 
-  var _date = ((typeof(timestamp) == 'undefined') ? new Date() : // Not provided
-  (typeof(timestamp) == 'object') ? new Date(timestamp) : // Javascript Date()
+  var _date = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
+  (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
   new Date(timestamp * 1000) // PHP API expects UNIX timestamp (auto-convert to int)
   );
 
@@ -209,7 +209,7 @@ Oy
       return _date[f]();
     } else if (typeof f === 'function') {
       return f(_date);
-    } else if (typeof f === 'object' && typeof(f[0]) === 'string') {
+    } else if (typeof f === 'object' && typeof f[0] === 'string') {
       return _xPad(_date[f[0]](), f[1]);
     } else { // Shouldn't reach here
       return m1;

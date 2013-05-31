@@ -172,7 +172,7 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
 	  newStrArr[newStrArr.length] = origLines[linePos++];
 	}
   }
-  if (typeof(error) === 'string') {
+  if (typeof error === 'string') {
     this.window[error] = errors;
   }
   return newStrArr.join('\n');
