@@ -13,7 +13,7 @@ function base64_decode (data) {
   // *     returns 1: 'Kevin van Zonneveld'
   // mozilla has this native
   // - but breaks in 2.0.0.12!
-  //if (typeof this.window['atob'] == 'function') {
+  //if (typeof this.window['atob'] === 'function') {
   //    return atob(data);
   //}
   var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";

@@ -10,7 +10,7 @@ function forward_static_call_array (cb, parameters) {
   var func;
 
   if (typeof cb === 'string') {
-    if (typeof this[cb] == 'function') {
+    if (typeof this[cb] === 'function') {
       func = this[cb];
     } else {
       func = (new Function(null, 'return ' + cb))();
