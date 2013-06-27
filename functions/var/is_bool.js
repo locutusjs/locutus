@@ -6,5 +6,5 @@ function is_bool (mixed_var) {
   // *     returns 1: true
   // *     example 2: is_bool(0);
   // *     returns 2: false
-  return (obj === true || obj === false); // Faster (in FF) than type checking
+  return (mixed_var === true || mixed_var === false); // Faster (in FF) than type checking
 }
