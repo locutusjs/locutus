@@ -1,7 +1,6 @@
 function aggregate_info (obj) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: aggregate_info
   // *     example 1: var A = function () {};
   // *     example 1: A.prop = 5;
   // *     example 1: A.prototype.someMethod = function () {};
