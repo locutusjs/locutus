@@ -14,6 +14,7 @@ function call_user_method(method, obj) {
     if (method && typeof method === 'object' && method.length) {
         paramBegin = 1;
         object = method[0];
+        object = typeof object === 'string' ? this.window[object] : object;
         methodName = method[1];
     }
     func = object[methodName];
