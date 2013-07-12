@@ -60,7 +60,6 @@ function date (format, timestamp) {
       jsdate,
       f,
       formatChr = /\\?([a-z])/gi,
-      formatChrCb,
       // Keep this here (works, but for code commented-out
       // below for file size reasons)
       //, tal= [],
@@ -68,10 +67,10 @@ function date (format, timestamp) {
         n = n.toString();
         return n.length < c ? _pad('0' + n, c, '0') : n;
       },
-      txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  formatChrCb = function (t, s) {
-    return f[t] ? f[t]() : s;
-  };
+      txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      formatChrCb = function (t, s) {
+        return f[t] ? f[t]() : s;
+      };
   f = {
     // Day
     d: function () { // Day of month w/leading 0; 01..31
@@ -90,9 +89,11 @@ function date (format, timestamp) {
       return f.w() || 7;
     },
     S: function(){ // Ordinal suffix for day of month; st, nd, rd, th
-      var j = f.j()
-      i = j%10;
-      if (i <= 3 && parseInt((j%100)/10) == 1) i = 0;
+      var j = f.j(),
+        i = j%10;
+      if (i <= 3 && parseInt((j%100)/10, 10) == 1) {
+        i = 0;
+      }
       return ['st', 'nd', 'rd'][i - 1] || 'th';
     },
     w: function () { // Day of week; 0[Sun]..6[Sat]
