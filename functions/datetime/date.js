@@ -7,13 +7,9 @@ function date (format, timestamp) {
   // +   improved by: Brad Touesnard
   // +   improved by: Tim Wiel
   // +   improved by: Bryan Elliott
-  //
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: David Randall
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Theriault
   // +  derived from: gettimeofday
   // +      input by: majak
@@ -31,6 +27,8 @@ function date (format, timestamp) {
   // +   bugfixed by: omid (http://phpjs.org/functions/380:380#comment_137122)
   // +      input by: Martin
   // +      input by: Alex Wilson
+  // +      input by: Haravikk
+  // +   improved by: Theriault
   // +   bugfixed by: Chris (http://www.devotis.nl/)
   // %        note 1: Uses global: php_js to store the default timezone
   // %        note 2: Although the function potentially allows timezone info (see notes), it currently does not set
@@ -59,17 +57,20 @@ function date (format, timestamp) {
     var that = this,
       jsdate,
       f,
-      formatChr = /\\?([a-z])/gi,
       // Keep this here (works, but for code commented-out
       // below for file size reasons)
       //, tal= [],
+      txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      // trailing backslash -> (dropped)
+      // a backslash followed by any character (including backslash) -> the character
+      // empty string -> empty string
+      formatChr = /\\?(.?)/gi,
+      formatChrCb = function (t, s) {
+        return f[t] ? f[t]() : s;
+      },
       _pad = function (n, c) {
         n = n.toString();
         return n.length < c ? _pad('0' + n, c, '0') : n;
-      },
-      txt_words = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-      formatChrCb = function (t, s) {
-        return f[t] ? f[t]() : s;
       };
   f = {
     // Day
