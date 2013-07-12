@@ -70,7 +70,7 @@ function date (format, timestamp) {
       },
       _pad = function (n, c) {
         n = n.toString();
-        return n.length < c ? _pad('0' + n, c, '0') : n;
+        return n.length < c ? _pad('0' + n, c) : n;
       };
   f = {
     // Day
