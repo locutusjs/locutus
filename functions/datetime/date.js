@@ -70,7 +70,9 @@ function date (format, timestamp) {
       },
       _pad = function (n, c) {
         n = String(n);
-        while (n.length < c) n = '0' + n;
+        while (n.length < c) {
+          n = '0' + n;
+        }
         return n;
       };
   f = {
