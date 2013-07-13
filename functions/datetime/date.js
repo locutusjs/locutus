@@ -69,8 +69,9 @@ function date (format, timestamp) {
         return f[t] ? f[t]() : s;
       },
       _pad = function (n, c) {
-        n = n.toString();
-        return n.length < c ? _pad('0' + n, c) : n;
+        n = String(n);
+        while (n.length < c) n = '0' + n;
+        return n;
       };
   f = {
     // Day
