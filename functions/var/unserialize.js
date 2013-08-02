@@ -15,6 +15,7 @@ function unserialize (data) {
   // +     input by: kilops
   // +     bugfixed by: Brett Zamir (http://brett-zamir.me)
   // +      input by: Jaroslaw Czarniak
+  // +     improved by: Eli Skeggs
   // %            note: We feel the main purpose of this function should be to ease the transport of data between php & js
   // %            note: Aiming for PHP-compatibility, we have to translate objects to arrays
   // *       example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
@@ -61,10 +62,10 @@ function unserialize (data) {
       return [buf.length, buf.join('')];
     },
     _unserialize = function (data, offset) {
-      var dtype, dataoffset, keyandchrs, keys,
-        readdata, readData, ccount, stringlength,
-        i, key, kprops, kchrs, vprops, vchrs, value,
-        chrs = 0,
+      var dtype, dataoffset, keyandchrs, keys, contig,
+        length, array, readdata, readData, ccount,
+        stringlength, i, key, kprops, kchrs, vprops,
+        vchrs, value, chrs = 0,
         typeconvert = function (x) {
           return x;
         };
@@ -129,7 +130,10 @@ function unserialize (data) {
           keys = keyandchrs[1];
           dataoffset += chrs + 2;
 
-          for (i = 0; i < parseInt(keys, 10); i++) {
+          length = parseInt(keys, 10);
+          contig = true;
+
+          for (i = 0; i < length; i++) {
             kprops = _unserialize(data, dataoffset);
             kchrs = kprops[1];
             key = kprops[2];
@@ -140,7 +144,17 @@ function unserialize (data) {
             value = vprops[2];
             dataoffset += vchrs;
 
+            if (key !== i)
+              contig = false;
+
             readdata[key] = value;
+          }
+          
+          if (contig) {
+            array = new Array(length);
+            for (i = 0; i < length; i++)
+              array[i] = readdata[i];
+            readdata = array;
           }
 
           dataoffset += 1;
