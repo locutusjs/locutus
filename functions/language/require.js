@@ -23,7 +23,7 @@ function require (filename) {
     script_block.appendChild(d.createTextNode(js_code));
   }
 
-  if (typeof(script_block) !== 'undefined') {
+  if (typeof script_block !== 'undefined') {
     d.getElementsByTagNameNS && isXML ? (d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0] ? d.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'head')[0].appendChild(script_block) : d.documentElement.insertBefore(script_block, d.documentElement.firstChild) // in case of XUL
     ) : d.getElementsByTagName('head')[0].appendChild(script_block);
 

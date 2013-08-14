@@ -931,9 +931,9 @@ function _phpjs_shared_bc () {
             borrow = 1;
           } else {
             borrow = 0;
-            diff.n_value[diffptr--] = val;
-            //*diffptr-- = val;
           }
+          diff.n_value[diffptr--] = val;
+          //*diffptr-- = val;
         }
       }
 
@@ -1118,7 +1118,7 @@ function _phpjs_shared_bc () {
     },
 
     cint: function (v) {
-      if (typeof(v) == 'undefined') {
+      if (typeof v === 'undefined') {
         v = 0;
       }
       var x = parseInt(v, 10);

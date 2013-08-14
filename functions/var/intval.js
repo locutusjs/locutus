@@ -18,7 +18,7 @@ function intval (mixed_var, base) {
   // *     returns 5: 30
   var tmp;
 
-  var type = typeof(mixed_var);
+  var type = typeof mixed_var;
 
   if (type === 'boolean') {
     return +mixed_var;

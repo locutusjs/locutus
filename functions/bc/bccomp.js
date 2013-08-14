@@ -14,7 +14,7 @@ function bccomp (left_operand, right_operand, scale) {
   var libbcmath = this._phpjs_shared_bc();
 
   var first, second; //bc_num
-  if (typeof(scale) == 'undefined') {
+  if (typeof scale === 'undefined') {
     scale = libbcmath.scale;
   }
   scale = ((scale < 0) ? 0 : scale);
