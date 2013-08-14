@@ -4,7 +4,6 @@ title: "JavaScript parse_url function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/parse_url:485
 - /functions/view/parse_url
@@ -87,8 +86,3 @@ Should return
 
 ### Other PHP functions in the url extension
 {% render_partial _includes/custom/url.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/parse_url/_comments.html %}
-</div>

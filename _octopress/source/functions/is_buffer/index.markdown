@@ -4,7 +4,6 @@ title: "JavaScript is_buffer function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/is_buffer:592
 - /functions/view/is_buffer

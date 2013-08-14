@@ -4,7 +4,6 @@ title: "JavaScript pclose function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/pclose:807
 - /functions/view/pclose

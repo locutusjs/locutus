@@ -4,7 +4,6 @@ title: "JavaScript get_include_path function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/get_include_path:853
 - /functions/view/get_include_path

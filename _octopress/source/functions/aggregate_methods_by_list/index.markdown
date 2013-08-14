@@ -4,7 +4,6 @@ title: "JavaScript aggregate_methods_by_list function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/aggregate_methods_by_list:794
 - /functions/view/aggregate_methods_by_list
@@ -124,8 +123,3 @@ undefined
 
 ### Other PHP functions in the objaggregation extension
 {% render_partial _includes/custom/objaggregation.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/aggregate_methods_by_list/_comments.html %}
-</div>

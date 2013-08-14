@@ -4,7 +4,6 @@ title: "JavaScript http_build_query function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/http_build_query:428
 - /functions/view/http_build_query
@@ -44,14 +43,14 @@ function http_build_query (formdata, numeric_prefix, arg_separator) {
       val = "0";
     }
     if (val != null) {
-      if(typeof(val) === "object") {
+      if(typeof val === "object") {
         for (k in val) {
           if (val[k] != null) {
             tmp.push(_http_build_query_helper(key + "[" + k + "]", val[k], arg_separator));
           }
         }
         return tmp.join(arg_separator);
-      } else if (typeof(val) !== "function") {
+      } else if (typeof val !== "function") {
         return that.urlencode(key) + "=" + that.urlencode(val);
       } else {
         throw new Error('There was an error processing for http_build_query().');
@@ -107,8 +106,3 @@ Should return
 
 ### Other PHP functions in the url extension
 {% render_partial _includes/custom/url.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/http_build_query/_comments.html %}
-</div>

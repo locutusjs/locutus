@@ -4,7 +4,6 @@ title: "JavaScript strcasecmp function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/strcasecmp:531
 - /functions/view/strcasecmp

@@ -4,7 +4,6 @@ title: "JavaScript call_user_func function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/call_user_func:363
 - /functions/view/call_user_func
@@ -29,7 +28,7 @@ function call_user_func (cb) {
     func = (typeof this[cb] === 'function') ? this[cb] : func = (new Function(null, 'return ' + cb))();
   }
   else if (Object.prototype.toString.call(cb) === '[object Array]') {
-    func = (typeof cb[0] == 'string') ? eval(cb[0] + "['" + cb[1] + "']") : func = cb[0][cb[1]];
+    func = (typeof cb[0] === 'string') ? eval(cb[0] + "['" + cb[1] + "']") : func = cb[0][cb[1]];
   }
   else if (typeof cb === 'function') {
     func = cb;
@@ -61,8 +60,3 @@ true
 
 ### Other PHP functions in the funchand extension
 {% render_partial _includes/custom/funchand.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/call_user_func/_comments.html %}
-</div>

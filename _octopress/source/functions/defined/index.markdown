@@ -4,7 +4,6 @@ title: "JavaScript defined function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/defined:385
 - /functions/view/defined
@@ -55,8 +54,3 @@ false
 
 ### Other PHP functions in the misc extension
 {% render_partial _includes/custom/misc.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/defined/_comments.html %}
-</div>

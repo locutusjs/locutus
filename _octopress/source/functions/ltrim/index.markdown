@@ -4,7 +4,6 @@ title: "JavaScript ltrim function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ltrim:467
 - /functions/view/ltrim

@@ -4,7 +4,6 @@ title: "JavaScript uksort function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/uksort:570
 - /functions/view/uksort

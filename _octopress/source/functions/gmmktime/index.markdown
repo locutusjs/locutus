@@ -4,7 +4,6 @@ title: "JavaScript gmmktime function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/gmmktime:779
 - /functions/view/gmmktime

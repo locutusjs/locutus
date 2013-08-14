@@ -4,7 +4,6 @@ title: "JavaScript mail function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/mail:884
 - /functions/view/mail
@@ -121,8 +120,3 @@ true
 
 ### Other PHP functions in the mail extension
 {% render_partial _includes/custom/mail.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/mail/_comments.html %}
-</div>

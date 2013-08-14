@@ -4,7 +4,6 @@ title: "JavaScript get_cfg_var function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/get_cfg_var:776
 - /functions/view/get_cfg_var

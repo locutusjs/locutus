@@ -4,7 +4,6 @@ title: "JavaScript i18n_loc_set_default function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/i18n_loc_set_default:865
 - /functions/view/i18n_loc_set_default

@@ -4,7 +4,6 @@ title: "JavaScript aggregate_info function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/aggregate_info:792
 - /functions/view/aggregate_info
@@ -19,7 +18,6 @@ A JavaScript equivalent of PHP's aggregate_info
 function aggregate_info (obj) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: aggregate_info
   // *     example 1: var A = function () {};
   // *     example 1: A.prop = 5;
   // *     example 1: A.prototype.someMethod = function () {};

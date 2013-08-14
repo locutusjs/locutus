@@ -4,7 +4,6 @@ title: "JavaScript is_bool function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/is_bool:438
 - /functions/view/is_bool
@@ -24,7 +23,7 @@ function is_bool (mixed_var) {
   // *     returns 1: true
   // *     example 2: is_bool(0);
   // *     returns 2: false
-  return (obj === true || obj === false); // Faster (in FF) than type checking
+  return (mixed_var === true || mixed_var === false); // Faster (in FF) than type checking
 }
 {% endcodeblock %}
 
@@ -56,8 +55,3 @@ false
 
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/is_bool/_comments.html %}
-</div>

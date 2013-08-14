@@ -4,7 +4,6 @@ title: "JavaScript is_integer function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/is_integer:445
 - /functions/view/is_integer

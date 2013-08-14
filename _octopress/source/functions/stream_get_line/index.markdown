@@ -4,7 +4,6 @@ title: "JavaScript stream_get_line function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/stream_get_line:857
 - /functions/view/stream_get_line

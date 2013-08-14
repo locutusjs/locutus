@@ -4,7 +4,6 @@ title: "JavaScript classkit_import function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/classkit_import:762
 - /functions/view/classkit_import
@@ -47,8 +46,3 @@ undefined
 
 ### Other PHP functions in the classkit extension
 {% render_partial _includes/custom/classkit.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/classkit_import/_comments.html %}
-</div>

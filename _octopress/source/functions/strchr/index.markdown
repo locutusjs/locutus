@@ -4,7 +4,6 @@ title: "JavaScript strchr function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/strchr:532
 - /functions/view/strchr

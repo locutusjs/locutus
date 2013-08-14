@@ -4,7 +4,6 @@ title: "JavaScript similar_text function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/similar_text:902
 - /functions/view/similar_text
@@ -27,6 +26,7 @@ function similar_text (first, second, percent) {
   // *     returns 2: 0
   // *     example 3: similar_text('Hello World!', null, 1);
   // *     returns 3: 58.33
+  // *   bugfixed by: Jarkko Rantavuori based on findings in stackoverflow (http://stackoverflow.com/questions/14136349/how-does-similar-text-work)
   if (first === null || second === null || typeof first === 'undefined' || typeof second === 'undefined') {
     return 0;
   }
@@ -59,7 +59,7 @@ function similar_text (first, second, percent) {
 
   if (sum) {
     if (pos1 && pos2) {
-      sum += this.similar_text(first.substr(0, pos2), second.substr(0, pos2));
+      sum += this.similar_text(first.substr(0, pos1), second.substr(0, pos2));
     }
 
     if ((pos1 + max < firstLength) && (pos2 + max < secondLength)) {
@@ -114,8 +114,3 @@ Should return
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/similar_text/_comments.html %}
-</div>

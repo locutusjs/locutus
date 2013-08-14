@@ -4,7 +4,6 @@ title: "JavaScript get_class function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/get_class:409
 - /functions/view/get_class
@@ -86,8 +85,3 @@ false
 
 ### Other PHP functions in the classobj extension
 {% render_partial _includes/custom/classobj.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/get_class/_comments.html %}
-</div>

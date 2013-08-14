@@ -4,7 +4,6 @@ title: "JavaScript assert function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/assert:831
 - /functions/view/assert

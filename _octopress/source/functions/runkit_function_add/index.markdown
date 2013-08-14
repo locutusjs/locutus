@@ -4,7 +4,6 @@ title: "JavaScript runkit_function_add function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/runkit_function_add:822
 - /functions/view/runkit_function_add

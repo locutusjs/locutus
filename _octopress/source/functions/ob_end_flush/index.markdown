@@ -4,7 +4,6 @@ title: "JavaScript ob_end_flush function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ob_end_flush:892
 - /functions/view/ob_end_flush

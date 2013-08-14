@@ -4,7 +4,6 @@ title: "JavaScript file_get_contents function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/file_get_contents:400
 - /functions/view/file_get_contents
@@ -298,8 +297,3 @@ Should return
 
 ### Other PHP functions in the filesystem extension
 {% render_partial _includes/custom/filesystem.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/file_get_contents/_comments.html %}
-</div>

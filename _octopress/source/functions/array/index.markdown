@@ -4,7 +4,6 @@ title: "JavaScript array function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/array:304
 - /functions/view/array
@@ -24,7 +23,7 @@ function array () {
   // *     returns 1: ['Kevin', 'van', 'Zonneveld']
   // *     example 2: ini_set('phpjs.return_phpjs_arrays', 'on');
   // *     example 2: var arr = array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys();
-  // *     returns 1: [0,'A',2]
+  // *     returns 2: [0,'A',2]
 
   var arrInst, e, __, that = this, PHPJS_Array = function PHPJS_Array() {},
     mainArgs = arguments, p = this.php_js = this.php_js || {},
@@ -333,14 +332,20 @@ array('Kevin', 'van', 'Zonneveld');
 Should return
 {% codeblock lang:js returns %}
 ['Kevin', 'van', 'Zonneveld']
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+ini_set('phpjs.return_phpjs_arrays', 'on');
+var arr = array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys();
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
 [0,'A',2]
 {% endcodeblock %}
 
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/array/_comments.html %}
-</div>

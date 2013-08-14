@@ -4,7 +4,6 @@ title: "JavaScript create_function function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/create_function:378
 - /functions/view/create_function
@@ -49,8 +48,3 @@ Should return
 
 ### Other PHP functions in the funchand extension
 {% render_partial _includes/custom/funchand.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/create_function/_comments.html %}
-</div>

@@ -4,7 +4,6 @@ title: "JavaScript localeconv function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/localeconv:782
 - /functions/view/localeconv

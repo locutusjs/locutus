@@ -4,7 +4,6 @@ title: "JavaScript array_merge_recursive function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/array_merge_recursive:327
 - /functions/view/array_merge_recursive
@@ -36,7 +35,7 @@ function array_merge_recursive (arr1, arr2) {
   } else if ((arr1 && (arr1 instanceof Object)) && (arr2 && (arr2 instanceof Object))) {
     for (idx in arr2) {
       if (idx in arr1) {
-        if (typeof arr1[idx] == 'object' && typeof arr2 == 'object') {
+        if (typeof arr1[idx] === 'object' && typeof arr2 === 'object') {
           arr1[idx] = this.array_merge(arr1[idx], arr2[idx]);
         } else {
           arr1[idx] = arr2[idx];
@@ -70,8 +69,3 @@ Should return
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/array_merge_recursive/_comments.html %}
-</div>

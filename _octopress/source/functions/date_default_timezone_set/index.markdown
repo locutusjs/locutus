@@ -4,7 +4,6 @@ title: "JavaScript date_default_timezone_set function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/date_default_timezone_set:584
 - /functions/view/date_default_timezone_set
@@ -61,8 +60,3 @@ Should return
 
 ### Other PHP functions in the datetime extension
 {% render_partial _includes/custom/datetime.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/date_default_timezone_set/_comments.html %}
-</div>

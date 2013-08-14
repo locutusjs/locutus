@@ -4,7 +4,6 @@ title: "JavaScript ip2long function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ip2long:436
 - /functions/view/ip2long
@@ -92,8 +91,3 @@ false
 
 ### Other PHP functions in the network extension
 {% render_partial _includes/custom/network.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/ip2long/_comments.html %}
-</div>

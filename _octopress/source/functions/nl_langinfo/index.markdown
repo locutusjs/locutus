@@ -4,7 +4,6 @@ title: "JavaScript nl_langinfo function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/nl_langinfo:784
 - /functions/view/nl_langinfo

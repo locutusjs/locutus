@@ -4,7 +4,6 @@ title: "JavaScript ksort function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ksort:460
 - /functions/view/ksort
@@ -140,8 +139,3 @@ true
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/ksort/_comments.html %}
-</div>

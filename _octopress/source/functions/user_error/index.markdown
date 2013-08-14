@@ -4,7 +4,6 @@ title: "JavaScript user_error function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/user_error:843
 - /functions/view/user_error

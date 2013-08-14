@@ -4,7 +4,6 @@ title: "JavaScript decoct function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/decoct:383
 - /functions/view/decoct
@@ -61,8 +60,3 @@ Should return
 
 ### Other PHP functions in the math extension
 {% render_partial _includes/custom/math.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/decoct/_comments.html %}
-</div>

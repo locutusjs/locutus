@@ -4,7 +4,6 @@ title: "JavaScript bcmul function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/bcmul:872
 - /functions/view/bcmul
@@ -34,7 +33,7 @@ function bcmul (left_operand, right_operand, scale) {
 
   var first, second, result;
 
-  if (typeof(scale) == 'undefined') {
+  if (typeof scale === 'undefined') {
     scale = libbcmath.scale;
   }
   scale = ((scale < 0) ? 0 : scale);

@@ -4,7 +4,6 @@ title: "JavaScript get_extension_funcs function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/get_extension_funcs:867
 - /functions/view/get_extension_funcs

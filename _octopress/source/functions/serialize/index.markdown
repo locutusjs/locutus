@@ -4,7 +4,6 @@ title: "JavaScript serialize function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/serialize:508
 - /functions/view/serialize
@@ -167,8 +166,3 @@ Should return
 
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/serialize/_comments.html %}
-</div>

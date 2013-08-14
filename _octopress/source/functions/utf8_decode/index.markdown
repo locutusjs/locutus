@@ -4,7 +4,6 @@ title: "JavaScript utf8_decode function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/utf8_decode:576
 - /functions/view/utf8_decode
@@ -88,8 +87,3 @@ Should return
 
 ### Other PHP functions in the xml extension
 {% render_partial _includes/custom/xml.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/utf8_decode/_comments.html %}
-</div>

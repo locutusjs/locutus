@@ -4,7 +4,6 @@ title: "JavaScript is_object function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/is_object:450
 - /functions/view/is_object
@@ -73,8 +72,3 @@ false
 
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/is_object/_comments.html %}
-</div>

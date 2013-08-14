@@ -4,7 +4,6 @@ title: "JavaScript aggregate_properties_by_regexp function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/aggregate_properties_by_regexp:798
 - /functions/view/aggregate_properties_by_regexp
@@ -112,8 +111,3 @@ undefined
 
 ### Other PHP functions in the objaggregation extension
 {% render_partial _includes/custom/objaggregation.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/aggregate_properties_by_regexp/_comments.html %}
-</div>

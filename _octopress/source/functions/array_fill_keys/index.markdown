@@ -4,7 +4,6 @@ title: "JavaScript array_fill_keys function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/array_fill_keys:315
 - /functions/view/array_fill_keys

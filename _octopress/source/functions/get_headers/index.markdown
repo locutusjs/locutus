@@ -4,7 +4,6 @@ title: "JavaScript get_headers function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/get_headers:415
 - /functions/view/get_headers
@@ -73,8 +72,3 @@ Should return
 
 ### Other PHP functions in the url extension
 {% render_partial _includes/custom/url.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/get_headers/_comments.html %}
-</div>

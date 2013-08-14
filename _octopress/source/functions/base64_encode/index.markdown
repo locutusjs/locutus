@@ -4,7 +4,6 @@ title: "JavaScript base64_encode function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/base64_encode:358
 - /functions/view/base64_encode
@@ -29,7 +28,7 @@ function base64_encode (data) {
   // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
   // mozilla has this native
   // - but breaks in 2.0.0.12!
-  //if (typeof this.window['btoa'] == 'function') {
+  //if (typeof this.window['btoa'] === 'function') {
   //    return btoa(data);
   //}
   var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -84,8 +83,3 @@ Should return
 
 ### Other PHP functions in the url extension
 {% render_partial _includes/custom/url.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/base64_encode/_comments.html %}
-</div>

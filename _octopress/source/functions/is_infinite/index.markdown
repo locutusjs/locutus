@@ -4,7 +4,6 @@ title: "JavaScript is_infinite function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/is_infinite:443
 - /functions/view/is_infinite

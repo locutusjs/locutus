@@ -4,7 +4,6 @@ title: "JavaScript atanh function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/atanh:356
 - /functions/view/atanh

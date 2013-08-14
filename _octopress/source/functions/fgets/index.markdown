@@ -4,7 +4,6 @@ title: "JavaScript fgets function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/fgets:802
 - /functions/view/fgets

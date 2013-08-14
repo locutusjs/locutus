@@ -4,7 +4,6 @@ title: "JavaScript setrawcookie function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/setrawcookie:510
 - /functions/view/setrawcookie
@@ -31,7 +30,7 @@ function setrawcookie (name, value, expires, path, domain, secure) {
 
   if (expires instanceof Date) {
     expires = expires.toGMTString();
-  } else if (typeof(expires) === 'number') {
+  } else if (typeof expires === 'number') {
     expires = (new Date(expires * 1e3)).toGMTString();
   }
 
@@ -70,8 +69,3 @@ true
 
 ### Other PHP functions in the network extension
 {% render_partial _includes/custom/network.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/setrawcookie/_comments.html %}
-</div>

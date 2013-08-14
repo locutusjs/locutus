@@ -4,7 +4,6 @@ title: "JavaScript get_defined_vars function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/get_defined_vars:414
 - /functions/view/get_defined_vars

@@ -4,7 +4,6 @@ title: "JavaScript popen function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/popen:808
 - /functions/view/popen

@@ -4,7 +4,6 @@ title: "JavaScript inet_ntop function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/inet_ntop:882
 - /functions/view/inet_ntop
@@ -72,8 +71,3 @@ Should return
 
 ### Other PHP functions in the network extension
 {% render_partial _includes/custom/network.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/inet_ntop/_comments.html %}
-</div>

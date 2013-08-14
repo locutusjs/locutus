@@ -4,7 +4,6 @@ title: "JavaScript deg2rad function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/deg2rad:386
 - /functions/view/deg2rad

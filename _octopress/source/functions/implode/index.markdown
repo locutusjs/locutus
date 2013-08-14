@@ -4,7 +4,6 @@ title: "JavaScript implode function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/implode:430
 - /functions/view/implode
@@ -33,7 +32,7 @@ function implode (glue, pieces) {
     pieces = glue;
     glue = '';
   }
-  if (typeof(pieces) === 'object') {
+  if (typeof pieces === 'object') {
     if (Object.prototype.toString.call(pieces) === '[object Array]') {
       return pieces.join(glue);
     }
@@ -75,8 +74,3 @@ Should return
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/implode/_comments.html %}
-</div>

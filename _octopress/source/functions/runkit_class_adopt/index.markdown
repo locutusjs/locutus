@@ -4,7 +4,6 @@ title: "JavaScript runkit_class_adopt function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/runkit_class_adopt:820
 - /functions/view/runkit_class_adopt

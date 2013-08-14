@@ -4,7 +4,6 @@ title: "JavaScript bindec function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/bindec:362
 - /functions/view/bindec

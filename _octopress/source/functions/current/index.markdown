@@ -4,7 +4,6 @@ title: "JavaScript current function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/current:379
 - /functions/view/current

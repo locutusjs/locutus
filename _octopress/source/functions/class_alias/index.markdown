@@ -4,7 +4,6 @@ title: "JavaScript class_alias function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/class_alias:858
 - /functions/view/class_alias

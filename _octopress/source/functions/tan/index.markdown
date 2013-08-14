@@ -4,7 +4,6 @@ title: "JavaScript tan function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/tan:560
 - /functions/view/tan

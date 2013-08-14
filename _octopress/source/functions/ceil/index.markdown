@@ -4,7 +4,6 @@ title: "JavaScript ceil function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ceil:365
 - /functions/view/ceil

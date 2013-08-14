@@ -4,7 +4,6 @@ title: "JavaScript doubleval function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/doubleval:389
 - /functions/view/doubleval

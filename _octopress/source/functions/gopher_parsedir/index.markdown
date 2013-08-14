@@ -4,7 +4,6 @@ title: "JavaScript gopher_parsedir function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/gopher_parsedir:833
 - /functions/view/gopher_parsedir

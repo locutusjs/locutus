@@ -4,7 +4,6 @@ title: "JavaScript ctype_cntrl function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ctype_cntrl:753
 - /functions/view/ctype_cntrl

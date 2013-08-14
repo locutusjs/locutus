@@ -4,7 +4,6 @@ title: "JavaScript file function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/file:398
 - /functions/view/file

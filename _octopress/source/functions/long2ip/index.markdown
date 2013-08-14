@@ -4,7 +4,6 @@ title: "JavaScript long2ip function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/long2ip:466
 - /functions/view/long2ip
@@ -45,8 +44,3 @@ Should return
 
 ### Other PHP functions in the network extension
 {% render_partial _includes/custom/network.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/long2ip/_comments.html %}
-</div>

@@ -4,7 +4,6 @@ title: "JavaScript cosh function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/cosh:374
 - /functions/view/cosh

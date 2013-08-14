@@ -4,7 +4,6 @@ title: "JavaScript bcdiv function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/bcdiv:871
 - /functions/view/bcdiv
@@ -38,7 +37,7 @@ function bcdiv (left_operand, right_operand, scale) {
 
   var first, second, result;
 
-  if (typeof(scale) == 'undefined') {
+  if (typeof scale === 'undefined') {
     scale = libbcmath.scale;
   }
   scale = ((scale < 0) ? 0 : scale);

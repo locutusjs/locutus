@@ -4,7 +4,6 @@ title: "JavaScript var_dump function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/var_dump:604
 - /functions/view/var_dump
@@ -193,8 +192,3 @@ Should return
 
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/var_dump/_comments.html %}
-</div>

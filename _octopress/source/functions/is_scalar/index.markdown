@@ -4,7 +4,6 @@ title: "JavaScript is_scalar function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/is_scalar:452
 - /functions/view/is_scalar

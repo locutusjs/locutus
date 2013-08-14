@@ -4,7 +4,6 @@ title: "JavaScript register_shutdown_function function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/register_shutdown_function:810
 - /functions/view/register_shutdown_function
@@ -56,8 +55,3 @@ Should return
 
 ### Other PHP functions in the funchand extension
 {% render_partial _includes/custom/funchand.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/register_shutdown_function/_comments.html %}
-</div>

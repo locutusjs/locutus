@@ -4,7 +4,6 @@ title: "JavaScript preg_quote function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/preg_quote:491
 - /functions/view/preg_quote
@@ -72,8 +71,3 @@ Should return
 
 ### Other PHP functions in the pcre extension
 {% render_partial _includes/custom/pcre.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/preg_quote/_comments.html %}
-</div>

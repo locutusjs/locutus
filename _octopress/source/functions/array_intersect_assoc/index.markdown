@@ -4,7 +4,6 @@ title: "JavaScript array_intersect_assoc function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/array_intersect_assoc:319
 - /functions/view/array_intersect_assoc

@@ -4,7 +4,6 @@ title: "JavaScript aggregation_info function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/aggregation_info:799
 - /functions/view/aggregation_info

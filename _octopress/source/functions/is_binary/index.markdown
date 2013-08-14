@@ -4,7 +4,6 @@ title: "JavaScript is_binary function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/is_binary:591
 - /functions/view/is_binary

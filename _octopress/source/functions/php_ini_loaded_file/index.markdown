@@ -4,7 +4,6 @@ title: "JavaScript php_ini_loaded_file function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/php_ini_loaded_file:601
 - /functions/view/php_ini_loaded_file

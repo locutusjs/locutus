@@ -4,7 +4,6 @@ title: "JavaScript runkit_method_rename function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/runkit_method_rename:817
 - /functions/view/runkit_method_rename

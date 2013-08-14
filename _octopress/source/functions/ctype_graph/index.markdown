@@ -4,7 +4,6 @@ title: "JavaScript ctype_graph function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ctype_graph:755
 - /functions/view/ctype_graph

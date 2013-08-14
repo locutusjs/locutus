@@ -4,7 +4,6 @@ title: "JavaScript array_diff_ukey function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/array_diff_ukey:313
 - /functions/view/array_diff_ukey

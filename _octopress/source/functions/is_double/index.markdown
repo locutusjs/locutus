@@ -4,7 +4,6 @@ title: "JavaScript is_double function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/is_double:440
 - /functions/view/is_double

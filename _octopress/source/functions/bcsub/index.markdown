@@ -4,7 +4,6 @@ title: "JavaScript bcsub function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/bcsub:875
 - /functions/view/bcsub
@@ -35,7 +34,7 @@ function bcsub (left_operand, right_operand, scale) {
 
   var first, second, result;
 
-  if (typeof(scale) == 'undefined') {
+  if (typeof scale === 'undefined') {
     scale = libbcmath.scale;
   }
   scale = ((scale < 0) ? 0 : scale);
@@ -76,8 +75,3 @@ Should return
 
 ### Other PHP functions in the bc extension
 {% render_partial _includes/custom/bc.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/bcsub/_comments.html %}
-</div>

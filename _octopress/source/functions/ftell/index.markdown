@@ -4,7 +4,6 @@ title: "JavaScript ftell function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ftell:806
 - /functions/view/ftell

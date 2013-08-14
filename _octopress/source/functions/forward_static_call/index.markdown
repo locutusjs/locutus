@@ -4,7 +4,6 @@ title: "JavaScript forward_static_call function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/forward_static_call:861
 - /functions/view/forward_static_call
@@ -26,7 +25,7 @@ function forward_static_call (cb, parameters) {
   var func;
 
   if (typeof cb === 'string') {
-    if (typeof this[cb] == 'function') {
+    if (typeof this[cb] === 'function') {
       func = this[cb];
     } else {
       func = (new Function(null, 'return ' + cb))();

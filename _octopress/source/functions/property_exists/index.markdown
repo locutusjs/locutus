@@ -4,7 +4,6 @@ title: "JavaScript property_exists function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/property_exists:495
 - /functions/view/property_exists
@@ -72,8 +71,3 @@ false
 
 ### Other PHP functions in the classobj extension
 {% render_partial _includes/custom/classobj.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/property_exists/_comments.html %}
-</div>

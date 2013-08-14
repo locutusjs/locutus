@@ -4,7 +4,6 @@ title: "JavaScript nl2br function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/nl2br:480
 - /functions/view/nl2br
@@ -78,8 +77,3 @@ Should return
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/nl2br/_comments.html %}
-</div>

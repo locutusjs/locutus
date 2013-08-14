@@ -4,7 +4,6 @@ title: "JavaScript is_resource function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/is_resource:781
 - /functions/view/is_resource
@@ -50,8 +49,3 @@ false
 
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/is_resource/_comments.html %}
-</div>

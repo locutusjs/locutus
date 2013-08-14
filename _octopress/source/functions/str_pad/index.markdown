@@ -4,7 +4,6 @@ title: "JavaScript str_pad function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/str_pad:525
 - /functions/view/str_pad
@@ -91,8 +90,3 @@ Should return
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/str_pad/_comments.html %}
-</div>

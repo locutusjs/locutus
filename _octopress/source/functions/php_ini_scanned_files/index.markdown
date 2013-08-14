@@ -4,7 +4,6 @@ title: "JavaScript php_ini_scanned_files function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/php_ini_scanned_files:602
 - /functions/view/php_ini_scanned_files

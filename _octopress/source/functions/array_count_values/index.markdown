@@ -4,7 +4,6 @@ title: "JavaScript array_count_values function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/array_count_values:308
 - /functions/view/array_count_values
@@ -45,7 +44,7 @@ function array_count_values (array) {
   };
 
   var __countValue = function (value) {
-    switch (typeof(value)) {
+    switch (typeof value) {
     case "number":
       if (Math.floor(value) !== value) {
         return;
@@ -111,8 +110,3 @@ Should return
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/array_count_values/_comments.html %}
-</div>

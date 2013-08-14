@@ -4,7 +4,6 @@ title: "JavaScript xdiff_string_patch function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/xdiff_string_patch:888
 - /functions/view/xdiff_string_patch
@@ -190,7 +189,7 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
 	  newStrArr[newStrArr.length] = origLines[linePos++];
 	}
   }
-  if (typeof(error) === 'string') {
+  if (typeof error === 'string') {
     this.window[error] = errors;
   }
   return newStrArr.join('\n');
@@ -214,8 +213,3 @@ Should return
 
 ### Other PHP functions in the xdiff extension
 {% render_partial _includes/custom/xdiff.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/xdiff_string_patch/_comments.html %}
-</div>

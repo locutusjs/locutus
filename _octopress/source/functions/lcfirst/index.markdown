@@ -4,7 +4,6 @@ title: "JavaScript lcfirst function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/lcfirst:461
 - /functions/view/lcfirst

@@ -4,7 +4,6 @@ title: "JavaScript restore_include_path function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/restore_include_path:854
 - /functions/view/restore_include_path

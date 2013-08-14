@@ -4,7 +4,6 @@ title: "JavaScript array_udiff function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/array_udiff:340
 - /functions/view/array_udiff

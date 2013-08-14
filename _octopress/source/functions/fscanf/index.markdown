@@ -4,7 +4,6 @@ title: "JavaScript fscanf function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/fscanf:885
 - /functions/view/fscanf

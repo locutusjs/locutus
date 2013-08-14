@@ -4,7 +4,6 @@ title: "JavaScript sizeof function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/sizeof:517
 - /functions/view/sizeof

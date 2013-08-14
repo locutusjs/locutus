@@ -4,7 +4,6 @@ title: "JavaScript ini_get_all function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ini_get_all:598
 - /functions/view/ini_get_all

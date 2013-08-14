@@ -4,7 +4,6 @@ title: "JavaScript is_numeric function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/is_numeric:449
 - /functions/view/is_numeric
@@ -34,7 +33,7 @@ function is_numeric (mixed_var) {
   // *     returns 4: false
   // *     example 4: is_numeric([]);
   // *     returns 4: false
-  return (typeof(mixed_var) === 'number' || typeof(mixed_var) === 'string') && mixed_var !== '' && !isNaN(mixed_var);
+  return (typeof mixed_var === 'number' || typeof mixed_var === 'string') && mixed_var !== '' && !isNaN(mixed_var);
 }
 {% endcodeblock %}
 
@@ -77,8 +76,3 @@ true
 
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/is_numeric/_comments.html %}
-</div>

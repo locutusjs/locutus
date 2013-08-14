@@ -48,10 +48,11 @@ titlecase: false       # Converts page and post titles to titlecase
 
 # https://github.com/alswl/octopress-category-list
 default_asides:
+- custom/asides/ads.html
 - custom/asides/category_list.html
-- asides/github.html
-- asides/twitter.html
+- custom/asides/on-the-githubs.html
 - custom/asides/banners.html
+# - asides/twitter.html
 # - custom/asides/category_cloud.html
 #-asides/delicious.html
 #-asides/pinboard.html

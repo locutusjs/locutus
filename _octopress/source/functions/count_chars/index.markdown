@@ -4,7 +4,6 @@ title: "JavaScript count_chars function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/count_chars:376
 - /functions/view/count_chars
@@ -101,8 +100,3 @@ Should return
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/count_chars/_comments.html %}
-</div>

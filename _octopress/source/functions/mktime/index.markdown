@@ -4,7 +4,6 @@ title: "JavaScript mktime function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/mktime:474
 - /functions/view/mktime
@@ -115,8 +114,3 @@ Should return
 
 ### Other PHP functions in the datetime extension
 {% render_partial _includes/custom/datetime.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/mktime/_comments.html %}
-</div>

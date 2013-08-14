@@ -4,7 +4,6 @@ title: "JavaScript xdiff_string_diff function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/xdiff_string_diff:889
 - /functions/view/xdiff_string_diff

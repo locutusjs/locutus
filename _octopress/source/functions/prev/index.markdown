@@ -4,7 +4,6 @@ title: "JavaScript prev function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/prev:492
 - /functions/view/prev

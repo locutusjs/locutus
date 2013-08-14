@@ -4,7 +4,6 @@ title: "JavaScript next function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/next:479
 - /functions/view/next

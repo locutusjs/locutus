@@ -4,7 +4,6 @@ title: "JavaScript is_string function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/is_string:453
 - /functions/view/is_string
@@ -23,7 +22,7 @@ function is_string (mixed_var) {
   // *     returns 1: true
   // *     example 2: is_string(23.5);
   // *     returns 2: false
-  return (typeof(mixed_var) == 'string');
+  return (typeof mixed_var === 'string');
 }
 {% endcodeblock %}
 

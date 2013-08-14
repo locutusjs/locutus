@@ -4,7 +4,6 @@ title: "JavaScript ini_alter function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ini_alter:596
 - /functions/view/ini_alter

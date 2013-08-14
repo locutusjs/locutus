@@ -4,7 +4,6 @@ title: "JavaScript stream_context_get_params function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/stream_context_get_params:847
 - /functions/view/stream_context_get_params

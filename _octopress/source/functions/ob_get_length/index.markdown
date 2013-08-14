@@ -4,7 +4,6 @@ title: "JavaScript ob_get_length function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ob_get_length:897
 - /functions/view/ob_get_length

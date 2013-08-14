@@ -4,7 +4,6 @@ title: "JavaScript error_reporting function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/error_reporting:841
 - /functions/view/error_reporting

@@ -4,7 +4,6 @@ title: "JavaScript intval function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/intval:435
 - /functions/view/intval
@@ -36,7 +35,7 @@ function intval (mixed_var, base) {
   // *     returns 5: 30
   var tmp;
 
-  var type = typeof(mixed_var);
+  var type = typeof mixed_var;
 
   if (type === 'boolean') {
     return +mixed_var;
@@ -90,8 +89,3 @@ Should return
 
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/intval/_comments.html %}
-</div>

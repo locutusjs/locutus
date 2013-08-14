@@ -4,7 +4,6 @@ title: "JavaScript basename function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/basename:360
 - /functions/view/basename
@@ -28,7 +27,7 @@ function basename (path, suffix) {
   // *     returns 2: 'ecra.php?p=1'
   var b = path.replace(/^.*[\/\\]/g, '');
 
-  if (typeof(suffix) == 'string' && b.substr(b.length - suffix.length) == suffix) {
+  if (typeof suffix === 'string' && b.substr(b.length - suffix.length) == suffix) {
     b = b.substr(0, b.length - suffix.length);
   }
 
@@ -64,8 +63,3 @@ Should return
 
 ### Other PHP functions in the filesystem extension
 {% render_partial _includes/custom/filesystem.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/basename/_comments.html %}
-</div>

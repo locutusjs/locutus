@@ -4,7 +4,6 @@ title: "JavaScript htmlspecialchars function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/htmlspecialchars:426
 - /functions/view/htmlspecialchars
@@ -122,8 +121,3 @@ Should return
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/htmlspecialchars/_comments.html %}
-</div>

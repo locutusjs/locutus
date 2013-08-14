@@ -4,7 +4,6 @@ title: "JavaScript get_object_vars function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/get_object_vars:419
 - /functions/view/get_object_vars

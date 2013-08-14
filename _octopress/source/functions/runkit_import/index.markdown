@@ -4,7 +4,6 @@ title: "JavaScript runkit_import function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/runkit_import:812
 - /functions/view/runkit_import

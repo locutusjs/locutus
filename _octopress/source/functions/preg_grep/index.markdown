@@ -4,7 +4,6 @@ title: "JavaScript preg_grep function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/preg_grep:785
 - /functions/view/preg_grep

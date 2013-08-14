@@ -4,7 +4,6 @@ title: "JavaScript ob_flush function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ob_flush:893
 - /functions/view/ob_flush
@@ -71,8 +70,3 @@ undefined
 
 ### Other PHP functions in the outcontrol extension
 {% render_partial _includes/custom/outcontrol.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/ob_flush/_comments.html %}
-</div>

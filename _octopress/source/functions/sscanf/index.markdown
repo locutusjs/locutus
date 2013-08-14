@@ -4,7 +4,6 @@ title: "JavaScript sscanf function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/sscanf:886
 - /functions/view/sscanf

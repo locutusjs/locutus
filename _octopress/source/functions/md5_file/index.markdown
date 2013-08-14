@@ -4,7 +4,6 @@ title: "JavaScript md5_file function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/md5_file:470
 - /functions/view/md5_file
@@ -54,8 +53,3 @@ Should return
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/md5_file/_comments.html %}
-</div>

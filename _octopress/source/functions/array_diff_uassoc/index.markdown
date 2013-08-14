@@ -4,7 +4,6 @@ title: "JavaScript array_diff_uassoc function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/array_diff_uassoc:312
 - /functions/view/array_diff_uassoc
@@ -68,8 +67,3 @@ Should return
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/array_diff_uassoc/_comments.html %}
-</div>

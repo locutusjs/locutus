@@ -4,7 +4,6 @@ title: "JavaScript log1p function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/log1p:783
 - /functions/view/log1p

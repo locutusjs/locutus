@@ -4,7 +4,6 @@ title: "JavaScript print_r function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/print_r:493
 - /functions/view/print_r
@@ -112,8 +111,3 @@ Should return
 
 ### Other PHP functions in the var extension
 {% render_partial _includes/custom/var.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/print_r/_comments.html %}
-</div>

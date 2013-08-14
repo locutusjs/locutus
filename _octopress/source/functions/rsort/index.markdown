@@ -4,7 +4,6 @@ title: "JavaScript rsort function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/rsort:506
 - /functions/view/rsort

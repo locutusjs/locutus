@@ -4,7 +4,6 @@ title: "JavaScript runkit_method_redefine function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/runkit_method_redefine:815
 - /functions/view/runkit_method_redefine

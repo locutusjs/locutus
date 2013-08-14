@@ -4,7 +4,6 @@ title: "JavaScript expm1 function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/expm1:770
 - /functions/view/expm1

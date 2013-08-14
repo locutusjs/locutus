@@ -4,7 +4,6 @@ title: "JavaScript get_resource_type function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/get_resource_type:777
 - /functions/view/get_resource_type

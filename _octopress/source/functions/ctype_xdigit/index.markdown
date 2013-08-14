@@ -4,7 +4,6 @@ title: "JavaScript ctype_xdigit function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ctype_xdigit:761
 - /functions/view/ctype_xdigit

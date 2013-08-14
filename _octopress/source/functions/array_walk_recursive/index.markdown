@@ -4,7 +4,6 @@ title: "JavaScript array_walk_recursive function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/array_walk_recursive:350
 - /functions/view/array_walk_recursive
@@ -30,11 +29,11 @@ function array_walk_recursive (array, funcname, userdata) {
   }
 
   for (key in array) {
-    if (typeof array[key] == 'object') {
+    if (typeof array[key] === 'object') {
       return this.array_walk_recursive(array[key], funcname, userdata);
     }
 
-    if (typeof(userdata) != 'undefined') {
+    if (typeof userdata !== 'undefined') {
       eval(funcname + '( array [key] , key , userdata  )');
     } else {
       eval(funcname + '(  userdata ) ');
@@ -73,8 +72,3 @@ false
 
 ### Other PHP functions in the array extension
 {% render_partial _includes/custom/array.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/array_walk_recursive/_comments.html %}
-</div>

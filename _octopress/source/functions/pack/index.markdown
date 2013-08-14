@@ -4,7 +4,6 @@ title: "JavaScript pack function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/pack:880
 - /functions/view/pack
@@ -97,7 +96,7 @@ function pack (format) {
       for (i = 0; i < quantifier; i += 2) {
         // Always get per 2 bytes...
         word = argument[i];
-        if (((i + 1) >= quantifier) || typeof(argument[i + 1]) === 'undefined') {
+        if (((i + 1) >= quantifier) || typeof argument[i + 1] === 'undefined') {
           word += '0';
         } else {
           word += argument[i + 1];
@@ -381,8 +380,3 @@ Should return
 
 ### Other PHP functions in the misc extension
 {% render_partial _includes/custom/misc.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/pack/_comments.html %}
-</div>

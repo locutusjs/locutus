@@ -4,7 +4,6 @@ title: "JavaScript assert_options function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/assert_options:832
 - /functions/view/assert_options

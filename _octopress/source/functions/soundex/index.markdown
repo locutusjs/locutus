@@ -4,7 +4,6 @@ title: "JavaScript soundex function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/soundex:520
 - /functions/view/soundex
@@ -116,8 +115,3 @@ Should return
 
 ### Other PHP functions in the strings extension
 {% render_partial _includes/custom/strings.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/soundex/_comments.html %}
-</div>

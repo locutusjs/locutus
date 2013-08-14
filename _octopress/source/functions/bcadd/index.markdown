@@ -4,7 +4,6 @@ title: "JavaScript bcadd function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/bcadd:869
 - /functions/view/bcadd
@@ -33,7 +32,7 @@ function bcadd (left_operand, right_operand, scale) {
 
   var first, second, result;
 
-  if (typeof(scale) == 'undefined') {
+  if (typeof scale === 'undefined') {
     scale = libbcmath.scale;
   }
   scale = ((scale < 0) ? 0 : scale);

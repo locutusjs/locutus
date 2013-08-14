@@ -4,7 +4,6 @@ title: "JavaScript func_get_args function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/func_get_args:406
 - /functions/view/func_get_args

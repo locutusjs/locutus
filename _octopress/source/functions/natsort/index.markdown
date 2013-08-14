@@ -4,7 +4,6 @@ title: "JavaScript natsort function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/natsort:478
 - /functions/view/natsort

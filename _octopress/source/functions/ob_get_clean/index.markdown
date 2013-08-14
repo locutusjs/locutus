@@ -4,7 +4,6 @@ title: "JavaScript ob_get_clean function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/ob_get_clean:894
 - /functions/view/ob_get_clean

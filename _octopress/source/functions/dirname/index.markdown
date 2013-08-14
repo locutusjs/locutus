@@ -4,7 +4,6 @@ title: "JavaScript dirname function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/dirname:388
 - /functions/view/dirname
@@ -69,8 +68,3 @@ Should return
 
 ### Other PHP functions in the filesystem extension
 {% render_partial _includes/custom/filesystem.html %}
-## Legacy comments
-These were imported from our old site. Please use disqus below for new comments
-<div style="overflow-y: scroll; max-height: 500px;">
-{% render_partial functions/dirname/_comments.html %}
-</div>

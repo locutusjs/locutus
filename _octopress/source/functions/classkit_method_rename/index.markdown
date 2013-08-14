@@ -4,7 +4,6 @@ title: "JavaScript classkit_method_rename function"
 comments: true
 sharing: true
 footer: true
-sidebar: false
 alias:
 - /functions/view/classkit_method_rename:767
 - /functions/view/classkit_method_rename
