@@ -248,7 +248,7 @@ task :build do
   page_auth.puts "Here are all people involved with php.js"
   page_auth.puts ""
   page_auth.puts "{% render_partial _includes/custom/community.html %}"
-  system "node_modules/on-the-githubs/bin/ghcommunity-cache \
+  system "node_modules/on-the-githubs/bin/in-the-githubs \
      --user kvz \
      --repo phpjs \
      --format html \
