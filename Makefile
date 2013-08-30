@@ -12,6 +12,7 @@ site:
 	git pull && \
 	cd _octopress && \
 	bundle install && \
+	npm install && \
 	rake integrate && \
 	rake build && \
 	rake generate && \
