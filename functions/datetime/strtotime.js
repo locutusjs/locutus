@@ -1,7 +1,7 @@
 function strtotime (text, now) {
     // Convert string representation of date and time to a timestamp
     //
-    // version: 1109.2015
+    // version: 1109.2016
     // discuss at: http://phpjs.org/functions/strtotime
     // +   original by: Caio Ariede (http://caioariede.com)
     // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -12,6 +12,7 @@ function strtotime (text, now) {
     // +   improved by: A. Matías Quezada (http://amatiasq.com)
     // +   improved by: preuter
     // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   improved by: Mirko Faber
     // %        note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
     // *     example 1: strtotime('+1 day', 1129633200);
     // *     returns 1: 1129719600
@@ -33,24 +34,105 @@ function strtotime (text, now) {
         .replace(/[\t\r\n]/g, '')
         .toLowerCase();
 
+    // in contrast to php, js Date.parse function interprets: 
+    // dates given as yyyy-mm-dd as in timezone: UTC, 
+    // dates with "." or "-" as MDY instead of DMY
+    // dates with two-digit years differently
+    // etc...etc...
+    // ...therefore we manually parse lots of common date formats
+    var match = text.match(/^(\d{1,4})([\-\.\/\:])(\d{1,2})([\-\.\/\:])(\d{1,4})(?:\s(\d{1,2}):(\d{2})?:?(\d{2})?)?(?:\s([A-Z]+)?)?$/);
+    if (match && match[2]==match[4]) {
+        if (match[1]>1901) {
+            switch (match[2]) {
+                case '-': {  // YYYY-M-D
+                    if (match[3]>12 | match[5]>31) return(0);
+                    return new Date(match[1], parseInt(match[3], 10) - 1, match[5],
+                    match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                    break;
+                }
+                case '.': {  // YYYY.M.D is not parsed by strtotime()
+                    return(0);
+                    break;
+                }
+                case '/': {  // YYYY/M/D
+                    if (match[3]>12 | match[5]>31) return(0);
+                    return new Date(match[1], parseInt(match[3], 10) - 1, match[5],
+                    match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                    break;
+                }
+            }
+        }
+        else if (match[5]>1901) {
+            switch (match[2]) {
+                case '-': {  // D-M-YYYY
+                    if (match[3]>12 | match[1]>31) return(0);
+                    return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
+                    match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                    break;
+                }
+                case '.': {  // D.M.YYYY
+                    if (match[3]>12 | match[1]>31) return(0);
+                    return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
+                    match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                    break;
+                }
+                case '/': {  // M/D/YYYY
+                    if (match[1]>12 | match[3]>31) return(0);
+                    return new Date(match[5], parseInt(match[1], 10) - 1, match[3],
+                    match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                    break;
+                }
+            }
+        }
+        else {
+            switch (match[2]) {
+                case '-': {  // YY-M-D
+                    if (match[3]>12 | match[5]>31 | (match[1] < 70 & match[1]>38)) return(0);
+                    var year = match[1] >= 0 && match[1] <= 38 ? +match[1] + 2000 : match[1];
+                    return new Date(year, parseInt(match[3], 10) - 1, match[5],
+                    match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                    break;
+                }
+                case '.': {  // D.M.YY or H.MM.SS
+                    if (match[5]>=70) {    // D.M.YY
+                        if (match[3]>12 | match[1]>31) return(0);
+                        return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
+                        match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                    }
+                    else if (match[5]<60 & !(match[6])) {  // H.MM.SS
+                        if (match[1]>23 | match[3]>59) return(0);
+                        var today = new Date();
+                        return new Date(today.getFullYear(), today.getMonth(), today.getDate(),
+                        match[1] || 0, match[3] || 0, match[5] || 0, match[9] || 0) / 1000;
+                    }
+                    else  return(0);  // invalid format, cannot be parsed
+                    break;
+                }
+                case '/': {  // M/D/YY
+                    if (match[1]>12 | match[3]>31 | (match[5] < 70 & match[5]>38)) return(0);
+                    var year = match[5] >= 0 && match[5] <= 38 ? +match[5] + 2000 : match[5];
+                    return new Date(year, parseInt(match[1], 10) - 1, match[3],
+                    match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                    break;
+                }
+                case ':': {  // HH:MM:SS
+                    if (match[1]>23 | match[3]>59 | match[5]>59) return(0);
+                    var today = new Date();
+                    return new Date(today.getFullYear(), today.getMonth(), today.getDate(),
+                    match[1] || 0, match[3] || 0, match[5] || 0) / 1000;
+                    break;
+                }
+            }
+        }
+    }
+    
+    
+    // other formats and "now" should be parsed by Date.parse()
     if (text === 'now') {
         return now === null || isNaN(now) ? new Date().getTime() / 1000 | 0 : now | 0;
     }
     if (!isNaN(parsed = Date.parse(text))) {
         return parsed / 1000 | 0;
-    }
-    if (text === 'now') {
-        return new Date().getTime() / 1000; // Return seconds, not milli-seconds
-    }
-    if (!isNaN(parsed = Date.parse(text))) {
-        return parsed / 1000;
-    }
-
-    match = text.match(/^(\d{2,4})-(\d{2})-(\d{2})(?:\s(\d{1,2}):(\d{2})(?::\d{2})?)?(?:\.(\d+)?)?$/);
-    if (match) {
-        year = match[1] >= 0 && match[1] <= 69 ? +match[1] + 2000 : match[1];
-        return new Date(year, parseInt(match[2], 10) - 1, match[3],
-            match[4] || 0, match[5] || 0, match[6] || 0, match[7] || 0) / 1000;
     }
 
     date = now ? new Date(now * 1000) : new Date();
@@ -136,7 +218,7 @@ function strtotime (text, now) {
     }
 
     // ECMAScript 5 only
-    //if (!match.every(process))
+    // if (!match.every(process))
     //    return false;
 
     return (date.getTime() / 1000);
