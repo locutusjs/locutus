@@ -1,3 +1,1 @@
-function stream_get_meta_data () {
-
-}
+// Not yet ported. Feel like it?

@@ -1,3 +1,1 @@
-function stream_get_transports () {
-
-}
+// Not yet ported. Feel like it?

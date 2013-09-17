@@ -1,3 +1,1 @@
-function stream_copy_to_stream () {
-
-}
+// Not yet ported. Feel like it?

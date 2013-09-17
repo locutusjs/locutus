@@ -1,3 +1,1 @@
-function stream_socket_shutdown () {
-
-}
+// Not yet ported. Feel like it?

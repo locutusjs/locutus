@@ -1,3 +1,1 @@
-function Runkit_Sandbox_Parent () {
-
-}
+// Not yet ported. Feel like it?

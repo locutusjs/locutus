@@ -1,3 +1,1 @@
-function session_write_close () {
-    
-}
+// Not yet ported. Feel like it?

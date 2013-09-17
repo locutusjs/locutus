@@ -1,3 +1,1 @@
-function xdiff_string_rabdiff () {
-
-}
+// Not yet ported. Feel like it?

@@ -1,3 +1,1 @@
-function runkit_lint_file () {
-
-}
+// Not yet ported. Feel like it?

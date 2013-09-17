@@ -1,3 +1,1 @@
-function stream_socket_recvfrom () {
-
-}
+// Not yet ported. Feel like it?

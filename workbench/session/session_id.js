@@ -1,3 +1,1 @@
-function session_id () {
-
-}
+// Not yet ported. Feel like it?

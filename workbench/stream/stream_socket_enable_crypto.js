@@ -1,3 +1,1 @@
-function stream_socket_enable_crypto () {
-
-}
+// Not yet ported. Feel like it?

@@ -1,3 +1,1 @@
-function stream_bucket_prepend () {
-
-}
+// Not yet ported. Feel like it?

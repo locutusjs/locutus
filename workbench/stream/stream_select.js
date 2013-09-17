@@ -1,3 +1,1 @@
-function stream_select () {
-
-}
+// Not yet ported. Feel like it?

@@ -1,3 +1,1 @@
-function runkit_return_value_used () {
-
-}
+// Not yet ported. Feel like it?

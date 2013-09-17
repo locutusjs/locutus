@@ -1,3 +1,1 @@
-function runkit_constant_redefine () {
-
-}
+// Not yet ported. Feel like it?

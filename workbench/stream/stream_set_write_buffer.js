@@ -1,3 +1,1 @@
-function stream_set_write_buffer () {
-
-}
+// Not yet ported. Feel like it?

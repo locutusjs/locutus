@@ -1,3 +1,1 @@
-function stream_bucket_make_writeable () {
-
-}
+// Not yet ported. Feel like it?

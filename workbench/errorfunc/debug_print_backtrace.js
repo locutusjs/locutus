@@ -1,3 +1,1 @@
-function debug_print_backtrace () {
-
-}
+// Not yet ported. Feel like it?

@@ -1,3 +1,1 @@
-function runkit_sandbox_output_handler () {
-
-}
+// Not yet ported. Feel like it?

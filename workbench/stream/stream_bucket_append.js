@@ -1,3 +1,1 @@
-function stream_bucket_append () {
-
-}
+// Not yet ported. Feel like it?

@@ -1,3 +1,1 @@
-function stream_encoding () {
-
-}
+// Not yet ported. Feel like it?

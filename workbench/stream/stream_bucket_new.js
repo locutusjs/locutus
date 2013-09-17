@@ -1,3 +1,1 @@
-function stream_bucket_new () {
-
-}
+// Not yet ported. Feel like it?

@@ -1,3 +1,1 @@
-function xdiff_file_bpatch () {
-
-}
+// Not yet ported. Feel like it?

@@ -1,3 +1,1 @@
-function stream_socket_get_name () {
-
-}
+// Not yet ported. Feel like it?

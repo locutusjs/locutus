@@ -1,3 +1,1 @@
-function xdiff_file_merge3 () {
-
-}
+// Not yet ported. Feel like it?

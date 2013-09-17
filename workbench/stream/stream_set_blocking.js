@@ -1,3 +1,1 @@
-function stream_set_blocking () {
-
-}
+// Not yet ported. Feel like it?

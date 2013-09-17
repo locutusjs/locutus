@@ -1,3 +1,1 @@
-function $_SESSION () {
-
-}
+// Not yet ported. Feel like it?

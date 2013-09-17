@@ -1,3 +1,1 @@
-function session_set_save_handler () {
-
-}
+// Not yet ported. Feel like it?

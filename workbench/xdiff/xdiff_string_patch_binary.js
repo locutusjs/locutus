@@ -1,3 +1,1 @@
-function xdiff_string_patch_binary () {
-
-}
+// Not yet ported. Feel like it?

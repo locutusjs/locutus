@@ -1,3 +1,1 @@
-function Runkit_Sandbox () {
-
-}
+// Not yet ported. Feel like it?

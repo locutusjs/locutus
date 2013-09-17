@@ -1,3 +1,1 @@
-function xdiff_string_diff_binary () {
-
-}
+// Not yet ported. Feel like it?

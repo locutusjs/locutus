@@ -1,3 +1,1 @@
-function stream_socket_accept () {
-
-}
+// Not yet ported. Feel like it?

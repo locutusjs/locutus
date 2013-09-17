@@ -1,3 +1,1 @@
-function xdiff_file_bdiff () {
-
-}
+// Not yet ported. Feel like it?

@@ -1,3 +1,1 @@
-function ob_gzhandler () {
-
-}
+// Not yet ported. Feel like it?

@@ -1,3 +1,1 @@
-function stream_socket_pair () {
-
-}
+// Not yet ported. Feel like it?

@@ -1,3 +1,1 @@
-function stream_resolve_include_path () {
-
-}
+// Not yet ported. Feel like it?

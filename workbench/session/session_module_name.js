@@ -1,3 +1,1 @@
-function session_module_name () {
-
-}
+// Not yet ported. Feel like it?

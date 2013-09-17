@@ -1,3 +1,1 @@
-function session_save_path () {
-    
-}
+// Not yet ported. Feel like it?

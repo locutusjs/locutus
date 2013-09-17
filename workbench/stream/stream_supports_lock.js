@@ -1,3 +1,1 @@
-function stream_supports_lock () {
-
-}
+// Not yet ported. Feel like it?

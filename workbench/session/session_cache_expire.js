@@ -1,3 +1,1 @@
-function session_cache_expire () {
-    
-}
+// Not yet ported. Feel like it?

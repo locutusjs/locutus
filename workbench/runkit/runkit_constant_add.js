@@ -1,3 +1,1 @@
-function runkit_constant_add () {
-
-}
+// Not yet ported. Feel like it?

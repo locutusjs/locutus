@@ -1,3 +1,1 @@
-function stream_set_timeout () {
-
-}
+// Not yet ported. Feel like it?
