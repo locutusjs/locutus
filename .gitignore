@@ -1,7 +1,8 @@
-_tools/_temp/*
+tools/_temp/*
 _octopress/_deploy
 nbproject
 gitup.dat
 .project
 .gitup.dat
-_tests/node_modules/
+tests/node_modules/
+.DS_Store
