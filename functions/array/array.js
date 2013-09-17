@@ -1,5 +1,5 @@
 function array () {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: d3x
   // +      improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: array('Kevin', 'van', 'Zonneveld');

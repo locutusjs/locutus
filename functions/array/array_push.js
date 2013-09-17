@@ -1,5 +1,5 @@
 function array_push (inputArr) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Note also that IE retains information about property position even

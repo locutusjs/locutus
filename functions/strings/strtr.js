@@ -1,5 +1,5 @@
 function strtr (str, from, to) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +      input by: uestla
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

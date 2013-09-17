@@ -1,5 +1,5 @@
 function bcscale (scale) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)this.
   // -    depends on: _phpjs_shared_bc
   // *     example 1: bcscale(1);

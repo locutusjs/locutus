@@ -1,5 +1,5 @@
 function convert_cyr_string (str, from, to) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Assumes and converts to Unicode strings with character
   // %          note 1: code equivalents of the same numbers as in the from or

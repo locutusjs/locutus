@@ -1,5 +1,5 @@
 function is_real (mixed_var) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   //  -   depends on: is_float
   // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes

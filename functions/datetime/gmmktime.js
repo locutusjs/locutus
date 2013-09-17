@@ -1,5 +1,5 @@
 function gmmktime () {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   derived from: mktime
   // *     example 1: gmmktime(14, 10, 2, 2, 1, 2008);

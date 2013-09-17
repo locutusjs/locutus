@@ -1,5 +1,5 @@
 function chop (str, charlist) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   // -    depends on: rtrim
   // *     example 1: rtrim('    Kevin van Zonneveld    ');

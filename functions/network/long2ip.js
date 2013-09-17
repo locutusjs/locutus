@@ -1,5 +1,5 @@
 function long2ip (ip) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Waldo Malqui Silva
   // *     example 1: long2ip( 3221234342 );
   // *     returns 1: '192.0.34.166'

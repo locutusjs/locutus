@@ -1,5 +1,5 @@
 function parse_str (str, array) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Cagri Ekin
   // +   improved by: Michael White (http://getsprink.com)
   // +    tweaked by: Jack

@@ -1,5 +1,5 @@
 function var_export (mixed_expression, bool_return) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Philip Peterson
   // +   improved by: johnrembo
   // +   improved by: Brett Zamir (http://brett-zamir.me)

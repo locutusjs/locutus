@@ -1,5 +1,5 @@
 function call_user_func_array (cb, parameters) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Thiago Mata (http://thiagomata.blog.com)
   // +   revised  by: Jon Hohle
   // +   improved by: Brett Zamir (http://brett-zamir.me)

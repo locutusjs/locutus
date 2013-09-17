@@ -1,5 +1,5 @@
 function strrchr (haystack, needle) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Jason Wong (http://carrot.org/)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

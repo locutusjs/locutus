@@ -1,5 +1,5 @@
 function ctype_xdigit (text) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale
   // *     example 1: ctype_xdigit('01dF');

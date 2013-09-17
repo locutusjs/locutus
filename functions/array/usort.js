@@ -1,5 +1,5 @@
 function usort (inputArr, sorter) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: This function deviates from PHP in returning a copy of the array instead

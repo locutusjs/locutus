@@ -1,5 +1,5 @@
 function array_diff_assoc (arr1) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: 0m3r
   // +    revised by: Brett Zamir (http://brett-zamir.me)

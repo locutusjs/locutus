@@ -1,5 +1,5 @@
 function uksort (inputArr, sorter) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: The examples are correct, this is a new way

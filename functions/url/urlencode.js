@@ -1,5 +1,5 @@
 function urlencode (str) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Philip Peterson
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: AJ

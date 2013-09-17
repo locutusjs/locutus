@@ -1,5 +1,5 @@
 function bin2hex (s) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Onno Marsman
   // +   bugfixed by: Linuxworld

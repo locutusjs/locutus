@@ -1,5 +1,5 @@
 function each (arr) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Ates Goral (http://magnetiq.com)
   // +    revised by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Uses global: php_js to store the array pointer

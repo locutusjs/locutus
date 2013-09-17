@@ -1,5 +1,5 @@
 function cosh (arg) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: cosh(-0.18127180117607017);
   // *     returns 1: 1.0164747716114113

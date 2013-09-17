@@ -1,5 +1,5 @@
 function xdiff_string_patch (originalStr, patch, flags, error) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Steven Levithan (stevenlevithan.com)
   // %        note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not currently supported

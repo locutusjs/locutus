@@ -1,5 +1,5 @@
 function convert_uuencode (str) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Ole Vrijenhoek
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   reimplemented by: Ole Vrijenhoek

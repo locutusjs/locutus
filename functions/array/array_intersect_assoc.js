@@ -1,5 +1,5 @@
 function array_intersect_assoc (arr1) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: These only output associative arrays (would need to be
   // %        note 1: all numeric and counting from zero to be numeric)

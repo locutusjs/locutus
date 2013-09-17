@@ -1,5 +1,5 @@
 function str_shuffle (str) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: shuffled = str_shuffle("abcdef");
   // *     results 1: shuffled.length == 6

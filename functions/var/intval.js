@@ -1,5 +1,5 @@
 function intval (mixed_var, base) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: stensi
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

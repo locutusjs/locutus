@@ -1,5 +1,5 @@
 function reset (arr) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Legaev Andrey
   // +    revised by: Brett Zamir (http://brett-zamir.me)

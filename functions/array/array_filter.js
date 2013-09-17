@@ -1,5 +1,5 @@
 function array_filter (arr, func) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: max4ever
   // +   improved by: Brett Zamir (http://brett-zamir.me)

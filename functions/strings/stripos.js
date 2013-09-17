@@ -1,5 +1,5 @@
 function stripos (f_haystack, f_needle, f_offset) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +     original by: Martijn Wieringa
   // +      revised by: Onno Marsman
   // *         example 1: stripos('ABC', 'a');

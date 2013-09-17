@@ -1,5 +1,5 @@
 function is_nan (val) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // +      input by: Robin
   // *     example 1: is_nan(NaN);

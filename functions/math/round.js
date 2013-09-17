@@ -1,5 +1,5 @@
 function round (value, precision, mode) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Philip Peterson
   // +    revised by: Onno Marsman
   // +      input by: Greenseed

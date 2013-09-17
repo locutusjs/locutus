@@ -1,5 +1,5 @@
 function array_shift (inputArr) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Martijn Wieringa
   // %        note 1: Currently does not handle objects

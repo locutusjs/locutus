@@ -1,5 +1,5 @@
 function sha1_file (str_filename) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // -    depends on: file_get_contents
   // -    depends on: sha1

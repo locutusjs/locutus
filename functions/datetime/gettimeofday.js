@@ -1,5 +1,5 @@
 function gettimeofday (return_float) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // + original by: Brett Zamir (http://brett-zamir.me)
   // +      derived from: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
   // +         parts by: Breaking Par Consulting Inc (http://www.breakingpar.com/bkp/home.nsf/0/87256B280015193F87256CFB006C45F7)

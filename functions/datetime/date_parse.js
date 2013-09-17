@@ -1,5 +1,5 @@
 function date_parse (date) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: strtotime
   // *     example 1: date_parse('2006-12-12 10:00:00.5');

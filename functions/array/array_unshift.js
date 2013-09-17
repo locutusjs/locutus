@@ -1,5 +1,5 @@
 function array_unshift (array) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Martijn Wieringa
   // +   improved by: jmweb

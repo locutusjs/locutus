@@ -1,5 +1,5 @@
 function octdec (oct_string) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Philippe Baumann
   // *     example 1: octdec('77');
   // *     returns 1: 63

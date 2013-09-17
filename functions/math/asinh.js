@@ -1,5 +1,5 @@
 function asinh (arg) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: asinh(8723321.4);
   // *     returns 1: 16.67465779841863

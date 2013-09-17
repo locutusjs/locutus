@@ -1,5 +1,5 @@
 function mt_getrandmax () {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: mt_getrandmax();
   // *     returns 1: 2147483647

@@ -1,5 +1,5 @@
 function array_count_values (array) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Ates Goral (http://magnetiq.com)
   // + namespaced by: Michael White (http://getsprink.com)
   // +      input by: sankai

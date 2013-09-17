@@ -1,5 +1,5 @@
 function inet_ntop (a) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Theriault
   // *     example 1: inet_ntop('\x7F\x00\x00\x01');
   // *     returns 1: '127.0.0.1'

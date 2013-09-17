@@ -1,5 +1,5 @@
 function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   based on: Imgen Tata (http://www.myipdf.com/)
   // +   bugfixed by: Imgen Tata (http://www.myipdf.com/)

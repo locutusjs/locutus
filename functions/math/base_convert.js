@@ -1,5 +1,5 @@
 function base_convert (number, frombase, tobase) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Philippe Baumann
   // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
   // *     example 1: base_convert('A37334', 16, 2);

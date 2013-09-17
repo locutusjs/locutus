@@ -1,5 +1,5 @@
 function base64_encode (data) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Tyler Akins (http://rumkin.com)
   // +   improved by: Bayron Guevara
   // +   improved by: Thunder.m

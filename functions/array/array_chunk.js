@@ -1,5 +1,5 @@
 function array_chunk (input, size, preserve_keys) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Important note: Per the ECMAScript specification, objects may not always iterate in a predictable order

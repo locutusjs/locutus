@@ -1,5 +1,5 @@
 function date (format, timestamp) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

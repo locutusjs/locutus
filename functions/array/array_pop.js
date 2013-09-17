@@ -1,5 +1,5 @@
 function array_pop (inputArr) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: Brett Zamir (http://brett-zamir.me)

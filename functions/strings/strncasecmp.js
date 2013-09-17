@@ -1,5 +1,5 @@
 function strncasecmp (argStr1, argStr2, len) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Saulo Vallory
   // +      input by: Nate
   // +   bugfixed by: Onno Marsman

@@ -1,5 +1,5 @@
 function md5 (str) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // + namespaced by: Michael White (http://getsprink.com)
   // +    tweaked by: Jack

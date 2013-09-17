@@ -1,5 +1,5 @@
 function htmlspecialchars (string, quote_style, charset, double_encode) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Mirek Slugen
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Nathan

@@ -1,5 +1,5 @@
 function rawurldecode (str) {
-    // http://kevin.vanzonneveld.net
+    // From: http://phpjs.org/functions
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // +      input by: travc
     // +      input by: Brett Zamir (http://brett-zamir.me)

@@ -1,5 +1,5 @@
 function pi () {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // +   improved by: dude
   // *     example 1: pi(8723321.4);

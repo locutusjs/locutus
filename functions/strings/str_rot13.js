@@ -1,5 +1,5 @@
 function str_rot13 (str) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   improved by: Ates Goral (http://magnetiq.com)
   // +   bugfixed by: Onno Marsman

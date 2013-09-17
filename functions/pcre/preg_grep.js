@@ -1,5 +1,5 @@
 function preg_grep (pattern, input, flags) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: If pass pattern as string, must escape backslashes, even for single quotes
   // %          note 2: The regular expression itself must be expressed JavaScript style

@@ -1,5 +1,5 @@
 function nl2br (str, is_xhtml) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Philip Peterson
   // +   improved by: Onno Marsman
