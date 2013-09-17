@@ -14,7 +14,7 @@ PhpjsUtil.opener = function (name, cb) {
     var filepath = files[0];
 
     if (!filepath) {
-      return cb('could not find' + name);
+      return cb('could not find ' + __dirname + '/../functions/*/' + name + '.js');
     }
 
     FS.readFile(filepath, 'utf-8', function (err, code) {
