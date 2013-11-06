@@ -5,7 +5,8 @@ echo "module.exports = { " > $output
 
 for dir in `ls functions`;do
 	for file in `ls functions/$dir`;do
-		sed  's/function\s\(.*\)(/\1: function(/g' functions/$dir/$file >> $output
+		#sed  's/function\s\(.*\)(/\1: function(/g' functions/$dir/$file >> $output
+		sed '0,/function/s/function\s\(.*\)(/\1: function(/g' functions/$dir/$file >> $output
 		echo "," >> $output
 	done
 done
