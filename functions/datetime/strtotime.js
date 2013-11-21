@@ -28,7 +28,7 @@ function strtotime (text, now) {
     }
 
     // Unecessary spaces
-    text = text.trim()
+    text = text.replace(/^\s+|\s+$/g, '')
         .replace(/\s{2,}/g, ' ')
         .replace(/[\t\r\n]/g, '')
         .toLowerCase();
