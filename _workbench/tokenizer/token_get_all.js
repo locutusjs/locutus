@@ -365,7 +365,12 @@ function token_get_all (source) {
             }
             line += countNewLines(buffer);
             emitBuffer();
-            i = pos + limit.length - 1;
+            //If limit is not found, set i to the position of the end of the buffered characters
+            if(pos === -1){
+            	i = i + buffer.length;
+            }else{
+            	i = pos + limit.length - 1;
+            }
         },
         //This function is used to split a double quoted string or a heredoc buffer after a variable
         //has been found inside it
