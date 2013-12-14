@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's strchr
 
 {% codeblock strings/strchr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strchr.js raw on github %}
 function strchr (haystack, needle, bool) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Philip Peterson
   // -    depends on: strstr
   // *     example 1: strchr('Kevin van Zonneveld', 'van');
@@ -27,8 +27,17 @@ function strchr (haystack, needle, bool) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strchr.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strchr.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/strings/strchr.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strchr.js)
 
 ### Example 1
 This code

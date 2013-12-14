@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's getlastmod
 
 {% codeblock info/getlastmod.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/getlastmod.js raw on github %}
 function getlastmod () {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Will not work on browsers which don't support document.lastModified
   // *     example 1: getlastmod();
@@ -25,8 +25,17 @@ function getlastmod () {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/getlastmod.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/getlastmod.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/info/getlastmod.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/info/getlastmod.js)
 
 ### Example 1
 This code

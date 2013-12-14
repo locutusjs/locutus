@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's atan2
 
 {% codeblock math/atan2.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/atan2.js raw on github %}
 function atan2 (y, x) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: atan2(1, 1);
   // *     returns 1: 0.7853981633974483
@@ -24,8 +24,17 @@ function atan2 (y, x) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/atan2.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/atan2.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/math/atan2.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/atan2.js)
 
 ### Example 1
 This code

@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's serialize
 
 {% codeblock var/serialize.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/serialize.js raw on github %}
 function serialize (mixed_value) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Arpad Ray (mailto:arpad@php.net)
   // +   improved by: Dino
   // +   bugfixed by: Andrej Pavlovic
@@ -138,8 +138,17 @@ function serialize (mixed_value) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/serialize.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/serialize.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/var/serialize.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/var/serialize.js)
 
 ### Example 1
 This code

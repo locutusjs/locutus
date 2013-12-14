@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's preg_quote
 
 {% codeblock pcre/preg_quote.js lang:js https://raw.github.com/kvz/phpjs/master/functions/pcre/preg_quote.js raw on github %}
 function preg_quote (str, delimiter) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: booeyOH
   // +   improved by: Ates Goral (http://magnetiq.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -32,8 +32,17 @@ function preg_quote (str, delimiter) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/pcre/preg_quote.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/pcre/preg_quote.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/pcre/preg_quote.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/pcre/preg_quote.js)
 
 ### Example 1
 This code

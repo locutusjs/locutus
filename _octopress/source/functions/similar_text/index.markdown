@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's similar_text
 
 {% codeblock strings/similar_text.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/similar_text.js raw on github %}
 function similar_text (first, second, percent) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Rafał Kukawski (http://blog.kukawski.pl)
   // +   bugfixed by: Chris McMacken
   // +   added percent parameter by: Markus Padourek (taken from http://www.kevinhq.com/2012/06/php-similartext-function-in-javascript_16.html)
@@ -75,8 +75,17 @@ function similar_text (first, second, percent) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/similar_text.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/similar_text.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/strings/similar_text.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/similar_text.js)
 
 ### Example 1
 This code

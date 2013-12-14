@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's trim
 
 {% codeblock strings/trim.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/trim.js raw on github %}
 function trim (str, charlist) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: mdsjack (http://www.mdsjack.bo.it)
   // +   improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
@@ -65,8 +65,17 @@ function trim (str, charlist) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/trim.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/trim.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/strings/trim.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/trim.js)
 
 ### Example 1
 This code

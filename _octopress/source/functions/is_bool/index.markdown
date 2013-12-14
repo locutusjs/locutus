@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's is_bool
 
 {% codeblock var/is_bool.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_bool.js raw on github %}
 function is_bool (mixed_var) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // +   improved by: CoursesWeb (http://www.coursesweb.net/)
   // *     example 1: is_bool(false);
@@ -27,8 +27,17 @@ function is_bool (mixed_var) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/var/is_bool.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/var/is_bool.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/var/is_bool.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/var/is_bool.js)
 
 ### Example 1
 This code

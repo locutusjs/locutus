@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's ip2long
 
 {% codeblock network/ip2long.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/ip2long.js raw on github %}
 function ip2long (IP) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Waldo Malqui Silva
   // +   improved by: Victor
   // +    revised by: fearphage (http://http/my.opera.com/fearphage/)
@@ -52,8 +52,17 @@ function ip2long (IP) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/network/ip2long.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/network/ip2long.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/network/ip2long.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/network/ip2long.js)
 
 ### Example 1
 This code

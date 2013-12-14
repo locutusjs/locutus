@@ -17,7 +17,6 @@ footer: true
  - [convert_uuencode](/functions/convert_uuencode)
  - [count_chars](/functions/count_chars)
  - [crc32](/functions/crc32)
- - [echo](/functions/echo)
  - [explode](/functions/explode)
  - [get_html_translation_table](/functions/get_html_translation_table)
  - [html_entity_decode](/functions/html_entity_decode)

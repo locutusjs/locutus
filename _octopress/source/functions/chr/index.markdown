@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's chr
 
 {% codeblock strings/chr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/chr.js raw on github %}
 function chr (codePt) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: chr(75);
@@ -34,8 +34,17 @@ function chr (codePt) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/chr.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/chr.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/strings/chr.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/chr.js)
 
 ### Example 1
 This code

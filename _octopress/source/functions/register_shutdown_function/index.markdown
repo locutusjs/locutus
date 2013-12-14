@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's register_shutdown_function
 
 {% codeblock funchand/register_shutdown_function.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/register_shutdown_function.js raw on github %}
 function register_shutdown_function (cb) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: register_shutdown_function(function(first, middle, last) {alert('Goodbye '+first+' '+middle+' '+last+'!');}, 'Kevin', 'van', 'Zonneveld');
   // *     returns 1: 'Goodbye Kevin van Zonneveld!'
@@ -38,8 +38,17 @@ function register_shutdown_function (cb) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/funchand/register_shutdown_function.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/funchand/register_shutdown_function.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/funchand/register_shutdown_function.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/funchand/register_shutdown_function.js)
 
 ### Example 1
 This code

@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's str_word_count
 
 {% codeblock strings/str_word_count.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_word_count.js raw on github %}
 function str_word_count (str, format, charlist) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Ole Vrijenhoek
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
@@ -119,8 +119,17 @@ function str_word_count (str, format, charlist) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/str_word_count.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/str_word_count.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/strings/str_word_count.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/str_word_count.js)
 
 ### Example 1
 This code

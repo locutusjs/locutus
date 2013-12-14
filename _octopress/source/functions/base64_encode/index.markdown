@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's base64_encode
 
 {% codeblock url/base64_encode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/base64_encode.js raw on github %}
 function base64_encode (data) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Tyler Akins (http://rumkin.com)
   // +   improved by: Bayron Guevara
   // +   improved by: Thunder.m
@@ -66,8 +66,17 @@ function base64_encode (data) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/url/base64_encode.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/url/base64_encode.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/url/base64_encode.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/url/base64_encode.js)
 
 ### Example 1
 This code

@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's chunk_split
 
 {% codeblock strings/chunk_split.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/chunk_split.js raw on github %}
 function chunk_split (body, chunklen, end) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -37,8 +37,17 @@ function chunk_split (body, chunklen, end) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/chunk_split.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/chunk_split.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/strings/chunk_split.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/chunk_split.js)
 
 ### Example 1
 This code

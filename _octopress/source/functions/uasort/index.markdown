@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's uasort
 
 {% codeblock array/uasort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/uasort.js raw on github %}
 function uasort (inputArr, sorter) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Theriault
@@ -72,8 +72,17 @@ function uasort (inputArr, sorter) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/uasort.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/uasort.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/array/uasort.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/uasort.js)
 
 
 ### Other PHP functions in the array extension

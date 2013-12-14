@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's time
 
 {% codeblock datetime/time.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/time.js raw on github %}
 function time () {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: GeekFG (http://geekfg.blogspot.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: metjay
@@ -27,8 +27,17 @@ function time () {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/datetime/time.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/datetime/time.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/datetime/time.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/datetime/time.js)
 
 
 ### Other PHP functions in the datetime extension

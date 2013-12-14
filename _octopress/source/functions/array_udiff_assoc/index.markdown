@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's array_udiff_assoc
 
 {% codeblock array/array_udiff_assoc.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_udiff_assoc.js raw on github %}
 function array_udiff_assoc (arr1) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: array_udiff_assoc({0: 'kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'}, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 == string2) return 0; return -1;});
   // *     returns 1: {1: 'van', 2: 'Zonneveld'}
@@ -46,8 +46,17 @@ function array_udiff_assoc (arr1) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_udiff_assoc.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_udiff_assoc.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/array/array_udiff_assoc.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_udiff_assoc.js)
 
 ### Example 1
 This code

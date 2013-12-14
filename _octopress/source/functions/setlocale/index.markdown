@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's setlocale
 
 {% codeblock strings/setlocale.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/setlocale.js raw on github %}
 function setlocale (category, locale) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   derived from: Blues at http://hacks.bluesmoon.info/strftime/strftime.js
   // +   derived from: YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html
@@ -354,8 +354,17 @@ function setlocale (category, locale) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/setlocale.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/setlocale.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/strings/setlocale.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/setlocale.js)
 
 ### Example 1
 This code

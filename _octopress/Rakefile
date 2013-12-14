@@ -164,7 +164,7 @@ task :build do
       page_fnc.puts "the closest match to this hashtable-like data structure. "
       page_fnc.puts ""
       page_fnc.puts "Please also note that php.js offers community built functions and goes by the "
-      page_fnc.puts "[McDonald\’s Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online "
+      page_fnc.puts "[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online "
       page_fnc.puts "functions that are far from perfect, in the hopes to spark better contributions. "
       page_fnc.puts "Do you have one? Then please just: "
       page_fnc.puts ""

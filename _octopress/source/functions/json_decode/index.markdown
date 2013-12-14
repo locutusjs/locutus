@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's json_decode
 
 {% codeblock json/json_decode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/json/json_decode.js raw on github %}
 function json_decode (str_json) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +      original by: Public Domain (http://www.json.org/json2.js)
   // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      improved by: T.J. Leahy
@@ -90,8 +90,17 @@ function json_decode (str_json) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/json/json_decode.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/json/json_decode.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/json/json_decode.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/json/json_decode.js)
 
 ### Example 1
 This code

@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's base_convert
 
 {% codeblock math/base_convert.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/base_convert.js raw on github %}
 function base_convert (number, frombase, tobase) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Philippe Baumann
   // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
   // *     example 1: base_convert('A37334', 16, 2);
@@ -25,8 +25,17 @@ function base_convert (number, frombase, tobase) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/math/base_convert.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/math/base_convert.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/math/base_convert.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/base_convert.js)
 
 ### Example 1
 This code

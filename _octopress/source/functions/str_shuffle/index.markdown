@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's str_shuffle
 
 {% codeblock strings/str_shuffle.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_shuffle.js raw on github %}
 function str_shuffle (str) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: shuffled = str_shuffle("abcdef");
   // *     results 1: shuffled.length == 6
@@ -43,8 +43,17 @@ function str_shuffle (str) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/str_shuffle.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/str_shuffle.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/strings/str_shuffle.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/str_shuffle.js)
 
 
 ### Other PHP functions in the strings extension

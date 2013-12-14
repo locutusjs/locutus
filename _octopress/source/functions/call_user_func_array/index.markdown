@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's call_user_func_array
 
 {% codeblock funchand/call_user_func_array.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/call_user_func_array.js raw on github %}
 function call_user_func_array (cb, parameters) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Thiago Mata (http://thiagomata.blog.com)
   // +   revised  by: Jon Hohle
   // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -46,8 +46,17 @@ function call_user_func_array (cb, parameters) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/funchand/call_user_func_array.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/funchand/call_user_func_array.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/funchand/call_user_func_array.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/funchand/call_user_func_array.js)
 
 ### Example 1
 This code

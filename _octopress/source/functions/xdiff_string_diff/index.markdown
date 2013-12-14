@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's xdiff_string_diff
 
 {% codeblock xdiff/xdiff_string_diff.js lang:js https://raw.github.com/kvz/phpjs/master/functions/xdiff/xdiff_string_diff.js raw on github %}
 function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   based on: Imgen Tata (http://www.myipdf.com/)
   // +   bugfixed by: Imgen Tata (http://www.myipdf.com/)
@@ -434,8 +434,17 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/xdiff/xdiff_string_diff.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/xdiff/xdiff_string_diff.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/xdiff/xdiff_string_diff.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/xdiff/xdiff_string_diff.js)
 
 ### Example 1
 This code

@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's strnatcmp
 
 {% codeblock strings/strnatcmp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strnatcmp.js raw on github %}
 function strnatcmp (f_string1, f_string2, f_version) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Martijn Wieringa
   // + namespaced by: Michael White (http://getsprink.com)
   // +    tweaked by: Jack
@@ -139,8 +139,17 @@ function strnatcmp (f_string1, f_string2, f_version) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/strnatcmp.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/strnatcmp.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/strings/strnatcmp.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strnatcmp.js)
 
 ### Example 1
 This code

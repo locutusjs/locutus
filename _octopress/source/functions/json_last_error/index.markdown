@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's json_last_error
 
 {% codeblock json/json_last_error.js lang:js https://raw.github.com/kvz/phpjs/master/functions/json/json_last_error.js raw on github %}
 function json_last_error () {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: json_last_error();
   // *     returns 1: 0
@@ -32,8 +32,17 @@ function json_last_error () {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/json/json_last_error.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/json/json_last_error.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/json/json_last_error.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/json/json_last_error.js)
 
 ### Example 1
 This code

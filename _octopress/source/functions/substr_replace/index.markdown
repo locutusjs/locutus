@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's substr_replace
 
 {% codeblock strings/substr_replace.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/substr_replace.js raw on github %}
 function substr_replace (str, replace, start, length) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 0);
   // *     returns 1: 'bob'
@@ -42,8 +42,17 @@ function substr_replace (str, replace, start, length) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/substr_replace.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/substr_replace.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/strings/substr_replace.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/substr_replace.js)
 
 ### Example 1
 This code

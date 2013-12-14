@@ -16,7 +16,7 @@ A JavaScript equivalent of PHP's array_intersect_uassoc
 
 {% codeblock array/array_intersect_uassoc.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_intersect_uassoc.js raw on github %}
 function array_intersect_uassoc (arr1) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
   // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
@@ -54,8 +54,17 @@ function array_intersect_uassoc (arr1) {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array_intersect_uassoc.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array_intersect_uassoc.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/array/array_intersect_uassoc.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_intersect_uassoc.js)
 
 ### Example 1
 This code
