@@ -1,5 +1,5 @@
 function money_format (format, number) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: daniel airton wermann (http://wermann.com.br)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

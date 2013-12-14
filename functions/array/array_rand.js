@@ -1,5 +1,5 @@
 function array_rand (input, num_req) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Waldo Malqui Silva
   // *     example 1: array_rand( ['Kevin'], 1 );
   // *     returns 1: 0

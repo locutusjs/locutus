@@ -1,5 +1,5 @@
 function serialize (mixed_value) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Arpad Ray (mailto:arpad@php.net)
   // +   improved by: Dino
   // +   bugfixed by: Andrej Pavlovic

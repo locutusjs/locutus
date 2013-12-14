@@ -1,5 +1,5 @@
 function get_defined_functions () {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Test case 1: If get_defined_functions can find itself in the defined functions, it worked :)

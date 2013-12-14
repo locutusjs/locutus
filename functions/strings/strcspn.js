@@ -1,5 +1,5 @@
 function strcspn (str, mask, start, length) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: strcspn('abcdefg123', '1234567890');
   // *     returns 1: 7

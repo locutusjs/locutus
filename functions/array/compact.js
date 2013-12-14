@@ -1,5 +1,5 @@
 function compact () {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Waldo Malqui Silva
   // +    tweaked by: Jack
   // +      input by: Brett Zamir (http://brett-zamir.me)

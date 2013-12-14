@@ -1,5 +1,5 @@
 function str_replace (search, replace, subject, count) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Gabriel Paderni
   // +   improved by: Philip Peterson

@@ -1,5 +1,5 @@
 function stristr (haystack, needle, bool) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfxied by: Onno Marsman
   // *     example 1: stristr('Kevin van Zonneveld', 'Van');

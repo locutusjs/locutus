@@ -1,5 +1,5 @@
 function array_merge_recursive (arr1, arr2) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Subhasis Deb
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

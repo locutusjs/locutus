@@ -1,5 +1,5 @@
 function ip2long (IP) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Waldo Malqui Silva
   // +   improved by: Victor
   // +    revised by: fearphage (http://http/my.opera.com/fearphage/)

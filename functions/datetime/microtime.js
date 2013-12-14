@@ -1,5 +1,5 @@
 function microtime (get_as_float) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   // *     example 1: timeStamp = microtime(true);
   // *     results 1: timeStamp > 1000000000 && timeStamp < 2000000000

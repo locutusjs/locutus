@@ -1,3 +1,0 @@
-function stream_encoding () {
-
-}

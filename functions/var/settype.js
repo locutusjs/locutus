@@ -1,5 +1,5 @@
 function settype (vr, type) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Waldo Malqui Silva
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    revised by: Brett Zamir (http://brett-zamir.me)

@@ -1,5 +1,5 @@
 function chr (codePt) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: chr(75);

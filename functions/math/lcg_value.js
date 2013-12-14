@@ -1,5 +1,5 @@
 function lcg_value () {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   return Math.random();
 }

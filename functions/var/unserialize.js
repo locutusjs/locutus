@@ -1,5 +1,5 @@
 function unserialize (data) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +     original by: Arpad Ray (mailto:arpad@php.net)
   // +     improved by: Pedro Tainha (http://www.pedrotainha.com)
   // +     bugfixed by: dptr1988

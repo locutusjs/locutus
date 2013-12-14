@@ -1,5 +1,5 @@
 function html_entity_decode (string, quote_style) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: john (http://www.jd-tech.net)
   // +      input by: ger
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

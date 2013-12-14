@@ -1,5 +1,5 @@
 function basename (path, suffix) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Ash Searle (http://hexmen.com/blog/)
   // +   improved by: Lincoln Ramsay

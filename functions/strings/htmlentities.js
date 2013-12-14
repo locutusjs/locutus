@@ -1,5 +1,5 @@
 function htmlentities (string, quote_style, charset, double_encode) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: nobbler

@@ -1,5 +1,5 @@
 function getdate (timestamp) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   // +   input by: Alex
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

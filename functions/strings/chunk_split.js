@@ -1,5 +1,5 @@
 function chunk_split (body, chunklen, end) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

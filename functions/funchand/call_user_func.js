@@ -1,5 +1,5 @@
 function call_user_func (cb) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Diplom@t (http://difane.com/)
   // +   improved by: Brett Zamir (http://brett-zamir.me)

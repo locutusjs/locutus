@@ -1,5 +1,5 @@
 function array_key_exists (key, search) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Felix Geisendoerfer (http://www.debuggable.com/felix)
   // *     example 1: array_key_exists('kevin', {'kevin': 'van Zonneveld'});

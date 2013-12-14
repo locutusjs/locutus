@@ -1,5 +1,5 @@
 function is_object (mixed_var) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Legaev Andrey
   // +   improved by: Michael White (http://getsprink.com)

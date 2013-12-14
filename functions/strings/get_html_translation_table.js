@@ -1,5 +1,5 @@
 function get_html_translation_table (table, quote_style) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Philip Peterson
   // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: noname

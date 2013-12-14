@@ -1,5 +1,5 @@
 function deg2rad (angle) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Enrique Gonzalez
   // +     improved by: Thomas Grainger (http://graingert.co.uk)
   // *     example 1: deg2rad(45);

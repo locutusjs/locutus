@@ -1,5 +1,5 @@
 function is_bool (mixed_var) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // +   improved by: CoursesWeb (http://www.coursesweb.net/)
   // *     example 1: is_bool(false);

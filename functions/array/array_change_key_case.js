@@ -1,5 +1,5 @@
 function array_change_key_case (array, cs) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Ates Goral (http://magnetiq.com)
   // +   improved by: marrtins
   // +      improved by: Brett Zamir (http://brett-zamir.me)

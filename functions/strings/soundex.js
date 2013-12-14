@@ -1,5 +1,5 @@
 function soundex (str) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +    tweaked by: Jack
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

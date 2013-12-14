@@ -1,5 +1,5 @@
 function levenshtein (s1, s2) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +            original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // +            bugfixed by: Onno Marsman
   // +             revised by: Andrea Giammarchi (http://webreflection.blogspot.com)

@@ -1,5 +1,5 @@
 function utf8_decode (str_data) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // +      input by: Aman Gupta
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

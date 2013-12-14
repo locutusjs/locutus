@@ -1,5 +1,5 @@
 function array_diff_uassoc (arr1) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
   // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}

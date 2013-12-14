@@ -1,3 +1,0 @@
-function Runkit_Sandbox () {
-
-}

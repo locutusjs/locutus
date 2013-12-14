@@ -1,3 +1,0 @@
-function ob_gzhandler () {
-
-}

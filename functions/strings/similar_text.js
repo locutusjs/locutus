@@ -1,5 +1,5 @@
 function similar_text (first, second, percent) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Rafał Kukawski (http://blog.kukawski.pl)
   // +   bugfixed by: Chris McMacken
   // +   added percent parameter by: Markus Padourek (taken from http://www.kevinhq.com/2012/06/php-similartext-function-in-javascript_16.html)

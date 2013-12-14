@@ -1,5 +1,5 @@
 function array_sum (array) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Nate
   // +   bugfixed by: Gilbert

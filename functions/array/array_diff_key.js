@@ -1,5 +1,5 @@
 function array_diff_key (arr1) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Ates Goral (http://magnetiq.com)
   // +    revised by: Brett Zamir (http://brett-zamir.me)
   // +    input by: Everlasto

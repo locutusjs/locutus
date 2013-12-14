@@ -1,5 +1,5 @@
 function in_array (needle, haystack, argStrict) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: vlado houba
   // +   input by: Billy

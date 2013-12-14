@@ -1,5 +1,5 @@
 function gmdate (format, timestamp) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Alex
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

@@ -1,3 +1,0 @@
-function runkit_lint () {
-
-}

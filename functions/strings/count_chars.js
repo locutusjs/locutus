@@ -1,5 +1,5 @@
 function count_chars (str, mode) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Ates Goral (http://magnetiq.com)
   // +    tweaked by: Jack
   // +   bugfixed by: Onno Marsman

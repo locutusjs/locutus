@@ -1,5 +1,5 @@
 function crc32 (str) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // +   improved by: T0bsn
   // -    depends on: utf8_encode

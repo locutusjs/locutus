@@ -1,5 +1,5 @@
 function array_unique (inputArr) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // +      input by: duncan
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

@@ -1,5 +1,5 @@
 function array_diff_ukey (arr1) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: $array1 = {blue: 1, red: 2, green: 3, purple: 4}
   // *     example 1: $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}

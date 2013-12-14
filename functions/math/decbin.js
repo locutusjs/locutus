@@ -1,5 +1,5 @@
 function decbin (number) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Enrique Gonzalez
   // +   bugfixed by: Onno Marsman
   // +   improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript

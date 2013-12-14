@@ -1,5 +1,5 @@
 function http_build_query (formdata, numeric_prefix, arg_separator) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Legaev Andrey
   // +   improved by: Michael White (http://getsprink.com)

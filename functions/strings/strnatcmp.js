@@ -1,5 +1,5 @@
 function strnatcmp (f_string1, f_string2, f_version) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Martijn Wieringa
   // + namespaced by: Michael White (http://getsprink.com)
   // +    tweaked by: Jack

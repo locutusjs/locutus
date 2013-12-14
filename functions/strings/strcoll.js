@@ -1,5 +1,5 @@
 function strcoll (str1, str2) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale

@@ -1,5 +1,5 @@
 function array_flip (trans) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      improved by: Pier Paolo Ramon (http://www.mastersoup.com/)
   // +      improved by: Brett Zamir (http://brett-zamir.me)

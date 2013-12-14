@@ -1,5 +1,5 @@
 function quotemeta (str) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   // *     example 1: quotemeta(". + * ? ^ ( $ )");
   // *     returns 1: '\. \+ \* \? \^ \( \$ \)'

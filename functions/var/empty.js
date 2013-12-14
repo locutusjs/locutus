@@ -4,7 +4,7 @@ function empty (mixed_var) {
   // string "0", objects without properties and empty arrays
   // are considered empty
   //
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Philippe Baumann
   // +      input by: Onno Marsman
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

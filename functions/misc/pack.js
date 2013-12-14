@@ -1,5 +1,5 @@
 function pack (format) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Tim de Koning (http://www.kingsquare.nl)
   // +      parts by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   bugfixed by: Tim de Koning (http://www.kingsquare.nl)

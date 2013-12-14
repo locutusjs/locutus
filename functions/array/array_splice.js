@@ -1,5 +1,5 @@
 function array_splice (arr, offst, lgth, replacement) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Theriault
   // %        note 1: Order does get shifted in associative array input with numeric indices,

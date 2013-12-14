@@ -1,5 +1,5 @@
 function fmod (x, y) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

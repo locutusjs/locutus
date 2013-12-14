@@ -1,5 +1,5 @@
 function preg_quote (str, delimiter) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: booeyOH
   // +   improved by: Ates Goral (http://magnetiq.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

@@ -1,5 +1,5 @@
 function log10 (arg) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Philip Peterson
   // +   improved by: Onno Marsman
   // +   improved by: Tod Gentille

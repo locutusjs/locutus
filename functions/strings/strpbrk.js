@@ -1,5 +1,5 @@
 function strpbrk (haystack, char_list) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
   // +   bugfixed by: Onno Marsman
   // +    revised by: Christoph

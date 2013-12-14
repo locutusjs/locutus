@@ -1,5 +1,5 @@
 function extract (arr, type, prefix) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Only works by extracting into global context (whether called in the global scope or
   // %        note 1: within a function); also, the EXTR_REFS flag I believe can't be made to work
