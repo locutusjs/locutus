@@ -1,7 +1,7 @@
 setup:
 	git pull && \
 	cd _octopress && \
-	rake setup_github_pages\[git@github.com:kvz/phpjs.git\] && \
+	bundle exec rake setup_github_pages\[git@github.com:kvz/phpjs.git\] && \
 	cd .. ; \
 
 test:
@@ -13,10 +13,10 @@ site:
 	cd _octopress && \
 	bundle install && \
 	npm install && \
-	rake integrate && \
-	rake build && \
-	rake generate && \
-	rake deploy ; \
+	bundle exec rake integrate && \
+	bundle exec rake build && \
+	bundle exec rake generate && \
+	bundle exec rake deploy ; \
 	cd .. ; \
 	git add . ; \
 	git commit -am "Update site" ; \
@@ -26,14 +26,14 @@ site-clean:
 	cd _octopress && \
 	git clean -fd ; \
 	git reset --hard ; \
-	rake clean ; \
+	bundle exec rake clean ; \
 	cd ..
 
 site-preview:
 	cd _octopress && \
-	rake build && \
-	rake generate && \
-	rake preview ; \
+	bundle exec rake build && \
+	bundle exec rake generate && \
+	bundle exec rake preview ; \
 	cd ..
 
 .PHONY: site%
