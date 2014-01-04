@@ -1,5 +1,4 @@
 
-
 function strtotime(text, now) {
     // Convert string representation of date and time to a timestamp
     //
@@ -36,9 +35,7 @@ function strtotime(text, now) {
         .toLowerCase();
 
     if (text === 'now') {
-        return now === null || isNaN(now) ?
-            new Date().getTime() / 1000 | 0 :
-            now | 0;
+        return now === null || isNaN(now) ? new Date().getTime() / 1000 | 0 : now | 0;
     }
 
     match = text.match(/^(\d{2,4})-(\d{2})-(\d{2})(?:\s(\d{1,2}):(\d{2})(?::\d{2})?)?(?:\.(\d+)?)?$/);
