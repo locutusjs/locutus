@@ -7,6 +7,7 @@ if (typeof require !== 'undefined') {
 
 function PhpjsUtil(config) {
   this.injectDependencies = [];
+  this.equal;
 
   // Overwrite properties with config
   for (var k in config) {
@@ -288,7 +289,9 @@ PhpjsUtil.prototype.test = function(params, cb) {
       var jsonExpected = JSON.stringify(test.expected, undefined, 2);
       var jsonResult   = JSON.stringify(test.result, undefined, 2);
 
-      if (jsonExpected !== jsonResult) {
+      // We cannot compare using the JSON.stringify as object order is
+      // not guaranteed
+      if (!self.equal(test.expected, test.result)) {
         err = 'expected: \n' + jsonExpected + '\n\n' +
               'returned: \n' + jsonResult + '\n';
         cb(err, test, params);

@@ -3,9 +3,12 @@ var FS        = require('fs');
 var glob      = require('glob');
 var path      = require('path');
 var phpjsutil = new require('./phpjsutil');
+var equal     = require('deep-equal');
+
 
 var PhpjsUtil = phpjsutil({
-  injectDependencies: [ 'ini_set', 'ini_get' ]
+  injectDependencies: [ 'ini_set', 'ini_get' ],
+  equal: equal
 });
 
 // Environment-specific file opener. function name needs to

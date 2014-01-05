@@ -12,6 +12,7 @@ function array_count_values (array) {
   // *     returns 2: {3:2, 5:1, "foo":2, "bar":1}
   // *     example 3: array_count_values([ true, 4.2, 42, "fubar" ]);
   // *     returns 3: {42:1, "fubar":1}
+
   var tmp_arr = {},
     key = '',
     t = '';
@@ -50,5 +51,6 @@ function array_count_values (array) {
       }
     }
   }
+
   return tmp_arr;
 }
