@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kvz/phpjs.png?branch=travis)](https://travis-ci.org/kvz/phpjs)
+[![Build Status](https://travis-ci.org/kvz/phpjs.png?branch=master)](https://travis-ci.org/kvz/phpjs)
 
 # php.js 
 
