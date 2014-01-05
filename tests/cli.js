@@ -99,10 +99,10 @@ cli.main(function(args, options) {
         PhpjsUtil.test(params, function(err, test, params) {
           if (!err) {
             self.pass_cnt++;
-            cli.debug('--> ' + params['name'] + '#' + test['number'] + ' passed. ');
+            cli.debug('--> ' + params['name'] + '#' + (+test['number'] + 1) + ' passed. ');
           } else {
             self.fail_cnt++;
-            cli.error('--> ' + params['name'] + '#' + test['number'] + ' failed. ');
+            cli.error('--> ' + params['name'] + '#' + (+test['number'] + 1) + ' failed. ');
             cli.error(err);
             if (options.abort) {
               cli.fatal('Aborting on first failure as instructed. ');
