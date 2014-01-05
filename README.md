@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/kvz/phpjs.png?branch=travis)](https://travis-ci.org/kvz/phpjs)
+
+# php.js 
+
 php.js is a resource that offers community-built JavaScript alternatives to PHP functions.
 
 More info at: http://phpjs.org/about
