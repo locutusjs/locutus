@@ -57,7 +57,7 @@ cli.pad = function(str, pad, chr, dir) {
 var width = 120;
 
 cli.main(function(args, options) {
-  var self = this;
+  var self     = this;
   var globpath = __dirname + '/../functions/' + options.category + '/' + options.name + '.js';
 
   process.on('exit', function (){
@@ -78,9 +78,9 @@ cli.main(function(args, options) {
       }
     }
 
-    self.pass_cnt  = 0;
-    self.fail_cnt  = 0;
-    self.skip_cnt  = 0;
+    self.pass_cnt = 0;
+    self.fail_cnt = 0;
+    self.skip_cnt = 0;
 
     names.forEach(function(name) {
       PhpjsUtil.load(name, function (err, params) {
