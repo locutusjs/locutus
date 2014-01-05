@@ -5,8 +5,8 @@ setup:
 	cd .. ; \
 
 test:
-	cd tests && npm install
-	find functions -type f |grep -v '/_' |sed 's@\.js$$@@g' |awk -F/ '{print "node tests/cli.js -f "$$NF}' |bash
+	#node tests/cli.js --debug --abort # To abort at first failure
+	node tests/cli.js --debug
 
 site:
 	git pull && \
