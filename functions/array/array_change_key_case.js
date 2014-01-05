@@ -2,7 +2,7 @@ function array_change_key_case (array, cs) {
   // From: http://phpjs.org/functions
   // +   original by: Ates Goral (http://magnetiq.com)
   // +   improved by: marrtins
-  // +      improved by: Brett Zamir (http://brett-zamir.me)
+  // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: array_change_key_case(42);
   // *     returns 1: false
   // *     example 2: array_change_key_case([ 3, 5 ]);
@@ -19,7 +19,7 @@ function array_change_key_case (array, cs) {
   // *     example 7: var arr = array({a: 0}, {B: 1}, {c: 2});
   // *     example 7: var newArr = array_change_key_case(arr);
   // *     example 7: newArr.b
-  // *     example 7: 1
+  // *     returns 7: 1
 
   var case_fn, key, tmp_ar = {};
 
@@ -36,5 +36,6 @@ function array_change_key_case (array, cs) {
     }
     return tmp_ar;
   }
+
   return false;
 }

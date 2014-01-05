@@ -1,21 +1,28 @@
 if (typeof require !== 'undefined') {
-  module.exports = PhpjsUtil;
-}
-function PhpjsUtil () {
+  module.exports = function phpjsutil(config) {
+    var self = new PhpjsUtil(config);
+    return self;
+  };
 }
 
-PhpjsUtil._commentBlocks = function(code) {
-  var cnt = 0;
-  var comment = [];
+function PhpjsUtil(config) {
+  for (var k in config) {
+    this[k] = config[k];
+  }
+}
+
+PhpjsUtil.prototype._commentBlocks = function(code) {
+  var cnt           = 0;
+  var comment       = [];
   var commentBlocks = [];
-  var i = 0;
-  var lines = [];
-  var raise = false;
+  var i             = 0;
+  var lines         = [];
+  var raise         = false;
   for (i in (lines = code.replace('\r', '').split('\n'))) {
     // Detect if line is a comment, and return the actual comment
     if ((comment = lines[i].match(/^\s*(\/\/|\/\*|\*)\s*(.*)$/))) {
       if (raise === true) {
-        cnt = commentBlocks.length;
+        cnt   = commentBlocks.length;
         raise = false;
       }
       if (!commentBlocks[cnt]) {
@@ -32,14 +39,15 @@ PhpjsUtil._commentBlocks = function(code) {
   return commentBlocks;
 };
 
-PhpjsUtil._headKeys = function(headLines) {
+PhpjsUtil.prototype._headKeys = function(headLines) {
   var i;
-  var keys = {};
-  var match = [];
+  var keys   = {};
+  var match  = [];
   var dmatch = [];
-  var key = '';
-  var val = '';
-  var num = 0;
+  var key    = '';
+  var val    = '';
+  var num    = 0;
+
   for (i in headLines) {
     if (!(match = headLines[i].match(/^[\s\W]*(.*?)\s*:\s*(.*)\s*$/))) {
       continue;
@@ -70,20 +78,43 @@ PhpjsUtil._headKeys = function(headLines) {
   return keys;
 };
 
-PhpjsUtil._loadDependencies = function(headKeys, dependencies, cb) {
-  var self = this;
+PhpjsUtil.prototype.contains = function (array, value) {
+    var i = array.length;
+    while (i--) {
+       if (array[i] === value) {
+           return true;
+       }
+    }
+    return false;
+};
 
-  if (!headKeys['depends on'] || !headKeys['depends on'].length) {
+PhpjsUtil.prototype._loadDependencies = function(name, headKeys, dependencies, cb) {
+  var self      = this;
+  var functions = headKeys['depends on'] || [];
+
+  var j;
+  for (j in self.injectDependencies) {
+    var injectFunction = self.injectDependencies[j];
+    if (self.contains(self.injectDependencies, name)) {
+      continue;
+    }
+
+    // console.log({injectFunction: injectFunction});
+    functions.push(injectFunction);
+  }
+
+  if (!functions || !functions.length) {
     if (cb) {
       cb(null, {});
     }
   }
 
+  // console.log({functions: functions, headKeys: headKeys, dependencies: dependencies});
   var i;
   var name;
   var loaded = 0;
-  for (i in headKeys['depends on']) {
-    name = headKeys['depends on'][i];
+  for (i in functions) {
+    name = functions[i];
 
     self.load(name, function (err, params) {
       if (err) {
@@ -91,49 +122,48 @@ PhpjsUtil._loadDependencies = function(headKeys, dependencies, cb) {
       }
 
       dependencies[name] = params;
-      self._loadDependencies(params.headKeys, dependencies);
+      self._loadDependencies(name, params.headKeys, dependencies);
 
       loaded++;
-
-      if (cb && loaded === headKeys['depends on'].length) {
+      if (cb && loaded === functions.length) {
         cb(null, dependencies);
       }
     });
   }
 };
 
-PhpjsUtil.parse = function(name, code, cb) {
+PhpjsUtil.prototype.parse = function(name, code, cb) {
   var commentBlocks = this._commentBlocks(code);
-  var head = commentBlocks[0].raw.join('\n');
-  var body = code.replace(head, '');
-
-  var headKeys = this._headKeys(commentBlocks[0].clean);
+  var head          = commentBlocks[0].raw.join('\n');
+  var body          = code.replace(head, '');
+  var headKeys      = this._headKeys(commentBlocks[0].clean);
 
   // @todo(kvz) If we add function signature, we can use
   // body to generate CommonJs compatible output
   // in the browser.
 
-  this._loadDependencies(headKeys, {}, function (err, dependencies) {
+  this._loadDependencies(name, headKeys, {}, function (err, dependencies) {
     if (err) {
       return cb(err);
     }
+
     cb(null, {
-      headKeys: headKeys,
-      body: body,
-      head: head,
-      name: name,
-      code: code,
-      dependencies: dependencies,
+      headKeys     : headKeys,
+      body         : body,
+      head         : head,
+      name         : name,
+      code         : code,
+      dependencies : dependencies,
       commentBlocks: commentBlocks
     });
   });
 };
 
-PhpjsUtil.opener = function(name, cb) {
+PhpjsUtil.prototype.opener = function(name, cb) {
   return cb('Please override with a method that can translate a function-name to code in your environment');
 };
 
-PhpjsUtil.load = function(name, cb) {
+PhpjsUtil.prototype.load = function(name, cb) {
   var self = this;
   self.opener(name, function (err, code) {
     if (err) {
@@ -150,10 +180,10 @@ PhpjsUtil.load = function(name, cb) {
   });
 };
 
-PhpjsUtil.test = function(params, cb) {
-  var i = 0;
-  var j = 0;
-  var d = 0;
+PhpjsUtil.prototype.test = function(params, cb) {
+  var i    = 0;
+  var j    = 0;
+  var d    = 0;
   var self = this;
 
 
@@ -164,11 +194,12 @@ PhpjsUtil.test = function(params, cb) {
   for (d in params['dependencies']) {
     codes.push(params['dependencies'][d]['code']);
   }
+  console.log({codes: codes});
 
   // Reverse stack so dependencies are loaded first
   codes = codes.reverse();
 
-  // console.log(codes);
+  // console.log({params: params});
 
   // Load code
   eval(codes.join('\n'));
@@ -178,8 +209,13 @@ PhpjsUtil.test = function(params, cb) {
   for (i in params['headKeys']['example']) {
     var test = {
       example: params['headKeys']['example'][i].join('\n'),
-      number: i
+      number : i
     };
+
+    if (!params['headKeys']['returns'][i] || !params['headKeys']['returns'][i].length) {
+      cb('There is no return for example ' + i, test, params);
+      continue;
+    }
 
     // Needs an eval so types are cast properly, also, expected may
     // contain code
@@ -190,13 +226,17 @@ PhpjsUtil.test = function(params, cb) {
       eval('test.result = ' + params['headKeys']['example'][i][j] + '');
     }
 
-    if (test.expected !== test.result) {
-      var err = 'Expected: ' + JSON.stringify(test.expected, undefined, 2) +
-        ' but returned: ' + JSON.stringify(test.result, undefined, 2);
+    var jsonExpected = JSON.stringify(test.expected, undefined, 2);
+    var jsonResult   = JSON.stringify(test.result, undefined, 2);
+
+    if (jsonExpected !== jsonResult) {
+      var err = 'Expected: ' + jsonExpected +
+        ' but returned: ' + jsonResult;
       cb(err, test, params);
-    } else {
-      cb(null, test, params);
+      continue;
     }
+
+    cb(null, test, params);
+    continue;
   }
 };
-

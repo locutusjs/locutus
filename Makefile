@@ -5,8 +5,8 @@ setup:
 	cd .. ; \
 
 test:
-	cd _tests && npm install
-	find functions -type f |grep -v '/_' |xargs node _tests/cli.js -f
+	cd tests && npm install
+	find functions -type f |grep -v '/_' |awk -F/ '{print $$NF}' |sed 's@\.js$$@@g' |xargs node tests/cli.js -f
 
 site:
 	git pull && \

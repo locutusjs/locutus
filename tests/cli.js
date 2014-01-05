@@ -1,7 +1,11 @@
-var cli = require('cli').enable('status', 'help', 'version', 'glob', 'timeout');
-var FS = require('fs');
-var glob = require('glob');
-var PhpjsUtil = require('./phpjsutil');
+var cli       = require('cli').enable('status', 'help', 'version', 'glob', 'timeout');
+var FS        = require('fs');
+var glob      = require('glob');
+var phpjsutil = new require('./phpjsutil');
+
+var PhpjsUtil = phpjsutil({
+  injectDependencies: [ 'ini_set', 'ini_get' ]
+});
 
 // Environment-specific file opener. function name needs to
 // be translated to code. The difficulty is in finding the
@@ -61,7 +65,7 @@ cli.main(function(args, options) {
       return cli.fatal(err);
     }
 
-    console.log(params['headKeys']);
+    // console.log(params['headKeys']);
 
     PhpjsUtil.test(params, function(err, test, params) {
       var testline = cli.pad(params['name'] + '#' + test['number'], (width * 0.4), ' ', 'right') +
@@ -72,6 +76,7 @@ cli.main(function(args, options) {
 
       if (err) {
         cli.error(testline + '');
+        cli.error(err);
       } else {
         cli.ok('   ' + testline + '');
       }
