@@ -6,6 +6,9 @@ if (typeof require !== 'undefined') {
 }
 
 function PhpjsUtil(config) {
+  this.injectDependencies = [];
+
+  // Overwrite properties with config
   for (var k in config) {
     this[k] = config[k];
   }
@@ -221,7 +224,7 @@ PhpjsUtil.prototype.test = function(params, cb) {
   var codez = [];
 
 
-  self.loadMultiple(['ini_set', 'ini_get'], function(err, paramsMultiple) {
+  self.loadMultiple(self.injectDependencies, function(err, paramsMultiple) {
     for (var name in paramsMultiple) {
       codez.unshift(paramsMultiple[name]['code']);
     }
@@ -241,9 +244,6 @@ PhpjsUtil.prototype.test = function(params, cb) {
         '}' +
       '};' +
     '');
-
-    // console.log(params);
-    console.log(params['name']);
 
     // Load code
     eval(
@@ -278,7 +278,6 @@ PhpjsUtil.prototype.test = function(params, cb) {
       // Let's do something evil. Execute line by line (see date.js why)
       // We need test.reslult be the last result of the example code
       for (var j in params['headKeys']['example'][i]) {
-        // console.log(params['headKeys']['example'][i]);
         if (+j === params['headKeys']['example'][i].length-1) {
           eval('test.result = ' + params['headKeys']['example'][i][j] + '');
         } else {
@@ -290,8 +289,8 @@ PhpjsUtil.prototype.test = function(params, cb) {
       var jsonResult   = JSON.stringify(test.result, undefined, 2);
 
       if (jsonExpected !== jsonResult) {
-        err = 'Expected: ' + jsonExpected +
-          ' but returned: ' + jsonResult;
+        err = 'expected: \n' + jsonExpected + '\n\n' +
+              'returned: \n' + jsonResult + '\n';
         cb(err, test, params);
         continue;
       }

@@ -31,9 +31,11 @@ PhpjsUtil.opener = function (name, cb) {
   });
 };
 
+// --debug works out of the box. See -h
 cli.parse({
   name: ['name', 'Function name to test', 'path', '*'],
-  category: ['c', 'Category to test', 'path', '*']
+  category: ['c', 'Category to test', 'path', '*'],
+  abort: ['a', 'Abort on first failure']
 });
 
 cli.pad = function(str, pad, chr, dir) {
@@ -55,7 +57,17 @@ cli.pad = function(str, pad, chr, dir) {
 var width = 120;
 
 cli.main(function(args, options) {
+  var self = this;
   var globpath = __dirname + '/../functions/' + options.category + '/' + options.name + '.js';
+
+  process.on('exit', function (){
+    var msg = self.pass_cnt + ' passed / ' + self.fail_cnt + ' failed / ' + self.skip_cnt + ' skipped';
+    if (self.fail_cnt) {
+      cli.fatal(msg);
+    } else {
+      cli.ok(msg);
+    }
+  });
 
   glob(globpath, {}, function (err, files) {
     var names = [];
@@ -66,8 +78,10 @@ cli.main(function(args, options) {
       }
     }
 
-    // cli.spinner('Working..');
-    var processed = 0;
+    self.pass_cnt  = 0;
+    self.fail_cnt  = 0;
+    self.skip_cnt  = 0;
+
     names.forEach(function(name) {
       PhpjsUtil.load(name, function (err, params) {
         if (err) {
@@ -75,32 +89,21 @@ cli.main(function(args, options) {
         }
 
         if (params['headKeys']['test'] && params['headKeys']['test'][0] === 'skip') {
-          return cli.ok('Skipped ' + params['name']);
+          self.skip_cnt++;
+          return cli.info('--> ' + params['name'] + ' skipped as instructed. ');
         }
 
         PhpjsUtil.test(params, function(err, test, params) {
-          var testline = cli.pad(params['name'] + '#' + test['number'], (width * 0.4), ' ', 'right');
-          testline += ' ' + cli.pad(test['example'], (width * 0.6 -7));
-
-          if (err) {
-            if ('expected' in test) {
-              testline += '\n expected' + cli.pad(JSON.stringify(test['expected'], undefined, 2).replace(/\n/g, ''), width - 8);
-            } else {
-              testline += '\n expected' + cli.pad('undefined', width - 8);
-            }
-            if ('result' in test) {
-              testline += '\n result  ' + cli.pad(JSON.stringify(test['result'], undefined, 2).replace(/\n/g, ''), width - 8);
-            } else {
-              testline += '\n result  ' + cli.pad('undefined', width - 8);
-            }
-            cli.error(testline + '');
-            // cli.error(err);
+          if (!err) {
+            self.pass_cnt++;
+            cli.debug('--> ' + params['name'] + '#' + test['number'] + ' passed. ');
           } else {
-            cli.ok('   ' + testline + '');
-          }
-
-          if (++processed === names.length) {
-            cli.spinner('Working.. done!', true); //End the spinner
+            self.fail_cnt++;
+            cli.error('--> ' + params['name'] + '#' + test['number'] + ' failed. ');
+            cli.error(err);
+            if (options.abort) {
+              cli.fatal('Aborting on first failure as instructed. ');
+            }
           }
         });
       });
