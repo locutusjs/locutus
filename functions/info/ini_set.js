@@ -2,15 +2,23 @@ function ini_set (varname, newvalue) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: This will not set a global_value or access level for the ini item
+  // *          test: skip
   // *     example 1: ini_set('date.timezone', 'America/Chicago');
   // *     returns 1: 'Asia/Hong_Kong'
 
-  var oldval               = '';
-  var self                 = this;
-  this.php_js              = this.php_js || {};
+  var oldval = '';
+  var self   = this;
+
+  try {
+    this.php_js = this.php_js || {};
+  } catch (e) {
+    this.php_js = {};
+  }
+
   this.php_js.ini          = this.php_js.ini || {};
   this.php_js.ini[varname] = this.php_js.ini[varname] || {};
-  oldval                   = this.php_js.ini[varname].local_value;
+
+  oldval = this.php_js.ini[varname].local_value;
 
   var _setArr = function (oldval) {
     // Although these are set individually, they are all accumulated
@@ -32,5 +40,6 @@ function ini_set (varname, newvalue) {
     this.php_js.ini[varname].local_value = newvalue;
     break;
   }
+
   return oldval;
 }

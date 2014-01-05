@@ -6,7 +6,7 @@ setup:
 
 test:
 	cd tests && npm install
-	find functions -type f |grep -v '/_' |awk -F/ '{print $$NF}' |sed 's@\.js$$@@g' |xargs node tests/cli.js -f
+	find functions -type f |grep -v '/_' |sed 's@\.js$$@@g' |awk -F/ '{print "node tests/cli.js -f "$$NF}' |bash
 
 site:
 	git pull && \

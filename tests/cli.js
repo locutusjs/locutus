@@ -1,6 +1,7 @@
 var cli       = require('cli').enable('status', 'help', 'version', 'glob', 'timeout');
 var FS        = require('fs');
 var glob      = require('glob');
+var path      = require('path');
 var phpjsutil = new require('./phpjsutil');
 
 var PhpjsUtil = phpjsutil({
@@ -31,7 +32,8 @@ PhpjsUtil.opener = function (name, cb) {
 };
 
 cli.parse({
-  name: ['f', 'Function name to test', 'path']
+  name: ['name', 'Function name to test', 'path', '*'],
+  category: ['c', 'Category to test', 'path', '*']
 });
 
 cli.pad = function(str, pad, chr, dir) {
@@ -53,37 +55,55 @@ cli.pad = function(str, pad, chr, dir) {
 var width = 120;
 
 cli.main(function(args, options) {
-  if (!options.name) {
-    this.fatal('Please specify a file to test (-h for help)');
-  }
+  var globpath = __dirname + '/../functions/' + options.category + '/' + options.name + '.js';
 
-  // cli.spinner('Working..');
-  // cli.spinner('Working.. done!', true); //End the spinner
-
-  PhpjsUtil.load(options.name, function (err, params) {
-    if (err) {
-      return cli.fatal(err);
+  glob(globpath, {}, function (err, files) {
+    var names = [];
+    for (var i in files) {
+      var file = files[i];
+      if (file.indexOf('/_') === -1) {
+        names.push(path.basename(file, '.js'));
+      }
     }
 
-    // console.log(params['headKeys']);
+    // cli.spinner('Working..');
+    var processed = 0;
+    names.forEach(function(name) {
+      PhpjsUtil.load(name, function (err, params) {
+        if (err) {
+          return cli.fatal(err);
+        }
 
-    PhpjsUtil.test(params, function(err, test, params) {
-      var testline = cli.pad(params['name'] + '#' + test['number'], (width * 0.4), ' ', 'right') +
-        ' ' + cli.pad(test['example'], (width * 0.6 -7)) + '\n' +
-        ' expected' + cli.pad(JSON.stringify(test['expected'], undefined, 2).replace(/\n/g, ''), width-8) + '\n' +
-        ' result  ' + cli.pad(JSON.stringify(test['result'], undefined, 2).replace(/\n/g, ''), width-8) + '\n' +
-        ' ';
+        if (params['headKeys']['test'] && params['headKeys']['test'][0] === 'skip') {
+          return cli.ok('Skipped ' + params['name']);
+        }
 
-      if (err) {
-        cli.error(testline + '');
-        cli.error(err);
-      } else {
-        cli.ok('   ' + testline + '');
-      }
+        PhpjsUtil.test(params, function(err, test, params) {
+          var testline = cli.pad(params['name'] + '#' + test['number'], (width * 0.4), ' ', 'right');
+          testline += ' ' + cli.pad(test['example'], (width * 0.6 -7));
+
+          if (err) {
+            if ('expected' in test) {
+              testline += '\n expected' + cli.pad(JSON.stringify(test['expected'], undefined, 2).replace(/\n/g, ''), width - 8);
+            } else {
+              testline += '\n expected' + cli.pad('undefined', width - 8);
+            }
+            if ('result' in test) {
+              testline += '\n result  ' + cli.pad(JSON.stringify(test['result'], undefined, 2).replace(/\n/g, ''), width - 8);
+            } else {
+              testline += '\n result  ' + cli.pad('undefined', width - 8);
+            }
+            cli.error(testline + '');
+            // cli.error(err);
+          } else {
+            cli.ok('   ' + testline + '');
+          }
+
+          if (++processed === names.length) {
+            cli.spinner('Working.. done!', true); //End the spinner
+          }
+        });
+      });
     });
   });
-
-  // PhpjsUtil.load('')
-  // PhpjsUtil.parse(options.name, code,
-
 });

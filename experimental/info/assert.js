@@ -1,8 +1,8 @@
 function assert (assertion) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %          note 1: Do not pass untrusted user input to assert() in string form (you can test it beforehand though)
-  // %          note 2: Does not provide perfect arguments to the assertion callback, as far as file location or line number
+  // %        note 1: Do not pass untrusted user input to assert() in string form (you can test it beforehand though)
+  // %        note 2: Does not provide perfect arguments to the assertion callback, as far as file location or line number
   // *     example 1: assert('false === true');
   // *     returns 1: false
 
