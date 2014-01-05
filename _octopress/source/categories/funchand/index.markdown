@@ -12,4 +12,3 @@ footer: true
  - [create_function](/functions/create_function)
  - [function_exists](/functions/function_exists)
  - [get_defined_functions](/functions/get_defined_functions)
- - [register_shutdown_function](/functions/register_shutdown_function)

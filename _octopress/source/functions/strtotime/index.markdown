@@ -15,7 +15,8 @@ alias:
 A JavaScript equivalent of PHP's strtotime
 
 {% codeblock datetime/strtotime.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/strtotime.js raw on github %}
-function strtotime (text, now) {
+
+function strtotime(text, now) {
     // Convert string representation of date and time to a timestamp
     //
     // version: 1109.2015
@@ -53,21 +54,12 @@ function strtotime (text, now) {
     if (text === 'now') {
         return now === null || isNaN(now) ? new Date().getTime() / 1000 | 0 : now | 0;
     }
-    if (!isNaN(parsed = Date.parse(text))) {
-        return parsed / 1000 | 0;
-    }
-    if (text === 'now') {
-        return new Date().getTime() / 1000; // Return seconds, not milli-seconds
-    }
-    if (!isNaN(parsed = Date.parse(text))) {
-        return parsed / 1000;
-    }
 
     match = text.match(/^(\d{2,4})-(\d{2})-(\d{2})(?:\s(\d{1,2}):(\d{2})(?::\d{2})?)?(?:\.(\d+)?)?$/);
     if (match) {
-        year = match[1] >= 0 && match[1] <= 69 ? +match[1] + 2000 : match[1];
+        year = match[1] >= 0 && match[1] <= 69 ? + match[1] + 2000 : match[1];
         return new Date(year, parseInt(match[2], 10) - 1, match[3],
-            match[4] || 0, match[5] || 0, match[6] || 0, match[7] || 0) / 1000;
+            match[4] || 0, match[5] || 0, match[6] || 0, match[7] || 0) / 1000 | 0;
     }
 
     date = now ? new Date(now * 1000) : new Date();
@@ -156,7 +148,7 @@ function strtotime (text, now) {
     //if (!match.every(process))
     //    return false;
 
-    return (date.getTime() / 1000);
+    return (date.getTime() / 1000) | 0;
 }
 {% endcodeblock %}
 

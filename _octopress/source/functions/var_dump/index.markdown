@@ -22,6 +22,7 @@ function var_dump () {
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: echo
   // %        note 1: For returning a string, use var_export() with the second argument set to true
+  // *          test: skip
   // *     example 1: var_dump(1);
   // *     returns 1: 'int(1)'
 
@@ -31,6 +32,7 @@ function var_dump () {
     lgth = 0,
     i = 0,
     d = this.window.document;
+
   var _getFuncName = function (fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
     if (!name) {

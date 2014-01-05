@@ -24,14 +24,14 @@ function addcslashes (str, charlist) {
   // *     returns 1: "\\f\\o\\o\\[ \\]"
   // *     example 2: addcslashes("zoo['.']", 'z..A'); // Only escape z, period, and A here since not a lower-to-higher range
   // *     returns 2: "\\zoo['\\.']"
-  // *     example 3: addcslashes("@a\u0000\u0010\u00A9", "\0..\37!@\177..\377") == '\\@a\\000\\020\\302\\251'); // Escape as octals those specified and less than 32 (0x20) or greater than 126 (0x7E), but not otherwise
-  // *     returns 3: true
-  // *     example 4: addcslashes("\u0020\u007E", "\40..\175") == '\\ ~'); // Those between 32 (0x20 or 040) and 126 (0x7E or 0176) decimal value will be backslashed if specified (not octalized)
-  // *     returns 4: true
+  // *     example 3: addcslashes("@a\u0000\u0010\u00A9", "\0..\37!@\177..\377"); // Escape as octals those specified and less than 32 (0x20) or greater than 126 (0x7E), but not otherwise
+  // *     returns 3: '\\@a\\000\\020\\302\\251'
+  // *     example 4: addcslashes("\u0020\u007E", "\40..\175"); // Those between 32 (0x20 or 040) and 126 (0x7E or 0176) decimal value will be backslashed if specified (not octalized)
+  // *     returns 4: '\\ ~'
   // *     example 5: addcslashes("\r\u0007\n", '\0..\37'); // Recognize C escape sequences if specified
   // *     returns 5: "\\r\\a\\n"
   // *     example 6: addcslashes("\r\u0007\n", '\0'); // Do not recognize C escape sequences if not specified
-  // *     returns 7: "\r\u0007\n"
+  // *     returns 6: "\r\u0007\n"
   var target = '',
     chrs = [],
     i = 0,
@@ -201,12 +201,12 @@ Should return
 ### Example 3
 This code
 {% codeblock lang:js example %}
-addcslashes("@a\u0000\u0010\u00A9", "\0..\37!@\177..\377") == '\\@a\\000\\020\\302\\251'); // Escape as octals those specified and less than 32 (0x20) or greater than 126 (0x7E), but not otherwise
+addcslashes("@a\u0000\u0010\u00A9", "\0..\37!@\177..\377"); // Escape as octals those specified and less than 32 (0x20) or greater than 126 (0x7E), but not otherwise
 {% endcodeblock %}
 
 Should return
 {% codeblock lang:js returns %}
-true
+'\\@a\\000\\020\\302\\251'
 {% endcodeblock %}
 
 

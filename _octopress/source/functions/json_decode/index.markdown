@@ -21,9 +21,10 @@ function json_decode (str_json) {
   // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      improved by: T.J. Leahy
   // +      improved by: Michael White
-  // *        example 1: json_decode('[\n    "e",\n    {\n    "pluribus": "unum"\n}\n]');
-  // *        returns 1: ['e', {pluribus: 'unum'}]
-/*
+  // *        example 1: json_decode('[ 1 ]');
+  // *        returns 1: true
+
+  /*
     http://www.JSON.org/json2.js
     2008-11-19
     Public Domain.
@@ -105,12 +106,12 @@ Do you have one? Then please just:
 ### Example 1
 This code
 {% codeblock lang:js example %}
-json_decode('[\n    "e",\n    {\n    "pluribus": "unum"\n}\n]');
+json_decode('[ 1 ]');
 {% endcodeblock %}
 
 Should return
 {% codeblock lang:js returns %}
-['e', {pluribus: 'unum'}]
+true
 {% endcodeblock %}
 
 

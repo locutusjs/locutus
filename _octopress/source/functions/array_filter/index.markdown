@@ -27,7 +27,7 @@ function array_filter (arr, func) {
   // *     example 2: var even = function (num) {return (!(num & 1));}
   // *     example 2: array_filter([6, 7, 8, 9, 10, 11, 12], even);
   // *     returns 2: {0: 6, 2: 8, 4: 10, 6: 12}
-  // *     example 3: var arr = array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined});
+  // *     example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined});
   // *     returns 3: {"a":1, "c":-1};
 
   var retObj = {},
@@ -89,7 +89,7 @@ Should return
 ### Example 3
 This code
 {% codeblock lang:js example %}
-var arr = array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined});
+array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined});
 {% endcodeblock %}
 
 Should return

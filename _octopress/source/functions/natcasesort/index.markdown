@@ -35,6 +35,7 @@ function natcasesort (inputArr) {
   // *     example 1: $array1 = {a:'IMG0.png', b:'img12.png', c:'img10.png', d:'img2.png', e:'img1.png', f:'IMG3.png'};
   // *     example 1: $array1 = natcasesort($array1);
   // *     returns 1: {a: 'IMG0.png', e: 'img1.png', d: 'img2.png', f: 'IMG3.png', c: 'img10.png', b: 'img12.png'}
+
   var valArr = [],
     k, i, ret, that = this,
     strictForIn = false,

@@ -42,8 +42,9 @@ function sort (inputArr, sort_flags) {
   // *     example 2: ini_set('phpjs.strictForIn', true);
   // *     example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   // *     example 2: sort(fruits);
-  // *     results 2: fruits == {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
-  // *     returns 2: true
+  // *     example 2: fruits;
+  // *     returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
+
   var valArr = [],
     keyArr = [],
     k = '',
@@ -92,7 +93,12 @@ function sort (inputArr, sort_flags) {
   }
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
+  try {
+    this.php_js = this.php_js || {};
+  } catch (e) {
+    this.php_js = {};
+  }
+
   this.php_js.ini = this.php_js.ini || {};
   // END REDUNDANT
   strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
@@ -145,11 +151,12 @@ This code
 ini_set('phpjs.strictForIn', true);
 fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
 sort(fruits);
+fruits;
 {% endcodeblock %}
 
 Should return
 {% codeblock lang:js returns %}
-true
+{0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
 {% endcodeblock %}
 
 

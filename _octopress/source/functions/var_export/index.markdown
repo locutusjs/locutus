@@ -20,10 +20,10 @@ function var_export (mixed_expression, bool_return) {
   // +   original by: Philip Peterson
   // +   improved by: johnrembo
   // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Brian Tafoya (http://www.premasolutions.com/)
+  // +      input by: Brian Tafoya (http://www.premasolutions.com/)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Hans Henrik (http://hanshenrik.tk/)
+  // +      input by: Hans Henrik (http://hanshenrik.tk/)
   // -    depends on: echo
   // *     example 1: var_export(null);
   // *     returns 1: null
@@ -32,6 +32,7 @@ function var_export (mixed_expression, bool_return) {
   // *     example 3: data = 'Kevin';
   // *     example 3: var_export(data, true);
   // *     returns 3: "'Kevin'"
+
   var retstr = '',
     iret = '',
     value,
@@ -56,7 +57,7 @@ function var_export (mixed_expression, bool_return) {
     },
     __getType = function (inp) {
       var i = 0, match, types, cons, type = typeof inp;
-      if (type === 'object' && inp.constructor &&
+      if (type === 'object' && (inp && inp.constructor) &&
         getFuncName(inp.constructor) === 'PHPJS_Resource') {
         return 'resource';
       }
@@ -127,6 +128,7 @@ function var_export (mixed_expression, bool_return) {
     this.echo(retstr);
     return null;
   }
+
   return retstr;
 }
 {% endcodeblock %}

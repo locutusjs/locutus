@@ -31,13 +31,15 @@ function shuffle (inputArr) {
   // %        note 1: behavior by default if IE ever does allow it; only gives shallow copy since
   // %        note 1: is by reference in PHP anyways
   // *     example 1: ini_set('phpjs.strictForIn', true);
-  // *     example 1: shuffle({5:'a', 2:'3', 3:'c', 4:5, 'q':5});
+  // *     example 2: var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5};
+  // *     example 1: shuffle(data);
+  // *     example 1: data;
   // *     returns 1: {5:'a', 4:5, 'q':5, 3:'c', 2:'3'}
   // *     example 2: ini_set('phpjs.strictForIn', true);
   // *     example 2: var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5};
   // *     example 2: shuffle(data);
-  // *     results 2: {5:'a', 'q':5, 3:'c', 2:'3', 4:5}
-  // *     returns 2: true
+  // *     example 2: data;
+  // *     returns 2: {5:'a', 'q':5, 3:'c', 2:'3', 4:5}
   var valArr = [],
     k = '',
     i = 0,
@@ -87,7 +89,8 @@ Do you have one? Then please just:
 This code
 {% codeblock lang:js example %}
 ini_set('phpjs.strictForIn', true);
-shuffle({5:'a', 2:'3', 3:'c', 4:5, 'q':5});
+shuffle(data);
+data;
 {% endcodeblock %}
 
 Should return
@@ -98,14 +101,16 @@ Should return
 ### Example 2
 This code
 {% codeblock lang:js example %}
+var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5};
 ini_set('phpjs.strictForIn', true);
 var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5};
 shuffle(data);
+data;
 {% endcodeblock %}
 
 Should return
 {% codeblock lang:js returns %}
-true
+{5:'a', 'q':5, 3:'c', 2:'3', 4:5}
 {% endcodeblock %}
 
 

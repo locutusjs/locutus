@@ -30,7 +30,8 @@ function usort (inputArr, sorter) {
   // %        note 1: is by reference in PHP anyways
   // *     example 1: stuff = {d: '3', a: '1', b: '11', c: '4'};
   // *     example 1: stuff = usort(stuff, function (a, b) {return(a-b);});
-  // *     results 1: stuff = {0: '1', 1: '3', 2: '4', 3: '11'};
+  // *     example 1: stuff;
+  // *     returns 1: {0: '1', 1: '3', 2: '4', 3: '11'};
   var valArr = [],
     k = '',
     i = 0,
@@ -83,6 +84,19 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/usort.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+stuff = {d: '3', a: '1', b: '11', c: '4'};
+stuff = usort(stuff, function (a, b) {return(a-b);});
+stuff;
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{0: '1', 1: '3', 2: '4', 3: '11'};
+{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

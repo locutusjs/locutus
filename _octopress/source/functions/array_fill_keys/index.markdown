@@ -22,6 +22,7 @@ function array_fill_keys (keys, value) {
   // *     example 1: keys = {'a': 'foo', 2: 5, 3: 10, 4: 'bar'}
   // *     example 1: array_fill_keys(keys, 'banana')
   // *     returns 1: {"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
+
   var retObj = {},
     key = '';
 

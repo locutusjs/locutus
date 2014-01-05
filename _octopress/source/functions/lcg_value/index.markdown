@@ -18,6 +18,9 @@ A JavaScript equivalent of PHP's lcg_value
 function lcg_value () {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
+  // *     example 1: lcg_value()
+  // *     returns 1: 1
+
   return Math.random();
 }
 {% endcodeblock %}
@@ -33,6 +36,17 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/lcg_value.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+lcg_value()
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+1
+{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

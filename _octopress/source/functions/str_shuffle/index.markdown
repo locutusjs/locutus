@@ -19,7 +19,9 @@ function str_shuffle (str) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: shuffled = str_shuffle("abcdef");
-  // *     results 1: shuffled.length == 6
+  // *     example 1: shuffled.length
+  // *     returns 1: 6
+
   if (arguments.length === 0) {
     throw 'Wrong parameter count for str_shuffle()';
   }
@@ -54,6 +56,18 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/str_shuffle.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+shuffled = str_shuffle("abcdef");
+shuffled.length
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+6
+{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

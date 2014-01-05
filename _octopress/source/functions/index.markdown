@@ -17,6 +17,7 @@ and [workbench](https://github.com/kvz/phpjs/tree/master/workbench) folders. War
 these functions there for a reason.  
 
 ## array
+ - [array](/functions/array)
  - [array_change_key_case](/functions/array_change_key_case)
  - [array_chunk](/functions/array_chunk)
  - [array_combine](/functions/array_combine)
@@ -73,7 +74,6 @@ these functions there for a reason.
  - [current](/functions/current)
  - [each](/functions/each)
  - [end](/functions/end)
- - [extract](/functions/extract)
  - [in_array](/functions/in_array)
  - [key](/functions/key)
  - [krsort](/functions/krsort)
@@ -138,6 +138,7 @@ these functions there for a reason.
 ## filesystem
  - [basename](/functions/basename)
  - [dirname](/functions/dirname)
+ - [file_get_contents](/functions/file_get_contents)
  - [pathinfo](/functions/pathinfo)
  - [realpath](/functions/realpath)
 
@@ -147,13 +148,17 @@ these functions there for a reason.
  - [create_function](/functions/create_function)
  - [function_exists](/functions/function_exists)
  - [get_defined_functions](/functions/get_defined_functions)
- - [register_shutdown_function](/functions/register_shutdown_function)
+
+## i18n
+ - [i18n_loc_get_default](/functions/i18n_loc_get_default)
+ - [i18n_loc_set_default](/functions/i18n_loc_set_default)
 
 ## info
- - [assert](/functions/assert)
  - [assert_options](/functions/assert_options)
  - [getenv](/functions/getenv)
  - [getlastmod](/functions/getlastmod)
+ - [ini_get](/functions/ini_get)
+ - [ini_set](/functions/ini_set)
  - [set_time_limit](/functions/set_time_limit)
  - [version_compare](/functions/version_compare)
 
@@ -242,6 +247,7 @@ these functions there for a reason.
  - [convert_uuencode](/functions/convert_uuencode)
  - [count_chars](/functions/count_chars)
  - [crc32](/functions/crc32)
+ - [echo](/functions/echo)
  - [explode](/functions/explode)
  - [get_html_translation_table](/functions/get_html_translation_table)
  - [html_entity_decode](/functions/html_entity_decode)

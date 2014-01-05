@@ -9,5 +9,6 @@ footer: true
 
  - [basename](/functions/basename)
  - [dirname](/functions/dirname)
+ - [file_get_contents](/functions/file_get_contents)
  - [pathinfo](/functions/pathinfo)
  - [realpath](/functions/realpath)

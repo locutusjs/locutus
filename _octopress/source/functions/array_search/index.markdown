@@ -20,6 +20,8 @@ function array_search (needle, haystack, argStrict) {
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // -    depends on: array
+  // *          test: skip
   // *     example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'});
   // *     returns 1: 'surname'
   // *     example 2: ini_set('phpjs.return_phpjs_arrays', 'on');

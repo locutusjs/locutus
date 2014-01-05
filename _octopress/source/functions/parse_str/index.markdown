@@ -17,32 +17,34 @@ A JavaScript equivalent of PHP's parse_str
 {% codeblock strings/parse_str.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/parse_str.js raw on github %}
 function parse_str (str, array) {
   // From: http://phpjs.org/functions
-  // +   original by: Cagri Ekin
-  // +   improved by: Michael White (http://getsprink.com)
-  // +    tweaked by: Jack
-  // +   bugfixed by: Onno Marsman
-  // +   reimplemented by: stag019
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: stag019
-  // +   input by: Dreamer
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
-  // +   input by: Zaide (http://zaidesthings.com/)
-  // +   input by: David Pesta (http://davidpesta.com/)
-  // +   input by: jeicquest
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: When no argument is specified, will put variables in global scope.
-  // %        note 1: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c
-  // *     example 1: var arr = {};
-  // *     example 1: parse_str('first=foo&second=bar', arr);
-  // *     results 1: arr == { first: 'foo', second: 'bar' }
-  // *     example 2: var arr = {};
-  // *     example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr);
-  // *     results 2: arr == { str_a: "Jack and Jill didn't see the well." }
-  // *     example 3: var abc = {3:'a'};
-  // *     example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5');
-  // *     results 3: JSON.stringify(abc) === '{"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}';
-
+  // +      original by: Cagri Ekin
+  // +      improved by: Michael White (http://getsprink.com)
+  // +       tweaked by: Jack
+  // +      bugfixed by: Onno Marsman
+  // + reimplemented by: stag019
+  // +      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // +      bugfixed by: stag019
+  // +         input by: Dreamer
+  // +      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // +      bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
+  // +         input by: Zaide (http://zaidesthings.com/)
+  // +         input by: David Pesta (http://davidpesta.com/)
+  // +         input by: jeicquest
+  // +      improved by: Brett Zamir (http://brett-zamir.me)
+  // %           note 1: When no argument is specified, will put variables in global scope.
+  // %           note 1: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c
+  // %             test: skip
+  // *        example 1: var arr = {};
+  // *        example 1: parse_str('first=foo&second=bar', arr);
+  // *        example 1: arr
+  // *        returns 1: { first: 'foo', second: 'bar' }
+  // *        example 2: var arr = {};
+  // *        example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr);
+  // *        example 2: arr
+  // *        returns 2: { str_a: "Jack and Jill didn't see the well." }
+  // *        example 3: var abc = {3:'a'};
+  // *        example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5');
+  // *        returns 3: {"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}
 
   var strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&'),
     sal = strArr.length,
@@ -140,6 +142,44 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/parse_str.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+var arr = {};
+parse_str('first=foo&second=bar', arr);
+arr
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{ first: 'foo', second: 'bar' }
+{% endcodeblock %}
+
+### Example 2
+This code
+{% codeblock lang:js example %}
+var arr = {};
+parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr);
+arr
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{ str_a: "Jack and Jill didn't see the well." }
+{% endcodeblock %}
+
+### Example 3
+This code
+{% codeblock lang:js example %}
+var abc = {3:'a'};
+parse_str('abc[a][b]["c"]=def&abc[q]=t+5');
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}
+{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

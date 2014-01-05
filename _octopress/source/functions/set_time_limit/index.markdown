@@ -18,6 +18,7 @@ A JavaScript equivalent of PHP's set_time_limit
 function set_time_limit (seconds) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
+  // *          test: skip
   // *     example 1: set_time_limit(4);
   // *     returns 1: undefined
 

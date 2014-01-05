@@ -31,7 +31,9 @@ function uasort (inputArr, sorter) {
   // %        note 1: is by reference in PHP anyways
   // *     example 1: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   // *     example 1: fruits = uasort(fruits, function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;});
-  // *     results 1: fruits == {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
+  // *     example 1: fruits;
+  // *     returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
+
   var valArr = [],
     tempKeyVal, tempValue, ret, k = '',
     i = 0,
@@ -83,6 +85,19 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/uasort.js)
+
+### Example 1
+This code
+{% codeblock lang:js example %}
+fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
+fruits = uasort(fruits, function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;});
+fruits;
+{% endcodeblock %}
+
+Should return
+{% codeblock lang:js returns %}
+{c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
+{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

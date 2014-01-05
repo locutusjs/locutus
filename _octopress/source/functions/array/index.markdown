@@ -16,17 +16,24 @@ A JavaScript equivalent of PHP's array
 
 {% codeblock array/array.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array.js raw on github %}
 function array () {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: d3x
   // +      improved by: Brett Zamir (http://brett-zamir.me)
+  // *          test: skip
   // *     example 1: array('Kevin', 'van', 'Zonneveld');
   // *     returns 1: ['Kevin', 'van', 'Zonneveld']
   // *     example 2: ini_set('phpjs.return_phpjs_arrays', 'on');
-  // *     example 2: var arr = array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys();
+  // *     example 2: array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys();
   // *     returns 2: [0,'A',2]
 
+  try {
+    this.php_js = this.php_js || {};
+  } catch (e) {
+    this.php_js = {};
+  }
+
   var arrInst, e, __, that = this, PHPJS_Array = function PHPJS_Array() {},
-    mainArgs = arguments, p = this.php_js = this.php_js || {},
+    mainArgs = arguments, p = this.php_js,
     _indexOf = function (value, from, strict) {
       var i = from || 0, nonstrict = !strict, length = this.length;
       while (i < length) {
@@ -320,8 +327,17 @@ function array () {
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/array/array.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/array/array.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/array/array.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array.js)
 
 ### Example 1
 This code
@@ -338,7 +354,7 @@ Should return
 This code
 {% codeblock lang:js example %}
 ini_set('phpjs.return_phpjs_arrays', 'on');
-var arr = array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys();
+array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys();
 {% endcodeblock %}
 
 Should return

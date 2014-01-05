@@ -32,6 +32,7 @@ function pathinfo (path, options) {
   // %        note 2: which makes it fully compliant with PHP syntax.
   // -    depends on: dirname
   // -    depends on: basename
+  // *          test: skip
   // *     example 1: pathinfo('/www/htdocs/index.html', 1);
   // *     returns 1: '/www/htdocs'
   // *     example 2: pathinfo('/www/htdocs/index.html', 'PATHINFO_BASENAME');

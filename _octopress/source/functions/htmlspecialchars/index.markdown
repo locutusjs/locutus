@@ -33,8 +33,9 @@ function htmlspecialchars (string, quote_style, charset, double_encode) {
   // *     returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
   // *     example 2: htmlspecialchars("ab\"c'd", ['ENT_NOQUOTES', 'ENT_QUOTES']);
   // *     returns 2: 'ab"c&#039;d'
-  // *     example 3: htmlspecialchars("my "&entity;" is still here", null, null, false);
+  // *     example 3: htmlspecialchars('my "&entity;" is still here', null, null, false);
   // *     returns 3: 'my &quot;&entity;&quot; is still here'
+
   var optTemp = 0,
     i = 0,
     noquotes = false;
@@ -119,7 +120,7 @@ Should return
 ### Example 3
 This code
 {% codeblock lang:js example %}
-htmlspecialchars("my "&entity;" is still here", null, null, false);
+htmlspecialchars('my "&entity;" is still here', null, null, false);
 {% endcodeblock %}
 
 Should return

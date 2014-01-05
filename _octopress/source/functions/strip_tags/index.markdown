@@ -39,7 +39,7 @@ function strip_tags (input, allowed) {
   // *     example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>');
   // *     returns 2: '<p>Kevin van Zonneveld</p>'
   // *     example 3: strip_tags("<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>", "<a>");
-  // *     returns 3: '<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>'
+  // *     returns 3: '<a href="http://kevin.vanzonneveld.net">Kevin van Zonneveld</a>'
   // *     example 4: strip_tags('1 < 5 5 > 1');
   // *     returns 4: '1 < 5 5 > 1'
   // *     example 5: strip_tags('1 <br/> 1');
@@ -48,6 +48,7 @@ function strip_tags (input, allowed) {
   // *     returns 6: '1  1'
   // *     example 7: strip_tags('1 <br/> 1', '<br><br/>');
   // *     returns 7: '1 <br/> 1'
+
   allowed = (((allowed || "") + "").toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
   var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
     commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
@@ -99,7 +100,7 @@ strip_tags("<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>", "<
 
 Should return
 {% codeblock lang:js returns %}
-'<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>'
+'<a href="http://kevin.vanzonneveld.net">Kevin van Zonneveld</a>'
 {% endcodeblock %}
 
 

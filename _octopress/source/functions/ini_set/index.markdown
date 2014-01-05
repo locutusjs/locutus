@@ -16,30 +16,40 @@ A JavaScript equivalent of PHP's ini_set
 
 {% codeblock info/ini_set.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/ini_set.js raw on github %}
 function ini_set (varname, newvalue) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: This will not set a global_value or access level for the ini item
+  // *          test: skip
   // *     example 1: ini_set('date.timezone', 'America/Chicago');
   // *     returns 1: 'Asia/Hong_Kong'
 
-  var oldval = '',
-    that = this;
-  this.php_js = this.php_js || {};
-  this.php_js.ini = this.php_js.ini || {};
+  var oldval = '';
+  var self   = this;
+
+  try {
+    this.php_js = this.php_js || {};
+  } catch (e) {
+    this.php_js = {};
+  }
+
+  this.php_js.ini          = this.php_js.ini || {};
   this.php_js.ini[varname] = this.php_js.ini[varname] || {};
+
   oldval = this.php_js.ini[varname].local_value;
 
-  var _setArr = function (oldval) { // Although these are set individually, they are all accumulated
+  var _setArr = function (oldval) {
+    // Although these are set individually, they are all accumulated
     if (typeof oldval === 'undefined') {
-      that.php_js.ini[varname].local_value = [];
+      self.php_js.ini[varname].local_value = [];
     }
-    that.php_js.ini[varname].local_value.push(newvalue);
+    self.php_js.ini[varname].local_value.push(newvalue);
   };
 
   switch (varname) {
   case 'extension':
     if (typeof this.dl === 'function') {
-      this.dl(newvalue); // This function is only experimental in php.js
+      // This function is only experimental in php.js
+      this.dl(newvalue);
     }
     _setArr(oldval, newvalue);
     break;
@@ -47,12 +57,22 @@ function ini_set (varname, newvalue) {
     this.php_js.ini[varname].local_value = newvalue;
     break;
   }
+
   return oldval;
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/ini_set.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/ini_set.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/info/ini_set.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/info/ini_set.js)
 
 ### Example 1
 This code

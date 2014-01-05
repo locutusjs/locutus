@@ -22,7 +22,7 @@ function setrawcookie (name, value, expires, path, domain, secure) {
   // +   derived from: setcookie
   // +   input by: Michael
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: setcookie('author_name', 'Kevin van Zonneveld');
+  // *     example 1: setrawcookie('author_name', 'Kevin van Zonneveld');
   // *     returns 1: true
   if (typeof expires === 'string' && (/^\d+$/).test(expires)) {
     expires = parseInt(expires, 10);
@@ -67,7 +67,7 @@ Do you have one? Then please just:
 ### Example 1
 This code
 {% codeblock lang:js example %}
-setcookie('author_name', 'Kevin van Zonneveld');
+setrawcookie('author_name', 'Kevin van Zonneveld');
 {% endcodeblock %}
 
 Should return

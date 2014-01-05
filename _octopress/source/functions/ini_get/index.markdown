@@ -16,23 +16,34 @@ A JavaScript equivalent of PHP's ini_get
 
 {% codeblock info/ini_get.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/ini_get.js raw on github %}
 function ini_get (varname) {
-  // http://kevin.vanzonneveld.net
+  // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: The ini values must be set by ini_set or manually within an ini file
   // *     example 1: ini_get('date.timezone');
   // *     returns 1: 'Asia/Hong_Kong'
+
   if (this.php_js && this.php_js.ini && this.php_js.ini[varname] && this.php_js.ini[varname].local_value !== undefined) {
     if (this.php_js.ini[varname].local_value === null) {
       return '';
     }
     return this.php_js.ini[varname].local_value;
   }
+
   return '';
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/info/ini_get.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/info/ini_get.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/info/ini_get.js)
+
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
+
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/info/ini_get.js)
 
 ### Example 1
 This code
