@@ -12,7 +12,8 @@ function str_word_count (str, format, charlist) {
   // *     example 2: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 2);
   // *     returns 2: {0: 'Hello', 6: 'fri', 10: 'nd', 14: "you're", 29: 'looking', 46: 'good', 51: 'today'}
   // *     example 3: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1, '\u00e0\u00e1\u00e3\u00e73');
-  // *     returns 3: ['Hello', 'fri3nd', 'youre', 'looking', 'good', 'today']
+  // *     returns 3: ['Hello', 'fri3nd', "you're", 'looking', 'good', 'today']
+
   var len = str.length,
     cl = charlist && charlist.length,
     chr = '',
@@ -98,5 +99,6 @@ function str_word_count (str, format, charlist) {
   } else if (format === 2) {
     return assoc;
   }
+
   throw 'You have supplied an incorrect format';
 }
