@@ -6,6 +6,7 @@ setup:
 
 test:
 	#node tests/cli.js --debug --abort # To abort at first failure
+	cd tests && npm install
 	node tests/cli.js --debug
 
 site:
