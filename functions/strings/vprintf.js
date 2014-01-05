@@ -1,11 +1,12 @@
 function vprintf (format, args) {
   // From: http://phpjs.org/functions
-  // +   original by: Ash Searle (http://hexmen.com/blog/)
-  // +   improved by: Michael White (http://getsprink.com)
+  // +      original by: Ash Searle (http://hexmen.com/blog/)
+  // +      improved by: Michael White (http://getsprink.com)
   // + reimplemented by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: sprintf
-  // *     example 1: printf("%01.2f", 123.1);
-  // *     returns 1: 6
+  // -       depends on: sprintf
+  // *        example 1: vprintf("%01.2f", 123.1);
+  // *        returns 1: 6
+
   var body, elmt;
   var ret = '',
     d = this.window.document;

@@ -1,7 +1,12 @@
-var cli = require('cli').enable('status', 'help', 'version', 'glob', 'timeout');
-var FS = require('fs');
-var glob = require('glob');
-var PhpjsUtil = require('./phpjsutil');
+var cli       = require('cli').enable('status', 'help', 'version', 'glob', 'timeout');
+var FS        = require('fs');
+var glob      = require('glob');
+var path      = require('path');
+var phpjsutil = new require('./phpjsutil');
+
+var PhpjsUtil = phpjsutil({
+  injectDependencies: [ 'ini_set', 'ini_get' ]
+});
 
 // Environment-specific file opener. function name needs to
 // be translated to code. The difficulty is in finding the
@@ -26,8 +31,11 @@ PhpjsUtil.opener = function (name, cb) {
   });
 };
 
+// --debug works out of the box. See -h
 cli.parse({
-  name: ['f', 'Function name to test', 'path']
+  name: ['name', 'Function name to test', 'path', '*'],
+  category: ['c', 'Category to test', 'path', '*'],
+  abort: ['a', 'Abort on first failure']
 });
 
 cli.pad = function(str, pad, chr, dir) {
@@ -49,36 +57,56 @@ cli.pad = function(str, pad, chr, dir) {
 var width = 120;
 
 cli.main(function(args, options) {
-  if (!options.name) {
-    this.fatal('Please specify a file to test (-h for help)');
-  }
+  var self     = this;
+  var globpath = __dirname + '/../functions/' + options.category + '/' + options.name + '.js';
 
-  // cli.spinner('Working..');
-  // cli.spinner('Working.. done!', true); //End the spinner
-
-  PhpjsUtil.load(options.name, function (err, params) {
-    if (err) {
-      return cli.fatal(err);
+  process.on('exit', function (){
+    var msg = self.pass_cnt + ' passed / ' + self.fail_cnt + ' failed / ' + self.skip_cnt + ' skipped';
+    if (self.fail_cnt) {
+      cli.fatal(msg);
+    } else {
+      cli.ok(msg);
     }
-
-    console.log(params['headKeys']);
-
-    PhpjsUtil.test(params, function(err, test, params) {
-      var testline = cli.pad(params['name'] + '#' + test['number'], (width * 0.4), ' ', 'right') +
-        ' ' + cli.pad(test['example'], (width * 0.6 -7)) + '\n' +
-        ' ' + cli.pad(test['expected'], width) + '\n' +
-        ' ' + cli.pad(test['result'], width) + '\n' +
-        ' ';
-
-      if (err) {
-        cli.error(testline + '');
-      } else {
-        cli.ok('   ' + testline + '');
-      }
-    });
   });
 
-  // PhpjsUtil.load('')
-  // PhpjsUtil.parse(options.name, code,
+  glob(globpath, {}, function (err, files) {
+    var names = [];
+    for (var i in files) {
+      var file = files[i];
+      if (file.indexOf('/_') === -1) {
+        names.push(path.basename(file, '.js'));
+      }
+    }
 
+    self.pass_cnt = 0;
+    self.fail_cnt = 0;
+    self.skip_cnt = 0;
+
+    names.forEach(function(name) {
+      PhpjsUtil.load(name, function (err, params) {
+        if (err) {
+          return cli.fatal(err);
+        }
+
+        if (params['headKeys']['test'] && params['headKeys']['test'][0] === 'skip') {
+          self.skip_cnt++;
+          return cli.info('--> ' + params['name'] + ' skipped as instructed. ');
+        }
+
+        PhpjsUtil.test(params, function(err, test, params) {
+          if (!err) {
+            self.pass_cnt++;
+            cli.debug('--> ' + params['name'] + '#' + test['number'] + ' passed. ');
+          } else {
+            self.fail_cnt++;
+            cli.error('--> ' + params['name'] + '#' + test['number'] + ' failed. ');
+            cli.error(err);
+            if (options.abort) {
+              cli.fatal('Aborting on first failure as instructed. ');
+            }
+          }
+        });
+      });
+    });
+  });
 });

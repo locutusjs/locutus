@@ -11,8 +11,8 @@ function quoted_printable_decode (str) {
   // *     returns 2: 'abc   \r\n123   \r\n'
   // *     example 3: quoted_printable_decode('012345678901234567890123456789012345678901234567890123456789012345678901234=\r\n56789');
   // *     returns 3: '01234567890123456789012345678901234567890123456789012345678901234567890123456789'
-  // *    example 4: quoted_printable_decode("Lorem ipsum dolor sit amet=23, consectetur adipisicing elit");
-  // *    returns 4: Lorem ipsum dolor sit amet#, consectetur adipisicing elit
+  // *     example 4: quoted_printable_decode("Lorem ipsum dolor sit amet=23, consectetur adipisicing elit");
+  // *     returns 4: 'Lorem ipsum dolor sit amet#, consectetur adipisicing elit'
   // Removes softline breaks
   var RFC2045Decode1 = /=\r\n/gm,
     // Decodes all equal signs followed by two hex digits

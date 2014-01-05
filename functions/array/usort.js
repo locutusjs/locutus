@@ -13,7 +13,8 @@ function usort (inputArr, sorter) {
   // %        note 1: is by reference in PHP anyways
   // *     example 1: stuff = {d: '3', a: '1', b: '11', c: '4'};
   // *     example 1: stuff = usort(stuff, function (a, b) {return(a-b);});
-  // *     results 1: stuff = {0: '1', 1: '3', 2: '4', 3: '11'};
+  // *     example 1: stuff;
+  // *     returns 1: {0: '1', 1: '3', 2: '4', 3: '11'};
   var valArr = [],
     k = '',
     i = 0,

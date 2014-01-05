@@ -6,7 +6,7 @@ function convert_uuencode (str) {
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: is_scalar
   // *     example 1: convert_uuencode("test\ntext text\r\n");
-  // *     returns 1: '0=&5S=`IT97AT('1E>'0-"@``'
+  // *     returns 1: "0=&5S=`IT97AT('1E>'0-\"@``"
   // shortcut
   var chr = function (c) {
     return String.fromCharCode(c);

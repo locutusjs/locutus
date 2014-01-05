@@ -2,7 +2,9 @@ function str_shuffle (str) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: shuffled = str_shuffle("abcdef");
-  // *     results 1: shuffled.length == 6
+  // *     example 1: shuffled.length
+  // *     returns 1: 6
+
   if (arguments.length === 0) {
     throw 'Wrong parameter count for str_shuffle()';
   }

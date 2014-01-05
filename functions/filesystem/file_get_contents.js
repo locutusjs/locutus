@@ -1,8 +1,5 @@
 function file_get_contents (url, flags, context, offset, maxLen) {
-  // Read the entire file into a string
-  //
-  // version: 906.111
-  // discuss at: http://phpjs.org/functions/file_get_contents
+  // From: http://phpjs.org/functions
   // +   original by: Legaev Andrey
   // +      input by: Jani Hartikainen
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -19,8 +16,10 @@ function file_get_contents (url, flags, context, offset, maxLen) {
   // %        note 3: The context argument is only implemented for http, and only partially (see below for
   // %        note 3: "Presently unimplemented HTTP context options"); also the arguments passed to
   // %        note 3: notification are incomplete
-  // *     example 1: file_get_contents('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
-  // *     returns 1: '123'
+  // *          test: skip
+  // *     example 1: var buf file_get_contents('http://google.com');
+  // *     example 1: buf.indexOf('Google') !== -1
+  // *     returns 1: true
   // Note: could also be made to optionally add to global $http_response_header as per http://php.net/manual/en/reserved.variables.httpresponseheader.php
   var tmp, headers = [],
     newTmp = [],

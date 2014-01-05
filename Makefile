@@ -5,8 +5,9 @@ setup:
 	cd .. ; \
 
 test:
-	cd _tests && npm install
-	find functions -type f |grep -v '/_' |xargs node _tests/cli.js -f
+	#node tests/cli.js --debug --abort # To abort at first failure
+	cd tests && npm install
+	node tests/cli.js --debug
 
 site:
 	git pull && \

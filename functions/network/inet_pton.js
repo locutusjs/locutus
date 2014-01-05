@@ -2,9 +2,10 @@ function inet_pton (a) {
   // From: http://phpjs.org/functions
   // +   original by: Theriault
   // *     example 1: inet_pton('::');
-  // *     returns 1: '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0' (binary)
+  // *     returns 1: '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
   // *     example 2: inet_pton('127.0.0.1');
-  // *     returns 2: '\x7F\x00\x00\x01' (binary)
+  // *     returns 2: '\x7F\x00\x00\x01'
+
   var r, m, x, i, j, f = String.fromCharCode;
   m = a.match(/^(?:\d{1,3}(?:\.|$)){4}/); // IPv4
   if (m) {

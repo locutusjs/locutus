@@ -33,9 +33,10 @@ function end (arr) {
   var arrpos = pointers.indexOf(arr);
   if (Object.prototype.toString.call(arr) !== '[object Array]') {
     var ct = 0;
+    var val;
     for (var k in arr) {
       ct++;
-      var val = arr[k];
+      val = arr[k];
     }
     if (ct === 0) {
       return false; // Empty
