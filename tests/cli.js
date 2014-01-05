@@ -70,8 +70,8 @@ cli.main(function(args, options) {
     PhpjsUtil.test(params, function(err, test, params) {
       var testline = cli.pad(params['name'] + '#' + test['number'], (width * 0.4), ' ', 'right') +
         ' ' + cli.pad(test['example'], (width * 0.6 -7)) + '\n' +
-        ' ' + cli.pad(test['expected'], width) + '\n' +
-        ' ' + cli.pad(test['result'], width) + '\n' +
+        ' expected' + cli.pad(JSON.stringify(test['expected'], undefined, 2).replace(/\n/g, ''), width-8) + '\n' +
+        ' result  ' + cli.pad(JSON.stringify(test['result'], undefined, 2).replace(/\n/g, ''), width-8) + '\n' +
         ' ';
 
       if (err) {
