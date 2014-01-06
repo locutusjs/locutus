@@ -9,6 +9,14 @@ test:
 	cd tests && npm install
 	node tests/cli.js --debug
 
+hook:
+	mkdir -p ~/.gittemplate/hooks
+	curl https://raw.github.com/kvz/ochtra/master/pre-commit -o ~/.gittemplate/hooks/pre-commit
+	chmod u+x ~/.gittemplate/hooks/pre-commit
+	git config --global init.templatedir '~/.gittemplate'
+	rm .git/hooks/pre-commit || true
+	git init
+
 site:
 	git pull && \
 	cd _octopress && \
