@@ -28,8 +28,9 @@ function arsort (inputArr, sort_flags) {
   // *     example 2: ini_set('phpjs.strictForIn', true);
   // *     example 2: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   // *     example 2: arsort(data);
-  // *     results 2: data == {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
-  // *     returns 2: true
+  // *     example 2: data;
+  // *     returns 2: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
+
   var valArr = [], valArrLen = 0,
     k, i, ret, sorter, that = this,
     strictForIn = false,

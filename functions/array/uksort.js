@@ -14,8 +14,9 @@ function uksort (inputArr, sorter) {
   // %        note 2: is by reference in PHP anyways
   // *     example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   // *     example 1: data = uksort(data, function (key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
-  // *     results 1: data == {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
-  // *     returns 1: true
+  // *     example 1: data
+  // *     returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
+
   var tmp_arr = {},
     keys = [],
     i = 0,

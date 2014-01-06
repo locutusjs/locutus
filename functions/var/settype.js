@@ -7,12 +7,13 @@ function settype (vr, type) {
   // %        note 2: only works on global variables, and "vr" must be passed in as a string
   // *     example 1: foo = '5bar';
   // *     example 1: settype('foo', 'integer');
-  // *     results 1: foo === 5
-  // *     returns 1: true
+  // *     example 1: foo
+  // *     returns 1: 5
   // *     example 2: foo = true;
   // *     example 2: settype('foo', 'string');
-  // *     results 2: foo === '1'
-  // *     returns 2: true
+  // *     example 2: foo
+  // *     returns 2: '1'
+
   var is_array = function (arr) {
     return typeof arr === 'object' && typeof arr.length === 'number' && !(arr.propertyIsEnumerable('length')) && typeof arr.splice === 'function';
   };

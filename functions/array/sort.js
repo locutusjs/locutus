@@ -20,7 +20,9 @@ function sort (inputArr, sort_flags) {
   // %        note 3: if the content is a numeric string, we treat the
   // %        note 3: "original type" as numeric.
   // -    depends on: i18n_loc_get_default
-  // *     example 1: sort(['Kevin', 'van', 'Zonneveld']);
+  // *     example 1: var arr = ['Kevin', 'van', 'Zonneveld']
+  // *     example 1: sort(arr);
+  // *     example 1: arr;
   // *     returns 1: ['Kevin', 'Zonneveld', 'van']
   // *     example 2: ini_set('phpjs.strictForIn', true);
   // *     example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};

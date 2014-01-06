@@ -13,15 +13,13 @@ function array_splice (arr, offst, lgth, replacement) {
   // *     example 1: input = {4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"};
   // *     example 1: array_splice(input, 2);
   // *     returns 1: {0: "blue", 'dud': "yellow"}
-  // *     results 1: input == {'abc':"green", 0:"red"}
   // *     example 2: input = ["red", "green", "blue", "yellow"];
   // *     example 2: array_splice(input, 3, 0, "purple");
   // *     returns 2: []
-  // *     results 2: input == ["red", "green", "blue", "purple", "yellow"]
   // *     example 3: input = ["red", "green", "blue", "yellow"]
   // *     example 3: array_splice(input, -1, 1, ["black", "maroon"]);
   // *     returns 3: ["yellow"]
-  // *     results 3: input == ["red", "green", "blue", "black", "maroon"]
+
   var _checkToUpIndices = function (arr, ct, key) {
     // Deal with situation, e.g., if encounter index 4 and try to set it to 0, but 0 exists later in loop (need to
     // increment all subsequent (skipping current key, since we need its value below) until find unused)

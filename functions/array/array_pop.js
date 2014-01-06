@@ -16,8 +16,9 @@ function array_pop (inputArr) {
   // *     returns 1: 2
   // *     example 2: data = {firstName: 'Kevin', surName: 'van Zonneveld'};
   // *     example 2: lastElem = array_pop(data);
-  // *     returns 2: 'van Zonneveld'
-  // *     results 2: data == {firstName: 'Kevin'}
+  // *     example 2: data
+  // *     returns 2: {firstName: 'Kevin'}
+
   var key = '',
     lastKey = '';
 

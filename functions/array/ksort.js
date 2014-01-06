@@ -21,12 +21,14 @@ function ksort (inputArr, sort_flags) {
   // -    depends on: strnatcmp
   // *     example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   // *     example 1: data = ksort(data);
-  // *     results 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
+  // *     example 1: data
+  // *     returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
   // *     example 2: ini_set('phpjs.strictForIn', true);
   // *     example 2: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'};
   // *     example 2: ksort(data);
-  // *     results 2: data == {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
-  // *     returns 2: true
+  // *     example 2: data
+  // *     returns 2: {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
+
   var tmp_arr = {},
     keys = [],
     sorter, i, k, that = this,

@@ -6,16 +6,11 @@ function array_multisort (arr) {
   // *     example 2: jobs = {A: 'Warrior', B: 'Thief', C: 'Monk', D: 'Mage', E: 'Knight'};
   // *     example 2: array_multisort(characters, 'SORT_DESC', 'SORT_STRING', jobs, 'SORT_ASC', 'SORT_STRING');
   // *     returns 2: true
-  // *     results 2: characters == {D: 'Terra', C: 'Sabin', B: 'Locke', E: 'Edward', A: 'Edward'};
-  // *     results 2: jobs == {D: 'Mage', C: 'Monk', B: 'Thief', E: 'Knight', A: 'Warrior'};
   // *     example 3: lastnames = [ 'Carter','Adams','Monroe','Tyler','Madison','Kennedy','Adams'];
   // *     example 3: firstnames = ['James', 'John' ,'James', 'John', 'James',  'John',   'John'];
   // *     example 3: president = [ 39,      6,      5,       10,     4,       35,        2    ];
   // *     example 3: array_multisort(firstnames, 'SORT_DESC', 'SORT_STRING', lastnames, 'SORT_ASC', 'SORT_STRING', president, 'SORT_NUMERIC');
   // *     returns 3: true
-  // *     results 3: firstnames == ['John', 'John', 'John',   'John', 'James', 'James',  'James'];
-  // *     results 3: lastnames ==  ['Adams','Adams','Kennedy','Tyler','Carter','Madison','Monroe'];
-  // *     results 3: president ==  [2,      6,      35,       10,     39,       4,       5];
   // Fix: this function must be fixed like asort(), etc., to return a (shallow) copy by default, since IE does not support!
   // VARIABLE DESCRIPTIONS
   //

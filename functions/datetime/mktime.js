@@ -25,7 +25,8 @@ function mktime () {
   // *     example 3: td = new Date();
   // *     example 3: real = Math.floor(td.getTime() / 1000);
   // *     example 3: diff = (real - make);
-  // *     results 3: diff < 5
+  // *     example 3: diff < 5
+  // *     returns 3: true
   // *     example 4: mktime(0, 0, 0, 13, 1, 1997)
   // *     returns 4: 883612800
   // *     example 5: mktime(0, 0, 0, 1, 1, 1998)
