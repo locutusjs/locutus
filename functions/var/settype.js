@@ -7,11 +7,11 @@ function settype (vr, type) {
   // %        note 2: only works on global variables, and "vr" must be passed in as a string
   // *     example 1: foo = '5bar';
   // *     example 1: settype('foo', 'integer');
-  // *     example 1: foo
+  // *     example 1: $result = foo
   // *     returns 1: 5
   // *     example 2: foo = true;
   // *     example 2: settype('foo', 'string');
-  // *     example 2: foo
+  // *     example 2: $result = foo
   // *     returns 2: '1'
 
   var is_array = function (arr) {

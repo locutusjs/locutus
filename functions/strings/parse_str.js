@@ -19,11 +19,11 @@ function parse_str (str, array) {
   // %             test: skip
   // *        example 1: var arr = {};
   // *        example 1: parse_str('first=foo&second=bar', arr);
-  // *        example 1: arr
+  // *        example 1: $result = arr
   // *        returns 1: { first: 'foo', second: 'bar' }
   // *        example 2: var arr = {};
   // *        example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr);
-  // *        example 2: arr
+  // *        example 2: $result = arr
   // *        returns 2: { str_a: "Jack and Jill didn't see the well." }
   // *        example 3: var abc = {3:'a'};
   // *        example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5');

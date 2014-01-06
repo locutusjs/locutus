@@ -25,7 +25,7 @@ function rsort (inputArr, sort_flags) {
   // *     example 2: ini_set('phpjs.strictForIn', true);
   // *     example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   // *     example 2: rsort(fruits);
-  // *     example 2: fruits;
+  // *     example 2: $result = fruits;
   // *     returns 2: {0: 'orange', 1: 'lemon', 2: 'banana', 3: 'apple'}
 
   var valArr = [],

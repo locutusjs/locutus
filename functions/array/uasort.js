@@ -14,7 +14,7 @@ function uasort (inputArr, sorter) {
   // %        note 1: is by reference in PHP anyways
   // *     example 1: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   // *     example 1: fruits = uasort(fruits, function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;});
-  // *     example 1: fruits;
+  // *     example 1: $result = fruits;
   // *     returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
   var valArr = [],

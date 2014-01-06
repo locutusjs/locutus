@@ -28,7 +28,7 @@ function arsort (inputArr, sort_flags) {
   // *     example 2: ini_set('phpjs.strictForIn', true);
   // *     example 2: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   // *     example 2: arsort(data);
-  // *     example 2: data;
+  // *     example 2: $result = data;
   // *     returns 2: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
 
   var valArr = [], valArrLen = 0,

@@ -16,12 +16,12 @@ function shuffle (inputArr) {
   // *     example 1: ini_set('phpjs.strictForIn', true);
   // *     example 2: var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5};
   // *     example 1: shuffle(data);
-  // *     example 1: data;
+  // *     example 1: $result = data;
   // *     returns 1: {5:'a', 4:5, 'q':5, 3:'c', 2:'3'}
   // *     example 2: ini_set('phpjs.strictForIn', true);
   // *     example 2: var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5};
   // *     example 2: shuffle(data);
-  // *     example 2: data;
+  // *     example 2: $result = data;
   // *     returns 2: {5:'a', 'q':5, 3:'c', 2:'3', 4:5}
   var valArr = [],
     k = '',

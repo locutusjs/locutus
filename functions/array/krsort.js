@@ -20,12 +20,12 @@ function krsort (inputArr, sort_flags) {
   // -    depends on: i18n_loc_get_default
   // *     example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   // *     example 1: data = krsort(data);
-  // *     example 1: data
+  // *     example 1: $result = data
   // *     returns 1: {d: 'lemon', c: 'apple', b: 'banana', a: 'orange'}
   // *     example 2: ini_set('phpjs.strictForIn', true);
   // *     example 2: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'};
   // *     example 2: krsort(data);
-  // *     example 2: data
+  // *     example 2: $result = data
   // *     returns 2: {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
 
   var tmp_arr = {},

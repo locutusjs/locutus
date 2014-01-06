@@ -14,7 +14,7 @@ function is_callable (v, syntax_only, callable_name) {
   // *     example 3: SomeClass.prototype.someMethod = function (){};
   // *     example 3: var testObj = new SomeClass();
   // *     example 3: is_callable([testObj, 'someMethod'], true, 'myVar');
-  // *     example 3: myVar;
+  // *     example 3: $result = myVar;
   // *     returns 3: 'SomeClass::someMethod'
   // *     example 4: is_callable(function () {});
   // *     returns 4: true
