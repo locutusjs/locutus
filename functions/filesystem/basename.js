@@ -11,19 +11,19 @@ function basename (path, suffix) {
   // *     returns 2: 'ecra.php?p=1'
   // *     example 3: basename('/some/path/');
   // *     returns 3: 'path'
-  // *     example 4: basename('/some/path_ext.ext/','.ext);
+  // *     example 4: basename('/some/path_ext.ext/','.ext');
   // *     returns 4: 'path_ext'
   var b = path;
   var lastChar = b.charAt(b.length-1);
   
   if(lastChar === "/" || lastChar === "\\") {
-      b = b.slice(0, -1);
+    b = b.slice(0, -1);
   }
   
   b = b.replace(/^.*[\/\\]/g, '');
 
   if (typeof suffix === 'string' && b.substr(b.length - suffix.length) == suffix) {
-      b = b.substr(0, b.length - suffix.length);
+    b = b.substr(0, b.length - suffix.length);
   }
 
   return b;
