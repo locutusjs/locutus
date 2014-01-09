@@ -1,4 +1,4 @@
-function utf8_decode (str_data) {
+function utf8_decode(str_data) {
   // From: http://phpjs.org/functions
   // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // +      input by: Aman Gupta
@@ -13,12 +13,12 @@ function utf8_decode (str_data) {
   // *     returns 1: 'Kevin van Zonneveld'
 
   var tmp_arr = [],
-    i = 0,
-    ac = 0,
-    c1 = 0,
-    c2 = 0,
-    c3 = 0,
-    c4 = 0;
+      i = 0,
+      ac = 0,
+      c1 = 0,
+      c2 = 0,
+      c3 = 0,
+      c4 = 0;
 
   str_data += '';
 
@@ -43,7 +43,7 @@ function utf8_decode (str_data) {
       c4 = str_data.charCodeAt(i + 3);
       c1 = ((c1 & 7) << 18) | ((c2 & 63) << 12) | ((c3 & 63) << 6) | (c4 & 63);
       c1 -= 0x10000;
-      tmp_arr[ac++] = String.fromCharCode(0xD800 | ((c1>>10) & 0x3FF));
+      tmp_arr[ac++] = String.fromCharCode(0xD800 | ((c1 >> 10) & 0x3FF));
       tmp_arr[ac++] = String.fromCharCode(0xDC00 | (c1 & 0x3FF));
       i += 4;
     }

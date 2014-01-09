@@ -1,4 +1,4 @@
-function get_class_vars (name) {
+function get_class_vars(name) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function Myclass(){privMethod = function (){};}
@@ -9,7 +9,7 @@ function get_class_vars (name) {
   // *     returns 1: {}
 
   var constructor, retArr = {},
-    prop = '';
+      prop = '';
 
   if (typeof name === 'function') {
     constructor = name;

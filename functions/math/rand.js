@@ -1,4 +1,4 @@
-function rand (min, max) {
+function rand(min, max) {
   // From: http://phpjs.org/functions
   // +   original by: Leslie Hoare
   // +   bugfixed by: Onno Marsman
@@ -14,7 +14,7 @@ function rand (min, max) {
   }
   return Math.floor(Math.random() * (max - min + 1)) + min;
 
-/*
+  /*
   // See note above for an explanation of the following alternative code
 
   // +   reimplemented by: Brett Zamir (http://brett-zamir.me)

@@ -1,4 +1,4 @@
-function array_diff_uassoc (arr1) {
+function array_diff_uassoc(arr1) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -6,12 +6,12 @@ function array_diff_uassoc (arr1) {
   // *     example 1: array_diff_uassoc($array1, $array2, function (key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
   // *     returns 1: {b: 'brown', c: 'blue', 0: 'red'}
   var retArr = {},
-    arglm1 = arguments.length - 1,
-    cb = arguments[arglm1],
-    arr = {},
-    i = 1,
-    k1 = '',
-    k = '';
+      arglm1 = arguments.length - 1,
+      cb = arguments[arglm1],
+      arr = {},
+      i = 1,
+      k1 = '',
+      k = '';
   cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
 
   arr1keys: for (k1 in arr1) {

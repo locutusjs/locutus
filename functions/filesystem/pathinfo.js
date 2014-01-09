@@ -1,4 +1,4 @@
-function pathinfo (path, options) {
+function pathinfo(path, options) {
   // From: http://phpjs.org/functions
   // +   original by: Nate
   // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -32,14 +32,14 @@ function pathinfo (path, options) {
   // *     returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
   // Working vars
   var opt = '',
-    optName = '',
-    optTemp = 0,
-    tmp_arr = {},
-    cnt = 0,
-    i = 0;
+      optName = '',
+      optTemp = 0,
+      tmp_arr = {},
+      cnt = 0,
+      i = 0;
   var have_basename = false,
-    have_extension = false,
-    have_filename = false;
+      have_extension = false,
+      have_filename = false;
 
   // Input defaulting & sanitation
   if (!path) {
@@ -74,7 +74,7 @@ function pathinfo (path, options) {
   }
 
   // Internal Functions
-  var __getExt = function (path) {
+  var __getExt = function(path) {
     var str = path + '';
     var dotP = str.lastIndexOf('.') + 1;
     return !dotP ? false : dotP !== str.length ? str.substr(dotP) : '';

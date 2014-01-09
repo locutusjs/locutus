@@ -1,4 +1,4 @@
-function classkit_method_rename (classname, methodname, newname) {
+function classkit_method_rename(classname, methodname, newname) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: classkit_method_rename('someClass', 'someMethod', 'newMethod');
@@ -8,7 +8,7 @@ function classkit_method_rename (classname, methodname, newname) {
     classname = this.window[classname];
   }
 
-/*
+  /*
   var method = classname[methodname]; // Static
   classname[newname] = method;
   delete classname[methodname];

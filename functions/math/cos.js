@@ -1,4 +1,4 @@
-function cos (arg) {
+function cos(arg) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: cos(8723321.4);

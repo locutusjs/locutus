@@ -1,4 +1,4 @@
-function ltrim (str, charlist) {
+function ltrim(str, charlist) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: Erkekjetter

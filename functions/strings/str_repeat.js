@@ -1,4 +1,4 @@
-function str_repeat (input, multiplier) {
+function str_repeat(input, multiplier) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)

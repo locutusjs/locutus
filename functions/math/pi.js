@@ -1,4 +1,4 @@
-function pi () {
+function pi() {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // +   improved by: dude

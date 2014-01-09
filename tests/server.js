@@ -10,7 +10,7 @@ http.createServer(function(req, res) {
   }
 
   send(req, req.url)
-    .root(__dirname+'/../')
+    .root(__dirname + '/../')
     .pipe(res);
 }).listen(port);
 

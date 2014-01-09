@@ -1,4 +1,4 @@
-function defined (constant_name) {
+function defined(constant_name) {
   // http://kevin.vanzonneveld.net
   // +   original by: Waldo Malqui Silva
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

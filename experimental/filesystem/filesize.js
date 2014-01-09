@@ -1,4 +1,4 @@
-function filesize (url) {
+function filesize(url) {
   // http://kevin.vanzonneveld.net
   // +   original by: Enrique Gonzalez
   // +      input by: Jani Hartikainen
@@ -8,7 +8,7 @@ function filesize (url) {
   // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
   // *     example 1: filesize('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
   // *     returns 1: '3'
-  var req = this.window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+  var req = this.window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest();
   if (!req) {
     throw new Error('XMLHttpRequest not supported');
   }

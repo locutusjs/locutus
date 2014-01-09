@@ -1,4 +1,4 @@
-function array_chunk (input, size, preserve_keys) {
+function array_chunk(input, size, preserve_keys) {
   // From: http://phpjs.org/functions
   // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // +   improved by: Brett Zamir (http://brett-zamir.me)

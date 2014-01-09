@@ -1,4 +1,4 @@
-function bcdiv (left_operand, right_operand, scale) {
+function bcdiv(left_operand, right_operand, scale) {
   // From: http://phpjs.org/functions
   // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // -    depends on: _phpjs_shared_bc
@@ -36,7 +36,7 @@ function bcdiv (left_operand, right_operand, scale) {
   result = libbcmath.bc_divide(first, second, scale);
   if (result === -1) {
     // error
-    throw new Error(11, "(BC) Division by zero");
+    throw new Error(11, '(BC) Division by zero');
   }
   if (result.n_scale > scale) {
     result.n_scale = scale;

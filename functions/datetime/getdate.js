@@ -1,4 +1,4 @@
-function getdate (timestamp) {
+function getdate(timestamp) {
   // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   // +   input by: Alex
@@ -8,9 +8,9 @@ function getdate (timestamp) {
   var _w = ['Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur'];
   var _m = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var d = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
-  (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
-  new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
-  );
+      (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
+      new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+      );
   var w = d.getDay();
   var m = d.getMonth();
   var y = d.getFullYear();

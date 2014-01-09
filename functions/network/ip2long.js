@@ -1,4 +1,4 @@
-function ip2long (IP) {
+function ip2long(IP) {
   // From: http://phpjs.org/functions
   // +   original by: Waldo Malqui Silva
   // +   improved by: Victor

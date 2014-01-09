@@ -1,4 +1,4 @@
-function phpversion () {
+function phpversion() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: We are using this to get the JavaScript version (since this is JavaScript and we can't get the PHP version anyways)
@@ -8,24 +8,24 @@ function phpversion () {
   // *     returns 1: '1.8'
 
   var xhtml = true,
-    s = {},
-    firstScript = {},
-    d = this.window.document,
-    c = 'createElement',
-    cn = 'createElementNS',
-    xn = 'http://www.w3.org/1999/xhtml',
-    g = 'getElementsByTagName',
-    gn = 'getElementsByTagNameNS';
+      s = {},
+      firstScript = {},
+      d = this.window.document,
+      c = 'createElement',
+      cn = 'createElementNS',
+      xn = 'http://www.w3.org/1999/xhtml',
+      g = 'getElementsByTagName',
+      gn = 'getElementsByTagNameNS';
 
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};
   // END REDUNDANT
 
-  var getVersion = function (app) {
+  var getVersion = function(app) {
     var att = '',
-      minVers = 0,
-      versionString = '',
-      temp_jsversion = undefined;
+        minVers = 0,
+        versionString = '',
+        temp_jsversion = undefined;
     if (this.php_js.jsversion !== undefined) {
       return this.php_js.jsversion;
     }
@@ -53,7 +53,7 @@ function phpversion () {
       }
 
       s.setAttribute(att, versionString + minVers);
-      s.appendChild(d.createTextNode("this.php_js.jsversion=" + "'1." + minVers + "'"));
+      s.appendChild(d.createTextNode('this.php_js.jsversion=' + "'1." + minVers + "'"));
       firstScript.parentNode.insertBefore(s, firstScript);
       s.parentNode.removeChild(s);
       minVers++;

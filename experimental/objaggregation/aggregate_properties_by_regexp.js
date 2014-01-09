@@ -10,17 +10,17 @@ function aggregate_properties_by_regexp (obj, class_name, regexp, exclude) {
   // *     returns 1: undefined
 
   var p = '',
-    test = false,
-    record = {},
-    pos = -1,
-    indexOf = function (value) {
-      for (var i = 0, length = this.length; i < length; i++) {
-        if (this[i] === value) {
-          return i;
+      test = false,
+      record = {},
+      pos = -1,
+      indexOf = function (value) {
+        for (var i = 0, length = this.length; i < length; i++) {
+          if (this[i] === value) {
+            return i;
+          }
         }
-      }
-      return -1;
-    };
+        return -1;
+      };
 
   if (typeof regexp === 'string') { // If passing the regular expression as a string, note that this behavior may change in the future as we seek to implement PHP-style regexp (e.g., delimiteres and modifier flags within the string)
     regexp = eval(regexp);

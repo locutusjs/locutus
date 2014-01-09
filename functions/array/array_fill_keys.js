@@ -1,4 +1,4 @@
-function array_fill_keys (keys, value) {
+function array_fill_keys(keys, value) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
@@ -7,7 +7,7 @@ function array_fill_keys (keys, value) {
   // *     returns 1: {"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
 
   var retObj = {},
-    key = '';
+      key = '';
 
   for (key in keys) {
     retObj[keys[key]] = value;

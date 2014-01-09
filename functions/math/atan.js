@@ -1,4 +1,4 @@
-function atan (arg) {
+function atan(arg) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: atan(8723321.4);

@@ -1,4 +1,4 @@
-function vprintf (format, args) {
+function vprintf(format, args) {
   // From: http://phpjs.org/functions
   // +      original by: Ash Searle (http://hexmen.com/blog/)
   // +      improved by: Michael White (http://getsprink.com)
@@ -9,7 +9,7 @@ function vprintf (format, args) {
 
   var body, elmt;
   var ret = '',
-    d = this.window.document;
+      d = this.window.document;
 
   // .shift() does not work to get first item in bodies
   var HTMLNS = 'http://www.w3.org/1999/xhtml';

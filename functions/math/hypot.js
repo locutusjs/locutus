@@ -1,4 +1,4 @@
-function hypot (x, y) {
+function hypot(x, y) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: hypot(3, 4);

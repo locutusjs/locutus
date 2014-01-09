@@ -1,4 +1,4 @@
-function sha1_file (str_filename) {
+function sha1_file(str_filename) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // -    depends on: file_get_contents

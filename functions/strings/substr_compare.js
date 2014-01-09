@@ -1,4 +1,4 @@
-function substr_compare (main_str, str, offset, length, case_insensitivity) {
+function substr_compare(main_str, str, offset, length, case_insensitivity) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   derived from: strcasecmp, strcmp

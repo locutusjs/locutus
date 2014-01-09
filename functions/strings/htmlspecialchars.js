@@ -1,4 +1,4 @@
-function htmlspecialchars (string, quote_style, charset, double_encode) {
+function htmlspecialchars(string, quote_style, charset, double_encode) {
   // From: http://phpjs.org/functions
   // +   original by: Mirek Slugen
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -20,8 +20,8 @@ function htmlspecialchars (string, quote_style, charset, double_encode) {
   // *     returns 3: 'my &quot;&entity;&quot; is still here'
 
   var optTemp = 0,
-    i = 0,
-    noquotes = false;
+      i = 0,
+      noquotes = false;
   if (typeof quote_style === 'undefined' || quote_style === null) {
     quote_style = 2;
   }

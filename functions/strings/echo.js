@@ -1,4 +1,4 @@
-function echo () {
+function echo() {
   // http://kevin.vanzonneveld.net
   // +   original by: Philip Peterson
   // +   improved by: echo is bad
@@ -25,22 +25,22 @@ function echo () {
   // *     returns 1: undefined
   // Fix: This function really needs to allow non-XHTML input (unless in true XHTML mode) as in jQuery
   var arg = '',
-    argc = arguments.length,
-    argv = arguments,
-    i = 0,
-    holder, win = this.window,
-    d = win.document,
-    ns_xhtml = 'http://www.w3.org/1999/xhtml',
-    ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
-  var stringToDOM = function (str, parent, ns, container) {
+      argc = arguments.length,
+      argv = arguments,
+      i = 0,
+      holder, win = this.window,
+      d = win.document,
+      ns_xhtml = 'http://www.w3.org/1999/xhtml',
+      ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
+  var stringToDOM = function(str, parent, ns, container) {
     var extraNSs = '';
     if (ns === ns_xul) {
       extraNSs = ' xmlns:html="' + ns_xhtml + '"';
     }
     var stringContainer = '<' + container + ' xmlns="' + ns + '"' + extraNSs + '>' + str + '</' + container + '>';
     var dils = win.DOMImplementationLS,
-      dp = win.DOMParser,
-      ax = win.ActiveXObject;
+        dp = win.DOMParser,
+        ax = win.ActiveXObject;
     if (dils && dils.createLSInput && dils.createLSParser) {
       // Follows the DOM 3 Load and Save standard, but not
       // implemented in browsers at present; HTML5 is to standardize on innerHTML, but not for XML (though
@@ -67,7 +67,7 @@ function echo () {
       axo.loadXML(str);
       return axo.documentElement;
     }
-/*else if (win.XMLHttpRequest) { // Supposed to work in older Safari
+    /*else if (win.XMLHttpRequest) { // Supposed to work in older Safari
       var req = new win.XMLHttpRequest;
       req.open('GET', 'data:application/xml;charset=utf-8,'+encodeURIComponent(str), false);
       if (req.overrideMimeType) {
@@ -80,10 +80,10 @@ function echo () {
     // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
     //if (d.createElementNS && (d.contentType && d.contentType !== 'text/html')) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways)
     if (d.createElementNS && // Browser supports the method
-    (d.documentElement.namespaceURI || // We can use if the document is using a namespace
-    d.documentElement.nodeName.toLowerCase() !== 'html' || // We know it's not HTML4 or less, if the tag is not HTML (even if the root namespace is null)
-    (d.contentType && d.contentType !== 'text/html') // We know it's not regular HTML4 or less if this is Mozilla (only browser supporting the attribute) and the content type is something other than text/html; other HTML5 roots (like svg) still have a namespace
-    )) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document
+        (d.documentElement.namespaceURI || // We can use if the document is using a namespace
+        d.documentElement.nodeName.toLowerCase() !== 'html' || // We know it's not HTML4 or less, if the tag is not HTML (even if the root namespace is null)
+        (d.contentType && d.contentType !== 'text/html') // We know it's not regular HTML4 or less if this is Mozilla (only browser supporting the attribute) and the content type is something other than text/html; other HTML5 roots (like svg) still have a namespace
+        )) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document
       holder = d.createElementNS(ns, container);
     } else {
       holder = d.createElement(container); // Document fragment did not work with innerHTML
@@ -97,7 +97,7 @@ function echo () {
   };
 
 
-  var ieFix = function (node) {
+  var ieFix = function(node) {
     if (node.nodeType === 1) {
       var newNode = d.createElement(node.nodeName);
       var i, len;
@@ -117,7 +117,7 @@ function echo () {
     }
   };
 
-  var replacer = function (s, m1, m2) {
+  var replacer = function(s, m1, m2) {
     // We assume for now that embedded variables do not have dollar sign; to add a dollar sign, you currently must use {$$var} (We might change this, however.)
     // Doesn't cover all cases yet: see http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
     if (m1 !== '\\') {
@@ -129,8 +129,8 @@ function echo () {
 
   this.php_js = this.php_js || {};
   var phpjs = this.php_js,
-    ini = phpjs.ini,
-    obs = phpjs.obs;
+      ini = phpjs.ini,
+      obs = phpjs.obs;
   for (i = 0; i < argc; i++) {
     arg = argv[i];
     if (ini && ini['phpjs.echo_embedded_vars']) {
@@ -158,7 +158,7 @@ function echo () {
     } else if (d.write) {
       d.write(arg);
     }
-/* else { // This could recurse if we ever add print!
+    /* else { // This could recurse if we ever add print!
       print(arg);
     }*/
   }

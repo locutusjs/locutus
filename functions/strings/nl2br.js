@@ -1,4 +1,4 @@
-function nl2br (str, is_xhtml) {
+function nl2br(str, is_xhtml) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Philip Peterson

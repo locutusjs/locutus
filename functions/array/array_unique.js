@@ -1,4 +1,4 @@
-function array_unique (inputArr) {
+function array_unique(inputArr) {
   // From: http://phpjs.org/functions
   // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // +      input by: duncan
@@ -15,10 +15,10 @@ function array_unique (inputArr) {
   // *     example 2: array_unique({'a': 'green', 0: 'red', 'b': 'green', 1: 'blue', 2: 'red'});
   // *     returns 2: {a: 'green', 0: 'red', 1: 'blue'}
   var key = '',
-    tmp_arr2 = {},
-    val = '';
+      tmp_arr2 = {},
+      val = '';
 
-  var __array_search = function (needle, haystack) {
+  var __array_search = function(needle, haystack) {
     var fkey = '';
     for (fkey in haystack) {
       if (haystack.hasOwnProperty(fkey)) {

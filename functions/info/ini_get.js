@@ -1,4 +1,4 @@
-function ini_get (varname) {
+function ini_get(varname) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: The ini values must be set by ini_set or manually within an ini file

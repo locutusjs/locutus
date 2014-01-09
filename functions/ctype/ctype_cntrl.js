@@ -1,4 +1,4 @@
-function ctype_cntrl (text) {
+function ctype_cntrl(text) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale

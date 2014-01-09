@@ -1,4 +1,4 @@
-function md5_file (str_filename) {
+function md5_file(str_filename) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: Brett Zamir (http://brett-zamir.me)

@@ -1,4 +1,4 @@
-function setcookie (name, value, expires, path, domain, secure) {
+function setcookie(name, value, expires, path, domain, secure) {
   // From: http://phpjs.org/functions
   // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   bugfixed by: Andreas

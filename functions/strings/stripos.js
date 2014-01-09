@@ -1,4 +1,4 @@
-function stripos (f_haystack, f_needle, f_offset) {
+function stripos(f_haystack, f_needle, f_offset) {
   // From: http://phpjs.org/functions
   // +     original by: Martijn Wieringa
   // +      revised by: Onno Marsman

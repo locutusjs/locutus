@@ -1,4 +1,4 @@
-function ctype_digit (text) {
+function ctype_digit(text) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale

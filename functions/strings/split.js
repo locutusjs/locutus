@@ -1,4 +1,4 @@
-function split (delimiter, string) {
+function split(delimiter, string) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // -    depends on: explode

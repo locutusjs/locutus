@@ -1,4 +1,4 @@
-function get_html_translation_table (table, quote_style) {
+function get_html_translation_table(table, quote_style) {
   // From: http://phpjs.org/functions
   // +   original by: Philip Peterson
   // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -19,12 +19,12 @@ function get_html_translation_table (table, quote_style) {
   // *     example 1: get_html_translation_table('HTML_SPECIALCHARS');
   // *     returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
   var entities = {},
-    hash_map = {},
-    decimal;
+      hash_map = {},
+      decimal;
   var constMappingTable = {},
-    constMappingQuoteStyle = {};
+      constMappingQuoteStyle = {};
   var useTable = {},
-    useQuoteStyle = {};
+      useQuoteStyle = {};
 
   // Translate arguments
   constMappingTable[0] = 'HTML_SPECIALCHARS';
@@ -37,7 +37,7 @@ function get_html_translation_table (table, quote_style) {
   useQuoteStyle = !isNaN(quote_style) ? constMappingQuoteStyle[quote_style] : quote_style ? quote_style.toUpperCase() : 'ENT_COMPAT';
 
   if (useTable !== 'HTML_SPECIALCHARS' && useTable !== 'HTML_ENTITIES') {
-    throw new Error("Table: " + useTable + ' not supported');
+    throw new Error('Table: ' + useTable + ' not supported');
     // return false;
   }
 

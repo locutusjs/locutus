@@ -1,4 +1,4 @@
-function get_class_methods (name) {
+function get_class_methods(name) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function Myclass () {this.privMethod = function (){}}
@@ -8,7 +8,7 @@ function get_class_methods (name) {
   // *     example 1: get_class_methods('MyClass')
   // *     returns 1: {}
   var constructor, retArr = {},
-    method = '';
+      method = '';
 
   if (typeof name === 'function') {
     constructor = name;

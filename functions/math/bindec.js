@@ -1,4 +1,4 @@
-function bindec (binary_string) {
+function bindec(binary_string) {
   // From: http://phpjs.org/functions
   // +   original by: Philippe Baumann
   // *     example 1: bindec('110011');

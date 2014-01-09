@@ -1,4 +1,4 @@
-function basename (path, suffix) {
+function basename(path, suffix) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Ash Searle (http://hexmen.com/blog/)

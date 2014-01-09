@@ -1,4 +1,4 @@
-function array_uintersect (arr1) {
+function array_uintersect(arr1) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Demosthenes Koptsis
@@ -7,13 +7,13 @@ function array_uintersect (arr1) {
   // *     example 1: array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 == string2) return 0; return -1;});
   // *     returns 1: {a: 'green', b: 'brown', 0: 'red'}
   var retArr = {},
-    arglm1 = arguments.length - 1,
-    arglm2 = arglm1 - 1,
-    cb = arguments[arglm1],
-    k1 = '',
-    i = 1,
-    arr = {},
-    k = '';
+      arglm1 = arguments.length - 1,
+      arglm2 = arglm1 - 1,
+      cb = arguments[arglm1],
+      k1 = '',
+      i = 1,
+      arr = {},
+      k = '';
 
   cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
 

@@ -1,4 +1,4 @@
-function html_entity_decode (string, quote_style) {
+function html_entity_decode(string, quote_style) {
   // From: http://phpjs.org/functions
   // +   original by: john (http://www.jd-tech.net)
   // +      input by: ger
@@ -17,9 +17,9 @@ function html_entity_decode (string, quote_style) {
   // *     example 2: html_entity_decode('&amp;lt;');
   // *     returns 2: '&lt;'
   var hash_map = {},
-    symbol = '',
-    tmp_str = '',
-    entity = '';
+      symbol = '',
+      tmp_str = '',
+      entity = '';
   tmp_str = string.toString();
 
   if (false === (hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {

@@ -1,4 +1,4 @@
-function date_parse (date) {
+function date_parse(date) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: strtotime

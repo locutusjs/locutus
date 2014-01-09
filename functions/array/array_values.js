@@ -1,11 +1,11 @@
-function array_values (input) {
+function array_values(input) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );
   // *     returns 1: {0: 'Kevin', 1: 'van Zonneveld'}
   var tmp_arr = [],
-    key = '';
+      key = '';
 
   if (input && typeof input === 'object' && input.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
     return input.values();

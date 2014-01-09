@@ -1,4 +1,4 @@
-function file_exists (url) {
+function file_exists(url) {
   // http://kevin.vanzonneveld.net
   // +   original by: Enrique Gonzalez
   // +      input by: Jani Hartikainen
@@ -7,7 +7,7 @@ function file_exists (url) {
   // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
   // *     example 1: file_exists('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
   // *     returns 1: '123'
-  var req = this.window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+  var req = this.window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest();
   if (!req) {
     throw new Error('XMLHttpRequest not supported');
   }

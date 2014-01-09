@@ -1,4 +1,4 @@
-function json_decode (str_json) {
+function json_decode(str_json) {
   // From: http://phpjs.org/functions
   // +      original by: Public Domain (http://www.json.org/json2.js)
   // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -38,7 +38,7 @@ function json_decode (str_json) {
   // incorrectly, either silently deleting them, or treating them as line endings.
   cx.lastIndex = 0;
   if (cx.test(text)) {
-    text = text.replace(cx, function (a) {
+    text = text.replace(cx, function(a) {
       return '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
     });
   }
@@ -55,9 +55,9 @@ function json_decode (str_json) {
   // we look to see that the remaining characters are only whitespace or ']' or
   // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
   if ((/^[\],:{}\s]*$/).
-  test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@').
-  replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-  replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+      test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@').
+      replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+      replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 
     // In the third stage we use the eval function to compile the text into a
     // JavaScript structure. The '{' operator is subject to a syntactic ambiguity

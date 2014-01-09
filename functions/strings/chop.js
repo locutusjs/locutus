@@ -1,4 +1,4 @@
-function chop (str, charlist) {
+function chop(str, charlist) {
   // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   // -    depends on: rtrim

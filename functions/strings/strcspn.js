@@ -1,4 +1,4 @@
-function strcspn (str, mask, start, length) {
+function strcspn(str, mask, start, length) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: strcspn('abcdefg123', '1234567890');
@@ -12,7 +12,7 @@ function strcspn (str, mask, start, length) {
       if (str.charAt(i).indexOf(mask[j]) !== -1) {
         continue strct;
       }
-    }++lgth;
+    } ++lgth;
   }
 
   return lgth;

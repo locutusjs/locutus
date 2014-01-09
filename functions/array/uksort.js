@@ -1,4 +1,4 @@
-function uksort (inputArr, sorter) {
+function uksort(inputArr, sorter) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -18,11 +18,11 @@ function uksort (inputArr, sorter) {
   // *     returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
 
   var tmp_arr = {},
-    keys = [],
-    i = 0,
-    k = '',
-    strictForIn = false,
-    populateArr = {};
+      keys = [],
+      i = 0,
+      k = '',
+      strictForIn = false,
+      populateArr = {};
 
   if (typeof sorter === 'string') {
     sorter = this.window[sorter];

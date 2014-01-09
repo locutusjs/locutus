@@ -1,4 +1,4 @@
-function get_defined_functions () {
+function get_defined_functions() {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -9,8 +9,8 @@ function get_defined_functions () {
   // *     example 1: $result = found;
   // *     returns 1: true
   var i = '',
-    arr = [],
-    already = {};
+      arr = [],
+      already = {};
 
   for (i in this.window) {
     try {

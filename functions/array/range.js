@@ -1,4 +1,4 @@
-function range (low, high, step) {
+function range(low, high, step) {
   // From: http://phpjs.org/functions
   // +   original by: Waldo Malqui Silva
   // *     example 1: range ( 0, 12 );

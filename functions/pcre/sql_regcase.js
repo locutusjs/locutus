@@ -1,4 +1,4 @@
-function sql_regcase (str) {
+function sql_regcase(str) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale
@@ -6,10 +6,10 @@ function sql_regcase (str) {
   // *     returns 1: '[Ff][Oo][Oo] - [Bb][Aa][Rr].'
   this.setlocale('LC_ALL', 0);
   var i = 0,
-    upper = '',
-    lower = '',
-    pos = 0,
-    retStr = '';
+      upper = '',
+      lower = '',
+      pos = 0,
+      retStr = '';
 
   upper = this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.upper;
   lower = this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.lower;

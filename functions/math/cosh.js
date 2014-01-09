@@ -1,4 +1,4 @@
-function cosh (arg) {
+function cosh(arg) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: cosh(-0.18127180117607017);

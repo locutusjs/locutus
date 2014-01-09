@@ -1,4 +1,4 @@
-function array_sum (array) {
+function array_sum(array) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Nate

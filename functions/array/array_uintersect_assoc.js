@@ -1,4 +1,4 @@
-function array_uintersect_assoc (arr1) {
+function array_uintersect_assoc(arr1) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -6,13 +6,13 @@ function array_uintersect_assoc (arr1) {
   // *     example 1: array_uintersect_assoc($array1, $array2, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 == string2) return 0; return -1;});
   // *     returns 1: {a: 'green', b: 'brown'}
   var retArr = {},
-    arglm1 = arguments.length - 1,
-    arglm2 = arglm1 - 2,
-    cb = arguments[arglm1],
-    k1 = '',
-    i = 1,
-    arr = {},
-    k = '';
+      arglm1 = arguments.length - 1,
+      arglm2 = arglm1 - 2,
+      cb = arguments[arglm1],
+      k1 = '',
+      i = 1,
+      arr = {},
+      k = '';
 
   cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
 

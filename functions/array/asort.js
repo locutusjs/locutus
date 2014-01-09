@@ -1,4 +1,4 @@
-function asort (inputArr, sort_flags) {
+function asort(inputArr, sort_flags) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -37,46 +37,46 @@ function asort (inputArr, sort_flags) {
   // *     returns 2: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
   var valArr = [], valArrLen = 0,
-    k, i, ret, sorter, that = this,
-    strictForIn = false,
-    populateArr = {};
+      k, i, ret, sorter, that = this,
+      strictForIn = false,
+      populateArr = {};
 
   switch (sort_flags) {
-  case 'SORT_STRING':
-    // compare items as strings
-    sorter = function (a, b) {
-      return that.strnatcmp(a, b);
-    };
-    break;
-  case 'SORT_LOCALE_STRING':
-    // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
-    var loc = this.i18n_loc_get_default();
-    sorter = this.php_js.i18nLocales[loc].sorting;
-    break;
-  case 'SORT_NUMERIC':
-    // compare items numerically
-    sorter = function (a, b) {
-      return (a - b);
-    };
-    break;
-  case 'SORT_REGULAR':
+    case 'SORT_STRING':
+      // compare items as strings
+      sorter = function(a, b) {
+        return that.strnatcmp(a, b);
+      };
+      break;
+    case 'SORT_LOCALE_STRING':
+      // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
+      var loc = this.i18n_loc_get_default();
+      sorter = this.php_js.i18nLocales[loc].sorting;
+      break;
+    case 'SORT_NUMERIC':
+      // compare items numerically
+      sorter = function(a, b) {
+        return (a - b);
+      };
+      break;
+    case 'SORT_REGULAR':
     // compare items normally (don't change types)
-  default:
-    sorter = function (a, b) {
-      var aFloat = parseFloat(a),
-        bFloat = parseFloat(b),
-        aNumeric = aFloat + '' === a,
-        bNumeric = bFloat + '' === b;
-      if (aNumeric && bNumeric) {
-        return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0;
-      } else if (aNumeric && !bNumeric) {
-        return 1;
-      } else if (!aNumeric && bNumeric) {
-        return -1;
-      }
-      return a > b ? 1 : a < b ? -1 : 0;
-    };
-    break;
+    default:
+      sorter = function(a, b) {
+        var aFloat = parseFloat(a),
+            bFloat = parseFloat(b),
+            aNumeric = aFloat + '' === a,
+            bNumeric = bFloat + '' === b;
+        if (aNumeric && bNumeric) {
+          return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0;
+        } else if (aNumeric && !bNumeric) {
+          return 1;
+        } else if (!aNumeric && bNumeric) {
+          return -1;
+        }
+        return a > b ? 1 : a < b ? -1 : 0;
+      };
+      break;
   }
 
   // BEGIN REDUNDANT
@@ -96,7 +96,7 @@ function asort (inputArr, sort_flags) {
     }
   }
 
-  valArr.sort(function (a, b) {
+  valArr.sort(function(a, b) {
     return sorter(a[1], b[1]);
   });
 

@@ -1,4 +1,4 @@
-function array_change_key_case (array, cs) {
+function array_change_key_case(array, cs) {
   // From: http://phpjs.org/functions
   // +   original by: Ates Goral (http://magnetiq.com)
   // +   improved by: marrtins
@@ -29,7 +29,7 @@ function array_change_key_case (array, cs) {
   if (array && typeof array === 'object' && array.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
     return array.change_key_case(cs);
   }
-  if (array && typeof array === 'object' ) {
+  if (array && typeof array === 'object') {
     case_fn = (!cs || cs === 'CASE_LOWER') ? 'toLowerCase' : 'toUpperCase';
     for (key in array) {
       tmp_ar[key[case_fn]()] = array[key];

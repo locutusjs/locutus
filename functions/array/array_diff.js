@@ -1,4 +1,4 @@
-function array_diff (arr1) {
+function array_diff(arr1) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Sanjoy Roy
@@ -6,11 +6,11 @@ function array_diff (arr1) {
   // *     example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld']);
   // *     returns 1: {0:'Kevin'}
   var retArr = {},
-    argl = arguments.length,
-    k1 = '',
-    i = 1,
-    k = '',
-    arr = {};
+      argl = arguments.length,
+      k1 = '',
+      i = 1,
+      k = '',
+      arr = {};
 
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < argl; i++) {

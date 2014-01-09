@@ -1,4 +1,4 @@
-function strpbrk (haystack, char_list) {
+function strpbrk(haystack, char_list) {
   // From: http://phpjs.org/functions
   // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
   // +   bugfixed by: Onno Marsman

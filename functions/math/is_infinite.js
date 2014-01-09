@@ -1,4 +1,4 @@
-function is_infinite (val) {
+function is_infinite(val) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: is_infinite(Infinity);

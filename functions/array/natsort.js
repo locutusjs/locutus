@@ -1,4 +1,4 @@
-function natsort (inputArr) {
+function natsort(inputArr) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -17,9 +17,9 @@ function natsort (inputArr) {
   // *     example 1: $array1 = natsort($array1);
   // *     returns 1: {d: 'img1.png', c: 'img2.png', b: 'img10.png', a: 'img12.png'}
   var valArr = [],
-    k, i, ret, that = this,
-    strictForIn = false,
-    populateArr = {};
+      k, i, ret, that = this,
+      strictForIn = false,
+      populateArr = {};
 
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};
@@ -37,7 +37,7 @@ function natsort (inputArr) {
       }
     }
   }
-  valArr.sort(function (a, b) {
+  valArr.sort(function(a, b) {
     return that.strnatcmp(a[1], b[1]);
   });
 

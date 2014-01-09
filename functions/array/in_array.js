@@ -1,4 +1,4 @@
-function in_array (needle, haystack, argStrict) {
+function in_array(needle, haystack, argStrict) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: vlado houba
@@ -15,7 +15,7 @@ function in_array (needle, haystack, argStrict) {
   // *     example 4: in_array(1, ['1', '2', '3'], true);
   // *     returns 4: false
   var key = '',
-    strict = !! argStrict;
+      strict = !! argStrict;
 
   if (strict) {
     for (key in haystack) {

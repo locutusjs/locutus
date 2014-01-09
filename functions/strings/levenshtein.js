@@ -1,4 +1,4 @@
-function levenshtein (s1, s2) {
+function levenshtein(s1, s2) {
   // From: http://phpjs.org/functions
   // +            original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // +            bugfixed by: Onno Marsman
@@ -37,13 +37,13 @@ function levenshtein (s1, s2) {
   var v1 = new Array(s1_len + 1);
 
   var s1_idx = 0,
-    s2_idx = 0,
-    cost = 0;
+      s2_idx = 0,
+      cost = 0;
   for (s1_idx = 0; s1_idx < s1_len + 1; s1_idx++) {
     v0[s1_idx] = s1_idx;
   }
   var char_s1 = '',
-    char_s2 = '';
+      char_s2 = '';
   for (s2_idx = 1; s2_idx <= s2_len; s2_idx++) {
     v1[0] = s2_idx;
     char_s2 = s2[s2_idx - 1];

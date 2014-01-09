@@ -1,4 +1,4 @@
-function bcmul (left_operand, right_operand, scale) {
+function bcmul(left_operand, right_operand, scale) {
   // From: http://phpjs.org/functions
   // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // -    depends on: _phpjs_shared_bc

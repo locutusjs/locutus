@@ -1,4 +1,4 @@
-function getlastmod () {
+function getlastmod() {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Will not work on browsers which don't support document.lastModified

@@ -1,4 +1,4 @@
-function strtr (str, from, to) {
+function strtr(str, from, to) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +      input by: uestla
@@ -25,14 +25,14 @@ function strtr (str, from, to) {
   // *     example 6: strtr('aa', {'a':1,'aa':2});
   // *     returns 6: '2'
   var fr = '',
-    i = 0,
-    j = 0,
-    lenStr = 0,
-    lenFrom = 0,
-    tmpStrictForIn = false,
-    fromTypeStr = '',
-    toTypeStr = '',
-    istr = '';
+      i = 0,
+      j = 0,
+      lenStr = 0,
+      lenFrom = 0,
+      tmpStrictForIn = false,
+      fromTypeStr = '',
+      toTypeStr = '',
+      istr = '';
   var tmpFrom = [];
   var tmpTo = [];
   var ret = '';

@@ -1,4 +1,4 @@
-function assert (assertion) {
+function assert(assertion) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Do not pass untrusted user input to assert() in string form (you can test it beforehand though)
@@ -7,7 +7,7 @@ function assert (assertion) {
   // *     returns 1: false
 
   var result = false,
-    callback, retVal, err = undefined;
+      callback, retVal, err = undefined;
 
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};
@@ -15,7 +15,7 @@ function assert (assertion) {
   this.php_js.assert_values = this.php_js.assert_values || {};
   // END REDUNDANT
 
-  var getOption = function (value) {
+  var getOption = function(value) {
     if (this.php_js.assert_values[value]) {
       return this.php_js.assert_values[value];
     }
@@ -23,20 +23,20 @@ function assert (assertion) {
       return this.php_js.ini[value].local_value;
     }
     switch (value) {
-    case 'assert.active':
-      return 1;
-    case 'assert.warning':
-      // Don't need this now
-      //return 1;
-      throw 'We have not yet implemented warnings in JavaScript (assert())';
-    case 'assert.bail':
-      return 0;
-    case 'assert.quiet_eval':
-      return 0;
-    case 'assert.callback':
-      return null;
-    default:
-      throw 'There was some problem';
+      case 'assert.active':
+        return 1;
+      case 'assert.warning':
+        // Don't need this now
+        //return 1;
+        throw 'We have not yet implemented warnings in JavaScript (assert())';
+      case 'assert.bail':
+        return 0;
+      case 'assert.quiet_eval':
+        return 0;
+      case 'assert.callback':
+        return null;
+      default:
+        throw 'There was some problem';
     }
   };
 

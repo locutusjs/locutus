@@ -1,4 +1,4 @@
-function round (value, precision, mode) {
+function round(value, precision, mode) {
   // From: http://phpjs.org/functions
   // +   original by: Philip Peterson
   // +    revised by: Onno Marsman
@@ -34,17 +34,17 @@ function round (value, precision, mode) {
 
   if (isHalf) {
     switch (mode) {
-    case 'PHP_ROUND_HALF_DOWN':
-      value = f + (sgn < 0); // rounds .5 toward zero
-      break;
-    case 'PHP_ROUND_HALF_EVEN':
-      value = f + (f % 2 * sgn); // rouds .5 towards the next even integer
-      break;
-    case 'PHP_ROUND_HALF_ODD':
-      value = f + !(f % 2); // rounds .5 towards the next odd integer
-      break;
-    default:
-      value = f + (sgn > 0); // rounds .5 away from zero
+      case 'PHP_ROUND_HALF_DOWN':
+        value = f + (sgn < 0); // rounds .5 toward zero
+        break;
+      case 'PHP_ROUND_HALF_EVEN':
+        value = f + (f % 2 * sgn); // rouds .5 towards the next even integer
+        break;
+      case 'PHP_ROUND_HALF_ODD':
+        value = f + !(f % 2); // rounds .5 towards the next odd integer
+        break;
+      default:
+        value = f + (sgn > 0); // rounds .5 away from zero
     }
   }
 

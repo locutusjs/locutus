@@ -1,4 +1,4 @@
-function sin (arg) {
+function sin(arg) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: sin(8723321.4);

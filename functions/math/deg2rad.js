@@ -1,4 +1,4 @@
-function deg2rad (angle) {
+function deg2rad(angle) {
   // From: http://phpjs.org/functions
   // +   original by: Enrique Gonzalez
   // +     improved by: Thomas Grainger (http://graingert.co.uk)

@@ -1,4 +1,4 @@
-function is_integer (mixed_var) {
+function is_integer(mixed_var) {
   // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   //  -   depends on: is_int

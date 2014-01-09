@@ -1,4 +1,4 @@
-function call_user_func (cb) {
+function call_user_func(cb) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Diplom@t (http://difane.com/)

@@ -1,4 +1,4 @@
-function exp (arg) {
+function exp(arg) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: exp(0.3);

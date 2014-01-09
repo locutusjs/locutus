@@ -1,4 +1,4 @@
-function fgetcsv (handle, length, delimiter, enclosure, escape) {
+function fgetcsv(handle, length, delimiter, enclosure, escape) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: str_getcsv
@@ -7,7 +7,7 @@ function fgetcsv (handle, length, delimiter, enclosure, escape) {
   // *     returns 1: '<'
 
   var start = 0,
-    fullline = '';
+      fullline = '';
 
   if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer || length !== undefined && !length) {
     return false;

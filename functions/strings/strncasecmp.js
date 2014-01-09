@@ -1,4 +1,4 @@
-function strncasecmp (argStr1, argStr2, len) {
+function strncasecmp(argStr1, argStr2, len) {
   // From: http://phpjs.org/functions
   // +   original by: Saulo Vallory
   // +      input by: Nate

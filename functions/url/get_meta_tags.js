@@ -1,4 +1,4 @@
-function get_meta_tags (file) {
+function get_meta_tags(file) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.

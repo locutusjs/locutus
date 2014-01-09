@@ -1,4 +1,4 @@
-function log10 (arg) {
+function log10(arg) {
   // From: http://phpjs.org/functions
   // +   original by: Philip Peterson
   // +   improved by: Onno Marsman

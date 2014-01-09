@@ -1,4 +1,4 @@
-function dirname (path) {
+function dirname(path) {
   // http://kevin.vanzonneveld.net
   // +   original by: Ozh
   // +   improved by: XoraX (http://www.xorax.info)

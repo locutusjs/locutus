@@ -1,4 +1,4 @@
-function bcscale (scale) {
+function bcscale(scale) {
   // From: http://phpjs.org/functions
   // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)this.
   // -    depends on: _phpjs_shared_bc

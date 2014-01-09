@@ -1,4 +1,4 @@
-function empty (mixed_var) {
+function empty(mixed_var) {
   // Checks if the argument variable is empty
   // undefined, null, false, number 0, empty string,
   // string "0", objects without properties and empty arrays
@@ -25,7 +25,7 @@ function empty (mixed_var) {
   // *     example 5: empty({'aFunc' : function () { alert('humpty'); } });
   // *     returns 5: false
   var undef, key, i, len;
-  var emptyValues = [undef, null, false, 0, "", "0"];
+  var emptyValues = [undef, null, false, 0, '', '0'];
 
   for (i = 0, len = emptyValues.length; i < len; i++) {
     if (mixed_var === emptyValues[i]) {
@@ -33,7 +33,7 @@ function empty (mixed_var) {
     }
   }
 
-  if (typeof mixed_var === "object") {
+  if (typeof mixed_var === 'object') {
     for (key in mixed_var) {
       // TODO: should we check for own properties only?
       //if (mixed_var.hasOwnProperty(key)) {

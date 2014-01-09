@@ -1,4 +1,4 @@
-function is_numeric (mixed_var) {
+function is_numeric(mixed_var) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: David

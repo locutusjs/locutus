@@ -1,4 +1,4 @@
-function intval (mixed_var, base) {
+function intval(mixed_var, base) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: stensi

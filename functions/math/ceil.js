@@ -1,4 +1,4 @@
-function ceil (value) {
+function ceil(value) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: ceil(8723321.4);

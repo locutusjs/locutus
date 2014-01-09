@@ -1,4 +1,4 @@
-function compact () {
+function compact() {
   // From: http://phpjs.org/functions
   // +   original by: Waldo Malqui Silva
   // +    tweaked by: Jack
@@ -8,12 +8,12 @@ function compact () {
   // *     example 1: compact('var1', 'var2', 'var3');
   // *     returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}
   var matrix = {},
-    that = this;
+      that = this;
 
-  var process = function (value) {
+  var process = function(value) {
     var i = 0,
-      l = value.length,
-      key_value = '';
+        l = value.length,
+        key_value = '';
     for (i = 0; i < l; i++) {
       key_value = value[i];
       if (Object.prototype.toString.call(key_value) === '[object Array]') {

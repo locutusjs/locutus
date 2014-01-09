@@ -10,24 +10,24 @@ function deaggregate (obj, class_name) {
   // *     returns 1: undefined
 
   var p = '',
-    idx = -1,
-    pos = -1,
-    i = 0,
-    indexOf = function (value) {
-      for (var i = 0, length = this.length; i < length; i++) {
-        if (this[i] === value) {
-          return i;
+      idx = -1,
+      pos = -1,
+      i = 0,
+      indexOf = function (value) {
+        for (var i = 0, length = this.length; i < length; i++) {
+          if (this[i] === value) {
+            return i;
+          }
         }
-      }
-      return -1;
-    },
-    getFuncName = function (fn) {
-      var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
-      if (!name) {
-        return '(Anonymous)';
-      }
-      return name[1];
-    };
+        return -1;
+      };,
+  getFuncName = function (fn) {
+    var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+    if (!name) {
+      return '(Anonymous)';
+    }
+    return name[1];
+  };
 
   if (!this.php_js || !this.php_js.aggregateRecords || !this.php_js.aggregateKeys || !this.php_js.aggregateClasses) {
     return;

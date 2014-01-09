@@ -1,4 +1,4 @@
-function mt_rand (min, max) {
+function mt_rand(min, max) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // +   improved by: Brett Zamir (http://brett-zamir.me)

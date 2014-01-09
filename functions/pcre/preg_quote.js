@@ -1,4 +1,4 @@
-function preg_quote (str, delimiter) {
+function preg_quote(str, delimiter) {
   // From: http://phpjs.org/functions
   // +   original by: booeyOH
   // +   improved by: Ates Goral (http://magnetiq.com)

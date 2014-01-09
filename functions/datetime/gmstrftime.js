@@ -1,4 +1,4 @@
-function gmstrftime (format, timestamp) {
+function gmstrftime(format, timestamp) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Alex
@@ -7,9 +7,9 @@ function gmstrftime (format, timestamp) {
   // *     example 1: gmstrftime("%A", 1062462400);
   // *     returns 1: 'Tuesday'
   var dt = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
-  (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
-  new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
-  );
+      (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
+      new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+      );
   timestamp = Date.parse(dt.toUTCString().slice(0, -4)) / 1000;
   return this.strftime(format, timestamp);
 }

@@ -1,4 +1,4 @@
-function strcasecmp (f_string1, f_string2) {
+function strcasecmp(f_string1, f_string2) {
   // From: http://phpjs.org/functions
   // +     original by: Martijn Wieringa
   // +     bugfixed by: Onno Marsman

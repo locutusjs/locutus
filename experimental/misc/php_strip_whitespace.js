@@ -1,4 +1,4 @@
-function php_strip_whitespace (file) {
+function php_strip_whitespace(file) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.

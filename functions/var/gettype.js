@@ -1,4 +1,4 @@
-function gettype (mixed_var) {
+function gettype(mixed_var) {
   // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -19,8 +19,8 @@ function gettype (mixed_var) {
   // *     example 5: gettype({0: function () {return false;}});
   // *     returns 5: 'array'
   var s = typeof mixed_var,
-    name;
-  var getFuncName = function (fn) {
+      name;
+  var getFuncName = function(fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
     if (!name) {
       return '(Anonymous)';

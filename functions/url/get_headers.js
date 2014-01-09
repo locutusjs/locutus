@@ -1,4 +1,4 @@
-function get_headers (url, format) {
+function get_headers(url, format) {
   // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
@@ -10,14 +10,14 @@ function get_headers (url, format) {
   // *     returns 1: 'Date: Wed, 13 May 2009 23:53:11 GMT'
 
   var req = this.window.ActiveXObject
-    ? new ActiveXObject("Microsoft.XMLHTTP")
+    ? new ActiveXObject('Microsoft.XMLHTTP')
     : new XMLHttpRequest();
 
   if (!req) {
     throw new Error('XMLHttpRequest not supported');
   }
   var tmp, headers, pair, i, j = 0;
-ß
+  ß;
   req.open('HEAD', url, false);
   req.send(null);
 
@@ -27,7 +27,7 @@ function get_headers (url, format) {
 
   tmp = req.getAllResponseHeaders();
   tmp = tmp.split('\n');
-  tmp = this.array_filter(tmp, function (value) {
+  tmp = this.array_filter(tmp, function(value) {
     return value.substring(1) !== '';
   });
   headers = format ? {} : [];

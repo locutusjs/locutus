@@ -1,4 +1,4 @@
-function json_encode (mixed_val) {
+function json_encode(mixed_val) {
   // From: http://phpjs.org/functions
   // +      original by: Public Domain (http://www.json.org/json2.js)
   // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -28,7 +28,7 @@ function json_encode (mixed_val) {
 
     var value = mixed_val;
 
-    var quote = function (string) {
+    var quote = function(string) {
       var escapable = /[\\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
       var meta = { // table of character substitutions
         '\b': '\\b',
@@ -41,13 +41,13 @@ function json_encode (mixed_val) {
       };
 
       escapable.lastIndex = 0;
-      return escapable.test(string) ? '"' + string.replace(escapable, function (a) {
+      return escapable.test(string) ? '"' + string.replace(escapable, function(a) {
         var c = meta[a];
         return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
       }) + '"' : '"' + string + '"';
     };
 
-    var str = function (key, holder) {
+    var str = function(key, holder) {
       var gap = '';
       var indent = '    ';
       var i = 0; // The loop counter.
@@ -65,73 +65,73 @@ function json_encode (mixed_val) {
 
       // What happens next depends on the value's type.
       switch (typeof value) {
-      case 'string':
-        return quote(value);
+        case 'string':
+          return quote(value);
 
-      case 'number':
-        // JSON numbers must be finite. Encode non-finite numbers as null.
-        return isFinite(value) ? String(value) : 'null';
+        case 'number':
+          // JSON numbers must be finite. Encode non-finite numbers as null.
+          return isFinite(value) ? String(value) : 'null';
 
-      case 'boolean':
-      case 'null':
-        // If the value is a boolean or null, convert it to a string. Note:
-        // typeof null does not produce 'null'. The case is included here in
-        // the remote chance that this gets fixed someday.
-        return String(value);
+        case 'boolean':
+        case 'null':
+          // If the value is a boolean or null, convert it to a string. Note:
+          // typeof null does not produce 'null'. The case is included here in
+          // the remote chance that this gets fixed someday.
+          return String(value);
 
-      case 'object':
-        // If the type is 'object', we might be dealing with an object or an array or
-        // null.
-        // Due to a specification blunder in ECMAScript, typeof null is 'object',
-        // so watch out for that case.
-        if (!value) {
-          return 'null';
-        }
-        if ((this.PHPJS_Resource && value instanceof this.PHPJS_Resource) || (window.PHPJS_Resource && value instanceof window.PHPJS_Resource)) {
-          throw new SyntaxError('json_encode');
-        }
-
-        // Make an array to hold the partial results of stringifying this object value.
-        gap += indent;
-        partial = [];
-
-        // Is the value an array?
-        if (Object.prototype.toString.apply(value) === '[object Array]') {
-          // The value is an array. Stringify every element. Use null as a placeholder
-          // for non-JSON values.
-          length = value.length;
-          for (i = 0; i < length; i += 1) {
-            partial[i] = str(i, value) || 'null';
+        case 'object':
+          // If the type is 'object', we might be dealing with an object or an array or
+          // null.
+          // Due to a specification blunder in ECMAScript, typeof null is 'object',
+          // so watch out for that case.
+          if (!value) {
+            return 'null';
+          }
+          if ((this.PHPJS_Resource && value instanceof this.PHPJS_Resource) || (window.PHPJS_Resource && value instanceof window.PHPJS_Resource)) {
+            throw new SyntaxError('json_encode');
           }
 
-          // Join all of the elements together, separated with commas, and wrap them in
-          // brackets.
-          v = partial.length === 0 ? '[]' : gap ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']' : '[' + partial.join(',') + ']';
-          gap = mind;
-          return v;
-        }
+          // Make an array to hold the partial results of stringifying this object value.
+          gap += indent;
+          partial = [];
 
-        // Iterate through all of the keys in the object.
-        for (k in value) {
-          if (Object.hasOwnProperty.call(value, k)) {
-            v = str(k, value);
-            if (v) {
-              partial.push(quote(k) + (gap ? ': ' : ':') + v);
+          // Is the value an array?
+          if (Object.prototype.toString.apply(value) === '[object Array]') {
+            // The value is an array. Stringify every element. Use null as a placeholder
+            // for non-JSON values.
+            length = value.length;
+            for (i = 0; i < length; i += 1) {
+              partial[i] = str(i, value) || 'null';
+            }
+
+            // Join all of the elements together, separated with commas, and wrap them in
+            // brackets.
+            v = partial.length === 0 ? '[]' : gap ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']' : '[' + partial.join(',') + ']';
+            gap = mind;
+            return v;
+          }
+
+          // Iterate through all of the keys in the object.
+          for (k in value) {
+            if (Object.hasOwnProperty.call(value, k)) {
+              v = str(k, value);
+              if (v) {
+                partial.push(quote(k) + (gap ? ': ' : ':') + v);
+              }
             }
           }
-        }
 
-        // Join all of the member texts together, separated with commas,
-        // and wrap them in braces.
-        v = partial.length === 0 ? '{}' : gap ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}' : '{' + partial.join(',') + '}';
-        gap = mind;
-        return v;
-      case 'undefined':
+          // Join all of the member texts together, separated with commas,
+          // and wrap them in braces.
+          v = partial.length === 0 ? '{}' : gap ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}' : '{' + partial.join(',') + '}';
+          gap = mind;
+          return v;
+        case 'undefined':
         // Fall-through
-      case 'function':
+        case 'function':
         // Fall-through
-      default:
-        throw new SyntaxError('json_encode');
+        default:
+          throw new SyntaxError('json_encode');
       }
     };
 

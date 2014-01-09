@@ -1,4 +1,4 @@
-function asinh (arg) {
+function asinh(arg) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: asinh(8723321.4);

@@ -1,4 +1,4 @@
-function array_pop (inputArr) {
+function array_pop(inputArr) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -20,7 +20,7 @@ function array_pop (inputArr) {
   // *     returns 2: {firstName: 'Kevin'}
 
   var key = '',
-    lastKey = '';
+      lastKey = '';
 
   if (inputArr.hasOwnProperty('length')) {
     // Indexed

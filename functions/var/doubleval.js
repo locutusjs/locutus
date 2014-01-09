@@ -1,4 +1,4 @@
-function doubleval (mixed_var) {
+function doubleval(mixed_var) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   //  -   depends on: floatval

@@ -1,4 +1,4 @@
-function array_fill (start_index, num, mixed_val) {
+function array_fill(start_index, num, mixed_val) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Waldo Malqui Silva

@@ -1,21 +1,21 @@
-var cli       = require('cli').enable('status', 'help', 'version', 'glob', 'timeout');
-var FS        = require('fs');
-var glob      = require('glob');
-var path      = require('path');
+var cli = require('cli').enable('status', 'help', 'version', 'glob', 'timeout');
+var FS = require('fs');
+var glob = require('glob');
+var path = require('path');
 var phpjsutil = new require('./phpjsutil');
-var equal     = require('deep-equal');
+var equal = require('deep-equal');
 
 
 var PhpjsUtil = phpjsutil({
-  injectDependencies: [ 'ini_set', 'ini_get' ],
+  injectDependencies: ['ini_set', 'ini_get'],
   equal: equal
 });
 
 // Environment-specific file opener. function name needs to
 // be translated to code. The difficulty is in finding the
 // category.
-PhpjsUtil.opener = function (name, cb) {
-  glob(__dirname + '/../functions/*/' + name + '.js', {}, function (err, files) {
+PhpjsUtil.opener = function(name, cb) {
+  glob(__dirname + '/../functions/*/' + name + '.js', {}, function(err, files) {
     if (err) {
       return cb(err);
     }
@@ -25,7 +25,7 @@ PhpjsUtil.opener = function (name, cb) {
       return cb('could not find ' + __dirname + '/../functions/*/' + name + '.js');
     }
 
-    FS.readFile(filepath, 'utf-8', function (err, code) {
+    FS.readFile(filepath, 'utf-8', function(err, code) {
       if (err) {
         return cb(err);
       }
@@ -46,7 +46,7 @@ cli.pad = function(str, pad, chr, dir) {
   if (!chr) chr = ' ';
   if (!dir) dir = 'left';
 
-  if ((str+'').length >= pad) {
+  if ((str + '').length >= pad) {
     return str;
   }
 
@@ -60,10 +60,10 @@ cli.pad = function(str, pad, chr, dir) {
 var width = 120;
 
 cli.main(function(args, options) {
-  var self     = this;
+  var self = this;
   var globpath = __dirname + '/../functions/' + options.category + '/' + options.name + '.js';
 
-  process.on('exit', function (){
+  process.on('exit', function() {
     var msg = self.pass_cnt + ' passed / ' + self.fail_cnt + ' failed / ' + self.skip_cnt + ' skipped';
     if (self.fail_cnt) {
       cli.fatal(msg);
@@ -72,7 +72,7 @@ cli.main(function(args, options) {
     }
   });
 
-  glob(globpath, {}, function (err, files) {
+  glob(globpath, {}, function(err, files) {
     var names = [];
     for (var i in files) {
       var file = files[i];
@@ -86,7 +86,7 @@ cli.main(function(args, options) {
     self.skip_cnt = 0;
 
     names.forEach(function(name) {
-      PhpjsUtil.load(name, function (err, params) {
+      PhpjsUtil.load(name, function(err, params) {
         if (err) {
           return cli.fatal(err);
         }

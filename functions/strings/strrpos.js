@@ -1,4 +1,4 @@
-function strrpos (haystack, needle, offset) {
+function strrpos(haystack, needle, offset) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Onno Marsman

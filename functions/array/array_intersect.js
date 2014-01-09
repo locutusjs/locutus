@@ -1,4 +1,4 @@
-function array_intersect (arr1) {
+function array_intersect(arr1) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: These only output associative arrays (would need to be
@@ -9,12 +9,12 @@ function array_intersect (arr1) {
   // *     example 1: $result = array_intersect($array1, $array2, $array3);
   // *     returns 1: {0: 'red', a: 'green'}
   var retArr = {},
-    argl = arguments.length,
-    arglm1 = argl - 1,
-    k1 = '',
-    arr = {},
-    i = 0,
-    k = '';
+      argl = arguments.length,
+      arglm1 = argl - 1,
+      k1 = '',
+      arr = {},
+      i = 0,
+      k = '';
 
   arr1keys: for (k1 in arr1) {
     arrs: for (i = 1; i < argl; i++) {

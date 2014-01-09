@@ -1,4 +1,4 @@
-function array_reduce (a_input, callback) {
+function array_reduce(a_input, callback) {
   // From: http://phpjs.org/functions
   // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
   // %        note 1: Takes a function as an argument, not a function's name
@@ -6,7 +6,7 @@ function array_reduce (a_input, callback) {
   // *     returns 1: 15
   var lon = a_input.length;
   var res = 0,
-    i = 0;
+      i = 0;
   var tmp = [];
 
 

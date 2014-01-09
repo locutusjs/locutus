@@ -1,4 +1,4 @@
-function money_format (format, number) {
+function money_format(format, number) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: daniel airton wermann (http://wermann.com.br)
@@ -48,9 +48,9 @@ function money_format (format, number) {
   this.setlocale('LC_ALL', 0); // Ensure the locale data we need is set up
   var monetary = this.php_js.locales[this.php_js.localeCategories['LC_MONETARY']]['LC_MONETARY'];
 
-  var doReplace = function (n0, flags, n2, width, n4, left, n6, right, conversion) {
+  var doReplace = function(n0, flags, n2, width, n4, left, n6, right, conversion) {
     var value = '',
-      repl = '';
+        repl = '';
     if (conversion === '%') { // Percent does not seem to be allowed with intervening content
       return '%';
     }
@@ -66,7 +66,7 @@ function money_format (format, number) {
     var integer = decpos !== -1 ? number.slice(0, decpos) : number; // Get integer portion
     var fraction = decpos !== -1 ? number.slice(decpos + 1) : ''; // Get decimal portion
 
-    var _str_splice = function (integerStr, idx, thous_sep) {
+    var _str_splice = function(integerStr, idx, thous_sep) {
       var integerArr = integerStr.split('');
       integerArr.splice(idx, 0, thous_sep);
       return integerArr.join('');
@@ -173,24 +173,24 @@ function money_format (format, number) {
         // 2: sign follows them;
         // 3: sign immed. precedes curr. symbol; (but may be space between)
         // 4: sign immed. succeeds curr. symbol; (but may be space between)
-      case 0:
-        valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol;
-        repl = '(' + valueAndCS + ')';
-        break;
-      case 1:
-        valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol;
-        repl = signPadding + sign + (sep_by_space === 2 ? ' ' : '') + valueAndCS;
-        break;
-      case 2:
-        valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol;
-        repl = valueAndCS + (sep_by_space === 2 ? ' ' : '') + sign + signPadding;
-        break;
-      case 3:
-        repl = cs_precedes ? signPadding + sign + (sep_by_space === 2 ? ' ' : '') + symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + sign + signPadding + (sep_by_space === 2 ? ' ' : '') + symbol;
-        break;
-      case 4:
-        repl = cs_precedes ? symbol + (sep_by_space === 2 ? ' ' : '') + signPadding + sign + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol + (sep_by_space === 2 ? ' ' : '') + sign + signPadding;
-        break;
+        case 0:
+          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol;
+          repl = '(' + valueAndCS + ')';
+          break;
+        case 1:
+          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol;
+          repl = signPadding + sign + (sep_by_space === 2 ? ' ' : '') + valueAndCS;
+          break;
+        case 2:
+          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol;
+          repl = valueAndCS + (sep_by_space === 2 ? ' ' : '') + sign + signPadding;
+          break;
+        case 3:
+          repl = cs_precedes ? signPadding + sign + (sep_by_space === 2 ? ' ' : '') + symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + sign + signPadding + (sep_by_space === 2 ? ' ' : '') + symbol;
+          break;
+        case 4:
+          repl = cs_precedes ? symbol + (sep_by_space === 2 ? ' ' : '') + signPadding + sign + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol + (sep_by_space === 2 ? ' ' : '') + sign + signPadding;
+          break;
       }
     }
 

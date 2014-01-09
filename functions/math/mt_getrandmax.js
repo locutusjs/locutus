@@ -1,4 +1,4 @@
-function mt_getrandmax () {
+function mt_getrandmax() {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: mt_getrandmax();

@@ -10,9 +10,9 @@ function aggregate_methods_by_list (obj, class_name, properties_list, exclude) {
   // *     returns 1: undefined
 
   var p = '',
-    i = 0,
-    record = {},
-    pos = -1;
+      i = 0,
+      record = {},
+      pos = -1;
   var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {

@@ -1,4 +1,4 @@
-function end (arr) {
+function end(arr) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Legaev Andrey
@@ -14,7 +14,7 @@ function end (arr) {
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};
   this.php_js.pointers = this.php_js.pointers || [];
-  var indexOf = function (value) {
+  var indexOf = function(value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
         return i;

@@ -1,4 +1,4 @@
-function array_intersect_ukey (arr1) {
+function array_intersect_ukey(arr1) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: $array1 = {blue: 1, red: 2, green: 3, purple: 4}
@@ -6,13 +6,13 @@ function array_intersect_ukey (arr1) {
   // *     example 1: array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
   // *     returns 1: {blue: 1, green: 3}
   var retArr = {},
-    arglm1 = arguments.length - 1,
-    arglm2 = arglm1 - 1,
-    cb = arguments[arglm1],
-    k1 = '',
-    i = 1,
-    arr = {},
-    k = '';
+      arglm1 = arguments.length - 1,
+      arglm2 = arglm1 - 1,
+      cb = arguments[arglm1],
+      k1 = '',
+      i = 1,
+      arr = {},
+      k = '';
 
   cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
 

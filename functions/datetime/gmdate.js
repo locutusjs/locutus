@@ -1,4 +1,4 @@
-function gmdate (format, timestamp) {
+function gmdate(format, timestamp) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Alex

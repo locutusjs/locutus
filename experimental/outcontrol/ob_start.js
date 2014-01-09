@@ -1,4 +1,4 @@
-function ob_start (output_callback, chunk_size, erase) {
+function ob_start(output_callback, chunk_size, erase) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: chunk_size and erase arguments are not presently supported
@@ -6,16 +6,16 @@ function ob_start (output_callback, chunk_size, erase) {
   // *     returns 1: true
 
   var bufferObj = {},
-    internalType = false,
-    extra = false;
+      internalType = false,
+      extra = false;
   erase = !(erase === false); // true is default
   chunk_size = chunk_size === 1 ? 4096 : (chunk_size || 0);
 
   this.php_js = this.php_js || {};
   this.php_js.obs = this.php_js.obs || []; // Array for nestable buffers
   var phpjs = this.php_js,
-    ini = phpjs.ini,
-    obs = phpjs.obs;
+      ini = phpjs.ini,
+      obs = phpjs.obs;
 
   if (!obs && (ini && ini.output_buffering && (typeof ini.output_buffering.local_value !== 'string' || ini.output_buffering.local_value.toLowerCase() !== 'off'))) {
     extra = true; // We'll run another ob_start() below (recursion prevented)

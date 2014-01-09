@@ -1,4 +1,4 @@
-function microtime (get_as_float) {
+function microtime(get_as_float) {
   // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   // *     example 1: timeStamp = microtime(true);

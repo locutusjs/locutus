@@ -1,4 +1,4 @@
-function octdec (oct_string) {
+function octdec(oct_string) {
   // From: http://phpjs.org/functions
   // +   original by: Philippe Baumann
   // *     example 1: octdec('77');

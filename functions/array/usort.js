@@ -1,4 +1,4 @@
-function usort (inputArr, sorter) {
+function usort(inputArr, sorter) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -16,10 +16,10 @@ function usort (inputArr, sorter) {
   // *     example 1: $result = stuff;
   // *     returns 1: {0: '1', 1: '3', 2: '4', 3: '11'};
   var valArr = [],
-    k = '',
-    i = 0,
-    strictForIn = false,
-    populateArr = {};
+      k = '',
+      i = 0,
+      strictForIn = false,
+      populateArr = {};
 
   if (typeof sorter === 'string') {
     sorter = this[sorter];

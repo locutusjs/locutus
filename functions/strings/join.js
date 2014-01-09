@@ -1,4 +1,4 @@
-function join (glue, pieces) {
+function join(glue, pieces) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // -    depends on: implode

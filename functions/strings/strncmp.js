@@ -1,4 +1,4 @@
-function strncmp (str1, str2, lgth) {
+function strncmp(str1, str2, lgth) {
   // From: http://phpjs.org/functions
   // +      original by: Waldo Malqui Silva
   // +         input by: Steve Hilder

@@ -1,4 +1,4 @@
-function parse_str (str, array) {
+function parse_str(str, array) {
   // From: http://phpjs.org/functions
   // +      original by: Cagri Ekin
   // +      improved by: Michael White (http://getsprink.com)
@@ -30,12 +30,12 @@ function parse_str (str, array) {
   // *        returns 3: {"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}
 
   var strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&'),
-    sal = strArr.length,
-    i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value,
-    postLeftBracketPos, keys, keysLen,
-    fixStr = function (str) {
-      return decodeURIComponent(str.replace(/\+/g, '%20'));
-    };
+      sal = strArr.length,
+      i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value,
+      postLeftBracketPos, keys, keysLen,
+      fixStr = function(str) {
+        return decodeURIComponent(str.replace(/\+/g, '%20'));
+      };
 
   if (!array) {
     array = this.window;

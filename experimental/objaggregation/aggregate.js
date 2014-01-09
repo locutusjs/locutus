@@ -10,8 +10,8 @@ function aggregate (obj, class_name) {
   // *     returns 1: undefined
 
   var p = '',
-    record = {},
-    pos = -1;
+      record = {},
+      pos = -1;
   var getFuncName = function (fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
     if (!name) {

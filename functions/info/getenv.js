@@ -1,4 +1,4 @@
-function getenv (varname) {
+function getenv(varname) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: We are not using $_ENV as in PHP, you could define

@@ -1,4 +1,4 @@
-function is_callable (v, syntax_only, callable_name) {
+function is_callable(v, syntax_only, callable_name) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +      input by: François
@@ -20,9 +20,9 @@ function is_callable (v, syntax_only, callable_name) {
   // *     returns 4: true
 
   var name = '',
-    obj = {},
-    method = '';
-  var getFuncName = function (fn) {
+      obj = {},
+      method = '';
+  var getFuncName = function(fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
     if (!name) {
       return '(Anonymous)';
@@ -38,7 +38,7 @@ function is_callable (v, syntax_only, callable_name) {
     return true;
   }
   else if (Object.prototype.toString.call(v) === '[object Array]' &&
-        v.length === 2 && typeof v[0] === 'object' && typeof v[1] === 'string') {
+      v.length === 2 && typeof v[0] === 'object' && typeof v[1] === 'string') {
     obj = v[0];
     method = v[1];
     name = (obj.constructor && getFuncName(obj.constructor)) + '::' + method;

@@ -1,11 +1,11 @@
-function gopher_parsedir (dirent) {
+function gopher_parsedir(dirent) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a');
   // *     example 1: entry.title;
   // *     returns 1: 'All about my gopher site.'
 
-/* Types
+  /* Types
   * 0 = plain text file
   * 1 = directory menu listing
   * 2 = CSO search query
@@ -32,35 +32,35 @@ function gopher_parsedir (dirent) {
 
   var type = entry[1];
   switch (type) {
-  case 'i':
-    type = 255; // GOPHER_INFO
-    break;
-  case '1':
-    type = 1; // GOPHER_DIRECTORY
-    break;
-  case '0':
-    type = 0; // GOPHER_DOCUMENT
-    break;
-  case '4':
-    type = 4; // GOPHER_BINHEX
-    break;
-  case '5':
-    type = 5; // GOPHER_DOSBINARY
-    break;
-  case '6':
-    type = 6; // GOPHER_UUENCODED
-    break;
-  case '9':
-    type = 9; // GOPHER_BINARY
-    break;
-  case 'h':
-    type = 254; // GOPHER_HTTP
-    break;
-  default:
-    return {
-      type: -1,
-      data: dirent
-    }; // GOPHER_UNKNOWN
+    case 'i':
+      type = 255; // GOPHER_INFO
+      break;
+    case '1':
+      type = 1; // GOPHER_DIRECTORY
+      break;
+    case '0':
+      type = 0; // GOPHER_DOCUMENT
+      break;
+    case '4':
+      type = 4; // GOPHER_BINHEX
+      break;
+    case '5':
+      type = 5; // GOPHER_DOSBINARY
+      break;
+    case '6':
+      type = 6; // GOPHER_UUENCODED
+      break;
+    case '9':
+      type = 9; // GOPHER_BINARY
+      break;
+    case 'h':
+      type = 254; // GOPHER_HTTP
+      break;
+    default:
+      return {
+        type: -1,
+        data: dirent
+      }; // GOPHER_UNKNOWN
   }
   return {
     type: type,

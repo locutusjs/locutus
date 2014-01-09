@@ -1,4 +1,4 @@
-function abs (mixed_number) {
+function abs(mixed_number) {
   // From: http://phpjs.org/functions
   // +   original by: Waldo Malqui Silva
   // +   improved by: Karol Kowalski

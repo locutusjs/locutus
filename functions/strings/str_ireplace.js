@@ -1,4 +1,4 @@
-function str_ireplace (search, replace, subject) {
+function str_ireplace(search, replace, subject) {
   // From: http://phpjs.org/functions
   // +   original by: Martijn Wieringa
   // +      input by: penutbutterjelly
@@ -17,7 +17,7 @@ function str_ireplace (search, replace, subject) {
   var searchl = 0;
   var reg;
 
-  var escapeRegex = function (s) {
+  var escapeRegex = function(s) {
     return s.replace(/([\\\^\$*+\[\]?{}.=!:(|)])/g, '\\$1');
   };
 

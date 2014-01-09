@@ -1,4 +1,4 @@
-function long2ip (ip) {
+function long2ip(ip) {
   // From: http://phpjs.org/functions
   // +   original by: Waldo Malqui Silva
   // *     example 1: long2ip( 3221234342 );

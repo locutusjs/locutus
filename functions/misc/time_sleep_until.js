@@ -1,4 +1,4 @@
-function time_sleep_until (timestamp) {
+function time_sleep_until(timestamp) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note: For study purposes. Current implementation could lock up the user's browser.

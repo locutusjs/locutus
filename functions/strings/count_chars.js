@@ -1,4 +1,4 @@
-function count_chars (str, mode) {
+function count_chars(str, mode) {
   // From: http://phpjs.org/functions
   // +   original by: Ates Goral (http://magnetiq.com)
   // +    tweaked by: Jack
@@ -11,8 +11,8 @@ function count_chars (str, mode) {
   // *     example 2: count_chars("Hello World!", 1);
   // *     returns 2: {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
   var result = {},
-    resultArr = [],
-    i;
+      resultArr = [],
+      i;
 
   str = ('' + str).split('').sort().join('').match(/(.)\1*/g);
 

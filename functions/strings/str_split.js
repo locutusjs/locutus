@@ -1,4 +1,4 @@
-function str_split (string, split_length) {
+function str_split(string, split_length) {
   // From: http://phpjs.org/functions
   // +     original by: Martijn Wieringa
   // +     improved by: Brett Zamir (http://brett-zamir.me)
@@ -16,8 +16,8 @@ function str_split (string, split_length) {
   }
   string += '';
   var chunks = [],
-    pos = 0,
-    len = string.length;
+      pos = 0,
+      len = string.length;
   while (pos < len) {
     chunks.push(string.slice(pos, pos += split_length));
   }

@@ -1,4 +1,4 @@
-function chr (codePt) {
+function chr(codePt) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Brett Zamir (http://brett-zamir.me)

@@ -1,4 +1,4 @@
-function decbin (number) {
+function decbin(number) {
   // From: http://phpjs.org/functions
   // +   original by: Enrique Gonzalez
   // +   bugfixed by: Onno Marsman

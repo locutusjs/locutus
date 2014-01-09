@@ -1,4 +1,4 @@
-function array_unshift (array) {
+function array_unshift(array) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Martijn Wieringa

@@ -1,4 +1,4 @@
-function time () {
+function time() {
   // From: http://phpjs.org/functions
   // +   original by: GeekFG (http://geekfg.blogspot.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

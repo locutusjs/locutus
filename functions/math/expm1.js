@@ -1,11 +1,11 @@
-function expm1 (x) {
+function expm1(x) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Precision 'n' can be adjusted as desired
   // *     example 1: expm1(1e-15);
   // *     returns 1: 1.0000000000000007e-15
   var ret = 0,
-    n = 50; // degree of precision
+      n = 50; // degree of precision
   var factorial = function factorial(n) {
     if ((n === 0) || (n === 1)) {
       return 1;

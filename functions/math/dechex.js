@@ -1,4 +1,4 @@
-function dechex (number) {
+function dechex(number) {
   // From: http://phpjs.org/functions
   // +   original by: Philippe Baumann
   // +   bugfixed by: Onno Marsman

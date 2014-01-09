@@ -1,4 +1,4 @@
-function str_rot13 (str) {
+function str_rot13(str) {
   // From: http://phpjs.org/functions
   // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   improved by: Ates Goral (http://magnetiq.com)
@@ -11,7 +11,7 @@ function str_rot13 (str) {
   // *     example 3: str_rot13(33);
   // *     returns 3: '33'
 
-  return (str + '').replace(/[a-z]/gi, function (s) {
+  return (str + '').replace(/[a-z]/gi, function(s) {
     return String.fromCharCode(s.charCodeAt(0) + (s.toLowerCase() < 'n' ? 13 : -13));
   });
 }

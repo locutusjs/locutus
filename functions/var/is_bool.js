@@ -1,4 +1,4 @@
-function is_bool (mixed_var) {
+function is_bool(mixed_var) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // +   improved by: CoursesWeb (http://www.coursesweb.net/)

@@ -1,4 +1,4 @@
-function array_multisort (arr) {
+function array_multisort(arr) {
   // +   original by: Theriault
   // *     example 1: array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6]);
   // *     returns 1: true
@@ -52,61 +52,61 @@ function array_multisort (arr) {
   //
   // thingsToSort: Holds a bit that indicates which indexes in the arrays can be sorted. Updated after every array is sorted.
   var argl = arguments.length,
-    sal = 0,
-    flags = {
-      'SORT_REGULAR': 16,
-      'SORT_NUMERIC': 17,
-      'SORT_STRING': 18,
-      'SORT_ASC': 32,
-      'SORT_DESC': 40
-    },
-    sortArrs = [
-      []
-    ],
-    sortFlag = [0],
-    sortKeys = [
-      []
-    ],
-    g = 0,
-    i = 0,
-    j = 0,
-    k = '',
-    l = 0,
-    thingsToSort = [],
-    vkey = 0,
-    zlast = null,
-    args = arguments,
-    nLastSort = [],
-    lastSort = [],
-    lastSorts = [],
-    tmpArray = [],
-    elIndex = 0,
-    sortDuplicator = function (a, b) {
-      return nLastSort.shift();
-    },
-    sortFunctions = [
-      [function (a, b) {
-        lastSort.push(a > b ? 1 : (a < b ? -1 : 0));
-        return a > b ? 1 : (a < b ? -1 : 0);
-      }, function (a, b) {
-        lastSort.push(b > a ? 1 : (b < a ? -1 : 0));
-        return b > a ? 1 : (b < a ? -1 : 0);
-      }],
-      [function (a, b) {
-        lastSort.push(a - b);
-        return a - b;
-      }, function (a, b) {
-        lastSort.push(b - a);
-        return b - a;
-      }],
-      [function (a, b) {
-        lastSort.push((a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0));
-        return (a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0);
-      }, function (a, b) {
-        lastSort.push((b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0));
-        return (b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0);
-      }]
-    ];
+      sal = 0,
+      flags = {
+        'SORT_REGULAR': 16,
+        'SORT_NUMERIC': 17,
+        'SORT_STRING': 18,
+        'SORT_ASC': 32,
+        'SORT_DESC': 40
+      },
+      sortArrs = [
+        []
+      ],
+      sortFlag = [0],
+      sortKeys = [
+        []
+      ],
+      g = 0,
+      i = 0,
+      j = 0,
+      k = '',
+      l = 0,
+      thingsToSort = [],
+      vkey = 0,
+      zlast = null,
+      args = arguments,
+      nLastSort = [],
+      lastSort = [],
+      lastSorts = [],
+      tmpArray = [],
+      elIndex = 0,
+      sortDuplicator = function(a, b) {
+        return nLastSort.shift();
+      };,
+  sortFunctions = [
+    [function(a, b) {
+      lastSort.push(a > b ? 1 : (a < b ? -1 : 0));
+      return a > b ? 1 : (a < b ? -1 : 0);
+    }, function(a, b) {
+      lastSort.push(b > a ? 1 : (b < a ? -1 : 0));
+      return b > a ? 1 : (b < a ? -1 : 0);
+    }],
+    [function(a, b) {
+      lastSort.push(a - b);
+      return a - b;
+    }, function(a, b) {
+      lastSort.push(b - a);
+      return b - a;
+    }],
+    [function(a, b) {
+      lastSort.push((a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0));
+      return (a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0);
+    }, function(a, b) {
+      lastSort.push((b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0));
+      return (b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0);
+    }]
+  ];
 
   // Store first argument into sortArrs and sortKeys if an Object.
   // First Argument should be either a Javascript Array or an Object, otherwise function would return FALSE like in PHP
@@ -130,7 +130,7 @@ function array_multisort (arr) {
   //
   // sortComponents: Holds 2 indexes per every section of the array that can be sorted. As this is the start, the whole array can be sorted.
   var arrMainLength = sortArrs[0].length,
-    sortComponents = [0, arrMainLength];
+      sortComponents = [0, arrMainLength];
 
   // Loop through all other arguments, checking lengths and sort flags of arrays and adding them to the above variables.
   for (j = 1; j < argl; j++) {

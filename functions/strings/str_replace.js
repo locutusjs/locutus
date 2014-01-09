@@ -1,4 +1,4 @@
-function str_replace (search, replace, subject, count) {
+function str_replace(search, replace, subject, count) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Gabriel Paderni
@@ -21,16 +21,16 @@ function str_replace (search, replace, subject, count) {
   // *     example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
   // *     returns 2: 'hemmo, mars'
   var i = 0,
-    j = 0,
-    temp = '',
-    repl = '',
-    sl = 0,
-    fl = 0,
-    f = [].concat(search),
-    r = [].concat(replace),
-    s = subject,
-    ra = Object.prototype.toString.call(r) === '[object Array]',
-    sa = Object.prototype.toString.call(s) === '[object Array]';
+      j = 0,
+      temp = '',
+      repl = '',
+      sl = 0,
+      fl = 0,
+      f = [].concat(search),
+      r = [].concat(replace),
+      s = subject,
+      ra = Object.prototype.toString.call(r) === '[object Array]',
+      sa = Object.prototype.toString.call(s) === '[object Array]';
   s = [].concat(s);
   if (count) {
     this.window[count] = 0;

@@ -1,4 +1,4 @@
-function ucwords (str) {
+function ucwords(str) {
   // From: http://phpjs.org/functions
   // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   improved by: Waldo Malqui Silva
@@ -10,7 +10,7 @@ function ucwords (str) {
   // *     returns 1: 'Kevin Van  Zonneveld'
   // *     example 2: ucwords('HELLO WORLD');
   // *     returns 2: 'HELLO WORLD'
-  return (str + '').replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function ($1) {
+  return (str + '').replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function($1) {
     return $1.toUpperCase();
   });
 }

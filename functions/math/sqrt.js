@@ -1,4 +1,4 @@
-function sqrt (arg) {
+function sqrt(arg) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: sqrt(8723321.4);

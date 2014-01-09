@@ -1,4 +1,4 @@
-function key (arr) {
+function key(arr) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Riddler (http://www.frontierwebdev.com/)
@@ -10,7 +10,7 @@ function key (arr) {
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};
   this.php_js.pointers = this.php_js.pointers || [];
-  var indexOf = function (value) {
+  var indexOf = function(value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
         return i;

@@ -16,17 +16,17 @@ function PhpjsUtil(config) {
 }
 
 PhpjsUtil.prototype._commentBlocks = function(code) {
-  var cnt           = 0;
-  var comment       = [];
+  var cnt = 0;
+  var comment = [];
   var commentBlocks = [];
-  var i             = 0;
-  var lines         = [];
-  var raise         = false;
+  var i = 0;
+  var lines = [];
+  var raise = false;
   for (i in (lines = code.replace('\r', '').split('\n'))) {
     // Detect if line is a comment, and return the actual comment
     if ((comment = lines[i].match(/^\s*(\/\/|\/\*|\*)\s*(.*)$/))) {
       if (raise === true) {
-        cnt   = commentBlocks.length;
+        cnt = commentBlocks.length;
         raise = false;
       }
       if (!commentBlocks[cnt]) {
@@ -45,12 +45,12 @@ PhpjsUtil.prototype._commentBlocks = function(code) {
 
 PhpjsUtil.prototype._headKeys = function(headLines) {
   var i;
-  var keys   = {};
-  var match  = [];
+  var keys = {};
+  var match = [];
   var dmatch = [];
-  var key    = '';
-  var val    = '';
-  var num    = 0;
+  var key = '';
+  var val = '';
+  var num = 0;
 
   for (i in headLines) {
     if (!(match = headLines[i].match(/^[\s\W]*(.*?)\s*:\s*(.*)\s*$/))) {
@@ -82,14 +82,14 @@ PhpjsUtil.prototype._headKeys = function(headLines) {
   return keys;
 };
 
-PhpjsUtil.prototype.contains = function (array, value) {
-    var i = array.length;
-    while (i--) {
-       if (array[i] === value) {
-           return true;
-       }
+PhpjsUtil.prototype.contains = function(array, value) {
+  var i = array.length;
+  while (i--) {
+    if (array[i] === value) {
+      return true;
     }
-    return false;
+  }
+  return false;
 };
 
 PhpjsUtil.prototype._loadDependencies = function(name, headKeys, dependencies, cb) {
@@ -107,7 +107,7 @@ PhpjsUtil.prototype._loadDependencies = function(name, headKeys, dependencies, c
   for (i in headKeys['depends on']) {
     name = headKeys['depends on'][i];
 
-    self.load(name, function (err, params) {
+    self.load(name, function(err, params) {
       if (err) {
         return cb(err);
       }
@@ -124,26 +124,26 @@ PhpjsUtil.prototype._loadDependencies = function(name, headKeys, dependencies, c
 
 PhpjsUtil.prototype.parse = function(name, code, cb) {
   var commentBlocks = this._commentBlocks(code);
-  var head          = commentBlocks[0].raw.join('\n');
-  var body          = code.replace(head, '');
-  var headKeys      = this._headKeys(commentBlocks[0].clean);
+  var head = commentBlocks[0].raw.join('\n');
+  var body = code.replace(head, '');
+  var headKeys = this._headKeys(commentBlocks[0].clean);
 
   // @todo(kvz) If we add function signature, we can use
   // body to generate CommonJs compatible output
   // in the browser.
 
-  this._loadDependencies(name, headKeys, {}, function (err, dependencies) {
+  this._loadDependencies(name, headKeys, {}, function(err, dependencies) {
     if (err) {
       return cb(err);
     }
 
     cb(null, {
-      headKeys     : headKeys,
-      body         : body,
-      head         : head,
-      name         : name,
-      code         : code,
-      dependencies : dependencies,
+      headKeys: headKeys,
+      body: body,
+      head: head,
+      name: name,
+      code: code,
+      dependencies: dependencies,
       commentBlocks: commentBlocks
     });
   });
@@ -154,12 +154,12 @@ PhpjsUtil.prototype.opener = function(name, cb) {
 };
 
 PhpjsUtil.prototype.loadMultiple = function(names, cb) {
-  var self           = this;
+  var self = this;
   var paramsMultiple = {};
-  var loaded         = 0;
+  var loaded = 0;
   for (var i in names) {
     var name = names[i];
-    self.load(name, function (err, params) {
+    self.load(name, function(err, params) {
       if (err) {
         return cb(err);
       }
@@ -175,12 +175,12 @@ PhpjsUtil.prototype.loadMultiple = function(names, cb) {
 
 PhpjsUtil.prototype.load = function(name, cb) {
   var self = this;
-  self.opener(name, function (err, code) {
+  self.opener(name, function(err, code) {
     if (err) {
       return cb(err);
     }
 
-    self.parse(name, code, function (err, params) {
+    self.parse(name, code, function(err, params) {
       if (err) {
         return cb(err);
       }
@@ -193,9 +193,9 @@ PhpjsUtil.prototype.load = function(name, cb) {
 PhpjsUtil.prototype.unique = function(array) {
   var a = array.concat();
 
-  for(var i = 0; i < a.length; ++i) {
-    for(var j = i + 1; j < a.length; ++j) {
-      if(a[i] === a[j]) {
+  for (var i = 0; i < a.length; ++i) {
+    for (var j = i + 1; j < a.length; ++j) {
+      if (a[i] === a[j]) {
         a.splice(j--, 1);
       }
     }
@@ -205,8 +205,8 @@ PhpjsUtil.prototype.unique = function(array) {
 };
 
 PhpjsUtil.prototype.getRecursiveCode = function(params) {
-  var self   = this;
-  var codez  = [];
+  var self = this;
+  var codez = [];
 
   if ('name' in params) {
     codez.push(params['code']);
@@ -221,7 +221,7 @@ PhpjsUtil.prototype.getRecursiveCode = function(params) {
 };
 
 PhpjsUtil.prototype.test = function(params, cb) {
-  var self  = this;
+  var self = this;
   var codez = [];
 
 
@@ -231,24 +231,24 @@ PhpjsUtil.prototype.test = function(params, cb) {
     }
 
     var extracted = self.getRecursiveCode(params);
-    codez         = codez.concat(codez, extracted);
+    codez = codez.concat(codez, extracted);
 
     codez.unshift('' +
-      'XMLHttpRequest = {};' +
-      'window = {' +
+        'XMLHttpRequest = {};' +
+        'window = {' +
         'document: {' +
-          'lastModified: 1388954399,' +
-          'getElementsByTagName: function(){return [];}' +
+        'lastModified: 1388954399,' +
+        'getElementsByTagName: function(){return [];}' +
         '},' +
         'location: {' +
-          'href: ""' +
+        'href: ""' +
         '}' +
-      '};' +
-    '');
+        '};' +
+        '');
 
     // Load code
     eval(
-      codez.join(';\n')
+        codez.join(';\n')
         .replace(/that\.([a-z_])/g, '$1')
         .replace(/this\.([a-z_])/g, '$1')
         .replace(/window\.setTimeout/g, 'setTimeout')
@@ -263,7 +263,7 @@ PhpjsUtil.prototype.test = function(params, cb) {
     for (var i in params['headKeys']['example']) {
       var test = {
         example: params['headKeys']['example'][i].join('\n'),
-        number : i
+        number: i
       };
 
       if (!params['headKeys']['returns'][i] || !params['headKeys']['returns'][i].length) {
@@ -279,7 +279,7 @@ PhpjsUtil.prototype.test = function(params, cb) {
       // Let's do something evil. Execute line by line (see date.js why)
       // We need test.reslult be the last result of the example code
       for (var j in params['headKeys']['example'][i]) {
-        if (+j === params['headKeys']['example'][i].length-1) {
+        if (+j === params['headKeys']['example'][i].length - 1) {
           eval('test.result = ' + params['headKeys']['example'][i][j] + '');
         } else {
           eval(params['headKeys']['example'][i][j] + '');
@@ -287,7 +287,7 @@ PhpjsUtil.prototype.test = function(params, cb) {
       }
 
       var jsonExpected = JSON.stringify(test.expected, undefined, 2);
-      var jsonResult   = JSON.stringify(test.result, undefined, 2);
+      var jsonResult = JSON.stringify(test.result, undefined, 2);
 
       // We cannot compare using the JSON.stringify as object order is
       // not guaranteed

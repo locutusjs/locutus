@@ -1,4 +1,4 @@
-function acos (arg) {
+function acos(arg) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: acos(0.3);

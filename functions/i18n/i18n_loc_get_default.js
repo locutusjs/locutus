@@ -1,4 +1,4 @@
-function i18n_loc_get_default () {
+function i18n_loc_get_default() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Renamed in PHP6 from locale_get_default(). Not listed yet at php.net

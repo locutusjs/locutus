@@ -1,4 +1,4 @@
-function array_merge () {
+function array_merge() {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Nate
@@ -13,16 +13,16 @@ function array_merge () {
   // *     example 2: array_merge(arr1, arr2)
   // *     returns 2: {0: "data"}
   var args = Array.prototype.slice.call(arguments),
-    argl = args.length,
-    arg,
-    retObj = {},
-    k = '',
-    argil = 0,
-    j = 0,
-    i = 0,
-    ct = 0,
-    toStr = Object.prototype.toString,
-    retArr = true;
+      argl = args.length,
+      arg,
+      retObj = {},
+      k = '',
+      argil = 0,
+      j = 0,
+      i = 0,
+      ct = 0,
+      toStr = Object.prototype.toString,
+      retArr = true;
 
   for (i = 0; i < argl; i++) {
     if (toStr.call(args[i]) !== '[object Array]') {

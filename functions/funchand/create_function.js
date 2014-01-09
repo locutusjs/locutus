@@ -1,4 +1,4 @@
-function create_function (args, code) {
+function create_function(args, code) {
   // From: http://phpjs.org/functions
   // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
   // +   reimplemented by: Brett Zamir (http://brett-zamir.me)

@@ -1,4 +1,4 @@
-function file_get_contents (url, flags, context, offset, maxLen) {
+function file_get_contents(url, flags, context, offset, maxLen) {
   // From: http://phpjs.org/functions
   // +   original by: Legaev Andrey
   // +      input by: Jani Hartikainen
@@ -22,15 +22,15 @@ function file_get_contents (url, flags, context, offset, maxLen) {
   // *     returns 1: true
   // Note: could also be made to optionally add to global $http_response_header as per http://php.net/manual/en/reserved.variables.httpresponseheader.php
   var tmp, headers = [],
-    newTmp = [],
-    k = 0,
-    i = 0,
-    href = '',
-    pathPos = -1,
-    flagNames = 0,
-    content = null,
-    http_stream = false;
-  var func = function (value) {
+      newTmp = [],
+      k = 0,
+      i = 0,
+      href = '',
+      pathPos = -1,
+      flagNames = 0,
+      content = null,
+      http_stream = false;
+  var func = function(value) {
     return value.substring(1) !== '';
   };
 
@@ -88,7 +88,7 @@ function file_get_contents (url, flags, context, offset, maxLen) {
     var async = !! (context && context.stream_params && context.stream_params['phpjs.async']);
 
     if (ini['phpjs.ajaxBypassCache'] && ini['phpjs.ajaxBypassCache'].local_value) {
-      url += (url.match(/\?/) == null ? "?" : "&") + (new Date()).getTime(); // Give optional means of forcing bypass of cache
+      url += (url.match(/\?/) == null ? '?' : '&') + (new Date()).getTime(); // Give optional means of forcing bypass of cache
     }
 
     req.open(method, url, async);
@@ -97,16 +97,16 @@ function file_get_contents (url, flags, context, offset, maxLen) {
       if (typeof notification === 'function') {
         // Fix: make work with req.addEventListener if available: https://developer.mozilla.org/En/Using_XMLHttpRequest
         if (0 && req.addEventListener) { // Unimplemented so don't allow to get here
-/*
+        /*
           req.addEventListener('progress', updateProgress, false);
           req.addEventListener('load', transferComplete, false);
           req.addEventListener('error', transferFailed, false);
           req.addEventListener('abort', transferCanceled, false);
           */
         } else {
-          req.onreadystatechange = function (aEvt) { // aEvt has stopPropagation(), preventDefault(); see https://developer.mozilla.org/en/NsIDOMEvent
+          req.onreadystatechange = function(aEvt) { // aEvt has stopPropagation(), preventDefault(); see https://developer.mozilla.org/en/NsIDOMEvent
             // Other XMLHttpRequest properties: multipart, responseXML, status, statusText, upload, withCredentials
-/*
+            /*
   PHP Constants:
   STREAM_NOTIFY_RESOLVE   1       A remote address required for this stream has been resolved, or the resolution failed. See severity  for an indication of which happened.
   STREAM_NOTIFY_CONNECT   2     A connection with an external resource has been established.
@@ -135,38 +135,38 @@ function file_get_contents (url, flags, context, offset, maxLen) {
             // Need to add message, etc.
             var bytes_transferred;
             switch (req.readyState) {
-            case 0:
-              //     UNINITIALIZED     open() has not been called yet.
-              notification.call(objContext, 0, 0, '', 0, 0, 0);
-              break;
-            case 1:
-              //     LOADING     send() has not been called yet.
-              notification.call(objContext, 0, 0, '', 0, 0, 0);
-              break;
-            case 2:
-              //     LOADED     send() has been called, and headers and status are available.
-              notification.call(objContext, 0, 0, '', 0, 0, 0);
-              break;
-            case 3:
-              //     INTERACTIVE     Downloading; responseText holds partial data.
-              bytes_transferred = req.responseText.length * 2; // One character is two bytes
-              notification.call(objContext, 7, 0, '', 0, bytes_transferred, 0);
-              break;
-            case 4:
-              //     COMPLETED     The operation is complete.
-              if (req.status >= 200 && req.status < 400) {
+              case 0:
+                //     UNINITIALIZED     open() has not been called yet.
+                notification.call(objContext, 0, 0, '', 0, 0, 0);
+                break;
+              case 1:
+                //     LOADING     send() has not been called yet.
+                notification.call(objContext, 0, 0, '', 0, 0, 0);
+                break;
+              case 2:
+                //     LOADED     send() has been called, and headers and status are available.
+                notification.call(objContext, 0, 0, '', 0, 0, 0);
+                break;
+              case 3:
+                //     INTERACTIVE     Downloading; responseText holds partial data.
                 bytes_transferred = req.responseText.length * 2; // One character is two bytes
-                notification.call(objContext, 8, 0, '', req.status, bytes_transferred, 0);
-              } else if (req.status === 403) { // Fix: These two are finished except for message
-                notification.call(objContext, 10, 2, '', req.status, 0, 0);
-              } else { // Errors
-                notification.call(objContext, 9, 2, '', req.status, 0, 0);
-              }
-              break;
-            default:
-              throw 'Unrecognized ready state for file_get_contents()';
+                notification.call(objContext, 7, 0, '', 0, bytes_transferred, 0);
+                break;
+              case 4:
+                //     COMPLETED     The operation is complete.
+                if (req.status >= 200 && req.status < 400) {
+                  bytes_transferred = req.responseText.length * 2; // One character is two bytes
+                  notification.call(objContext, 8, 0, '', req.status, bytes_transferred, 0);
+                } else if (req.status === 403) { // Fix: These two are finished except for message
+                  notification.call(objContext, 10, 2, '', req.status, 0, 0);
+                } else { // Errors
+                  notification.call(objContext, 9, 2, '', req.status, 0, 0);
+                }
+                break;
+              default:
+                throw 'Unrecognized ready state for file_get_contents()';
             }
-          }
+          };
         }
       }
     }
@@ -190,7 +190,7 @@ function file_get_contents (url, flags, context, offset, maxLen) {
         }
       }
       content = http_options.content || null;
-/*
+      /*
       // Presently unimplemented HTTP context options
       var request_fulluri = http_options.request_fulluri || false; // When set to TRUE, the entire URI will be used when constructing the request. (i.e. GET http://www.example.com/path/to/file.html HTTP/1.0). While this is a non-standard request format, some proxy servers require it.
       var max_redirects = http_options.max_redirects || 20; // The max number of redirects to follow. Value 1 or less means that no redirects are followed.

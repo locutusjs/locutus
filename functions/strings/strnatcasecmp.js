@@ -1,4 +1,4 @@
-function strnatcasecmp (str1, str2) {
+function strnatcasecmp(str1, str2) {
   // From: http://phpjs.org/functions
   // +      original by: Martin Pool
   // + reimplemented by: Pierre-Luc Paour
@@ -14,16 +14,16 @@ function strnatcasecmp (str1, str2) {
   var a = (str1 + '').toLowerCase();
   var b = (str2 + '').toLowerCase();
 
-  var isWhitespaceChar = function (a) {
+  var isWhitespaceChar = function(a) {
     return a.charCodeAt(0) <= 32;
   };
 
-  var isDigitChar = function (a) {
+  var isDigitChar = function(a) {
     var charCode = a.charCodeAt(0);
     return (charCode >= 48 && charCode <= 57);
   };
 
-  var compareRight = function (a, b) {
+  var compareRight = function(a, b) {
     var bias = 0;
     var ia = 0;
     var ib = 0;
@@ -60,9 +60,9 @@ function strnatcasecmp (str1, str2) {
   };
 
   var ia = 0,
-    ib = 0;
+      ib = 0;
   var nza = 0,
-    nzb = 0;
+      nzb = 0;
   var ca, cb;
   var result;
 

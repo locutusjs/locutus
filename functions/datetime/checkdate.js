@@ -1,4 +1,4 @@
-function checkdate (m, d, y) {
+function checkdate(m, d, y) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Pyerre

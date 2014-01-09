@@ -1,4 +1,4 @@
-function escapeshellarg (arg) {
+function escapeshellarg(arg) {
   // From: http://phpjs.org/functions
   // +   original by: Felix Geisendoerfer (http://www.debuggable.com/felix)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -6,7 +6,7 @@ function escapeshellarg (arg) {
   // *     returns 1: "'kevin\'s birthday'"
   var ret = '';
 
-  ret = arg.replace(/[^\\]'/g, function (m, i, s) {
+  ret = arg.replace(/[^\\]'/g, function(m, i, s) {
     return m.slice(0, 1) + '\\\'';
   });
 

@@ -1,4 +1,4 @@
-function strtok (str, tokens) {
+function strtok(str, tokens) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Use tab and newline as tokenizing characters as well

@@ -1,4 +1,4 @@
-function natcasesort (inputArr) {
+function natcasesort(inputArr) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -20,9 +20,9 @@ function natcasesort (inputArr) {
   // *     returns 1: {a: 'IMG0.png', e: 'img1.png', d: 'img2.png', f: 'IMG3.png', c: 'img10.png', b: 'img12.png'}
 
   var valArr = [],
-    k, i, ret, that = this,
-    strictForIn = false,
-    populateArr = {};
+      k, i, ret, that = this,
+      strictForIn = false,
+      populateArr = {};
 
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};
@@ -40,7 +40,7 @@ function natcasesort (inputArr) {
       }
     }
   }
-  valArr.sort(function (a, b) {
+  valArr.sort(function(a, b) {
     return that.strnatcasecmp(a[1], b[1]);
   });
 

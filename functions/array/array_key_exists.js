@@ -1,4 +1,4 @@
-function array_key_exists (key, search) {
+function array_key_exists(key, search) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Felix Geisendoerfer (http://www.debuggable.com/felix)

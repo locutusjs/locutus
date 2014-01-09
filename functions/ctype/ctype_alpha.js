@@ -1,4 +1,4 @@
-function ctype_alpha (text) {
+function ctype_alpha(text) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale

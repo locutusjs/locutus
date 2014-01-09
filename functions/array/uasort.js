@@ -1,4 +1,4 @@
-function uasort (inputArr, sorter) {
+function uasort(inputArr, sorter) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -18,10 +18,10 @@ function uasort (inputArr, sorter) {
   // *     returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
   var valArr = [],
-    tempKeyVal, tempValue, ret, k = '',
-    i = 0,
-    strictForIn = false,
-    populateArr = {};
+      tempKeyVal, tempValue, ret, k = '',
+      i = 0,
+      strictForIn = false,
+      populateArr = {};
 
   if (typeof sorter === 'string') {
     sorter = this[sorter];
@@ -45,7 +45,7 @@ function uasort (inputArr, sorter) {
       }
     }
   }
-  valArr.sort(function (a, b) {
+  valArr.sort(function(a, b) {
     return sorter(a[1], b[1]);
   });
 

@@ -1,4 +1,4 @@
-function stristr (haystack, needle, bool) {
+function stristr(haystack, needle, bool) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfxied by: Onno Marsman

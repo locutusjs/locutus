@@ -1,4 +1,4 @@
-function rawurlencode (str) {
+function rawurlencode(str) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +      input by: travc
@@ -24,5 +24,5 @@ function rawurlencode (str) {
   // Tilde should be allowed unescaped in future versions of PHP (as reflected below), but if you want to reflect current
   // PHP behavior, you would need to add ".replace(/~/g, '%7E');" to the following.
   return encodeURIComponent(str).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').
-  replace(/\)/g, '%29').replace(/\*/g, '%2A');
+      replace(/\)/g, '%29').replace(/\*/g, '%2A');
 }

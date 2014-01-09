@@ -1,4 +1,4 @@
-function count (mixed_var, mode) {
+function count(mixed_var, mode) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: Waldo Malqui Silva

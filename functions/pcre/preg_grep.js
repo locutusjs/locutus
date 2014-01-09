@@ -1,4 +1,4 @@
-function preg_grep (pattern, input, flags) {
+function preg_grep(pattern, input, flags) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: If pass pattern as string, must escape backslashes, even for single quotes

@@ -1,4 +1,4 @@
-function is_nan (val) {
+function is_nan(val) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // +      input by: Robin

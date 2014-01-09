@@ -1,4 +1,4 @@
-function strrchr (haystack, needle) {
+function strrchr(haystack, needle) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Jason Wong (http://carrot.org/)

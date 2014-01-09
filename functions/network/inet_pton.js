@@ -1,4 +1,4 @@
-function inet_pton (a) {
+function inet_pton(a) {
   // From: http://phpjs.org/functions
   // +   original by: Theriault
   // *     example 1: inet_pton('::');

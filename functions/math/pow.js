@@ -1,4 +1,4 @@
-function pow (base, exp) {
+function pow(base, exp) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: pow(8723321.4, 7);

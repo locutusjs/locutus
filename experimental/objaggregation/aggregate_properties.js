@@ -10,16 +10,16 @@ function aggregate_properties (obj, class_name) {
   // *     returns 1: undefined
 
   var p = '',
-    record = {},
-    pos = -1,
-    indexOf = function (value) {
-      for (var i = 0, length = this.length; i < length; i++) {
-        if (this[i] === value) {
-          return i;
+      record = {},
+      pos = -1,
+      indexOf = function (value) {
+        for (var i = 0, length = this.length; i < length; i++) {
+          if (this[i] === value) {
+            return i;
+          }
         }
-      }
-      return -1;
-    };
+        return -1;
+      };
 
   if (typeof class_name === 'string') { // PHP behavior
     class_name = this.window[class_name];

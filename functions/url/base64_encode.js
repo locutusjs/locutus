@@ -1,4 +1,4 @@
-function base64_encode (data) {
+function base64_encode(data) {
   // From: http://phpjs.org/functions
   // +   original by: Tyler Akins (http://rumkin.com)
   // +   improved by: Bayron Guevara
@@ -14,11 +14,11 @@ function base64_encode (data) {
   //if (typeof this.window['btoa'] === 'function') {
   //    return btoa(data);
   //}
-  var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
-    ac = 0,
-    enc = "",
-    tmp_arr = [];
+      ac = 0,
+      enc = '',
+      tmp_arr = [];
 
   if (!data) {
     return data;

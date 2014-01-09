@@ -1,4 +1,4 @@
-function uniqid (prefix, more_entropy) {
+function uniqid(prefix, more_entropy) {
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    revised by: Kankrelune (http://www.webfaktory.info/)
   // %        note 1: Uses an internal counter (in php_js global) to avoid collision
@@ -9,11 +9,11 @@ function uniqid (prefix, more_entropy) {
   // *     example 3: uniqid('bar', true);
   // *     returns 3: 'bara20285b23dfd1.31879087'
   if (typeof prefix === 'undefined') {
-    prefix = "";
+    prefix = '';
   }
 
   var retId;
-  var formatSeed = function (seed, reqWidth) {
+  var formatSeed = function(seed, reqWidth) {
     seed = parseInt(seed, 10).toString(16); // to hex str
     if (reqWidth < seed.length) { // so long we split
       return seed.slice(seed.length - reqWidth);

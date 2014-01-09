@@ -1,4 +1,4 @@
-function array_map (callback) {
+function array_map(callback) {
   // From: http://phpjs.org/functions
   // +   original by: Andrea Giammarchi (http://webreflection.blogspot.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -8,16 +8,16 @@ function array_map (callback) {
   // *     example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] );
   // *     returns 1: [ 1, 8, 27, 64, 125 ]
   var argc = arguments.length,
-    argv = arguments,
-    glbl = this.window,
-    obj = null,
-    cb = callback,
-    j = argv[1].length,
-    i = 0,
-    k = 1,
-    m = 0,
-    tmp = [],
-    tmp_ar = [];
+      argv = arguments,
+      glbl = this.window,
+      obj = null,
+      cb = callback,
+      j = argv[1].length,
+      i = 0,
+      k = 1,
+      m = 0,
+      tmp = [],
+      tmp_ar = [];
 
   while (i < j) {
     while (k < argc) {

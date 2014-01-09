@@ -1,4 +1,4 @@
-function tanh (arg) {
+function tanh(arg) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: tanh(5.4251848798444815);

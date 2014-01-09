@@ -1,4 +1,4 @@
-function gmmktime () {
+function gmmktime() {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   derived from: mktime
@@ -7,9 +7,9 @@ function gmmktime () {
   // *     example 2: gmmktime(0, 0, -1, 1, 1, 1970);
   // *     returns 2: -1
   var d = new Date(),
-    r = arguments,
-    i = 0,
-    e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear'];
+      r = arguments,
+      i = 0,
+      e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear'];
 
   for (i = 0; i < e.length; i++) {
     if (typeof r[i] === 'undefined') {

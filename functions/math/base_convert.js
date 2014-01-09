@@ -1,4 +1,4 @@
-function base_convert (number, frombase, tobase) {
+function base_convert(number, frombase, tobase) {
   // From: http://phpjs.org/functions
   // +   original by: Philippe Baumann
   // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)

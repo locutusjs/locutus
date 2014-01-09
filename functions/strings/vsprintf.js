@@ -1,4 +1,4 @@
-function vsprintf (format, args) {
+function vsprintf(format, args) {
   // From: http://phpjs.org/functions
   // +   original by: ejsanders
   // -    depends on: sprintf

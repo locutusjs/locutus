@@ -1,4 +1,4 @@
-function array_merge_recursive (arr1, arr2) {
+function array_merge_recursive(arr1, arr2) {
   // From: http://phpjs.org/functions
   // +   original by: Subhasis Deb
   // +      input by: Brett Zamir (http://brett-zamir.me)
@@ -11,7 +11,7 @@ function array_merge_recursive (arr1, arr2) {
   var idx = '';
 
   if (arr1 && Object.prototype.toString.call(arr1) === '[object Array]' &&
-    arr2 && Object.prototype.toString.call(arr2) === '[object Array]') {
+      arr2 && Object.prototype.toString.call(arr2) === '[object Array]') {
     for (idx in arr2) {
       arr1.push(arr2[idx]);
     }

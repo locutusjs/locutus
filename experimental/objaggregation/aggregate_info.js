@@ -10,11 +10,11 @@ function aggregate_info (obj) {
   // *     returns 1: {'A':{methods:['someMethod'], properties:['prop']}}
 
   var idx = -1,
-    p = '',
-    infoObj = {},
-    retObj = {},
-    i = 0,
-    name = '';
+      p = '',
+      infoObj = {},
+      retObj = {},
+      i = 0,
+      name = '';
   var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {

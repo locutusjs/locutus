@@ -1,4 +1,4 @@
-function bcround (val, precision) {
+function bcround(val, precision) {
   // From: http://phpjs.org/functions
   // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // -    depends on: _phpjs_shared_bc

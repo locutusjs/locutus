@@ -1,4 +1,4 @@
-function get_defined_vars () {
+function get_defined_vars() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
@@ -8,8 +8,8 @@ function get_defined_vars () {
   // *     example 1: found = test_in_array(funcs, 'get_defined_vars');
   // *     results 1: found == true
   var i = '',
-    arr = [],
-    already = {};
+      arr = [],
+      already = {};
 
   for (i in this.window) {
     try {

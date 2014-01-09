@@ -1,4 +1,4 @@
-function setrawcookie (name, value, expires, path, domain, secure) {
+function setrawcookie(name, value, expires, path, domain, secure) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -18,8 +18,8 @@ function setrawcookie (name, value, expires, path, domain, secure) {
   }
 
   var r = [name + '=' + value],
-    s = {},
-    i = '';
+      s = {},
+      i = '';
   s = {
     expires: expires,
     path: path,
@@ -31,5 +31,5 @@ function setrawcookie (name, value, expires, path, domain, secure) {
     }
   }
 
-  return secure && r.push('secure'), this.window.document.cookie = r.join(";"), true;
+  return secure && r.push('secure'), this.window.document.cookie = r.join(';'), true;
 }

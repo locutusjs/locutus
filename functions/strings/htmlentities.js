@@ -1,4 +1,4 @@
-function htmlentities (string, quote_style, charset, double_encode) {
+function htmlentities(string, quote_style, charset, double_encode) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -16,7 +16,7 @@ function htmlentities (string, quote_style, charset, double_encode) {
   // *     example 2: htmlentities("foo'bar","ENT_QUOTES");
   // *     returns 2: 'foo&#039;bar'
   var hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style),
-    symbol = '';
+      symbol = '';
   string = string == null ? '' : string + '';
 
   if (!hash_map) {
@@ -34,7 +34,7 @@ function htmlentities (string, quote_style, charset, double_encode) {
       }
     }
   } else {
-    string = string.replace(/([\s\S]*?)(&(?:#\d+|#x[\da-f]+|[a-zA-Z][\da-z]*);|$)/g, function (ignore, text, entity) {
+    string = string.replace(/([\s\S]*?)(&(?:#\d+|#x[\da-f]+|[a-zA-Z][\da-z]*);|$)/g, function(ignore, text, entity) {
       for (symbol in hash_map) {
         if (hash_map.hasOwnProperty(symbol)) {
           text = text.split(symbol).join(hash_map[symbol]);

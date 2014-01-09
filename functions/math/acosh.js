@@ -1,4 +1,4 @@
-function acosh (arg) {
+function acosh(arg) {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: acosh(8723321.4);

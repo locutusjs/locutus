@@ -1,4 +1,4 @@
-function decoct (number) {
+function decoct(number) {
   // From: http://phpjs.org/functions
   // +   original by: Enrique Gonzalez
   // +   bugfixed by: Onno Marsman

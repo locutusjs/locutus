@@ -1,4 +1,4 @@
-function str_shuffle (str) {
+function str_shuffle(str) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: shuffled = str_shuffle("abcdef");

@@ -1,4 +1,4 @@
-function import_request_variables (types, prefix) {
+function import_request_variables(types, prefix) {
   // http://kevin.vanzonneveld.net
   // +      original by: Jalal Berrami
   // + reimplemented by: Brett Zamir (http://brett-zamir.me)
@@ -12,19 +12,19 @@ function import_request_variables (types, prefix) {
   // *        example 2: import_request_variables('g'); // Allows $_GET['myRequestVar'] access to query string variables
 
   var i = 0,
-    current = '',
-    url = '',
-    vars = '',
-    arrayBracketPos = -1,
-    arrName = '',
-    win = this.window,
-    requestObj = this.window,
-    getObj = false,
-    cookieObj = false;
+      current = '',
+      url = '',
+      vars = '',
+      arrayBracketPos = -1,
+      arrName = '',
+      win = this.window,
+      requestObj = this.window,
+      getObj = false,
+      cookieObj = false;
   prefix = prefix || '';
 
   var that = this;
-  var _ini_get = function (ini) {
+  var _ini_get = function(ini) {
     if (that.php_js && that.php_js.ini && that.php_js.ini[ini] && that.php_js.ini[ini].local_value) { // Allow designated object to be used instead of window
       return that.php_js.ini[ini].local_value;
     }
@@ -62,11 +62,11 @@ function import_request_variables (types, prefix) {
   }
   if (/c/i.test(types)) { // COOKIE
     cookieObj = _ini_get('phpjs.cookieVarsObj') || cookieObj;
-    for (i = 0, vars = win.document.cookie.split("&"); i < vars.length; i++) {
-      current = vars[i].split("=");
-      requestObj[prefix + current[0]] = current[1].split(";")[0] || null;
+    for (i = 0, vars = win.document.cookie.split('&'); i < vars.length; i++) {
+      current = vars[i].split('=');
+      requestObj[prefix + current[0]] = current[1].split(';')[0] || null;
       if (cookieObj) {
-        cookieObj[prefix + current[0]] = current[1].split(";")[0] || null;
+        cookieObj[prefix + current[0]] = current[1].split(';')[0] || null;
       }
     }
   }

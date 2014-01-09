@@ -1,4 +1,4 @@
-function array_walk (array, funcname, userdata) {
+function array_walk(array, funcname, userdata) {
   // From: http://phpjs.org/functions
   // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
   // +   bugfixed by: David
@@ -49,8 +49,8 @@ function array_walk (array, funcname, userdata) {
       this.php_js.ini = this.php_js.ini || {};
       ini = this.php_js.ini['phpjs.no-eval'];
       if (ini && (
-        parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !== 'off')
-      )) {
+          parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !== 'off')
+          )) {
         if (arguments.length > 2) {
           for (key in array) {
             this.window[funcname](array[key], key, userdata);

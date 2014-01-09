@@ -1,4 +1,4 @@
-function strspn (str1, str2, start, lgth) {
+function strspn(str1, str2, start, lgth) {
   // From: http://phpjs.org/functions
   // +   original by: Valentina De Rosa
   // +   improved by: Brett Zamir (http://brett-zamir.me)

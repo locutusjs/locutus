@@ -1,4 +1,4 @@
-function htmlspecialchars_decode (string, quote_style) {
+function htmlspecialchars_decode(string, quote_style) {
   // From: http://phpjs.org/functions
   // +   original by: Mirek Slugen
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -19,8 +19,8 @@ function htmlspecialchars_decode (string, quote_style) {
   // *     example 2: htmlspecialchars_decode("&amp;quot;");
   // *     returns 2: '&quot;'
   var optTemp = 0,
-    i = 0,
-    noquotes = false;
+      i = 0,
+      noquotes = false;
   if (typeof quote_style === 'undefined') {
     quote_style = 2;
   }

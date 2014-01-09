@@ -1,4 +1,4 @@
-function localtime (timestamp, is_assoc) {
+function localtime(timestamp, is_assoc) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +  derived from: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
@@ -16,7 +16,7 @@ function localtime (timestamp, is_assoc) {
     t = new Date(timestamp * 1000);
   }
 
-  x = function (t, m) {
+  x = function(t, m) {
     var a = (new Date(t.getFullYear(), 0, m, 0, 0, 0, 0)).toUTCString();
     return t - new Date(a.slice(0, a.lastIndexOf(' ') - 1));
   };
@@ -44,5 +44,5 @@ function localtime (timestamp, is_assoc) {
   };
 
   return is_assoc ? o : [
-  o.tm_sec, o.tm_min, o.tm_hour, o.tm_mday, o.tm_mon, o.tm_year, o.tm_wday, o.tm_yday, o.tm_isdst];
+    o.tm_sec, o.tm_min, o.tm_hour, o.tm_mday, o.tm_mon, o.tm_year, o.tm_wday, o.tm_yday, o.tm_isdst];
 }

@@ -1,4 +1,4 @@
-function get_defined_constants (categorize) {
+function get_defined_constants(categorize) {
   // From: http://phpjs.org/functions
   // +    original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Could possibly substitute some others like M_PI with JavaScript's Math.PI, etc., but here
@@ -32,10 +32,10 @@ function get_defined_constants (categorize) {
   // *     returns 2: 8
 
   var ext = '',
-    cnst = '',
-    constObj = {},
-    flatConstObj = {},
-    win, thisExt = false;
+      cnst = '',
+      constObj = {},
+      flatConstObj = {},
+      win, thisExt = false;
 
   constObj = {
     'internal': {
@@ -53,7 +53,7 @@ function get_defined_constants (categorize) {
       'E_USER_WARNING': 512,
       'E_USER_NOTICE': 1024,
       'E_ALL': 6143,
-/* // Could work ok in some implementations, but not all, so commenting out
+      /* // Could work ok in some implementations, but not all, so commenting out
     'TRUE' : true,
     'FALSE' : false,
     'NULL' : null,

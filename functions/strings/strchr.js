@@ -1,4 +1,4 @@
-function strchr (haystack, needle, bool) {
+function strchr(haystack, needle, bool) {
   // From: http://phpjs.org/functions
   // +   original by: Philip Peterson
   // -    depends on: strstr

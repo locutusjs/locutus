@@ -1,4 +1,4 @@
-function function_exists (func_name) {
+function function_exists(func_name) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Steve Clay

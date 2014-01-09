@@ -1,4 +1,4 @@
-function implode (glue, pieces) {
+function implode(glue, pieces) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Waldo Malqui Silva
@@ -9,8 +9,8 @@ function implode (glue, pieces) {
   // *     example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'});
   // *     returns 2: 'Kevin van Zonneveld'
   var i = '',
-    retVal = '',
-    tGlue = '';
+      retVal = '',
+      tGlue = '';
   if (arguments.length === 1) {
     pieces = glue;
     glue = '';

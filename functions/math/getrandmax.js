@@ -1,4 +1,4 @@
-function getrandmax () {
+function getrandmax() {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // *     example 1: getrandmax();

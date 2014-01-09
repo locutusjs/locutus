@@ -1,4 +1,4 @@
-function is_long (mixed_var) {
+function is_long(mixed_var) {
   // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   //  -   depends on: is_float

@@ -1,4 +1,4 @@
-function func_get_arg (num) {
+function func_get_arg(num) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: May not work in all JS implementations

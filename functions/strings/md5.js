@@ -1,4 +1,4 @@
-function md5 (str) {
+function md5(str) {
   // From: http://phpjs.org/functions
   // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // + namespaced by: Michael White (http://getsprink.com)
@@ -11,11 +11,11 @@ function md5 (str) {
   // *     returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
   var xl;
 
-  var rotateLeft = function (lValue, iShiftBits) {
+  var rotateLeft = function(lValue, iShiftBits) {
     return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
   };
 
-  var addUnsigned = function (lX, lY) {
+  var addUnsigned = function(lX, lY) {
     var lX4, lY4, lX8, lY8, lResult;
     lX8 = (lX & 0x80000000);
     lY8 = (lY & 0x80000000);
@@ -36,40 +36,40 @@ function md5 (str) {
     }
   };
 
-  var _F = function (x, y, z) {
+  var _F = function(x, y, z) {
     return (x & y) | ((~x) & z);
   };
-  var _G = function (x, y, z) {
+  var _G = function(x, y, z) {
     return (x & z) | (y & (~z));
   };
-  var _H = function (x, y, z) {
+  var _H = function(x, y, z) {
     return (x ^ y ^ z);
   };
-  var _I = function (x, y, z) {
+  var _I = function(x, y, z) {
     return (y ^ (x | (~z)));
   };
 
-  var _FF = function (a, b, c, d, x, s, ac) {
+  var _FF = function(a, b, c, d, x, s, ac) {
     a = addUnsigned(a, addUnsigned(addUnsigned(_F(b, c, d), x), ac));
     return addUnsigned(rotateLeft(a, s), b);
   };
 
-  var _GG = function (a, b, c, d, x, s, ac) {
+  var _GG = function(a, b, c, d, x, s, ac) {
     a = addUnsigned(a, addUnsigned(addUnsigned(_G(b, c, d), x), ac));
     return addUnsigned(rotateLeft(a, s), b);
   };
 
-  var _HH = function (a, b, c, d, x, s, ac) {
+  var _HH = function(a, b, c, d, x, s, ac) {
     a = addUnsigned(a, addUnsigned(addUnsigned(_H(b, c, d), x), ac));
     return addUnsigned(rotateLeft(a, s), b);
   };
 
-  var _II = function (a, b, c, d, x, s, ac) {
+  var _II = function(a, b, c, d, x, s, ac) {
     a = addUnsigned(a, addUnsigned(addUnsigned(_I(b, c, d), x), ac));
     return addUnsigned(rotateLeft(a, s), b);
   };
 
-  var convertToWordArray = function (str) {
+  var convertToWordArray = function(str) {
     var lWordCount;
     var lMessageLength = str.length;
     var lNumberOfWords_temp1 = lMessageLength + 8;
@@ -92,35 +92,35 @@ function md5 (str) {
     return lWordArray;
   };
 
-  var wordToHex = function (lValue) {
-    var wordToHexValue = "",
-      wordToHexValue_temp = "",
-      lByte, lCount;
+  var wordToHex = function(lValue) {
+    var wordToHexValue = '',
+        wordToHexValue_temp = '',
+        lByte, lCount;
     for (lCount = 0; lCount <= 3; lCount++) {
       lByte = (lValue >>> (lCount * 8)) & 255;
-      wordToHexValue_temp = "0" + lByte.toString(16);
+      wordToHexValue_temp = '0' + lByte.toString(16);
       wordToHexValue = wordToHexValue + wordToHexValue_temp.substr(wordToHexValue_temp.length - 2, 2);
     }
     return wordToHexValue;
   };
 
   var x = [],
-    k, AA, BB, CC, DD, a, b, c, d, S11 = 7,
-    S12 = 12,
-    S13 = 17,
-    S14 = 22,
-    S21 = 5,
-    S22 = 9,
-    S23 = 14,
-    S24 = 20,
-    S31 = 4,
-    S32 = 11,
-    S33 = 16,
-    S34 = 23,
-    S41 = 6,
-    S42 = 10,
-    S43 = 15,
-    S44 = 21;
+      k, AA, BB, CC, DD, a, b, c, d, S11 = 7,
+      S12 = 12,
+      S13 = 17,
+      S14 = 22,
+      S21 = 5,
+      S22 = 9,
+      S23 = 14,
+      S24 = 20,
+      S31 = 4,
+      S32 = 11,
+      S33 = 16,
+      S34 = 23,
+      S41 = 6,
+      S42 = 10,
+      S43 = 15,
+      S44 = 21;
 
   str = this.utf8_encode(str);
   x = convertToWordArray(str);

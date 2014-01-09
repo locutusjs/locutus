@@ -1,4 +1,4 @@
-function gettimeofday (return_float) {
+function gettimeofday(return_float) {
   // From: http://phpjs.org/functions
   // + original by: Brett Zamir (http://brett-zamir.me)
   // +      derived from: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
@@ -9,7 +9,7 @@ function gettimeofday (return_float) {
   // *   example 1: gettimeofday(true);
   // *   returns 1: 1238748978.49
   var t = new Date(),
-    y = 0;
+      y = 0;
 
   if (return_float) {
     return t.getTime() / 1000;

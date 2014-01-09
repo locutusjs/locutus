@@ -1,14 +1,14 @@
-function array_rand (input, num_req) {
+function array_rand(input, num_req) {
   // From: http://phpjs.org/functions
   // +   original by: Waldo Malqui Silva
   // *     example 1: array_rand( ['Kevin'], 1 );
   // *     returns 1: 0
   var indexes = [];
   var ticks = num_req || 1;
-  var checkDuplicate = function (input, value) {
+  var checkDuplicate = function(input, value) {
     var exist = false,
-      index = 0,
-      il = input.length;
+        index = 0,
+        il = input.length;
     while (index < il) {
       if (input[index] === value) {
         exist = true;

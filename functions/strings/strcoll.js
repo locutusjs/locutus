@@ -1,4 +1,4 @@
-function strcoll (str1, str2) {
+function strcoll(str1, str2) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)

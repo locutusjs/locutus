@@ -1,4 +1,4 @@
-function substr (str, start, len) {
+function substr(str, start, len) {
   // Returns part of a string
   //
   // version: 909.322
@@ -31,11 +31,11 @@ function substr (str, start, len) {
   // Add: (?) Use unicode.runtime_encoding (e.g., with string wrapped in "binary" or "Binary" class) to
   // allow access of binary (see file_get_contents()) by: charCodeAt(x) & 0xFF (see https://developer.mozilla.org/En/Using_XMLHttpRequest ) or require conversion first?
   var i = 0,
-    allBMP = true,
-    es = 0,
-    el = 0,
-    se = 0,
-    ret = '';
+      allBMP = true,
+      es = 0,
+      el = 0,
+      se = 0,
+      ret = '';
   str += '';
   var end = str.length;
 
@@ -44,76 +44,76 @@ function substr (str, start, len) {
   this.php_js.ini = this.php_js.ini || {};
   // END REDUNDANT
   switch ((this.php_js.ini['unicode.semantics'] && this.php_js.ini['unicode.semantics'].local_value.toLowerCase())) {
-  case 'on':
-    // Full-blown Unicode including non-Basic-Multilingual-Plane characters
-    // strlen()
-    for (i = 0; i < str.length; i++) {
-      if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
-        allBMP = false;
-        break;
-      }
-    }
-
-    if (!allBMP) {
-      if (start < 0) {
-        for (i = end - 1, es = (start += end); i >= es; i--) {
-          if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
-            start--;
-            es--;
-          }
-        }
-      } else {
-        var surrogatePairs = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
-        while ((surrogatePairs.exec(str)) != null) {
-          var li = surrogatePairs.lastIndex;
-          if (li - 2 < start) {
-            start++;
-          } else {
-            break;
-          }
+    case 'on':
+      // Full-blown Unicode including non-Basic-Multilingual-Plane characters
+      // strlen()
+      for (i = 0; i < str.length; i++) {
+        if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
+          allBMP = false;
+          break;
         }
       }
 
-      if (start >= end || start < 0) {
-        return false;
-      }
-      if (len < 0) {
-        for (i = end - 1, el = (end += len); i >= el; i--) {
-          if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
-            end--;
-            el--;
+      if (!allBMP) {
+        if (start < 0) {
+          for (i = end - 1, es = (start += end); i >= es; i--) {
+            if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
+              start--;
+              es--;
+            }
+          }
+        } else {
+          var surrogatePairs = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
+          while ((surrogatePairs.exec(str)) != null) {
+            var li = surrogatePairs.lastIndex;
+            if (li - 2 < start) {
+              start++;
+            } else {
+              break;
+            }
           }
         }
-        if (start > end) {
+
+        if (start >= end || start < 0) {
           return false;
         }
-        return str.slice(start, end);
-      } else {
-        se = start + len;
-        for (i = start; i < se; i++) {
-          ret += str.charAt(i);
-          if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
-            se++; // Go one further, since one of the "characters" is part of a surrogate pair
+        if (len < 0) {
+          for (i = end - 1, el = (end += len); i >= el; i--) {
+            if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
+              end--;
+              el--;
+            }
           }
+          if (start > end) {
+            return false;
+          }
+          return str.slice(start, end);
+        } else {
+          se = start + len;
+          for (i = start; i < se; i++) {
+            ret += str.charAt(i);
+            if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
+              se++; // Go one further, since one of the "characters" is part of a surrogate pair
+            }
+          }
+          return ret;
         }
-        return ret;
+        break;
       }
-      break;
-    }
     // Fall-through
-  case 'off':
+    case 'off':
     // assumes there are no non-BMP characters;
     //    if there may be such characters, then it is best to turn it on (critical in true XHTML/XML)
-  default:
-    if (start < 0) {
-      start += end;
-    }
-    end = typeof len === 'undefined' ? end : (len < 0 ? len + end : len + start);
-    // PHP returns false if start does not fall within the string.
-    // PHP returns false if the calculated end comes before the calculated start.
-    // PHP returns an empty string if start and end are the same.
-    // Otherwise, PHP returns the portion of the string from start to end.
-    return start >= str.length || start < 0 || start > end ? !1 : str.slice(start, end);
+    default:
+      if (start < 0) {
+        start += end;
+      }
+      end = typeof len === 'undefined' ? end : (len < 0 ? len + end : len + start);
+      // PHP returns false if start does not fall within the string.
+      // PHP returns false if the calculated end comes before the calculated start.
+      // PHP returns an empty string if start and end are the same.
+      // Otherwise, PHP returns the portion of the string from start to end.
+      return start >= str.length || start < 0 || start > end ? !1 : str.slice(start, end);
   }
   return undefined; // Please Netbeans
 }

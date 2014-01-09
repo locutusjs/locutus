@@ -1,4 +1,4 @@
-function chunk_split (body, chunklen, end) {
+function chunk_split(body, chunklen, end) {
   // From: http://phpjs.org/functions
   // +   original by: Paulo Freitas
   // +      input by: Brett Zamir (http://brett-zamir.me)
@@ -15,6 +15,6 @@ function chunk_split (body, chunklen, end) {
     return false;
   }
 
-  return body.match(new RegExp(".{0," + chunklen + "}", "g")).join(end);
+  return body.match(new RegExp('.{0,' + chunklen + '}', 'g')).join(end);
 
 }

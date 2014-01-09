@@ -1,4 +1,4 @@
-function sizeof (mixed_var, mode) {
+function sizeof(mixed_var, mode) {
   // From: http://phpjs.org/functions
   // +   original by: Philip Peterson
   // -    depends on: count

@@ -1,4 +1,4 @@
-function setlocale (category, locale) {
+function setlocale(category, locale) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   derived from: Blues at http://hacks.bluesmoon.info/strftime/strftime.js
@@ -12,9 +12,9 @@ function setlocale (category, locale) {
   // *     example 1: setlocale('LC_ALL', 'en_US');
   // *     returns 1: 'en_US'
   var categ = '',
-    cats = [],
-    i = 0,
-    d = this.window.document;
+      cats = [],
+      i = 0,
+      d = this.window.document;
 
   // BEGIN STATIC
   var _copy = function _copy(orig) {
@@ -42,52 +42,52 @@ function setlocale (category, locale) {
   // Need to look into http://cldr.unicode.org/ (maybe future JavaScript); Dojo has some functions (under new BSD),
   // including JSON conversions of LDML XML from CLDR: http://bugs.dojotoolkit.org/browser/dojo/trunk/cldr
   // and docs at http://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
-  var _nplurals1 = function (n) { // e.g., Japanese
+  var _nplurals1 = function(n) { // e.g., Japanese
     return 0;
   };
-  var _nplurals2a = function (n) { // e.g., English
+  var _nplurals2a = function(n) { // e.g., English
     return n !== 1 ? 1 : 0;
   };
-  var _nplurals2b = function (n) { // e.g., French
+  var _nplurals2b = function(n) { // e.g., French
     return n > 1 ? 1 : 0;
   };
-  var _nplurals2c = function (n) { // e.g., Icelandic (MDC)
+  var _nplurals2c = function(n) { // e.g., Icelandic (MDC)
     return n % 10 === 1 && n % 100 !== 11 ? 0 : 1;
   };
-  var _nplurals3a = function (n) { // e.g., Latvian (MDC has a different order from gettext)
+  var _nplurals3a = function(n) { // e.g., Latvian (MDC has a different order from gettext)
     return n % 10 === 1 && n % 100 !== 11 ? 0 : n !== 0 ? 1 : 2;
   };
-  var _nplurals3b = function (n) { // e.g., Scottish Gaelic
+  var _nplurals3b = function(n) { // e.g., Scottish Gaelic
     return n === 1 ? 0 : n === 2 ? 1 : 2;
   };
-  var _nplurals3c = function (n) { // e.g., Romanian
+  var _nplurals3c = function(n) { // e.g., Romanian
     return n === 1 ? 0 : (n === 0 || (n % 100 > 0 && n % 100 < 20)) ? 1 : 2;
   };
-  var _nplurals3d = function (n) { // e.g., Lithuanian (MDC has a different order from gettext)
+  var _nplurals3d = function(n) { // e.g., Lithuanian (MDC has a different order from gettext)
     return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2;
   };
-  var _nplurals3e = function (n) { // e.g., Croatian
+  var _nplurals3e = function(n) { // e.g., Croatian
     return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2;
   };
-  var _nplurals3f = function (n) { // e.g., Slovak
+  var _nplurals3f = function(n) { // e.g., Slovak
     return n === 1 ? 0 : n >= 2 && n <= 4 ? 1 : 2;
   };
-  var _nplurals3g = function (n) { // e.g., Polish
+  var _nplurals3g = function(n) { // e.g., Polish
     return n === 1 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2;
   };
-  var _nplurals3h = function (n) { // e.g., Macedonian (MDC)
+  var _nplurals3h = function(n) { // e.g., Macedonian (MDC)
     return n % 10 === 1 ? 0 : n % 10 === 2 ? 1 : 2;
   };
-  var _nplurals4a = function (n) { // e.g., Slovenian
+  var _nplurals4a = function(n) { // e.g., Slovenian
     return n % 100 === 1 ? 0 : n % 100 === 2 ? 1 : n % 100 === 3 || n % 100 === 4 ? 2 : 3;
   };
-  var _nplurals4b = function (n) { // e.g., Maltese (MDC)
+  var _nplurals4b = function(n) { // e.g., Maltese (MDC)
     return n === 1 ? 0 : n === 0 || (n % 100 && n % 100 <= 10) ? 1 : n % 100 >= 11 && n % 100 <= 19 ? 2 : 3;
   };
-  var _nplurals5 = function (n) { // e.g., Irish Gaeilge (MDC)
+  var _nplurals5 = function(n) { // e.g., Irish Gaeilge (MDC)
     return n === 1 ? 0 : n === 2 ? 1 : n >= 3 && n <= 6 ? 2 : n >= 7 && n <= 10 ? 3 : 4;
   };
-  var _nplurals6 = function (n) { // e.g., Arabic (MDC) - Per MDC puts 0 as last group
+  var _nplurals6 = function(n) { // e.g., Arabic (MDC) - Per MDC puts 0 as last group
     return n === 0 ? 5 : n === 1 ? 0 : n === 2 ? 1 : n % 100 >= 3 && n % 100 <= 10 ? 2 : n % 100 >= 11 && n % 100 <= 99 ? 3 : 4;
   };
   // END STATIC
@@ -107,9 +107,9 @@ function setlocale (category, locale) {
       'LC_COLLATE': // For strcoll
 
 
-      function (str1, str2) { // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
-        return (str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1);
-      },
+          function(str1, str2) { // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
+            return (str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1);
+          },
       'LC_CTYPE': { // Need to change any of these for English as opposed to C?
         an: /^[A-Za-z\d]+$/g,
         al: /^[A-Za-z]+$/g,

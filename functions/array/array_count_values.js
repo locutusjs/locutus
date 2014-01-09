@@ -1,4 +1,4 @@
-function array_count_values (array) {
+function array_count_values(array) {
   // From: http://phpjs.org/functions
   // +   original by: Ates Goral (http://magnetiq.com)
   // + namespaced by: Michael White (http://getsprink.com)
@@ -14,32 +14,32 @@ function array_count_values (array) {
   // *     returns 3: {42:1, "fubar":1}
 
   var tmp_arr = {},
-    key = '',
-    t = '';
+      key = '',
+      t = '';
 
-  var __getType = function (obj) {
+  var __getType = function(obj) {
     // Objects are php associative arrays.
     var t = typeof obj;
     t = t.toLowerCase();
-    if (t === "object") {
-      t = "array";
+    if (t === 'object') {
+      t = 'array';
     }
     return t;
   };
 
-  var __countValue = function (value) {
+  var __countValue = function(value) {
     switch (typeof value) {
-    case "number":
-      if (Math.floor(value) !== value) {
-        return;
-      }
+      case 'number':
+        if (Math.floor(value) !== value) {
+          return;
+        }
       // Fall-through
-    case "string":
-      if (value in this && this.hasOwnProperty(value)) {
-        ++this[value];
-      } else {
-        this[value] = 1;
-      }
+      case 'string':
+        if (value in this && this.hasOwnProperty(value)) {
+          ++this[value];
+        } else {
+          this[value] = 1;
+        }
     }
   };
 

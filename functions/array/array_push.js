@@ -1,4 +1,4 @@
-function array_push (inputArr) {
+function array_push(inputArr) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -10,13 +10,13 @@ function array_push (inputArr) {
   // *     example 1: array_push(['kevin','van'], 'zonneveld');
   // *     returns 1: 3
   var i = 0,
-    pr = '',
-    argv = arguments,
-    argc = argv.length,
-    allDigits = /^\d$/,
-    size = 0,
-    highestIdx = 0,
-    len = 0;
+      pr = '',
+      argv = arguments,
+      argc = argv.length,
+      allDigits = /^\d$/,
+      size = 0,
+      highestIdx = 0,
+      len = 0;
   if (inputArr.hasOwnProperty('length')) {
     for (i = 1; i < argc; i++) {
       inputArr[inputArr.length] = argv[i];

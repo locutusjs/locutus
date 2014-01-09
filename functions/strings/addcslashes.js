@@ -1,4 +1,4 @@
-function addcslashes (str, charlist) {
+function addcslashes(str, charlist) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %  note 1: We show double backslashes in the return value example code below because a JavaScript string will not
@@ -16,23 +16,23 @@ function addcslashes (str, charlist) {
   // *     example 6: addcslashes("\r\u0007\n", '\0'); // Do not recognize C escape sequences if not specified
   // *     returns 6: "\r\u0007\n"
   var target = '',
-    chrs = [],
-    i = 0,
-    j = 0,
-    c = '',
-    next = '',
-    rangeBegin = '',
-    rangeEnd = '',
-    chr = '',
-    begin = 0,
-    end = 0,
-    octalLength = 0,
-    postOctalPos = 0,
-    cca = 0,
-    escHexGrp = [],
-    encoded = '',
-    percentHex = /%([\dA-Fa-f]+)/g;
-  var _pad = function (n, c) {
+      chrs = [],
+      i = 0,
+      j = 0,
+      c = '',
+      next = '',
+      rangeBegin = '',
+      rangeEnd = '',
+      chr = '',
+      begin = 0,
+      end = 0,
+      octalLength = 0,
+      postOctalPos = 0,
+      cca = 0,
+      escHexGrp = [],
+      encoded = '',
+      percentHex = /%([\dA-Fa-f]+)/g;
+  var _pad = function(n, c) {
     if ((n = n + '').length < c) {
       return new Array(++c - n.length).join('0') + n;
     }
@@ -102,39 +102,39 @@ function addcslashes (str, charlist) {
       cca = c.charCodeAt(0);
       if (cca < 32 || cca > 126) { // Needs special escaping
         switch (c) {
-        case '\n':
-          target += 'n';
-          break;
-        case '\t':
-          target += 't';
-          break;
-        case '\u000D':
-          target += 'r';
-          break;
-        case '\u0007':
-          target += 'a';
-          break;
-        case '\v':
-          target += 'v';
-          break;
-        case '\b':
-          target += 'b';
-          break;
-        case '\f':
-          target += 'f';
-          break;
-        default:
-          //target += _pad(cca.toString(8), 3);break; // Sufficient for UTF-16
-          encoded = encodeURIComponent(c);
+          case '\n':
+            target += 'n';
+            break;
+          case '\t':
+            target += 't';
+            break;
+          case '\u000D':
+            target += 'r';
+            break;
+          case '\u0007':
+            target += 'a';
+            break;
+          case '\v':
+            target += 'v';
+            break;
+          case '\b':
+            target += 'b';
+            break;
+          case '\f':
+            target += 'f';
+            break;
+          default:
+            //target += _pad(cca.toString(8), 3);break; // Sufficient for UTF-16
+            encoded = encodeURIComponent(c);
 
-          // 3-length-padded UTF-8 octets
-          if ((escHexGrp = percentHex.exec(encoded)) !== null) {
-            target += _pad(parseInt(escHexGrp[1], 16).toString(8), 3); // already added a slash above
-          }
-          while ((escHexGrp = percentHex.exec(encoded)) !== null) {
-            target += '\\' + _pad(parseInt(escHexGrp[1], 16).toString(8), 3);
-          }
-          break;
+            // 3-length-padded UTF-8 octets
+            if ((escHexGrp = percentHex.exec(encoded)) !== null) {
+              target += _pad(parseInt(escHexGrp[1], 16).toString(8), 3); // already added a slash above
+            }
+            while ((escHexGrp = percentHex.exec(encoded)) !== null) {
+              target += '\\' + _pad(parseInt(escHexGrp[1], 16).toString(8), 3);
+            }
+            break;
         }
       } else { // Perform regular backslashed escaping
         target += c;

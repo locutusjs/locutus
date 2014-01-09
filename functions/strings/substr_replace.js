@@ -1,4 +1,4 @@
-function substr_replace (str, replace, start, length) {
+function substr_replace(str, replace, start, length) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 0);

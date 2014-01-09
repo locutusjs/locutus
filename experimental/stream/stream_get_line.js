@@ -1,11 +1,11 @@
-function stream_get_line (handle, length, ending) {
+function stream_get_line(handle, length, ending) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
   // *     example 1: stream_get_line(handle, 2);
   // *     returns 1: '<'
   var start = 0,
-    fullline = '';
+      fullline = '';
 
   if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer || length !== undefined && !length) {
     return false;

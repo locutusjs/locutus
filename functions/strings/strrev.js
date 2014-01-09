@@ -1,4 +1,4 @@
-function strrev (string) {
+function strrev(string) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Onno Marsman

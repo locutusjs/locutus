@@ -1,4 +1,4 @@
-function is_real (mixed_var) {
+function is_real(mixed_var) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   //  -   depends on: is_float

@@ -1,4 +1,4 @@
-function ctype_space (text) {
+function ctype_space(text) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale
