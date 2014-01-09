@@ -40,27 +40,27 @@ function mail (to, subject, message, additional_headers, additional_parameters) 
         switch (prop) {
           // Todo: Add any others to this top fall-through which can allow multiple headers
           //                via commas; will otherwise be overwritten (Errorsto, Replyto?)
-        case 'Bcc':
+          case 'Bcc':
           // Fall-through
-        case 'Cc':
+          case 'Cc':
           // Fall-through
-        case 'To':
-          // Apparently appendable with additional headers per PHP examples
-          _append(sm, prop, value);
-          break;
-        case 'Subject':
-          // Overridable in additional headers?
-          break;
-        case 'Body':
-          // Overridable in additional headers?
-          break;
-        case 'From':
+          case 'To':
+            // Apparently appendable with additional headers per PHP examples
+            _append(sm, prop, value);
+            break;
+          case 'Subject':
+            // Overridable in additional headers?
+            break;
+          case 'Body':
+            // Overridable in additional headers?
+            break;
+          case 'From':
           // Default, though can be overridden
           /* Fall-through */
-        default:
-          //  Errorsto, Organization, Replyto, Smtpserver
-          sm[prop] = value;
-          break;
+          default:
+            //  Errorsto, Organization, Replyto, Smtpserver
+            sm[prop] = value;
+            break;
         }
       }
     }

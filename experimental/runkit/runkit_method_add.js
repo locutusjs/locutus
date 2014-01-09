@@ -7,13 +7,13 @@ function runkit_method_add (classname, methodname, args, code, flags) {
   var func, argmnts = [];
 
   switch (flags) {
-  case 'RUNKIT_ACC_PROTECTED':
-    throw 'Protected not supported';
-  case 'RUNKIT_ACC_PRIVATE':
-    throw 'Private not supported';
-  case 'RUNKIT_ACC_PUBLIC':
-  default:
-    break;
+    case 'RUNKIT_ACC_PROTECTED':
+      throw 'Protected not supported';
+    case 'RUNKIT_ACC_PRIVATE':
+      throw 'Private not supported';
+    case 'RUNKIT_ACC_PUBLIC':
+    default:
+      break;
   }
 
   argmnts = args.split(/,\s*/);

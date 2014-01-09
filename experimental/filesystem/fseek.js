@@ -17,19 +17,19 @@ function fseek (handle, offset, whence) {
   }
 
   switch (whence) {
-  case undefined:
+    case undefined:
     // fall-through
-  case 'SEEK_SET':
-    this.php_js.resourceDataPointer[handle.id] = offset / 2 + 1;
-    break;
-  case 'SEEK_CUR':
-    this.php_js.resourceDataPointer[handle.id] += offset / 2 + 1;
-    break;
-  case 'SEEK_END':
-    this.php_js.resourceDataPointer[handle.id] = this.php_js.resourceData[handle.id].length + offset / 2 + 1;
-    break;
-  default:
-    throw 'Unrecognized whence value for fseek()';
+    case 'SEEK_SET':
+      this.php_js.resourceDataPointer[handle.id] = offset / 2 + 1;
+      break;
+    case 'SEEK_CUR':
+      this.php_js.resourceDataPointer[handle.id] += offset / 2 + 1;
+      break;
+    case 'SEEK_END':
+      this.php_js.resourceDataPointer[handle.id] = this.php_js.resourceData[handle.id].length + offset / 2 + 1;
+      break;
+    default:
+      throw 'Unrecognized whence value for fseek()';
   }
   return 0;
 }

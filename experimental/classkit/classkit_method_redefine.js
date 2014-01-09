@@ -7,16 +7,16 @@ function classkit_method_redefine (classname, methodname, args, code, flags) {
   // In JavaScript, this is identical to classkit_method_add
 
   var argmnts = [],
-    func;
+      func;
 
   switch (flags) {
-  case 'CLASSKIT_ACC_PROTECTED':
-    throw 'Protected not supported';
-  case 'CLASSKIT_ACC_PRIVATE':
-    throw 'Private not supported';
-  case 'CLASSKIT_ACC_PUBLIC':
-  default:
-    break;
+    case 'CLASSKIT_ACC_PROTECTED':
+      throw 'Protected not supported';
+    case 'CLASSKIT_ACC_PRIVATE':
+      throw 'Private not supported';
+    case 'CLASSKIT_ACC_PUBLIC':
+    default:
+      break;
   }
 
   argmnts = args.split(/,\s*/);

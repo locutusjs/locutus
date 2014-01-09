@@ -11,9 +11,9 @@ function get_declared_classes () {
   // *     returns 1: [C, B, A]
 
   var i = '',
-    j = '',
-    arr = [],
-    already = {};
+      j = '',
+      arr = [],
+      already = {};
 
   for (i in this.window) {
     try {

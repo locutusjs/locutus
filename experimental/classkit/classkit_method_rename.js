@@ -8,7 +8,7 @@ function classkit_method_rename (classname, methodname, newname) {
     classname = this.window[classname];
   }
 
-/*
+  /*
   var method = classname[methodname]; // Static
   classname[newname] = method;
   delete classname[methodname];

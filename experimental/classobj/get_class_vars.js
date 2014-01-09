@@ -9,7 +9,7 @@ function get_class_vars (name) {
   // *     returns 1: {}
 
   var constructor, retArr = {},
-    prop = '';
+      prop = '';
 
   if (typeof name === 'function') {
     constructor = name;

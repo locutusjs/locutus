@@ -5,9 +5,9 @@ function ob_list_handlers () {
   // *     returns 1: ['default output handler', 'myOwnHandler']
 
   var i = 0,
-    arr = [],
-    name = '',
-    cbname = '';
+      arr = [],
+      name = '',
+      cbname = '';
   var getFuncName = function (fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
     if (!name) {
@@ -18,7 +18,7 @@ function ob_list_handlers () {
 
   this.php_js = this.php_js || {};
   var phpjs = this.php_js,
-    ini = phpjs.ini;
+      ini = phpjs.ini;
 
   if (!phpjs.obs || !phpjs.obs.length) {
     if (ini && ini['output_buffering'] && (typeof ini['output_buffering'].local_value !== 'string' || ini['output_buffering'].local_value.toLowerCase() !== 'off')) {

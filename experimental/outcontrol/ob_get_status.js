@@ -5,10 +5,10 @@ function ob_get_status (full_status) {
   // *     returns 1: [{chunk_size:4096, name:myCallback, del:true, type:1,status:0}]
 
   var i = 0,
-    retObj = {},
-    ob = {},
-    retArr = [],
-    name = '';
+      retObj = {},
+      ob = {},
+      retArr = [],
+      name = '';
   var getFuncName = function (fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
     if (!name) {
@@ -19,8 +19,8 @@ function ob_get_status (full_status) {
 
   this.php_js = this.php_js || {};
   var phpjs = this.php_js,
-    ini = phpjs.ini,
-    obs = phpjs.obs;
+      ini = phpjs.ini,
+      obs = phpjs.obs;
 
   if (!obs || !obs.length) {
     if (ini && ini.output_buffering && (typeof ini.output_buffering.local_value !== 'string' || ini.output_buffering.local_value.toLowerCase() !== 'off')) { // handler itself is stored in 'output_handler' ini

@@ -7,7 +7,7 @@ function assert (assertion) {
   // *     returns 1: false
 
   var result = false,
-    callback, retVal, err = undefined;
+      callback, retVal, err = undefined;
 
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};
@@ -23,20 +23,20 @@ function assert (assertion) {
       return this.php_js.ini[value].local_value;
     }
     switch (value) {
-    case 'assert.active':
-      return 1;
-    case 'assert.warning':
-      // Don't need this now
-      //return 1;
-      throw 'We have not yet implemented warnings in JavaScript (assert())';
-    case 'assert.bail':
-      return 0;
-    case 'assert.quiet_eval':
-      return 0;
-    case 'assert.callback':
-      return null;
-    default:
-      throw 'There was some problem';
+      case 'assert.active':
+        return 1;
+      case 'assert.warning':
+        // Don't need this now
+        //return 1;
+        throw 'We have not yet implemented warnings in JavaScript (assert())';
+      case 'assert.bail':
+        return 0;
+      case 'assert.quiet_eval':
+        return 0;
+      case 'assert.callback':
+        return null;
+      default:
+        throw 'There was some problem';
     }
   };
 

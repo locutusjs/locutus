@@ -6,9 +6,9 @@ function fgets (handle, length) {
   // *     returns 1: '<'
 
   var start = 0,
-    fullline = '',
-    endlinePos = -1,
-    content = '';
+      fullline = '',
+      endlinePos = -1,
+      content = '';
 
   if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer || length !== undefined && !length) {
     return false;

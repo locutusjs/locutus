@@ -10,9 +10,9 @@ function ini_get_all (extension, details) {
   // *     returns 1: {'date.default_latitude':"31.7667", 'date.default_longitude':"35.2333", 'date.sunrise_zenith':"90.583333", 'date.sunset_zenith':"90.583333", date.timezone:""}
 
   var key = '',
-    ini = {},
-    noDetails = {},
-    extPattern;
+      ini = {},
+      noDetails = {},
+      extPattern;
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};
   this.php_js.ini = this.php_js.ini || {};

@@ -15,12 +15,12 @@ function runkit_class_adopt (classname, parentname) {
   // Classical style of inheritance
   this.window[classname].prototype = new this.window[parentname](); // Has side effects by calling the constructor!
 
-/*
+  /*
   // Prototypal completely by reference
   this.window[classname].prototype = parentname.prototype; // By mutual reference!
-*/
+  */
 
-/*
+  /*
   // Mixin (deep copy, not by reference)
   var _copy = function (child, parent) {
     var p = '';
@@ -34,7 +34,7 @@ function runkit_class_adopt (classname, parentname) {
     }
   };
   _copy(this.window[classname].prototype, this.window[parentname].prototype);
-*/
+  */
 
   // Put original constructor property back
   this.window[classname].constructor = this.window[classname];

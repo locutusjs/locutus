@@ -12,10 +12,10 @@ function trigger_error (error_msg, error_type) {
   // Fix: get to work with set_error_handler()'s handler when that is added
 
   var type = 0,
-    i = 0,
-    that = this,
-    prepend = '',
-    append = '';
+      i = 0,
+      that = this,
+      prepend = '',
+      append = '';
   if (!error_type) {
     error_type = 'E_USER_NOTICE';
   }
@@ -95,22 +95,22 @@ function trigger_error (error_msg, error_type) {
 
   if (display_errors(type)) {
     switch (type) {
-    case TYPES.E_USER_WARNING:
-    case TYPES.E_WARNING:
-    case TYPES.E_CORE_WARNING:
-    case TYPES.E_COMPILE_WARNING:
-      this.echo('Warning: ' + error_msg);
-      break;
-    case TYPES.E_USER_NOTICE:
-    case TYPES.E_NOTICE:
-      this.echo('Notice: ' + error_msg);
-      break;
-    case TYPES.E_DEPRECATED:
-    case TYPES.E_USER_DEPRECATED:
-      this.echo('Deprecated: ' + error_msg);
-      break;
-    default:
-      throw 'Unrecognized error type';
+      case TYPES.E_USER_WARNING:
+      case TYPES.E_WARNING:
+      case TYPES.E_CORE_WARNING:
+      case TYPES.E_COMPILE_WARNING:
+        this.echo('Warning: ' + error_msg);
+        break;
+      case TYPES.E_USER_NOTICE:
+      case TYPES.E_NOTICE:
+        this.echo('Notice: ' + error_msg);
+        break;
+      case TYPES.E_DEPRECATED:
+      case TYPES.E_USER_DEPRECATED:
+        this.echo('Deprecated: ' + error_msg);
+        break;
+      default:
+        throw 'Unrecognized error type';
     }
   }
 

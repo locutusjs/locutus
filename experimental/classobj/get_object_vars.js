@@ -8,7 +8,7 @@ function get_object_vars (obj) {
   // *     example 1: get_object_vars('MyClass')
   // *     returns 1: {}
   var retArr = {},
-    prop = '';
+      prop = '';
 
   for (prop in obj) {
     if (typeof obj[prop] !== 'function' && prop !== 'prototype') {

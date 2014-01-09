@@ -8,8 +8,8 @@ function fopen (filename, mode, use_include_path, context) {
   // *     returns 1: 'Resource id #1'
 
   var resource = {},
-    i = 0,
-    that = this;
+      i = 0,
+      that = this;
   var getFuncName = function (fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
     if (!name) {
@@ -20,14 +20,14 @@ function fopen (filename, mode, use_include_path, context) {
 
   // BEGIN file inclusion: file_get_contents
   var file_get_contents = function (url) {
-    var req = that.window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+    var req = that.window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest();
     if (!req) {
       throw new Error('XMLHttpRequest not supported');
     }
     if (!(/^http/).test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
       url = that.window.location.href + '/' + url;
     }
-    req.open("GET", url, false);
+    req.open('GET', url, false);
     req.send(null);
     return req.responseText;
   };
@@ -45,20 +45,20 @@ function fopen (filename, mode, use_include_path, context) {
       continue;
     }
     switch (mode.charAt(i)) {
-    case 'r':
+      case 'r':
       // must have '+' now
-    case 'w':
+      case 'w':
       // or 'w+'
-    case 'a':
+      case 'a':
       // or 'a+'
-    case 'x':
-      // or 'x+'
-      throw 'Writing is not implemented';
-    case 'b':
-    case 't':
-      throw 'Windows-only modes are not supported';
-    default:
-      throw 'Unrecognized file mode passed to ' + getFuncName(arguments.caller) + '()';
+      case 'x':
+        // or 'x+'
+        throw 'Writing is not implemented';
+      case 'b':
+      case 't':
+        throw 'Windows-only modes are not supported';
+      default:
+        throw 'Unrecognized file mode passed to ' + getFuncName(arguments.caller) + '()';
     }
   }
 
