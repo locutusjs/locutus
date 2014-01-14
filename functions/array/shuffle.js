@@ -13,6 +13,7 @@ function shuffle(inputArr) {
   // %        note 1: property deletion is supported. Note that we intend to implement the PHP
   // %        note 1: behavior by default if IE ever does allow it; only gives shallow copy since
   // %        note 1: is by reference in PHP anyways
+  // *          test: skip
   // *     example 1: ini_set('phpjs.strictForIn', true);
   // *     example 2: var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5};
   // *     example 1: shuffle(data);
