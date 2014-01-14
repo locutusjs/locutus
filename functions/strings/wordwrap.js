@@ -6,6 +6,7 @@ function wordwrap(str, int_width, str_break, cut) {
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Sakimori
   // +   bugfixed by: Michael Grier
+  // +   bugfixed by: Feras ALHAEK
   // *     example 1: wordwrap('Kevin van Zonneveld', 6, '|', true);
   // *     returns 1: 'Kevin |van |Zonnev|eld'
   // *     example 2: wordwrap('The quick brown fox jumped over the lazy dog.', 20, '<br />\n');
@@ -27,7 +28,7 @@ function wordwrap(str, int_width, str_break, cut) {
 
   for (i = -1, l = (r = str.split(/\r\n|\n|\r/)).length; ++i < l; r[i] += s) {
     for (s = r[i], r[i] = ''; s.length > m; r[i] += s.slice(0, j) + ((s = s.slice(j)).length ? b : '')) {
-      j = c == 2 || (j = s.slice(0, m + 1).match(/\S*(\s)?$/))[1] ? m : j.input.length - j[0].length || c == 1 && m || j.input.length + (j = s.slice(m).match(/^\S*/)).input.length;
+      j = c == 2 || (j = s.slice(0, m + 1).match(/\S*(\s)?$/))[1] ? m : j.input.length - j[0].length || c == 1 && m || j.input.length + (j = s.slice(m).match(/^\S*/))[0].length;
     }
   }
 
