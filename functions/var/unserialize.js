@@ -33,10 +33,10 @@ function unserialize(data) {
           return 1;
         }
         return 2;
-      };,
+      };
   error = function(type, msg, filename, line) {
     throw new that.window[type](msg, filename, line);
-  };,
+  };
   read_until = function(data, offset, stopchr) {
     var i = 2, buf = [], chr = data.slice(offset, offset + 1);
 
@@ -49,7 +49,7 @@ function unserialize(data) {
       i += 1;
     }
     return [buf.length, buf.join('')];
-  };,
+  };
   read_chrs = function(data, offset, length) {
     var i, chr, buf;
 
@@ -60,7 +60,7 @@ function unserialize(data) {
       length -= utf8Overhead(chr);
     }
     return [buf.length, buf.join('')];
-  };,
+  };
   _unserialize = function(data, offset) {
     var dtype, dataoffset, keyandchrs, keys, contig,
         length, array, readdata, readData, ccount,

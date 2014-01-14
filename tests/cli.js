@@ -8,7 +8,8 @@ var equal = require('deep-equal');
 
 var PhpjsUtil = phpjsutil({
   injectDependencies: ['ini_set', 'ini_get'],
-  equal: equal
+  equal: equal,
+  debug: cli.debug
 });
 
 // Environment-specific file opener. function name needs to

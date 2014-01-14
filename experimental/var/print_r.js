@@ -18,14 +18,14 @@ function print_r(array, return_val) {
           return '(Anonymous)';
         }
         return name[1];
-      };,
+      };
       repeat_char = function(len, pad_char) {
         var str = '';
         for (var i = 0; i < len; i++) {
           str += pad_char;
         }
         return str;
-      };,
+      };
       formatArray = function(obj, cur_depth, pad_val, pad_char) {
         if (cur_depth > 0) {
           cur_depth++;

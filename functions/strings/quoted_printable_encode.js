@@ -27,7 +27,7 @@ function quoted_printable_encode(str) {
         // Encode matching character
         var chr = sMatch.charCodeAt(0);
         return '=' + hexChars[((chr >>> 4) & 15)] + hexChars[(chr & 15)];
-      };,
+      };
   // Split lines to 75 characters; the reason it's 75 and not 76 is because softline breaks are preceeded by an equal sign; which would be the 76th character.
   // However, if the last line/string was exactly 76 characters, then a softline would not be needed. PHP currently softbreaks anyway; so this function replicates PHP.
   RFC2045Encode2IN = /.{1,72}(?!\r\n)[^=]{0,3}/g,

@@ -28,7 +28,7 @@ function is_array(mixed_var) {
           return '(Anonymous)';
         }
         return name[1];
-      };,
+      };
   _isArray = function(mixed_var) {
     // return Object.prototype.toString.call(mixed_var) === '[object Array]';
     // The above works, but let's do the even more stringent approach: (since Object.prototype.toString could be overridden)

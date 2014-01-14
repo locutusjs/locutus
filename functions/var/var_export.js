@@ -34,10 +34,10 @@ function var_export(mixed_expression, bool_return) {
           return '(Anonymous)';
         }
         return name[1];
-      };,
+      };
   _makeIndent = function(idtLevel) {
     return (new Array(idtLevel + 1)).join(' ');
-  };,
+  };
   __getType = function(inp) {
     var i = 0, match, types, cons, type = typeof inp;
     if (type === 'object' && (inp && inp.constructor) &&
@@ -68,7 +68,7 @@ function var_export(mixed_expression, bool_return) {
       }
     }
     return type;
-  };,
+  };
   type = __getType(mixed_expression);
 
   if (type === null) {

@@ -15,7 +15,7 @@ function array() {
     this.php_js = {};
   }
 
-  var arrInst, e, __, that = this, PHPJS_Array = function PHPJS_Array() {};,
+  var arrInst, e, __, that = this, PHPJS_Array = function PHPJS_Array() {};
   mainArgs = arguments, p = this.php_js,
   _indexOf = function(value, from, strict) {
     var i = from || 0, nonstrict = !strict, length = this.length;

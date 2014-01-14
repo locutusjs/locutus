@@ -31,7 +31,7 @@ function min() {
           }
         }
         return ar;
-      };, //function _obj2Array
+      }; //function _obj2Array
   _compare = function(current, next) {
     var i = 0,
             n = 0,

@@ -32,7 +32,7 @@ function strptime(dateStr, format) {
         var o = retObj;
         // We set date to at least 1 to ensure year or month doesn't go backwards
         return _reset(new Date(Date.UTC(o.tm_year + 1900, o.tm_mon, o.tm_mday || 1, o.tm_hour, o.tm_min, o.tm_sec)), o.tm_mday);
-      };,
+      };
   _reset = function(dateObj, realMday) {
     // realMday is to allow for a value of 0 in return results (but without
     // messing up the Date() object)

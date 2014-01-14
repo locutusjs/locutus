@@ -67,7 +67,7 @@ function date(format, timestamp) {
       formatChr = /\\?(.?)/gi,
       formatChrCb = function(t, s) {
         return f[t] ? f[t]() : s;
-      };,
+      };
   _pad = function(n, c) {
     n = String(n);
     while (n.length < c) {

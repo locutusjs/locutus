@@ -7,13 +7,24 @@ if (typeof require !== 'undefined') {
 
 function PhpjsUtil(config) {
   this.injectDependencies = [];
-  this.equal;
 
   // Overwrite properties with config
   for (var k in config) {
     this[k] = config[k];
   }
 }
+
+// Should be overridden by a more sofisticated function
+// such as cli.debug when run in node.js
+PhpjsUtil.prototype.debug = function(a) {
+  return console.log(a);
+};
+
+// Should be overridden by a more sofisticated function
+// such as assert.deepEqual when run in node.js
+PhpjsUtil.prototype.equal = function(a, b) {
+  return JSON.stringify(a) === JSON.stringify(b);
+};
 
 PhpjsUtil.prototype._commentBlocks = function(code) {
   var cnt = 0;
@@ -234,29 +245,30 @@ PhpjsUtil.prototype.test = function(params, cb) {
     codez = codez.concat(codez, extracted);
 
     codez.unshift('' +
-        'XMLHttpRequest = {};' +
-        'window = {' +
+      'XMLHttpRequest = {};' +
+      'window = {' +
         'document: {' +
-        'lastModified: 1388954399,' +
-        'getElementsByTagName: function(){return [];}' +
+          'lastModified: 1388954399,' +
+          'getElementsByTagName: function(){return [];}' +
         '},' +
         'location: {' +
-        'href: ""' +
+          'href: ""' +
         '}' +
-        '};' +
-        '');
+      '};' +
+    '');
 
     // Load code
-    eval(
-        codez.join(';\n')
-        .replace(/that\.([a-z_])/g, '$1')
-        .replace(/this\.([a-z_])/g, '$1')
-        .replace(/window\.setTimeout/g, 'setTimeout')
-    );
-
-    // this. refers to phpjs
-    // that. refers to phpjs
     // self. refers to own function
+    // that. refers to phpjs
+    // this. refers to phpjs
+    var code = codez.join(';\n')
+      .replace(/that\.([a-z_])/g, '$1')
+      .replace(/this\.([a-z_])/g, '$1')
+      .replace(/window\.setTimeout/g, 'setTimeout');
+
+    // self.debug(code);
+    eval(code);
+
 
 
     // Run each example

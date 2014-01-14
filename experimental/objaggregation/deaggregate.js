@@ -20,7 +20,7 @@ function deaggregate (obj, class_name) {
           }
         }
         return -1;
-      };,
+      };
   getFuncName = function (fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
     if (!name) {

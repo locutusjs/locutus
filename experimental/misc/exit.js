@@ -20,7 +20,7 @@ function exit(status) {
             else { /* OLDER BROWSERS (DOM0) */
           el['on' + type] = handler;
             }
-      };,
+      };
   _stopEvent = function(e) {
     if (e.stopPropagation) { /* W3C */
       e.stopPropagation();

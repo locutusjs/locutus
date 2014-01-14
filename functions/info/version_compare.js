@@ -54,7 +54,7 @@ function version_compare(v1, v2, operator) {
         v = ('' + v).replace(/[_\-+]/g, '.');
         v = v.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.');
         return (!v.length ? [-8] : v.split('.'));
-      };,
+      };
   // This converts a version component to a number.
   // Empty component becomes 0.
   // Non-numerical component becomes a negative number.

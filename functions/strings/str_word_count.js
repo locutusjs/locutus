@@ -30,7 +30,7 @@ function str_word_count(str, format, charlist) {
   // BEGIN STATIC
   var _preg_quote = function(str) {
     return (str + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<>\|\:])/g, '\\$1');
-  };,
+  };
   _getWholeChar = function(str, i) { // Use for rare cases of non-BMP characters
     var code = str.charCodeAt(i);
     if (code < 0xD800 || code > 0xDFFF) {

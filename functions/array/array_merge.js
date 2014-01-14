@@ -10,7 +10,7 @@ function array_merge() {
   // *     returns 1: {"color": "green", 0: 2, 1: 4, 2: "a", 3: "b", "shape": "trapezoid", 4: 4}
   // *     example 2: arr1 = []
   // *     example 2: arr2 = {1: "data"}
-  // *     example 2: array_merge(arr1, arr2)
+    // *     example 2: array_merge(arr1, arr2)
   // *     returns 2: {0: "data"}
   var args = Array.prototype.slice.call(arguments),
       argl = args.length,

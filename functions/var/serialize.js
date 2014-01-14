@@ -38,7 +38,7 @@ function serialize(mixed_value) {
           }
         }
         return size;
-      };,
+      };
   _getType = function(inp) {
     var match, key, cons, types, type = typeof inp;
 
@@ -63,7 +63,7 @@ function serialize(mixed_value) {
       }
     }
     return type;
-  };,
+  };
   type = _getType(mixed_value);
 
 

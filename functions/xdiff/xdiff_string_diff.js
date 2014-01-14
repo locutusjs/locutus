@@ -37,7 +37,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
         }
 
         return text.replace(/(^\s*)|(\s*$)/g, '');
-      };,
+      };
   /*
     *Verifies type of arguments
     */
@@ -84,7 +84,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
         throw new Error('Bad type');
       }
     }
-  };,
+  };
   /*
     *Checks if the specified array contains an element with specified value
     */
@@ -99,7 +99,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
     }
 
     return false;
-  };,
+  };
   /*
     *Checks the type of arguments
     *@param {String | Function} type Specifies the desired type
@@ -150,7 +150,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
     }
 
     return true;
-  };,
+  };
   /*
     *Initialize and return an array with specified size and initial value
     */
@@ -164,7 +164,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
     }
 
     return array;
-  };,
+  };
   /*
     *Splits text into lines and return as a string array
     */
@@ -175,10 +175,10 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
       return [];
     }
     return text.split('\n');
-  };,
+  };
   is_empty_array = function(obj) {
     return are_type_of(Array, obj) && obj.length === 0;
-  };,
+  };
   /*
     * Finds longest common sequence between two sequences
     *See http://wordaligned.org/articles/longest-common-subsequence
@@ -211,7 +211,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
       }
 
       return curr;
-    };,
+    };
     // Function to find lcs and fill in the array to indicate the optimal longest common sequence
     find_lcs = function(xs, xidx, xs_is_in, ys) {
       var nx = xs.length;
@@ -309,7 +309,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
         var context_start_pos = Math.max(context.length - context_lines, 0);
 
         return context.slice(context_start_pos);
-      };,
+      };
 
   // Regularize trailing context by the context_lines parameter
   regularize_trailing_context = function(context) {

@@ -83,7 +83,8 @@ function array_multisort(arr) {
       elIndex = 0,
       sortDuplicator = function(a, b) {
         return nLastSort.shift();
-      };,
+      };
+
   sortFunctions = [
     [function(a, b) {
       lastSort.push(a > b ? 1 : (a < b ? -1 : 0));
