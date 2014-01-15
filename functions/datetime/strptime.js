@@ -343,10 +343,9 @@ Oy
         // problems (do check after WS though, as may just be WS in string before next character)
         return false;
       }
-      // Otherwise, Extra WS in format
-        // Adjust strings when encounter non-matching whitespace, so they align in future checks above
-        // Will check on next iteration (against same (non-WS) string character)
-      }
+      // Extra WS in format
+      // Adjust strings when encounter non-matching whitespace, so they align in future checks above
+      // Will check on next iteration (against same (non-WS) string character)
     } else {
       j++;
     }
