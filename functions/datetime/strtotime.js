@@ -20,8 +20,8 @@ function strtotime (text, now) {
     // *     returns 2: 1130425202
     // *     example 3: strtotime('last month', 1129633200);
     // *     returns 3: 1127041200
-    // *     example 4: strtotime('2009-05-04 08:30:00');
-    // *     returns 4: 1241418600
+    // *     example 4: strtotime('2009-05-04 08:30:00 GMT');
+    // *     returns 4: 1241425800
     var parsed, match, year, date, days, ranges, len, times, regex, i;
 
     if (!text) {
