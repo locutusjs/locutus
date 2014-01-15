@@ -8,7 +8,7 @@ function strrev(string) {
   // *     example 2: strrev('a\u0301haB') === 'Baha\u0301'; // combining
   // *     returns 2: true
   // *     example 3: strrev('A\uD87E\uDC04Z') === 'Z\uD87E\uDC04A'; // surrogates
-  // *     returns 2: true
+  // *     returns 3: true
   string = string + '';
 
   // Performance will be enhanced with the next two lines of code commented
