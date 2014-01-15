@@ -5,7 +5,7 @@ function json_decode(str_json) {
   // +      improved by: T.J. Leahy
   // +      improved by: Michael White
   // *        example 1: json_decode('[ 1 ]');
-  // *        returns 1: true
+  // *        returns 1: [1]
 
   /*
     http://www.JSON.org/json2.js
