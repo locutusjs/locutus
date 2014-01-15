@@ -13,11 +13,15 @@ function gettype(mixed_var) {
   // *     example 2: gettype(undefined);
   // *     returns 2: 'undefined'
   // *     example 3: gettype({0: 'Kevin van Zonneveld'});
-  // *     returns 3: 'array'
+  // *     returns 3: 'object'
   // *     example 4: gettype('foo');
   // *     returns 4: 'string'
   // *     example 5: gettype({0: function () {return false;}});
-  // *     returns 5: 'array'
+  // *     returns 5: 'object'
+  // *     example 6: gettype({0: 'test', length: 1, splice: function () {}});
+  // *     returns 6: 'object'
+  // *     example 6: gettype(['test']);
+  // *     returns 6: 'array'
   var s = typeof mixed_var,
       name;
   var getFuncName = function(fn) {
