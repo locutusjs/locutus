@@ -82,8 +82,8 @@ function pathinfo(path, options) {
 
   // Gather path infos
   if (options & OPTS.PATHINFO_DIRNAME) {
-    var dirname = this.dirname(path);
-    tmp_arr.dirname = dirname === path ? '.' : dirname;
+    var dirName = this.dirname(path);
+    tmp_arr.dirname = dirName === path ? '.' : dirName;
   }
 
   if (options & OPTS.PATHINFO_BASENAME) {
