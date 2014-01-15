@@ -13,7 +13,6 @@ function pathinfo(path, options) {
   // %        note 2: But by way we implemented this function, if you want you can still declare the PATHINFO_*
   // %        note 2: yourself, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);
   // %        note 2: which makes it fully compliant with PHP syntax.
-  // -    depends on: dirname
   // -    depends on: basename
   // *     example 1: pathinfo('/www/htdocs/index.html', 1);
   // *     returns 1: '/www/htdocs'
@@ -82,7 +81,7 @@ function pathinfo(path, options) {
 
   // Gather path infos
   if (options & OPTS.PATHINFO_DIRNAME) {
-    var dirName = this.dirname(path);
+    var dirName = path.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, ''); // dirname
     tmp_arr.dirname = dirName === path ? '.' : dirName;
   }
 
