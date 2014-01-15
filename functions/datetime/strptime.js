@@ -4,7 +4,6 @@ function strptime(dateStr, format) {
   // +      based on: strftime
   // -       depends on: setlocale
   // -       depends on: array_map
-  // *             test: skip
   // *        example 1: strptime('20091112222135', '%Y%m%d%H%M%S'); // Return value will depend on date and locale
   // *        returns 1: {tm_sec: 35, tm_min: 21, tm_hour: 22, tm_mday: 12, tm_mon: 10, tm_year: 109, tm_wday: 4, tm_yday: 315, unparsed: ''}
   // *        example 1: strptime('2009extra', '%Y');
