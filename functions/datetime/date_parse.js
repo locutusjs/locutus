@@ -35,7 +35,7 @@ function date_parse(date) {
   retObj.minute = dt.getMinutes();
   retObj.second = dt.getSeconds();
   retObj.fraction = parseFloat('0.' + dt.getMilliseconds());
-  retObj.is_localtime = dt.getTimezoneOffset !== 0;
+  retObj.is_localtime = dt.getTimezoneOffset() !== 0;
 
   return retObj;
 }
