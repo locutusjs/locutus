@@ -22,7 +22,7 @@ function strtotime (text, now) {
     // *     returns 3: 1127041200
     // *     example 4: strtotime('2009-05-04 08:30:00 GMT');
     // *     returns 4: 1241425800
-    var parsed, match, year, date, days, ranges, len, times, regex, i;
+    var parsed, match, today, year, date, days, ranges, len, times, regex, i;
 
     if (!text) {
         return null;
@@ -40,87 +40,97 @@ function strtotime (text, now) {
     // dates with two-digit years differently
     // etc...etc...
     // ...therefore we manually parse lots of common date formats
-    var match = text.match(/^(\d{1,4})([\-\.\/\:])(\d{1,2})([\-\.\/\:])(\d{1,4})(?:\s(\d{1,2}):(\d{2})?:?(\d{2})?)?(?:\s([A-Z]+)?)?$/);
-    if (match && match[2]==match[4]) {
-        if (match[1]>1901) {
+    match = text.match(/^(\d{1,4})([\-\.\/\:])(\d{1,2})([\-\.\/\:])(\d{1,4})(?:\s(\d{1,2}):(\d{2})?:?(\d{2})?)?(?:\s([A-Z]+)?)?$/);
+    if (match && match[2] === match[4]) {
+        if (match[1] > 1901) {
             switch (match[2]) {
                 case '-': {  // YYYY-M-D
-                    if (match[3]>12 | match[5]>31) return(0);
+                    if (match[3]>12 | match[5]>31) {
+                        return(0);
+                    }
                     return new Date(match[1], parseInt(match[3], 10) - 1, match[5],
                     match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                    break;
                 }
                 case '.': {  // YYYY.M.D is not parsed by strtotime()
                     return(0);
-                    break;
                 }
                 case '/': {  // YYYY/M/D
-                    if (match[3]>12 | match[5]>31) return(0);
+                    if (match[3]>12 | match[5]>31) {
+                        return(0);
+                    }
                     return new Date(match[1], parseInt(match[3], 10) - 1, match[5],
                     match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                    break;
                 }
             }
         }
         else if (match[5]>1901) {
             switch (match[2]) {
                 case '-': {  // D-M-YYYY
-                    if (match[3]>12 | match[1]>31) return(0);
+                    if (match[3]>12 | match[1]>31) {
+                        return(0);
+                    }
                     return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
                     match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                    break;
                 }
                 case '.': {  // D.M.YYYY
-                    if (match[3]>12 | match[1]>31) return(0);
+                    if (match[3]>12 | match[1]>31) {
+                        return(0);
+                    }
                     return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
                     match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                    break;
                 }
                 case '/': {  // M/D/YYYY
-                    if (match[1]>12 | match[3]>31) return(0);
+                    if (match[1]>12 | match[3]>31) {
+                        return(0);
+                    }
                     return new Date(match[5], parseInt(match[1], 10) - 1, match[3],
                     match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                    break;
                 }
             }
         }
         else {
             switch (match[2]) {
                 case '-': {  // YY-M-D
-                    if (match[3]>12 | match[5]>31 | (match[1] < 70 & match[1]>38)) return(0);
-                    var year = match[1] >= 0 && match[1] <= 38 ? +match[1] + 2000 : match[1];
+                    if (match[3]>12 | match[5]>31 | (match[1] < 70 & match[1]>38)) {
+                        return(0);
+                    }
+                    year = match[1] >= 0 && match[1] <= 38 ? +match[1] + 2000 : match[1];
                     return new Date(year, parseInt(match[3], 10) - 1, match[5],
                     match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                    break;
                 }
                 case '.': {  // D.M.YY or H.MM.SS
                     if (match[5]>=70) {    // D.M.YY
-                        if (match[3]>12 | match[1]>31) return(0);
+                        if (match[3]>12 | match[1]>31) {
+                            return(0);
+                        }
                         return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
                         match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
                     }
-                    else if (match[5]<60 & !(match[6])) {  // H.MM.SS
-                        if (match[1]>23 | match[3]>59) return(0);
-                        var today = new Date();
+                    if (match[5]<60 & !(match[6])) {  // H.MM.SS
+                        if (match[1]>23 | match[3]>59) {
+                            return(0);
+                        }
+                        today = new Date();
                         return new Date(today.getFullYear(), today.getMonth(), today.getDate(),
                         match[1] || 0, match[3] || 0, match[5] || 0, match[9] || 0) / 1000;
                     }
-                    else  return(0);  // invalid format, cannot be parsed
-                    break;
+                    return(0);  // invalid format, cannot be parsed
                 }
                 case '/': {  // M/D/YY
-                    if (match[1]>12 | match[3]>31 | (match[5] < 70 & match[5]>38)) return(0);
-                    var year = match[5] >= 0 && match[5] <= 38 ? +match[5] + 2000 : match[5];
+                    if (match[1]>12 | match[3]>31 | (match[5] < 70 & match[5]>38)) {
+                        return(0);
+                    }
+                    year = match[5] >= 0 && match[5] <= 38 ? +match[5] + 2000 : match[5];
                     return new Date(year, parseInt(match[1], 10) - 1, match[3],
                     match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                    break;
                 }
                 case ':': {  // HH:MM:SS
-                    if (match[1]>23 | match[3]>59 | match[5]>59) return(0);
-                    var today = new Date();
+                    if (match[1]>23 | match[3]>59 | match[5]>59) {
+                        return(0);
+                    }
+                    today = new Date();
                     return new Date(today.getFullYear(), today.getMonth(), today.getDate(),
                     match[1] || 0, match[3] || 0, match[5] || 0) / 1000;
-                    break;
                 }
             }
         }
