@@ -6,7 +6,7 @@ function idate(format, timestamp) {
   // +   improved by: Theriault
   // +  derived from: date
   // +  derived from: gettimeofday
-  // *     example 1: idate('y');
+  // *     example 1: idate('y', 1255633200);
   // *     returns 1: 9
   if (format === undefined) {
     throw 'idate() expects at least 1 parameter, 0 given';
