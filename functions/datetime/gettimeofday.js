@@ -6,8 +6,8 @@ function gettimeofday(return_float) {
   // +  revised by: Theriault
   // *   example 1: gettimeofday();
   // *   returns 1: {sec: 12, usec: 153000, minuteswest: -480, dsttime: 0}
-  // *   example 1: gettimeofday(true);
-  // *   returns 1: 1238748978.49
+  // *   example 2: gettimeofday(true);
+  // *   returns 2: 1238748978.49
   var t = new Date(),
       y = 0;
 
