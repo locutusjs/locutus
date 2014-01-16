@@ -11,6 +11,7 @@ function strlen(string) {
   // %        note 1: but counts the number of characters, something like this is really necessary.
   // *     example 1: strlen('Kevin van Zonneveld');
   // *     returns 1: 19
+  // *     example 2: ini_set('unicode.semantics', 'on');
   // *     example 2: strlen('A\ud87e\udc04Z');
   // *     returns 2: 3
   var str = string + '';

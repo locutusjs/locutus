@@ -2,8 +2,8 @@ function chr(codePt) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: chr(75);
-  // *     returns 1: 'K'
+  // *     example 1: chr(75) === 'K';
+  // *     returns 1: true
   // *     example 1: chr(65536) === '\uD800\uDC00';
   // *     returns 1: true
   if (codePt > 0xFFFF) { // Create a four-byte string (length 2) since this code point is high

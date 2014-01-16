@@ -4,7 +4,7 @@ function strptime(dateStr, format) {
   // +      based on: strftime
   // -       depends on: setlocale
   // -       depends on: array_map
-  // *             test: skip
+  // *          test: skip
   // *        example 1: strptime('20091112222135', '%Y%m%d%H%M%S'); // Return value will depend on date and locale
   // *        returns 1: {tm_sec: 35, tm_min: 21, tm_hour: 22, tm_mday: 12, tm_mon: 10, tm_year: 109, tm_wday: 4, tm_yday: 315, unparsed: ''}
   // *        example 1: strptime('2009extra', '%Y');
@@ -15,39 +15,41 @@ function strptime(dateStr, format) {
   // Needs more thorough testing and examples
 
   var retObj = {
-    tm_sec: 0,
-    tm_min: 0,
-    tm_hour: 0,
-    tm_mday: 0,
-    tm_mon: 0,
-    tm_year: 0,
-    tm_wday: 0,
-    tm_yday: 0,
-    unparsed: ''
-  },
-      that = this,
-      amPmOffset = 0,
-      prevHour = false,
-      _date = function() {
-        var o = retObj;
-        // We set date to at least 1 to ensure year or month doesn't go backwards
-        return _reset(new Date(Date.UTC(o.tm_year + 1900, o.tm_mon, o.tm_mday || 1, o.tm_hour, o.tm_min, o.tm_sec)), o.tm_mday);
-      };
-  _reset = function(dateObj, realMday) {
-    // realMday is to allow for a value of 0 in return results (but without
-    // messing up the Date() object)
-    var o = retObj;
-    var d = dateObj;
-    o.tm_sec = d.getUTCSeconds();
-    o.tm_min = d.getUTCMinutes();
-    o.tm_hour = d.getUTCHours();
-    o.tm_mday = realMday === 0 ? realMday : d.getUTCDate();
-    o.tm_mon = d.getUTCMonth();
-    o.tm_year = d.getUTCFullYear() - 1900;
-    o.tm_wday = realMday === 0 ? (d.getUTCDay() > 0 ? d.getUTCDay() - 1 : 6) : d.getUTCDay();
-    var jan1 = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-    o.tm_yday = Math.ceil((d - jan1) / (1000 * 60 * 60 * 24));
-  };
+      tm_sec: 0,
+      tm_min: 0,
+      tm_hour: 0,
+      tm_mday: 0,
+      tm_mon: 0,
+      tm_year: 0,
+      tm_wday: 0,
+      tm_yday: 0,
+      unparsed: ''
+    },
+    i = 0,
+    that = this,
+    amPmOffset = 0,
+    prevHour = false,
+    _reset = function(dateObj, realMday) {
+      // realMday is to allow for a value of 0 in return results (but without
+      // messing up the Date() object)
+      var jan1,
+        o = retObj,
+        d = dateObj;
+      o.tm_sec = d.getUTCSeconds();
+      o.tm_min = d.getUTCMinutes();
+      o.tm_hour = d.getUTCHours();
+      o.tm_mday = realMday === 0 ? realMday : d.getUTCDate();
+      o.tm_mon = d.getUTCMonth();
+      o.tm_year = d.getUTCFullYear() - 1900;
+      o.tm_wday = realMday === 0 ? (d.getUTCDay() > 0 ? d.getUTCDay() - 1 : 6) : d.getUTCDay();
+      jan1 = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+      o.tm_yday = Math.ceil((d - jan1) / (1000 * 60 * 60 * 24));
+    },
+    _date = function() {
+      var o = retObj;
+      // We set date to at least 1 to ensure year or month doesn't go backwards
+      return _reset(new Date(Date.UTC(o.tm_year + 1900, o.tm_mon, o.tm_mday || 1, o.tm_hour, o.tm_min, o.tm_sec)), o.tm_mday);
+    };
 
   // BEGIN STATIC
   var _NWS = /\S/,
@@ -132,12 +134,13 @@ Oy
   };
 
   // BEGIN PROCESSING CHARACTERS
-  for (var i = 0, j = 0; i < format.length; i++) {
+  for (i = 0, j = 0; i < format.length; i++) {
     if (format.charAt(i) === '%') {
       var literalPos = ['%', 'n', 't'].indexOf(format.charAt(i + 1));
       if (literalPos !== -1) {
         if (['%', '\n', '\t'].indexOf(dateStr.charAt(j)) === literalPos) { // a matched literal
-          ++i, ++j; // skip beyond
+          ++i;
+          ++j; // skip beyond
           continue;
         }
         // Format indicated a percent literal, but not actually present
@@ -323,7 +326,6 @@ Oy
             break;
           default:
             throw 'Unrecognized formatting character in strptime()';
-            break;
         }
       } catch (e) {
         if (e === 'No match in string') { // Allow us to exit
@@ -341,10 +343,10 @@ Oy
       } else if (format.charAt(i).search(_NWS) !== -1) { // Any extra formatting characters besides white-space causes
         // problems (do check after WS though, as may just be WS in string before next character)
         return false;
-      } else { // Extra WS in format
-        // Adjust strings when encounter non-matching whitespace, so they align in future checks above
-        // Will check on next iteration (against same (non-WS) string character)
       }
+      // Extra WS in format
+      // Adjust strings when encounter non-matching whitespace, so they align in future checks above
+      // Will check on next iteration (against same (non-WS) string character)
     } else {
       j++;
     }

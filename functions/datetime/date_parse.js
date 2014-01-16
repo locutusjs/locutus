@@ -9,11 +9,14 @@ function date_parse(date) {
   this.php_js = this.php_js || {};
   // END REDUNDANT
 
-  var warningsOffset = this.php_js.warnings ? this.php_js.warnings.length : null;
-  var errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
+  var ts,
+    warningsOffset = this.php_js.warnings ? this.php_js.warnings.length : null,
+    errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
 
   try {
-    var ts = this.strtotime(date);
+    this.php_js.date_parse_state = true; // Allow strtotime to return a decimal (which it normally does not)
+    ts = this.strtotime(date);
+    this.php_js.date_parse_state = false;
   } finally {
     if (!ts) {
       return false;
@@ -35,7 +38,7 @@ function date_parse(date) {
   retObj.minute = dt.getMinutes();
   retObj.second = dt.getSeconds();
   retObj.fraction = parseFloat('0.' + dt.getMilliseconds());
-  retObj.is_localtime = dt.getTimezoneOffset !== 0;
+  retObj.is_localtime = dt.getTimezoneOffset() !== 0;
 
   return retObj;
 }

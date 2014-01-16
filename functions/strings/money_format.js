@@ -7,7 +7,7 @@ function money_format(format, number) {
   // %        note 1: This depends on setlocale having the appropriate
   // %        note 1: locale (these examples use 'en_US')
   // *     example 1: money_format('%i', 1234.56);
-  // *     returns 1: 'USD 1,234.56'
+  // *     returns 1: ' USD 1,234.56'
   // *     example 2: money_format('%14#8.2n', 1234.5678);
   // *     returns 2: ' $     1,234.57'
   // *     example 3: money_format('%14#8.2n', -1234.5678);

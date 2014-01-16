@@ -6,7 +6,7 @@ function json_encode(mixed_val) {
   // +         input by: felix
   // +      bugfixed by: Brett Zamir (http://brett-zamir.me)
   // *        example 1: json_encode('Kevin');
-  // *        returns 1: 'Kevin'
+  // *        returns 1: '"Kevin"'
 
   /*
     http://www.JSON.org/json2.js
