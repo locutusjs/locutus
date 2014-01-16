@@ -1,4 +1,3 @@
-
 function strtotime(text, now) {
   // Convert string representation of date and time to a timestamp
   //
