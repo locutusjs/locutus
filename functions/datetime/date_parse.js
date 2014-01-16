@@ -9,12 +9,13 @@ function date_parse(date) {
   this.php_js = this.php_js || {};
   // END REDUNDANT
 
-  var warningsOffset = this.php_js.warnings ? this.php_js.warnings.length : null;
-  var errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
+  var ts,
+    warningsOffset = this.php_js.warnings ? this.php_js.warnings.length : null,
+    errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
 
   try {
     this.php_js.date_parse_state = true; // Allow strtotime to return a decimal (which it normally does not)
-    var ts = this.strtotime(date);
+    ts = this.strtotime(date);
     this.php_js.date_parse_state = false;
   } finally {
     if (!ts) {
