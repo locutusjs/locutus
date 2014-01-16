@@ -21,7 +21,10 @@ function strtotime(text, now) {
   // *     returns 3: 1127041200
   // *     example 4: strtotime('2009-05-04 08:30:00');
   // *     returns 4: 1241418600
-  var parsed, match, year, date, days, ranges, len, times, regex, i;
+  var parsed, match, year, date, days, ranges, len, times, regex, i,
+    _ret = function (rt) {
+        return this.php_js && this.php_js.date_parse_state ? rt : rt | 0; // phpjs custom check to allow fractional results as required by date_parse
+    };
 
   if (!text) {
     return null;
@@ -34,14 +37,14 @@ function strtotime(text, now) {
         .toLowerCase();
 
   if (text === 'now') {
-    return now === null || isNaN(now) ? new Date().getTime() / 1000 : now;
+    return _ret(now === null || isNaN(now) ? new Date().getTime() / 1000 : now);
   }
 
   match = text.match(/^(\d{2,4})-(\d{2})-(\d{2})(?:\s(\d{1,2}):(\d{2})(?::(\d{2}))?)?(?:\.(\d+)?)?$/);
   if (match) {
     year = match[1] >= 0 && match[1] <= 69 ? + match[1] + 2000 : match[1];
-    return new Date(year, parseInt(match[2], 10) - 1, match[3],
-        match[4] || 0, match[5] || 0, match[6] || 0, match[7] || 0) / 1000;
+    return _ret(new Date(year, parseInt(match[2], 10) - 1, match[3],
+        match[4] || 0, match[5] || 0, match[6] || 0, match[7] || 0) / 1000);
   }
 
   date = now ? new Date(now * 1000) : new Date();
@@ -130,5 +133,5 @@ function strtotime(text, now) {
   //if (!match.every(process))
   //    return false;
 
-  return (date.getTime() / 1000);
+  return _ret(date.getTime() / 1000);
 }
