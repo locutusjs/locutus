@@ -35,14 +35,14 @@ function strtotime(text, now) {
         .toLowerCase();
 
   if (text === 'now') {
-    return now === null || isNaN(now) ? new Date().getTime() / 1000 | 0 : now | 0;
+    return now === null || isNaN(now) ? new Date().getTime() / 1000 : now;
   }
 
-  match = text.match(/^(\d{2,4})-(\d{2})-(\d{2})(?:\s(\d{1,2}):(\d{2})(?::\d{2})?)?(?:\.(\d+)?)?$/);
+  match = text.match(/^(\d{2,4})-(\d{2})-(\d{2})(?:\s(\d{1,2}):(\d{2})(?::(\d{2}))?)?(?:\.(\d+)?)?$/);
   if (match) {
     year = match[1] >= 0 && match[1] <= 69 ? + match[1] + 2000 : match[1];
     return new Date(year, parseInt(match[2], 10) - 1, match[3],
-        match[4] || 0, match[5] || 0, match[6] || 0, match[7] || 0) / 1000 | 0;
+        match[4] || 0, match[5] || 0, match[6] || 0, match[7] || 0) / 1000;
   }
 
   date = now ? new Date(now * 1000) : new Date();
@@ -131,5 +131,5 @@ function strtotime(text, now) {
   //if (!match.every(process))
   //    return false;
 
-  return (date.getTime() / 1000) | 0;
+  return (date.getTime() / 1000);
 }
