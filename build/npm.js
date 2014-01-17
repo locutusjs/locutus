@@ -3006,8 +3006,9 @@ exports.file_get_contents = function (url, flags, context, offset, maxLen) {
       url = href.slice(0, pathPos + 1) + url;
     }
   
+    var http_options;
     if (context) {
-      var http_options = context.stream_options && context.stream_options.http;
+      http_options = context.stream_options && context.stream_options.http;
       http_stream = !! http_options;
     }
   
@@ -7818,7 +7819,8 @@ exports.is_null = function (mixed_var) {
 };
 
 exports.is_numeric = function (mixed_var) {
-  return (typeof mixed_var === 'number' || typeof mixed_var === 'string') && mixed_var !== '' && !isNaN(mixed_var);
+  var whitespace = " \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000";
+    return (typeof mixed_var === 'number' || (typeof mixed_var === 'string' && whitespace.indexOf(mixed_var.slice(-1)) === -1)) && mixed_var !== '' && !isNaN(mixed_var);
 };
 
 exports.is_object = function (mixed_var) {
@@ -9420,6 +9422,20 @@ exports.bcround = function (val, precision) {
     return result.toString();
 };
 
+exports.bcscale = function (scale) {
+  var libbcmath = this._phpjs_shared_bc();
+  
+    scale = parseInt(scale, 10);
+    if (isNaN(scale)) {
+      return false;
+    }
+    if (scale < 0) {
+      return false;
+    }
+    libbcmath.scale = scale;
+    return true;
+};
+
 exports.bcsub = function (left_operand, right_operand, scale) {
   var libbcmath = this._phpjs_shared_bc();
   
@@ -9445,20 +9461,6 @@ exports.bcsub = function (left_operand, right_operand, scale) {
     }
   
     return result.toString();
-};
-
-exports.bcscale = function (scale) {
-  var libbcmath = this._phpjs_shared_bc();
-  
-    scale = parseInt(scale, 10);
-    if (isNaN(scale)) {
-      return false;
-    }
-    if (scale < 0) {
-      return false;
-    }
-    libbcmath.scale = scale;
-    return true;
 };
 
 exports.date_parse = function (date) {
@@ -11618,6 +11620,16 @@ exports.ctype_digit = function (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.dg) !== -1;
 };
 
+exports.ctype_graph = function (text) {
+  if (typeof text !== 'string') {
+      return false;
+    }
+    // BEGIN REDUNDANT
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    // END REDUNDANT
+    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.gr) !== -1;
+};
+
 exports.ctype_lower = function (text) {
   if (typeof text !== 'string') {
       return false;
@@ -11638,6 +11650,16 @@ exports.ctype_print = function (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pr) !== -1;
 };
 
+exports.ctype_punct = function (text) {
+  if (typeof text !== 'string') {
+      return false;
+    }
+    // BEGIN REDUNDANT
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    // END REDUNDANT
+    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pu) !== -1;
+};
+
 exports.ctype_space = function (text) {
   if (typeof text !== 'string') {
       return false;
@@ -11656,26 +11678,6 @@ exports.ctype_upper = function (text) {
     this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     // END REDUNDANT
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.up) !== -1;
-};
-
-exports.ctype_graph = function (text) {
-  if (typeof text !== 'string') {
-      return false;
-    }
-    // BEGIN REDUNDANT
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.gr) !== -1;
-};
-
-exports.ctype_punct = function (text) {
-  if (typeof text !== 'string') {
-      return false;
-    }
-    // BEGIN REDUNDANT
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pu) !== -1;
 };
 
 exports.ctype_xdigit = function (text) {

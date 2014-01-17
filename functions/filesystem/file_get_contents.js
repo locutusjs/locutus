@@ -73,8 +73,9 @@ function file_get_contents(url, flags, context, offset, maxLen) {
     url = href.slice(0, pathPos + 1) + url;
   }
 
+  var http_options;
   if (context) {
-    var http_options = context.stream_options && context.stream_options.http;
+    http_options = context.stream_options && context.stream_options.http;
     http_stream = !! http_options;
   }
 
