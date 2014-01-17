@@ -688,38 +688,6 @@ exports.array_intersect_key = function (arr1) {
     return retArr;
 };
 
-exports.array_intersect_ukey = function (arr1) {
-  var retArr = {},
-        arglm1 = arguments.length - 1,
-        arglm2 = arglm1 - 1,
-        cb = arguments[arglm1],
-        k1 = '',
-        i = 1,
-        arr = {},
-        k = '';
-  
-    cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
-  
-    arr1keys: for (k1 in arr1) {
-      arrs: for (i = 1; i < arglm1; i++) {
-        arr = arguments[i];
-        for (k in arr) {
-          if (cb(k, k1) === 0) {
-            if (i === arglm2) {
-              retArr[k1] = arr1[k1];
-            }
-            // If the innermost loop always leads at least once to an equal value, continue the loop until done
-            continue arrs;
-          }
-        }
-        // If it reaches here, it wasn't found in at least one array, so try next value
-        continue arr1keys;
-      }
-    }
-  
-    return retArr;
-};
-
 exports.array_intersect_uassoc = function (arr1) {
   var retArr = {},
         arglm1 = arguments.length - 1,
@@ -737,6 +705,38 @@ exports.array_intersect_uassoc = function (arr1) {
         arr = arguments[i];
         for (k in arr) {
           if (arr[k] === arr1[k1] && cb(k, k1) === 0) {
+            if (i === arglm2) {
+              retArr[k1] = arr1[k1];
+            }
+            // If the innermost loop always leads at least once to an equal value, continue the loop until done
+            continue arrs;
+          }
+        }
+        // If it reaches here, it wasn't found in at least one array, so try next value
+        continue arr1keys;
+      }
+    }
+  
+    return retArr;
+};
+
+exports.array_intersect_ukey = function (arr1) {
+  var retArr = {},
+        arglm1 = arguments.length - 1,
+        arglm2 = arglm1 - 1,
+        cb = arguments[arglm1],
+        k1 = '',
+        i = 1,
+        arr = {},
+        k = '';
+  
+    cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
+  
+    arr1keys: for (k1 in arr1) {
+      arrs: for (i = 1; i < arglm1; i++) {
+        arr = arguments[i];
+        for (k in arr) {
+          if (cb(k, k1) === 0) {
             if (i === arglm2) {
               retArr[k1] = arr1[k1];
             }
@@ -2695,227 +2695,227 @@ exports.mktime = function () {
 exports.strtotime = function (text, now) {
   var parsed, match, today, year, date, days, ranges, len, times, regex, i, fail = false;
   
-      if (!text) {
-          return fail;
-      }
+    if (!text) {
+      return fail;
+    }
   
-      // Unecessary spaces
-      text = text.replace(/^\s+|\s+$/g, '')
+    // Unecessary spaces
+    text = text.replace(/^\s+|\s+$/g, '')
           .replace(/\s{2,}/g, ' ')
           .replace(/[\t\r\n]/g, '')
           .toLowerCase();
   
-      // in contrast to php, js Date.parse function interprets: 
-      // dates given as yyyy-mm-dd as in timezone: UTC, 
-      // dates with "." or "-" as MDY instead of DMY
-      // dates with two-digit years differently
-      // etc...etc...
-      // ...therefore we manually parse lots of common date formats
-      match = text.match(/^(\d{1,4})([\-\.\/\:])(\d{1,2})([\-\.\/\:])(\d{1,4})(?:\s(\d{1,2}):(\d{2})?:?(\d{2})?)?(?:\s([A-Z]+)?)?$/);
-      
-      if (match && match[2] === match[4]) {
-          if (match[1] > 1901) {
-              switch (match[2]) {
-                  case '-': {  // YYYY-M-D
-                      if (match[3] > 12 || match[5] > 31) {
-                          return fail;
-                      }
-                      
-                      return new Date(match[1], parseInt(match[3], 10) - 1, match[5],
-                          match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                  }
-                  case '.': {  // YYYY.M.D is not parsed by strtotime()
-                      return fail;
-                  }
-                  case '/': {  // YYYY/M/D
-                      if (match[3] > 12 || match[5] > 31) {
-                          return fail;
-                      }
-                      
-                      return new Date(match[1], parseInt(match[3], 10) - 1, match[5],
-                          match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                  }
-              }
-          } else if (match[5] > 1901) {
-              switch (match[2]) {
-                  case '-': {  // D-M-YYYY
-                      if (match[3] > 12 || match[1] > 31) {
-                          return fail;
-                      }
-                      
-                      return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
-                          match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                  }
-                  case '.': {  // D.M.YYYY
-                      if (match[3] > 12 || match[1] > 31) {
-                          return fail;
-                      }
-                      
-                      return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
-                          match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                  }
-                  case '/': {  // M/D/YYYY
-                      if (match[1] > 12 || match[3] > 31) {
-                          return fail;
-                      }
-                      
-                      return new Date(match[5], parseInt(match[1], 10) - 1, match[3],
-                          match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                  }
-              }
+    // in contrast to php, js Date.parse function interprets:
+    // dates given as yyyy-mm-dd as in timezone: UTC,
+    // dates with "." or "-" as MDY instead of DMY
+    // dates with two-digit years differently
+    // etc...etc...
+    // ...therefore we manually parse lots of common date formats
+    match = text.match(/^(\d{1,4})([\-\.\/\:])(\d{1,2})([\-\.\/\:])(\d{1,4})(?:\s(\d{1,2}):(\d{2})?:?(\d{2})?)?(?:\s([A-Z]+)?)?$/);
+  
+    if (match && match[2] === match[4]) {
+      if (match[1] > 1901) {
+        switch (match[2]) {
+          case '-': {  // YYYY-M-D
+            if (match[3] > 12 || match[5] > 31) {
+              return fail;
+            }
+  
+            return new Date(match[1], parseInt(match[3], 10) - 1, match[5],
+                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
           }
-          else {
-              switch (match[2]) {
-                  case '-': {  // YY-M-D
-                      if (match[3] > 12 || match[5] > 31 || (match[1] < 70 && match[1] > 38)) {
-                          return fail;
-                      }
-                      
-                      year = match[1] >= 0 && match[1] <= 38 ? +match[1] + 2000 : match[1];
-                      return new Date(year, parseInt(match[3], 10) - 1, match[5],
-                          match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                  }
-                  case '.': {  // D.M.YY or H.MM.SS
-                      if (match[5] >= 70) {    // D.M.YY
-                          if (match[3]>12 || match[1]>31) {
-                              return fail;
-                          }
-                          
-                          return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
+          case '.': {  // YYYY.M.D is not parsed by strtotime()
+            return fail;
+          }
+          case '/': {  // YYYY/M/D
+            if (match[3] > 12 || match[5] > 31) {
+              return fail;
+            }
+  
+            return new Date(match[1], parseInt(match[3], 10) - 1, match[5],
+                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+          }
+        }
+      } else if (match[5] > 1901) {
+        switch (match[2]) {
+          case '-': {  // D-M-YYYY
+            if (match[3] > 12 || match[1] > 31) {
+              return fail;
+            }
+  
+            return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
+                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+          }
+          case '.': {  // D.M.YYYY
+            if (match[3] > 12 || match[1] > 31) {
+              return fail;
+            }
+  
+            return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
+                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+          }
+          case '/': {  // M/D/YYYY
+            if (match[1] > 12 || match[3] > 31) {
+              return fail;
+            }
+  
+            return new Date(match[5], parseInt(match[1], 10) - 1, match[3],
+                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+          }
+        }
+      }
+      else {
+        switch (match[2]) {
+          case '-': {  // YY-M-D
+            if (match[3] > 12 || match[5] > 31 || (match[1] < 70 && match[1] > 38)) {
+              return fail;
+            }
+  
+            year = match[1] >= 0 && match[1] <= 38 ? +match[1] + 2000 : match[1];
+            return new Date(year, parseInt(match[3], 10) - 1, match[5],
+                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+          }
+          case '.': {  // D.M.YY or H.MM.SS
+            if (match[5] >= 70) {    // D.M.YY
+              if (match[3] > 12 || match[1] > 31) {
+                return fail;
+              }
+  
+              return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
                               match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                      }
-                      if (match[5] < 60 && !match[6]) {  // H.MM.SS
-                          if (match[1] > 23 || match[3] > 59) {
-                              return fail;
-                          }
-                          
-                          today = new Date();
-                          return new Date(today.getFullYear(), today.getMonth(), today.getDate(),
+            }
+            if (match[5] < 60 && !match[6]) {  // H.MM.SS
+              if (match[1] > 23 || match[3] > 59) {
+                return fail;
+              }
+  
+              today = new Date();
+              return new Date(today.getFullYear(), today.getMonth(), today.getDate(),
                               match[1] || 0, match[3] || 0, match[5] || 0, match[9] || 0) / 1000;
-                      }
-                      
-                      return fail;  // invalid format, cannot be parsed
-                  }
-                  case '/': {  // M/D/YY
-                      if (match[1] > 12 || match[3] > 31 || (match[5] < 70 && match[5] > 38)) {
-                          return fail;
-                      }
-                      
-                      year = match[5] >= 0 && match[5] <= 38 ? +match[5] + 2000 : match[5];
-                      return new Date(year, parseInt(match[1], 10) - 1, match[3],
-                          match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
-                  }
-                  case ':': {  // HH:MM:SS
-                      if (match[1] > 23 || match[3] > 59 || match[5] > 59) {
-                          return fail;
-                      }
-                      
-                      today = new Date();
-                      return new Date(today.getFullYear(), today.getMonth(), today.getDate(),
-                          match[1] || 0, match[3] || 0, match[5] || 0) / 1000;
-                  }
-              }
+            }
+  
+            return fail;  // invalid format, cannot be parsed
           }
-      }
-      
-      
-      // other formats and "now" should be parsed by Date.parse()
-      if (text === 'now') {
-          return now === null || isNaN(now) ? new Date().getTime() / 1000 | 0 : now | 0;
-      }
-      if (!isNaN(parsed = Date.parse(text))) {
-          return parsed / 1000 | 0;
-      }
+          case '/': {  // M/D/YY
+            if (match[1] > 12 || match[3] > 31 || (match[5] < 70 && match[5] > 38)) {
+              return fail;
+            }
   
-      date = now ? new Date(now * 1000) : new Date();
-      days = {
-          'sun': 0,
-          'mon': 1,
-          'tue': 2,
-          'wed': 3,
-          'thu': 4,
-          'fri': 5,
-          'sat': 6
-      };
-      ranges = {
-          'yea': 'FullYear',
-          'mon': 'Month',
-          'day': 'Date',
-          'hou': 'Hours',
-          'min': 'Minutes',
-          'sec': 'Seconds'
-      };
-  
-      function lastNext(type, range, modifier) {
-          var diff, day = days[range];
-  
-          if (typeof day !== 'undefined') {
-              diff = day - date.getDay();
-  
-              if (diff === 0) {
-                  diff = 7 * modifier;
-              }
-              else if (diff > 0 && type === 'last') {
-                  diff -= 7;
-              }
-              else if (diff < 0 && type === 'next') {
-                  diff += 7;
-              }
-  
-              date.setDate(date.getDate() + diff);
+            year = match[5] >= 0 && match[5] <= 38 ? +match[5] + 2000 : match[5];
+            return new Date(year, parseInt(match[1], 10) - 1, match[3],
+                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
           }
+          case ':': {  // HH:MM:SS
+            if (match[1] > 23 || match[3] > 59 || match[5] > 59) {
+              return fail;
+            }
+  
+            today = new Date();
+            return new Date(today.getFullYear(), today.getMonth(), today.getDate(),
+                match[1] || 0, match[3] || 0, match[5] || 0) / 1000;
+          }
+        }
       }
-      function process(val) {
-          var splt = val.split(' '), // Todo: Reconcile this with regex using \s, taking into account browser issues with split and regexes
+    }
+  
+  
+    // other formats and "now" should be parsed by Date.parse()
+    if (text === 'now') {
+      return now === null || isNaN(now) ? new Date().getTime() / 1000 | 0 : now | 0;
+    }
+    if (!isNaN(parsed = Date.parse(text))) {
+      return parsed / 1000 | 0;
+    }
+  
+    date = now ? new Date(now * 1000) : new Date();
+    days = {
+      'sun': 0,
+      'mon': 1,
+      'tue': 2,
+      'wed': 3,
+      'thu': 4,
+      'fri': 5,
+      'sat': 6
+    };
+    ranges = {
+      'yea': 'FullYear',
+      'mon': 'Month',
+      'day': 'Date',
+      'hou': 'Hours',
+      'min': 'Minutes',
+      'sec': 'Seconds'
+    };
+  
+    function lastNext(type, range, modifier) {
+      var diff, day = days[range];
+  
+      if (typeof day !== 'undefined') {
+        diff = day - date.getDay();
+  
+        if (diff === 0) {
+          diff = 7 * modifier;
+        }
+        else if (diff > 0 && type === 'last') {
+          diff -= 7;
+        }
+        else if (diff < 0 && type === 'next') {
+          diff += 7;
+        }
+  
+        date.setDate(date.getDate() + diff);
+      }
+    }
+    function process(val) {
+      var splt = val.split(' '), // Todo: Reconcile this with regex using \s, taking into account browser issues with split and regexes
               type = splt[0],
               range = splt[1].substring(0, 3),
               typeIsNumber = /\d+/.test(type),
               ago = splt[2] === 'ago',
               num = (type === 'last' ? -1 : 1) * (ago ? -1 : 1);
   
-          if (typeIsNumber) {
-              num *= parseInt(type, 10);
-          }
-  
-          if (ranges.hasOwnProperty(range) && !splt[1].match(/^mon(day|\.)?$/i)) {
-              return date['set' + ranges[range]](date['get' + ranges[range]]() + num);
-          }
-          
-          if (range === 'wee') {
-              return date.setDate(date.getDate() + (num * 7));
-          }
-  
-          if (type === 'next' || type === 'last') {
-              lastNext(type, range, num);
-          }
-          else if (!typeIsNumber) {
-              return false;
-          }
-          
-          return true;
+      if (typeIsNumber) {
+        num *= parseInt(type, 10);
       }
   
-      times = '(years?|months?|weeks?|days?|hours?|minutes?|min|seconds?|sec' +
-          '|sunday|sun\\.?|monday|mon\\.?|tuesday|tue\\.?|wednesday|wed\\.?' +
-          '|thursday|thu\\.?|friday|fri\\.?|saturday|sat\\.?)';
-      regex = '([+-]?\\d+\\s' + times + '|' + '(last|next)\\s' + times + ')(\\sago)?';
-  
-      match = text.match(new RegExp(regex, 'gi'));
-      if (!match) {
-          return fail;
+      if (ranges.hasOwnProperty(range) && !splt[1].match(/^mon(day|\.)?$/i)) {
+        return date['set' + ranges[range]](date['get' + ranges[range]]() + num);
       }
   
-      for (i = 0, len = match.length; i < len; i++) {
-          if (!process(match[i])) {
-              return fail;
-          }
+      if (range === 'wee') {
+        return date.setDate(date.getDate() + (num * 7));
       }
   
-      // ECMAScript 5 only
-      // if (!match.every(process))
-      //    return false;
+      if (type === 'next' || type === 'last') {
+        lastNext(type, range, num);
+      }
+      else if (!typeIsNumber) {
+        return false;
+      }
   
-      return (date.getTime() / 1000);
+      return true;
+    }
+  
+    times = '(years?|months?|weeks?|days?|hours?|minutes?|min|seconds?|sec' +
+        '|sunday|sun\\.?|monday|mon\\.?|tuesday|tue\\.?|wednesday|wed\\.?' +
+        '|thursday|thu\\.?|friday|fri\\.?|saturday|sat\\.?)';
+    regex = '([+-]?\\d+\\s' + times + '|' + '(last|next)\\s' + times + ')(\\sago)?';
+  
+    match = text.match(new RegExp(regex, 'gi'));
+    if (!match) {
+      return fail;
+    }
+  
+    for (i = 0, len = match.length; i < len; i++) {
+      if (!process(match[i])) {
+        return fail;
+      }
+    }
+  
+    // ECMAScript 5 only
+    // if (!match.every(process))
+    //    return false;
+  
+    return (date.getTime() / 1000);
 };
 
 exports.time = function () {
@@ -2934,12 +2934,12 @@ exports.escapeshellarg = function (arg) {
 
 exports.basename = function (path, suffix) {
   var b = path;
-    var lastChar = b.charAt(b.length-1);
-    
-    if(lastChar === "/" || lastChar === "\\") {
+    var lastChar = b.charAt(b.length - 1);
+  
+    if (lastChar === '/' || lastChar === '\\') {
       b = b.slice(0, -1);
     }
-    
+  
     b = b.replace(/^.*[\/\\]/g, '');
   
     if (typeof suffix === 'string' && b.substr(b.length - suffix.length) == suffix) {
@@ -8999,6 +8999,65 @@ exports.array_search = function (needle, haystack, argStrict) {
     return false;
 };
 
+exports.array_slice = function (arr, offst, lgth, preserve_keys) {
+  /*
+    if ('callee' in arr && 'length' in arr) {
+      arr = Array.prototype.slice.call(arr);
+    }
+    */
+  
+    var key = '';
+  
+    if (Object.prototype.toString.call(arr) !== '[object Array]' ||
+        (preserve_keys && offst !== 0)) { // Assoc. array as input or if required as output
+      var lgt = 0,
+          newAssoc = {};
+      for (key in arr) {
+        //if (key !== 'length') {
+        lgt += 1;
+        newAssoc[key] = arr[key];
+        //}
+      }
+      arr = newAssoc;
+  
+      offst = (offst < 0) ? lgt + offst : offst;
+      lgth = lgth === undefined ? lgt : (lgth < 0) ? lgt + lgth - offst : lgth;
+  
+      var assoc = {};
+      var start = false,
+          it = -1,
+          arrlgth = 0,
+          no_pk_idx = 0;
+      for (key in arr) {
+        ++it;
+        if (arrlgth >= lgth) {
+          break;
+        }
+        if (it == offst) {
+          start = true;
+        }
+        if (!start) {
+          continue;
+        } ++arrlgth;
+        if (this.is_int(key) && !preserve_keys) {
+          assoc[no_pk_idx++] = arr[key];
+        } else {
+          assoc[key] = arr[key];
+        }
+      }
+      //assoc.length = arrlgth; // Make as array-like object (though length will not be dynamic)
+      return assoc;
+    }
+  
+    if (lgth === undefined) {
+      return arr.slice(offst);
+    } else if (lgth >= 0) {
+      return arr.slice(offst, offst + lgth);
+    } else {
+      return arr.slice(offst, lgth);
+    }
+};
+
 exports.array_splice = function (arr, offst, lgth, replacement) {
   var _checkToUpIndices = function(arr, ct, key) {
       // Deal with situation, e.g., if encounter index 4 and try to set it to 0, but 0 exists later in loop (need to
@@ -9083,65 +9142,6 @@ exports.array_splice = function (arr, offst, lgth, replacement) {
       return Array.prototype.splice.apply(arr, replacement);
     }
     return arr.splice(offst, lgth);
-};
-
-exports.array_slice = function (arr, offst, lgth, preserve_keys) {
-  /*
-    if ('callee' in arr && 'length' in arr) {
-      arr = Array.prototype.slice.call(arr);
-    }
-    */
-  
-    var key = '';
-  
-    if (Object.prototype.toString.call(arr) !== '[object Array]' ||
-        (preserve_keys && offst !== 0)) { // Assoc. array as input or if required as output
-      var lgt = 0,
-          newAssoc = {};
-      for (key in arr) {
-        //if (key !== 'length') {
-        lgt += 1;
-        newAssoc[key] = arr[key];
-        //}
-      }
-      arr = newAssoc;
-  
-      offst = (offst < 0) ? lgt + offst : offst;
-      lgth = lgth === undefined ? lgt : (lgth < 0) ? lgt + lgth - offst : lgth;
-  
-      var assoc = {};
-      var start = false,
-          it = -1,
-          arrlgth = 0,
-          no_pk_idx = 0;
-      for (key in arr) {
-        ++it;
-        if (arrlgth >= lgth) {
-          break;
-        }
-        if (it == offst) {
-          start = true;
-        }
-        if (!start) {
-          continue;
-        } ++arrlgth;
-        if (this.is_int(key) && !preserve_keys) {
-          assoc[no_pk_idx++] = arr[key];
-        } else {
-          assoc[key] = arr[key];
-        }
-      }
-      //assoc.length = arrlgth; // Make as array-like object (though length will not be dynamic)
-      return assoc;
-    }
-  
-    if (lgth === undefined) {
-      return arr.slice(offst);
-    } else if (lgth >= 0) {
-      return arr.slice(offst, offst + lgth);
-    } else {
-      return arr.slice(offst, lgth);
-    }
 };
 
 exports.array_walk = function (array, funcname, userdata) {
@@ -9460,8 +9460,8 @@ exports.date_parse = function (date) {
     // END REDUNDANT
   
     var ts,
-      warningsOffset = this.php_js.warnings ? this.php_js.warnings.length : null,
-      errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
+        warningsOffset = this.php_js.warnings ? this.php_js.warnings.length : null,
+        errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
   
     try {
       this.php_js.date_parse_state = true; // Allow strtotime to return a decimal (which it normally does not)

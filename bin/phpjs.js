@@ -8,7 +8,7 @@ var __root    = __dirname + '/..';
 
 
 var PhpjsUtil = phpjsutil({
-  injectDependencies: ['ini_set', 'ini_get'],
+  injectDependencies: ['ini_set', 'ini_get', 'array'],
   equal             : equal,
   debug             : cli.debug
 });
