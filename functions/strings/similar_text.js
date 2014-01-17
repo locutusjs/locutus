@@ -8,7 +8,7 @@ function similar_text(first, second, percent) {
   // *     returns 1: 7
   // *     example 2: similar_text('Hello World!', null);
   // *     returns 2: 0
-  
+
   if (first === null || second === null || typeof first === 'undefined' || typeof second === 'undefined') {
     return 0;
   }
