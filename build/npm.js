@@ -688,38 +688,6 @@ exports.array_intersect_key = function (arr1) {
     return retArr;
 };
 
-exports.array_intersect_uassoc = function (arr1) {
-  var retArr = {},
-        arglm1 = arguments.length - 1,
-        arglm2 = arglm1 - 1,
-        cb = arguments[arglm1],
-        k1 = '',
-        i = 1,
-        arr = {},
-        k = '';
-  
-    cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
-  
-    arr1keys: for (k1 in arr1) {
-      arrs: for (i = 1; i < arglm1; i++) {
-        arr = arguments[i];
-        for (k in arr) {
-          if (arr[k] === arr1[k1] && cb(k, k1) === 0) {
-            if (i === arglm2) {
-              retArr[k1] = arr1[k1];
-            }
-            // If the innermost loop always leads at least once to an equal value, continue the loop until done
-            continue arrs;
-          }
-        }
-        // If it reaches here, it wasn't found in at least one array, so try next value
-        continue arr1keys;
-      }
-    }
-  
-    return retArr;
-};
-
 exports.array_intersect_ukey = function (arr1) {
   var retArr = {},
         arglm1 = arguments.length - 1,
@@ -737,6 +705,38 @@ exports.array_intersect_ukey = function (arr1) {
         arr = arguments[i];
         for (k in arr) {
           if (cb(k, k1) === 0) {
+            if (i === arglm2) {
+              retArr[k1] = arr1[k1];
+            }
+            // If the innermost loop always leads at least once to an equal value, continue the loop until done
+            continue arrs;
+          }
+        }
+        // If it reaches here, it wasn't found in at least one array, so try next value
+        continue arr1keys;
+      }
+    }
+  
+    return retArr;
+};
+
+exports.array_intersect_uassoc = function (arr1) {
+  var retArr = {},
+        arglm1 = arguments.length - 1,
+        arglm2 = arglm1 - 1,
+        cb = arguments[arglm1],
+        k1 = '',
+        i = 1,
+        arr = {},
+        k = '';
+  
+    cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
+  
+    arr1keys: for (k1 in arr1) {
+      arrs: for (i = 1; i < arglm1; i++) {
+        arr = arguments[i];
+        for (k in arr) {
+          if (arr[k] === arr1[k1] && cb(k, k1) === 0) {
             if (i === arglm2) {
               retArr[k1] = arr1[k1];
             }
@@ -8999,65 +8999,6 @@ exports.array_search = function (needle, haystack, argStrict) {
     return false;
 };
 
-exports.array_slice = function (arr, offst, lgth, preserve_keys) {
-  /*
-    if ('callee' in arr && 'length' in arr) {
-      arr = Array.prototype.slice.call(arr);
-    }
-    */
-  
-    var key = '';
-  
-    if (Object.prototype.toString.call(arr) !== '[object Array]' ||
-        (preserve_keys && offst !== 0)) { // Assoc. array as input or if required as output
-      var lgt = 0,
-          newAssoc = {};
-      for (key in arr) {
-        //if (key !== 'length') {
-        lgt += 1;
-        newAssoc[key] = arr[key];
-        //}
-      }
-      arr = newAssoc;
-  
-      offst = (offst < 0) ? lgt + offst : offst;
-      lgth = lgth === undefined ? lgt : (lgth < 0) ? lgt + lgth - offst : lgth;
-  
-      var assoc = {};
-      var start = false,
-          it = -1,
-          arrlgth = 0,
-          no_pk_idx = 0;
-      for (key in arr) {
-        ++it;
-        if (arrlgth >= lgth) {
-          break;
-        }
-        if (it == offst) {
-          start = true;
-        }
-        if (!start) {
-          continue;
-        } ++arrlgth;
-        if (this.is_int(key) && !preserve_keys) {
-          assoc[no_pk_idx++] = arr[key];
-        } else {
-          assoc[key] = arr[key];
-        }
-      }
-      //assoc.length = arrlgth; // Make as array-like object (though length will not be dynamic)
-      return assoc;
-    }
-  
-    if (lgth === undefined) {
-      return arr.slice(offst);
-    } else if (lgth >= 0) {
-      return arr.slice(offst, offst + lgth);
-    } else {
-      return arr.slice(offst, lgth);
-    }
-};
-
 exports.array_splice = function (arr, offst, lgth, replacement) {
   var _checkToUpIndices = function(arr, ct, key) {
       // Deal with situation, e.g., if encounter index 4 and try to set it to 0, but 0 exists later in loop (need to
@@ -9142,6 +9083,65 @@ exports.array_splice = function (arr, offst, lgth, replacement) {
       return Array.prototype.splice.apply(arr, replacement);
     }
     return arr.splice(offst, lgth);
+};
+
+exports.array_slice = function (arr, offst, lgth, preserve_keys) {
+  /*
+    if ('callee' in arr && 'length' in arr) {
+      arr = Array.prototype.slice.call(arr);
+    }
+    */
+  
+    var key = '';
+  
+    if (Object.prototype.toString.call(arr) !== '[object Array]' ||
+        (preserve_keys && offst !== 0)) { // Assoc. array as input or if required as output
+      var lgt = 0,
+          newAssoc = {};
+      for (key in arr) {
+        //if (key !== 'length') {
+        lgt += 1;
+        newAssoc[key] = arr[key];
+        //}
+      }
+      arr = newAssoc;
+  
+      offst = (offst < 0) ? lgt + offst : offst;
+      lgth = lgth === undefined ? lgt : (lgth < 0) ? lgt + lgth - offst : lgth;
+  
+      var assoc = {};
+      var start = false,
+          it = -1,
+          arrlgth = 0,
+          no_pk_idx = 0;
+      for (key in arr) {
+        ++it;
+        if (arrlgth >= lgth) {
+          break;
+        }
+        if (it == offst) {
+          start = true;
+        }
+        if (!start) {
+          continue;
+        } ++arrlgth;
+        if (this.is_int(key) && !preserve_keys) {
+          assoc[no_pk_idx++] = arr[key];
+        } else {
+          assoc[key] = arr[key];
+        }
+      }
+      //assoc.length = arrlgth; // Make as array-like object (though length will not be dynamic)
+      return assoc;
+    }
+  
+    if (lgth === undefined) {
+      return arr.slice(offst);
+    } else if (lgth >= 0) {
+      return arr.slice(offst, offst + lgth);
+    } else {
+      return arr.slice(offst, lgth);
+    }
 };
 
 exports.array_walk = function (array, funcname, userdata) {
@@ -9312,6 +9312,35 @@ exports.bccomp = function (left_operand, right_operand, scale) {
     return libbcmath.bc_compare(first, second, scale);
 };
 
+exports.bcdiv = function (left_operand, right_operand, scale) {
+  var libbcmath = this._phpjs_shared_bc();
+  
+    var first, second, result;
+  
+    if (typeof scale === 'undefined') {
+      scale = libbcmath.scale;
+    }
+    scale = ((scale < 0) ? 0 : scale);
+  
+    // create objects
+    first = libbcmath.bc_init_num();
+    second = libbcmath.bc_init_num();
+    result = libbcmath.bc_init_num();
+  
+    first = libbcmath.php_str2num(left_operand.toString());
+    second = libbcmath.php_str2num(right_operand.toString());
+  
+    result = libbcmath.bc_divide(first, second, scale);
+    if (result === -1) {
+      // error
+      throw new Error(11, '(BC) Division by zero');
+    }
+    if (result.n_scale > scale) {
+      result.n_scale = scale;
+    }
+    return result.toString();
+};
+
 exports.bcmul = function (left_operand, right_operand, scale) {
   var libbcmath = this._phpjs_shared_bc();
   
@@ -9384,20 +9413,6 @@ exports.bcround = function (val, precision) {
     return result.toString();
 };
 
-exports.bcscale = function (scale) {
-  var libbcmath = this._phpjs_shared_bc();
-  
-    scale = parseInt(scale, 10);
-    if (isNaN(scale)) {
-      return false;
-    }
-    if (scale < 0) {
-      return false;
-    }
-    libbcmath.scale = scale;
-    return true;
-};
-
 exports.bcsub = function (left_operand, right_operand, scale) {
   var libbcmath = this._phpjs_shared_bc();
   
@@ -9425,33 +9440,18 @@ exports.bcsub = function (left_operand, right_operand, scale) {
     return result.toString();
 };
 
-exports.bcdiv = function (left_operand, right_operand, scale) {
+exports.bcscale = function (scale) {
   var libbcmath = this._phpjs_shared_bc();
   
-    var first, second, result;
-  
-    if (typeof scale === 'undefined') {
-      scale = libbcmath.scale;
+    scale = parseInt(scale, 10);
+    if (isNaN(scale)) {
+      return false;
     }
-    scale = ((scale < 0) ? 0 : scale);
-  
-    // create objects
-    first = libbcmath.bc_init_num();
-    second = libbcmath.bc_init_num();
-    result = libbcmath.bc_init_num();
-  
-    first = libbcmath.php_str2num(left_operand.toString());
-    second = libbcmath.php_str2num(right_operand.toString());
-  
-    result = libbcmath.bc_divide(first, second, scale);
-    if (result === -1) {
-      // error
-      throw new Error(11, '(BC) Division by zero');
+    if (scale < 0) {
+      return false;
     }
-    if (result.n_scale > scale) {
-      result.n_scale = scale;
-    }
-    return result.toString();
+    libbcmath.scale = scale;
+    return true;
 };
 
 exports.date_parse = function (date) {
@@ -11528,6 +11528,16 @@ exports.ctype_cntrl = function (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.ct) !== -1;
 };
 
+exports.ctype_digit = function (text) {
+  if (typeof text !== 'string') {
+      return false;
+    }
+    // BEGIN REDUNDANT
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    // END REDUNDANT
+    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.dg) !== -1;
+};
+
 exports.ctype_graph = function (text) {
   if (typeof text !== 'string') {
       return false;
@@ -11548,6 +11558,16 @@ exports.ctype_lower = function (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.lw) !== -1;
 };
 
+exports.ctype_print = function (text) {
+  if (typeof text !== 'string') {
+      return false;
+    }
+    // BEGIN REDUNDANT
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    // END REDUNDANT
+    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pr) !== -1;
+};
+
 exports.ctype_punct = function (text) {
   if (typeof text !== 'string') {
       return false;
@@ -11556,6 +11576,16 @@ exports.ctype_punct = function (text) {
     this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     // END REDUNDANT
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pu) !== -1;
+};
+
+exports.ctype_space = function (text) {
+  if (typeof text !== 'string') {
+      return false;
+    }
+    // BEGIN REDUNDANT
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    // END REDUNDANT
+    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.sp) !== -1;
 };
 
 exports.ctype_upper = function (text) {
@@ -11576,26 +11606,6 @@ exports.ctype_xdigit = function (text) {
     this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     // END REDUNDANT
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.xd) !== -1;
-};
-
-exports.ctype_digit = function (text) {
-  if (typeof text !== 'string') {
-      return false;
-    }
-    // BEGIN REDUNDANT
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.dg) !== -1;
-};
-
-exports.ctype_print = function (text) {
-  if (typeof text !== 'string') {
-      return false;
-    }
-    // BEGIN REDUNDANT
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pr) !== -1;
 };
 
 exports.strftime = function (fmt, timestamp) {
@@ -11805,16 +11815,6 @@ exports.strftime = function (fmt, timestamp) {
       }
     });
     return str;
-};
-
-exports.ctype_space = function (text) {
-  if (typeof text !== 'string') {
-      return false;
-    }
-    // BEGIN REDUNDANT
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.sp) !== -1;
 };
 
 exports.strptime = function (dateStr, format) {

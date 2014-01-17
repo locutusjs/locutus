@@ -29,6 +29,9 @@ npm:
 	node build/npm.js
 	echo "Build success. "
 
+publish: npm
+	npm publish
+
 build: npm
 
 hook:

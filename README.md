@@ -12,32 +12,7 @@ php.js is a resource that offers community-built JavaScript alternatives to PHP 
 
 More info at: http://phpjs.org/about
 
-# Building the site
-
-## Prerequisites
-
-The site is built using Octopress. For instructions how to set things up, 
-please check [here](http://kvz.io/blog/2012/09/25/blog-with-octopress/).
-
-## build, generate, commit, push, deploy
-
-```shell
-make site MSG="Updated site"
-```
-
-## preview locally
-
-```shell
-make site-preview
-```
-
-## reset site (should not be necessary)
-
-```shell
-make site-clean
-```
-
-# Npm
+## Npm
 
 ```bash
 $ npm install phpjs
@@ -54,10 +29,10 @@ $ node test.js
 Hey you
 ```
 
-# Testing
+## Testing
 
 
-# Cli
+### cli
 
 ```bash
 make test
@@ -68,7 +43,7 @@ node bin/phpjs.js --action test --name sort
 node bin/phpjs.js --action test --category array
 ```
 
-# Web
+### Web
 
 ```bash
 PORT=8080 node _tests/server.js
