@@ -70,4 +70,7 @@ site-preview:
 	bundle exec rake preview ; \
 	cd ..
 
+nodejs:
+	./_tools/compile_node.sh
+
 .PHONY: site%
