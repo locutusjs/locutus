@@ -46,7 +46,7 @@ node bin/phpjs.js --action test --category array
 ### Web
 
 ```bash
-PORT=8080 node _tests/server.js
+PORT=8080 node tests/server.js
 ```
 
 Point your webbrowser to http://localhost:8080
