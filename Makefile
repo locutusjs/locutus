@@ -9,7 +9,7 @@ setup:
 test:
 	#node tests/cli.js --debug --abort # To abort at first failure
 	cd tests && npm install
-	node tests/cli.js --debug
+	node bin/phpjs.js --action test --debug
 
 # Apply code standards
 cleanup:
@@ -22,6 +22,11 @@ cleanup:
 		--error_trace \
 		--strict \
 		--jslint_error all
+
+npm:
+	node bin/phpjs.js --action buildnpm --debug
+
+build: npm
 
 hook:
 	mkdir -p ~/.gittemplate/hooks
