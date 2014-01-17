@@ -14,9 +14,8 @@
     "deep-equal": "~0.1.2"
   },
   "keywords": [
-    "cli",
-    "console",
-    "test",
+    "php",
+    "js",
     "phpjs"
   ],
   "bugs": {
