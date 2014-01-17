@@ -16,7 +16,7 @@ cleanup:
 	@[ -x `which gjslint` ] || sudo easy_install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
 	fixjsstyle \
 		--recurse ./ \
-		--exclude_directories _octopress,experimental,workbench,tests/node_modules,tools \
+		--exclude_directories _octopress,lib,build,experimental,workbench,tests/node_modules,tools \
 		--max_line_length 100 \
 		--nojsdoc \
 		--error_trace \
