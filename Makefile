@@ -6,10 +6,10 @@ setup:
 	bundle exec rake setup_github_pages\[git@github.com:kvz/phpjs.git\] && \
 	cd .. ; \
 
-test:
+test: build
 	#node tests/cli.js --debug --abort # To abort at first failure
 	cd tests && npm install
-	node tests/cli.js --debug
+	node bin/phpjs.js --action test --debug
 
 # Apply code standards
 cleanup:
@@ -22,6 +22,14 @@ cleanup:
 		--error_trace \
 		--strict \
 		--jslint_error all
+
+npm:
+	node bin/phpjs.js --action buildnpm --output build/npm.js
+	ls -al build/npm.js
+	node build/npm.js
+	echo "Build success. "
+
+build: npm
 
 hook:
 	mkdir -p ~/.gittemplate/hooks

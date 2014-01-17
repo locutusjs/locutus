@@ -36,3 +36,26 @@ make site-preview
 ```shell
 make site-clean
 ```
+
+# Testing
+
+
+# Cli
+
+```bash
+make test
+```
+
+```bash
+node bin/phpjs.js --action test --name sort
+node bin/phpjs.js --action test --category array
+```
+
+# Web
+
+```bash
+PORT=8080 node _tests/server.js
+```
+
+Point your webbrowser to http://localhost:8080
+
