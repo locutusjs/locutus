@@ -22,6 +22,7 @@ function strtotime(text, now) {
   // *     returns 3: 1127041200
   // *     example 4: strtotime('2009-05-04 08:30:00 GMT');
   // *     returns 4: 1241425800
+
   var parsed, match, today, year, date, days, ranges, len, times, regex, i, fail = false;
 
   if (!text) {
