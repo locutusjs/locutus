@@ -37,6 +37,23 @@ make site-preview
 make site-clean
 ```
 
+# Npm
+
+```bash
+$ npm install phpjs
+$ $EDITOR test.js
+```
+
+```javascript
+var phpjs = require('phpjs');
+console.log(phpjs.sprintf('Hey %s', 'you'));
+```
+
+```bash
+$ node test.js
+Hey you
+```
+
 # Testing
 
 
