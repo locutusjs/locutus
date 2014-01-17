@@ -5224,7 +5224,14 @@ exports.count_chars = function (str, mode) {
 };
 
 exports.echo = function () {
-  var arg = '',
+  var isNode = typeof module !== 'undefined' && module.exports;
+  
+    if (isNode) {
+      var args = Array.prototype.slice.call(arguments);
+      return console.log(args.join(' '));
+    }
+  
+    var arg = '',
         argc = arguments.length,
         argv = arguments,
         i = 0,
@@ -9606,10 +9613,14 @@ exports.pathinfo = function (path, options) {
 };
 
 exports.i18n_loc_get_default = function () {
-  // BEGIN REDUNDANT
-    this.php_js = this.php_js || {};
-    // END REDUNDANT
-    return this.php_js.i18nLocale || (i18n_loc_set_default('en_US_POSIX'), 'en_US_POSIX'); // Ensure defaults are set up
+  try {
+      this.php_js = this.php_js || {};
+    } catch (e) {
+      this.php_js = {};
+    }
+  
+    // Ensure defaults are set up
+    return this.php_js.i18nLocale || (i18n_loc_set_default('en_US_POSIX'), 'en_US_POSIX');
 };
 
 exports.setcookie = function (name, value, expires, path, domain, secure) {
@@ -10765,6 +10776,75 @@ exports.is_real = function (mixed_var) {
   return this.is_float(mixed_var);
 };
 
+exports.print_r = function (array, return_val) {
+  var output = '',
+        pad_char = ' ',
+        pad_val = 4,
+        d = this.window.document,
+        getFuncName = function(fn) {
+          var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+          if (!name) {
+            return '(Anonymous)';
+          }
+          return name[1];
+        };
+        repeat_char = function(len, pad_char) {
+          var str = '';
+          for (var i = 0; i < len; i++) {
+            str += pad_char;
+          }
+          return str;
+        };
+        formatArray = function(obj, cur_depth, pad_val, pad_char) {
+          if (cur_depth > 0) {
+            cur_depth++;
+          }
+  
+          var base_pad = repeat_char(pad_val * cur_depth, pad_char);
+          var thick_pad = repeat_char(pad_val * (cur_depth + 1), pad_char);
+          var str = '';
+  
+          if (typeof obj === 'object' && obj !== null && obj.constructor && getFuncName(obj.constructor) !== 'PHPJS_Resource') {
+            str += 'Array\n' + base_pad + '(\n';
+            for (var key in obj) {
+              if (Object.prototype.toString.call(obj[key]) === '[object Array]') {
+                str += thick_pad + '[' + key + '] => ' + formatArray(obj[key], cur_depth + 1, pad_val, pad_char);
+              }
+              else {
+                str += thick_pad + '[' + key + '] => ' + obj[key] + '\n';
+              }
+            }
+            str += base_pad + ')\n';
+          }
+          else if (obj === null || obj === undefined) {
+            str = '';
+          }
+          else { // for our "resource" class
+            str = obj.toString();
+          }
+  
+          return str;
+        };
+  
+    output = formatArray(array, 0, pad_val, pad_char);
+  
+    if (return_val !== true) {
+      if (d.body) {
+        this.echo(output);
+      }
+      else {
+        try {
+          d = XULDocument; // We're in XUL, so appending as plain text won't work; trigger an error out of XUL
+          this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">' + output + '</pre>');
+        } catch (e) {
+          this.echo(output); // Outputting as plain text may work in some plain XML
+        }
+      }
+      return true;
+    }
+    return output;
+};
+
 exports.var_dump = function () {
   var output = '',
         pad_char = ' ',
@@ -11538,16 +11618,6 @@ exports.ctype_digit = function (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.dg) !== -1;
 };
 
-exports.ctype_graph = function (text) {
-  if (typeof text !== 'string') {
-      return false;
-    }
-    // BEGIN REDUNDANT
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.gr) !== -1;
-};
-
 exports.ctype_lower = function (text) {
   if (typeof text !== 'string') {
       return false;
@@ -11568,16 +11638,6 @@ exports.ctype_print = function (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pr) !== -1;
 };
 
-exports.ctype_punct = function (text) {
-  if (typeof text !== 'string') {
-      return false;
-    }
-    // BEGIN REDUNDANT
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pu) !== -1;
-};
-
 exports.ctype_space = function (text) {
   if (typeof text !== 'string') {
       return false;
@@ -11596,6 +11656,26 @@ exports.ctype_upper = function (text) {
     this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     // END REDUNDANT
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.up) !== -1;
+};
+
+exports.ctype_graph = function (text) {
+  if (typeof text !== 'string') {
+      return false;
+    }
+    // BEGIN REDUNDANT
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    // END REDUNDANT
+    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.gr) !== -1;
+};
+
+exports.ctype_punct = function (text) {
+  if (typeof text !== 'string') {
+      return false;
+    }
+    // BEGIN REDUNDANT
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    // END REDUNDANT
+    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pu) !== -1;
 };
 
 exports.ctype_xdigit = function (text) {

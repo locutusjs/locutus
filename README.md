@@ -15,18 +15,25 @@ More info at: http://phpjs.org/about
 ## Npm
 
 ```bash
+$ mkdir test && cd $_
 $ npm install phpjs
-$ $EDITOR test.js
+$ $EDITOR test/npm.js
 ```
 
 ```javascript
-var phpjs = require('phpjs');
-console.log(phpjs.sprintf('Hey %s', 'you'));
+var php = require('phpjs');
+
+php.echo(php.sprintf('Hey, %s : )', 'you'));
+php.echo(php.parse_url('mysql://kevin:abcd1234@example.com/databasename')['pass']);
+php.echo(php.strtotime('2 januari 2012, 11:12:13 GMT'));
 ```
 
+
 ```bash
-$ node test.js
-Hey you
+$ node tests/npm.js
+Hey, you : )
+abcd1234
+1325502733
 ```
 
 ## Testing
