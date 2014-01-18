@@ -1,6 +1,6 @@
 function array_fill(start_index, num, mixed_val) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Waldo Malqui Silva
   // *     example 1: array_fill(5, 6, 'banana');
   // *     returns 1: { 5: 'banana', 6: 'banana', 7: 'banana', 8: 'banana', 9: 'banana', 10: 'banana' }

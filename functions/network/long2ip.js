@@ -1,6 +1,6 @@
 function long2ip(ip) {
   // From: http://phpjs.org/functions
-  // +   based on: Waldo Malqui Silva
+  // +   original by: Waldo Malqui Silva
   // *     example 1: long2ip( 3221234342 );
   // *     returns 1: '192.0.34.166'
   if (!isFinite(ip))

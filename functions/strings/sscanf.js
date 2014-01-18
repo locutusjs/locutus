@@ -1,5 +1,5 @@
 function sscanf(str, format) {
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Since JS does not support scalar reference variables, any additional arguments to the function will
   // %        note 1: only be allowable here as strings referring to a global variable (which will then be set to the value
   // %        note 1: found in 'str' corresponding to the appropriate conversion specification in 'format'

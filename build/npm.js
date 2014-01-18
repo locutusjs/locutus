@@ -2618,7 +2618,7 @@ exports.idate = function (format, timestamp) {
         return date.getMinutes();
       case 'I':
         // capital 'i'
-        // Logic based on getimeofday().
+        // Logic original by getimeofday().
         // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
         // If they are not equal, then DST is observed.
         a = date.getFullYear();
@@ -4532,7 +4532,7 @@ exports.pack = function (format) {
         // float (machine dependent size and representation)
         case 'd':
           // double (machine dependent size and representation)
-          // version based on IEEE754
+          // version original by IEEE754
           precisionBits = 23;
           exponentBits = 8;
           if (instruction === 'd') {
@@ -10161,7 +10161,7 @@ exports.setlocale = function (category, locale) {
         },
         // Assuming distinction between numeric and monetary is thus:
         // See below for C locale
-        'LC_MONETARY': { // Based on Windows "english" (English_United States.1252) locale
+        'LC_MONETARY': { // original by Windows "english" (English_United States.1252) locale
           int_curr_symbol: 'USD',
           currency_symbol: '$',
           mon_decimal_point: '.',
@@ -10185,7 +10185,7 @@ exports.setlocale = function (category, locale) {
           // 0: parentheses surround quantity and curr. symbol; 1: sign precedes them; 2: sign follows them; 3: sign immed. precedes curr. symbol; 4: sign immed. succeeds curr. symbol
           n_sign_posn: 0 // see p_sign_posn
         },
-        'LC_NUMERIC': { // Based on Windows "english" (English_United States.1252) locale
+        'LC_NUMERIC': { // original by Windows "english" (English_United States.1252) locale
           decimal_point: '.',
           thousands_sep: ',',
           grouping: [3] // see mon_grouping, but for non-monetary values (use thousands_sep)
@@ -10202,7 +10202,7 @@ exports.setlocale = function (category, locale) {
       phpjs.locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z';
       phpjs.locales.en_US.LC_TIME.x = '%D';
       phpjs.locales.en_US.LC_TIME.X = '%r';
-      // The following are based on *nix settings
+      // The following are original by *nix settings
       phpjs.locales.en_US.LC_MONETARY.int_curr_symbol = 'USD ';
       phpjs.locales.en_US.LC_MONETARY.p_sign_posn = 1;
       phpjs.locales.en_US.LC_MONETARY.n_sign_posn = 1;
@@ -11112,7 +11112,7 @@ exports.arsort = function (inputArr, sort_flags) {
         };
         break;
       case 'SORT_LOCALE_STRING':
-        // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
+        // compare items as strings, original by the current locale (set with i18n_loc_set_default() as of PHP6)
         var loc = this.i18n_loc_get_default();
         sorter = this.php_js.i18nLocales[loc].sorting;
         break;
@@ -11185,7 +11185,7 @@ exports.asort = function (inputArr, sort_flags) {
         };
         break;
       case 'SORT_LOCALE_STRING':
-        // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
+        // compare items as strings, original by the current locale (set with i18n_loc_set_default() as of PHP6)
         var loc = this.i18n_loc_get_default();
         sorter = this.php_js.i18nLocales[loc].sorting;
         break;
@@ -11259,7 +11259,7 @@ exports.krsort = function (inputArr, sort_flags) {
         };
         break;
       case 'SORT_LOCALE_STRING':
-        // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+        // compare items as strings, original by the current locale (set with  i18n_loc_set_default() as of PHP6)
         var loc = this.i18n_loc_get_default();
         sorter = this.php_js.i18nLocales[loc].sorting;
         break;
@@ -11337,7 +11337,7 @@ exports.ksort = function (inputArr, sort_flags) {
         };
         break;
       case 'SORT_LOCALE_STRING':
-        // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+        // compare items as strings, original by the current locale (set with  i18n_loc_set_default() as of PHP6)
         var loc = this.i18n_loc_get_default();
         sorter = this.php_js.i18nLocales[loc].sorting;
         break;
@@ -11449,7 +11449,7 @@ exports.rsort = function (inputArr, sort_flags) {
         };
         break;
       case 'SORT_LOCALE_STRING':
-        // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+        // compare items as strings, original by the current locale (set with  i18n_loc_set_default() as of PHP6)
         var loc = this.i18n_loc_get_default();
         sorter = this.php_js.i18nLocales[loc].sorting;
         break;
@@ -11521,7 +11521,7 @@ exports.sort = function (inputArr, sort_flags) {
         };
         break;
       case 'SORT_LOCALE_STRING':
-        // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+        // compare items as strings, original by the current locale (set with  i18n_loc_set_default() as of PHP6)
         var loc = this.i18n_loc_get_default();
         sorter = this.php_js.i18nLocales[loc].sorting;
         break;
@@ -12111,7 +12111,7 @@ exports.strptime = function (dateStr, format) {
               j = _addNext(j, /^(00[1-9]|0[1-9]\d|[1-2]\d\d|3[0-6][0-6])/, function(d) {
                 var dayYear = parseInt(d, 10) - 1;
                 retObj.tm_yday = dayYear;
-                // Changes nothing else (oddly, since if based on a given year, could calculate other fields)
+                // Changes nothing else (oddly, since if original by a given year, could calculate other fields)
               });
               break;
             case 'm':

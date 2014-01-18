@@ -1,6 +1,6 @@
 function is_float(mixed_var) {
   // From: http://phpjs.org/functions
-  // +   based on: Paulo Freitas
+  // +   original by: Paulo Freitas
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: WebDevHobo (http://webdevhobo.blogspot.com/)
   // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)

@@ -1,6 +1,6 @@
 function call_user_func(cb) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Diplom@t (http://difane.com/)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: call_user_func('isNaN', 'a');

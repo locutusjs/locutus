@@ -1,6 +1,6 @@
 function sizeof(mixed_var, mode) {
   // From: http://phpjs.org/functions
-  // +   based on: Philip Peterson
+  // +   original by: Philip Peterson
   // -    depends on: count
   // *     example 1: sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE');
   // *     returns 1: 6

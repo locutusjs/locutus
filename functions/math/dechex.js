@@ -1,6 +1,6 @@
 function dechex(number) {
   // From: http://phpjs.org/functions
-  // +   based on: Philippe Baumann
+  // +   original by: Philippe Baumann
   // +   bugfixed by: Onno Marsman
   // +   improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
   // +   input by: pilus

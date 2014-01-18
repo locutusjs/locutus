@@ -1,6 +1,6 @@
 function phpcredits(flag) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Philip Peterson
+  // +   original by: Philip Peterson
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: echo
   // *     example 1: phpcredits();

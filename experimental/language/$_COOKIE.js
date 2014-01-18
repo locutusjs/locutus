@@ -1,6 +1,6 @@
 function $_COOKIE(name) {
   // http://kevin.vanzonneveld.net
-  // +   based on: http://www.quirksmode.org/js/cookies.html
+  // +   original by: http://www.quirksmode.org/js/cookies.html
   // +   improved by: Steve
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: document.cookie = 'test=hello';

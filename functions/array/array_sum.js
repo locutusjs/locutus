@@ -1,6 +1,6 @@
 function array_sum(array) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Nate
   // +   bugfixed by: Gilbert
   // +   improved by: David Pilia (http://www.beteck.it/)

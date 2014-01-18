@@ -1,6 +1,6 @@
 function constant(name) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Paulo Freitas
+  // +   original by: Paulo Freitas
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: constant('IMAGINARY_CONSTANT1');
   // *     returns 1: null

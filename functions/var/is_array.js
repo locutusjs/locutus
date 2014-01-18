@@ -1,6 +1,6 @@
 function is_array(mixed_var) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Legaev Andrey
   // +   bugfixed by: Cord
   // +   bugfixed by: Manish

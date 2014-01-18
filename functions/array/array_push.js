@@ -1,6 +1,6 @@
 function array_push(inputArr) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Note also that IE retains information about property position even
   // %        note 1: after being supposedly deleted, so if you delete properties and then

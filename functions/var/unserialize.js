@@ -1,6 +1,6 @@
 function unserialize(data) {
   // From: http://phpjs.org/functions
-  // +     based on: Arpad Ray (mailto:arpad@php.net)
+  // +     original by: Arpad Ray (mailto:arpad@php.net)
   // +     improved by: Pedro Tainha (http://www.pedrotainha.com)
   // +     bugfixed by: dptr1988
   // +      revised by: d3x

@@ -1,6 +1,6 @@
 function stream_context_set_params(stream_or_context, params) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var context = stream_context_create();
   // *     example 1: stream_context_set_params({notification:function (notification_code, severity, message, message_code, bytes_transferred, bytes_max) {}});
   // *     returns 1: true

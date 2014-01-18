@@ -1,6 +1,6 @@
 function strval(str) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: gettype

@@ -1,6 +1,6 @@
 function crc32(str) {
   // From: http://phpjs.org/functions
-  // +   based on: Webtoolkit.info (http://www.webtoolkit.info/)
+  // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // +   improved by: T0bsn
   // -    depends on: utf8_encode
   // *     example 1: crc32('Kevin van Zonneveld');

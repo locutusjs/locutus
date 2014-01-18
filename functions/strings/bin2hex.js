@@ -1,6 +1,6 @@
 function bin2hex(s) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Onno Marsman
   // +   bugfixed by: Linuxworld
   // +   improved by: ntoniazzi (http://phpjs.org/functions/bin2hex:361#comment_177616)

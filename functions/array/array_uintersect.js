@@ -1,6 +1,6 @@
 function array_uintersect(arr1) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Demosthenes Koptsis
   // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
   // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}

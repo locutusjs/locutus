@@ -1,6 +1,6 @@
 function krsort(inputArr, sort_flags) {
   // From: http://phpjs.org/functions
-  // +   based on: GeekFG (http://geekfg.blogspot.com)
+  // +   original by: GeekFG (http://geekfg.blogspot.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: The examples are correct, this is a new way
@@ -42,7 +42,7 @@ function krsort(inputArr, sort_flags) {
       };
       break;
     case 'SORT_LOCALE_STRING':
-      // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+      // compare items as strings, original by the current locale (set with  i18n_loc_set_default() as of PHP6)
       var loc = this.i18n_loc_get_default();
       sorter = this.php_js.i18nLocales[loc].sorting;
       break;

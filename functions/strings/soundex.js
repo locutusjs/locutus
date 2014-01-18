@@ -1,12 +1,12 @@
 function soundex(str) {
   // From: http://phpjs.org/functions
-  // +   based on: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +    improved by: Jack
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Onno Marsman
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   based on: Arnout Kazemier (http://www.3rd-Eden.com)
+  // +   original by: Arnout Kazemier (http://www.3rd-Eden.com)
   // +    revised by: Rafał Kukawski (http://blog.kukawski.pl)
   // *     example 1: soundex('Kevin');
   // *     returns 1: 'K150'

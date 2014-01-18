@@ -1,6 +1,6 @@
 function is_numeric(mixed_var) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: David
   // +   improved by: taith
   // +   bugfixed by: Tim de Koning

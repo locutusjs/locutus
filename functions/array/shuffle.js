@@ -1,6 +1,6 @@
 function shuffle(inputArr) {
   // From: http://phpjs.org/functions
-  // +   based on: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    revised by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)

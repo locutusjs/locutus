@@ -1,6 +1,6 @@
 function array_walk_recursive(array, funcname, userdata) {
   // From: http://phpjs.org/functions
-  // +   based on: Johnny Mast (http://www.phpvrouwen.nl)
+  // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
   // *     example 1: array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
   // *     returns 1: true
   // *     example 2: array_walk_recursive ('a', 'void', 'userdata');

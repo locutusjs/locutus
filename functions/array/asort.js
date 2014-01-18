@@ -1,6 +1,6 @@
 function asort(inputArr, sort_flags) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // +   input by: paulo kuong
   // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -49,7 +49,7 @@ function asort(inputArr, sort_flags) {
       };
       break;
     case 'SORT_LOCALE_STRING':
-      // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
+      // compare items as strings, original by the current locale (set with i18n_loc_set_default() as of PHP6)
       var loc = this.i18n_loc_get_default();
       sorter = this.php_js.i18nLocales[loc].sorting;
       break;

@@ -1,6 +1,6 @@
 function filesize(url) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Enrique Gonzalez
+  // +   original by: Enrique Gonzalez
   // +      input by: Jani Hartikainen
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: T. Wild

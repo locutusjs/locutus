@@ -1,6 +1,6 @@
 function xdiff_file_diff(old_file, new_file, dest, context, minimal) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // % note 1: Depends on file_put_contents which is not yet implemented
   // -    depends on: xdiff_string_diff
   // -    depends on: file_get_contents

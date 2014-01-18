@@ -1,6 +1,6 @@
 function log1p(x) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Precision 'n' can be adjusted as desired
   // *     example 1: log1p(1e-15);
   // *     returns 1: 9.999999999999995e-16

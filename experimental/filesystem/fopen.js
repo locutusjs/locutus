@@ -1,6 +1,6 @@
 function fopen(filename, mode, use_include_path, context) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Paul Smith
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: file_get_contents

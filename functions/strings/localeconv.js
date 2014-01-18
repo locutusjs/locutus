@@ -1,6 +1,6 @@
 function localeconv() {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale
   // *     example 1: setlocale('LC_ALL', 'en_US');
   // *     example 1: localeconv();

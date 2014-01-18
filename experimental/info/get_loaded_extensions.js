@@ -1,6 +1,6 @@
 function get_loaded_extensions(zend_extensions) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: get_loaded_extensions();
   // *     returns 1: ['strings', 'xml']
 

@@ -1,6 +1,6 @@
 function dl(library) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: The phpjs.extensions_detect_files custom option requires privileges (and Mozilla at present)
   // %        note 2: It is generally advised to use the compiler instead of relying on this feature
   // -   depends on: get_extension_funcs

@@ -1,6 +1,6 @@
 function array_flip(trans) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Pier Paolo Ramon (http://www.mastersoup.com/)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: array

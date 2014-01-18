@@ -1,6 +1,6 @@
 function php_user_filter() {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: To be extended on class refererenced in second argument of stream_filter_register()
   // *     example 1: var f = new php_user_filter();
   // *     example 1: f.filtername;

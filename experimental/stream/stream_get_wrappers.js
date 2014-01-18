@@ -1,6 +1,6 @@
 function stream_get_wrappers() {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: stream_get_wrappers();
   // *     returns 1: ['php', 'file', 'http']
 

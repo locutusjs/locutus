@@ -1,6 +1,6 @@
 function error_reporting(level) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: ini_set
   // %        note 1: This will not set a global_value or access level for the ini item
   // %        note 2: If you wish the default value to be as in PHP, you must manually set it

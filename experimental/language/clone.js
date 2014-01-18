@@ -1,6 +1,6 @@
 function clone(object) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var obj = {a:5, __clone: function () {this.b=10;}};
   // *     example 1: clone(obj);
   // *     returns 1: {a:5, __clone: function () {this.b=10;}, b:10}

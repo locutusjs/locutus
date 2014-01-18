@@ -1,6 +1,6 @@
 function overload(class_name) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: This can only work in Mozilla at present
   // %          note 2: only __call() and __callStatic() are made allowable at this point by a call to overload() (__get(), __set(), __isset(), and __unset() are regrettably not possible in JavaScript at present (including Mozilla)!)
   // %          note 3: If passing in string, only works with reference to global class

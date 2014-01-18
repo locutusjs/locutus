@@ -1,6 +1,6 @@
 function DateTime(time, timezone) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: strtotime
   // -    depends on: DateInterval
   // *     example 1: var tzo = timezone_open('Asia/Hong_Kong');

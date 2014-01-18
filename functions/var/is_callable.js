@@ -1,6 +1,6 @@
 function is_callable(v, syntax_only, callable_name) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // +      input by: François
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: The variable callable_name cannot work as a string variable passed by reference as in PHP (since JavaScript does not support passing strings by reference), but instead will take the name of a global variable and set that instead

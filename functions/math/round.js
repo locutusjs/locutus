@@ -1,6 +1,6 @@
 function round(value, precision, mode) {
   // From: http://phpjs.org/functions
-  // +   based on: Philip Peterson
+  // +   original by: Philip Peterson
   // +    revised by: Onno Marsman
   // +      input by: Greenseed
   // +    revised by: T.Wild

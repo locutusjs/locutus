@@ -1,6 +1,6 @@
 function urldecode(str) {
   // From: http://phpjs.org/functions
-  // +   based on: Philip Peterson
+  // +   original by: Philip Peterson
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: AJ
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

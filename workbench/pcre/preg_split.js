@@ -1,6 +1,6 @@
 function preg_split(pattern, subject, limit, flags) {
   // http://kevin.vanzonneveld.net
-  // + based on: Marco Marchiò
+  // + original by: Marco Marchiò
   // * example 1: preg_split(/[\s,]+/, 'hypertext language, programming');
   // * returns 1: ['hypertext', 'language', 'programming']
   // * example 2: preg_split('//', 'string', -1, 'PREG_SPLIT_NO_EMPTY');

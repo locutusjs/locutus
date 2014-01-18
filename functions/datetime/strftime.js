@@ -1,6 +1,6 @@
 function strftime(fmt, timestamp) {
   // From: http://phpjs.org/functions
-  // +      based on: Blues (http://tech.bluesmoon.info/)
+  // +      original by: Blues (http://tech.bluesmoon.info/)
   // + reimplemented by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Alex
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

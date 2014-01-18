@@ -1,6 +1,6 @@
 function array_map(callback) {
   // From: http://phpjs.org/functions
-  // +   based on: Andrea Giammarchi (http://webreflection.blogspot.com)
+  // +   original by: Andrea Giammarchi (http://webreflection.blogspot.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   input by: thekid
   // +   improved by: Brett Zamir (http://brett-zamir.me)

@@ -1,5 +1,5 @@
 function filemtime(file) {
-  // +   based on: Ole Vrijenhoek (http://www.nervous.nl/)
+  // +   original by: Ole Vrijenhoek (http://www.nervous.nl/)
   // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: get_headers
   // %        note 1:  Looks for Last-Modified in response header.

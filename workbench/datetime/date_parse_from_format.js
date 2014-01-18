@@ -1,6 +1,6 @@
 function date_parse_from_format(format, dateArg) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: strtotime
   // -    depends on: date
   // -    depends on: date_parse
@@ -10,7 +10,7 @@ function date_parse_from_format(format, dateArg) {
   var newtime = 0, retObj = {};
 
   var _dst = function(t) {
-    // Calculate Daylight Saving Time (based on gettimeofday() code)
+    // Calculate Daylight Saving Time (original by gettimeofday() code)
     var dst = 0;
     var jan1 = new Date(t.getFullYear(), 0, 1, 0, 0, 0, 0);  // jan 1st
     var june1 = new Date(t.getFullYear(), 6, 1, 0, 0, 0, 0); // june 1st

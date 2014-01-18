@@ -1,6 +1,6 @@
 function call_user_func_array(cb, parameters) {
   // From: http://phpjs.org/functions
-  // +   based on: Thiago Mata (http://thiagomata.blog.com)
+  // +   original by: Thiago Mata (http://thiagomata.blog.com)
   // +   revised by: Jon Hohle
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Diplom@t (http://difane.com/)

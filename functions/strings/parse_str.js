@@ -1,6 +1,6 @@
 function parse_str(str, array) {
   // From: http://phpjs.org/functions
-  // +      based on: Cagri Ekin
+  // +      original by: Cagri Ekin
   // +      improved by: Michael White (http://getsprink.com)
   // +       improved by: Jack
   // +      bugfixed by: Onno Marsman

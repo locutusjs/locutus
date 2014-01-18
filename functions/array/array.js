@@ -1,6 +1,6 @@
 function array() {
   // From: http://phpjs.org/functions
-  // +   based on: d3x
+  // +   original by: d3x
   // +      improved by: Brett Zamir (http://brett-zamir.me)
   // *          test: skip
   // *     example 1: array('Kevin', 'van', 'Zonneveld');

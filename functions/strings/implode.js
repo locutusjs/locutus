@@ -1,6 +1,6 @@
 function implode(glue, pieces) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Waldo Malqui Silva
   // +   improved by: Itsacon (http://www.itsacon.net/)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

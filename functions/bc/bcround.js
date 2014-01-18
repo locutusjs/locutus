@@ -1,6 +1,6 @@
 function bcround(val, precision) {
   // From: http://phpjs.org/functions
-  // +   based on: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // -    depends on: _phpjs_shared_bc
   // *     example 1: bcround(1, 2);
   // *     returns 1: 3

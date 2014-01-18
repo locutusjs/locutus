@@ -1,6 +1,6 @@
 function _phpjs_shared_bc() {
   // From: http://phpjs.org/functions
-  // +   based on: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: _phpjs_shared_bc();
   // *     returns 1: {}
@@ -514,7 +514,7 @@ function _phpjs_shared_bc() {
     },
 
     /* Recursive divide and conquer multiply algorithm.
-       Based on
+       original by
        Let u = u0 + u1*(b^n)
        Let v = v0 + v1*(b^n)
        Then uv = (B^2n+B^n)*u1*v1 + B^n*(u1-u0)*(v0-v1) + (B^n+1)*u0*v0

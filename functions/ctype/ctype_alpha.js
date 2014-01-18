@@ -1,6 +1,6 @@
 function ctype_alpha(text) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale
   // *     example 1: ctype_alpha('Az');
   // *     returns 1: true

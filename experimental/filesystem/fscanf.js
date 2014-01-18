@@ -1,6 +1,6 @@
 function fscanf(handle, format) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: fgets
   // -    depends on: sscanf
   // *     example 1: var handle = fopen('http://example.com/names_and_professions.html', 'r');

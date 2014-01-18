@@ -1,6 +1,6 @@
 function get_defined_constants(categorize) {
   // From: http://phpjs.org/functions
-  // +    based on: Brett Zamir (http://brett-zamir.me)
+  // +    original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Could possibly substitute some others like M_PI with JavaScript's Math.PI, etc., but here
   // %        note 1: sticking to PHP, except for changing: NULL to null, NAN to NaN, and INF to Number.POSITIVE_INFINITY
   // %        note 2: TRUE, FALSE, and NULL capitalized constants (as in PHP) could work ok in some

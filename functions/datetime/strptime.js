@@ -1,7 +1,7 @@
 function strptime(dateStr, format) {
   // From: http://phpjs.org/functions
-  // +      based on: Brett Zamir (http://brett-zamir.me)
-  // +      based on: strftime
+  // +      original by: Brett Zamir (http://brett-zamir.me)
+  // +      original by: strftime
   // -       depends on: setlocale
   // -       depends on: array_map
   // *          test: skip
@@ -221,7 +221,7 @@ Oy
             j = _addNext(j, /^(00[1-9]|0[1-9]\d|[1-2]\d\d|3[0-6][0-6])/, function(d) {
               var dayYear = parseInt(d, 10) - 1;
               retObj.tm_yday = dayYear;
-              // Changes nothing else (oddly, since if based on a given year, could calculate other fields)
+              // Changes nothing else (oddly, since if original by a given year, could calculate other fields)
             });
             break;
           case 'm':

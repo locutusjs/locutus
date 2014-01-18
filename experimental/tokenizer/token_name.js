@@ -1,5 +1,5 @@
 function token_name(token) {
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Token numbers actually depend on the PHP version
   // *     example 1: token_name(258);
   // *     returns 1: 'T_REQUIRE_ONCE'

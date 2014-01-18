@@ -3,7 +3,7 @@ function substr(str, start, len) {
   //
   // version: 909.322
   // discuss at: http://phpjs.org/functions/substr
-  // +     based on: Martijn Wieringa
+  // +     original by: Martijn Wieringa
   // +     bugfixed by: T.Wild
   // +      improved by: Onno Marsman
   // +      revised by: Theriault

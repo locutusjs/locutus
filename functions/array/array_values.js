@@ -1,6 +1,6 @@
 function array_values(input) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );
   // *     returns 1: {0: 'Kevin', 1: 'van Zonneveld'}

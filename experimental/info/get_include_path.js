@@ -1,6 +1,6 @@
 function get_include_path() {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: get_include_path();
   // *     returns 1: '/phpjs'
 

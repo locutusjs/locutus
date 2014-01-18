@@ -1,6 +1,6 @@
 function var_export (mixed_expression, bool_return) {
     // http://kevin.vanzonneveld.net
-    // +   based on: Philip Peterson
+    // +   original by: Philip Peterson
     // +   improved by: johnrembo
     // +   improved by: Brett Zamir (http://brett-zamir.me)
     // +   input by: Brian Tafoya (http://www.premasolutions.com/)
@@ -108,7 +108,7 @@ function var_export (mixed_expression, bool_return) {
 
 function echo () {
     // http://kevin.vanzonneveld.net
-    // +   based on: Philip Peterson
+    // +   original by: Philip Peterson
     // +   improved by: echo is bad
     // +   improved by: Nate
     // +    revised by: Der Simon (http://innerdom.sourceforge.net/)

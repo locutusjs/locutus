@@ -1,6 +1,6 @@
 function get_headers(url, format) {
   // From: http://phpjs.org/functions
-  // +   based on: Paulo Freitas
+  // +   original by: Paulo Freitas
   // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: array_filter
   // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.

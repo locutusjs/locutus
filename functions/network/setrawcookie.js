@@ -1,8 +1,8 @@
 function setrawcookie(name, value, expires, path, domain, secure) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   based on: setcookie
+  // +   original by: setcookie
   // +   input by: Michael
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: setrawcookie('author_name', 'Kevin van Zonneveld');

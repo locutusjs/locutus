@@ -1,6 +1,6 @@
 function function_exists(func_name) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Steve Clay
   // +   improved by: Legaev Andrey
   // +   improved by: Brett Zamir (http://brett-zamir.me)

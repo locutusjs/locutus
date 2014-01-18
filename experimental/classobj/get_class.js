@@ -1,6 +1,6 @@
 function get_class(obj) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Ates Goral (http://magnetiq.com)
+  // +   original by: Ates Goral (http://magnetiq.com)
   // +   improved by: David James
   // +   improved by: David Neilsen
   // *     example 1: get_class(new (function MyClass() {}));

@@ -1,6 +1,6 @@
 function classkit_import(file) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: file_get_contents
   // %        note 1: does not return an associative array as in PHP
   // %        note 2: Implement instead with include?

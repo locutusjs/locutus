@@ -1,6 +1,6 @@
 function stream_wrapper_restore(protocol) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: stream_wrapper_restore('http');
   // *     returns 1: true
 

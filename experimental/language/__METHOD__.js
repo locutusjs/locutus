@@ -1,6 +1,6 @@
 function __METHOD__() {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Not a function in PHP, so in experimental
   // %        note 2: This function depends on the non-standard caller property of Function instances
   // %        note 3: Also requires 'this' object to be passed in as an argument, unlike PHP

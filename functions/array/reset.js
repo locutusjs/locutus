@@ -1,6 +1,6 @@
 function reset(arr) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Legaev Andrey
   // +    revised by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Uses global: php_js to store the array pointer

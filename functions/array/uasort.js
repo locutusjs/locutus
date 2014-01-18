@@ -1,6 +1,6 @@
 function uasort(inputArr, sorter) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Theriault
   // %        note 1: This function deviates from PHP in returning a copy of the array instead

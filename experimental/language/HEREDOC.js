@@ -1,6 +1,6 @@
 function HEREDOC(xmllist) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Requires E4X extension to browser (as in Mozilla)
   // %          note 2: Will not work with poorly-formed XML contents or non-E4X XML, but should work for non-CDATA-requiring text and for well-formed XML
   // %          note 3: Will need to escape any < or & respectively into &lt; or &amp; (and > in case of CDATA closing sequence ']]' then '>') (don't join them here as this might be put in X(HT)ML!)

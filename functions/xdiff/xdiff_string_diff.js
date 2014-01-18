@@ -1,7 +1,7 @@
 function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
-  // +   based on: Imgen Tata (http://www.myipdf.com/)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Imgen Tata (http://www.myipdf.com/)
   // +   bugfixed by: Imgen Tata (http://www.myipdf.com/)
   // %        note 1: The minimal argument is not currently supported
   // *     example 1: xdiff_string_diff('', 'Hello world!');

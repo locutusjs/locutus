@@ -1,6 +1,6 @@
 function date_interval_create_from_date_string(time) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: DateInterval
   // *     example 1: date_interval_create_from_date_string('+1 day');
   // *     returns 1: {}

@@ -1,6 +1,6 @@
 function session_unregister(name) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Deprecated in PHP
   // *     example 1: session_unregister('someVarName');
   // *     returns 1: true
@@ -14,7 +14,7 @@ function session_unregister(name) {
 
 function session_unregister() {
   // http://kevin.vanzonneveld.net
-  // +   based on: Louis Stowasser
+  // +   original by: Louis Stowasser
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: urlencode
   // *     example 1:

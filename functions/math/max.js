@@ -1,6 +1,6 @@
 function max() {
   // From: http://phpjs.org/functions
-  // +   based on: Onno Marsman
+  // +   original by: Onno Marsman
   // +    revised by: Onno Marsman
   // +    improved by: Jack
   // %          note: Long code cause we're aiming for maximum PHP compatibility

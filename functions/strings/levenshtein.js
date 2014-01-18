@@ -1,6 +1,6 @@
 function levenshtein(s1, s2) {
   // From: http://phpjs.org/functions
-  // +            based on: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+  // +            original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // +            bugfixed by: Onno Marsman
   // +             revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
   // + reimplemented by: Brett Zamir (http://brett-zamir.me)

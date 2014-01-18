@@ -1,6 +1,6 @@
 function $_GET(name) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %     note 1: See import_request_variables() for building a $_GET object which allows the PHP-like bracket access.
   // *     example 1: document.cookie = 'test=hello';
   // *     example 1: var $myVar = $_COOKIE('test'); // Note the round brackets!

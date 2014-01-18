@@ -1,6 +1,6 @@
 function ldap_bind(link_id, bind_rdn, bind_pass, successCb, errorCb) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: For CommonJS/Node (SSJS) only: Meant to work with https://github.com/joewalnes/node-ldapauth or https://github.com/jeremycx/node-LDAP, but not yet finalized
   // %        note 2: We break somewhat with the PHP API by necessity in order to allow
   // %        note 2: asynchronous callbacks, having the last two arguments being a

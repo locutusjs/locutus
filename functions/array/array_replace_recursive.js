@@ -1,5 +1,5 @@
 function array_replace_recursive(arr) {
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']});
   // *     returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
 

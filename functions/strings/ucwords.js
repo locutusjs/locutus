@@ -1,6 +1,6 @@
 function ucwords(str) {
   // From: http://phpjs.org/functions
-  // +   based on: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   improved by: Waldo Malqui Silva
   // +   bugfixed by: Onno Marsman
   // +   improved by: Robin

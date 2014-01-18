@@ -3,7 +3,7 @@ function strtotime(text, now) {
   //
   // version: 1109.2016
   // discuss at: http://phpjs.org/functions/strtotime
-  // +   based on: Caio Ariede (http://caioariede.com)
+  // +   original by: Caio Ariede (http://caioariede.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: David
   // +   improved by: Caio Ariede (http://caioariede.com)

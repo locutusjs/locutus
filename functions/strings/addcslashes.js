@@ -1,6 +1,6 @@
 function addcslashes(str, charlist) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %  note 1: We show double backslashes in the return value example code below because a JavaScript string will not
   // %  note 1: render them as backslashes otherwise
   // *     example 1: addcslashes('foo[ ]', 'A..z'); // Escape all ASCII within capital A to lower z range, including square brackets

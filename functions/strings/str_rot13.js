@@ -1,6 +1,6 @@
 function str_rot13(str) {
   // From: http://phpjs.org/functions
-  // +   based on: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   improved by: Ates Goral (http://magnetiq.com)
   // +   bugfixed by: Onno Marsman
   // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)

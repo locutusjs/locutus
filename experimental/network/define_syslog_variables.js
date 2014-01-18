@@ -1,6 +1,6 @@
 function define_syslog_variables() {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: This function has been deprecated in PHP
   // *     example 1: define_syslog_variables();
   // *     results 1: undefined

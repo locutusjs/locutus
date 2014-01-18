@@ -1,6 +1,6 @@
 function str_split(string, split_length) {
   // From: http://phpjs.org/functions
-  // +     based on: Martijn Wieringa
+  // +     original by: Martijn Wieringa
   // +     improved by: Brett Zamir (http://brett-zamir.me)
   // +     bugfixed by: Onno Marsman
   // +      revised by: Theriault

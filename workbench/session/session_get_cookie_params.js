@@ -1,6 +1,6 @@
 function session_get_cookie_params(l, p, d, s) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1:
   // *     returns 1:
 

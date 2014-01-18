@@ -1,6 +1,6 @@
 function htmlspecialchars_decode(string, quote_style) {
   // From: http://phpjs.org/functions
-  // +   based on: Mirek Slugen
+  // +   original by: Mirek Slugen
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Mateusz "loonquawl" Zalega
   // +      input by: ReverseSyntax

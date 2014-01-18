@@ -1,6 +1,6 @@
 function fgetcsv(handle, length, delimiter, enclosure, escape) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: str_getcsv
   // *     example 1: fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
   // *     example 1: fgetcsv(handle, 1);

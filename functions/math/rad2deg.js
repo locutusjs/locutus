@@ -1,6 +1,6 @@
 function rad2deg(angle) {
   // From: http://phpjs.org/functions
-  // +   based on: Enrique Gonzalez
+  // +   original by: Enrique Gonzalez
   // +      improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: rad2deg(3.141592653589793);
   // *     returns 1: 180

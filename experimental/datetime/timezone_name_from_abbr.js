@@ -1,6 +1,6 @@
 function timezone_name_from_abbr(abbr, gmtOffset, isdst) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: timezone_abbreviations_list
   // *     example 1: timezone_name_from_abbr('CET');
   // *     returns 1: 'Europe/Berlin'

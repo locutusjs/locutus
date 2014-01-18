@@ -1,6 +1,6 @@
 function strip_tags(input, allowed) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Luke Godfrey
   // +      input by: Pul
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

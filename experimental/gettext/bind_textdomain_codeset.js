@@ -1,6 +1,6 @@
 function bind_textdomain_codeset(domain, codeset) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: bind_textdomain_codeset('myapp', 'UTF-8');
   // *     returns 1: 'UTF-8'
 

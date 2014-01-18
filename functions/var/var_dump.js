@@ -1,6 +1,6 @@
 function var_dump() {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Zahlii
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: echo

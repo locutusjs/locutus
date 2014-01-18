@@ -1,6 +1,6 @@
 function at(cb) {  // Could also name as "at_sign", "silence", "error_suppressor", etc.
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Allows assignment to $php_errormsg global (http://php.net/manual/en/reserved.variables.phperrormsg.php)
   // %          note 2: Also implements the "scream" extension to undo the effect of at(); can do "ini_set('scream.enabled', true);"
   // *     example 1: at(someFunctionThatMayThrowErrors);

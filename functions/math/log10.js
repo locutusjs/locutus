@@ -1,6 +1,6 @@
 function log10(arg) {
   // From: http://phpjs.org/functions
-  // +   based on: Philip Peterson
+  // +   original by: Philip Peterson
   // +   improved by: Onno Marsman
   // +   improved by: Tod Gentille
   // +   improved by: Brett Zamir (http://brett-zamir.me)

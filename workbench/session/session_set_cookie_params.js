@@ -1,6 +1,6 @@
 function session_set_cookie_params(l, p, d, s, h) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Louis Stowasser
+  // +   original by: Louis Stowasser
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1:
   // *     returns 1: undefined

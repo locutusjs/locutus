@@ -1,6 +1,6 @@
 function str_ireplace(search, replace, subject) {
   // From: http://phpjs.org/functions
-  // +   based on: Martijn Wieringa
+  // +   original by: Martijn Wieringa
   // +      input by: penutbutterjelly
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    improved by: Jack

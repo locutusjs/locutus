@@ -1,6 +1,6 @@
 function preg_quote(str, delimiter) {
   // From: http://phpjs.org/functions
-  // +   based on: booeyOH
+  // +   original by: booeyOH
   // +   improved by: Ates Goral (http://magnetiq.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Onno Marsman

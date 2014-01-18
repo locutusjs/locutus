@@ -1,6 +1,6 @@
 function ezmlm_hash(address) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ezmlm_hash('brettz');
   // *     returns 1: 50
 

@@ -1,6 +1,6 @@
 function convert_uudecode(str) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Ole Vrijenhoek
+  // +   original by: Ole Vrijenhoek
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: is_scalar
   // -    depends on: rtrim

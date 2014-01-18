@@ -1,6 +1,6 @@
 function gopher_parsedir(dirent) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a');
   // *     example 1: entry.title;
   // *     returns 1: 'All about my gopher site.'

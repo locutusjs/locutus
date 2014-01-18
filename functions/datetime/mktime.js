@@ -1,6 +1,6 @@
 function mktime() {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: baris ozdil
   // +      input by: gabriel paderni
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

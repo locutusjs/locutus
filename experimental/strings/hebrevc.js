@@ -1,6 +1,6 @@
 function hebrevc (hebrew_text, max_chars_per_line) {
     // http://kevin.vanzonneveld.net
-    // +   based on: Brett Zamir (http://brett-zamir.me)
+    // +   original by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: max_chars_per_line is not supported and this is only a rough approximation of the function behavior
     // *     example 1: hebrevc('\u05d0\n\u05ea');
     // *     returns 1: '\u05ea<br />\n\u05d0'

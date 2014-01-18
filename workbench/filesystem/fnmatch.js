@@ -1,7 +1,7 @@
 function fnmatch(pattern, string, flags) {
   // http://kevin.vanzonneveld.net
-  // +   based on: jk at ricochetsolutions dot com (per http://www.php.net/manual/en/function.fnmatch.php#71725 )
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: jk at ricochetsolutions dot com (per http://www.php.net/manual/en/function.fnmatch.php#71725 )
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -   depends on: strtr
   // *     example 1: fnmatch('*gr[ae]y', 'gray');
   // *     returns 1: true

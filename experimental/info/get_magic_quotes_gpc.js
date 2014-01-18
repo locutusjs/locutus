@@ -1,6 +1,6 @@
 function get_magic_quotes_gpc() {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Besides being deprecated in PHP, magic quotes is not implemented within our
   // %        note 1: functions; here merely to indicate how the function could be accessed by our functions
   // *     example 1: get_magic_quotes_gpc();

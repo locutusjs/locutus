@@ -3,7 +3,7 @@ this.php_js = this.php_js || {};
 
 function ErrorException(message, code, severity, filename, lineno) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: Exception
   // *     example 1: var e = new Exception('some exception');
   // *     example 1: e.getMessage();

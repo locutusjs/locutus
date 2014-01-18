@@ -1,6 +1,6 @@
 function srand(seed) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: gettimeofday
   // -    depends on: time
   // %          note 1: This is a very possibly imperfect adaptation from the PHP source code

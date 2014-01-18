@@ -1,6 +1,6 @@
 function get_extension_funcs(module_name) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: get_extension_funcs('json');
   // *     returns 1: ['json_decode', 'json_encode', 'json_last_error']
 

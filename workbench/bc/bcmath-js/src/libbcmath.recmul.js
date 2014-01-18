@@ -146,7 +146,7 @@ libbcmath._bc_shift_addsub = function(accum, val, shift, sub) {
 };
 
 /* Recursive divide and conquer multiply algorithm.
-   Based on
+   original by
    Let u = u0 + u1*(b^n)
    Let v = v0 + v1*(b^n)
    Then uv = (B^2n+B^n)*u1*v1 + B^n*(u1-u0)*(v0-v1) + (B^n+1)*u0*v0

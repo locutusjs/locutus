@@ -1,6 +1,6 @@
 function func_num_args() {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: May not work in all JS implementations
   // *     example 1: function tmp_a () {return func_num_args();}
   // *     example 1: tmp_a('a', 'b');

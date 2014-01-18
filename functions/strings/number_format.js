@@ -1,6 +1,6 @@
 function number_format(number, decimals, dec_point, thousands_sep) {
   // From: http://phpjs.org/functions
-  // +   based on: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +     bugfixed by: Michael White (http://getsprink.com)
   // +     bugfixed by: Benjamin Lupton

@@ -1,5 +1,5 @@
 function is_unicode(vr) {
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Almost all strings in JavaScript should be Unicode
   // *     example 1: is_unicode('We the peoples of the United Nations...!');
   // *     returns 1: true

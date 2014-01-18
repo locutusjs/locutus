@@ -1,6 +1,6 @@
 function array_chunk(input, size, preserve_keys) {
   // From: http://phpjs.org/functions
-  // +   based on: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+  // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Important note: Per the ECMAScript specification, objects may not always iterate in a predictable order
   // *     example 1: array_chunk(['Kevin', 'van', 'Zonneveld'], 2);

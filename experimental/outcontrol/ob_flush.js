@@ -1,6 +1,6 @@
 function ob_flush() {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ob_flush();
   // *     returns 1: undefined
 

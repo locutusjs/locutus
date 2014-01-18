@@ -1,6 +1,6 @@
 function token_get_all (source) {
 	// Split given source into PHP tokens
-	// + based on: Marco Marchiò
+	// + original by: Marco Marchiò
 	// + improved by: Brett Zamir (http://brett-zamir.me)
 	// - depends on: token_name
 	// % note 1: Token numbers depend on the PHP version

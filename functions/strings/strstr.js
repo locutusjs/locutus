@@ -1,6 +1,6 @@
 function strstr(haystack, needle, bool) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Onno Marsman
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // *     example 1: strstr('Kevin van Zonneveld', 'van');

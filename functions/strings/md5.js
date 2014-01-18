@@ -1,6 +1,6 @@
 function md5(str) {
   // From: http://phpjs.org/functions
-  // +   based on: Webtoolkit.info (http://www.webtoolkit.info/)
+  // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // + improved by: Michael White (http://getsprink.com)
   // +    improved by: Jack
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

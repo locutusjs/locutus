@@ -1,6 +1,6 @@
 function bcsqrt(operand, scale) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Robin Speekenbrink (http://www.kingsquare.nl/))
+  // +   original by: Robin Speekenbrink (http://www.kingsquare.nl/))
 
   var out = Math.sqrt(operand);
   if (typeof precision !== 'undefined') {

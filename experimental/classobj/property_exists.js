@@ -1,6 +1,6 @@
 function property_exists(cls, prop) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function class_a () {this.prop1 = 'one'};
   // *     example 1: var instance_a = new class_a();
   // *     example 1: property_exists(instance_a, 'prop1');

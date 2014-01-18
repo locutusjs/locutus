@@ -1,6 +1,6 @@
 function str_pad(input, pad_length, pad_string, pad_type) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // + improved by: Michael White (http://getsprink.com)
   // +      input by: Marco van Oort
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

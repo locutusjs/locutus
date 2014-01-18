@@ -1,6 +1,6 @@
 function array_unique(inputArr) {
   // From: http://phpjs.org/functions
-  // +   based on: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+  // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // +      input by: duncan
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Nate

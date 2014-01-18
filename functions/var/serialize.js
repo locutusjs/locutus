@@ -1,6 +1,6 @@
 function serialize(mixed_value) {
   // From: http://phpjs.org/functions
-  // +   based on: Arpad Ray (mailto:arpad@php.net)
+  // +   original by: Arpad Ray (mailto:arpad@php.net)
   // +   improved by: Dino
   // +   bugfixed by: Andrej Pavlovic
   // +   bugfixed by: Garagoth

@@ -1,6 +1,6 @@
 function inet_pton(a) {
   // From: http://phpjs.org/functions
-  // +   based on: Theriault
+  // +   original by: Theriault
   // *     example 1: inet_pton('::');
   // *     returns 1: '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
   // *     example 2: inet_pton('127.0.0.1');

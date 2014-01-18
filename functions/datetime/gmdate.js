@@ -1,6 +1,6 @@
 function gmdate(format, timestamp) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Alex
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: date

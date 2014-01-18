@@ -1,7 +1,7 @@
 function DateTimeZone($timezone) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
-  // +   based on: Andrea Giammarchi
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Andrea Giammarchi
   // -    depends on: timezone_abbreviations_list()
   // -    depends on: timezone_identifiers_list()
   // -    depends on: timezone_transitions_get()

@@ -1,6 +1,6 @@
 function array_unshift(array) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Martijn Wieringa
   // +   improved by: jmweb
   // %        note 1: Currently does not handle objects

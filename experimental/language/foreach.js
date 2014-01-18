@@ -1,6 +1,6 @@
 function foreach(arr, handler) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: foreach (['a', 'b'], function (val) {alert(val);});
   // *     returns 1: undefined
   // *     example 2: foreach (['a', 'b'], function (key, val) {alert(key+'::'+val);});

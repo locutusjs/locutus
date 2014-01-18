@@ -3,7 +3,7 @@
 //ex: preg_replace("/Hello/i","Hi",strtoreplace)
 function preg_replace(pattern, replacement, subject, limit) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Ferdinand Silva
+  // +   original by: Ferdinand Silva
   // *     example 1: preg_replace('/van/', '', 'Kevin van Zonneveld');
   // *     returns 1: 'Kevin  Zonneveld'
 

@@ -1,6 +1,6 @@
 function vfprintf(handle, format, args) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir
+  // +   original by: Brett Zamir
   // -    depends on: sprintf
   // -    depends on: fwrite
   // *     example 1: var fp = fopen('currency.txt', 'w');

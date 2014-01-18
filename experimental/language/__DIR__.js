@@ -1,6 +1,6 @@
 function __DIR__() {
   // http://kevin.vanzonneveld.net
-  // +   based on: Michael White (http://getsprink.com/)
+  // +   original by: Michael White (http://getsprink.com/)
   // -    depends on: dirname
   // -    depends on: __FILE__
   // %        note 1: Not a function in PHP, so in experimental

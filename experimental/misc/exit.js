@@ -1,6 +1,6 @@
 function exit(status) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // +      input by: Paul
   // +   bugfixed by: Hyam Singer (http://www.impact-computing.com/)
   // +   improved by: Philip Peterson

@@ -1,6 +1,6 @@
 function include(filename) {
   // http://kevin.vanzonneveld.net
-  // +   based on: mdsjack (http://www.mdsjack.bo.it)
+  // +   original by: mdsjack (http://www.mdsjack.bo.it)
   // +   improved by: Legaev Andrey
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Michael White (http://getsprink.com)

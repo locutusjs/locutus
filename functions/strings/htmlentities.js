@@ -1,6 +1,6 @@
 function htmlentities(string, quote_style, charset, double_encode) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: nobbler
   // +    improved by: Jack

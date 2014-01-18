@@ -1,6 +1,6 @@
 function trim(str, charlist) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: mdsjack (http://www.mdsjack.bo.it)
   // +   improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
   // +      input by: Erkekjetter

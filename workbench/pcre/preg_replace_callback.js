@@ -1,6 +1,6 @@
 function preg_replace_callback(pattern, callback, subject, limit) {
   // http://kevin.vanzonneveld.net
-  // +   based on: James Brumond (http://kbjrweb.com/)
+  // +   original by: James Brumond (http://kbjrweb.com/)
   // *     example 1:
   // *     returns 1:
 

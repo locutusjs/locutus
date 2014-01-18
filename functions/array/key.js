@@ -1,6 +1,6 @@
 function key(arr) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Riddler (http://www.frontierwebdev.com/)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Uses global: php_js to store the array pointer

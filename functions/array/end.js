@@ -1,6 +1,6 @@
 function end(arr) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Legaev Andrey
   // +    revised by: J A R
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

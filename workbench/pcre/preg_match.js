@@ -1,6 +1,6 @@
 function preg_match(pattern, subject, matches, flags, offset) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Francis Lewis
+  // +   original by: Francis Lewis
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: matches = [];
   // *     example 1: preg_match(/(\w+)\W([\W\w]+)/, 'this is some text', matches);

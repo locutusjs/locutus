@@ -1,7 +1,7 @@
 function substr_compare(main_str, str, offset, length, case_insensitivity) {
   // From: http://phpjs.org/functions
-  // +   based on: Brett Zamir (http://brett-zamir.me)
-  // +   based on: strcasecmp, strcmp
+  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   original by: strcasecmp, strcmp
   // *     example 1: substr_compare("abcde", "bc", 1, 2);
   // *     returns 1: 0
   if (!offset && offset !== 0) {

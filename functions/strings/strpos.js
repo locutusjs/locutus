@@ -1,6 +1,6 @@
 function strpos(haystack, needle, offset) {
   // From: http://phpjs.org/functions
-  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Onno Marsman
   // +   bugfixed by: Daniel Esteban
   // +   improved by: Brett Zamir (http://brett-zamir.me)

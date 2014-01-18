@@ -1,6 +1,6 @@
 function bindtextdomain(domain, dir) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: bindtextdomain('myapp', '/myapp/locale');
   // *     returns 1: '/myapp/locale'
 

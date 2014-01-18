@@ -1,6 +1,6 @@
 function aggregate_info (obj) {
   // http://kevin.vanzonneveld.net
-  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var A = function () {};
   // *     example 1: A.prop = 5;
   // *     example 1: A.prototype.someMethod = function () {};
