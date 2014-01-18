@@ -54,7 +54,7 @@ cli.cleanup = function(args, options) {
     var k = 'from';
     buf += '  // ' + (new Array(19 - k.length).join(' ')) + k + ': ' + 'http://phpjs.org/functions' + '\n';
     for (k in params.headKeys) {
-      if (params.headKeys[k].length <= 1) {
+      if (params.headKeys[k].length <= 1 && k !== 'example') {
         buf += '  // ' + (new Array(19 - k.length).join(' ')) + k + ': ' + params.headKeys[k][0] + '\n';
       } else {
         for (var i in params.headKeys[k]) {
