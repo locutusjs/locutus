@@ -1,22 +1,22 @@
 function number_format(number, decimals, dec_point, thousands_sep) {
   // From: http://phpjs.org/functions
-  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // +   based on: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +     bugfix by: Michael White (http://getsprink.com)
-  // +     bugfix by: Benjamin Lupton
-  // +     bugfix by: Allan Jensen (http://www.winternet.no)
+  // +     bugfixed by: Michael White (http://getsprink.com)
+  // +     bugfixed by: Benjamin Lupton
+  // +     bugfixed by: Allan Jensen (http://www.winternet.no)
   // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // +     bugfix by: Howard Yeend
+  // +     bugfixed by: Howard Yeend
   // +    revised by: Luke Smith (http://lucassmith.name)
-  // +     bugfix by: Diogo Resende
-  // +     bugfix by: Rival
+  // +     bugfixed by: Diogo Resende
+  // +     bugfixed by: Rival
   // +      input by: Kheang Hok Chin (http://www.distantia.ca/)
   // +   improved by: davook
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // +      input by: Jay Klehr
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // +      input by: Amir Habibi (http://www.residence-mixte.com/)
-  // +     bugfix by: Brett Zamir (http://brett-zamir.me)
+  // +     bugfixed by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Theriault
   // +      input by: Amirouche
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

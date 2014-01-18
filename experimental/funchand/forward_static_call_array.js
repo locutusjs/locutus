@@ -1,6 +1,6 @@
 function forward_static_call_array(cb, parameters) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %          note 1: No real relevance to late static binding here; might also use call_user_func_array()
   // *     example 1: forward_static_call_array('isNaN', ['a']);
   // *     returns 1: true

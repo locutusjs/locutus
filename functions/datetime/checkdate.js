@@ -1,6 +1,6 @@
 function checkdate(m, d, y) {
   // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Pyerre
   // +   improved by: Theriault
   // *     example 1: checkdate(12, 31, 2000);

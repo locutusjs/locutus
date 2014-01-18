@@ -1,6 +1,6 @@
 function readfile(filename, use_include_path, context) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // -    depends on: echo
   // *     example 1: readfile('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
   // *     returns 1: '123'

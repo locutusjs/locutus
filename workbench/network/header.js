@@ -1,6 +1,6 @@
 function header(hdr, replace, http_response_code) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %    note 1: This is only for server-side JavaScript use and has not been fully tested
   // *     example 1: header('Content-type: text/plain');
   // *     returns 1: undefined

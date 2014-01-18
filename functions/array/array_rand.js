@@ -1,6 +1,6 @@
 function array_rand(input, num_req) {
   // From: http://phpjs.org/functions
-  // +   original by: Waldo Malqui Silva
+  // +   based on: Waldo Malqui Silva
   // *     example 1: array_rand( ['Kevin'], 1 );
   // *     returns 1: 0
   var indexes = [];

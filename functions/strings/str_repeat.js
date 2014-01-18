@@ -1,6 +1,6 @@
 function str_repeat(input, multiplier) {
   // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   improved by: Ian Carter (http://euona.com/)
   // *     example 1: str_repeat('-=', 10);

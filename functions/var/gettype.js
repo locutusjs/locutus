@@ -1,6 +1,6 @@
 function gettype(mixed_var) {
   // From: http://phpjs.org/functions
-  // +   original by: Paulo Freitas
+  // +   based on: Paulo Freitas
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Douglas Crockford (http://javascript.crockford.com)
   // +   input by: KELAN

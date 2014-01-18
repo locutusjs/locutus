@@ -1,6 +1,6 @@
 function session_unset() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Louis Stowasser
+  // +   based on: Louis Stowasser
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: urlencode
   // *     example 1:

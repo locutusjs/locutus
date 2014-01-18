@@ -1,6 +1,6 @@
 function unpack(format, data) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Tim de Koning (http://www.kingsquare.nl)
+  // +   based on: Tim de Koning (http://www.kingsquare.nl)
   // +      parts by: Jonas Raoni Soares Silva
   // +      http://www.jsfromhell.com
   // +   bugfixed by: marcuswestin

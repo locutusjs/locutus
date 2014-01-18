@@ -1,6 +1,6 @@
 function strlen(string) {
   // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Sakimori
   // +      input by: Kirk Strobeck
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

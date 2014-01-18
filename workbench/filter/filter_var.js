@@ -1,6 +1,6 @@
 function filter_var(input, filter, options) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Rafał Kukawski (http://kukawski.pl)
   // -    depends on: addslashes
   // -    depends on: htmlspecialchars

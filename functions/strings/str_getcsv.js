@@ -1,6 +1,6 @@
 function str_getcsv(input, delimiter, enclosure, escape) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: str_getcsv('"abc", "def", "ghi"');
   // *     returns 1: ['abc', 'def', 'ghi']
   var output = [];

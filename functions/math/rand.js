@@ -1,6 +1,6 @@
 function rand(min, max) {
   // From: http://phpjs.org/functions
-  // +   original by: Leslie Hoare
+  // +   based on: Leslie Hoare
   // +   bugfixed by: Onno Marsman
   // %          note 1: See the commented out code below for a version which will work with our experimental (though probably unnecessary) srand() function)
   // *     example 1: rand(1, 1);

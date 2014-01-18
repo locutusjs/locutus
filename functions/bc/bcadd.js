@@ -1,6 +1,6 @@
 function bcadd(left_operand, right_operand, scale) {
   // From: http://phpjs.org/functions
-  // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  // +   based on: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // -    depends on: _phpjs_shared_bc
   // *     example 1: bcadd(1, 2);
   // *     returns 1: 3

@@ -1,6 +1,6 @@
 function is_resource(handle) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Luis Salazar (http://www.freaky-media.com/)
   // *     example 1: is_resource('a');
   // *     returns 1: false

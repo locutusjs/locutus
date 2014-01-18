@@ -1,6 +1,6 @@
 function array_intersect(arr1) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %        note 1: These only output associative arrays (would need to be
   // %        note 1: all numeric and counting from zero to be numeric)
   // *     example 1: $array1 = {'a' : 'green', 0:'red', 1: 'blue'};

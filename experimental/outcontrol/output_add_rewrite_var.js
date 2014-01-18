@@ -1,6 +1,6 @@
 function output_add_rewrite_var(name, value) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // -    depends on: ob_list_handlers
   // -    depends on: ob_start
   // *     example 1: output_add_rewrite_var('var', 'value');

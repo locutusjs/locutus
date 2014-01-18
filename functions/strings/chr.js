@@ -1,6 +1,6 @@
 function chr(codePt) {
   // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: chr(75) === 'K';
   // *     returns 1: true

@@ -1,6 +1,6 @@
 function each(arr) {
   // From: http://phpjs.org/functions
-  // +   original by: Ates Goral (http://magnetiq.com)
+  // +   based on: Ates Goral (http://magnetiq.com)
   // +    revised by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Uses global: php_js to store the array pointer
   // *     example 1: each({a: "apple", b: "balloon"});

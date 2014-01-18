@@ -1,6 +1,6 @@
 function usort(inputArr, sorter) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: This function deviates from PHP in returning a copy of the array instead
   // %        note 1: of acting by reference and returning true; this was necessary because

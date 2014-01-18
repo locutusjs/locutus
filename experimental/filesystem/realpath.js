@@ -1,6 +1,6 @@
 function realpath(path) {
   // From: http://phpjs.org/functions
-  // +   original by: mk.keck
+  // +   based on: mk.keck
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // %        note 1: Returned path is an url like e.g. 'http://yourhost.tld/path/'
   // *     example 1: realpath('../.././_supporters/pj_test_supportfile_1.htm');

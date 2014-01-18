@@ -1,6 +1,6 @@
 function stream_context_set_option(stream_or_context, optionsOrWrapper, option, value) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var opts = {http:{ method:'GET', header: 'Accept-language: en\r\nCookie: foo=bar\r\n' } };
   // *     example 1: var context = stream_context_create(opts);
   // *     example 1: stream_context_set_option(context, opts);

@@ -1,6 +1,6 @@
 function html_entity_decode(string, quote_style) {
   // From: http://phpjs.org/functions
-  // +   original by: john (http://www.jd-tech.net)
+  // +   based on: john (http://www.jd-tech.net)
   // +      input by: ger
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

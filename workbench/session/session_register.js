@@ -1,6 +1,6 @@
 function session_register() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Deprecated in PHP
   // *     example 1: session_register('someVarName');
   // *     returns 1: true

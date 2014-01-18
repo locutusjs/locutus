@@ -1,8 +1,8 @@
 function setlocale(category, locale) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   derived from: Blues at http://hacks.bluesmoon.info/strftime/strftime.js
-  // +   derived from: YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html
+  // +   based on: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Blues at http://hacks.bluesmoon.info/strftime/strftime.js
+  // +   based on: YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html
   // -    depends on: getenv
   // %          note 1: Is extensible, but currently only implements locales en,
   // %          note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;

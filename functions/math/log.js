@@ -1,6 +1,6 @@
 function log(arg, base) {
   // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
+  // +   based on: Onno Marsman
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: log(8723321.4, 7);
   // *     returns 1: 8.212871815082147

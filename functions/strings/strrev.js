@@ -1,6 +1,6 @@
 function strrev(string) {
   // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Onno Marsman
   // +   reimplemented by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: strrev('Kevin van Zonneveld');

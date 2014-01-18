@@ -1,6 +1,6 @@
 function array_change_key_case(array, cs) {
   // From: http://phpjs.org/functions
-  // +   original by: Ates Goral (http://magnetiq.com)
+  // +   based on: Ates Goral (http://magnetiq.com)
   // +   improved by: marrtins
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: array_change_key_case(42);

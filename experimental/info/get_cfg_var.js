@@ -1,6 +1,6 @@
 function get_cfg_var(varname) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %        note 1: The ini values must be set within an ini file
   // *     example 1: get_cfg_var('date.timezone');
   // *     returns 1: 'Asia/Hong_Kong'

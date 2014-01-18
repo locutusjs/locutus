@@ -1,6 +1,6 @@
 function is_infinite(val) {
   // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
+  // +   based on: Onno Marsman
   // *     example 1: is_infinite(Infinity);
   // *     returns 1: true
   // *     example 2: is_infinite(-Infinity);

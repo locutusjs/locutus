@@ -1,6 +1,6 @@
 function XMLReader() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var xr = new XMLReader();
   // *     returns 1: {}
 

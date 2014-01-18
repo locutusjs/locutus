@@ -1,6 +1,6 @@
 function is_int(mixed_var) {
   // From: http://phpjs.org/functions
-  // +   original by: Alex
+  // +   based on: Alex
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    revised by: Matt Bradley
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

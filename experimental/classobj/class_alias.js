@@ -1,5 +1,5 @@
 function class_alias(clss, alias, autoload) {
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %        note 1: This function is not documented and only available in PHP source
   // *     example 1: function someFunc () {}
   // *     example 1: class_alias('someFunc', 'olFunc');

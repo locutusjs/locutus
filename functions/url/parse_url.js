@@ -1,6 +1,6 @@
 function parse_url(str, component) {
   // From: http://phpjs.org/functions
-  // +      original by: Steven Levithan (http://blog.stevenlevithan.com)
+  // +      based on: Steven Levithan (http://blog.stevenlevithan.com)
   // + reimplemented by: Brett Zamir (http://brett-zamir.me)
   // + input by: Lorenzo Pisani
   // + input by: Tony

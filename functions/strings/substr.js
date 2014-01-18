@@ -3,9 +3,9 @@ function substr(str, start, len) {
   //
   // version: 909.322
   // discuss at: http://phpjs.org/functions/substr
-  // +     original by: Martijn Wieringa
+  // +     based on: Martijn Wieringa
   // +     bugfixed by: T.Wild
-  // +      tweaked by: Onno Marsman
+  // +      improved by: Onno Marsman
   // +      revised by: Theriault
   // +      improved by: Brett Zamir (http://brett-zamir.me)
   // %    note 1: Handles rare Unicode characters if 'unicode.semantics' ini (PHP6) is set to 'on'

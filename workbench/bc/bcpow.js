@@ -1,6 +1,6 @@
 function bcpow(left, right, scale) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Robin Speekenbrink (http://www.kingsquare.nl/))
+  // +   based on: Robin Speekenbrink (http://www.kingsquare.nl/))
 
   var out = Math.pow(left, right);
   if (typeof precision !== 'undefined') {

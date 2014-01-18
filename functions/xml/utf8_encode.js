@@ -1,9 +1,9 @@
 function utf8_encode(argString) {
   // From: http://phpjs.org/functions
-  // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
+  // +   based on: Webtoolkit.info (http://www.webtoolkit.info/)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: sowberry
-  // +    tweaked by: Jack
+  // +    improved by: Jack
   // +   bugfixed by: Onno Marsman
   // +   improved by: Yves Sucaet
   // +   bugfixed by: Onno Marsman

@@ -1,6 +1,6 @@
 function runkit_method_redefine(classname, methodname, args, code, flags) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: runkit_method_redefine('someClass', 'someMethod', 'a,b', 'return a+b');
   // *     returns 1: true
   // In JavaScript, this is identical to runkit_method_add

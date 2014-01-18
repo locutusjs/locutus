@@ -1,6 +1,6 @@
 function rsort(inputArr, sort_flags) {
   // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    revised by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: SORT_STRING (as well as natsort and natcasesort) might also be

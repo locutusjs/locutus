@@ -1,6 +1,6 @@
 function pack(format) {
   // From: http://phpjs.org/functions
-  // +   original by: Tim de Koning (http://www.kingsquare.nl)
+  // +   based on: Tim de Koning (http://www.kingsquare.nl)
   // +      parts by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   bugfixed by: Tim de Koning (http://www.kingsquare.nl)
   // %        note 1: Float encoding by: Jonas Raoni Soares Silva

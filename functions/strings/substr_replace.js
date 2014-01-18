@@ -1,6 +1,6 @@
 function substr_replace(str, replace, start, length) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 0);
   // *     returns 1: 'bob'
   // *     example 2: $var = 'ABCDEFGH:/MNRPQR/';

@@ -1,6 +1,6 @@
 function file(url) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Legaev Andrey
+  // +   based on: Legaev Andrey
   // +      input by: Jani Hartikainen
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.

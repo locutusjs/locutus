@@ -2618,7 +2618,7 @@ exports.idate = function (format, timestamp) {
         return date.getMinutes();
       case 'I':
         // capital 'i'
-        // Logic derived from getimeofday().
+        // Logic based on getimeofday().
         // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
         // If they are not equal, then DST is observed.
         a = date.getFullYear();

@@ -1,6 +1,6 @@
 function file_exists(url) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Enrique Gonzalez
+  // +   based on: Enrique Gonzalez
   // +      input by: Jani Hartikainen
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.

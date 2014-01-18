@@ -1,6 +1,6 @@
 function ini_get(varname) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %        note 1: The ini values must be set by ini_set or manually within an ini file
   // *     example 1: ini_set('date.timezone', 'Asia/Hong_Kong');
   // *     example 1: ini_get('date.timezone');

@@ -1,6 +1,6 @@
 function array_walk(array, funcname, userdata) {
   // From: http://phpjs.org/functions
-  // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
+  // +   based on: Johnny Mast (http://www.phpvrouwen.nl)
   // +   bugfixed by: David
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: array

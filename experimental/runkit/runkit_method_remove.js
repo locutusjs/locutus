@@ -1,6 +1,6 @@
 function runkit_method_remove(classname, methodname) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: runkit_method_remove('someClass', 'someMethod');
   // *     returns 1: true
   if (typeof classname === 'string') {

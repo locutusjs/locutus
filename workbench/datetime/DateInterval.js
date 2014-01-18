@@ -1,6 +1,6 @@
 function DateInterval(interval_spec) { // string
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // -    depends on: date_interval_create_from_date_string
   // *     example 1: var di = new DateInterval('P2Y4DT6H8M');
   // *     example 1: di.d === 4;

@@ -1,6 +1,6 @@
 function str_word_count(str, format, charlist) {
   // From: http://phpjs.org/functions
-  // +   original by: Ole Vrijenhoek
+  // +   based on: Ole Vrijenhoek
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Bug?

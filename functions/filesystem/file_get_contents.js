@@ -1,6 +1,6 @@
 function file_get_contents(url, flags, context, offset, maxLen) {
   // From: http://phpjs.org/functions
-  // +   original by: Legaev Andrey
+  // +   based on: Legaev Andrey
   // +      input by: Jani Hartikainen
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Brett Zamir (http://brett-zamir.me)

@@ -1,8 +1,8 @@
 function strnatcmp(f_string1, f_string2, f_version) {
   // From: http://phpjs.org/functions
-  // +   original by: Martijn Wieringa
-  // + namespaced by: Michael White (http://getsprink.com)
-  // +    tweaked by: Jack
+  // +   based on: Martijn Wieringa
+  // + improved by: Michael White (http://getsprink.com)
+  // +    improved by: Jack
   // +   bugfixed by: Onno Marsman
   // -    depends on: strcmp
   // %          note: Added f_version argument against code guidelines, because it's so neat

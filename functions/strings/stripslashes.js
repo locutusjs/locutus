@@ -1,5 +1,5 @@
 function stripslashes(str) {
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Ates Goral (http://magnetiq.com)
   // +      fixed by: Mick@el
   // +   improved by: marrtins

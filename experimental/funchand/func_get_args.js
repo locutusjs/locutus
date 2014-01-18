@@ -1,6 +1,6 @@
 function func_get_args() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %        note 1: May not work in all JS implementations
   // *     example 1: function tmp_a () {return func_get_args();}
   // *     example 1: tmp_a('a', 'b');

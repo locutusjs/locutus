@@ -1,6 +1,6 @@
 function mail(to, subject, message, additional_headers, additional_parameters) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Currently only works if the SSJS SendMail method is available
   // %          note 1: and also depends on the ini having been set for 'sendmail_from';
   // %          note 1: There currently is no CommonJS email API: http://wiki.commonjs.org/wiki/Email

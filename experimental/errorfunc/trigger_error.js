@@ -1,6 +1,6 @@
 function trigger_error(error_msg, error_type) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Although this function should only allow the E_USER_ types, we'll allow the
   // %        note 1: others here in order to be able to simulate more types (though should not trigger
   // %        note 1: aggregates like E_STRICT or E_ALL).

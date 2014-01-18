@@ -1,6 +1,6 @@
 function get_class_vars(name) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function Myclass(){privMethod = function (){};}
   // *     example 1: Myclass.classMethod = function () {}
   // *     example 1: Myclass.prototype.myfunc1 = function () {return(true);};

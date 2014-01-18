@@ -1,6 +1,6 @@
 function time() {
   // From: http://phpjs.org/functions
-  // +   original by: GeekFG (http://geekfg.blogspot.com)
+  // +   based on: GeekFG (http://geekfg.blogspot.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: metjay
   // +   improved by: HKM

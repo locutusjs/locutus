@@ -1,6 +1,6 @@
 function timezone_abbreviations_list() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +      input by: ChaosNo1
   // +    revised by: Theriault
   // +    improved by: Brett Zamir (http://brett-zamir.me)

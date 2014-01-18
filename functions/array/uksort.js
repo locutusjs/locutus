@@ -1,6 +1,6 @@
 function uksort(inputArr, sorter) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: The examples are correct, this is a new way
   // %        note 2: This function deviates from PHP in returning a copy of the array instead

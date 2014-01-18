@@ -1,6 +1,6 @@
 function isset() {
   // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: FremyCompany
   // +   improved by: Onno Marsman
   // +   improved by: Rafał Kukawski

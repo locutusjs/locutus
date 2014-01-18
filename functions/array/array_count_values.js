@@ -1,7 +1,7 @@
 function array_count_values(array) {
   // From: http://phpjs.org/functions
-  // +   original by: Ates Goral (http://magnetiq.com)
-  // + namespaced by: Michael White (http://getsprink.com)
+  // +   based on: Ates Goral (http://magnetiq.com)
+  // + improved by: Michael White (http://getsprink.com)
   // +      input by: sankai
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   input by: Shingo

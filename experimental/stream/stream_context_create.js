@@ -1,6 +1,6 @@
 function stream_context_create(options, params) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Can be made to work as a wrapper for proprietary contexts as well
   // *     example 1: var opts = {http:{ method:'GET', header: 'Accept-language: en\r\nCookie: foo=bar\r\n' } };
   // *     example 1: var context = stream_context_create(opts);

@@ -1,6 +1,6 @@
 function dirname(path) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Ozh
+  // +   based on: Ozh
   // +   improved by: XoraX (http://www.xorax.info)
   // *     example 1: dirname('/etc/passwd');
   // *     returns 1: '/etc'

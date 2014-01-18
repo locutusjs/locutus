@@ -1,6 +1,6 @@
 function quoted_printable_decode(str) {
   // From: http://phpjs.org/functions
-  // +   original by: Ole Vrijenhoek
+  // +   based on: Ole Vrijenhoek
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // +   reimplemented by: Theriault
   // +   improved by: Brett Zamir (http://brett-zamir.me)

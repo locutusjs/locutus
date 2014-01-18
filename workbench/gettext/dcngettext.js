@@ -1,6 +1,6 @@
 function dcngettext(domain, msgid1, msgid2, n, category) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale
   // *     example 1:
   // *     returns 1:

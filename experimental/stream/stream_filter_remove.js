@@ -1,6 +1,6 @@
 function stream_filter_remove(stream_filter) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var fp = fopen("test.txt", "rw");
   // *     example 1: var rot13_filter = stream_filter_append(fp, 'string.rot13', 'STREAM_FILTER_WRITE');
   // *     example 1: fwrite(fp, 'This is ');

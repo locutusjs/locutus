@@ -1,6 +1,6 @@
 function xdiff_file_patch(file, patch, dest, flags) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // % note 1: Depends on file_put_contents which is not yet implemented
   // -    depends on: xdiff_string_patch
   // -    depends on: file_get_contents

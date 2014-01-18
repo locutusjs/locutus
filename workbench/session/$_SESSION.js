@@ -1,6 +1,6 @@
 function $_SESSION() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Louis Stowasser
+  // +   based on: Louis Stowasser
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: serialize
   // -    depends on: urlencode

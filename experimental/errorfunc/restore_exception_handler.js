@@ -1,6 +1,6 @@
 function restore_exception_handler() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: restore_exception_handler();
   // *     returns 1: true
 

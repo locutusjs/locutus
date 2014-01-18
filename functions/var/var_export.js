@@ -1,6 +1,6 @@
 function var_export(mixed_expression, bool_return) {
   // From: http://phpjs.org/functions
-  // +   original by: Philip Peterson
+  // +   based on: Philip Peterson
   // +   improved by: johnrembo
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // +      input by: Brian Tafoya (http://www.premasolutions.com/)

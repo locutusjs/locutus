@@ -1,6 +1,6 @@
 function ldap_connect(hostname, port) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %        note 1: For CommonJS/Node (SSJS) only: Meant to work with https://github.com/joewalnes/node-ldapauth or https://github.com/jeremycx/node-LDAP, but not yet finalized
   // %        note 2: Creates an LDAP link (PHPJS_Resource)
   // *     example 1: var ldapconn = ldap_connect ('localhost');

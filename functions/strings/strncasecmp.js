@@ -1,6 +1,6 @@
 function strncasecmp(argStr1, argStr2, len) {
   // From: http://phpjs.org/functions
-  // +   original by: Saulo Vallory
+  // +   based on: Saulo Vallory
   // +      input by: Nate
   // +   bugfixed by: Onno Marsman
   // %          note: Returns < 0 if str1 is less than str2 ; > 0 if str1 is greater than str2 , and 0 if they are equal.

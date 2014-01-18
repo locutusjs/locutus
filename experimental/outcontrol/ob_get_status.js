@@ -1,6 +1,6 @@
 function ob_get_status(full_status) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ob_get_status(true);
   // *     returns 1: [{chunk_size:4096, name:myCallback, del:true, type:1,status:0}]
 

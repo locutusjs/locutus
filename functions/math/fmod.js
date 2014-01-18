@@ -1,6 +1,6 @@
 function fmod(x, y) {
   // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
+  // +   based on: Onno Marsman
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // *     example 1: fmod(5.7, 1.3);

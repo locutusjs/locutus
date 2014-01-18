@@ -1,6 +1,6 @@
 function ctype_graph(text) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale
   // *     example 1: ctype_graph('!%');
   // *     returns 1: true

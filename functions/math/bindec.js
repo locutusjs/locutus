@@ -1,6 +1,6 @@
 function bindec(binary_string) {
   // From: http://phpjs.org/functions
-  // +   original by: Philippe Baumann
+  // +   based on: Philippe Baumann
   // *     example 1: bindec('110011');
   // *     returns 1: 51
   // *     example 2: bindec('000110011');

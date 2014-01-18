@@ -1,6 +1,6 @@
 function array_merge() {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Nate
   // +   input by: josh
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

@@ -1,6 +1,6 @@
 function strrchr(haystack, needle) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +   input by: Jason Wong (http://carrot.org/)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)

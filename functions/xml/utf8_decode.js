@@ -1,6 +1,6 @@
 function utf8_decode(str_data) {
   // From: http://phpjs.org/functions
-  // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
+  // +   based on: Webtoolkit.info (http://www.webtoolkit.info/)
   // +      input by: Aman Gupta
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Norman "zEh" Fuchs

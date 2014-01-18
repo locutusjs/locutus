@@ -1,6 +1,6 @@
 function mt_rand(min, max) {
   // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
+  // +   based on: Onno Marsman
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Kongo
   // *     example 1: mt_rand(1, 1);

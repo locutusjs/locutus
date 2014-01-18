@@ -1,6 +1,6 @@
 function stream_context_get_default(options) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // -    depends on: stream_context_create
   // %          note 1: Although for historical reasons in PHP, this function can be used with
   // %          note 1: its options argument to set the default, it is no doubt best to use

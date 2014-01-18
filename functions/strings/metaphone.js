@@ -1,5 +1,5 @@
 function metaphone(word, phones) {
-  // +   original by: Greg Frazier
+  // +   based on: Greg Frazier
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Rafał Kukawski (http://kukawski.pl)
   // *     example 1: metaphone('Gnu');

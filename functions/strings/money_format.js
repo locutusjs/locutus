@@ -1,6 +1,6 @@
 function money_format(format, number) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +   input by: daniel airton wermann (http://wermann.com.br)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale

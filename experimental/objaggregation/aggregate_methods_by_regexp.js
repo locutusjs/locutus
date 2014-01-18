@@ -1,6 +1,6 @@
 function aggregate_methods_by_regexp (obj, class_name, regexp, exclude) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: We can't copy privileged methods, as those require instantiation (with potential side-effects when called)
   // %          note 1: We've chosen not to assign to or create a prototype object on the destination object even if the original object had the methods on its prototype

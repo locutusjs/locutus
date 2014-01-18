@@ -1,6 +1,6 @@
 function require(filename) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Michael White (http://getsprink.com)
+  // +   based on: Michael White (http://getsprink.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

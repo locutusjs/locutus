@@ -1,6 +1,6 @@
 function filter_id(name) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: filter_id('int');
   // *     returns 1: 257
 

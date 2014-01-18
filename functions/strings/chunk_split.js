@@ -1,6 +1,6 @@
 function chunk_split(body, chunklen, end) {
   // From: http://phpjs.org/functions
-  // +   original by: Paulo Freitas
+  // +   based on: Paulo Freitas
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Theriault

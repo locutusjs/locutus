@@ -1,6 +1,6 @@
 function import_request_variables(types, prefix) {
   // http://kevin.vanzonneveld.net
-  // +      original by: Jalal Berrami
+  // +      based on: Jalal Berrami
   // + reimplemented by: Brett Zamir (http://brett-zamir.me)
   // + improved by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: IMPORTANT: You must sanitize user variables passed in via URL in JavaScript as in PHP,

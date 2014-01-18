@@ -83,7 +83,7 @@ function tester_comparer(result, should) {
 
 function tester_count( mixed_var, mode ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +      input by: _argos
     // *     example 1: count([[0,0],[0,-4]], 'COUNT_RECURSIVE');
     // *     returns 1: 6
@@ -107,7 +107,7 @@ function tester_count( mixed_var, mode ) {
 
 function tester_function_exists( function_name ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: Steve Clay
     // +   improved by: Legaev Andrey
     // *     example 1: function_exists('isFinite');
@@ -123,7 +123,7 @@ function tester_function_exists( function_name ) {
 
 function tester_sleep(seconds) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Christian Doebler
+    // +   based on: Christian Doebler
     // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
     // %          note: For study purposes. Current implementation could lock up the user's browser.
     // %          note: Consider using setTimeout() instead.
@@ -137,7 +137,7 @@ function tester_sleep(seconds) {
 
 function tester_trim( str, charlist ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // +   improved by: mdsjack (http://www.mdsjack.bo.it)
     // +   improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
     // +      input by: Erkekjetter
@@ -174,7 +174,7 @@ function tester_trim( str, charlist ) {
 
 function tester_array_search( needle, haystack, strict ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
     // *     example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'});
     // *     returns 1: 'surname'
 
@@ -191,7 +191,7 @@ function tester_array_search( needle, haystack, strict ) {
 
 function tester_print_r( array, return_val ) {
     // http://kevin.vanzonneveld.net
-    // +   original by: Michael White (http://crestidg.com)
+    // +   based on: Michael White (http://crestidg.com)
     // +   improved by: Ben Bryan
     // *     example 1: tester_print_r(1, true);
     // *     returns 1: 1

@@ -1,6 +1,6 @@
 function strncmp(str1, str2, lgth) {
   // From: http://phpjs.org/functions
-  // +      original by: Waldo Malqui Silva
+  // +      based on: Waldo Malqui Silva
   // +         input by: Steve Hilder
   // +      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +       revised by: gorthaur

@@ -1,6 +1,6 @@
 function str_replace(search, replace, subject, count) {
   // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Gabriel Paderni
   // +   improved by: Philip Peterson
   // +   improved by: Simon Willison (http://simonwillison.net)
@@ -8,7 +8,7 @@ function str_replace(search, replace, subject, count) {
   // +   bugfixed by: Anton Ongson
   // +      input by: Onno Marsman
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    tweaked by: Onno Marsman
+  // +    improved by: Onno Marsman
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   input by: Oleg Eremeev

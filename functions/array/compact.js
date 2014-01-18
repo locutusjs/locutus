@@ -1,7 +1,7 @@
 function compact() {
   // From: http://phpjs.org/functions
-  // +   original by: Waldo Malqui Silva
-  // +    tweaked by: Jack
+  // +   based on: Waldo Malqui Silva
+  // +    improved by: Jack
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // *     example 1: var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';

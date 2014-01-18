@@ -1,6 +1,6 @@
 function echo() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Philip Peterson
+  // +   based on: Philip Peterson
   // +   improved by: echo is bad
   // +   improved by: Nate
   // +    revised by: Der Simon (http://innerdom.sourceforge.net/)

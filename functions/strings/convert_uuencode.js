@@ -1,6 +1,6 @@
 function convert_uuencode(str) {
   // From: http://phpjs.org/functions
-  // +   original by: Ole Vrijenhoek
+  // +   based on: Ole Vrijenhoek
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   reimplemented by: Ole Vrijenhoek
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

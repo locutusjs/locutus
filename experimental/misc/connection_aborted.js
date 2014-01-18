@@ -1,6 +1,6 @@
 function connection_aborted() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: connection_aborted();
   // *     returns 1: 0
 

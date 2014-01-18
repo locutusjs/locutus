@@ -5,7 +5,7 @@ function empty(mixed_var) {
   // are considered empty
   //
   // From: http://phpjs.org/functions
-  // +   original by: Philippe Baumann
+  // +   based on: Philippe Baumann
   // +      input by: Onno Marsman
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: LH

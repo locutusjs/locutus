@@ -1,7 +1,7 @@
 function version_compare(v1, v2, operator) {
   // From: http://phpjs.org/functions
-  // +      original by: Philippe Jausions (http://pear.php.net/user/jausions)
-  // +      original by: Aidan Lister (http://aidanlister.com/)
+  // +      based on: Philippe Jausions (http://pear.php.net/user/jausions)
+  // +      based on: Aidan Lister (http://aidanlister.com/)
   // + reimplemented by: Kankrelune (http://www.webfaktory.info/)
   // +      improved by: Brett Zamir (http://brett-zamir.me)
   // +      improved by: Scott Baker

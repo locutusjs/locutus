@@ -1,6 +1,6 @@
 function unset() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var arr = ['a', 'b', 'c'];
   // *     example 1: unset('arr[1]');
   // *     returns 1: undefined

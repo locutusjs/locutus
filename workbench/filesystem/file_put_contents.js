@@ -1,6 +1,6 @@
 function file_put_contents(aFile, data, flags, context) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Only works at present in Mozilla (and unfinished too); might also allow context to determine
   // %          note 1: whether for Mozilla, for HTTP PUT or POST requests, etc.
   // *     example 1: file_put_contents('file://Users/Kevin/someFile.txt', 'hello');

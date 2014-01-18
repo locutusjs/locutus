@@ -1,6 +1,6 @@
 function session_encode() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Louis Stowasser
+  // +   based on: Louis Stowasser
   // -    depends on: urldecode
   // *     example 1:
   // *     returns 1:

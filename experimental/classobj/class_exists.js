@@ -1,6 +1,6 @@
 function class_exists(cls) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function class_a() {this.meth1 = function () {return true;}};
   // *     example 1: var instance_a = new class_a();
   // *     example 1: class_exists('class_a');

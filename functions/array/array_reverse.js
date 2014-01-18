@@ -1,6 +1,6 @@
 function array_reverse(array, preserve_keys) {
   // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Karol Kowalski
   // *     example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true);
   // *     returns 1: { 2: ['green', 'red'], 1: 4, 0: 'php'}

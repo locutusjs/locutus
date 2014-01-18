@@ -1,6 +1,6 @@
 function date(format, timestamp) {
   // From: http://phpjs.org/functions
-  // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+  // +   based on: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: MeEtc (http://yass.meetcweb.com)
@@ -11,7 +11,7 @@ function date(format, timestamp) {
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Theriault
-  // +  derived from: gettimeofday
+  // +  based on: gettimeofday
   // +      input by: majak
   // +   bugfixed by: majak
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

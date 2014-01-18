@@ -1,6 +1,6 @@
 function classkit_method_redefine(classname, methodname, args, code, flags) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: classkit_method_redefine('someClass', 'someMethod', 'a,b', 'return a+b');
   // *     returns 1: true
 

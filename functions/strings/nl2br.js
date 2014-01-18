@@ -1,6 +1,6 @@
 function nl2br(str, is_xhtml) {
   // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Philip Peterson
   // +   improved by: Onno Marsman
   // +   improved by: Atli Þór

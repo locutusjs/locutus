@@ -1,6 +1,6 @@
 function stream_get_contents(handle, maxLength, offset) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var stream = fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
   // *     example 1: stream_get_contents(stream, 7, 2);
   // *     returns 1: 'DOCTYPE'

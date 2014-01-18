@@ -1,6 +1,6 @@
 function json_last_error() {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: json_last_error();
   // *     returns 1: 0
 

@@ -1,6 +1,6 @@
 function hexdec(hex_string) {
   // From: http://phpjs.org/functions
-  // +   original by: Philippe Baumann
+  // +   based on: Philippe Baumann
   // *     example 1: hexdec('that');
   // *     returns 1: 10
   // *     example 2: hexdec('a0');

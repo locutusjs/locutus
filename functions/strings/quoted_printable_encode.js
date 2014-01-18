@@ -1,5 +1,5 @@
 function quoted_printable_encode(str) {
-  // +   original by: Theriault
+  // +   based on: Theriault
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Theriault
   // *     example 1: quoted_printable_encode('a=b=c');

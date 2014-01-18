@@ -1,6 +1,6 @@
 function die(status) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   //  -   depends on: exit
   // %        note 1: Should be considered expirimental. Please comment on this function.
   // *     example 1: die();

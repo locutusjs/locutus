@@ -1,6 +1,6 @@
 function printf() {
   // From: http://phpjs.org/functions
-  // +   original by: Ash Searle (http://hexmen.com/blog/)
+  // +   based on: Ash Searle (http://hexmen.com/blog/)
   // +   improved by: Michael White (http://getsprink.com)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: sprintf

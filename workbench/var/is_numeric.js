@@ -1,6 +1,6 @@
 function is_numeric(mixed_var) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: David
   // +   improved by: taith
   // +   bugfixed by: Tim de Koning

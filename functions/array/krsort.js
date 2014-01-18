@@ -1,6 +1,6 @@
 function krsort(inputArr, sort_flags) {
   // From: http://phpjs.org/functions
-  // +   original by: GeekFG (http://geekfg.blogspot.com)
+  // +   based on: GeekFG (http://geekfg.blogspot.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: The examples are correct, this is a new way

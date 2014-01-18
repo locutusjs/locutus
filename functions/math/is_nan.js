@@ -1,6 +1,6 @@
 function is_nan(val) {
   // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
+  // +   based on: Onno Marsman
   // +      input by: Robin
   // *     example 1: is_nan(NaN);
   // *     returns 1: true

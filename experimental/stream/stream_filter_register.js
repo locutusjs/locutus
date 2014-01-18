@@ -1,6 +1,6 @@
 function stream_filter_register(filtername, classname) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function strtoupper_filter () {}
   // *     example 1: strtoupper_filter.prototype = {filter : function ($in, out, consumed, closing) {return 'PSFS_PASS_ON';}};
   // *     example 1: stream_filter_register('strtoupper', 'strtoupper_filter');

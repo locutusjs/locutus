@@ -1,6 +1,6 @@
 function array_splice(arr, offst, lgth, replacement) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +   input by: Theriault
   // %        note 1: Order does get shifted in associative array input with numeric indices,
   // %        note 1: since PHP behavior doesn't preserve keys, but I understand order is

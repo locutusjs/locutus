@@ -1,6 +1,6 @@
 function output_reset_rewrite_vars() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: output_reset_rewrite_vars();
   // *     returns 1: true
 

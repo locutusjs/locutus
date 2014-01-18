@@ -1,6 +1,6 @@
 function var_inspect() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // %          note 1: This function has not been documented yet (for PHP 6)
   // *     example 1: var_inspect('Vie\u0302\u0323t Nam');
   // *     returns 1: true

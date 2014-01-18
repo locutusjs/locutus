@@ -1,6 +1,6 @@
 function session_start() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Louis Stowasser
+  // +   based on: Louis Stowasser
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1:
   // *     returns 1:
@@ -37,7 +37,7 @@ function session_start() {
     */
 function session_start() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Louis Stowasser
+  // +   based on: Louis Stowasser
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: unserialize
   // -    depends on: serialize

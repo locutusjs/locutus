@@ -1,6 +1,6 @@
 function wordwrap(str, int_width, str_break, cut) {
   // From: http://phpjs.org/functions
-  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // +   based on: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   improved by: Nick Callen
   // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

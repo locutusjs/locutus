@@ -1,6 +1,6 @@
 function runkit_method_add(classname, methodname, args, code, flags) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function a (){}
   // *     example 1: runkit_method_add ('a', 'b', 'a,b', 'return a+b');
   // *     returns 1: true

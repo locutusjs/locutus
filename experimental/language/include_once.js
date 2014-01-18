@@ -1,6 +1,6 @@
 function include_once(filename) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Legaev Andrey
+  // +   based on: Legaev Andrey
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Michael White (http://getsprink.com)
   // +      input by: Brett Zamir (http://brett-zamir.me)

@@ -1,6 +1,6 @@
 function is_object(mixed_var) {
   // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Legaev Andrey
   // +   improved by: Michael White (http://getsprink.com)
   // *     example 1: is_object('23');

@@ -1,6 +1,6 @@
 function strtr(str, from, to) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +      input by: uestla
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: Alan C

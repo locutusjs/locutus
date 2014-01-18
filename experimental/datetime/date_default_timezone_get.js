@@ -1,6 +1,6 @@
 function date_default_timezone_get() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // -    depends on: timezone_abbreviations_list
   // %        note 1: Uses global: php_js to store the default timezone
   // *     example 1: date_default_timezone_get();

@@ -1,9 +1,9 @@
 function htmlentities(string, quote_style, charset, double_encode) {
   // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   based on: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: nobbler
-  // +    tweaked by: Jack
+  // +    improved by: Jack
   // +   bugfixed by: Onno Marsman
   // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    bugfixed by: Brett Zamir (http://brett-zamir.me)

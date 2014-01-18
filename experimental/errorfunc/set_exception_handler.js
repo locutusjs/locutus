@@ -1,6 +1,6 @@
 function set_exception_handler(callback) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: set_exception_handler(function (exceptionObj) {alert(exceptionObj.getMessage());});
   // *     returns 1: null
 

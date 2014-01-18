@@ -1,6 +1,6 @@
 function error_log(message, message_type, destination, extra_headers) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Paul Hutchinson (http://restaurantthing.com/)
+  // +   based on: Paul Hutchinson (http://restaurantthing.com/)
   // +   revised by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: The dependencies, mail(), syslog(), and file_put_contents()
   // %          note 1: are either not fullly implemented or implemented at all

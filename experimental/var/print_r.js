@@ -1,6 +1,6 @@
 function print_r(array, return_val) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Michael White (http://getsprink.com)
+  // +   based on: Michael White (http://getsprink.com)
   // +   improved by: Ben Bryan
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +      improved by: Brett Zamir (http://brett-zamir.me)

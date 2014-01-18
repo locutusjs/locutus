@@ -45,6 +45,16 @@ cli.parse({
   abort   : ['a', 'Abort on first failure']
 });
 
+cli.cleanup = function(args, options) {
+  var self     = this;
+  var globpath = __root + '/functions/' + options.category + '/' + options.name + '.js';
+  self.glob(globpath, function (err, params, file) {
+    for (var k in params.headKeys) {
+      console.log(k);
+    }
+  });
+};
+
 cli.buildnpm = function(args, options) {
   var self     = this;
   var globpath = __root + '/functions/' + options.category + '/' + options.name + '.js';
@@ -53,7 +63,7 @@ cli.buildnpm = function(args, options) {
   fs.appendFileSync(options.output, '// \n');
   fs.appendFileSync(options.output, '// Make function changes in ./functions and \n');
   fs.appendFileSync(options.output, '// generator changes in ./lib/phpjsutil.js \n');
-  self.glob(globpath, function (err, params) {
+  self.glob(globpath, function (err, params, file) {
     var buf = '\n';
     buf += 'exports.' + params.func_name + ' = function (' + params.func_arguments.join(', ') + ') {\n';
     buf += '  ' + params.body.split('\n').join('\n  ').replace(/^  $/g, '') + '\n';
@@ -72,7 +82,7 @@ cli.glob = function(globpath, cb) {
       }
     }
     names.forEach(function(name) {
-      PhpjsUtil.load(name, function(err, params) {
+      PhpjsUtil.load(name, function(err, params, file) {
         if (err) {
           return cb(err);
         }

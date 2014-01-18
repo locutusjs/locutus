@@ -1,6 +1,6 @@
 function htmlspecialchars(string, quote_style, charset, double_encode) {
   // From: http://phpjs.org/functions
-  // +   original by: Mirek Slugen
+  // +   based on: Mirek Slugen
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Nathan
   // +   bugfixed by: Arno

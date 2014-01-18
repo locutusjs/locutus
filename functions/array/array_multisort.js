@@ -1,5 +1,5 @@
 function array_multisort(arr) {
-  // +   original by: Theriault
+  // +   based on: Theriault
   // *     example 1: array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6]);
   // *     returns 1: true
   // *     example 2: characters = {A: 'Edward', B: 'Locke', C: 'Sabin', D: 'Terra', E: 'Edward'};

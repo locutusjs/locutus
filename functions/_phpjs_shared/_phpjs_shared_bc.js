@@ -1,6 +1,6 @@
 function _phpjs_shared_bc() {
   // From: http://phpjs.org/functions
-  // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  // +   based on: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: _phpjs_shared_bc();
   // *     returns 1: {}

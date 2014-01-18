@@ -1,6 +1,6 @@
 function ob_get_flush() {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ob_get_flush();
   // *     returns 1: 'some buffer contents'
 

@@ -1,6 +1,6 @@
 function strcoll(str1, str2) {
   // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale
   // *     example 1: strcoll('a', 'b');

@@ -1,6 +1,6 @@
 function call_user_method(method, obj) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Brett Zamir (http://brett-zamir.me)
+  // +   based on: Brett Zamir (http://brett-zamir.me)
   // +   input by: dnukem
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: Exception
