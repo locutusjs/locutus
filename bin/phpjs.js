@@ -51,7 +51,9 @@ cli.cleanup = function(args, options) {
   self.glob(globpath, function (err, params, file) {
     var buf  = '';
     buf += params.func_signature.trim() + '\n';
-    for (var k in params.headKeys) {
+    var k = 'from';
+    buf += '  // ' + (new Array(19 - k.length).join(' ')) + k + ': ' + 'http://phpjs.org/functions' + '\n';
+    for (k in params.headKeys) {
       if (params.headKeys[k].length <= 1) {
         buf += '  // ' + (new Array(19 - k.length).join(' ')) + k + ': ' + params.headKeys[k][0] + '\n';
       } else {
@@ -96,10 +98,13 @@ cli.buildnpm = function(args, options) {
 cli.glob = function(globpath, cb) {
   glob(globpath, {}, function(err, files) {
     var names = [];
+    var map = {};
     for (var i in files) {
       var file = files[i];
+      var name = path.basename(file, '.js');
       if (file.indexOf('/_') === -1) {
-        names.push(path.basename(file, '.js'));
+        names.push(name);
+        map[name] = file;
       }
     }
     names.forEach(function(name) {
@@ -108,7 +113,7 @@ cli.glob = function(globpath, cb) {
           return cb(err);
         }
 
-        return cb(null, params, file);
+        return cb(null, params, map[name]);
       });
     });
   });
