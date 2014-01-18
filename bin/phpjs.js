@@ -51,20 +51,24 @@ cli.cleanup = function(args, options) {
   self.glob(globpath, function (err, params, file) {
     var buf  = '';
     buf += params.func_signature.trim() + '\n';
-    var k = 'from';
+    var k = 'discuss at';
     buf += '  // ' + (new Array(19 - k.length).join(' ')) + k + ': ' + 'http://phpjs.org/functions' + '\n';
     for (k in params.headKeys) {
-      if (params.headKeys[k].length <= 1 && k !== 'example') {
-        buf += '  // ' + (new Array(19 - k.length).join(' ')) + k + ': ' + params.headKeys[k][0] + '\n';
-      } else {
+      if (k === 'example' || k === 'note') {
         for (var i in params.headKeys[k]) {
+          if (!params.headKeys[k][i]) {
+            continue;
+          }
           if (k === 'example') {
             buf += '  // ' + (new Array(17 - k.length).join(' ')) + k + ' ' + ((i*1)+1) + ': ' + params.headKeys[k][i] + '\n';
             buf += '  // ' + (new Array(17 - k.length).join(' ')) + 'returns' + ' ' + ((i*1)+1) + ': ' + params.headKeys.returns[i] + '\n';
-          } else if (k !== 'returns') {
+            delete params.headKeys['returns'][i];
+          } else {
             buf += '  // ' + (new Array(17 - k.length).join(' ')) + k + ' ' + ((i*1)+1) + ': ' + params.headKeys[k][i] + '\n';
           }
         }
+      } else {
+        buf += '  // ' + (new Array(19 - k.length).join(' ')) + k + ': ' + params.headKeys[k][0] + '\n';
       }
     }
     buf += '\n';
