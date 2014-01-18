@@ -64,12 +64,15 @@ cli.cleanup = function(args, options) {
           }
         }
       }
-    } 
+    }
     buf += '\n';
     buf += '  ' + params.body;
     buf += '\n';
     buf += '}\n';
-    console.log(buf);
+
+    buf.replace(/\r/g, '');
+
+    fs.writeFileSync(file, buf);
   });
 };
 
@@ -100,12 +103,12 @@ cli.glob = function(globpath, cb) {
       }
     }
     names.forEach(function(name) {
-      PhpjsUtil.load(name, function(err, params, file) {
+      PhpjsUtil.load(name, function(err, params) {
         if (err) {
           return cb(err);
         }
 
-        return cb(null, params);
+        return cb(null, params, file);
       });
     });
   });
@@ -127,7 +130,7 @@ cli.test = function(args, options) {
   self.pass_cnt = 0;
   self.fail_cnt = 0;
   self.skip_cnt = 0;
-  self.glob(globpath, function(err, params) {
+  self.glob(globpath, function(err, params, file) {
     if (err) {
       return cli.fatal(err);
     }
