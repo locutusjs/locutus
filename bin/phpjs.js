@@ -49,9 +49,27 @@ cli.cleanup = function(args, options) {
   var self     = this;
   var globpath = __root + '/functions/' + options.category + '/' + options.name + '.js';
   self.glob(globpath, function (err, params, file) {
+    var buf  = '';
+    buf += params.func_signature.trim() + '\n';
     for (var k in params.headKeys) {
-      console.log(k);
-    }
+      if (params.headKeys[k].length <= 1) {
+        buf += '  // ' + (new Array(19 - k.length).join(' ')) + k + ': ' + params.headKeys[k][0] + '\n';
+      } else {
+        for (var i in params.headKeys[k]) {
+          if (k === 'example') {
+            buf += '  // ' + (new Array(17 - k.length).join(' ')) + k + ' ' + ((i*1)+1) + ': ' + params.headKeys[k][i] + '\n';
+            buf += '  // ' + (new Array(17 - k.length).join(' ')) + 'returns' + ' ' + ((i*1)+1) + ': ' + params.headKeys.returns[i] + '\n';
+          } else if (k !== 'returns') {
+            buf += '  // ' + (new Array(17 - k.length).join(' ')) + k + ' ' + ((i*1)+1) + ': ' + params.headKeys[k][i] + '\n';
+          }
+        }
+      }
+    } 
+    buf += '\n';
+    buf += '  ' + params.body;
+    buf += '\n';
+    buf += '}\n';
+    console.log(buf);
   });
 };
 
