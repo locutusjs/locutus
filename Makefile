@@ -11,17 +11,9 @@ test: build
 	cd tests && npm install
 	node bin/phpjs.js --action test --debug
 
-# Apply code standards
+# Apply code standards & reformat headers
 cleanup:
-	@[ -x `which gjslint` ] || sudo easy_install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
-	fixjsstyle \
-		--recurse ./ \
-		--exclude_directories _octopress,lib,bin,build,experimental,workbench,tests/node_modules,tools \
-		--max_line_length 100 \
-		--nojsdoc \
-		--error_trace \
-		--strict \
-		--jslint_error all
+	node bin/phpjs.js --action cleanup
 
 npm:
 	node bin/phpjs.js --action buildnpm --output build/npm.js
