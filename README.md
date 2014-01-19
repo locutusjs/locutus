@@ -34,7 +34,7 @@ php.echo(php.strtotime('2 januari 2012, 11:12:13 GMT'));
 
 
 ```bash
-$ node tests/npm.js
+$ node test/npm.js
 Hey, you : )
 abcd1234
 1325502733
@@ -57,7 +57,7 @@ node bin/phpjs.js --action test --category array
 ### Web
 
 ```bash
-PORT=8080 node tests/server.js
+PORT=8080 node test/browser/server.js
 ```
 
 Point your webbrowser to http://localhost:8080
