@@ -2,10 +2,20 @@ var cli       = require('cli').enable('status', 'help', 'version', 'glob', 'time
 var fs        = require('fs');
 var glob      = require('glob');
 var path      = require('path');
+var _         = require('underscore');
 var phpjsutil = new require('../lib/phpjsutil');
 var equal     = require('deep-equal');
 var __root    = __dirname + '/..';
 
+
+// --debug works out of the box. See -h
+cli.parse({
+  action  : ['a', 'Test / Build', 'string', 'test'],
+  output  : ['o', 'Build output file', 'string', __root + '/build/npm.js'],
+  name    : ['n', 'Function name to test', 'path', '*'],
+  category: ['c', 'Category to test', 'path', '*'],
+  abort   : ['a', 'Abort on first failure']
+});
 
 var PhpjsUtil = phpjsutil({
   injectDependencies: ['ini_set', 'ini_get', 'array'],
@@ -36,14 +46,15 @@ PhpjsUtil.opener = function(name, cb) {
   });
 };
 
-// --debug works out of the box. See -h
-cli.parse({
-  action  : ['a', 'Test / Build', 'string', 'test'],
-  output  : ['o', 'Build output file', 'string', __root + '/build/npm.js'],
-  name    : ['n', 'Function name to test', 'path', '*'],
-  category: ['c', 'Category to test', 'path', '*'],
-  abort   : ['a', 'Abort on first failure']
-});
+cli.lpad = function(str, len, pad) {
+  if (!pad) pad = ' ';
+  if (!len) len = 20;
+  // if (str.length > len) {
+  //   return str;
+  // }
+
+  return (new Array(len - str.length).join(pad)) + str;
+};
 
 cli.cleanup = function(args, options) {
   var self     = this;
@@ -51,26 +62,41 @@ cli.cleanup = function(args, options) {
   self.glob(globpath, function (err, params, file) {
     var buf  = '';
     buf += params.func_signature.trim() + '\n';
-    var k = 'discuss at';
-    buf += '  // ' + (new Array(19 - k.length).join(' ')) + k + ': ' + 'http://phpjs.org/functions' + '\n';
-    for (k in params.headKeys) {
-      if (k === 'example' || k === 'note') {
-        for (var i in params.headKeys[k]) {
-          if (!params.headKeys[k][i]) {
-            continue;
-          }
-          if (k === 'example') {
-            buf += '  // ' + (new Array(17 - k.length).join(' ')) + k + ' ' + ((i*1)+1) + ': ' + params.headKeys[k][i] + '\n';
-            buf += '  // ' + (new Array(17 - k.length).join(' ')) + 'returns' + ' ' + ((i*1)+1) + ': ' + params.headKeys.returns[i] + '\n';
-            delete params.headKeys['returns'][i];
-          } else {
-            buf += '  // ' + (new Array(17 - k.length).join(' ')) + k + ' ' + ((i*1)+1) + ': ' + params.headKeys[k][i] + '\n';
-          }
+
+    var longestKey = 0;
+    _.each(params.headKeys, function (items, key) {
+      if (key.length >= longestKey) {
+        longestKey = key.length;
+      }
+    });
+
+    longestKey = longestKey + 4;
+    var key = 'discuss at';
+    var val = 'http://phpjs.org/functions';
+    var items, vals, i, itemNr;
+
+    buf += '  // ' + self.lpad(key, longestKey) + ': ' + val + '\n';
+    for (key in params.headKeys){
+      items = params.headKeys[key];
+      for (itemNr in items) {
+        vals = items[itemNr];
+        for (i in vals) {
+          val  = vals[i];
+          buf += '  // ' + self.lpad((key === 'example' ? (key + ' ' + itemNr) : key), longestKey) + ': ' + val + '\n';
         }
-      } else {
-        buf += '  // ' + (new Array(19 - k.length).join(' ')) + k + ': ' + params.headKeys[k][0] + '\n';
+        if (key === 'example') {
+          vals = params.headKeys['returns'][itemNr];
+
+          for (i in vals) {
+            val  = vals[i];
+            buf += '  // ' + self.lpad('returns' + ' ' + itemNr, longestKey) + ': ' + val + '\n';
+          }
+
+          delete params.headKeys['returns'][itemNr];
+        }
       }
     }
+
     buf += '\n';
     buf += '  ' + params.body;
     buf += '\n';
@@ -78,6 +104,7 @@ cli.cleanup = function(args, options) {
 
     buf.replace(/\r/g, '');
 
+    // console.log(buf);
     fs.writeFileSync(file, buf);
   });
 };
@@ -91,6 +118,9 @@ cli.buildnpm = function(args, options) {
   fs.appendFileSync(options.output, '// Make function changes in ./functions and \n');
   fs.appendFileSync(options.output, '// generator changes in ./lib/phpjsutil.js \n');
   self.glob(globpath, function (err, params, file) {
+    if (err) {
+      return self.error(err);
+    }
     var buf = '\n';
     buf += 'exports.' + params.func_name + ' = function (' + params.func_arguments.join(', ') + ') {\n';
     buf += '  ' + params.body.split('\n').join('\n  ').replace(/^  $/g, '') + '\n';
@@ -102,7 +132,7 @@ cli.buildnpm = function(args, options) {
 cli.glob = function(globpath, cb) {
   glob(globpath, {}, function(err, files) {
     var names = [];
-    var map = {};
+    var map   = {};
     for (var i in files) {
       var file = files[i];
       var name = path.basename(file, '.js');
