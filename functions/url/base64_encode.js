@@ -11,7 +11,7 @@ function base64_encode(data) {
   // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
   // mozilla has this native
   // - but breaks in 2.0.0.12!
-  //if (typeof this.window['btoa'] === 'function') {
+  //if (typeof this.window.btoa === 'function') {
   //    return btoa(data);
   //}
   var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';

@@ -1,8 +1,8 @@
 function setlocale(category, locale) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   derived from: Blues at http://hacks.bluesmoon.info/strftime/strftime.js
-  // +   derived from: YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html
+  // +   original by: Blues at http://hacks.bluesmoon.info/strftime/strftime.js
+  // +   original by: YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html
   // -    depends on: getenv
   // %          note 1: Is extensible, but currently only implements locales en,
   // %          note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
@@ -159,7 +159,7 @@ function setlocale(category, locale) {
       },
       // Assuming distinction between numeric and monetary is thus:
       // See below for C locale
-      'LC_MONETARY': { // Based on Windows "english" (English_United States.1252) locale
+      'LC_MONETARY': { // original by Windows "english" (English_United States.1252) locale
         int_curr_symbol: 'USD',
         currency_symbol: '$',
         mon_decimal_point: '.',
@@ -183,7 +183,7 @@ function setlocale(category, locale) {
         // 0: parentheses surround quantity and curr. symbol; 1: sign precedes them; 2: sign follows them; 3: sign immed. precedes curr. symbol; 4: sign immed. succeeds curr. symbol
         n_sign_posn: 0 // see p_sign_posn
       },
-      'LC_NUMERIC': { // Based on Windows "english" (English_United States.1252) locale
+      'LC_NUMERIC': { // original by Windows "english" (English_United States.1252) locale
         decimal_point: '.',
         thousands_sep: ',',
         grouping: [3] // see mon_grouping, but for non-monetary values (use thousands_sep)
@@ -200,7 +200,7 @@ function setlocale(category, locale) {
     phpjs.locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z';
     phpjs.locales.en_US.LC_TIME.x = '%D';
     phpjs.locales.en_US.LC_TIME.X = '%r';
-    // The following are based on *nix settings
+    // The following are original by *nix settings
     phpjs.locales.en_US.LC_MONETARY.int_curr_symbol = 'USD ';
     phpjs.locales.en_US.LC_MONETARY.p_sign_posn = 1;
     phpjs.locales.en_US.LC_MONETARY.n_sign_posn = 1;

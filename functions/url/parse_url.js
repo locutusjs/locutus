@@ -5,7 +5,7 @@ function parse_url(str, component) {
   // + input by: Lorenzo Pisani
   // + input by: Tony
   // + improved by: Brett Zamir (http://brett-zamir.me)
-  // %          note: Based on http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+  // %          note: original by http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
   // %          note: blog post at http://blog.stevenlevithan.com/archives/parseuri
   // %          note: demo at http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
   // %          note: Does not replace invalid characters with '_' as in PHP, nor does it return false with

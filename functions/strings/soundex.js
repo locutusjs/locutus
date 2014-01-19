@@ -1,7 +1,7 @@
 function soundex(str) {
   // From: http://phpjs.org/functions
   // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // +    tweaked by: Jack
+  // +    improved by: Jack
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Onno Marsman
   // +      input by: Brett Zamir (http://brett-zamir.me)

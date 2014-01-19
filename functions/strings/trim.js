@@ -7,7 +7,7 @@ function trim(str, charlist) {
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: DxGx
   // +   improved by: Steven Levithan (http://blog.stevenlevithan.com)
-  // +    tweaked by: Jack
+  // +    improved by: Jack
   // +   bugfixed by: Onno Marsman
   // *     example 1: trim('    Kevin van Zonneveld    ');
   // *     returns 1: 'Kevin van Zonneveld'

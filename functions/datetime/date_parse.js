@@ -10,8 +10,8 @@ function date_parse(date) {
   // END REDUNDANT
 
   var ts,
-    warningsOffset = this.php_js.warnings ? this.php_js.warnings.length : null,
-    errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
+      warningsOffset = this.php_js.warnings ? this.php_js.warnings.length : null,
+      errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
 
   try {
     this.php_js.date_parse_state = true; // Allow strtotime to return a decimal (which it normally does not)

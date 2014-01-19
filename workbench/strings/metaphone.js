@@ -1,9 +1,9 @@
 function metaphone(str) {
-  // The code below is based on description from Wikipedia (http://en.wikipedia.org/wiki/Metaphone)
+  // The code below is original by description from Wikipedia (http://en.wikipedia.org/wiki/Metaphone)
   // There are some modifications applied, like
   // - changing the order of rules
   // - changing the rules to match PHP algorithm
-  // modifications are based on PHP metaphone source code
+  // modifications are original by PHP metaphone source code
 
   // changing the input string to lower case
   // all rules replace lower-case characters with upper-case, so following rules won't be applied to already computed parts

@@ -6,22 +6,33 @@ setup:
 	bundle exec rake setup_github_pages\[git@github.com:kvz/phpjs.git\] && \
 	cd .. ; \
 
-test:
+test: build
 	#node tests/cli.js --debug --abort # To abort at first failure
 	cd tests && npm install
-	node tests/cli.js --debug
+	node bin/phpjs.js --action test --debug
 
 # Apply code standards
 cleanup:
 	@[ -x `which gjslint` ] || sudo easy_install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
 	fixjsstyle \
 		--recurse ./ \
-		--exclude_directories _octopress,experimental,workbench,tests/node_modules,tools \
+		--exclude_directories _octopress,lib,bin,build,experimental,workbench,tests/node_modules,tools \
 		--max_line_length 100 \
 		--nojsdoc \
 		--error_trace \
 		--strict \
 		--jslint_error all
+
+npm:
+	node bin/phpjs.js --action buildnpm --output build/npm.js
+	ls -al build/npm.js
+	node build/npm.js
+	echo "Build success. "
+
+publish: npm
+	npm publish
+
+build: npm
 
 hook:
 	mkdir -p ~/.gittemplate/hooks
@@ -58,5 +69,8 @@ site-preview:
 	bundle exec rake generate && \
 	bundle exec rake preview ; \
 	cd ..
+
+nodejs:
+	./_tools/compile_node.sh
 
 .PHONY: site%

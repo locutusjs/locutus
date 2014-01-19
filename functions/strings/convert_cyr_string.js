@@ -5,7 +5,7 @@ function convert_cyr_string(str, from, to) {
   // %          note 1: code equivalents of the same numbers as in the from or
   // %          note 1: target character set; Note that neither the input or output
   // %          note 1: should be treated as actual Unicode, since the PHP function
-  // %          note 1: this is based on does not either
+  // %          note 1: this is original by does not either
   // %          note 2: One could easily represent (or convert the results) of a
   // %          note 2: string form as arrays of code points instead but since JavaScript
   // %          note 2: currently has no clear binary data type, we chose to use strings

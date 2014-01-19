@@ -4,8 +4,8 @@ function idate(format, timestamp) {
   // +      input by: Alex
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Theriault
-  // +  derived from: date
-  // +  derived from: gettimeofday
+  // +  original by: date
+  // +  original by: gettimeofday
   // *     example 1: idate('y', 1255633200);
   // *     returns 1: 9
   if (format === undefined) {
@@ -35,7 +35,7 @@ function idate(format, timestamp) {
       return date.getMinutes();
     case 'I':
       // capital 'i'
-      // Logic derived from getimeofday().
+      // Logic original by getimeofday().
       // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
       // If they are not equal, then DST is observed.
       a = date.getFullYear();

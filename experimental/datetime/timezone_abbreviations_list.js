@@ -4,9 +4,9 @@ function timezone_abbreviations_list() {
   // +      input by: ChaosNo1
   // +    revised by: Theriault
   // +    improved by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Based on timezonemap.h from PHP 5.3
+  // %        note 1: original by timezonemap.h from PHP 5.3
   // *     example 1: var list = timezone_abbreviations_list()
-  // *     example 1: list['acst'][0].timezone_id
+  // *     example 1: list.acst[0].timezone_id
   // *     returns 1: 'America/Porto_Acre'
   var list = {},
       i = 0,

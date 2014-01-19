@@ -24,6 +24,14 @@ function echo() {
   // *     example 1: echo('<div><p>abc</p><p>abc</p></div>');
   // *     returns 1: undefined
   // Fix: This function really needs to allow non-XHTML input (unless in true XHTML mode) as in jQuery
+
+  var isNode = typeof module !== 'undefined' && module.exports;
+
+  if (isNode) {
+    var args = Array.prototype.slice.call(arguments);
+    return console.log(args.join(' '));
+  }
+
   var arg = '',
       argc = arguments.length,
       argv = arguments,

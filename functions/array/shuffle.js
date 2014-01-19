@@ -24,6 +24,7 @@ function shuffle(inputArr) {
   // *     example 2: shuffle(data);
   // *     example 2: $result = data;
   // *     returns 2: {5:'a', 'q':5, 3:'c', 2:'3', 4:5}
+
   var valArr = [],
       k = '',
       i = 0,

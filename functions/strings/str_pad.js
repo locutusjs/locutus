@@ -1,7 +1,7 @@
 function str_pad(input, pad_length, pad_string, pad_type) {
   // From: http://phpjs.org/functions
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // + namespaced by: Michael White (http://getsprink.com)
+  // + improved by: Michael White (http://getsprink.com)
   // +      input by: Marco van Oort
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT');

@@ -1,8 +1,8 @@
 function sprintf() {
   // From: http://phpjs.org/functions
   // +   original by: Ash Searle (http://hexmen.com/blog/)
-  // + namespaced by: Michael White (http://getsprink.com)
-  // +    tweaked by: Jack
+  // + improved by: Michael White (http://getsprink.com)
+  // +    improved by: Jack
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +      input by: Paulo Freitas
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

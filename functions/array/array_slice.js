@@ -9,6 +9,7 @@ function array_slice(arr, offst, lgth, preserve_keys) {
   // *     returns 1: {0: 'c', 1: 'd'}
   // *     example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true);
   // *     returns 2: {2: 'c', 3: 'd'}
+
   /*
   if ('callee' in arr && 'length' in arr) {
     arr = Array.prototype.slice.call(arr);

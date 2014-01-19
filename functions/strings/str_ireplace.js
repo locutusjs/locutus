@@ -3,7 +3,7 @@ function str_ireplace(search, replace, subject) {
   // +   original by: Martijn Wieringa
   // +      input by: penutbutterjelly
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    tweaked by: Jack
+  // +    improved by: Jack
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   bugfixed by: Onno Marsman
   // +      input by: Brett Zamir (http://brett-zamir.me)

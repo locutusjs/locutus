@@ -1,7 +1,7 @@
 function count_chars(str, mode) {
   // From: http://phpjs.org/functions
   // +   original by: Ates Goral (http://magnetiq.com)
-  // +    tweaked by: Jack
+  // +    improved by: Jack
   // +   bugfixed by: Onno Marsman
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

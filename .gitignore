@@ -1,8 +1,9 @@
+npm-debug.log
 tools/_temp/*
 _octopress/_deploy
 nbproject
 gitup.dat
 .project
 .gitup.dat
-tests/node_modules/
+node_modules/
 .DS_Store

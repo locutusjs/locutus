@@ -2,7 +2,7 @@ function max() {
   // From: http://phpjs.org/functions
   // +   original by: Onno Marsman
   // +    revised by: Onno Marsman
-  // +    tweaked by: Jack
+  // +    improved by: Jack
   // %          note: Long code cause we're aiming for maximum PHP compatibility
   // *     example 1: max(1, 3, 5, 6, 7);
   // *     returns 1: 7

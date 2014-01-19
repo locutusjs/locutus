@@ -11,7 +11,7 @@ function date(format, timestamp) {
   // +      input by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Theriault
-  // +  derived from: gettimeofday
+  // +  original by: gettimeofday
   // +      input by: majak
   // +   bugfixed by: majak
   // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

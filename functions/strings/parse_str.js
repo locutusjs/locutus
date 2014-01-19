@@ -2,7 +2,7 @@ function parse_str(str, array) {
   // From: http://phpjs.org/functions
   // +      original by: Cagri Ekin
   // +      improved by: Michael White (http://getsprink.com)
-  // +       tweaked by: Jack
+  // +       improved by: Jack
   // +      bugfixed by: Onno Marsman
   // + reimplemented by: stag019
   // +      bugfixed by: Brett Zamir (http://brett-zamir.me)
