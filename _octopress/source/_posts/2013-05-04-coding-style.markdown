@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Coding style"
+title: "Coding Style"
 date: 2013-05-04 18:01
 comments: true
 categories: [coding style, convention]
