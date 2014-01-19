@@ -135,9 +135,9 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
         }
       }
     }
-	while (linePos > 0 && linePos < origLines.length) {
-	  newStrArr[newStrArr.length] = origLines[linePos++];
-	}
+    while (linePos < origLines.length) {
+      newStrArr[newStrArr.length] = origLines[linePos++];
+    }
   } else if (flags & OPTS.XDIFF_PATCH_REVERSE) { // Only differs from above by a few lines
     for (i = 0, ll = lines.length; i < ll; i++) {
       ranges = lines[i].match(rangeExp);
@@ -168,9 +168,9 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
         }
       }
     }
-	while (linePos > 0 && linePos < origLines.length) {
-	  newStrArr[newStrArr.length] = origLines[linePos++];
-	}
+    while (linePos < origLines.length) {
+      newStrArr[newStrArr.length] = origLines[linePos++];
+    }
   }
   if (typeof error === 'string') {
     this.window[error] = errors;
