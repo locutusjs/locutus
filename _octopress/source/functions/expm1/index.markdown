@@ -15,12 +15,13 @@ alias:
 A JavaScript equivalent of PHP's expm1
 
 {% codeblock math/expm1.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/expm1.js raw on github %}
-function expm1 (x) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %          note 1: Precision 'n' can be adjusted as desired
-  // *     example 1: expm1(1e-15);
-  // *     returns 1: 1.0000000000000007e-15
+function expm1(x) {
+  //  discuss at: http://phpjs.org/functions/expm1/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: Precision 'n' can be adjusted as desired
+  //   example 1: expm1(1e-15);
+  //   returns 1: 1.0000000000000007e-15
+
   var ret = 0,
     n = 50; // degree of precision
   var factorial = function factorial(n) {
@@ -49,17 +50,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/expm1.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-expm1(1e-15);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-1.0000000000000007e-15
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

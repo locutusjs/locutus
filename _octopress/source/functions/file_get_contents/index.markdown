@@ -15,29 +15,29 @@ alias:
 A JavaScript equivalent of PHP's file_get_contents
 
 {% codeblock filesystem/file_get_contents.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/file_get_contents.js raw on github %}
-function file_get_contents (url, flags, context, offset, maxLen) {
-  // From: http://phpjs.org/functions
-  // +   original by: Legaev Andrey
-  // +      input by: Jani Hartikainen
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Raphael (Ao) RUDLER
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain without modifications.
-  // %        note 2: Synchronous by default (as in PHP) so may lock up browser. Can
-  // %        note 2: get async by setting a custom "phpjs.async" property to true and "notification" for an
-  // %        note 2: optional callback (both as context params, with responseText, and other JS-specific
-  // %        note 2: request properties available via 'this'). Note that file_get_contents() will not return the text
-  // %        note 2: in such a case (use this.responseText within the callback). Or, consider using
-  // %        note 2: jQuery's: $('#divId').load('http://url') instead.
-  // %        note 3: The context argument is only implemented for http, and only partially (see below for
-  // %        note 3: "Presently unimplemented HTTP context options"); also the arguments passed to
-  // %        note 3: notification are incomplete
-  // *          test: skip
-  // *     example 1: var buf file_get_contents('http://google.com');
-  // *     example 1: buf.indexOf('Google') !== -1
-  // *     returns 1: true
-  // Note: could also be made to optionally add to global $http_response_header as per http://php.net/manual/en/reserved.variables.httpresponseheader.php
+function file_get_contents(url, flags, context, offset, maxLen) {
+  //  discuss at: http://phpjs.org/functions/file_get_contents/
+  // original by: Legaev Andrey
+  //    input by: Jani Hartikainen
+  //    input by: Raphael (Ao) RUDLER
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //        note: This function uses XmlHttpRequest and cannot retrieve resource from different domain without modifications.
+  //        note: Synchronous by default (as in PHP) so may lock up browser. Can
+  //        note: get async by setting a custom "phpjs.async" property to true and "notification" for an
+  //        note: optional callback (both as context params, with responseText, and other JS-specific
+  //        note: request properties available via 'this'). Note that file_get_contents() will not return the text
+  //        note: in such a case (use this.responseText within the callback). Or, consider using
+  //        note: jQuery's: $('#divId').load('http://url') instead.
+  //        note: The context argument is only implemented for http, and only partially (see below for
+  //        note: "Presently unimplemented HTTP context options"); also the arguments passed to
+  //        note: notification are incomplete
+  //        test: skip
+  //   example 1: var buf file_get_contents('http://google.com');
+  //   example 1: buf.indexOf('Google') !== -1
+  //   returns 1: true
+
   var tmp, headers = [],
     newTmp = [],
     k = 0,
@@ -47,7 +47,7 @@ function file_get_contents (url, flags, context, offset, maxLen) {
     flagNames = 0,
     content = null,
     http_stream = false;
-  var func = function (value) {
+  var func = function(value) {
     return value.substring(1) !== '';
   };
 
@@ -90,8 +90,9 @@ function file_get_contents (url, flags, context, offset, maxLen) {
     url = href.slice(0, pathPos + 1) + url;
   }
 
+  var http_options;
   if (context) {
-    var http_options = context.stream_options && context.stream_options.http;
+    http_options = context.stream_options && context.stream_options.http;
     http_stream = !! http_options;
   }
 
@@ -105,7 +106,8 @@ function file_get_contents (url, flags, context, offset, maxLen) {
     var async = !! (context && context.stream_params && context.stream_params['phpjs.async']);
 
     if (ini['phpjs.ajaxBypassCache'] && ini['phpjs.ajaxBypassCache'].local_value) {
-      url += (url.match(/\?/) == null ? "?" : "&") + (new Date()).getTime(); // Give optional means of forcing bypass of cache
+      url += (url.match(/\?/) == null ? '?' : '&') + (new Date())
+        .getTime(); // Give optional means of forcing bypass of cache
     }
 
     req.open(method, url, async);
@@ -114,16 +116,16 @@ function file_get_contents (url, flags, context, offset, maxLen) {
       if (typeof notification === 'function') {
         // Fix: make work with req.addEventListener if available: https://developer.mozilla.org/En/Using_XMLHttpRequest
         if (0 && req.addEventListener) { // Unimplemented so don't allow to get here
-/*
+          /*
           req.addEventListener('progress', updateProgress, false);
           req.addEventListener('load', transferComplete, false);
           req.addEventListener('error', transferFailed, false);
           req.addEventListener('abort', transferCanceled, false);
           */
         } else {
-          req.onreadystatechange = function (aEvt) { // aEvt has stopPropagation(), preventDefault(); see https://developer.mozilla.org/en/NsIDOMEvent
+          req.onreadystatechange = function(aEvt) { // aEvt has stopPropagation(), preventDefault(); see https://developer.mozilla.org/en/NsIDOMEvent
             // Other XMLHttpRequest properties: multipart, responseXML, status, statusText, upload, withCredentials
-/*
+            /*
   PHP Constants:
   STREAM_NOTIFY_RESOLVE   1       A remote address required for this stream has been resolved, or the resolution failed. See severity  for an indication of which happened.
   STREAM_NOTIFY_CONNECT   2     A connection with an external resource has been established.
@@ -152,38 +154,38 @@ function file_get_contents (url, flags, context, offset, maxLen) {
             // Need to add message, etc.
             var bytes_transferred;
             switch (req.readyState) {
-            case 0:
-              //     UNINITIALIZED     open() has not been called yet.
-              notification.call(objContext, 0, 0, '', 0, 0, 0);
-              break;
-            case 1:
-              //     LOADING     send() has not been called yet.
-              notification.call(objContext, 0, 0, '', 0, 0, 0);
-              break;
-            case 2:
-              //     LOADED     send() has been called, and headers and status are available.
-              notification.call(objContext, 0, 0, '', 0, 0, 0);
-              break;
-            case 3:
-              //     INTERACTIVE     Downloading; responseText holds partial data.
-              bytes_transferred = req.responseText.length * 2; // One character is two bytes
-              notification.call(objContext, 7, 0, '', 0, bytes_transferred, 0);
-              break;
-            case 4:
-              //     COMPLETED     The operation is complete.
-              if (req.status >= 200 && req.status < 400) {
+              case 0:
+                //     UNINITIALIZED     open() has not been called yet.
+                notification.call(objContext, 0, 0, '', 0, 0, 0);
+                break;
+              case 1:
+                //     LOADING     send() has not been called yet.
+                notification.call(objContext, 0, 0, '', 0, 0, 0);
+                break;
+              case 2:
+                //     LOADED     send() has been called, and headers and status are available.
+                notification.call(objContext, 0, 0, '', 0, 0, 0);
+                break;
+              case 3:
+                //     INTERACTIVE     Downloading; responseText holds partial data.
                 bytes_transferred = req.responseText.length * 2; // One character is two bytes
-                notification.call(objContext, 8, 0, '', req.status, bytes_transferred, 0);
-              } else if (req.status === 403) { // Fix: These two are finished except for message
-                notification.call(objContext, 10, 2, '', req.status, 0, 0);
-              } else { // Errors
-                notification.call(objContext, 9, 2, '', req.status, 0, 0);
-              }
-              break;
-            default:
-              throw 'Unrecognized ready state for file_get_contents()';
+                notification.call(objContext, 7, 0, '', 0, bytes_transferred, 0);
+                break;
+              case 4:
+                //     COMPLETED     The operation is complete.
+                if (req.status >= 200 && req.status < 400) {
+                  bytes_transferred = req.responseText.length * 2; // One character is two bytes
+                  notification.call(objContext, 8, 0, '', req.status, bytes_transferred, 0);
+                } else if (req.status === 403) { // Fix: These two are finished except for message
+                  notification.call(objContext, 10, 2, '', req.status, 0, 0);
+                } else { // Errors
+                  notification.call(objContext, 9, 2, '', req.status, 0, 0);
+                }
+                break;
+              default:
+                throw 'Unrecognized ready state for file_get_contents()';
             }
-          }
+          };
         }
       }
     }
@@ -207,7 +209,7 @@ function file_get_contents (url, flags, context, offset, maxLen) {
         }
       }
       content = http_options.content || null;
-/*
+      /*
       // Presently unimplemented HTTP context options
       var request_fulluri = http_options.request_fulluri || false; // When set to TRUE, the entire URI will be used when constructing the request. (i.e. GET http://www.example.com/path/to/file.html HTTP/1.0). While this is a non-standard request format, some proxy servers require it.
       var max_redirects = http_options.max_redirects || 20; // The max number of redirects to follow. Value 1 or less means that no redirects are followed.
@@ -223,11 +225,14 @@ function file_get_contents (url, flags, context, offset, maxLen) {
         content_type = http_options['phpjs.override']; // We use this, e.g., in gettext-related functions if character set
         //   overridden earlier by bind_textdomain_codeset()
       } else {
-        var encoding = (ini['unicode.stream_encoding'] && ini['unicode.stream_encoding'].local_value) || 'UTF-8';
-        if (http_options && http_options.header && (/^content-type:/im).test(http_options.header)) { // We'll assume a content-type expects its own specified encoding if present
+        var encoding = (ini['unicode.stream_encoding'] && ini['unicode.stream_encoding'].local_value) ||
+          'UTF-8';
+        if (http_options && http_options.header && (/^content-type:/im)
+          .test(http_options.header)) { // We'll assume a content-type expects its own specified encoding if present
           content_type = http_options.header.match(/^content-type:\s*(.*)$/im)[1]; // We let any header encoding stand
         }
-        if (!(/;\s*charset=/).test(content_type)) { // If no encoding
+        if (!(/;\s*charset=/)
+          .test(content_type)) { // If no encoding
           content_type += '; charset=' + encoding;
         }
       }
@@ -290,18 +295,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/filesystem/file_get_contents.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-var buf file_get_contents('http://google.com');
-buf.indexOf('Google') !== -1
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
 
 
 ### Other PHP functions in the filesystem extension

@@ -15,20 +15,22 @@ alias:
 A JavaScript equivalent of PHP's checkdate
 
 {% codeblock datetime/checkdate.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/checkdate.js raw on github %}
-function checkdate (m, d, y) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Pyerre
-  // +   improved by: Theriault
-  // *     example 1: checkdate(12, 31, 2000);
-  // *     returns 1: true
-  // *     example 2: checkdate(2, 29, 2001);
-  // *     returns 2: false
-  // *     example 3: checkdate(3, 31, 2008);
-  // *     returns 3: true
-  // *     example 4: checkdate(1, 390, 2000);
-  // *     returns 4: false
-  return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0)).getDate();
+function checkdate(m, d, y) {
+  //  discuss at: http://phpjs.org/functions/checkdate/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Pyerre
+  // improved by: Theriault
+  //   example 1: checkdate(12, 31, 2000);
+  //   returns 1: true
+  //   example 2: checkdate(2, 29, 2001);
+  //   returns 2: false
+  //   example 3: checkdate(3, 31, 2008);
+  //   returns 3: true
+  //   example 4: checkdate(1, 390, 2000);
+  //   returns 4: false
+
+  return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0))
+    .getDate();
 }
 {% endcodeblock %}
 
@@ -43,39 +45,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/datetime/checkdate.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-checkdate(12, 31, 2000);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-checkdate(2, 29, 2001);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-false
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-checkdate(3, 31, 2008);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
 
 
 ### Other PHP functions in the datetime extension

@@ -15,17 +15,17 @@ alias:
 A JavaScript equivalent of PHP's prev
 
 {% codeblock array/prev.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/prev.js raw on github %}
-function prev (arr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Uses global: php_js to store the array pointer
-  // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
-  // *     example 1: prev(transport);
-  // *     returns 1: false
-  // BEGIN REDUNDANT
+function prev(arr) {
+  //  discuss at: http://phpjs.org/functions/prev/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: Uses global: php_js to store the array pointer
+  //   example 1: transport = ['foot', 'bike', 'car', 'plane'];
+  //   example 1: prev(transport);
+  //   returns 1: false
+
   this.php_js = this.php_js || {};
   this.php_js.pointers = this.php_js.pointers || [];
-  var indexOf = function (value) {
+  var indexOf = function(value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
         return i;
@@ -73,18 +73,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/prev.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-transport = ['foot', 'bike', 'car', 'plane'];
-prev(transport);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-false
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

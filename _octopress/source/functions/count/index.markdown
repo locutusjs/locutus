@@ -15,18 +15,19 @@ alias:
 A JavaScript equivalent of PHP's count
 
 {% codeblock array/count.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/count.js raw on github %}
-function count (mixed_var, mode) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: Waldo Malqui Silva
-  // +   bugfixed by: Soren Hansen
-  // +      input by: merabi
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Olivier Louvignes (http://mg-crea.com/)
-  // *     example 1: count([[0,0],[0,-4]], 'COUNT_RECURSIVE');
-  // *     returns 1: 6
-  // *     example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
-  // *     returns 2: 6
+function count(mixed_var, mode) {
+  //  discuss at: http://phpjs.org/functions/count/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Waldo Malqui Silva
+  //    input by: merabi
+  // bugfixed by: Soren Hansen
+  // bugfixed by: Olivier Louvignes (http://mg-crea.com/)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: count([[0,0],[0,-4]], 'COUNT_RECURSIVE');
+  //   returns 1: 6
+  //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
+  //   returns 2: 6
+
   var key, cnt = 0;
 
   if (mixed_var === null || typeof mixed_var === 'undefined') {
@@ -45,7 +46,8 @@ function count (mixed_var, mode) {
   for (key in mixed_var) {
     if (mixed_var.hasOwnProperty(key)) {
       cnt++;
-      if (mode == 1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor === Object)) {
+      if (mode == 1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor ===
+        Object)) {
         cnt += this.count(mixed_var[key], 1);
       }
     }
@@ -66,28 +68,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/count.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-count([[0,0],[0,-4]], 'COUNT_RECURSIVE');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-6
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-6
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

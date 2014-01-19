@@ -15,14 +15,16 @@ alias:
 A JavaScript equivalent of PHP's hexdec
 
 {% codeblock math/hexdec.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/hexdec.js raw on github %}
-function hexdec (hex_string) {
-  // From: http://phpjs.org/functions
-  // +   original by: Philippe Baumann
-  // *     example 1: hexdec('that');
-  // *     returns 1: 10
-  // *     example 2: hexdec('a0');
-  // *     returns 2: 160
-  hex_string = (hex_string + '').replace(/[^a-f0-9]/gi, '');
+function hexdec(hex_string) {
+  //  discuss at: http://phpjs.org/functions/hexdec/
+  // original by: Philippe Baumann
+  //   example 1: hexdec('that');
+  //   returns 1: 10
+  //   example 2: hexdec('a0');
+  //   returns 2: 160
+
+  hex_string = (hex_string + '')
+    .replace(/[^a-f0-9]/gi, '');
   return parseInt(hex_string, 16);
 }
 {% endcodeblock %}
@@ -38,28 +40,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/hexdec.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-hexdec('that');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-10
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-hexdec('a0');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-160
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

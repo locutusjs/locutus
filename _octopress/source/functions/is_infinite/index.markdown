@@ -15,15 +15,16 @@ alias:
 A JavaScript equivalent of PHP's is_infinite
 
 {% codeblock math/is_infinite.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/is_infinite.js raw on github %}
-function is_infinite (val) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: is_infinite(Infinity);
-  // *     returns 1: true
-  // *     example 2: is_infinite(-Infinity);
-  // *     returns 2: true
-  // *     example 3: is_infinite(0);
-  // *     returns 3: false
+function is_infinite(val) {
+  //  discuss at: http://phpjs.org/functions/is_infinite/
+  // original by: Onno Marsman
+  //   example 1: is_infinite(Infinity);
+  //   returns 1: true
+  //   example 2: is_infinite(-Infinity);
+  //   returns 2: true
+  //   example 3: is_infinite(0);
+  //   returns 3: false
+
   var warningType = '';
 
   if (val === Infinity || val === -Infinity) {
@@ -56,39 +57,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/is_infinite.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-is_infinite(Infinity);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-is_infinite(-Infinity);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-is_infinite(0);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-false
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

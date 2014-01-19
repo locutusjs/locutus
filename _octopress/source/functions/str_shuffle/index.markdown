@@ -15,12 +15,12 @@ alias:
 A JavaScript equivalent of PHP's str_shuffle
 
 {% codeblock strings/str_shuffle.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_shuffle.js raw on github %}
-function str_shuffle (str) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: shuffled = str_shuffle("abcdef");
-  // *     example 1: shuffled.length
-  // *     returns 1: 6
+function str_shuffle(str) {
+  //  discuss at: http://phpjs.org/functions/str_shuffle/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: shuffled = str_shuffle("abcdef");
+  //   example 1: shuffled.length
+  //   returns 1: 6
 
   if (arguments.length === 0) {
     throw 'Wrong parameter count for str_shuffle()';
@@ -32,7 +32,8 @@ function str_shuffle (str) {
 
   str += '';
 
-  var newStr = '', rand, i = str.length;
+  var newStr = '',
+    rand, i = str.length;
 
   while (i) {
     rand = Math.floor(Math.random() * i);
@@ -56,18 +57,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/str_shuffle.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-shuffled = str_shuffle("abcdef");
-shuffled.length
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-6
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

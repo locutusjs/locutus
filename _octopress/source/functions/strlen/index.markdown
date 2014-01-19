@@ -15,31 +15,34 @@ alias:
 A JavaScript equivalent of PHP's strlen
 
 {% codeblock strings/strlen.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strlen.js raw on github %}
-function strlen (string) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Sakimori
-  // +      input by: Kirk Strobeck
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +    revised by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: May look like overkill, but in order to be truly faithful to handling all Unicode
-  // %        note 1: characters and to this function in PHP which does not count the number of bytes
-  // %        note 1: but counts the number of characters, something like this is really necessary.
-  // *     example 1: strlen('Kevin van Zonneveld');
-  // *     returns 1: 19
-  // *     example 2: strlen('A\ud87e\udc04Z');
-  // *     returns 2: 3
+function strlen(string) {
+  //  discuss at: http://phpjs.org/functions/strlen/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Sakimori
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Kirk Strobeck
+  // bugfixed by: Onno Marsman
+  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //        note: May look like overkill, but in order to be truly faithful to handling all Unicode
+  //        note: characters and to this function in PHP which does not count the number of bytes
+  //        note: but counts the number of characters, something like this is really necessary.
+  //   example 1: strlen('Kevin van Zonneveld');
+  //   returns 1: 19
+  //   example 2: ini_set('unicode.semantics', 'on');
+  //   example 2: strlen('A\ud87e\udc04Z');
+  //   returns 2: 3
+
   var str = string + '';
   var i = 0,
     chr = '',
     lgth = 0;
 
-  if (!this.php_js || !this.php_js.ini || !this.php_js.ini['unicode.semantics'] || this.php_js.ini['unicode.semantics'].local_value.toLowerCase() !== 'on') {
+  if (!this.php_js || !this.php_js.ini || !this.php_js.ini['unicode.semantics'] || this.php_js.ini[
+    'unicode.semantics'].local_value.toLowerCase() !== 'on') {
     return string.length;
   }
 
-  var getWholeChar = function (str, i) {
+  var getWholeChar = function(str, i) {
     var code = str.charCodeAt(i);
     var next = '',
       prev = '';
@@ -86,28 +89,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strlen.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-strlen('Kevin van Zonneveld');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-19
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-strlen('A\ud87e\udc04Z');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-3
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

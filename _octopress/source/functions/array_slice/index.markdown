@@ -15,18 +15,19 @@ alias:
 A JavaScript equivalent of PHP's array_slice
 
 {% codeblock array/array_slice.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_slice.js raw on github %}
-function array_slice (arr, offst, lgth, preserve_keys) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: is_int
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // %          note: Relies on is_int because !isNaN accepts floats
-  // *     example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1);
-  // *     returns 1: {0: 'c', 1: 'd'}
-  // *     example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true);
-  // *     returns 2: {2: 'c', 3: 'd'}
-/*
+function array_slice(arr, offst, lgth, preserve_keys) {
+  //  discuss at: http://phpjs.org/functions/array_slice/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: is_int
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //        note: Relies on is_int because !isNaN accepts floats
+  //   example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1);
+  //   returns 1: {0: 'c', 1: 'd'}
+  //   example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true);
+  //   returns 2: {2: 'c', 3: 'd'}
+
+  /*
   if ('callee' in arr && 'length' in arr) {
     arr = Array.prototype.slice.call(arr);
   }
@@ -96,28 +97,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_slice.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_slice(["a", "b", "c", "d", "e"], 2, -1);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{0: 'c', 1: 'd'}
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-array_slice(["a", "b", "c", "d", "e"], 2, -1, true);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{2: 'c', 3: 'd'}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

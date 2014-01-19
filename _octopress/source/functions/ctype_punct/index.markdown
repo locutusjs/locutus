@@ -15,12 +15,13 @@ alias:
 A JavaScript equivalent of PHP's ctype_punct
 
 {% codeblock ctype/ctype_punct.js lang:js https://raw.github.com/kvz/phpjs/master/functions/ctype/ctype_punct.js raw on github %}
-function ctype_punct (text) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: setlocale
-  // *     example 1: ctype_punct('!?');
-  // *     returns 1: true
+function ctype_punct(text) {
+  //  discuss at: http://phpjs.org/functions/ctype_punct/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: setlocale
+  //   example 1: ctype_punct('!?');
+  //   returns 1: true
+
   if (typeof text !== 'string') {
     return false;
   }
@@ -42,17 +43,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_punct.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-ctype_punct('!?');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
 
 
 ### Other PHP functions in the ctype extension

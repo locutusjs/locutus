@@ -15,26 +15,26 @@ alias:
 A JavaScript equivalent of PHP's htmlspecialchars
 
 {% codeblock strings/htmlspecialchars.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/htmlspecialchars.js raw on github %}
-function htmlspecialchars (string, quote_style, charset, double_encode) {
-  // From: http://phpjs.org/functions
-  // +   original by: Mirek Slugen
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Nathan
-  // +   bugfixed by: Arno
-  // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: Ratheous
-  // +      input by: Mailfaker (http://www.weedem.fr/)
-  // +      reimplemented by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: felix
-  // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: charset argument not supported
-  // *     example 1: htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
-  // *     returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
-  // *     example 2: htmlspecialchars("ab\"c'd", ['ENT_NOQUOTES', 'ENT_QUOTES']);
-  // *     returns 2: 'ab"c&#039;d'
-  // *     example 3: htmlspecialchars('my "&entity;" is still here', null, null, false);
-  // *     returns 3: 'my &quot;&entity;&quot; is still here'
+function htmlspecialchars(string, quote_style, charset, double_encode) {
+  //       discuss at: http://phpjs.org/functions/htmlspecialchars/
+  //      original by: Mirek Slugen
+  //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      bugfixed by: Nathan
+  //      bugfixed by: Arno
+  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //       revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //         input by: Ratheous
+  //         input by: Mailfaker (http://www.weedem.fr/)
+  //         input by: felix
+  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  //             note: charset argument not supported
+  //        example 1: htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
+  //        returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
+  //        example 2: htmlspecialchars("ab\"c'd", ['ENT_NOQUOTES', 'ENT_QUOTES']);
+  //        returns 2: 'ab"c&#039;d'
+  //        example 3: htmlspecialchars('my "&entity;" is still here', null, null, false);
+  //        returns 3: 'my &quot;&entity;&quot; is still here'
 
   var optTemp = 0,
     i = 0,
@@ -46,7 +46,8 @@ function htmlspecialchars (string, quote_style, charset, double_encode) {
   if (double_encode !== false) { // Put this first to avoid double-encoding
     string = string.replace(/&/g, '&amp;');
   }
-  string = string.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  string = string.replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 
   var OPTS = {
     'ENT_NOQUOTES': 0,
@@ -65,8 +66,7 @@ function htmlspecialchars (string, quote_style, charset, double_encode) {
       // Resolve string input to bitwise e.g. 'ENT_IGNORE' becomes 4
       if (OPTS[quote_style[i]] === 0) {
         noquotes = true;
-      }
-      else if (OPTS[quote_style[i]]) {
+      } else if (OPTS[quote_style[i]]) {
         optTemp = optTemp | OPTS[quote_style[i]];
       }
     }
@@ -94,39 +94,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/htmlspecialchars.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-htmlspecialchars("ab\"c'd", ['ENT_NOQUOTES', 'ENT_QUOTES']);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'ab"c&#039;d'
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-htmlspecialchars('my "&entity;" is still here', null, null, false);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'my &quot;&entity;&quot; is still here'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

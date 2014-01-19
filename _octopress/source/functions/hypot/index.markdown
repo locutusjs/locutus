@@ -15,13 +15,14 @@ alias:
 A JavaScript equivalent of PHP's hypot
 
 {% codeblock math/hypot.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/hypot.js raw on github %}
-function hypot (x, y) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: hypot(3, 4);
-  // *     returns 1: 5
-  // *     example 2: hypot([], 'a');
-  // *     returns 2: 0
+function hypot(x, y) {
+  //  discuss at: http://phpjs.org/functions/hypot/
+  // original by: Onno Marsman
+  //   example 1: hypot(3, 4);
+  //   returns 1: 5
+  //   example 2: hypot([], 'a');
+  //   returns 2: 0
+
   return Math.sqrt(x * x + y * y) || 0;
 }
 {% endcodeblock %}
@@ -37,28 +38,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/hypot.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-hypot(3, 4);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-5
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-hypot([], 'a');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-0
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

@@ -15,12 +15,13 @@ alias:
 A JavaScript equivalent of PHP's ctype_print
 
 {% codeblock ctype/ctype_print.js lang:js https://raw.github.com/kvz/phpjs/master/functions/ctype/ctype_print.js raw on github %}
-function ctype_print (text) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: setlocale
-  // *     example 1: ctype_print('AbC!#12');
-  // *     returns 1: true
+function ctype_print(text) {
+  //  discuss at: http://phpjs.org/functions/ctype_print/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: setlocale
+  //   example 1: ctype_print('AbC!#12');
+  //   returns 1: true
+
   if (typeof text !== 'string') {
     return false;
   }
@@ -42,17 +43,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_print.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-ctype_print('AbC!#12');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
 
 
 ### Other PHP functions in the ctype extension

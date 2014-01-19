@@ -15,16 +15,17 @@ alias:
 A JavaScript equivalent of PHP's implode
 
 {% codeblock strings/implode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/implode.js raw on github %}
-function implode (glue, pieces) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Waldo Malqui Silva
-  // +   improved by: Itsacon (http://www.itsacon.net/)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: implode(' ', ['Kevin', 'van', 'Zonneveld']);
-  // *     returns 1: 'Kevin van Zonneveld'
-  // *     example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'});
-  // *     returns 2: 'Kevin van Zonneveld'
+function implode(glue, pieces) {
+  //  discuss at: http://phpjs.org/functions/implode/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Waldo Malqui Silva
+  // improved by: Itsacon (http://www.itsacon.net/)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: implode(' ', ['Kevin', 'van', 'Zonneveld']);
+  //   returns 1: 'Kevin van Zonneveld'
+  //   example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'});
+  //   returns 2: 'Kevin van Zonneveld'
+
   var i = '',
     retVal = '',
     tGlue = '';
@@ -57,28 +58,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/implode.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-implode(' ', ['Kevin', 'van', 'Zonneveld']);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Kevin van Zonneveld'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-implode(' ', {first:'Kevin', last: 'van Zonneveld'});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Kevin van Zonneveld'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

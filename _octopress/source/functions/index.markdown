@@ -365,6 +365,7 @@ these functions there for a reason.
  - [is_string](/functions/is_string)
  - [is_unicode](/functions/is_unicode)
  - [isset](/functions/isset)
+ - [print_r](/functions/print_r)
  - [serialize](/functions/serialize)
  - [settype](/functions/settype)
  - [strval](/functions/strval)

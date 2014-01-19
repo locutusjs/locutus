@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's tan
 
 {% codeblock math/tan.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/tan.js raw on github %}
-function tan (arg) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: tan(8723321.4);
-  // *     returns 1: 5.4251848798444815
+function tan(arg) {
+  //  discuss at: http://phpjs.org/functions/tan/
+  // original by: Onno Marsman
+  //   example 1: tan(8723321.4);
+  //   returns 1: 5.4251848798448234
+
   return Math.tan(arg);
 }
 {% endcodeblock %}
@@ -35,17 +36,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/tan.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-tan(8723321.4);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-5.4251848798444815
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

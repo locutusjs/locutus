@@ -15,13 +15,15 @@ alias:
 A JavaScript equivalent of PHP's microtime
 
 {% codeblock datetime/microtime.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/microtime.js raw on github %}
-function microtime (get_as_float) {
-  // From: http://phpjs.org/functions
-  // +   original by: Paulo Freitas
-  // *     example 1: timeStamp = microtime(true);
-  // *     example 1: timeStamp > 1000000000 && timeStamp < 2000000000
-  // *     returns 1: true
-  var now = new Date().getTime() / 1000;
+function microtime(get_as_float) {
+  //  discuss at: http://phpjs.org/functions/microtime/
+  // original by: Paulo Freitas
+  //   example 1: timeStamp = microtime(true);
+  //   example 1: timeStamp > 1000000000 && timeStamp < 2000000000
+  //   returns 1: true
+
+  var now = new Date()
+    .getTime() / 1000;
   var s = parseInt(now, 10);
 
   return (get_as_float) ? now : (Math.round((now - s) * 1000) / 1000) + ' ' + s;
@@ -39,18 +41,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/datetime/microtime.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-timeStamp = microtime(true);
-timeStamp > 1000000000 && timeStamp < 2000000000
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
 
 
 ### Other PHP functions in the datetime extension

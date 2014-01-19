@@ -15,25 +15,27 @@ alias:
 A JavaScript equivalent of PHP's array_filter
 
 {% codeblock array/array_filter.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_filter.js raw on github %}
-function array_filter (arr, func) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: max4ever
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Takes a function as an argument, not a function's name
-  // *     example 1: var odd = function (num) {return (num & 1);};
-  // *     example 1: array_filter({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}, odd);
-  // *     returns 1: {"a": 1, "c": 3, "e": 5}
-  // *     example 2: var even = function (num) {return (!(num & 1));}
-  // *     example 2: array_filter([6, 7, 8, 9, 10, 11, 12], even);
-  // *     returns 2: {0: 6, 2: 8, 4: 10, 6: 12}
-  // *     example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined});
-  // *     returns 3: {"a":1, "c":-1};
+function array_filter(arr, func) {
+  //  discuss at: http://phpjs.org/functions/array_filter/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //    input by: max4ever
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //        note: Takes a function as an argument, not a function's name
+  //   example 1: var odd = function (num) {return (num & 1);};
+  //   example 1: array_filter({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}, odd);
+  //   returns 1: {"a": 1, "c": 3, "e": 5}
+  //   example 2: var even = function (num) {return (!(num & 1));}
+  //   example 2: array_filter([6, 7, 8, 9, 10, 11, 12], even);
+  //   returns 2: {0: 6, 2: 8, 4: 10, 6: 12}
+  //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined});
+  //   returns 3: {"a":1, "c":-1};
 
   var retObj = {},
     k;
 
-  func = func || function (v) { return v; };
+  func = func || function(v) {
+    return v;
+  };
 
   // Fix: Issue #73
   if (Object.prototype.toString.call(arr) === '[object Array]') {
@@ -61,41 +63,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_filter.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-var odd = function (num) {return (num & 1);};
-array_filter({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}, odd);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{"a": 1, "c": 3, "e": 5}
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-var even = function (num) {return (!(num & 1));}
-array_filter([6, 7, 8, 9, 10, 11, 12], even);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{0: 6, 2: 8, 4: 10, 6: 12}
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{"a":1, "c":-1};
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

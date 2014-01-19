@@ -15,18 +15,20 @@ alias:
 A JavaScript equivalent of PHP's strcspn
 
 {% codeblock strings/strcspn.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strcspn.js raw on github %}
-function strcspn (str, mask, start, length) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: strcspn('abcdefg123', '1234567890');
-  // *     returns 1: 7
-  // *     example 2: strcspn('123abc', '1234567890');
-  // *     returns 2: 3
+function strcspn(str, mask, start, length) {
+  //  discuss at: http://phpjs.org/functions/strcspn/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: strcspn('abcdefg123', '1234567890');
+  //   returns 1: 7
+  //   example 2: strcspn('123abc', '1234567890');
+  //   returns 2: 3
+
   start = start ? start : 0;
   var count = (length && ((start + length) < str.length)) ? start + length : str.length;
   strct: for (var i = start, lgth = 0; i < count; i++) {
     for (var j = 0; j < mask.length; j++) {
-      if (str.charAt(i).indexOf(mask[j]) !== -1) {
+      if (str.charAt(i)
+        .indexOf(mask[j]) !== -1) {
         continue strct;
       }
     }++lgth;
@@ -47,28 +49,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strcspn.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-strcspn('abcdefg123', '1234567890');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-7
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-strcspn('123abc', '1234567890');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-3
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

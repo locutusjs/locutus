@@ -15,18 +15,20 @@ alias:
 A JavaScript equivalent of PHP's gmdate
 
 {% codeblock datetime/gmdate.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/gmdate.js raw on github %}
-function gmdate (format, timestamp) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Alex
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: date
-  // *     example 1: gmdate('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400); // Return will depend on your timezone
-  // *     returns 1: '07:09:40 m is month'
+function gmdate(format, timestamp) {
+  //  discuss at: http://phpjs.org/functions/gmdate/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Alex
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: date
+  //   example 1: gmdate('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400); // Return will depend on your timezone
+  //   returns 1: '07:09:40 m is month'
+
   var dt = typeof timestamp === 'undefined' ? new Date() : // Not provided
-      typeof timestamp === 'object' ? new Date(timestamp) : // Javascript Date()
-      new Date(timestamp * 1000); // UNIX timestamp (auto-convert to int)
-  timestamp = Date.parse(dt.toUTCString().slice(0, -4)) / 1000;
+  typeof timestamp === 'object' ? new Date(timestamp) : // Javascript Date()
+  new Date(timestamp * 1000); // UNIX timestamp (auto-convert to int)
+  timestamp = Date.parse(dt.toUTCString()
+    .slice(0, -4)) / 1000;
   return this.date(format, timestamp);
 }
 {% endcodeblock %}
@@ -42,17 +44,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/datetime/gmdate.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-gmdate('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400); // Return will depend on your timezone
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'07:09:40 m is month'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the datetime extension

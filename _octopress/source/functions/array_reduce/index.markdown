@@ -15,17 +15,17 @@ alias:
 A JavaScript equivalent of PHP's array_reduce
 
 {% codeblock array/array_reduce.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_reduce.js raw on github %}
-function array_reduce (a_input, callback) {
-  // From: http://phpjs.org/functions
-  // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
-  // %        note 1: Takes a function as an argument, not a function's name
-  // *     example 1: array_reduce([1, 2, 3, 4, 5], function (v, w){v += w;return v;});
-  // *     returns 1: 15
+function array_reduce(a_input, callback) {
+  //  discuss at: http://phpjs.org/functions/array_reduce/
+  // original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
+  //        note: Takes a function as an argument, not a function's name
+  //   example 1: array_reduce([1, 2, 3, 4, 5], function (v, w){v += w;return v;});
+  //   returns 1: 15
+
   var lon = a_input.length;
   var res = 0,
     i = 0;
   var tmp = [];
-
 
   for (i = 0; i < lon; i += 2) {
     tmp[0] = a_input[i];
@@ -53,17 +53,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_reduce.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_reduce([1, 2, 3, 4, 5], function (v, w){v += w;return v;});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-15
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

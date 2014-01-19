@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's long2ip
 
 {% codeblock network/long2ip.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/long2ip.js raw on github %}
-function long2ip (ip) {
-  // From: http://phpjs.org/functions
-  // +   original by: Waldo Malqui Silva
-  // *     example 1: long2ip( 3221234342 );
-  // *     returns 1: '192.0.34.166'
+function long2ip(ip) {
+  //  discuss at: http://phpjs.org/functions/long2ip/
+  // original by: Waldo Malqui Silva
+  //   example 1: long2ip( 3221234342 );
+  //   returns 1: '192.0.34.166'
+
   if (!isFinite(ip))
     return false;
 
@@ -38,17 +39,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/network/long2ip.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-long2ip( 3221234342 );
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'192.0.34.166'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the network extension

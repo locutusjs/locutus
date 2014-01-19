@@ -15,29 +15,32 @@ alias:
 A JavaScript equivalent of PHP's serialize
 
 {% codeblock var/serialize.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/serialize.js raw on github %}
-function serialize (mixed_value) {
-  // From: http://phpjs.org/functions
-  // +   original by: Arpad Ray (mailto:arpad@php.net)
-  // +   improved by: Dino
-  // +   bugfixed by: Andrej Pavlovic
-  // +   bugfixed by: Garagoth
-  // +      input by: DtTvB (http://dt.in.th/2008-09-16.string-length-in-bytes.html)
-  // +   bugfixed by: Russell Walker (http://www.nbill.co.uk/)
-  // +   bugfixed by: Jamie Beck (http://www.terabit.ca/)
-  // +      input by: Martin (http://www.erlenwiese.de/)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net/)
-  // +   improved by: Le Torbi (http://www.letorbi.de/)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net/)
-  // +   bugfixed by: Ben (http://benblume.co.uk/)
-  // %          note: We feel the main purpose of this function should be to ease the transport of data between php & js
-  // %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
-  // *     example 1: serialize(['Kevin', 'van', 'Zonneveld']);
-  // *     returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
-  // *     example 2: serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'});
-  // *     returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
+function serialize(mixed_value) {
+  //  discuss at: http://phpjs.org/functions/serialize/
+  // original by: Arpad Ray (mailto:arpad@php.net)
+  // improved by: Dino
+  // improved by: Le Torbi (http://www.letorbi.de/)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net/)
+  // bugfixed by: Andrej Pavlovic
+  // bugfixed by: Garagoth
+  // bugfixed by: Russell Walker (http://www.nbill.co.uk/)
+  // bugfixed by: Jamie Beck (http://www.terabit.ca/)
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net/)
+  // bugfixed by: Ben (http://benblume.co.uk/)
+  //    input by: DtTvB (http://dt.in.th/2008-09-16.string-length-in-bytes.html)
+  //    input by: Martin (http://www.erlenwiese.de/)
+  //        note: We feel the main purpose of this function should be to ease the transport of data between php & js
+  //        note: Aiming for PHP-compatibility, we have to translate objects to arrays
+  //   example 1: serialize(['Kevin', 'van', 'Zonneveld']);
+  //   returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
+  //   example 2: serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'});
+  //   returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
+
   var val, key, okey,
-    ktype = '', vals = '', count = 0,
-    _utf8Size = function (str) {
+    ktype = '',
+    vals = '',
+    count = 0,
+    _utf8Size = function(str) {
       var size = 0,
         i = 0,
         l = str.length,
@@ -46,43 +49,40 @@ function serialize (mixed_value) {
         code = str.charCodeAt(i);
         if (code < 0x0080) {
           size += 1;
-        }
-        else if (code < 0x0800) {
+        } else if (code < 0x0800) {
           size += 2;
-        }
-        else {
+        } else {
           size += 3;
         }
       }
       return size;
-    },
-    _getType = function (inp) {
-      var match, key, cons, types, type = typeof inp;
+    };
+  _getType = function(inp) {
+    var match, key, cons, types, type = typeof inp;
 
-      if (type === 'object' && !inp) {
-        return 'null';
+    if (type === 'object' && !inp) {
+      return 'null';
+    }
+    if (type === 'object') {
+      if (!inp.constructor) {
+        return 'object';
       }
-      if (type === 'object') {
-        if (!inp.constructor) {
-          return 'object';
-        }
-        cons = inp.constructor.toString();
-        match = cons.match(/(\w+)\(/);
-        if (match) {
-          cons = match[1].toLowerCase();
-        }
-        types = ['boolean', 'number', 'string', 'array'];
-        for (key in types) {
-          if (cons == types[key]) {
-            type = types[key];
-            break;
-          }
+      cons = inp.constructor.toString();
+      match = cons.match(/(\w+)\(/);
+      if (match) {
+        cons = match[1].toLowerCase();
+      }
+      types = ['boolean', 'number', 'string', 'array'];
+      for (key in types) {
+        if (cons == types[key]) {
+          type = types[key];
+          break;
         }
       }
-      return type;
-    },
-    type = _getType(mixed_value)
-  ;
+    }
+    return type;
+  };
+  type = _getType(mixed_value);
 
   switch (type) {
     case 'function':
@@ -97,9 +97,10 @@ function serialize (mixed_value) {
     case 'string':
       val = 's:' + _utf8Size(mixed_value) + ':"' + mixed_value + '"';
       break;
-    case 'array': case 'object':
+    case 'array':
+    case 'object':
       val = 'a';
-  /*
+      /*
         if (type === 'object') {
           var objname = mixed_value.constructor.toString().match(/(\w+)\(\)/);
           if (objname == undefined) {
@@ -149,28 +150,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/var/serialize.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-serialize(['Kevin', 'van', 'Zonneveld']);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the var extension

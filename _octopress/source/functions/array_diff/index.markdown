@@ -15,13 +15,14 @@ alias:
 A JavaScript equivalent of PHP's array_diff
 
 {% codeblock array/array_diff.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_diff.js raw on github %}
-function array_diff (arr1) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Sanjoy Roy
-  // +    revised by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld']);
-  // *     returns 1: {0:'Kevin'}
+function array_diff(arr1) {
+  //  discuss at: http://phpjs.org/functions/array_diff/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Sanjoy Roy
+  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld']);
+  //   returns 1: {0:'Kevin'}
+
   var retArr = {},
     argl = arguments.length,
     k1 = '',
@@ -57,17 +58,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_diff.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld']);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{0:'Kevin'}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

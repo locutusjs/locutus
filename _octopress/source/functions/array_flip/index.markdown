@@ -15,18 +15,18 @@ alias:
 A JavaScript equivalent of PHP's array_flip
 
 {% codeblock array/array_flip.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_flip.js raw on github %}
-function array_flip (trans) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Pier Paolo Ramon (http://www.mastersoup.com/)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: array
-  // *          test: skip
-  // *     example 1: array_flip( {a: 1, b: 1, c: 2} );
-  // *     returns 1: {1: 'b', 2: 'c'}
-  // *     example 2: ini_set('phpjs.return_phpjs_arrays', 'on');
-  // *     example 2: array_flip(array({a: 0}, {b: 1}, {c: 2}))[1];
-  // *     returns 2: 'b'
+function array_flip(trans) {
+  //  discuss at: http://phpjs.org/functions/array_flip/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Pier Paolo Ramon (http://www.mastersoup.com/)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: array
+  //        test: skip
+  //   example 1: array_flip( {a: 1, b: 1, c: 2} );
+  //   returns 1: {1: 'b', 2: 'c'}
+  //   example 2: ini_set('phpjs.return_phpjs_arrays', 'on');
+  //   example 2: array_flip(array({a: 0}, {b: 1}, {c: 2}))[1];
+  //   returns 2: 'b'
 
   var key, tmp_ar = {};
 
@@ -57,29 +57,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_flip.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_flip( {a: 1, b: 1, c: 2} );
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{1: 'b', 2: 'c'}
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-ini_set('phpjs.return_phpjs_arrays', 'on');
-array_flip(array({a: 0}, {b: 1}, {c: 2}))[1];
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'b'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

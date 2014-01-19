@@ -15,14 +15,15 @@ alias:
 A JavaScript equivalent of PHP's gmmktime
 
 {% codeblock datetime/gmmktime.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/gmmktime.js raw on github %}
-function gmmktime () {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   derived from: mktime
-  // *     example 1: gmmktime(14, 10, 2, 2, 1, 2008);
-  // *     returns 1: 1201875002
-  // *     example 2: gmmktime(0, 0, -1, 1, 1, 1970);
-  // *     returns 2: -1
+function gmmktime() {
+  //  discuss at: http://phpjs.org/functions/gmmktime/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // original by: mktime
+  //   example 1: gmmktime(14, 10, 2, 2, 1, 2008);
+  //   returns 1: 1201875002
+  //   example 2: gmmktime(0, 0, -1, 1, 1, 1970);
+  //   returns 2: -1
+
   var d = new Date(),
     r = arguments,
     i = 0,
@@ -67,28 +68,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/datetime/gmmktime.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-gmmktime(14, 10, 2, 2, 1, 2008);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-1201875002
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-gmmktime(0, 0, -1, 1, 1, 1970);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
--1
-{% endcodeblock %}
 
 
 ### Other PHP functions in the datetime extension

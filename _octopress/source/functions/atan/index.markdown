@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's atan
 
 {% codeblock math/atan.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/atan.js raw on github %}
-function atan (arg) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: atan(8723321.4);
-  // *     returns 1: 1.5707962121596615
+function atan(arg) {
+  //  discuss at: http://phpjs.org/functions/atan/
+  // original by: Onno Marsman
+  //   example 1: atan(8723321.4);
+  //   returns 1: 1.5707962121596615
+
   return Math.atan(arg);
 }
 {% endcodeblock %}
@@ -35,17 +36,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/atan.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-atan(8723321.4);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-1.5707962121596615
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

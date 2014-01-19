@@ -15,16 +15,17 @@ alias:
 A JavaScript equivalent of PHP's gettimeofday
 
 {% codeblock datetime/gettimeofday.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/gettimeofday.js raw on github %}
-function gettimeofday (return_float) {
-  // From: http://phpjs.org/functions
-  // + original by: Brett Zamir (http://brett-zamir.me)
-  // +      derived from: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
-  // +         parts by: Breaking Par Consulting Inc (http://www.breakingpar.com/bkp/home.nsf/0/87256B280015193F87256CFB006C45F7)
-  // +  revised by: Theriault
-  // *   example 1: gettimeofday();
-  // *   returns 1: {sec: 12, usec: 153000, minuteswest: -480, dsttime: 0}
-  // *   example 1: gettimeofday(true);
-  // *   returns 1: 1238748978.49
+function gettimeofday(return_float) {
+  //  discuss at: http://phpjs.org/functions/gettimeofday/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // original by: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
+  //    parts by: Breaking Par Consulting Inc (http://www.breakingpar.com/bkp/home.nsf/0/87256B280015193F87256CFB006C45F7)
+  //  revised by: Theriault
+  //   example 1: gettimeofday();
+  //   returns 1: {sec: 12, usec: 153000, minuteswest: -480, dsttime: 0}
+  //   example 2: gettimeofday(true);
+  //   returns 2: 1238748978.49
+
   var t = new Date(),
     y = 0;
 
@@ -54,19 +55,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/datetime/gettimeofday.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-gettimeofday();
-gettimeofday(true);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{sec: 12, usec: 153000, minuteswest: -480, dsttime: 0}
-1238748978.49
-{% endcodeblock %}
 
 
 ### Other PHP functions in the datetime extension

@@ -15,12 +15,13 @@ alias:
 A JavaScript equivalent of PHP's rad2deg
 
 {% codeblock math/rad2deg.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/rad2deg.js raw on github %}
-function rad2deg (angle) {
-  // From: http://phpjs.org/functions
-  // +   original by: Enrique Gonzalez
-  // +      improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: rad2deg(3.141592653589793);
-  // *     returns 1: 180
+function rad2deg(angle) {
+  //  discuss at: http://phpjs.org/functions/rad2deg/
+  // original by: Enrique Gonzalez
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: rad2deg(3.141592653589793);
+  //   returns 1: 180
+
   return angle * 57.29577951308232; // angle / Math.PI * 180
 }
 {% endcodeblock %}
@@ -36,17 +37,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/rad2deg.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-rad2deg(3.141592653589793);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-180
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

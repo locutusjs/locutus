@@ -15,17 +15,18 @@ alias:
 A JavaScript equivalent of PHP's is_object
 
 {% codeblock var/is_object.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_object.js raw on github %}
-function is_object (mixed_var) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Legaev Andrey
-  // +   improved by: Michael White (http://getsprink.com)
-  // *     example 1: is_object('23');
-  // *     returns 1: false
-  // *     example 2: is_object({foo: 'bar'});
-  // *     returns 2: true
-  // *     example 3: is_object(null);
-  // *     returns 3: false
+function is_object(mixed_var) {
+  //  discuss at: http://phpjs.org/functions/is_object/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Legaev Andrey
+  // improved by: Michael White (http://getsprink.com)
+  //   example 1: is_object('23');
+  //   returns 1: false
+  //   example 2: is_object({foo: 'bar'});
+  //   returns 2: true
+  //   example 3: is_object(null);
+  //   returns 3: false
+
   if (Object.prototype.toString.call(mixed_var) === '[object Array]') {
     return false;
   }
@@ -44,39 +45,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/var/is_object.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-is_object('23');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-false
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-is_object({foo: 'bar'});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-is_object(null);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-false
-{% endcodeblock %}
 
 
 ### Other PHP functions in the var extension

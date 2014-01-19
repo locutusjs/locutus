@@ -15,20 +15,21 @@ alias:
 A JavaScript equivalent of PHP's array_merge
 
 {% codeblock array/array_merge.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_merge.js raw on github %}
-function array_merge () {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Nate
-  // +   input by: josh
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: arr1 = {"color": "red", 0: 2, 1: 4}
-  // *     example 1: arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
-  // *     example 1: array_merge(arr1, arr2)
-  // *     returns 1: {"color": "green", 0: 2, 1: 4, 2: "a", 3: "b", "shape": "trapezoid", 4: 4}
-  // *     example 2: arr1 = []
-  // *     example 2: arr2 = {1: "data"}
-  // *     example 2: array_merge(arr1, arr2)
-  // *     returns 2: {0: "data"}
+function array_merge() {
+  //  discuss at: http://phpjs.org/functions/array_merge/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Nate
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //    input by: josh
+  //   example 1: arr1 = {"color": "red", 0: 2, 1: 4}
+  //   example 1: arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
+  //   example 1: array_merge(arr1, arr2)
+  //   returns 1: {"color": "green", 0: 2, 1: 4, 2: "a", 3: "b", "shape": "trapezoid", 4: 4}
+  //   example 2: arr1 = []
+  //   example 2: arr2 = {1: "data"}
+  //   example 2: array_merge(arr1, arr2)
+  //   returns 2: {0: "data"}
+
   var args = Array.prototype.slice.call(arguments),
     argl = args.length,
     arg,
@@ -62,14 +63,12 @@ function array_merge () {
       for (j = 0, argil = arg.length; j < argil; j++) {
         retObj[ct++] = arg[j];
       }
-    }
-    else {
+    } else {
       for (k in arg) {
         if (arg.hasOwnProperty(k)) {
           if (parseInt(k, 10) + '' === k) {
             retObj[ct++] = arg[k];
-          }
-          else {
+          } else {
             retObj[k] = arg[k];
           }
         }
@@ -91,32 +90,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_merge.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-arr1 = {"color": "red", 0: 2, 1: 4}
-arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
-array_merge(arr1, arr2)
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{"color": "green", 0: 2, 1: 4, 2: "a", 3: "b", "shape": "trapezoid", 4: 4}
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-arr1 = []
-arr2 = {1: "data"}
-array_merge(arr1, arr2)
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{0: "data"}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

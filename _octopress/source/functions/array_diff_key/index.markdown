@@ -15,15 +15,16 @@ alias:
 A JavaScript equivalent of PHP's array_diff_key
 
 {% codeblock array/array_diff_key.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_diff_key.js raw on github %}
-function array_diff_key (arr1) {
-  // From: http://phpjs.org/functions
-  // +   original by: Ates Goral (http://magnetiq.com)
-  // +    revised by: Brett Zamir (http://brett-zamir.me)
-  // +    input by: Everlasto
-  // *     example 1: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5});
-  // *     returns 1: {"green":2, "blue":3, "white":4}
-  // *     example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5});
-  // *     returns 2: {"green":2, "blue":3, "white":4}
+function array_diff_key(arr1) {
+  //  discuss at: http://phpjs.org/functions/array_diff_key/
+  // original by: Ates Goral (http://magnetiq.com)
+  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Everlasto
+  //   example 1: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5});
+  //   returns 1: {"green":2, "blue":3, "white":4}
+  //   example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5});
+  //   returns 2: {"green":2, "blue":3, "white":4}
+
   var argl = arguments.length,
     retArr = {},
     k1 = '',
@@ -59,28 +60,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_diff_key.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{"green":2, "blue":3, "white":4}
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{"green":2, "blue":3, "white":4}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

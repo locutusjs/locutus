@@ -15,24 +15,24 @@ alias:
 A JavaScript equivalent of PHP's uasort
 
 {% codeblock array/uasort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/uasort.js raw on github %}
-function uasort (inputArr, sorter) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Theriault
-  // %        note 1: This function deviates from PHP in returning a copy of the array instead
-  // %        note 1: of acting by reference and returning true; this was necessary because
-  // %        note 1: IE does not allow deleting and re-adding of properties without caching
-  // %        note 1: of property position; you can set the ini of "phpjs.strictForIn" to true to
-  // %        note 1: get the PHP behavior, but use this only if you are in an environment
-  // %        note 1: such as Firefox extensions where for-in iteration order is fixed and true
-  // %        note 1: property deletion is supported. Note that we intend to implement the PHP
-  // %        note 1: behavior by default if IE ever does allow it; only gives shallow copy since
-  // %        note 1: is by reference in PHP anyways
-  // *     example 1: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
-  // *     example 1: fruits = uasort(fruits, function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;});
-  // *     example 1: fruits;
-  // *     returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
+function uasort(inputArr, sorter) {
+  //  discuss at: http://phpjs.org/functions/uasort/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Theriault
+  //        note: This function deviates from PHP in returning a copy of the array instead
+  //        note: of acting by reference and returning true; this was necessary because
+  //        note: IE does not allow deleting and re-adding of properties without caching
+  //        note: of property position; you can set the ini of "phpjs.strictForIn" to true to
+  //        note: get the PHP behavior, but use this only if you are in an environment
+  //        note: such as Firefox extensions where for-in iteration order is fixed and true
+  //        note: property deletion is supported. Note that we intend to implement the PHP
+  //        note: behavior by default if IE ever does allow it; only gives shallow copy since
+  //        note: is by reference in PHP anyways
+  //   example 1: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
+  //   example 1: fruits = uasort(fruits, function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;});
+  //   example 1: $result = fruits;
+  //   returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
   var valArr = [],
     tempKeyVal, tempValue, ret, k = '',
@@ -50,9 +50,9 @@ function uasort (inputArr, sorter) {
   this.php_js = this.php_js || {};
   this.php_js.ini = this.php_js.ini || {};
   // END REDUNDANT
-  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
+    .ini['phpjs.strictForIn'].local_value !== 'off';
   populateArr = strictForIn ? inputArr : populateArr;
-
 
   for (k in inputArr) { // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
@@ -62,7 +62,7 @@ function uasort (inputArr, sorter) {
       }
     }
   }
-  valArr.sort(function (a, b) {
+  valArr.sort(function(a, b) {
     return sorter(a[1], b[1]);
   });
 
@@ -85,19 +85,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/uasort.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
-fruits = uasort(fruits, function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;});
-fruits;
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

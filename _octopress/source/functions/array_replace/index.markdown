@@ -15,10 +15,11 @@ alias:
 A JavaScript equivalent of PHP's array_replace
 
 {% codeblock array/array_replace.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_replace.js raw on github %}
-function array_replace (arr) {
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"});
-  // *     returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
+function array_replace(arr) {
+  //  discuss at: http://phpjs.org/functions/array_replace/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"});
+  //   returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
 
   var retObj = {},
     i = 0,
@@ -54,17 +55,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_replace.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

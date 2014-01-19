@@ -15,19 +15,20 @@ alias:
 A JavaScript equivalent of PHP's compact
 
 {% codeblock array/compact.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/compact.js raw on github %}
-function compact () {
-  // From: http://phpjs.org/functions
-  // +   original by: Waldo Malqui Silva
-  // +    tweaked by: Jack
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // *     example 1: var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';
-  // *     example 1: compact('var1', 'var2', 'var3');
-  // *     returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}
+function compact() {
+  //  discuss at: http://phpjs.org/functions/compact/
+  // original by: Waldo Malqui Silva
+  // improved by: Jack
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //   example 1: var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';
+  //   example 1: compact('var1', 'var2', 'var3');
+  //   returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}
+
   var matrix = {},
     that = this;
 
-  var process = function (value) {
+  var process = function(value) {
     var i = 0,
       l = value.length,
       key_value = '';
@@ -60,18 +61,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/compact.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';
-compact('var1', 'var2', 'var3');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

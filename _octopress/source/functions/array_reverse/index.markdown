@@ -15,18 +15,20 @@ alias:
 A JavaScript equivalent of PHP's array_reverse
 
 {% codeblock array/array_reverse.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_reverse.js raw on github %}
-function array_reverse (array, preserve_keys) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Karol Kowalski
-  // *     example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true);
-  // *     returns 1: { 2: ['green', 'red'], 1: 4, 0: 'php'}
-  var isArray = Object.prototype.toString.call(array) === "[object Array]",
+function array_reverse(array, preserve_keys) {
+  //  discuss at: http://phpjs.org/functions/array_reverse/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Karol Kowalski
+  //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true);
+  //   returns 1: { 2: ['green', 'red'], 1: 4, 0: 'php'}
+
+  var isArray = Object.prototype.toString.call(array) === '[object Array]',
     tmp_arr = preserve_keys ? {} : [],
     key;
 
   if (isArray && !preserve_keys) {
-    return array.slice(0).reverse();
+    return array.slice(0)
+      .reverse();
   }
 
   if (preserve_keys) {
@@ -68,17 +70,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_reverse.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_reverse( [ 'php', '4.0', ['green', 'red'] ], true);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{ 2: ['green', 'red'], 1: 4, 0: 'php'}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

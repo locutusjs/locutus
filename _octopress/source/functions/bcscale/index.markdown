@@ -15,19 +15,14 @@ alias:
 A JavaScript equivalent of PHP's bcscale
 
 {% codeblock bc/bcscale.js lang:js https://raw.github.com/kvz/phpjs/master/functions/bc/bcscale.js raw on github %}
-function bcscale (scale) {
-  // From: http://phpjs.org/functions
-  // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)this.
-  // -    depends on: _phpjs_shared_bc
-  // *     example 1: bcscale(1);
-  // *     returns 1: 3
-  //  @todo: implement these testcases
-  //        bcscale(0);
-  //
-  //        bcmath.test.result('bcscale', 1, false, bcscale('fail'));
-  //        bcmath.test.result('bcscale', 2, false, bcscale(-1));
-  //        bcmath.test.result('bcscale', 3, true, bcscale(5));
-  //        bcmath.test.result('bcscale', 4, true, bcscale(0));
+function bcscale(scale) {
+  //  discuss at: http://phpjs.org/functions/bcscale/
+  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)this.
+  //  depends on: _phpjs_shared_bc
+  //   example 1: bcscale(1);
+  //   returns 1: 3
+  //        todo: implement these testcases
+
   var libbcmath = this._phpjs_shared_bc();
 
   scale = parseInt(scale, 10);
@@ -53,17 +48,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/bc/bcscale.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-bcscale(1);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-3
-{% endcodeblock %}
 
 
 ### Other PHP functions in the bc extension

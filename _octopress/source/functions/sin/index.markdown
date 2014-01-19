@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's sin
 
 {% codeblock math/sin.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/sin.js raw on github %}
-function sin (arg) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: sin(8723321.4);
-  // *     returns 1: -0.9834330348825909
+function sin(arg) {
+  //  discuss at: http://phpjs.org/functions/sin/
+  // original by: Onno Marsman
+  //   example 1: sin(8723321.4);
+  //   returns 1: -0.9834330348825929
+
   return Math.sin(arg);
 }
 {% endcodeblock %}
@@ -35,17 +36,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/sin.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-sin(8723321.4);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
--0.9834330348825909
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

@@ -15,21 +15,21 @@ alias:
 A JavaScript equivalent of PHP's array_keys
 
 {% codeblock array/array_keys.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_keys.js raw on github %}
-function array_keys (input, search_value, argStrict) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: jd
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: P
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
-  // *     returns 1: {0: 'firstname', 1: 'surname'}
+function array_keys(input, search_value, argStrict) {
+  //  discuss at: http://phpjs.org/functions/array_keys/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  //    input by: P
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // improved by: jd
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
+  //   returns 1: {0: 'firstname', 1: 'surname'}
 
   var search = typeof search_value !== 'undefined',
     tmp_arr = [],
-    strict = !!argStrict,
+    strict = !! argStrict,
     include = true,
     key = '';
 
@@ -43,8 +43,7 @@ function array_keys (input, search_value, argStrict) {
       if (search) {
         if (strict && input[key] !== search_value) {
           include = false;
-        }
-        else if (input[key] != search_value) {
+        } else if (input[key] != search_value) {
           include = false;
         }
       }
@@ -70,17 +69,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_keys.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{0: 'firstname', 1: 'surname'}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

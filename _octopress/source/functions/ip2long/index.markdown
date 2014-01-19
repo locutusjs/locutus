@@ -15,29 +15,33 @@ alias:
 A JavaScript equivalent of PHP's ip2long
 
 {% codeblock network/ip2long.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/ip2long.js raw on github %}
-function ip2long (IP) {
-  // From: http://phpjs.org/functions
-  // +   original by: Waldo Malqui Silva
-  // +   improved by: Victor
-  // +    revised by: fearphage (http://http/my.opera.com/fearphage/)
-  // +    revised by: Theriault
-  // *     example 1: ip2long('192.0.34.166');
-  // *     returns 1: 3221234342
-  // *     example 2: ip2long('0.0xABCDEF');
-  // *     returns 2: 11259375
-  // *     example 3: ip2long('255.255.255.256');
-  // *     returns 3: false
+function ip2long(IP) {
+  //  discuss at: http://phpjs.org/functions/ip2long/
+  // original by: Waldo Malqui Silva
+  // improved by: Victor
+  //  revised by: fearphage (http://http/my.opera.com/fearphage/)
+  //  revised by: Theriault
+  //   example 1: ip2long('192.0.34.166');
+  //   returns 1: 3221234342
+  //   example 2: ip2long('0.0xABCDEF');
+  //   returns 2: 11259375
+  //   example 3: ip2long('255.255.255.256');
+  //   returns 3: false
+
   var i = 0;
   // PHP allows decimal, octal, and hexadecimal IP components.
   // PHP allows between 1 (e.g. 127) to 4 (e.g 127.0.0.1) components.
-  IP = IP.match(/^([1-9]\d*|0[0-7]*|0x[\da-f]+)(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?$/i); // Verify IP format.
+  IP = IP.match(
+    /^([1-9]\d*|0[0-7]*|0x[\da-f]+)(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?$/i
+  ); // Verify IP format.
   if (!IP) {
     return false; // Invalid format.
   }
   // Reuse IP variable for component counter.
   IP[0] = 0;
   for (i = 1; i < 5; i += 1) {
-    IP[0] += !! ((IP[i] || '').length);
+    IP[0] += !! ((IP[i] || '')
+      .length);
     IP[i] = parseInt(IP[i]) || 0;
   }
   // Continue to use IP for overflow values.
@@ -63,39 +67,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/network/ip2long.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-ip2long('192.0.34.166');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-3221234342
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-ip2long('0.0xABCDEF');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-11259375
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-ip2long('255.255.255.256');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-false
-{% endcodeblock %}
 
 
 ### Other PHP functions in the network extension

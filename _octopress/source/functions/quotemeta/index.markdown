@@ -15,12 +15,14 @@ alias:
 A JavaScript equivalent of PHP's quotemeta
 
 {% codeblock strings/quotemeta.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/quotemeta.js raw on github %}
-function quotemeta (str) {
-  // From: http://phpjs.org/functions
-  // +   original by: Paulo Freitas
-  // *     example 1: quotemeta(". + * ? ^ ( $ )");
-  // *     returns 1: '\. \+ \* \? \^ \( \$ \)'
-  return (str + '').replace(/([\.\\\+\*\?\[\^\]\$\(\)])/g, '\\$1');
+function quotemeta(str) {
+  //  discuss at: http://phpjs.org/functions/quotemeta/
+  // original by: Paulo Freitas
+  //   example 1: quotemeta(". + * ? ^ ( $ )");
+  //   returns 1: '\\. \\+ \\* \\? \\^ \\( \\$ \\)'
+
+  return (str + '')
+    .replace(/([\.\\\+\*\?\[\^\]\$\(\)])/g, '\\$1');
 }
 {% endcodeblock %}
 
@@ -35,17 +37,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/quotemeta.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-quotemeta(". + * ? ^ ( $ )");
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'\. \+ \* \? \^ \( \$ \)'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

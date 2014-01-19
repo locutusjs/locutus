@@ -15,23 +15,25 @@ alias:
 A JavaScript equivalent of PHP's decbin
 
 {% codeblock math/decbin.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/decbin.js raw on github %}
-function decbin (number) {
-  // From: http://phpjs.org/functions
-  // +   original by: Enrique Gonzalez
-  // +   bugfixed by: Onno Marsman
-  // +   improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
-  // +   input by: pilus
-  // +   input by: nord_ua
-  // *     example 1: decbin(12);
-  // *     returns 1: '1100'
-  // *     example 2: decbin(26);
-  // *     returns 2: '11010'
-  // *     example 3: decbin('26');
-  // *     returns 3: '11010'
+function decbin(number) {
+  //  discuss at: http://phpjs.org/functions/decbin/
+  // original by: Enrique Gonzalez
+  // bugfixed by: Onno Marsman
+  // improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
+  //    input by: pilus
+  //    input by: nord_ua
+  //   example 1: decbin(12);
+  //   returns 1: '1100'
+  //   example 2: decbin(26);
+  //   returns 2: '11010'
+  //   example 3: decbin('26');
+  //   returns 3: '11010'
+
   if (number < 0) {
     number = 0xFFFFFFFF + number + 1;
   }
-  return parseInt(number, 10).toString(2);
+  return parseInt(number, 10)
+    .toString(2);
 }
 {% endcodeblock %}
 
@@ -46,39 +48,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/decbin.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-decbin(12);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'1100'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-decbin(26);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'11010'
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-decbin('26');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'11010'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

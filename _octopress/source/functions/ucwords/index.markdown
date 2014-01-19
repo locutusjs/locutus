@@ -15,21 +15,23 @@ alias:
 A JavaScript equivalent of PHP's ucwords
 
 {% codeblock strings/ucwords.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/ucwords.js raw on github %}
-function ucwords (str) {
-  // From: http://phpjs.org/functions
-  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // +   improved by: Waldo Malqui Silva
-  // +   bugfixed by: Onno Marsman
-  // +   improved by: Robin
-  // +      input by: James (http://www.james-bell.co.uk/)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // *     example 1: ucwords('kevin van  zonneveld');
-  // *     returns 1: 'Kevin Van  Zonneveld'
-  // *     example 2: ucwords('HELLO WORLD');
-  // *     returns 2: 'HELLO WORLD'
-  return (str + '').replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function ($1) {
-    return $1.toUpperCase();
-  });
+function ucwords(str) {
+  //  discuss at: http://phpjs.org/functions/ucwords/
+  // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // improved by: Waldo Malqui Silva
+  // improved by: Robin
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  //    input by: James (http://www.james-bell.co.uk/)
+  //   example 1: ucwords('kevin van  zonneveld');
+  //   returns 1: 'Kevin Van  Zonneveld'
+  //   example 2: ucwords('HELLO WORLD');
+  //   returns 2: 'HELLO WORLD'
+
+  return (str + '')
+    .replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function($1) {
+      return $1.toUpperCase();
+    });
 }
 {% endcodeblock %}
 
@@ -44,28 +46,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/ucwords.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-ucwords('kevin van  zonneveld');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Kevin Van  Zonneveld'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-ucwords('HELLO WORLD');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'HELLO WORLD'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

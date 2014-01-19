@@ -15,12 +15,12 @@ alias:
 A JavaScript equivalent of PHP's log1p
 
 {% codeblock math/log1p.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/log1p.js raw on github %}
-function log1p (x) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %          note 1: Precision 'n' can be adjusted as desired
-  // *     example 1: log1p(1e-15);
-  // *     returns 1: 9.999999999999995e-16
+function log1p(x) {
+  //  discuss at: http://phpjs.org/functions/log1p/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: Precision 'n' can be adjusted as desired
+  //   example 1: log1p(1e-15);
+  //   returns 1: 9.999999999999995e-16
 
   var ret = 0,
     n = 50; // degree of precision
@@ -52,17 +52,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/log1p.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-log1p(1e-15);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-9.999999999999995e-16
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

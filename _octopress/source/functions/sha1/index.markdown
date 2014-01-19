@@ -15,21 +15,22 @@ alias:
 A JavaScript equivalent of PHP's sha1
 
 {% codeblock strings/sha1.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/sha1.js raw on github %}
-function sha1 (str) {
-  // From: http://phpjs.org/functions
-  // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
-  // + namespaced by: Michael White (http://getsprink.com)
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // -    depends on: utf8_encode
-  // *     example 1: sha1('Kevin van Zonneveld');
-  // *     returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
-  var rotate_left = function (n, s) {
+function sha1(str) {
+  //  discuss at: http://phpjs.org/functions/sha1/
+  // original by: Webtoolkit.info (http://www.webtoolkit.info/)
+  // improved by: Michael White (http://getsprink.com)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: utf8_encode
+  //   example 1: sha1('Kevin van Zonneveld');
+  //   returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
+
+  var rotate_left = function(n, s) {
     var t4 = (n << s) | (n >>> (32 - s));
     return t4;
   };
 
-/*var lsb_hex = function (val) { // Not in use; needed?
+  /*var lsb_hex = function (val) { // Not in use; needed?
     var str="";
     var i;
     var vh;
@@ -43,8 +44,8 @@ function sha1 (str) {
     return str;
   };*/
 
-  var cvt_hex = function (val) {
-    var str = "";
+  var cvt_hex = function(val) {
+    var str = '';
     var i;
     var v;
 
@@ -76,18 +77,19 @@ function sha1 (str) {
   }
 
   switch (str_len % 4) {
-  case 0:
-    i = 0x080000000;
-    break;
-  case 1:
-    i = str.charCodeAt(str_len - 1) << 24 | 0x0800000;
-    break;
-  case 2:
-    i = str.charCodeAt(str_len - 2) << 24 | str.charCodeAt(str_len - 1) << 16 | 0x08000;
-    break;
-  case 3:
-    i = str.charCodeAt(str_len - 3) << 24 | str.charCodeAt(str_len - 2) << 16 | str.charCodeAt(str_len - 1) << 8 | 0x80;
-    break;
+    case 0:
+      i = 0x080000000;
+      break;
+    case 1:
+      i = str.charCodeAt(str_len - 1) << 24 | 0x0800000;
+      break;
+    case 2:
+      i = str.charCodeAt(str_len - 2) << 24 | str.charCodeAt(str_len - 1) << 16 | 0x08000;
+      break;
+    case 3:
+      i = str.charCodeAt(str_len - 3) << 24 | str.charCodeAt(str_len - 2) << 16 | str.charCodeAt(str_len - 1) <<
+        8 | 0x80;
+      break;
   }
 
   word_array.push(i);
@@ -106,7 +108,6 @@ function sha1 (str) {
     for (i = 16; i <= 79; i++) {
       W[i] = rotate_left(W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16], 1);
     }
-
 
     A = H0;
     B = H1;
@@ -173,17 +174,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/sha1.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-sha1('Kevin van Zonneveld');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

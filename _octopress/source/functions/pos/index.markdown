@@ -15,14 +15,15 @@ alias:
 A JavaScript equivalent of PHP's pos
 
 {% codeblock array/pos.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/pos.js raw on github %}
-function pos (arr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Uses global: php_js to store the array pointer
-  // -    depends on: current
-  // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
-  // *     example 1: pos(transport);
-  // *     returns 1: 'foot'
+function pos(arr) {
+  //  discuss at: http://phpjs.org/functions/pos/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: Uses global: php_js to store the array pointer
+  //  depends on: current
+  //   example 1: transport = ['foot', 'bike', 'car', 'plane'];
+  //   example 1: pos(transport);
+  //   returns 1: 'foot'
+
   return this.current(arr);
 }
 {% endcodeblock %}
@@ -38,18 +39,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/pos.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-transport = ['foot', 'bike', 'car', 'plane'];
-pos(transport);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'foot'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

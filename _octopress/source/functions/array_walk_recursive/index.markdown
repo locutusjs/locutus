@@ -15,13 +15,14 @@ alias:
 A JavaScript equivalent of PHP's array_walk_recursive
 
 {% codeblock array/array_walk_recursive.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_walk_recursive.js raw on github %}
-function array_walk_recursive (array, funcname, userdata) {
-  // From: http://phpjs.org/functions
-  // +   original by: Johnny Mast (http://www.phpvrouwen.nl)
-  // *     example 1: array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
-  // *     returns 1: true
-  // *     example 2: array_walk_recursive ('a', 'void', 'userdata');
-  // *     returns 2: false
+function array_walk_recursive(array, funcname, userdata) {
+  //  discuss at: http://phpjs.org/functions/array_walk_recursive/
+  // original by: Johnny Mast (http://www.phpvrouwen.nl)
+  //   example 1: array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
+  //   returns 1: true
+  //   example 2: array_walk_recursive ('a', 'void', 'userdata');
+  //   returns 2: false
+
   var key;
 
   if (typeof array !== 'object') {
@@ -55,28 +56,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_walk_recursive.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-array_walk_recursive ('a', 'void', 'userdata');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-false
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

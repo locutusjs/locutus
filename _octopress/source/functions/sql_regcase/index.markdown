@@ -15,12 +15,13 @@ alias:
 A JavaScript equivalent of PHP's sql_regcase
 
 {% codeblock pcre/sql_regcase.js lang:js https://raw.github.com/kvz/phpjs/master/functions/pcre/sql_regcase.js raw on github %}
-function sql_regcase (str) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: setlocale
-  // *     example 1: sql_regcase('Foo - bar.');
-  // *     returns 1: '[Ff][Oo][Oo] - [Bb][Aa][Rr].'
+function sql_regcase(str) {
+  //  discuss at: http://phpjs.org/functions/sql_regcase/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: setlocale
+  //   example 1: sql_regcase('Foo - bar.');
+  //   returns 1: '[Ff][Oo][Oo] - [Bb][Aa][Rr].'
+
   this.setlocale('LC_ALL', 0);
   var i = 0,
     upper = '',
@@ -53,17 +54,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/pcre/sql_regcase.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-sql_regcase('Foo - bar.');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'[Ff][Oo][Oo] - [Bb][Aa][Rr].'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the pcre extension

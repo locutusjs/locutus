@@ -15,23 +15,14 @@ alias:
 A JavaScript equivalent of PHP's bcround
 
 {% codeblock bc/bcround.js lang:js https://raw.github.com/kvz/phpjs/master/functions/bc/bcround.js raw on github %}
-function bcround (val, precision) {
-  // From: http://phpjs.org/functions
-  // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  // -    depends on: _phpjs_shared_bc
-  // *     example 1: bcround(1, 2);
-  // *     returns 1: 3
-  //  @todo: implement these testcases
-  //        bcscale(0);
-  //
-  //        bcmath.test.result('bcround', 1, '-2', bcround('-1.5', 0));
-  //        bcmath.test.result('bcround', 2, '-1.1235', bcround('-1.1234567', 4));
-  //        bcmath.test.result('bcround', 3, '2', bcround('1.5', 0));
-  //        bcmath.test.result('bcround', 4, '1.1235', bcround('1.1234567', 4));
-  //        bcmath.test.result('bcround', 5, '1', bcround('1.499999999', 0));
-  //        bcmath.test.result('bcround', 6, '2', bcround('1.5555555555555555555', 0));
-  //        bcmath.test.result('bcround', 7, '1.44', bcround('1.444999', 2));
-  //        bcmath.test.result('bcround', 8, '-1.44', bcround('-1.444999', 2));
+function bcround(val, precision) {
+  //  discuss at: http://phpjs.org/functions/bcround/
+  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  //  depends on: _phpjs_shared_bc
+  //   example 1: bcround(1, 2);
+  //   returns 1: 3
+  //        todo: implement these testcases
+
   var libbcmath = this._phpjs_shared_bc();
 
   var temp, result, digit;
@@ -89,17 +80,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/bc/bcround.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-bcround(1, 2);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-3
-{% endcodeblock %}
 
 
 ### Other PHP functions in the bc extension

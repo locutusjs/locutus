@@ -15,22 +15,21 @@ alias:
 A JavaScript equivalent of PHP's mt_rand
 
 {% codeblock math/mt_rand.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/mt_rand.js raw on github %}
-function mt_rand (min, max) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Kongo
-  // *     example 1: mt_rand(1, 1);
-  // *     returns 1: 1
+function mt_rand(min, max) {
+  //  discuss at: http://phpjs.org/functions/mt_rand/
+  // original by: Onno Marsman
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Kongo
+  //   example 1: mt_rand(1, 1);
+  //   returns 1: 1
+
   var argc = arguments.length;
   if (argc === 0) {
     min = 0;
     max = 2147483647;
-  }
-  else if (argc === 1) {
+  } else if (argc === 1) {
     throw new Error('Warning: mt_rand() expects exactly 2 parameters, 1 given');
-  }
-  else {
+  } else {
     min = parseInt(min, 10);
     max = parseInt(max, 10);
   }
@@ -49,17 +48,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/mt_rand.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-mt_rand(1, 1);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-1
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

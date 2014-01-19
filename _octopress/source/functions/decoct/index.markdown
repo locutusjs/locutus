@@ -15,20 +15,22 @@ alias:
 A JavaScript equivalent of PHP's decoct
 
 {% codeblock math/decoct.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/decoct.js raw on github %}
-function decoct (number) {
-  // From: http://phpjs.org/functions
-  // +   original by: Enrique Gonzalez
-  // +   bugfixed by: Onno Marsman
-  // +   improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
-  // +   input by: pilus
-  // *     example 1: decoct(15);
-  // *     returns 1: '17'
-  // *     example 2: decoct(264);
-  // *     returns 2: '410'
+function decoct(number) {
+  //  discuss at: http://phpjs.org/functions/decoct/
+  // original by: Enrique Gonzalez
+  // bugfixed by: Onno Marsman
+  // improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
+  //    input by: pilus
+  //   example 1: decoct(15);
+  //   returns 1: '17'
+  //   example 2: decoct(264);
+  //   returns 2: '410'
+
   if (number < 0) {
     number = 0xFFFFFFFF + number + 1;
   }
-  return parseInt(number, 10).toString(8);
+  return parseInt(number, 10)
+    .toString(8);
 }
 {% endcodeblock %}
 
@@ -43,28 +45,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/decoct.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-decoct(15);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'17'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-decoct(264);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'410'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

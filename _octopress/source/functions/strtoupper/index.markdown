@@ -15,13 +15,15 @@ alias:
 A JavaScript equivalent of PHP's strtoupper
 
 {% codeblock strings/strtoupper.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strtoupper.js raw on github %}
-function strtoupper (str) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Onno Marsman
-  // *     example 1: strtoupper('Kevin van Zonneveld');
-  // *     returns 1: 'KEVIN VAN ZONNEVELD'
-  return (str + '').toUpperCase();
+function strtoupper(str) {
+  //  discuss at: http://phpjs.org/functions/strtoupper/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Onno Marsman
+  //   example 1: strtoupper('Kevin van Zonneveld');
+  //   returns 1: 'KEVIN VAN ZONNEVELD'
+
+  return (str + '')
+    .toUpperCase();
 }
 {% endcodeblock %}
 
@@ -36,17 +38,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strtoupper.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-strtoupper('Kevin van Zonneveld');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'KEVIN VAN ZONNEVELD'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

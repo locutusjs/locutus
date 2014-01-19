@@ -15,17 +15,18 @@ alias:
 A JavaScript equivalent of PHP's array_pad
 
 {% codeblock array/array_pad.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_pad.js raw on github %}
-function array_pad (input, pad_size, pad_value) {
-  // From: http://phpjs.org/functions
-  // +   original by: Waldo Malqui Silva
-  // *     example 1: array_pad([ 7, 8, 9 ], 2, 'a');
-  // *     returns 1: [ 7, 8, 9]
-  // *     example 2: array_pad([ 7, 8, 9 ], 5, 'a');
-  // *     returns 2: [ 7, 8, 9, 'a', 'a']
-  // *     example 3: array_pad([ 7, 8, 9 ], 5, 2);
-  // *     returns 3: [ 7, 8, 9, 2, 2]
-  // *     example 4: array_pad([ 7, 8, 9 ], -5, 'a');
-  // *     returns 4: [ 'a', 'a', 7, 8, 9 ]
+function array_pad(input, pad_size, pad_value) {
+  //  discuss at: http://phpjs.org/functions/array_pad/
+  // original by: Waldo Malqui Silva
+  //   example 1: array_pad([ 7, 8, 9 ], 2, 'a');
+  //   returns 1: [ 7, 8, 9]
+  //   example 2: array_pad([ 7, 8, 9 ], 5, 'a');
+  //   returns 2: [ 7, 8, 9, 'a', 'a']
+  //   example 3: array_pad([ 7, 8, 9 ], 5, 2);
+  //   returns 3: [ 7, 8, 9, 2, 2]
+  //   example 4: array_pad([ 7, 8, 9 ], -5, 'a');
+  //   returns 4: [ 'a', 'a', 7, 8, 9 ]
+
   var pad = [],
     newArray = [],
     newLength,
@@ -61,39 +62,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_pad.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_pad([ 7, 8, 9 ], 2, 'a');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-[ 7, 8, 9]
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-array_pad([ 7, 8, 9 ], 5, 'a');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-[ 7, 8, 9, 'a', 'a']
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-array_pad([ 7, 8, 9 ], 5, 2);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-[ 7, 8, 9, 2, 2]
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

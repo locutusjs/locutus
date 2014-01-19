@@ -15,12 +15,13 @@ alias:
 A JavaScript equivalent of PHP's array_fill
 
 {% codeblock array/array_fill.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_fill.js raw on github %}
-function array_fill (start_index, num, mixed_val) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Waldo Malqui Silva
-  // *     example 1: array_fill(5, 6, 'banana');
-  // *     returns 1: { 5: 'banana', 6: 'banana', 7: 'banana', 8: 'banana', 9: 'banana', 10: 'banana' }
+function array_fill(start_index, num, mixed_val) {
+  //  discuss at: http://phpjs.org/functions/array_fill/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Waldo Malqui Silva
+  //   example 1: array_fill(5, 6, 'banana');
+  //   returns 1: { 5: 'banana', 6: 'banana', 7: 'banana', 8: 'banana', 9: 'banana', 10: 'banana' }
+
   var key, tmp_arr = {};
 
   if (!isNaN(start_index) && !isNaN(num)) {
@@ -44,17 +45,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_fill.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_fill(5, 6, 'banana');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{ 5: 'banana', 6: 'banana', 7: 'banana', 8: 'banana', 9: 'banana', 10: 'banana' }
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

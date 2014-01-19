@@ -15,18 +15,21 @@ alias:
 A JavaScript equivalent of PHP's stristr
 
 {% codeblock strings/stristr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/stristr.js raw on github %}
-function stristr (haystack, needle, bool) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfxied by: Onno Marsman
-  // *     example 1: stristr('Kevin van Zonneveld', 'Van');
-  // *     returns 1: 'van Zonneveld'
-  // *     example 2: stristr('Kevin van Zonneveld', 'VAN', true);
-  // *     returns 2: 'Kevin '
+function stristr(haystack, needle, bool) {
+  //  discuss at: http://phpjs.org/functions/stristr/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  //   example 1: stristr('Kevin van Zonneveld', 'Van');
+  //   returns 1: 'van Zonneveld'
+  //   example 2: stristr('Kevin van Zonneveld', 'VAN', true);
+  //   returns 2: 'Kevin '
+
   var pos = 0;
 
   haystack += '';
-  pos = haystack.toLowerCase().indexOf((needle + '').toLowerCase());
+  pos = haystack.toLowerCase()
+    .indexOf((needle + '')
+      .toLowerCase());
   if (pos == -1) {
     return false;
   } else {
@@ -50,28 +53,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/stristr.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-stristr('Kevin van Zonneveld', 'Van');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'van Zonneveld'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-stristr('Kevin van Zonneveld', 'VAN', true);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Kevin '
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

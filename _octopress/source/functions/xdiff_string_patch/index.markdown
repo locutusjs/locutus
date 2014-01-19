@@ -15,38 +15,39 @@ alias:
 A JavaScript equivalent of PHP's xdiff_string_patch
 
 {% codeblock xdiff/xdiff_string_patch.js lang:js https://raw.github.com/kvz/phpjs/master/functions/xdiff/xdiff_string_patch.js raw on github %}
-function xdiff_string_patch (originalStr, patch, flags, error) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Steven Levithan (stevenlevithan.com)
-  // %        note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not currently supported
-  // %        note 2: This has not been widely tested
-  // *     example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!');
-  // *     returns 1: 'Hello world!'
+function xdiff_string_patch(originalStr, patch, flags, error) {
+  //  discuss at: http://phpjs.org/functions/xdiff_string_patch/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Steven Levithan (stevenlevithan.com)
+  //        note: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not currently supported
+  //        note: This has not been widely tested
+  //   example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!');
+  //   returns 1: 'Hello world!'
 
   // First two functions were adapted from Steven Levithan, also under an MIT license
   // Adapted from XRegExp 1.5.0
   // (c) 2007-2010 Steven Levithan
   // MIT License
   // <http://xregexp.com>
-  var getNativeFlags = function (regex) {
-    return (regex.global ? "g" : "") + (regex.ignoreCase ? "i" : "") + (regex.multiline ? "m" : "") + (regex.extended ? "x" : "") + // Proposed for ES4; included in AS3
-    (regex.sticky ? "y" : "");
+  var getNativeFlags = function(regex) {
+    return (regex.global ? 'g' : '') + (regex.ignoreCase ? 'i' : '') + (regex.multiline ? 'm' : '') + (regex.extended ?
+      'x' : '') + // Proposed for ES4; included in AS3
+    (regex.sticky ? 'y' : '');
   },
-    cbSplit = function (str, s /* separator */ ) {
+    cbSplit = function(string, sep /* separator */ ) {
       // If separator `s` is not a regex, use the native `split`
-      if (!(s instanceof RegExp)) { // Had problems to get it to work here using prototype test
-        return String.prototype.split.apply(str, arguments);
+      if (!(sep instanceof RegExp)) { // Had problems to get it to work here using prototype test
+        return String.prototype.split.apply(string, arguments);
       }
-      str = str + '';
-      var output = [],
+      var str = String(string),
+        output = [],
         lastLastIndex = 0,
-        match, lastLength, limit = Infinity;
+        match, lastLength, limit = Infinity,
 
-      // This is required if not `s.global`, and it avoids needing to set `s.lastIndex` to zero
-      // and restore it to its original value when we're done using the regex
-      var x = s._xregexp;
-      s = new RegExp(s.source, getNativeFlags(s) + 'g'); // Brett paring down
+        // This is required if not `s.global`, and it avoids needing to set `s.lastIndex` to zero
+        // and restore it to its original value when we're done using the regex
+        x = sep._xregexp,
+        s = new RegExp(sep.source, getNativeFlags(sep) + 'g'); // Brett paring down
       if (x) {
         s._xregexp = {
           source: x.source,
@@ -65,7 +66,9 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
           lastLength = match[0].length;
           lastLastIndex = s.lastIndex;
 
-          if (output.length >= limit) break;
+          if (output.length >= limit) {
+            break;
+          }
         }
 
         if (s.lastIndex === match.index) {
@@ -74,8 +77,8 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
       }
 
       if (lastLastIndex === str.length) {
-        if (!s.test("") || lastLength) {
-          output.push("");
+        if (!s.test('') || lastLength) {
+          output.push('');
         }
       } else {
         output.push(str.slice(lastLastIndex));
@@ -131,20 +134,20 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
         while (lastLinePos < linePos) {
           newStrArr[newStrArr.length] = origLines[lastLinePos++];
         }
-        while (lines[++i] && (rangeExp.exec(lines[i])) == null) {
+        while (lines[++i] && (rangeExp.exec(lines[i])) === null) {
           firstChar = lines[i].charAt(0);
           switch (firstChar) {
-          case '-':
-            ++linePos; // Skip including that line
-            break;
-          case '+':
-            newStrArr[newStrArr.length] = lines[i].slice(1);
-            break;
-          case ' ':
-            newStrArr[newStrArr.length] = origLines[linePos++];
-            break;
-          default:
-            throw 'Unrecognized initial character in unidiff line'; // Reconcile with returning errrors arg?
+            case '-':
+              ++linePos; // Skip including that line
+              break;
+            case '+':
+              newStrArr[newStrArr.length] = lines[i].slice(1);
+              break;
+            case ' ':
+              newStrArr[newStrArr.length] = origLines[linePos++];
+              break;
+            default:
+              throw 'Unrecognized initial character in unidiff line'; // Reconcile with returning errrors arg?
           }
         }
         if (lines[i]) {
@@ -152,9 +155,9 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
         }
       }
     }
-	while (linePos < origLines.length) {
-	  newStrArr[newStrArr.length] = origLines[linePos++];
-	}
+    while (linePos < origLines.length) {
+      newStrArr[newStrArr.length] = origLines[linePos++];
+    }
   } else if (flags & OPTS.XDIFF_PATCH_REVERSE) { // Only differs from above by a few lines
     for (i = 0, ll = lines.length; i < ll; i++) {
       ranges = lines[i].match(rangeExp);
@@ -164,20 +167,20 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
         while (lastLinePos < linePos) {
           newStrArr[newStrArr.length] = origLines[lastLinePos++];
         }
-        while (lines[++i] && (rangeExp.exec(lines[i])) == null) {
+        while (lines[++i] && (rangeExp.exec(lines[i])) === null) {
           firstChar = lines[i].charAt(0);
           switch (firstChar) {
-          case '-':
-            newStrArr[newStrArr.length] = lines[i].slice(1);
-            break;
-          case '+':
-            ++linePos; // Skip including that line
-            break;
-          case ' ':
-            newStrArr[newStrArr.length] = origLines[linePos++];
-            break;
-          default:
-            throw 'Unrecognized initial character in unidiff line'; // Reconcile with returning errrors arg?
+            case '-':
+              newStrArr[newStrArr.length] = lines[i].slice(1);
+              break;
+            case '+':
+              ++linePos; // Skip including that line
+              break;
+            case ' ':
+              newStrArr[newStrArr.length] = origLines[linePos++];
+              break;
+            default:
+              throw 'Unrecognized initial character in unidiff line'; // Reconcile with returning errrors arg?
           }
         }
         if (lines[i]) {
@@ -185,9 +188,9 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
         }
       }
     }
-	while (linePos < origLines.length) {
-	  newStrArr[newStrArr.length] = origLines[linePos++];
-	}
+    while (linePos < origLines.length) {
+      newStrArr[newStrArr.length] = origLines[linePos++];
+    }
   }
   if (typeof error === 'string') {
     this.window[error] = errors;
@@ -207,17 +210,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/xdiff/xdiff_string_patch.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Hello world!'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the xdiff extension

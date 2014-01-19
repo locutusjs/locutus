@@ -15,14 +15,15 @@ alias:
 A JavaScript equivalent of PHP's strpbrk
 
 {% codeblock strings/strpbrk.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strpbrk.js raw on github %}
-function strpbrk (haystack, char_list) {
-  // From: http://phpjs.org/functions
-  // +   original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
-  // +   bugfixed by: Onno Marsman
-  // +    revised by: Christoph
-  // +    improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: strpbrk('This is a Simple text.', 'is');
-  // *     returns 1: 'is is a Simple text.'
+function strpbrk(haystack, char_list) {
+  //  discuss at: http://phpjs.org/functions/strpbrk/
+  // original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
+  // bugfixed by: Onno Marsman
+  //  revised by: Christoph
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: strpbrk('This is a Simple text.', 'is');
+  //   returns 1: 'is is a Simple text.'
+
   for (var i = 0, len = haystack.length; i < len; ++i) {
     if (char_list.indexOf(haystack.charAt(i)) >= 0) {
       return haystack.slice(i);
@@ -43,17 +44,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strpbrk.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-strpbrk('This is a Simple text.', 'is');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'is is a Simple text.'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

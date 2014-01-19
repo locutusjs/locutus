@@ -15,13 +15,15 @@ alias:
 A JavaScript equivalent of PHP's lcfirst
 
 {% codeblock strings/lcfirst.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/lcfirst.js raw on github %}
-function lcfirst (str) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: lcfirst('Kevin Van Zonneveld');
-  // *     returns 1: 'kevin Van Zonneveld'
+function lcfirst(str) {
+  //  discuss at: http://phpjs.org/functions/lcfirst/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: lcfirst('Kevin Van Zonneveld');
+  //   returns 1: 'kevin Van Zonneveld'
+
   str += '';
-  var f = str.charAt(0).toLowerCase();
+  var f = str.charAt(0)
+    .toLowerCase();
   return f + str.substr(1);
 }
 {% endcodeblock %}
@@ -37,17 +39,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/lcfirst.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-lcfirst('Kevin Van Zonneveld');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'kevin Van Zonneveld'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

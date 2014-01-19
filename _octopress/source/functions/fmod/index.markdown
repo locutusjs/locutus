@@ -15,22 +15,27 @@ alias:
 A JavaScript equivalent of PHP's fmod
 
 {% codeblock math/fmod.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/fmod.js raw on github %}
-function fmod (x, y) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // *     example 1: fmod(5.7, 1.3);
-  // *     returns 1: 0.5
+function fmod(x, y) {
+  //  discuss at: http://phpjs.org/functions/fmod/
+  // original by: Onno Marsman
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //   example 1: fmod(5.7, 1.3);
+  //   returns 1: 0.5
+
   var tmp, tmp2, p = 0,
     pY = 0,
     l = 0.0,
     l2 = 0.0;
 
-  tmp = x.toExponential().match(/^.\.?(.*)e(.+)$/);
-  p = parseInt(tmp[2], 10) - (tmp[1] + '').length;
-  tmp = y.toExponential().match(/^.\.?(.*)e(.+)$/);
-  pY = parseInt(tmp[2], 10) - (tmp[1] + '').length;
+  tmp = x.toExponential()
+    .match(/^.\.?(.*)e(.+)$/);
+  p = parseInt(tmp[2], 10) - (tmp[1] + '')
+    .length;
+  tmp = y.toExponential()
+    .match(/^.\.?(.*)e(.+)$/);
+  pY = parseInt(tmp[2], 10) - (tmp[1] + '')
+    .length;
 
   if (pY > p) {
     p = pY;
@@ -43,7 +48,8 @@ function fmod (x, y) {
     l = Math.round(Math.log(tmp2) / Math.log(10));
     l2 = Math.pow(10, l);
 
-    return (tmp2 / l2).toFixed(l - p) * l2;
+    return (tmp2 / l2)
+      .toFixed(l - p) * l2;
   } else {
     return parseFloat(tmp2.toFixed(-p));
   }
@@ -61,17 +67,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/fmod.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-fmod(5.7, 1.3);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-0.5
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

@@ -15,14 +15,15 @@ alias:
 A JavaScript equivalent of PHP's is_nan
 
 {% codeblock math/is_nan.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/is_nan.js raw on github %}
-function is_nan (val) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // +      input by: Robin
-  // *     example 1: is_nan(NaN);
-  // *     returns 1: true
-  // *     example 2: is_nan(0);
-  // *     returns 2: false
+function is_nan(val) {
+  //  discuss at: http://phpjs.org/functions/is_nan/
+  // original by: Onno Marsman
+  //    input by: Robin
+  //   example 1: is_nan(NaN);
+  //   returns 1: true
+  //   example 2: is_nan(0);
+  //   returns 2: false
+
   var warningType = '';
 
   if (typeof val === 'number' && isNaN(val)) {
@@ -32,8 +33,7 @@ function is_nan (val) {
   //Some errors for maximum PHP compatibility
   if (typeof val === 'object') {
     warningType = (Object.prototype.toString.call(val) === '[object Array]' ? 'array' : 'object');
-  }
-  else if (typeof val === 'string' && !val.match(/^[\+\-]?\d/)) {
+  } else if (typeof val === 'string' && !val.match(/^[\+\-]?\d/)) {
     //simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
     warningType = 'string';
   }
@@ -56,28 +56,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/is_nan.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-is_nan(NaN);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-is_nan(0);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-false
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

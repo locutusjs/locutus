@@ -15,15 +15,16 @@ alias:
 A JavaScript equivalent of PHP's escapeshellarg
 
 {% codeblock exec/escapeshellarg.js lang:js https://raw.github.com/kvz/phpjs/master/functions/exec/escapeshellarg.js raw on github %}
-function escapeshellarg (arg) {
-  // From: http://phpjs.org/functions
-  // +   original by: Felix Geisendoerfer (http://www.debuggable.com/felix)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: escapeshellarg("kevin's birthday");
-  // *     returns 1: "'kevin\'s birthday'"
+function escapeshellarg(arg) {
+  //  discuss at: http://phpjs.org/functions/escapeshellarg/
+  // original by: Felix Geisendoerfer (http://www.debuggable.com/felix)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: escapeshellarg("kevin's birthday");
+  //   returns 1: "'kevin\\'s birthday'"
+
   var ret = '';
 
-  ret = arg.replace(/[^\\]'/g, function (m, i, s) {
+  ret = arg.replace(/[^\\]'/g, function(m, i, s) {
     return m.slice(0, 1) + '\\\'';
   });
 
@@ -42,17 +43,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/exec/escapeshellarg.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-escapeshellarg("kevin's birthday");
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-"'kevin\'s birthday'"
-{% endcodeblock %}
 
 
 ### Other PHP functions in the exec extension

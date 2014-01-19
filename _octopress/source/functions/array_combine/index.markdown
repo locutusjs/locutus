@@ -15,19 +15,20 @@ alias:
 A JavaScript equivalent of PHP's array_combine
 
 {% codeblock array/array_combine.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_combine.js raw on github %}
-function array_combine (keys, values) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: array_combine([0,1,2], ['kevin','van','zonneveld']);
-  // *     returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
+function array_combine(keys, values) {
+  //  discuss at: http://phpjs.org/functions/array_combine/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: array_combine([0,1,2], ['kevin','van','zonneveld']);
+  //   returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
+
   var new_array = {},
     keycount = keys && keys.length,
     i = 0;
 
   // input sanitation
   if (typeof keys !== 'object' || typeof values !== 'object' || // Only accept arrays or array-like objects
-  typeof keycount !== 'number' || typeof values.length !== 'number' || !keycount) { // Require arrays to have a count
+    typeof keycount !== 'number' || typeof values.length !== 'number' || !keycount) { // Require arrays to have a count
     return false;
   }
 
@@ -55,17 +56,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_combine.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_combine([0,1,2], ['kevin','van','zonneveld']);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{0: 'kevin', 1: 'van', 2: 'zonneveld'}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

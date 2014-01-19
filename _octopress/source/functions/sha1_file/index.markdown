@@ -15,14 +15,14 @@ alias:
 A JavaScript equivalent of PHP's sha1_file
 
 {% codeblock strings/sha1_file.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/sha1_file.js raw on github %}
-function sha1_file (str_filename) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // -    depends on: file_get_contents
-  // -    depends on: sha1
-  // *          test: skip
-  // *     example 1: sha1_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
-  // *     returns 1: '40bd001563085fc35165329ea1ff5c5ecbdbbeef'
+function sha1_file(str_filename) {
+  //  discuss at: http://phpjs.org/functions/sha1_file/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //  depends on: file_get_contents
+  //  depends on: sha1
+  //        test: skip
+  //   example 1: sha1_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
+  //   returns 1: '40bd001563085fc35165329ea1ff5c5ecbdbbeef'
 
   var buf = this.file_get_contents(str_filename);
 
@@ -41,17 +41,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/sha1_file.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-sha1_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'40bd001563085fc35165329ea1ff5c5ecbdbbeef'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

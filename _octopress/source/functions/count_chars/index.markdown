@@ -15,23 +15,28 @@ alias:
 A JavaScript equivalent of PHP's count_chars
 
 {% codeblock strings/count_chars.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/count_chars.js raw on github %}
-function count_chars (str, mode) {
-  // From: http://phpjs.org/functions
-  // +   original by: Ates Goral (http://magnetiq.com)
-  // +    tweaked by: Jack
-  // +   bugfixed by: Onno Marsman
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    revised by: Theriault
-  // *     example 1: count_chars("Hello World!", 3);
-  // *     returns 1: "!HWdelor"
-  // *     example 2: count_chars("Hello World!", 1);
-  // *     returns 2: {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
+function count_chars(str, mode) {
+  //  discuss at: http://phpjs.org/functions/count_chars/
+  // original by: Ates Goral (http://magnetiq.com)
+  // improved by: Jack
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Theriault
+  //   example 1: count_chars("Hello World!", 3);
+  //   returns 1: " !HWdelor"
+  //   example 2: count_chars("Hello World!", 1);
+  //   returns 2: {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
+
   var result = {},
     resultArr = [],
     i;
 
-  str = ('' + str).split('').sort().join('').match(/(.)\1*/g);
+  str = ('' + str)
+    .split('')
+    .sort()
+    .join('')
+    .match(/(.)\1*/g);
 
   if ((mode & 1) == 0) {
     for (i = 0; i != 256; i++) {
@@ -83,28 +88,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/count_chars.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-count_chars("Hello World!", 3);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-"!HWdelor"
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-count_chars("Hello World!", 1);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

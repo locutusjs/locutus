@@ -15,16 +15,16 @@ alias:
 A JavaScript equivalent of PHP's ini_set
 
 {% codeblock info/ini_set.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/ini_set.js raw on github %}
-function ini_set (varname, newvalue) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: This will not set a global_value or access level for the ini item
-  // *          test: skip
-  // *     example 1: ini_set('date.timezone', 'America/Chicago');
-  // *     returns 1: 'Asia/Hong_Kong'
+function ini_set(varname, newvalue) {
+  //  discuss at: http://phpjs.org/functions/ini_set/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: This will not set a global_value or access level for the ini item
+  //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong');
+  //   example 1: ini_set('date.timezone', 'America/Chicago');
+  //   returns 1: 'Asia/Hong_Kong'
 
   var oldval = '';
-  var self   = this;
+  var self = this;
 
   try {
     this.php_js = this.php_js || {};
@@ -32,12 +32,12 @@ function ini_set (varname, newvalue) {
     this.php_js = {};
   }
 
-  this.php_js.ini          = this.php_js.ini || {};
+  this.php_js.ini = this.php_js.ini || {};
   this.php_js.ini[varname] = this.php_js.ini[varname] || {};
 
   oldval = this.php_js.ini[varname].local_value;
 
-  var _setArr = function (oldval) {
+  var _setArr = function(oldval) {
     // Although these are set individually, they are all accumulated
     if (typeof oldval === 'undefined') {
       self.php_js.ini[varname].local_value = [];
@@ -46,16 +46,16 @@ function ini_set (varname, newvalue) {
   };
 
   switch (varname) {
-  case 'extension':
-    if (typeof this.dl === 'function') {
-      // This function is only experimental in php.js
-      this.dl(newvalue);
-    }
-    _setArr(oldval, newvalue);
-    break;
-  default:
-    this.php_js.ini[varname].local_value = newvalue;
-    break;
+    case 'extension':
+      if (typeof this.dl === 'function') {
+        // This function is only experimental in php.js
+        this.dl(newvalue);
+      }
+      _setArr(oldval, newvalue);
+      break;
+    default:
+      this.php_js.ini[varname].local_value = newvalue;
+      break;
   }
 
   return oldval;
@@ -73,17 +73,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/info/ini_set.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-ini_set('date.timezone', 'America/Chicago');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Asia/Hong_Kong'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the info extension

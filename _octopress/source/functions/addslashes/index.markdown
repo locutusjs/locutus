@@ -15,19 +15,22 @@ alias:
 A JavaScript equivalent of PHP's addslashes
 
 {% codeblock strings/addslashes.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/addslashes.js raw on github %}
-function addslashes (str) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Ates Goral (http://magnetiq.com)
-  // +   improved by: marrtins
-  // +   improved by: Nate
-  // +   improved by: Onno Marsman
-  // +   input by: Denny Wardhana
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Oskar Larsson Högfeldt (http://oskar-lh.name/)
-  // *     example 1: addslashes("kevin's birthday");
-  // *     returns 1: 'kevin\'s birthday'
-  return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
+function addslashes(str) {
+  //  discuss at: http://phpjs.org/functions/addslashes/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Ates Goral (http://magnetiq.com)
+  // improved by: marrtins
+  // improved by: Nate
+  // improved by: Onno Marsman
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Oskar Larsson Högfeldt (http://oskar-lh.name/)
+  //    input by: Denny Wardhana
+  //   example 1: addslashes("kevin's birthday");
+  //   returns 1: "kevin\\'s birthday"
+
+  return (str + '')
+    .replace(/[\\"']/g, '\\$&')
+    .replace(/\u0000/g, '\\0');
 }
 {% endcodeblock %}
 
@@ -42,17 +45,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/addslashes.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-addslashes("kevin's birthday");
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'kevin\'s birthday'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension
