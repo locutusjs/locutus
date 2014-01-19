@@ -1,8 +1,9 @@
 function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   original by: Imgen Tata (http://www.myipdf.com/)
+  // +   based on: Imgen Tata (http://www.myipdf.com/)
   // +   bugfixed by: Imgen Tata (http://www.myipdf.com/)
+  // +   improved by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: The minimal argument is not currently supported
   // *     example 1: xdiff_string_diff('', 'Hello world!');
   // *     returns 1: '@@ -0,0 +1,1 @@\n+Hello world!'
@@ -28,236 +29,229 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
       DELETION_INDICATOR = '-',
       ADDITION_INDICATOR = '+',
       ori_lines, new_lines, NEW_LINE = '\n',
-      /*
-    *Trims string
-    */
+      /**
+      * Trims string
+      */
       trim = function(text) {
         if (typeof text !== 'string') {
-          throw Error('String parameter required');
+          throw new Error('String parameter required');
         }
 
         return text.replace(/(^\s*)|(\s*$)/g, '');
-      };
-  /*
-    *Verifies type of arguments
-    */
-  verify_type = function(type) {
-    var args = arguments,
-            args_len = arguments.length,
-            basic_types = ['number', 'boolean', 'string', 'function', 'object', 'undefined'],
-            basic_type, i, j, type_of_type = typeof type;
-    if (type_of_type !== 'string' && type_of_type !== 'function') {
-      throw new Error('Bad type parameter');
-    }
+      },
+      /**
+      * Verifies type of arguments
+      */
+      verify_type = function(type) {
+        var args = arguments,
+                args_len = arguments.length,
+                basic_types = ['number', 'boolean', 'string', 'function', 'object', 'undefined'],
+                basic_type, i, j, type_of_type = typeof type;
+        if (type_of_type !== 'string' && type_of_type !== 'function') {
+          throw new Error('Bad type parameter');
+        }
 
-    if (args_len < 2) {
-      throw new Error('Too few arguments');
-    }
+        if (args_len < 2) {
+          throw new Error('Too few arguments');
+        }
 
-    if (type_of_type === 'string') {
-      type = trim(type);
+        if (type_of_type === 'string') {
+          type = trim(type);
 
-      if (type === '') {
-        throw new Error('Bad type parameter');
-      }
+          if (type === '') {
+            throw new Error('Bad type parameter');
+          }
 
-      for (j = 0; j < basic_types.length; j++) {
-        basic_type = basic_types[j];
+          for (j = 0; j < basic_types.length; j++) {
+            basic_type = basic_types[j];
 
-        if (basic_type == type) {
-          for (i = 1; i < args_len; i++) {
-            if (typeof args[i] != type) {
-              throw new Error('Bad type');
+            if (basic_type == type) {
+              for (i = 1; i < args_len; i++) {
+                if (typeof args[i] !== type) {
+                  throw new Error('Bad type');
+                }
+              }
+
+              return;
             }
           }
 
-          return;
+          throw new Error('Bad type parameter');
         }
-      }
 
-      throw new Error('Bad type parameter');
-    }
+        // Not basic type. we need to use instanceof operator
+        for (i = 1; i < args_len; i++) {
+          if (!(args[i] instanceof type)) {
+            throw new Error('Bad type');
+          }
+        }
+      },
+      /**
+      * Checks if the specified array contains an element with specified value
+      */
+      has_value = function(array, value) {
+        var i;
+        verify_type(Array, array);
 
-    // Not basic type. we need to use instanceof operator
-    for (i = 1; i < args_len; i++) {
-      if (!(args[i] instanceof type)) {
-        throw new Error('Bad type');
-      }
-    }
-  };
-  /*
-    *Checks if the specified array contains an element with specified value
-    */
-  has_value = function(array, value) {
-    var i;
-    verify_type(Array, array);
+        for (i = 0; i < array.length; i++) {
+          if (array[i] === value) {
+            return true;
+          }
+        }
 
-    for (i = 0; i < array.length; i++) {
-      if (array[i] === value) {
+        return false;
+      },
+      /**
+      * Checks the type of arguments
+      * @param {String | Function} type Specifies the desired type
+      * @return {Boolean} Return true if all arguments after the type argument are of specified type. Else false
+      */
+      are_type_of = function(type) {
+        var args = arguments,
+                args_len = arguments.length,
+                basic_types = ['number', 'boolean', 'string', 'function', 'object', 'undefined'],
+                basic_type, i, j, type_of_type = typeof type;
+        if (type_of_type !== 'string' && type_of_type !== 'function') {
+          throw new Error('Bad type parameter');
+        }
+
+        if (args_len < 2) {
+          throw new Error('Too few arguments');
+        }
+
+        if (type_of_type === 'string') {
+          type = trim(type);
+
+          if (type === '') {
+            return false;
+          }
+
+          for (j = 0; j < basic_types.length; j++) {
+            basic_type = basic_types[j];
+
+            if (basic_type == type) {
+              for (i = 1; i < args_len; i++) {
+                if (typeof args[i] != type) {
+                  return false;
+                }
+              }
+
+              return true;
+            }
+          }
+
+          throw new Error('Bad type parameter');
+        }
+
+        // Not basic type. we need to use instanceof operator
+        for (i = 1; i < args_len; i++) {
+          if (!(args[i] instanceof type)) {
+            return false;
+          }
+        }
+
         return true;
-      }
-    }
+      },
+      /*
+      * Initialize and return an array with specified size and initial value
+      */
+      get_initialized_array = function(array_size, init_value) {
+        var array = [],
+                i;
+        verify_type('number', array_size);
 
-    return false;
-  };
-  /*
-    *Checks the type of arguments
-    *@param {String | Function} type Specifies the desired type
-    *@return {Boolean} Return true if all arguments after the type argument are of specified type. Else false
-    */
-  are_type_of = function(type) {
-    var args = arguments,
-            args_len = arguments.length,
-            basic_types = ['number', 'boolean', 'string', 'function', 'object', 'undefined'],
-            basic_type, i, j, type_of_type = typeof type;
-    if (type_of_type !== 'string' && type_of_type !== 'function') {
-      throw new Error('Bad type parameter');
-    }
-
-    if (args_len < 2) {
-      throw new Error('Too few arguments');
-    }
-
-    if (type_of_type === 'string') {
-      type = trim(type);
-
-      if (type === '') {
-        return false;
-      }
-
-      for (j = 0; j < basic_types.length; j++) {
-        basic_type = basic_types[j];
-
-        if (basic_type == type) {
-          for (i = 1; i < args_len; i++) {
-            if (typeof args[i] != type) {
-              return false;
-            }
-          }
-
-          return true;
+        for (i = 0; i < array_size; i++) {
+          array.push(init_value);
         }
-      }
 
-      throw new Error('Bad type parameter');
-    }
+        return array;
+      },
+      /**
+      * Splits text into lines and return as a string array
+      */
+      split_into_lines = function(text) {
+        verify_type('string', text);
 
-    // Not basic type. we need to use instanceof operator
-    for (i = 1; i < args_len; i++) {
-      if (!(args[i] instanceof type)) {
-        return false;
-      }
-    }
-
-    return true;
-  };
-  /*
-    *Initialize and return an array with specified size and initial value
-    */
-  get_initialized_array = function(array_size, init_value) {
-    var array = [],
-            i;
-    verify_type('number', array_size);
-
-    for (i = 0; i < array_size; i++) {
-      array.push(init_value);
-    }
-
-    return array;
-  };
-  /*
-    *Splits text into lines and return as a string array
-    */
-  split_into_lines = function(text) {
-    verify_type('string', text);
-
-    if (text === '') {
-      return [];
-    }
-    return text.split('\n');
-  };
-  is_empty_array = function(obj) {
-    return are_type_of(Array, obj) && obj.length === 0;
-  };
-  /*
-    * Finds longest common sequence between two sequences
-    *See http://wordaligned.org/articles/longest-common-subsequence
-    */
-  find_longest_common_sequence = function(seq1, seq2, seq1_is_in_lcs, seq2_is_in_lcs) {
-    if (!are_type_of(Array, seq1, seq2)) {
-      throw new Error('Array parameters are required');
-    }
-
-    // Deal with edge case
-    if (is_empty_array(seq1) || is_empty_array(seq2)) {
-      return [];
-    }
-
-    // Function to calculate lcs lengths
-    var lcs_lens = function(xs, ys) {
-      var curr = get_initialized_array(ys.length + 1, 0);
-      var prev;
-      var i, j;
-
-      for (i = 0; i < xs.length; i++) {
-        prev = curr.slice(0);
-        for (j = 0; j < ys.length; j++) {
-          if (xs[i] === ys[j]) {
-            curr[j + 1] = prev[j] + 1;
-          } else {
-            curr[j + 1] = Math.max(curr[j], prev[j + 1]);
-          }
-        }
-      }
-
-      return curr;
-    };
-    // Function to find lcs and fill in the array to indicate the optimal longest common sequence
-    find_lcs = function(xs, xidx, xs_is_in, ys) {
-      var nx = xs.length;
-      var ny = ys.length;
-      var i;
-      var xb, xe;
-      var ll_b, ll_e;
-      var pivot;
-      var max;
-      var yb, ye;
-
-      if (nx === 0) {
-        return [];
-      } else if (nx === 1) {
-        if (has_value(ys, xs[0])) {
-          xs_is_in[xidx] = true;
-          return [xs[0]];
-        } else {
+        if (text === '') {
           return [];
         }
-      } else {
-        i = Math.floor(nx / 2);
-        xb = xs.slice(0, i);
-        xe = xs.slice(i);
-        ll_b = lcs_lens(xb, ys);
-        ll_e = lcs_lens(xe.slice(0).reverse(), ys.slice(0).reverse());
-
-        pivot = 0;
-        max = 0;
-        for (j = 0; j <= ny; j++) {
-          if (ll_b[j] + ll_e[ny - j] > max) {
-            pivot = j;
-            max = ll_b[j] + ll_e[ny - j];
-          }
+        return text.split('\n');
+      },
+      is_empty_array = function(obj) {
+        return are_type_of(Array, obj) && obj.length === 0;
+      },
+      /**
+      * Finds longest common sequence between two sequences
+      * @see {@link http://wordaligned.org/articles/longest-common-subsequence}
+      */
+      find_longest_common_sequence = function(seq1, seq2, seq1_is_in_lcs, seq2_is_in_lcs) {
+        if (!are_type_of(Array, seq1, seq2)) {
+          throw new Error('Array parameters are required');
         }
-        yb = ys.slice(0, pivot);
-        ye = ys.slice(pivot);
-        return find_lcs(xb, xidx, xs_is_in, yb).concat(find_lcs(xe, xidx + i, xs_is_in, ye));
-      }
-    };
 
-    // Fill in seq1_is_in_lcs to find the optimal longest common subsequence of first sequence
-    find_lcs(seq1, 0, seq1_is_in_lcs, seq2);
-    // Fill in seq2_is_in_lcs to find the optimal longest common subsequence of second sequence and return the result
-    return find_lcs(seq2, 0, seq2_is_in_lcs, seq1);
-  };
+        // Deal with edge case
+        if (is_empty_array(seq1) || is_empty_array(seq2)) {
+          return [];
+        }
+
+        // Function to calculate lcs lengths
+        var lcs_lens = function(xs, ys) {
+          var i, j, prev,
+            curr = get_initialized_array(ys.length + 1, 0);
+
+          for (i = 0; i < xs.length; i++) {
+            prev = curr.slice(0);
+            for (j = 0; j < ys.length; j++) {
+              if (xs[i] === ys[j]) {
+                curr[j + 1] = prev[j] + 1;
+              } else {
+                curr[j + 1] = Math.max(curr[j], prev[j + 1]);
+              }
+            }
+          }
+
+          return curr;
+        },
+        // Function to find lcs and fill in the array to indicate the optimal longest common sequence
+        find_lcs = function(xs, xidx, xs_is_in, ys) {
+          var i, xb, xe, ll_b, ll_e, pivot, max, yb, ye,
+            nx = xs.length,
+            ny = ys.length;
+
+          if (nx === 0) {
+            return [];
+          }
+          if (nx === 1) {
+            if (has_value(ys, xs[0])) {
+              xs_is_in[xidx] = true;
+              return [xs[0]];
+            }
+            return [];
+          }
+          i = Math.floor(nx / 2);
+          xb = xs.slice(0, i);
+          xe = xs.slice(i);
+          ll_b = lcs_lens(xb, ys);
+          ll_e = lcs_lens(xe.slice(0).reverse(), ys.slice(0).reverse());
+
+          pivot = 0;
+          max = 0;
+          for (j = 0; j <= ny; j++) {
+            if (ll_b[j] + ll_e[ny - j] > max) {
+              pivot = j;
+              max = ll_b[j] + ll_e[ny - j];
+            }
+          }
+          yb = ys.slice(0, pivot);
+          ye = ys.slice(pivot);
+          return find_lcs(xb, xidx, xs_is_in, yb).concat(find_lcs(xe, xidx + i, xs_is_in, ye));
+        };
+
+        // Fill in seq1_is_in_lcs to find the optimal longest common subsequence of first sequence
+        find_lcs(seq1, 0, seq1_is_in_lcs, seq2);
+        // Fill in seq2_is_in_lcs to find the optimal longest common subsequence of second sequence and return the result
+        return find_lcs(seq2, 0, seq2_is_in_lcs, seq1);
+      };
 
   // First, check the parameters
   if (are_type_of('string', old_data, new_data) === false) {
@@ -309,16 +303,16 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
         var context_start_pos = Math.max(context.length - context_lines, 0);
 
         return context.slice(context_start_pos);
+      },
+
+      // Regularize trailing context by the context_lines parameter
+      regularize_trailing_context = function(context) {
+        if (context.length === 0 || context_lines === 0) {
+          return [];
+        }
+
+        return context.slice(0, Math.min(context_lines, context.length));
       };
-
-  // Regularize trailing context by the context_lines parameter
-  regularize_trailing_context = function(context) {
-    if (context.length === 0 || context_lines === 0) {
-      return [];
-    }
-
-    return context.slice(0, Math.min(context_lines, context.length));
-  };
 
   // Skip common lines in the beginning
   while (i < ori_len && ori_is_in_lcs[i] === true && new_is_in_lcs[i] === true) {
