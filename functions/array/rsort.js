@@ -20,7 +20,9 @@ function rsort(inputArr, sort_flags) {
   //        note: if the content is a numeric string, we treat the
   //        note: "original type" as numeric.
   //  depends on: i18n_loc_get_default
-  //   example 1: rsort(['Kevin', 'van', 'Zonneveld']);
+  //   example 1: $arr = ['Kevin', 'van', 'Zonneveld'];
+  //   example 1: rsort($arr);
+  //   example 1: $results = $arr;
   //   returns 1: ['van', 'Zonneveld', 'Kevin']
   //   example 2: ini_set('phpjs.strictForIn', true);
   //   example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
@@ -75,7 +77,12 @@ function rsort(inputArr, sort_flags) {
   }
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
+  try {
+    this.php_js = this.php_js || {};
+  } catch (e) {
+    this.php_js = {};
+  }
+
   this.php_js.ini = this.php_js.ini || {};
   // END REDUNDANT
   strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
