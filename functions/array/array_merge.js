@@ -1,17 +1,18 @@
 function array_merge() {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Nate
-  // +   input by: josh
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: arr1 = {"color": "red", 0: 2, 1: 4}
-  // *     example 1: arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
-  // *     example 1: array_merge(arr1, arr2)
-  // *     returns 1: {"color": "green", 0: 2, 1: 4, 2: "a", 3: "b", "shape": "trapezoid", 4: 4}
-  // *     example 2: arr1 = []
-  // *     example 2: arr2 = {1: "data"}
-  // *     example 2: array_merge(arr1, arr2)
-  // *     returns 2: {0: "data"}
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Nate
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //    input by: josh
+  //   example 1: arr1 = {"color": "red", 0: 2, 1: 4}
+  //   example 1: arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
+  //   example 1: array_merge(arr1, arr2)
+  //   returns 1: {"color": "green", 0: 2, 1: 4, 2: "a", 3: "b", "shape": "trapezoid", 4: 4}
+  //   example 2: arr1 = []
+  //   example 2: arr2 = {1: "data"}
+  //   example 2: array_merge(arr1, arr2)
+  //   returns 2: {0: "data"}
+
   var args = Array.prototype.slice.call(arguments),
       argl = args.length,
       arg,

@@ -1,17 +1,17 @@
 function end(arr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Legaev Andrey
-  // +    revised by: J A R
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    revised by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Uses global: php_js to store the array pointer
-  // *     example 1: end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
-  // *     returns 1: 'Zonneveld'
-  // *     example 2: end(['Kevin', 'van', 'Zonneveld']);
-  // *     returns 2: 'Zonneveld'
-  // BEGIN REDUNDANT
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Legaev Andrey
+  //  revised by: J A R
+  //  revised by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //        note: Uses global: php_js to store the array pointer
+  //   example 1: end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
+  //   returns 1: 'Zonneveld'
+  //   example 2: end(['Kevin', 'van', 'Zonneveld']);
+  //   returns 2: 'Zonneveld'
+
   this.php_js = this.php_js || {};
   this.php_js.pointers = this.php_js.pointers || [];
   var indexOf = function(value) {

@@ -1,20 +1,21 @@
 function htmlentities(string, quote_style, charset, double_encode) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: nobbler
-  // +    improved by: Jack
-  // +   bugfixed by: Onno Marsman
-  // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: Ratheous
-  // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
-  // +   improved by: Dj (http://phpjs.org/functions/htmlentities:425#comment_134018)
-  // -    depends on: get_html_translation_table
-  // *     example 1: htmlentities('Kevin & van Zonneveld');
-  // *     returns 1: 'Kevin &amp; van Zonneveld'
-  // *     example 2: htmlentities("foo'bar","ENT_QUOTES");
-  // *     returns 2: 'foo&#039;bar'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: nobbler
+  // improved by: Jack
+  // improved by: Rafał Kukawski (http://blog.kukawski.pl)
+  // improved by: Dj (http://phpjs.org/functions/htmlentities:425#comment_134018)
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Ratheous
+  //  depends on: get_html_translation_table
+  //   example 1: htmlentities('Kevin & van Zonneveld');
+  //   returns 1: 'Kevin &amp; van Zonneveld'
+  //   example 2: htmlentities("foo'bar","ENT_QUOTES");
+  //   returns 2: 'foo&#039;bar'
+
   var hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style),
       symbol = '';
   string = string == null ? '' : string + '';

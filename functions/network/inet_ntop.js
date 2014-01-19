@@ -1,10 +1,11 @@
 function inet_ntop(a) {
-  // From: http://phpjs.org/functions
-  // +   original by: Theriault
-  // *     example 1: inet_ntop('\x7F\x00\x00\x01');
-  // *     returns 1: '127.0.0.1'
-  // *     example 2: inet_ntop('\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1');
-  // *     returns 2: '::1'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Theriault
+  //   example 1: inet_ntop('\x7F\x00\x00\x01');
+  //   returns 1: '127.0.0.1'
+  //   example 2: inet_ntop('\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1');
+  //   returns 2: '::1'
+
   var i = 0,
       m = '',
       c = [];

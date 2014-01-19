@@ -1,11 +1,11 @@
 function json_decode(str_json) {
-  // From: http://phpjs.org/functions
-  // +      original by: Public Domain (http://www.json.org/json2.js)
-  // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      improved by: T.J. Leahy
-  // +      improved by: Michael White
-  // *        example 1: json_decode('[ 1 ]');
-  // *        returns 1: [1]
+  //       discuss at: http://phpjs.org/functions
+  //      original by: Public Domain (http://www.json.org/json2.js)
+  // reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      improved by: T.J. Leahy
+  //      improved by: Michael White
+  //        example 1: json_decode('[ 1 ]');
+  //        returns 1: [1]
 
   /*
     http://www.JSON.org/json2.js

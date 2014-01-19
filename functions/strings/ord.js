@@ -1,13 +1,14 @@
 function ord(string) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: incidence
-  // *     example 1: ord('K');
-  // *     returns 1: 75
-  // *     example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
-  // *     returns 2: 65536
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //    input by: incidence
+  //   example 1: ord('K');
+  //   returns 1: 75
+  //   example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
+  //   returns 2: 65536
+
   var str = string + '',
       code = str.charCodeAt(0);
   if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)

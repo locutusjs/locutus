@@ -1,52 +1,52 @@
 function number_format(number, decimals, dec_point, thousands_sep) {
-  // From: http://phpjs.org/functions
-  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +     bugfixed by: Michael White (http://getsprink.com)
-  // +     bugfixed by: Benjamin Lupton
-  // +     bugfixed by: Allan Jensen (http://www.winternet.no)
-  // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // +     bugfixed by: Howard Yeend
-  // +    revised by: Luke Smith (http://lucassmith.name)
-  // +     bugfixed by: Diogo Resende
-  // +     bugfixed by: Rival
-  // +      input by: Kheang Hok Chin (http://www.distantia.ca/)
-  // +   improved by: davook
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: Jay Klehr
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: Amir Habibi (http://www.residence-mixte.com/)
-  // +     bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Theriault
-  // +      input by: Amirouche
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // *     example 1: number_format(1234.56);
-  // *     returns 1: '1,235'
-  // *     example 2: number_format(1234.56, 2, ',', ' ');
-  // *     returns 2: '1 234,56'
-  // *     example 3: number_format(1234.5678, 2, '.', '');
-  // *     returns 3: '1234.57'
-  // *     example 4: number_format(67, 2, ',', '.');
-  // *     returns 4: '67,00'
-  // *     example 5: number_format(1000);
-  // *     returns 5: '1,000'
-  // *     example 6: number_format(67.311, 2);
-  // *     returns 6: '67.31'
-  // *     example 7: number_format(1000.55, 1);
-  // *     returns 7: '1,000.6'
-  // *     example 8: number_format(67000, 5, ',', '.');
-  // *     returns 8: '67.000,00000'
-  // *     example 9: number_format(0.9, 0);
-  // *     returns 9: '1'
-  // *    example 10: number_format('1.20', 2);
-  // *    returns 10: '1.20'
-  // *    example 11: number_format('1.20', 4);
-  // *    returns 11: '1.2000'
-  // *    example 12: number_format('1.2000', 3);
-  // *    returns 12: '1.200'
-  // *    example 13: number_format('1 000,50', 2, '.', ' ');
-  // *    returns 13: '100 050.00'
-  // Strip all characters but numerical ones.
+  //  discuss at: http://phpjs.org/functions
+  // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: davook
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Theriault
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Michael White (http://getsprink.com)
+  // bugfixed by: Benjamin Lupton
+  // bugfixed by: Allan Jensen (http://www.winternet.no)
+  // bugfixed by: Howard Yeend
+  // bugfixed by: Diogo Resende
+  // bugfixed by: Rival
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  //  revised by: Luke Smith (http://lucassmith.name)
+  //    input by: Kheang Hok Chin (http://www.distantia.ca/)
+  //    input by: Jay Klehr
+  //    input by: Amir Habibi (http://www.residence-mixte.com/)
+  //    input by: Amirouche
+  //   example 1: number_format(1234.56);
+  //   returns 1: '1,235'
+  //   example 2: number_format(1234.56, 2, ',', ' ');
+  //   returns 2: '1 234,56'
+  //   example 3: number_format(1234.5678, 2, '.', '');
+  //   returns 3: '1234.57'
+  //   example 4: number_format(67, 2, ',', '.');
+  //   returns 4: '67,00'
+  //   example 5: number_format(1000);
+  //   returns 5: '1,000'
+  //   example 6: number_format(67.311, 2);
+  //   returns 6: '67.31'
+  //   example 7: number_format(1000.55, 1);
+  //   returns 7: '1,000.6'
+  //   example 8: number_format(67000, 5, ',', '.');
+  //   returns 8: '67.000,00000'
+  //   example 9: number_format(0.9, 0);
+  //   returns 9: '1'
+  //  example 10: number_format('1.20', 2);
+  //  returns 10: '1.20'
+  //  example 11: number_format('1.20', 4);
+  //  returns 11: '1.2000'
+  //  example 12: number_format('1.2000', 3);
+  //  returns 12: '1.200'
+  //  example 13: number_format('1 000,50', 2, '.', ' ');
+  //  returns 13: '100 050.00'
+
   number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
   var n = !isFinite(+number) ? 0 : +number,
       prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),

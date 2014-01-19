@@ -1,9 +1,10 @@
 function is_resource(handle) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Luis Salazar (http://www.freaky-media.com/)
-  // *     example 1: is_resource('a');
-  // *     returns 1: false
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Luis Salazar (http://www.freaky-media.com/)
+  //   example 1: is_resource('a');
+  //   returns 1: false
+
   var getFuncName = function(fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
     if (!name) {

@@ -1,15 +1,16 @@
 function count_chars(str, mode) {
-  // From: http://phpjs.org/functions
-  // +   original by: Ates Goral (http://magnetiq.com)
-  // +    improved by: Jack
-  // +   bugfixed by: Onno Marsman
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    revised by: Theriault
-  // *     example 1: count_chars("Hello World!", 3);
-  // *     returns 1: " !HWdelor"
-  // *     example 2: count_chars("Hello World!", 1);
-  // *     returns 2: {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
+  //  discuss at: http://phpjs.org/functions
+  // original by: Ates Goral (http://magnetiq.com)
+  // improved by: Jack
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Theriault
+  //   example 1: count_chars("Hello World!", 3);
+  //   returns 1: " !HWdelor"
+  //   example 2: count_chars("Hello World!", 1);
+  //   returns 2: {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
+
   var result = {},
       resultArr = [],
       i;

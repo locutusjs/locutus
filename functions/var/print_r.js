@@ -1,13 +1,14 @@
 function print_r(array, return_val) {
-  // http://kevin.vanzonneveld.net
-  // +   original by: Michael White (http://getsprink.com)
-  // +   improved by: Ben Bryan
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +      improved by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // -    depends on: echo
-  // *     example 1: print_r(1, true);
-  // *     returns 1: 1
+  //  discuss at: http://phpjs.org/functions
+  //        http: //kevin.vanzonneveld.net
+  // original by: Michael White (http://getsprink.com)
+  // improved by: Ben Bryan
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: echo
+  //   example 1: print_r(1, true);
+  //   returns 1: 1
 
   var output = '',
       pad_char = ' ',

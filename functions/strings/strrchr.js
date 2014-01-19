@@ -1,10 +1,11 @@
 function strrchr(haystack, needle) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Jason Wong (http://carrot.org/)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)
-  // *     returns 1: 'Line 3'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Jason Wong (http://carrot.org/)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)
+  //   returns 1: 'Line 3'
+
   var pos = 0;
 
   if (typeof needle !== 'string') {

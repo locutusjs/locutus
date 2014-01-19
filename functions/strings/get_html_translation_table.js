@@ -1,23 +1,24 @@
 function get_html_translation_table(table, quote_style) {
-  // From: http://phpjs.org/functions
-  // +   original by: Philip Peterson
-  // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: noname
-  // +   bugfixed by: Alex
-  // +   bugfixed by: Marco
-  // +   bugfixed by: madipta
-  // +   improved by: KELAN
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: Frank Forte
-  // +   bugfixed by: T.Wild
-  // +      input by: Ratheous
-  // %          note: It has been decided that we're not going to add global
-  // %          note: dependencies to php.js, meaning the constants are not
-  // %          note: real constants, but strings instead. Integers are also supported if someone
-  // %          note: chooses to create the constants themselves.
-  // *     example 1: get_html_translation_table('HTML_SPECIALCHARS');
-  // *     returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
+  //  discuss at: http://phpjs.org/functions
+  // original by: Philip Peterson
+  //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: noname
+  // bugfixed by: Alex
+  // bugfixed by: Marco
+  // bugfixed by: madipta
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: T.Wild
+  // improved by: KELAN
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Frank Forte
+  //    input by: Ratheous
+  //        note: It has been decided that we're not going to add global
+  //        note: dependencies to php.js, meaning the constants are not
+  //        note: real constants, but strings instead. Integers are also supported if someone
+  //        note: chooses to create the constants themselves.
+  //   example 1: get_html_translation_table('HTML_SPECIALCHARS');
+  //   returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
+
   var entities = {},
       hash_map = {},
       decimal;

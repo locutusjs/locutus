@@ -9422,20 +9422,6 @@ exports.bcround = function (val, precision) {
     return result.toString();
 };
 
-exports.bcscale = function (scale) {
-  var libbcmath = this._phpjs_shared_bc();
-  
-    scale = parseInt(scale, 10);
-    if (isNaN(scale)) {
-      return false;
-    }
-    if (scale < 0) {
-      return false;
-    }
-    libbcmath.scale = scale;
-    return true;
-};
-
 exports.bcsub = function (left_operand, right_operand, scale) {
   var libbcmath = this._phpjs_shared_bc();
   
@@ -9461,6 +9447,20 @@ exports.bcsub = function (left_operand, right_operand, scale) {
     }
   
     return result.toString();
+};
+
+exports.bcscale = function (scale) {
+  var libbcmath = this._phpjs_shared_bc();
+  
+    scale = parseInt(scale, 10);
+    if (isNaN(scale)) {
+      return false;
+    }
+    if (scale < 0) {
+      return false;
+    }
+    libbcmath.scale = scale;
+    return true;
 };
 
 exports.date_parse = function (date) {
@@ -9989,6 +9989,18 @@ exports.md5 = function (str) {
     return temp.toLowerCase();
 };
 
+exports.md5_file = function (str_filename) {
+  var buf = '';
+  
+    buf = this.file_get_contents(str_filename);
+  
+    if (!buf) {
+      return false;
+    }
+  
+    return this.md5(buf);
+};
+
 exports.printf = function () {
   var body, elmt, d = this.window.document;
     var ret = '';
@@ -10474,6 +10486,12 @@ exports.sha1 = function (str) {
   
     temp = cvt_hex(H0) + cvt_hex(H1) + cvt_hex(H2) + cvt_hex(H3) + cvt_hex(H4);
     return temp.toLowerCase();
+};
+
+exports.sha1_file = function (str_filename) {
+  var buf = this.file_get_contents(str_filename);
+  
+    return this.sha1(buf);
 };
 
 exports.split = function (delimiter, string) {
@@ -11670,16 +11688,6 @@ exports.ctype_space = function (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.sp) !== -1;
 };
 
-exports.ctype_upper = function (text) {
-  if (typeof text !== 'string') {
-      return false;
-    }
-    // BEGIN REDUNDANT
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.up) !== -1;
-};
-
 exports.ctype_xdigit = function (text) {
   if (typeof text !== 'string') {
       return false;
@@ -11688,6 +11696,16 @@ exports.ctype_xdigit = function (text) {
     this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     // END REDUNDANT
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.xd) !== -1;
+};
+
+exports.ctype_upper = function (text) {
+  if (typeof text !== 'string') {
+      return false;
+    }
+    // BEGIN REDUNDANT
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    // END REDUNDANT
+    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.up) !== -1;
 };
 
 exports.strftime = function (fmt, timestamp) {
@@ -12286,18 +12304,6 @@ exports.localeconv = function () {
     return arr;
 };
 
-exports.md5_file = function (str_filename) {
-  var buf = '';
-  
-    buf = this.file_get_contents(str_filename);
-  
-    if (!buf) {
-      return false;
-    }
-  
-    return this.md5(buf);
-};
-
 exports.money_format = function (format, number) {
   // Per PHP behavior, there seems to be no extra padding for sign when there is a positive number, though my
     // understanding of the description is that there should be padding; need to revisit examples
@@ -12562,12 +12568,6 @@ exports.nl_langinfo = function (item) {
       }
       return false;
     }
-};
-
-exports.sha1_file = function (str_filename) {
-  var buf = this.file_get_contents(str_filename);
-  
-    return this.sha1(buf);
 };
 
 exports.strcoll = function (str1, str2) {

@@ -1,12 +1,13 @@
 function get_meta_tags(file) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
-  // %        note 1: Synchronous so may lock up browser, mainly here for study purposes.
-  // -    depends on: file_get_contents
-  // *          test: skip
-  // *     example 1: get_meta_tags('http://kevin.vanzonneveld.net/pj_test_supportfile_2.htm');
-  // *     returns 1: {description: 'a php manual', author: 'name', keywords: 'php documentation', 'geo_position': '49.33;-86.59'}
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
+  //        note: Synchronous so may lock up browser, mainly here for study purposes.
+  //  depends on: file_get_contents
+  //        test: skip
+  //   example 1: get_meta_tags('http://kevin.vanzonneveld.net/pj_test_supportfile_2.htm');
+  //   returns 1: {description: 'a php manual', author: 'name', keywords: 'php documentation', 'geo_position': '49.33;-86.59'}
+
   var fulltxt = '';
 
   if (false) {

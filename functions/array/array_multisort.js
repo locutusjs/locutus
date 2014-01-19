@@ -1,56 +1,21 @@
 function array_multisort(arr) {
-  // +   original by: Theriault
-  // *     example 1: array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6]);
-  // *     returns 1: true
-  // *     example 2: characters = {A: 'Edward', B: 'Locke', C: 'Sabin', D: 'Terra', E: 'Edward'};
-  // *     example 2: jobs = {A: 'Warrior', B: 'Thief', C: 'Monk', D: 'Mage', E: 'Knight'};
-  // *     example 2: array_multisort(characters, 'SORT_DESC', 'SORT_STRING', jobs, 'SORT_ASC', 'SORT_STRING');
-  // *     returns 2: true
-  // *     example 3: lastnames = [ 'Carter','Adams','Monroe','Tyler','Madison','Kennedy','Adams'];
-  // *     example 3: firstnames = ['James', 'John' ,'James', 'John', 'James',  'John',   'John'];
-  // *     example 3: president = [ 39,      6,      5,       10,     4,       35,        2    ];
-  // *     example 3: array_multisort(firstnames, 'SORT_DESC', 'SORT_STRING', lastnames, 'SORT_ASC', 'SORT_STRING', president, 'SORT_NUMERIC');
-  // *     returns 3: true
-  // Fix: this function must be fixed like asort(), etc., to return a (shallow) copy by default, since IE does not support!
-  // VARIABLE DESCRIPTIONS
-  //
-  // flags: Translation table for sort arguments. Each argument turns on certain bits in the flag byte through addition.
-  //        bits:    HGFE DCBA
-  //        bit A: Only turned on if SORT_NUMERIC was an argument.
-  //        bit B: Only turned on if SORT_STRING was an argument.
-  //        bit C: Reserved bit for SORT_ASC; not turned on.
-  //        bit D: Only turned on if SORT_DESC was an argument.
-  //        bit E: Turned on if either SORT_REGULAR, SORT_NUMERIC, or SORT_STRING was an argument. If already turned on, function would return FALSE like in PHP.
-  //        bit F: Turned on if either SORT_ASC or SORT_DESC was an argument. If already turned on, function would return FALSE like in PHP.
-  //        bit G and H: (Unused)
-  //
-  // sortFlag: Holds sort flag byte of every array argument.
-  //
-  // sortArrs: Holds the values of array arguments.
-  //
-  // sortKeys: Holds the keys of object arguments.
-  //
-  // nLastSort: Holds a copy of the current lastSort so that the lastSort is not destroyed
-  //
-  // nLastSort: Holds a copy of the current lastSort so that the lastSort is not destroyed
-  //
-  // args: Holds pointer to arguments for reassignment
-  //
-  // lastSort: Holds the last Javascript sort pattern to duplicate the sort for the last sortComponent.
-  //
-  // lastSorts: Holds the lastSort for each sortComponent to duplicate the sort of each component on each array.
-  //
-  // tmpArray: Holds a copy of the last sortComponent's array elements to reiterate over the array
-  //
-  // elIndex: Holds the index of the last sortComponent's array elements to reiterate over the array
-  //
-  // sortDuplicator: Function for duplicating previous sort.
-  //
-  // sortRegularASC: Function for sorting regular, ascending.
-  //
-  // sortRegularDESC: Function for sorting regular, descending.
-  //
-  // thingsToSort: Holds a bit that indicates which indexes in the arrays can be sorted. Updated after every array is sorted.
+  //  discuss at: http://phpjs.org/functions
+  // original by: Theriault
+  //   example 1: array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6]);
+  //   returns 1: true
+  //   example 2: characters = {A: 'Edward', B: 'Locke', C: 'Sabin', D: 'Terra', E: 'Edward'};
+  //   example 2: jobs = {A: 'Warrior', B: 'Thief', C: 'Monk', D: 'Mage', E: 'Knight'};
+  //   example 2: array_multisort(characters, 'SORT_DESC', 'SORT_STRING', jobs, 'SORT_ASC', 'SORT_STRING');
+  //   returns 2: true
+  //   example 3: lastnames = [ 'Carter','Adams','Monroe','Tyler','Madison','Kennedy','Adams'];
+  //   example 3: firstnames = ['James', 'John' ,'James', 'John', 'James',  'John',   'John'];
+  //   example 3: president = [ 39,      6,      5,       10,     4,       35,        2    ];
+  //   example 3: array_multisort(firstnames, 'SORT_DESC', 'SORT_STRING', lastnames, 'SORT_ASC', 'SORT_STRING', president, 'SORT_NUMERIC');
+  //   returns 3: true
+  //       flags: Translation table for sort arguments. Each argument turns on certain bits in the flag byte through addition.
+  //        bits: HGFE DCBA
+  //        args: Holds pointer to arguments for reassignment
+
   var argl = arguments.length,
       sal = 0,
       flags = {

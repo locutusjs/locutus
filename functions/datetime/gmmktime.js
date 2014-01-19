@@ -1,11 +1,12 @@
 function gmmktime() {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   original by: mktime
-  // *     example 1: gmmktime(14, 10, 2, 2, 1, 2008);
-  // *     returns 1: 1201875002
-  // *     example 2: gmmktime(0, 0, -1, 1, 1, 1970);
-  // *     returns 2: -1
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // original by: mktime
+  //   example 1: gmmktime(14, 10, 2, 2, 1, 2008);
+  //   returns 1: 1201875002
+  //   example 2: gmmktime(0, 0, -1, 1, 1, 1970);
+  //   returns 2: -1
+
   var d = new Date(),
       r = arguments,
       i = 0,

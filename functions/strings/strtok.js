@@ -1,14 +1,14 @@
 function strtok(str, tokens) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Use tab and newline as tokenizing characters as well
-  // *     example 1: $string = "\t\t\t\nThis is\tan example\nstring\n";
-  // *     example 1: $tok = strtok($string, " \n\t");
-  // *     example 1: $b = '';
-  // *     example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
-  // *     example 1: $b
-  // *     returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
-  // BEGIN REDUNDANT
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: Use tab and newline as tokenizing characters as well
+  //   example 1: $string = "\t\t\t\nThis is\tan example\nstring\n";
+  //   example 1: $tok = strtok($string, " \n\t");
+  //   example 1: $b = '';
+  //   example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
+  //   example 1: $b
+  //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
+
   this.php_js = this.php_js || {};
   // END REDUNDANT
   if (tokens === undefined) {

@@ -1,16 +1,16 @@
 function utf8_decode(str_data) {
-  // From: http://phpjs.org/functions
-  // +   original by: Webtoolkit.info (http://www.webtoolkit.info/)
-  // +      input by: Aman Gupta
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Norman "zEh" Fuchs
-  // +   bugfixed by: hitwork
-  // +   bugfixed by: Onno Marsman
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: kirilloid
-  // *     example 1: utf8_decode('Kevin van Zonneveld');
-  // *     returns 1: 'Kevin van Zonneveld'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Webtoolkit.info (http://www.webtoolkit.info/)
+  //    input by: Aman Gupta
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Norman "zEh" Fuchs
+  // bugfixed by: hitwork
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: kirilloid
+  //   example 1: utf8_decode('Kevin van Zonneveld');
+  //   returns 1: 'Kevin van Zonneveld'
 
   var tmp_arr = [],
       i = 0,

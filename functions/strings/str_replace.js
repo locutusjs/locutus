@@ -1,25 +1,26 @@
 function str_replace(search, replace, subject, count) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Gabriel Paderni
-  // +   improved by: Philip Peterson
-  // +   improved by: Simon Willison (http://simonwillison.net)
-  // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // +   bugfixed by: Anton Ongson
-  // +      input by: Onno Marsman
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    improved by: Onno Marsman
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   input by: Oleg Eremeev
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Oleg Eremeev
-  // %          note 1: The count parameter must be passed as a string in order
-  // %          note 1:  to find a global variable in which the result will be given
-  // *     example 1: str_replace(' ', '.', 'Kevin van Zonneveld');
-  // *     returns 1: 'Kevin.van.Zonneveld'
-  // *     example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
-  // *     returns 2: 'hemmo, mars'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Gabriel Paderni
+  // improved by: Philip Peterson
+  // improved by: Simon Willison (http://simonwillison.net)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Onno Marsman
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // bugfixed by: Anton Ongson
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Oleg Eremeev
+  //    input by: Onno Marsman
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Oleg Eremeev
+  //        note: The count parameter must be passed as a string in order
+  //        note: to find a global variable in which the result will be given
+  //   example 1: str_replace(' ', '.', 'Kevin van Zonneveld');
+  //   returns 1: 'Kevin.van.Zonneveld'
+  //   example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
+  //   returns 2: 'hemmo, mars'
+
   var i = 0,
       j = 0,
       temp = '',

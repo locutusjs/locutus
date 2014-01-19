@@ -1,13 +1,13 @@
 function var_dump() {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Zahlii
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: echo
-  // %        note 1: For returning a string, use var_export() with the second argument set to true
-  // *          test: skip
-  // *     example 1: var_dump(1);
-  // *     returns 1: 'int(1)'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Zahlii
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: echo
+  //        note: For returning a string, use var_export() with the second argument set to true
+  //        test: skip
+  //   example 1: var_dump(1);
+  //   returns 1: 'int(1)'
 
   var output = '',
       pad_char = ' ',

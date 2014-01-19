@@ -1,13 +1,13 @@
 function bin2hex(s) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +   bugfixed by: Linuxworld
-  // +   improved by: ntoniazzi (http://phpjs.org/functions/bin2hex:361#comment_177616)
-  // *     example 1: bin2hex('Kev');
-  // *     returns 1: '4b6576'
-  // *     example 2: bin2hex(String.fromCharCode(0x00));
-  // *     returns 2: '00'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Linuxworld
+  // improved by: ntoniazzi (http://phpjs.org/functions/bin2hex:361#comment_177616)
+  //   example 1: bin2hex('Kev');
+  //   returns 1: '4b6576'
+  //   example 2: bin2hex(String.fromCharCode(0x00));
+  //   returns 2: '00'
 
   var i, l, o = '', n;
 

@@ -1,9 +1,10 @@
 function ctype_upper(text) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: setlocale
-  // *     example 1: ctype_upper('AZ');
-  // *     returns 1: true
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: setlocale
+  //   example 1: ctype_upper('AZ');
+  //   returns 1: true
+
   if (typeof text !== 'string') {
     return false;
   }

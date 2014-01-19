@@ -1,27 +1,25 @@
 function strtotime(text, now) {
-  // Convert string representation of date and time to a timestamp
-  //
-  // version: 1109.2016
-  // discuss at: http://phpjs.org/functions/strtotime
-  // +   original by: Caio Ariede (http://caioariede.com)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: David
-  // +   improved by: Caio Ariede (http://caioariede.com)
-  // +   bugfixed by: Wagner B. Soares
-  // +   bugfixed by: Artur Tchernychev
-  // +   improved by: A. Matías Quezada (http://amatiasq.com)
-  // +   improved by: preuter
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Mirko Faber
-  // %        note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
-  // *     example 1: strtotime('+1 day', 1129633200);
-  // *     returns 1: 1129719600
-  // *     example 2: strtotime('+1 week 2 days 4 hours 2 seconds', 1129633200);
-  // *     returns 2: 1130425202
-  // *     example 3: strtotime('last month', 1129633200);
-  // *     returns 3: 1127041200
-  // *     example 4: strtotime('2009-05-04 08:30:00 GMT');
-  // *     returns 4: 1241425800
+  //  discuss at: http://phpjs.org/functions/strtotime
+  //     version: 1109.2016
+  // original by: Caio Ariede (http://caioariede.com)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Caio Ariede (http://caioariede.com)
+  // improved by: A. Matías Quezada (http://amatiasq.com)
+  // improved by: preuter
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Mirko Faber
+  //    input by: David
+  // bugfixed by: Wagner B. Soares
+  // bugfixed by: Artur Tchernychev
+  //        note: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
+  //   example 1: strtotime('+1 day', 1129633200);
+  //   returns 1: 1129719600
+  //   example 2: strtotime('+1 week 2 days 4 hours 2 seconds', 1129633200);
+  //   returns 2: 1130425202
+  //   example 3: strtotime('last month', 1129633200);
+  //   returns 3: 1127041200
+  //   example 4: strtotime('2009-05-04 08:30:00 GMT');
+  //   returns 4: 1241425800
 
   var parsed, match, today, year, date, days, ranges, len, times, regex, i, fail = false;
 

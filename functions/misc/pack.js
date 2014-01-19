@@ -1,16 +1,17 @@
 function pack(format) {
-  // From: http://phpjs.org/functions
-  // +   original by: Tim de Koning (http://www.kingsquare.nl)
-  // +      parts by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // +   bugfixed by: Tim de Koning (http://www.kingsquare.nl)
-  // %        note 1: Float encoding by: Jonas Raoni Soares Silva
-  // %        note 2: Home: http://www.kingsquare.nl/blog/12-12-2009/13507444
-  // %        note 3: Feedback: phpjs-pack@kingsquare.nl
-  // %        note 4: 'machine dependent byte order and size' aren't
-  // %        note 4: applicable for JavaScript; pack works as on a 32bit,
-  // %        note 4: little endian machine
-  // *     example 1: pack('nvc*', 0x1234, 0x5678, 65, 66);
-  // *     returns 1: '4xVAB'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Tim de Koning (http://www.kingsquare.nl)
+  //    parts by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // bugfixed by: Tim de Koning (http://www.kingsquare.nl)
+  //        note: Float encoding by: Jonas Raoni Soares Silva
+  //        note: Home: http://www.kingsquare.nl/blog/12-12-2009/13507444
+  //        note: Feedback: phpjs-pack@kingsquare.nl
+  //        note: 'machine dependent byte order and size' aren't
+  //        note: applicable for JavaScript; pack works as on a 32bit,
+  //        note: little endian machine
+  //   example 1: pack('nvc*', 0x1234, 0x5678, 65, 66);
+  //   returns 1: '4xVAB'
+
   var formatPointer = 0,
       argumentPointer = 1,
       result = '',

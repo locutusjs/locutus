@@ -1,9 +1,10 @@
 function array_combine(keys, values) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: array_combine([0,1,2], ['kevin','van','zonneveld']);
-  // *     returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: array_combine([0,1,2], ['kevin','van','zonneveld']);
+  //   returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
+
   var new_array = {},
       keycount = keys && keys.length,
       i = 0;

@@ -1,13 +1,13 @@
 function key(arr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Riddler (http://www.frontierwebdev.com/)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Uses global: php_js to store the array pointer
-  // *     example 1: array = {fruit1: 'apple', 'fruit2': 'orange'}
-  // *     example 1: key(array);
-  // *     returns 1: 'fruit1'
-  // BEGIN REDUNDANT
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Riddler (http://www.frontierwebdev.com/)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //        note: Uses global: php_js to store the array pointer
+  //   example 1: array = {fruit1: 'apple', 'fruit2': 'orange'}
+  //   example 1: key(array);
+  //   returns 1: 'fruit1'
+
   this.php_js = this.php_js || {};
   this.php_js.pointers = this.php_js.pointers || [];
   var indexOf = function(value) {

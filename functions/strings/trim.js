@@ -1,20 +1,21 @@
 function trim(str, charlist) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: mdsjack (http://www.mdsjack.bo.it)
-  // +   improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
-  // +      input by: Erkekjetter
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: DxGx
-  // +   improved by: Steven Levithan (http://blog.stevenlevithan.com)
-  // +    improved by: Jack
-  // +   bugfixed by: Onno Marsman
-  // *     example 1: trim('    Kevin van Zonneveld    ');
-  // *     returns 1: 'Kevin van Zonneveld'
-  // *     example 2: trim('Hello World', 'Hdle');
-  // *     returns 2: 'o Wor'
-  // *     example 3: trim(16, 1);
-  // *     returns 3: 6
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: mdsjack (http://www.mdsjack.bo.it)
+  // improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Steven Levithan (http://blog.stevenlevithan.com)
+  // improved by: Jack
+  //    input by: Erkekjetter
+  //    input by: DxGx
+  // bugfixed by: Onno Marsman
+  //   example 1: trim('    Kevin van Zonneveld    ');
+  //   returns 1: 'Kevin van Zonneveld'
+  //   example 2: trim('Hello World', 'Hdle');
+  //   returns 2: 'o Wor'
+  //   example 3: trim(16, 1);
+  //   returns 3: 6
+
   var whitespace, l = 0,
       i = 0;
   str += '';

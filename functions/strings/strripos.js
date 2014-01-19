@@ -1,11 +1,12 @@
 function strripos(haystack, needle, offset) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +   input by: saulius
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: strripos('Kevin van Zonneveld', 'E');
-  // *     returns 1: 16
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //    input by: saulius
+  //   example 1: strripos('Kevin van Zonneveld', 'E');
+  //   returns 1: 16
+
   haystack = (haystack + '').toLowerCase();
   needle = (needle + '').toLowerCase();
 

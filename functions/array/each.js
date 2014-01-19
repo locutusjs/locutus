@@ -1,17 +1,11 @@
 function each(arr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Ates Goral (http://magnetiq.com)
-  // +    revised by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Uses global: php_js to store the array pointer
-  // *     example 1: each({a: "apple", b: "balloon"});
-  // *     returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
-  //  Will return a 4-item object unless a class property 'returnArrayOnly'
-  //  is set to true on this function if want to only receive a two-item
-  //  numerically-indexed array (for the sake of array destructuring in
-  //  JavaScript 1.7+ (similar to list() in PHP, but as PHP does it automatically
-  //  in that context and JavaScript cannot, we needed something to allow that option)
-  //  See https://developer.mozilla.org/en/New_in_JavaScript_1.7#Destructuring_assignment
-  // BEGIN REDUNDANT
+  //  discuss at: http://phpjs.org/functions
+  // original by: Ates Goral (http://magnetiq.com)
+  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //        note: Uses global: php_js to store the array pointer
+  //   example 1: each({a: "apple", b: "balloon"});
+  //   returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
+
   this.php_js = this.php_js || {};
   this.php_js.pointers = this.php_js.pointers || [];
   var indexOf = function(value) {

@@ -1,32 +1,32 @@
 function krsort(inputArr, sort_flags) {
-  // From: http://phpjs.org/functions
-  // +   original by: GeekFG (http://geekfg.blogspot.com)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // %          note 1: The examples are correct, this is a new way
-  // %        note 2: This function deviates from PHP in returning a copy of the array instead
-  // %        note 2: of acting by reference and returning true; this was necessary because
-  // %        note 2: IE does not allow deleting and re-adding of properties without caching
-  // %        note 2: of property position; you can set the ini of "phpjs.strictForIn" to true to
-  // %        note 2: get the PHP behavior, but use this only if you are in an environment
-  // %        note 2: such as Firefox extensions where for-in iteration order is fixed and true
-  // %        note 2: property deletion is supported. Note that we intend to implement the PHP
-  // %        note 2: behavior by default if IE ever does allow it; only gives shallow copy since
-  // %        note 2: is by reference in PHP anyways
-  // %        note 3: Since JS objects' keys are always strings, and (the
-  // %        note 3: default) SORT_REGULAR flag distinguishes by key type,
-  // %        note 3: if the content is a numeric string, we treat the
-  // %        note 3: "original type" as numeric.
-  // -    depends on: i18n_loc_get_default
-  // *     example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
-  // *     example 1: data = krsort(data);
-  // *     example 1: $result = data
-  // *     returns 1: {d: 'lemon', c: 'apple', b: 'banana', a: 'orange'}
-  // *     example 2: ini_set('phpjs.strictForIn', true);
-  // *     example 2: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'};
-  // *     example 2: krsort(data);
-  // *     example 2: $result = data
-  // *     returns 2: {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
+  //  discuss at: http://phpjs.org/functions
+  // original by: GeekFG (http://geekfg.blogspot.com)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //        note: The examples are correct, this is a new way
+  //        note: This function deviates from PHP in returning a copy of the array instead
+  //        note: of acting by reference and returning true; this was necessary because
+  //        note: IE does not allow deleting and re-adding of properties without caching
+  //        note: of property position; you can set the ini of "phpjs.strictForIn" to true to
+  //        note: get the PHP behavior, but use this only if you are in an environment
+  //        note: such as Firefox extensions where for-in iteration order is fixed and true
+  //        note: property deletion is supported. Note that we intend to implement the PHP
+  //        note: behavior by default if IE ever does allow it; only gives shallow copy since
+  //        note: is by reference in PHP anyways
+  //        note: Since JS objects' keys are always strings, and (the
+  //        note: default) SORT_REGULAR flag distinguishes by key type,
+  //        note: if the content is a numeric string, we treat the
+  //        note: "original type" as numeric.
+  //  depends on: i18n_loc_get_default
+  //   example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
+  //   example 1: data = krsort(data);
+  //   example 1: $result = data
+  //   returns 1: {d: 'lemon', c: 'apple', b: 'banana', a: 'orange'}
+  //   example 2: ini_set('phpjs.strictForIn', true);
+  //   example 2: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'};
+  //   example 2: krsort(data);
+  //   example 2: $result = data
+  //   returns 2: {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
 
   var tmp_arr = {},
       keys = [],

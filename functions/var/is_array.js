@@ -1,26 +1,27 @@
 function is_array(mixed_var) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Legaev Andrey
-  // +   bugfixed by: Cord
-  // +   bugfixed by: Manish
-  // +   improved by: Onno Marsman
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Nathan Sepulveda
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: In php.js, javascript objects are like php associative arrays, thus JavaScript objects will also
-  // %        note 1: return true in this function (except for objects which inherit properties, being thus used as objects),
-  // %        note 1: unless you do ini_set('phpjs.objectsAsArrays', 0), in which case only genuine JavaScript arrays
-  // %        note 1: will return true
-  // *     example 1: is_array(['Kevin', 'van', 'Zonneveld']);
-  // *     returns 1: true
-  // *     example 2: is_array('Kevin van Zonneveld');
-  // *     returns 2: false
-  // *     example 3: is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
-  // *     returns 3: true
-  // *     example 4: is_array(function tmp_a(){this.name = 'Kevin'});
-  // *     returns 4: false
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Legaev Andrey
+  // improved by: Onno Marsman
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Nathan Sepulveda
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Cord
+  // bugfixed by: Manish
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //        note: In php.js, javascript objects are like php associative arrays, thus JavaScript objects will also
+  //        note: return true in this function (except for objects which inherit properties, being thus used as objects),
+  //        note: unless you do ini_set('phpjs.objectsAsArrays', 0), in which case only genuine JavaScript arrays
+  //        note: will return true
+  //   example 1: is_array(['Kevin', 'van', 'Zonneveld']);
+  //   returns 1: true
+  //   example 2: is_array('Kevin van Zonneveld');
+  //   returns 2: false
+  //   example 3: is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
+  //   returns 3: true
+  //   example 4: is_array(function tmp_a(){this.name = 'Kevin'});
+  //   returns 4: false
+
   var ini,
       _getFuncName = function(fn) {
         var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);

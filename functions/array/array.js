@@ -1,13 +1,13 @@
 function array() {
-  // From: http://phpjs.org/functions
-  // +   original by: d3x
-  // +      improved by: Brett Zamir (http://brett-zamir.me)
-  // *          test: skip
-  // *     example 1: array('Kevin', 'van', 'Zonneveld');
-  // *     returns 1: ['Kevin', 'van', 'Zonneveld']
-  // *     example 2: ini_set('phpjs.return_phpjs_arrays', 'on');
-  // *     example 2: array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys();
-  // *     returns 2: [0,'A',2]
+  //  discuss at: http://phpjs.org/functions
+  // original by: d3x
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //        test: skip
+  //   example 1: array('Kevin', 'van', 'Zonneveld');
+  //   returns 1: ['Kevin', 'van', 'Zonneveld']
+  //   example 2: ini_set('phpjs.return_phpjs_arrays', 'on');
+  //   example 2: array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys();
+  //   returns 2: [0,'A',2]
 
   try {
     this.php_js = this.php_js || {};

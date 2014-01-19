@@ -1,11 +1,11 @@
 function xdiff_string_patch(originalStr, patch, flags, error) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Steven Levithan (stevenlevithan.com)
-  // %        note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not currently supported
-  // %        note 2: This has not been widely tested
-  // *     example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!');
-  // *     returns 1: 'Hello world!'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Steven Levithan (stevenlevithan.com)
+  //        note: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not currently supported
+  //        note: This has not been widely tested
+  //   example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!');
+  //   returns 1: 'Hello world!'
 
   // First two functions were adapted from Steven Levithan, also under an MIT license
   // Adapted from XRegExp 1.5.0

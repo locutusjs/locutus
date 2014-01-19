@@ -1,23 +1,24 @@
 function sprintf() {
-  // From: http://phpjs.org/functions
-  // +   original by: Ash Searle (http://hexmen.com/blog/)
-  // + improved by: Michael White (http://getsprink.com)
-  // +    improved by: Jack
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: Paulo Freitas
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Dj
-  // +   improved by: Allidylls
-  // *     example 1: sprintf("%01.2f", 123.1);
-  // *     returns 1: 123.10
-  // *     example 2: sprintf("[%10s]", 'monkey');
-  // *     returns 2: '[    monkey]'
-  // *     example 3: sprintf("[%'#10s]", 'monkey');
-  // *     returns 3: '[####monkey]'
-  // *     example 4: sprintf("%d", 123456789012345);
-  // *     returns 4: '123456789012345'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Ash Searle (http://hexmen.com/blog/)
+  // improved by: Michael White (http://getsprink.com)
+  // improved by: Jack
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Dj
+  // improved by: Allidylls
+  //    input by: Paulo Freitas
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: sprintf("%01.2f", 123.1);
+  //   returns 1: 123.10
+  //   example 2: sprintf("[%10s]", 'monkey');
+  //   returns 2: '[    monkey]'
+  //   example 3: sprintf("[%'#10s]", 'monkey');
+  //   returns 3: '[####monkey]'
+  //   example 4: sprintf("%d", 123456789012345);
+  //   returns 4: '123456789012345'
+
   var regex = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g;
   var a = arguments,
       i = 0,

@@ -1,10 +1,11 @@
 function call_user_func(cb) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Diplom@t (http://difane.com/)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: call_user_func('isNaN', 'a');
-  // *     returns 1: true
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Diplom@t (http://difane.com/)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: call_user_func('isNaN', 'a');
+  //   returns 1: true
+
   var func;
 
   if (typeof cb === 'string') {

@@ -1,12 +1,12 @@
 function json_encode(mixed_val) {
-  // From: http://phpjs.org/functions
-  // +      original by: Public Domain (http://www.json.org/json2.js)
-  // + reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      improved by: Michael White
-  // +         input by: felix
-  // +      bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *        example 1: json_encode('Kevin');
-  // *        returns 1: '"Kevin"'
+  //       discuss at: http://phpjs.org/functions
+  //      original by: Public Domain (http://www.json.org/json2.js)
+  // reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      improved by: Michael White
+  //         input by: felix
+  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //        example 1: json_encode('Kevin');
+  //        returns 1: '"Kevin"'
 
   /*
     http://www.JSON.org/json2.js

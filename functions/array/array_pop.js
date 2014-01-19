@@ -1,23 +1,23 @@
 function array_pop(inputArr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Theriault
-  // %        note 1: While IE (and other browsers) support iterating an object's
-  // %        note 1: own properties in order, if one attempts to add back properties
-  // %        note 1: in IE, they may end up in their former position due to their position
-  // %        note 1: being retained. So use of this function with "associative arrays"
-  // %        note 1: (objects) may lead to unexpected behavior in an IE environment if
-  // %        note 1: you add back properties with the same keys that you removed
-  // *     example 1: array_pop([0,1,2]);
-  // *     returns 1: 2
-  // *     example 2: data = {firstName: 'Kevin', surName: 'van Zonneveld'};
-  // *     example 2: lastElem = array_pop(data);
-  // *     example 2: $result = data
-  // *     returns 2: {firstName: 'Kevin'}
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Theriault
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //        note: While IE (and other browsers) support iterating an object's
+  //        note: own properties in order, if one attempts to add back properties
+  //        note: in IE, they may end up in their former position due to their position
+  //        note: being retained. So use of this function with "associative arrays"
+  //        note: (objects) may lead to unexpected behavior in an IE environment if
+  //        note: you add back properties with the same keys that you removed
+  //   example 1: array_pop([0,1,2]);
+  //   returns 1: 2
+  //   example 2: data = {firstName: 'Kevin', surName: 'van Zonneveld'};
+  //   example 2: lastElem = array_pop(data);
+  //   example 2: $result = data
+  //   returns 2: {firstName: 'Kevin'}
 
   var key = '',
       lastKey = '';

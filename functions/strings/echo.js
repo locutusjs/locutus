@@ -1,29 +1,29 @@
 function echo() {
-  // http://kevin.vanzonneveld.net
-  // +   original by: Philip Peterson
-  // +   improved by: echo is bad
-  // +   improved by: Nate
-  // +    revised by: Der Simon (http://innerdom.sourceforge.net/)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Eugene Bulkin (http://doubleaw.com/)
-  // +   input by: JB
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: EdorFaus
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),
-  // %        note 1: we wouldn't need any such long code (even most of the code below). See
-  // %        note 1: link below for a cross-browser implementation in JavaScript. HTML5 might
-  // %        note 1: possibly support DOMParser, but that is not presently a standard.
-  // %        note 2: Although innerHTML is widely used and may become standard as of HTML5, it is also not ideal for
-  // %        note 2: use with a temporary holder before appending to the DOM (as is our last resort below),
-  // %        note 2: since it may not work in an XML context
-  // %        note 3: Using innerHTML to directly add to the BODY is very dangerous because it will
-  // %        note 3: break all pre-existing references to HTMLElements.
-  // *     example 1: echo('<div><p>abc</p><p>abc</p></div>');
-  // *     returns 1: undefined
-  // Fix: This function really needs to allow non-XHTML input (unless in true XHTML mode) as in jQuery
+  //  discuss at: http://phpjs.org/functions
+  //        http: //kevin.vanzonneveld.net
+  // original by: Philip Peterson
+  // improved by: echo is bad
+  // improved by: Nate
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Der Simon (http://innerdom.sourceforge.net/)
+  // bugfixed by: Eugene Bulkin (http://doubleaw.com/)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: EdorFaus
+  //    input by: JB
+  //        note: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),
+  //        note: we wouldn't need any such long code (even most of the code below). See
+  //        note: link below for a cross-browser implementation in JavaScript. HTML5 might
+  //        note: possibly support DOMParser, but that is not presently a standard.
+  //        note: Although innerHTML is widely used and may become standard as of HTML5, it is also not ideal for
+  //        note: use with a temporary holder before appending to the DOM (as is our last resort below),
+  //        note: since it may not work in an XML context
+  //        note: Using innerHTML to directly add to the BODY is very dangerous because it will
+  //        note: break all pre-existing references to HTMLElements.
+  //   example 1: echo('<div><p>abc</p><p>abc</p></div>');
+  //   returns 1: undefined
 
   var isNode = typeof module !== 'undefined' && module.exports;
 

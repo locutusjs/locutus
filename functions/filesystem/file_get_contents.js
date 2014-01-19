@@ -1,26 +1,26 @@
 function file_get_contents(url, flags, context, offset, maxLen) {
-  // From: http://phpjs.org/functions
-  // +   original by: Legaev Andrey
-  // +      input by: Jani Hartikainen
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Raphael (Ao) RUDLER
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: This function uses XmlHttpRequest and cannot retrieve resource from different domain without modifications.
-  // %        note 2: Synchronous by default (as in PHP) so may lock up browser. Can
-  // %        note 2: get async by setting a custom "phpjs.async" property to true and "notification" for an
-  // %        note 2: optional callback (both as context params, with responseText, and other JS-specific
-  // %        note 2: request properties available via 'this'). Note that file_get_contents() will not return the text
-  // %        note 2: in such a case (use this.responseText within the callback). Or, consider using
-  // %        note 2: jQuery's: $('#divId').load('http://url') instead.
-  // %        note 3: The context argument is only implemented for http, and only partially (see below for
-  // %        note 3: "Presently unimplemented HTTP context options"); also the arguments passed to
-  // %        note 3: notification are incomplete
-  // *          test: skip
-  // *     example 1: var buf file_get_contents('http://google.com');
-  // *     example 1: buf.indexOf('Google') !== -1
-  // *     returns 1: true
-  // Note: could also be made to optionally add to global $http_response_header as per http://php.net/manual/en/reserved.variables.httpresponseheader.php
+  //  discuss at: http://phpjs.org/functions
+  // original by: Legaev Andrey
+  //    input by: Jani Hartikainen
+  //    input by: Raphael (Ao) RUDLER
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //        note: This function uses XmlHttpRequest and cannot retrieve resource from different domain without modifications.
+  //        note: Synchronous by default (as in PHP) so may lock up browser. Can
+  //        note: get async by setting a custom "phpjs.async" property to true and "notification" for an
+  //        note: optional callback (both as context params, with responseText, and other JS-specific
+  //        note: request properties available via 'this'). Note that file_get_contents() will not return the text
+  //        note: in such a case (use this.responseText within the callback). Or, consider using
+  //        note: jQuery's: $('#divId').load('http://url') instead.
+  //        note: The context argument is only implemented for http, and only partially (see below for
+  //        note: "Presently unimplemented HTTP context options"); also the arguments passed to
+  //        note: notification are incomplete
+  //        test: skip
+  //   example 1: var buf file_get_contents('http://google.com');
+  //   example 1: buf.indexOf('Google') !== -1
+  //   returns 1: true
+
   var tmp, headers = [],
       newTmp = [],
       k = 0,

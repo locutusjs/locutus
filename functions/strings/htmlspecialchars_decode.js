@@ -1,23 +1,24 @@
 function htmlspecialchars_decode(string, quote_style) {
-  // From: http://phpjs.org/functions
-  // +   original by: Mirek Slugen
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Mateusz "loonquawl" Zalega
-  // +      input by: ReverseSyntax
-  // +      input by: Slawomir Kaniecki
-  // +      input by: Scott Cariss
-  // +      input by: Francois
-  // +   bugfixed by: Onno Marsman
-  // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: Ratheous
-  // +      input by: Mailfaker (http://www.weedem.fr/)
-  // +      reimplemented by: Brett Zamir (http://brett-zamir.me)
-  // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
-  // *     returns 1: '<p>this -> &quot;</p>'
-  // *     example 2: htmlspecialchars_decode("&amp;quot;");
-  // *     returns 2: '&quot;'
+  //       discuss at: http://phpjs.org/functions
+  //      original by: Mirek Slugen
+  //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      bugfixed by: Mateusz "loonquawl" Zalega
+  //      bugfixed by: Onno Marsman
+  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //         input by: ReverseSyntax
+  //         input by: Slawomir Kaniecki
+  //         input by: Scott Cariss
+  //         input by: Francois
+  //         input by: Ratheous
+  //         input by: Mailfaker (http://www.weedem.fr/)
+  //       revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  //        example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
+  //        returns 1: '<p>this -> &quot;</p>'
+  //        example 2: htmlspecialchars_decode("&amp;quot;");
+  //        returns 2: '&quot;'
+
   var optTemp = 0,
       i = 0,
       noquotes = false;

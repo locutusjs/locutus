@@ -1,10 +1,11 @@
 function array_intersect_ukey(arr1) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: $array1 = {blue: 1, red: 2, green: 3, purple: 4}
-  // *     example 1: $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
-  // *     example 1: array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
-  // *     returns 1: {blue: 1, green: 3}
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: $array1 = {blue: 1, red: 2, green: 3, purple: 4}
+  //   example 1: $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
+  //   example 1: array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
+  //   returns 1: {blue: 1, green: 3}
+
   var retArr = {},
       arglm1 = arguments.length - 1,
       arglm2 = arglm1 - 1,
@@ -34,5 +35,4 @@ function array_intersect_ukey(arr1) {
   }
 
   return retArr;
-
 }

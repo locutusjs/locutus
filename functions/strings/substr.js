@@ -1,35 +1,32 @@
 function substr(str, start, len) {
-  // Returns part of a string
-  //
-  // version: 909.322
-  // discuss at: http://phpjs.org/functions/substr
-  // +     original by: Martijn Wieringa
-  // +     bugfixed by: T.Wild
-  // +      improved by: Onno Marsman
-  // +      revised by: Theriault
-  // +      improved by: Brett Zamir (http://brett-zamir.me)
-  // %    note 1: Handles rare Unicode characters if 'unicode.semantics' ini (PHP6) is set to 'on'
-  // *       example 1: substr('abcdef', 0, -1);
-  // *       returns 1: 'abcde'
-  // *       example 2: substr(2, 0, -6);
-  // *       returns 2: false
-  // *       example 3: ini_set('unicode.semantics',  'on');
-  // *       example 3: substr('a\uD801\uDC00', 0, -1);
-  // *       returns 3: 'a'
-  // *       example 4: ini_set('unicode.semantics',  'on');
-  // *       example 4: substr('a\uD801\uDC00', 0, 2);
-  // *       returns 4: 'a\uD801\uDC00'
-  // *       example 5: ini_set('unicode.semantics',  'on');
-  // *       example 5: substr('a\uD801\uDC00', -1, 1);
-  // *       returns 5: '\uD801\uDC00'
-  // *       example 6: ini_set('unicode.semantics',  'on');
-  // *       example 6: substr('a\uD801\uDC00z\uD801\uDC00', -3, 2);
-  // *       returns 6: '\uD801\uDC00z'
-  // *       example 7: ini_set('unicode.semantics',  'on');
-  // *       example 7: substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
-  // *       returns 7: '\uD801\uDC00z'
-  // Add: (?) Use unicode.runtime_encoding (e.g., with string wrapped in "binary" or "Binary" class) to
-  // allow access of binary (see file_get_contents()) by: charCodeAt(x) & 0xFF (see https://developer.mozilla.org/En/Using_XMLHttpRequest ) or require conversion first?
+  //  discuss at: http://phpjs.org/functions/substr
+  //     version: 909.322
+  // original by: Martijn Wieringa
+  // bugfixed by: T.Wild
+  // improved by: Onno Marsman
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Theriault
+  //        note: Handles rare Unicode characters if 'unicode.semantics' ini (PHP6) is set to 'on'
+  //   example 1: substr('abcdef', 0, -1);
+  //   returns 1: 'abcde'
+  //   example 2: substr(2, 0, -6);
+  //   returns 2: false
+  //   example 3: ini_set('unicode.semantics',  'on');
+  //   example 3: substr('a\uD801\uDC00', 0, -1);
+  //   returns 3: 'a'
+  //   example 4: ini_set('unicode.semantics',  'on');
+  //   example 4: substr('a\uD801\uDC00', 0, 2);
+  //   returns 4: 'a\uD801\uDC00'
+  //   example 5: ini_set('unicode.semantics',  'on');
+  //   example 5: substr('a\uD801\uDC00', -1, 1);
+  //   returns 5: '\uD801\uDC00'
+  //   example 6: ini_set('unicode.semantics',  'on');
+  //   example 6: substr('a\uD801\uDC00z\uD801\uDC00', -3, 2);
+  //   returns 6: '\uD801\uDC00z'
+  //   example 7: ini_set('unicode.semantics',  'on');
+  //   example 7: substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
+  //   returns 7: '\uD801\uDC00z'
+
   var i = 0,
       allBMP = true,
       es = 0,

@@ -1,20 +1,20 @@
 function version_compare(v1, v2, operator) {
-  // From: http://phpjs.org/functions
-  // +      original by: Philippe Jausions (http://pear.php.net/user/jausions)
-  // +      original by: Aidan Lister (http://aidanlister.com/)
-  // + reimplemented by: Kankrelune (http://www.webfaktory.info/)
-  // +      improved by: Brett Zamir (http://brett-zamir.me)
-  // +      improved by: Scott Baker
-  // +      improved by: Theriault
-  // *        example 1: version_compare('8.2.5rc', '8.2.5a');
-  // *        returns 1: 1
-  // *        example 2: version_compare('8.2.50', '8.2.52', '<');
-  // *        returns 2: true
-  // *        example 3: version_compare('5.3.0-dev', '5.3.0');
-  // *        returns 3: -1
-  // *        example 4: version_compare('4.1.0.52','4.01.0.51');
-  // *        returns 4: 1
-  // BEGIN REDUNDANT
+  //       discuss at: http://phpjs.org/functions
+  //      original by: Philippe Jausions (http://pear.php.net/user/jausions)
+  //      original by: Aidan Lister (http://aidanlister.com/)
+  // reimplemented by: Kankrelune (http://www.webfaktory.info/)
+  //      improved by: Brett Zamir (http://brett-zamir.me)
+  //      improved by: Scott Baker
+  //      improved by: Theriault
+  //        example 1: version_compare('8.2.5rc', '8.2.5a');
+  //        returns 1: 1
+  //        example 2: version_compare('8.2.50', '8.2.52', '<');
+  //        returns 2: true
+  //        example 3: version_compare('5.3.0-dev', '5.3.0');
+  //        returns 3: -1
+  //        example 4: version_compare('4.1.0.52','4.01.0.51');
+  //        returns 4: 1
+
   this.php_js = this.php_js || {};
   this.php_js.ENV = this.php_js.ENV || {};
   // END REDUNDANT

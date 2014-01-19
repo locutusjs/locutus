@@ -1,13 +1,14 @@
 function isset() {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: FremyCompany
-  // +   improved by: Onno Marsman
-  // +   improved by: Rafał Kukawski
-  // *     example 1: isset( undefined, true);
-  // *     returns 1: false
-  // *     example 2: isset( 'Kevin van Zonneveld' );
-  // *     returns 2: true
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: FremyCompany
+  // improved by: Onno Marsman
+  // improved by: Rafał Kukawski
+  //   example 1: isset( undefined, true);
+  //   returns 1: false
+  //   example 2: isset( 'Kevin van Zonneveld' );
+  //   returns 2: true
+
   var a = arguments,
       l = a.length,
       i = 0,

@@ -1,16 +1,17 @@
 function strnatcasecmp(str1, str2) {
-  // From: http://phpjs.org/functions
-  // +      original by: Martin Pool
-  // + reimplemented by: Pierre-Luc Paour
-  // + reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
-  // + reimplemented by: Brett Zamir (http://brett-zamir.me)
-  // +      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +         input by: Devan Penner-Woelk
-  // +      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // *        example 1: strnatcasecmp(10, 1);
-  // *        returns 1: 1
-  // *        example 1: strnatcasecmp('1', '10');
-  // *        returns 1: -1
+  //       discuss at: http://phpjs.org/functions
+  //      original by: Martin Pool
+  // reimplemented by: Pierre-Luc Paour
+  // reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
+  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //         input by: Devan Penner-Woelk
+  //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //        example 1: strnatcasecmp(10, 1);
+  //        example 1: strnatcasecmp('1', '10');
+  //        returns 1: 1
+  //        returns 1: -1
+
   var a = (str1 + '').toLowerCase();
   var b = (str2 + '').toLowerCase();
 

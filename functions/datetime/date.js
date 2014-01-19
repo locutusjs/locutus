@@ -1,59 +1,60 @@
 function date(format, timestamp) {
-  // From: http://phpjs.org/functions
-  // +   original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
-  // +      parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: MeEtc (http://yass.meetcweb.com)
-  // +   improved by: Brad Touesnard
-  // +   improved by: Tim Wiel
-  // +   improved by: Bryan Elliott
-  // +   improved by: David Randall
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Theriault
-  // +  original by: gettimeofday
-  // +      input by: majak
-  // +   bugfixed by: majak
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: Alex
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Theriault
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Theriault
-  // +   improved by: Thomas Beaucourt (http://www.webapp.fr)
-  // +   improved by: JT
-  // +   improved by: Theriault
-  // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
-  // +   bugfixed by: omid (http://phpjs.org/functions/380:380#comment_137122)
-  // +      input by: Martin
-  // +      input by: Alex Wilson
-  // +      input by: Haravikk
-  // +   improved by: Theriault
-  // +   bugfixed by: Chris (http://www.devotis.nl/)
-  // %        note 1: Uses global: php_js to store the default timezone
-  // %        note 2: Although the function potentially allows timezone info (see notes), it currently does not set
-  // %        note 2: per a timezone specified by date_default_timezone_set(). Implementers might use
-  // %        note 2: this.php_js.currentTimezoneOffset and this.php_js.currentTimezoneDST set by that function
-  // %        note 2: in order to adjust the dates in this function (or our other date functions!) accordingly
-  // *     example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
-  // *     returns 1: '09:09:40 m is month'
-  // *     example 2: date('F j, Y, g:i a', 1062462400);
-  // *     returns 2: 'September 2, 2003, 2:26 am'
-  // *     example 3: date('Y W o', 1062462400);
-  // *     returns 3: '2003 36 2003'
-  // *     example 4: x = date('Y m d', (new Date()).getTime()/1000);
-  // *     example 4: (x+'').length == 10 // 2009 01 09
-  // *     returns 4: true
-  // *     example 5: date('W', 1104534000);
-  // *     returns 5: '53'
-  // *     example 6: date('B t', 1104534000);
-  // *     returns 6: '999 31'
-  // *     example 7: date('W U', 1293750000.82); // 2010-12-31
-  // *     returns 7: '52 1293750000'
-  // *     example 8: date('W', 1293836400); // 2011-01-01
-  // *     returns 8: '52'
-  // *     example 9: date('W Y-m-d', 1293974054); // 2011-01-02
-  // *     returns 9: '52 2011-01-02'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+  // original by: gettimeofday
+  //    parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: MeEtc (http://yass.meetcweb.com)
+  // improved by: Brad Touesnard
+  // improved by: Tim Wiel
+  // improved by: Bryan Elliott
+  // improved by: David Randall
+  // improved by: Theriault
+  // improved by: Theriault
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Theriault
+  // improved by: Thomas Beaucourt (http://www.webapp.fr)
+  // improved by: JT
+  // improved by: Theriault
+  // improved by: Rafał Kukawski (http://blog.kukawski.pl)
+  // improved by: Theriault
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  //    input by: majak
+  //    input by: Alex
+  //    input by: Martin
+  //    input by: Alex Wilson
+  //    input by: Haravikk
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: majak
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: omid (http://phpjs.org/functions/380:380#comment_137122)
+  // bugfixed by: Chris (http://www.devotis.nl/)
+  //        note: Uses global: php_js to store the default timezone
+  //        note: Although the function potentially allows timezone info (see notes), it currently does not set
+  //        note: per a timezone specified by date_default_timezone_set(). Implementers might use
+  //        note: this.php_js.currentTimezoneOffset and this.php_js.currentTimezoneDST set by that function
+  //        note: in order to adjust the dates in this function (or our other date functions!) accordingly
+  //   example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
+  //   returns 1: '09:09:40 m is month'
+  //   example 2: date('F j, Y, g:i a', 1062462400);
+  //   returns 2: 'September 2, 2003, 2:26 am'
+  //   example 3: date('Y W o', 1062462400);
+  //   returns 3: '2003 36 2003'
+  //   example 4: x = date('Y m d', (new Date()).getTime()/1000);
+  //   example 4: (x+'').length == 10 // 2009 01 09
+  //   returns 4: true
+  //   example 5: date('W', 1104534000);
+  //   returns 5: '53'
+  //   example 6: date('B t', 1104534000);
+  //   returns 6: '999 31'
+  //   example 7: date('W U', 1293750000.82); // 2010-12-31
+  //   returns 7: '52 1293750000'
+  //   example 8: date('W', 1293836400); // 2011-01-01
+  //   returns 8: '52'
+  //   example 9: date('W Y-m-d', 1293974054); // 2011-01-02
+  //   returns 9: '52 2011-01-02'
+
   var that = this,
       jsdate,
       f,

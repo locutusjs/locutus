@@ -1,13 +1,14 @@
 function idate(format, timestamp) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: Alex
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Theriault
-  // +  original by: date
-  // +  original by: gettimeofday
-  // *     example 1: idate('y', 1255633200);
-  // *     returns 1: 9
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // original by: date
+  // original by: gettimeofday
+  //    input by: Alex
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Theriault
+  //   example 1: idate('y', 1255633200);
+  //   returns 1: 9
+
   if (format === undefined) {
     throw 'idate() expects at least 1 parameter, 0 given';
   }

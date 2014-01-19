@@ -1,10 +1,11 @@
 function array_shift(inputArr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Martijn Wieringa
-  // %        note 1: Currently does not handle objects
-  // *     example 1: array_shift(['Kevin', 'van', 'Zonneveld']);
-  // *     returns 1: 'Kevin'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Martijn Wieringa
+  //        note: Currently does not handle objects
+  //   example 1: array_shift(['Kevin', 'van', 'Zonneveld']);
+  //   returns 1: 'Kevin'
+
   var props = false,
       shift = undefined,
       pr = '',

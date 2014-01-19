@@ -1,15 +1,15 @@
 function strftime(fmt, timestamp) {
-  // From: http://phpjs.org/functions
-  // +      original by: Blues (http://tech.bluesmoon.info/)
-  // + reimplemented by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Alex
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // -       depends on: setlocale
-  // %        note 1: Uses global: php_js to store locale info
-  // *        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
-  // *        returns 1: 'Tuesday'
-  // BEGIN REDUNDANT
+  //       discuss at: http://phpjs.org/functions
+  //      original by: Blues (http://tech.bluesmoon.info/)
+  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  //         input by: Alex
+  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //      improved by: Brett Zamir (http://brett-zamir.me)
+  //       depends on: setlocale
+  //             note: Uses global: php_js to store locale info
+  //        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
+  //        returns 1: 'Tuesday'
+
   this.php_js = this.php_js || {};
   this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
   // END REDUNDANT

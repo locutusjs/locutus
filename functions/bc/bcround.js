@@ -1,20 +1,11 @@
 function bcround(val, precision) {
-  // From: http://phpjs.org/functions
-  // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  // -    depends on: _phpjs_shared_bc
-  // *     example 1: bcround(1, 2);
-  // *     returns 1: 3
-  //  @todo: implement these testcases
-  //        bcscale(0);
-  //
-  //        bcmath.test.result('bcround', 1, '-2', bcround('-1.5', 0));
-  //        bcmath.test.result('bcround', 2, '-1.1235', bcround('-1.1234567', 4));
-  //        bcmath.test.result('bcround', 3, '2', bcround('1.5', 0));
-  //        bcmath.test.result('bcround', 4, '1.1235', bcround('1.1234567', 4));
-  //        bcmath.test.result('bcround', 5, '1', bcround('1.499999999', 0));
-  //        bcmath.test.result('bcround', 6, '2', bcround('1.5555555555555555555', 0));
-  //        bcmath.test.result('bcround', 7, '1.44', bcround('1.444999', 2));
-  //        bcmath.test.result('bcround', 8, '-1.44', bcround('-1.444999', 2));
+  //  discuss at: http://phpjs.org/functions
+  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  //  depends on: _phpjs_shared_bc
+  //   example 1: bcround(1, 2);
+  //   returns 1: 3
+  //        todo: implement these testcases
+
   var libbcmath = this._phpjs_shared_bc();
 
   var temp, result, digit;

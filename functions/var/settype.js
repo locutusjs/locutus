@@ -1,18 +1,18 @@
 function settype(vr, type) {
-  // From: http://phpjs.org/functions
-  // +   original by: Waldo Malqui Silva
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    revised by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Credits to Crockford also
-  // %        note 2: only works on global variables, and "vr" must be passed in as a string
-  // *     example 1: foo = '5bar';
-  // *     example 1: settype('foo', 'integer');
-  // *     example 1: $result = foo
-  // *     returns 1: 5
-  // *     example 2: foo = true;
-  // *     example 2: settype('foo', 'string');
-  // *     example 2: $result = foo
-  // *     returns 2: '1'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Waldo Malqui Silva
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //        note: Credits to Crockford also
+  //        note: only works on global variables, and "vr" must be passed in as a string
+  //   example 1: foo = '5bar';
+  //   example 1: settype('foo', 'integer');
+  //   example 1: $result = foo
+  //   returns 1: 5
+  //   example 2: foo = true;
+  //   example 2: settype('foo', 'string');
+  //   example 2: $result = foo
+  //   returns 2: '1'
 
   var is_array = function(arr) {
     return typeof arr === 'object' && typeof arr.length === 'number' && !(arr.propertyIsEnumerable('length')) && typeof arr.splice === 'function';

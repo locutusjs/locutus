@@ -1,12 +1,13 @@
 function setrawcookie(name, value, expires, path, domain, secure) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   original by: setcookie
-  // +   input by: Michael
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: setrawcookie('author_name', 'Kevin van Zonneveld');
-  // *     returns 1: true
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // original by: setcookie
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Michael
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: setrawcookie('author_name', 'Kevin van Zonneveld');
+  //   returns 1: true
+
   if (typeof expires === 'string' && (/^\d+$/).test(expires)) {
     expires = parseInt(expires, 10);
   }

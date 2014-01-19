@@ -1,10 +1,11 @@
 function array_diff_assoc(arr1) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: 0m3r
-  // +    revised by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'});
-  // *     returns 1: {1: 'van', 2: 'Zonneveld'}
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: 0m3r
+  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'});
+  //   returns 1: {1: 'van', 2: 'Zonneveld'}
+
   var retArr = {},
       argl = arguments.length,
       k1 = '',

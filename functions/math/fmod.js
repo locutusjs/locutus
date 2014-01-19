@@ -1,10 +1,11 @@
 function fmod(x, y) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // *     example 1: fmod(5.7, 1.3);
-  // *     returns 1: 0.5
+  //  discuss at: http://phpjs.org/functions
+  // original by: Onno Marsman
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //   example 1: fmod(5.7, 1.3);
+  //   returns 1: 0.5
+
   var tmp, tmp2, p = 0,
       pY = 0,
       l = 0.0,

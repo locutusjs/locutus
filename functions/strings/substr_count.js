@@ -1,15 +1,15 @@
 function substr_count(haystack, needle, offset, length) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Thomas
-  // *     example 1: substr_count('Kevin van Zonneveld', 'e');
-  // *     returns 1: 3
-  // *     example 2: substr_count('Kevin van Zonneveld', 'K', 1);
-  // *     returns 2: 0
-  // *     example 3: substr_count('Kevin van Zonneveld', 'Z', 0, 10);
-  // *     returns 3: false
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Thomas
+  //   example 1: substr_count('Kevin van Zonneveld', 'e');
+  //   returns 1: 3
+  //   example 2: substr_count('Kevin van Zonneveld', 'K', 1);
+  //   returns 2: 0
+  //   example 3: substr_count('Kevin van Zonneveld', 'Z', 0, 10);
+  //   returns 3: false
 
   var cnt = 0;
 

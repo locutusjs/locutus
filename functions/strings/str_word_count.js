@@ -1,18 +1,18 @@
 function str_word_count(str, format, charlist) {
-  // From: http://phpjs.org/functions
-  // +   original by: Ole Vrijenhoek
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Bug?
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // -   depends on: ctype_alpha
-  // *     example 1: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1);
-  // *     returns 1: ['Hello', 'fri', 'nd', "you're", 'looking', 'good', 'today']
-  // *     example 2: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 2);
-  // *     returns 2: {0: 'Hello', 6: 'fri', 10: 'nd', 14: "you're", 29: 'looking', 46: 'good', 51: 'today'}
-  // *     example 3: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1, '\u00e0\u00e1\u00e3\u00e73');
-  // *     returns 3: ['Hello', 'fri3nd', "you're", 'looking', 'good', 'today']
+  //  discuss at: http://phpjs.org/functions
+  // original by: Ole Vrijenhoek
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Bug?
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: ctype_alpha
+  //   example 1: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1);
+  //   returns 1: ['Hello', 'fri', 'nd', "you're", 'looking', 'good', 'today']
+  //   example 2: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 2);
+  //   returns 2: {0: 'Hello', 6: 'fri', 10: 'nd', 14: "you're", 29: 'looking', 46: 'good', 51: 'today'}
+  //   example 3: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1, '\u00e0\u00e1\u00e3\u00e73');
+  //   returns 3: ['Hello', 'fri3nd', "you're", 'looking', 'good', 'today']
 
   var len = str.length,
       cl = charlist && charlist.length,

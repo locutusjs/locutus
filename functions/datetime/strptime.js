@@ -1,14 +1,14 @@
 function strptime(dateStr, format) {
-  // From: http://phpjs.org/functions
-  // +      original by: Brett Zamir (http://brett-zamir.me)
-  // +      original by: strftime
-  // -       depends on: setlocale
-  // -       depends on: array_map
-  // *          test: skip
-  // *        example 1: strptime('20091112222135', '%Y%m%d%H%M%S'); // Return value will depend on date and locale
-  // *        returns 1: {tm_sec: 35, tm_min: 21, tm_hour: 22, tm_mday: 12, tm_mon: 10, tm_year: 109, tm_wday: 4, tm_yday: 315, unparsed: ''}
-  // *        example 1: strptime('2009extra', '%Y');
-  // *        returns 1: {tm_sec:0, tm_min:0, tm_hour:0, tm_mday:0, tm_mon:0, tm_year:109, tm_wday:3, tm_yday: -1, unparsed: 'extra'}
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // original by: strftime
+  //  depends on: setlocale
+  //  depends on: array_map
+  //        test: skip
+  //   example 1: strptime('20091112222135', '%Y%m%d%H%M%S'); // Return value will depend on date and locale
+  //   example 1: strptime('2009extra', '%Y');
+  //   returns 1: {tm_sec: 35, tm_min: 21, tm_hour: 22, tm_mday: 12, tm_mon: 10, tm_year: 109, tm_wday: 4, tm_yday: 315, unparsed: ''}
+  //   returns 1: {tm_sec:0, tm_min:0, tm_hour:0, tm_mday:0, tm_mon:0, tm_year:109, tm_wday:3, tm_yday: -1, unparsed: 'extra'}
 
   // tm_isdst is in other docs; why not PHP?
 

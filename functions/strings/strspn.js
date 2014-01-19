@@ -1,11 +1,12 @@
 function strspn(str1, str2, start, lgth) {
-  // From: http://phpjs.org/functions
-  // +   original by: Valentina De Rosa
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: strspn('42 is the answer, what is the question ...', '1234567890');
-  // *     returns 1: 2
-  // *     example 2: strspn('foo', 'o', 1, 2);
-  // *     returns 2: 2
+  //  discuss at: http://phpjs.org/functions
+  // original by: Valentina De Rosa
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: strspn('42 is the answer, what is the question ...', '1234567890');
+  //   returns 1: 2
+  //   example 2: strspn('foo', 'o', 1, 2);
+  //   returns 2: 2
+
   var found;
   var stri;
   var strj;

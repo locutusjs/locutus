@@ -1,19 +1,20 @@
 function soundex(str) {
-  // From: http://phpjs.org/functions
-  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // +    improved by: Jack
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   original by: Arnout Kazemier (http://www.3rd-Eden.com)
-  // +    revised by: Rafał Kukawski (http://blog.kukawski.pl)
-  // *     example 1: soundex('Kevin');
-  // *     returns 1: 'K150'
-  // *     example 2: soundex('Ellery');
-  // *     returns 2: 'E460'
-  // *     example 3: soundex('Euler');
-  // *     returns 3: 'E460'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // original by: Arnout Kazemier (http://www.3rd-Eden.com)
+  // improved by: Jack
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Rafał Kukawski (http://blog.kukawski.pl)
+  //   example 1: soundex('Kevin');
+  //   returns 1: 'K150'
+  //   example 2: soundex('Ellery');
+  //   returns 2: 'E460'
+  //   example 3: soundex('Euler');
+  //   returns 3: 'E460'
+
   str = (str + '').toUpperCase();
   if (!str) {
     return '';

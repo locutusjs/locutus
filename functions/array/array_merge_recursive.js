@@ -1,13 +1,14 @@
 function array_merge_recursive(arr1, arr2) {
-  // From: http://phpjs.org/functions
-  // +   original by: Subhasis Deb
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // -    depends on: array_merge
-  // *     example 1: arr1 = {'color': {'favourite': 'read'}, 0: 5}
-  // *     example 1: arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
-  // *     example 1: array_merge_recursive(arr1, arr2)
-  // *     returns 1: {'color': {'favorite': {0: 'red', 1: 'green'}, 0: 'blue'}, 1: 5, 1: 10}
+  //  discuss at: http://phpjs.org/functions
+  // original by: Subhasis Deb
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //  depends on: array_merge
+  //   example 1: arr1 = {'color': {'favourite': 'read'}, 0: 5}
+  //   example 1: arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
+  //   example 1: array_merge_recursive(arr1, arr2)
+  //   returns 1: {'color': {'favorite': {0: 'red', 1: 'green'}, 0: 'blue'}, 1: 5, 1: 10}
+
   var idx = '';
 
   if (arr1 && Object.prototype.toString.call(arr1) === '[object Array]' &&

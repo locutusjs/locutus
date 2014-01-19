@@ -1,34 +1,34 @@
 function pathinfo(path, options) {
-  // From: http://phpjs.org/functions
-  // +   original by: Nate
-  // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    improved by: Brett Zamir (http://brett-zamir.me)
-  // +    input by: Timo
-  // %        note 1: Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559
-  // %        note 1: The way the bitwise arguments are handled allows for greater flexibility
-  // %        note 1: & compatability. We might even standardize this code and use a similar approach for
-  // %        note 1: other bitwise PHP functions
-  // %        note 2: php.js tries very hard to stay away from a core.js file with global dependencies, because we like
-  // %        note 2: that you can just take a couple of functions and be on your way.
-  // %        note 2: But by way we implemented this function, if you want you can still declare the PATHINFO_*
-  // %        note 2: yourself, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);
-  // %        note 2: which makes it fully compliant with PHP syntax.
-  // -    depends on: basename
-  // *     example 1: pathinfo('/www/htdocs/index.html', 1);
-  // *     returns 1: '/www/htdocs'
-  // *     example 2: pathinfo('/www/htdocs/index.html', 'PATHINFO_BASENAME');
-  // *     returns 2: 'index.html'
-  // *     example 3: pathinfo('/www/htdocs/index.html', 'PATHINFO_EXTENSION');
-  // *     returns 3: 'html'
-  // *     example 4: pathinfo('/www/htdocs/index.html', 'PATHINFO_FILENAME');
-  // *     returns 4: 'index'
-  // *     example 5: pathinfo('/www/htdocs/index.html', 2 | 4);
-  // *     returns 5: {basename: 'index.html', extension: 'html'}
-  // *     example 6: pathinfo('/www/htdocs/index.html', 'PATHINFO_ALL');
-  // *     returns 6: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
-  // *     example 7: pathinfo('/www/htdocs/index.html');
-  // *     returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
-  // Working vars
+  //  discuss at: http://phpjs.org/functions
+  // original by: Nate
+  //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Timo
+  //        note: Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559
+  //        note: The way the bitwise arguments are handled allows for greater flexibility
+  //        note: & compatability. We might even standardize this code and use a similar approach for
+  //        note: other bitwise PHP functions
+  //        note: php.js tries very hard to stay away from a core.js file with global dependencies, because we like
+  //        note: that you can just take a couple of functions and be on your way.
+  //        note: But by way we implemented this function, if you want you can still declare the PATHINFO_*
+  //        note: yourself, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);
+  //        note: which makes it fully compliant with PHP syntax.
+  //  depends on: basename
+  //   example 1: pathinfo('/www/htdocs/index.html', 1);
+  //   returns 1: '/www/htdocs'
+  //   example 2: pathinfo('/www/htdocs/index.html', 'PATHINFO_BASENAME');
+  //   returns 2: 'index.html'
+  //   example 3: pathinfo('/www/htdocs/index.html', 'PATHINFO_EXTENSION');
+  //   returns 3: 'html'
+  //   example 4: pathinfo('/www/htdocs/index.html', 'PATHINFO_FILENAME');
+  //   returns 4: 'index'
+  //   example 5: pathinfo('/www/htdocs/index.html', 2 | 4);
+  //   returns 5: {basename: 'index.html', extension: 'html'}
+  //   example 6: pathinfo('/www/htdocs/index.html', 'PATHINFO_ALL');
+  //   returns 6: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
+  //   example 7: pathinfo('/www/htdocs/index.html');
+  //   returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
+
   var opt = '',
       optName = '',
       optTemp = 0,

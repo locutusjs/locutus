@@ -1,39 +1,39 @@
 function money_format(format, number) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: daniel airton wermann (http://wermann.com.br)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: setlocale
-  // %        note 1: This depends on setlocale having the appropriate
-  // %        note 1: locale (these examples use 'en_US')
-  // *     example 1: money_format('%i', 1234.56);
-  // *     returns 1: ' USD 1,234.56'
-  // *     example 2: money_format('%14#8.2n', 1234.5678);
-  // *     returns 2: ' $     1,234.57'
-  // *     example 3: money_format('%14#8.2n', -1234.5678);
-  // *     returns 3: '-$     1,234.57'
-  // *     example 4: money_format('%(14#8.2n', 1234.5678);
-  // *     returns 4: ' $     1,234.57 '
-  // *     example 5: money_format('%(14#8.2n', -1234.5678);
-  // *     returns 5: '($     1,234.57)'
-  // *     example 6: money_format('%=014#8.2n', 1234.5678);
-  // *     returns 6: ' $000001,234.57'
-  // *     example 7: money_format('%=014#8.2n', -1234.5678);
-  // *     returns 7: '-$000001,234.57'
-  // *     example 8: money_format('%=*14#8.2n', 1234.5678);
-  // *     returns 8: ' $*****1,234.57'
-  // *     example 9: money_format('%=*14#8.2n', -1234.5678);
-  // *     returns 9: '-$*****1,234.57'
-  // *     example 10: money_format('%=*^14#8.2n', 1234.5678);
-  // *     returns 10: '  $****1234.57'
-  // *     example 11: money_format('%=*^14#8.2n', -1234.5678);
-  // *     returns 11: ' -$****1234.57'
-  // *     example 12: money_format('%=*!14#8.2n', 1234.5678);
-  // *     returns 12: ' *****1,234.57'
-  // *     example 13: money_format('%=*!14#8.2n', -1234.5678);
-  // *     returns 13: '-*****1,234.57'
-  // *     example 14: money_format('%i', 3590);
-  // *     returns 14: ' USD 3,590.00'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //    input by: daniel airton wermann (http://wermann.com.br)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: setlocale
+  //        note: This depends on setlocale having the appropriate
+  //        note: locale (these examples use 'en_US')
+  //   example 1: money_format('%i', 1234.56);
+  //   returns 1: ' USD 1,234.56'
+  //   example 2: money_format('%14#8.2n', 1234.5678);
+  //   returns 2: ' $     1,234.57'
+  //   example 3: money_format('%14#8.2n', -1234.5678);
+  //   returns 3: '-$     1,234.57'
+  //   example 4: money_format('%(14#8.2n', 1234.5678);
+  //   returns 4: ' $     1,234.57 '
+  //   example 5: money_format('%(14#8.2n', -1234.5678);
+  //   returns 5: '($     1,234.57)'
+  //   example 6: money_format('%=014#8.2n', 1234.5678);
+  //   returns 6: ' $000001,234.57'
+  //   example 7: money_format('%=014#8.2n', -1234.5678);
+  //   returns 7: '-$000001,234.57'
+  //   example 8: money_format('%=*14#8.2n', 1234.5678);
+  //   returns 8: ' $*****1,234.57'
+  //   example 9: money_format('%=*14#8.2n', -1234.5678);
+  //   returns 9: '-$*****1,234.57'
+  //  example 10: money_format('%=*^14#8.2n', 1234.5678);
+  //  returns 10: '  $****1234.57'
+  //  example 11: money_format('%=*^14#8.2n', -1234.5678);
+  //  returns 11: ' -$****1234.57'
+  //  example 12: money_format('%=*!14#8.2n', 1234.5678);
+  //  returns 12: ' *****1,234.57'
+  //  example 13: money_format('%=*!14#8.2n', -1234.5678);
+  //  returns 13: '-*****1,234.57'
+  //  example 14: money_format('%i', 3590);
+  //  returns 14: ' USD 3,590.00'
 
   // Per PHP behavior, there seems to be no extra padding for sign when there is a positive number, though my
   // understanding of the description is that there should be padding; need to revisit examples

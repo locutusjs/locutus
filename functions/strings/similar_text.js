@@ -1,13 +1,13 @@
 function similar_text(first, second, percent) {
-  // From: http://phpjs.org/functions
-  // +   original by: Rafał Kukawski (http://blog.kukawski.pl)
-  // +   bugfixed by: Chris McMacken
-  // +   improved by: Markus Padourek (taken from http://www.kevinhq.com/2012/06/php-similartext-function-in-javascript_16.html)
-  // +   bugfixed by: Jarkko Rantavuori original by findings in stackoverflow (http://stackoverflow.com/questions/14136349/how-does-similar-text-work)
-  // *     example 1: similar_text('Hello World!', 'Hello phpjs!');
-  // *     returns 1: 7
-  // *     example 2: similar_text('Hello World!', null);
-  // *     returns 2: 0
+  //  discuss at: http://phpjs.org/functions
+  // original by: Rafał Kukawski (http://blog.kukawski.pl)
+  // bugfixed by: Chris McMacken
+  // bugfixed by: Jarkko Rantavuori original by findings in stackoverflow (http://stackoverflow.com/questions/14136349/how-does-similar-text-work)
+  // improved by: Markus Padourek (taken from http://www.kevinhq.com/2012/06/php-similartext-function-in-javascript_16.html)
+  //   example 1: similar_text('Hello World!', 'Hello phpjs!');
+  //   returns 1: 7
+  //   example 2: similar_text('Hello World!', null);
+  //   returns 2: 0
 
   if (first === null || second === null || typeof first === 'undefined' || typeof second === 'undefined') {
     return 0;

@@ -1,14 +1,16 @@
 function uniqid(prefix, more_entropy) {
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    revised by: Kankrelune (http://www.webfaktory.info/)
-  // %        note 1: Uses an internal counter (in php_js global) to avoid collision
-  // *          test: skip
-  // *     example 1: uniqid();
-  // *     returns 1: 'a30285b160c14'
-  // *     example 2: uniqid('foo');
-  // *     returns 2: 'fooa30285b1cd361'
-  // *     example 3: uniqid('bar', true);
-  // *     returns 3: 'bara20285b23dfd1.31879087'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //  revised by: Kankrelune (http://www.webfaktory.info/)
+  //        note: Uses an internal counter (in php_js global) to avoid collision
+  //        test: skip
+  //   example 1: uniqid();
+  //   returns 1: 'a30285b160c14'
+  //   example 2: uniqid('foo');
+  //   returns 2: 'fooa30285b1cd361'
+  //   example 3: uniqid('bar', true);
+  //   returns 3: 'bara20285b23dfd1.31879087'
+
   if (typeof prefix === 'undefined') {
     prefix = '';
   }

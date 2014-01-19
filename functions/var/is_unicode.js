@@ -1,8 +1,10 @@
 function is_unicode(vr) {
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Almost all strings in JavaScript should be Unicode
-  // *     example 1: is_unicode('We the peoples of the United Nations...!');
-  // *     returns 1: true
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: Almost all strings in JavaScript should be Unicode
+  //   example 1: is_unicode('We the peoples of the United Nations...!');
+  //   returns 1: true
+
   if (typeof vr !== 'string') {
     return false;
   }

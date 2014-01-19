@@ -1,9 +1,10 @@
 function metaphone(word, phones) {
-  // +   original by: Greg Frazier
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Rafał Kukawski (http://kukawski.pl)
-  // *     example 1: metaphone('Gnu');
-  // *     returns 1: 'N'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Greg Frazier
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Rafał Kukawski (http://kukawski.pl)
+  //   example 1: metaphone('Gnu');
+  //   returns 1: 'N'
 
   word = (word == null ? '' : word + '').toUpperCase();
 

@@ -1,9 +1,10 @@
 function nl_langinfo(item) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: setlocale
-  // *     example 1: nl_langinfo('DAY_1');
-  // *     returns 1: 'Sunday'
+  //  discuss at: http://phpjs.org/functions
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: setlocale
+  //   example 1: nl_langinfo('DAY_1');
+  //   returns 1: 'Sunday'
+
   this.setlocale('LC_ALL', 0); // Ensure locale data is available
   var loc = this.php_js.locales[this.php_js.localeCategories.LC_TIME];
   if (item.indexOf('ABDAY_') === 0) {

@@ -1,12 +1,13 @@
 function is_finite(val) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: is_finite(Infinity);
-  // *     returns 1: false
-  // *     example 2: is_finite(-Infinity);
-  // *     returns 2: false
-  // *     example 3: is_finite(0);
-  // *     returns 3: true
+  //  discuss at: http://phpjs.org/functions
+  // original by: Onno Marsman
+  //   example 1: is_finite(Infinity);
+  //   returns 1: false
+  //   example 2: is_finite(-Infinity);
+  //   returns 2: false
+  //   example 3: is_finite(0);
+  //   returns 3: true
+
   var warningType = '';
 
   if (val === Infinity || val === -Infinity) {
