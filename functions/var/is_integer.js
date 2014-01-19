@@ -1,5 +1,5 @@
 function is_integer(mixed_var) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/is_integer/
   // original by: Paulo Freitas
   //  depends on: is_int
   //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes

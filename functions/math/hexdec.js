@@ -1,5 +1,5 @@
 function hexdec(hex_string) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/hexdec/
   // original by: Philippe Baumann
   //   example 1: hexdec('that');
   //   returns 1: 10

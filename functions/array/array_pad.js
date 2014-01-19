@@ -1,5 +1,5 @@
 function array_pad(input, pad_size, pad_value) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/array_pad/
   // original by: Waldo Malqui Silva
   //   example 1: array_pad([ 7, 8, 9 ], 2, 'a');
   //   returns 1: [ 7, 8, 9]

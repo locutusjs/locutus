@@ -1,5 +1,5 @@
 function create_function(args, code) {
-  //       discuss at: http://phpjs.org/functions
+  //       discuss at: http://phpjs.org/functions/create_function/
   //      original by: Johnny Mast (http://www.phpvrouwen.nl)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //        example 1: f = create_function('a, b', "return (a + b);");

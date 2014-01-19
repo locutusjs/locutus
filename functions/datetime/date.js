@@ -1,5 +1,5 @@
 function date(format, timestamp) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/date/
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // original by: gettimeofday
   //    parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)

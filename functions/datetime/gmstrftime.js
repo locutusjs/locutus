@@ -1,5 +1,5 @@
 function gmstrftime(format, timestamp) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/gmstrftime/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Alex
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

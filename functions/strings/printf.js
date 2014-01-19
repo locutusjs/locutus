@@ -1,5 +1,5 @@
 function printf() {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/printf/
   // original by: Ash Searle (http://hexmen.com/blog/)
   // improved by: Michael White (http://getsprink.com)
   // improved by: Brett Zamir (http://brett-zamir.me)

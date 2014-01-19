@@ -1,5 +1,5 @@
 function substr_compare(main_str, str, offset, length, case_insensitivity) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/substr_compare/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: strcasecmp, strcmp
   //   example 1: substr_compare("abcde", "bc", 1, 2);

@@ -1,5 +1,5 @@
 function dirname(path) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/dirname/
   //        http: //kevin.vanzonneveld.net
   // original by: Ozh
   // improved by: XoraX (http://www.xorax.info)

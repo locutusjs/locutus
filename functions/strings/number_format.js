@@ -1,5 +1,5 @@
 function number_format(number, decimals, dec_point, thousands_sep) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/number_format/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: davook

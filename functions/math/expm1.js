@@ -1,5 +1,5 @@
 function expm1(x) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/expm1/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Precision 'n' can be adjusted as desired
   //   example 1: expm1(1e-15);

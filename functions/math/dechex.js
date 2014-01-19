@@ -1,5 +1,5 @@
 function dechex(number) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/dechex/
   // original by: Philippe Baumann
   // bugfixed by: Onno Marsman
   // improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript

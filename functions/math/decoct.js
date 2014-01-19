@@ -1,5 +1,5 @@
 function decoct(number) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/decoct/
   // original by: Enrique Gonzalez
   // bugfixed by: Onno Marsman
   // improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript

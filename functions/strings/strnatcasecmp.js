@@ -1,5 +1,5 @@
 function strnatcasecmp(str1, str2) {
-  //       discuss at: http://phpjs.org/functions
+  //       discuss at: http://phpjs.org/functions/strnatcasecmp/
   //      original by: Martin Pool
   // reimplemented by: Pierre-Luc Paour
   // reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))

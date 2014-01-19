@@ -1,5 +1,5 @@
 function abs(mixed_number) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/abs/
   // original by: Waldo Malqui Silva
   // improved by: Karol Kowalski
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

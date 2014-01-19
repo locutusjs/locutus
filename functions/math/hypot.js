@@ -1,5 +1,5 @@
 function hypot(x, y) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/hypot/
   // original by: Onno Marsman
   //   example 1: hypot(3, 4);
   //   returns 1: 5

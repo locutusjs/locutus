@@ -1,5 +1,5 @@
 function strncmp(str1, str2, lgth) {
-  //       discuss at: http://phpjs.org/functions
+  //       discuss at: http://phpjs.org/functions/strncmp/
   //      original by: Waldo Malqui Silva
   //         input by: Steve Hilder
   //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

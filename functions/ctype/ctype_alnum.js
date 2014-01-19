@@ -1,5 +1,5 @@
 function ctype_alnum(text) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/ctype_alnum/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: ctype_alnum('AbC12');

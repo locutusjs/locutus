@@ -1,5 +1,5 @@
 function is_callable(v, syntax_only, callable_name) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/is_callable/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: François
   // improved by: Brett Zamir (http://brett-zamir.me)

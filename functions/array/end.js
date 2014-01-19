@@ -1,5 +1,5 @@
 function end(arr) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/end/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Legaev Andrey
   //  revised by: J A R

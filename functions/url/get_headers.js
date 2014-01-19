@@ -1,5 +1,5 @@
 function get_headers(url, format) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/get_headers/
   // original by: Paulo Freitas
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //  depends on: array_filter

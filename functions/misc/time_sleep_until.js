@@ -1,5 +1,5 @@
 function time_sleep_until(timestamp) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/time_sleep_until/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: For study purposes. Current implementation could lock up the user's browser.
   //        note: Expects a timestamp in seconds, so DO NOT pass in a JavaScript timestamp which are in milliseconds (e.g., new Date()) or otherwise the function will lock up the browser 1000 times longer than probably intended.

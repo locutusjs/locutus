@@ -1,5 +1,5 @@
 function strip_tags(input, allowed) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/strip_tags/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Luke Godfrey
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

@@ -1,5 +1,5 @@
 function str_ireplace(search, replace, subject) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/str_ireplace/
   // original by: Martijn Wieringa
   //    input by: penutbutterjelly
   //    input by: Brett Zamir (http://brett-zamir.me)

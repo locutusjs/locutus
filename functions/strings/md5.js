@@ -1,5 +1,5 @@
 function md5(str) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/md5/
   // original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // improved by: Michael White (http://getsprink.com)
   // improved by: Jack

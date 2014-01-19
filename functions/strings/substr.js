@@ -1,5 +1,5 @@
 function substr(str, start, len) {
-  //  discuss at: http://phpjs.org/functions/substr
+  //  discuss at: http://phpjs.org/functions/substr/
   //     version: 909.322
   // original by: Martijn Wieringa
   // bugfixed by: T.Wild

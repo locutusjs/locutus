@@ -1,5 +1,5 @@
 function explode(delimiter, string, limit) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/explode/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //   example 1: explode(' ', 'Kevin van Zonneveld');
   //   returns 1: {0: 'Kevin', 1: 'van', 2: 'Zonneveld'}

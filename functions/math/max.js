@@ -1,5 +1,5 @@
 function max() {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/max/
   // original by: Onno Marsman
   //  revised by: Onno Marsman
   // improved by: Jack

@@ -1,5 +1,5 @@
 function mktime() {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/mktime/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: baris ozdil
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

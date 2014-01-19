@@ -1,5 +1,5 @@
 function array_product(input) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/array_product/
   // original by: Waldo Malqui Silva
   //   example 1: array_product([ 2, 4, 6, 8 ]);
   //   returns 1: 384

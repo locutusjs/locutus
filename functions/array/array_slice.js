@@ -1,5 +1,5 @@
 function array_slice(arr, offst, lgth, preserve_keys) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/array_slice/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: is_int
   //    input by: Brett Zamir (http://brett-zamir.me)

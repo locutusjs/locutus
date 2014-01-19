@@ -1,5 +1,5 @@
 function i18n_loc_set_default(name) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/i18n_loc_set_default/
   //        http: //kevin.vanzonneveld.net
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Renamed in PHP6 from locale_set_default(). Not listed yet at php.net

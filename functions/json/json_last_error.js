@@ -1,5 +1,5 @@
 function json_last_error() {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/json_last_error/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: json_last_error();
   //   returns 1: 0

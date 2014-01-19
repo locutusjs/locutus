@@ -1,5 +1,5 @@
 function json_decode(str_json) {
-  //       discuss at: http://phpjs.org/functions
+  //       discuss at: http://phpjs.org/functions/json_decode/
   //      original by: Public Domain (http://www.json.org/json2.js)
   // reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      improved by: T.J. Leahy

@@ -1,5 +1,5 @@
 function range(low, high, step) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/range/
   // original by: Waldo Malqui Silva
   //   example 1: range ( 0, 12 );
   //   returns 1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]

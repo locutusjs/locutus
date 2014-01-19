@@ -1,5 +1,5 @@
 function realpath(path) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/realpath/
   // original by: mk.keck
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //        note: Returned path is an url like e.g. 'http://yourhost.tld/path/'

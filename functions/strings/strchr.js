@@ -1,5 +1,5 @@
 function strchr(haystack, needle, bool) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/strchr/
   // original by: Philip Peterson
   //  depends on: strstr
   //   example 1: strchr('Kevin van Zonneveld', 'van');

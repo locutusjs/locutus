@@ -1,5 +1,5 @@
 function nl_langinfo(item) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/nl_langinfo/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: nl_langinfo('DAY_1');

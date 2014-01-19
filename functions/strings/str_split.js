@@ -1,5 +1,5 @@
 function str_split(string, split_length) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/str_split/
   // original by: Martijn Wieringa
   // improved by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Onno Marsman

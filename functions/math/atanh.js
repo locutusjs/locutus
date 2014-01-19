@@ -1,5 +1,5 @@
 function atanh(arg) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/atanh/
   // original by: Onno Marsman
   //   example 1: atanh(0.3);
   //   returns 1: 0.3095196042031118

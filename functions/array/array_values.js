@@ -1,5 +1,5 @@
 function array_values(input) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/array_values/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );

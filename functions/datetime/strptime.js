@@ -1,5 +1,5 @@
 function strptime(dateStr, format) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/strptime/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: strftime
   //  depends on: setlocale

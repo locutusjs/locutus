@@ -1,5 +1,5 @@
 function quoted_printable_decode(str) {
-  //       discuss at: http://phpjs.org/functions
+  //       discuss at: http://phpjs.org/functions/quoted_printable_decode/
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   //      bugfixed by: Theriault

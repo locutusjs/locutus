@@ -1,5 +1,5 @@
 function htmlspecialchars_decode(string, quote_style) {
-  //       discuss at: http://phpjs.org/functions
+  //       discuss at: http://phpjs.org/functions/htmlspecialchars_decode/
   //      original by: Mirek Slugen
   //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      bugfixed by: Mateusz "loonquawl" Zalega

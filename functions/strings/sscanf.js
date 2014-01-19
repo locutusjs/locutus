@@ -1,5 +1,5 @@
 function sscanf(str, format) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/sscanf/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Since JS does not support scalar reference variables, any additional arguments to the function will
   //        note: only be allowable here as strings referring to a global variable (which will then be set to the value

@@ -1,5 +1,5 @@
 function strtok(str, tokens) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/strtok/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Use tab and newline as tokenizing characters as well
   //   example 1: $string = "\t\t\t\nThis is\tan example\nstring\n";

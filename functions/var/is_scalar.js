@@ -1,5 +1,5 @@
 function is_scalar(mixed_var) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/is_scalar/
   // original by: Paulo Freitas
   //   example 1: is_scalar(186.31);
   //   returns 1: true

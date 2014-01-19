@@ -1,5 +1,5 @@
 function bcdiv(left_operand, right_operand, scale) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/bcdiv/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //  depends on: _phpjs_shared_bc
   //   example 1: bcdiv(1, 2);

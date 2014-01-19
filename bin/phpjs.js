@@ -84,10 +84,13 @@ cli.cleanup = function(args, options) {
     var key, val, items, vals, i, itemNr;
 
     var headKeys = {
-      'discuss at': [['http://phpjs.org/functions']]
+      'discuss at': [['http://phpjs.org/functions/' + params.name]]
     };
 
     _.extend(headKeys, params.headKeys);
+
+    // If you want to overwrite:
+    // headKeys['discuss at'] = [['http://phpjs.org/functions/' + params.name + '/']];
 
     for (key in headKeys){
       items = headKeys[key];

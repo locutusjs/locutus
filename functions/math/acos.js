@@ -1,5 +1,5 @@
 function acos(arg) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/acos/
   // original by: Onno Marsman
   //   example 1: acos(0.3);
   //   returns 1: 1.2661036727794992

@@ -1,5 +1,5 @@
 function key(arr) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/key/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Riddler (http://www.frontierwebdev.com/)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

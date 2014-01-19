@@ -1,5 +1,5 @@
 function base64_decode(data) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/base64_decode/
   // original by: Tyler Akins (http://rumkin.com)
   // improved by: Thunder.m
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

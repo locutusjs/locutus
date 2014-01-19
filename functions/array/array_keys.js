@@ -1,5 +1,5 @@
 function array_keys(input, search_value, argStrict) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/array_keys/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //    input by: P

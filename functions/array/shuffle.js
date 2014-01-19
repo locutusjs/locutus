@@ -1,5 +1,5 @@
 function shuffle(inputArr) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/shuffle/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Brett Zamir (http://brett-zamir.me)

@@ -1,5 +1,5 @@
 function pathinfo(path, options) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/pathinfo/
   // original by: Nate
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)

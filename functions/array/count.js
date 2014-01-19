@@ -1,5 +1,5 @@
 function count(mixed_var, mode) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/count/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Waldo Malqui Silva
   //    input by: merabi

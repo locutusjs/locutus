@@ -1,5 +1,5 @@
 function array_fill_keys(keys, value) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/array_fill_keys/
   // original by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //   example 1: keys = {'a': 'foo', 2: 5, 3: 10, 4: 'bar'}

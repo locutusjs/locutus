@@ -1,5 +1,5 @@
 function join(glue, pieces) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/join/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  depends on: implode
   //   example 1: join(' ', ['Kevin', 'van', 'Zonneveld']);

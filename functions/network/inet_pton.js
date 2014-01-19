@@ -1,5 +1,5 @@
 function inet_pton(a) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/inet_pton/
   // original by: Theriault
   //   example 1: inet_pton('::');
   //   returns 1: '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'

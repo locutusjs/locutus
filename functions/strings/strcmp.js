@@ -1,5 +1,5 @@
 function strcmp(str1, str2) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/strcmp/
   // original by: Waldo Malqui Silva
   //    input by: Steve Hilder
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

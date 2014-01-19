@@ -1,5 +1,5 @@
 function ctype_print(text) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/ctype_print/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: ctype_print('AbC!#12');

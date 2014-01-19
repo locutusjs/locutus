@@ -1,5 +1,5 @@
 function strtotime(text, now) {
-  //  discuss at: http://phpjs.org/functions/strtotime
+  //  discuss at: http://phpjs.org/functions/strtotime/
   //     version: 1109.2016
   // original by: Caio Ariede (http://caioariede.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

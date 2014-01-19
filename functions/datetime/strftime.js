@@ -1,5 +1,5 @@
 function strftime(fmt, timestamp) {
-  //       discuss at: http://phpjs.org/functions
+  //       discuss at: http://phpjs.org/functions/strftime/
   //      original by: Blues (http://tech.bluesmoon.info/)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //         input by: Alex

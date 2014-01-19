@@ -1,5 +1,5 @@
 function str_getcsv(input, delimiter, enclosure, escape) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/str_getcsv/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: str_getcsv('"abc", "def", "ghi"');
   //   returns 1: ['abc', 'def', 'ghi']

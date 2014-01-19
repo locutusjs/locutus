@@ -1,5 +1,5 @@
 function setcookie(name, value, expires, path, domain, secure) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/setcookie/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // bugfixed by: Andreas
   // bugfixed by: Onno Marsman

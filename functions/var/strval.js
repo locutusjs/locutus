@@ -1,5 +1,5 @@
 function strval(str) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/strval/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

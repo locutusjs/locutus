@@ -1,5 +1,5 @@
 function sprintf() {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/sprintf/
   // original by: Ash Searle (http://hexmen.com/blog/)
   // improved by: Michael White (http://getsprink.com)
   // improved by: Jack

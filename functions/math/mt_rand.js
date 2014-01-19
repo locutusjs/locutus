@@ -1,5 +1,5 @@
 function mt_rand(min, max) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/mt_rand/
   // original by: Onno Marsman
   // improved by: Brett Zamir (http://brett-zamir.me)
   //    input by: Kongo

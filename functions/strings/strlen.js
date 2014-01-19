@@ -1,5 +1,5 @@
 function strlen(string) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/strlen/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Sakimori
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

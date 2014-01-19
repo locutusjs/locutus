@@ -1,5 +1,5 @@
 function log(arg, base) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/log/
   // original by: Onno Marsman
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: log(8723321.4, 7);

@@ -1,5 +1,5 @@
 function var_dump() {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/var_dump/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Zahlii
   // improved by: Brett Zamir (http://brett-zamir.me)

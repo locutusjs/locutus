@@ -1,5 +1,5 @@
 function empty(mixed_var) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/empty/
   // original by: Philippe Baumann
   //    input by: Onno Marsman
   //    input by: LH

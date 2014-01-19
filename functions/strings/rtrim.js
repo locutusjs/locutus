@@ -1,5 +1,5 @@
 function rtrim(str, charlist) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/rtrim/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Erkekjetter
   //    input by: rem

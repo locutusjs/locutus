@@ -1,5 +1,5 @@
 function assert_options(what, value) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/assert_options/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: assert_options('ASSERT_CALLBACK');
   //   returns 1: null

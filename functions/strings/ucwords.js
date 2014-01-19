@@ -1,5 +1,5 @@
 function ucwords(str) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/ucwords/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Waldo Malqui Silva
   // improved by: Robin

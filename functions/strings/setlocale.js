@@ -1,5 +1,5 @@
 function setlocale(category, locale) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/setlocale/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: Blues at http://hacks.bluesmoon.info/strftime/strftime.js
   // original by: YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html

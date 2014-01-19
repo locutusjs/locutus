@@ -1,5 +1,5 @@
 function is_infinite(val) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/is_infinite/
   // original by: Onno Marsman
   //   example 1: is_infinite(Infinity);
   //   returns 1: true

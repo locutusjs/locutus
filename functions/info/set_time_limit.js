@@ -1,5 +1,5 @@
 function set_time_limit(seconds) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/set_time_limit/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        test: skip
   //   example 1: set_time_limit(4);

@@ -1,5 +1,5 @@
 function lcg_value() {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/lcg_value/
   // original by: Onno Marsman
   //        test: skip
   //   example 1: lcg_value()

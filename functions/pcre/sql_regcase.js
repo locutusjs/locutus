@@ -1,5 +1,5 @@
 function sql_regcase(str) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/sql_regcase/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: sql_regcase('Foo - bar.');

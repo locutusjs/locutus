@@ -1,5 +1,5 @@
 function is_resource(handle) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/is_resource/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Luis Salazar (http://www.freaky-media.com/)
   //   example 1: is_resource('a');

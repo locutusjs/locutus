@@ -1,5 +1,5 @@
 function strspn(str1, str2, start, lgth) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/strspn/
   // original by: Valentina De Rosa
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: strspn('42 is the answer, what is the question ...', '1234567890');

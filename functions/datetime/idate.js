@@ -1,5 +1,5 @@
 function idate(format, timestamp) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/idate/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: date
   // original by: gettimeofday

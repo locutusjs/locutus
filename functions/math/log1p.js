@@ -1,5 +1,5 @@
 function log1p(x) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/log1p/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Precision 'n' can be adjusted as desired
   //   example 1: log1p(1e-15);

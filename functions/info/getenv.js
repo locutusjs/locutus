@@ -1,5 +1,5 @@
 function getenv(varname) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/getenv/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: We are not using $_ENV as in PHP, you could define
   //        note: "$_ENV = this.php_js.ENV;" and get/set accordingly

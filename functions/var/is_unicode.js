@@ -1,5 +1,5 @@
 function is_unicode(vr) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/is_unicode/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Almost all strings in JavaScript should be Unicode
   //   example 1: is_unicode('We the peoples of the United Nations...!');

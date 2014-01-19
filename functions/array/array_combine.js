@@ -1,5 +1,5 @@
 function array_combine(keys, values) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/array_combine/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_combine([0,1,2], ['kevin','van','zonneveld']);

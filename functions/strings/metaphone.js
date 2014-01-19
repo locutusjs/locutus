@@ -1,5 +1,5 @@
 function metaphone(word, phones) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/metaphone/
   // original by: Greg Frazier
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Rafał Kukawski (http://kukawski.pl)

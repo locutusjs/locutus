@@ -1,5 +1,5 @@
 function strripos(haystack, needle, offset) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/strripos/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

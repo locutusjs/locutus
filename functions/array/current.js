@@ -1,5 +1,5 @@
 function current(arr) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/current/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: php_js to store the array pointer
   //   example 1: transport = ['foot', 'bike', 'car', 'plane'];

@@ -1,5 +1,5 @@
 function min() {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/min/
   // original by: Onno Marsman
   //  revised by: Onno Marsman
   // improved by: Jack

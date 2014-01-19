@@ -1,5 +1,5 @@
 function checkdate(m, d, y) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/checkdate/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Pyerre
   // improved by: Theriault

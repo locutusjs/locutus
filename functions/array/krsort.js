@@ -1,5 +1,5 @@
 function krsort(inputArr, sort_flags) {
-  //  discuss at: http://phpjs.org/functions
+  //  discuss at: http://phpjs.org/functions/krsort/
   // original by: GeekFG (http://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
